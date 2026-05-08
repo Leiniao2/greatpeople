@@ -68,16 +68,8 @@ struct CardDetailView: View {
                     // ── Info panel ──────────────────────────────────────
                     VStack(alignment: .leading, spacing: 20) {
 
-                        // Tier badge + identities
+                        // Identities
                         HStack(spacing: 8) {
-                            Text(card.tier.rawValue.capitalized)
-                                .font(.system(size: 10).weight(.bold))
-                                .tracking(1.5)
-                                .padding(.horizontal, 10).padding(.vertical, 4)
-                                .background(tierColor.opacity(0.85))
-                                .foregroundColor(.white)
-                                .clipShape(Capsule())
-
                             ForEach(Array(card.identities.prefix(2)), id: \.self) { identity in
                                 Text(identity)
                                     .font(.system(size: 11).weight(.semibold))

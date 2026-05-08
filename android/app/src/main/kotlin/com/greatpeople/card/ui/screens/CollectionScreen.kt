@@ -173,17 +173,6 @@ private fun CardItem(card: Card, onClick: () -> Unit = {}) {
                     Text("♟", style = MaterialTheme.typography.displaySmall,
                         color = tierColor.copy(alpha = 0.4f))
                 }
-                // Tier badge
-                Surface(
-                    modifier = Modifier.align(Alignment.TopEnd).padding(6.dp),
-                    color = tierColor.copy(alpha = 0.85f),
-                    shape = MaterialTheme.shapes.extraSmall,
-                ) {
-                    Text(card.tier.name.lowercase().replaceFirstChar { it.uppercase() },
-                        modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp),
-                        style = MaterialTheme.typography.labelSmall,
-                        color = Color.White)
-                }
             }
 
             // Info

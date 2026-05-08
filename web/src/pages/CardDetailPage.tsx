@@ -63,11 +63,6 @@ export default function CardDetailPage() {
             ← Collection
           </button>
 
-          {/* Tier badge */}
-          <span className={`absolute top-4 right-4 px-2.5 py-1 rounded-md text-[11px] font-bold uppercase tracking-wider ${tier.badge}`}>
-            {card.tier}
-          </span>
-
           {/* Name overlay at bottom of image */}
           <div className="absolute bottom-0 inset-x-0 px-5 pb-5">
             <h1 className="text-white text-2xl font-bold leading-tight drop-shadow-lg">

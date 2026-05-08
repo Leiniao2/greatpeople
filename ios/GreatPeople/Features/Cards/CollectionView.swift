@@ -146,15 +146,6 @@ struct CardCell: View {
                 .frame(height: 140)
                 .clipped()
 
-                // Tier badge
-                Text(card.tier.rawValue.capitalized)
-                    .font(.system(size: 9).weight(.bold))
-                    .tracking(1)
-                    .padding(.horizontal, 6).padding(.vertical, 3)
-                    .background(tierColor.opacity(0.85))
-                    .foregroundColor(.white)
-                    .clipShape(RoundedRectangle(cornerRadius: 4))
-                    .padding(6)
             }
 
             // Info

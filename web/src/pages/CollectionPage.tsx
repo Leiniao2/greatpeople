@@ -175,10 +175,6 @@ function CardItem({ card, onClick }: { card: Card; onClick: () => void }) {
         ) : (
           <span className="text-4xl select-none opacity-30">♟</span>
         )}
-        {/* Tier badge */}
-        <span className={`absolute top-2 right-2 px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider ${tier.badge}`}>
-          {card.tier}
-        </span>
       </div>
 
       {/* Info */}

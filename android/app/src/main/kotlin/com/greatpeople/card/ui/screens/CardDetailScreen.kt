@@ -94,21 +94,6 @@ fun CardDetailScreen(card: Card, onBack: () -> Unit) {
                         ),
                 )
 
-                // Tier badge
-                Surface(
-                    modifier = Modifier.align(Alignment.TopEnd).padding(12.dp),
-                    color = tierColor.copy(alpha = 0.85f),
-                    shape = RoundedCornerShape(4.dp),
-                ) {
-                    Text(
-                        card.tier.name.lowercase().replaceFirstChar { it.uppercase() },
-                        modifier = Modifier.padding(horizontal = 8.dp, vertical = 3.dp),
-                        style = MaterialTheme.typography.labelSmall,
-                        fontWeight = FontWeight.Bold,
-                        color = Color.White,
-                    )
-                }
-
                 // Name + years at bottom of image
                 Column(
                     modifier = Modifier
