@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 struct CardDetailView: View {
     let card: Card
@@ -15,7 +16,9 @@ struct CardDetailView: View {
                     // ── Image slot — 9:16 portrait ──────────────────────
                     ZStack(alignment: .bottom) {
                         // Portrait image
-                        if let url = card.portraitURL {
+                        if let assetName = card.localAssetName, let uiImage = UIImage(named: assetName) {
+                            Image(uiImage: uiImage).resizable().scaledToFill()
+                        } else if let url = card.portraitURL {
                             AsyncImage(url: url) { phase in
                                 switch phase {
                                 case .success(let img):

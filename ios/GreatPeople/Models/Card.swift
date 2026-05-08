@@ -19,6 +19,11 @@ struct Card: Identifiable, Codable, Equatable, Hashable {
     let characteristics: String
     let achievement: String
 
-    var portraitURL: URL? { URL(string: portraitUrl) }
+    var portraitURL: URL? {
+        portraitUrl.hasPrefix("asset:") ? nil : URL(string: portraitUrl)
+    }
+    var localAssetName: String? {
+        portraitUrl.hasPrefix("asset:") ? String(portraitUrl.dropFirst(6)) : nil
+    }
     var totalStats: Int { influence + innovation + legacy }
 }

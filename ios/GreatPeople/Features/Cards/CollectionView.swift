@@ -1,26 +1,49 @@
 import SwiftUI
+import UIKit
 
 private let demoCards: [Card] = [
-    Card(id: "demo-1", figureName: "Leonardo da Vinci", era: "Renaissance", domain: .arts,
-         influence: 95, innovation: 98, legacy: 100, tier: .legendary, lore: "The ultimate Renaissance man.",
-         portraitUrl: "", years: "1452–1519", identities: ["Polymath", "Inventor"],
-         characteristics: "Insatiably curious, visionary, and obsessively detail-oriented.",
-         achievement: "Painted the Mona Lisa; designed flying machines centuries before they were built."),
-    Card(id: "demo-2", figureName: "Marie Curie", era: "Modern", domain: .science,
-         influence: 88, innovation: 95, legacy: 92, tier: .epic, lore: "She broke every barrier twice.",
-         portraitUrl: "", years: "1867–1934", identities: ["Scientist", "Pioneer"],
-         characteristics: "Rigorous, determined, and fearless in the face of adversity.",
-         achievement: "First person to win Nobel Prizes in two sciences — Physics and Chemistry."),
-    Card(id: "demo-3", figureName: "Nikola Tesla", era: "Industrial", domain: .science,
-         influence: 82, innovation: 97, legacy: 85, tier: .epic, lore: "Visionary engineer ahead of his time.",
-         portraitUrl: "", years: "1856–1943", identities: ["Inventor", "Engineer"],
-         characteristics: "Eccentric, brilliant, and relentlessly inventive.",
-         achievement: "Developed alternating current (AC) systems powering the modern world."),
-    Card(id: "demo-4", figureName: "Julius Caesar", era: "Ancient", domain: .politics,
-         influence: 90, innovation: 72, legacy: 88, tier: .rare, lore: "His name became a title for millennia.",
-         portraitUrl: "", years: "100–44 BC", identities: ["General", "Statesman"],
-         characteristics: "Decisive, charismatic, calculating, and supremely confident.",
-         achievement: "Conquered Gaul and reformed the Roman calendar still in use today."),
+    Card(id: "demo-1", figureName: "Gandhi", era: "Modern", domain: .politics,
+         influence: 97, innovation: 85, legacy: 98, tier: .legendary,
+         lore: "The soul force that moved an empire.",
+         portraitUrl: "asset:portrait_gandhi", years: "1869–1948",
+         identities: ["Leader", "Activist"],
+         characteristics: "Resolute, compassionate, and unwavering in pursuit of justice through nonviolence.",
+         achievement: "Led India's independence movement through peaceful civil disobedience, inspiring liberation movements worldwide."),
+    Card(id: "demo-2", figureName: "Coco Chanel", era: "Modern", domain: .arts,
+         influence: 88, innovation: 93, legacy: 90, tier: .epic,
+         lore: "She dressed the world in modernity.",
+         portraitUrl: "asset:portrait_coco_chanel", years: "1883–1971",
+         identities: ["Designer", "Pioneer"],
+         characteristics: "Audacious, elegant, and fiercely independent in defiance of convention.",
+         achievement: "Liberated women's fashion from corsets and built a global luxury empire around her name."),
+    Card(id: "demo-3", figureName: "Mao Zedong", era: "Modern", domain: .politics,
+         influence: 92, innovation: 78, legacy: 88, tier: .epic,
+         lore: "A revolution forged from peasant to chairman.",
+         portraitUrl: "asset:portrait_mao_zedong", years: "1893–1976",
+         identities: ["Revolutionary", "Statesman"],
+         characteristics: "Strategic, ideological, and ruthlessly determined in reshaping society.",
+         achievement: "Founded the People's Republic of China and united it under Communist rule in 1949."),
+    Card(id: "demo-4", figureName: "Belisarius", era: "Byzantine", domain: .politics,
+         influence: 75, innovation: 82, legacy: 72, tier: .rare,
+         lore: "The last great general of Rome.",
+         portraitUrl: "asset:portrait_belisarius", years: "505–565 AD",
+         identities: ["General", "Commander"],
+         characteristics: "Brilliant tactician, loyal to a fault, and capable of the impossible.",
+         achievement: "Reconquered North Africa and Italy for the Byzantine Empire with a fraction of the expected resources."),
+    Card(id: "demo-5", figureName: "Imhotep", era: "Ancient", domain: .arts,
+         influence: 85, innovation: 96, legacy: 88, tier: .legendary,
+         lore: "Deified by two civilizations for mastery of stone and medicine.",
+         portraitUrl: "asset:portrait_imhotep", years: "c. 2650–2600 BC",
+         identities: ["Architect", "Physician"],
+         characteristics: "Visionary, meticulous, and revered as a god in his own time.",
+         achievement: "Designed the Step Pyramid of Djoser — the world's first monumental stone structure."),
+    Card(id: "demo-6", figureName: "Lu Yu", era: "Tang Dynasty", domain: .arts,
+         influence: 65, innovation: 80, legacy: 70, tier: .rare,
+         lore: "He turned leaves and water into philosophy.",
+         portraitUrl: "asset:portrait_lu_yu", years: "733–804 AD",
+         identities: ["Scholar", "Tea Master"],
+         characteristics: "Reflective, disciplined, and devoted to the art of simplicity.",
+         achievement: "Authored The Classic of Tea, establishing the philosophy and ritual of Chinese tea culture."),
 ]
 
 struct CollectionView: View {
@@ -107,7 +130,9 @@ struct CardCell: View {
             // Portrait
             ZStack(alignment: .topTrailing) {
                 Group {
-                    if let url = card.portraitURL {
+                    if let assetName = card.localAssetName, let uiImage = UIImage(named: assetName) {
+                        Image(uiImage: uiImage).resizable().scaledToFill()
+                    } else if let url = card.portraitURL {
                         AsyncImage(url: url) { img in
                             img.resizable().scaledToFill()
                         } placeholder: {
