@@ -23,8 +23,6 @@ targets:
     dependencies:
       - package: GoogleSignIn
         product: GoogleSignIn
-      - package: GoogleSignIn
-        product: GoogleSignInSwift
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.greatpeople.card
