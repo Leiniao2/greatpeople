@@ -14,7 +14,8 @@
     "react-router-dom": "^6.23.1",
     "axios": "^1.7.2",
     "socket.io-client": "^4.7.5",
-    "zustand": "^4.5.2"
+    "zustand": "^4.5.2",
+    "@react-oauth/google": "^0.12.1"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",

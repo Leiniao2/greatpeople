@@ -9,4 +9,7 @@ export const authApi = {
     apiClient.post<AuthResponse>('/auth/register', { email, password, displayName }).then((r) => r.data),
 
   logout: () => apiClient.post('/auth/logout'),
+
+  ssoLogin: (provider: 'google' | 'facebook', accessToken: string) =>
+    apiClient.post<AuthResponse>(`/auth/${provider}`, { accessToken }).then((r) => r.data),
 }
