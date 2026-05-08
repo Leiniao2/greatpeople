@@ -12,77 +12,125 @@ struct LoginView: View {
     @State private var loading = false
 
     var body: some View {
-        VStack(spacing: 20) {
-            // Title
-            VStack(spacing: 4) {
-                Text("♛").font(.system(size: 44))
-                Text("Great People")
-                    .font(.system(.title, design: .serif).weight(.bold))
-                Text("Collect · Battle · Conquer")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-            }
-            .padding(.bottom, 8)
+        ZStack {
+            Color.gpBackground.ignoresSafeArea()
 
-            // Tab switcher
-            HStack(spacing: 0) {
-                ForEach(["Sign In", "Register"], id: \.self) { label in
-                    let active = (label == "Register") == isRegistering
-                    Button(label) { withAnimation { isRegistering = label == "Register"; error = nil } }
-                        .font(.subheadline.weight(.semibold))
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 10)
-                        .background(active ? Color.accentColor : Color.clear)
-                        .foregroundStyle(active ? .white : .secondary)
-                }
-            }
-            .background(Color(.systemFill))
-            .clipShape(RoundedRectangle(cornerRadius: 12))
+            // Ambient glow
+            GeometryReader { geo in
+                Circle().fill(Color.gpAmber.opacity(0.07)).frame(width: 400, height: 400)
+                    .blur(radius: 100).offset(x: geo.size.width * 0.1, y: -50)
+                Circle().fill(Color.gpIndigo.opacity(0.07)).frame(width: 400, height: 400)
+                    .blur(radius: 100).offset(x: geo.size.width * 0.4, y: geo.size.height * 0.5)
+            }.ignoresSafeArea()
 
-            // Fields
-            VStack(spacing: 12) {
-                if isRegistering {
-                    TextField("Display Name", text: $displayName)
-                        .textFieldStyle(.roundedBorder)
-                        .autocorrectionDisabled()
-                }
-                TextField("Email", text: $email)
-                    .textFieldStyle(.roundedBorder)
-                    .keyboardType(.emailAddress)
-                    .autocapitalization(.none)
-                    .autocorrectionDisabled()
-                SecureField("Password", text: $password)
-                    .textFieldStyle(.roundedBorder)
-                if isRegistering {
-                    SecureField("Confirm Password", text: $confirmPassword)
-                        .textFieldStyle(.roundedBorder)
-                }
-            }
+            ScrollView {
+                VStack(spacing: 24) {
 
-            // Error
-            if let error {
-                Text(error)
-                    .font(.caption)
-                    .foregroundStyle(.red)
-                    .multilineTextAlignment(.center)
-            }
+                    // Header
+                    VStack(spacing: 6) {
+                        Text("♛")
+                            .font(.system(size: 48))
+                            .foregroundColor(.gpAmber)
+                            .padding(16)
+                            .background(Color.gpAmber.opacity(0.12))
+                            .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.gpAmber.opacity(0.25), lineWidth: 1))
+                            .clipShape(RoundedRectangle(cornerRadius: 16))
+                        Text("GREAT PEOPLE")
+                            .font(.system(.title2, design: .serif).weight(.bold))
+                            .tracking(6)
+                            .foregroundColor(.white)
+                        Text("COLLECT · BATTLE · CONQUER")
+                            .font(.system(size: 10).weight(.medium))
+                            .tracking(4)
+                            .foregroundColor(.gpSlate400)
+                    }
+                    .padding(.top, 32)
 
-            // Submit
-            Button {
-                Task { await submit() }
-            } label: {
-                HStack {
-                    if loading { ProgressView().tint(.white).padding(.trailing, 4) }
-                    Text(isRegistering ? "Create Account" : "Sign In")
-                        .font(.subheadline.weight(.bold))
+                    // Glass panel
+                    VStack(spacing: 20) {
+
+                        // Tab switcher
+                        HStack(spacing: 4) {
+                            ForEach(["Sign In", "Register"], id: \.self) { label in
+                                let active = (label == "Register") == isRegistering
+                                Button {
+                                    withAnimation(.easeInOut(duration: 0.2)) {
+                                        isRegistering = label == "Register"
+                                        error = nil
+                                    }
+                                } label: {
+                                    Text(label)
+                                        .font(.subheadline.weight(.semibold))
+                                        .frame(maxWidth: .infinity)
+                                        .padding(.vertical, 10)
+                                        .background(active ? Color.gpAmber : Color.clear)
+                                        .foregroundColor(active ? Color.gpBackground : Color.gpSlate400)
+                                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                                }
+                            }
+                        }
+                        .padding(4)
+                        .background(Color.white.opacity(0.05))
+                        .overlay(RoundedRectangle(cornerRadius: 14).stroke(Color.gpOutline, lineWidth: 1))
+                        .clipShape(RoundedRectangle(cornerRadius: 14))
+
+                        // Fields
+                        VStack(spacing: 12) {
+                            if isRegistering {
+                                TextField("Display Name", text: $displayName)
+                                    .autocorrectionDisabled()
+                                    .gpTextInput()
+                            }
+                            TextField("Email", text: $email)
+                                .keyboardType(.emailAddress)
+                                .autocapitalization(.none)
+                                .autocorrectionDisabled()
+                                .gpTextInput()
+                            SecureField("Password", text: $password)
+                                .gpTextInput()
+                            if isRegistering {
+                                SecureField("Confirm Password", text: $confirmPassword)
+                                    .gpTextInput()
+                            }
+                        }
+
+                        // Error
+                        if let error {
+                            HStack(spacing: 8) {
+                                Image(systemName: "exclamationmark.triangle.fill")
+                                Text(error)
+                            }
+                            .font(.caption)
+                            .foregroundColor(Color(red: 0.98, green: 0.5, blue: 0.45))
+                            .padding(12)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .background(Color.red.opacity(0.1))
+                            .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.red.opacity(0.2), lineWidth: 1))
+                            .clipShape(RoundedRectangle(cornerRadius: 12))
+                        }
+
+                        // Submit
+                        Button { Task { await submit() } } label: {
+                            HStack(spacing: 8) {
+                                if loading {
+                                    ProgressView().tint(Color.gpBackground).scaleEffect(0.8)
+                                }
+                                Text(isRegistering ? "Create Account  →" : "Sign In  →")
+                            }
+                        }
+                        .gpPrimaryButton(loading: loading)
+                        .disabled(loading)
+
+                    }
+                    .padding(24)
+                    .background(Color.white.opacity(0.03))
+                    .overlay(RoundedRectangle(cornerRadius: 24).stroke(Color.gpOutline, lineWidth: 1))
+                    .clipShape(RoundedRectangle(cornerRadius: 24))
                 }
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 14)
+                .padding(.horizontal, 24)
+                .padding(.bottom, 32)
             }
-            .buttonStyle(.borderedProminent)
-            .disabled(loading)
         }
-        .padding(32)
     }
 
     private func submit() async {

@@ -6,13 +6,15 @@ struct GreatPeopleApp: App {
 
     var body: some Scene {
         WindowGroup {
-            if authStore.isLoggedIn {
-                ContentView()
-                    .environmentObject(authStore)
-            } else {
-                LoginView()
-                    .environmentObject(authStore)
+            Group {
+                if authStore.isLoggedIn {
+                    ContentView().environmentObject(authStore)
+                } else {
+                    LoginView().environmentObject(authStore)
+                }
             }
+            .preferredColorScheme(.dark)
+            .tint(.gpAmber)
         }
     }
 }

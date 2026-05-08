@@ -8,5 +8,6 @@ struct ContentView: View {
             BattleView()
                 .tabItem { Label("Battle", systemImage: "bolt.shield.fill") }
         }
+        .background(Color.gpBackground)
     }
 }
