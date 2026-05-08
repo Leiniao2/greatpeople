@@ -1,3 +1,3 @@
-from flask_sqlalchemy import SQLAlchemy
+from google.cloud import ndb
 
-db = SQLAlchemy()
+ndb_client = ndb.Client()

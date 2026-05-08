@@ -8,6 +8,7 @@ export default defineConfig({
     alias: { '@': path.resolve(__dirname, './src') },
   },
   server: {
+    port: 3001,
     proxy: {
       '/auth': 'http://localhost:8080',
       '/profile': 'http://localhost:8080',

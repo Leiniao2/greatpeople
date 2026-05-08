@@ -1,25 +1,28 @@
-from datetime import datetime, timezone
+from google.cloud import ndb
 from werkzeug.security import generate_password_hash, check_password_hash
-from models import db
 
 
-class User(db.Model):
-    __tablename__ = "users"
+class User(ndb.Model):
+    email = ndb.StringProperty(required=True, indexed=True)
+    display_name = ndb.StringProperty(required=True)
+    password_hash = ndb.StringProperty(required=True)
+    created_at = ndb.DateTimeProperty(auto_now_add=True)
+    elo = ndb.IntegerProperty(default=1000)
 
-    id = db.Column(db.String(36), primary_key=True)
-    email = db.Column(db.String(255), unique=True, nullable=False, index=True)
-    display_name = db.Column(db.String(100), nullable=False)
-    password_hash = db.Column(db.String(255), nullable=False)
-    created_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
-    elo = db.Column(db.Integer, default=1000)
+    @classmethod
+    def get_by_email(cls, email: str) -> 'User | None':
+        return cls.query(cls.email == email).get()
 
-    cards = db.relationship("UserCard", back_populates="user", lazy="dynamic")
-
-    def set_password(self, password: str):
+    def set_password(self, password: str) -> None:
         self.password_hash = generate_password_hash(password)
 
     def check_password(self, password: str) -> bool:
         return check_password_hash(self.password_hash, password)
 
-    def to_dict(self):
-        return {"id": self.id, "email": self.email, "displayName": self.display_name, "elo": self.elo}
+    def to_dict(self) -> dict:
+        return {
+            'id': self.key.id(),
+            'email': self.email,
+            'displayName': self.display_name,
+            'elo': self.elo,
+        }

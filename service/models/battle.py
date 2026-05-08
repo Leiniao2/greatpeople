@@ -1,45 +1,34 @@
-from datetime import datetime, timezone
-from models import db
+from google.cloud import ndb
 
 
-class Match(db.Model):
-    __tablename__ = "matches"
-
-    id = db.Column(db.String(36), primary_key=True)
-    player_a_id = db.Column(db.String(36), db.ForeignKey("users.id"), nullable=False)
-    player_b_id = db.Column(db.String(36), db.ForeignKey("users.id"), nullable=True)
-    status = db.Column(db.String(20), nullable=False, default="waiting")
+class Match(ndb.Model):
+    player_a_id = ndb.StringProperty(required=True, indexed=True)
+    player_b_id = ndb.StringProperty(indexed=True)
+    status = ndb.StringProperty(default='waiting', indexed=True)
     # waiting | active | finished | forfeited
-    winner_id = db.Column(db.String(36), nullable=True)
-    score_a = db.Column(db.Integer, default=0)
-    score_b = db.Column(db.Integer, default=0)
-    current_round = db.Column(db.Integer, default=1)
-    created_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
-    finished_at = db.Column(db.DateTime, nullable=True)
+    winner_id = ndb.StringProperty()
+    score_a = ndb.IntegerProperty(default=0)
+    score_b = ndb.IntegerProperty(default=0)
+    current_round = ndb.IntegerProperty(default=1)
+    created_at = ndb.DateTimeProperty(auto_now_add=True)
+    finished_at = ndb.DateTimeProperty()
 
-    rounds = db.relationship("Round", back_populates="match", lazy="dynamic")
-
-    def to_dict(self):
+    def to_dict(self) -> dict:
         return {
-            "id": self.id,
-            "playerAId": self.player_a_id,
-            "playerBId": self.player_b_id,
-            "status": self.status,
-            "scoreA": self.score_a,
-            "scoreB": self.score_b,
-            "currentRound": self.current_round,
+            'id': self.key.id(),
+            'playerAId': self.player_a_id,
+            'playerBId': self.player_b_id,
+            'status': self.status,
+            'scoreA': self.score_a,
+            'scoreB': self.score_b,
+            'currentRound': self.current_round,
         }
 
 
-class Round(db.Model):
-    __tablename__ = "rounds"
-
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    match_id = db.Column(db.String(36), db.ForeignKey("matches.id"), nullable=False)
-    round_number = db.Column(db.Integer, nullable=False)
-    active_stat = db.Column(db.String(20), nullable=False)  # influence | innovation | legacy
-    card_a_id = db.Column(db.String(36), nullable=True)
-    card_b_id = db.Column(db.String(36), nullable=True)
-    winner = db.Column(db.String(1), nullable=True)  # "A" | "B" | "draw"
-
-    match = db.relationship("Match", back_populates="rounds")
+class Round(ndb.Model):
+    """Parent key must be the Match key."""
+    round_number = ndb.IntegerProperty(required=True)
+    active_stat = ndb.StringProperty(required=True)   # influence | innovation | legacy
+    card_a_id = ndb.StringProperty()
+    card_b_id = ndb.StringProperty()
+    winner = ndb.StringProperty()                      # 'A' | 'B' | 'draw'
