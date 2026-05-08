@@ -108,10 +108,10 @@ export default function CardDetailPage() {
           {/* Stats */}
           <div className="grid grid-cols-3 gap-3">
             {[
-              { label: 'INFLUENCE', short: 'INF', val: card.influence },
-              { label: 'INNOVATION', short: 'INN', val: card.innovation },
-              { label: 'LEGACY', short: 'LEG', val: card.legacy },
-            ].map(({ label, short, val }) => (
+              { short: 'INF', val: card.influence },
+              { short: 'INN', val: card.innovation },
+              { short: 'LEG', val: card.legacy },
+            ].map(({ short, val }) => (
               <div key={short} className="flex flex-col items-center py-3 rounded-xl border"
                 style={{ background: `${tier.accent}08`, borderColor: `${tier.accent}25` }}>
                 <span className="font-bold text-xl" style={{ color: tier.accent }}>{val}</span>
