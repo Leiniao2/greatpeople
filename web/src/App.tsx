@@ -6,8 +6,8 @@ import CardDetailPage from '@/pages/CardDetailPage'
 import BattlePage from '@/pages/BattlePage'
 
 function PrivateRoute({ children }: { children: React.ReactNode }) {
-  const { isLoggedIn } = useAuth()
-  return isLoggedIn ? <>{children}</> : <Navigate to="/login" replace />
+  const { isLoggedIn, isGuest } = useAuth()
+  return (isLoggedIn || isGuest) ? <>{children}</> : <Navigate to="/login" replace />
 }
 
 export default function App() {

@@ -1,43 +1,98 @@
 import SwiftUI
 
+private let demoCards: [Card] = [
+    Card(id: "demo-1", figureName: "Leonardo da Vinci", era: "Renaissance", domain: .arts,
+         influence: 95, innovation: 98, legacy: 100, tier: .legendary, lore: "The ultimate Renaissance man.",
+         portraitUrl: "", years: "1452–1519", identities: ["Polymath", "Inventor"],
+         characteristics: "Insatiably curious, visionary, and obsessively detail-oriented.",
+         achievement: "Painted the Mona Lisa; designed flying machines centuries before they were built."),
+    Card(id: "demo-2", figureName: "Marie Curie", era: "Modern", domain: .science,
+         influence: 88, innovation: 95, legacy: 92, tier: .epic, lore: "She broke every barrier twice.",
+         portraitUrl: "", years: "1867–1934", identities: ["Scientist", "Pioneer"],
+         characteristics: "Rigorous, determined, and fearless in the face of adversity.",
+         achievement: "First person to win Nobel Prizes in two sciences — Physics and Chemistry."),
+    Card(id: "demo-3", figureName: "Nikola Tesla", era: "Industrial", domain: .science,
+         influence: 82, innovation: 97, legacy: 85, tier: .epic, lore: "Visionary engineer ahead of his time.",
+         portraitUrl: "", years: "1856–1943", identities: ["Inventor", "Engineer"],
+         characteristics: "Eccentric, brilliant, and relentlessly inventive.",
+         achievement: "Developed alternating current (AC) systems powering the modern world."),
+    Card(id: "demo-4", figureName: "Julius Caesar", era: "Ancient", domain: .politics,
+         influence: 90, innovation: 72, legacy: 88, tier: .rare, lore: "His name became a title for millennia.",
+         portraitUrl: "", years: "100–44 BC", identities: ["General", "Statesman"],
+         characteristics: "Decisive, charismatic, calculating, and supremely confident.",
+         achievement: "Conquered Gaul and reformed the Roman calendar still in use today."),
+]
+
 struct CollectionView: View {
+    @EnvironmentObject var authStore: AuthStore
     @StateObject private var viewModel = CollectionViewModel()
     let columns = [GridItem(.adaptive(minimum: 160), spacing: 12)]
+
+    private var displayCards: [Card] {
+        authStore.isGuest ? demoCards : viewModel.cards
+    }
 
     var body: some View {
         NavigationStack {
             ZStack {
                 Color.gpBackground.ignoresSafeArea()
 
-                if viewModel.loading {
-                    ProgressView().tint(.gpAmber)
-                } else if viewModel.cards.isEmpty {
-                    VStack(spacing: 12) {
-                        Text("♛").font(.system(size: 48)).foregroundColor(.gpAmber.opacity(0.4))
-                        Text("No cards yet").foregroundColor(.white).font(.headline)
-                        Text("Win battles to earn cards").foregroundColor(.gpSlate400).font(.subheadline)
-                    }
-                } else {
-                    ScrollView {
-                        LazyVGrid(columns: columns, spacing: 12) {
-                            ForEach(viewModel.cards) { card in
-                                NavigationLink(value: card) {
-                                    CardCell(card: card)
-                                }
-                                .buttonStyle(.plain)
+                VStack(spacing: 0) {
+                    // Guest banner
+                    if authStore.isGuest {
+                        HStack {
+                            Text("Exploring as guest — demo cards only")
+                                .font(.caption)
+                                .foregroundColor(.gpAmber.opacity(0.8))
+                            Spacer()
+                            Button("Sign In") {
+                                authStore.exitGuestMode()
                             }
+                            .font(.caption.weight(.semibold))
+                            .foregroundColor(.gpAmber)
                         }
-                        .padding(16)
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 10)
+                        .background(Color.gpAmber.opacity(0.08))
+                        .overlay(Rectangle().frame(height: 1).foregroundColor(Color.gpAmber.opacity(0.2)), alignment: .bottom)
                     }
-                    .navigationDestination(for: Card.self) { card in
-                        CardDetailView(card: card)
+
+                    if viewModel.loading && !authStore.isGuest {
+                        Spacer()
+                        ProgressView().tint(.gpAmber)
+                        Spacer()
+                    } else if displayCards.isEmpty {
+                        Spacer()
+                        VStack(spacing: 12) {
+                            Text("♛").font(.system(size: 48)).foregroundColor(.gpAmber.opacity(0.4))
+                            Text("No cards yet").foregroundColor(.white).font(.headline)
+                            Text("Win battles to earn cards").foregroundColor(.gpSlate400).font(.subheadline)
+                        }
+                        Spacer()
+                    } else {
+                        ScrollView {
+                            LazyVGrid(columns: columns, spacing: 12) {
+                                ForEach(displayCards) { card in
+                                    NavigationLink(value: card) {
+                                        CardCell(card: card)
+                                    }
+                                    .buttonStyle(.plain)
+                                }
+                            }
+                            .padding(16)
+                        }
+                        .navigationDestination(for: Card.self) { card in
+                            CardDetailView(card: card)
+                        }
                     }
                 }
             }
-            .navigationTitle("My Collection")
+            .navigationTitle(authStore.isGuest ? "Demo Collection" : "My Collection")
             .navigationBarTitleDisplayMode(.large)
             .toolbarColorScheme(.dark, for: .navigationBar)
-            .task { await viewModel.load() }
+            .task {
+                if !authStore.isGuest { await viewModel.load() }
+            }
         }
     }
 }

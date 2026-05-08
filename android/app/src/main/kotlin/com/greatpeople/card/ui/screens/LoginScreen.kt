@@ -27,6 +27,7 @@ private const val GOOGLE_CLIENT_ID =
 @Composable
 fun LoginScreen(
     onLoginSuccess: () -> Unit,
+    onGuestMode: () -> Unit = {},
     viewModel: AuthViewModel = hiltViewModel(),
 ) {
     var isRegistering by remember { mutableStateOf(false) }
@@ -185,6 +186,14 @@ fun LoginScreen(
             }
             Text(if (isRegistering) "Create Account" else "Sign In",
                 style = MaterialTheme.typography.labelLarge)
+        }
+
+        Spacer(Modifier.height(20.dp))
+
+        TextButton(onClick = onGuestMode) {
+            Text("Explore as Guest →",
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant)
         }
     }
 }

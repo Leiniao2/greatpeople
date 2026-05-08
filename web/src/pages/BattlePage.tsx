@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { battleApi, createBattleSocket } from '@/api/battle'
+import { useAuth } from '@/hooks/useAuth'
 import type { Match } from '@/types'
 import type { Socket } from 'socket.io-client'
 
@@ -10,6 +11,7 @@ export default function BattlePage() {
   const [error, setError] = useState('')
   const socketRef = useRef<Socket | null>(null)
   const navigate = useNavigate()
+  const { isGuest, exitGuestMode } = useAuth()
 
   const findMatch = async () => {
     setFinding(true)
@@ -65,8 +67,30 @@ export default function BattlePage() {
       {/* Main content */}
       <div className="relative z-10 flex-1 flex items-center justify-center p-6">
 
+        {/* Guest wall */}
+        {isGuest && (
+          <div className="text-center max-w-sm">
+            <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl mb-6"
+              style={{ background: 'rgba(245,158,11,0.12)', border: '1px solid rgba(245,158,11,0.25)' }}>
+              <span className="text-5xl select-none">⚔</span>
+            </div>
+            <h2 className="font-display text-2xl font-bold tracking-wide text-white uppercase mb-3">
+              Sign In to Battle
+            </h2>
+            <p className="text-slate-500 text-sm mb-8">
+              Create a free account to challenge other players, earn cards, and build your collection.
+            </p>
+            <button onClick={() => { exitGuestMode(); navigate('/login') }}
+              className="px-8 py-3.5 rounded-xl font-bold text-sm tracking-wide text-slate-950
+                         bg-amber-500 hover:bg-amber-400 active:bg-amber-600
+                         shadow-lg shadow-amber-500/25 transition-all duration-200">
+              Sign In / Register
+            </button>
+          </div>
+        )}
+
         {/* No match yet */}
-        {!match && (
+        {!isGuest && !match && (
           <div className="text-center max-w-sm">
             <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl mb-6"
               style={{ background: 'rgba(99,102,241,0.12)', border: '1px solid rgba(99,102,241,0.25)' }}>

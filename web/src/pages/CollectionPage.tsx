@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { cardsApi } from '@/api/cards'
+import { useAuth } from '@/hooks/useAuth'
 import type { Card, CardTier } from '@/types'
-
 
 const TIER_STYLE: Record<CardTier, { badge: string; glow: string; border: string }> = {
   common:    { badge: 'bg-slate-700 text-slate-300',   glow: 'from-slate-700/30',  border: 'border-slate-700/40' },
@@ -11,14 +11,51 @@ const TIER_STYLE: Record<CardTier, { badge: string; glow: string; border: string
   legendary: { badge: 'bg-amber-900 text-amber-300',   glow: 'from-amber-900/30',  border: 'border-amber-600/50' },
 }
 
+const DEMO_CARDS: Card[] = [
+  {
+    id: 'demo-1', figureName: 'Leonardo da Vinci', era: 'Renaissance', domain: 'arts',
+    influence: 95, innovation: 98, legacy: 100, tier: 'legendary', portraitUrl: '',
+    years: '1452–1519', identities: ['Polymath', 'Inventor'],
+    characteristics: 'Insatiably curious, visionary, and obsessively detail-oriented.',
+    achievement: 'Painted the Mona Lisa and The Last Supper; designed flying machines centuries before they were built.',
+    lore: 'The ultimate Renaissance man — painter, sculptor, architect, mathematician, engineer, and anatomist all in one.',
+  },
+  {
+    id: 'demo-2', figureName: 'Marie Curie', era: 'Modern', domain: 'science',
+    influence: 88, innovation: 95, legacy: 92, tier: 'epic', portraitUrl: '',
+    years: '1867–1934', identities: ['Scientist', 'Pioneer'],
+    characteristics: 'Rigorous, determined, and fearless in the face of adversity.',
+    achievement: 'First person to win Nobel Prizes in two sciences — Physics (1903) and Chemistry (1911).',
+    lore: 'She broke every barrier in her path — scientific, cultural, and gender — and did so twice.',
+  },
+  {
+    id: 'demo-3', figureName: 'Nikola Tesla', era: 'Industrial', domain: 'science',
+    influence: 82, innovation: 97, legacy: 85, tier: 'epic', portraitUrl: '',
+    years: '1856–1943', identities: ['Inventor', 'Engineer'],
+    characteristics: 'Eccentric, brilliant, and relentlessly inventive with an extraordinary memory.',
+    achievement: 'Developed alternating current (AC) electrical systems that power the modern world.',
+    lore: "Visionary engineer whose ideas were decades ahead of his time, yet he died largely unrecognized.",
+  },
+  {
+    id: 'demo-4', figureName: 'Julius Caesar', era: 'Ancient', domain: 'politics',
+    influence: 90, innovation: 72, legacy: 88, tier: 'rare', portraitUrl: '',
+    years: '100–44 BC', identities: ['General', 'Statesman'],
+    characteristics: 'Decisive, charismatic, calculating, and supremely confident.',
+    achievement: 'Conquered Gaul, won the Roman civil war, and reformed the calendar still in use today.',
+    lore: "The man whose name became a title — Caesar — adopted by emperors and kings for two millennia.",
+  },
+]
+
 export default function CollectionPage() {
   const [cards, setCards] = useState<Card[]>([])
   const [loading, setLoading] = useState(true)
   const navigate = useNavigate()
+  const { isGuest, exitGuestMode } = useAuth()
 
   useEffect(() => {
+    if (isGuest) { setCards(DEMO_CARDS); setLoading(false); return }
     cardsApi.getAll().then(setCards).finally(() => setLoading(false))
-  }, [])
+  }, [isGuest])
 
   return (
     <div className="relative min-h-screen bg-[#080812] overflow-hidden">
@@ -29,13 +66,28 @@ export default function CollectionPage() {
         <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] rounded-full bg-indigo-700/8 blur-[160px]" />
       </div>
 
+      {/* Guest banner */}
+      {isGuest && (
+        <div className="relative z-20 flex items-center justify-between px-6 py-2.5
+                        bg-amber-500/10 border-b border-amber-500/20">
+          <p className="text-amber-400/80 text-xs">
+            Exploring as guest — cards are for demo only
+          </p>
+          <button
+            onClick={() => { exitGuestMode(); navigate('/login') }}
+            className="text-amber-400 text-xs font-semibold hover:text-amber-300 transition-colors ml-4 shrink-0">
+            Sign In →
+          </button>
+        </div>
+      )}
+
       <div className="relative z-10 max-w-6xl mx-auto px-6 py-8">
 
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
             <h1 className="font-display text-2xl font-bold tracking-[0.1em] text-white uppercase">
-              My Collection
+              {isGuest ? 'Demo Collection' : 'My Collection'}
             </h1>
             <p className="text-slate-500 text-xs tracking-widest mt-1">
               {loading ? '…' : `${cards.length} card${cards.length !== 1 ? 's' : ''}`}
@@ -72,7 +124,10 @@ export default function CollectionPage() {
         {/* Card grid */}
         {!loading && cards.length > 0 && (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-            {cards.map((card) => <CardItem key={card.id} card={card} onClick={() => navigate(`/card/${card.id}`, { state: { card } })} />)}
+            {cards.map((card) => (
+              <CardItem key={card.id} card={card}
+                onClick={() => navigate(`/card/${card.id}`, { state: { card } })} />
+            ))}
           </div>
         )}
       </div>

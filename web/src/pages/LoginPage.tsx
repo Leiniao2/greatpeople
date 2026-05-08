@@ -43,7 +43,7 @@ function GoogleButton({ onToken, disabled }: { onToken: (t: string) => void; dis
 }
 
 export default function LoginPage() {
-  const { login, register, ssoLogin } = useAuth()
+  const { login, register, ssoLogin, enterGuestMode } = useAuth()
   const navigate = useNavigate()
 
   const [tab, setTab] = useState<Tab>('login')
@@ -203,6 +203,15 @@ export default function LoginPage() {
               </button>
             </p>
           </div>
+        </div>
+
+        {/* Guest explore */}
+        <div className="mt-5 text-center">
+          <button type="button"
+            onClick={() => { enterGuestMode(); navigate('/collection') }}
+            className="text-slate-500 hover:text-slate-300 text-sm transition-colors">
+            Explore as Guest →
+          </button>
         </div>
       </div>
     </div>

@@ -14,7 +14,7 @@ struct GreatPeopleApp: App {
     var body: some Scene {
         WindowGroup {
             Group {
-                if authStore.isLoggedIn {
+                if authStore.isLoggedIn || authStore.isGuest {
                     ContentView().environmentObject(authStore)
                 } else {
                     LoginView().environmentObject(authStore)

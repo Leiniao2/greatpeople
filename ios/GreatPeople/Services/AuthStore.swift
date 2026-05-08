@@ -4,6 +4,7 @@ import GoogleSignIn
 @MainActor
 final class AuthStore: ObservableObject {
     @Published var isLoggedIn = false
+    @Published var isGuest = false
     private let tokenKey = "access_token"
 
     init() {
@@ -32,6 +33,9 @@ final class AuthStore: ObservableObject {
         let resp = try await APIClient.shared.googleSSO(idToken: idToken)
         store(token: resp.accessToken)
     }
+
+    func enterGuestMode() { isGuest = true }
+    func exitGuestMode() { isGuest = false }
 
     func logout() async {
         GIDSignIn.sharedInstance.signOut()

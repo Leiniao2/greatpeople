@@ -160,6 +160,16 @@ struct LoginView: View {
 
                     }
                     .padding(24)
+
+                // Guest explore button
+                Button {
+                    authStore.enterGuestMode()
+                } label: {
+                    Text("Explore as Guest →")
+                        .font(.subheadline)
+                        .foregroundColor(.gpSlate400)
+                }
+                .padding(.top, 4)
                     .background(Color.white.opacity(0.03))
                     .overlay(RoundedRectangle(cornerRadius: 24).stroke(Color.gpOutline, lineWidth: 1))
                     .clipShape(RoundedRectangle(cornerRadius: 24))
