@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { cardsApi } from '@/api/cards'
 import { useAuth } from '@/hooks/useAuth'
-import type { Card, CardTier } from '@/types'
+import type { Card, CardTier, Domain } from '@/types'
+import demoCardsJson from '@/data/demo_cards.json'
 
 const TIER_STYLE: Record<CardTier, { badge: string; glow: string; border: string }> = {
   common:    { badge: 'bg-slate-700 text-slate-300',   glow: 'from-slate-700/30',  border: 'border-slate-700/40' },
@@ -11,62 +12,12 @@ const TIER_STYLE: Record<CardTier, { badge: string; glow: string; border: string
   legendary: { badge: 'bg-amber-900 text-amber-300',   glow: 'from-amber-900/30',  border: 'border-amber-600/50' },
 }
 
-const DEMO_CARDS: Card[] = [
-  {
-    id: 'demo-1', figureName: 'Gandhi', era: 'Modern', domain: 'politics',
-    influence: 97, innovation: 85, legacy: 98, tier: 'legendary',
-    portraitUrl: '/portraits/portrait_gandhi.jpeg',
-    years: '1869–1948', identities: ['Leader', 'Activist'],
-    characteristics: 'Resolute, compassionate, and unwavering in pursuit of justice through nonviolence.',
-    achievement: "Led India's independence movement through peaceful civil disobedience, inspiring liberation movements worldwide.",
-    lore: 'The soul force that moved an empire.',
-  },
-  {
-    id: 'demo-2', figureName: 'Coco Chanel', era: 'Modern', domain: 'arts',
-    influence: 88, innovation: 93, legacy: 90, tier: 'epic',
-    portraitUrl: '/portraits/portrait_coco_chanel.jpeg',
-    years: '1883–1971', identities: ['Designer', 'Pioneer'],
-    characteristics: 'Audacious, elegant, and fiercely independent in defiance of convention.',
-    achievement: 'Liberated women\'s fashion from corsets and built a global luxury empire around her name.',
-    lore: 'She dressed the world in modernity.',
-  },
-  {
-    id: 'demo-3', figureName: 'Mao Zedong', era: 'Modern', domain: 'politics',
-    influence: 92, innovation: 78, legacy: 88, tier: 'epic',
-    portraitUrl: '/portraits/portrait_mao_zedong.jpeg',
-    years: '1893–1976', identities: ['Revolutionary', 'Statesman'],
-    characteristics: 'Strategic, ideological, and ruthlessly determined in reshaping society.',
-    achievement: 'Founded the People\'s Republic of China and united it under Communist rule in 1949.',
-    lore: 'A revolution forged from peasant to chairman.',
-  },
-  {
-    id: 'demo-4', figureName: 'Belisarius', era: 'Byzantine', domain: 'politics',
-    influence: 75, innovation: 82, legacy: 72, tier: 'rare',
-    portraitUrl: '/portraits/portrait_belisarius.jpeg',
-    years: '505–565 AD', identities: ['General', 'Commander'],
-    characteristics: 'Brilliant tactician, loyal to a fault, and capable of the impossible.',
-    achievement: 'Reconquered North Africa and Italy for the Byzantine Empire with a fraction of the expected resources.',
-    lore: 'The last great general of Rome.',
-  },
-  {
-    id: 'demo-5', figureName: 'Imhotep', era: 'Ancient', domain: 'arts',
-    influence: 85, innovation: 96, legacy: 88, tier: 'legendary',
-    portraitUrl: '/portraits/portrait_imhotep.jpeg',
-    years: 'c. 2650–2600 BC', identities: ['Architect', 'Physician'],
-    characteristics: 'Visionary, meticulous, and revered as a god in his own time.',
-    achievement: 'Designed the Step Pyramid of Djoser — the world\'s first monumental stone structure.',
-    lore: 'Deified by two civilizations for mastery of stone and medicine.',
-  },
-  {
-    id: 'demo-6', figureName: 'Lu Yu', era: 'Tang Dynasty', domain: 'arts',
-    influence: 65, innovation: 80, legacy: 70, tier: 'rare',
-    portraitUrl: '/portraits/portrait_lu_yu.jpeg',
-    years: '733–804 AD', identities: ['Scholar', 'Tea Master'],
-    characteristics: 'Reflective, disciplined, and devoted to the art of simplicity.',
-    achievement: 'Authored The Classic of Tea, establishing the philosophy and ritual of Chinese tea culture.',
-    lore: 'He turned leaves and water into philosophy.',
-  },
-]
+const DEMO_CARDS: Card[] = demoCardsJson.map(c => ({
+  ...c,
+  domain: c.domain as Domain,
+  tier: c.tier as CardTier,
+  portraitUrl: `/portraits/portrait_${c.portraitKey}.jpeg`,
+}))
 
 export default function CollectionPage() {
   const [cards, setCards] = useState<Card[]>([])

@@ -10,64 +10,22 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
+import com.greatpeople.card.data.loadDemoCards
 import com.greatpeople.card.data.model.Card
 import com.greatpeople.card.data.model.CardTier
 import com.greatpeople.card.data.model.Domain
 import com.greatpeople.card.ui.viewmodel.CollectionViewModel
-
-private val demoCards = listOf(
-    Card(id = "demo-1", figureName = "Gandhi", era = "Modern", domain = Domain.POLITICS,
-        influence = 97, innovation = 85, legacy = 98, tier = CardTier.LEGENDARY,
-        lore = "The soul force that moved an empire.",
-        portraitUrl = "file:///android_asset/portraits/portrait_gandhi.jpeg",
-        years = "1869–1948", identities = listOf("Leader", "Activist"),
-        characteristics = "Resolute, compassionate, and unwavering in pursuit of justice through nonviolence.",
-        achievement = "Led India's independence movement through peaceful civil disobedience, inspiring liberation movements worldwide."),
-    Card(id = "demo-2", figureName = "Coco Chanel", era = "Modern", domain = Domain.ARTS,
-        influence = 88, innovation = 93, legacy = 90, tier = CardTier.EPIC,
-        lore = "She dressed the world in modernity.",
-        portraitUrl = "file:///android_asset/portraits/portrait_coco_chanel.jpeg",
-        years = "1883–1971", identities = listOf("Designer", "Pioneer"),
-        characteristics = "Audacious, elegant, and fiercely independent in defiance of convention.",
-        achievement = "Liberated women's fashion from corsets and built a global luxury empire around her name."),
-    Card(id = "demo-3", figureName = "Mao Zedong", era = "Modern", domain = Domain.POLITICS,
-        influence = 92, innovation = 78, legacy = 88, tier = CardTier.EPIC,
-        lore = "A revolution forged from peasant to chairman.",
-        portraitUrl = "file:///android_asset/portraits/portrait_mao_zedong.jpeg",
-        years = "1893–1976", identities = listOf("Revolutionary", "Statesman"),
-        characteristics = "Strategic, ideological, and ruthlessly determined in reshaping society.",
-        achievement = "Founded the People's Republic of China and united it under Communist rule in 1949."),
-    Card(id = "demo-4", figureName = "Belisarius", era = "Byzantine", domain = Domain.POLITICS,
-        influence = 75, innovation = 82, legacy = 72, tier = CardTier.RARE,
-        lore = "The last great general of Rome.",
-        portraitUrl = "file:///android_asset/portraits/portrait_belisarius.jpeg",
-        years = "505–565 AD", identities = listOf("General", "Commander"),
-        characteristics = "Brilliant tactician, loyal to a fault, and capable of the impossible.",
-        achievement = "Reconquered North Africa and Italy for the Byzantine Empire with a fraction of the expected resources."),
-    Card(id = "demo-5", figureName = "Imhotep", era = "Ancient", domain = Domain.ARTS,
-        influence = 85, innovation = 96, legacy = 88, tier = CardTier.LEGENDARY,
-        lore = "Deified by two civilizations for mastery of stone and medicine.",
-        portraitUrl = "file:///android_asset/portraits/portrait_imhotep.jpeg",
-        years = "c. 2650–2600 BC", identities = listOf("Architect", "Physician"),
-        characteristics = "Visionary, meticulous, and revered as a god in his own time.",
-        achievement = "Designed the Step Pyramid of Djoser — the world's first monumental stone structure."),
-    Card(id = "demo-6", figureName = "Lu Yu", era = "Tang Dynasty", domain = Domain.ARTS,
-        influence = 65, innovation = 80, legacy = 70, tier = CardTier.RARE,
-        lore = "He turned leaves and water into philosophy.",
-        portraitUrl = "file:///android_asset/portraits/portrait_lu_yu.jpeg",
-        years = "733–804 AD", identities = listOf("Scholar", "Tea Master"),
-        characteristics = "Reflective, disciplined, and devoted to the art of simplicity.",
-        achievement = "Authored The Classic of Tea, establishing the philosophy and ritual of Chinese tea culture."),
-)
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -78,6 +36,8 @@ fun CollectionScreen(
     onSignIn: () -> Unit = {},
     viewModel: CollectionViewModel = hiltViewModel(),
 ) {
+    val context = LocalContext.current
+    val demoCards = remember { loadDemoCards(context) }
     val vmCards by viewModel.cards.collectAsState()
     val loading by viewModel.loading.collectAsState()
     val cards = if (isGuest) demoCards else vmCards
