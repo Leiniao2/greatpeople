@@ -13,7 +13,8 @@ struct Card: Identifiable, Codable, Equatable {
     let legacy: Int
     let tier: CardTier
     let lore: String
-    let portraitURL: URL
+    let portraitUrl: String
 
+    var portraitURL: URL? { URL(string: portraitUrl) }
     var totalStats: Int { influence + innovation + legacy }
 }

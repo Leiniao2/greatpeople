@@ -73,6 +73,9 @@ dependencies {
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
 
+    // Image loading
+    implementation(libs.coil.compose)
+
     // Auth token storage
     implementation(libs.androidx.security.crypto)
 
