@@ -3,7 +3,7 @@ import Foundation
 enum CardTier: String, Codable { case common, rare, epic, legendary }
 enum Domain: String, Codable { case science, arts, politics, philosophy, sports, other }
 
-struct Card: Identifiable, Codable, Equatable {
+struct Card: Identifiable, Codable, Equatable, Hashable {
     let id: String
     let figureName: String
     let era: String
@@ -14,6 +14,10 @@ struct Card: Identifiable, Codable, Equatable {
     let tier: CardTier
     let lore: String
     let portraitUrl: String
+    let years: String
+    let identities: [String]
+    let characteristics: String
+    let achievement: String
 
     var portraitURL: URL? { URL(string: portraitUrl) }
     var totalStats: Int { influence + innovation + legacy }

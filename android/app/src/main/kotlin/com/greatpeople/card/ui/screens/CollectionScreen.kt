@@ -1,6 +1,7 @@
 package com.greatpeople.card.ui.screens
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -26,6 +27,7 @@ import com.greatpeople.card.ui.viewmodel.CollectionViewModel
 @Composable
 fun CollectionScreen(
     onBattleClick: () -> Unit,
+    onCardClick: (Card) -> Unit = {},
     viewModel: CollectionViewModel = hiltViewModel(),
 ) {
     val cards by viewModel.cards.collectAsState()
@@ -60,7 +62,9 @@ fun CollectionScreen(
                     verticalArrangement = Arrangement.spacedBy(12.dp),
                     horizontalArrangement = Arrangement.spacedBy(12.dp),
                 ) {
-                    items(cards, key = { it.id }) { card -> CardItem(card) }
+                    items(cards, key = { it.id }) { card ->
+                        CardItem(card, onClick = { onCardClick(card) })
+                    }
                 }
             }
         }
@@ -68,7 +72,7 @@ fun CollectionScreen(
 }
 
 @Composable
-private fun CardItem(card: Card) {
+private fun CardItem(card: Card, onClick: () -> Unit = {}) {
     val tierColor = when (card.tier) {
         CardTier.LEGENDARY -> Color(0xFFD97706)
         CardTier.EPIC      -> Color(0xFF7C3AED)
@@ -77,7 +81,7 @@ private fun CardItem(card: Card) {
     }
 
     Card(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth().clickable { onClick() },
         shape = MaterialTheme.shapes.medium,
     ) {
         Column {

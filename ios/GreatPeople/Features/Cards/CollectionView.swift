@@ -21,10 +21,16 @@ struct CollectionView: View {
                     ScrollView {
                         LazyVGrid(columns: columns, spacing: 12) {
                             ForEach(viewModel.cards) { card in
-                                CardCell(card: card)
+                                NavigationLink(value: card) {
+                                    CardCell(card: card)
+                                }
+                                .buttonStyle(.plain)
                             }
                         }
                         .padding(16)
+                    }
+                    .navigationDestination(for: Card.self) { card in
+                        CardDetailView(card: card)
                     }
                 }
             }

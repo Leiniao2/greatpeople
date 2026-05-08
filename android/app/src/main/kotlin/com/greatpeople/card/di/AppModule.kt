@@ -56,7 +56,9 @@ object AppModule {
     @Provides
     @Singleton
     fun provideDatabase(@ApplicationContext context: Context): AppDatabase =
-        Room.databaseBuilder(context, AppDatabase::class.java, "greatpeople.db").build()
+        Room.databaseBuilder(context, AppDatabase::class.java, "greatpeople.db")
+            .fallbackToDestructiveMigration()
+            .build()
 
     @Provides
     fun provideCardDao(db: AppDatabase) = db.cardDao()

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { cardsApi } from '@/api/cards'
 import type { Card, CardTier } from '@/types'
 
+
 const TIER_STYLE: Record<CardTier, { badge: string; glow: string; border: string }> = {
   common:    { badge: 'bg-slate-700 text-slate-300',   glow: 'from-slate-700/30',  border: 'border-slate-700/40' },
   rare:      { badge: 'bg-blue-900 text-blue-300',     glow: 'from-blue-900/30',   border: 'border-blue-700/40' },
@@ -71,7 +72,7 @@ export default function CollectionPage() {
         {/* Card grid */}
         {!loading && cards.length > 0 && (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-            {cards.map((card) => <CardItem key={card.id} card={card} />)}
+            {cards.map((card) => <CardItem key={card.id} card={card} onClick={() => navigate(`/card/${card.id}`, { state: { card } })} />)}
           </div>
         )}
       </div>
@@ -79,13 +80,14 @@ export default function CollectionPage() {
   )
 }
 
-function CardItem({ card }: { card: Card }) {
+function CardItem({ card, onClick }: { card: Card; onClick: () => void }) {
   const tier = TIER_STYLE[card.tier] ?? TIER_STYLE.common
 
   return (
-    <div className={`relative rounded-2xl overflow-hidden flex flex-col
+    <div onClick={onClick}
+      className={`relative rounded-2xl overflow-hidden flex flex-col
                      bg-white/[0.03] border backdrop-blur-sm
-                     hover:scale-[1.03] transition-transform duration-200 cursor-default
+                     hover:scale-[1.03] transition-transform duration-200 cursor-pointer
                      ${tier.border}`}>
 
       {/* Portrait */}

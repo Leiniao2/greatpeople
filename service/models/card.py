@@ -7,7 +7,8 @@ class CardDefinition:
     KIND = 'CardDefinition'
 
     def __init__(self, id=None, figure_name='', era='', domain='',
-                 influence=0, innovation=0, legacy=0, lore='', portrait_gcs_path=''):
+                 influence=0, innovation=0, legacy=0, lore='', portrait_gcs_path='',
+                 years='', identities=None, characteristics='', achievement=''):
         self.id = id
         self.figure_name = figure_name
         self.era = era
@@ -17,6 +18,10 @@ class CardDefinition:
         self.legacy = legacy
         self.lore = lore
         self.portrait_gcs_path = portrait_gcs_path
+        self.years = years
+        self.identities = identities or []
+        self.characteristics = characteristics
+        self.achievement = achievement
 
     @classmethod
     def get(cls, card_id: str) -> 'CardDefinition | None':
@@ -35,6 +40,10 @@ class CardDefinition:
             'tier': tier,
             'lore': self.lore,
             'portraitUrl': portrait_url,
+            'years': self.years,
+            'identities': self.identities,
+            'characteristics': self.characteristics,
+            'achievement': self.achievement,
         }
 
     @classmethod
@@ -49,6 +58,10 @@ class CardDefinition:
             legacy=entity.get('legacy', 0),
             lore=entity.get('lore', ''),
             portrait_gcs_path=entity.get('portrait_gcs_path', ''),
+            years=entity.get('years', ''),
+            identities=list(entity.get('identities', [])),
+            characteristics=entity.get('characteristics', ''),
+            achievement=entity.get('achievement', ''),
         )
 
 

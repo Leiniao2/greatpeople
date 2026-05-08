@@ -12,6 +12,10 @@ export interface Card {
   tier: CardTier
   lore: string
   portraitUrl: string
+  years: string
+  identities: string[]
+  characteristics: string
+  achievement: string
 }
 
 export interface AuthResponse {
