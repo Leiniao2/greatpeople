@@ -4,6 +4,16 @@ import { useAuth } from '@/hooks/useAuth'
 
 type Tab = 'login' | 'register'
 
+// Decorative background card definitions
+const BG_CARDS = [
+  { cls: 'top-[6%]  left-[5%]  rotate-[-20deg] animate-float',       bg: 'from-amber-900/40  to-slate-900/10' },
+  { cls: 'top-[18%] left-[2%]  rotate-[-13deg] animate-float-slow',  bg: 'from-yellow-800/30 to-slate-900/10' },
+  { cls: 'top-[6%]  right-[5%] rotate-[20deg]  animate-float-slow',  bg: 'from-indigo-900/40 to-slate-900/10' },
+  { cls: 'top-[18%] right-[2%] rotate-[13deg]  animate-float',       bg: 'from-violet-900/30 to-slate-900/10' },
+  { cls: 'bottom-[8%]  left-[7%]  rotate-[-10deg] animate-float',    bg: 'from-amber-800/25  to-slate-900/10' },
+  { cls: 'bottom-[8%]  right-[7%] rotate-[10deg]  animate-float-slow',bg: 'from-indigo-800/25 to-slate-900/10' },
+]
+
 export default function LoginPage() {
   const { login, register } = useAuth()
   const navigate = useNavigate()
@@ -21,7 +31,7 @@ export default function LoginPage() {
     e.preventDefault()
     setError('')
     if (tab === 'register' && password !== confirm) {
-      setError('Passwords do not match')
+      setError('Passwords do not match.')
       return
     }
     setLoading(true)
@@ -39,38 +49,55 @@ export default function LoginPage() {
     }
   }
 
-  const inputClass =
-    'w-full bg-slate-800 border border-slate-600 rounded-lg px-4 py-2.5 text-slate-100 placeholder-slate-500 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400/30 transition-colors text-sm'
-
   return (
-    <div className="min-h-screen bg-slate-950 flex items-center justify-center p-4">
-      {/* Ambient glow */}
-      <div className="pointer-events-none fixed inset-0 overflow-hidden">
-        <div className="absolute -top-64 -right-64 w-[600px] h-[600px] bg-amber-500/5 rounded-full blur-3xl" />
-        <div className="absolute -bottom-64 -left-64 w-[600px] h-[600px] bg-amber-500/5 rounded-full blur-3xl" />
+    <div className="relative min-h-screen bg-[#080812] flex items-center justify-center overflow-hidden p-4">
+
+      {/* ── Ambient glow orbs ── */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute top-1/3 left-1/3  w-[500px] h-[500px] rounded-full bg-amber-600/10  blur-[140px]" />
+        <div className="absolute bottom-1/3 right-1/3 w-[500px] h-[500px] rounded-full bg-indigo-700/10 blur-[140px]" />
       </div>
 
-      <div className="relative w-full max-w-md">
-        {/* Card */}
-        <div className="bg-slate-900 rounded-2xl shadow-2xl border border-slate-700/60 overflow-hidden">
+      {/* ── Floating decorative cards ── */}
+      {BG_CARDS.map((c, i) => (
+        <div
+          key={i}
+          className={`deco-card bg-gradient-to-br ${c.bg} ${c.cls}`}
+          style={{ animationDelay: `${i * 0.8}s` }}
+        />
+      ))}
 
-          {/* Top banner */}
-          <div className="bg-gradient-to-r from-amber-600/20 to-amber-400/10 border-b border-slate-700/60 px-8 py-6 text-center">
-            <div className="text-amber-400 text-4xl leading-none mb-2 select-none">♛</div>
-            <h1 className="text-2xl font-bold tracking-wide text-white">Great People</h1>
-            <p className="text-slate-400 text-xs mt-1 tracking-widest uppercase">Collect · Battle · Conquer</p>
+      {/* ── Main panel ── */}
+      <div className="relative z-10 w-full max-w-[420px]">
+        <div className="glass rounded-3xl shadow-[0_32px_64px_rgba(0,0,0,0.5)] overflow-hidden">
+
+          {/* Header */}
+          <div className="px-8 pt-9 pb-7 text-center border-b border-white/[0.06]">
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-4"
+              style={{ background: 'rgba(245,158,11,0.15)', border: '1px solid rgba(245,158,11,0.25)' }}>
+              <span className="text-amber-400 text-4xl leading-none select-none">♛</span>
+            </div>
+            <h1 className="font-display text-3xl font-bold tracking-[0.12em] text-white uppercase mb-1.5">
+              Great People
+            </h1>
+            <p className="text-slate-500 text-[11px] tracking-[0.28em] uppercase">
+              Collect · Battle · Conquer
+            </p>
           </div>
 
-          <div className="px-8 pb-8 pt-6">
-            {/* Tabs */}
-            <div className="flex mb-6 border-b border-slate-700">
+          <div className="px-8 py-7">
+
+            {/* Tab pill switcher */}
+            <div className="flex rounded-xl p-1 mb-7 gap-1"
+              style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.07)' }}>
               {(['login', 'register'] as Tab[]).map((t) => (
                 <button
                   key={t}
+                  type="button"
                   onClick={() => switchTab(t)}
-                  className={`flex-1 pb-3 text-sm font-medium capitalize transition-colors ${
+                  className={`flex-1 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 ${
                     tab === t
-                      ? 'text-amber-400 border-b-2 border-amber-400 -mb-px'
+                      ? 'bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/30'
                       : 'text-slate-400 hover:text-slate-200'
                   }`}
                 >
@@ -82,85 +109,87 @@ export default function LoginPage() {
             {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-4">
               {tab === 'register' && (
-                <div>
-                  <label className="block text-slate-300 text-xs font-medium mb-1.5 uppercase tracking-wide">
-                    Display Name
-                  </label>
+                <Field label="Display Name">
                   <input
                     type="text"
+                    className="auth-input"
+                    placeholder="Your name"
                     value={displayName}
                     onChange={(e) => setDisplayName(e.target.value)}
                     required
-                    placeholder="Your name"
-                    className={inputClass}
                   />
-                </div>
+                </Field>
               )}
 
-              <div>
-                <label className="block text-slate-300 text-xs font-medium mb-1.5 uppercase tracking-wide">
-                  Email
-                </label>
+              <Field label="Email">
                 <input
                   type="email"
+                  className="auth-input"
+                  placeholder="you@example.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  placeholder="you@example.com"
-                  className={inputClass}
                 />
-              </div>
+              </Field>
 
-              <div>
-                <label className="block text-slate-300 text-xs font-medium mb-1.5 uppercase tracking-wide">
-                  Password
-                </label>
+              <Field label="Password">
                 <input
                   type="password"
+                  className="auth-input"
+                  placeholder="••••••••"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
-                  placeholder="••••••••"
-                  className={inputClass}
                 />
-              </div>
+              </Field>
 
               {tab === 'register' && (
-                <div>
-                  <label className="block text-slate-300 text-xs font-medium mb-1.5 uppercase tracking-wide">
-                    Confirm Password
-                  </label>
+                <Field label="Confirm Password">
                   <input
                     type="password"
+                    className="auth-input"
+                    placeholder="••••••••"
                     value={confirm}
                     onChange={(e) => setConfirm(e.target.value)}
                     required
-                    placeholder="••••••••"
-                    className={inputClass}
                   />
-                </div>
+                </Field>
               )}
 
               {error && (
-                <p className="text-red-400 text-sm flex items-center gap-1.5">
-                  <span>⚠</span> {error}
-                </p>
+                <div className="flex items-center gap-2.5 rounded-xl px-4 py-3 text-sm text-red-300"
+                  style={{ background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.2)' }}>
+                  <span className="shrink-0 text-base">⚠</span>
+                  {error}
+                </div>
               )}
 
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full mt-2 bg-amber-500 hover:bg-amber-400 active:bg-amber-600 disabled:opacity-50 disabled:cursor-not-allowed text-slate-950 font-semibold py-2.5 rounded-lg transition-colors text-sm tracking-wide"
+                className="w-full mt-1 py-3.5 rounded-xl font-bold text-sm tracking-wide text-slate-950
+                           bg-amber-500 hover:bg-amber-400 active:bg-amber-600
+                           disabled:opacity-50 disabled:cursor-not-allowed
+                           shadow-lg shadow-amber-500/25 hover:shadow-amber-400/40
+                           transition-all duration-200"
               >
-                {loading ? 'Please wait…' : tab === 'login' ? 'Sign In' : 'Create Account'}
+                {loading ? (
+                  <span className="flex items-center justify-center gap-2">
+                    <Spinner />
+                    Please wait…
+                  </span>
+                ) : (
+                  tab === 'login' ? 'Sign In  →' : 'Create Account  →'
+                )}
               </button>
             </form>
 
-            <p className="mt-5 text-center text-slate-500 text-xs">
+            <p className="mt-6 text-center text-slate-600 text-xs">
               {tab === 'login' ? "Don't have an account? " : 'Already have an account? '}
               <button
+                type="button"
                 onClick={() => switchTab(tab === 'login' ? 'register' : 'login')}
-                className="text-amber-400 hover:text-amber-300 transition-colors"
+                className="text-amber-500 hover:text-amber-400 transition-colors font-semibold"
               >
                 {tab === 'login' ? 'Register' : 'Sign in'}
               </button>
@@ -169,5 +198,22 @@ export default function LoginPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+function Field({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <div className="space-y-1.5">
+      <label className="text-[11px] font-semibold text-slate-400 uppercase tracking-widest">
+        {label}
+      </label>
+      {children}
+    </div>
+  )
+}
+
+function Spinner() {
+  return (
+    <span className="inline-block w-4 h-4 border-2 border-slate-950/30 border-t-slate-950 rounded-full animate-spin" />
   )
 }
