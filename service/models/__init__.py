@@ -1,3 +1,3 @@
-from google.cloud import ndb
+from google.cloud import datastore
 
-ndb_client = ndb.Client()
+client = datastore.Client()

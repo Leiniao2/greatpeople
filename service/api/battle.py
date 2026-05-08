@@ -1,12 +1,10 @@
 import random
-import uuid
 from datetime import datetime, timezone
 from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from flask_socketio import SocketIO, join_room, emit
-from google.cloud import ndb
-from models import ndb_client
 from models.battle import Match, Round
+from models.card import CardDefinition
 
 battle_bp = Blueprint('battle', __name__)
 
@@ -20,7 +18,7 @@ _WINS_NEEDED = 5
 @jwt_required()
 def find_match():
     user_id = get_jwt_identity()
-    waiting = Match.query(Match.status == 'waiting').fetch(20)
+    waiting = Match.query_waiting(limit=20)
     opponent_match = next((m for m in waiting if m.player_a_id != user_id), None)
 
     if opponent_match:
@@ -30,7 +28,7 @@ def find_match():
         opponent_match.put()
         return jsonify(opponent_match.to_dict()), 200
 
-    match = Match(id=str(uuid.uuid4()), player_a_id=user_id)
+    match = Match(player_a_id=user_id)
     match.put()
     return jsonify(match.to_dict()), 202
 
@@ -38,7 +36,7 @@ def find_match():
 @battle_bp.get('/match/<match_id>')
 @jwt_required()
 def get_match(match_id: str):
-    match = ndb.Key(Match, match_id).get()
+    match = Match.get(match_id)
     if not match:
         return jsonify({'error': 'Match not found'}), 404
     return jsonify(match.to_dict())
@@ -48,17 +46,14 @@ def get_match(match_id: str):
 @jwt_required()
 def make_move(match_id: str):
     user_id = get_jwt_identity()
-    match = ndb.Key(Match, match_id).get()
+    match = Match.get(match_id)
     if not match or match.status != 'active':
         return jsonify({'error': 'Match not active'}), 400
     if user_id not in (match.player_a_id, match.player_b_id):
         return jsonify({'error': 'Not a participant'}), 403
 
     card_id = request.get_json().get('cardId')
-    current_round = Round.query(
-        Round.round_number == match.current_round,
-        ancestor=match.key,
-    ).get()
+    current_round = Round.get_current(match_id, match.current_round)
 
     if match.player_a_id == user_id:
         current_round.card_a_id = card_id
@@ -77,7 +72,7 @@ def make_move(match_id: str):
 @jwt_required()
 def forfeit(match_id: str):
     user_id = get_jwt_identity()
-    match = ndb.Key(Match, match_id).get()
+    match = Match.get(match_id)
     if not match:
         return jsonify({'error': 'Match not found'}), 404
     match.status = 'forfeited'
@@ -89,9 +84,13 @@ def forfeit(match_id: str):
 
 @battle_bp.get('/leaderboard')
 def leaderboard():
-    from models.user import User
-    top = User.query().order(-User.elo).fetch(50)
-    return jsonify([{'userId': u.key.id(), 'displayName': u.display_name, 'elo': u.elo} for u in top])
+    from models import client
+    q = client.query(kind='User')
+    users = sorted(q.fetch(), key=lambda e: e.get('elo', 1000), reverse=True)[:50]
+    return jsonify([
+        {'userId': e.key.name, 'displayName': e.get('display_name', ''), 'elo': e.get('elo', 1000)}
+        for e in users
+    ])
 
 
 # ── WebSocket events ───────────────────────────────────────────────────────────
@@ -99,9 +98,8 @@ def leaderboard():
 def register_battle_sockets(sio: SocketIO):
     @sio.on('join_match')
     def on_join(data):
-        with ndb_client.context():
-            join_room(data['matchId'])
-            emit('joined', {'matchId': data['matchId']}, room=data['matchId'])
+        join_room(data['matchId'])
+        emit('joined', {'matchId': data['matchId']}, room=data['matchId'])
 
     @sio.on('play_card')
     def on_play_card(data):
@@ -112,17 +110,15 @@ def register_battle_sockets(sio: SocketIO):
 
 def _create_round(match: Match) -> None:
     Round(
-        parent=match.key,
+        match_id=match.id,
         round_number=match.current_round,
         active_stat=random.choice(_STATS),
     ).put()
 
 
 def _resolve_round(match: Match, rnd: Round) -> None:
-    from models.card import CardDefinition
-
     def _stat(card_id: str) -> int:
-        card = ndb.Key(CardDefinition, card_id).get()
+        card = CardDefinition.get(card_id)
         return getattr(card, rnd.active_stat, 0) if card else 0
 
     val_a, val_b = _stat(rnd.card_a_id), _stat(rnd.card_b_id)

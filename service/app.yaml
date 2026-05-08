@@ -1,15 +1,18 @@
 runtime: python
 env: flex
-api_version: 1
 
 runtime_config:
-  python_version: 3
+  operating_system: ubuntu22
+  runtime_version: "3.11"
 
-instance_class: F2
+resources:
+  cpu: 1
+  memory_gb: 1
+  disk_size_gb: 10
 
 automatic_scaling:
   min_num_instances: 1
-  max_num_instances: 10
+  max_num_instances: 5
   cool_down_period_sec: 120
   cpu_utilization:
     target_utilization: 0.65
@@ -17,7 +20,7 @@ automatic_scaling:
 env_variables:
   FLASK_ENV: "production"
   # Secrets are injected at runtime via Secret Manager — do not put real values here
-  SECRET_MANAGER_PROJECT: "YOUR_GCP_PROJECT_ID"
+  SECRET_MANAGER_PROJECT: "great-people-495704"
 
 liveness_check:
   path: "/healthz"

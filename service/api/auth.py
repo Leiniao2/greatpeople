@@ -5,7 +5,6 @@ from flask_jwt_extended import (
     create_access_token, create_refresh_token,
     jwt_required, get_jwt_identity,
 )
-from google.cloud import ndb
 from models.user import User
 
 auth_bp = Blueprint('auth', __name__)
@@ -27,7 +26,7 @@ def register():
     )
     user.set_password(data['password'])
     user.put()
-    return jsonify(_tokens(user.key.id())), 201
+    return jsonify(_tokens(user.id)), 201
 
 
 @auth_bp.post('/login')
@@ -36,7 +35,7 @@ def login():
     user = User.get_by_email((data.get('email') or '').lower().strip())
     if not user or not user.check_password(data.get('password', '')):
         return jsonify({'error': 'Invalid credentials'}), 401
-    return jsonify(_tokens(user.key.id()))
+    return jsonify(_tokens(user.id))
 
 
 @auth_bp.post('/logout')
@@ -54,7 +53,7 @@ def refresh():
 @auth_bp.get('/me')
 @jwt_required()
 def me():
-    user = ndb.Key(User, get_jwt_identity()).get()
+    user = User.get(get_jwt_identity())
     if not user:
         return jsonify({'error': 'User not found'}), 404
     return jsonify(user.to_dict())
@@ -83,44 +82,16 @@ def google_sso():
         email=info.get('email', ''),
         display_name=info.get('name', ''),
     )
-    return jsonify(_tokens(user.key.id()))
-
-
-# ── Facebook SSO ──────────────────────────────────────────────────────────────
-
-@auth_bp.post('/facebook')
-def facebook_sso():
-    access_token = (request.get_json() or {}).get('accessToken')
-    if not access_token:
-        return jsonify({'error': 'accessToken required'}), 400
-
-    resp = http.get(
-        'https://graph.facebook.com/me',
-        params={'fields': 'id,name,email', 'access_token': access_token},
-        timeout=10,
-    )
-    info = resp.json()
-    if not resp.ok or 'error' in info:
-        return jsonify({'error': 'Invalid Facebook token'}), 401
-
-    user = _find_or_create_sso_user(
-        provider='facebook',
-        oauth_id=info['id'],
-        email=info.get('email', ''),
-        display_name=info.get('name', ''),
-    )
-    return jsonify(_tokens(user.key.id()))
+    return jsonify(_tokens(user.id))
 
 
 # ── Shared helpers ────────────────────────────────────────────────────────────
 
 def _find_or_create_sso_user(provider: str, oauth_id: str, email: str, display_name: str) -> User:
-    # 1. Try exact OAuth match (returning user)
     user = User.get_by_oauth(provider, oauth_id)
     if user:
         return user
 
-    # 2. Try email match — link the social account to an existing email/password account
     if email:
         user = User.get_by_email(email.lower())
         if user:
@@ -129,7 +100,6 @@ def _find_or_create_sso_user(provider: str, oauth_id: str, email: str, display_n
             user.put()
             return user
 
-    # 3. New user
     user = User(
         id=str(uuid.uuid4()),
         email=email.lower() if email else f'{provider}_{oauth_id}@sso',

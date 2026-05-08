@@ -10,7 +10,6 @@ def _get_secret(secret_id: str) -> str:
 
 
 class Config:
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
     JWT_ALGORITHM = 'HS256'
     CORS_ORIGINS = os.environ.get('CORS_ORIGINS', '*')
 

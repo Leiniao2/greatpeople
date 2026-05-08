@@ -2,18 +2,41 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useGoogleLogin } from '@react-oauth/google'
 import { useAuth } from '@/hooks/useAuth'
-import { facebookLogin } from '@/lib/facebook'
 
 type Tab = 'login' | 'register'
 
+const googleConfigured = !!import.meta.env.VITE_GOOGLE_CLIENT_ID
+
 const BG_CARDS = [
-  { cls: 'top-[6%]  left-[5%]  rotate-[-20deg] animate-float',        bg: 'from-amber-900/40  to-slate-900/10' },
-  { cls: 'top-[18%] left-[2%]  rotate-[-13deg] animate-float-slow',   bg: 'from-yellow-800/30 to-slate-900/10' },
-  { cls: 'top-[6%]  right-[5%] rotate-[20deg]  animate-float-slow',   bg: 'from-indigo-900/40 to-slate-900/10' },
-  { cls: 'top-[18%] right-[2%] rotate-[13deg]  animate-float',        bg: 'from-violet-900/30 to-slate-900/10' },
-  { cls: 'bottom-[8%] left-[7%]  rotate-[-10deg] animate-float',      bg: 'from-amber-800/25  to-slate-900/10' },
-  { cls: 'bottom-[8%] right-[7%] rotate-[10deg]  animate-float-slow', bg: 'from-indigo-800/25 to-slate-900/10' },
+  { cls: 'top-[6%] left-[5%] rotate-[-20deg] animate-float',        bg: 'from-amber-900/40 to-slate-900/10' },
+  { cls: 'top-[18%] left-[2%] rotate-[-13deg] animate-float-slow',  bg: 'from-yellow-800/30 to-slate-900/10' },
+  { cls: 'top-[6%] right-[5%] rotate-[20deg] animate-float-slow',   bg: 'from-indigo-900/40 to-slate-900/10' },
+  { cls: 'top-[18%] right-[2%] rotate-[13deg] animate-float',       bg: 'from-violet-900/30 to-slate-900/10' },
+  { cls: 'bottom-[8%] left-[7%] rotate-[-10deg] animate-float',     bg: 'from-amber-800/25 to-slate-900/10' },
+  { cls: 'bottom-[8%] right-[7%] rotate-[10deg] animate-float-slow',bg: 'from-indigo-800/25 to-slate-900/10' },
 ]
+
+// useGoogleLogin must only render when GoogleOAuthProvider is in the tree.
+// Split into an inner component so the hook is only called when configured.
+function GoogleButton({ onToken, disabled }: { onToken: (t: string) => void; disabled: boolean }) {
+  const googleLogin = useGoogleLogin({
+    onSuccess: ({ access_token }) => onToken(access_token),
+    onError: () => onToken(''),
+  })
+  return (
+    <button
+      type="button"
+      onClick={() => googleLogin()}
+      disabled={disabled}
+      className="flex items-center justify-center gap-3 w-full py-3 rounded-xl font-medium text-sm
+                 bg-white hover:bg-slate-100 active:bg-slate-200 text-slate-800
+                 transition-all duration-200 shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+    >
+      <GoogleIcon />
+      Continue with Google
+    </button>
+  )
+}
 
 export default function LoginPage() {
   const { login, register, ssoLogin } = useAuth()
@@ -28,7 +51,6 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false)
 
   const switchTab = (t: Tab) => { setTab(t); setError('') }
-
   const succeed = () => navigate('/collection')
   const fail = (msg: string) => setError(msg)
 
@@ -51,41 +73,23 @@ export default function LoginPage() {
   }
 
   // ── Google SSO ────────────────────────────────────────────────────
-  const googleLogin = useGoogleLogin({
-    onSuccess: async ({ access_token }) => {
-      setLoading(true)
-      try { await ssoLogin('google', access_token); succeed() }
-      catch { fail('Google sign-in failed. Please try again.') }
-      finally { setLoading(false) }
-    },
-    onError: () => fail('Google sign-in failed. Please try again.'),
-  })
-
-  // ── Facebook SSO ──────────────────────────────────────────────────
-  const handleFacebook = async () => {
+  const handleGoogleToken = async (accessToken: string) => {
+    if (!accessToken) { fail('Google sign-in failed. Please try again.'); return }
     setLoading(true)
-    try {
-      const token = await facebookLogin()
-      await ssoLogin('facebook', token)
-      succeed()
-    } catch (err: any) {
-      if (err?.message !== 'Facebook login cancelled') {
-        fail('Facebook sign-in failed. Please try again.')
-      }
-    } finally {
-      setLoading(false)
-    }
+    try { await ssoLogin('google', accessToken); succeed() }
+    catch { fail('Google sign-in failed. Please try again.') }
+    finally { setLoading(false) }
   }
 
-  const inputClass =
-    'w-full rounded-xl px-4 py-3 text-sm text-white placeholder-slate-600 transition-all duration-200 outline-none auth-input'
+  const showSso = googleConfigured
+  const inputClass = 'w-full rounded-xl px-4 py-3 text-sm text-white placeholder-slate-600 transition-all duration-200 outline-none auth-input'
 
   return (
     <div className="relative min-h-screen bg-[#080812] flex items-center justify-center overflow-hidden p-4">
 
       {/* Ambient glow */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute top-1/3 left-1/3  w-[500px] h-[500px] rounded-full bg-amber-600/10  blur-[140px]" />
+        <div className="absolute top-1/3 left-1/3 w-[500px] h-[500px] rounded-full bg-amber-600/10 blur-[140px]" />
         <div className="absolute bottom-1/3 right-1/3 w-[500px] h-[500px] rounded-full bg-indigo-700/10 blur-[140px]" />
       </div>
 
@@ -115,43 +119,21 @@ export default function LoginPage() {
 
           <div className="px-8 py-7">
 
-            {/* SSO buttons */}
-            <div className="flex flex-col gap-3 mb-6">
-              <button
-                type="button"
-                onClick={() => googleLogin()}
-                disabled={loading}
-                className="flex items-center justify-center gap-3 w-full py-3 rounded-xl font-medium text-sm
-                           bg-white hover:bg-slate-100 active:bg-slate-200
-                           text-slate-800 transition-all duration-200 shadow-md
-                           disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                <GoogleIcon />
-                Continue with Google
-              </button>
+            {/* SSO buttons — only rendered when at least one provider is configured */}
+            {showSso && (
+              <>
+                <div className="flex flex-col gap-3 mb-6">
+                  <GoogleButton onToken={handleGoogleToken} disabled={loading} />
+                </div>
 
-              <button
-                type="button"
-                onClick={handleFacebook}
-                disabled={loading}
-                className="flex items-center justify-center gap-3 w-full py-3 rounded-xl font-medium text-sm
-                           text-white transition-all duration-200 shadow-md
-                           disabled:opacity-50 disabled:cursor-not-allowed"
-                style={{ backgroundColor: '#1877F2' }}
-                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#1a6ed8')}
-                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#1877F2')}
-              >
-                <FacebookIcon />
-                Continue with Facebook
-              </button>
-            </div>
-
-            {/* Divider */}
-            <div className="flex items-center gap-3 mb-6">
-              <div className="flex-1 h-px bg-white/10" />
-              <span className="text-slate-600 text-xs uppercase tracking-widest">or</span>
-              <div className="flex-1 h-px bg-white/10" />
-            </div>
+                {/* Divider */}
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="flex-1 h-px bg-white/10" />
+                  <span className="text-slate-600 text-xs uppercase tracking-widest">or</span>
+                  <div className="flex-1 h-px bg-white/10" />
+                </div>
+              </>
+            )}
 
             {/* Tab switcher */}
             <div className="flex rounded-xl p-1 mb-6 gap-1"
@@ -176,17 +158,14 @@ export default function LoginPage() {
                     value={displayName} onChange={(e) => setDisplayName(e.target.value)} required />
                 </Field>
               )}
-
               <Field label="Email">
                 <input type="email" className={inputClass} placeholder="you@example.com"
                   value={email} onChange={(e) => setEmail(e.target.value)} required />
               </Field>
-
               <Field label="Password">
                 <input type="password" className={inputClass} placeholder="••••••••"
                   value={password} onChange={(e) => setPassword(e.target.value)} required />
               </Field>
-
               {tab === 'register' && (
                 <Field label="Confirm Password">
                   <input type="password" className={inputClass} placeholder="••••••••"
@@ -226,8 +205,6 @@ export default function LoginPage() {
   )
 }
 
-// ── Small components ─────────────────────────────────────────────────────────
-
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div className="space-y-1.5">
@@ -257,10 +234,3 @@ function GoogleIcon() {
   )
 }
 
-function FacebookIcon() {
-  return (
-    <svg viewBox="0 0 24 24" width="18" height="18" fill="white" aria-hidden>
-      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-    </svg>
-  )
-}
