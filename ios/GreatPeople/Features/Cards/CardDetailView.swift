@@ -45,7 +45,7 @@ struct CardDetailView: View {
                             startPoint: .top, endPoint: .bottom
                         )
                         .frame(maxWidth: .infinity)
-                        .aspectRatio(1, contentMode: .fit)   // square gradient strip at bottom
+                        .aspectRatio(CGFloat(16) / 5, contentMode: .fit)
 
                         // Name + years overlay
                         VStack(alignment: .leading, spacing: 4) {
@@ -62,7 +62,7 @@ struct CardDetailView: View {
                         .padding(.horizontal, 20)
                         .padding(.bottom, 20)
                     }
-                    .aspectRatio(CGFloat(9) / 16, contentMode: .fit)
+                    .aspectRatio(CGFloat(16) / 9, contentMode: .fit)
                     .clipped()
 
                     // ── Info panel ──────────────────────────────────────

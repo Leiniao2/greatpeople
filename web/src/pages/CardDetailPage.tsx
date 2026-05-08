@@ -38,10 +38,10 @@ export default function CardDetailPage() {
           style={{ background: `${tier.accent}18` }} />
       </div>
 
-      <div className="relative z-10 max-w-sm mx-auto px-0">
+      <div className="relative z-10 w-full">
 
-        {/* Image slot — 9:16 portrait aspect ratio */}
-        <div className="relative w-full aspect-[9/16] overflow-hidden">
+        {/* Image slot — 16:9 landscape */}
+        <div className="relative w-full aspect-[16/9] overflow-hidden">
           {card.portraitUrl ? (
             <img src={card.portraitUrl} alt={card.figureName}
               className="w-full h-full object-cover" />
@@ -75,7 +75,7 @@ export default function CardDetailPage() {
         </div>
 
         {/* Info panel */}
-        <div className="px-5 py-6 space-y-6">
+        <div className="px-5 py-6 space-y-6 max-w-2xl mx-auto">
 
           {/* Identities */}
           {card.identities?.length > 0 && (

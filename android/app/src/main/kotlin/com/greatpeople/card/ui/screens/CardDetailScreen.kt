@@ -58,11 +58,11 @@ fun CardDetailScreen(card: Card, onBack: () -> Unit) {
                 .padding(top = padding.calculateTopPadding())
                 .verticalScroll(rememberScrollState()),
         ) {
-            // ── Image slot (9:16 portrait) ──────────────────────────
+            // ── Image slot (16:9 landscape) ──────────────────────────
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .aspectRatio(9f / 16f),
+                    .aspectRatio(16f / 9f),
             ) {
                 if (card.portraitUrl.isNotEmpty()) {
                     AsyncImage(
