@@ -29,7 +29,6 @@ final class APIClient {
         return try JSONDecoder().decode(T.self, from: data)
     }
 
-    // Convenience wrappers
     func login(_ body: LoginRequest) async throws -> AuthResponse {
         try await request("auth/login", method: "POST", body: body)
     }
@@ -40,6 +39,10 @@ final class APIClient {
 
     func logout() async throws {
         let _: EmptyResponse = try await request("auth/logout", method: "POST")
+    }
+
+    func googleSSO(idToken: String) async throws -> AuthResponse {
+        try await request("auth/google", method: "POST", body: GoogleSSORequest(idToken: idToken))
     }
 
     func fetchCards() async throws -> [Card] {
@@ -54,5 +57,6 @@ final class APIClient {
 }
 
 private struct EmptyResponse: Decodable {}
+private struct GoogleSSORequest: Encodable { let idToken: String }
 private struct CardSyncRequest: Encodable { let cards: [Card] }
 private struct CardSyncResponse: Decodable { let cards: [Card] }

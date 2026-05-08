@@ -1,4 +1,5 @@
 import SwiftUI
+import GoogleSignIn
 
 @main
 struct GreatPeopleApp: App {
@@ -15,6 +16,9 @@ struct GreatPeopleApp: App {
             }
             .preferredColorScheme(.dark)
             .tint(.gpAmber)
+            .onOpenURL { url in
+                GIDSignIn.sharedInstance.handle(url)
+            }
         }
     }
 }

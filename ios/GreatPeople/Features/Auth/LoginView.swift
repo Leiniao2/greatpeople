@@ -1,4 +1,5 @@
 import SwiftUI
+import GoogleSignIn
 
 struct LoginView: View {
     @EnvironmentObject var authStore: AuthStore
@@ -48,6 +49,36 @@ struct LoginView: View {
 
                     // Glass panel
                     VStack(spacing: 20) {
+
+                        // Google SSO
+                        Button {
+                            Task {
+                                loading = true
+                                defer { loading = false }
+                                do { try await authStore.googleLogin() }
+                                catch { self.error = "Google sign-in failed. Please try again." }
+                            }
+                        } label: {
+                            HStack(spacing: 10) {
+                                Image(systemName: "globe")
+                                    .font(.system(size: 16, weight: .medium))
+                                Text("Continue with Google")
+                                    .font(.subheadline.weight(.semibold))
+                            }
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 13)
+                            .background(Color.white)
+                            .foregroundColor(Color(red: 0.1, green: 0.1, blue: 0.15))
+                            .clipShape(RoundedRectangle(cornerRadius: 14))
+                        }
+                        .disabled(loading)
+
+                        // Divider
+                        HStack(spacing: 12) {
+                            Rectangle().fill(Color.gpOutline).frame(height: 1)
+                            Text("or").font(.caption).foregroundColor(.gpSlate600)
+                            Rectangle().fill(Color.gpOutline).frame(height: 1)
+                        }
 
                         // Tab switcher
                         HStack(spacing: 4) {

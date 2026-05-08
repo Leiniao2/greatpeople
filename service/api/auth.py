@@ -63,22 +63,36 @@ def me():
 
 @auth_bp.post('/google')
 def google_sso():
-    access_token = (request.get_json() or {}).get('accessToken')
-    if not access_token:
-        return jsonify({'error': 'accessToken required'}), 400
+    body = request.get_json() or {}
+    access_token = body.get('accessToken')
+    id_token     = body.get('idToken')
 
-    resp = http.get(
-        'https://www.googleapis.com/oauth2/v3/userinfo',
-        headers={'Authorization': f'Bearer {access_token}'},
-        timeout=10,
-    )
-    if not resp.ok:
-        return jsonify({'error': 'Invalid Google token'}), 401
+    if access_token:
+        # Web flow: exchange access_token for user info
+        resp = http.get(
+            'https://www.googleapis.com/oauth2/v3/userinfo',
+            headers={'Authorization': f'Bearer {access_token}'},
+            timeout=10,
+        )
+        if not resp.ok:
+            return jsonify({'error': 'Invalid Google token'}), 401
+        info = resp.json()
+    elif id_token:
+        # Native mobile flow: verify id_token via tokeninfo endpoint
+        resp = http.get(
+            'https://oauth2.googleapis.com/tokeninfo',
+            params={'id_token': id_token},
+            timeout=10,
+        )
+        info = resp.json()
+        if not resp.ok or 'error' in info:
+            return jsonify({'error': 'Invalid Google token'}), 401
+    else:
+        return jsonify({'error': 'accessToken or idToken required'}), 400
 
-    info = resp.json()
     user = _find_or_create_sso_user(
         provider='google',
-        oauth_id=info['sub'],
+        oauth_id=info.get('sub', ''),
         email=info.get('email', ''),
         display_name=info.get('name', ''),
     )
