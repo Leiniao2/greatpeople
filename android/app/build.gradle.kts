@@ -76,6 +76,9 @@ dependencies {
     // Image loading
     implementation(libs.coil.compose)
 
+    // Google Sign-In
+    implementation(libs.google.signin)
+
     // Auth token storage
     implementation(libs.androidx.security.crypto)
 

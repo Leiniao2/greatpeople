@@ -1,15 +1,26 @@
 package com.greatpeople.card.ui.screens
 
+import android.app.Activity
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
 import com.greatpeople.card.ui.viewmodel.AuthUiState
 import com.greatpeople.card.ui.viewmodel.AuthViewModel
+
+private const val GOOGLE_CLIENT_ID =
+    "109767033732-nnlj70jqivv608tkihkjhdiomu53bn6j.apps.googleusercontent.com"
 
 @Composable
 fun LoginScreen(
@@ -23,6 +34,32 @@ fun LoginScreen(
     var displayName by remember { mutableStateOf("") }
 
     val state by viewModel.state.collectAsState()
+    val context = LocalContext.current
+
+    // Google Sign-In client
+    val googleSignInClient = remember {
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(GOOGLE_CLIENT_ID)
+            .requestEmail()
+            .build()
+        GoogleSignIn.getClient(context, gso)
+    }
+
+    // Launcher for Google sign-in intent
+    val googleLauncher = rememberLauncherForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            try {
+                val account = GoogleSignIn
+                    .getSignedInAccountFromIntent(result.data)
+                    .getResult(ApiException::class.java)
+                account.idToken?.let { viewModel.googleLogin(it) }
+            } catch (_: ApiException) {
+                // sign-in cancelled or failed — state stays Idle
+            }
+        }
+    }
 
     LaunchedEffect(state) {
         if (state is AuthUiState.Success) onLoginSuccess()
@@ -41,6 +78,30 @@ fun LoginScreen(
             color = MaterialTheme.colorScheme.onSurfaceVariant)
 
         Spacer(Modifier.height(32.dp))
+
+        // Google Sign-In button
+        Button(
+            onClick = { googleLauncher.launch(googleSignInClient.signInIntent) },
+            modifier = Modifier.fillMaxWidth().height(52.dp),
+            enabled = state !is AuthUiState.Loading,
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color.White,
+                contentColor = Color(0xFF1A1A2E),
+            ),
+        ) {
+            Text("Continue with Google", style = MaterialTheme.typography.labelLarge)
+        }
+
+        // Divider
+        Row(
+            modifier = Modifier.fillMaxWidth().padding(vertical = 20.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            HorizontalDivider(modifier = Modifier.weight(1f), color = MaterialTheme.colorScheme.outline)
+            Text("  or  ", style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant)
+            HorizontalDivider(modifier = Modifier.weight(1f), color = MaterialTheme.colorScheme.outline)
+        }
 
         // Tab switcher
         Row(modifier = Modifier.fillMaxWidth()) {
@@ -90,14 +151,11 @@ fun LoginScreen(
             )
         }
 
-        // Error
         if (state is AuthUiState.Error) {
             Spacer(Modifier.height(12.dp))
-            Text(
-                (state as AuthUiState.Error).message,
+            Text((state as AuthUiState.Error).message,
                 color = MaterialTheme.colorScheme.error,
-                style = MaterialTheme.typography.bodySmall,
-            )
+                style = MaterialTheme.typography.bodySmall)
         }
 
         Spacer(Modifier.height(24.dp))

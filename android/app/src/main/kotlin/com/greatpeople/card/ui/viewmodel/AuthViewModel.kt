@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.greatpeople.card.data.remote.ApiService
+import com.greatpeople.card.data.remote.GoogleLoginRequest
 import com.greatpeople.card.data.remote.LoginRequest
 import com.greatpeople.card.data.remote.RegisterRequest
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -53,6 +54,19 @@ class AuthViewModel @Inject constructor(
                 _state.value = AuthUiState.Success
             } catch (e: Exception) {
                 _state.value = AuthUiState.Error("Registration failed. Please try again.")
+            }
+        }
+    }
+
+    fun googleLogin(idToken: String) {
+        viewModelScope.launch {
+            _state.value = AuthUiState.Loading
+            try {
+                val resp = apiService.googleLogin(GoogleLoginRequest(idToken))
+                prefs.edit().putString("access_token", resp.accessToken).apply()
+                _state.value = AuthUiState.Success
+            } catch (e: Exception) {
+                _state.value = AuthUiState.Error("Google sign-in failed. Please try again.")
             }
         }
     }

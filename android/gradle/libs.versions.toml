@@ -14,6 +14,7 @@ okhttp = "4.12.0"
 room = "2.6.1"
 securityCrypto = "1.1.0-alpha06"
 coil = "2.6.0"
+googleSignIn = "21.2.0"
 junit = "4.13.2"
 junitExt = "1.2.1"
 
@@ -50,6 +51,7 @@ androidx-room-compiler = { group = "androidx.room", name = "room-compiler", vers
 
 # Image loading
 coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
+google-signin = { group = "com.google.android.gms", name = "play-services-auth", version.ref = "googleSignIn" }
 
 # Security
 androidx-security-crypto = { group = "androidx.security", name = "security-crypto", version.ref = "securityCrypto" }
