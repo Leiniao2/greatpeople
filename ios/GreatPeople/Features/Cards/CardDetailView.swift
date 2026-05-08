@@ -12,55 +12,55 @@ struct CardDetailView: View {
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 0) {
 
-                    // ── Image slot (9:16 portrait) ──────────────────────
-                    GeometryReader { geo in
-                        ZStack(alignment: .bottom) {
-                            // Portrait image
-                            Group {
-                                if let url = card.portraitURL {
-                                    AsyncImage(url: url) { phase in
-                                        switch phase {
-                                        case .success(let img): img.resizable().scaledToFill()
-                                        default:
-                                            tierColor.opacity(0.12)
-                                                .overlay(Text("♟").font(.system(size: 80))
-                                                    .foregroundColor(tierColor.opacity(0.2)))
-                                        }
-                                    }
-                                } else {
+                    // ── Image slot — 9:16 portrait ──────────────────────
+                    ZStack(alignment: .bottom) {
+                        // Portrait image
+                        if let url = card.portraitURL {
+                            AsyncImage(url: url) { phase in
+                                switch phase {
+                                case .success(let img):
+                                    img.resizable().scaledToFill()
+                                default:
                                     tierColor.opacity(0.12)
-                                        .overlay(Text("♟").font(.system(size: 80))
-                                            .foregroundColor(tierColor.opacity(0.2)))
+                                        .overlay(
+                                            Text("♟").font(.system(size: 80))
+                                                .foregroundColor(tierColor.opacity(0.2))
+                                        )
                                 }
                             }
-                            .frame(width: geo.size.width, height: geo.size.height)
-                            .clipped()
-
-                            // Bottom gradient
-                            LinearGradient(
-                                colors: [.clear, Color.gpBackground.opacity(0.85), Color.gpBackground],
-                                startPoint: .top, endPoint: .bottom
-                            )
-                            .frame(height: geo.size.height * 0.45)
-
-                            // Name + years overlay
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text(card.figureName)
-                                    .font(.system(.title, design: .serif).weight(.bold))
-                                    .foregroundColor(.white)
-                                if !card.years.isEmpty {
-                                    Text(card.years)
-                                        .font(.subheadline)
-                                        .foregroundColor(.white.opacity(0.55))
-                                }
-                            }
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(.horizontal, 20)
-                            .padding(.bottom, 20)
+                        } else {
+                            tierColor.opacity(0.12)
+                                .overlay(
+                                    Text("♟").font(.system(size: 80))
+                                        .foregroundColor(tierColor.opacity(0.2))
+                                )
                         }
+
+                        // Bottom gradient
+                        LinearGradient(
+                            colors: [.clear, Color.gpBackground.opacity(0.85), Color.gpBackground],
+                            startPoint: .top, endPoint: .bottom
+                        )
+                        .frame(maxWidth: .infinity)
+                        .aspectRatio(1, contentMode: .fit)   // square gradient strip at bottom
+
+                        // Name + years overlay
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(card.figureName)
+                                .font(.system(.title, design: .serif).weight(.bold))
+                                .foregroundColor(.white)
+                            if !card.years.isEmpty {
+                                Text(card.years)
+                                    .font(.subheadline)
+                                    .foregroundColor(.white.opacity(0.55))
+                            }
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.horizontal, 20)
+                        .padding(.bottom, 20)
                     }
-                    // Force 9:16 aspect ratio
-                    .aspectRatio(9/16, contentMode: .fit)
+                    .aspectRatio(CGFloat(9) / 16, contentMode: .fit)
+                    .clipped()
 
                     // ── Info panel ──────────────────────────────────────
                     VStack(alignment: .leading, spacing: 20) {
