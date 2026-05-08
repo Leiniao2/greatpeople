@@ -1,0 +1,12 @@
+flask==3.0.3
+flask-socketio==5.3.6
+flask-sqlalchemy==3.1.1
+flask-jwt-extended==4.6.0
+flask-cors==4.0.1
+gunicorn==22.0.0
+eventlet==0.36.1
+psycopg2-binary==2.9.9
+google-cloud-secret-manager==2.20.0
+google-cloud-storage==2.17.0
+SQLAlchemy==2.0.30
+alembic==1.13.1

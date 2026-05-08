@@ -1,0 +1,35 @@
+runtime: python
+env: flex
+api_version: 1
+
+runtime_config:
+  python_version: 3
+
+instance_class: F2
+
+automatic_scaling:
+  min_num_instances: 1
+  max_num_instances: 10
+  cool_down_period_sec: 120
+  cpu_utilization:
+    target_utilization: 0.65
+
+env_variables:
+  FLASK_ENV: "production"
+  # Secrets are injected at runtime via Secret Manager — do not put real values here
+  SECRET_MANAGER_PROJECT: "YOUR_GCP_PROJECT_ID"
+
+liveness_check:
+  path: "/healthz"
+  check_interval_sec: 30
+  timeout_sec: 4
+  failure_threshold: 3
+  success_threshold: 2
+
+readiness_check:
+  path: "/healthz"
+  check_interval_sec: 5
+  timeout_sec: 4
+  failure_threshold: 2
+  success_threshold: 2
+  app_start_timeout_sec: 300
