@@ -67,64 +67,64 @@ Belief: Temple
 Reputation: Forum
 
 Classical
-Politics: Palace, 议会
+Politics: Palace, Parliament
 Strength: Arena, Barracks
 Culture: Monument, Theatre
 Wealth: Port, Plantation
 Technique: Infrastructure, Workshop
 Intelligence: Observatory, Library
-Belief: Temple, 
+Belief: Temple, Sanctuary
 Reputation: Court, Forum
 
 Medieval
 Politics: Palace, Castle
-Military: Arena, Barracks
+Strength: Arena, Barracks
 Culture: Monument, Gallery
 Wealth: Port, Plantation
 Technique: Guild, Workshop
 Intelligence: Observatory, University
-Belief: Monastry
-Reputation: Court, 使馆
+Belief: Monastry, Sanctuary
+Reputation: Court, Garden
 
-文艺复兴：
-politics：宫殿、城堡、议会
-military：运动场、军营、要塞
-culture：纪念碑、剧院、画廊（gallery）
-wealth：港口、庄园、银行
-technique：行会、作坊、医院
-intelligence：天文台、图书馆、大学
-belief：寺庙、修道院、圣殿
-reputation：法院、讲堂、使馆
+Renaissance
+Politics: Palace, Castle, Parliament
+Strength: Arena, Barracks, Fortress
+Culture: Monument, Theatre, Gallery
+Wealth: Port, Plantation, Bank
+Technique: Guild, Workshop, Hospital
+Intelligence: Observatory, Library, University
+Belief: Temple, Monastry, Sanctuary
+Reputation: Court, Forum, Garden
 
-蒸汽时代：
-politics：宫殿、议会、情报局
-military：军营、军校、要塞
-culture：剧院、画廊、音乐厅
-wealth：港口、银行、股票交易所
-technique：基础设施、工厂、医院
-intelligence：大学、图书馆、研究院（Academy）
-belief：寺庙、圣殿、沙龙
-reputation：法院、使馆、报社
+Steam
+Politics: Palace, Parliament, Intelligence Agency
+Strength: Barracks, Military Academy, Fortress
+Culture: Theatre, Gallery, Concert Hall
+Wealth: Port, Bank, Stock Exchange
+Technique: Infrastructure, Factory, Hospital
+Intelligence: University, Library, Academy
+Belief: Temple, Sanctuary, Salon
+Reputation: Court, Garden, News Agency
 
-电气时代：
-politics：宫殿、议会、情报局、监狱
-military：军营、军校、要塞、训练馆（gym）
-culture：剧院、画廊、音乐厅、博物馆
-wealth：港口、银行、股票交易所、跨国企业
-technique：基础设施、工厂、医院、作坊
-intelligence：大学、图书馆、研究院、实验室
-belief：寺庙、圣殿、沙龙、保护区
-reputation：电视台、使馆、报社、法院
+Electricity
+politics: Palace, Parliament, Intelligence Agency, Prison
+Strength: Barracks, Military Academy, Fortress, Gym
+Culture: Theatre, Gallery, Concert Hall, Museum
+Wealth: Port, Bank, Stock Exchange, Enterprise Quarter
+Technique: Infrastructure, Factory, Hospital, Workshop
+Intelligence: University, Library, Academy, Laboratory
+Belief: Temple, Sanctuary, Salon, Reserve
+Reputation: Fine Dining, Garden, News Agency, Court
 
-信息时代：
-politics：议会、情报局、监狱、纪念碑（民族认同）
-military：军营、军校、训练馆、天文台（空间探索）
-culture：剧院、音乐厅、博物馆、修道院（历史古迹）
-wealth：银行、股票交易所、跨国企业、运动场（娱乐经济）
-technique：工厂、医院、基础设施、庄园（食品工业）
-intelligence：大学、研究院、实验室、讲堂（网络论坛）
-belief：沙龙、圣殿、保护区、作坊（匠人精神）
-reputation：法院、使馆、电视台、城堡（地产改造）
+Information
+Politics: Parliament, Intelligence Agency, Prison, Forum
+Strength: Barracks, Military Academy, Gym, Observatory
+Culture: Theatre, Concert Hall, Museum, Castle
+Wealth: Bank, Stock Exchange, Enterprise Quarter, Temple
+Technique: Infrastructure, Factory, Hospital, Plantation
+Intelligence: University, Academy, Laboratory, Workshop
+Belief: Salon, Sanctuary, Reserve, Monument
+Reputation: Court, News Agency, Fine Dining, Arena
 
 ### Card Profile Synchronization
 
