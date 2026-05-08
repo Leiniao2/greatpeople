@@ -59,17 +59,23 @@ struct LoginView: View {
                                 catch { self.error = "Google sign-in failed. Please try again." }
                             }
                         } label: {
-                            HStack(spacing: 10) {
-                                Image(systemName: "globe")
-                                    .font(.system(size: 16, weight: .medium))
+                            HStack(spacing: 0) {
+                                Image("google-logo")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 20, height: 20)
+                                    .padding(.leading, 16)
                                 Text("Continue with Google")
                                     .font(.subheadline.weight(.semibold))
+                                    .frame(maxWidth: .infinity)
                             }
                             .frame(maxWidth: .infinity)
-                            .padding(.vertical, 13)
+                            .padding(.vertical, 14)
                             .background(Color.white)
                             .foregroundColor(Color(red: 0.1, green: 0.1, blue: 0.15))
+                            .overlay(RoundedRectangle(cornerRadius: 14).stroke(Color(white: 0.85), lineWidth: 1))
                             .clipShape(RoundedRectangle(cornerRadius: 14))
+                            .shadow(color: .black.opacity(0.12), radius: 4, x: 0, y: 2)
                         }
                         .disabled(loading)
 

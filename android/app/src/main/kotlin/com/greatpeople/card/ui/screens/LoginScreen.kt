@@ -10,8 +10,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
+import com.greatpeople.card.R
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -80,15 +82,23 @@ fun LoginScreen(
         Spacer(Modifier.height(32.dp))
 
         // Google Sign-In button
-        Button(
+        OutlinedButton(
             onClick = { googleLauncher.launch(googleSignInClient.signInIntent) },
             modifier = Modifier.fillMaxWidth().height(52.dp),
             enabled = state !is AuthUiState.Loading,
-            colors = ButtonDefaults.buttonColors(
+            colors = ButtonDefaults.outlinedButtonColors(
                 containerColor = Color.White,
                 contentColor = Color(0xFF1A1A2E),
             ),
+            border = androidx.compose.foundation.BorderStroke(1.dp, Color(0xFFDADADA)),
         ) {
+            Icon(
+                painter = painterResource(R.drawable.ic_google),
+                contentDescription = null,
+                modifier = Modifier.size(20.dp),
+                tint = Color.Unspecified,
+            )
+            Spacer(Modifier.width(12.dp))
             Text("Continue with Google", style = MaterialTheme.typography.labelLarge)
         }
 

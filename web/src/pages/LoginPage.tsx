@@ -28,12 +28,16 @@ function GoogleButton({ onToken, disabled }: { onToken: (t: string) => void; dis
       type="button"
       onClick={() => googleLogin()}
       disabled={disabled}
-      className="flex items-center justify-center gap-3 w-full py-3 rounded-xl font-medium text-sm
-                 bg-white hover:bg-slate-100 active:bg-slate-200 text-slate-800
-                 transition-all duration-200 shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+      className="relative flex items-center w-full py-3.5 rounded-xl font-semibold text-sm
+                 bg-white hover:bg-slate-50 active:bg-slate-100 text-[#1a1a2e]
+                 border border-slate-200 hover:border-slate-300
+                 transition-all duration-200 shadow-sm hover:shadow
+                 disabled:opacity-50 disabled:cursor-not-allowed"
     >
-      <GoogleIcon />
-      Continue with Google
+      <span className="absolute left-4 flex items-center">
+        <GoogleIcon />
+      </span>
+      <span className="w-full text-center">Continue with Google</span>
     </button>
   )
 }
