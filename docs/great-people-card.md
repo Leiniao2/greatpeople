@@ -18,16 +18,113 @@ Short skill-based challenges (memory matching, reaction tests, word puzzles) tie
 **Quizzes**  
 Multiple-choice and short-answer questions about the featured figure's life, works, and legacy. A passing score unlocks the card; a perfect score unlocks a foil/premium variant.
 
-### Card Anatomy
+### Great People Card Attributes
+
+Great People Card are major cards in the game, you act these cards to get winning points in a game.
 
 | Field | Description |
 |---|---|
 | Figure | Name and portrait of the historical/cultural person |
-| Era | Time period (Ancient, Medieval, Renaissance, Modern, Contemporary) |
-| Domain | Science, Arts, Politics, Philosophy, Sports, etc. |
-| Stats | Three numeric attributes used in battle (e.g., Influence, Innovation, Legacy) |
-| Tier | Common / Rare / Epic / Legendary — determined by quiz/game performance |
-| Lore | A short biographical quote or fact |
+| 7 Eras | Time period (Ancient, Classical, Medieval, Renaissance, Steam, Electricity, Information) |
+| 32 Identities | Sovereign(Sov), Statesman(Sta), Official(Off), Spy(Spy); General(Gen), Soldier(Sol), Warrior(War), Athlete(Ath); Artist(Art), Musician(Mus), Writer(Wri), Actor(Act); Economist(Eco), Banker(Ban), Merchant(Mer), Noble(Nob); Scientist(Sci), Mathmatician(Mat), Naturalist(Nat), Astronomer(Ast); Engineer(Eng), Architect(Arc), Doctor(Doc), Explorer(Exp); Prophet(Pro), Priest(Pri), Philosopher(Phi), Monastic(Mon); Educator(Edu), Journalist(Jou), Gourmet(Gou), Lawyer(Law) |
+| 2 Genders | Male; Female; |
+| 8 Stats | Politics; Strength; Culture; Wealth; Intelligence; Technique; Belief; Reputation; |
+| Characteristic | A special ability that works when the card is in the game |
+| Achievement | A word or several word, with description of it how to get it in game, when a card complete its achievement, its will generate 1 winning point |
+
+### Follower Card Attributes
+
+Follower are weaker card that only have 1 stat and will help the Great People complete achievement
+
+| Field | Description |
+|---|---|
+| 32 Identities | Sovereign(Sov), Statesman(Sta), Official(Off), Spy(Spy); General(Gen), Soldier(Sol), Warrior(War), Athlete(Ath); Artist(Art), Musician(Mus), Writer(Wri), Actor(Act); Economist(Eco), Banker(Ban), Merchant(Mer), Noble(Nob); Scientist(Sci), Mathmatician(Mat), Naturalist(Nat), Astronomer(Ast); Engineer(Eng), Architect(Arc), Doctor(Doc), Explorer(Exp); Prophet(Pro), Priest(Pri), Philosopher(Phi), Monastic(Mon); Educator(Edu), Journalist(Jou), Gourmet(Gou), Lawyer(Law) |
+| Gender | Male; Female; |
+
+### Location Card Attributes
+
+GP and Follower must act on locations, most are cities.
+
+| Field | Description |
+|---|---|
+| 7 Eras | Time period (Ancient, Classical, Medieval, Renaissance, Steam, Electricity, Information) |
+| Buildings | Types depends on Era |
+| Features | Volcano, Mountain, Seashore, Cliff, Forest, Hill, Jungle, Desert, Grassland, River, Lake |
+| Climate | Mediterrain, Tropical, etc|
+| Size | population estimate |
+| Connections | years to other city are different |
+
+In terms of Building
+
+Ancient
+Politics: Palace
+Streanth: Barracks
+Culture: Monument
+Wealth: Port
+Technique: Workshop
+Intelligence: Observatory
+Belief: Temple
+Reputation: Forum
+
+Classical
+Politics: Palace, 议会
+Strength: Arena, Barracks
+Culture: Monument, Theatre
+Wealth: Port, Plantation
+Technique: Infrastructure, Workshop
+Intelligence: Observatory, Library
+Belief: Temple, 
+Reputation: Court, Forum
+
+Medieval
+Politics: Palace, Castle
+Military: Arena, Barracks
+Culture: Monument, Gallery
+Wealth: Port, Plantation
+Technique: Guild, Workshop
+Intelligence: Observatory, University
+Belief: Monastry
+Reputation: Court, 使馆
+
+文艺复兴：
+politics：宫殿、城堡、议会
+military：运动场、军营、要塞
+culture：纪念碑、剧院、画廊（gallery）
+wealth：港口、庄园、银行
+technique：行会、作坊、医院
+intelligence：天文台、图书馆、大学
+belief：寺庙、修道院、圣殿
+reputation：法院、讲堂、使馆
+
+蒸汽时代：
+politics：宫殿、议会、情报局
+military：军营、军校、要塞
+culture：剧院、画廊、音乐厅
+wealth：港口、银行、股票交易所
+technique：基础设施、工厂、医院
+intelligence：大学、图书馆、研究院（Academy）
+belief：寺庙、圣殿、沙龙
+reputation：法院、使馆、报社
+
+电气时代：
+politics：宫殿、议会、情报局、监狱
+military：军营、军校、要塞、训练馆（gym）
+culture：剧院、画廊、音乐厅、博物馆
+wealth：港口、银行、股票交易所、跨国企业
+technique：基础设施、工厂、医院、作坊
+intelligence：大学、图书馆、研究院、实验室
+belief：寺庙、圣殿、沙龙、保护区
+reputation：电视台、使馆、报社、法院
+
+信息时代：
+politics：议会、情报局、监狱、纪念碑（民族认同）
+military：军营、军校、训练馆、天文台（空间探索）
+culture：剧院、音乐厅、博物馆、修道院（历史古迹）
+wealth：银行、股票交易所、跨国企业、运动场（娱乐经济）
+technique：工厂、医院、基础设施、庄园（食品工业）
+intelligence：大学、研究院、实验室、讲堂（网络论坛）
+belief：沙龙、圣殿、保护区、作坊（匠人精神）
+reputation：法院、使馆、电视台、城堡（地产改造）
 
 ### Card Profile Synchronization
 
