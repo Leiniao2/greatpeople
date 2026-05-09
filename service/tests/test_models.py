@@ -103,15 +103,20 @@ class TestCardDefinitionToDict:
         defaults = dict(
             id="card-001",
             figure_name="Ada Lovelace",
-            era="Victorian",
-            domain="Mathematics",
-            influence=8,
-            innovation=9,
-            legacy=10,
+            era="Steam",
+            gender="female",
+            politics=30,
+            strength=20,
+            culture=85,
+            wealth=40,
+            intelligence=95,
+            technique=80,
+            belief=45,
+            reputation=75,
             lore="Pioneer of computing",
             portrait_gcs_path="gs://bucket/ada.png",
             years="1815-1852",
-            identities=["mathematician", "writer"],
+            identities=["Mathematician", "Writer"],
             characteristics="Analytical mind",
             achievement="First algorithm",
         )
@@ -122,8 +127,9 @@ class TestCardDefinitionToDict:
         card = self._make_card()
         d = card.to_dict(tier="rare", portrait_url="https://cdn.example.com/ada.png")
         expected_keys = {
-            "id", "figureName", "era", "domain",
-            "influence", "innovation", "legacy",
+            "id", "figureName", "era", "gender",
+            "politics", "strength", "culture", "wealth",
+            "intelligence", "technique", "belief", "reputation",
             "tier", "lore", "portraitUrl",
             "years", "identities", "characteristics", "achievement",
         }
@@ -134,16 +140,21 @@ class TestCardDefinitionToDict:
         d = card.to_dict(tier="epic", portrait_url="https://cdn.example.com/ada.png")
         assert d["id"] == "card-001"
         assert d["figureName"] == "Ada Lovelace"
-        assert d["era"] == "Victorian"
-        assert d["domain"] == "Mathematics"
-        assert d["influence"] == 8
-        assert d["innovation"] == 9
-        assert d["legacy"] == 10
+        assert d["era"] == "Steam"
+        assert d["gender"] == "female"
+        assert d["politics"] == 30
+        assert d["strength"] == 20
+        assert d["culture"] == 85
+        assert d["wealth"] == 40
+        assert d["intelligence"] == 95
+        assert d["technique"] == 80
+        assert d["belief"] == 45
+        assert d["reputation"] == 75
         assert d["tier"] == "epic"
         assert d["lore"] == "Pioneer of computing"
         assert d["portraitUrl"] == "https://cdn.example.com/ada.png"
         assert d["years"] == "1815-1852"
-        assert d["identities"] == ["mathematician", "writer"]
+        assert d["identities"] == ["Mathematician", "Writer"]
         assert d["characteristics"] == "Analytical mind"
         assert d["achievement"] == "First algorithm"
 
@@ -161,6 +172,18 @@ class TestCardDefinitionToDict:
         card = CardDefinition(id="c2", figure_name="Unknown")
         d = card.to_dict()
         assert d["identities"] == []
+
+    def test_stats_default_to_zero(self):
+        card = CardDefinition(id="c3", figure_name="Unknown")
+        d = card.to_dict()
+        for stat in ("politics", "strength", "culture", "wealth",
+                     "intelligence", "technique", "belief", "reputation"):
+            assert d[stat] == 0
+
+    def test_gender_defaults_to_empty_string(self):
+        card = CardDefinition(id="c4", figure_name="Unknown")
+        d = card.to_dict()
+        assert d["gender"] == ""
 
 
 # ---------------------------------------------------------------------------
@@ -239,7 +262,7 @@ class TestMatchToDict:
 
 class TestRoundInit:
     def test_default_winner_is_none(self):
-        rnd = Round(match_id="m1", round_number=1, active_stat="influence")
+        rnd = Round(match_id="m1", round_number=1, active_stat="politics")
         assert rnd.winner is None
 
     def test_card_ids_default_to_none(self):

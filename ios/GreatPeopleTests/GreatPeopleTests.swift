@@ -5,19 +5,64 @@ final class GreatPeopleTests: XCTestCase {
 
     // MARK: - Card.totalStats
 
-    func testCardTotalStats() {
-        let card = makeCard(influence: 10, innovation: 20, legacy: 30)
-        XCTAssertEqual(card.totalStats, 60)
+    func testCardTotalStatsSum() {
+        let card = makeCard(politics: 10, strength: 20, culture: 30,
+                            wealth: 40, intelligence: 50, technique: 60,
+                            belief: 70, reputation: 80)
+        XCTAssertEqual(card.totalStats, 360)
     }
 
     func testCardTotalStatsAllZero() {
-        let card = makeCard(influence: 0, innovation: 0, legacy: 0)
+        let card = makeCard(politics: 0, strength: 0, culture: 0,
+                            wealth: 0, intelligence: 0, technique: 0,
+                            belief: 0, reputation: 0)
         XCTAssertEqual(card.totalStats, 0)
     }
 
     func testCardTotalStatsMaxValues() {
-        let card = makeCard(influence: 100, innovation: 100, legacy: 100)
-        XCTAssertEqual(card.totalStats, 300)
+        let card = makeCard(politics: 100, strength: 100, culture: 100,
+                            wealth: 100, intelligence: 100, technique: 100,
+                            belief: 100, reputation: 100)
+        XCTAssertEqual(card.totalStats, 800)
+    }
+
+    // MARK: - Card stats stored correctly
+
+    func testCardStoresAllEightStats() {
+        let card = makeCard(politics: 92, strength: 35, culture: 78,
+                            wealth: 25, intelligence: 82, technique: 40,
+                            belief: 90, reputation: 95)
+        XCTAssertEqual(card.politics, 92)
+        XCTAssertEqual(card.strength, 35)
+        XCTAssertEqual(card.culture, 78)
+        XCTAssertEqual(card.wealth, 25)
+        XCTAssertEqual(card.intelligence, 82)
+        XCTAssertEqual(card.technique, 40)
+        XCTAssertEqual(card.belief, 90)
+        XCTAssertEqual(card.reputation, 95)
+    }
+
+    // MARK: - Card.gender
+
+    func testCardStoresMaleGender() {
+        let card = makeCard(gender: "male")
+        XCTAssertEqual(card.gender, "male")
+    }
+
+    func testCardStoresFemaleGender() {
+        let card = makeCard(gender: "female")
+        XCTAssertEqual(card.gender, "female")
+    }
+
+    // MARK: - Card.era (7 defined values)
+
+    func testCardStoresEra() {
+        let eras = ["Ancient", "Classical", "Medieval", "Renaissance",
+                    "Steam", "Electricity", "Information"]
+        for era in eras {
+            let card = makeCard(era: era)
+            XCTAssertEqual(card.era, era)
+        }
     }
 
     // MARK: - Card.portraitURL (remote URL)
@@ -85,12 +130,9 @@ final class GreatPeopleTests: XCTestCase {
         XCTAssertEqual(CardTier.legendary.rawValue, "legendary")
     }
 
-    // MARK: - Domain
-
-    func testDomainRawValues() {
-        XCTAssertEqual(Domain.science.rawValue, "science")
-        XCTAssertEqual(Domain.arts.rawValue, "arts")
-        XCTAssertEqual(Domain.politics.rawValue, "politics")
+    func testCardTierDecodable() {
+        XCTAssertEqual(CardTier(rawValue: "legendary"), .legendary)
+        XCTAssertNil(CardTier(rawValue: "unknown"))
     }
 
     // MARK: - AuthStore guest mode
@@ -121,24 +163,31 @@ final class GreatPeopleTests: XCTestCase {
 private func makeCard(
     id: String = "test-id",
     figureName: String = "Test Figure",
-    era: String = "Modern",
-    domain: Domain = .science,
-    influence: Int = 50,
-    innovation: Int = 50,
-    legacy: Int = 50,
+    era: String = "Steam",
+    gender: String = "male",
+    identities: [String] = [],
     tier: CardTier = .common,
     lore: String = "",
     portraitUrl: String = "",
     years: String = "2000–2024",
-    identities: [String] = [],
     characteristics: String = "",
-    achievement: String = ""
+    achievement: String = "",
+    politics: Int = 50,
+    strength: Int = 50,
+    culture: Int = 50,
+    wealth: Int = 50,
+    intelligence: Int = 50,
+    technique: Int = 50,
+    belief: Int = 50,
+    reputation: Int = 50
 ) -> Card {
     Card(
-        id: id, figureName: figureName, era: era, domain: domain,
-        influence: influence, innovation: innovation, legacy: legacy,
-        tier: tier, lore: lore, portraitUrl: portraitUrl,
-        years: years, identities: identities,
-        characteristics: characteristics, achievement: achievement
+        id: id, figureName: figureName, era: era, gender: gender,
+        identities: identities, tier: tier, lore: lore,
+        portraitUrl: portraitUrl, years: years,
+        characteristics: characteristics, achievement: achievement,
+        politics: politics, strength: strength, culture: culture,
+        wealth: wealth, intelligence: intelligence, technique: technique,
+        belief: belief, reputation: reputation
     )
 }

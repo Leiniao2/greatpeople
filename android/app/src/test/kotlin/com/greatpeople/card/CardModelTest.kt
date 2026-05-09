@@ -2,7 +2,6 @@ package com.greatpeople.card
 
 import com.greatpeople.card.data.model.Card
 import com.greatpeople.card.data.model.CardTier
-import com.greatpeople.card.data.model.Domain
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
 import org.junit.Test
@@ -11,42 +10,52 @@ class CardModelTest {
 
     private fun makeCard(
         id: String = "1",
-        figureName: String = "Albert Einstein",
-        era: String = "Modern",
-        domain: Domain = Domain.SCIENCE,
-        influence: Int = 95,
-        innovation: Int = 98,
-        legacy: Int = 99,
-        tier: CardTier = CardTier.LEGENDARY,
-        lore: String = "Developed the theory of relativity.",
-        portraitUrl: String = "https://example.com/einstein.png",
-        years: String = "",
+        figureName: String = "Alan Turing",
+        era: String = "Electricity",
+        gender: String = "male",
         identities: List<String> = emptyList(),
+        tier: CardTier = CardTier.LEGENDARY,
+        lore: String = "He built the machine that broke the unbreakable.",
+        portraitUrl: String = "https://example.com/turing.png",
+        years: String = "1912–1954",
         characteristics: String = "",
         achievement: String = "",
+        politics: Int = 40,
+        strength: Int = 25,
+        culture: Int = 65,
+        wealth: Int = 35,
+        intelligence: Int = 98,
+        technique: Int = 92,
+        belief: Int = 20,
+        reputation: Int = 80,
     ): Card = Card(
         id = id,
         figureName = figureName,
         era = era,
-        domain = domain,
-        influence = influence,
-        innovation = innovation,
-        legacy = legacy,
+        gender = gender,
+        identities = identities,
         tier = tier,
         lore = lore,
         portraitUrl = portraitUrl,
         years = years,
-        identities = identities,
         characteristics = characteristics,
         achievement = achievement,
+        politics = politics,
+        strength = strength,
+        culture = culture,
+        wealth = wealth,
+        intelligence = intelligence,
+        technique = technique,
+        belief = belief,
+        reputation = reputation,
     )
 
     // Default value tests
 
     @Test
-    fun `Card years defaults to empty string`() {
-        val card = makeCard()
-        assertEquals("", card.years)
+    fun `Card years defaults to provided value`() {
+        val card = makeCard(years = "1912–1954")
+        assertEquals("1912–1954", card.years)
     }
 
     @Test
@@ -68,17 +77,57 @@ class CardModelTest {
     }
 
     @Test
-    fun `Card stores provided optional fields correctly`() {
+    fun `Card stores gender correctly`() {
+        val male = makeCard(gender = "male")
+        val female = makeCard(gender = "female")
+        assertEquals("male", male.gender)
+        assertEquals("female", female.gender)
+    }
+
+    @Test
+    fun `Card stores all eight stats correctly`() {
         val card = makeCard(
-            years = "1879–1955",
-            identities = listOf("German", "Swiss", "American"),
-            characteristics = "Theoretical physicist",
-            achievement = "Nobel Prize in Physics 1921",
+            politics = 92, strength = 35, culture = 78, wealth = 25,
+            intelligence = 82, technique = 40, belief = 90, reputation = 95,
         )
-        assertEquals("1879–1955", card.years)
-        assertEquals(listOf("German", "Swiss", "American"), card.identities)
-        assertEquals("Theoretical physicist", card.characteristics)
-        assertEquals("Nobel Prize in Physics 1921", card.achievement)
+        assertEquals(92, card.politics)
+        assertEquals(35, card.strength)
+        assertEquals(78, card.culture)
+        assertEquals(25, card.wealth)
+        assertEquals(82, card.intelligence)
+        assertEquals(40, card.technique)
+        assertEquals(90, card.belief)
+        assertEquals(95, card.reputation)
+    }
+
+    @Test
+    fun `Card stat defaults are zero`() {
+        val card = Card(
+            id = "x", figureName = "X", era = "Ancient",
+            tier = CardTier.COMMON, lore = "", portraitUrl = "",
+        )
+        assertEquals(0, card.politics)
+        assertEquals(0, card.strength)
+        assertEquals(0, card.culture)
+        assertEquals(0, card.wealth)
+        assertEquals(0, card.intelligence)
+        assertEquals(0, card.technique)
+        assertEquals(0, card.belief)
+        assertEquals(0, card.reputation)
+    }
+
+    @Test
+    fun `Card stores optional fields correctly`() {
+        val card = makeCard(
+            years = "1912–1954",
+            identities = listOf("Mathematician", "Scientist"),
+            characteristics = "Codebreaker: if opponent's Intelligence is higher, treat as equal.",
+            achievement = "Cracked — when Intelligence wins 3 rounds, generate 1 winning point.",
+        )
+        assertEquals("1912–1954", card.years)
+        assertEquals(listOf("Mathematician", "Scientist"), card.identities)
+        assertEquals("Codebreaker: if opponent's Intelligence is higher, treat as equal.", card.characteristics)
+        assertEquals("Cracked — when Intelligence wins 3 rounds, generate 1 winning point.", card.achievement)
     }
 
     // CardTier enum tests
@@ -106,43 +155,6 @@ class CardModelTest {
     @Test
     fun `CardTier enum contains LEGENDARY`() {
         assertEquals(CardTier.LEGENDARY, CardTier.valueOf("LEGENDARY"))
-    }
-
-    // Domain enum tests
-
-    @Test
-    fun `Domain enum has exactly 6 values`() {
-        assertEquals(6, Domain.entries.size)
-    }
-
-    @Test
-    fun `Domain enum contains SCIENCE`() {
-        assertEquals(Domain.SCIENCE, Domain.valueOf("SCIENCE"))
-    }
-
-    @Test
-    fun `Domain enum contains ARTS`() {
-        assertEquals(Domain.ARTS, Domain.valueOf("ARTS"))
-    }
-
-    @Test
-    fun `Domain enum contains POLITICS`() {
-        assertEquals(Domain.POLITICS, Domain.valueOf("POLITICS"))
-    }
-
-    @Test
-    fun `Domain enum contains PHILOSOPHY`() {
-        assertEquals(Domain.PHILOSOPHY, Domain.valueOf("PHILOSOPHY"))
-    }
-
-    @Test
-    fun `Domain enum contains SPORTS`() {
-        assertEquals(Domain.SPORTS, Domain.valueOf("SPORTS"))
-    }
-
-    @Test
-    fun `Domain enum contains OTHER`() {
-        assertEquals(Domain.OTHER, Domain.valueOf("OTHER"))
     }
 
     // Card equality tests
@@ -173,5 +185,17 @@ class CardModelTest {
         val card = makeCard(id = "abc123")
         val modified = card.copy(id = "different")
         assertNotEquals(card, modified)
+    }
+
+    // Era validation
+
+    @Test
+    fun `Card stores all 7 era values`() {
+        val eras = listOf("Ancient", "Classical", "Medieval", "Renaissance",
+                          "Steam", "Electricity", "Information")
+        eras.forEach { era ->
+            val card = makeCard(era = era)
+            assertEquals(era, card.era)
+        }
     }
 }

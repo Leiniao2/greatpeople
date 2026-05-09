@@ -6,16 +6,23 @@ from models import client
 class CardDefinition:
     KIND = 'CardDefinition'
 
-    def __init__(self, id=None, figure_name='', era='', domain='',
-                 influence=0, innovation=0, legacy=0, lore='', portrait_gcs_path='',
+    def __init__(self, id=None, figure_name='', era='', gender='',
+                 politics=0, strength=0, culture=0, wealth=0,
+                 intelligence=0, technique=0, belief=0, reputation=0,
+                 lore='', portrait_gcs_path='',
                  years='', identities=None, characteristics='', achievement=''):
         self.id = id
         self.figure_name = figure_name
         self.era = era
-        self.domain = domain
-        self.influence = influence
-        self.innovation = innovation
-        self.legacy = legacy
+        self.gender = gender
+        self.politics = politics
+        self.strength = strength
+        self.culture = culture
+        self.wealth = wealth
+        self.intelligence = intelligence
+        self.technique = technique
+        self.belief = belief
+        self.reputation = reputation
         self.lore = lore
         self.portrait_gcs_path = portrait_gcs_path
         self.years = years
@@ -33,10 +40,15 @@ class CardDefinition:
             'id': self.id,
             'figureName': self.figure_name,
             'era': self.era,
-            'domain': self.domain,
-            'influence': self.influence,
-            'innovation': self.innovation,
-            'legacy': self.legacy,
+            'gender': self.gender,
+            'politics': self.politics,
+            'strength': self.strength,
+            'culture': self.culture,
+            'wealth': self.wealth,
+            'intelligence': self.intelligence,
+            'technique': self.technique,
+            'belief': self.belief,
+            'reputation': self.reputation,
             'tier': tier,
             'lore': self.lore,
             'portraitUrl': portrait_url,
@@ -52,10 +64,15 @@ class CardDefinition:
             id=entity.key.name,
             figure_name=entity.get('figure_name', ''),
             era=entity.get('era', ''),
-            domain=entity.get('domain', ''),
-            influence=entity.get('influence', 0),
-            innovation=entity.get('innovation', 0),
-            legacy=entity.get('legacy', 0),
+            gender=entity.get('gender', ''),
+            politics=entity.get('politics', 0),
+            strength=entity.get('strength', 0),
+            culture=entity.get('culture', 0),
+            wealth=entity.get('wealth', 0),
+            intelligence=entity.get('intelligence', 0),
+            technique=entity.get('technique', 0),
+            belief=entity.get('belief', 0),
+            reputation=entity.get('reputation', 0),
             lore=entity.get('lore', ''),
             portrait_gcs_path=entity.get('portrait_gcs_path', ''),
             years=entity.get('years', ''),

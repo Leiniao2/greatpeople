@@ -8,7 +8,8 @@ from models.card import CardDefinition
 
 battle_bp = Blueprint('battle', __name__)
 
-_STATS = ['influence', 'innovation', 'legacy']
+_STATS = ['politics', 'strength', 'culture', 'wealth',
+          'intelligence', 'technique', 'belief', 'reputation']
 _WINS_NEEDED = 5
 
 

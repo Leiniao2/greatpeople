@@ -17,13 +17,19 @@ from api.battle import _resolve_round
 # Helpers
 # ---------------------------------------------------------------------------
 
-def _make_card(card_id: str, influence=5, innovation=5, legacy=5) -> CardDefinition:
+def _make_card(card_id: str, politics=5, strength=5, culture=5,
+               wealth=5, intelligence=5, technique=5, belief=5, reputation=5) -> CardDefinition:
     return CardDefinition(
         id=card_id,
         figure_name=f"Figure {card_id}",
-        influence=influence,
-        innovation=innovation,
-        legacy=legacy,
+        politics=politics,
+        strength=strength,
+        culture=culture,
+        wealth=wealth,
+        intelligence=intelligence,
+        technique=technique,
+        belief=belief,
+        reputation=reputation,
     )
 
 
@@ -40,7 +46,7 @@ def _make_active_match(player_a="user-a", player_b="user-b",
     )
 
 
-def _make_round(match: Match, stat: str = "influence",
+def _make_round(match: Match, stat: str = "politics",
                 card_a_id: str = "card-a", card_b_id: str = "card-b") -> Round:
     return Round(
         match_id=match.id,
@@ -91,57 +97,65 @@ class TestResolveRound:
     # -- Winner determination --------------------------------------------------
 
     def test_a_wins_when_val_a_greater(self):
-        match, rnd = self._run("influence", val_a=8, val_b=5)
+        match, rnd = self._run("politics", val_a=8, val_b=5)
         assert rnd.winner == "A"
         assert match.score_a == 1
         assert match.score_b == 0
 
     def test_b_wins_when_val_b_greater(self):
-        match, rnd = self._run("influence", val_a=3, val_b=7)
+        match, rnd = self._run("politics", val_a=3, val_b=7)
         assert rnd.winner == "B"
         assert match.score_b == 1
         assert match.score_a == 0
 
     def test_draw_when_values_equal(self):
-        match, rnd = self._run("influence", val_a=5, val_b=5)
+        match, rnd = self._run("politics", val_a=5, val_b=5)
         assert rnd.winner == "draw"
         assert match.score_a == 0
         assert match.score_b == 0
 
     # -- Stat selection -------------------------------------------------------
 
-    def test_uses_correct_stat_innovation(self):
-        match, rnd = self._run("innovation", val_a=10, val_b=4)
+    def test_uses_correct_stat_strength(self):
+        match, rnd = self._run("strength", val_a=10, val_b=4)
         assert rnd.winner == "A"
 
-    def test_uses_correct_stat_legacy(self):
-        match, rnd = self._run("legacy", val_a=2, val_b=9)
+    def test_uses_correct_stat_culture(self):
+        match, rnd = self._run("culture", val_a=2, val_b=9)
+        assert rnd.winner == "B"
+
+    def test_uses_correct_stat_intelligence(self):
+        match, rnd = self._run("intelligence", val_a=95, val_b=40)
+        assert rnd.winner == "A"
+
+    def test_uses_correct_stat_reputation(self):
+        match, rnd = self._run("reputation", val_a=30, val_b=80)
         assert rnd.winner == "B"
 
     # -- Match completion (5 wins needed) -------------------------------------
 
     def test_match_finishes_when_a_reaches_5_wins(self):
-        match, rnd = self._run("influence", val_a=8, val_b=5, score_a=4, score_b=2)
+        match, rnd = self._run("politics", val_a=8, val_b=5, score_a=4, score_b=2)
         assert match.status == "finished"
         assert match.winner_id == match.player_a_id
 
     def test_match_finishes_when_b_reaches_5_wins(self):
-        match, rnd = self._run("influence", val_a=2, val_b=9, score_a=1, score_b=4)
+        match, rnd = self._run("politics", val_a=2, val_b=9, score_a=1, score_b=4)
         assert match.status == "finished"
         assert match.winner_id == match.player_b_id
 
     def test_match_finished_at_is_set_on_completion(self):
-        match, _ = self._run("influence", val_a=8, val_b=5, score_a=4, score_b=0)
+        match, _ = self._run("politics", val_a=8, val_b=5, score_a=4, score_b=0)
         assert match.finished_at is not None
 
     def test_round_increments_when_match_not_finished(self):
         """After a non-decisive round the current_round counter must advance."""
         initial_round = 3
         match = _make_active_match(score_a=2, score_b=1, current_round=initial_round)
-        rnd = _make_round(match, stat="influence")
+        rnd = _make_round(match, stat="strength")
 
-        card_a = _make_card("card-a", influence=8)
-        card_b = _make_card("card-b", influence=5)
+        card_a = _make_card("card-a", strength=8)
+        card_b = _make_card("card-b", strength=5)
 
         with (
             patch("api.battle.CardDefinition.get",
@@ -158,10 +172,10 @@ class TestResolveRound:
     def test_no_new_round_created_when_match_finishes(self):
         """_create_round must NOT be called when the match is over."""
         match = _make_active_match(score_a=4, score_b=0)
-        rnd = _make_round(match, stat="influence")
+        rnd = _make_round(match, stat="intelligence")
 
-        card_a = _make_card("card-a", influence=9)
-        card_b = _make_card("card-b", influence=1)
+        card_a = _make_card("card-a", intelligence=9)
+        card_b = _make_card("card-b", intelligence=1)
 
         with (
             patch("api.battle.CardDefinition.get",
@@ -177,9 +191,9 @@ class TestResolveRound:
     def test_missing_card_counts_as_zero(self):
         """If CardDefinition.get returns None, the stat for that card is 0."""
         match = _make_active_match()
-        rnd = _make_round(match, stat="influence")
+        rnd = _make_round(match, stat="culture")
 
-        card_b = _make_card("card-b", influence=3)
+        card_b = _make_card("card-b", culture=3)
 
         with (
             patch("api.battle.CardDefinition.get",
@@ -195,9 +209,9 @@ class TestResolveRound:
     def test_round_put_is_called(self):
         """The round result must be persisted."""
         match = _make_active_match()
-        rnd = _make_round(match, stat="influence")
+        rnd = _make_round(match, stat="wealth")
 
-        card = _make_card("card-a", influence=5)
+        card = _make_card("card-a", wealth=5)
 
         with (
             patch("api.battle.CardDefinition.get", return_value=card),
