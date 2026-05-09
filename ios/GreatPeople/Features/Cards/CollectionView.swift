@@ -111,14 +111,15 @@ struct CardCell: View {
                     .font(.subheadline.weight(.semibold))
                     .foregroundColor(.white)
                     .lineLimit(1)
-                Text("\(card.era) · \(card.domain.rawValue)")
+                Text("\(card.era) · \(card.gender)")
                     .font(.system(size: 10))
                     .foregroundColor(.gpSlate400)
                     .lineLimit(1)
 
-                // Stats
-                HStack(spacing: 4) {
-                    ForEach([("INF", card.influence), ("INN", card.innovation), ("LEG", card.legacy)], id: \.0) { label, val in
+                // Stats — 2×2 grid
+                let stats: [(String, Int)] = [("POL", card.politics), ("STR", card.strength), ("CUL", card.culture), ("INT", card.intelligence)]
+                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 3) {
+                    ForEach(stats, id: \.0) { label, val in
                         VStack(spacing: 1) {
                             Text("\(val)").font(.system(size: 12).weight(.bold)).foregroundColor(.gpAmber)
                             Text(label).font(.system(size: 8)).foregroundColor(.gpSlate600)

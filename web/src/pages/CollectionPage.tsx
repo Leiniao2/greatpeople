@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { cardsApi } from '@/api/cards'
 import { useAuth } from '@/hooks/useAuth'
-import type { Card, CardTier, Domain } from '@/types'
+import type { Card, CardTier } from '@/types'
 import demoCardsJson from '@/data/demo_cards.json'
 
 const TIER_STYLE: Record<CardTier, { badge: string; glow: string; border: string }> = {
@@ -14,7 +14,6 @@ const TIER_STYLE: Record<CardTier, { badge: string; glow: string; border: string
 
 const DEMO_CARDS: Card[] = demoCardsJson.map(c => ({
   ...c,
-  domain: c.domain as Domain,
   tier: c.tier as CardTier,
   portraitUrl: `/portraits/portrait_${c.portraitKey}.jpeg`,
 }))
@@ -131,14 +130,15 @@ function CardItem({ card, onClick }: { card: Card; onClick: () => void }) {
       {/* Info */}
       <div className="p-3 flex flex-col gap-1.5">
         <p className="text-white text-sm font-semibold leading-tight line-clamp-2">{card.figureName}</p>
-        <p className="text-slate-500 text-[10px] uppercase tracking-wider">{card.era} · {card.domain}</p>
+        <p className="text-slate-500 text-[10px] uppercase tracking-wider">{card.era} · {card.gender}</p>
 
-        {/* Stats */}
-        <div className="grid grid-cols-3 gap-1 mt-1">
+        {/* Stats — 2×2 grid */}
+        <div className="grid grid-cols-2 gap-1 mt-1">
           {[
-            { label: 'INF', val: card.influence },
-            { label: 'INN', val: card.innovation },
-            { label: 'LEG', val: card.legacy },
+            { label: 'POL', val: card.politics },
+            { label: 'STR', val: card.strength },
+            { label: 'CUL', val: card.culture },
+            { label: 'INT', val: card.intelligence },
           ].map(({ label, val }) => (
             <div key={label} className="flex flex-col items-center rounded-lg py-1"
               style={{ background: 'rgba(255,255,255,0.04)' }}>

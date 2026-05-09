@@ -24,7 +24,6 @@ import coil.compose.AsyncImage
 import com.greatpeople.card.data.loadDemoCards
 import com.greatpeople.card.data.model.Card
 import com.greatpeople.card.data.model.CardTier
-import com.greatpeople.card.data.model.Domain
 import com.greatpeople.card.ui.viewmodel.CollectionViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -139,21 +138,37 @@ private fun CardItem(card: Card, onClick: () -> Unit = {}) {
             Column(modifier = Modifier.padding(10.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
                 Text(card.figureName, style = MaterialTheme.typography.titleSmall,
                     maxLines = 1, overflow = TextOverflow.Ellipsis)
-                Text("${card.era} · ${card.domain.name.lowercase()}",
+                Text("${card.era} · ${card.gender}",
                     style = MaterialTheme.typography.labelSmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant)
 
-                // Stats
-                Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
-                    listOf("INF" to card.influence, "INN" to card.innovation, "LEG" to card.legacy)
-                        .forEach { (label, value) ->
-                            Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                                Text(value.toString(), style = MaterialTheme.typography.labelMedium,
-                                    color = tierColor)
-                                Text(label, style = MaterialTheme.typography.labelSmall,
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant)
+                // Stats — 2×2 grid (POL/STR top row, CUL/INT bottom row)
+                val statRows = listOf(
+                    listOf("POL" to card.politics, "STR" to card.strength),
+                    listOf("CUL" to card.culture, "INT" to card.intelligence),
+                )
+                Column(verticalArrangement = Arrangement.spacedBy(3.dp)) {
+                    statRows.forEach { row ->
+                        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(3.dp)) {
+                            row.forEach { (label, value) ->
+                                Column(
+                                    modifier = Modifier
+                                        .weight(1f)
+                                        .background(
+                                            color = Color.White.copy(alpha = 0.04f),
+                                            shape = MaterialTheme.shapes.small,
+                                        )
+                                        .padding(vertical = 4.dp),
+                                    horizontalAlignment = Alignment.CenterHorizontally,
+                                ) {
+                                    Text(value.toString(), style = MaterialTheme.typography.labelMedium,
+                                        color = tierColor)
+                                    Text(label, style = MaterialTheme.typography.labelSmall,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                }
                             }
                         }
+                    }
                 }
             }
         }

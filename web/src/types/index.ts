@@ -1,21 +1,25 @@
 export type CardTier = 'common' | 'rare' | 'epic' | 'legendary'
-export type Domain = 'science' | 'arts' | 'politics' | 'philosophy' | 'sports' | 'other'
 
 export interface Card {
   id: string
   figureName: string
   era: string
-  domain: Domain
-  influence: number
-  innovation: number
-  legacy: number
+  gender: string
+  identities: string[]
   tier: CardTier
   lore: string
   portraitUrl: string
   years: string
-  identities: string[]
   characteristics: string
   achievement: string
+  politics: number
+  strength: number
+  culture: number
+  wealth: number
+  intelligence: number
+  technique: number
+  belief: number
+  reputation: number
 }
 
 export interface AuthResponse {

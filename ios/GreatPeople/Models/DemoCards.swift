@@ -4,34 +4,44 @@ private struct DemoCardDTO: Decodable {
     let id: String
     let figureName: String
     let era: String
-    let domain: String
-    let influence: Int
-    let innovation: Int
-    let legacy: Int
+    let gender: String
+    let identities: [String]
     let tier: String
     let portraitKey: String
     let lore: String
     let years: String
-    let identities: [String]
     let characteristics: String
     let achievement: String
+    let politics: Int
+    let strength: Int
+    let culture: Int
+    let wealth: Int
+    let intelligence: Int
+    let technique: Int
+    let belief: Int
+    let reputation: Int
 
     var asCard: Card {
         Card(
             id: id,
             figureName: figureName,
             era: era,
-            domain: Domain(rawValue: domain) ?? .other,
-            influence: influence,
-            innovation: innovation,
-            legacy: legacy,
+            gender: gender,
+            identities: identities,
             tier: CardTier(rawValue: tier) ?? .common,
             lore: lore,
             portraitUrl: "asset:portrait_\(portraitKey)",
             years: years,
-            identities: identities,
             characteristics: characteristics,
-            achievement: achievement
+            achievement: achievement,
+            politics: politics,
+            strength: strength,
+            culture: culture,
+            wealth: wealth,
+            intelligence: intelligence,
+            technique: technique,
+            belief: belief,
+            reputation: reputation
         )
     }
 }

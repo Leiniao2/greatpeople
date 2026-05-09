@@ -100,26 +100,37 @@ export default function CardDetailPage() {
             <InfoSection label="Achievement" text={card.achievement} accent={tier.accent} />
           )}
 
-          {/* Stats */}
-          <div className="grid grid-cols-3 gap-3">
+          {/* Stats — 4×2 grid */}
+          <div className="grid grid-cols-4 gap-2">
             {[
-              { short: 'INF', val: card.influence },
-              { short: 'INN', val: card.innovation },
-              { short: 'LEG', val: card.legacy },
+              { short: 'POL', val: card.politics },
+              { short: 'STR', val: card.strength },
+              { short: 'CUL', val: card.culture },
+              { short: 'WEA', val: card.wealth },
+              { short: 'INT', val: card.intelligence },
+              { short: 'TEC', val: card.technique },
+              { short: 'BEL', val: card.belief },
+              { short: 'REP', val: card.reputation },
             ].map(({ short, val }) => (
               <div key={short} className="flex flex-col items-center py-3 rounded-xl border"
                 style={{ background: `${tier.accent}08`, borderColor: `${tier.accent}25` }}>
-                <span className="font-bold text-xl" style={{ color: tier.accent }}>{val}</span>
-                <span className="text-slate-500 text-[10px] tracking-widest mt-0.5">{short}</span>
+                <span className="font-bold text-lg" style={{ color: tier.accent }}>{val}</span>
+                <span className="text-slate-500 text-[9px] tracking-widest mt-0.5">{short}</span>
               </div>
             ))}
           </div>
 
-          {/* Era / Domain */}
-          <div className="flex items-center gap-2 text-xs text-slate-500">
+          {/* Era / Gender / Identities */}
+          <div className="flex items-center gap-2 text-xs text-slate-500 flex-wrap">
             <span className="uppercase tracking-wider">{card.era}</span>
             <span className="w-1 h-1 rounded-full bg-slate-700" />
-            <span className="capitalize">{card.domain}</span>
+            <span className="capitalize">{card.gender}</span>
+            {card.identities?.length > 0 && (
+              <>
+                <span className="w-1 h-1 rounded-full bg-slate-700" />
+                <span>{card.identities.join(', ')}</span>
+              </>
+            )}
           </div>
 
           {/* Lore */}

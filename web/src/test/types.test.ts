@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import type { Card, CardTier, Domain, AuthResponse, Match } from '@/types'
+import type { Card, CardTier, AuthResponse, Match } from '@/types'
 
 // Runtime helpers — build valid objects that satisfy the TypeScript interfaces
 
@@ -7,18 +7,23 @@ function makeCard(overrides: Partial<Card> = {}): Card {
   return {
     id: 'test-id',
     figureName: 'Test Figure',
-    era: 'Modern',
-    domain: 'science',
-    influence: 50,
-    innovation: 60,
-    legacy: 70,
+    era: 'Steam',
+    gender: 'male',
+    identities: [],
     tier: 'common',
     lore: 'Some lore',
     portraitUrl: '',
     years: '2000–2024',
-    identities: [],
     characteristics: '',
     achievement: '',
+    politics: 50,
+    strength: 50,
+    culture: 50,
+    wealth: 50,
+    intelligence: 50,
+    technique: 50,
+    belief: 50,
+    reputation: 50,
     ...overrides,
   }
 }
@@ -32,23 +37,23 @@ describe('Card type shape', () => {
     })
   })
 
-  it('accepts all valid domain values', () => {
-    const domains: Domain[] = ['science', 'arts', 'politics', 'philosophy', 'sports', 'other']
-    domains.forEach((domain) => {
-      const c = makeCard({ domain })
-      expect(c.domain).toBe(domain)
+  it('accepts male and female gender', () => {
+    const genders = ['male', 'female']
+    genders.forEach((gender) => {
+      const c = makeCard({ gender })
+      expect(c.gender).toBe(gender)
     })
   })
 
-  it('stores numeric stats correctly', () => {
-    const c = makeCard({ influence: 95, innovation: 88, legacy: 72 })
-    expect(c.influence + c.innovation + c.legacy).toBe(255)
+  it('stores 8 numeric stats correctly', () => {
+    const c = makeCard({ politics: 92, strength: 35, culture: 78, wealth: 25, intelligence: 82, technique: 40, belief: 90, reputation: 95 })
+    expect(c.politics + c.strength + c.culture + c.wealth + c.intelligence + c.technique + c.belief + c.reputation).toBe(537)
   })
 
   it('stores identities as an array', () => {
-    const c = makeCard({ identities: ['Leader', 'Activist'] })
+    const c = makeCard({ identities: ['Statesman', 'Educator'] })
     expect(c.identities).toHaveLength(2)
-    expect(c.identities[0]).toBe('Leader')
+    expect(c.identities[0]).toBe('Statesman')
   })
 
   it('portraitUrl defaults to empty string', () => {

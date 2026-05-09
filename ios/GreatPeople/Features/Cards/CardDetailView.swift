@@ -91,12 +91,18 @@ struct CardDetailView: View {
                             InfoSection(label: "Achievement", text: card.achievement, color: tierColor)
                         }
 
-                        // Stats
-                        HStack(spacing: 12) {
-                            ForEach([("INF", card.influence), ("INN", card.innovation), ("LEG", card.legacy)], id: \.0) { label, val in
+                        // Stats — 4×2 grid
+                        let allStats: [(String, Int)] = [
+                            ("POL", card.politics), ("STR", card.strength),
+                            ("CUL", card.culture),  ("WEA", card.wealth),
+                            ("INT", card.intelligence), ("TEC", card.technique),
+                            ("BEL", card.belief),   ("REP", card.reputation),
+                        ]
+                        LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 8), count: 4), spacing: 8) {
+                            ForEach(allStats, id: \.0) { label, val in
                                 VStack(spacing: 3) {
                                     Text("\(val)")
-                                        .font(.system(size: 22).weight(.bold))
+                                        .font(.system(size: 18).weight(.bold))
                                         .foregroundColor(tierColor)
                                     Text(label)
                                         .font(.system(size: 9).weight(.medium))
@@ -104,18 +110,22 @@ struct CardDetailView: View {
                                         .foregroundColor(.gpSlate600)
                                 }
                                 .frame(maxWidth: .infinity)
-                                .padding(.vertical, 12)
+                                .padding(.vertical, 10)
                                 .background(tierColor.opacity(0.07))
-                                .overlay(RoundedRectangle(cornerRadius: 12).stroke(tierColor.opacity(0.2), lineWidth: 1))
-                                .clipShape(RoundedRectangle(cornerRadius: 12))
+                                .overlay(RoundedRectangle(cornerRadius: 10).stroke(tierColor.opacity(0.2), lineWidth: 1))
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
                             }
                         }
 
-                        // Era / Domain
+                        // Era / Gender / Identities
                         HStack(spacing: 6) {
                             Text(card.era.uppercased())
                             Text("·")
-                            Text(card.domain.rawValue.capitalized)
+                            Text(card.gender.capitalized)
+                            if !card.identities.isEmpty {
+                                Text("·")
+                                Text(card.identities.joined(separator: ", "))
+                            }
                         }
                         .font(.system(size: 11))
                         .foregroundColor(.gpSlate600)

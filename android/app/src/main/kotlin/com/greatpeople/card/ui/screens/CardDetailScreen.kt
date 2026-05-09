@@ -154,46 +154,60 @@ fun CardDetailScreen(card: Card, onBack: () -> Unit) {
                     InfoSection("Achievement", card.achievement, tierColor)
                 }
 
-                // Stats
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(12.dp),
-                ) {
-                    listOf("INF" to card.influence, "INN" to card.innovation, "LEG" to card.legacy)
-                        .forEach { (label, value) ->
-                            Surface(
-                                modifier = Modifier.weight(1f),
-                                color = tierColor.copy(alpha = 0.07f),
-                                shape = RoundedCornerShape(12.dp),
-                                border = androidx.compose.foundation.BorderStroke(
-                                    1.dp, tierColor.copy(alpha = 0.2f)
-                                ),
-                            ) {
-                                Column(
-                                    modifier = Modifier.padding(vertical = 12.dp),
-                                    horizontalAlignment = Alignment.CenterHorizontally,
+                // Stats — 4×2 grid
+                val allStats = listOf(
+                    listOf("POL" to card.politics, "STR" to card.strength, "CUL" to card.culture, "WEA" to card.wealth),
+                    listOf("INT" to card.intelligence, "TEC" to card.technique, "BEL" to card.belief, "REP" to card.reputation),
+                )
+                Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    allStats.forEach { row ->
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        ) {
+                            row.forEach { (label, value) ->
+                                Surface(
+                                    modifier = Modifier.weight(1f),
+                                    color = tierColor.copy(alpha = 0.07f),
+                                    shape = RoundedCornerShape(10.dp),
+                                    border = androidx.compose.foundation.BorderStroke(
+                                        1.dp, tierColor.copy(alpha = 0.2f)
+                                    ),
                                 ) {
-                                    Text(value.toString(), fontSize = 22.sp,
-                                        fontWeight = FontWeight.Bold, color = tierColor)
-                                    Text(label,
-                                        style = MaterialTheme.typography.labelSmall,
-                                        letterSpacing = 2.sp,
-                                        color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                    Column(
+                                        modifier = Modifier.padding(vertical = 10.dp),
+                                        horizontalAlignment = Alignment.CenterHorizontally,
+                                    ) {
+                                        Text(value.toString(), fontSize = 18.sp,
+                                            fontWeight = FontWeight.Bold, color = tierColor)
+                                        Text(label,
+                                            style = MaterialTheme.typography.labelSmall,
+                                            letterSpacing = 2.sp,
+                                            color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                    }
                                 }
                             }
                         }
+                    }
                 }
 
-                // Era / Domain
+                // Era / Gender / Identities
                 Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                     Text(card.era.uppercase(),
                         style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant)
                     Text("·", style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant)
-                    Text(card.domain.name.lowercase().replaceFirstChar { it.uppercase() },
+                    Text(card.gender.replaceFirstChar { it.uppercase() },
                         style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    if (card.identities.isNotEmpty()) {
+                        Text("·", style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        Text(card.identities.joinToString(", "),
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    }
                 }
 
                 // Lore

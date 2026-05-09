@@ -8,7 +8,6 @@ import com.greatpeople.card.data.local.StringListConverter
 import kotlinx.parcelize.Parcelize
 
 enum class CardTier { COMMON, RARE, EPIC, LEGENDARY }
-enum class Domain { SCIENCE, ARTS, POLITICS, PHILOSOPHY, SPORTS, OTHER }
 
 @Parcelize
 @Entity(tableName = "cards")
@@ -17,15 +16,20 @@ data class Card(
     @PrimaryKey val id: String,
     val figureName: String,
     val era: String,
-    val domain: Domain,
-    val influence: Int,
-    val innovation: Int,
-    val legacy: Int,
+    val gender: String = "",
+    val identities: List<String> = emptyList(),
     val tier: CardTier,
     val lore: String,
     val portraitUrl: String,
     val years: String = "",
-    val identities: List<String> = emptyList(),
     val characteristics: String = "",
     val achievement: String = "",
+    val politics: Int = 0,
+    val strength: Int = 0,
+    val culture: Int = 0,
+    val wealth: Int = 0,
+    val intelligence: Int = 0,
+    val technique: Int = 0,
+    val belief: Int = 0,
+    val reputation: Int = 0,
 ) : Parcelable
