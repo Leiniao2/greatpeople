@@ -4,7 +4,7 @@ import android.content.Context
 import org.json.JSONArray
 import org.json.JSONObject
 
-enum class ChallengeType { quiz, truefalse, sort }
+enum class ChallengeType { quiz, truefalse, sort, minigame }
 
 data class ChallengeDTO(
     val type: ChallengeType,
@@ -36,9 +36,9 @@ object StoryChallengesLoader {
             StoryChallengeEntry(
                 era = entry.getString("era"),
                 story = entry.getString("story"),
-                challenges = (0 until challengesArr.length()).map { j ->
-                    parseChallenge(challengesArr.getJSONObject(j))
-                }
+                challenges = (0 until challengesArr.length())
+                    .map { j -> parseChallenge(challengesArr.getJSONObject(j)) }
+                    .filter { it.type != ChallengeType.minigame }
             )
         }
         loaded = result
@@ -46,7 +46,8 @@ object StoryChallengesLoader {
     }
 
     private fun parseChallenge(obj: JSONObject): ChallengeDTO {
-        val type = ChallengeType.valueOf(obj.getString("type"))
+        val typeStr = obj.getString("type")
+        val type = ChallengeType.entries.find { it.name == typeStr } ?: ChallengeType.minigame
         val optionsArr = if (obj.has("options")) obj.getJSONArray("options") else null
         return ChallengeDTO(
             type = type,

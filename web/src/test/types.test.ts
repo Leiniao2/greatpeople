@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import type { Card, CardTier, AuthResponse, Match } from '@/types'
+import type { Card, AuthResponse, Match } from '@/types'
 
 // Runtime helpers — build valid objects that satisfy the TypeScript interfaces
 
@@ -10,7 +10,6 @@ function makeCard(overrides: Partial<Card> = {}): Card {
     era: 'Steam',
     gender: 'male',
     identities: [],
-    tier: 'common',
     lore: 'Some lore',
     portraitUrl: '',
     years: '2000–2024',
@@ -29,14 +28,6 @@ function makeCard(overrides: Partial<Card> = {}): Card {
 }
 
 describe('Card type shape', () => {
-  it('accepts all valid tier values', () => {
-    const tiers: CardTier[] = ['common', 'rare', 'epic', 'legendary']
-    tiers.forEach((tier) => {
-      const c = makeCard({ tier })
-      expect(c.tier).toBe(tier)
-    })
-  })
-
   it('accepts male and female gender', () => {
     const genders = ['male', 'female']
     genders.forEach((gender) => {

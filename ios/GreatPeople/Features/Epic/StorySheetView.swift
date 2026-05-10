@@ -1,5 +1,75 @@
 import SwiftUI
 
+// MARK: - Quiz Option Row
+
+struct QuizOptionRow: View {
+    let text: String
+    let isCorrect: Bool
+    let isSelected: Bool
+    let answered: Bool
+    let onTap: () -> Void
+
+    var body: some View {
+        let bgColor: Color = answered
+            ? (isCorrect ? Color.green.opacity(0.18) : isSelected ? Color.red.opacity(0.18) : Color.white.opacity(0.03))
+            : Color.white.opacity(0.05)
+        let fgColor: Color = answered
+            ? (isCorrect ? .green : isSelected ? .red : Color.white.opacity(0.3))
+            : Color.white.opacity(0.85)
+        let borderColor: Color = answered
+            ? (isCorrect ? Color.green.opacity(0.5) : isSelected ? Color.red.opacity(0.4) : Color.white.opacity(0.06))
+            : Color.white.opacity(0.1)
+
+        Button(action: onTap) {
+            Text(text)
+                .font(.subheadline)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.horizontal, 14)
+                .padding(.vertical, 10)
+                .background(bgColor)
+                .foregroundColor(fgColor)
+                .overlay(RoundedRectangle(cornerRadius: 12).stroke(borderColor, lineWidth: 1))
+                .clipShape(RoundedRectangle(cornerRadius: 12))
+        }
+        .disabled(answered)
+        .animation(.easeInOut(duration: 0.2), value: answered)
+    }
+}
+
+// MARK: - True/False Option Row
+
+struct TrueFalseOptionRow: View {
+    let label: String
+    let isCorrect: Bool
+    let isSelected: Bool
+    let answered: Bool
+    let onTap: () -> Void
+
+    var body: some View {
+        let bgColor: Color = answered
+            ? (isCorrect ? Color.green.opacity(0.18) : isSelected ? Color.red.opacity(0.18) : Color.white.opacity(0.03))
+            : Color.white.opacity(0.05)
+        let fgColor: Color = answered
+            ? (isCorrect ? .green : isSelected ? .red : Color.white.opacity(0.3))
+            : .white
+        let borderColor: Color = answered
+            ? (isCorrect ? Color.green.opacity(0.5) : isSelected ? Color.red.opacity(0.4) : Color.white.opacity(0.06))
+            : Color.white.opacity(0.1)
+
+        Button(action: onTap) {
+            Text(label)
+                .font(.subheadline.weight(.bold))
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 12)
+                .background(bgColor)
+                .foregroundColor(fgColor)
+                .overlay(RoundedRectangle(cornerRadius: 12).stroke(borderColor, lineWidth: 1))
+                .clipShape(RoundedRectangle(cornerRadius: 12))
+        }
+        .disabled(answered)
+    }
+}
+
 // MARK: - StorySheetView
 
 struct StorySheetView: View {
@@ -74,6 +144,8 @@ struct StorySheetView: View {
                         trueFalseView(ch)
                     case .sort:
                         SortChallengeView(challenge: ch, answered: $answered, lastCorrect: $lastCorrect)
+                    case .minigame:
+                        EmptyView() // filtered at load time; never reached
                     }
                 }
 
@@ -100,43 +172,18 @@ struct StorySheetView: View {
                 .foregroundColor(.white)
 
             ForEach(Array((ch.options ?? []).enumerated()), id: \.offset) { i, opt in
-                let isCorrect = i == ch.answer
-                let isSelected = i == selectedOption
-                Button {
+                QuizOptionRow(
+                    text: opt,
+                    isCorrect: i == ch.answer,
+                    isSelected: i == selectedOption,
+                    answered: answered
+                ) {
                     guard !answered else { return }
                     selectedOption = i
                     lastCorrect = (i == ch.answer)
                     answered = true
                     if lastCorrect { score += 1 }
-                } label: {
-                    Text(opt)
-                        .font(.subheadline)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.horizontal, 14)
-                        .padding(.vertical, 10)
-                        .background(
-                            answered
-                                ? (isCorrect ? Color.green.opacity(0.18) : (isSelected ? Color.red.opacity(0.18) : Color.white.opacity(0.03)))
-                                : Color.white.opacity(0.05)
-                        )
-                        .foregroundColor(
-                            answered
-                                ? (isCorrect ? .green : (isSelected ? .red : Color.white.opacity(0.3)))
-                                : .white.opacity(0.85)
-                        )
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 12)
-                                .stroke(
-                                    answered
-                                        ? (isCorrect ? Color.green.opacity(0.5) : (isSelected ? Color.red.opacity(0.4) : Color.white.opacity(0.06)))
-                                        : Color.white.opacity(0.1),
-                                    lineWidth: 1
-                                )
-                        )
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
                 }
-                .disabled(answered)
-                .animation(.easeInOut(duration: 0.2), value: answered)
             }
         }
     }
@@ -153,36 +200,18 @@ struct StorySheetView: View {
 
             HStack(spacing: 12) {
                 ForEach([true, false], id: \.self) { choice in
-                    let isCorrect = choice == ch.correct
-                    let isSelected = choice == tfChoice
-                    Button(choice ? "True" : "False") {
+                    TrueFalseOptionRow(
+                        label: choice ? "True" : "False",
+                        isCorrect: choice == ch.correct,
+                        isSelected: choice == tfChoice,
+                        answered: answered
+                    ) {
                         guard !answered else { return }
                         tfChoice = choice
                         lastCorrect = (choice == ch.correct)
                         answered = true
                         if lastCorrect { score += 1 }
                     }
-                    .font(.subheadline.weight(.bold))
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 12)
-                    .background(
-                        answered
-                            ? (isCorrect ? Color.green.opacity(0.18) : (isSelected ? Color.red.opacity(0.18) : Color.white.opacity(0.03)))
-                            : Color.white.opacity(0.05)
-                    )
-                    .foregroundColor(
-                        answered
-                            ? (isCorrect ? .green : (isSelected ? .red : Color.white.opacity(0.3)))
-                            : .white
-                    )
-                    .overlay(RoundedRectangle(cornerRadius: 12).stroke(
-                        answered
-                            ? (isCorrect ? Color.green.opacity(0.5) : (isSelected ? Color.red.opacity(0.4) : Color.white.opacity(0.06)))
-                            : Color.white.opacity(0.1),
-                        lineWidth: 1
-                    ))
-                    .clipShape(RoundedRectangle(cornerRadius: 12))
-                    .disabled(answered)
                 }
             }
         }

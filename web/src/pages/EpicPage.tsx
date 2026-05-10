@@ -1,7 +1,16 @@
 import { useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '@/hooks/useAuth'
-import StoryModal from '@/components/StoryModal'
+import StoryViewer from '@/components/StoryViewer'
+import { useUnlockedCards } from '@/hooks/useUnlockedCards'
+import cardsData from '@/data/demo_cards.json'
+
+function portraitKeyForFigure(name: string | null): string | null {
+  if (!name) return null
+  const card = (cardsData as { figureName: string; portraitKey: string }[])
+    .find(c => c.figureName === name)
+  return card?.portraitKey ?? null
+}
 
 // ── Story data ────────────────────────────────────────────────────────────────
 
@@ -20,71 +29,86 @@ const ERAS: Era[] = [
   {
     name: 'Ancient',
     stories: [
-      { title: 'Pyramid Builders',      figure: 'Imhotep',   quizzes: 4 },
-      { title: 'The First Empire',      figure: 'Sargon I',  quizzes: 4 },
-      { title: 'Geometry of the World', figure: 'Euclid',    quizzes: 4 },
-      { title: 'Sacred Medicine',       figure: null,         quizzes: 4 },
-      { title: 'River Civilizations',   figure: null,         quizzes: 3 },
+      { title: 'Pyramid Builders',           figure: 'Imhotep',  quizzes: 5 },
+      { title: 'The First Empire',           figure: 'Sargon I', quizzes: 4 },
+      { title: 'The King and the Wild Man',  figure: 'Gilgamesh', quizzes: 4 },
+      { title: 'Geometry of the World',      figure: 'Euclid',   quizzes: 4 },
+      { title: 'Sacred Medicine',            figure: null,        quizzes: 4 },
+      { title: 'River Civilizations',        figure: null,        quizzes: 3 },
     ],
   },
   {
     name: 'Classical',
     stories: [
-      { title: 'The Elements',       figure: 'Euclid', quizzes: 4 },
-      { title: 'Senate and Forum',   figure: null,      quizzes: 4 },
-      { title: 'Philosophy of Athens', figure: null,    quizzes: 3 },
-      { title: 'Olympic Games',      figure: null,      quizzes: 3 },
-      { title: 'Eastern Trade',      figure: null,      quizzes: 3 },
+      { title: 'The Elements',              figure: 'Euclid',      quizzes: 4 },
+      { title: 'The Golden Age of Athens',  figure: 'Pericles',    quizzes: 4 },
+      { title: 'The Voice of Rome',         figure: 'Cicero',      quizzes: 4 },
+      { title: 'Before Socrates',           figure: 'Anaxagoras',  quizzes: 4 },
+      { title: 'Senate and Forum',          figure: null,           quizzes: 4 },
+      { title: 'Philosophy of Athens',      figure: null,           quizzes: 3 },
+      { title: 'Olympic Games',             figure: null,           quizzes: 3 },
+      { title: 'Eastern Trade',             figure: null,           quizzes: 3 },
     ],
   },
   {
     name: 'Medieval',
     stories: [
-      { title: 'The Last General',      figure: 'Belisarius',  quizzes: 4 },
-      { title: 'Tea Ceremony',          figure: 'Lu Yu',        quizzes: 3 },
-      { title: 'The Disguised Warrior', figure: 'Hua Mulan',   quizzes: 4 },
-      { title: "The Knight's Code",     figure: 'Lancelot',    quizzes: 4 },
-      { title: 'Words of Sorrow',       figure: 'Li Qingzhao', quizzes: 3 },
+      { title: 'The Last General',         figure: 'Belisarius',   quizzes: 4 },
+      { title: 'The Language of Algebra',  figure: 'Al-Khwarizmi', quizzes: 4 },
+      { title: 'The Prophet of Light',     figure: 'Mani',         quizzes: 4 },
+      { title: 'Tea Ceremony',             figure: 'Lu Yu',         quizzes: 3 },
+      { title: 'The Disguised Warrior',    figure: 'Hua Mulan',    quizzes: 4 },
+      { title: "The Knight's Code",        figure: 'Lancelot',     quizzes: 4 },
+      { title: 'Words of Sorrow',          figure: 'Li Qingzhao',  quizzes: 3 },
     ],
   },
   {
     name: 'Renaissance',
     stories: [
-      { title: 'Way of the Sword',  figure: 'Miyamoto Musashi', quizzes: 4 },
-      { title: 'Art and Science',   figure: null,                quizzes: 4 },
-      { title: 'The Printing Press',figure: null,                quizzes: 3 },
-      { title: 'New Worlds',        figure: null,                quizzes: 3 },
-      { title: 'Reformation',       figure: null,                quizzes: 3 },
+      { title: 'Way of the Sword',    figure: 'Miyamoto Musashi', quizzes: 4 },
+      { title: 'Art and Science',     figure: null,                quizzes: 4 },
+      { title: 'The Colors of Venice',figure: 'Titian',            quizzes: 4 },
+      { title: 'The Printing Press',  figure: null,                quizzes: 3 },
+      { title: 'Around the World',    figure: 'Magellan',          quizzes: 4 },
+      { title: 'New Worlds',          figure: null,                quizzes: 3 },
+      { title: 'The Mystic Doctor',   figure: 'Teresa of Ávila',   quizzes: 4 },
+      { title: 'Reformation',         figure: null,                quizzes: 3 },
     ],
   },
   {
     name: 'Steam',
     stories: [
-      { title: 'Soul Force',            figure: 'Gandhi',          quizzes: 4 },
-      { title: 'Keys and Concertos',    figure: 'Clara Schumann',  quizzes: 3 },
-      { title: 'Garden of Genetics',    figure: 'Gregor Mendel',   quizzes: 4 },
-      { title: 'Symphony of Shadows',   figure: 'Johannes Brahms', quizzes: 3 },
-      { title: 'The Gilded Court',      figure: 'Louis XVI',       quizzes: 4 },
+      { title: 'Soul Force',               figure: 'Gandhi',          quizzes: 4 },
+      { title: 'Keys and Concertos',       figure: 'Clara Schumann',  quizzes: 3 },
+      { title: 'The Naming of Everything', figure: 'Carl Linnaeus',   quizzes: 4 },
+      { title: 'Garden of Genetics',       figure: 'Gregor Mendel',   quizzes: 4 },
+      { title: 'Symphony of Shadows',      figure: 'Johannes Brahms', quizzes: 3 },
+      { title: 'The Gilded Court',         figure: 'Louis XVI',       quizzes: 4 },
     ],
   },
   {
     name: 'Electricity',
     stories: [
-      { title: 'Breaking Enigma',    figure: 'Alan Turing',    quizzes: 4 },
-      { title: 'Fashion Revolution', figure: 'Coco Chanel',   quizzes: 3 },
-      { title: 'The Long March',     figure: 'Mao Zedong',    quizzes: 4 },
-      { title: "A Martyr's Bullet",  figure: 'An Jung-geun',  quizzes: 3 },
-      { title: 'The Gilded Age',     figure: 'Andrew Mellon', quizzes: 3 },
+      { title: 'Breaking Enigma',        figure: 'Alan Turing',      quizzes: 4 },
+      { title: 'Light Before Einstein',  figure: 'Hendrik Lorentz',  quizzes: 4 },
+      { title: 'Fashion Revolution',     figure: 'Coco Chanel',      quizzes: 3 },
+      { title: 'Wings Over the Atlantic',figure: 'Amelia Earhart',   quizzes: 4 },
+      { title: "Cinema's Architect",     figure: 'Sergei Eisenstein', quizzes: 4 },
+      { title: 'Top of the World',       figure: 'Edmund Hillary',   quizzes: 4 },
+      { title: 'The Long March',         figure: 'Mao Zedong',       quizzes: 4 },
+      { title: "A Martyr's Bullet",      figure: 'An Jung-geun',     quizzes: 3 },
+      { title: 'The Gilded Age',         figure: 'Andrew Mellon',    quizzes: 3 },
     ],
   },
   {
     name: 'Information',
     stories: [
-      { title: "Breakfast at Tiffany's", figure: 'Audrey Hepburn', quizzes: 4 },
-      { title: 'The Digital Revolution', figure: null,              quizzes: 4 },
-      { title: 'The Global Village',     figure: null,              quizzes: 3 },
-      { title: 'Climate Reckoning',      figure: null,              quizzes: 3 },
-      { title: 'The New Frontier',       figure: null,              quizzes: 3 },
+      { title: "Breakfast at Tiffany's", figure: 'Audrey Hepburn',    quizzes: 4 },
+      { title: 'Moonwalk',               figure: 'Michael Jackson',   quizzes: 4 },
+      { title: 'The Digital Revolution', figure: null,                 quizzes: 4 },
+      { title: 'The Global Village',     figure: null,                 quizzes: 3 },
+      { title: 'Climate Reckoning',      figure: null,                 quizzes: 3 },
+      { title: 'The New Frontier',       figure: null,                 quizzes: 3 },
     ],
   },
 ]
@@ -95,7 +119,8 @@ const STORIES_TO_ADVANCE = 4
 
 export default function EpicPage() {
   const navigate = useNavigate()
-  const { isGuest, exitGuestMode } = useAuth()
+  const { isGuest, exitGuestMode, isAdmin } = useAuth()
+  const { unlock } = useUnlockedCards()
   const [activeEra, setActiveEra] = useState(0)
   const [completed, setCompleted] = useState<Record<string, boolean>>({})
   const [toast, setToast] = useState<string | null>(null)
@@ -104,16 +129,19 @@ export default function EpicPage() {
 
   const key = (eraIdx: number, storyIdx: number) => `${eraIdx}-${storyIdx}`
 
-  // Within an era, story N is unlocked when: it's story 0 of era 0, OR story N-1 is completed
-  // Era E is selectable when era E-1 has >= STORIES_TO_ADVANCE completed stories
+  // Era E is selectable when era E-1 has >= STORIES_TO_ADVANCE completed stories.
+  // Admin bypasses all gating.
   const isEraSelectable = (eraIdx: number): boolean => {
+    if (isAdmin) return true
     if (eraIdx === 0) return true
     const prevCompleted = ERAS[eraIdx - 1].stories.filter((_, i) => completed[key(eraIdx - 1, i)]).length
     return prevCompleted >= STORIES_TO_ADVANCE
   }
 
+  // Story 0 of any accessible era is unlocked; story N unlocked when story N-1 is completed.
+  // Admin has all stories unlocked.
   const isStoryUnlocked = (eraIdx: number, storyIdx: number): boolean => {
-    if (eraIdx === 0 && storyIdx === 0) return true
+    if (isAdmin) return true
     if (!isEraSelectable(eraIdx)) return false
     if (storyIdx === 0) return true
     return !!completed[key(eraIdx, storyIdx - 1)]
@@ -126,9 +154,14 @@ export default function EpicPage() {
     setModal({ eraIdx, storyIdx })
   }
 
-  const handleStoryComplete = (eraIdx: number, storyIdx: number) => {
+  const handleStoryComplete = (eraIdx: number, storyIdx: number, unlockKey: string | null) => {
     setCompleted(prev => ({ ...prev, [key(eraIdx, storyIdx)]: true }))
-    showToast('Story completed! Next story unlocked.')
+    if (unlockKey) {
+      unlock(unlockKey)
+      showToast('Card unlocked! Check your Collection.')
+    } else {
+      showToast('Story completed! Next story unlocked.')
+    }
   }
 
   const showToast = (msg: string) => {
@@ -143,7 +176,7 @@ export default function EpicPage() {
 
   const era = ERAS[activeEra]
   const done = completedInEra(activeEra)
-  const eraComplete = done >= STORIES_TO_ADVANCE
+  const eraComplete = isAdmin || done >= STORIES_TO_ADVANCE
 
   return (
     <div className="relative min-h-screen bg-[#080812] overflow-hidden">
@@ -160,6 +193,15 @@ export default function EpicPage() {
                         bg-amber-500/20 border border-amber-500/40 text-amber-300 text-sm
                         backdrop-blur-sm shadow-lg shadow-black/30 transition-all">
           {toast}
+        </div>
+      )}
+
+      {/* Admin banner */}
+      {isAdmin && (
+        <div className="relative z-20 flex items-center gap-2 px-6 py-2
+                        bg-violet-500/10 border-b border-violet-500/20">
+          <span className="text-violet-400 text-xs font-bold uppercase tracking-widest">★ Admin</span>
+          <span className="text-violet-400/60 text-xs">— all stories unlocked</span>
         </div>
       )}
 
@@ -285,19 +327,18 @@ export default function EpicPage() {
                     </p>
                   </div>
 
-                  {/* Begin button */}
-                  {unlocked && !isDone && (
+                  {/* Begin / Replay button */}
+                  {unlocked && (
                     <button
                       onClick={() => handleBegin(activeEra, storyIdx)}
-                      className="flex-shrink-0 px-4 py-2 rounded-xl text-xs font-bold tracking-wide
-                                 text-slate-950 bg-amber-500 hover:bg-amber-400 active:bg-amber-600
-                                 shadow shadow-amber-500/25 transition-all duration-200">
-                      Begin →
+                      className={`flex-shrink-0 px-4 py-2 rounded-xl text-xs font-bold tracking-wide
+                                 shadow shadow-amber-500/25 transition-all duration-200
+                                 ${isDone
+                                   ? 'text-amber-400 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30'
+                                   : 'text-slate-950 bg-amber-500 hover:bg-amber-400 active:bg-amber-600'
+                                 }`}>
+                      {isDone ? 'Replay' : 'Begin →'}
                     </button>
-                  )}
-
-                  {isDone && (
-                    <span className="flex-shrink-0 text-amber-400/60 text-xs font-semibold">Done</span>
                   )}
                 </div>
               )
@@ -326,15 +367,21 @@ export default function EpicPage() {
         </div>
       </div>
 
-      {/* Story challenge modal */}
-      {modal && (
-        <StoryModal
-          eraName={ERAS[modal.eraIdx].name}
-          storyTitle={ERAS[modal.eraIdx].stories[modal.storyIdx].title}
-          onComplete={() => handleStoryComplete(modal.eraIdx, modal.storyIdx)}
-          onClose={() => setModal(null)}
-        />
-      )}
+      {/* Story viewer */}
+      {modal && (() => {
+        const story = ERAS[modal.eraIdx].stories[modal.storyIdx]
+        const pKey = portraitKeyForFigure(story.figure)
+        return (
+          <StoryViewer
+            eraName={ERAS[modal.eraIdx].name}
+            storyTitle={story.title}
+            figureName={story.figure}
+            portraitKey={pKey}
+            onComplete={(unlockKey) => { handleStoryComplete(modal.eraIdx, modal.storyIdx, unlockKey); setModal(null) }}
+            onClose={() => setModal(null)}
+          />
+        )
+      })()}
     </div>
   )
 }

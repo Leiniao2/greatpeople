@@ -11,7 +11,9 @@ apiClient.interceptors.request.use((config) => {
 apiClient.interceptors.response.use(
   (r) => r,
   async (err) => {
-    if (err.response?.status === 401) {
+    // Only redirect on 401 if there was already a stored token (expired session).
+    // During login attempts there is no token yet, so we let the caller handle the error.
+    if (err.response?.status === 401 && localStorage.getItem('access_token')) {
       localStorage.removeItem('access_token')
       window.location.href = '/login'
     }

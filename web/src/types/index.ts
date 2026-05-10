@@ -1,14 +1,12 @@
-export type CardTier = 'common' | 'rare' | 'epic' | 'legendary'
-
 export interface Card {
   id: string
   figureName: string
   era: string
   gender: string
   identities: string[]
-  tier: CardTier
   lore: string
   portraitUrl: string
+  portraitKey?: string
   years: string
   characteristics: string
   achievement: string

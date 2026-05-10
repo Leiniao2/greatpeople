@@ -3,7 +3,7 @@ import Foundation
 // MARK: - Challenge Models
 
 enum ChallengeType: String, Decodable {
-    case quiz, truefalse, sort
+    case quiz, truefalse, sort, minigame
 }
 
 struct QuizChallenge: Decodable {
@@ -54,7 +54,13 @@ enum StoryChallengesLoader {
               let data = try? Data(contentsOf: url),
               let entries = try? JSONDecoder().decode([StoryChallengeEntry].self, from: data)
         else { return [] }
-        return entries
+        return entries.map { entry in
+            StoryChallengeEntry(
+                era: entry.era,
+                story: entry.story,
+                challenges: entry.challenges.filter { $0.type != .minigame }
+            )
+        }
     }()
 
     static func challenges(era: String, story: String) -> [ChallengeDTO] {

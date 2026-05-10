@@ -4,8 +4,10 @@
     "figureName": "Gandhi",
     "era": "Steam",
     "gender": "male",
-    "identities": ["Statesman", "Educator"],
-    "tier": "legendary",
+    "identities": [
+      "Statesman",
+      "Educator"
+    ],
     "portraitKey": "gandhi",
     "politics": 23,
     "strength": 9,
@@ -25,8 +27,9 @@
     "figureName": "Coco Chanel",
     "era": "Electricity",
     "gender": "female",
-    "identities": ["Artist", "Merchant"],
-    "tier": "epic",
+    "identities": [
+      "Merchant"
+    ],
     "portraitKey": "coco_chanel",
     "politics": 9,
     "strength": 7,
@@ -46,8 +49,10 @@
     "figureName": "Mao Zedong",
     "era": "Electricity",
     "gender": "male",
-    "identities": ["Sovereign", "Statesman"],
-    "tier": "epic",
+    "identities": [
+      "Philosopher",
+      "Statesman"
+    ],
     "portraitKey": "mao_zedong",
     "politics": 24,
     "strength": 18,
@@ -67,8 +72,10 @@
     "figureName": "Belisarius",
     "era": "Medieval",
     "gender": "male",
-    "identities": ["General", "Soldier"],
-    "tier": "rare",
+    "identities": [
+      "General",
+      "Soldier"
+    ],
     "portraitKey": "belisarius",
     "politics": 16,
     "strength": 22,
@@ -88,8 +95,10 @@
     "figureName": "Imhotep",
     "era": "Ancient",
     "gender": "male",
-    "identities": ["Architect", "Doctor"],
-    "tier": "legendary",
+    "identities": [
+      "Architect",
+      "Doctor"
+    ],
     "portraitKey": "imhotep",
     "politics": 15,
     "strength": 10,
@@ -109,8 +118,10 @@
     "figureName": "Lu Yu",
     "era": "Medieval",
     "gender": "male",
-    "identities": ["Educator", "Gourmet"],
-    "tier": "rare",
+    "identities": [
+      "Educator",
+      "Gourmet"
+    ],
     "portraitKey": "lu_yu",
     "politics": 6,
     "strength": 5,
@@ -130,8 +141,10 @@
     "figureName": "Alan Turing",
     "era": "Electricity",
     "gender": "male",
-    "identities": ["Mathematician", "Scientist"],
-    "tier": "legendary",
+    "identities": [
+      "Mathematician",
+      "Scientist"
+    ],
     "portraitKey": "alan_turing",
     "politics": 10,
     "strength": 6,
@@ -151,8 +164,10 @@
     "figureName": "An Jung-geun",
     "era": "Electricity",
     "gender": "male",
-    "identities": ["Warrior", "Statesman"],
-    "tier": "rare",
+    "identities": [
+      "Warrior",
+      "Statesman"
+    ],
     "portraitKey": "an_jung_geun",
     "politics": 18,
     "strength": 21,
@@ -172,8 +187,10 @@
     "figureName": "Andrew Mellon",
     "era": "Electricity",
     "gender": "male",
-    "identities": ["Banker", "Economist"],
-    "tier": "rare",
+    "identities": [
+      "Banker",
+      "Economist"
+    ],
     "portraitKey": "andrew_mellon",
     "politics": 18,
     "strength": 8,
@@ -193,8 +210,10 @@
     "figureName": "Audrey Hepburn",
     "era": "Information",
     "gender": "female",
-    "identities": ["Actor", "Educator"],
-    "tier": "epic",
+    "identities": [
+      "Actor",
+      "Educator"
+    ],
     "portraitKey": "audrey_hepburn",
     "politics": 9,
     "strength": 8,
@@ -214,8 +233,10 @@
     "figureName": "Clara Schumann",
     "era": "Steam",
     "gender": "female",
-    "identities": ["Musician", "Educator"],
-    "tier": "epic",
+    "identities": [
+      "Musician",
+      "Educator"
+    ],
     "portraitKey": "clara_schumann",
     "politics": 8,
     "strength": 7,
@@ -235,8 +256,10 @@
     "figureName": "Euclid",
     "era": "Classical",
     "gender": "male",
-    "identities": ["Mathematician", "Educator"],
-    "tier": "legendary",
+    "identities": [
+      "Mathematician",
+      "Educator"
+    ],
     "portraitKey": "euclid",
     "politics": 8,
     "strength": 5,
@@ -256,8 +279,10 @@
     "figureName": "Gregor Mendel",
     "era": "Steam",
     "gender": "male",
-    "identities": ["Scientist", "Monastic"],
-    "tier": "rare",
+    "identities": [
+      "Scientist",
+      "Monastic"
+    ],
     "portraitKey": "gregor_mendel",
     "politics": 6,
     "strength": 8,
@@ -277,8 +302,10 @@
     "figureName": "Hua Mulan",
     "era": "Medieval",
     "gender": "female",
-    "identities": ["Warrior", "Soldier"],
-    "tier": "epic",
+    "identities": [
+      "Warrior",
+      "Soldier"
+    ],
     "portraitKey": "hua_mulan",
     "politics": 14,
     "strength": 22,
@@ -298,8 +325,9 @@
     "figureName": "Johannes Brahms",
     "era": "Steam",
     "gender": "male",
-    "identities": ["Musician", "Artist"],
-    "tier": "rare",
+    "identities": [
+      "Musician"
+    ],
     "portraitKey": "johannes_brahms",
     "politics": 6,
     "strength": 8,
@@ -319,8 +347,10 @@
     "figureName": "Lancelot",
     "era": "Medieval",
     "gender": "male",
-    "identities": ["General", "Warrior"],
-    "tier": "epic",
+    "identities": [
+      "General",
+      "Warrior"
+    ],
     "portraitKey": "lancelot",
     "politics": 11,
     "strength": 24,
@@ -340,8 +370,9 @@
     "figureName": "Li Qingzhao",
     "era": "Medieval",
     "gender": "female",
-    "identities": ["Writer", "Artist"],
-    "tier": "rare",
+    "identities": [
+      "Writer"
+    ],
     "portraitKey": "li_qingzhao",
     "politics": 8,
     "strength": 4,
@@ -361,8 +392,10 @@
     "figureName": "Louis XVI",
     "era": "Steam",
     "gender": "male",
-    "identities": ["Sovereign", "Noble"],
-    "tier": "rare",
+    "identities": [
+      "Sovereign",
+      "Noble"
+    ],
     "portraitKey": "louis_xvi",
     "politics": 15,
     "strength": 10,
@@ -382,8 +415,10 @@
     "figureName": "Marie Antoinette",
     "era": "Steam",
     "gender": "female",
-    "identities": ["Noble", "Sovereign"],
-    "tier": "epic",
+    "identities": [
+      "Noble",
+      "Sovereign"
+    ],
     "portraitKey": "marie_antoinette",
     "politics": 14,
     "strength": 6,
@@ -403,8 +438,10 @@
     "figureName": "Miyamoto Musashi",
     "era": "Renaissance",
     "gender": "male",
-    "identities": ["Warrior", "Philosopher"],
-    "tier": "epic",
+    "identities": [
+      "Warrior",
+      "Philosopher"
+    ],
     "portraitKey": "miyamoto_musashi",
     "politics": 9,
     "strength": 24,
@@ -424,8 +461,10 @@
     "figureName": "Sargon I",
     "era": "Ancient",
     "gender": "male",
-    "identities": ["Sovereign", "General"],
-    "tier": "legendary",
+    "identities": [
+      "Sovereign",
+      "General"
+    ],
     "portraitKey": "sargon_i",
     "politics": 23,
     "strength": 22,
@@ -439,5 +478,501 @@
     "characteristics": "Conqueror: this card's Politics and Strength each count as 5 higher.",
     "achievement": "Empire — when Politics wins 4 rounds, generate 1 winning point.",
     "years": "c. 2334–2279 BC"
+  },
+  {
+    "id": "demo-22",
+    "figureName": "Gilgamesh",
+    "era": "Ancient",
+    "gender": "male",
+    "identities": [
+      "Sovereign",
+      "Warrior"
+    ],
+    "portraitKey": "gilgamesh",
+    "politics": 22,
+    "strength": 25,
+    "culture": 15,
+    "wealth": 20,
+    "intelligence": 16,
+    "technique": 18,
+    "belief": 14,
+    "reputation": 24,
+    "lore": "Two-thirds god, one-third man — he built the walls of Uruk and sought the secret of eternal life.",
+    "characteristics": "Unstoppable: wins Strength ties automatically.",
+    "achievement": "Epic Journey — when Strength wins 3 rounds, generate 1 winning point.",
+    "years": "c. 2700 BCE"
+  },
+  {
+    "id": "demo-23",
+    "figureName": "Enkidu",
+    "era": "Ancient",
+    "gender": "male",
+    "identities": [
+      "Warrior"
+    ],
+    "portraitKey": "enkidu",
+    "politics": 8,
+    "strength": 23,
+    "culture": 12,
+    "wealth": 10,
+    "intelligence": 14,
+    "technique": 16,
+    "belief": 20,
+    "reputation": 18,
+    "lore": "Born of clay and wildness, he became the greatest friend a king ever had.",
+    "characteristics": "Wild Heart: when paired with Gilgamesh, both cards gain +5 Strength.",
+    "achievement": "Brotherhood — when Strength wins 3 rounds, generate 1 winning point.",
+    "years": "c. 2700 BCE"
+  },
+  {
+    "id": "demo-24",
+    "figureName": "Pericles",
+    "era": "Classical",
+    "gender": "male",
+    "identities": [
+      "Statesman",
+      "General"
+    ],
+    "portraitKey": "pericles",
+    "politics": 25,
+    "strength": 14,
+    "culture": 20,
+    "wealth": 18,
+    "intelligence": 22,
+    "technique": 12,
+    "belief": 15,
+    "reputation": 23,
+    "lore": "Under his hand, Athens became the school of Hellas.",
+    "characteristics": "Golden Age: when Politics wins a round, all allied Classical-era cards gain +3 Culture.",
+    "achievement": "Athenian — when Politics wins 4 rounds, generate 1 winning point.",
+    "years": "c. 495–429 BCE"
+  },
+  {
+    "id": "demo-25",
+    "figureName": "Aspasia",
+    "era": "Classical",
+    "gender": "female",
+    "identities": [
+      "Educator",
+      "Philosopher"
+    ],
+    "portraitKey": "aspasia",
+    "politics": 18,
+    "strength": 6,
+    "culture": 22,
+    "wealth": 14,
+    "intelligence": 23,
+    "technique": 11,
+    "belief": 13,
+    "reputation": 20,
+    "lore": "She taught the greatest minds of Athens — including Socrates himself.",
+    "characteristics": "Wisdom: when Intelligence is the active stat, this card's Culture also adds +5 to the score.",
+    "achievement": "Mentor — when Intelligence wins 3 rounds, generate 1 winning point.",
+    "years": "c. 470–400 BCE"
+  },
+  {
+    "id": "demo-26",
+    "figureName": "Pleistoanax",
+    "era": "Classical",
+    "gender": "male",
+    "identities": [
+      "Sovereign",
+      "General"
+    ],
+    "portraitKey": "pleistoanax",
+    "politics": 20,
+    "strength": 18,
+    "culture": 10,
+    "wealth": 14,
+    "intelligence": 16,
+    "technique": 13,
+    "belief": 12,
+    "reputation": 15,
+    "lore": "King of Sparta, twice exiled, twice restored — a king who chose peace over glory.",
+    "characteristics": "Calculated Retreat: if this card loses a round, gain +8 Politics for the next round.",
+    "achievement": "Truce — when this card draws a round, generate 1 winning point.",
+    "years": "c. 480–409 BCE"
+  },
+  {
+    "id": "demo-27",
+    "figureName": "Cicero",
+    "era": "Classical",
+    "gender": "male",
+    "identities": [
+      "Lawyer",
+      "Statesman"
+    ],
+    "portraitKey": "cicero",
+    "politics": 23,
+    "strength": 7,
+    "culture": 21,
+    "wealth": 15,
+    "intelligence": 22,
+    "technique": 14,
+    "belief": 16,
+    "reputation": 24,
+    "lore": "The greatest orator of Rome — words were his sword and shield.",
+    "characteristics": "Rhetoric: when Politics is the active stat, this card may use Intelligence instead.",
+    "achievement": "Consul — when Politics wins 4 rounds, generate 1 winning point.",
+    "years": "106–43 BCE"
+  },
+  {
+    "id": "demo-28",
+    "figureName": "Anaxagoras",
+    "era": "Classical",
+    "gender": "male",
+    "identities": [
+      "Philosopher",
+      "Scientist"
+    ],
+    "portraitKey": "anaxagoras",
+    "politics": 9,
+    "strength": 6,
+    "culture": 18,
+    "wealth": 8,
+    "intelligence": 24,
+    "technique": 20,
+    "belief": 11,
+    "reputation": 18,
+    "lore": "He first declared the sun is not a god, but a burning stone larger than all of Greece.",
+    "characteristics": "Nous: when Intelligence is the active stat, this card ignores opponent's Intelligence bonus abilities.",
+    "achievement": "First Principles — when Intelligence wins 4 rounds, generate 1 winning point.",
+    "years": "c. 500–428 BCE"
+  },
+  {
+    "id": "demo-29",
+    "figureName": "Zeno of Elea",
+    "era": "Classical",
+    "gender": "male",
+    "identities": [
+      "Philosopher",
+      "Mathematician"
+    ],
+    "portraitKey": "zeno_of_elea",
+    "politics": 10,
+    "strength": 7,
+    "culture": 16,
+    "wealth": 6,
+    "intelligence": 23,
+    "technique": 19,
+    "belief": 12,
+    "reputation": 18,
+    "lore": "He proved motion was impossible — and the world has never stopped arguing.",
+    "characteristics": "Paradox: once per match, negate one opponent stat bonus by declaring a logical contradiction.",
+    "achievement": "Infinite Steps — when Intelligence wins 3 consecutive rounds, generate 1 winning point.",
+    "years": "c. 490–430 BCE"
+  },
+  {
+    "id": "demo-30",
+    "figureName": "Al-Khwarizmi",
+    "era": "Medieval",
+    "gender": "male",
+    "identities": [
+      "Mathematician"
+    ],
+    "portraitKey": "al_khwarizmi",
+    "politics": 10,
+    "strength": 7,
+    "culture": 19,
+    "wealth": 13,
+    "intelligence": 24,
+    "technique": 25,
+    "belief": 14,
+    "reputation": 22,
+    "lore": "He gave us algebra and the algorithm — the invisible foundation of every computer ever built.",
+    "characteristics": "Algorithm: when Technique wins a round, gain a bonus equal to the round number.",
+    "achievement": "Algebra — when Technique wins 4 rounds, generate 1 winning point.",
+    "years": "c. 780–850 CE"
+  },
+  {
+    "id": "demo-31",
+    "figureName": "Mani",
+    "era": "Medieval",
+    "gender": "male",
+    "identities": [
+      "Prophet",
+      "Artist"
+    ],
+    "portraitKey": "mani",
+    "politics": 12,
+    "strength": 8,
+    "culture": 21,
+    "wealth": 9,
+    "intelligence": 20,
+    "technique": 15,
+    "belief": 23,
+    "reputation": 18,
+    "lore": "The Prophet of Light painted his gospels in vivid color across three continents.",
+    "characteristics": "Illumination: when Belief is active, this card's Culture also adds +5 to the score.",
+    "achievement": "Light — when Belief wins 3 rounds, generate 1 winning point.",
+    "years": "c. 216–274 CE"
+  },
+  {
+    "id": "demo-32",
+    "figureName": "Titian",
+    "era": "Renaissance",
+    "gender": "male",
+    "identities": [
+      "Artist"
+    ],
+    "portraitKey": "titian",
+    "politics": 11,
+    "strength": 9,
+    "culture": 24,
+    "wealth": 18,
+    "intelligence": 17,
+    "technique": 23,
+    "belief": 14,
+    "reputation": 22,
+    "lore": "His brush turned the Renaissance into fire and flesh — the last great master standing.",
+    "characteristics": "Colorist: when Culture is the active stat, this card's Reputation also adds +5 to the score.",
+    "achievement": "Masterpiece — when Culture wins 4 rounds, generate 1 winning point.",
+    "years": "c. 1488–1576"
+  },
+  {
+    "id": "demo-33",
+    "figureName": "Magellan",
+    "era": "Renaissance",
+    "gender": "male",
+    "identities": [
+      "Explorer"
+    ],
+    "portraitKey": "magellan",
+    "politics": 13,
+    "strength": 18,
+    "culture": 13,
+    "wealth": 14,
+    "intelligence": 17,
+    "technique": 22,
+    "belief": 16,
+    "reputation": 20,
+    "lore": "He proved the world was round by sailing its circumference — and died before he saw it complete.",
+    "characteristics": "Navigator: when Technique is the active stat, this card gains +5 Strength.",
+    "achievement": "Circumnavigation — when Technique wins 3 rounds, generate 1 winning point.",
+    "years": "1480–1521"
+  },
+  {
+    "id": "demo-34",
+    "figureName": "Teresa of Ávila",
+    "era": "Renaissance",
+    "gender": "female",
+    "identities": [
+      "Priest",
+      "Writer"
+    ],
+    "portraitKey": "saint_teresa",
+    "politics": 14,
+    "strength": 7,
+    "culture": 21,
+    "wealth": 9,
+    "intelligence": 22,
+    "technique": 13,
+    "belief": 25,
+    "reputation": 21,
+    "lore": "She reformed a faith and described the soul's journey to God with surgical precision.",
+    "characteristics": "Interior Castle: when Belief is active, this card's Intelligence also adds +5 to the score.",
+    "achievement": "Mystic — when Belief wins 4 rounds, generate 1 winning point.",
+    "years": "1515–1582"
+  },
+  {
+    "id": "demo-35",
+    "figureName": "Carl Linnaeus",
+    "era": "Steam",
+    "gender": "male",
+    "identities": [
+      "Naturalist"
+    ],
+    "portraitKey": "carl_linnaeus",
+    "politics": 8,
+    "strength": 7,
+    "culture": 16,
+    "wealth": 10,
+    "intelligence": 23,
+    "technique": 21,
+    "belief": 11,
+    "reputation": 19,
+    "lore": "He named the world — every living thing classified by his elegant two-word system.",
+    "characteristics": "Taxonomy: at game start, reveal opponent's identities and gain +5 Intelligence per unique identity type.",
+    "achievement": "Classification — when Intelligence wins 3 rounds, generate 1 winning point.",
+    "years": "1707–1778"
+  },
+  {
+    "id": "demo-36",
+    "figureName": "Robert Schumann",
+    "era": "Steam",
+    "gender": "male",
+    "identities": [
+      "Musician"
+    ],
+    "portraitKey": "robert_schumann",
+    "politics": 7,
+    "strength": 6,
+    "culture": 22,
+    "wealth": 10,
+    "intelligence": 20,
+    "technique": 22,
+    "belief": 13,
+    "reputation": 20,
+    "lore": "His music spoke what words could not — joy and madness in the same key.",
+    "characteristics": "Phantasie: when this card loses a round, its Culture increases by 8 for the next round.",
+    "achievement": "Composition — when Culture wins 3 rounds, generate 1 winning point.",
+    "years": "1810–1856"
+  },
+  {
+    "id": "demo-37",
+    "figureName": "Hendrik Lorentz",
+    "era": "Electricity",
+    "gender": "male",
+    "identities": [
+      "Scientist",
+      "Mathematician"
+    ],
+    "portraitKey": "hendrik_lorentz",
+    "politics": 6,
+    "strength": 5,
+    "culture": 14,
+    "wealth": 8,
+    "intelligence": 24,
+    "technique": 22,
+    "belief": 9,
+    "reputation": 19,
+    "lore": "He gave Einstein the mathematics to prove relativity — and modestly called it Einstein's theory.",
+    "characteristics": "Transformation: once per match, this card may swap its Intelligence and Technique stats.",
+    "achievement": "Relativity — when Intelligence wins 4 rounds, generate 1 winning point.",
+    "years": "1853–1928"
+  },
+  {
+    "id": "demo-38",
+    "figureName": "Amelia Earhart",
+    "era": "Electricity",
+    "gender": "female",
+    "identities": [
+      "Explorer"
+    ],
+    "portraitKey": "amelia_earhart",
+    "politics": 12,
+    "strength": 18,
+    "culture": 14,
+    "wealth": 12,
+    "intelligence": 18,
+    "technique": 21,
+    "belief": 13,
+    "reputation": 22,
+    "lore": "She aimed for the horizon and flew straight through every barrier in her path.",
+    "characteristics": "Solo Flight: when this card is the last card played, all its stats gain +10.",
+    "achievement": "Altitude Record — when Technique wins 3 rounds, generate 1 winning point.",
+    "years": "1897–1937"
+  },
+  {
+    "id": "demo-39",
+    "figureName": "Sergei Eisenstein",
+    "era": "Electricity",
+    "gender": "male",
+    "identities": [
+      "Artist"
+    ],
+    "portraitKey": "sergei_eisenstein",
+    "politics": 16,
+    "strength": 9,
+    "culture": 22,
+    "wealth": 11,
+    "intelligence": 21,
+    "technique": 22,
+    "belief": 12,
+    "reputation": 20,
+    "lore": "He invented the language of film — montage as a weapon of art and revolution.",
+    "characteristics": "Montage: this card's effects trigger twice if played immediately after another Culture card.",
+    "achievement": "Battleship — when Culture wins 3 rounds, generate 1 winning point.",
+    "years": "1898–1948"
+  },
+  {
+    "id": "demo-40",
+    "figureName": "Edmund Hillary",
+    "era": "Electricity",
+    "gender": "male",
+    "identities": [
+      "Explorer"
+    ],
+    "portraitKey": "edmund_hillary",
+    "politics": 9,
+    "strength": 22,
+    "culture": 12,
+    "wealth": 10,
+    "intelligence": 17,
+    "technique": 21,
+    "belief": 16,
+    "reputation": 21,
+    "lore": "He stood on top of the world — and then spent decades helping the people who lived there.",
+    "characteristics": "Summit: when Strength wins a round, this card's Reputation increases by 5.",
+    "achievement": "Everest — when Strength wins 3 rounds, generate 1 winning point.",
+    "years": "1919–2008"
+  },
+  {
+    "id": "demo-41",
+    "figureName": "Tenzing Norgay",
+    "era": "Electricity",
+    "gender": "male",
+    "identities": [
+      "Explorer"
+    ],
+    "portraitKey": "tenzing_norgay",
+    "politics": 8,
+    "strength": 22,
+    "culture": 13,
+    "wealth": 9,
+    "intelligence": 16,
+    "technique": 21,
+    "belief": 19,
+    "reputation": 21,
+    "lore": "He knew every ridge and crevice of Everest — and chose to climb it side by side.",
+    "characteristics": "Sherpa's Bond: when paired with Edmund Hillary, both cards gain +5 Strength and +5 Technique.",
+    "achievement": "Together — when both Tenzing and Edmund Hillary win a round in the same match, generate 2 winning points.",
+    "years": "1914–1986"
+  },
+  {
+    "id": "demo-42",
+    "figureName": "Itō Hirobumi",
+    "era": "Electricity",
+    "gender": "male",
+    "identities": [
+      "Statesman",
+      "Sovereign"
+    ],
+    "portraitKey": "ito_hirobumi",
+    "politics": 24,
+    "strength": 12,
+    "culture": 18,
+    "wealth": 17,
+    "intelligence": 22,
+    "technique": 15,
+    "belief": 14,
+    "reputation": 21,
+    "lore": "He modernized Japan in a generation — and paid the ultimate price for empire.",
+    "characteristics": "Meiji Constitution: when Politics wins a round, all allied Electricity-era cards gain +3 Intelligence.",
+    "achievement": "Modernization — when Politics wins 4 rounds, generate 1 winning point.",
+    "years": "1841–1909"
+  },
+  {
+    "id": "demo-43",
+    "figureName": "Michael Jackson",
+    "era": "Information",
+    "gender": "male",
+    "identities": [
+      "Musician",
+      "Actor"
+    ],
+    "portraitKey": "michael_jackson",
+    "politics": 10,
+    "strength": 14,
+    "culture": 25,
+    "wealth": 21,
+    "intelligence": 16,
+    "technique": 24,
+    "belief": 12,
+    "reputation": 25,
+    "lore": "The King of Pop — the most famous entertainer in human history.",
+    "characteristics": "Moonwalk: when Culture wins a round, this card's Reputation adds +10 to the next round's score.",
+    "achievement": "Thriller — when Culture wins 4 rounds, generate 1 winning point.",
+    "years": "1958–2009"
   }
 ]

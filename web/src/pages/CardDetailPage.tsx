@@ -1,12 +1,8 @@
 import { useLocation, useNavigate } from 'react-router-dom'
-import type { Card, CardTier } from '@/types'
+import type { Card } from '@/types'
 
-const TIER_STYLE: Record<CardTier, { badge: string; glow: string; border: string; accent: string }> = {
-  common:    { badge: 'bg-slate-700 text-slate-200',   glow: 'from-slate-800/80',    border: 'border-slate-700/50', accent: '#64748b' },
-  rare:      { badge: 'bg-blue-900 text-blue-200',     glow: 'from-blue-950/80',     border: 'border-blue-700/50',  accent: '#3b82f6' },
-  epic:      { badge: 'bg-violet-900 text-violet-200', glow: 'from-violet-950/80',   border: 'border-violet-700/50',accent: '#8b5cf6' },
-  legendary: { badge: 'bg-amber-900 text-amber-200',   glow: 'from-amber-950/80',    border: 'border-amber-600/50', accent: '#f59e0b' },
-}
+const ACCENT = '#f59e0b'
+const GLOW = 'from-amber-950/80'
 
 export default function CardDetailPage() {
   const { state } = useLocation()
@@ -27,15 +23,13 @@ export default function CardDetailPage() {
     )
   }
 
-  const tier = TIER_STYLE[card.tier] ?? TIER_STYLE.common
-
   return (
     <div className="min-h-screen bg-[#080812] overflow-x-hidden">
 
       {/* Ambient glow */}
       <div className="pointer-events-none fixed inset-0">
         <div className="absolute top-1/3 left-1/3 w-[500px] h-[500px] rounded-full blur-[160px]"
-          style={{ background: `${tier.accent}18` }} />
+          style={{ background: `${ACCENT}18` }} />
       </div>
 
       <div className="relative z-10 w-full">
@@ -47,13 +41,13 @@ export default function CardDetailPage() {
               className="w-full h-full object-cover" />
           ) : (
             <div className="w-full h-full flex items-center justify-center"
-              style={{ background: `linear-gradient(180deg, ${tier.accent}22 0%, #080812 100%)` }}>
+              style={{ background: `linear-gradient(180deg, ${ACCENT}22 0%, #080812 100%)` }}>
               <span className="text-8xl opacity-20 select-none">♟</span>
             </div>
           )}
 
           {/* Bottom gradient overlay */}
-          <div className={`absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t ${tier.glow} to-transparent`} />
+          <div className={`absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t ${GLOW} to-transparent`} />
 
           {/* Back button */}
           <button onClick={() => navigate('/collection')}
@@ -83,7 +77,7 @@ export default function CardDetailPage() {
               {card.identities.slice(0, 2).map((id) => (
                 <span key={id}
                   className="px-3 py-1 rounded-full text-xs font-semibold border"
-                  style={{ borderColor: `${tier.accent}60`, color: tier.accent, background: `${tier.accent}15` }}>
+                  style={{ borderColor: `${ACCENT}60`, color: ACCENT, background: `${ACCENT}15` }}>
                   {id}
                 </span>
               ))}
@@ -92,12 +86,12 @@ export default function CardDetailPage() {
 
           {/* Characteristics */}
           {card.characteristics && (
-            <InfoSection label="Characteristics" text={card.characteristics} accent={tier.accent} />
+            <InfoSection label="Characteristics" text={card.characteristics} accent={ACCENT} />
           )}
 
           {/* Achievement */}
           {card.achievement && (
-            <InfoSection label="Achievement" text={card.achievement} accent={tier.accent} />
+            <InfoSection label="Achievement" text={card.achievement} accent={ACCENT} />
           )}
 
           {/* Stats — 4×2 grid */}
@@ -113,8 +107,8 @@ export default function CardDetailPage() {
               { short: 'REP', val: card.reputation },
             ].map(({ short, val }) => (
               <div key={short} className="flex flex-col items-center py-3 rounded-xl border"
-                style={{ background: `${tier.accent}08`, borderColor: `${tier.accent}25` }}>
-                <span className="font-bold text-lg" style={{ color: tier.accent }}>{val}</span>
+                style={{ background: `${ACCENT}08`, borderColor: `${ACCENT}25` }}>
+                <span className="font-bold text-lg" style={{ color: ACCENT }}>{val}</span>
                 <span className="text-slate-500 text-[9px] tracking-widest mt-0.5">{short}</span>
               </div>
             ))}
@@ -135,7 +129,7 @@ export default function CardDetailPage() {
 
           {/* Lore */}
           {card.lore && (
-            <InfoSection label="Lore" text={card.lore} accent={tier.accent} italic />
+            <InfoSection label="Lore" text={card.lore} accent={ACCENT} italic />
           )}
 
           <div className="h-8" />

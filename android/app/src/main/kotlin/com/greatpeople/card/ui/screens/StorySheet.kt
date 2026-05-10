@@ -1,6 +1,7 @@
 package com.greatpeople.card.ui.screens
 
 import androidx.compose.animation.*
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -28,7 +29,7 @@ private val Red = Color(0xFFF87171)
 private val Slate400 = Color(0xFF94A3B8)
 private val Slate600 = Color(0xFF475569)
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class, ExperimentalLayoutApi::class)
 @Composable
 fun StorySheet(
     eraName: String,
@@ -94,7 +95,12 @@ fun StorySheet(
                             fontWeight = FontWeight.SemiBold, letterSpacing = 1.sp)
                         Text(storyTitle, color = Color.White, fontWeight = FontWeight.Bold, fontSize = 14.sp)
                     }
-                    Text("${idx + 1} / $total", color = Slate400, fontSize = 12.sp)
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Text("${idx + 1} / $total", color = Slate400, fontSize = 12.sp)
+                        IconButton(onClick = onDismiss) {
+                            Text("✕", color = Slate400, fontSize = 16.sp)
+                        }
+                    }
                 }
             }
 
@@ -119,6 +125,7 @@ fun StorySheet(
                     ChallengeType.sort -> SortChallenge(ch, answered) { correct ->
                         lastCorrect = correct; answered = true; if (correct) score++
                     }
+                    ChallengeType.minigame -> {} // filtered out at load time; never reached
                 }
             }
 
@@ -247,6 +254,7 @@ private fun TrueFalseChallenge(ch: ChallengeDTO, answered: Boolean, onAnswer: (B
 
 // ── Sort ─────────────────────────────────────────────────────────────────────
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 private fun SortChallenge(ch: ChallengeDTO, answered: Boolean, onAnswer: (Boolean) -> Unit) {
     val items = remember { ch.items?.shuffled() ?: emptyList() }
@@ -316,7 +324,7 @@ private fun SortChallenge(ch: ChallengeDTO, answered: Boolean, onAnswer: (Boolea
             Button(
                 onClick = {
                     submitted = true
-                    val correct = selected.toList() == (ch.items ?: emptyList())
+                    val correct = selected.toList() == (ch.items ?: emptyList<String>())
                     onAnswer(correct)
                 },
                 modifier = Modifier.fillMaxWidth(),

@@ -1,33 +1,35 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { cardsApi } from '@/api/cards'
 import { useAuth } from '@/hooks/useAuth'
-import type { Card, CardTier } from '@/types'
+import { useUnlockedCards } from '@/hooks/useUnlockedCards'
+import type { Card } from '@/types'
 import demoCardsJson from '@/data/demo_cards.json'
 
-const TIER_STYLE: Record<CardTier, { badge: string; glow: string; border: string }> = {
-  common:    { badge: 'bg-slate-700 text-slate-300',   glow: 'from-slate-700/30',  border: 'border-slate-700/40' },
-  rare:      { badge: 'bg-blue-900 text-blue-300',     glow: 'from-blue-900/30',   border: 'border-blue-700/40' },
-  epic:      { badge: 'bg-violet-900 text-violet-300', glow: 'from-violet-900/30', border: 'border-violet-700/40' },
-  legendary: { badge: 'bg-amber-900 text-amber-300',   glow: 'from-amber-900/30',  border: 'border-amber-600/50' },
-}
 
-const DEMO_CARDS: Card[] = demoCardsJson.map(c => ({
+const ALL_CARDS: Card[] = demoCardsJson.map(c => ({
   ...c,
-  tier: c.tier as CardTier,
   portraitUrl: `/portraits/portrait_${c.portraitKey}.jpeg`,
 }))
 
 export default function CollectionPage() {
-  const [cards, setCards] = useState<Card[]>([])
-  const [loading, setLoading] = useState(true)
   const navigate = useNavigate()
-  const { isGuest, exitGuestMode } = useAuth()
+  const { isGuest, isAdmin, exitGuestMode } = useAuth()
+  const { unlocked } = useUnlockedCards()
+  const [filter, setFilter] = useState<'all' | 'owned' | 'locked'>('all')
 
-  useEffect(() => {
-    if (isGuest) { setCards(DEMO_CARDS); setLoading(false); return }
-    cardsApi.getAll().then(setCards).finally(() => setLoading(false))
-  }, [isGuest])
+  // Admin and non-guest logged-in users see full collection; guests see all cards but locked
+  const isOwned = (card: Card) => {
+    if (isAdmin) return true
+    return unlocked.includes(card.portraitKey ?? '')
+  }
+
+  const filtered = ALL_CARDS.filter(card => {
+    if (filter === 'owned') return isOwned(card)
+    if (filter === 'locked') return !isOwned(card)
+    return true
+  })
+
+  const ownedCount = isAdmin ? ALL_CARDS.length : unlocked.length
 
   return (
     <div className="relative min-h-screen bg-[#080812] overflow-hidden">
@@ -43,7 +45,7 @@ export default function CollectionPage() {
         <div className="relative z-20 flex items-center justify-between px-6 py-2.5
                         bg-amber-500/10 border-b border-amber-500/20">
           <p className="text-amber-400/80 text-xs">
-            Exploring as guest — cards are for demo only
+            Complete stories in Epic mode to unlock cards
           </p>
           <button
             onClick={() => { exitGuestMode(); navigate('/login') }}
@@ -56,13 +58,13 @@ export default function CollectionPage() {
       <div className="relative z-10 max-w-6xl mx-auto px-6 py-8">
 
         {/* Header */}
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center justify-between mb-5">
           <div>
             <h1 className="font-display text-2xl font-bold tracking-[0.1em] text-white uppercase">
-              {isGuest ? 'Demo Collection' : 'My Collection'}
+              Collection
             </h1>
             <p className="text-slate-500 text-xs tracking-widest mt-1">
-              {loading ? '…' : `${cards.length} card${cards.length !== 1 ? 's' : ''}`}
+              {ownedCount} / {ALL_CARDS.length} unlocked
             </p>
           </div>
           <button
@@ -70,36 +72,49 @@ export default function CollectionPage() {
             className="px-5 py-2.5 rounded-xl font-bold text-sm tracking-wide text-slate-950
                        bg-amber-500 hover:bg-amber-400 active:bg-amber-600
                        shadow-lg shadow-amber-500/25 transition-all duration-200">
-            Battle  →
+            Battle →
           </button>
         </div>
 
-        {/* Loading */}
-        {loading && (
-          <div className="flex items-center justify-center h-64 text-slate-500 text-sm">
-            <span className="inline-block w-5 h-5 border-2 border-slate-700 border-t-amber-500 rounded-full animate-spin mr-3" />
-            Loading collection…
-          </div>
-        )}
-
-        {/* Empty state */}
-        {!loading && cards.length === 0 && (
-          <div className="flex flex-col items-center justify-center h-64 gap-4">
-            <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl"
-              style={{ background: 'rgba(245,158,11,0.12)', border: '1px solid rgba(245,158,11,0.2)' }}>
-              ♛
-            </div>
-            <p className="text-slate-500 text-sm">No cards yet. Win battles to earn them.</p>
-          </div>
-        )}
+        {/* Filter tabs */}
+        <div className="flex gap-2 mb-6">
+          {(['all', 'owned', 'locked'] as const).map(f => (
+            <button
+              key={f}
+              onClick={() => setFilter(f)}
+              className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all duration-200
+                ${filter === f
+                  ? 'bg-amber-500 text-slate-950 shadow shadow-amber-500/30'
+                  : 'bg-white/[0.05] text-slate-400 border border-white/10 hover:border-amber-500/30 hover:text-amber-400'
+                }`}>
+              {f === 'all' ? 'All' : f === 'owned' ? `Owned (${ownedCount})` : `Locked (${ALL_CARDS.length - ownedCount})`}
+            </button>
+          ))}
+        </div>
 
         {/* Card grid */}
-        {!loading && cards.length > 0 && (
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-            {cards.map((card) => (
-              <CardItem key={card.id} card={card}
-                onClick={() => navigate(`/card/${card.id}`, { state: { card } })} />
-            ))}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+          {filtered.map((card) => (
+            <CardItem
+              key={card.id}
+              card={card}
+              owned={isOwned(card)}
+              onClick={() => isOwned(card) ? navigate(`/card/${card.id}`, { state: { card } }) : undefined}
+            />
+          ))}
+        </div>
+
+        {filtered.length === 0 && (
+          <div className="flex flex-col items-center justify-center h-48 gap-3">
+            <p className="text-slate-500 text-sm">
+              {filter === 'owned' ? 'No cards unlocked yet.' : 'All cards are unlocked!'}
+            </p>
+            {filter === 'owned' && (
+              <button onClick={() => navigate('/epic')}
+                className="px-5 py-2 rounded-xl bg-amber-500 text-slate-950 font-bold text-sm hover:bg-amber-400 transition-all">
+                Play Epic Stories →
+              </button>
+            )}
           </div>
         )}
       </div>
@@ -107,32 +122,51 @@ export default function CollectionPage() {
   )
 }
 
-function CardItem({ card, onClick }: { card: Card; onClick: () => void }) {
-  const tier = TIER_STYLE[card.tier] ?? TIER_STYLE.common
-
+function CardItem({ card, owned, onClick }: { card: Card; owned: boolean; onClick: () => void }) {
   return (
-    <div onClick={onClick}
+    <div
+      onClick={onClick}
       className={`relative rounded-2xl overflow-hidden flex flex-col
-                     bg-white/[0.03] border backdrop-blur-sm
-                     hover:scale-[1.03] transition-transform duration-200 cursor-pointer
-                     ${tier.border}`}>
+                   bg-white/[0.03] border border-white/[0.08] backdrop-blur-sm
+                   transition-all duration-200
+                   ${owned ? 'hover:scale-[1.03] cursor-pointer' : 'cursor-default'}`}>
 
       {/* Portrait */}
-      <div className={`relative h-40 bg-gradient-to-b ${tier.glow} to-transparent flex items-center justify-center`}>
+      <div className="relative h-40 bg-slate-900/40">
         {card.portraitUrl ? (
-          <img src={card.portraitUrl} alt={card.figureName}
-            className="w-full h-full object-cover" />
+          <img
+            src={card.portraitUrl}
+            alt={card.figureName}
+            className={`w-full h-full object-cover transition-all duration-300 ${owned ? '' : 'brightness-[0.25] saturate-0'}`}
+          />
         ) : (
-          <span className="text-4xl select-none opacity-30">♟</span>
+          <div className="w-full h-full flex items-center justify-center">
+            <span className="text-4xl select-none opacity-30">♟</span>
+          </div>
         )}
+
+        {/* Lock overlay */}
+        {!owned && (
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-1">
+            <span className="text-2xl">🔒</span>
+            <p className="text-slate-400 text-[9px] text-center px-2 leading-tight">
+              Complete the story in Epic mode
+            </p>
+          </div>
+        )}
+
       </div>
 
       {/* Info */}
       <div className="p-3 flex flex-col gap-1.5">
-        <p className="text-white text-sm font-semibold leading-tight line-clamp-2">{card.figureName}</p>
-        <p className="text-slate-500 text-[10px] uppercase tracking-wider">{card.era} · {card.gender}</p>
+        <p className={`text-sm font-semibold leading-tight line-clamp-2 ${owned ? 'text-white' : 'text-slate-600'}`}>
+          {card.figureName}
+        </p>
+        <p className={`text-[10px] uppercase tracking-wider ${owned ? 'text-slate-500' : 'text-slate-700'}`}>
+          {card.era}
+        </p>
 
-        {card.identities.length > 0 && (
+        {owned && card.identities.length > 0 && (
           <div className="flex flex-wrap gap-1 mt-1">
             {card.identities.slice(0, 2).map(id => (
               <span key={id} className="text-[9px] px-1.5 py-0.5 rounded-full border border-amber-500/30 text-amber-400/70">

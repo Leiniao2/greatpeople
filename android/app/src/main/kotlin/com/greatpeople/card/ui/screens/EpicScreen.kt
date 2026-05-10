@@ -1,5 +1,6 @@
 package com.greatpeople.card.ui.screens
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -94,7 +95,7 @@ private val Slate700 = Color(0xFF334155)
 
 // ── EpicScreen ────────────────────────────────────────────────────────────────
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
 fun EpicScreen(
     onBack: () -> Unit = {},

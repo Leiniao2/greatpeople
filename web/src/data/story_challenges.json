@@ -34,10 +34,22 @@
         "fact": "The pyramid was encased in smooth white Tura limestone that would have blazed like a jewel in the desert sun. Most of it was stripped away in the Middle Ages to build Cairo."
       },
       {
+        "type": "quiz",
+        "question": "You're building a pyramid 500m × 500m × 500m using bricks that are each 1m × 1m × 2m. How many bricks do you need?",
+        "options": [
+          "About 20 million bricks",
+          "About 41 million bricks",
+          "About 62 million bricks",
+          "About 125 million bricks"
+        ],
+        "answer": 0,
+        "fact": "A pyramid's volume = ⅓ × base² × height = ⅓ × 500 × 500 × 500 ≈ 41.7 million m³. Each 1×1×2 brick is 2 m³, so you need ≈ 20.8 million bricks. The real Great Pyramid used about 2.3 million stone blocks — your pyramid is 9× bigger!"
+      },
+      {
         "type": "minigame",
         "game": "maze",
-        "configId": "pyramid",
-        "instruction": "Navigate Imhotep through the sacred chambers to reach the burial room!",
+        "configId": "pyramid-deep",
+        "instruction": "Navigate Imhotep through THREE sacred chambers to reach the burial room! Find the staircase (▲) to descend deeper.",
         "fact": "This dynasty spanned roughly 2686–2181 BCE — the golden age of pyramid building. Sneferu alone built three pyramids, experimenting until he mastered the true pyramid shape."
       }
     ]
@@ -86,6 +98,53 @@
           "Assyria"
         ],
         "fact": "Each civilization built on the last — creating a 3,000-year chain of innovation in law, agriculture, astronomy, and mathematics that underpins modern science and governance."
+      }
+    ]
+  },
+  {
+    "era": "Ancient",
+    "story": "The King and the Wild Man",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "The Epic of Gilgamesh, written around 2100 BCE, is considered:",
+        "options": [
+          "The world's oldest surviving piece of literature",
+          "The world's oldest legal code",
+          "The world's oldest mathematical text",
+          "The world's oldest map"
+        ],
+        "answer": 0,
+        "fact": "The Epic of Gilgamesh, preserved on twelve clay tablets, is the oldest surviving major work of literature — predating Homer's Iliad by at least 1,500 years. It contains a great flood story remarkably similar to Noah's in the Bible."
+      },
+      {
+        "type": "truefalse",
+        "statement": "Enkidu was created by the gods to punish Gilgamesh for his cruelty.",
+        "correct": false,
+        "fact": "Enkidu was created to be Gilgamesh's equal and companion — to channel the king's restless energy into something worthy. The epic is about the transformative power of friendship: it humanizes Gilgamesh and civilizes Enkidu."
+      },
+      {
+        "type": "quiz",
+        "question": "When Enkidu dies in the Epic of Gilgamesh, what does Gilgamesh seek?",
+        "options": [
+          "Revenge against the gods",
+          "The secret of eternal life",
+          "A new companion equal to Enkidu",
+          "Return to the wilderness"
+        ],
+        "answer": 1,
+        "fact": "Gilgamesh's grief drives him to seek immortality from Utnapishtim — the only mortal ever granted eternal life. He fails, but the plant of youth is stolen from him by a serpent. The serpent's skin-shedding became a symbol of renewal."
+      },
+      {
+        "type": "sort",
+        "question": "Arrange these events from the Epic of Gilgamesh in order:",
+        "items": [
+          "Gilgamesh and Enkidu wrestle at the city gate",
+          "Slaying of the Bull of Heaven",
+          "Enkidu's death",
+          "Gilgamesh's search for immortality"
+        ],
+        "fact": "The epic is organized into 11 tablets (a 12th was added later). Its themes — friendship, mortality, hubris, and acceptance — are as urgent today as they were 4,000 years ago. It is the first story about what it means to be human."
       }
     ]
   },
@@ -258,6 +317,147 @@
           "Geometric proof"
         ],
         "fact": "Euclid assumed readers knew arithmetic but built geometry from scratch using pure logic — no measuring allowed. This distinction between 'calculating' and 'proving' created mathematics as a discipline."
+      }
+    ]
+  },
+  {
+    "era": "Classical",
+    "story": "The Golden Age of Athens",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "Pericles' famous funeral oration — the most eloquent defense of democracy ever delivered — honored Athenians who died in:",
+        "options": [
+          "The Battle of Marathon",
+          "The Peloponnesian War",
+          "The Persian Wars",
+          "The Battle of Thermopylae"
+        ],
+        "answer": 1,
+        "fact": "Thucydides recorded the Oration in his history. Pericles described Athens as 'the school of Hellas' — an education in what it means to be free. Abraham Lincoln studied it carefully before writing the Gettysburg Address."
+      },
+      {
+        "type": "truefalse",
+        "statement": "Aspasia of Miletus, Pericles' partner, was merely a companion with no real intellectual influence.",
+        "correct": false,
+        "fact": "Ancient sources including Plato describe Aspasia as a teacher of rhetoric who instructed Pericles himself. Socrates reportedly sought her out for philosophical discussion. She ran a school and salon — extraordinary for any woman of the era."
+      },
+      {
+        "type": "quiz",
+        "question": "The Parthenon, built under Pericles' direction, was dedicated to:",
+        "options": [
+          "Pericles himself",
+          "Athena Parthenos",
+          "Zeus Olympios",
+          "Apollo Phoebus"
+        ],
+        "answer": 1,
+        "fact": "Athena Parthenos — 'Athena the Virgin' — was Athens' patron goddess. Pheidias created a 40-foot gold and ivory statue for the interior. The Parthenon also served as Athens' treasury and bank vault."
+      },
+      {
+        "type": "sort",
+        "question": "Arrange these events of Athens' Golden Age in chronological order:",
+        "items": [
+          "Victory over Persia at Salamis",
+          "Pericles becomes dominant statesman",
+          "Beginning of the Peloponnesian War",
+          "Athens surrenders to Sparta"
+        ],
+        "fact": "Athens' golden age lasted barely 50 years — from the Persian Wars to Spartan conquest. In those 50 years it produced democracy, tragedy, comedy, philosophy, and architecture that defined Western civilization for 2,500 years."
+      }
+    ]
+  },
+  {
+    "era": "Classical",
+    "story": "The Voice of Rome",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "Cicero is best described as:",
+        "options": [
+          "A Roman general who conquered Gaul",
+          "An orator, lawyer, and philosopher who was Rome's greatest prose writer",
+          "A Roman emperor who reformed the legal system",
+          "A playwright who wrote Latin comedies"
+        ],
+        "answer": 1,
+        "fact": "Cicero's Latin prose was so admired it became the standard for all subsequent Latin writing. Renaissance humanists like Petrarch worshipped him. His philosophical works preserved Greek philosophy that would otherwise have been lost to the medieval West."
+      },
+      {
+        "type": "truefalse",
+        "statement": "Cicero supported Julius Caesar's dictatorship as a necessary reform for Rome.",
+        "correct": false,
+        "fact": "Cicero was a passionate defender of the Republic and deeply opposed to Caesar's one-man rule. After Caesar's death, he launched the Philippics — savage speeches against Mark Antony — that cost him his life."
+      },
+      {
+        "type": "quiz",
+        "question": "Cicero was executed in 43 BCE on Mark Antony's orders. What was done with his hands and head?",
+        "options": [
+          "He was given an honorable burial in the Forum",
+          "They were displayed on the speaker's platform in the Forum",
+          "They were sent to Cleopatra in Egypt",
+          "They were preserved in the Temple of Jupiter"
+        ],
+        "answer": 1,
+        "fact": "Antony had Cicero's hands nailed to the Rostra — the very platform from which Cicero had delivered his greatest speeches. The Republic he had defended with words died with him."
+      },
+      {
+        "type": "sort",
+        "question": "Arrange Cicero's major works from most practical to most philosophical:",
+        "items": [
+          "Orations against Catiline (political speeches)",
+          "On the Orator (rhetoric)",
+          "On the Republic (political theory)",
+          "On the Nature of the Gods (philosophy)"
+        ],
+        "fact": "Cicero translated Greek philosophy into Latin, making it accessible to Romans and later to all of Western Europe. Without Cicero, thinkers like Plato and Aristotle might have remained unknown to medieval and Renaissance scholars."
+      }
+    ]
+  },
+  {
+    "era": "Classical",
+    "story": "Before Socrates",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "Anaxagoras proposed that the ordering force behind the universe was:",
+        "options": [
+          "Fire",
+          "Water",
+          "Nous (Mind/Intelligence)",
+          "The Olympic gods"
+        ],
+        "answer": 2,
+        "fact": "Anaxagoras (500–428 BCE) argued that a universal mind — Nous — set infinite, chaotic matter into rotation, creating the cosmos. This idea influenced Plato, Aristotle, and later the Christian concept of a divine intellect."
+      },
+      {
+        "type": "truefalse",
+        "statement": "Zeno of Elea invented his paradoxes to show that motion is truly impossible.",
+        "correct": false,
+        "fact": "Zeno created his paradoxes to defend his teacher Parmenides, who argued that reality is unchanging. The paradoxes were logical traps to embarrass those who believed in motion and change — not Zeno's personal view of reality."
+      },
+      {
+        "type": "quiz",
+        "question": "Zeno's 'Achilles and the Tortoise' paradox was finally resolved mathematically by:",
+        "options": [
+          "Euclid's geometry",
+          "The invention of calculus",
+          "Aristotle's logic",
+          "The Pythagorean theorem"
+        ],
+        "answer": 1,
+        "fact": "Newton and Leibniz's calculus shows that an infinite series of decreasing quantities can have a finite sum. Achilles' infinite steps take a finite time because each step is proportionally shorter. Infinity, properly handled, doesn't mean forever."
+      },
+      {
+        "type": "sort",
+        "question": "Arrange these Pre-Socratic philosophers by their primary principle (water to fire to mind to atoms):",
+        "items": [
+          "Thales (water is the fundamental element)",
+          "Heraclitus (everything flows; fire is primary)",
+          "Anaxagoras (mind/Nous orders the cosmos)",
+          "Democritus (reality is made of atoms)"
+        ],
+        "fact": "The Pre-Socratics were asking science's most fundamental question: what is everything made of? Their answers — water, fire, atoms, mind — prefigure modern physics remarkably. Democritus named 'atomos' (uncuttable) 2,300 years before the electron."
       }
     ]
   },
@@ -462,6 +662,100 @@
   },
   {
     "era": "Medieval",
+    "story": "The Language of Algebra",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "What does the word 'algebra' derive from?",
+        "options": [
+          "The Greek word for number",
+          "The title of Al-Khwarizmi's mathematical treatise",
+          "The name of a Greek mathematician",
+          "The Arabic word for balance"
+        ],
+        "answer": 1,
+        "fact": "'Algebra' comes from 'al-jabr' — meaning 'completion' or 'restoration' — in the title of Al-Khwarizmi's treatise written around 820 CE. He invented systematic methods for solving linear and quadratic equations still taught in schools today."
+      },
+      {
+        "type": "truefalse",
+        "statement": "The word 'algorithm' is derived from Al-Khwarizmi's name.",
+        "correct": true,
+        "fact": "When Al-Khwarizmi's works were translated into Latin, his name became 'algoritmi,' then 'algorismus,' then 'algorithm' — now meaning any step-by-step procedure for solving a problem. Every time a computer runs a program, it follows an algorithm."
+      },
+      {
+        "type": "quiz",
+        "question": "The House of Wisdom in Baghdad was primarily:",
+        "options": [
+          "A palace for the Caliph",
+          "A translation center and library for scholars of all cultures",
+          "A military academy",
+          "A religious seminary"
+        ],
+        "answer": 1,
+        "fact": "The House of Wisdom (Bayt al-Hikma) employed scholars from Christian, Jewish, Zoroastrian, and Muslim backgrounds to translate Greek, Indian, and Persian texts. It preserved and extended ancient knowledge during Europe's Dark Ages."
+      },
+      {
+        "type": "sort",
+        "question": "Arrange these Islamic Golden Age scholars by their primary field (mathematics to astronomy to philosophy to medicine):",
+        "items": [
+          "Al-Khwarizmi (algebra and arithmetic)",
+          "Al-Biruni (geography and astronomy)",
+          "Ibn Rushd / Averroes (philosophy)",
+          "Ibn Sina / Avicenna (medicine)"
+        ],
+        "fact": "The Islamic Golden Age (750–1258 CE) preserved Greek learning and made crucial original contributions. Muslim scholars preserved Aristotle, Euclid, and Hippocrates — transmitting them back to Renaissance Europe when crusaders burned libraries."
+      }
+    ]
+  },
+  {
+    "era": "Medieval",
+    "story": "The Prophet of Light",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "The central idea of Manichaeism — Mani's religion — was that:",
+        "options": [
+          "God is all-powerful and evil is merely absence of good",
+          "The universe is a struggle between two equal forces: light and darkness",
+          "Salvation comes through faith alone",
+          "The physical world must be governed by strict divine law"
+        ],
+        "answer": 1,
+        "fact": "Manichaeism's dualism — the equal conflict between Light and Darkness — spread across the Roman Empire, Persia, Central Asia, and China. Even Saint Augustine was a Manichaean for 9 years before converting to Christianity. It survived in China until the 14th century."
+      },
+      {
+        "type": "truefalse",
+        "statement": "Mani was the first to deliberately combine elements from multiple existing religions into a new universal faith.",
+        "correct": true,
+        "fact": "Mani explicitly incorporated Jesus as a prophet, Buddha as enlightened teacher, and Zoroaster as a predecessor. He called himself the 'Seal of the Prophets' — a title later claimed by Muhammad. His deliberate synthesis makes him history's first recorded religious universalist."
+      },
+      {
+        "type": "quiz",
+        "question": "At its peak, Manichaeism stretched geographically from where to where?",
+        "options": [
+          "From Egypt to Persia",
+          "From Roman Britain to India",
+          "From the Roman Empire to China",
+          "From Arabia to Greece"
+        ],
+        "answer": 2,
+        "fact": "At its peak, Manichaeism spanned the largest geographic range of any religion in the ancient world — from Carthage and Rome in the west to Tang Dynasty China in the east. The Uyghur Empire officially adopted it as state religion in 762 CE."
+      },
+      {
+        "type": "sort",
+        "question": "Arrange these religions founded by named individuals by date of founding (earliest first):",
+        "items": [
+          "Buddhism (Siddhartha Gautama)",
+          "Christianity (Jesus of Nazareth)",
+          "Manichaeism (Mani)",
+          "Islam (Muhammad)"
+        ],
+        "fact": "All four were founded within 1,200 years of each other in a relatively small region of Asia. Mani consciously saw himself as the culmination of the Buddha-Jesus-Zoroaster lineage — the last and most complete revelation. History judged differently."
+      }
+    ]
+  },
+  {
+    "era": "Medieval",
     "story": "Tea Ceremony",
     "challenges": [
       {
@@ -534,7 +828,7 @@
         "game": "maze",
         "configId": "mulan",
         "instruction": "Help Mulan navigate the forest trail without being discovered!",
-        "fact": "The Mulan story spans dynasties — originating in the Wei period, set in a Northern Wei-like context, retold through Tang, Song, and Ming eras, each adding new details that reflected their own era's values."
+        "fact": "The Mulan story spans dynasties — originating in the Wei period, retold through Tang, Song, and Ming eras, each adding new details that reflected their own era's values."
       }
     ]
   },
@@ -708,6 +1002,53 @@
   },
   {
     "era": "Renaissance",
+    "story": "The Colors of Venice",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "Titian is most associated with which Italian city and its distinctive painting school?",
+        "options": [
+          "Florence",
+          "Rome",
+          "Venice",
+          "Milan"
+        ],
+        "answer": 2,
+        "fact": "The Venetian school (Titian, Giorgione, Tintoretto, Veronese) prioritized color — colore — over the Florentine emphasis on drawing and outline — disegno. Titian's rich, luminous technique directly influenced Rubens, Velázquez, and Rembrandt."
+      },
+      {
+        "type": "truefalse",
+        "statement": "Titian was relatively unknown during his lifetime and only gained fame posthumously.",
+        "correct": false,
+        "fact": "Titian was the most sought-after painter in Europe during his own lifetime. Charles V, Philip II of Spain, Pope Paul III, and King Francis I of France all commissioned him. He died a very wealthy man at approximately 99 years old — still painting until the week he died."
+      },
+      {
+        "type": "quiz",
+        "question": "Titian's late painting style — loose, gestural, almost unfinished — centuries ahead of its time, anticipated which later movements?",
+        "options": [
+          "The Baroque period only",
+          "Impressionism and expressionism",
+          "Neoclassicism",
+          "Abstract art exclusively"
+        ],
+        "answer": 1,
+        "fact": "Titian's final works — patches of pure color, visible brushstrokes, emotional rather than precise — anticipated Impressionism by 300 years. Manet and Renoir specifically studied him in the Louvre. Cézanne called Titian 'the greatest of all painters.'"
+      },
+      {
+        "type": "sort",
+        "question": "Arrange these Renaissance painters by birth year (earliest first):",
+        "items": [
+          "Leonardo da Vinci",
+          "Raphael",
+          "Titian (Tiziano Vecellio)",
+          "Tintoretto"
+        ],
+        "fact": "Leonardo (1452) → Raphael (1483) → Titian (c.1488) → Tintoretto (1518). Titian outlived all of them and kept painting until 1576. His 60-year career spanned the High Renaissance, Mannerism, and the dawn of the Baroque."
+      }
+    ]
+  },
+  {
+    "era": "Renaissance",
     "story": "The Printing Press",
     "challenges": [
       {
@@ -743,6 +1084,53 @@
   },
   {
     "era": "Renaissance",
+    "story": "Around the World",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "Magellan's circumnavigation (1519–1522) proved definitively that:",
+        "options": [
+          "The Earth was round (previously unknown to Europeans)",
+          "The Pacific Ocean was far wider than anyone had expected",
+          "Columbus had reached Asia in 1492",
+          "Spices grew in South America"
+        ],
+        "answer": 1,
+        "fact": "Educated Europeans already knew Earth was spherical — the debate was its SIZE. Magellan's voyage proved the Pacific was vastly larger than imagined, making a westward spice route commercially impractical. The voyage lasted 1,082 days; only 18 of 270 men completed it."
+      },
+      {
+        "type": "truefalse",
+        "statement": "Magellan himself completed the first circumnavigation of the Earth.",
+        "correct": false,
+        "fact": "Magellan was killed in the Philippines. His fleet continued under Juan Sebastián Elcano, who brought the Victoria home with 18 survivors. The true honor of completing Earth's first circumnavigation belongs to Elcano and his skeleton crew."
+      },
+      {
+        "type": "quiz",
+        "question": "What did the survivors of Magellan's voyage bring back to Spain that proved the voyage commercially valuable?",
+        "options": [
+          "Gold from the Americas",
+          "Chinese porcelain",
+          "26 tons of cloves from the Moluccas",
+          "Maps of the Pacific"
+        ],
+        "answer": 2,
+        "fact": "The Victoria returned with 26 tons of cloves — then worth a fortune. Cloves could be bought for almost nothing in the Moluccas and sold in Europe for their weight in silver. The cargo alone nearly paid for the entire expedition."
+      },
+      {
+        "type": "sort",
+        "question": "Arrange these events of Magellan's voyage in chronological order:",
+        "items": [
+          "Departure from Seville",
+          "Crossing of the Pacific Ocean",
+          "Magellan's death in the Philippines",
+          "Victoria returns to Spain"
+        ],
+        "fact": "The circumnavigation took 1,082 days. One ship, one crew, 18 survivors. They also discovered something puzzling: their log showed they were one day behind Spanish calendars. They had lost a day traveling westward with the sun — a phenomenon Jules Verne later made famous."
+      }
+    ]
+  },
+  {
+    "era": "Renaissance",
     "story": "New Worlds",
     "challenges": [
       {
@@ -773,6 +1161,53 @@
           "Captain Cook (Pacific)"
         ],
         "fact": "Chinese admiral Zheng He's fleet of 300 ships dwarfed Columbus's three — and he explored decades earlier. But China chose isolation; the door stayed open for Europe to colonize the world instead."
+      }
+    ]
+  },
+  {
+    "era": "Renaissance",
+    "story": "The Mystic Doctor",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "Teresa of Ávila is notable in Church history as one of only a handful of women named:",
+        "options": [
+          "Pope",
+          "Cardinal",
+          "Doctor of the Church",
+          "Apostle"
+        ],
+        "answer": 2,
+        "fact": "In 1970, Pope Paul VI named Teresa of Ávila and Catherine of Siena the first female Doctors of the Church — meaning their theological writings are officially authoritative guides to Christian teaching. Of 37 Doctors of the Church, only 4 are women."
+      },
+      {
+        "type": "truefalse",
+        "statement": "Teresa of Ávila wrote major theological works despite having almost no formal education.",
+        "correct": true,
+        "fact": "Women in 16th-century Spain were denied access to universities and formal theological training. Teresa taught herself through reading and correspondence. Her three major works — The Life, The Way of Perfection, and The Interior Castle — are now masterpieces of world literature."
+      },
+      {
+        "type": "quiz",
+        "question": "Teresa of Ávila reformed the Carmelite order by founding the Discalced ('barefoot') Carmelites, which emphasized:",
+        "options": [
+          "Missionary work in the Americas",
+          "Strict poverty, prayer, and withdrawal from the world",
+          "Education of poor children",
+          "Political engagement with the Spanish monarchy"
+        ],
+        "answer": 1,
+        "fact": "Discalced Carmelites took extreme vows of poverty and spent their lives in contemplative prayer. Teresa founded 17 convents. She was supported by her collaborator John of the Cross, now also a Doctor of the Church."
+      },
+      {
+        "type": "sort",
+        "question": "Arrange these female mystics and saints by century (earliest first):",
+        "items": [
+          "Hildegard of Bingen (12th century)",
+          "Catherine of Siena (14th century)",
+          "Teresa of Ávila (16th century)",
+          "Thérèse of Lisieux (19th century)"
+        ],
+        "fact": "Women mystics found in religious life one of the few paths to influence and intellectual expression available to them. Their writings — visions, theology, poetry — form an extraordinary literary tradition stretching 1,000 years. All four are now Doctors of the Church."
       }
     ]
   },
@@ -890,6 +1325,53 @@
           "Brahms"
         ],
         "fact": "Beethoven (1770) → Chopin (1810) → Clara Schumann (1819) → Brahms (1833). Clara knew and performed all three — a living bridge across the Romantic era. Her correspondence with Brahms alone fills multiple volumes."
+      }
+    ]
+  },
+  {
+    "era": "Steam",
+    "story": "The Naming of Everything",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "The system Linnaeus invented for naming living things — used worldwide today — is called:",
+        "options": [
+          "The Darwinian System",
+          "Binomial nomenclature",
+          "The Great Chain of Being",
+          "Taxonomic classification"
+        ],
+        "answer": 1,
+        "fact": "Binomial nomenclature ('two-name naming') gives every species two Latin names: genus and species. Humans are Homo sapiens; the domestic cat is Felis catus; the common oak is Quercus robur. This shared international system lets scientists everywhere refer to the same organism."
+      },
+      {
+        "type": "truefalse",
+        "statement": "Charles Darwin developed the system for classifying animals before proposing his theory of evolution.",
+        "correct": false,
+        "fact": "Linnaeus (1707–1778) developed the classification system a century before Darwin (1809–1882). Ironically, Linnaeus created a system to order God's creation — but his observation that humans fit naturally among the primates pointed toward the evolutionary thinking Darwin later confirmed."
+      },
+      {
+        "type": "quiz",
+        "question": "Linnaeus classified humans under the genus Homo and named our species:",
+        "options": [
+          "Homo erectus",
+          "Homo faber",
+          "Homo sapiens",
+          "Homo modernus"
+        ],
+        "answer": 2,
+        "fact": "'Homo sapiens' means 'wise man.' Linnaeus chose this name, though he noted wryly that he could find no characteristic to distinguish humans from other primates except: 'Know thyself.' Modern genetics confirms humans share 98.8% of DNA with chimpanzees."
+      },
+      {
+        "type": "sort",
+        "question": "Arrange the levels of biological classification from broadest to most specific:",
+        "items": [
+          "Kingdom",
+          "Class",
+          "Genus",
+          "Species"
+        ],
+        "fact": "Full classification has 8 levels: Domain, Kingdom, Phylum, Class, Order, Family, Genus, Species. Humans are: Animalia > Chordata > Mammalia > Primates > Hominidae > Homo > sapiens. Every organism's full name is like an address in a universal directory."
       }
     ]
   },
@@ -1063,6 +1545,53 @@
   },
   {
     "era": "Electricity",
+    "story": "Light Before Einstein",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "The 'Lorentz transformations' describe how, for an observer moving at near the speed of light:",
+        "options": [
+          "Mass decreases and energy increases",
+          "Time slows down and length contracts",
+          "Gravity disappears",
+          "Light appears to change color"
+        ],
+        "answer": 1,
+        "fact": "Time dilation and length contraction are real, measurable effects — not just theoretical. GPS satellites must correct for both effects or the system would accumulate errors of kilometers per day. Every GPS position fix depends on equations Lorentz first wrote."
+      },
+      {
+        "type": "truefalse",
+        "statement": "Albert Einstein credited Lorentz as having done the essential mathematical groundwork for special relativity.",
+        "correct": true,
+        "fact": "Einstein wrote to Lorentz: 'Without your work, I could not have developed the theory of relativity.' Lorentz in turn spent his final years promoting Einstein's work — even though he personally never fully accepted that there was no ether. Science at its most generous."
+      },
+      {
+        "type": "quiz",
+        "question": "Lorentz and his student Pieter Zeeman shared the Nobel Prize in Physics in 1902 for the 'Zeeman effect' — what is this?",
+        "options": [
+          "That light bends around massive objects",
+          "That magnetic fields split the spectral lines of light emitted by atoms",
+          "That electrons orbit atomic nuclei",
+          "That radio waves can travel through space"
+        ],
+        "answer": 1,
+        "fact": "The Zeeman effect proved that atoms contain electrically charged particles — the first direct evidence for the electron. It opened the door to quantum mechanics, as the effect couldn't be explained without quantum theory."
+      },
+      {
+        "type": "sort",
+        "question": "Arrange these milestones in the physics of light in chronological order:",
+        "items": [
+          "Maxwell describes light as electromagnetic waves",
+          "Michelson-Morley experiment shows constant light speed",
+          "Lorentz derives his transformation equations",
+          "Einstein publishes special relativity"
+        ],
+        "fact": "Maxwell (1865) → Michelson-Morley (1887) → Lorentz transformations (1895) → Einstein (1905). Each step built on the last. Einstein himself said he was standing on the shoulders of Maxwell and Lorentz. Physics advances like a relay race."
+      }
+    ]
+  },
+  {
+    "era": "Electricity",
     "story": "Fashion Revolution",
     "challenges": [
       {
@@ -1093,6 +1622,147 @@
           "The Chanel suit (tweed jacket and skirt)"
         ],
         "fact": "Each innovation democratized fashion — Chanel took materials (jersey, tweed) previously considered too humble for haute couture and made them aspirational. She dressed women for the 20th century, not the 19th."
+      }
+    ]
+  },
+  {
+    "era": "Electricity",
+    "story": "Wings Over the Atlantic",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "Amelia Earhart was the first woman to:",
+        "options": [
+          "Fly an airplane",
+          "Fly solo across the Atlantic Ocean",
+          "Fly in a military aircraft",
+          "Receive a pilot's license"
+        ],
+        "answer": 1,
+        "fact": "Earhart completed her solo Atlantic crossing on May 21, 1932 — exactly five years after Lindbergh. She received the Distinguished Flying Cross from Congress and the Gold Medal of the National Geographic Society."
+      },
+      {
+        "type": "truefalse",
+        "statement": "Amelia Earhart completed her attempt to circumnavigate the Earth along the equator.",
+        "correct": false,
+        "fact": "Earhart disappeared on July 2, 1937, over the Pacific Ocean near Howland Island — with about 7,000 miles of her circumnavigation remaining. She and navigator Fred Noonan were never found. The mystery has never been definitively solved."
+      },
+      {
+        "type": "quiz",
+        "question": "Before becoming a pilot, Amelia Earhart worked in which field during World War I?",
+        "options": [
+          "Factory work in munitions",
+          "Military nursing",
+          "Code breaking for the intelligence services",
+          "Aircraft manufacturing"
+        ],
+        "answer": 1,
+        "fact": "Earhart worked as a military nurse in Canada during WWI, then studied medicine at Columbia before discovering aviation. Her first flight in 1920 changed everything — 'by the time I had gotten two or three hundred feet off the ground, I knew I had to fly.'"
+      },
+      {
+        "type": "sort",
+        "question": "Arrange these aviation milestones in chronological order:",
+        "items": [
+          "Wright Brothers' first powered flight",
+          "Lindbergh's solo Atlantic crossing",
+          "Earhart's solo Atlantic crossing",
+          "First commercial jet passenger service"
+        ],
+        "fact": "Wright Brothers (1903) → Lindbergh (1927) → Earhart (1932) → Jet service (1952 BOAC). In just 49 years, humanity went from 12 seconds in the air to jet-powered transatlantic travel. Earhart witnessed nearly the entire transformation."
+      }
+    ]
+  },
+  {
+    "era": "Electricity",
+    "story": "Cinema's Architect",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "The editing technique Eisenstein developed — where cutting between images creates a new meaning not contained in either image alone — is called:",
+        "options": [
+          "The Kuleshov Effect",
+          "Montage",
+          "Tracking shot",
+          "Jump cut"
+        ],
+        "answer": 1,
+        "fact": "Eisenstein's theory of 'intellectual montage' argued that cinema's power came from the collision of shots. A man's face + a bowl of soup creates 'hunger.' The same face + a child creates 'love.' Editing creates meaning, not just sequence."
+      },
+      {
+        "type": "truefalse",
+        "statement": "Battleship Potemkin (1925) has consistently ranked among the greatest films ever made for nearly a century.",
+        "correct": true,
+        "fact": "Potemkin has ranked #1 on multiple all-time greatest films polls. Its Odessa Steps sequence — 6 minutes long — has been recreated or homaged in The Untouchables, Brazil, and dozens of other films. It was commissioned to commemorate the 1905 revolution."
+      },
+      {
+        "type": "quiz",
+        "question": "Which event in Eisenstein's career under Stalin most dramatically demonstrated the dangers facing Soviet artists?",
+        "options": [
+          "He refused to make propaganda films",
+          "Stalin deemed his nearly completed film 'Bezhin Meadow' ideologically incorrect and destroyed it",
+          "He fled to Hollywood",
+          "He publicly opposed Soviet censorship"
+        ],
+        "answer": 1,
+        "fact": "Stalin personally destroyed 'Bezhin Meadow' — 3 years of work — deeming it ideologically flawed. Eisenstein was forced to make a public self-criticism. This was the fate of Soviet artists: genius was permitted only if it served power."
+      },
+      {
+        "type": "sort",
+        "question": "Arrange these cinematic innovations in the order they were developed:",
+        "items": [
+          "Silent film with inter-titles",
+          "Eisenstein's montage theory",
+          "Hollywood sound films ('talkies')",
+          "Color film becomes standard"
+        ],
+        "fact": "Cinema went from silent (1895) to sound (1927) to color (1960s standard) in 70 years. Eisenstein's theories were developed during the silent era — but his insights about cutting and image collision became the grammar of all cinema that followed."
+      }
+    ]
+  },
+  {
+    "era": "Electricity",
+    "story": "Top of the World",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "Edmund Hillary and Tenzing Norgay reached the summit of Everest on May 29, 1953, as part of an expedition organized by:",
+        "options": [
+          "The Swiss Alpine Club",
+          "The Royal Geographical Society",
+          "The Joint Himalayan Committee",
+          "The British Army"
+        ],
+        "answer": 2,
+        "fact": "The 1953 British expedition led by John Hunt was the ninth attempt on Everest. News of the summit reached London on June 2 — Coronation Day for Queen Elizabeth II. Hillary was knighted immediately; Tenzing received the George Medal."
+      },
+      {
+        "type": "truefalse",
+        "statement": "It was immediately clear who between Hillary and Tenzing stepped onto the summit first.",
+        "correct": false,
+        "fact": "Neither man ever officially disclosed who stepped on the summit first — they agreed to say they summited 'together.' Tenzing later revealed in his memoir that Hillary stepped up first. Their code of partnership mattered more to both of them than individual credit."
+      },
+      {
+        "type": "quiz",
+        "question": "How many previous attempts had Tenzing Norgay made on Everest before the successful 1953 ascent?",
+        "options": [
+          "2",
+          "4",
+          "6",
+          "9"
+        ],
+        "answer": 2,
+        "fact": "Tenzing made his seventh attempt on Everest in 1953 — having first climbed with the British in 1935 at age 21. Sherpa communities had been indispensable to Himalayan mountaineering for decades, yet received little international recognition before 1953."
+      },
+      {
+        "type": "sort",
+        "question": "Arrange these milestones in Everest's climbing history in chronological order:",
+        "items": [
+          "Everest first measured as Earth's highest peak",
+          "First summit (Hillary and Tenzing)",
+          "First summit without supplemental oxygen",
+          "First solo summit"
+        ],
+        "fact": "Everest (8,848.86m) was first measured in 1852. Hillary and Tenzing (1953) used oxygen; Habeler and Messner summited without oxygen in 1978; Reinhold Messner soloed in 1980. Today over 6,000 people have reached the summit."
       }
     ]
   },
@@ -1253,6 +1923,53 @@
           "My Fair Lady"
         ],
         "fact": "Most of Hepburn's iconic roles came in a single decade (1953–1964). Her career was remarkably concentrated — yet she defined elegance for generations. She won her Oscar for her very first starring role, at 24, in Roman Holiday."
+      }
+    ]
+  },
+  {
+    "era": "Information",
+    "story": "Moonwalk",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "Michael Jackson's 'Thriller' album (1982) holds the record for:",
+        "options": [
+          "First music album to sell over 1 million copies",
+          "Best-selling album of all time",
+          "First album to win more than 5 Grammys in one night",
+          "First album sold online"
+        ],
+        "answer": 1,
+        "fact": "Thriller has sold between 66 and 100 million copies worldwide — the best-selling album in history. It produced seven Top 10 US hits and won a record-breaking 8 Grammy Awards in one night. No album before or since has approached its commercial and cultural impact."
+      },
+      {
+        "type": "truefalse",
+        "statement": "The moonwalk dance move was invented by Michael Jackson.",
+        "correct": false,
+        "fact": "The backward sliding step was used by performers including Cab Calloway in the 1930s and James Brown in the 1970s. Michael Jackson refined and popularized it during his Motown 25 television special in 1983 — performing 'Billie Jean' and executing the move so perfectly that it became forever associated with him."
+      },
+      {
+        "type": "quiz",
+        "question": "Michael Jackson's 1983 television performance of 'Billie Jean' — including the moonwalk — was broadcast on which TV special?",
+        "options": [
+          "The Grammys",
+          "Motown 25: Yesterday, Today and Forever",
+          "The American Music Awards",
+          "Soul Train"
+        ],
+        "answer": 1,
+        "fact": "Motown 25 was watched by 47 million people. Fred Astaire called Jackson the next morning to say 'You're a hell of a mover.' Gene Kelly, who had seen every great dancer of the 20th century, called it 'the greatest performance he'd ever seen on television.'"
+      },
+      {
+        "type": "sort",
+        "question": "Arrange these Michael Jackson albums in chronological order:",
+        "items": [
+          "Off the Wall",
+          "Thriller",
+          "Bad",
+          "Dangerous"
+        ],
+        "fact": "Off the Wall (1979) → Thriller (1982) → Bad (1987) → Dangerous (1991). Each album sold more than 30 million copies. Jackson invented the modern music video, integrated MTV (which had rarely aired Black artists), and influenced virtually every performer who followed."
       }
     ]
   },
