@@ -1,5 +1,9 @@
 import { useState, useMemo } from 'react'
 import challengesData from '@/data/story_challenges.json'
+import MazeGame from '@/components/minigames/MazeGame'
+import MirrorGame from '@/components/minigames/MirrorGame'
+import CircuitGame from '@/components/minigames/CircuitGame'
+import SlidingPuzzle from '@/components/minigames/SlidingPuzzle'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -25,7 +29,15 @@ interface SortChallenge {
   fact: string
 }
 
-type Challenge = QuizChallenge | TrueFalseChallenge | SortChallenge
+interface MinigameChallenge {
+  type: 'minigame'
+  game: 'maze' | 'mirror' | 'circuit' | 'sliding'
+  configId: string
+  instruction: string
+  fact: string
+}
+
+type Challenge = QuizChallenge | TrueFalseChallenge | SortChallenge | MinigameChallenge
 
 interface StoryChallengeData {
   era: string
@@ -223,6 +235,48 @@ function SortView({
   )
 }
 
+function MinigameView({
+  challenge,
+  onResult,
+}: {
+  challenge: MinigameChallenge
+  onResult: (correct: boolean) => void
+}) {
+  const [won, setWon] = useState(false)
+
+  const handleWin = () => {
+    if (!won) {
+      setWon(true)
+      onResult(true)
+    }
+  }
+
+  return (
+    <div className="flex flex-col gap-3">
+      {/* Instruction */}
+      <p className="text-slate-300 text-xs leading-relaxed italic border-l-2 border-amber-500/40 pl-3">
+        {challenge.instruction}
+      </p>
+
+      {/* Game component */}
+      <div className="rounded-xl overflow-hidden">
+        {challenge.game === 'maze' && (
+          <MazeGame configId={challenge.configId} onWin={handleWin} />
+        )}
+        {challenge.game === 'mirror' && (
+          <MirrorGame configId={challenge.configId} onWin={handleWin} />
+        )}
+        {challenge.game === 'circuit' && (
+          <CircuitGame configId={challenge.configId} onWin={handleWin} />
+        )}
+        {challenge.game === 'sliding' && (
+          <SlidingPuzzle configId={challenge.configId} onWin={handleWin} />
+        )}
+      </div>
+    </div>
+  )
+}
+
 // ── Main modal ────────────────────────────────────────────────────────────────
 
 interface StoryModalProps {
@@ -325,6 +379,19 @@ export default function StoryModal({ eraName, storyTitle, onComplete, onClose }:
       )}
       {challenge.type === 'sort' && (
         <SortView challenge={challenge} onResult={handleResult} />
+      )}
+      {challenge.type === 'minigame' && (
+        <MinigameView challenge={challenge} onResult={handleResult} />
+      )}
+
+      {/* Skip button for minigames (only shown before answering) */}
+      {challenge.type === 'minigame' && !showFact && (
+        <button
+          onClick={() => handleResult(false)}
+          className="mt-2 w-full py-1.5 rounded-xl text-slate-500 text-xs border border-slate-700/40
+                     hover:border-slate-600/50 hover:text-slate-400 transition-all duration-200">
+          Skip this puzzle
+        </button>
       )}
 
       {/* Fact + next */}

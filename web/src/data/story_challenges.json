@@ -6,7 +6,12 @@
       {
         "type": "quiz",
         "question": "Imhotep is best described as:",
-        "options": ["A pharaoh of Egypt", "The architect of the first pyramid", "A military general", "A high priest of Ra"],
+        "options": [
+          "A pharaoh of Egypt",
+          "The architect of the first pyramid",
+          "A military general",
+          "A high priest of Ra"
+        ],
         "answer": 1,
         "fact": "Imhotep designed the Step Pyramid of Djoser around 2650 BCE — the world's first large stone structure. He was later deified as a god of medicine."
       },
@@ -19,14 +24,20 @@
       {
         "type": "quiz",
         "question": "What material originally clad the outer surface of the Great Pyramid, making it shine brilliantly?",
-        "options": ["Granite", "Sandstone", "Polished white limestone", "Mud brick"],
+        "options": [
+          "Granite",
+          "Sandstone",
+          "Polished white limestone",
+          "Mud brick"
+        ],
         "answer": 2,
         "fact": "The pyramid was encased in smooth white Tura limestone that would have blazed like a jewel in the desert sun. Most of it was stripped away in the Middle Ages to build Cairo."
       },
       {
-        "type": "sort",
-        "question": "Arrange these Egyptian Old Kingdom pharaohs in chronological order (earliest first):",
-        "items": ["Djoser", "Sneferu", "Khufu", "Menkaure"],
+        "type": "minigame",
+        "game": "maze",
+        "configId": "pyramid",
+        "instruction": "Navigate Imhotep through the sacred chambers to reach the burial room!",
         "fact": "This dynasty spanned roughly 2686–2181 BCE — the golden age of pyramid building. Sneferu alone built three pyramids, experimenting until he mastered the true pyramid shape."
       }
     ]
@@ -38,7 +49,12 @@
       {
         "type": "quiz",
         "question": "Sargon of Akkad created the world's first:",
-        "options": ["Democracy", "Multi-ethnic empire", "Writing system", "Standing army"],
+        "options": [
+          "Democracy",
+          "Multi-ethnic empire",
+          "Writing system",
+          "Standing army"
+        ],
         "answer": 1,
         "fact": "The Akkadian Empire (c. 2334–2154 BCE) unified diverse Sumerian city-states under a single ruler for the first time in recorded history — a template copied by every empire since."
       },
@@ -51,14 +67,24 @@
       {
         "type": "quiz",
         "question": "The Akkadian Empire spread which writing system as an administrative language?",
-        "options": ["Aramaic", "Egyptian hieroglyphs", "Akkadian cuneiform", "Sanskrit"],
+        "options": [
+          "Aramaic",
+          "Egyptian hieroglyphs",
+          "Akkadian cuneiform",
+          "Sanskrit"
+        ],
         "answer": 2,
         "fact": "Cuneiform pressed into clay tablets became the world's first widespread administrative language. Thousands of tablets survive — recording taxes, laws, epic poetry, and even the world's oldest love songs."
       },
       {
         "type": "sort",
         "question": "Arrange these Mesopotamian civilizations in order of their rise (earliest first):",
-        "items": ["Sumer", "Akkad", "Babylonia", "Assyria"],
+        "items": [
+          "Sumer",
+          "Akkad",
+          "Babylonia",
+          "Assyria"
+        ],
         "fact": "Each civilization built on the last — creating a 3,000-year chain of innovation in law, agriculture, astronomy, and mathematics that underpins modern science and governance."
       }
     ]
@@ -70,7 +96,12 @@
       {
         "type": "quiz",
         "question": "Euclid's most famous work, which remained a standard textbook for 2,000 years, is called:",
-        "options": ["The Republic", "Elements", "Principia", "The Almagest"],
+        "options": [
+          "The Republic",
+          "Elements",
+          "Principia",
+          "The Almagest"
+        ],
         "answer": 1,
         "fact": "Euclid's 'Elements' (c. 300 BCE) organized all of geometry into 13 books built from 5 simple axioms. Abraham Lincoln reportedly taught himself geometry by candlelight reading a copy."
       },
@@ -83,14 +114,20 @@
       {
         "type": "quiz",
         "question": "What is the sum of interior angles in any triangle on a flat surface?",
-        "options": ["90°", "180°", "270°", "360°"],
+        "options": [
+          "90°",
+          "180°",
+          "270°",
+          "360°"
+        ],
         "answer": 1,
         "fact": "This is one of Euclid's fundamental theorems — true on a flat plane, but fascinatingly different on curved surfaces. On a sphere, a triangle's angles can add up to more than 180°, a key insight for Einstein's general relativity."
       },
       {
-        "type": "sort",
-        "question": "Arrange these geometric shapes by number of sides (fewest first):",
-        "items": ["Triangle", "Quadrilateral", "Pentagon", "Hexagon"],
+        "type": "minigame",
+        "game": "mirror",
+        "configId": "euclid",
+        "instruction": "Prove Euclid's law of reflection — redirect the light beam using mirrors!",
         "fact": "Euclid proved that only triangles, squares, and hexagons can tile a flat plane without gaps — the same three shapes nature uses in honeycomb, snowflakes, and the Giant's Causeway."
       }
     ]
@@ -102,7 +139,12 @@
       {
         "type": "quiz",
         "question": "Which ancient Greek physician is called the 'Father of Medicine' for separating healing from religion?",
-        "options": ["Galen", "Hippocrates", "Asclepius", "Aristotle"],
+        "options": [
+          "Galen",
+          "Hippocrates",
+          "Asclepius",
+          "Aristotle"
+        ],
         "answer": 1,
         "fact": "Hippocrates (460–370 BCE) argued diseases had natural causes — not divine punishment. He observed patients carefully and documented symptoms, founding the clinical method still used today."
       },
@@ -115,14 +157,24 @@
       {
         "type": "quiz",
         "question": "Ancient Egyptians believed which organ was the seat of intelligence — and left it inside mummies while discarding the brain?",
-        "options": ["Brain", "Heart", "Liver", "Lungs"],
+        "options": [
+          "Brain",
+          "Heart",
+          "Liver",
+          "Lungs"
+        ],
         "answer": 1,
         "fact": "Egyptians so valued the heart they weighed it against a feather in the afterlife to judge a soul's virtue. The brain was extracted through the nose and thrown away — one of history's great medical misunderstandings."
       },
       {
         "type": "sort",
         "question": "Arrange these medical milestones in historical order (earliest first):",
-        "items": ["Hippocratic Oath written", "Germ theory proven", "Surgical anesthesia invented", "Penicillin discovered"],
+        "items": [
+          "Hippocratic Oath written",
+          "Germ theory proven",
+          "Surgical anesthesia invented",
+          "Penicillin discovered"
+        ],
         "fact": "From Hippocrates to penicillin spans 2,300 years. Each breakthrough built on the last — but the pace accelerated: anesthesia (1846) and penicillin (1928) came within a single lifetime."
       }
     ]
@@ -134,7 +186,12 @@
       {
         "type": "quiz",
         "question": "Which of these rivers was NOT associated with one of the four major cradles of ancient civilization?",
-        "options": ["The Nile", "The Amazon", "The Tigris", "The Indus"],
+        "options": [
+          "The Nile",
+          "The Amazon",
+          "The Tigris",
+          "The Indus"
+        ],
         "answer": 1,
         "fact": "The Amazon was home to sophisticated cultures, but the four classic cradles arose along the Nile, Tigris-Euphrates, Indus, and Yellow rivers — all warm-climate, flood-depositing rivers that enabled agriculture."
       },
@@ -147,7 +204,12 @@
       {
         "type": "sort",
         "question": "Arrange these ancient cities from oldest to most recently founded:",
-        "items": ["Jericho", "Uruk", "Memphis", "Mohenjo-daro"],
+        "items": [
+          "Jericho",
+          "Uruk",
+          "Memphis",
+          "Mohenjo-daro"
+        ],
         "fact": "Jericho (~9000 BCE) may be the world's oldest continuously inhabited city — predating agriculture itself. Uruk was likely the first true city; Memphis and Mohenjo-daro represent the mature urban age."
       }
     ]
@@ -159,7 +221,12 @@
       {
         "type": "quiz",
         "question": "How many books (volumes) does Euclid's 'Elements' contain?",
-        "options": ["5", "9", "13", "20"],
+        "options": [
+          "5",
+          "9",
+          "13",
+          "20"
+        ],
         "answer": 2,
         "fact": "The 13 books cover plane geometry, number theory, and three-dimensional solids. It was the second most printed book in the Western world after the Bible — and remained a school text until the 1900s."
       },
@@ -172,14 +239,24 @@
       {
         "type": "quiz",
         "question": "The Pythagorean theorem states that in a right triangle:",
-        "options": ["a + b = c", "a² + b² = c²", "a × b = c²", "a² − b² = c"],
+        "options": [
+          "a + b = c",
+          "a² + b² = c²",
+          "a × b = c²",
+          "a² − b² = c"
+        ],
         "answer": 1,
         "fact": "Euclid gave the most elegant proof in Book I, Proposition 47. The theorem was known to Babylonians 1,000 years earlier — but Euclid proved WHY it's always true, not just that it works."
       },
       {
         "type": "sort",
         "question": "Arrange these mathematical concepts from most fundamental to most advanced:",
-        "items": ["Counting numbers", "Basic arithmetic", "Algebra", "Geometric proof"],
+        "items": [
+          "Counting numbers",
+          "Basic arithmetic",
+          "Algebra",
+          "Geometric proof"
+        ],
         "fact": "Euclid assumed readers knew arithmetic but built geometry from scratch using pure logic — no measuring allowed. This distinction between 'calculating' and 'proving' created mathematics as a discipline."
       }
     ]
@@ -191,7 +268,12 @@
       {
         "type": "quiz",
         "question": "Which Latin phrase — meaning 'The Senate and People of Rome' — appeared on Roman standards, coins, and buildings?",
-        "options": ["Vox populi", "Senatus Populusque Romanus", "E pluribus unum", "Carpe diem"],
+        "options": [
+          "Vox populi",
+          "Senatus Populusque Romanus",
+          "E pluribus unum",
+          "Carpe diem"
+        ],
         "answer": 1,
         "fact": "SPQR symbolized the shared governance of Rome — in theory, at least. The Senate held power for centuries before ambitious generals like Caesar shattered the system. The abbreviation still appears on Rome's manhole covers today."
       },
@@ -204,14 +286,24 @@
       {
         "type": "quiz",
         "question": "The Twelve Tables (451–450 BCE) were significant because they:",
-        "options": ["Listed Rome's military victories", "Created the first written Roman law accessible to all citizens", "Named Rome's twelve founding gods", "Described Rome's trade routes"],
+        "options": [
+          "Listed Rome's military victories",
+          "Created the first written Roman law accessible to all citizens",
+          "Named Rome's twelve founding gods",
+          "Described Rome's trade routes"
+        ],
         "answer": 1,
         "fact": "Before the Twelve Tables, law was unwritten and controlled by patricians (aristocrats) who could apply it however they liked. Written law meant plebeians (common people) could know their rights — a radical democratic step."
       },
       {
         "type": "sort",
         "question": "Arrange these Roman political events in chronological order (earliest first):",
-        "items": ["Founding of Rome", "Twelve Tables law created", "Julius Caesar's dictatorship", "Fall of the Western Roman Empire"],
+        "items": [
+          "Founding of Rome",
+          "Twelve Tables law created",
+          "Julius Caesar's dictatorship",
+          "Fall of the Western Roman Empire"
+        ],
         "fact": "Rome lasted over 1,200 years from founding to fall — longer than the time between Columbus and today. Its legal and political concepts (republic, senate, veto, constitution) shape democracies worldwide."
       }
     ]
@@ -223,7 +315,12 @@
       {
         "type": "quiz",
         "question": "Which is the correct teacher-student chain of Athens' three greatest philosophers?",
-        "options": ["Aristotle → Plato → Socrates", "Socrates → Plato → Aristotle", "Plato → Socrates → Aristotle", "Aristotle → Socrates → Plato"],
+        "options": [
+          "Aristotle → Plato → Socrates",
+          "Socrates → Plato → Aristotle",
+          "Plato → Socrates → Aristotle",
+          "Aristotle → Socrates → Plato"
+        ],
         "answer": 1,
         "fact": "Socrates never wrote a word — we know him only through Plato's dialogues. Plato founded the Academy; Aristotle studied there 20 years before founding his own school, the Lyceum. Between them, they defined Western philosophy."
       },
@@ -236,7 +333,12 @@
       {
         "type": "sort",
         "question": "Arrange these Athenian philosophers by birth year (earliest first):",
-        "items": ["Socrates", "Plato", "Aristotle", "Epicurus"],
+        "items": [
+          "Socrates",
+          "Plato",
+          "Aristotle",
+          "Epicurus"
+        ],
         "fact": "Socrates (470 BCE) → Plato (428) → Aristotle (384) → Epicurus (341). Each responded to the last — Epicurus rejected Plato's abstract ideals for a philosophy focused on simple pleasures and freedom from fear."
       }
     ]
@@ -248,7 +350,12 @@
       {
         "type": "quiz",
         "question": "The ancient Olympic Games were held every four years as a religious festival honoring which god?",
-        "options": ["Apollo", "Poseidon", "Zeus", "Hermes"],
+        "options": [
+          "Apollo",
+          "Poseidon",
+          "Zeus",
+          "Hermes"
+        ],
         "answer": 2,
         "fact": "Olympia was Zeus's sanctuary. Athletes competed naked as living offerings to the god — their perfect bodies a form of worship. Even wars were paused for the duration of the Games."
       },
@@ -261,7 +368,12 @@
       {
         "type": "sort",
         "question": "Arrange these ancient Olympic events from least to most physically dangerous:",
-        "items": ["Long jump", "Discus throw", "Boxing", "Pankration"],
+        "items": [
+          "Long jump",
+          "Discus throw",
+          "Boxing",
+          "Pankration"
+        ],
         "fact": "Pankration — a brutal combination of wrestling and boxing with almost no rules — was the most extreme. Competitors could choke, joint-lock, and strike freely. Deaths were uncommon but not unheard of. Winners became legends."
       }
     ]
@@ -273,7 +385,12 @@
       {
         "type": "quiz",
         "question": "The Silk Road connected China's ancient capital to which region at its western terminus?",
-        "options": ["West Africa", "Scandinavia", "The Mediterranean world", "Sub-Saharan Africa"],
+        "options": [
+          "West Africa",
+          "Scandinavia",
+          "The Mediterranean world",
+          "Sub-Saharan Africa"
+        ],
         "answer": 2,
         "fact": "Routes stretched ~7,000 miles from Chang'an (modern Xi'an) to Rome and Mediterranean ports — carrying silk, spices, paper, glassware, and ideas like Buddhism, Islam, and the Black Death."
       },
@@ -286,7 +403,12 @@
       {
         "type": "sort",
         "question": "Arrange these Silk Road goods by their region of origin (east to west):",
-        "items": ["Chinese silk and porcelain", "Indian cotton and spices", "Persian glass and carpets", "Roman gold and silver"],
+        "items": [
+          "Chinese silk and porcelain",
+          "Indian cotton and spices",
+          "Persian glass and carpets",
+          "Roman gold and silver"
+        ],
         "fact": "Trade was rarely direct — goods passed through dozens of middlemen, each taking profit, making luxury items extraordinarily expensive at their destination. Roman emperors complained bitterly about gold flowing east for silk."
       }
     ]
@@ -298,7 +420,12 @@
       {
         "type": "quiz",
         "question": "Belisarius served which Byzantine Emperor, reconquering much of the old Western Roman Empire?",
-        "options": ["Constantine I", "Theodosius", "Justinian I", "Heraclius"],
+        "options": [
+          "Constantine I",
+          "Theodosius",
+          "Justinian I",
+          "Heraclius"
+        ],
         "answer": 2,
         "fact": "Under Justinian I, Belisarius reconquered North Africa from the Vandals, Italy from the Ostrogoths, and parts of Spain — temporarily restoring Roman control over the Mediterranean at just age 30."
       },
@@ -311,14 +438,24 @@
       {
         "type": "quiz",
         "question": "At the Battle of Ad Decimum (533 CE), Belisarius defeated which Germanic kingdom in North Africa?",
-        "options": ["Visigoths", "Vandals", "Huns", "Lombards"],
+        "options": [
+          "Visigoths",
+          "Vandals",
+          "Huns",
+          "Lombards"
+        ],
         "answer": 1,
         "fact": "Belisarius defeated the Vandal Kingdom — which had sacked Rome in 455 CE — in just three months with an army far smaller than his enemy's. He brought the Vandal king back to Constantinople in chains."
       },
       {
         "type": "sort",
         "question": "Arrange Belisarius's major campaigns in chronological order:",
-        "items": ["Persian frontier campaign", "North Africa reconquest", "First Italian campaign", "Second Italian campaign"],
+        "items": [
+          "Persian frontier campaign",
+          "North Africa reconquest",
+          "First Italian campaign",
+          "Second Italian campaign"
+        ],
         "fact": "Belisarius fought on four fronts over three decades — often outnumbered, frequently betrayed, always victorious. His secret: mastery of mobile cavalry tactics that made the traditional Roman heavy infantry obsolete."
       }
     ]
@@ -330,7 +467,12 @@
       {
         "type": "quiz",
         "question": "Lu Yu's 'Classic of Tea' (Chá Jīng) — the world's first book dedicated entirely to tea — was written during which Chinese dynasty?",
-        "options": ["Han", "Tang", "Song", "Ming"],
+        "options": [
+          "Han",
+          "Tang",
+          "Song",
+          "Ming"
+        ],
         "answer": 1,
         "fact": "Written around 760 CE, the Classic of Tea covered everything: the ideal soil for tea plants, the best water source (mountain spring, then river), correct water temperature, and the spiritual dimension of the tea experience."
       },
@@ -343,7 +485,12 @@
       {
         "type": "sort",
         "question": "Arrange these steps of a traditional Japanese tea ceremony in the correct order:",
-        "items": ["Clean and prepare the utensils", "Whisk matcha into a smooth foam", "Present the bowl with a bow", "Drink mindfully in three sips"],
+        "items": [
+          "Clean and prepare the utensils",
+          "Whisk matcha into a smooth foam",
+          "Present the bowl with a bow",
+          "Drink mindfully in three sips"
+        ],
         "fact": "The Japanese tea ceremony (chanoyu) arrived via Buddhist monks in the 9th century CE, directly inspired by Lu Yu's philosophy. Sen no Rikyū later codified its four principles: harmony, respect, purity, tranquility."
       }
     ]
@@ -355,7 +502,12 @@
       {
         "type": "quiz",
         "question": "The legend of Hua Mulan first appears in what literary form?",
-        "options": ["A historical novel", "A stone carving", "A ballad poem", "A court history"],
+        "options": [
+          "A historical novel",
+          "A stone carving",
+          "A ballad poem",
+          "A court history"
+        ],
         "answer": 2,
         "fact": "'The Ballad of Mulan' (木兰辞) was composed during the Northern Wei dynasty (386–534 CE). It's just 31 couplets long but one of China's most beloved poems — memorized by schoolchildren for 1,500 years."
       },
@@ -368,14 +520,20 @@
       {
         "type": "quiz",
         "question": "Why does Mulan take her elderly father's place in the army?",
-        "options": ["She wants glory and adventure", "Her father is too old and ill to serve", "She is ordered by the emperor", "Her brother refuses to go"],
+        "options": [
+          "She wants glory and adventure",
+          "Her father is too old and ill to serve",
+          "She is ordered by the emperor",
+          "Her brother refuses to go"
+        ],
         "answer": 1,
         "fact": "Filial piety — devotion to one's parents — is the core theme. Mulan's sacrifice reflects Confucian values central to Chinese society. She asks for nothing in return, refusing titles and wealth to simply return home to her family."
       },
       {
-        "type": "sort",
-        "question": "Arrange these Chinese dynasties in chronological order (earliest first):",
-        "items": ["Han", "Tang", "Song", "Ming"],
+        "type": "minigame",
+        "game": "maze",
+        "configId": "mulan",
+        "instruction": "Help Mulan navigate the forest trail without being discovered!",
         "fact": "The Mulan story spans dynasties — originating in the Wei period, set in a Northern Wei-like context, retold through Tang, Song, and Ming eras, each adding new details that reflected their own era's values."
       }
     ]
@@ -387,7 +545,12 @@
       {
         "type": "quiz",
         "question": "The chivalric code required knights to do all of the following EXCEPT:",
-        "options": ["Protect the weak", "Accumulate personal wealth", "Serve their lord faithfully", "Honor women"],
+        "options": [
+          "Protect the weak",
+          "Accumulate personal wealth",
+          "Serve their lord faithfully",
+          "Honor women"
+        ],
         "answer": 1,
         "fact": "Chivalry emphasized service, sacrifice, and honor over personal gain — though in practice medieval knights often fell spectacularly short of this ideal, looting, pillaging, and feuding with enthusiasm."
       },
@@ -400,14 +563,20 @@
       {
         "type": "quiz",
         "question": "King Arthur's Round Table was designed so that:",
-        "options": ["The king always sat at the head", "No knight outranked another in seating", "Enemies could be kept apart", "Discussions could be held in secret"],
+        "options": [
+          "The king always sat at the head",
+          "No knight outranked another in seating",
+          "Enemies could be kept apart",
+          "Discussions could be held in secret"
+        ],
         "answer": 1,
         "fact": "With no head of the table, every seat was equal — a radical idea of egalitarian brotherhood among warriors. The Round Table became literature's most powerful symbol of meritocracy over birthright."
       },
       {
-        "type": "sort",
-        "question": "Arrange these stages of medieval knighthood from youngest to oldest:",
-        "items": ["Page (age 7)", "Squire (age 14)", "Newly dubbed knight (age 21)", "Veteran tournament champion"],
+        "type": "minigame",
+        "game": "maze",
+        "configId": "knight",
+        "instruction": "Guide the knight through the castle labyrinth to claim his honor!",
         "fact": "Training was brutal: pages learned courtesy and horse care; squires practiced combat daily; knights had to prove valor in battle or tournament. Most never achieved fame — only a few became legendary."
       }
     ]
@@ -419,7 +588,12 @@
       {
         "type": "quiz",
         "question": "Li Qingzhao, considered the greatest female poet in Chinese history, wrote during which dynasty?",
-        "options": ["Tang", "Song", "Ming", "Qing"],
+        "options": [
+          "Tang",
+          "Song",
+          "Ming",
+          "Qing"
+        ],
         "answer": 1,
         "fact": "Li Qingzhao (1084–c.1155) mastered the 'ci' (lyric song) form during the Song dynasty. Her early poems celebrate wine, chrysanthemums, and love; her later works — after war and loss — reach devastating emotional depths."
       },
@@ -432,7 +606,12 @@
       {
         "type": "sort",
         "question": "Arrange these Chinese poetic forms from oldest to most recently developed:",
-        "items": ["Shi (classical verse)", "Fu (rhapsodic prose-poem)", "Ci (lyric song)", "Qu (dramatic aria)"],
+        "items": [
+          "Shi (classical verse)",
+          "Fu (rhapsodic prose-poem)",
+          "Ci (lyric song)",
+          "Qu (dramatic aria)"
+        ],
         "fact": "Each form built on the last. Ci poetry — Li Qingzhao's mastery — was originally lyrics for popular songs: the pop music of its day. She elevated it to high art, writing of longing and loss with a precision no one has matched."
       }
     ]
@@ -444,7 +623,12 @@
       {
         "type": "quiz",
         "question": "Miyamoto Musashi's famous book on strategy and philosophy — still studied by martial artists and executives — is called:",
-        "options": ["The Art of War", "The Book of Five Rings", "The Way of the Samurai", "The Sword and the Spirit"],
+        "options": [
+          "The Art of War",
+          "The Book of Five Rings",
+          "The Way of the Samurai",
+          "The Sword and the Spirit"
+        ],
         "answer": 1,
         "fact": "'Go Rin No Sho' (The Book of Five Rings, c. 1645) describes strategy through the elements: earth, water, fire, wind, and void. Japanese corporations still study it; it was a business bestseller in 1980s America."
       },
@@ -457,14 +641,24 @@
       {
         "type": "quiz",
         "question": "Musashi invented a revolutionary two-sword fighting style called:",
-        "options": ["Kenjutsu", "Iaido", "Niten Ichi-ryū", "Bushido"],
+        "options": [
+          "Kenjutsu",
+          "Iaido",
+          "Niten Ichi-ryū",
+          "Bushido"
+        ],
         "answer": 2,
         "fact": "'Two Heavens as One' — using the long katana and short wakizashi simultaneously — was nearly impossible to master and almost impossible to defend against. Musashi developed it after noticing opponents didn't know which blade to watch."
       },
       {
         "type": "sort",
         "question": "Arrange these Japanese blades from shortest to longest:",
-        "items": ["Tanto (dagger)", "Wakizashi", "Katana", "Nodachi (great sword)"],
+        "items": [
+          "Tanto (dagger)",
+          "Wakizashi",
+          "Katana",
+          "Nodachi (great sword)"
+        ],
         "fact": "Samurai traditionally carried both katana and wakizashi — the 'daisho' ('big-small') pair that symbolized warrior status. The nodachi, nearly six feet long, was used to fight cavalry on foot — one of the most demanding weapons ever made."
       }
     ]
@@ -476,7 +670,12 @@
       {
         "type": "quiz",
         "question": "Leonardo da Vinci's 'Vitruvian Man' illustrates the proportional system described by which ancient Roman architect?",
-        "options": ["Euclid", "Pythagoras", "Vitruvius", "Archimedes"],
+        "options": [
+          "Euclid",
+          "Pythagoras",
+          "Vitruvius",
+          "Archimedes"
+        ],
         "answer": 2,
         "fact": "Vitruvius (1st century BCE) wrote that ideal temples should mirror ideal human proportions. Leonardo tested this mathematically — discovering the human body is not as perfectly proportional as Vitruvius claimed."
       },
@@ -489,14 +688,20 @@
       {
         "type": "quiz",
         "question": "The Italian Renaissance began in which city, under the patronage of the wealthy Medici banking family?",
-        "options": ["Rome", "Venice", "Florence", "Milan"],
+        "options": [
+          "Rome",
+          "Venice",
+          "Florence",
+          "Milan"
+        ],
         "answer": 2,
         "fact": "The Medici funded Botticelli, Michelangelo, Leonardo, and Raphael. Lorenzo de' Medici would invite gifted artists to live in his palace and join philosophical discussions — turning Florence into the world's greatest concentration of creative genius."
       },
       {
-        "type": "sort",
-        "question": "Arrange these Renaissance masterworks in chronological order of completion:",
-        "items": ["Botticelli's Birth of Venus", "Leonardo's Last Supper", "Michelangelo's Sistine Chapel ceiling", "Raphael's School of Athens"],
+        "type": "minigame",
+        "game": "sliding",
+        "configId": "renaissance",
+        "instruction": "Restore the Renaissance masterpiece — slide the tiles back into order!",
         "fact": "All four were created between 1484 and 1511 — just 27 years. This concentration of genius in one city at one moment is unprecedented in art history. Florence's population was smaller than a modern suburb."
       }
     ]
@@ -508,7 +713,12 @@
       {
         "type": "quiz",
         "question": "Johannes Gutenberg's movable-type printing press was invented around which year in Europe?",
-        "options": ["1240 CE", "1440 CE", "1540 CE", "1640 CE"],
+        "options": [
+          "1240 CE",
+          "1440 CE",
+          "1540 CE",
+          "1640 CE"
+        ],
         "answer": 1,
         "fact": "Gutenberg's press (c. 1440) was not the first printing technology — China had woodblock printing since 600 CE — but it was the first European press with movable metal type, making book production 200 times faster than hand-copying."
       },
@@ -521,7 +731,12 @@
       {
         "type": "sort",
         "question": "Arrange these consequences of the printing press from fastest to slowest to materialize after its invention:",
-        "items": ["Books became drastically cheaper", "Protestant Reformation spread rapidly", "Scientific Revolution accelerated", "Mass literacy achieved"],
+        "items": [
+          "Books became drastically cheaper",
+          "Protestant Reformation spread rapidly",
+          "Scientific Revolution accelerated",
+          "Mass literacy achieved"
+        ],
         "fact": "Within 50 years of Gutenberg, over 8 million books had been printed — more than all scribes had produced in the previous millennium. The press democratized knowledge and made censorship almost impossible."
       }
     ]
@@ -533,7 +748,12 @@
       {
         "type": "quiz",
         "question": "When Columbus reached the Americas in 1492, what did he believe he had found?",
-        "options": ["A new, unknown continent", "Africa's western coast", "The East Indies (Asia)", "Islands off the coast of Europe"],
+        "options": [
+          "A new, unknown continent",
+          "Africa's western coast",
+          "The East Indies (Asia)",
+          "Islands off the coast of Europe"
+        ],
         "answer": 2,
         "fact": "Columbus died convinced he'd reached Asia — calling the indigenous people 'Indians.' It was Italian explorer Amerigo Vespucci who argued these were entirely new continents, leading cartographers to name them 'America' after him."
       },
@@ -546,7 +766,12 @@
       {
         "type": "sort",
         "question": "Arrange these explorers by when they made their most famous voyages (earliest first):",
-        "items": ["Zheng He (Indian Ocean)", "Columbus (Caribbean)", "Magellan (circumnavigation)", "Captain Cook (Pacific)"],
+        "items": [
+          "Zheng He (Indian Ocean)",
+          "Columbus (Caribbean)",
+          "Magellan (circumnavigation)",
+          "Captain Cook (Pacific)"
+        ],
         "fact": "Chinese admiral Zheng He's fleet of 300 ships dwarfed Columbus's three — and he explored decades earlier. But China chose isolation; the door stayed open for Europe to colonize the world instead."
       }
     ]
@@ -558,7 +783,12 @@
       {
         "type": "quiz",
         "question": "Martin Luther's '95 Theses' (1517) primarily protested which Church practice?",
-        "options": ["The Crusades", "The sale of indulgences (paid pardons for sin)", "Church taxation", "Priestly celibacy"],
+        "options": [
+          "The Crusades",
+          "The sale of indulgences (paid pardons for sin)",
+          "Church taxation",
+          "Priestly celibacy"
+        ],
         "answer": 1,
         "fact": "Indulgences were sold promising to reduce time in purgatory — Pope Leo X used the revenue to build St. Peter's Basilica. Luther's fury at this corruption launched a movement that permanently shattered Christianity's unity."
       },
@@ -571,7 +801,12 @@
       {
         "type": "sort",
         "question": "Arrange these Protestant denominations in the order they were founded:",
-        "items": ["Lutheranism", "Anglicanism", "Calvinism", "Baptist movement"],
+        "items": [
+          "Lutheranism",
+          "Anglicanism",
+          "Calvinism",
+          "Baptist movement"
+        ],
         "fact": "The Reformation shattered 1,000 years of Christian unity and sparked over a century of religious wars — but also encouraged individual conscience, vernacular literacy, and eventually the radical concept of religious freedom."
       }
     ]
@@ -583,7 +818,12 @@
       {
         "type": "quiz",
         "question": "What term did Gandhi use for his philosophy of nonviolent resistance — meaning 'truth-force' in Sanskrit?",
-        "options": ["Dharma", "Ahimsa", "Satyagraha", "Karma"],
+        "options": [
+          "Dharma",
+          "Ahimsa",
+          "Satyagraha",
+          "Karma"
+        ],
         "answer": 2,
         "fact": "Satyagraha combined 'satya' (truth) and 'agraha' (firmness). Gandhi first developed it in South Africa fighting racial discrimination. He brought it to India in 1915 — and it eventually brought down the British Empire."
       },
@@ -596,14 +836,24 @@
       {
         "type": "quiz",
         "question": "Which of these leaders did NOT explicitly credit Gandhi's philosophy as foundational to their movement?",
-        "options": ["Martin Luther King Jr.", "Nelson Mandela", "Mao Zedong", "Cesar Chavez"],
+        "options": [
+          "Martin Luther King Jr.",
+          "Nelson Mandela",
+          "Mao Zedong",
+          "Cesar Chavez"
+        ],
         "answer": 2,
         "fact": "Mao used armed revolution, not nonviolence — he explicitly rejected Gandhi's approach. King, Mandela, and Chavez all studied Gandhi's methods deeply, translating them into the American civil rights, anti-apartheid, and farmworkers' rights movements."
       },
       {
         "type": "sort",
         "question": "Arrange these events in Gandhi's life in chronological order:",
-        "items": ["Studies law in London", "Develops Satyagraha in South Africa", "Leads the Salt March in India", "India gains independence"],
+        "items": [
+          "Studies law in London",
+          "Develops Satyagraha in South Africa",
+          "Leads the Salt March in India",
+          "India gains independence"
+        ],
         "fact": "Gandhi spent 21 years in South Africa before returning to India — a common biographical fact that surprises many. His South African experiences, being thrown off trains for being Indian, forged the philosophy that freed a nation."
       }
     ]
@@ -615,7 +865,12 @@
       {
         "type": "quiz",
         "question": "At what remarkably young age did Clara Wieck (later Schumann) give her first major public piano concert?",
-        "options": ["5", "9", "15", "20"],
+        "options": [
+          "5",
+          "9",
+          "15",
+          "20"
+        ],
         "answer": 1,
         "fact": "Clara gave her first public concert at 9 and was performing in Leipzig's famed Gewandhaus at 11 — already considered one of Europe's finest pianists. Her father Friedrich was both her teacher and her exploiter, controlling her career completely."
       },
@@ -628,7 +883,12 @@
       {
         "type": "sort",
         "question": "Arrange these Romantic-era composers by birth year (earliest first):",
-        "items": ["Beethoven", "Chopin", "Clara Schumann", "Brahms"],
+        "items": [
+          "Beethoven",
+          "Chopin",
+          "Clara Schumann",
+          "Brahms"
+        ],
         "fact": "Beethoven (1770) → Chopin (1810) → Clara Schumann (1819) → Brahms (1833). Clara knew and performed all three — a living bridge across the Romantic era. Her correspondence with Brahms alone fills multiple volumes."
       }
     ]
@@ -640,7 +900,12 @@
       {
         "type": "quiz",
         "question": "Gregor Mendel discovered the laws of heredity by meticulously experimenting with which plant?",
-        "options": ["Fruit flies", "Mice", "Pea plants", "Wheat"],
+        "options": [
+          "Fruit flies",
+          "Mice",
+          "Pea plants",
+          "Wheat"
+        ],
         "answer": 2,
         "fact": "Mendel grew 29,000 pea plants over 8 years in his Brno monastery garden. Peas were perfect — they could self- or cross-fertilize, and traits like seed color and plant height showed clear, countable patterns."
       },
@@ -653,14 +918,20 @@
       {
         "type": "quiz",
         "question": "A trait that is hidden when a dominant trait is present is called:",
-        "options": ["Hybrid", "Recessive", "Mutant", "Phenotype"],
+        "options": [
+          "Hybrid",
+          "Recessive",
+          "Mutant",
+          "Phenotype"
+        ],
         "answer": 1,
         "fact": "Mendel showed that 'hidden' traits could reappear in later generations — explaining why two brown-eyed parents can have a blue-eyed child. He described dominant and recessive traits decades before anyone knew what a gene was."
       },
       {
-        "type": "sort",
-        "question": "Arrange these genetics concepts from most basic to most advanced understanding:",
-        "items": ["Observable traits (phenotype)", "Hereditary units (genes/alleles)", "DNA structure discovered", "Full genome sequenced"],
+        "type": "minigame",
+        "game": "mirror",
+        "configId": "mendel",
+        "instruction": "Redirect the light beam to separate Mendel's genetic traits!",
         "fact": "Mendel described genes and alleles without knowing about DNA — reasoning entirely from observable patterns. Watson and Crick explained the mechanism 87 years later; the Human Genome Project mapped it all in 2003."
       }
     ]
@@ -672,7 +943,12 @@
       {
         "type": "quiz",
         "question": "Brahms waited how long before daring to write his First Symphony, terrified of comparison to Beethoven?",
-        "options": ["5 years", "14 years", "21 years", "30 years"],
+        "options": [
+          "5 years",
+          "14 years",
+          "21 years",
+          "30 years"
+        ],
         "answer": 2,
         "fact": "Brahms worked on his First Symphony for 21 years. When it premiered in 1876, critic Hans von Bülow called it 'Beethoven's 10th.' Brahms was simultaneously honored and horrified by the comparison."
       },
@@ -685,7 +961,12 @@
       {
         "type": "sort",
         "question": "Arrange these Brahms compositions from earliest to latest in his career:",
-        "items": ["Piano Sonata No. 1", "Ein deutsches Requiem", "Symphony No. 1", "Symphony No. 4"],
+        "items": [
+          "Piano Sonata No. 1",
+          "Ein deutsches Requiem",
+          "Symphony No. 1",
+          "Symphony No. 4"
+        ],
         "fact": "Brahms moved from intimate piano works in his youth to vast orchestral works in maturity — always wrestling with the tension between Romantic expressiveness and Classical discipline. He burned dozens of completed works he felt were unworthy."
       }
     ]
@@ -697,7 +978,12 @@
       {
         "type": "quiz",
         "question": "The Palace of Versailles — which Louis XVI inherited along with France's crushing debt — was originally built by which French king?",
-        "options": ["Louis XIV", "Louis XV", "Henry IV", "Napoleon"],
+        "options": [
+          "Louis XIV",
+          "Louis XV",
+          "Henry IV",
+          "Napoleon"
+        ],
         "answer": 0,
         "fact": "Louis XIV (the Sun King) built Versailles as a monument to absolute monarchy, housing 20,000 courtiers and servants. The annual upkeep consumed 25% of France's budget — and the debt only grew through Louis XV and XVI's reigns."
       },
@@ -710,14 +996,24 @@
       {
         "type": "quiz",
         "question": "The storming of the Bastille on July 14, 1789 marked the symbolic beginning of:",
-        "options": ["The Napoleonic Wars", "The French Revolution", "The Reign of Terror", "The Enlightenment"],
+        "options": [
+          "The Napoleonic Wars",
+          "The French Revolution",
+          "The Reign of Terror",
+          "The Enlightenment"
+        ],
         "answer": 1,
         "fact": "The Bastille held only 7 prisoners when stormed — but it symbolized royal tyranny. July 14 is now France's national holiday. Within months, the Declaration of the Rights of Man was signed; within four years, Louis XVI was guillotined."
       },
       {
         "type": "sort",
         "question": "Arrange these French Revolution events in chronological order:",
-        "items": ["Storming of the Bastille", "Execution of Louis XVI", "The Reign of Terror", "Napoleon becomes Emperor"],
+        "items": [
+          "Storming of the Bastille",
+          "Execution of Louis XVI",
+          "The Reign of Terror",
+          "Napoleon becomes Emperor"
+        ],
         "fact": "The Revolution promised liberty, equality, fraternity — then delivered the Reign of Terror (17,000 executions in 10 months) before Napoleon's dictatorship 'saved' France. Yet its ideals inspired every democratic revolution that followed."
       }
     ]
@@ -729,7 +1025,12 @@
       {
         "type": "quiz",
         "question": "Alan Turing's 1936 paper describing the 'universal computing machine' made him the theoretical father of:",
-        "options": ["Electricity", "Computer science", "Quantum physics", "Cryptography"],
+        "options": [
+          "Electricity",
+          "Computer science",
+          "Quantum physics",
+          "Cryptography"
+        ],
         "answer": 1,
         "fact": "Turing's paper was purely theoretical — no computer existed yet. He described a machine that could run any computation by reading symbols on a tape, following rules. Every computer ever built is a physical implementation of this idea."
       },
@@ -742,14 +1043,20 @@
       {
         "type": "quiz",
         "question": "What was the name of the electromechanical machine Turing designed to systematically crack Enigma messages?",
-        "options": ["ENIAC", "Colossus", "The Bombe", "The Turing Engine"],
+        "options": [
+          "ENIAC",
+          "Colossus",
+          "The Bombe",
+          "The Turing Engine"
+        ],
         "answer": 2,
         "fact": "The Bombe processed 17,576 possible wheel positions per run. At peak operation, 200 Bombes cracked up to 84,000 Enigma messages per day. Churchill called Bletchley Park's codebreakers 'my geese that laid the golden eggs and never cackled.'"
       },
       {
-        "type": "sort",
-        "question": "Arrange these computing milestones in chronological order:",
-        "items": ["Turing's theoretical paper on computation", "ENIAC — first general-purpose electronic computer", "First personal computer sold commercially", "World Wide Web created"],
+        "type": "minigame",
+        "game": "circuit",
+        "configId": "enigma",
+        "instruction": "Complete the Bombe circuit to crack the Enigma code — close the right switches!",
         "fact": "Turing's 1936 paper → ENIAC (1945) → Apple II (1977) → WWW (1991). The smartphone in your pocket is 1 billion times more powerful than ENIAC — which was the size of a room and weighed 30 tons."
       }
     ]
@@ -761,7 +1068,12 @@
       {
         "type": "quiz",
         "question": "What oppressive garment did Coco Chanel's designs help liberate women from by replacing it with comfortable jersey fabrics?",
-        "options": ["Bonnets", "Corsets", "Petticoats", "Gloves"],
+        "options": [
+          "Bonnets",
+          "Corsets",
+          "Petticoats",
+          "Gloves"
+        ],
         "answer": 1,
         "fact": "The corset had deformed women's ribs and restricted breathing for centuries — the waist was pulled to 18 inches by stiff boning. Chanel borrowed jersey fabric from men's sportswear and created clothes for women who actually moved."
       },
@@ -774,7 +1086,12 @@
       {
         "type": "sort",
         "question": "Arrange these Chanel innovations in the approximate order she introduced them:",
-        "items": ["Jersey sportswear for women", "Chanel No. 5 perfume", "The little black dress", "The Chanel suit (tweed jacket and skirt)"],
+        "items": [
+          "Jersey sportswear for women",
+          "Chanel No. 5 perfume",
+          "The little black dress",
+          "The Chanel suit (tweed jacket and skirt)"
+        ],
         "fact": "Each innovation democratized fashion — Chanel took materials (jersey, tweed) previously considered too humble for haute couture and made them aspirational. She dressed women for the 20th century, not the 19th."
       }
     ]
@@ -786,7 +1103,12 @@
       {
         "type": "quiz",
         "question": "The Long March of 1934–35, during which Mao's Red Army fled Nationalist forces, covered approximately how many miles?",
-        "options": ["1,000", "4,000", "6,000", "10,000"],
+        "options": [
+          "1,000",
+          "4,000",
+          "6,000",
+          "10,000"
+        ],
         "answer": 2,
         "fact": "The Red Army marched roughly 6,000 miles in 370 days, crossing 18 mountain ranges and 24 rivers in brutal terrain. Of 80,000 who started, only about 8,000 survived. It became the founding myth of Communist China."
       },
@@ -799,14 +1121,20 @@
       {
         "type": "quiz",
         "question": "When Mao proclaimed victory from Beijing's Tiananmen Gate on October 1, 1949, what did he name the new state?",
-        "options": ["The Republic of China", "The People's Republic of China", "The Democratic Republic of China", "The Socialist State of China"],
+        "options": [
+          "The Republic of China",
+          "The People's Republic of China",
+          "The Democratic Republic of China",
+          "The Socialist State of China"
+        ],
         "answer": 1,
         "fact": "October 1, 1949 is still celebrated as China's National Day. The Republic of China (ROC) — Chiang Kai-shek's Nationalist government — retreated to Taiwan, where it still exists. Both claim to be the legitimate China."
       },
       {
-        "type": "sort",
-        "question": "Arrange these events in modern Chinese history in chronological order:",
-        "items": ["The Long March", "Communist victory and founding of PRC", "Cultural Revolution begins", "China opens to Western trade and investment"],
+        "type": "minigame",
+        "game": "maze",
+        "configId": "long-march",
+        "instruction": "Lead the march through the mountain pass — find the path to the other side!",
         "fact": "China's transformation — from one of the world's poorest nations in 1949 to the second-largest economy today — is history's fastest large-scale development. Mao's revolution consolidated power; Deng Xiaoping's reforms created prosperity."
       }
     ]
@@ -818,7 +1146,12 @@
       {
         "type": "quiz",
         "question": "An Jung-geun assassinated Itō Hirobumi at Harbin Station in 1909. What was Itō's significance in Japan?",
-        "options": ["He was the Emperor of Japan", "He was Japan's first Prime Minister", "He was the army commander in Korea", "He was the finance minister"],
+        "options": [
+          "He was the Emperor of Japan",
+          "He was Japan's first Prime Minister",
+          "He was the army commander in Korea",
+          "He was the finance minister"
+        ],
         "answer": 1,
         "fact": "Itō Hirobumi drafted Japan's Meiji Constitution and served as Prime Minister four times. An called the assassination an act of justice against Japan's colonial policy in Korea — he read out 15 charges against Itō before pulling the trigger."
       },
@@ -831,7 +1164,12 @@
       {
         "type": "sort",
         "question": "Arrange these events in Korean modern history in chronological order:",
-        "items": ["An Jung-geun's assassination of Itō", "Japan formally annexes Korea", "Korean War divides the peninsula", "South Korea transitions to full democracy"],
+        "items": [
+          "An Jung-geun's assassination of Itō",
+          "Japan formally annexes Korea",
+          "Korean War divides the peninsula",
+          "South Korea transitions to full democracy"
+        ],
         "fact": "Korea's path from Japanese colony (1910–1945) to divided peninsula to Asian economic powerhouse is one of history's most dramatic national transformations. South Korea's per-capita GDP rose from near-zero in 1950 to above France by 2020."
       }
     ]
@@ -843,7 +1181,12 @@
       {
         "type": "quiz",
         "question": "The American 'Gilded Age' — a term coined by Mark Twain meaning shiny outside, corrupt underneath — roughly covers which decades?",
-        "options": ["1820–1860", "1870–1900", "1900–1930", "1930–1960"],
+        "options": [
+          "1820–1860",
+          "1870–1900",
+          "1900–1930",
+          "1930–1960"
+        ],
         "answer": 1,
         "fact": "Twain's 1873 novel skewered an era of spectacular industrial wealth and equally spectacular political corruption. The top 1% controlled more wealth than the bottom 99% — a statistic that would be repeated in alarming ways in the early 21st century."
       },
@@ -856,7 +1199,12 @@
       {
         "type": "sort",
         "question": "Match these Gilded Age industrialists to their industry (arrange by industry: steel, oil, finance, railroads):",
-        "items": ["Carnegie (steel)", "Rockefeller (oil)", "Morgan (finance)", "Vanderbilt (railroads)"],
+        "items": [
+          "Carnegie (steel)",
+          "Rockefeller (oil)",
+          "Morgan (finance)",
+          "Vanderbilt (railroads)"
+        ],
         "fact": "These four men controlled more of the American economy than any individuals before or since. Their foundations — Carnegie Hall, Rockefeller University, the Morgan Library — still shape American culture, funded by fortunes built on crushed unions and destroyed competition."
       }
     ]
@@ -868,7 +1216,12 @@
       {
         "type": "quiz",
         "question": "Audrey Hepburn achieved the rare EGOT (Emmy, Grammy, Oscar, Tony). What does EGOT stand for?",
-        "options": ["Emmy, Globe, Oscar, Tony", "Emmy, Grammy, Oscar, Tony", "Excellence, Greatness, Oscar, Tony", "Emmy, Grammy, Oscar, Theatre"],
+        "options": [
+          "Emmy, Globe, Oscar, Tony",
+          "Emmy, Grammy, Oscar, Tony",
+          "Excellence, Greatness, Oscar, Tony",
+          "Emmy, Grammy, Oscar, Theatre"
+        ],
         "answer": 1,
         "fact": "Only about 20 people have achieved EGOT. Hepburn won an Oscar (Roman Holiday), Tony (Ondine), Emmy (An Evening with Fred Astaire), and Grammy (spoken word recording) — becoming one of history's most decorated entertainers."
       },
@@ -881,14 +1234,24 @@
       {
         "type": "quiz",
         "question": "Which fashion designer created Hepburn's iconic black dress in Breakfast at Tiffany's — and became her lifelong creative partner?",
-        "options": ["Coco Chanel", "Christian Dior", "Hubert de Givenchy", "Yves Saint Laurent"],
+        "options": [
+          "Coco Chanel",
+          "Christian Dior",
+          "Hubert de Givenchy",
+          "Yves Saint Laurent"
+        ],
         "answer": 2,
         "fact": "Givenchy and Hepburn were inseparable for 40 years. The iconic Breakfast at Tiffany's black dress sold at auction in 2006 for $923,187 — then the most expensive dress ever sold. Givenchy said designing for her was 'the most perfect collaboration of my life.'"
       },
       {
         "type": "sort",
         "question": "Arrange these Audrey Hepburn films in chronological order of release:",
-        "items": ["Roman Holiday", "Sabrina", "Breakfast at Tiffany's", "My Fair Lady"],
+        "items": [
+          "Roman Holiday",
+          "Sabrina",
+          "Breakfast at Tiffany's",
+          "My Fair Lady"
+        ],
         "fact": "Most of Hepburn's iconic roles came in a single decade (1953–1964). Her career was remarkably concentrated — yet she defined elegance for generations. She won her Oscar for her very first starring role, at 24, in Roman Holiday."
       }
     ]
@@ -900,7 +1263,12 @@
       {
         "type": "quiz",
         "question": "The World Wide Web — distinct from the Internet — was invented by which computer scientist at CERN in 1989?",
-        "options": ["Bill Gates", "Steve Jobs", "Tim Berners-Lee", "Vint Cerf"],
+        "options": [
+          "Bill Gates",
+          "Steve Jobs",
+          "Tim Berners-Lee",
+          "Vint Cerf"
+        ],
         "answer": 2,
         "fact": "Berners-Lee invented the Web and deliberately made it free — refusing to patent it. He later said this was the most important decision of his life. Vint Cerf and Bob Kahn invented the Internet protocols (TCP/IP) that the Web runs on."
       },
@@ -913,14 +1281,20 @@
       {
         "type": "quiz",
         "question": "Gordon Moore's 1965 observation — 'Moore's Law' — predicted that computing transistor density would double every:",
-        "options": ["6 months", "18 months", "2 years", "5 years"],
+        "options": [
+          "6 months",
+          "18 months",
+          "2 years",
+          "5 years"
+        ],
         "answer": 2,
         "fact": "Moore's Law held remarkably true for 50 years, driving exponential power growth. Today it's slowing as transistors approach atomic size — just 2 nanometers. The next frontier is quantum computing, which uses quantum mechanics rather than transistors."
       },
       {
-        "type": "sort",
-        "question": "Arrange these digital milestones in chronological order:",
-        "items": ["First transistor invented", "First personal computer sold commercially", "World Wide Web created", "First smartphone launched"],
+        "type": "minigame",
+        "game": "circuit",
+        "configId": "digital-logic",
+        "instruction": "Wire the logic gate — activate the correct combination of switches to power the digital circuit!",
         "fact": "Transistor (1947) → PC (1977) → WWW (1991) → iPhone (2007). Your smartphone has more computing power than all of NASA had in 1969. The entire Apollo mission ran on 4 kilobytes of memory — less than a single text message today."
       }
     ]
@@ -932,7 +1306,12 @@
       {
         "type": "quiz",
         "question": "Marshall McLuhan coined 'the medium is the message' and 'global village' — predicting the internet decades early. In which decade did he publish his major works?",
-        "options": ["1940s", "1960s", "1980s", "2000s"],
+        "options": [
+          "1940s",
+          "1960s",
+          "1980s",
+          "2000s"
+        ],
         "answer": 1,
         "fact": "'Understanding Media' (1964) predicted that electronic communication would shrink the world into a 'global village' where everyone experiences the same events simultaneously — written 27 years before the World Wide Web proved him right."
       },
@@ -945,7 +1324,12 @@
       {
         "type": "sort",
         "question": "Arrange these communication technologies from oldest to newest:",
-        "items": ["Printing press", "Electric telegraph", "Radio broadcast", "Social media platforms"],
+        "items": [
+          "Printing press",
+          "Electric telegraph",
+          "Radio broadcast",
+          "Social media platforms"
+        ],
         "fact": "Each technology compressed time and distance — and each created new misinformation crises. The printing press enabled religious wars; the telegraph spread false news at lightning speed in 1848; today's challenge is algorithmic amplification of falsehoods to billions simultaneously."
       }
     ]
@@ -957,7 +1341,12 @@
       {
         "type": "quiz",
         "question": "The greenhouse effect — where gases trap heat in Earth's atmosphere — was first scientifically described by:",
-        "options": ["Albert Einstein", "Eunice Newton Foote", "Carl Sagan", "James Hansen"],
+        "options": [
+          "Albert Einstein",
+          "Eunice Newton Foote",
+          "Carl Sagan",
+          "James Hansen"
+        ],
         "answer": 1,
         "fact": "Eunice Newton Foote described the greenhouse effect in 1856 — three years before John Tyndall, who is usually credited. Her work was likely ignored because she was a woman presenting at a scientific conference dominated entirely by men."
       },
@@ -970,7 +1359,12 @@
       {
         "type": "sort",
         "question": "Arrange these climate milestones in chronological order:",
-        "items": ["Foote describes greenhouse effect", "Keeling curve begins measuring atmospheric CO2", "First Earth Day held", "Paris Agreement signed"],
+        "items": [
+          "Foote describes greenhouse effect",
+          "Keeling curve begins measuring atmospheric CO2",
+          "First Earth Day held",
+          "Paris Agreement signed"
+        ],
         "fact": "From first scientific warning (1856) to Paris Agreement (2015) took 159 years. Humanity knew about climate change long before political will emerged. The Keeling curve, started in 1958, shows CO2 rising from 315 ppm to over 420 ppm today."
       }
     ]
@@ -982,7 +1376,12 @@
       {
         "type": "quiz",
         "question": "Neil Armstrong and Buzz Aldrin became the first humans to walk on the Moon during which mission?",
-        "options": ["Apollo 7", "Apollo 11", "Apollo 13", "Apollo 17"],
+        "options": [
+          "Apollo 7",
+          "Apollo 11",
+          "Apollo 13",
+          "Apollo 17"
+        ],
         "answer": 1,
         "fact": "Apollo 11 landed on July 20, 1969. Armstrong's 'one small step for man, one giant leap for mankind' was broadcast live to 530 million people — about one-sixth of Earth's entire population. Apollo 13 famously failed; Apollo 17 was the last Moon mission."
       },
@@ -995,7 +1394,12 @@
       {
         "type": "sort",
         "question": "Arrange these space exploration milestones in chronological order:",
-        "items": ["First satellite launched (Sputnik)", "First human in space (Gagarin)", "First Moon landing", "First reusable spacecraft (Space Shuttle)"],
+        "items": [
+          "First satellite launched (Sputnik)",
+          "First human in space (Gagarin)",
+          "First Moon landing",
+          "First reusable spacecraft (Space Shuttle)"
+        ],
         "fact": "Sputnik (1957) → Gagarin (1961) → Moon landing (1969) → Space Shuttle (1981). Today, private companies like SpaceX have compressed development cycles that once took decades into years — the New Frontier is open to more than just superpowers now."
       }
     ]
