@@ -103,6 +103,7 @@ fun EpicScreen(
     val completed = remember { mutableStateMapOf<String, Boolean>() }
     var toastMsg by remember { mutableStateOf<String?>(null) }
     val scope = rememberCoroutineScope()
+    var activeStory by remember { mutableStateOf<Pair<Int, Int>?>(null) }
 
     fun storyKey(eraIdx: Int, storyIdx: Int) = "$eraIdx-$storyIdx"
 
@@ -218,12 +219,27 @@ fun EpicScreen(
                     completedCount = ::completedCount,
                     isCompleted = { sIdx -> completed[storyKey(eraIdx, sIdx)] == true },
                     onBegin = { storyIdx ->
-                        completed[storyKey(eraIdx, storyIdx)] = true
-                        showToast("Story completed! Next story unlocked.")
+                        activeStory = Pair(eraIdx, storyIdx)
                     },
+                    onNextEra = if (eraIdx < ERAS.size - 1) ({
+                        scope.launch { pagerState.animateScrollToPage(eraIdx + 1) }
+                    }) else null,
                 )
             }
         }
+    }
+
+    // Story challenge sheet
+    activeStory?.let { (eraIdx, storyIdx) ->
+        StorySheet(
+            eraName = ERAS[eraIdx].name,
+            storyTitle = ERAS[eraIdx].stories[storyIdx].title,
+            onComplete = {
+                completed[storyKey(eraIdx, storyIdx)] = true
+                showToast("Story completed! Next story unlocked.")
+            },
+            onDismiss = { activeStory = null },
+        )
     }
 }
 
@@ -237,6 +253,7 @@ private fun EraPage(
     completedCount: (Int) -> Int,
     isCompleted: (Int) -> Boolean,
     onBegin: (Int) -> Unit,
+    onNextEra: (() -> Unit)? = null,
 ) {
     val done = completedCount(eraIdx)
     val eraComplete = done >= STORIES_TO_ADVANCE
@@ -292,6 +309,40 @@ private fun EraPage(
                 isDone = isDone,
                 onBegin = { onBegin(storyIdx) },
             )
+        }
+
+        if (eraComplete) {
+            item {
+                Spacer(modifier = Modifier.height(8.dp))
+                if (onNextEra != null) {
+                    Button(
+                        onClick = { onNextEra() },
+                        modifier = Modifier.fillMaxWidth(),
+                        colors = ButtonDefaults.buttonColors(containerColor = Amber),
+                        shape = RoundedCornerShape(12.dp),
+                    ) {
+                        Text(
+                            "Next Era: ${ERAS[eraIdx + 1].name} →",
+                            color = BgColor,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 14.sp,
+                        )
+                    }
+                } else {
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier.fillMaxWidth(),
+                    ) {
+                        Text("🏆", fontSize = 28.sp)
+                        Text(
+                            "All Eras Complete!",
+                            color = Amber,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 14.sp,
+                        )
+                    }
+                }
+            }
         }
     }
 }

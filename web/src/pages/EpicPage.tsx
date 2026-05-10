@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '@/hooks/useAuth'
+import StoryModal from '@/components/StoryModal'
 
 // ── Story data ────────────────────────────────────────────────────────────────
 
@@ -98,6 +99,7 @@ export default function EpicPage() {
   const [activeEra, setActiveEra] = useState(0)
   const [completed, setCompleted] = useState<Record<string, boolean>>({})
   const [toast, setToast] = useState<string | null>(null)
+  const [modal, setModal] = useState<{ eraIdx: number; storyIdx: number } | null>(null)
   const tabsRef = useRef<HTMLDivElement>(null)
 
   const key = (eraIdx: number, storyIdx: number) => `${eraIdx}-${storyIdx}`
@@ -121,6 +123,10 @@ export default function EpicPage() {
     ERAS[eraIdx].stories.filter((_, i) => completed[key(eraIdx, i)]).length
 
   const handleBegin = (eraIdx: number, storyIdx: number) => {
+    setModal({ eraIdx, storyIdx })
+  }
+
+  const handleStoryComplete = (eraIdx: number, storyIdx: number) => {
     setCompleted(prev => ({ ...prev, [key(eraIdx, storyIdx)]: true }))
     showToast('Story completed! Next story unlocked.')
   }
@@ -297,8 +303,38 @@ export default function EpicPage() {
               )
             })}
           </div>
+
+          {/* Next Era button */}
+          {eraComplete && activeEra < ERAS.length - 1 && (
+            <div className="flex justify-center pt-6">
+              <button
+                onClick={() => setActiveEra(activeEra + 1)}
+                className="px-8 py-3 rounded-xl font-bold text-sm tracking-wide text-slate-950
+                           bg-amber-500 hover:bg-amber-400 active:bg-amber-600
+                           shadow-lg shadow-amber-500/30 transition-all duration-200">
+                Next Era: {ERAS[activeEra + 1].name} →
+              </button>
+            </div>
+          )}
+
+          {eraComplete && activeEra === ERAS.length - 1 && (
+            <div className="flex flex-col items-center pt-6 gap-2">
+              <span className="text-2xl">🏆</span>
+              <p className="text-amber-400 font-bold text-sm tracking-wide">All Eras Complete!</p>
+            </div>
+          )}
         </div>
       </div>
+
+      {/* Story challenge modal */}
+      {modal && (
+        <StoryModal
+          eraName={ERAS[modal.eraIdx].name}
+          storyTitle={ERAS[modal.eraIdx].stories[modal.storyIdx].title}
+          onComplete={() => handleStoryComplete(modal.eraIdx, modal.storyIdx)}
+          onClose={() => setModal(null)}
+        />
+      )}
     </div>
   )
 }

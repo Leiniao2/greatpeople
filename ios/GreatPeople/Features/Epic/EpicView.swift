@@ -73,6 +73,7 @@ struct EpicView: View {
     @State private var currentEra = 0
     @State private var completedStories: Set<String> = []
     @State private var toastMsg: String? = nil
+    @State private var activeStory: (eraIdx: Int, storyIdx: Int)? = nil
 
     private func storyKey(_ eraIdx: Int, _ storyIdx: Int) -> String { "\(eraIdx)-\(storyIdx)" }
 
@@ -166,9 +167,9 @@ struct EpicView: View {
                                 isStoryUnlocked: isStoryUnlocked,
                                 completedCount: completedCount,
                                 onBegin: { storyIdx in
-                                    completedStories.insert(storyKey(eraIdx, storyIdx))
-                                    showToast("Story completed! Next story unlocked.")
-                                }
+                                    activeStory = (eraIdx, storyIdx)
+                                },
+                                onNextEra: eraIdx < ERAS.count - 1 ? { currentEra = eraIdx + 1 } : nil
                             )
                             .tag(eraIdx)
                         }
@@ -197,8 +198,27 @@ struct EpicView: View {
             .navigationTitle("Epic")
             .navigationBarTitleDisplayMode(.inline)
             .toolbarColorScheme(.dark, for: .navigationBar)
+            .sheet(item: Binding(
+                get: { activeStory.map { ActiveStory(eraIdx: $0.eraIdx, storyIdx: $0.storyIdx) } },
+                set: { activeStory = $0.map { ($0.eraIdx, $0.storyIdx) } }
+            )) { active in
+                StorySheetView(
+                    eraName: ERAS[active.eraIdx].name,
+                    storyTitle: ERAS[active.eraIdx].stories[active.storyIdx].title,
+                    onComplete: {
+                        completedStories.insert(storyKey(active.eraIdx, active.storyIdx))
+                        showToast("Story completed! Next story unlocked.")
+                    }
+                )
+            }
         }
     }
+}
+
+private struct ActiveStory: Identifiable {
+    let eraIdx: Int
+    let storyIdx: Int
+    var id: String { "\(eraIdx)-\(storyIdx)" }
 }
 
 // MARK: - EraPageView
@@ -211,6 +231,7 @@ private struct EraPageView: View {
     let isStoryUnlocked: (Int, Int) -> Bool
     let completedCount: (Int) -> Int
     let onBegin: (Int) -> Void
+    let onNextEra: (() -> Void)?
 
     private func storyKey(_ storyIdx: Int) -> String { "\(eraIdx)-\(storyIdx)" }
     private let storiesNeeded = STORIES_TO_ADVANCE
@@ -265,6 +286,36 @@ private struct EraPageView: View {
                             isDone: isDone,
                             onBegin: { onBegin(storyIdx) }
                         )
+                    }
+                }
+
+                // Next Era / Complete
+                let done = completedCount(eraIdx)
+                let complete = done >= storiesNeeded
+                if complete {
+                    if let onNextEra = onNextEra {
+                        Button {
+                            onNextEra()
+                        } label: {
+                            Text("Next Era: \(ERAS[eraIdx + 1].name) →")
+                                .font(.subheadline.weight(.bold))
+                                .frame(maxWidth: .infinity)
+                                .padding(.vertical, 14)
+                                .background(Color.gpAmber)
+                                .foregroundColor(Color.gpBackground)
+                                .clipShape(RoundedRectangle(cornerRadius: 12))
+                        }
+                        .padding(.top, 8)
+                    } else {
+                        VStack(spacing: 6) {
+                            Text("🏆")
+                                .font(.largeTitle)
+                            Text("All Eras Complete!")
+                                .font(.subheadline.weight(.bold))
+                                .foregroundColor(.gpAmber)
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding(.top, 8)
                     }
                 }
             }
