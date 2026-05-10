@@ -1,5 +1,6 @@
 package com.greatpeople.card.ui.screens
 
+import android.content.Context
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -16,17 +17,20 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.launch
+import org.json.JSONArray
 
 // ── Data ─────────────────────────────────────────────────────────────────────
 
 private data class Story(
     val title: String,
     val figure: String?,
+    val tagline: String,
     val quizzes: Int,
 )
 
@@ -35,57 +39,25 @@ private data class EraData(
     val stories: List<Story>,
 )
 
-private val ERAS = listOf(
-    EraData("Ancient", listOf(
-        Story("Pyramid Builders",      "Imhotep",   4),
-        Story("The First Empire",      "Sargon I",  4),
-        Story("Geometry of the World", "Euclid",    4),
-        Story("Sacred Medicine",       null,         4),
-        Story("River Civilizations",   null,         3),
-    )),
-    EraData("Classical", listOf(
-        Story("The Elements",          "Euclid", 4),
-        Story("Senate and Forum",      null,      4),
-        Story("Philosophy of Athens",  null,      3),
-        Story("Olympic Games",         null,      3),
-        Story("Eastern Trade",         null,      3),
-    )),
-    EraData("Medieval", listOf(
-        Story("The Last General",       "Belisarius",  4),
-        Story("Tea Ceremony",           "Lu Yu",        3),
-        Story("The Disguised Warrior",  "Hua Mulan",   4),
-        Story("The Knight's Code",      "Lancelot",    4),
-        Story("Words of Sorrow",        "Li Qingzhao", 3),
-    )),
-    EraData("Renaissance", listOf(
-        Story("Way of the Sword",   "Miyamoto Musashi", 4),
-        Story("Art and Science",    null,                4),
-        Story("The Printing Press", null,                3),
-        Story("New Worlds",         null,                3),
-        Story("Reformation",        null,                3),
-    )),
-    EraData("Steam", listOf(
-        Story("Soul Force",          "Gandhi",          4),
-        Story("Keys and Concertos",  "Clara Schumann",  3),
-        Story("Garden of Genetics",  "Gregor Mendel",   4),
-        Story("Symphony of Shadows", "Johannes Brahms", 3),
-        Story("The Gilded Court",    "Louis XVI",       4),
-    )),
-    EraData("Electricity", listOf(
-        Story("Breaking Enigma",    "Alan Turing",    4),
-        Story("Fashion Revolution", "Coco Chanel",   3),
-        Story("The Long March",     "Mao Zedong",    4),
-        Story("A Martyr's Bullet",  "An Jung-geun",  3),
-        Story("The Gilded Age",     "Andrew Mellon", 3),
-    )),
-    EraData("Information", listOf(
-        Story("Breakfast at Tiffany's", "Audrey Hepburn", 4),
-        Story("The Digital Revolution", null,              4),
-        Story("The Global Village",     null,              3),
-        Story("Climate Reckoning",      null,              3),
-        Story("The New Frontier",       null,              3),
-    )),
-)
+private val ERA_ORDER = listOf("Ancient", "Classical", "Medieval", "Renaissance", "Steam", "Electricity", "Information")
+
+private fun loadEras(context: Context): List<EraData> {
+    val json = context.assets.open("story_configs.json").bufferedReader().readText()
+    val arr = JSONArray(json)
+    val byEra = mutableMapOf<String, MutableList<Story>>()
+    for (i in 0 until arr.length()) {
+        val obj = arr.getJSONObject(i)
+        val era = obj.getString("era")
+        val story = Story(
+            title   = obj.getString("title"),
+            figure  = if (obj.isNull("figure")) null else obj.getString("figure"),
+            tagline = obj.getString("tagline"),
+            quizzes = obj.getInt("quizzes"),
+        )
+        byEra.getOrPut(era) { mutableListOf() }.add(story)
+    }
+    return ERA_ORDER.mapNotNull { era -> byEra[era]?.let { EraData(era, it) } }
+}
 
 private const val STORIES_TO_ADVANCE = 4
 private val Amber = Color(0xFFF59E0B)
@@ -100,6 +72,8 @@ private val Slate700 = Color(0xFF334155)
 fun EpicScreen(
     onBack: () -> Unit = {},
 ) {
+    val context = LocalContext.current
+    val ERAS = remember { loadEras(context) }
     val pagerState = rememberPagerState(initialPage = 0, pageCount = { ERAS.size })
     val completed = remember { mutableStateMapOf<String, Boolean>() }
     var toastMsg by remember { mutableStateOf<String?>(null) }

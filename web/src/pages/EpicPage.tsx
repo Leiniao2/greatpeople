@@ -4,6 +4,7 @@ import { useAuth } from '@/hooks/useAuth'
 import StoryViewer from '@/components/StoryViewer'
 import { useUnlockedCards } from '@/hooks/useUnlockedCards'
 import cardsData from '@/data/demo_cards.json'
+import storyConfigsData from '@/data/story_configs.json'
 
 function portraitKeyForFigure(name: string | null): string | null {
   if (!name) return null
@@ -17,6 +18,7 @@ function portraitKeyForFigure(name: string | null): string | null {
 interface Story {
   title: string
   figure: string | null
+  tagline: string
   quizzes: number
 }
 
@@ -25,93 +27,12 @@ interface Era {
   stories: Story[]
 }
 
-const ERAS: Era[] = [
-  {
-    name: 'Ancient',
-    stories: [
-      { title: 'Pyramid Builders',           figure: 'Imhotep',  quizzes: 5 },
-      { title: 'The First Empire',           figure: 'Sargon I', quizzes: 4 },
-      { title: 'The King and the Wild Man',  figure: 'Gilgamesh', quizzes: 4 },
-      { title: 'Geometry of the World',      figure: 'Euclid',   quizzes: 4 },
-      { title: 'Sacred Medicine',            figure: null,        quizzes: 4 },
-      { title: 'River Civilizations',        figure: null,        quizzes: 3 },
-    ],
-  },
-  {
-    name: 'Classical',
-    stories: [
-      { title: 'The Elements',              figure: 'Euclid',      quizzes: 4 },
-      { title: 'The Golden Age of Athens',  figure: 'Pericles',    quizzes: 4 },
-      { title: 'The Voice of Rome',         figure: 'Cicero',      quizzes: 4 },
-      { title: 'Before Socrates',           figure: 'Anaxagoras',  quizzes: 4 },
-      { title: 'Senate and Forum',          figure: null,           quizzes: 4 },
-      { title: 'Philosophy of Athens',      figure: null,           quizzes: 3 },
-      { title: 'Olympic Games',             figure: null,           quizzes: 3 },
-      { title: 'Eastern Trade',             figure: null,           quizzes: 3 },
-    ],
-  },
-  {
-    name: 'Medieval',
-    stories: [
-      { title: 'The Last General',         figure: 'Belisarius',   quizzes: 4 },
-      { title: 'The Language of Algebra',  figure: 'Al-Khwarizmi', quizzes: 4 },
-      { title: 'The Prophet of Light',     figure: 'Mani',         quizzes: 4 },
-      { title: 'Tea Ceremony',             figure: 'Lu Yu',         quizzes: 3 },
-      { title: 'The Disguised Warrior',    figure: 'Hua Mulan',    quizzes: 4 },
-      { title: "The Knight's Code",        figure: 'Lancelot',     quizzes: 4 },
-      { title: 'Words of Sorrow',          figure: 'Li Qingzhao',  quizzes: 3 },
-    ],
-  },
-  {
-    name: 'Renaissance',
-    stories: [
-      { title: 'Way of the Sword',    figure: 'Miyamoto Musashi', quizzes: 4 },
-      { title: 'Art and Science',     figure: null,                quizzes: 4 },
-      { title: 'The Colors of Venice',figure: 'Titian',            quizzes: 4 },
-      { title: 'The Printing Press',  figure: null,                quizzes: 3 },
-      { title: 'Around the World',    figure: 'Magellan',          quizzes: 4 },
-      { title: 'New Worlds',          figure: null,                quizzes: 3 },
-      { title: 'The Mystic Doctor',   figure: 'Teresa of Ávila',   quizzes: 4 },
-      { title: 'Reformation',         figure: null,                quizzes: 3 },
-    ],
-  },
-  {
-    name: 'Steam',
-    stories: [
-      { title: 'Soul Force',               figure: 'Gandhi',          quizzes: 4 },
-      { title: 'Keys and Concertos',       figure: 'Clara Schumann',  quizzes: 3 },
-      { title: 'The Naming of Everything', figure: 'Carl Linnaeus',   quizzes: 4 },
-      { title: 'Garden of Genetics',       figure: 'Gregor Mendel',   quizzes: 4 },
-      { title: 'Symphony of Shadows',      figure: 'Johannes Brahms', quizzes: 3 },
-      { title: 'The Gilded Court',         figure: 'Louis XVI',       quizzes: 4 },
-    ],
-  },
-  {
-    name: 'Electricity',
-    stories: [
-      { title: 'Breaking Enigma',        figure: 'Alan Turing',      quizzes: 4 },
-      { title: 'Light Before Einstein',  figure: 'Hendrik Lorentz',  quizzes: 4 },
-      { title: 'Fashion Revolution',     figure: 'Coco Chanel',      quizzes: 3 },
-      { title: 'Wings Over the Atlantic',figure: 'Amelia Earhart',   quizzes: 4 },
-      { title: "Cinema's Architect",     figure: 'Sergei Eisenstein', quizzes: 4 },
-      { title: 'Top of the World',       figure: 'Edmund Hillary',   quizzes: 4 },
-      { title: 'The Long March',         figure: 'Mao Zedong',       quizzes: 4 },
-      { title: "A Martyr's Bullet",      figure: 'An Jung-geun',     quizzes: 3 },
-      { title: 'The Gilded Age',         figure: 'Andrew Mellon',    quizzes: 3 },
-    ],
-  },
-  {
-    name: 'Information',
-    stories: [
-      { title: "Breakfast at Tiffany's", figure: 'Audrey Hepburn',    quizzes: 4 },
-      { title: 'Moonwalk',               figure: 'Michael Jackson',   quizzes: 4 },
-      { title: 'The Digital Revolution', figure: null,                 quizzes: 4 },
-      { title: 'The Global Village',     figure: null,                 quizzes: 3 },
-      { title: 'Climate Reckoning',      figure: null,                 quizzes: 3 },
-      { title: 'The New Frontier',       figure: null,                 quizzes: 3 },
-    ],
-  },
-]
+const ERA_ORDER = ['Ancient', 'Classical', 'Medieval', 'Renaissance', 'Steam', 'Electricity', 'Information']
+
+const ERAS: Era[] = ERA_ORDER.map(eraName => ({
+  name: eraName,
+  stories: (storyConfigsData as Story[]).filter(s => (s as unknown as { era: string }).era === eraName),
+}))
 
 const STORIES_TO_ADVANCE = 4
 

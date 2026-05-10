@@ -2,9 +2,18 @@ import SwiftUI
 
 // MARK: - Data
 
+private struct StoryConfig: Decodable {
+    let era: String
+    let title: String
+    let figure: String?
+    let tagline: String
+    let quizzes: Int
+}
+
 private struct Story {
     let title: String
     let figure: String?
+    let tagline: String
     let quizzes: Int
 }
 
@@ -13,57 +22,22 @@ private struct EraData {
     let stories: [Story]
 }
 
-private let ERAS: [EraData] = [
-    EraData(name: "Ancient", stories: [
-        Story(title: "Pyramid Builders",      figure: "Imhotep",   quizzes: 4),
-        Story(title: "The First Empire",      figure: "Sargon I",  quizzes: 4),
-        Story(title: "Geometry of the World", figure: "Euclid",    quizzes: 4),
-        Story(title: "Sacred Medicine",       figure: nil,          quizzes: 4),
-        Story(title: "River Civilizations",   figure: nil,          quizzes: 3),
-    ]),
-    EraData(name: "Classical", stories: [
-        Story(title: "The Elements",          figure: "Euclid", quizzes: 4),
-        Story(title: "Senate and Forum",      figure: nil,       quizzes: 4),
-        Story(title: "Philosophy of Athens",  figure: nil,       quizzes: 3),
-        Story(title: "Olympic Games",         figure: nil,       quizzes: 3),
-        Story(title: "Eastern Trade",         figure: nil,       quizzes: 3),
-    ]),
-    EraData(name: "Medieval", stories: [
-        Story(title: "The Last General",       figure: "Belisarius",  quizzes: 4),
-        Story(title: "Tea Ceremony",           figure: "Lu Yu",        quizzes: 3),
-        Story(title: "The Disguised Warrior",  figure: "Hua Mulan",   quizzes: 4),
-        Story(title: "The Knight's Code",      figure: "Lancelot",    quizzes: 4),
-        Story(title: "Words of Sorrow",        figure: "Li Qingzhao", quizzes: 3),
-    ]),
-    EraData(name: "Renaissance", stories: [
-        Story(title: "Way of the Sword",   figure: "Miyamoto Musashi", quizzes: 4),
-        Story(title: "Art and Science",    figure: nil,                 quizzes: 4),
-        Story(title: "The Printing Press", figure: nil,                 quizzes: 3),
-        Story(title: "New Worlds",         figure: nil,                 quizzes: 3),
-        Story(title: "Reformation",        figure: nil,                 quizzes: 3),
-    ]),
-    EraData(name: "Steam", stories: [
-        Story(title: "Soul Force",          figure: "Gandhi",          quizzes: 4),
-        Story(title: "Keys and Concertos",  figure: "Clara Schumann",  quizzes: 3),
-        Story(title: "Garden of Genetics",  figure: "Gregor Mendel",   quizzes: 4),
-        Story(title: "Symphony of Shadows", figure: "Johannes Brahms", quizzes: 3),
-        Story(title: "The Gilded Court",    figure: "Louis XVI",       quizzes: 4),
-    ]),
-    EraData(name: "Electricity", stories: [
-        Story(title: "Breaking Enigma",    figure: "Alan Turing",    quizzes: 4),
-        Story(title: "Fashion Revolution", figure: "Coco Chanel",   quizzes: 3),
-        Story(title: "The Long March",     figure: "Mao Zedong",    quizzes: 4),
-        Story(title: "A Martyr's Bullet",  figure: "An Jung-geun",  quizzes: 3),
-        Story(title: "The Gilded Age",     figure: "Andrew Mellon", quizzes: 3),
-    ]),
-    EraData(name: "Information", stories: [
-        Story(title: "Breakfast at Tiffany's", figure: "Audrey Hepburn", quizzes: 4),
-        Story(title: "The Digital Revolution", figure: nil,               quizzes: 4),
-        Story(title: "The Global Village",     figure: nil,               quizzes: 3),
-        Story(title: "Climate Reckoning",      figure: nil,               quizzes: 3),
-        Story(title: "The New Frontier",       figure: nil,               quizzes: 3),
-    ]),
-]
+private let ERA_ORDER = ["Ancient", "Classical", "Medieval", "Renaissance", "Steam", "Electricity", "Information"]
+
+private func loadEras() -> [EraData] {
+    guard let url = Bundle.main.url(forResource: "story_configs", withExtension: "json"),
+          let data = try? Data(contentsOf: url),
+          let configs = try? JSONDecoder().decode([StoryConfig].self, from: data)
+    else { return [] }
+    var byEra: [String: [Story]] = [:]
+    for c in configs {
+        let story = Story(title: c.title, figure: c.figure, tagline: c.tagline, quizzes: c.quizzes)
+        byEra[c.era, default: []].append(story)
+    }
+    return ERA_ORDER.compactMap { era in byEra[era].map { EraData(name: era, stories: $0) } }
+}
+
+private let ERAS: [EraData] = loadEras()
 
 private let STORIES_TO_ADVANCE = 4
 
