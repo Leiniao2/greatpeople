@@ -55,7 +55,7 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false)
 
   const switchTab = (t: Tab) => { setTab(t); setError('') }
-  const succeed = () => navigate('/collection')
+  const succeed = () => navigate('/home')
   const fail = (msg: string) => setError(msg)
 
   // ── Email / password ──────────────────────────────────────────────
@@ -208,7 +208,7 @@ export default function LoginPage() {
         {/* Guest explore */}
         <div className="mt-5 text-center">
           <button type="button"
-            onClick={() => { enterGuestMode(); navigate('/collection') }}
+            onClick={() => { enterGuestMode(); navigate('/home') }}
             className="text-slate-500 hover:text-slate-300 text-sm transition-colors">
             Explore as Guest →
           </button>

@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { useAuth } from '@/hooks/useAuth'
 import LoginPage from '@/pages/LoginPage'
+import HomePage from '@/pages/HomePage'
 import CollectionPage from '@/pages/CollectionPage'
 import CardDetailPage from '@/pages/CardDetailPage'
 import BattlePage from '@/pages/BattlePage'
@@ -19,6 +20,9 @@ export default function App() {
       {/* Public routes — no tab bar */}
       <Route path="/login" element={<LoginPage />} />
 
+      {/* Home — private, no tab bar */}
+      <Route path="/home" element={<PrivateRoute><HomePage /></PrivateRoute>} />
+
       {/* Full-screen detail — private, no tab bar */}
       <Route path="/card/:id" element={<PrivateRoute><CardDetailPage /></PrivateRoute>} />
 
@@ -29,12 +33,12 @@ export default function App() {
             <MainLayout />
           </PrivateRoute>
         }>
-        <Route index element={<Navigate to="/collection" replace />} />
+        <Route index element={<Navigate to="/home" replace />} />
         <Route path="/epic"       element={<EpicPage />} />
         <Route path="/collection" element={<CollectionPage />} />
         <Route path="/battle"     element={<BattlePage />} />
         <Route path="/profile"    element={<ProfilePage />} />
-        <Route path="*"           element={<Navigate to="/collection" replace />} />
+        <Route path="*"           element={<Navigate to="/home" replace />} />
       </Route>
     </Routes>
   )

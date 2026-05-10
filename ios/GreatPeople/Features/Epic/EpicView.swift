@@ -1,81 +1,344 @@
 import SwiftUI
 
+// MARK: - Data
+
+private struct Story {
+    let title: String
+    let figure: String?
+    let quizzes: Int
+}
+
+private struct EraData {
+    let name: String
+    let stories: [Story]
+}
+
+private let ERAS: [EraData] = [
+    EraData(name: "Ancient", stories: [
+        Story(title: "Pyramid Builders",      figure: "Imhotep",   quizzes: 4),
+        Story(title: "The First Empire",      figure: "Sargon I",  quizzes: 4),
+        Story(title: "Geometry of the World", figure: "Euclid",    quizzes: 4),
+        Story(title: "Sacred Medicine",       figure: nil,          quizzes: 4),
+        Story(title: "River Civilizations",   figure: nil,          quizzes: 3),
+    ]),
+    EraData(name: "Classical", stories: [
+        Story(title: "The Elements",          figure: "Euclid", quizzes: 4),
+        Story(title: "Senate and Forum",      figure: nil,       quizzes: 4),
+        Story(title: "Philosophy of Athens",  figure: nil,       quizzes: 3),
+        Story(title: "Olympic Games",         figure: nil,       quizzes: 3),
+        Story(title: "Eastern Trade",         figure: nil,       quizzes: 3),
+    ]),
+    EraData(name: "Medieval", stories: [
+        Story(title: "The Last General",       figure: "Belisarius",  quizzes: 4),
+        Story(title: "Tea Ceremony",           figure: "Lu Yu",        quizzes: 3),
+        Story(title: "The Disguised Warrior",  figure: "Hua Mulan",   quizzes: 4),
+        Story(title: "The Knight's Code",      figure: "Lancelot",    quizzes: 4),
+        Story(title: "Words of Sorrow",        figure: "Li Qingzhao", quizzes: 3),
+    ]),
+    EraData(name: "Renaissance", stories: [
+        Story(title: "Way of the Sword",   figure: "Miyamoto Musashi", quizzes: 4),
+        Story(title: "Art and Science",    figure: nil,                 quizzes: 4),
+        Story(title: "The Printing Press", figure: nil,                 quizzes: 3),
+        Story(title: "New Worlds",         figure: nil,                 quizzes: 3),
+        Story(title: "Reformation",        figure: nil,                 quizzes: 3),
+    ]),
+    EraData(name: "Steam", stories: [
+        Story(title: "Soul Force",          figure: "Gandhi",          quizzes: 4),
+        Story(title: "Keys and Concertos",  figure: "Clara Schumann",  quizzes: 3),
+        Story(title: "Garden of Genetics",  figure: "Gregor Mendel",   quizzes: 4),
+        Story(title: "Symphony of Shadows", figure: "Johannes Brahms", quizzes: 3),
+        Story(title: "The Gilded Court",    figure: "Louis XVI",       quizzes: 4),
+    ]),
+    EraData(name: "Electricity", stories: [
+        Story(title: "Breaking Enigma",    figure: "Alan Turing",    quizzes: 4),
+        Story(title: "Fashion Revolution", figure: "Coco Chanel",   quizzes: 3),
+        Story(title: "The Long March",     figure: "Mao Zedong",    quizzes: 4),
+        Story(title: "A Martyr's Bullet",  figure: "An Jung-geun",  quizzes: 3),
+        Story(title: "The Gilded Age",     figure: "Andrew Mellon", quizzes: 3),
+    ]),
+    EraData(name: "Information", stories: [
+        Story(title: "Breakfast at Tiffany's", figure: "Audrey Hepburn", quizzes: 4),
+        Story(title: "The Digital Revolution", figure: nil,               quizzes: 4),
+        Story(title: "The Global Village",     figure: nil,               quizzes: 3),
+        Story(title: "Climate Reckoning",      figure: nil,               quizzes: 3),
+        Story(title: "The New Frontier",       figure: nil,               quizzes: 3),
+    ]),
+]
+
+private let STORIES_TO_ADVANCE = 4
+
+// MARK: - EpicView
+
 struct EpicView: View {
-    private let games = [
-        ("Speed Quiz", "bolt.fill"),
-        ("Memory Match", "square.grid.2x2.fill"),
-        ("Trivia Duel", "questionmark.bubble.fill"),
-    ]
+    @State private var currentEra = 0
+    @State private var completedStories: Set<String> = []
+    @State private var toastMsg: String? = nil
+
+    private func storyKey(_ eraIdx: Int, _ storyIdx: Int) -> String { "\(eraIdx)-\(storyIdx)" }
+
+    private func isEraSelectable(_ eraIdx: Int) -> Bool {
+        guard eraIdx > 0 else { return true }
+        let prevCount = (0..<ERAS[eraIdx - 1].stories.count)
+            .filter { completedStories.contains(storyKey(eraIdx - 1, $0)) }.count
+        return prevCount >= STORIES_TO_ADVANCE
+    }
+
+    private func isStoryUnlocked(_ eraIdx: Int, _ storyIdx: Int) -> Bool {
+        if eraIdx == 0 && storyIdx == 0 { return true }
+        guard isEraSelectable(eraIdx) else { return false }
+        if storyIdx == 0 { return true }
+        return completedStories.contains(storyKey(eraIdx, storyIdx - 1))
+    }
+
+    private func completedCount(_ eraIdx: Int) -> Int {
+        (0..<ERAS[eraIdx].stories.count)
+            .filter { completedStories.contains(storyKey(eraIdx, $0)) }.count
+    }
+
+    private func showToast(_ msg: String) {
+        toastMsg = msg
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) { toastMsg = nil }
+    }
 
     var body: some View {
         NavigationStack {
-            ZStack {
+            ZStack(alignment: .top) {
                 Color.gpBackground.ignoresSafeArea()
 
                 // Ambient glow
                 Circle().fill(Color.gpAmber.opacity(0.06)).frame(width: 500, height: 500)
                     .blur(radius: 120).offset(x: 80, y: -80)
 
-                VStack(spacing: 24) {
-                    // Icon
-                    Text("⚡")
-                        .font(.system(size: 56))
-                        .padding(20)
-                        .background(Color.gpAmber.opacity(0.12))
-                        .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.gpAmber.opacity(0.25), lineWidth: 1))
-                        .clipShape(RoundedRectangle(cornerRadius: 20))
-
-                    VStack(spacing: 8) {
-                        Text("MINI GAMES")
-                            .font(.system(.title2, design: .serif).weight(.bold))
-                            .tracking(4)
-                            .foregroundColor(.white)
-
-                        Text("Earn cards by completing challenges")
-                            .font(.subheadline)
-                            .foregroundColor(.gpSlate400)
-                            .multilineTextAlignment(.center)
+                VStack(spacing: 0) {
+                    // Era selector
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 8) {
+                            ForEach(0..<ERAS.count, id: \.self) { idx in
+                                let selectable = isEraSelectable(idx)
+                                let active = idx == currentEra
+                                Button {
+                                    if selectable {
+                                        currentEra = idx
+                                    } else {
+                                        showToast("Complete 4 stories in the current era first.")
+                                    }
+                                } label: {
+                                    Text(ERAS[idx].name)
+                                        .font(.caption.weight(.semibold))
+                                        .padding(.horizontal, 14)
+                                        .padding(.vertical, 6)
+                                        .background(
+                                            active
+                                                ? Color.gpAmber
+                                                : selectable
+                                                    ? Color.white.opacity(0.05)
+                                                    : Color.white.opacity(0.03)
+                                        )
+                                        .foregroundColor(
+                                            active
+                                                ? Color.gpBackground
+                                                : selectable
+                                                    ? Color.white.opacity(0.8)
+                                                    : Color.white.opacity(0.3)
+                                        )
+                                        .clipShape(Capsule())
+                                        .overlay(
+                                            Capsule().stroke(
+                                                active ? Color.clear : selectable ? Color.white.opacity(0.1) : Color.white.opacity(0.05),
+                                                lineWidth: 1
+                                            )
+                                        )
+                                }
+                            }
+                        }
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 12)
                     }
 
-                    // Game cards grid
-                    LazyVGrid(
-                        columns: [GridItem(.flexible()), GridItem(.flexible())],
-                        spacing: 12
-                    ) {
-                        ForEach(games, id: \.0) { game in
-                            GameCard(title: game.0)
+                    // Era pager via TabView with PageTabViewStyle
+                    TabView(selection: $currentEra) {
+                        ForEach(0..<ERAS.count, id: \.self) { eraIdx in
+                            EraPageView(
+                                eraIdx: eraIdx,
+                                era: ERAS[eraIdx],
+                                completedStories: completedStories,
+                                isEraSelectable: isEraSelectable,
+                                isStoryUnlocked: isStoryUnlocked,
+                                completedCount: completedCount,
+                                onBegin: { storyIdx in
+                                    completedStories.insert(storyKey(eraIdx, storyIdx))
+                                    showToast("Story completed! Next story unlocked.")
+                                }
+                            )
+                            .tag(eraIdx)
                         }
                     }
-                    .padding(.top, 8)
+                    .tabViewStyle(.page(indexDisplayMode: .never))
                 }
-                .padding(24)
+
+                // Toast overlay
+                if let msg = toastMsg {
+                    VStack {
+                        Text(msg)
+                            .font(.subheadline)
+                            .padding(.horizontal, 20)
+                            .padding(.vertical, 12)
+                            .background(Color.gpAmber.opacity(0.2))
+                            .foregroundColor(.gpAmber)
+                            .overlay(Capsule().stroke(Color.gpAmber.opacity(0.4), lineWidth: 1))
+                            .clipShape(Capsule())
+                            .padding(.top, 100)
+                        Spacer()
+                    }
+                    .transition(.move(edge: .top).combined(with: .opacity))
+                    .animation(.easeInOut(duration: 0.3), value: toastMsg)
+                }
             }
             .navigationTitle("Epic")
-            .navigationBarTitleDisplayMode(.large)
+            .navigationBarTitleDisplayMode(.inline)
             .toolbarColorScheme(.dark, for: .navigationBar)
         }
     }
 }
 
-private struct GameCard: View {
-    let title: String
+// MARK: - EraPageView
+
+private struct EraPageView: View {
+    let eraIdx: Int
+    let era: EraData
+    let completedStories: Set<String>
+    let isEraSelectable: (Int) -> Bool
+    let isStoryUnlocked: (Int, Int) -> Bool
+    let completedCount: (Int) -> Int
+    let onBegin: (Int) -> Void
+
+    private func storyKey(_ storyIdx: Int) -> String { "\(eraIdx)-\(storyIdx)" }
+    private let storiesNeeded = STORIES_TO_ADVANCE
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text(title)
-                .font(.subheadline.weight(.semibold))
-                .foregroundColor(.white)
+        ScrollView {
+            VStack(alignment: .leading, spacing: 20) {
 
-            Text("Coming Soon")
-                .font(.caption)
-                .foregroundColor(.gpSlate400)
+                // Era header + progress
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(era.name)
+                        .font(.system(.title, design: .serif).weight(.bold))
+                        .foregroundColor(.white)
+
+                    let done = completedCount(eraIdx)
+                    let complete = done >= storiesNeeded
+
+                    if complete {
+                        Text("Era Complete ✓")
+                            .font(.subheadline.weight(.semibold))
+                            .foregroundColor(.gpAmber)
+                    } else {
+                        Text("\(done) / \(storiesNeeded) stories to unlock next era")
+                            .font(.caption)
+                            .foregroundColor(.gpSlate400)
+
+                        GeometryReader { geo in
+                            ZStack(alignment: .leading) {
+                                RoundedRectangle(cornerRadius: 4)
+                                    .fill(Color.white.opacity(0.06))
+                                    .frame(height: 6)
+                                RoundedRectangle(cornerRadius: 4)
+                                    .fill(Color.gpAmber)
+                                    .frame(width: geo.size.width * CGFloat(done) / CGFloat(storiesNeeded), height: 6)
+                                    .animation(.easeInOut, value: done)
+                            }
+                        }
+                        .frame(height: 6)
+                    }
+                }
+
+                // Stories
+                VStack(spacing: 12) {
+                    ForEach(0..<era.stories.count, id: \.self) { storyIdx in
+                        let story = era.stories[storyIdx]
+                        let unlocked = isStoryUnlocked(eraIdx, storyIdx)
+                        let isDone = completedStories.contains(storyKey(storyIdx))
+
+                        StoryRow(
+                            story: story,
+                            unlocked: unlocked,
+                            isDone: isDone,
+                            onBegin: { onBegin(storyIdx) }
+                        )
+                    }
+                }
+            }
+            .padding(20)
+            .padding(.bottom, 40)
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(16)
-        .background(Color.white.opacity(0.03))
+    }
+}
+
+// MARK: - StoryRow
+
+private struct StoryRow: View {
+    let story: Story
+    let unlocked: Bool
+    let isDone: Bool
+    let onBegin: () -> Void
+
+    var body: some View {
+        HStack(spacing: 12) {
+            // Status icon
+            ZStack {
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(
+                        unlocked
+                            ? (isDone ? Color.gpAmber.opacity(0.20) : Color.gpAmber.opacity(0.10))
+                            : Color.white.opacity(0.04)
+                    )
+                    .frame(width: 36, height: 36)
+
+                Text(unlocked ? (isDone ? "✓" : "▶") : "🔒")
+                    .font(.system(size: unlocked && !isDone ? 12 : 14))
+                    .foregroundColor(unlocked ? .gpAmber : .gpSlate600)
+            }
+
+            // Text
+            VStack(alignment: .leading, spacing: 2) {
+                Text(story.title)
+                    .font(.subheadline.weight(.semibold))
+                    .foregroundColor(unlocked ? .white : .gpSlate600)
+                    .lineLimit(2)
+
+                if let figure = story.figure {
+                    Text(figure)
+                        .font(.caption.italic())
+                        .foregroundColor(unlocked ? .gpSlate400 : .gpSlate600.opacity(0.6))
+                }
+
+                Text("\(story.quizzes) \(story.quizzes == 1 ? "quiz" : "quizzes")")
+                    .font(.system(size: 10))
+                    .foregroundColor(unlocked ? .gpSlate600 : .gpSlate600.opacity(0.5))
+            }
+
+            Spacer()
+
+            // Begin button or Done label
+            if unlocked && !isDone {
+                Button("Begin →") { onBegin() }
+                    .font(.caption.weight(.bold))
+                    .padding(.horizontal, 14)
+                    .padding(.vertical, 7)
+                    .background(Color.gpAmber)
+                    .foregroundColor(Color.gpBackground)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+            } else if isDone {
+                Text("Done")
+                    .font(.caption.weight(.semibold))
+                    .foregroundColor(.gpAmber.opacity(0.6))
+            }
+        }
+        .padding(12)
+        .background(Color.white.opacity(unlocked ? 0.03 : 0.02))
         .overlay(
             RoundedRectangle(cornerRadius: 14)
-                .stroke(Color.gpAmber.opacity(0.2), lineWidth: 1)
+                .stroke(unlocked ? Color.gpAmber.opacity(0.25) : Color.white.opacity(0.06), lineWidth: 1)
         )
         .clipShape(RoundedRectangle(cornerRadius: 14))
     }

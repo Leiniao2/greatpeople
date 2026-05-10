@@ -116,18 +116,17 @@ struct CardCell: View {
                     .foregroundColor(.gpSlate400)
                     .lineLimit(1)
 
-                // Stats — 2×2 grid
-                let stats: [(String, Int)] = [("POL", card.politics), ("STR", card.strength), ("CUL", card.culture), ("INT", card.intelligence)]
-                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 3) {
-                    ForEach(stats, id: \.0) { label, val in
-                        VStack(spacing: 1) {
-                            Text("\(val)").font(.system(size: 12).weight(.bold)).foregroundColor(.gpAmber)
-                            Text(label).font(.system(size: 8)).foregroundColor(.gpSlate600)
+                if !card.identities.isEmpty {
+                    HStack(spacing: 4) {
+                        ForEach(card.identities.prefix(2), id: \.self) { identity in
+                            Text(identity)
+                                .font(.system(size: 8).weight(.medium))
+                                .padding(.horizontal, 6).padding(.vertical, 2)
+                                .background(Color.gpAmber.opacity(0.08))
+                                .foregroundColor(.gpAmber.opacity(0.7))
+                                .overlay(Capsule().stroke(Color.gpAmber.opacity(0.25), lineWidth: 0.5))
+                                .clipShape(Capsule())
                         }
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 4)
-                        .background(Color.white.opacity(0.04))
-                        .clipShape(RoundedRectangle(cornerRadius: 6))
                     }
                 }
             }

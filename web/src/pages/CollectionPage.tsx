@@ -132,21 +132,15 @@ function CardItem({ card, onClick }: { card: Card; onClick: () => void }) {
         <p className="text-white text-sm font-semibold leading-tight line-clamp-2">{card.figureName}</p>
         <p className="text-slate-500 text-[10px] uppercase tracking-wider">{card.era} · {card.gender}</p>
 
-        {/* Stats — 2×2 grid */}
-        <div className="grid grid-cols-2 gap-1 mt-1">
-          {[
-            { label: 'POL', val: card.politics },
-            { label: 'STR', val: card.strength },
-            { label: 'CUL', val: card.culture },
-            { label: 'INT', val: card.intelligence },
-          ].map(({ label, val }) => (
-            <div key={label} className="flex flex-col items-center rounded-lg py-1"
-              style={{ background: 'rgba(255,255,255,0.04)' }}>
-              <span className="text-amber-400 font-bold text-xs">{val}</span>
-              <span className="text-slate-600 text-[9px] tracking-wider">{label}</span>
-            </div>
-          ))}
-        </div>
+        {card.identities.length > 0 && (
+          <div className="flex flex-wrap gap-1 mt-1">
+            {card.identities.slice(0, 2).map(id => (
+              <span key={id} className="text-[9px] px-1.5 py-0.5 rounded-full border border-amber-500/30 text-amber-400/70">
+                {id}
+              </span>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   )

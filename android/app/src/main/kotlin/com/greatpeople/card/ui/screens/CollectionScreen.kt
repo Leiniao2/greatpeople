@@ -1,11 +1,13 @@
 package com.greatpeople.card.ui.screens
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -19,6 +21,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import com.greatpeople.card.data.loadDemoCards
@@ -142,30 +145,20 @@ private fun CardItem(card: Card, onClick: () -> Unit = {}) {
                     style = MaterialTheme.typography.labelSmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant)
 
-                // Stats — 2×2 grid (POL/STR top row, CUL/INT bottom row)
-                val statRows = listOf(
-                    listOf("POL" to card.politics, "STR" to card.strength),
-                    listOf("CUL" to card.culture, "INT" to card.intelligence),
-                )
-                Column(verticalArrangement = Arrangement.spacedBy(3.dp)) {
-                    statRows.forEach { row ->
-                        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(3.dp)) {
-                            row.forEach { (label, value) ->
-                                Column(
-                                    modifier = Modifier
-                                        .weight(1f)
-                                        .background(
-                                            color = Color.White.copy(alpha = 0.04f),
-                                            shape = MaterialTheme.shapes.small,
-                                        )
-                                        .padding(vertical = 4.dp),
-                                    horizontalAlignment = Alignment.CenterHorizontally,
-                                ) {
-                                    Text(value.toString(), style = MaterialTheme.typography.labelMedium,
-                                        color = tierColor)
-                                    Text(label, style = MaterialTheme.typography.labelSmall,
-                                        color = MaterialTheme.colorScheme.onSurfaceVariant)
-                                }
+                if (card.identities.isNotEmpty()) {
+                    Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                        card.identities.take(2).forEach { identity ->
+                            Surface(
+                                shape = CircleShape,
+                                color = Color(0xFFF59E0B).copy(alpha = 0.08f),
+                                border = BorderStroke(0.5.dp, Color(0xFFF59E0B).copy(alpha = 0.3f)),
+                            ) {
+                                Text(
+                                    identity,
+                                    modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp),
+                                    style = MaterialTheme.typography.labelSmall.copy(fontSize = 9.sp),
+                                    color = Color(0xFFF59E0B).copy(alpha = 0.7f),
+                                )
                             }
                         }
                     }
