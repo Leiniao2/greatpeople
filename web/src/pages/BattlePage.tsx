@@ -7,6 +7,7 @@ import type {
 } from '@/types'
 import demoCardsJson from '@/data/demo_cards.json'
 import locationsJson from '@/data/locations.json'
+import followersJson from '@/data/followers.json'
 
 // ─── Static Card Data ─────────────────────────────────────────────────────────
 
@@ -15,16 +16,7 @@ const ALL_GP_CARDS: Card[] = (demoCardsJson as Card[]).map(c => ({
   portraitUrl: `/portraits/portrait_${c.portraitKey}.jpeg`,
 }))
 
-const FOLLOWER_TEMPLATES: Omit<FollowerCard, 'id'>[] = [
-  { name: 'Scholar',    stat: 'intelligence', bonus: 6 },
-  { name: 'Soldier',    stat: 'strength',     bonus: 6 },
-  { name: 'Merchant',   stat: 'wealth',       bonus: 6 },
-  { name: 'Artist',     stat: 'culture',      bonus: 6 },
-  { name: 'Engineer',   stat: 'technique',    bonus: 6 },
-  { name: 'Priest',     stat: 'belief',       bonus: 6 },
-  { name: 'Politician', stat: 'politics',     bonus: 6 },
-  { name: 'Herald',     stat: 'reputation',   bonus: 6 },
-]
+const FOLLOWER_TEMPLATES: Omit<FollowerCard, 'id'>[] = followersJson as Omit<FollowerCard, 'id'>[]
 
 function makeFollowerDeck(): FollowerCard[] {
   const deck: FollowerCard[] = []
@@ -185,15 +177,6 @@ function computeLocationTotalStats(locationCards: OnboardCard[], playerId: strin
     }
   }
   return total
-}
-
-function getHighestStat(card: Card): { stat: StatKey; value: number } {
-  let best: StatKey = 'politics'
-  let bestVal = 0
-  for (const s of STATS) {
-    if (card[s] > bestVal) { bestVal = card[s]; best = s }
-  }
-  return { stat: best, value: bestVal }
 }
 
 // ─── Game Initialization ──────────────────────────────────────────────────────
@@ -880,22 +863,19 @@ interface CompactCardProps {
   card: OnboardCard
   isCurrentPlayer: boolean
   isSelected: boolean
-  activeStat?: StatKey
   onClick: () => void
+  onInfo?: (card: Card) => void
   gpMap: Record<string, Card>
   followerTemplates: Record<string, FollowerCard>
 }
 
-function CompactCard({ card, isCurrentPlayer, isSelected, activeStat, onClick, gpMap, followerTemplates }: CompactCardProps) {
+function CompactCard({ card, isCurrentPlayer, isSelected, onClick, onInfo, gpMap, followerTemplates }: CompactCardProps) {
   const gp = card.type === 'gp' ? gpMap[card.cardId] : null
   const follower = card.type === 'follower' ? followerTemplates[card.cardId] : null
 
   const isPrivate = !card.isPublic && !isCurrentPlayer
   const era = gp?.era ?? 'Electricity'
   const eraColor = ERA_COLORS[era] ?? ERA_COLORS.Electricity
-
-  const displayStat = activeStat ? activeStat : (gp ? getHighestStat(gp).stat : null)
-  const displayValue = gp && displayStat ? gp[displayStat] : null
 
   const borderCls = isSelected
     ? 'border-2 border-amber-400 shadow-lg shadow-amber-400/30'
@@ -906,35 +886,52 @@ function CompactCard({ card, isCurrentPlayer, isSelected, activeStat, onClick, g
   return (
     <button
       onClick={onClick}
-      className={`relative flex flex-col items-center justify-between rounded-lg p-1 w-14 h-20 transition-all duration-150
+      className={`relative flex flex-col rounded-lg overflow-hidden w-14 h-20 transition-all duration-150
         ${eraColor} ${borderCls} ${isSelected ? 'scale-105' : 'hover:scale-[1.03]'}
         ${isPrivate ? 'opacity-50' : 'opacity-100'}`}
     >
       {card.justDeployed && (
-        <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-amber-400 border border-black" title="Just deployed" />
+        <span className="absolute top-0.5 right-0.5 z-10 w-2 h-2 rounded-full bg-amber-400 border border-black" />
       )}
       {card.achievementTicks > 0 && (
-        <span className="absolute -top-1 -left-1 text-[8px] text-amber-300 font-bold">{card.achievementTicks}</span>
+        <span className="absolute top-0.5 left-0.5 z-10 text-[7px] text-amber-300 font-bold bg-black/60 rounded px-0.5">{card.achievementTicks}</span>
       )}
-      <div className="w-full flex-1 flex items-center justify-center">
-        {isPrivate ? (
-          <span className="text-slate-400 text-lg font-bold">?</span>
-        ) : (
-          <div className="text-center">
-            <div className="text-[9px] text-white/80 font-medium leading-tight truncate w-12">
-              {gp ? gp.figureName : follower?.name ?? 'Follower'}
-            </div>
-            {displayValue !== null && (
-              <div className="text-[10px] text-amber-300 font-bold mt-0.5">{displayValue}</div>
-            )}
-            {follower && (
-              <div className="text-[9px] text-indigo-300">+{follower.bonus} {STAT_LABELS[follower.stat].slice(0, 3)}</div>
+
+      {isPrivate ? (
+        <div className="flex-1 flex items-center justify-center">
+          <span className="text-slate-400 text-xl font-bold">?</span>
+        </div>
+      ) : gp ? (
+        <>
+          <div className="flex-1 w-full relative overflow-hidden">
+            <img
+              src={gp.portraitUrl}
+              alt={gp.figureName}
+              className="w-full h-full object-cover object-top"
+              onError={e => { (e.target as HTMLImageElement).style.display = 'none' }}
+            />
+            {onInfo && (
+              <div
+                role="button"
+                onClick={e => { e.stopPropagation(); onInfo(gp) }}
+                className="absolute top-0.5 right-0.5 w-4 h-4 rounded-full bg-black/70 flex items-center justify-center text-[8px] text-white/80 cursor-pointer z-10 hover:bg-black/90"
+              >i</div>
             )}
           </div>
-        )}
-      </div>
-      {!isPrivate && !card.isPublic && (
-        <span className="text-[8px] text-slate-500">private</span>
+          <div className="w-full bg-black/75 px-0.5 py-0.5 shrink-0">
+            <span className="text-[7px] text-white leading-none truncate block">{gp.figureName.split(' ').pop()}</span>
+          </div>
+        </>
+      ) : follower ? (
+        <div className="flex-1 flex flex-col items-center justify-center p-0.5 text-center">
+          <div className="text-[9px] text-white/80 font-medium leading-tight">{follower.name}</div>
+          <div className="text-[9px] text-indigo-300 mt-0.5">+3</div>
+          <div className="text-[8px] text-indigo-400">{STAT_LABELS[follower.stat].slice(0, 3)}</div>
+        </div>
+      ) : null}
+
+      {!isPrivate && !card.isPublic && gp && (
+        <span className="absolute bottom-4 left-0.5 text-[6px] text-slate-400 bg-black/50 rounded px-0.5">priv</span>
       )}
     </button>
   )
@@ -945,12 +942,13 @@ interface HandCardProps {
   type: 'gp' | 'event' | 'follower'
   isSelected: boolean
   onClick: () => void
+  onInfo?: (card: Card) => void
   gpMap: Record<string, Card>
   eventCard?: EventCard
   followerCard?: FollowerCard
 }
 
-function HandCard({ cardId, type, isSelected, onClick, gpMap, eventCard, followerCard }: HandCardProps) {
+function HandCard({ cardId, type, isSelected, onClick, onInfo, gpMap, eventCard, followerCard }: HandCardProps) {
   const gp = type === 'gp' ? gpMap[cardId] : null
   const era = gp?.era ?? 'Steam'
   const eraColor = ERA_COLORS[era] ?? ERA_COLORS.Steam
@@ -959,37 +957,98 @@ function HandCard({ cardId, type, isSelected, onClick, gpMap, eventCard, followe
   return (
     <button
       onClick={onClick}
-      className={`flex flex-col items-center justify-between rounded-xl p-1.5 w-16 h-24 transition-all duration-150 shrink-0
+      className={`relative flex flex-col rounded-xl overflow-hidden w-18 h-28 transition-all duration-150 shrink-0
         ${eraColor} ${borderCls} ${isSelected ? 'scale-105' : 'hover:scale-[1.03]'}`}
+      style={{ width: '4.5rem', height: '6.5rem' }}
     >
       {type === 'gp' && gp && (
         <>
-          <span className="text-[9px] text-white font-semibold leading-tight text-center truncate w-full">{gp.figureName}</span>
-          <div className="w-8 h-8 rounded-md bg-black/30 flex items-center justify-center">
-            <span className="text-lg select-none">
-              {gp.era === 'Ancient' ? '🏛' : gp.era === 'Medieval' ? '⚔' : gp.era === 'Renaissance' ? '🎨' : gp.era === 'Steam' ? '⚙' : gp.era === 'Electricity' ? '⚡' : '💻'}
-            </span>
+          <div className="flex-1 w-full relative overflow-hidden">
+            <img
+              src={gp.portraitUrl}
+              alt={gp.figureName}
+              className="w-full h-full object-cover object-top"
+              onError={e => { (e.target as HTMLImageElement).style.display = 'none' }}
+            />
+            {onInfo && (
+              <div
+                role="button"
+                onClick={e => { e.stopPropagation(); onInfo(gp) }}
+                className="absolute top-0.5 right-0.5 w-4 h-4 rounded-full bg-black/70 flex items-center justify-center text-[8px] text-white/80 cursor-pointer z-10 hover:bg-black/90"
+              >i</div>
+            )}
+            <div className="absolute inset-x-0 bottom-0 h-5 bg-gradient-to-t from-black/60 to-transparent" />
           </div>
-          <div className="text-[9px] text-amber-300 text-center">
-            {STAT_LABELS[getHighestStat(gp).stat].slice(0, 3)}: {getHighestStat(gp).value}
+          <div className="w-full bg-black/80 px-1 py-0.5 shrink-0">
+            <div className="text-[8px] text-white font-semibold leading-tight truncate">{gp.figureName}</div>
+            <div className="text-[8px] text-slate-500">{gp.era}</div>
           </div>
         </>
       )}
       {type === 'event' && eventCard && (
-        <>
+        <div className="flex flex-col items-center justify-between h-full p-1.5">
           <span className="text-[8px] text-purple-300 uppercase tracking-wide">Event</span>
           <span className="text-[9px] text-white font-medium leading-tight text-center">{eventCard.name}</span>
           <span className="text-[8px] text-purple-400 text-center">{eventCard.stat ? STAT_LABELS[eventCard.stat].slice(0, 3) : 'Hazard'}</span>
-        </>
+        </div>
       )}
       {type === 'follower' && followerCard && (
-        <>
+        <div className="flex flex-col items-center justify-between h-full p-1.5">
           <span className="text-[8px] text-indigo-300 uppercase tracking-wide">Follower</span>
           <span className="text-[9px] text-white font-medium text-center">{followerCard.name}</span>
-          <span className="text-[8px] text-indigo-300">+{followerCard.bonus} {STAT_LABELS[followerCard.stat].slice(0, 3)}</span>
-        </>
+          <span className="text-[8px] text-indigo-300">+3 {STAT_LABELS[followerCard.stat].slice(0, 3)}</span>
+        </div>
       )}
     </button>
+  )
+}
+
+// ─── Card Detail Modal ────────────────────────────────────────────────────────
+
+function CardDetailModal({ card, onClose }: { card: Card; onClose: () => void }) {
+  return (
+    <div
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-4"
+      onClick={onClose}
+    >
+      <div
+        className="relative bg-[#0e0e1a] border border-white/10 rounded-2xl overflow-hidden w-full max-w-xs shadow-2xl"
+        onClick={e => e.stopPropagation()}
+      >
+        {/* Portrait */}
+        <div className="relative w-full h-52 bg-slate-900">
+          <img
+            src={card.portraitUrl}
+            alt={card.figureName}
+            className="w-full h-full object-cover object-top"
+            onError={e => { (e.target as HTMLImageElement).style.display = 'none' }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0e0e1a] via-[#0e0e1a]/10 to-transparent" />
+          <button
+            onClick={onClose}
+            className="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/60 border border-white/10 flex items-center justify-center text-white/70 hover:text-white text-sm transition-colors"
+          >✕</button>
+        </div>
+
+        <div className="px-4 pb-4 -mt-2">
+          <h2 className="text-white text-lg font-bold leading-tight">{card.figureName}</h2>
+          <p className={`text-sm font-medium mb-3 ${ERA_TEXT[card.era] ?? 'text-slate-400'}`}>{card.era}</p>
+
+          <div className="grid grid-cols-2 gap-1.5">
+            {STATS.map(stat => {
+              const val = card[stat]
+              const highlight = val >= 80 ? 'text-amber-400' : val >= 60 ? 'text-slate-200' : 'text-slate-500'
+              return (
+                <div key={stat} className="flex items-center justify-between bg-white/[0.04] rounded-lg px-2.5 py-1.5">
+                  <span className="text-slate-400 text-[11px]">{STAT_LABELS[stat]}</span>
+                  <span className={`text-sm font-bold ${highlight}`}>{val}</span>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </div>
+    </div>
   )
 }
 
@@ -1175,8 +1234,18 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
   const [attackKill, setAttackKill] = useState(false)
   const [showRewardDialog, setShowRewardDialog] = useState(false)
   const [globalCompWinner] = useState<string | null>(null)
+  const [cardDetail, setCardDetail] = useState<Card | null>(null)
   const logRef = useRef<HTMLDivElement>(null)
   const computerTurnRef = useRef(false)
+
+  // Lock landscape orientation on mobile when game board is active
+  useEffect(() => {
+    const lock = async () => {
+      try { await (screen.orientation as { lock?: (o: string) => Promise<void> }).lock?.('landscape') } catch { /* not supported */ }
+    }
+    lock()
+    return () => { try { screen.orientation.unlock() } catch { /* ignore */ } }
+  }, [])
 
   const currentPlayer = gameState.players[gameState.currentPlayerIdx]
   const isMyTurn = !currentPlayer.isComputer
@@ -1336,9 +1405,6 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
     }
   }, [selection, isMyTurn])
 
-  const getActiveEventStat = (loc: LocationState): StatKey | undefined => {
-    return loc.activeEvent?.stat
-  }
 
   const getEventBadgeColor = (type: EventType) => {
     if (type === 'local_event') return 'bg-orange-500/80'
@@ -1411,14 +1477,13 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
       <div className="relative z-10 flex-shrink-0 overflow-x-auto py-2 px-3 border-b border-white/[0.06]">
         <div className="flex gap-2 w-max">
           {gameState.locations.map(loc => {
-            const activeStat = getActiveEventStat(loc)
             const isLocationTarget = selection.mode === 'move-target' || selection.mode === 'deploy-gp' || selection.mode === 'add-follower' || selection.mode === 'start-event'
 
             return (
               <div
                 key={loc.id}
                 onClick={() => handleLocationTap(loc.id)}
-                className={`relative rounded-xl border p-2 w-28 cursor-pointer transition-all duration-150
+                className={`relative rounded-xl border p-2 w-40 cursor-pointer transition-all duration-150
                   ${ERA_COLORS[loc.era] ?? 'bg-slate-900/60 border-slate-700/40'}
                   ${isLocationTarget ? 'border-amber-400/60 ring-1 ring-amber-400/30' : ''}`}
               >
@@ -1453,8 +1518,8 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
                             card={oc}
                             isCurrentPlayer={p.id === currentPlayer.id}
                             isSelected={selection.onboardInstanceId === oc.instanceId}
-                            activeStat={activeStat}
                             onClick={() => handleOnboardCardTap(oc, loc.id)}
+                            onInfo={setCardDetail}
                             gpMap={gpMap}
                             followerTemplates={followerMap}
                           />
@@ -1506,6 +1571,7 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
                 type="gp"
                 isSelected={selection.handCardId === id}
                 onClick={() => handleHandCardTap(id, 'gp', i)}
+                onInfo={setCardDetail}
                 gpMap={gpMap}
               />
             ))}
@@ -1701,6 +1767,9 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
           </div>
         )}
       </div>
+
+      {/* Card detail modal */}
+      {cardDetail && <CardDetailModal card={cardDetail} onClose={() => setCardDetail(null)} />}
     </div>
   )
 }

@@ -981,7 +981,7 @@
     "era": "Electricity",
     "gender": "male",
     "identities": [
-      "Playwright",
+      "Writer",
       "Philosopher"
     ],
     "portraitKey": "george_bernard_shaw",
@@ -1027,7 +1027,7 @@
     "gender": "female",
     "identities": [
       "Statesman",
-      "Believer"
+      "Monastic"
     ],
     "portraitKey": "isabel_i",
     "politics": 18,

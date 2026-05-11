@@ -1,0 +1,41 @@
+[
+  { "name": "Sovereign",     "stat": "politics",     "bonus": 3 },
+  { "name": "Statesman",     "stat": "politics",     "bonus": 3 },
+  { "name": "Official",      "stat": "politics",     "bonus": 3 },
+  { "name": "Spy",           "stat": "politics",     "bonus": 3 },
+
+  { "name": "General",       "stat": "strength",     "bonus": 3 },
+  { "name": "Soldier",       "stat": "strength",     "bonus": 3 },
+  { "name": "Warrior",       "stat": "strength",     "bonus": 3 },
+  { "name": "Athlete",       "stat": "strength",     "bonus": 3 },
+
+  { "name": "Artist",        "stat": "culture",      "bonus": 3 },
+  { "name": "Musician",      "stat": "culture",      "bonus": 3 },
+  { "name": "Writer",        "stat": "culture",      "bonus": 3 },
+  { "name": "Actor",         "stat": "culture",      "bonus": 3 },
+
+  { "name": "Economist",     "stat": "wealth",       "bonus": 3 },
+  { "name": "Banker",        "stat": "wealth",       "bonus": 3 },
+  { "name": "Merchant",      "stat": "wealth",       "bonus": 3 },
+  { "name": "Noble",         "stat": "wealth",       "bonus": 3 },
+
+  { "name": "Scientist",     "stat": "intelligence", "bonus": 3 },
+  { "name": "Mathematician", "stat": "intelligence", "bonus": 3 },
+  { "name": "Naturalist",    "stat": "intelligence", "bonus": 3 },
+  { "name": "Astronomer",    "stat": "intelligence", "bonus": 3 },
+
+  { "name": "Engineer",      "stat": "technique",    "bonus": 3 },
+  { "name": "Architect",     "stat": "technique",    "bonus": 3 },
+  { "name": "Doctor",        "stat": "technique",    "bonus": 3 },
+  { "name": "Explorer",      "stat": "technique",    "bonus": 3 },
+
+  { "name": "Prophet",       "stat": "belief",       "bonus": 3 },
+  { "name": "Priest",        "stat": "belief",       "bonus": 3 },
+  { "name": "Philosopher",   "stat": "belief",       "bonus": 3 },
+  { "name": "Monastic",      "stat": "belief",       "bonus": 3 },
+
+  { "name": "Educator",      "stat": "reputation",   "bonus": 3 },
+  { "name": "Journalist",    "stat": "reputation",   "bonus": 3 },
+  { "name": "Gourmet",       "stat": "reputation",   "bonus": 3 },
+  { "name": "Lawyer",        "stat": "reputation",   "bonus": 3 }
+]
