@@ -1072,9 +1072,12 @@ function BattleLobby({ matchType, onStart, onBack }: LobbyProps) {
 
   const [eraMode, setEraMode] = useState<EraMode>('all')
   const [singleEra, setSingleEra] = useState('Ancient')
-  const [numHumans, setNumHumans] = useState(1)
+  // PvP needs at least 2 humans; PvC is always 1 human vs N CPUs
+  const [numHumans, setNumHumans] = useState(isPvC ? 1 : 2)
   const [numComputers, setNumComputers] = useState(1)
-  const [playerNames, setPlayerNames] = useState<string[]>(['You'])
+  const [playerNames, setPlayerNames] = useState<string[]>(
+    isPvC ? ['You'] : ['Player 1', 'Player 2']
+  )
 
   const updatePlayerName = (i: number, name: string) => {
     const names = [...playerNames]
@@ -1083,15 +1086,17 @@ function BattleLobby({ matchType, onStart, onBack }: LobbyProps) {
   }
 
   const adjustHumans = (n: number) => {
-    const max = isPvC ? 4 : 5
-    const clamped = Math.max(1, Math.min(max, n))
+    const clamped = Math.max(2, Math.min(5, n))
     setNumHumans(clamped)
-    const names = Array.from({ length: clamped }, (_, i) => playerNames[i] ?? `Player ${i + 1}`)
-    setPlayerNames(names)
+    setPlayerNames(prev => Array.from({ length: clamped }, (_, i) => prev[i] ?? `Player ${i + 1}`))
   }
 
-  const totalPlayers = isPvC ? numHumans + numComputers : numHumans
+  const adjustComputers = (n: number) => {
+    setNumComputers(Math.max(1, Math.min(4, n)))
+  }
 
+  const totalPlayers = isPvC ? 1 + numComputers : numHumans
+  const canStart = totalPlayers >= 2 && totalPlayers <= 5
   const label = MATCH_TYPE_LABELS[matchType]
 
   return (
@@ -1111,50 +1116,57 @@ function BattleLobby({ matchType, onStart, onBack }: LobbyProps) {
 
       <div className="relative z-10 flex-1 px-5 py-6 space-y-6 max-w-lg mx-auto w-full">
 
-        {/* Human count + names */}
-        <div>
-          <div className="flex items-center justify-between mb-2">
-            <p className="text-xs text-slate-500 uppercase tracking-widest">
-              {isPvC ? 'You' : 'Human Players'}
-            </p>
-            {!isPvC && (
+        {isPvC ? (
+          /* PvC: fixed 1 human, variable CPUs */
+          <>
+            <div>
+              <p className="text-xs text-slate-500 uppercase tracking-widest mb-2">Your Name</p>
+              <input
+                value={playerNames[0] ?? ''}
+                onChange={e => updatePlayerName(0, e.target.value)}
+                placeholder="Your name"
+                className="w-full bg-slate-900 border border-white/10 rounded-lg px-3 py-2 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-amber-500/50"
+              />
+            </div>
+            <div>
+              <div className="flex items-center justify-between mb-1">
+                <p className="text-xs text-slate-500 uppercase tracking-widest">Computer Opponents</p>
+                <div className="flex items-center gap-2">
+                  <button onClick={() => adjustComputers(numComputers - 1)}
+                    className="w-7 h-7 rounded-lg bg-slate-800 border border-white/10 text-white text-sm hover:bg-slate-700 transition-colors">−</button>
+                  <span className="text-white text-sm w-5 text-center font-semibold">{numComputers}</span>
+                  <button onClick={() => adjustComputers(numComputers + 1)}
+                    className="w-7 h-7 rounded-lg bg-slate-800 border border-white/10 text-white text-sm hover:bg-slate-700 transition-colors">+</button>
+                </div>
+              </div>
+              <p className="text-[11px] text-slate-600">
+                {numComputers === 1 ? '1 CPU opponent' : `${numComputers} CPU opponents`} · {totalPlayers} players total
+              </p>
+            </div>
+          </>
+        ) : (
+          /* PvP: 2–5 human players */
+          <div>
+            <div className="flex items-center justify-between mb-3">
+              <p className="text-xs text-slate-500 uppercase tracking-widest">Players</p>
               <div className="flex items-center gap-2">
                 <button onClick={() => adjustHumans(numHumans - 1)}
-                  className="w-7 h-7 rounded-lg bg-slate-800 border border-white/10 text-white text-sm hover:bg-slate-700 transition-colors">-</button>
-                <span className="text-white text-sm w-4 text-center">{numHumans}</span>
+                  disabled={numHumans <= 2}
+                  className="w-7 h-7 rounded-lg bg-slate-800 border border-white/10 text-white text-sm hover:bg-slate-700 transition-colors disabled:opacity-30">−</button>
+                <span className="text-white text-sm w-5 text-center font-semibold">{numHumans}</span>
                 <button onClick={() => adjustHumans(numHumans + 1)}
-                  className="w-7 h-7 rounded-lg bg-slate-800 border border-white/10 text-white text-sm hover:bg-slate-700 transition-colors">+</button>
-              </div>
-            )}
-          </div>
-          <div className="space-y-2">
-            {Array.from({ length: numHumans }, (_, i) => (
-              <input key={i} value={playerNames[i] ?? ''} onChange={e => updatePlayerName(i, e.target.value)}
-                placeholder={isPvC ? 'Your name' : `Player ${i + 1} name`}
-                className="w-full bg-slate-900 border border-white/10 rounded-lg px-3 py-2 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-amber-500/50" />
-            ))}
-          </div>
-        </div>
-
-        {/* Computer count (PvC only) */}
-        {isPvC && (
-          <div>
-            <div className="flex items-center justify-between mb-2">
-              <p className="text-xs text-slate-500 uppercase tracking-widest">Computer Opponents</p>
-              <div className="flex items-center gap-2">
-                <button onClick={() => setNumComputers(Math.max(1, numComputers - 1))}
-                  className="w-7 h-7 rounded-lg bg-slate-800 border border-white/10 text-white text-sm hover:bg-slate-700 transition-colors">-</button>
-                <span className="text-white text-sm w-4 text-center">{numComputers}</span>
-                <button onClick={() => setNumComputers(Math.min(4, numComputers + 1))}
-                  className="w-7 h-7 rounded-lg bg-slate-800 border border-white/10 text-white text-sm hover:bg-slate-700 transition-colors">+</button>
+                  disabled={numHumans >= 5}
+                  className="w-7 h-7 rounded-lg bg-slate-800 border border-white/10 text-white text-sm hover:bg-slate-700 transition-colors disabled:opacity-30">+</button>
               </div>
             </div>
-            <p className="text-[11px] text-slate-600">Total players: {totalPlayers}</p>
+            <div className="space-y-2">
+              {Array.from({ length: numHumans }, (_, i) => (
+                <input key={i} value={playerNames[i] ?? ''} onChange={e => updatePlayerName(i, e.target.value)}
+                  placeholder={`Player ${i + 1}`}
+                  className="w-full bg-slate-900 border border-white/10 rounded-lg px-3 py-2 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-amber-500/50" />
+              ))}
+            </div>
           </div>
-        )}
-
-        {totalPlayers > 5 && (
-          <p className="text-red-400 text-xs">Maximum 5 players total.</p>
         )}
 
         {/* Era Mode */}
@@ -1188,18 +1200,18 @@ function BattleLobby({ matchType, onStart, onBack }: LobbyProps) {
 
         <button
           onClick={() => {
-            if (totalPlayers > 5) return
+            if (!canStart) return
             onStart({
               mode: 'generic',
               matchType,
               playerMode,
               eraMode,
               singleEra: eraMode === 'single' ? singleEra : undefined,
-              playerNames: playerNames.slice(0, numHumans),
+              playerNames: playerNames.slice(0, isPvC ? 1 : numHumans),
               numComputers: isPvC ? numComputers : 0,
             })
           }}
-          disabled={totalPlayers > 5}
+          disabled={!canStart}
           className="w-full py-3.5 rounded-xl font-bold text-sm tracking-wide text-slate-950
             bg-amber-500 hover:bg-amber-400 active:bg-amber-600 disabled:opacity-40 disabled:cursor-not-allowed
             shadow-lg shadow-amber-500/25 transition-all duration-200">
