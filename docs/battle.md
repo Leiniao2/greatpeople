@@ -46,16 +46,16 @@ When a card is bring to the board, he/she could decide if it initialized as publ
 
 ## 5. Scenarios.
 
-Each stat has 3 different scenarios, the 1st is local events, the 2nd is local survival, the 3rd is global competition
+Each stat has 3 different scenarios, the 1st is local conflict, the 2nd is local survival, the 3rd is global competition
 
-politics: election, coup, international conference
+politics: coup, Terrorist Attack, international conference
 strength: battlefield, riot, olympics
 culture: art critique, censorship, roadshow
-wealth: businese war, Depression, Expo
-technique: wonder constructiom, Sanctions, technology revolution
-intelligence: discovery, puzzle, Expedition
-belief: Ceremony, Inquisition, pilgrimage
-reputation: Debate, Scandal, Celebration
+wealth: businese war, Depression, auction
+technique: Tech Race, Sanctions, World Fair
+intelligence: Argument, puzzle, Expedition
+belief: Miracle, Inquisition, pilgrimage
+reputation: Lawsuit, Scandal, Celebration
 
 Special: natural hazard (has several different types: flood, blizzard, storm, earthquake, fire, tsunami, pandemic, drought)
 
@@ -86,7 +86,31 @@ Besided getting new card by winning global competition, there are other mechanis
 When a Great People completed his/her achievement, he/she could choose to be archived to the archive folder at any time (must be in public when archived).
 Once a Great People get archived, the player who owns it could get a new Great People card.
 
-## 7. When to End a game
+## 7. Turn Order
+
+Great Person Onboard: Deploy a Great Person to the field.
+
+Follower Onboard: Deploy Followers to the field.
+
+Manual Retrieve: Any card may be retrieved by player from board.
+
+Relocation: Any card may move to a different location.
+
+Attack: Execute attacks using Great Person cards.
+
+Survival Resolution: Calculate the outcomes of Survival scenarios.
+
+Event Resolution: Calculate the outcomes of Event scenarios.
+
+Manual Scenario Termination: A Great Person can end a scenario if they possess the matching Identity (e.g., an Artist can terminate "Cultural Criticism").
+
+Initiate New Scenario: Players could start a new scenario if he/she has the scenario card.
+
+Achievement Check: Determine if a Great Person has completed an achievement to earn Winning Points.
+
+Archive: Great Persons who have completed their achievements are Archived and leave the field.
+
+## 8. When to End a game
 
 If there is a player that gets 5 winning points, the game ends.
 
