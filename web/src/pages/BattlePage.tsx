@@ -104,6 +104,13 @@ const LOCATION_POOL: LocationTemplate[] = [
   { name: 'Rome',           era: 'Ancient' },
   { name: 'Memphis',        era: 'Ancient' },
   { name: 'Ur',             era: 'Ancient' },
+  // Classical
+  { name: 'Sparta',         era: 'Classical' },
+  { name: 'Carthage',       era: 'Classical' },
+  { name: 'Antioch',        era: 'Classical' },
+  { name: 'Pataliputra',    era: 'Classical' },
+  { name: 'Luoyang',        era: 'Classical' },
+  { name: 'Pergamon',       era: 'Classical' },
   // Medieval
   { name: 'Constantinople', era: 'Medieval' },
   { name: 'Baghdad',        era: 'Medieval' },
@@ -141,7 +148,7 @@ const LOCATION_POOL: LocationTemplate[] = [
   { name: 'Lagos',          era: 'Information' },
 ]
 
-const ERAS = ['Ancient', 'Medieval', 'Renaissance', 'Steam', 'Electricity', 'Information']
+const ERAS = ['Ancient', 'Classical', 'Medieval', 'Renaissance', 'Steam', 'Electricity', 'Information']
 
 const ERA_COLORS: Record<string, string> = {
   Ancient:     'bg-yellow-900/60 border-yellow-700/40',
