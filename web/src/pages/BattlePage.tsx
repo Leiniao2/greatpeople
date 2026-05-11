@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import type {
   Card, FollowerCard, EventCard, OnboardCard, LocationState,
   PlayerState, GameState, GameSetup,
-  StatKey, EventType, EraMode, PlayerMode,
+  StatKey, EventType, EraMode, PlayerMode, MatchType,
 } from '@/types'
 import demoCardsJson from '@/data/demo_cards.json'
 
@@ -43,14 +43,14 @@ const STAT_LABELS: Record<StatKey, string> = {
 }
 
 const EVENT_NAMES: Record<StatKey, [string, string, string]> = {
-  politics:     ['Election',            'Coup',         'International Conference'],
-  strength:     ['Battlefield',         'Riot',         'Olympics'],
-  culture:      ['Art Critique',        'Censorship',   'Roadshow'],
-  wealth:       ['Business War',        'Depression',   'Expo'],
-  technique:    ['Wonder Construction', 'Sanctions',    'Technology Revolution'],
-  intelligence: ['Discovery',           'Puzzle',       'Expedition'],
-  belief:       ['Ceremony',            'Inquisition',  'Pilgrimage'],
-  reputation:   ['Debate',              'Scandal',      'Celebration'],
+  politics:     ['Coup',         'Terrorist Attack',      'International Conference'],
+  strength:     ['Battlefield',  'Riot',                  'Olympics'],
+  culture:      ['Art Critique', 'Censorship',            'Roadshow'],
+  wealth:       ['Business War', 'Depression',            'Auction'],
+  technique:    ['Tech Race',    'Sanctions',             'World Fair'],
+  intelligence: ['Argument',     'Puzzle',                'Expedition'],
+  belief:       ['Miracle',      'Inquisition',           'Pilgrimage'],
+  reputation:   ['Lawsuit',      'Scandal',               'Celebration'],
 }
 
 const EVENT_TYPES: EventType[] = ['local_event', 'local_survival', 'global_competition']
@@ -320,6 +320,7 @@ type GameAction =
   | { type: 'CLAIM_ACHIEVEMENT'; instanceId: string }
   | { type: 'ATTACK'; myInstanceId: string; theirInstanceId: string; kill: boolean }
   | { type: 'TOGGLE_VISIBILITY'; instanceId: string }
+  | { type: 'END_SCENARIO'; locationId: string }
   | { type: 'END_TURN' }
   | { type: 'GLOBAL_COMP_REWARD'; playerId: string; rewardType: 'events' | 'followers' | 'gp' }
 
@@ -885,6 +886,32 @@ function gameReducer(state: GameState, action: GameAction): GameState {
       }
     }
 
+    case 'END_SCENARIO': {
+      const playerIdx = state.currentPlayerIdx
+      const player = state.players[playerIdx]
+      const actionKey = `end-scenario-${action.locationId}`
+      if (state.turnActions.actedCards.includes(actionKey)) return state
+
+      const loc = state.locations.find(l => l.id === action.locationId)
+      if (!loc?.activeEvent) return state
+      if (loc.activeEvent.type === 'global_competition') return state // can't manually end global
+
+      const hasGPHere = loc.cards.some(c => c.type === 'gp' && c.playerId === player.id && !c.justDeployed)
+      if (!hasGPHere) return state
+
+      const eventName = loc.activeEvent.name
+      const newLocations = state.locations.map(l =>
+        l.id === action.locationId ? { ...l, activeEvent: null, eventRoundsLeft: 0 } : l
+      )
+
+      return {
+        ...state,
+        locations: newLocations,
+        turnActions: { ...state.turnActions, actedCards: [...state.turnActions.actedCards, actionKey] },
+        log: [`${player.name} ended scenario: ${eventName}.`, ...state.log.slice(0, 19)],
+      }
+    }
+
     default:
       return state
   }
@@ -1012,13 +1039,21 @@ function HandCard({ cardId, type, isSelected, onClick, gpMap, eventCard, followe
 // ─── Lobby Component ──────────────────────────────────────────────────────────
 
 interface LobbyProps {
+  matchType: MatchType
   onStart: (setup: GameSetup) => void
   onBack: () => void
 }
 
-function BattleLobby({ onStart, onBack }: LobbyProps) {
-  const [gameMode, setGameMode] = useState<'generic' | 'scenario'>('generic')
-  const [playerMode, setPlayerMode] = useState<PlayerMode>('pvc')
+const MATCH_TYPE_LABELS: Record<MatchType, { title: string; sub: string }> = {
+  casual:  { title: 'Casual',     sub: 'vs Human · Friendly' },
+  ranked:  { title: 'Ranked',     sub: 'vs Human · Competitive' },
+  pvc:     { title: 'vs Computer', sub: 'Fight the AI' },
+}
+
+function BattleLobby({ matchType, onStart, onBack }: LobbyProps) {
+  const isPvC = matchType === 'pvc'
+  const playerMode: PlayerMode = isPvC ? 'pvc' : 'pvp'
+
   const [eraMode, setEraMode] = useState<EraMode>('all')
   const [singleEra, setSingleEra] = useState('Ancient')
   const [numHumans, setNumHumans] = useState(1)
@@ -1032,13 +1067,16 @@ function BattleLobby({ onStart, onBack }: LobbyProps) {
   }
 
   const adjustHumans = (n: number) => {
-    const clamped = Math.max(1, Math.min(4, n))
+    const max = isPvC ? 4 : 5
+    const clamped = Math.max(1, Math.min(max, n))
     setNumHumans(clamped)
     const names = Array.from({ length: clamped }, (_, i) => playerNames[i] ?? `Player ${i + 1}`)
     setPlayerNames(names)
   }
 
-  const totalPlayers = playerMode === 'pvp' ? numHumans : numHumans + numComputers
+  const totalPlayers = isPvC ? numHumans + numComputers : numHumans
+
+  const label = MATCH_TYPE_LABELS[matchType]
 
   return (
     <div className="relative min-h-screen bg-[#080812] overflow-auto flex flex-col">
@@ -1049,71 +1087,44 @@ function BattleLobby({ onStart, onBack }: LobbyProps) {
 
       <div className="relative z-10 px-5 py-5 flex items-center gap-3 border-b border-white/[0.06]">
         <button onClick={onBack} className="text-slate-500 hover:text-slate-300 text-sm transition-colors">← Back</button>
-        <h1 className="font-display text-xl font-bold tracking-[0.1em] text-white uppercase">Fight Setup</h1>
+        <div>
+          <h1 className="font-display text-xl font-bold tracking-[0.1em] text-white uppercase">{label.title}</h1>
+          <p className="text-[11px] text-slate-500">{label.sub}</p>
+        </div>
       </div>
 
       <div className="relative z-10 flex-1 px-5 py-6 space-y-6 max-w-lg mx-auto w-full">
 
-        {/* Game Mode */}
-        <div>
-          <p className="text-xs text-slate-500 uppercase tracking-widest mb-3">Game Mode</p>
-          <div className="grid grid-cols-2 gap-2">
-            {(['generic', 'scenario'] as const).map(m => (
-              <button key={m} onClick={() => m === 'generic' && setGameMode(m)}
-                className={`py-3 rounded-xl text-sm font-semibold transition-all border
-                  ${gameMode === m
-                    ? 'bg-amber-500/15 border-amber-500/50 text-amber-400'
-                    : 'border-white/10 text-slate-400 hover:border-white/20'}
-                  ${m === 'scenario' ? 'cursor-not-allowed opacity-50' : ''}`}>
-                {m === 'generic' ? 'Generic Mode' : 'Scenario Mode'}
-                {m === 'scenario' && <div className="text-[10px] text-slate-500 mt-0.5">Complete Epic first</div>}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Player Mode */}
-        <div>
-          <p className="text-xs text-slate-500 uppercase tracking-widest mb-3">Players</p>
-          <div className="grid grid-cols-2 gap-2">
-            {(['pvp', 'pvc'] as const).map(m => (
-              <button key={m} onClick={() => setPlayerMode(m)}
-                className={`py-3 rounded-xl text-sm font-semibold transition-all border
-                  ${playerMode === m
-                    ? 'bg-amber-500/15 border-amber-500/50 text-amber-400'
-                    : 'border-white/10 text-slate-400 hover:border-white/20'}`}>
-                {m === 'pvp' ? 'Player vs Player' : 'Player vs Computer'}
-              </button>
-            ))}
-          </div>
-        </div>
-
         {/* Human count + names */}
         <div>
           <div className="flex items-center justify-between mb-2">
-            <p className="text-xs text-slate-500 uppercase tracking-widest">Human Players</p>
-            <div className="flex items-center gap-2">
-              <button onClick={() => adjustHumans(numHumans - 1)}
-                className="w-7 h-7 rounded-lg bg-slate-800 border border-white/10 text-white text-sm hover:bg-slate-700 transition-colors">-</button>
-              <span className="text-white text-sm w-4 text-center">{numHumans}</span>
-              <button onClick={() => adjustHumans(numHumans + 1)}
-                className="w-7 h-7 rounded-lg bg-slate-800 border border-white/10 text-white text-sm hover:bg-slate-700 transition-colors">+</button>
-            </div>
+            <p className="text-xs text-slate-500 uppercase tracking-widest">
+              {isPvC ? 'You' : 'Human Players'}
+            </p>
+            {!isPvC && (
+              <div className="flex items-center gap-2">
+                <button onClick={() => adjustHumans(numHumans - 1)}
+                  className="w-7 h-7 rounded-lg bg-slate-800 border border-white/10 text-white text-sm hover:bg-slate-700 transition-colors">-</button>
+                <span className="text-white text-sm w-4 text-center">{numHumans}</span>
+                <button onClick={() => adjustHumans(numHumans + 1)}
+                  className="w-7 h-7 rounded-lg bg-slate-800 border border-white/10 text-white text-sm hover:bg-slate-700 transition-colors">+</button>
+              </div>
+            )}
           </div>
           <div className="space-y-2">
             {Array.from({ length: numHumans }, (_, i) => (
               <input key={i} value={playerNames[i] ?? ''} onChange={e => updatePlayerName(i, e.target.value)}
-                placeholder={`Player ${i + 1} name`}
+                placeholder={isPvC ? 'Your name' : `Player ${i + 1} name`}
                 className="w-full bg-slate-900 border border-white/10 rounded-lg px-3 py-2 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-amber-500/50" />
             ))}
           </div>
         </div>
 
         {/* Computer count (PvC only) */}
-        {playerMode === 'pvc' && (
+        {isPvC && (
           <div>
             <div className="flex items-center justify-between mb-2">
-              <p className="text-xs text-slate-500 uppercase tracking-widest">Computer Players</p>
+              <p className="text-xs text-slate-500 uppercase tracking-widest">Computer Opponents</p>
               <div className="flex items-center gap-2">
                 <button onClick={() => setNumComputers(Math.max(1, numComputers - 1))}
                   className="w-7 h-7 rounded-lg bg-slate-800 border border-white/10 text-white text-sm hover:bg-slate-700 transition-colors">-</button>
@@ -1122,6 +1133,7 @@ function BattleLobby({ onStart, onBack }: LobbyProps) {
                   className="w-7 h-7 rounded-lg bg-slate-800 border border-white/10 text-white text-sm hover:bg-slate-700 transition-colors">+</button>
               </div>
             </div>
+            <p className="text-[11px] text-slate-600">Total players: {totalPlayers}</p>
           </div>
         )}
 
@@ -1162,12 +1174,13 @@ function BattleLobby({ onStart, onBack }: LobbyProps) {
           onClick={() => {
             if (totalPlayers > 5) return
             onStart({
-              mode: gameMode,
+              mode: 'generic',
+              matchType,
               playerMode,
               eraMode,
               singleEra: eraMode === 'single' ? singleEra : undefined,
               playerNames: playerNames.slice(0, numHumans),
-              numComputers: playerMode === 'pvc' ? numComputers : 0,
+              numComputers: isPvC ? numComputers : 0,
             })
           }}
           disabled={totalPlayers > 5}
@@ -1672,6 +1685,25 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
               hover:border-white/20">
             Toggle Public
           </button>
+
+          {/* End Scenario: available when selected onboard GP is at a location with a local event */}
+          {(() => {
+            if (!isMyTurn || !selectedOnboard || selectedOnboard.type !== 'gp' || selectedOnboard.playerId !== currentPlayer.id || selectedOnboard.justDeployed) return null
+            const loc = gameState.locations.find(l => l.cards.some(c => c.instanceId === selectedOnboard.instanceId))
+            if (!loc?.activeEvent || loc.activeEvent.type === 'global_competition') return null
+            const alreadyDone = gameState.turnActions.actedCards.includes(`end-scenario-${loc.id}`)
+            return (
+              <button
+                disabled={alreadyDone}
+                onClick={() => dispatch({ type: 'END_SCENARIO', locationId: loc.id })}
+                className="col-span-2 py-2.5 rounded-xl text-xs font-semibold border transition-all
+                  bg-slate-900 border-red-700/40 text-red-400
+                  disabled:opacity-30 disabled:cursor-not-allowed
+                  hover:bg-red-900/20">
+                End Scenario: {loc.activeEvent.name}
+              </button>
+            )
+          })()}
         </div>
 
         <div className="mt-auto">
@@ -1720,9 +1752,37 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
 
 type PagePhase = 'home' | 'lobby' | 'game'
 
+const MATCH_MODES: { type: MatchType; icon: string; title: string; desc: string; accent: string; border: string }[] = [
+  {
+    type:   'casual',
+    icon:   '🤝',
+    title:  'Casual',
+    desc:   'Play vs Human — friendly match, no stakes',
+    accent: 'text-emerald-400',
+    border: 'border-emerald-700/40 hover:border-emerald-500/60',
+  },
+  {
+    type:   'ranked',
+    icon:   '🏆',
+    title:  'Ranked',
+    desc:   'Play vs Human — competitive, climb the ladder',
+    accent: 'text-amber-400',
+    border: 'border-amber-700/40 hover:border-amber-500/60',
+  },
+  {
+    type:   'pvc',
+    icon:   '🤖',
+    title:  'vs Computer',
+    desc:   'Fight AI opponents — sharpen your strategy',
+    accent: 'text-indigo-400',
+    border: 'border-indigo-700/40 hover:border-indigo-500/60',
+  },
+]
+
 export default function BattlePage() {
   const navigate = useNavigate()
   const [pagePhase, setPagePhase] = useState<PagePhase>('home')
+  const [selectedMatchType, setSelectedMatchType] = useState<MatchType>('casual')
 
   // Maintain game state in a ref to allow flexible initialization
   const gameStateRef = useRef<GameState | null>(null)
@@ -1757,27 +1817,30 @@ export default function BattlePage() {
           <h1 className="font-display text-xl font-bold tracking-[0.1em] text-white uppercase">Fight Arena</h1>
         </div>
 
-        <div className="relative z-10 flex-1 flex items-center justify-center p-6">
-          <div className="text-center max-w-sm">
-            <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl mb-6"
+        <div className="relative z-10 flex-1 flex flex-col items-center justify-center p-6 gap-8">
+          <div className="text-center">
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-4"
               style={{ background: 'rgba(99,102,241,0.12)', border: '1px solid rgba(99,102,241,0.25)' }}>
-              <span className="text-5xl select-none">⚔</span>
+              <span className="text-4xl select-none">⚔</span>
             </div>
-            <h2 className="font-display text-2xl font-bold tracking-wide text-white uppercase mb-3">Ready to Fight?</h2>
-            <p className="text-slate-500 text-sm mb-8">
-              Deploy Great People across history's most legendary cities. Outmaneuver your opponents, claim achievements, and write your own legacy.
-            </p>
-            <button onClick={() => setPagePhase('lobby')}
-              className="w-full px-8 py-3.5 rounded-xl font-bold text-sm tracking-wide text-slate-950
-                         bg-amber-500 hover:bg-amber-400 active:bg-amber-600
-                         shadow-lg shadow-amber-500/25 transition-all duration-200 mb-3">
-              New Game
-            </button>
-            <button onClick={() => navigate('/collection')}
-              className="w-full px-8 py-3 rounded-xl font-semibold text-sm text-slate-400
-                         border border-white/10 hover:border-white/20 transition-all duration-200">
-              Collection
-            </button>
+            <h2 className="font-display text-2xl font-bold tracking-wide text-white uppercase mb-1">Choose your Battle</h2>
+            <p className="text-slate-600 text-sm">Deploy Great People across history's greatest cities</p>
+          </div>
+
+          <div className="w-full max-w-sm space-y-3">
+            {MATCH_MODES.map(m => (
+              <button
+                key={m.type}
+                onClick={() => { setSelectedMatchType(m.type); setPagePhase('lobby') }}
+                className={`w-full flex items-center gap-4 px-5 py-4 rounded-2xl border bg-white/[0.03] transition-all duration-200 text-left ${m.border}`}>
+                <span className="text-3xl shrink-0">{m.icon}</span>
+                <div>
+                  <p className={`text-base font-bold tracking-wide ${m.accent}`}>{m.title}</p>
+                  <p className="text-xs text-slate-500 mt-0.5">{m.desc}</p>
+                </div>
+                <span className="ml-auto text-slate-600 text-sm">›</span>
+              </button>
+            ))}
           </div>
         </div>
       </div>
@@ -1785,7 +1848,7 @@ export default function BattlePage() {
   }
 
   if (pagePhase === 'lobby') {
-    return <BattleLobby onStart={handleStartGameFinal} onBack={() => setPagePhase('home')} />
+    return <BattleLobby matchType={selectedMatchType} onStart={handleStartGameFinal} onBack={() => setPagePhase('home')} />
   }
 
   if (pagePhase === 'game' && gameStateRef.current) {

@@ -102,9 +102,11 @@ export interface TurnActions {
 export type GameMode = 'generic' | 'scenario'
 export type PlayerMode = 'pvp' | 'pvc'
 export type EraMode = 'all' | 'single'
+export type MatchType = 'casual' | 'ranked' | 'pvc'
 
 export interface GameSetup {
   mode: GameMode
+  matchType: MatchType
   playerMode: PlayerMode
   eraMode: EraMode
   singleEra?: string
