@@ -18,7 +18,7 @@
     "belief": 22,
     "reputation": 20,
     "lore": "The soul force that moved an empire.",
-    "trait": "Nonviolence — when this card loses a Strength round, gain +10 Belief for the next round.",
+    "trait": "Mahatma — While on the field, all Conflict scenarios are negated (do not take effect).",
     "achievement": "Independence — when Belief wins 3 rounds, generate 1 winning point.",
     "years": "1869–1948"
   },
@@ -40,7 +40,7 @@
     "belief": 1,
     "reputation": 12,
     "lore": "She dressed the world in modernity.",
-    "trait": "Elegance — this card's Culture counts as 10 higher if opponent's Wealth is higher.",
+    "trait": "Women's Fashion — All female Followers at this location gain +2 to their primary stat.",
     "achievement": "Icon — when Culture wins 3 rounds, generate 1 winning point.",
     "years": "1883–1971"
   },
@@ -63,7 +63,7 @@
     "belief": 1,
     "reputation": 18,
     "lore": "A revolution forged from peasant to chairman.",
-    "trait": "Long March — if this card loses the first 2 rounds, it gains +10 to all stats for the remainder.",
+    "trait": "The Long March — When killed or forced to be retrieved, this card can relocate to another location chosen by its player.",
     "achievement": "Revolution — when Politics wins 4 rounds, generate 1 winning point.",
     "years": "1893–1976"
   },
@@ -155,7 +155,7 @@
     "belief": 4,
     "reputation": 18,
     "lore": "He built the machine that broke the unbreakable.",
-    "trait": "Codebreaker — if opponent's Intelligence is higher, treat this card's Intelligence as equal.",
+    "trait": "Artificial Intelligence — Gains the highest stat of the last allied Great Person that was Archived.",
     "achievement": "Cracked — when Intelligence wins 3 rounds, generate 1 winning point.",
     "years": "1912–1954"
   },
@@ -247,7 +247,7 @@
     "belief": 5,
     "reputation": 16,
     "lore": "She played from the heart when the world told her to stand aside.",
-    "trait": "Prodigy — this card's Culture and Technique are immune to opponent debuffs.",
+    "trait": "Musical Romance — If there is exactly one male Musician (Great Person or Follower) at this location, both this card and that card gain +3 to all stats.",
     "achievement": "Virtuoso — when Culture wins 3 rounds, generate 1 winning point.",
     "years": "1819–1896"
   },
@@ -270,7 +270,7 @@
     "belief": 10,
     "reputation": 18,
     "lore": "He handed the world a ruler and said: begin.",
-    "trait": "Elements — at game start, this card's Intelligence counts as 10 higher against Scientist and Mathematician identities.",
+    "trait": "Geometric Deduction — The special effects of this card's current location also apply to all other locations on the field.",
     "achievement": "Axiom — when Intelligence wins 5 rounds total, generate 1 winning point.",
     "years": "c. 300 BC"
   },
@@ -316,7 +316,7 @@
     "belief": 14,
     "reputation": 16,
     "lore": "She rode in her father's armor and shook the walls of legend.",
-    "trait": "Disguise — opponent does not know this card's Gender until it is played.",
+    "trait": "Gender Disguise — All Great Person traits related to Gender on the field are disabled.",
     "achievement": "Honor — when Strength wins 3 rounds, generate 1 winning point.",
     "years": "c. 386–534 AD"
   },
@@ -338,7 +338,7 @@
     "belief": 2,
     "reputation": 11,
     "lore": "He carried Beethoven's shadow and carved his own light.",
-    "trait": "Perfectionist — this card may be returned to hand once per match to replay in a later round.",
+    "trait": "Perfectionism — If the sum of a specific stat of all allied cards at this location is ≥ 25, gain +3 to that stat; otherwise −3.",
     "achievement": "Harmony — when Culture wins 3 consecutive rounds, generate 1 winning point.",
     "years": "1833–1897"
   },
@@ -406,7 +406,7 @@
     "belief": 2,
     "reputation": 8,
     "lore": "A kingdom inherited, a revolution unleashed.",
-    "trait": "Indecision — if Politics is the active stat, the active stat is re-rolled once.",
+    "trait": "Guillotine — Can unconditionally attack one opponent at the current location. If victorious, all of that player's Followers at this location are killed. Invalid if this card moved this turn.",
     "achievement": "Downfall — when this card loses 3 rounds, generate 1 winning point.",
     "years": "1754–1793"
   },
@@ -452,7 +452,7 @@
     "belief": 4,
     "reputation": 12,
     "lore": "The sword and the mind — both perfected.",
-    "trait": "Two-Sword Style — this card wins ties by highest secondary stat (Technique).",
+    "trait": "Niten Ichi-ryu — Can attack twice per turn.",
     "achievement": "Undefeated — if this card wins 4+ consecutive rounds, generate 1 winning point.",
     "years": "1584–1645"
   },
@@ -543,7 +543,7 @@
     "belief": 6,
     "reputation": 20,
     "lore": "Under his hand, Athens became the school of Hellas.",
-    "trait": "Golden Age — when Politics wins a round, all allied Classical-era cards gain +3 Culture.",
+    "trait": "Athenian Democracy — Gains an additional +1 to all stats for each allied Follower at this location.",
     "achievement": "Athenian — when Politics wins 4 rounds, generate 1 winning point.",
     "years": "c. 495–429 BCE"
   },
@@ -680,7 +680,7 @@
     "belief": 10,
     "reputation": 14,
     "lore": "He gave us algebra and the algorithm — the invisible foundation of every computer ever built.",
-    "trait": "Algorithm — when Technique wins a round, gain a bonus equal to the round number.",
+    "trait": "Algebraic Induction — This card gains all numerical stat bonuses currently received by other revealed Great Persons on the field.",
     "achievement": "Algebra — when Technique wins 4 rounds, generate 1 winning point.",
     "years": "c. 780–850 CE"
   },
@@ -725,7 +725,7 @@
     "belief": 9,
     "reputation": 18,
     "lore": "His brush turned the Renaissance into fire and flesh — the last great master standing.",
-    "trait": "Colorist — when Culture is the active stat, this card's Reputation also adds +5 to the score.",
+    "trait": "The Portraitist — Gains the trait of the last allied Great Person that was Archived.",
     "achievement": "Masterpiece — when Culture wins 4 rounds, generate 1 winning point.",
     "years": "c. 1488–1576"
   },
@@ -814,7 +814,7 @@
     "belief": 3,
     "reputation": 14,
     "lore": "His music spoke what words could not — joy and madness in the same key.",
-    "trait": "Phantasie — when this card loses a round, its Culture increases by 8 for the next round.",
+    "trait": "Fantasia — Cards at this location are immune to Survival Scenario effects on the first round this card is deployed here; this card cannot terminate the Survival Scenario.",
     "achievement": "Composition — when Culture wins 3 rounds, generate 1 winning point.",
     "years": "1810–1856"
   },
@@ -837,7 +837,7 @@
     "belief": 2,
     "reputation": 10,
     "lore": "He gave Einstein the mathematics to prove relativity — and modestly called it Einstein's theory.",
-    "trait": "Transformation — once per match, this card may swap its Intelligence and Technique stats.",
+    "trait": "Lorentz Transformation — All Great Person traits related to Era or Location on the field are disabled.",
     "achievement": "Relativity — when Intelligence wins 4 rounds, generate 1 winning point.",
     "years": "1853–1928"
   },
@@ -971,7 +971,7 @@
     "belief": 1,
     "reputation": 20,
     "lore": "The King of Pop — the most famous entertainer in human history.",
-    "trait": "Moonwalk — when Culture wins a round, this card's Reputation adds +10 to the next round's score.",
+    "trait": "King of Pop — While at a location, all players may deploy an unlimited number of Follower cards to this same location.",
     "achievement": "Thriller — when Culture wins 4 rounds, generate 1 winning point.",
     "years": "1958–2009"
   },

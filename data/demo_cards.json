@@ -4,7 +4,10 @@
     "figureName": "Gandhi",
     "era": "Steam",
     "gender": "male",
-    "identities": ["Statesman", "Educator"],
+    "identities": [
+      "Statesman",
+      "Educator"
+    ],
     "tier": "legendary",
     "portraitKey": "gandhi",
     "politics": 23,
@@ -16,7 +19,7 @@
     "belief": 23,
     "reputation": 24,
     "lore": "The soul force that moved an empire.",
-    "trait": "Nonviolence: when this card loses a Strength round, gain +10 Belief for the next round.",
+    "trait": "Mahatma — While on the field, all Conflict scenarios are negated (do not take effect).",
     "achievement": "Independence — when Belief wins 3 rounds, generate 1 winning point.",
     "years": "1869–1948"
   },
@@ -25,7 +28,10 @@
     "figureName": "Coco Chanel",
     "era": "Electricity",
     "gender": "female",
-    "identities": ["Artist", "Merchant"],
+    "identities": [
+      "Artist",
+      "Merchant"
+    ],
     "tier": "epic",
     "portraitKey": "coco_chanel",
     "politics": 9,
@@ -37,7 +43,7 @@
     "belief": 6,
     "reputation": 22,
     "lore": "She dressed the world in modernity.",
-    "trait": "Elegance: this card's Culture counts as 10 higher if opponent's Wealth is higher.",
+    "trait": "Women's Fashion — All female Followers at this location gain +2 to their primary stat.",
     "achievement": "Icon — when Culture wins 3 rounds, generate 1 winning point.",
     "years": "1883–1971"
   },
@@ -46,7 +52,10 @@
     "figureName": "Mao Zedong",
     "era": "Electricity",
     "gender": "male",
-    "identities": ["Sovereign", "Statesman"],
+    "identities": [
+      "Sovereign",
+      "Statesman"
+    ],
     "tier": "epic",
     "portraitKey": "mao_zedong",
     "politics": 24,
@@ -58,7 +67,7 @@
     "belief": 16,
     "reputation": 20,
     "lore": "A revolution forged from peasant to chairman.",
-    "trait": "Long March: if this card loses the first 2 rounds, it gains +10 to all stats for the remainder.",
+    "trait": "The Long March — When killed or forced to be retrieved, this card can relocate to another location chosen by its player.",
     "achievement": "Revolution — when Politics wins 4 rounds, generate 1 winning point.",
     "years": "1893–1976"
   },
@@ -67,7 +76,10 @@
     "figureName": "Belisarius",
     "era": "Medieval",
     "gender": "male",
-    "identities": ["General", "Soldier"],
+    "identities": [
+      "General",
+      "Soldier"
+    ],
     "tier": "rare",
     "portraitKey": "belisarius",
     "politics": 16,
@@ -88,7 +100,10 @@
     "figureName": "Imhotep",
     "era": "Ancient",
     "gender": "male",
-    "identities": ["Architect", "Doctor"],
+    "identities": [
+      "Architect",
+      "Doctor"
+    ],
     "tier": "legendary",
     "portraitKey": "imhotep",
     "politics": 15,
@@ -109,7 +124,10 @@
     "figureName": "Lu Yu",
     "era": "Medieval",
     "gender": "male",
-    "identities": ["Educator", "Gourmet"],
+    "identities": [
+      "Educator",
+      "Gourmet"
+    ],
     "tier": "rare",
     "portraitKey": "lu_yu",
     "politics": 6,
@@ -130,7 +148,10 @@
     "figureName": "Alan Turing",
     "era": "Electricity",
     "gender": "male",
-    "identities": ["Mathematician", "Scientist"],
+    "identities": [
+      "Mathematician",
+      "Scientist"
+    ],
     "tier": "legendary",
     "portraitKey": "alan_turing",
     "politics": 10,
@@ -142,7 +163,7 @@
     "belief": 5,
     "reputation": 20,
     "lore": "He built the machine that broke the unbreakable.",
-    "trait": "Codebreaker: if opponent's Intelligence is higher, treat this card's Intelligence as equal.",
+    "trait": "Artificial Intelligence — Gains the highest stat of the last allied Great Person that was Archived.",
     "achievement": "Cracked — when Intelligence wins 3 rounds, generate 1 winning point.",
     "years": "1912–1954"
   },
@@ -151,7 +172,10 @@
     "figureName": "An Jung-geun",
     "era": "Electricity",
     "gender": "male",
-    "identities": ["Warrior", "Statesman"],
+    "identities": [
+      "Warrior",
+      "Statesman"
+    ],
     "tier": "rare",
     "portraitKey": "an_jung_geun",
     "politics": 18,
@@ -172,7 +196,10 @@
     "figureName": "Andrew Mellon",
     "era": "Electricity",
     "gender": "male",
-    "identities": ["Banker", "Economist"],
+    "identities": [
+      "Banker",
+      "Economist"
+    ],
     "tier": "rare",
     "portraitKey": "andrew_mellon",
     "politics": 18,
@@ -193,7 +220,10 @@
     "figureName": "Audrey Hepburn",
     "era": "Information",
     "gender": "female",
-    "identities": ["Actor", "Educator"],
+    "identities": [
+      "Actor",
+      "Educator"
+    ],
     "tier": "epic",
     "portraitKey": "audrey_hepburn",
     "politics": 9,
@@ -214,7 +244,10 @@
     "figureName": "Clara Schumann",
     "era": "Steam",
     "gender": "female",
-    "identities": ["Musician", "Educator"],
+    "identities": [
+      "Musician",
+      "Educator"
+    ],
     "tier": "epic",
     "portraitKey": "clara_schumann",
     "politics": 8,
@@ -226,7 +259,7 @@
     "belief": 14,
     "reputation": 21,
     "lore": "She played from the heart when the world told her to stand aside.",
-    "trait": "Prodigy: this card's Culture and Technique are immune to opponent debuffs.",
+    "trait": "Musical Romance — If there is exactly one male Musician (Great Person or Follower) at this location, both this card and that card gain +3 to all stats.",
     "achievement": "Virtuoso — when Culture wins 3 rounds, generate 1 winning point.",
     "years": "1819–1896"
   },
@@ -235,7 +268,10 @@
     "figureName": "Euclid",
     "era": "Classical",
     "gender": "male",
-    "identities": ["Mathematician", "Educator"],
+    "identities": [
+      "Mathematician",
+      "Educator"
+    ],
     "tier": "legendary",
     "portraitKey": "euclid",
     "politics": 8,
@@ -247,7 +283,7 @@
     "belief": 10,
     "reputation": 22,
     "lore": "He handed the world a ruler and said: begin.",
-    "trait": "Elements: at game start, this card's Intelligence counts as 10 higher against Scientist and Mathematician identities.",
+    "trait": "Geometric Deduction — The special effects of this card's current location also apply to all other locations on the field.",
     "achievement": "Axiom — when Intelligence wins 5 rounds total, generate 1 winning point.",
     "years": "c. 300 BC"
   },
@@ -256,7 +292,10 @@
     "figureName": "Gregor Mendel",
     "era": "Steam",
     "gender": "male",
-    "identities": ["Scientist", "Monastic"],
+    "identities": [
+      "Scientist",
+      "Monastic"
+    ],
     "tier": "rare",
     "portraitKey": "gregor_mendel",
     "politics": 6,
@@ -277,7 +316,10 @@
     "figureName": "Hua Mulan",
     "era": "Medieval",
     "gender": "female",
-    "identities": ["Warrior", "Soldier"],
+    "identities": [
+      "Warrior",
+      "Soldier"
+    ],
     "tier": "epic",
     "portraitKey": "hua_mulan",
     "politics": 14,
@@ -289,7 +331,7 @@
     "belief": 16,
     "reputation": 20,
     "lore": "She rode in her father's armor and shook the walls of legend.",
-    "trait": "Disguise: opponent does not know this card's Gender until it is played.",
+    "trait": "Gender Disguise — All Great Person traits related to Gender on the field are disabled.",
     "achievement": "Honor — when Strength wins 3 rounds, generate 1 winning point.",
     "years": "c. 386–534 AD"
   },
@@ -298,7 +340,10 @@
     "figureName": "Johannes Brahms",
     "era": "Steam",
     "gender": "male",
-    "identities": ["Musician", "Artist"],
+    "identities": [
+      "Musician",
+      "Artist"
+    ],
     "tier": "rare",
     "portraitKey": "johannes_brahms",
     "politics": 6,
@@ -310,7 +355,7 @@
     "belief": 13,
     "reputation": 19,
     "lore": "He carried Beethoven's shadow and carved his own light.",
-    "trait": "Perfectionist: this card may be returned to hand once per match to replay in a later round.",
+    "trait": "Perfectionism — If the sum of a specific stat of all allied cards at this location is ≥ 25, gain +3 to that stat; otherwise −3.",
     "achievement": "Harmony — when Culture wins 3 consecutive rounds, generate 1 winning point.",
     "years": "1833–1897"
   },
@@ -319,7 +364,10 @@
     "figureName": "Lancelot",
     "era": "Medieval",
     "gender": "male",
-    "identities": ["General", "Warrior"],
+    "identities": [
+      "General",
+      "Warrior"
+    ],
     "tier": "epic",
     "portraitKey": "lancelot",
     "politics": 11,
@@ -340,7 +388,10 @@
     "figureName": "Li Qingzhao",
     "era": "Medieval",
     "gender": "female",
-    "identities": ["Writer", "Artist"],
+    "identities": [
+      "Writer",
+      "Artist"
+    ],
     "tier": "rare",
     "portraitKey": "li_qingzhao",
     "politics": 8,
@@ -361,7 +412,10 @@
     "figureName": "Louis XVI",
     "era": "Steam",
     "gender": "male",
-    "identities": ["Sovereign", "Noble"],
+    "identities": [
+      "Sovereign",
+      "Noble"
+    ],
     "tier": "rare",
     "portraitKey": "louis_xvi",
     "politics": 15,
@@ -373,7 +427,7 @@
     "belief": 16,
     "reputation": 13,
     "lore": "A kingdom inherited, a revolution unleashed.",
-    "trait": "Indecision: if Politics is the active stat, the active stat is re-rolled once.",
+    "trait": "Guillotine — Can unconditionally attack one opponent at the current location. If victorious, all of that player's Followers at this location are killed. Invalid if this card moved this turn.",
     "achievement": "Downfall — when this card loses 3 rounds, generate 1 winning point.",
     "years": "1754–1793"
   },
@@ -382,7 +436,10 @@
     "figureName": "Marie Antoinette",
     "era": "Steam",
     "gender": "female",
-    "identities": ["Noble", "Sovereign"],
+    "identities": [
+      "Noble",
+      "Sovereign"
+    ],
     "tier": "epic",
     "portraitKey": "marie_antoinette",
     "politics": 14,
@@ -403,7 +460,10 @@
     "figureName": "Miyamoto Musashi",
     "era": "Renaissance",
     "gender": "male",
-    "identities": ["Warrior", "Philosopher"],
+    "identities": [
+      "Warrior",
+      "Philosopher"
+    ],
     "tier": "epic",
     "portraitKey": "miyamoto_musashi",
     "politics": 9,
@@ -415,7 +475,7 @@
     "belief": 14,
     "reputation": 21,
     "lore": "The sword and the mind — both perfected.",
-    "trait": "Two-Sword Style: this card wins ties by highest secondary stat (Technique).",
+    "trait": "Niten Ichi-ryu — Can attack twice per turn.",
     "achievement": "Undefeated — if this card wins 4+ consecutive rounds, generate 1 winning point.",
     "years": "1584–1645"
   },
@@ -424,7 +484,10 @@
     "figureName": "Sargon I",
     "era": "Ancient",
     "gender": "male",
-    "identities": ["Sovereign", "General"],
+    "identities": [
+      "Sovereign",
+      "General"
+    ],
     "tier": "legendary",
     "portraitKey": "sargon_i",
     "politics": 23,
