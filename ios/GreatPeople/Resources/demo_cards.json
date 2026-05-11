@@ -18,7 +18,7 @@
     "belief": 22,
     "reputation": 20,
     "lore": "The soul force that moved an empire.",
-    "characteristics": "Nonviolence — when this card loses a Strength round, gain +10 Belief for the next round.",
+    "trait": "Nonviolence — when this card loses a Strength round, gain +10 Belief for the next round.",
     "achievement": "Independence — when Belief wins 3 rounds, generate 1 winning point.",
     "years": "1869–1948"
   },
@@ -40,7 +40,7 @@
     "belief": 1,
     "reputation": 12,
     "lore": "She dressed the world in modernity.",
-    "characteristics": "Elegance — this card's Culture counts as 10 higher if opponent's Wealth is higher.",
+    "trait": "Elegance — this card's Culture counts as 10 higher if opponent's Wealth is higher.",
     "achievement": "Icon — when Culture wins 3 rounds, generate 1 winning point.",
     "years": "1883–1971"
   },
@@ -63,7 +63,7 @@
     "belief": 1,
     "reputation": 18,
     "lore": "A revolution forged from peasant to chairman.",
-    "characteristics": "Long March — if this card loses the first 2 rounds, it gains +10 to all stats for the remainder.",
+    "trait": "Long March — if this card loses the first 2 rounds, it gains +10 to all stats for the remainder.",
     "achievement": "Revolution — when Politics wins 4 rounds, generate 1 winning point.",
     "years": "1893–1976"
   },
@@ -86,7 +86,7 @@
     "belief": 1,
     "reputation": 16,
     "lore": "The last great general of Rome.",
-    "characteristics": "Outnumbered — if opponent has more cards remaining, this card gains +10 Strength.",
+    "trait": "Outnumbered — if opponent has more cards remaining, this card gains +10 Strength.",
     "achievement": "Reconquest — when Strength wins 3 rounds, generate 1 winning point.",
     "years": "505–565 AD"
   },
@@ -109,7 +109,7 @@
     "belief": 16,
     "reputation": 14,
     "lore": "Deified by two civilizations for mastery of stone and medicine.",
-    "characteristics": "Polymath — apply the highest of Intelligence or Technique when either is the active stat.",
+    "trait": "Polymath — apply the highest of Intelligence or Technique when either is the active stat.",
     "achievement": "Monument — when Technique wins 4 rounds, generate 1 winning point.",
     "years": "c. 2650–2600 BC"
   },
@@ -132,7 +132,7 @@
     "belief": 10,
     "reputation": 1,
     "lore": "He turned leaves and water into philosophy.",
-    "characteristics": "Ritual — when Culture is the active stat, add 10 to this card's score.",
+    "trait": "Ritual — when Culture is the active stat, add 10 to this card's score.",
     "achievement": "The Classic — when Culture wins 3 rounds, generate 1 winning point.",
     "years": "733–804 AD"
   },
@@ -155,7 +155,7 @@
     "belief": 4,
     "reputation": 18,
     "lore": "He built the machine that broke the unbreakable.",
-    "characteristics": "Codebreaker — if opponent's Intelligence is higher, treat this card's Intelligence as equal.",
+    "trait": "Codebreaker — if opponent's Intelligence is higher, treat this card's Intelligence as equal.",
     "achievement": "Cracked — when Intelligence wins 3 rounds, generate 1 winning point.",
     "years": "1912–1954"
   },
@@ -178,7 +178,7 @@
     "belief": 16,
     "reputation": 10,
     "lore": "A bullet for a nation's soul.",
-    "characteristics": "Resolve — when this card loses a round, its Strength increases by 5 for the next round.",
+    "trait": "Resolve — when this card loses a round, its Strength increases by 5 for the next round.",
     "achievement": "Martyr — when defeated in a round by 20+ points, generate 1 winning point.",
     "years": "1879–1910"
   },
@@ -201,7 +201,7 @@
     "belief": 1,
     "reputation": 2,
     "lore": "His fortune shaped an era, for better and worse.",
-    "characteristics": "Financier — at game start, reduce one opponent card's Wealth by 10.",
+    "trait": "Financier — at game start, reduce one opponent card's Wealth by 10.",
     "achievement": "Capital — when Wealth wins 3 rounds, generate 1 winning point.",
     "years": "1855–1937"
   },
@@ -224,7 +224,7 @@
     "belief": 12,
     "reputation": 16,
     "lore": "Grace in every frame, humanity in every cause.",
-    "characteristics": "Humanitarian — if Belief is the active stat, this card gains +10 Reputation.",
+    "trait": "Humanitarian — if Belief is the active stat, this card gains +10 Reputation.",
     "achievement": "Icon — when Reputation wins 3 rounds, generate 1 winning point.",
     "years": "1929–1993"
   },
@@ -247,7 +247,7 @@
     "belief": 5,
     "reputation": 16,
     "lore": "She played from the heart when the world told her to stand aside.",
-    "characteristics": "Prodigy — this card's Culture and Technique are immune to opponent debuffs.",
+    "trait": "Prodigy — this card's Culture and Technique are immune to opponent debuffs.",
     "achievement": "Virtuoso — when Culture wins 3 rounds, generate 1 winning point.",
     "years": "1819–1896"
   },
@@ -270,7 +270,7 @@
     "belief": 10,
     "reputation": 18,
     "lore": "He handed the world a ruler and said: begin.",
-    "characteristics": "Elements — at game start, this card's Intelligence counts as 10 higher against Scientist and Mathematician identities.",
+    "trait": "Elements — at game start, this card's Intelligence counts as 10 higher against Scientist and Mathematician identities.",
     "achievement": "Axiom — when Intelligence wins 5 rounds total, generate 1 winning point.",
     "years": "c. 300 BC"
   },
@@ -293,7 +293,7 @@
     "belief": 10,
     "reputation": 3,
     "lore": "In a monastery garden, he found the code of life.",
-    "characteristics": "Patient Observation — if the match reaches round 8+, this card gains +15 Intelligence.",
+    "trait": "Patient Observation — if the match reaches round 8+, this card gains +15 Intelligence.",
     "achievement": "Inheritance — when this card wins a round by 30+ points, generate 1 winning point.",
     "years": "1822–1884"
   },
@@ -316,7 +316,7 @@
     "belief": 14,
     "reputation": 16,
     "lore": "She rode in her father's armor and shook the walls of legend.",
-    "characteristics": "Disguise — opponent does not know this card's Gender until it is played.",
+    "trait": "Disguise — opponent does not know this card's Gender until it is played.",
     "achievement": "Honor — when Strength wins 3 rounds, generate 1 winning point.",
     "years": "c. 386–534 AD"
   },
@@ -338,7 +338,7 @@
     "belief": 2,
     "reputation": 11,
     "lore": "He carried Beethoven's shadow and carved his own light.",
-    "characteristics": "Perfectionist — this card may be returned to hand once per match to replay in a later round.",
+    "trait": "Perfectionist — this card may be returned to hand once per match to replay in a later round.",
     "achievement": "Harmony — when Culture wins 3 consecutive rounds, generate 1 winning point.",
     "years": "1833–1897"
   },
@@ -361,7 +361,7 @@
     "belief": 12,
     "reputation": 16,
     "lore": "The greatest knight of the realm, undone by the greatest love.",
-    "characteristics": "Chivalry — if opponent plays a Female card, lose 10 Strength but gain 15 Reputation.",
+    "trait": "Chivalry — if opponent plays a Female card, lose 10 Strength but gain 15 Reputation.",
     "achievement": "Champion — when Strength wins 4 rounds, generate 1 winning point.",
     "years": "Arthurian legend"
   },
@@ -383,7 +383,7 @@
     "belief": 12,
     "reputation": 8,
     "lore": "Sorrow and beauty, distilled into verse.",
-    "characteristics": "Elegist — after a loss, this card gains +8 Culture for the next round.",
+    "trait": "Elegist — after a loss, this card gains +8 Culture for the next round.",
     "achievement": "Verse — when Culture wins 3 rounds, generate 1 winning point.",
     "years": "1084–c.1155"
   },
@@ -406,7 +406,7 @@
     "belief": 2,
     "reputation": 8,
     "lore": "A kingdom inherited, a revolution unleashed.",
-    "characteristics": "Indecision — if Politics is the active stat, the active stat is re-rolled once.",
+    "trait": "Indecision — if Politics is the active stat, the active stat is re-rolled once.",
     "achievement": "Downfall — when this card loses 3 rounds, generate 1 winning point.",
     "years": "1754–1793"
   },
@@ -429,7 +429,7 @@
     "belief": 8,
     "reputation": 16,
     "lore": "She wore the crown of Versailles until the crowd came for it.",
-    "characteristics": "Opulence — at game start, this card's Wealth counts as 10 higher.",
+    "trait": "Opulence — at game start, this card's Wealth counts as 10 higher.",
     "achievement": "Excess — when Wealth wins 3 rounds, generate 1 winning point.",
     "years": "1755–1793"
   },
@@ -452,7 +452,7 @@
     "belief": 4,
     "reputation": 12,
     "lore": "The sword and the mind — both perfected.",
-    "characteristics": "Two-Sword Style — this card wins ties by highest secondary stat (Technique).",
+    "trait": "Two-Sword Style — this card wins ties by highest secondary stat (Technique).",
     "achievement": "Undefeated — if this card wins 4+ consecutive rounds, generate 1 winning point.",
     "years": "1584–1645"
   },
@@ -475,7 +475,7 @@
     "belief": 1,
     "reputation": 18,
     "lore": "He built the world's first empire from nothing but will.",
-    "characteristics": "Conqueror — this card's Politics and Strength each count as 5 higher.",
+    "trait": "Conqueror — this card's Politics and Strength each count as 5 higher.",
     "achievement": "Empire — when Politics wins 4 rounds, generate 1 winning point.",
     "years": "c. 2334–2279 BC"
   },
@@ -498,7 +498,7 @@
     "belief": 14,
     "reputation": 20,
     "lore": "Two-thirds god, one-third man — he built the walls of Uruk and sought the secret of eternal life.",
-    "characteristics": "Unstoppable — wins Strength ties automatically.",
+    "trait": "Unstoppable — wins Strength ties automatically.",
     "achievement": "Epic Journey — when Strength wins 3 rounds, generate 1 winning point.",
     "years": "c. 2700 BCE"
   },
@@ -520,7 +520,7 @@
     "belief": 16,
     "reputation": 14,
     "lore": "Born of clay and wildness, he became the greatest friend a king ever had.",
-    "characteristics": "Wild Heart — when paired with Gilgamesh, both cards gain +5 Strength.",
+    "trait": "Wild Heart — when paired with Gilgamesh, both cards gain +5 Strength.",
     "achievement": "Brotherhood — when Strength wins 3 rounds, generate 1 winning point.",
     "years": "c. 2700 BCE"
   },
@@ -543,7 +543,7 @@
     "belief": 6,
     "reputation": 20,
     "lore": "Under his hand, Athens became the school of Hellas.",
-    "characteristics": "Golden Age — when Politics wins a round, all allied Classical-era cards gain +3 Culture.",
+    "trait": "Golden Age — when Politics wins a round, all allied Classical-era cards gain +3 Culture.",
     "achievement": "Athenian — when Politics wins 4 rounds, generate 1 winning point.",
     "years": "c. 495–429 BCE"
   },
@@ -566,7 +566,7 @@
     "belief": 4,
     "reputation": 12,
     "lore": "She taught the greatest minds of Athens — including Socrates himself.",
-    "characteristics": "Wisdom — when Intelligence is the active stat, this card's Culture also adds +5 to the score.",
+    "trait": "Wisdom — when Intelligence is the active stat, this card's Culture also adds +5 to the score.",
     "achievement": "Mentor — when Intelligence wins 3 rounds, generate 1 winning point.",
     "years": "c. 470–400 BCE"
   },
@@ -589,7 +589,7 @@
     "belief": 4,
     "reputation": 11,
     "lore": "King of Sparta, twice exiled, twice restored — a king who chose peace over glory.",
-    "characteristics": "Calculated Retreat — if this card loses a round, gain +8 Politics for the next round.",
+    "trait": "Calculated Retreat — if this card loses a round, gain +8 Politics for the next round.",
     "achievement": "Truce — when this card draws a round, generate 1 winning point.",
     "years": "c. 480–409 BCE"
   },
@@ -612,7 +612,7 @@
     "belief": 8,
     "reputation": 18,
     "lore": "The greatest orator of Rome — words were his sword and shield.",
-    "characteristics": "Rhetoric — when Politics is the active stat, this card may use Intelligence instead.",
+    "trait": "Rhetoric — when Politics is the active stat, this card may use Intelligence instead.",
     "achievement": "Consul — when Politics wins 4 rounds, generate 1 winning point.",
     "years": "106–43 BCE"
   },
@@ -635,7 +635,7 @@
     "belief": 14,
     "reputation": 3,
     "lore": "He first declared the sun is not a god, but a burning stone larger than all of Greece.",
-    "characteristics": "Nous — when Intelligence is the active stat, this card ignores opponent's Intelligence bonus abilities.",
+    "trait": "Nous — when Intelligence is the active stat, this card ignores opponent's Intelligence bonus abilities.",
     "achievement": "First Principles — when Intelligence wins 4 rounds, generate 1 winning point.",
     "years": "c. 500–428 BCE"
   },
@@ -658,7 +658,7 @@
     "belief": 13,
     "reputation": 10,
     "lore": "He proved motion was impossible — and the world has never stopped arguing.",
-    "characteristics": "Paradox — once per match, negate one opponent stat bonus by declaring a logical contradiction.",
+    "trait": "Paradox — once per match, negate one opponent stat bonus by declaring a logical contradiction.",
     "achievement": "Infinite Steps — when Intelligence wins 3 consecutive rounds, generate 1 winning point.",
     "years": "c. 490–430 BCE"
   },
@@ -680,7 +680,7 @@
     "belief": 10,
     "reputation": 14,
     "lore": "He gave us algebra and the algorithm — the invisible foundation of every computer ever built.",
-    "characteristics": "Algorithm — when Technique wins a round, gain a bonus equal to the round number.",
+    "trait": "Algorithm — when Technique wins a round, gain a bonus equal to the round number.",
     "achievement": "Algebra — when Technique wins 4 rounds, generate 1 winning point.",
     "years": "c. 780–850 CE"
   },
@@ -703,7 +703,7 @@
     "belief": 20,
     "reputation": 12,
     "lore": "The Prophet of Light painted his gospels in vivid color across three continents.",
-    "characteristics": "Illumination — when Belief is active, this card's Culture also adds +5 to the score.",
+    "trait": "Illumination — when Belief is active, this card's Culture also adds +5 to the score.",
     "achievement": "Light — when Belief wins 3 rounds, generate 1 winning point.",
     "years": "c. 216–274 CE"
   },
@@ -725,7 +725,7 @@
     "belief": 9,
     "reputation": 18,
     "lore": "His brush turned the Renaissance into fire and flesh — the last great master standing.",
-    "characteristics": "Colorist — when Culture is the active stat, this card's Reputation also adds +5 to the score.",
+    "trait": "Colorist — when Culture is the active stat, this card's Reputation also adds +5 to the score.",
     "achievement": "Masterpiece — when Culture wins 4 rounds, generate 1 winning point.",
     "years": "c. 1488–1576"
   },
@@ -747,7 +747,7 @@
     "belief": 1,
     "reputation": 14,
     "lore": "He proved the world was round by sailing its circumference — and died before he saw it complete.",
-    "characteristics": "Navigator — when Technique is the active stat, this card gains +5 Strength.",
+    "trait": "Navigator — when Technique is the active stat, this card gains +5 Strength.",
     "achievement": "Circumnavigation — when Technique wins 3 rounds, generate 1 winning point.",
     "years": "1480–1521"
   },
@@ -770,7 +770,7 @@
     "belief": 22,
     "reputation": 16,
     "lore": "She reformed a faith and described the soul's journey to God with surgical precision.",
-    "characteristics": "Interior Castle — when Belief is active, this card's Intelligence also adds +5 to the score.",
+    "trait": "Interior Castle — when Belief is active, this card's Intelligence also adds +5 to the score.",
     "achievement": "Mystic — when Belief wins 4 rounds, generate 1 winning point.",
     "years": "1515–1582"
   },
@@ -792,7 +792,7 @@
     "belief": 1,
     "reputation": 10,
     "lore": "He named the world — every living thing classified by his elegant two-word system.",
-    "characteristics": "Taxonomy — at game start, reveal opponent's identities and gain +5 Intelligence per unique identity type.",
+    "trait": "Taxonomy — at game start, reveal opponent's identities and gain +5 Intelligence per unique identity type.",
     "achievement": "Classification — when Intelligence wins 3 rounds, generate 1 winning point.",
     "years": "1707–1778"
   },
@@ -814,7 +814,7 @@
     "belief": 3,
     "reputation": 14,
     "lore": "His music spoke what words could not — joy and madness in the same key.",
-    "characteristics": "Phantasie — when this card loses a round, its Culture increases by 8 for the next round.",
+    "trait": "Phantasie — when this card loses a round, its Culture increases by 8 for the next round.",
     "achievement": "Composition — when Culture wins 3 rounds, generate 1 winning point.",
     "years": "1810–1856"
   },
@@ -837,7 +837,7 @@
     "belief": 2,
     "reputation": 10,
     "lore": "He gave Einstein the mathematics to prove relativity — and modestly called it Einstein's theory.",
-    "characteristics": "Transformation — once per match, this card may swap its Intelligence and Technique stats.",
+    "trait": "Transformation — once per match, this card may swap its Intelligence and Technique stats.",
     "achievement": "Relativity — when Intelligence wins 4 rounds, generate 1 winning point.",
     "years": "1853–1928"
   },
@@ -859,7 +859,7 @@
     "belief": 1,
     "reputation": 14,
     "lore": "She aimed for the horizon and flew straight through every barrier in her path.",
-    "characteristics": "Solo Flight — when this card is the last card played, all its stats gain +10.",
+    "trait": "Solo Flight — when this card is the last card played, all its stats gain +10.",
     "achievement": "Altitude Record — when Technique wins 3 rounds, generate 1 winning point.",
     "years": "1897–1937"
   },
@@ -881,7 +881,7 @@
     "belief": 2,
     "reputation": 14,
     "lore": "He invented the language of film — montage as a weapon of art and revolution.",
-    "characteristics": "Montage — this card's effects trigger twice if played immediately after another Culture card.",
+    "trait": "Montage — this card's effects trigger twice if played immediately after another Culture card.",
     "achievement": "Battleship — when Culture wins 3 rounds, generate 1 winning point.",
     "years": "1898–1948"
   },
@@ -903,7 +903,7 @@
     "belief": 1,
     "reputation": 14,
     "lore": "He stood on top of the world — and then spent decades helping the people who lived there.",
-    "characteristics": "Summit — when Strength wins a round, this card's Reputation increases by 5.",
+    "trait": "Summit — when Strength wins a round, this card's Reputation increases by 5.",
     "achievement": "Everest — when Strength wins 3 rounds, generate 1 winning point.",
     "years": "1919–2008"
   },
@@ -925,7 +925,7 @@
     "belief": 10,
     "reputation": 12,
     "lore": "He knew every ridge and crevice of Everest — and chose to climb it side by side.",
-    "characteristics": "Sherpa's Bond — when paired with Edmund Hillary, both cards gain +5 Strength and +5 Technique.",
+    "trait": "Sherpa's Bond — when paired with Edmund Hillary, both cards gain +5 Strength and +5 Technique.",
     "achievement": "Together — when both Tenzing and Edmund Hillary win a round in the same match, generate 2 winning points.",
     "years": "1914–1986"
   },
@@ -948,7 +948,7 @@
     "belief": 1,
     "reputation": 16,
     "lore": "He modernized Japan in a generation — and paid the ultimate price for empire.",
-    "characteristics": "Meiji Constitution — when Politics wins a round, all allied Electricity-era cards gain +3 Intelligence.",
+    "trait": "Meiji Constitution — when Politics wins a round, all allied Electricity-era cards gain +3 Intelligence.",
     "achievement": "Modernization — when Politics wins 4 rounds, generate 1 winning point.",
     "years": "1841–1909"
   },
@@ -971,7 +971,7 @@
     "belief": 1,
     "reputation": 20,
     "lore": "The King of Pop — the most famous entertainer in human history.",
-    "characteristics": "Moonwalk — when Culture wins a round, this card's Reputation adds +10 to the next round's score.",
+    "trait": "Moonwalk — when Culture wins a round, this card's Reputation adds +10 to the next round's score.",
     "achievement": "Thriller — when Culture wins 4 rounds, generate 1 winning point.",
     "years": "1958–2009"
   },
@@ -994,7 +994,7 @@
     "belief": 4,
     "reputation": 18,
     "lore": "He turned the stage into a philosopher's lecture hall.",
-    "characteristics": "Wit — when this card loses a Strength or Belief round, its Intelligence counts as 8 higher in the next round.",
+    "trait": "Wit — when this card loses a Strength or Belief round, its Intelligence counts as 8 higher in the next round.",
     "achievement": "Major Barbara — when Culture wins 3 rounds, generate 1 winning point.",
     "years": "1856–1950"
   },
@@ -1016,7 +1016,7 @@
     "belief": 16,
     "reputation": 18,
     "lore": "In a role he was born to play, he gave America its conscience.",
-    "characteristics": "Integrity — when playing a Belief scenario, this card's Culture bonus is added to Belief.",
+    "trait": "Integrity — when playing a Belief scenario, this card's Culture bonus is added to Belief.",
     "achievement": "Atticus — when Belief wins 3 rounds, generate 1 winning point.",
     "years": "1916–2003"
   },
@@ -1039,7 +1039,7 @@
     "belief": 20,
     "reputation": 13,
     "lore": "She united a kingdom, funded a new world, and reshaped history.",
-    "characteristics": "Faith and Crown — this card's Politics and Belief are each treated as equal to whichever of the two is higher.",
+    "trait": "Faith and Crown — this card's Politics and Belief are each treated as equal to whichever of the two is higher.",
     "achievement": "Reconquista — when Belief wins 3 rounds, generate 1 winning point.",
     "years": "1451–1504"
   },
@@ -1062,7 +1062,7 @@
     "belief": 5,
     "reputation": 12,
     "lore": "Under his reign, Portugal held the key to the world's treasure chest.",
-    "characteristics": "Fortune's King — when this card wins a Wealth scenario, the owner draws 1 extra Follower card.",
+    "trait": "Fortune's King — when this card wins a Wealth scenario, the owner draws 1 extra Follower card.",
     "achievement": "Empire of Spice — when Wealth wins 3 rounds, generate 1 winning point.",
     "years": "1469–1521"
   }

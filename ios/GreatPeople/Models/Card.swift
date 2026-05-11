@@ -12,7 +12,7 @@ struct Card: Identifiable, Codable, Equatable, Hashable {
     let lore: String
     let portraitUrl: String
     let years: String
-    let characteristics: String
+    let trait: String
     let achievement: String
     let politics: Int
     let strength: Int

@@ -22,7 +22,7 @@ data class Card(
     val lore: String,
     val portraitUrl: String,
     val years: String = "",
-    val characteristics: String = "",
+    val trait: String = "",
     val achievement: String = "",
     val politics: Int = 0,
     val strength: Int = 0,

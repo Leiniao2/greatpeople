@@ -81,9 +81,9 @@ struct CardDetailView: View {
                             }
                         }
 
-                        // Characteristics
-                        if !card.characteristics.isEmpty {
-                            InfoSection(label: "Characteristics", text: card.characteristics, color: tierColor)
+                        // Trait
+                        if !card.trait.isEmpty {
+                            InfoSection(label: "Trait", text: card.trait, color: tierColor)
                         }
 
                         // Achievement

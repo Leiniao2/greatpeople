@@ -8,7 +8,7 @@ export interface Card {
   portraitUrl: string
   portraitKey?: string
   years: string
-  characteristics: string
+  trait: string
   achievement: string
   politics: number
   strength: number

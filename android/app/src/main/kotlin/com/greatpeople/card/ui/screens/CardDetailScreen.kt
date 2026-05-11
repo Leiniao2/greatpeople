@@ -144,9 +144,9 @@ fun CardDetailScreen(card: Card, onBack: () -> Unit) {
                     }
                 }
 
-                // Characteristics
-                if (card.characteristics.isNotEmpty()) {
-                    InfoSection("Characteristics", card.characteristics, tierColor)
+                // Trait
+                if (card.trait.isNotEmpty()) {
+                    InfoSection("Trait", card.trait, tierColor)
                 }
 
                 // Achievement

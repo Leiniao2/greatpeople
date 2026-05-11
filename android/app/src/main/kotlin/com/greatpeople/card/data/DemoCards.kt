@@ -22,7 +22,7 @@ fun loadDemoCards(context: Context): List<Card> {
             lore = obj.getString("lore"),
             portraitUrl = "file:///android_asset/portraits/portrait_$key.jpeg",
             years = obj.getString("years"),
-            characteristics = obj.getString("characteristics"),
+            trait = obj.getString("trait"),
             achievement = obj.getString("achievement"),
             politics = obj.getInt("politics"),
             strength = obj.getInt("strength"),

@@ -170,7 +170,7 @@ private func makeCard(
     lore: String = "",
     portraitUrl: String = "",
     years: String = "2000–2024",
-    characteristics: String = "",
+    trait: String = "",
     achievement: String = "",
     politics: Int = 50,
     strength: Int = 50,
@@ -185,7 +185,7 @@ private func makeCard(
         id: id, figureName: figureName, era: era, gender: gender,
         identities: identities, tier: tier, lore: lore,
         portraitUrl: portraitUrl, years: years,
-        characteristics: characteristics, achievement: achievement,
+        trait: trait, achievement: achievement,
         politics: politics, strength: strength, culture: culture,
         wealth: wealth, intelligence: intelligence, technique: technique,
         belief: belief, reputation: reputation

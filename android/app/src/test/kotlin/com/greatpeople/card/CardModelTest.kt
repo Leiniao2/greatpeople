@@ -18,7 +18,7 @@ class CardModelTest {
         lore: String = "He built the machine that broke the unbreakable.",
         portraitUrl: String = "https://example.com/turing.png",
         years: String = "1912–1954",
-        characteristics: String = "",
+        trait: String = "",
         achievement: String = "",
         politics: Int = 40,
         strength: Int = 25,
@@ -38,7 +38,7 @@ class CardModelTest {
         lore = lore,
         portraitUrl = portraitUrl,
         years = years,
-        characteristics = characteristics,
+        trait = trait,
         achievement = achievement,
         politics = politics,
         strength = strength,
@@ -65,9 +65,9 @@ class CardModelTest {
     }
 
     @Test
-    fun `Card characteristics defaults to empty string`() {
+    fun `Card trait defaults to empty string`() {
         val card = makeCard()
-        assertEquals("", card.characteristics)
+        assertEquals("", card.trait)
     }
 
     @Test
@@ -121,12 +121,12 @@ class CardModelTest {
         val card = makeCard(
             years = "1912–1954",
             identities = listOf("Mathematician", "Scientist"),
-            characteristics = "Codebreaker: if opponent's Intelligence is higher, treat as equal.",
+            trait = "Codebreaker: if opponent's Intelligence is higher, treat as equal.",
             achievement = "Cracked — when Intelligence wins 3 rounds, generate 1 winning point.",
         )
         assertEquals("1912–1954", card.years)
         assertEquals(listOf("Mathematician", "Scientist"), card.identities)
-        assertEquals("Codebreaker: if opponent's Intelligence is higher, treat as equal.", card.characteristics)
+        assertEquals("Codebreaker: if opponent's Intelligence is higher, treat as equal.", card.trait)
         assertEquals("Cracked — when Intelligence wins 3 rounds, generate 1 winning point.", card.achievement)
     }
 

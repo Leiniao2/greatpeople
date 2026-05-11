@@ -13,7 +13,7 @@ function makeCard(overrides: Partial<Card> = {}): Card {
     lore: 'Some lore',
     portraitUrl: '',
     years: '2000–2024',
-    characteristics: '',
+    trait: '',
     achievement: '',
     politics: 50,
     strength: 50,

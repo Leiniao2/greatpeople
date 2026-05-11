@@ -10,7 +10,7 @@ private struct DemoCardDTO: Decodable {
     let portraitKey: String
     let lore: String
     let years: String
-    let characteristics: String
+    let trait: String
     let achievement: String
     let politics: Int
     let strength: Int
@@ -32,7 +32,7 @@ private struct DemoCardDTO: Decodable {
             lore: lore,
             portraitUrl: "asset:portrait_\(portraitKey)",
             years: years,
-            characteristics: characteristics,
+            trait: trait,
             achievement: achievement,
             politics: politics,
             strength: strength,

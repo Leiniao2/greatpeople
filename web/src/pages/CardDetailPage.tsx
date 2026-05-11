@@ -84,9 +84,9 @@ export default function CardDetailPage() {
             </div>
           )}
 
-          {/* Characteristics */}
-          {card.characteristics && (
-            <InfoSection label="Characteristics" text={card.characteristics} accent={ACCENT} />
+          {/* Trait */}
+          {card.trait && (
+            <InfoSection label="Trait" text={card.trait} accent={ACCENT} />
           )}
 
           {/* Achievement */}
