@@ -974,5 +974,96 @@
     "characteristics": "Moonwalk — when Culture wins a round, this card's Reputation adds +10 to the next round's score.",
     "achievement": "Thriller — when Culture wins 4 rounds, generate 1 winning point.",
     "years": "1958–2009"
+  },
+  {
+    "id": "demo-44",
+    "figureName": "George Bernard Shaw",
+    "era": "Electricity",
+    "gender": "male",
+    "identities": [
+      "Playwright",
+      "Philosopher"
+    ],
+    "portraitKey": "george_bernard_shaw",
+    "politics": 12,
+    "strength": 2,
+    "culture": 20,
+    "wealth": 5,
+    "intelligence": 18,
+    "technique": 3,
+    "belief": 4,
+    "reputation": 18,
+    "lore": "He turned the stage into a philosopher's lecture hall.",
+    "characteristics": "Wit — when this card loses a Strength or Belief round, its Intelligence counts as 8 higher in the next round.",
+    "achievement": "Major Barbara — when Culture wins 3 rounds, generate 1 winning point.",
+    "years": "1856–1950"
+  },
+  {
+    "id": "demo-45",
+    "figureName": "Gregory Peck",
+    "era": "Information",
+    "gender": "male",
+    "identities": [
+      "Artist"
+    ],
+    "portraitKey": "gregory_peck",
+    "politics": 6,
+    "strength": 3,
+    "culture": 20,
+    "wealth": 8,
+    "intelligence": 10,
+    "technique": 5,
+    "belief": 16,
+    "reputation": 18,
+    "lore": "In a role he was born to play, he gave America its conscience.",
+    "characteristics": "Integrity — when playing a Belief scenario, this card's Culture bonus is added to Belief.",
+    "achievement": "Atticus — when Belief wins 3 rounds, generate 1 winning point.",
+    "years": "1916–2003"
+  },
+  {
+    "id": "demo-46",
+    "figureName": "Isabel I of Castile",
+    "era": "Renaissance",
+    "gender": "female",
+    "identities": [
+      "Statesman",
+      "Believer"
+    ],
+    "portraitKey": "isabel_i",
+    "politics": 18,
+    "strength": 9,
+    "culture": 5,
+    "wealth": 13,
+    "intelligence": 11,
+    "technique": 2,
+    "belief": 20,
+    "reputation": 13,
+    "lore": "She united a kingdom, funded a new world, and reshaped history.",
+    "characteristics": "Faith and Crown — this card's Politics and Belief are each treated as equal to whichever of the two is higher.",
+    "achievement": "Reconquista — when Belief wins 3 rounds, generate 1 winning point.",
+    "years": "1451–1504"
+  },
+  {
+    "id": "demo-47",
+    "figureName": "Manuel I of Portugal",
+    "era": "Renaissance",
+    "gender": "male",
+    "identities": [
+      "Statesman",
+      "Merchant"
+    ],
+    "portraitKey": "manuel_i",
+    "politics": 16,
+    "strength": 7,
+    "culture": 9,
+    "wealth": 20,
+    "intelligence": 10,
+    "technique": 8,
+    "belief": 5,
+    "reputation": 12,
+    "lore": "Under his reign, Portugal held the key to the world's treasure chest.",
+    "characteristics": "Fortune's King — when this card wins a Wealth scenario, the owner draws 1 extra Follower card.",
+    "achievement": "Empire of Spice — when Wealth wins 3 rounds, generate 1 winning point.",
+    "years": "1469–1521"
   }
 ]

@@ -3,7 +3,7 @@ import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 const TABS = [
   { path: '/epic',       label: 'Epic',       icon: '⚡' },
   { path: '/collection', label: 'Collection', icon: '♛' },
-  { path: '/battle',     label: 'Battle',     icon: '⚔' },
+  { path: '/battle',     label: 'Fight',      icon: '⚔' },
   { path: '/profile',    label: 'Profile',    icon: '◉' },
 ] as const
 

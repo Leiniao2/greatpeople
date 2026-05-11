@@ -1532,5 +1532,127 @@
         "fact": "The Moon's surface area is about 37.9 million km² — slightly less than Asia. Only 12 humans have walked on it, all between 1969 and 1972. Mars has a surface area of 144 million km² — the next frontier."
       }
     ]
+  },
+  {
+    "era": "Electricity",
+    "story": "Pygmalion",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "Shaw's 1913 play 'Pygmalion' was later adapted into which enormously successful musical?",
+        "options": [
+          "South Pacific",
+          "My Fair Lady",
+          "Cabaret",
+          "Annie Get Your Gun"
+        ],
+        "answer": 1,
+        "fact": "My Fair Lady (1956) ran for 2,717 performances on Broadway. Shaw famously wrote his own stage directions to prevent producers from adding a romantic happy ending."
+      },
+      {
+        "type": "minigame",
+        "game": "classify",
+        "configId": "darwin-beaks",
+        "instruction": "Shaw was fascinated by Darwin and evolution. Classify these beaks as Darwin would — each adapted to a different food source.",
+        "fact": "Shaw wrote 'Back to Methuselah' (1921), a five-play epic spanning from Adam and Eve to 31,920 AD. He was the only person to win both a Nobel Prize (1925) and an Academy Award (1938)."
+      },
+      {
+        "type": "minigame",
+        "game": "painting",
+        "configId": "shaw-theater",
+        "instruction": "Paint the Edwardian theater where Shaw challenged every social convention from the stage.",
+        "fact": "Shaw wrote over 60 plays across seven decades. His plays addressed women's rights, class inequality, and religious hypocrisy — subjects rarely spoken of openly in Edwardian England."
+      }
+    ]
+  },
+  {
+    "era": "Information",
+    "story": "To Kill a Mockingbird",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "Gregory Peck won the 1963 Best Actor Oscar for his portrayal of Atticus Finch. What was Atticus defending Tom Robinson against?",
+        "options": [
+          "Tax fraud",
+          "A wrongful murder accusation",
+          "Treason",
+          "Land theft"
+        ],
+        "answer": 1,
+        "fact": "Harper Lee based Atticus partly on her own father, a lawyer who defended two Black men in Alabama. Peck and Harper Lee became lifelong friends after the 1962 film."
+      },
+      {
+        "type": "minigame",
+        "game": "classify",
+        "configId": "ecosystems",
+        "instruction": "Maycomb's rigid social order works like a food chain. Sort the roles: who produces, who consumes, who dominates.",
+        "fact": "The AFI voted Atticus Finch the greatest movie hero of the 20th century. Peck later said the role was the one closest to his own moral convictions — he fought for civil rights throughout his career."
+      },
+      {
+        "type": "minigame",
+        "game": "painting",
+        "configId": "peck-courtroom",
+        "instruction": "Paint the Alabama courthouse where Atticus Finch delivered his closing argument for justice.",
+        "fact": "Harper Lee's novel has sold over 45 million copies. Peck was also a founding member of the National Endowment for the Arts and campaigned for racial equality long after the film made him famous."
+      }
+    ]
+  },
+  {
+    "era": "Renaissance",
+    "story": "The Catholic Monarchs",
+    "challenges": [
+      {
+        "type": "truefalse",
+        "statement": "Queen Isabel I personally funded Columbus's first voyage by selling her own jewellery collection.",
+        "correct": false,
+        "fact": "This is a romantic legend. The voyage was funded from the Castilian royal treasury, managed by treasurer Luis de Santangel. Isabel rejected Columbus twice before approving his third proposal in 1492."
+      },
+      {
+        "type": "minigame",
+        "game": "cooking",
+        "configId": "aztec-chocolate",
+        "instruction": "Columbus returned to Isabel's court with cacao from the Americas. Prepare the sacred Aztec drink that first reached Spain in her era.",
+        "fact": "Columbus brought cacao beans to Spain on his fourth voyage in 1502. Isabel died in 1504, likely never tasting chocolate. It was her descendants who introduced the sweetened drink to European courts."
+      },
+      {
+        "type": "minigame",
+        "game": "painting",
+        "configId": "isabel-court",
+        "instruction": "Paint the Moorish-Gothic palace of Isabel's Castilian court — where faith and political power fused.",
+        "fact": "Isabel and Fernando's marriage united Castile and Aragon into modern Spain. They funded the Inquisition, expelled Jews and Muslims in 1492, and in the same year sponsored Columbus — three decisions that reshaped the world."
+      }
+    ]
+  },
+  {
+    "era": "Renaissance",
+    "story": "The Fortunate King",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "Manuel I of Portugal was known by what nickname, reflecting the extraordinary wealth of his reign?",
+        "options": [
+          "The Great",
+          "The Fortunate",
+          "The Navigator",
+          "The Bold"
+        ],
+        "answer": 1,
+        "fact": "'Manuel, o Venturoso' — The Fortunate. Under his reign, Vasco da Gama reached India (1498), Pedro Cabral reached Brazil (1500), and Portugal controlled the world's spice trade. Lisbon became the richest city in Europe."
+      },
+      {
+        "type": "minigame",
+        "game": "cooking",
+        "configId": "japanese-tea",
+        "instruction": "Portuguese traders were the first Europeans to reach Japan. Arrange the tea ceremony steps they would have witnessed there.",
+        "fact": "Portuguese traders arrived in Japan in 1543. They brought firearms, Catholicism, and tempura cooking — and in return encountered Japanese tea culture and Buddhist art. The cultural exchange flowed both ways."
+      },
+      {
+        "type": "minigame",
+        "game": "painting",
+        "configId": "lisbon-harbor",
+        "instruction": "Paint the Tagus estuary as Manuel's caravels depart for the spice routes of the Indian Ocean.",
+        "fact": "The 'Manueline' architectural style — Portugal's late Gothic adorned with maritime ropes, coral, and armillary spheres — was born in Manuel's reign. The Jerónimos Monastery in Lisbon, celebrating Vasco da Gama's voyage, is a UNESCO World Heritage Site."
+      }
+    ]
   }
 ]

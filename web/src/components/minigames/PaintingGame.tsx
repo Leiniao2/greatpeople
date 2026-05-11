@@ -408,6 +408,74 @@ const CONFIGS: Record<string, PaintingConfig> = {
       { color: '#fbbf24', name: 'Sand' },
     ],
   },
+  'shaw-theater': {
+    title: "Shaw's Stage",
+    instruction: "Paint the Edwardian theater where Shaw's plays challenged convention.",
+    viewBox: '0 0 280 200',
+    regions: [
+      { id: 'curtains',  label: 'Curtains',   targetColor: '#7f1d1d', svgShape: '<rect x="0" y="0" width="70" height="200"/><rect x="210" y="0" width="70" height="200"/>' },
+      { id: 'backdrop',  label: 'Backdrop',   targetColor: '#1e1b4b', svgShape: '<rect x="70" y="0" width="140" height="130"/>' },
+      { id: 'spotlight', label: 'Spotlight',  targetColor: '#f59e0b', svgShape: '<ellipse cx="140" cy="100" rx="45" ry="35"/>' },
+      { id: 'stage',     label: 'Stage',      targetColor: '#44403c', svgShape: '<rect x="70" y="130" width="140" height="70"/>' },
+    ],
+    palette: [
+      { color: '#7f1d1d', name: 'Crimson Curtain' },
+      { color: '#1e1b4b', name: 'Night Backdrop' },
+      { color: '#f59e0b', name: 'Spotlight' },
+      { color: '#44403c', name: 'Oak Stage' },
+    ],
+  },
+  'peck-courtroom': {
+    title: "Maycomb Courthouse",
+    instruction: "Paint the Alabama courtroom where Atticus Finch stood for justice.",
+    viewBox: '0 0 280 200',
+    regions: [
+      { id: 'paneling', label: 'Wood Paneling', targetColor: '#92400e', svgShape: '<rect x="0" y="0" width="280" height="200"/>' },
+      { id: 'windows',  label: 'Windows',       targetColor: '#bfdbfe', svgShape: '<rect x="20" y="20" width="50" height="70" rx="4"/><rect x="210" y="20" width="50" height="70" rx="4"/>' },
+      { id: 'desk',     label: "Judge's Bench",  targetColor: '#1c1917', svgShape: '<rect x="60" y="110" width="160" height="40" rx="4"/>' },
+      { id: 'floor',    label: 'Stone Floor',   targetColor: '#a8a29e', svgShape: '<rect x="0" y="150" width="280" height="50"/>' },
+    ],
+    palette: [
+      { color: '#92400e', name: 'Oak' },
+      { color: '#bfdbfe', name: 'Window Light' },
+      { color: '#1c1917', name: 'Dark Wood' },
+      { color: '#a8a29e', name: 'Stone' },
+    ],
+  },
+  'isabel-court': {
+    title: "Court of Castile",
+    instruction: "Paint the Moorish-Gothic palace where Isabel held her royal court.",
+    viewBox: '0 0 280 200',
+    regions: [
+      { id: 'arches', label: 'Golden Arches', targetColor: '#d97706', svgShape: '<rect x="0" y="0" width="280" height="80"/><polygon points="70,80 70,40 110,40 110,80"/><polygon points="140,80 140,40 180,40 180,80"/>' },
+      { id: 'walls',  label: 'Stone Walls',   targetColor: '#a8a29e', svgShape: '<rect x="0" y="80" width="280" height="80"/>' },
+      { id: 'throne', label: 'Throne',        targetColor: '#dc2626', svgShape: '<polygon points="140,60 115,160 165,160"/>' },
+      { id: 'shadow', label: 'Shadows',       targetColor: '#292524', svgShape: '<rect x="0" y="160" width="280" height="40"/>' },
+    ],
+    palette: [
+      { color: '#d97706', name: 'Gold' },
+      { color: '#a8a29e', name: 'Stone' },
+      { color: '#dc2626', name: 'Crimson' },
+      { color: '#292524', name: 'Shadow' },
+    ],
+  },
+  'lisbon-harbor': {
+    title: "Lisbon Harbor",
+    instruction: "Paint the Tagus estuary as Manuel's caravels set sail for the spice routes.",
+    viewBox: '0 0 280 200',
+    regions: [
+      { id: 'sky',  label: 'Morning Sky', targetColor: '#60a5fa', svgShape: '<rect x="0" y="0" width="280" height="100"/>' },
+      { id: 'sea',  label: 'River',       targetColor: '#1e40af', svgShape: '<rect x="0" y="100" width="280" height="100"/>' },
+      { id: 'sail', label: 'Sail',        targetColor: '#f8fafc', svgShape: '<polygon points="140,20 115,110 165,110"/>' },
+      { id: 'hull', label: 'Hull',        targetColor: '#92400e', svgShape: '<rect x="105" y="110" width="70" height="22" rx="4"/>' },
+    ],
+    palette: [
+      { color: '#60a5fa', name: 'Morning Sky' },
+      { color: '#1e40af', name: 'Tagus River' },
+      { color: '#f8fafc', name: 'White Sail' },
+      { color: '#92400e', name: 'Oak Hull' },
+    ],
+  },
 }
 
 export default function PaintingGame({ configId, onWin }: { configId: string; onWin: () => void }) {
