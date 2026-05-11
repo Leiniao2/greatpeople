@@ -22,7 +22,7 @@ interface FixedMirror {
   mirror: MirrorChar
 }
 
-type MirrorKey = 'mendel' | 'euclid' | 'digital'
+type MirrorKey = 'mendel' | 'euclid' | 'digital' | 'plato' | 'anaxagoras' | 'al-khwarizmi' | 'lorentz'
 
 interface MirrorConfig {
   title: string
@@ -60,6 +60,42 @@ const CONFIGS: Record<MirrorKey, MirrorConfig> = {
     source: { row: 5, col: 0, dir: 'up' },
     target: { row: -1, col: 4 },
     fixed: [{ row: 3, col: 0, mirror: '/' }],
+    maxMirrors: 2,
+  },
+  plato: {
+    title: "Plato's Cave",
+    instruction: "In Plato's Cave, shadows are cast by a hidden light. Redirect the beam to reach the cave wall.",
+    gridSize: 5,
+    source: { row: 4, col: -1, dir: 'right' },
+    target: { row: 0, col: 5 },
+    fixed: [{ row: 4, col: 1, mirror: '/' }],
+    maxMirrors: 2,
+  },
+  anaxagoras: {
+    title: 'The Fiery Rock',
+    instruction: "Anaxagoras claimed the sun is a fiery rock — not a god. Direct its light to prove your theory.",
+    gridSize: 5,
+    source: { row: -1, col: 2, dir: 'down' },
+    target: { row: 5, col: 4 },
+    fixed: [{ row: 1, col: 2, mirror: '\\' }],
+    maxMirrors: 2,
+  },
+  'al-khwarizmi': {
+    title: 'House of Wisdom',
+    instruction: "Baghdad's House of Wisdom studied optics. Route the light beam through the library to the lens.",
+    gridSize: 5,
+    source: { row: 0, col: -1, dir: 'right' },
+    target: { row: 4, col: 5 },
+    fixed: [{ row: 0, col: 3, mirror: '\\' }, { row: 2, col: 3, mirror: '/' }],
+    maxMirrors: 1,
+  },
+  lorentz: {
+    title: 'Speed of Light',
+    instruction: "Lorentz showed light's path changes with velocity. Guide the beam to demonstrate time dilation.",
+    gridSize: 6,
+    source: { row: -1, col: 0, dir: 'down' },
+    target: { row: 6, col: 5 },
+    fixed: [{ row: 1, col: 0, mirror: '\\' }, { row: 1, col: 4, mirror: '/' }],
     maxMirrors: 2,
   },
 }

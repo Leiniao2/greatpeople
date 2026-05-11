@@ -16,41 +16,18 @@
         "fact": "Imhotep designed the Step Pyramid of Djoser around 2650 BCE — the world's first large stone structure. He was later deified as a god of medicine."
       },
       {
-        "type": "truefalse",
-        "statement": "The Great Pyramid of Giza was built by enslaved workers.",
-        "correct": false,
-        "fact": "Modern archaeology shows the pyramids were built by skilled, paid laborers — Egyptian citizens who received food, healthcare, and burial honors. Graffiti left by work gangs shows pride in their craft."
-      },
-      {
-        "type": "quiz",
-        "question": "What material originally clad the outer surface of the Great Pyramid, making it shine brilliantly?",
-        "options": [
-          "Granite",
-          "Sandstone",
-          "Polished white limestone",
-          "Mud brick"
-        ],
-        "answer": 2,
-        "fact": "The pyramid was encased in smooth white Tura limestone that would have blazed like a jewel in the desert sun. Most of it was stripped away in the Middle Ages to build Cairo."
-      },
-      {
-        "type": "quiz",
-        "question": "You're building a pyramid 500m × 500m × 500m using bricks that are each 1m × 1m × 2m. How many bricks do you need?",
-        "options": [
-          "About 20 million bricks",
-          "About 41 million bricks",
-          "About 62 million bricks",
-          "About 125 million bricks"
-        ],
-        "answer": 0,
-        "fact": "A pyramid's volume = ⅓ × base² × height = ⅓ × 500 × 500 × 500 ≈ 41.7 million m³. Each 1×1×2 brick is 2 m³, so you need ≈ 20.8 million bricks. The real Great Pyramid used about 2.3 million stone blocks — your pyramid is 9× bigger!"
+        "type": "minigame",
+        "game": "crossword",
+        "configId": "imhotep",
+        "instruction": "Solve the ancient Egypt crossword — fill in words about Imhotep's world across and down.",
+        "fact": "PHARAOH, PYRAMID, DUNE — the vocabulary of a civilisation that Imhotep helped build, raising stone mountains from the desert floor."
       },
       {
         "type": "minigame",
         "game": "maze",
         "configId": "pyramid-deep",
-        "instruction": "Navigate Imhotep through THREE sacred chambers to reach the burial room! Find the staircase (▲) to descend deeper.",
-        "fact": "This dynasty spanned roughly 2686–2181 BCE — the golden age of pyramid building. Sneferu alone built three pyramids, experimenting until he mastered the true pyramid shape."
+        "instruction": "Navigate Imhotep through THREE sacred burial chambers. Find the portal (▲) to descend to the next level!",
+        "fact": "The Step Pyramid of Djoser has six tiers and a subterranean maze of corridors. Imhotep designed every one."
       }
     ]
   },
@@ -71,33 +48,18 @@
         "fact": "The Akkadian Empire (c. 2334–2154 BCE) unified diverse Sumerian city-states under a single ruler for the first time in recorded history — a template copied by every empire since."
       },
       {
-        "type": "truefalse",
-        "statement": "Sargon of Akkad was born into royal nobility.",
-        "correct": false,
-        "fact": "Legend says Sargon was born to a humble mother who set him adrift in a basket — echoed later in the tale of Moses. He rose from cup-bearer to conqueror through sheer ability and ambition."
+        "type": "minigame",
+        "game": "geometry",
+        "configId": "volume-pyramid",
+        "instruction": "Sargon's engineers built massive ziggurats. Calculate the volume of the great pyramid — a feat of the same era.",
+        "fact": "Akkadian engineers built on Sumerian foundations — their ziggurats required the same mathematical knowledge that moved millions of tonnes of stone."
       },
       {
-        "type": "quiz",
-        "question": "The Akkadian Empire spread which writing system as an administrative language?",
-        "options": [
-          "Aramaic",
-          "Egyptian hieroglyphs",
-          "Akkadian cuneiform",
-          "Sanskrit"
-        ],
-        "answer": 2,
-        "fact": "Cuneiform pressed into clay tablets became the world's first widespread administrative language. Thousands of tablets survive — recording taxes, laws, epic poetry, and even the world's oldest love songs."
-      },
-      {
-        "type": "sort",
-        "question": "Arrange these Mesopotamian civilizations in order of their rise (earliest first):",
-        "items": [
-          "Sumer",
-          "Akkad",
-          "Babylonia",
-          "Assyria"
-        ],
-        "fact": "Each civilization built on the last — creating a 3,000-year chain of innovation in law, agriculture, astronomy, and mathematics that underpins modern science and governance."
+        "type": "minigame",
+        "game": "painting",
+        "configId": "mesopotamia",
+        "instruction": "Paint Sargon's Akkad — the ziggurat rising above the rivers of Mesopotamia.",
+        "fact": "Akkad's empire stretched from the Persian Gulf to the Mediterranean — the largest political entity the world had yet seen, centred on the ziggurat cities of ancient Iraq."
       }
     ]
   },
@@ -107,7 +69,7 @@
     "challenges": [
       {
         "type": "quiz",
-        "question": "The Epic of Gilgamesh, written around 2100 BCE, is considered:",
+        "question": "The Epic of Gilgamesh is considered:",
         "options": [
           "The world's oldest surviving piece of literature",
           "The world's oldest legal code",
@@ -115,36 +77,21 @@
           "The world's oldest map"
         ],
         "answer": 0,
-        "fact": "The Epic of Gilgamesh, preserved on twelve clay tablets, is the oldest surviving major work of literature — predating Homer's Iliad by at least 1,500 years. It contains a great flood story remarkably similar to Noah's in the Bible."
+        "fact": "The Epic of Gilgamesh, preserved on twelve clay tablets, predates Homer's Iliad by at least 1,500 years. It contains a great flood story remarkably similar to Noah's in the Bible."
       },
       {
-        "type": "truefalse",
-        "statement": "Enkidu was created by the gods to punish Gilgamesh for his cruelty.",
-        "correct": false,
-        "fact": "Enkidu was created to be Gilgamesh's equal and companion — to channel the king's restless energy into something worthy. The epic is about the transformative power of friendship: it humanizes Gilgamesh and civilizes Enkidu."
+        "type": "minigame",
+        "game": "geometry",
+        "configId": "pythagorean",
+        "instruction": "Enkidu's fortress has a 3-4 right triangle in its wall. Find the hypotenuse — the length of the diagonal beam.",
+        "fact": "Babylonian mathematicians knew the Pythagorean theorem over a thousand years before Pythagoras. Plimpton 322, a clay tablet from 1800 BCE, lists Pythagorean triples."
       },
       {
-        "type": "quiz",
-        "question": "When Enkidu dies in the Epic of Gilgamesh, what does Gilgamesh seek?",
-        "options": [
-          "Revenge against the gods",
-          "The secret of eternal life",
-          "A new companion equal to Enkidu",
-          "Return to the wilderness"
-        ],
-        "answer": 1,
-        "fact": "Gilgamesh's grief drives him to seek immortality from Utnapishtim — the only mortal ever granted eternal life. He fails, but the plant of youth is stolen from him by a serpent. The serpent's skin-shedding became a symbol of renewal."
-      },
-      {
-        "type": "sort",
-        "question": "Arrange these events from the Epic of Gilgamesh in order:",
-        "items": [
-          "Gilgamesh and Enkidu wrestle at the city gate",
-          "Slaying of the Bull of Heaven",
-          "Enkidu's death",
-          "Gilgamesh's search for immortality"
-        ],
-        "fact": "The epic is organized into 11 tablets (a 12th was added later). Its themes — friendship, mortality, hubris, and acceptance — are as urgent today as they were 4,000 years ago. It is the first story about what it means to be human."
+        "type": "minigame",
+        "game": "maze",
+        "configId": "gilgamesh",
+        "instruction": "Guide Gilgamesh through the labyrinthine streets of Uruk to find the Cedar Forest gate.",
+        "fact": "Uruk was one of the world's earliest cities — home to 50,000–80,000 people in 3000 BCE. Gilgamesh was its legendary king and builder of its great walls."
       }
     ]
   },
@@ -153,41 +100,24 @@
     "story": "Geometry of the World",
     "challenges": [
       {
-        "type": "quiz",
-        "question": "Euclid's most famous work, which remained a standard textbook for 2,000 years, is called:",
-        "options": [
-          "The Republic",
-          "Elements",
-          "Principia",
-          "The Almagest"
-        ],
-        "answer": 1,
-        "fact": "Euclid's 'Elements' (c. 300 BCE) organized all of geometry into 13 books built from 5 simple axioms. Abraham Lincoln reportedly taught himself geometry by candlelight reading a copy."
-      },
-      {
         "type": "truefalse",
-        "statement": "Euclid proved that there are infinitely many prime numbers.",
+        "statement": "Euclid's 'Elements' has been in continuous use since it was written, making it the world's most reprinted textbook after the Bible.",
         "correct": true,
-        "fact": "In Book IX of Elements, Euclid gave an elegant proof by contradiction: assume a finite list of primes, multiply them all together and add 1 — the result is either prime or has a prime factor not on your list. Therefore primes are infinite."
+        "fact": "Euclid's Elements (c. 300 BCE) comprises 13 books and 465 propositions. It was used in university geometry courses until the early 20th century — over 2,000 years of continuous use."
       },
       {
-        "type": "quiz",
-        "question": "What is the sum of interior angles in any triangle on a flat surface?",
-        "options": [
-          "90°",
-          "180°",
-          "270°",
-          "360°"
-        ],
-        "answer": 1,
-        "fact": "This is one of Euclid's fundamental theorems — true on a flat plane, but fascinatingly different on curved surfaces. On a sphere, a triangle's angles can add up to more than 180°, a key insight for Einstein's general relativity."
+        "type": "minigame",
+        "game": "geometry",
+        "configId": "parallel-lines",
+        "instruction": "Euclid's fifth postulate concerns parallel lines. Find the alternate interior angle — as Euclid proved in Book I.",
+        "fact": "Euclid's fifth postulate — the parallel postulate — was debated for 2,000 years. Non-Euclidean geometries (used in Einstein's relativity) were born from questioning it."
       },
       {
         "type": "minigame",
         "game": "mirror",
         "configId": "euclid",
-        "instruction": "Prove Euclid's law of reflection — redirect the light beam using mirrors!",
-        "fact": "Euclid proved that only triangles, squares, and hexagons can tile a flat plane without gaps — the same three shapes nature uses in honeycomb, snowflakes, and the Giant's Causeway."
+        "instruction": "Prove Euclid's law of reflection — redirect the light beam to hit the target using mirrors.",
+        "fact": "Euclid wrote 'Optica', one of the earliest works on optics and perspective, laying the groundwork for understanding how light behaves."
       }
     ]
   },
@@ -197,44 +127,29 @@
     "challenges": [
       {
         "type": "quiz",
-        "question": "Which ancient Greek physician is called the 'Father of Medicine' for separating healing from religion?",
+        "question": "In ancient Egypt, physicians were also:",
         "options": [
-          "Galen",
-          "Hippocrates",
-          "Asclepius",
-          "Aristotle"
+          "Warriors",
+          "Scribes only",
+          "Priests",
+          "Tax collectors"
         ],
-        "answer": 1,
-        "fact": "Hippocrates (460–370 BCE) argued diseases had natural causes — not divine punishment. He observed patients carefully and documented symptoms, founding the clinical method still used today."
+        "answer": 2,
+        "fact": "Egyptian medicine was inseparable from religion. Doctors were trained in the Houses of Life attached to temples, and medical knowledge was considered divine wisdom passed from Thoth, the god of learning."
       },
       {
-        "type": "truefalse",
-        "statement": "The Hippocratic Oath was written entirely by Hippocrates himself.",
-        "correct": false,
-        "fact": "The Oath was likely composed by a school of followers over centuries. Its core principle — 'first, do no harm' (primum non nocere) — was actually added later. The original oath even banned surgery."
+        "type": "minigame",
+        "game": "painting",
+        "configId": "imhotep-temple",
+        "instruction": "Paint Imhotep's healing temple — where columns, herbs, and sacred geometry came together in Egyptian medicine.",
+        "fact": "The Edwin Smith Papyrus (c. 1600 BCE) contains the world's oldest rational medical analysis — 48 cases described and treated without magic, just observation. Imhotep was venerated as its patron."
       },
       {
-        "type": "quiz",
-        "question": "Ancient Egyptians believed which organ was the seat of intelligence — and left it inside mummies while discarding the brain?",
-        "options": [
-          "Brain",
-          "Heart",
-          "Liver",
-          "Lungs"
-        ],
-        "answer": 1,
-        "fact": "Egyptians so valued the heart they weighed it against a feather in the afterlife to judge a soul's virtue. The brain was extracted through the nose and thrown away — one of history's great medical misunderstandings."
-      },
-      {
-        "type": "sort",
-        "question": "Arrange these medical milestones in historical order (earliest first):",
-        "items": [
-          "Hippocratic Oath written",
-          "Germ theory proven",
-          "Surgical anesthesia invented",
-          "Penicillin discovered"
-        ],
-        "fact": "From Hippocrates to penicillin spans 2,300 years. Each breakthrough built on the last — but the pace accelerated: anesthesia (1846) and penicillin (1928) came within a single lifetime."
+        "type": "minigame",
+        "game": "sliding",
+        "configId": "pyramid",
+        "instruction": "Rearrange the ancient stone tablets to reveal the medical knowledge of the pharaohs.",
+        "fact": "Ancient Egyptians successfully performed brain surgeries, treated broken bones with splints, and had specialist physicians — one inscription lists 'doctor of the left eye' and 'doctor of the right eye' as separate roles."
       }
     ]
   },
@@ -244,32 +159,29 @@
     "challenges": [
       {
         "type": "quiz",
-        "question": "Which of these rivers was NOT associated with one of the four major cradles of ancient civilization?",
+        "question": "The word 'Mesopotamia' means:",
         "options": [
-          "The Nile",
-          "The Amazon",
-          "The Tigris",
-          "The Indus"
+          "Land of the gods",
+          "Land between two rivers",
+          "City of stone",
+          "Home of the stars"
         ],
         "answer": 1,
-        "fact": "The Amazon was home to sophisticated cultures, but the four classic cradles arose along the Nile, Tigris-Euphrates, Indus, and Yellow rivers — all warm-climate, flood-depositing rivers that enabled agriculture."
+        "fact": "Mesopotamia — from Greek meso (middle) and potamos (river) — sat between the Tigris and Euphrates. Their annual floods deposited rich silt, making this the cradle of agriculture, cities, and writing."
       },
       {
-        "type": "truefalse",
-        "statement": "The Indus Valley civilization's writing system has been fully decoded by modern scholars.",
-        "correct": false,
-        "fact": "The Indus script remains one of archaeology's greatest unsolved mysteries. We know the Indus people had advanced urban planning, standardized weights, and drainage systems — but cannot read a single word they wrote."
+        "type": "minigame",
+        "game": "geometry",
+        "configId": "triangle-sum",
+        "instruction": "Ancient surveyors used triangles to re-draw field boundaries after floods. Find the missing angle.",
+        "fact": "Flooding was both a blessing (fertile soil) and a problem (erased land boundaries). Egyptian rope-stretchers — harpedonaptai — redrew field borders using geometric triangles every year after the Nile receded."
       },
       {
-        "type": "sort",
-        "question": "Arrange these ancient cities from oldest to most recently founded:",
-        "items": [
-          "Jericho",
-          "Uruk",
-          "Memphis",
-          "Mohenjo-daro"
-        ],
-        "fact": "Jericho (~9000 BCE) may be the world's oldest continuously inhabited city — predating agriculture itself. Uruk was likely the first true city; Memphis and Mohenjo-daro represent the mature urban age."
+        "type": "minigame",
+        "game": "painting",
+        "configId": "egyptian-sunset",
+        "instruction": "Paint the ancient Egyptian river civilisation at dusk — where the Nile meets the desert sky.",
+        "fact": "The Sumerians invented writing (cuneiform), the wheel, and the sexagesimal number system (base 60) — which is why we have 60 seconds in a minute and 360 degrees in a circle."
       }
     ]
   },
@@ -279,44 +191,29 @@
     "challenges": [
       {
         "type": "quiz",
-        "question": "How many books (volumes) does Euclid's 'Elements' contain?",
+        "question": "Euclid worked in which great ancient city?",
         "options": [
-          "5",
-          "9",
-          "13",
-          "20"
+          "Athens",
+          "Rome",
+          "Alexandria",
+          "Babylon"
         ],
         "answer": 2,
-        "fact": "The 13 books cover plane geometry, number theory, and three-dimensional solids. It was the second most printed book in the Western world after the Bible — and remained a school text until the 1900s."
+        "fact": "Euclid worked at the Library of Alexandria under Ptolemy I around 300 BCE. When Ptolemy asked if there was a shorter way to learn geometry, Euclid reportedly replied: 'There is no royal road to geometry.'"
       },
       {
-        "type": "truefalse",
-        "statement": "Euclid built all of geometry from just 5 simple axioms (self-evident truths).",
-        "correct": true,
-        "fact": "His five postulates seem almost trivially simple — like 'a straight line can be drawn between any two points.' From these alone, Euclid derived hundreds of complex theorems. This deductive method became the model for all of science."
+        "type": "minigame",
+        "game": "crossword",
+        "configId": "linnaeus",
+        "instruction": "Euclid classified all geometric knowledge. Test your knowledge with this classification crossword.",
+        "fact": "Euclid's proof of the Pythagorean theorem occupies a full page of the Elements and uses nothing but logic. It remains one of the most beautiful proofs in all of mathematics."
       },
       {
-        "type": "quiz",
-        "question": "The Pythagorean theorem states that in a right triangle:",
-        "options": [
-          "a + b = c",
-          "a² + b² = c²",
-          "a × b = c²",
-          "a² − b² = c"
-        ],
-        "answer": 1,
-        "fact": "Euclid gave the most elegant proof in Book I, Proposition 47. The theorem was known to Babylonians 1,000 years earlier — but Euclid proved WHY it's always true, not just that it works."
-      },
-      {
-        "type": "sort",
-        "question": "Arrange these mathematical concepts from most fundamental to most advanced:",
-        "items": [
-          "Counting numbers",
-          "Basic arithmetic",
-          "Algebra",
-          "Geometric proof"
-        ],
-        "fact": "Euclid assumed readers knew arithmetic but built geometry from scratch using pure logic — no measuring allowed. This distinction between 'calculating' and 'proving' created mathematics as a discipline."
+        "type": "minigame",
+        "game": "mirror",
+        "configId": "digital",
+        "instruction": "Euclid's Optica proved light travels in straight lines — route the signal through fiber optic cables, just as Euclid described light's path.",
+        "fact": "Euclid's 'Optica' established that light travels in straight lines and that the angle of incidence equals the angle of reflection — foundations of optics used in every mirror and lens ever built."
       }
     ]
   },
@@ -326,44 +223,29 @@
     "challenges": [
       {
         "type": "quiz",
-        "question": "Pericles' famous funeral oration — the most eloquent defense of democracy ever delivered — honored Athenians who died in:",
+        "question": "Pericles' greatest architectural achievement was:",
         "options": [
-          "The Battle of Marathon",
-          "The Peloponnesian War",
-          "The Persian Wars",
-          "The Battle of Thermopylae"
+          "The Colosseum",
+          "The Parthenon",
+          "The Library of Alexandria",
+          "Hadrian's Wall"
         ],
         "answer": 1,
-        "fact": "Thucydides recorded the Oration in his history. Pericles described Athens as 'the school of Hellas' — an education in what it means to be free. Abraham Lincoln studied it carefully before writing the Gettysburg Address."
+        "fact": "The Parthenon, completed in 438 BCE, was a temple to Athena and a symbol of Athenian wealth and power. Its proportions use the golden ratio and are so precise that its 'straight' columns are actually slightly curved to correct optical illusions."
       },
       {
-        "type": "truefalse",
-        "statement": "Aspasia of Miletus, Pericles' partner, was merely a companion with no real intellectual influence.",
-        "correct": false,
-        "fact": "Ancient sources including Plato describe Aspasia as a teacher of rhetoric who instructed Pericles himself. Socrates reportedly sought her out for philosophical discussion. She ran a school and salon — extraordinary for any woman of the era."
+        "type": "minigame",
+        "game": "tactics",
+        "configId": "senate",
+        "instruction": "Pericles outmanoeuvres rivals in the Athenian assembly — can you find the winning move?",
+        "fact": "Pericles dominated Athenian politics for three decades through strategic alliances and oratorical power, never allowing his opponents room to manoeuvre."
       },
       {
-        "type": "quiz",
-        "question": "The Parthenon, built under Pericles' direction, was dedicated to:",
-        "options": [
-          "Pericles himself",
-          "Athena Parthenos",
-          "Zeus Olympios",
-          "Apollo Phoebus"
-        ],
-        "answer": 1,
-        "fact": "Athena Parthenos — 'Athena the Virgin' — was Athens' patron goddess. Pheidias created a 40-foot gold and ivory statue for the interior. The Parthenon also served as Athens' treasury and bank vault."
-      },
-      {
-        "type": "sort",
-        "question": "Arrange these events of Athens' Golden Age in chronological order:",
-        "items": [
-          "Victory over Persia at Salamis",
-          "Pericles becomes dominant statesman",
-          "Beginning of the Peloponnesian War",
-          "Athens surrenders to Sparta"
-        ],
-        "fact": "Athens' golden age lasted barely 50 years — from the Persian Wars to Spartan conquest. In those 50 years it produced democracy, tragedy, comedy, philosophy, and architecture that defined Western civilization for 2,500 years."
+        "type": "minigame",
+        "game": "painting",
+        "configId": "olympia-scene",
+        "instruction": "Paint the sacred site of Olympia — the Greek Games that Pericles' Athens celebrated as the pinnacle of civilisation.",
+        "fact": "The golden ratio (φ ≈ 1.618) appears in the Parthenon's proportions. Pericles commissioned Phidias to ensure every detail of Athens' buildings embodied mathematical perfection."
       }
     ]
   },
@@ -373,44 +255,29 @@
     "challenges": [
       {
         "type": "quiz",
-        "question": "Cicero is best described as:",
+        "question": "Cicero was executed in 43 BCE on the orders of:",
         "options": [
-          "A Roman general who conquered Gaul",
-          "An orator, lawyer, and philosopher who was Rome's greatest prose writer",
-          "A Roman emperor who reformed the legal system",
-          "A playwright who wrote Latin comedies"
+          "Julius Caesar",
+          "Pompey",
+          "Marc Antony",
+          "Augustus"
         ],
-        "answer": 1,
-        "fact": "Cicero's Latin prose was so admired it became the standard for all subsequent Latin writing. Renaissance humanists like Petrarch worshipped him. His philosophical works preserved Greek philosophy that would otherwise have been lost to the medieval West."
+        "answer": 2,
+        "fact": "After Caesar's assassination, Cicero attacked Marc Antony in speeches called the Philippics. Antony had him killed. His hands — which had written the speeches — were nailed to the Senate doors."
       },
       {
-        "type": "truefalse",
-        "statement": "Cicero supported Julius Caesar's dictatorship as a necessary reform for Rome.",
-        "correct": false,
-        "fact": "Cicero was a passionate defender of the Republic and deeply opposed to Caesar's one-man rule. After Caesar's death, he launched the Philippics — savage speeches against Mark Antony — that cost him his life."
+        "type": "minigame",
+        "game": "tactics",
+        "configId": "general",
+        "instruction": "Cicero's logic traps his opponent — find the decisive move.",
+        "fact": "Cicero's Catilinarian Orations cornered the conspirators so completely that even Catiline's allies abandoned him. His rhetoric was his weapon."
       },
       {
-        "type": "quiz",
-        "question": "Cicero was executed in 43 BCE on Mark Antony's orders. What was done with his hands and head?",
-        "options": [
-          "He was given an honorable burial in the Forum",
-          "They were displayed on the speaker's platform in the Forum",
-          "They were sent to Cleopatra in Egypt",
-          "They were preserved in the Temple of Jupiter"
-        ],
-        "answer": 1,
-        "fact": "Antony had Cicero's hands nailed to the Rostra — the very platform from which Cicero had delivered his greatest speeches. The Republic he had defended with words died with him."
-      },
-      {
-        "type": "sort",
-        "question": "Arrange Cicero's major works from most practical to most philosophical:",
-        "items": [
-          "Orations against Catiline (political speeches)",
-          "On the Orator (rhetoric)",
-          "On the Republic (political theory)",
-          "On the Nature of the Gods (philosophy)"
-        ],
-        "fact": "Cicero translated Greek philosophy into Latin, making it accessible to Romans and later to all of Western Europe. Without Cicero, thinkers like Plato and Aristotle might have remained unknown to medieval and Renaissance scholars."
+        "type": "minigame",
+        "game": "painting",
+        "configId": "roman-forum",
+        "instruction": "Paint the Roman Forum where Cicero gave his legendary speeches.",
+        "fact": "The Forum Romanum was the centre of Roman public life — marketplace, religious site, political stage, and legal court all in one. Cicero mastered every one of these arenas."
       }
     ]
   },
@@ -419,45 +286,24 @@
     "story": "Before Socrates",
     "challenges": [
       {
-        "type": "quiz",
-        "question": "Anaxagoras proposed that the ordering force behind the universe was:",
-        "options": [
-          "Fire",
-          "Water",
-          "Nous (Mind/Intelligence)",
-          "The Olympic gods"
-        ],
-        "answer": 2,
-        "fact": "Anaxagoras (500–428 BCE) argued that a universal mind — Nous — set infinite, chaotic matter into rotation, creating the cosmos. This idea influenced Plato, Aristotle, and later the Christian concept of a divine intellect."
-      },
-      {
         "type": "truefalse",
-        "statement": "Zeno of Elea invented his paradoxes to show that motion is truly impossible.",
-        "correct": false,
-        "fact": "Zeno created his paradoxes to defend his teacher Parmenides, who argued that reality is unchanging. The paradoxes were logical traps to embarrass those who believed in motion and change — not Zeno's personal view of reality."
+        "statement": "Anaxagoras was put on trial in Athens for claiming the sun was a fiery rock, not a divine being.",
+        "correct": true,
+        "fact": "Around 450 BCE, Anaxagoras was charged with impiety for saying the sun was a fiery rock larger than the Peloponnese. He was saved from execution by his friend Pericles but exiled from Athens."
       },
       {
-        "type": "quiz",
-        "question": "Zeno's 'Achilles and the Tortoise' paradox was finally resolved mathematically by:",
-        "options": [
-          "Euclid's geometry",
-          "The invention of calculus",
-          "Aristotle's logic",
-          "The Pythagorean theorem"
-        ],
-        "answer": 1,
-        "fact": "Newton and Leibniz's calculus shows that an infinite series of decreasing quantities can have a finite sum. Achilles' infinite steps take a finite time because each step is proportionally shorter. Infinity, properly handled, doesn't mean forever."
+        "type": "minigame",
+        "game": "geometry",
+        "configId": "anaxagoras-shadow",
+        "instruction": "Anaxagoras estimated the sun's size using shadows and geometry. Calculate the sun's angle from shadow measurements.",
+        "fact": "Anaxagoras correctly deduced that the moon shines with reflected sunlight, that eclipses occur when the moon covers the sun, and that the sun is a glowing rock. All this 2,500 years before telescopes."
       },
       {
-        "type": "sort",
-        "question": "Arrange these Pre-Socratic philosophers by their primary principle (water to fire to mind to atoms):",
-        "items": [
-          "Thales (water is the fundamental element)",
-          "Heraclitus (everything flows; fire is primary)",
-          "Anaxagoras (mind/Nous orders the cosmos)",
-          "Democritus (reality is made of atoms)"
-        ],
-        "fact": "The Pre-Socratics were asking science's most fundamental question: what is everything made of? Their answers — water, fire, atoms, mind — prefigure modern physics remarkably. Democritus named 'atomos' (uncuttable) 2,300 years before the electron."
+        "type": "minigame",
+        "game": "mirror",
+        "configId": "anaxagoras",
+        "instruction": "Anaxagoras claimed the sun is a fiery rock. Direct its light to prove his revolutionary theory.",
+        "fact": "The Pre-Socratics were the world's first scientists — they sought natural explanations for natural events. Anaxagoras introduced the concept of Nous (mind or reason) as the force organising the universe."
       }
     ]
   },
@@ -467,44 +313,29 @@
     "challenges": [
       {
         "type": "quiz",
-        "question": "Which Latin phrase — meaning 'The Senate and People of Rome' — appeared on Roman standards, coins, and buildings?",
+        "question": "The Roman Senate originally had how many members?",
         "options": [
-          "Vox populi",
-          "Senatus Populusque Romanus",
-          "E pluribus unum",
-          "Carpe diem"
+          "100",
+          "300",
+          "500",
+          "1000"
         ],
         "answer": 1,
-        "fact": "SPQR symbolized the shared governance of Rome — in theory, at least. The Senate held power for centuries before ambitious generals like Caesar shattered the system. The abbreviation still appears on Rome's manhole covers today."
+        "fact": "Tradition holds Romulus created a Senate of 100 elders. By the late Republic it had grown to 600–900 members. The word 'senate' comes from Latin senex, meaning old man."
       },
       {
-        "type": "truefalse",
-        "statement": "In the Roman Republic, two equal consuls served simultaneously and could veto each other.",
-        "correct": true,
-        "fact": "This system of mutual veto (intercessio) was deliberately designed to prevent tyranny. When Julius Caesar refused to give up his army and crossed the Rubicon in 49 BCE, he shattered 500 years of constitutional order."
+        "type": "minigame",
+        "game": "geometry",
+        "configId": "hexagon-interior",
+        "instruction": "Roman mosaics used hexagonal tiles for their efficient coverage. Calculate the hexagon's interior angle.",
+        "fact": "Roman engineers were masters of geometry — they built roads so straight that some are still followed today, aqueducts with a perfect gradient of 1 in 4,800, and domes that stood for 2,000 years."
       },
       {
-        "type": "quiz",
-        "question": "The Twelve Tables (451–450 BCE) were significant because they:",
-        "options": [
-          "Listed Rome's military victories",
-          "Created the first written Roman law accessible to all citizens",
-          "Named Rome's twelve founding gods",
-          "Described Rome's trade routes"
-        ],
-        "answer": 1,
-        "fact": "Before the Twelve Tables, law was unwritten and controlled by patricians (aristocrats) who could apply it however they liked. Written law meant plebeians (common people) could know their rights — a radical democratic step."
-      },
-      {
-        "type": "sort",
-        "question": "Arrange these Roman political events in chronological order (earliest first):",
-        "items": [
-          "Founding of Rome",
-          "Twelve Tables law created",
-          "Julius Caesar's dictatorship",
-          "Fall of the Western Roman Empire"
-        ],
-        "fact": "Rome lasted over 1,200 years from founding to fall — longer than the time between Columbus and today. Its legal and political concepts (republic, senate, veto, constitution) shape democracies worldwide."
+        "type": "minigame",
+        "game": "crossword",
+        "configId": "pericles",
+        "instruction": "Test your knowledge of classical Athens and Rome — the twin pillars of Western democratic thought.",
+        "fact": "The Roman Republic borrowed heavily from Athenian democracy: Senate debates, elected magistrates, and the concept of res publica (the public thing) all echo Periclean Athens."
       }
     ]
   },
@@ -514,32 +345,29 @@
     "challenges": [
       {
         "type": "quiz",
-        "question": "Which is the correct teacher-student chain of Athens' three greatest philosophers?",
+        "question": "Socrates wrote:",
         "options": [
-          "Aristotle → Plato → Socrates",
-          "Socrates → Plato → Aristotle",
-          "Plato → Socrates → Aristotle",
-          "Aristotle → Socrates → Plato"
+          "The Republic",
+          "Dialogues",
+          "The Nicomachean Ethics",
+          "Nothing — he only spoke"
         ],
-        "answer": 1,
-        "fact": "Socrates never wrote a word — we know him only through Plato's dialogues. Plato founded the Academy; Aristotle studied there 20 years before founding his own school, the Lyceum. Between them, they defined Western philosophy."
+        "answer": 3,
+        "fact": "Socrates left no writings. Everything we know about him comes from his students, especially Plato. He believed truth emerged through dialogue, not text — the Socratic method is still used in law schools today."
       },
       {
-        "type": "truefalse",
-        "statement": "Socrates was executed by Athens for corrupting the youth and dishonoring the gods.",
-        "correct": true,
-        "fact": "In 399 BCE, Socrates chose death by hemlock over exile, saying an unexamined life is not worth living. His execution — of Athens' greatest citizen by its own democracy — haunted Western philosophy forever after."
+        "type": "minigame",
+        "game": "geometry",
+        "configId": "pentagon-interior",
+        "instruction": "Plato's Academy used the pentagon in its geometry. 'Let no one ignorant of geometry enter here' — calculate the interior angle.",
+        "fact": "Above Plato's Academy was carved: 'Let no one ignorant of geometry enter here.' The golden ratio φ appears in the Parthenon, in pentagons, and in Plato's theories about ideal forms."
       },
       {
-        "type": "sort",
-        "question": "Arrange these Athenian philosophers by birth year (earliest first):",
-        "items": [
-          "Socrates",
-          "Plato",
-          "Aristotle",
-          "Epicurus"
-        ],
-        "fact": "Socrates (470 BCE) → Plato (428) → Aristotle (384) → Epicurus (341). Each responded to the last — Epicurus rejected Plato's abstract ideals for a philosophy focused on simple pleasures and freedom from fear."
+        "type": "minigame",
+        "game": "maze",
+        "configId": "knight",
+        "instruction": "Navigate the philosophical labyrinth — just as Socrates led his students through the twisting paths of argument to reach truth.",
+        "fact": "Plato's allegory of the cave describes prisoners who mistake shadows for reality. He argued that philosophers must leave the cave — the world of appearances — and seek the sunlit realm of truth."
       }
     ]
   },
@@ -548,33 +376,24 @@
     "story": "Olympic Games",
     "challenges": [
       {
-        "type": "quiz",
-        "question": "The ancient Olympic Games were held every four years as a religious festival honoring which god?",
-        "options": [
-          "Apollo",
-          "Poseidon",
-          "Zeus",
-          "Hermes"
-        ],
-        "answer": 2,
-        "fact": "Olympia was Zeus's sanctuary. Athletes competed naked as living offerings to the god — their perfect bodies a form of worship. Even wars were paused for the duration of the Games."
-      },
-      {
         "type": "truefalse",
-        "statement": "Women were permitted to watch the ancient Olympic Games.",
-        "correct": false,
-        "fact": "Married women caught watching could be thrown off a cliff. But women weren't excluded entirely — they had their own separate games called the Heraia, honoring the goddess Hera, also held at Olympia."
+        "statement": "The original ancient Olympics included only a single foot race.",
+        "correct": true,
+        "fact": "The first recorded Olympic Games (776 BCE) had only one event: a 192-metre sprint called the stadion. Events were added over centuries — wrestling (708 BCE), the pentathlon (708 BCE), chariot racing (680 BCE), and boxing (688 BCE)."
       },
       {
-        "type": "sort",
-        "question": "Arrange these ancient Olympic events from least to most physically dangerous:",
-        "items": [
-          "Long jump",
-          "Discus throw",
-          "Boxing",
-          "Pankration"
-        ],
-        "fact": "Pankration — a brutal combination of wrestling and boxing with almost no rules — was the most extreme. Competitors could choke, joint-lock, and strike freely. Deaths were uncommon but not unheard of. Winners became legends."
+        "type": "minigame",
+        "game": "geometry",
+        "configId": "discus-angle",
+        "instruction": "Olympic discus throwers needed the perfect angle for maximum range. What is the optimal release angle?",
+        "fact": "The optimal angle for throwing a projectile (ignoring air resistance) is exactly 45°. Ancient athletes discovered this empirically — modern physics confirms it."
+      },
+      {
+        "type": "minigame",
+        "game": "maze",
+        "configId": "pyramid",
+        "instruction": "Navigate the stadium labyrinth — find the finish line of the ancient Olympic arena.",
+        "fact": "The Greek stadion was a standard unit of length — about 192 metres (the length of the foot race). Our word 'stadium' comes from this unit. Olympia's track had a 60-metre wide stone starting gate."
       }
     ]
   },
@@ -584,32 +403,29 @@
     "challenges": [
       {
         "type": "quiz",
-        "question": "The Silk Road connected China's ancient capital to which region at its western terminus?",
+        "question": "The Silk Road connected which two empires at its height?",
         "options": [
-          "West Africa",
-          "Scandinavia",
-          "The Mediterranean world",
-          "Sub-Saharan Africa"
+          "Greece and Persia",
+          "Rome and China",
+          "Egypt and India",
+          "Babylon and Athens"
         ],
-        "answer": 2,
-        "fact": "Routes stretched ~7,000 miles from Chang'an (modern Xi'an) to Rome and Mediterranean ports — carrying silk, spices, paper, glassware, and ideas like Buddhism, Islam, and the Black Death."
+        "answer": 1,
+        "fact": "The Silk Road stretched 7,000 km from Rome to Chang'an (Xi'an). It carried silk, spices, glassware, and gold — but also ideas, religions, and diseases. Buddhism, Islam, and the Black Death all travelled its length."
       },
       {
-        "type": "truefalse",
-        "statement": "Ancient Chinese merchants called their trade routes the 'Silk Road.'",
-        "correct": false,
-        "fact": "The term 'Silk Road' was coined by German geographer Ferdinand von Richthofen in 1877. Ancient traders had no single name for it — they simply knew it as the road to wealth, danger, and wonder."
+        "type": "minigame",
+        "game": "cooking",
+        "configId": "silk-road-spice",
+        "instruction": "Prepare the Silk Road feast — spices from India, China, and Arabia traded across the ancient world.",
+        "fact": "Caravanserais along the Silk Road were not just waypoints — they were cultural exchanges where recipes, spices, and cooking techniques crossed between civilisations."
       },
       {
-        "type": "sort",
-        "question": "Arrange these Silk Road goods by their region of origin (east to west):",
-        "items": [
-          "Chinese silk and porcelain",
-          "Indian cotton and spices",
-          "Persian glass and carpets",
-          "Roman gold and silver"
-        ],
-        "fact": "Trade was rarely direct — goods passed through dozens of middlemen, each taking profit, making luxury items extraordinarily expensive at their destination. Roman emperors complained bitterly about gold flowing east for silk."
+        "type": "minigame",
+        "game": "sliding",
+        "configId": "renaissance",
+        "instruction": "Rearrange the trade goods to match the historical caravan manifest.",
+        "fact": "The most valuable trade goods on the Silk Road were silk (China to Rome), glassware (Rome to China), spices (India everywhere), and paper (China to Europe). Paper eventually replaced papyrus worldwide."
       }
     ]
   },
@@ -619,44 +435,29 @@
     "challenges": [
       {
         "type": "quiz",
-        "question": "Belisarius served which Byzantine Emperor, reconquering much of the old Western Roman Empire?",
+        "question": "Belisarius reconquered which three territories for Emperor Justinian?",
         "options": [
-          "Constantine I",
-          "Theodosius",
-          "Justinian I",
-          "Heraclius"
-        ],
-        "answer": 2,
-        "fact": "Under Justinian I, Belisarius reconquered North Africa from the Vandals, Italy from the Ostrogoths, and parts of Spain — temporarily restoring Roman control over the Mediterranean at just age 30."
-      },
-      {
-        "type": "truefalse",
-        "statement": "Belisarius was eventually imprisoned and blinded by the emperor he faithfully served.",
-        "correct": true,
-        "fact": "Justinian, jealous of Belisarius's fame and popularity, had him imprisoned and briefly blinded near the end of his life. The loyal general who saved the empire died in poverty — one of history's most tragic endings."
-      },
-      {
-        "type": "quiz",
-        "question": "At the Battle of Ad Decimum (533 CE), Belisarius defeated which Germanic kingdom in North Africa?",
-        "options": [
-          "Visigoths",
-          "Vandals",
-          "Huns",
-          "Lombards"
+          "Persia, Egypt, and Britain",
+          "North Africa, Italy, and part of Spain",
+          "Greece, Syria, and Arabia",
+          "France, Germany, and Britain"
         ],
         "answer": 1,
-        "fact": "Belisarius defeated the Vandal Kingdom — which had sacked Rome in 455 CE — in just three months with an army far smaller than his enemy's. He brought the Vandal king back to Constantinople in chains."
+        "fact": "Belisarius retook North Africa (533 CE), Italy (536–540 CE), and part of Spain — temporarily reuniting the old Western Roman Empire under Constantinople. He did it with armies far smaller than his opponents'."
       },
       {
-        "type": "sort",
-        "question": "Arrange Belisarius's major campaigns in chronological order:",
-        "items": [
-          "Persian frontier campaign",
-          "North Africa reconquest",
-          "First Italian campaign",
-          "Second Italian campaign"
-        ],
-        "fact": "Belisarius fought on four fronts over three decades — often outnumbered, frequently betrayed, always victorious. His secret: mastery of mobile cavalry tactics that made the traditional Roman heavy infantry obsolete."
+        "type": "minigame",
+        "game": "crossword",
+        "configId": "belisarius",
+        "instruction": "Test your knowledge of Belisarius's world — the vocabulary of Byzantine cavalry and Roman reconquest.",
+        "fact": "Belisarius pioneered the use of heavy cavalry archers — soldiers who could fire arrows at full gallop. This combination of speed and firepower was centuries ahead of his time."
+      },
+      {
+        "type": "minigame",
+        "game": "geometry",
+        "configId": "circle-circumference",
+        "instruction": "Belisarius's siege engineers needed to calculate the perimeter of fortifications. Solve this circumference problem.",
+        "fact": "Byzantine siege engineers used torsion catapults and trebuchets that required precise angle and distance calculations. A few degrees off meant the difference between destroying a gate or overshooting the wall."
       }
     ]
   },
@@ -666,44 +467,29 @@
     "challenges": [
       {
         "type": "quiz",
-        "question": "What does the word 'algebra' derive from?",
+        "question": "The word 'algebra' comes from Al-Khwarizmi's book title, which contains the Arabic word:",
         "options": [
-          "The Greek word for number",
-          "The title of Al-Khwarizmi's mathematical treatise",
-          "The name of a Greek mathematician",
-          "The Arabic word for balance"
+          "Al-jabr (reunion of broken parts)",
+          "Al-raqm (the number)",
+          "Al-hisab (the calculation)",
+          "Al-maqala (the treatise)"
         ],
-        "answer": 1,
-        "fact": "'Algebra' comes from 'al-jabr' — meaning 'completion' or 'restoration' — in the title of Al-Khwarizmi's treatise written around 820 CE. He invented systematic methods for solving linear and quadratic equations still taught in schools today."
+        "answer": 0,
+        "fact": "Al-Khwarizmi's 'Kitab al-mukhtasar fi hisab al-jabr wal-muqabala' (c. 820 CE) — 'The Compendious Book on Calculation by Completion and Balancing' — gave us the word algebra from al-jabr."
       },
       {
-        "type": "truefalse",
-        "statement": "The word 'algorithm' is derived from Al-Khwarizmi's name.",
-        "correct": true,
-        "fact": "When Al-Khwarizmi's works were translated into Latin, his name became 'algoritmi,' then 'algorismus,' then 'algorithm' — now meaning any step-by-step procedure for solving a problem. Every time a computer runs a program, it follows an algorithm."
+        "type": "minigame",
+        "game": "geometry",
+        "configId": "right-triangle-angle",
+        "instruction": "Al-Khwarizmi used geometry to prove algebraic solutions. Solve this triangle problem from the House of Wisdom.",
+        "fact": "Al-Khwarizmi illustrated algebraic equations with geometric diagrams — proving that x² + 10x = 39 by drawing and rearranging squares. His method is why we still say 'completing the square'."
       },
       {
-        "type": "quiz",
-        "question": "The House of Wisdom in Baghdad was primarily:",
-        "options": [
-          "A palace for the Caliph",
-          "A translation center and library for scholars of all cultures",
-          "A military academy",
-          "A religious seminary"
-        ],
-        "answer": 1,
-        "fact": "The House of Wisdom (Bayt al-Hikma) employed scholars from Christian, Jewish, Zoroastrian, and Muslim backgrounds to translate Greek, Indian, and Persian texts. It preserved and extended ancient knowledge during Europe's Dark Ages."
-      },
-      {
-        "type": "sort",
-        "question": "Arrange these Islamic Golden Age scholars by their primary field (mathematics to astronomy to philosophy to medicine):",
-        "items": [
-          "Al-Khwarizmi (algebra and arithmetic)",
-          "Al-Biruni (geography and astronomy)",
-          "Ibn Rushd / Averroes (philosophy)",
-          "Ibn Sina / Avicenna (medicine)"
-        ],
-        "fact": "The Islamic Golden Age (750–1258 CE) preserved Greek learning and made crucial original contributions. Muslim scholars preserved Aristotle, Euclid, and Hippocrates — transmitting them back to Renaissance Europe when crusaders burned libraries."
+        "type": "minigame",
+        "game": "mirror",
+        "configId": "al-khwarizmi",
+        "instruction": "Baghdad's House of Wisdom studied optics. Route the light beam through the library to the lens.",
+        "fact": "The House of Wisdom in Baghdad was the world's greatest library and research centre. Al-Khwarizmi worked there alongside scholars in astronomy, medicine, and philosophy — translating Greek texts and advancing every field."
       }
     ]
   },
@@ -712,45 +498,24 @@
     "story": "The Prophet of Light",
     "challenges": [
       {
-        "type": "quiz",
-        "question": "The central idea of Manichaeism — Mani's religion — was that:",
-        "options": [
-          "God is all-powerful and evil is merely absence of good",
-          "The universe is a struggle between two equal forces: light and darkness",
-          "Salvation comes through faith alone",
-          "The physical world must be governed by strict divine law"
-        ],
-        "answer": 1,
-        "fact": "Manichaeism's dualism — the equal conflict between Light and Darkness — spread across the Roman Empire, Persia, Central Asia, and China. Even Saint Augustine was a Manichaean for 9 years before converting to Christianity. It survived in China until the 14th century."
-      },
-      {
         "type": "truefalse",
-        "statement": "Mani was the first to deliberately combine elements from multiple existing religions into a new universal faith.",
+        "statement": "Mani painted illustrated manuscripts of his own scriptures — making Manichaeism one of the first illustrated religions.",
         "correct": true,
-        "fact": "Mani explicitly incorporated Jesus as a prophet, Buddha as enlightened teacher, and Zoroaster as a predecessor. He called himself the 'Seal of the Prophets' — a title later claimed by Muhammad. His deliberate synthesis makes him history's first recorded religious universalist."
+        "fact": "Mani (216–274 CE) was himself a skilled painter who created illustrated texts of his teachings — partly because he wanted his scriptures to transcend language barriers. Manichaean art spread from Rome to China."
       },
       {
-        "type": "quiz",
-        "question": "At its peak, Manichaeism stretched geographically from where to where?",
-        "options": [
-          "From Egypt to Persia",
-          "From Roman Britain to India",
-          "From the Roman Empire to China",
-          "From Arabia to Greece"
-        ],
-        "answer": 2,
-        "fact": "At its peak, Manichaeism spanned the largest geographic range of any religion in the ancient world — from Carthage and Rome in the west to Tang Dynasty China in the east. The Uyghur Empire officially adopted it as state religion in 762 CE."
+        "type": "minigame",
+        "game": "painting",
+        "configId": "mani-shrine",
+        "instruction": "Paint Mani's sacred shrine — where divine light triumphs over the darkness of the material world.",
+        "fact": "Manichaean manuscripts used gold, lapis lazuli, and brilliant red — colours that symbolised divine light. Their artistic tradition influenced Persian, Sogdian, and eventually Chinese Buddhist art."
       },
       {
-        "type": "sort",
-        "question": "Arrange these religions founded by named individuals by date of founding (earliest first):",
-        "items": [
-          "Buddhism (Siddhartha Gautama)",
-          "Christianity (Jesus of Nazareth)",
-          "Manichaeism (Mani)",
-          "Islam (Muhammad)"
-        ],
-        "fact": "All four were founded within 1,200 years of each other in a relatively small region of Asia. Mani consciously saw himself as the culmination of the Buddha-Jesus-Zoroaster lineage — the last and most complete revelation. History judged differently."
+        "type": "minigame",
+        "game": "music",
+        "configId": "mani-hymn",
+        "instruction": "Mani's followers sang hymns of light conquering darkness. Arrange this ascending sacred phrase in order.",
+        "fact": "Manichaeism spread from Mesopotamia to North Africa, Rome, Persia, and China — carried partly by its beautiful music and art. Augustine of Hippo was a Manichaean for nine years before converting to Christianity."
       }
     ]
   },
@@ -760,32 +525,29 @@
     "challenges": [
       {
         "type": "quiz",
-        "question": "Lu Yu's 'Classic of Tea' (Chá Jīng) — the world's first book dedicated entirely to tea — was written during which Chinese dynasty?",
+        "question": "Lu Yu's 'Classic of Tea' classified tea in how many chapters?",
         "options": [
-          "Han",
-          "Tang",
-          "Song",
-          "Ming"
+          "3",
+          "5",
+          "10",
+          "25"
         ],
-        "answer": 1,
-        "fact": "Written around 760 CE, the Classic of Tea covered everything: the ideal soil for tea plants, the best water source (mountain spring, then river), correct water temperature, and the spiritual dimension of the tea experience."
+        "answer": 2,
+        "fact": "Lu Yu's Cha Jing (Classic of Tea, c. 760 CE) has 10 chapters covering tea's origins, tools for processing, making, drinking, and the history of tea. It transformed tea from a medicinal herb into a cultural art form."
       },
       {
-        "type": "truefalse",
-        "statement": "Tea was originally consumed in China as a food, not a drink.",
-        "correct": true,
-        "fact": "The earliest use of tea involved chewing the leaves or cooking them into porridge. Lu Yu helped transform tea into an art form — establishing the aesthetic philosophy that eventually became Japan's elaborate tea ceremony."
+        "type": "minigame",
+        "game": "cooking",
+        "configId": "lu-yu-tea",
+        "instruction": "Follow Lu Yu's precise method from the Chajing — every step matters.",
+        "fact": "Lu Yu insisted on spring water collected before sunrise. He could allegedly identify which mountain spring water came from purely by taste."
       },
       {
-        "type": "sort",
-        "question": "Arrange these steps of a traditional Japanese tea ceremony in the correct order:",
-        "items": [
-          "Clean and prepare the utensils",
-          "Whisk matcha into a smooth foam",
-          "Present the bowl with a bow",
-          "Drink mindfully in three sips"
-        ],
-        "fact": "The Japanese tea ceremony (chanoyu) arrived via Buddhist monks in the 9th century CE, directly inspired by Lu Yu's philosophy. Sen no Rikyū later codified its four principles: harmony, respect, purity, tranquility."
+        "type": "minigame",
+        "game": "painting",
+        "configId": "japanese-blossom",
+        "instruction": "Paint the tea garden where Lu Yu perfected his art — cherry blossoms over the stone lantern path.",
+        "fact": "The ideal tea garden (roji) was designed to make visitors forget the outside world before entering the tea room. Every stone, plant, and stepping stone was placed with intentional imperfection."
       }
     ]
   },
@@ -795,40 +557,29 @@
     "challenges": [
       {
         "type": "quiz",
-        "question": "The legend of Hua Mulan first appears in what literary form?",
+        "question": "According to the legend, how long did Hua Mulan serve in the army before her identity was discovered?",
         "options": [
-          "A historical novel",
-          "A stone carving",
-          "A ballad poem",
-          "A court history"
+          "1 year",
+          "5 years",
+          "12 years",
+          "She was never discovered"
         ],
-        "answer": 2,
-        "fact": "'The Ballad of Mulan' (木兰辞) was composed during the Northern Wei dynasty (386–534 CE). It's just 31 couplets long but one of China's most beloved poems — memorized by schoolchildren for 1,500 years."
-      },
-      {
-        "type": "truefalse",
-        "statement": "In the original ballad, Mulan's fellow soldiers discover she is a woman during a battle.",
-        "correct": false,
-        "fact": "In the original poem, her comrades only discover she's a woman after 12 years of service when she returns home and changes into women's clothing. No one suspected — a testament to her skill, discipline, and their own assumptions."
-      },
-      {
-        "type": "quiz",
-        "question": "Why does Mulan take her elderly father's place in the army?",
-        "options": [
-          "She wants glory and adventure",
-          "Her father is too old and ill to serve",
-          "She is ordered by the emperor",
-          "Her brother refuses to go"
-        ],
-        "answer": 1,
-        "fact": "Filial piety — devotion to one's parents — is the core theme. Mulan's sacrifice reflects Confucian values central to Chinese society. She asks for nothing in return, refusing titles and wealth to simply return home to her family."
+        "answer": 3,
+        "fact": "In the original Ballad of Mulan (c. 386–534 CE), Mulan's true identity is never discovered during her service — she returns home, changes into women's clothing, and her comrades are astonished. She served 12 years."
       },
       {
         "type": "minigame",
         "game": "maze",
         "configId": "mulan",
-        "instruction": "Help Mulan navigate the forest trail without being discovered!",
-        "fact": "The Mulan story spans dynasties — originating in the Wei period, retold through Tang, Song, and Ming eras, each adding new details that reflected their own era's values."
+        "instruction": "Guide Mulan through the enemy encampment — stay undetected and find the exit.",
+        "fact": "The Ballad of Mulan originated during the Northern Wei dynasty (386–534 CE), when the northern steppes were under constant threat. The poem celebrates loyalty, filial piety, and courage over gender roles."
+      },
+      {
+        "type": "minigame",
+        "game": "painting",
+        "configId": "mulan-forest",
+        "instruction": "Paint the snow-covered northern Chinese landscape that Hua Mulan rode through — pines, snow, and the hidden path.",
+        "fact": "The Northern Wei ruled a multi-ethnic empire — Mulan's story reflects a society where nomadic traditions (women riding and fighting) mixed with Confucian ideals. Her legend crossed cultural boundaries as freely as she did."
       }
     ]
   },
@@ -837,41 +588,24 @@
     "story": "The Knight's Code",
     "challenges": [
       {
-        "type": "quiz",
-        "question": "The chivalric code required knights to do all of the following EXCEPT:",
-        "options": [
-          "Protect the weak",
-          "Accumulate personal wealth",
-          "Serve their lord faithfully",
-          "Honor women"
-        ],
-        "answer": 1,
-        "fact": "Chivalry emphasized service, sacrifice, and honor over personal gain — though in practice medieval knights often fell spectacularly short of this ideal, looting, pillaging, and feuding with enthusiasm."
-      },
-      {
         "type": "truefalse",
-        "statement": "Lancelot du Lac is a historical figure documented in medieval chronicles.",
+        "statement": "The chivalric code obligated knights to protect the weak, honour women, and serve God — but said nothing about loyalty to their king.",
         "correct": false,
-        "fact": "Lancelot first appears in Chrétien de Troyes's 12th-century French romances — entirely fictional, though possibly inspired by Celtic warrior legends. King Arthur himself is almost certainly mythological, not historical."
-      },
-      {
-        "type": "quiz",
-        "question": "King Arthur's Round Table was designed so that:",
-        "options": [
-          "The king always sat at the head",
-          "No knight outranked another in seating",
-          "Enemies could be kept apart",
-          "Discussions could be held in secret"
-        ],
-        "answer": 1,
-        "fact": "With no head of the table, every seat was equal — a radical idea of egalitarian brotherhood among warriors. The Round Table became literature's most powerful symbol of meritocracy over birthright."
+        "fact": "Chivalry combined three loyalties: to God (religious duty), to the lord (feudal duty), and to women and the weak (courtly duty). Loyalty to the king was central — a knight who broke this oath was stripped of knighthood."
       },
       {
         "type": "minigame",
-        "game": "maze",
-        "configId": "knight",
-        "instruction": "Guide the knight through the castle labyrinth to claim his honor!",
-        "fact": "Training was brutal: pages learned courtesy and horse care; squires practiced combat daily; knights had to prove valor in battle or tournament. Most never achieved fame — only a few became legendary."
+        "game": "mirror",
+        "configId": "plato",
+        "instruction": "Chivalry taught knights to see beyond surface appearances — like Plato's cave, true honour is reflected in deeds not rank. Redirect the beam of virtue to reach the target.",
+        "fact": "The legend of the Round Table was designed to symbolise equality — no seat was more important than another. Arthur sat where everyone else did, a radical idea in a world of strict hierarchy."
+      },
+      {
+        "type": "minigame",
+        "game": "music",
+        "configId": "c-major-scale",
+        "instruction": "Medieval troubadours sang of chivalry and courtly love. Arrange the ascending notes of a knightly melody.",
+        "fact": "Medieval troubadours spread the code of chivalry through song — their poems and music were the social media of the 12th century, spreading from Provence across all of Europe."
       }
     ]
   },
@@ -881,32 +615,29 @@
     "challenges": [
       {
         "type": "quiz",
-        "question": "Li Qingzhao, considered the greatest female poet in Chinese history, wrote during which dynasty?",
+        "question": "Li Qingzhao is regarded as:",
         "options": [
-          "Tang",
-          "Song",
-          "Ming",
-          "Qing"
+          "China's first female philosopher",
+          "The greatest female poet in Chinese literary history",
+          "The founder of the ci poetry form",
+          "China's first female general"
         ],
         "answer": 1,
-        "fact": "Li Qingzhao (1084–c.1155) mastered the 'ci' (lyric song) form during the Song dynasty. Her early poems celebrate wine, chrysanthemums, and love; her later works — after war and loss — reach devastating emotional depths."
+        "fact": "Li Qingzhao (1084–c.1155) is considered the greatest female poet in Chinese history and one of the greatest poets of all. She transformed the ci form — originally sung verses for entertainment — into a vehicle for profound personal expression."
       },
       {
-        "type": "truefalse",
-        "statement": "Li Qingzhao continued writing poetry after losing her home, husband, and life's work in the Jin invasion.",
-        "correct": true,
-        "fact": "When the Jin dynasty swept south and her husband died carrying their art collection to safety, Li Qingzhao was left with almost nothing. Her grief transformed her poetry — loss became her greatest artistic theme and her legacy."
+        "type": "minigame",
+        "game": "music",
+        "configId": "pentatonic-descend",
+        "instruction": "Li Qingzhao's poems were set to music. Arrange this descending phrase — music of fading autumn.",
+        "fact": "The ci poems of Li Qingzhao were written to specific tunes — each tune had a name and a set pattern of tones. Her poems about loss, love, and exile have been sung and recited for 900 years."
       },
       {
-        "type": "sort",
-        "question": "Arrange these Chinese poetic forms from oldest to most recently developed:",
-        "items": [
-          "Shi (classical verse)",
-          "Fu (rhapsodic prose-poem)",
-          "Ci (lyric song)",
-          "Qu (dramatic aria)"
-        ],
-        "fact": "Each form built on the last. Ci poetry — Li Qingzhao's mastery — was originally lyrics for popular songs: the pop music of its day. She elevated it to high art, writing of longing and loss with a precision no one has matched."
+        "type": "minigame",
+        "game": "music",
+        "configId": "pentatonic",
+        "instruction": "The pentatonic scale carries the spirit of Chinese music. Arrange these notes from lowest to highest — as Li Qingzhao's melodies rose and fell.",
+        "fact": "Li Qingzhao's later poems were written after she fled south during the Jin invasion, her husband had died, and she'd lost most of her prized collection of bronzes and books. Her grief became immortal art."
       }
     ]
   },
@@ -916,44 +647,29 @@
     "challenges": [
       {
         "type": "quiz",
-        "question": "Miyamoto Musashi's famous book on strategy and philosophy — still studied by martial artists and executives — is called:",
+        "question": "Miyamoto Musashi won his famous duel against Sasaki Kojiro using:",
         "options": [
-          "The Art of War",
-          "The Book of Five Rings",
-          "The Way of the Samurai",
-          "The Sword and the Spirit"
+          "A metal sword",
+          "A wooden sword carved from an oar",
+          "A spear",
+          "Twin steel blades"
         ],
         "answer": 1,
-        "fact": "'Go Rin No Sho' (The Book of Five Rings, c. 1645) describes strategy through the elements: earth, water, fire, wind, and void. Japanese corporations still study it; it was a business bestseller in 1980s America."
+        "fact": "Musashi arrived late for his duel with Kojiro on Ganryūjima island (1612), having carved a practice sword from a boat oar on the way. He killed Kojiro with one strike — the psychological warfare of his lateness was as devastating as the blow."
       },
       {
-        "type": "truefalse",
-        "statement": "Musashi is said to have fought over 60 duels without a single defeat.",
-        "correct": true,
-        "fact": "Musashi fought his first duel at 13, his last at 29 — and reportedly won all of them. He later renounced violence entirely, devoting himself to painting, calligraphy, and writing. His brushwork is now considered National Treasures of Japan."
+        "type": "minigame",
+        "game": "maze",
+        "configId": "musashi",
+        "instruction": "Navigate Musashi's mountain training ground to reach the summit duel — move with precision.",
+        "fact": "Musashi never lost a duel in 60+ fights. In his later years he renounced killing, became a painter and sculptor, and wrote The Book of Five Rings — still read by business leaders and martial artists worldwide."
       },
       {
-        "type": "quiz",
-        "question": "Musashi invented a revolutionary two-sword fighting style called:",
-        "options": [
-          "Kenjutsu",
-          "Iaido",
-          "Niten Ichi-ryū",
-          "Bushido"
-        ],
-        "answer": 2,
-        "fact": "'Two Heavens as One' — using the long katana and short wakizashi simultaneously — was nearly impossible to master and almost impossible to defend against. Musashi developed it after noticing opponents didn't know which blade to watch."
-      },
-      {
-        "type": "sort",
-        "question": "Arrange these Japanese blades from shortest to longest:",
-        "items": [
-          "Tanto (dagger)",
-          "Wakizashi",
-          "Katana",
-          "Nodachi (great sword)"
-        ],
-        "fact": "Samurai traditionally carried both katana and wakizashi — the 'daisho' ('big-small') pair that symbolized warrior status. The nodachi, nearly six feet long, was used to fight cavalry on foot — one of the most demanding weapons ever made."
+        "type": "minigame",
+        "game": "painting",
+        "configId": "musashi-dojo",
+        "instruction": "Paint Musashi's dojo at night — the steel sword, wooden floor, and the darkness he trained through.",
+        "fact": "Musashi's Niten Ichi-ryū (two-heaven school) used both a long and short sword simultaneously. The geometry of dual-weapon fighting requires understanding angles of attack that conventional swordsmanship ignored."
       }
     ]
   },
@@ -963,40 +679,29 @@
     "challenges": [
       {
         "type": "quiz",
-        "question": "Leonardo da Vinci's 'Vitruvian Man' illustrates the proportional system described by which ancient Roman architect?",
+        "question": "Leonardo da Vinci left only approximately how many completed paintings?",
         "options": [
-          "Euclid",
-          "Pythagoras",
-          "Vitruvius",
-          "Archimedes"
+          "~5",
+          "~20",
+          "~100",
+          "~300"
         ],
-        "answer": 2,
-        "fact": "Vitruvius (1st century BCE) wrote that ideal temples should mirror ideal human proportions. Leonardo tested this mathematically — discovering the human body is not as perfectly proportional as Vitruvius claimed."
-      },
-      {
-        "type": "truefalse",
-        "statement": "Leonardo da Vinci completed very few of his inventions and paintings during his lifetime.",
-        "correct": true,
-        "fact": "Leonardo was a notorious perfectionist and procrastinator — he worked on the Mona Lisa for four years and may never have considered it finished. His notebooks contain designs for flying machines, solar concentrators, and armored vehicles that weren't built until centuries later."
-      },
-      {
-        "type": "quiz",
-        "question": "The Italian Renaissance began in which city, under the patronage of the wealthy Medici banking family?",
-        "options": [
-          "Rome",
-          "Venice",
-          "Florence",
-          "Milan"
-        ],
-        "answer": 2,
-        "fact": "The Medici funded Botticelli, Michelangelo, Leonardo, and Raphael. Lorenzo de' Medici would invite gifted artists to live in his palace and join philosophical discussions — turning Florence into the world's greatest concentration of creative genius."
+        "answer": 1,
+        "fact": "Only about 20 paintings are definitively attributed to Leonardo. He spent years on each — the Mona Lisa took roughly four years. He left thousands of pages of notebooks but completed relatively few artworks."
       },
       {
         "type": "minigame",
-        "game": "sliding",
-        "configId": "renaissance",
-        "instruction": "Restore the Renaissance masterpiece — slide the tiles back into order!",
-        "fact": "All four were created between 1484 and 1511 — just 27 years. This concentration of genius in one city at one moment is unprecedented in art history. Florence's population was smaller than a modern suburb."
+        "game": "painting",
+        "configId": "venetian-palette",
+        "instruction": "Florence's artists mixed pigments by hand. Apply Leonardo's Renaissance palette to the masterpiece.",
+        "fact": "Renaissance painters ground their own pigments from minerals and plants: lapis lazuli for blue, vermilion from mercury sulphide for red, lead white for highlights. Each colour had a specific technique for longevity."
+      },
+      {
+        "type": "minigame",
+        "game": "geometry",
+        "configId": "golden-ratio",
+        "instruction": "Leonardo da Vinci used the golden ratio in his compositions. Explore the proportion φ that underlies the Vitruvian Man.",
+        "fact": "Luca Pacioli's 'De Divina Proportione' (1509), illustrated by Leonardo da Vinci, popularised the golden ratio in art and architecture. The Vitruvian Man itself is a study in geometric proportion."
       }
     ]
   },
@@ -1005,45 +710,24 @@
     "story": "The Colors of Venice",
     "challenges": [
       {
-        "type": "quiz",
-        "question": "Titian is most associated with which Italian city and its distinctive painting school?",
-        "options": [
-          "Florence",
-          "Rome",
-          "Venice",
-          "Milan"
-        ],
-        "answer": 2,
-        "fact": "The Venetian school (Titian, Giorgione, Tintoretto, Veronese) prioritized color — colore — over the Florentine emphasis on drawing and outline — disegno. Titian's rich, luminous technique directly influenced Rubens, Velázquez, and Rembrandt."
-      },
-      {
         "type": "truefalse",
-        "statement": "Titian was relatively unknown during his lifetime and only gained fame posthumously.",
-        "correct": false,
-        "fact": "Titian was the most sought-after painter in Europe during his own lifetime. Charles V, Philip II of Spain, Pope Paul III, and King Francis I of France all commissioned him. He died a very wealthy man at approximately 99 years old — still painting until the week he died."
+        "statement": "Titian continued painting actively until his death at approximately 90 years of age — still accepting royal commissions.",
+        "correct": true,
+        "fact": "Titian (c. 1488–1576) worked for nearly 70 years, painting for Holy Roman Emperor Charles V, Philip II of Spain, and Pope Paul III. His late style — loose, almost abstract brushwork — was centuries ahead of its time."
       },
       {
-        "type": "quiz",
-        "question": "Titian's late painting style — loose, gestural, almost unfinished — centuries ahead of its time, anticipated which later movements?",
-        "options": [
-          "The Baroque period only",
-          "Impressionism and expressionism",
-          "Neoclassicism",
-          "Abstract art exclusively"
-        ],
-        "answer": 1,
-        "fact": "Titian's final works — patches of pure color, visible brushstrokes, emotional rather than precise — anticipated Impressionism by 300 years. Manet and Renoir specifically studied him in the Louvre. Cézanne called Titian 'the greatest of all painters.'"
+        "type": "minigame",
+        "game": "painting",
+        "configId": "titian-canvas",
+        "instruction": "Master Titian's famous Venetian palette — deep indigo backgrounds, crimson robes, and golden skin tones.",
+        "fact": "Venetian painting was distinguished by its rich colour, applied in multiple glazed layers over days or weeks. Titian's reds — sometimes called 'Titian red' — were achieved with expensive vermilion and glazes of lake pigment."
       },
       {
-        "type": "sort",
-        "question": "Arrange these Renaissance painters by birth year (earliest first):",
-        "items": [
-          "Leonardo da Vinci",
-          "Raphael",
-          "Titian (Tiziano Vecellio)",
-          "Tintoretto"
-        ],
-        "fact": "Leonardo (1452) → Raphael (1483) → Titian (c.1488) → Tintoretto (1518). Titian outlived all of them and kept painting until 1576. His 60-year career spanned the High Renaissance, Mannerism, and the dawn of the Baroque."
+        "type": "minigame",
+        "game": "music",
+        "configId": "venetian-madrigal",
+        "instruction": "Titian's Venice was famous for its madrigals. Arrange notes of a Renaissance vocal phrase — the music Titian heard daily.",
+        "fact": "Venice's Basilica di San Marco had two organ lofts facing each other, inspiring the 'cori spezzati' style — antiphonal music where choirs answer each other across space. Giovanni Gabrieli developed this into orchestral writing."
       }
     ]
   },
@@ -1053,32 +737,29 @@
     "challenges": [
       {
         "type": "quiz",
-        "question": "Johannes Gutenberg's movable-type printing press was invented around which year in Europe?",
+        "question": "Gutenberg's first major printed work was the Bible. About how many copies were printed?",
         "options": [
-          "1240 CE",
-          "1440 CE",
-          "1540 CE",
-          "1640 CE"
+          "~30",
+          "~180",
+          "~1,000",
+          "~10,000"
         ],
         "answer": 1,
-        "fact": "Gutenberg's press (c. 1440) was not the first printing technology — China had woodblock printing since 600 CE — but it was the first European press with movable metal type, making book production 200 times faster than hand-copying."
+        "fact": "Approximately 180 Gutenberg Bibles were printed (c. 1455), of which 49 survive today. Each sold for 30 florins — three years' wages for a clerk. Within 50 years of the press's invention, over 20 million books had been printed in Europe."
       },
       {
-        "type": "truefalse",
-        "statement": "The first major book Gutenberg printed on his press was the Bible.",
-        "correct": true,
-        "fact": "The Gutenberg Bible (1455) printed 180 copies — half on paper, half on vellum. Today 49 survive. A complete copy sold for $5.4 million in 1987. Individual leaves sell for hundreds of thousands of dollars each."
+        "type": "minigame",
+        "game": "crossword",
+        "configId": "gutenberg",
+        "instruction": "Solve the printing press crossword — the vocabulary of Gutenberg's revolutionary workshop.",
+        "fact": "Gutenberg's genius was the adjustable type mould — allowing individual metal letters to be cast in different widths but at the exact same height. Over 290 different letter variants were used to make the Bible look hand-written."
       },
       {
-        "type": "sort",
-        "question": "Arrange these consequences of the printing press from fastest to slowest to materialize after its invention:",
-        "items": [
-          "Books became drastically cheaper",
-          "Protestant Reformation spread rapidly",
-          "Scientific Revolution accelerated",
-          "Mass literacy achieved"
-        ],
-        "fact": "Within 50 years of Gutenberg, over 8 million books had been printed — more than all scribes had produced in the previous millennium. The press democratized knowledge and made censorship almost impossible."
+        "type": "minigame",
+        "game": "painting",
+        "configId": "gutenberg-workshop",
+        "instruction": "Paint Gutenberg's medieval workshop — the press, parchment, ink, and stone walls that changed the world.",
+        "fact": "Before the press, a Bible took a skilled monk a year to copy. Gutenberg's press printed 180 copies in about three years — a 60× increase in speed. It was the internet of its age: information that couldn't be controlled."
       }
     ]
   },
@@ -1088,44 +769,29 @@
     "challenges": [
       {
         "type": "quiz",
-        "question": "Magellan's circumnavigation (1519–1522) proved definitively that:",
+        "question": "Of Magellan's 270-man crew that left Spain in 1519, how many completed the circumnavigation?",
         "options": [
-          "The Earth was round (previously unknown to Europeans)",
-          "The Pacific Ocean was far wider than anyone had expected",
-          "Columbus had reached Asia in 1492",
-          "Spices grew in South America"
+          "18",
+          "45",
+          "90",
+          "130"
         ],
-        "answer": 1,
-        "fact": "Educated Europeans already knew Earth was spherical — the debate was its SIZE. Magellan's voyage proved the Pacific was vastly larger than imagined, making a westward spice route commercially impractical. The voyage lasted 1,082 days; only 18 of 270 men completed it."
+        "answer": 0,
+        "fact": "Only 18 men completed the first circumnavigation, arriving back in Spain in September 1522 — three years after departing. Magellan himself was killed in the Philippines in April 1521, so he never finished the journey."
       },
       {
-        "type": "truefalse",
-        "statement": "Magellan himself completed the first circumnavigation of the Earth.",
-        "correct": false,
-        "fact": "Magellan was killed in the Philippines. His fleet continued under Juan Sebastián Elcano, who brought the Victoria home with 18 survivors. The true honor of completing Earth's first circumnavigation belongs to Elcano and his skeleton crew."
+        "type": "minigame",
+        "game": "maze3d",
+        "configId": "pacific-voyage",
+        "instruction": "Navigate the fog-shrouded straits that Magellan first crossed.",
+        "fact": "The Strait of Magellan (1520) was so treacherous that Magellan spent 38 days navigating 570 km of winding channels. Three ships entered; only one finished the circumnavigation."
       },
       {
-        "type": "quiz",
-        "question": "What did the survivors of Magellan's voyage bring back to Spain that proved the voyage commercially valuable?",
-        "options": [
-          "Gold from the Americas",
-          "Chinese porcelain",
-          "26 tons of cloves from the Moluccas",
-          "Maps of the Pacific"
-        ],
-        "answer": 2,
-        "fact": "The Victoria returned with 26 tons of cloves — then worth a fortune. Cloves could be bought for almost nothing in the Moluccas and sold in Europe for their weight in silver. The cargo alone nearly paid for the entire expedition."
-      },
-      {
-        "type": "sort",
-        "question": "Arrange these events of Magellan's voyage in chronological order:",
-        "items": [
-          "Departure from Seville",
-          "Crossing of the Pacific Ocean",
-          "Magellan's death in the Philippines",
-          "Victoria returns to Spain"
-        ],
-        "fact": "The circumnavigation took 1,082 days. One ship, one crew, 18 survivors. They also discovered something puzzling: their log showed they were one day behind Spanish calendars. They had lost a day traveling westward with the sun — a phenomenon Jules Verne later made famous."
+        "type": "minigame",
+        "game": "painting",
+        "configId": "ocean-voyage",
+        "instruction": "Paint the open ocean as Magellan's sailors saw it — nothing but water for 99 days.",
+        "fact": "Magellan's fleet crossed the Pacific on starvation rations — eating rats, sawdust mixed with water, and leather straps softened by soaking. Scurvy killed many. The survivors arrived at the Philippines skeletal."
       }
     ]
   },
@@ -1134,33 +800,24 @@
     "story": "New Worlds",
     "challenges": [
       {
-        "type": "quiz",
-        "question": "When Columbus reached the Americas in 1492, what did he believe he had found?",
-        "options": [
-          "A new, unknown continent",
-          "Africa's western coast",
-          "The East Indies (Asia)",
-          "Islands off the coast of Europe"
-        ],
-        "answer": 2,
-        "fact": "Columbus died convinced he'd reached Asia — calling the indigenous people 'Indians.' It was Italian explorer Amerigo Vespucci who argued these were entirely new continents, leading cartographers to name them 'America' after him."
-      },
-      {
         "type": "truefalse",
-        "statement": "The Columbian Exchange was one-directional: only European diseases and animals went to the Americas.",
-        "correct": false,
-        "fact": "The Americas gave the world potatoes, tomatoes, chocolate, corn, peppers, tobacco, and possibly syphilis. Europe sent wheat, horses, cattle, smallpox, and measles. The potato alone may have doubled Europe's population within 200 years."
+        "statement": "Columbus never believed he had found a new continent — he died convinced he had reached Asia.",
+        "correct": true,
+        "fact": "Columbus made four voyages to the Americas (1492–1504) and never accepted that he had found unknown continents. It was Amerigo Vespucci who first argued in 1502 that the lands were a 'New World' — and whose name was eventually given to the Americas."
       },
       {
-        "type": "sort",
-        "question": "Arrange these explorers by when they made their most famous voyages (earliest first):",
-        "items": [
-          "Zheng He (Indian Ocean)",
-          "Columbus (Caribbean)",
-          "Magellan (circumnavigation)",
-          "Captain Cook (Pacific)"
-        ],
-        "fact": "Chinese admiral Zheng He's fleet of 300 ships dwarfed Columbus's three — and he explored decades earlier. But China chose isolation; the door stayed open for Europe to colonize the world instead."
+        "type": "minigame",
+        "game": "painting",
+        "configId": "new-world-coast",
+        "instruction": "Paint the Caribbean coast Columbus sighted — the lush jungle, turquoise sea, and sandy beach of the New World.",
+        "fact": "The Columbian Exchange that followed European contact with the Americas was the largest biological exchange in human history: potatoes, tomatoes, maize, and chocolate went east; horses, pigs, wheat, and smallpox went west."
+      },
+      {
+        "type": "minigame",
+        "game": "crossword",
+        "configId": "magellan",
+        "instruction": "Navigate the crossword of the Age of Discovery — the vocabulary of exploration that Columbus and Magellan shared.",
+        "fact": "The Americas had over 500 distinct Indigenous nations before European contact. The Aztec capital Tenochtitlán had 200,000 inhabitants — larger than any city in Europe at the time."
       }
     ]
   },
@@ -1170,44 +827,29 @@
     "challenges": [
       {
         "type": "quiz",
-        "question": "Teresa of Ávila is notable in Church history as one of only a handful of women named:",
+        "question": "Teresa of Ávila founded how many new convents during her lifetime?",
         "options": [
-          "Pope",
-          "Cardinal",
-          "Doctor of the Church",
-          "Apostle"
+          "3",
+          "9",
+          "17",
+          "32"
         ],
         "answer": 2,
-        "fact": "In 1970, Pope Paul VI named Teresa of Ávila and Catherine of Siena the first female Doctors of the Church — meaning their theological writings are officially authoritative guides to Christian teaching. Of 37 Doctors of the Church, only 4 are women."
+        "fact": "Between 1562 and her death in 1582, Teresa of Ávila founded 17 convents across Spain, each practising the strict Carmelite reform she envisioned. She did this while writing masterpieces of mystical literature and suffering from chronic illness."
       },
       {
-        "type": "truefalse",
-        "statement": "Teresa of Ávila wrote major theological works despite having almost no formal education.",
-        "correct": true,
-        "fact": "Women in 16th-century Spain were denied access to universities and formal theological training. Teresa taught herself through reading and correspondence. Her three major works — The Life, The Way of Perfection, and The Interior Castle — are now masterpieces of world literature."
+        "type": "minigame",
+        "game": "music",
+        "configId": "gregorian-chant",
+        "instruction": "Teresa's convents sang Gregorian chant daily. Arrange the sacred melody in order.",
+        "fact": "Teresa described her experience of mystical prayer through metaphors of water and the Interior Castle — a palace with seven dwelling places. Her imagery was so vivid that she was named a Doctor of the Church in 1970."
       },
       {
-        "type": "quiz",
-        "question": "Teresa of Ávila reformed the Carmelite order by founding the Discalced ('barefoot') Carmelites, which emphasized:",
-        "options": [
-          "Missionary work in the Americas",
-          "Strict poverty, prayer, and withdrawal from the world",
-          "Education of poor children",
-          "Political engagement with the Spanish monarchy"
-        ],
-        "answer": 1,
-        "fact": "Discalced Carmelites took extreme vows of poverty and spent their lives in contemplative prayer. Teresa founded 17 convents. She was supported by her collaborator John of the Cross, now also a Doctor of the Church."
-      },
-      {
-        "type": "sort",
-        "question": "Arrange these female mystics and saints by century (earliest first):",
-        "items": [
-          "Hildegard of Bingen (12th century)",
-          "Catherine of Siena (14th century)",
-          "Teresa of Ávila (16th century)",
-          "Thérèse of Lisieux (19th century)"
-        ],
-        "fact": "Women mystics found in religious life one of the few paths to influence and intellectual expression available to them. Their writings — visions, theology, poetry — form an extraordinary literary tradition stretching 1,000 years. All four are now Doctors of the Church."
+        "type": "minigame",
+        "game": "painting",
+        "configId": "teresa-chapel",
+        "instruction": "Paint the Gothic chapel of Teresa of Ávila — violet stained glass, stone walls, and the flicker of candlelight.",
+        "fact": "The Counter-Reformation Church needed Teresa's reforms — her Carmelite convents of poverty and contemplation were a spiritual answer to Protestant critiques. John of the Cross was her co-reformer and fellow Doctor of the Church."
       }
     ]
   },
@@ -1217,32 +859,29 @@
     "challenges": [
       {
         "type": "quiz",
-        "question": "Martin Luther's '95 Theses' (1517) primarily protested which Church practice?",
+        "question": "Martin Luther nailed his 95 Theses to the church door in which year?",
         "options": [
-          "The Crusades",
-          "The sale of indulgences (paid pardons for sin)",
-          "Church taxation",
-          "Priestly celibacy"
+          "1492",
+          "1517",
+          "1543",
+          "1555"
         ],
         "answer": 1,
-        "fact": "Indulgences were sold promising to reduce time in purgatory — Pope Leo X used the revenue to build St. Peter's Basilica. Luther's fury at this corruption launched a movement that permanently shattered Christianity's unity."
+        "fact": "On October 31, 1517, Luther nailed his 95 Theses to the door of Wittenberg's Castle Church — a challenge to debate about indulgences. Thanks to Gutenberg's press, copies spread across Germany within weeks and across Europe within months."
       },
       {
-        "type": "truefalse",
-        "statement": "The printing press played no significant role in spreading Martin Luther's ideas.",
-        "correct": false,
-        "fact": "Without Gutenberg, there might have been no Luther. Within weeks of posting his theses, the press had spread copies across Germany. Within months, all of Europe knew his name. Luther himself said the press was 'God's highest act of grace.'"
+        "type": "minigame",
+        "game": "music",
+        "configId": "beethoven-opening",
+        "instruction": "Luther wrote 'A Mighty Fortress Is Our God' — a bold, powerful melody. Arrange these notes of a triumphant opening phrase.",
+        "fact": "Medieval churches used sacred geometry — pentagonals, golden ratios, and symbolic proportions. The Reformation stripped churches of images, music, and ornament — but Luther's own hymns kept the music alive."
       },
       {
-        "type": "sort",
-        "question": "Arrange these Protestant denominations in the order they were founded:",
-        "items": [
-          "Lutheranism",
-          "Anglicanism",
-          "Calvinism",
-          "Baptist movement"
-        ],
-        "fact": "The Reformation shattered 1,000 years of Christian unity and sparked over a century of religious wars — but also encouraged individual conscience, vernacular literacy, and eventually the radical concept of religious freedom."
+        "type": "minigame",
+        "game": "painting",
+        "configId": "luther-door",
+        "instruction": "Paint the Wittenberg church door where Luther nailed his 95 Theses — the autumn sky, limestone wall, and oak door.",
+        "fact": "The Reformation spread through print, public debate, and song. Luther himself wrote hymns — 'A Mighty Fortress Is Our God' — understanding that music could reach hearts that arguments could not."
       }
     ]
   },
@@ -1252,44 +891,29 @@
     "challenges": [
       {
         "type": "quiz",
-        "question": "What term did Gandhi use for his philosophy of nonviolent resistance — meaning 'truth-force' in Sanskrit?",
+        "question": "Gandhi's famous Salt March covered approximately how many miles?",
         "options": [
-          "Dharma",
-          "Ahimsa",
-          "Satyagraha",
-          "Karma"
+          "80 miles",
+          "160 miles",
+          "240 miles",
+          "400 miles"
         ],
         "answer": 2,
-        "fact": "Satyagraha combined 'satya' (truth) and 'agraha' (firmness). Gandhi first developed it in South Africa fighting racial discrimination. He brought it to India in 1915 — and it eventually brought down the British Empire."
+        "fact": "The Salt March of March–April 1930 covered 240 miles (386 km) from Ahmedabad to the coast at Dandi. When Gandhi picked up a lump of sea salt and broke Britain's salt monopoly, it became one of history's most powerful acts of civil disobedience."
       },
       {
-        "type": "truefalse",
-        "statement": "Gandhi's 1930 Salt March was an illegal act under British colonial law.",
-        "correct": true,
-        "fact": "The British monopolized salt production and taxed it — hitting the poorest hardest. Gandhi walked 240 miles to the sea to make salt illegally, then invited arrest. The global press coverage shamed Britain. 60,000 Indians were imprisoned for following his example."
+        "type": "minigame",
+        "game": "tactics",
+        "configId": "consul",
+        "instruction": "Gandhi's strategy leaves the British Empire no escape — find the decisive move.",
+        "fact": "The Salt March (1930) was a masterstroke: Gandhi chose salt because everyone needed it, making British law look absurd to the entire world."
       },
       {
-        "type": "quiz",
-        "question": "Which of these leaders did NOT explicitly credit Gandhi's philosophy as foundational to their movement?",
-        "options": [
-          "Martin Luther King Jr.",
-          "Nelson Mandela",
-          "Mao Zedong",
-          "Cesar Chavez"
-        ],
-        "answer": 2,
-        "fact": "Mao used armed revolution, not nonviolence — he explicitly rejected Gandhi's approach. King, Mandela, and Chavez all studied Gandhi's methods deeply, translating them into the American civil rights, anti-apartheid, and farmworkers' rights movements."
-      },
-      {
-        "type": "sort",
-        "question": "Arrange these events in Gandhi's life in chronological order:",
-        "items": [
-          "Studies law in London",
-          "Develops Satyagraha in South Africa",
-          "Leads the Salt March in India",
-          "India gains independence"
-        ],
-        "fact": "Gandhi spent 21 years in South Africa before returning to India — a common biographical fact that surprises many. His South African experiences, being thrown off trains for being Indian, forged the philosophy that freed a nation."
+        "type": "minigame",
+        "game": "crossword",
+        "configId": "gandhi",
+        "instruction": "Solve the crossword of Gandhi's world — satyagraha, ahimsa, and the vocabulary of soul force.",
+        "fact": "Seventy-eight volunteers began the Salt March. By the time Gandhi reached the sea, thousands were marching with him. Within months, 60,000 Indians were imprisoned for making, selling, or buying illegal salt."
       }
     ]
   },
@@ -1299,32 +923,29 @@
     "challenges": [
       {
         "type": "quiz",
-        "question": "At what remarkably young age did Clara Wieck (later Schumann) give her first major public piano concert?",
+        "question": "Clara Schumann gave her first public piano recital at age:",
         "options": [
           "5",
           "9",
-          "15",
-          "20"
+          "13",
+          "16"
         ],
         "answer": 1,
-        "fact": "Clara gave her first public concert at 9 and was performing in Leipzig's famed Gewandhaus at 11 — already considered one of Europe's finest pianists. Her father Friedrich was both her teacher and her exploiter, controlling her career completely."
+        "fact": "Clara Wieck (later Schumann) gave her first major public concert at age 9 in Leipzig. By 16 she was performing for crowned heads across Europe. In an era that rarely took women composers seriously, she composed, performed, and taught across a 60-year career."
       },
       {
-        "type": "truefalse",
-        "statement": "Clara Schumann was the first woman to have her portrait on a German banknote.",
-        "correct": true,
-        "fact": "Clara's face appeared on the German 100 Mark note from 1989 to 2002. She was chosen for her role in proving female artistry belonged at the highest levels — a recognition she never received in her own lifetime."
+        "type": "minigame",
+        "game": "music",
+        "configId": "clara-schumann",
+        "instruction": "Arrange the notes of a Clara Schumann melodic phrase — a rising chord journey.",
+        "fact": "Clara Schumann's Piano Concerto in A minor (Op. 7) was composed when she was 14 — the same age Mendelssohn was when he wrote his Octet. The Romantic era produced prodigies who rewrote what was possible in music."
       },
       {
-        "type": "sort",
-        "question": "Arrange these Romantic-era composers by birth year (earliest first):",
-        "items": [
-          "Beethoven",
-          "Chopin",
-          "Clara Schumann",
-          "Brahms"
-        ],
-        "fact": "Beethoven (1770) → Chopin (1810) → Clara Schumann (1819) → Brahms (1833). Clara knew and performed all three — a living bridge across the Romantic era. Her correspondence with Brahms alone fills multiple volumes."
+        "type": "minigame",
+        "game": "painting",
+        "configId": "clara-recital",
+        "instruction": "Paint the elegant piano salon where Clara Schumann performed — velvet curtains, ebony piano, and candlelight.",
+        "fact": "Clara Schumann performed over 1,300 concerts in her career, championing the works of Brahms, Schumann, and Beethoven. After Robert Schumann's death, she continued performing to support their seven children."
       }
     ]
   },
@@ -1334,44 +955,29 @@
     "challenges": [
       {
         "type": "quiz",
-        "question": "The system Linnaeus invented for naming living things — used worldwide today — is called:",
+        "question": "Linnaeus classified approximately how many species in his lifetime?",
         "options": [
-          "The Darwinian System",
-          "Binomial nomenclature",
-          "The Great Chain of Being",
-          "Taxonomic classification"
-        ],
-        "answer": 1,
-        "fact": "Binomial nomenclature ('two-name naming') gives every species two Latin names: genus and species. Humans are Homo sapiens; the domestic cat is Felis catus; the common oak is Quercus robur. This shared international system lets scientists everywhere refer to the same organism."
-      },
-      {
-        "type": "truefalse",
-        "statement": "Charles Darwin developed the system for classifying animals before proposing his theory of evolution.",
-        "correct": false,
-        "fact": "Linnaeus (1707–1778) developed the classification system a century before Darwin (1809–1882). Ironically, Linnaeus created a system to order God's creation — but his observation that humans fit naturally among the primates pointed toward the evolutionary thinking Darwin later confirmed."
-      },
-      {
-        "type": "quiz",
-        "question": "Linnaeus classified humans under the genus Homo and named our species:",
-        "options": [
-          "Homo erectus",
-          "Homo faber",
-          "Homo sapiens",
-          "Homo modernus"
+          "~1,200",
+          "~5,000",
+          "~12,000",
+          "~50,000"
         ],
         "answer": 2,
-        "fact": "'Homo sapiens' means 'wise man.' Linnaeus chose this name, though he noted wryly that he could find no characteristic to distinguish humans from other primates except: 'Know thyself.' Modern genetics confirms humans share 98.8% of DNA with chimpanzees."
+        "fact": "Linnaeus formally described and classified about 12,000 species — roughly 6,000 plants and 6,000 animals. His two-part naming system (genus + species) is still used today for over 1.8 million known species."
       },
       {
-        "type": "sort",
-        "question": "Arrange the levels of biological classification from broadest to most specific:",
-        "items": [
-          "Kingdom",
-          "Class",
-          "Genus",
-          "Species"
-        ],
-        "fact": "Full classification has 8 levels: Domain, Kingdom, Phylum, Class, Order, Family, Genus, Species. Humans are: Animalia > Chordata > Mammalia > Primates > Hominidae > Homo > sapiens. Every organism's full name is like an address in a universal directory."
+        "type": "minigame",
+        "game": "classify",
+        "configId": "linnaeus-kingdom",
+        "instruction": "Classify each organism into Linnaeus's kingdoms.",
+        "fact": "Linnaeus created the system we still use today. His binomial names — like Homo sapiens — gave every species a unique two-word Latin identity understood by scientists worldwide."
+      },
+      {
+        "type": "minigame",
+        "game": "painting",
+        "configId": "spring-garden",
+        "instruction": "Paint Linnaeus's Uppsala botanical garden — sky, grass, and the flowers he catalogued with such care.",
+        "fact": "Linnaeus transformed the Uppsala Botanical Garden into one of Europe's most important research centres. He sent 'apostles' around the world — students who collected specimens on voyages with Cook, Banks, and others."
       }
     ]
   },
@@ -1381,40 +987,29 @@
     "challenges": [
       {
         "type": "quiz",
-        "question": "Gregor Mendel discovered the laws of heredity by meticulously experimenting with which plant?",
+        "question": "Mendel's famous ratio of dominant to recessive traits was:",
         "options": [
-          "Fruit flies",
-          "Mice",
-          "Pea plants",
-          "Wheat"
-        ],
-        "answer": 2,
-        "fact": "Mendel grew 29,000 pea plants over 8 years in his Brno monastery garden. Peas were perfect — they could self- or cross-fertilize, and traits like seed color and plant height showed clear, countable patterns."
-      },
-      {
-        "type": "truefalse",
-        "statement": "Mendel's work was immediately celebrated by the scientific community when published in 1866.",
-        "correct": false,
-        "fact": "Mendel's paper was read twice at the Brno Natural History Society, cited only once in 35 years, and then forgotten. He died in 1884 without recognition. His work was 'rediscovered' in 1900 by three scientists simultaneously — and immediately became the foundation of genetics."
-      },
-      {
-        "type": "quiz",
-        "question": "A trait that is hidden when a dominant trait is present is called:",
-        "options": [
-          "Hybrid",
-          "Recessive",
-          "Mutant",
-          "Phenotype"
+          "2:1",
+          "3:1",
+          "4:1",
+          "1:1"
         ],
         "answer": 1,
-        "fact": "Mendel showed that 'hidden' traits could reappear in later generations — explaining why two brown-eyed parents can have a blue-eyed child. He described dominant and recessive traits decades before anyone knew what a gene was."
+        "fact": "Mendel crossed 29,000 pea plants over eight years. His 3:1 ratio — three plants with the dominant trait to one with the recessive — revealed the hidden mechanics of heredity. These particles we now call genes."
+      },
+      {
+        "type": "minigame",
+        "game": "classify",
+        "configId": "mendel-traits",
+        "instruction": "Sort Mendel's pea traits into dominant and recessive.",
+        "fact": "Mendel's three laws — segregation, independent assortment, and dominance — explain why you might have your grandmother's eyes and your grandfather's chin. Every genetic test used in medicine today rests on Mendel's peas."
       },
       {
         "type": "minigame",
         "game": "mirror",
         "configId": "mendel",
-        "instruction": "Redirect the light beam to separate Mendel's genetic traits!",
-        "fact": "Mendel described genes and alleles without knowing about DNA — reasoning entirely from observable patterns. Watson and Crick explained the mechanism 87 years later; the Human Genome Project mapped it all in 2003."
+        "instruction": "Mendel's pea garden experiment: redirect the light of knowledge through Mendel's genetic maze.",
+        "fact": "Mendel's work was ignored for 35 years after publication. Rediscovered in 1900 by three biologists independently, it became the foundation of modern genetics — one of science's great tales of posthumous vindication."
       }
     ]
   },
@@ -1424,32 +1019,29 @@
     "challenges": [
       {
         "type": "quiz",
-        "question": "Brahms waited how long before daring to write his First Symphony, terrified of comparison to Beethoven?",
+        "question": "Brahms burned most of his early compositions. What drove this perfectionism?",
         "options": [
-          "5 years",
-          "14 years",
-          "21 years",
-          "30 years"
+          "His teacher demanded it",
+          "Comparison to Beethoven overwhelmed him",
+          "He lost the manuscripts",
+          "He considered early work immoral"
         ],
-        "answer": 2,
-        "fact": "Brahms worked on his First Symphony for 21 years. When it premiered in 1876, critic Hans von Bülow called it 'Beethoven's 10th.' Brahms was simultaneously honored and horrified by the comparison."
+        "answer": 1,
+        "fact": "Schumann publicly declared Brahms 'the chosen one' in 1853 — comparing him to Beethoven. This praise became a burden. Brahms spent 20 years revising his First Symphony, terrified of being measured against the greatest composer who ever lived."
       },
       {
-        "type": "truefalse",
-        "statement": "Brahms and Clara Schumann shared a profound lifelong friendship.",
-        "correct": true,
-        "fact": "Brahms met Clara when he was 20 and she was 34 — the wife of his mentor Robert Schumann. Whether romantic or purely devoted, their bond was the deepest of Brahms's life. He moved near her home in Frankfurt and outlived her by only 11 months."
+        "type": "minigame",
+        "game": "music",
+        "configId": "brahms-lullaby",
+        "instruction": "Arrange the opening notes of Brahms' famous Lullaby in the correct melodic order.",
+        "fact": "Brahms' Lullaby (Op. 49 No. 4) was composed in 1868 for a friend's newborn and dedicated to the child's mother. It became the most heard lullaby in history — played in hospitals, nurseries, and music boxes worldwide."
       },
       {
-        "type": "sort",
-        "question": "Arrange these Brahms compositions from earliest to latest in his career:",
-        "items": [
-          "Piano Sonata No. 1",
-          "Ein deutsches Requiem",
-          "Symphony No. 1",
-          "Symphony No. 4"
-        ],
-        "fact": "Brahms moved from intimate piano works in his youth to vast orchestral works in maturity — always wrestling with the tension between Romantic expressiveness and Classical discipline. He burned dozens of completed works he felt were unworthy."
+        "type": "minigame",
+        "game": "painting",
+        "configId": "brahms-vienna",
+        "instruction": "Paint the Vienna concert hall where Brahms premiered his symphonies — gilded ceiling, warm walls, and the dark stage.",
+        "fact": "Brahms was the last of the three great Bs — Bach, Beethoven, Brahms. Unlike his rival Wagner, he never sought revolution — he believed the classical forms of sonata and symphony still had infinite depths to explore."
       }
     ]
   },
@@ -1459,44 +1051,29 @@
     "challenges": [
       {
         "type": "quiz",
-        "question": "The Palace of Versailles — which Louis XVI inherited along with France's crushing debt — was originally built by which French king?",
+        "question": "Louis XVI was how old when he was crowned King of France?",
         "options": [
-          "Louis XIV",
-          "Louis XV",
-          "Henry IV",
-          "Napoleon"
+          "15",
+          "17",
+          "20",
+          "25"
         ],
-        "answer": 0,
-        "fact": "Louis XIV (the Sun King) built Versailles as a monument to absolute monarchy, housing 20,000 courtiers and servants. The annual upkeep consumed 25% of France's budget — and the debt only grew through Louis XV and XVI's reigns."
+        "answer": 2,
+        "fact": "Louis XVI became king at age 20 in 1774, inheriting a state near bankruptcy from his grandfather Louis XV. He was a skilled locksmith and passionate map-maker — a careful craftsman in a role that demanded bold political vision."
       },
       {
-        "type": "truefalse",
-        "statement": "Marie Antoinette was born Austrian, not French.",
-        "correct": true,
-        "fact": "Marie Antoinette was born an Austrian archduchess and married Louis XVI at 14 as a political alliance. French people called her 'l'Autrichienne' (the Austrian woman) — or worse. Her foreign birth made her a lightning rod for every grievance against the crown."
+        "type": "minigame",
+        "game": "geometry",
+        "configId": "sphere-surface",
+        "instruction": "Versailles aspired to govern the entire globe. Calculate the surface area of the sphere of French ambition.",
+        "fact": "The Palace of Versailles was a machine of political spectacle — every corridor, mirror, and gilded surface designed to awe visitors into submission. Louis XVI inherited this stage but never fully commanded it."
       },
       {
-        "type": "quiz",
-        "question": "The storming of the Bastille on July 14, 1789 marked the symbolic beginning of:",
-        "options": [
-          "The Napoleonic Wars",
-          "The French Revolution",
-          "The Reign of Terror",
-          "The Enlightenment"
-        ],
-        "answer": 1,
-        "fact": "The Bastille held only 7 prisoners when stormed — but it symbolized royal tyranny. July 14 is now France's national holiday. Within months, the Declaration of the Rights of Man was signed; within four years, Louis XVI was guillotined."
-      },
-      {
-        "type": "sort",
-        "question": "Arrange these French Revolution events in chronological order:",
-        "items": [
-          "Storming of the Bastille",
-          "Execution of Louis XVI",
-          "The Reign of Terror",
-          "Napoleon becomes Emperor"
-        ],
-        "fact": "The Revolution promised liberty, equality, fraternity — then delivered the Reign of Terror (17,000 executions in 10 months) before Napoleon's dictatorship 'saved' France. Yet its ideals inspired every democratic revolution that followed."
+        "type": "minigame",
+        "game": "painting",
+        "configId": "versailles-hall",
+        "instruction": "Paint the Hall of Mirrors at Versailles — Louis XVI's gilded world, about to be swept away by revolution.",
+        "fact": "The French court at Versailles housed 10,000 nobles and servants, each with a defined rank and role. The cost of this spectacle — while France starved — was one of the primary causes of the Revolution."
       }
     ]
   },
@@ -1506,40 +1083,29 @@
     "challenges": [
       {
         "type": "quiz",
-        "question": "Alan Turing's 1936 paper describing the 'universal computing machine' made him the theoretical father of:",
+        "question": "How many possible settings did Turing's Bombe machine have to test for each Enigma message?",
         "options": [
-          "Electricity",
-          "Computer science",
-          "Quantum physics",
-          "Cryptography"
+          "1,000",
+          "17,576",
+          "158 quintillion",
+          "1 trillion"
         ],
         "answer": 1,
-        "fact": "Turing's paper was purely theoretical — no computer existed yet. He described a machine that could run any computation by reading symbols on a tape, following rules. Every computer ever built is a physical implementation of this idea."
+        "fact": "The Enigma machine had 17,576 possible rotor starting positions (26×26×26). But with plugboard settings, the actual number of configurations was 158 quintillion — the Bombe exploited cribs (known plaintext) to narrow the search."
       },
       {
-        "type": "truefalse",
-        "statement": "No one had cracked any version of the Enigma cipher before Turing's work.",
-        "correct": false,
-        "fact": "Polish mathematicians Marian Rejewski, Jerzy Różycki, and Henryk Zygalski first cracked an earlier Enigma in 1932. They shared their methods with Britain in 1939 — and Turing built brilliantly on their foundation. History often forgets the Poles."
-      },
-      {
-        "type": "quiz",
-        "question": "What was the name of the electromechanical machine Turing designed to systematically crack Enigma messages?",
-        "options": [
-          "ENIAC",
-          "Colossus",
-          "The Bombe",
-          "The Turing Engine"
-        ],
-        "answer": 2,
-        "fact": "The Bombe processed 17,576 possible wheel positions per run. At peak operation, 200 Bombes cracked up to 84,000 Enigma messages per day. Churchill called Bletchley Park's codebreakers 'my geese that laid the golden eggs and never cackled.'"
+        "type": "minigame",
+        "game": "crossword",
+        "configId": "turing",
+        "instruction": "Crack the code — fill in the cryptography crossword across and down.",
+        "fact": "Breaking Enigma gave the Allies what Churchill called 'the golden eggs' — they read German military communications throughout WWII. Historians estimate it shortened the war by two to four years, saving millions of lives."
       },
       {
         "type": "minigame",
         "game": "circuit",
         "configId": "enigma",
-        "instruction": "Complete the Bombe circuit to crack the Enigma code — close the right switches!",
-        "fact": "Turing's 1936 paper → ENIAC (1945) → Apple II (1977) → WWW (1991). The smartphone in your pocket is 1 billion times more powerful than ENIAC — which was the size of a room and weighed 30 tons."
+        "instruction": "Complete the Bombe circuit — the electrical circuit that cracked Enigma.",
+        "fact": "Turing's Bombe was based on a Polish machine called the Bomba, which Turing and Gordon Welchman dramatically improved. At peak operation, 211 Bombe machines ran simultaneously at Bletchley Park."
       }
     ]
   },
@@ -1548,45 +1114,24 @@
     "story": "Light Before Einstein",
     "challenges": [
       {
-        "type": "quiz",
-        "question": "The 'Lorentz transformations' describe how, for an observer moving at near the speed of light:",
-        "options": [
-          "Mass decreases and energy increases",
-          "Time slows down and length contracts",
-          "Gravity disappears",
-          "Light appears to change color"
-        ],
-        "answer": 1,
-        "fact": "Time dilation and length contraction are real, measurable effects — not just theoretical. GPS satellites must correct for both effects or the system would accumulate errors of kilometers per day. Every GPS position fix depends on equations Lorentz first wrote."
-      },
-      {
         "type": "truefalse",
-        "statement": "Albert Einstein credited Lorentz as having done the essential mathematical groundwork for special relativity.",
+        "statement": "Lorentz predicted time dilation — that time moves slower for moving objects — before Einstein published his theory of relativity.",
         "correct": true,
-        "fact": "Einstein wrote to Lorentz: 'Without your work, I could not have developed the theory of relativity.' Lorentz in turn spent his final years promoting Einstein's work — even though he personally never fully accepted that there was no ether. Science at its most generous."
+        "fact": "Hendrik Lorentz derived the 'Lorentz transformation' equations in 1895–1904, which showed that time, length, and mass change with velocity. Einstein took these equations and provided the physical interpretation: special relativity (1905)."
       },
       {
-        "type": "quiz",
-        "question": "Lorentz and his student Pieter Zeeman shared the Nobel Prize in Physics in 1902 for the 'Zeeman effect' — what is this?",
-        "options": [
-          "That light bends around massive objects",
-          "That magnetic fields split the spectral lines of light emitted by atoms",
-          "That electrons orbit atomic nuclei",
-          "That radio waves can travel through space"
-        ],
-        "answer": 1,
-        "fact": "The Zeeman effect proved that atoms contain electrically charged particles — the first direct evidence for the electron. It opened the door to quantum mechanics, as the effect couldn't be explained without quantum theory."
+        "type": "minigame",
+        "game": "geometry",
+        "configId": "cylinder-volume",
+        "instruction": "Lorentz's equations describe how a moving cylinder appears to shrink. Calculate the volume of this relativistic cylinder.",
+        "fact": "Lorentz contraction predicts that a moving object appears shorter in the direction of motion. A cylinder moving at 87% of light speed would appear halved in length — its volume halved — to a stationary observer."
       },
       {
-        "type": "sort",
-        "question": "Arrange these milestones in the physics of light in chronological order:",
-        "items": [
-          "Maxwell describes light as electromagnetic waves",
-          "Michelson-Morley experiment shows constant light speed",
-          "Lorentz derives his transformation equations",
-          "Einstein publishes special relativity"
-        ],
-        "fact": "Maxwell (1865) → Michelson-Morley (1887) → Lorentz transformations (1895) → Einstein (1905). Each step built on the last. Einstein himself said he was standing on the shoulders of Maxwell and Lorentz. Physics advances like a relay race."
+        "type": "minigame",
+        "game": "mirror",
+        "configId": "lorentz",
+        "instruction": "Lorentz showed light's path changes with velocity. Guide the beam to demonstrate time dilation.",
+        "fact": "The Michelson-Morley experiment (1887) showed light travels at the same speed regardless of direction — baffling everyone. Lorentz explained this with his contraction theory, which Einstein unified into relativity."
       }
     ]
   },
@@ -1596,32 +1141,29 @@
     "challenges": [
       {
         "type": "quiz",
-        "question": "What oppressive garment did Coco Chanel's designs help liberate women from by replacing it with comfortable jersey fabrics?",
+        "question": "Coco Chanel popularised which garment in 1926 that became a symbol of modern fashion?",
         "options": [
-          "Bonnets",
-          "Corsets",
-          "Petticoats",
-          "Gloves"
+          "The trouser suit",
+          "The little black dress",
+          "The trench coat",
+          "The wrap dress"
         ],
         "answer": 1,
-        "fact": "The corset had deformed women's ribs and restricted breathing for centuries — the waist was pulled to 18 inches by stiff boning. Chanel borrowed jersey fabric from men's sportswear and created clothes for women who actually moved."
+        "fact": "Chanel's 'little black dress' (1926) appeared in Vogue, which compared it to Ford's Model T — a fashion so universal and timeless it was available to everyone. Black had previously been reserved for mourning."
       },
       {
-        "type": "truefalse",
-        "statement": "Chanel No. 5 was the first perfume to feature a fashion designer's name.",
-        "correct": true,
-        "fact": "Before Chanel No. 5 (1921), perfumes had names like 'Rose of the Orient' or 'Lily of the Valley.' Chanel's bold decision to put her own name on a bottle created modern celebrity branding. It remains the world's best-selling perfume over 100 years later."
+        "type": "minigame",
+        "game": "painting",
+        "configId": "chanel-atelier",
+        "instruction": "Paint Chanel's Paris atelier — white walls, the iconic black dress, silver mirrors, and the grey floor.",
+        "fact": "Chanel was influenced by Japanese aesthetics — simplicity, monochrome, clean lines. She also drew on jersey fabric (formerly used only for men's underwear) to create comfortable women's clothing, liberating them from corsets."
       },
       {
-        "type": "sort",
-        "question": "Arrange these Chanel innovations in the approximate order she introduced them:",
-        "items": [
-          "Jersey sportswear for women",
-          "Chanel No. 5 perfume",
-          "The little black dress",
-          "The Chanel suit (tweed jacket and skirt)"
-        ],
-        "fact": "Each innovation democratized fashion — Chanel took materials (jersey, tweed) previously considered too humble for haute couture and made them aspirational. She dressed women for the 20th century, not the 19th."
+        "type": "minigame",
+        "game": "music",
+        "configId": "jazz-nocturne",
+        "instruction": "The Jazz Age inspired Chanel's Paris salon. Arrange the notes of a 1920s jazz phrase.",
+        "fact": "Chanel thrived in the Jazz Age Paris of the 1920s — a world of Picasso, Stravinsky, Diaghilev, and Hemingway. She dressed the dancers of the Ballets Russes and set the aesthetic for an entire era."
       }
     ]
   },
@@ -1631,44 +1173,29 @@
     "challenges": [
       {
         "type": "quiz",
-        "question": "Amelia Earhart was the first woman to:",
+        "question": "Amelia Earhart disappeared near which island during her 1937 round-the-world attempt?",
         "options": [
-          "Fly an airplane",
-          "Fly solo across the Atlantic Ocean",
-          "Fly in a military aircraft",
-          "Receive a pilot's license"
+          "Hawaii",
+          "Wake Island",
+          "Howland Island",
+          "Midway"
         ],
-        "answer": 1,
-        "fact": "Earhart completed her solo Atlantic crossing on May 21, 1932 — exactly five years after Lindbergh. She received the Distinguished Flying Cross from Congress and the Gold Medal of the National Geographic Society."
+        "answer": 2,
+        "fact": "Earhart and navigator Fred Noonan disappeared on July 2, 1937, near tiny Howland Island in the Central Pacific — one of the most remote spots on Earth. They were never found. Her disappearance remains one of aviation's great mysteries."
       },
       {
-        "type": "truefalse",
-        "statement": "Amelia Earhart completed her attempt to circumnavigate the Earth along the equator.",
-        "correct": false,
-        "fact": "Earhart disappeared on July 2, 1937, over the Pacific Ocean near Howland Island — with about 7,000 miles of her circumnavigation remaining. She and navigator Fred Noonan were never found. The mystery has never been definitively solved."
+        "type": "minigame",
+        "game": "maze3d",
+        "configId": "flight-path",
+        "instruction": "Chart Earhart's course through the storm corridors over the Atlantic.",
+        "fact": "In 1932, Earhart flew solo from Newfoundland to Northern Ireland in 14 hours 56 minutes — battling icing, storm turbulence, and a leaking fuel tank."
       },
       {
-        "type": "quiz",
-        "question": "Before becoming a pilot, Amelia Earhart worked in which field during World War I?",
-        "options": [
-          "Factory work in munitions",
-          "Military nursing",
-          "Code breaking for the intelligence services",
-          "Aircraft manufacturing"
-        ],
-        "answer": 1,
-        "fact": "Earhart worked as a military nurse in Canada during WWI, then studied medicine at Columbia before discovering aviation. Her first flight in 1920 changed everything — 'by the time I had gotten two or three hundred feet off the ground, I knew I had to fly.'"
-      },
-      {
-        "type": "sort",
-        "question": "Arrange these aviation milestones in chronological order:",
-        "items": [
-          "Wright Brothers' first powered flight",
-          "Lindbergh's solo Atlantic crossing",
-          "Earhart's solo Atlantic crossing",
-          "First commercial jet passenger service"
-        ],
-        "fact": "Wright Brothers (1903) → Lindbergh (1927) → Earhart (1932) → Jet service (1952 BOAC). In just 49 years, humanity went from 12 seconds in the air to jet-powered transatlantic travel. Earhart witnessed nearly the entire transformation."
+        "type": "minigame",
+        "game": "geometry",
+        "configId": "ellipse-area",
+        "instruction": "Earth's orbit is an ellipse. Earhart circled the globe — calculate the area of the elliptical flight path around the equator.",
+        "fact": "Earhart flew her Lockheed Electra around the world's equator — the longest possible circumnavigation route. She completed 22,000 miles before disappearing with only 7,000 miles remaining."
       }
     ]
   },
@@ -1678,44 +1205,29 @@
     "challenges": [
       {
         "type": "quiz",
-        "question": "The editing technique Eisenstein developed — where cutting between images creates a new meaning not contained in either image alone — is called:",
+        "question": "Eisenstein pioneered 'intellectual montage' — using the collision of images to create:",
         "options": [
-          "The Kuleshov Effect",
-          "Montage",
-          "Tracking shot",
-          "Jump cut"
+          "Longer scenes with more action",
+          "Abstract ideas that neither shot contains alone",
+          "Smoother scene transitions",
+          "More realistic dialogue"
         ],
         "answer": 1,
-        "fact": "Eisenstein's theory of 'intellectual montage' argued that cinema's power came from the collision of shots. A man's face + a bowl of soup creates 'hunger.' The same face + a child creates 'love.' Editing creates meaning, not just sequence."
+        "fact": "Eisenstein believed that two images in sequence create a third meaning absent from either — as in the Kuleshov effect. A shot of a man's neutral face followed by soup suggests hunger; followed by a coffin suggests grief. Same face, different meanings."
       },
       {
-        "type": "truefalse",
-        "statement": "Battleship Potemkin (1925) has consistently ranked among the greatest films ever made for nearly a century.",
-        "correct": true,
-        "fact": "Potemkin has ranked #1 on multiple all-time greatest films polls. Its Odessa Steps sequence — 6 minutes long — has been recreated or homaged in The Untouchables, Brazil, and dozens of other films. It was commissioned to commemorate the 1905 revolution."
+        "type": "minigame",
+        "game": "painting",
+        "configId": "film-still",
+        "instruction": "Compose an Eisenstein frame — use light, shadow, and geometry to create meaning.",
+        "fact": "Eisenstein studied theatre under Vsevolod Meyerhold and architecture before cinema. His films Battleship Potemkin (1925) and Alexander Nevsky (1938) are still studied in film schools as masterpieces of visual storytelling."
       },
       {
-        "type": "quiz",
-        "question": "Which event in Eisenstein's career under Stalin most dramatically demonstrated the dangers facing Soviet artists?",
-        "options": [
-          "He refused to make propaganda films",
-          "Stalin deemed his nearly completed film 'Bezhin Meadow' ideologically incorrect and destroyed it",
-          "He fled to Hollywood",
-          "He publicly opposed Soviet censorship"
-        ],
-        "answer": 1,
-        "fact": "Stalin personally destroyed 'Bezhin Meadow' — 3 years of work — deeming it ideologically flawed. Eisenstein was forced to make a public self-criticism. This was the fate of Soviet artists: genius was permitted only if it served power."
-      },
-      {
-        "type": "sort",
-        "question": "Arrange these cinematic innovations in the order they were developed:",
-        "items": [
-          "Silent film with inter-titles",
-          "Eisenstein's montage theory",
-          "Hollywood sound films ('talkies')",
-          "Color film becomes standard"
-        ],
-        "fact": "Cinema went from silent (1895) to sound (1927) to color (1960s standard) in 70 years. Eisenstein's theories were developed during the silent era — but his insights about cutting and image collision became the grammar of all cinema that followed."
+        "type": "minigame",
+        "game": "music",
+        "configId": "film-score",
+        "instruction": "Eisenstein synchronised Prokofiev's music to picture in Alexander Nevsky. Arrange these bold orchestral notes.",
+        "fact": "Early cinema projection required arc lamps burning at intense heat. Cinema operators were trained electricians. The technology of film — sprocket holes, 24 frames per second, silver nitrate chemistry — was pure applied science."
       }
     ]
   },
@@ -1724,45 +1236,24 @@
     "story": "Top of the World",
     "challenges": [
       {
-        "type": "quiz",
-        "question": "Edmund Hillary and Tenzing Norgay reached the summit of Everest on May 29, 1953, as part of an expedition organized by:",
-        "options": [
-          "The Swiss Alpine Club",
-          "The Royal Geographical Society",
-          "The Joint Himalayan Committee",
-          "The British Army"
-        ],
-        "answer": 2,
-        "fact": "The 1953 British expedition led by John Hunt was the ninth attempt on Everest. News of the summit reached London on June 2 — Coronation Day for Queen Elizabeth II. Hillary was knighted immediately; Tenzing received the George Medal."
-      },
-      {
         "type": "truefalse",
-        "statement": "It was immediately clear who between Hillary and Tenzing stepped onto the summit first.",
-        "correct": false,
-        "fact": "Neither man ever officially disclosed who stepped on the summit first — they agreed to say they summited 'together.' Tenzing later revealed in his memoir that Hillary stepped up first. Their code of partnership mattered more to both of them than individual credit."
+        "statement": "Hillary and Tenzing reached the summit of Everest at exactly 11:30 AM on May 29, 1953.",
+        "correct": true,
+        "fact": "Hillary later wrote: 'We knocked the bastard off.' They spent 15 minutes on the summit — enough for photographs and a buried chocolate. The news was withheld until Queen Elizabeth II's coronation on June 2, providing a gift to the nation."
       },
       {
-        "type": "quiz",
-        "question": "How many previous attempts had Tenzing Norgay made on Everest before the successful 1953 ascent?",
-        "options": [
-          "2",
-          "4",
-          "6",
-          "9"
-        ],
-        "answer": 2,
-        "fact": "Tenzing made his seventh attempt on Everest in 1953 — having first climbed with the British in 1935 at age 21. Sherpa communities had been indispensable to Himalayan mountaineering for decades, yet received little international recognition before 1953."
+        "type": "minigame",
+        "game": "maze3d",
+        "configId": "himalayan-climb",
+        "instruction": "Find the route Hillary and Tenzing took through the icefall to the summit.",
+        "fact": "The South Col route up Everest required navigating the Khumbu Icefall — a constantly shifting maze of ice towers. Hillary and Tenzing reached the summit on 29 May 1953."
       },
       {
-        "type": "sort",
-        "question": "Arrange these milestones in Everest's climbing history in chronological order:",
-        "items": [
-          "Everest first measured as Earth's highest peak",
-          "First summit (Hillary and Tenzing)",
-          "First summit without supplemental oxygen",
-          "First solo summit"
-        ],
-        "fact": "Everest (8,848.86m) was first measured in 1852. Hillary and Tenzing (1953) used oxygen; Habeler and Messner summited without oxygen in 1978; Reinhold Messner soloed in 1980. Today over 6,000 people have reached the summit."
+        "type": "minigame",
+        "game": "geometry",
+        "configId": "cone-surface",
+        "instruction": "A mountain's conical shape — calculate the surface area of the tent Hillary used at the summit camp.",
+        "fact": "The Khumbu Icefall moves up to a metre per day — its seracs and crevasses constantly shift, meaning the safe route must be re-established every day. Hillary called it the crux of the entire climb."
       }
     ]
   },
@@ -1772,40 +1263,29 @@
     "challenges": [
       {
         "type": "quiz",
-        "question": "The Long March of 1934–35, during which Mao's Red Army fled Nationalist forces, covered approximately how many miles?",
+        "question": "The Long March covered approximately how many kilometres?",
         "options": [
-          "1,000",
-          "4,000",
-          "6,000",
-          "10,000"
+          "2,000 km",
+          "5,000 km",
+          "9,000 km",
+          "15,000 km"
         ],
         "answer": 2,
-        "fact": "The Red Army marched roughly 6,000 miles in 370 days, crossing 18 mountain ranges and 24 rivers in brutal terrain. Of 80,000 who started, only about 8,000 survived. It became the founding myth of Communist China."
+        "fact": "The Long March (1934–35) covered about 9,000 km — crossing 18 mountain ranges and 24 rivers. Of the 80,000 who began, fewer than 10,000 completed it. It transformed apparent defeat into the founding myth of Communist China."
       },
       {
-        "type": "truefalse",
-        "statement": "The Long March ended in military defeat for the Communist Party.",
-        "correct": false,
-        "fact": "Militarily devastating, the Long March was politically transformative. Mao emerged as undisputed leader, survivors were celebrated as revolutionary heroes, and the myth of the march inspired a generation. The Communists won the civil war 14 years later."
-      },
-      {
-        "type": "quiz",
-        "question": "When Mao proclaimed victory from Beijing's Tiananmen Gate on October 1, 1949, what did he name the new state?",
-        "options": [
-          "The Republic of China",
-          "The People's Republic of China",
-          "The Democratic Republic of China",
-          "The Socialist State of China"
-        ],
-        "answer": 1,
-        "fact": "October 1, 1949 is still celebrated as China's National Day. The Republic of China (ROC) — Chiang Kai-shek's Nationalist government — retreated to Taiwan, where it still exists. Both claim to be the legitimate China."
+        "type": "minigame",
+        "game": "tactics",
+        "configId": "temple",
+        "instruction": "Mao's forces have repositioned. Find the decisive tactical move.",
+        "fact": "The Long March was a 9,000 km strategic retreat that repositioned the Red Army — transforming apparent defeat into the foundation of eventual victory."
       },
       {
         "type": "minigame",
         "game": "maze",
         "configId": "long-march",
-        "instruction": "Lead the march through the mountain pass — find the path to the other side!",
-        "fact": "China's transformation — from one of the world's poorest nations in 1949 to the second-largest economy today — is history's fastest large-scale development. Mao's revolution consolidated power; Deng Xiaoping's reforms created prosperity."
+        "instruction": "Navigate the mountain paths of the Long March — find the route through Guizhou to safety.",
+        "fact": "The most decisive battle of the Long March was the crossing of the Luding Bridge — a chain bridge over a gorge, its planks removed, defended by machine guns. Communist soldiers crawled across the chains under fire."
       }
     ]
   },
@@ -1815,32 +1295,29 @@
     "challenges": [
       {
         "type": "quiz",
-        "question": "An Jung-geun assassinated Itō Hirobumi at Harbin Station in 1909. What was Itō's significance in Japan?",
+        "question": "An Jung-geun assassinated Itō Hirobumi in which year?",
         "options": [
-          "He was the Emperor of Japan",
-          "He was Japan's first Prime Minister",
-          "He was the army commander in Korea",
-          "He was the finance minister"
+          "1895",
+          "1905",
+          "1909",
+          "1919"
         ],
-        "answer": 1,
-        "fact": "Itō Hirobumi drafted Japan's Meiji Constitution and served as Prime Minister four times. An called the assassination an act of justice against Japan's colonial policy in Korea — he read out 15 charges against Itō before pulling the trigger."
+        "answer": 2,
+        "fact": "On October 26, 1909, An Jung-geun shot Itō Hirobumi — Japan's first Prime Minister and the architect of Korean colonisation — at Harbin railway station. An was captured, tried, and executed in 1910, the same year Japan formally annexed Korea."
       },
       {
-        "type": "truefalse",
-        "statement": "An Jung-geun is equally admired in both Korea and Japan.",
-        "correct": false,
-        "fact": "In Korea and China, An is revered as a freedom fighter — his calligraphy hangs in government buildings. In Japan, he is considered a terrorist who murdered a statesman. The same act, seen through different national histories, becomes utterly different events."
+        "type": "minigame",
+        "game": "tactics",
+        "configId": "reform",
+        "instruction": "Itō Hirobumi systematically corners the old order — find the winning move in the Meiji reform strategy.",
+        "fact": "Itō Hirobumi drafted the Meiji Constitution (1889) and served as Japan's first Prime Minister, systematically dismantling feudal structures with each calculated reform — until An Jung-geun's bullet ended his career."
       },
       {
-        "type": "sort",
-        "question": "Arrange these events in Korean modern history in chronological order:",
-        "items": [
-          "An Jung-geun's assassination of Itō",
-          "Japan formally annexes Korea",
-          "Korean War divides the peninsula",
-          "South Korea transitions to full democracy"
-        ],
-        "fact": "Korea's path from Japanese colony (1910–1945) to divided peninsula to Asian economic powerhouse is one of history's most dramatic national transformations. South Korea's per-capita GDP rose from near-zero in 1950 to above France by 2020."
+        "type": "minigame",
+        "game": "crossword",
+        "configId": "ito",
+        "instruction": "Test your knowledge of the Meiji era — the vocabulary of Japan's great modernisation under Itō Hirobumi.",
+        "fact": "An Jung-geun wrote a treatise on peace in East Asia while awaiting execution, calling for cooperation between China, Japan, and Korea against Western colonialism. He was a complex figure — a Catholic, a scholar, and a revolutionary."
       }
     ]
   },
@@ -1849,33 +1326,24 @@
     "story": "The Gilded Age",
     "challenges": [
       {
-        "type": "quiz",
-        "question": "The American 'Gilded Age' — a term coined by Mark Twain meaning shiny outside, corrupt underneath — roughly covers which decades?",
-        "options": [
-          "1820–1860",
-          "1870–1900",
-          "1900–1930",
-          "1930–1960"
-        ],
-        "answer": 1,
-        "fact": "Twain's 1873 novel skewered an era of spectacular industrial wealth and equally spectacular political corruption. The top 1% controlled more wealth than the bottom 99% — a statistic that would be repeated in alarming ways in the early 21st century."
-      },
-      {
         "type": "truefalse",
-        "statement": "Andrew Mellon served as U.S. Treasury Secretary under only one president.",
-        "correct": false,
-        "fact": "Mellon served Harding, Coolidge, and Hoover — 11 years as Treasury Secretary, longer than any since. He cut top tax rates from 73% to 25%, arguing wealth would 'trickle down.' The 1929 crash and Great Depression followed immediately after."
+        "statement": "Andrew Mellon served as US Treasury Secretary under three consecutive presidents.",
+        "correct": true,
+        "fact": "Andrew Mellon served as Treasury Secretary under Harding, Coolidge, and Hoover (1921–1932) — the longest tenure since Alexander Hamilton. He oversaw the Roaring Twenties boom and the beginning of the Great Depression, for which he was blamed."
       },
       {
-        "type": "sort",
-        "question": "Match these Gilded Age industrialists to their industry (arrange by industry: steel, oil, finance, railroads):",
-        "items": [
-          "Carnegie (steel)",
-          "Rockefeller (oil)",
-          "Morgan (finance)",
-          "Vanderbilt (railroads)"
-        ],
-        "fact": "These four men controlled more of the American economy than any individuals before or since. Their foundations — Carnegie Hall, Rockefeller University, the Morgan Library — still shape American culture, funded by fortunes built on crushed unions and destroyed competition."
+        "type": "minigame",
+        "game": "geometry",
+        "configId": "cube-diagonal",
+        "instruction": "Mellon's National Gallery of Art is a masterpiece of architectural geometry. Calculate the space diagonal of this cubic gallery room.",
+        "fact": "Mellon donated his art collection and $15 million to build Washington's National Gallery of Art — one of the greatest acts of private cultural philanthropy in American history. His collection included Raphaels, Rembrandts, and van Eycks bought from the Hermitage."
+      },
+      {
+        "type": "minigame",
+        "game": "music",
+        "configId": "war-march",
+        "instruction": "The Gilded Age moved to the rhythm of industry — steel mills, railways, and mechanical music. Arrange this bold march phrase.",
+        "fact": "Mellon secretly bought 21 paintings from the Soviet government during the 1930s — the Hermitage needed currency to fund industrialisation. He paid $7 million for works now worth hundreds of millions."
       }
     ]
   },
@@ -1885,44 +1353,29 @@
     "challenges": [
       {
         "type": "quiz",
-        "question": "Audrey Hepburn achieved the rare EGOT (Emmy, Grammy, Oscar, Tony). What does EGOT stand for?",
+        "question": "Audrey Hepburn is the only actress to have won which four major entertainment awards (EGOT)?",
         "options": [
-          "Emmy, Globe, Oscar, Tony",
           "Emmy, Grammy, Oscar, Tony",
-          "Excellence, Greatness, Oscar, Tony",
-          "Emmy, Grammy, Oscar, Theatre"
+          "BAFTA, Grammy, Oscar, Tony",
+          "Emmy, Grammy, Oscar, Golden Globe",
+          "Oscar, Tony, Cannes Palme d'Or, Grammy"
         ],
-        "answer": 1,
-        "fact": "Only about 20 people have achieved EGOT. Hepburn won an Oscar (Roman Holiday), Tony (Ondine), Emmy (An Evening with Fred Astaire), and Grammy (spoken word recording) — becoming one of history's most decorated entertainers."
+        "answer": 0,
+        "fact": "Audrey Hepburn won an Oscar (Roman Holiday, 1953), Tony (Ondine, 1954), Emmy (Love Among Thieves, 1993), and Grammy (spoken word album, 1993) — becoming one of very few EGOT winners. She also received the Presidential Medal of Freedom."
       },
       {
-        "type": "truefalse",
-        "statement": "Audrey Hepburn survived wartime starvation in Nazi-occupied Netherlands as a child.",
-        "correct": true,
-        "fact": "Hepburn was 4 when WWII began, 16 when it ended. She ate tulip bulbs to survive the Hunger Winter of 1944–45, watched family members arrested, and performed secret ballet recitals to raise money for the resistance. This experience drove her later UNICEF work."
+        "type": "minigame",
+        "game": "music",
+        "configId": "moon-river",
+        "instruction": "Arrange the opening notes of 'Moon River' — the song Audrey Hepburn sang in Breakfast at Tiffany's.",
+        "fact": "'Moon River' won the 1962 Academy Award for Best Original Song. When Paramount executives suggested cutting it, Hepburn reportedly said: 'Over my dead body!' Henry Mancini's melody became her signature."
       },
       {
-        "type": "quiz",
-        "question": "Which fashion designer created Hepburn's iconic black dress in Breakfast at Tiffany's — and became her lifelong creative partner?",
-        "options": [
-          "Coco Chanel",
-          "Christian Dior",
-          "Hubert de Givenchy",
-          "Yves Saint Laurent"
-        ],
-        "answer": 2,
-        "fact": "Givenchy and Hepburn were inseparable for 40 years. The iconic Breakfast at Tiffany's black dress sold at auction in 2006 for $923,187 — then the most expensive dress ever sold. Givenchy said designing for her was 'the most perfect collaboration of my life.'"
-      },
-      {
-        "type": "sort",
-        "question": "Arrange these Audrey Hepburn films in chronological order of release:",
-        "items": [
-          "Roman Holiday",
-          "Sabrina",
-          "Breakfast at Tiffany's",
-          "My Fair Lady"
-        ],
-        "fact": "Most of Hepburn's iconic roles came in a single decade (1953–1964). Her career was remarkably concentrated — yet she defined elegance for generations. She won her Oscar for her very first starring role, at 24, in Roman Holiday."
+        "type": "minigame",
+        "game": "painting",
+        "configId": "night-sky",
+        "instruction": "Holly Golightly stared at the stars from her New York window. Paint the night sky she loved — before the city lights drowned it out.",
+        "fact": "The black dress Hepburn wore in 'Breakfast at Tiffany's' (1961) was designed by Hubert de Givenchy. It sold at auction in 2006 for £467,200. It remains the most iconic dress in cinema history."
       }
     ]
   },
@@ -1932,44 +1385,29 @@
     "challenges": [
       {
         "type": "quiz",
-        "question": "Michael Jackson's 'Thriller' album (1982) holds the record for:",
+        "question": "Michael Jackson's 'Thriller' is the best-selling album of all time. Approximately how many copies has it sold?",
         "options": [
-          "First music album to sell over 1 million copies",
-          "Best-selling album of all time",
-          "First album to win more than 5 Grammys in one night",
-          "First album sold online"
+          "20 million",
+          "50 million",
+          "66 million",
+          "100 million"
         ],
-        "answer": 1,
-        "fact": "Thriller has sold between 66 and 100 million copies worldwide — the best-selling album in history. It produced seven Top 10 US hits and won a record-breaking 8 Grammy Awards in one night. No album before or since has approached its commercial and cultural impact."
+        "answer": 2,
+        "fact": "Thriller (1982) has sold an estimated 66–70 million copies worldwide — the best-selling album in history. It produced seven Top 10 singles and won a record eight Grammy Awards in one night."
       },
       {
-        "type": "truefalse",
-        "statement": "The moonwalk dance move was invented by Michael Jackson.",
-        "correct": false,
-        "fact": "The backward sliding step was used by performers including Cab Calloway in the 1930s and James Brown in the 1970s. Michael Jackson refined and popularized it during his Motown 25 television special in 1983 — performing 'Billie Jean' and executing the move so perfectly that it became forever associated with him."
+        "type": "minigame",
+        "game": "music",
+        "configId": "moonwalk-rhythm",
+        "instruction": "Arrange notes of Michael Jackson's iconic melodic phrase — the King of Pop's signature sound.",
+        "fact": "Jackson's falsetto vocal style, rhythmic precision, and melodic invention were unprecedented in pop music. His vocal range spanned 4 octaves — from bass to soprano — and he used his voice as a percussive instrument as much as a melodic one."
       },
       {
-        "type": "quiz",
-        "question": "Michael Jackson's 1983 television performance of 'Billie Jean' — including the moonwalk — was broadcast on which TV special?",
-        "options": [
-          "The Grammys",
-          "Motown 25: Yesterday, Today and Forever",
-          "The American Music Awards",
-          "Soul Train"
-        ],
-        "answer": 1,
-        "fact": "Motown 25 was watched by 47 million people. Fred Astaire called Jackson the next morning to say 'You're a hell of a mover.' Gene Kelly, who had seen every great dancer of the 20th century, called it 'the greatest performance he'd ever seen on television.'"
-      },
-      {
-        "type": "sort",
-        "question": "Arrange these Michael Jackson albums in chronological order:",
-        "items": [
-          "Off the Wall",
-          "Thriller",
-          "Bad",
-          "Dangerous"
-        ],
-        "fact": "Off the Wall (1979) → Thriller (1982) → Bad (1987) → Dangerous (1991). Each album sold more than 30 million copies. Jackson invented the modern music video, integrated MTV (which had rarely aired Black artists), and influenced virtually every performer who followed."
+        "type": "minigame",
+        "game": "music",
+        "configId": "thriller-riff",
+        "instruction": "Thriller's bass riff is one of the most recognisable in pop history. Arrange these four descending notes.",
+        "fact": "Michael Jackson debuted the Moonwalk on May 25, 1983, during a performance of 'Billie Jean' on Motown 25. It was not a new dance — it had roots in James Brown and mime — but Jackson's execution made it legend."
       }
     ]
   },
@@ -1979,40 +1417,29 @@
     "challenges": [
       {
         "type": "quiz",
-        "question": "The World Wide Web — distinct from the Internet — was invented by which computer scientist at CERN in 1989?",
+        "question": "ARPANET — the predecessor to the internet — first connected computers in which year?",
         "options": [
-          "Bill Gates",
-          "Steve Jobs",
-          "Tim Berners-Lee",
-          "Vint Cerf"
+          "1958",
+          "1969",
+          "1975",
+          "1983"
         ],
-        "answer": 2,
-        "fact": "Berners-Lee invented the Web and deliberately made it free — refusing to patent it. He later said this was the most important decision of his life. Vint Cerf and Bob Kahn invented the Internet protocols (TCP/IP) that the Web runs on."
-      },
-      {
-        "type": "truefalse",
-        "statement": "The first computer 'bug' was a literal insect — a moth found inside a computer.",
-        "correct": true,
-        "fact": "In 1947, Grace Hopper's team found an actual moth trapped in Harvard's Mark II relay, causing a malfunction. She taped it into the logbook: 'First actual case of bug being found.' The term 'debugging' — previously used in engineering — entered computing forever."
-      },
-      {
-        "type": "quiz",
-        "question": "Gordon Moore's 1965 observation — 'Moore's Law' — predicted that computing transistor density would double every:",
-        "options": [
-          "6 months",
-          "18 months",
-          "2 years",
-          "5 years"
-        ],
-        "answer": 2,
-        "fact": "Moore's Law held remarkably true for 50 years, driving exponential power growth. Today it's slowing as transistors approach atomic size — just 2 nanometers. The next frontier is quantum computing, which uses quantum mechanics rather than transistors."
+        "answer": 1,
+        "fact": "ARPANET went live on October 29, 1969, connecting computers at UCLA, Stanford, UC Santa Barbara, and the University of Utah. The first message was 'LO' — they were trying to type 'LOGIN' when the system crashed."
       },
       {
         "type": "minigame",
-        "game": "circuit",
-        "configId": "digital-logic",
-        "instruction": "Wire the logic gate — activate the correct combination of switches to power the digital circuit!",
-        "fact": "Transistor (1947) → PC (1977) → WWW (1991) → iPhone (2007). Your smartphone has more computing power than all of NASA had in 1969. The entire Apollo mission ran on 4 kilobytes of memory — less than a single text message today."
+        "game": "crossword",
+        "configId": "digital-cw",
+        "instruction": "Fill in the computing crossword — the vocabulary of silicon, screens, and the digital age.",
+        "fact": "Alan Turing's 1936 paper 'On Computable Numbers' described a theoretical machine that could perform any computation — the blueprint for every computer ever built. The Turing machine predates the transistor by 11 years."
+      },
+      {
+        "type": "minigame",
+        "game": "music",
+        "configId": "digital-pulse",
+        "instruction": "Binary code underlies all digital music. Arrange these notes in the pattern of a digital signal pulse.",
+        "fact": "The transistor (1947) replaced vacuum tubes and made personal computers possible. A modern processor contains over 50 billion transistors on a chip the size of a fingernail — each switching on and off billions of times per second."
       }
     ]
   },
@@ -2021,33 +1448,24 @@
     "story": "The Global Village",
     "challenges": [
       {
-        "type": "quiz",
-        "question": "Marshall McLuhan coined 'the medium is the message' and 'global village' — predicting the internet decades early. In which decade did he publish his major works?",
-        "options": [
-          "1940s",
-          "1960s",
-          "1980s",
-          "2000s"
-        ],
-        "answer": 1,
-        "fact": "'Understanding Media' (1964) predicted that electronic communication would shrink the world into a 'global village' where everyone experiences the same events simultaneously — written 27 years before the World Wide Web proved him right."
-      },
-      {
         "type": "truefalse",
-        "statement": "Social media platforms were deliberately designed using psychological reward mechanisms to maximize user engagement.",
+        "statement": "Marshall McLuhan coined the phrase 'global village' in 1962 to describe how electronic media would shrink the world.",
         "correct": true,
-        "fact": "Former Facebook and Google engineers confirmed that variable reward mechanisms — the same psychology making slot machines addictive — were intentionally built into social media. The 'like' button was designed to be irresistible. Sean Parker called it 'a social-validation feedback loop.'"
+        "fact": "McLuhan's 'The Gutenberg Galaxy' (1962) argued that electronic media were creating a new 'global village' — reversing the fragmentation caused by print and restoring the tribal, simultaneous awareness of oral culture. The internet proved him right."
       },
       {
-        "type": "sort",
-        "question": "Arrange these communication technologies from oldest to newest:",
-        "items": [
-          "Printing press",
-          "Electric telegraph",
-          "Radio broadcast",
-          "Social media platforms"
-        ],
-        "fact": "Each technology compressed time and distance — and each created new misinformation crises. The printing press enabled religious wars; the telegraph spread false news at lightning speed in 1848; today's challenge is algorithmic amplification of falsehoods to billions simultaneously."
+        "type": "minigame",
+        "game": "crossword",
+        "configId": "mcluhan",
+        "instruction": "Solve the crossword of McLuhan's global village — the vocabulary of media, message, and the connected world.",
+        "fact": "The Earth's surface area is about 510 million km². Submarine cables — which carry 95% of global internet traffic — stretch over 1.2 million km across this surface. McLuhan's village is wired with cables as fine as a human hair."
+      },
+      {
+        "type": "minigame",
+        "game": "music",
+        "configId": "global-anthem",
+        "instruction": "McLuhan's global village is united by shared music across all cultures. Arrange this universal five-note melody.",
+        "fact": "The internet reached 1 billion users in 2005, 2 billion in 2010, and 5 billion by 2023 — connecting half of humanity in 25 years. McLuhan predicted in 1962 that this was coming."
       }
     ]
   },
@@ -2057,32 +1475,29 @@
     "challenges": [
       {
         "type": "quiz",
-        "question": "The greenhouse effect — where gases trap heat in Earth's atmosphere — was first scientifically described by:",
+        "question": "CO₂ levels in the atmosphere surpassed 400 parts per million for the first time in how many years?",
         "options": [
-          "Albert Einstein",
-          "Eunice Newton Foote",
-          "Carl Sagan",
-          "James Hansen"
+          "10,000 years",
+          "100,000 years",
+          "800,000 years",
+          "3 million years"
         ],
-        "answer": 1,
-        "fact": "Eunice Newton Foote described the greenhouse effect in 1856 — three years before John Tyndall, who is usually credited. Her work was likely ignored because she was a woman presenting at a scientific conference dominated entirely by men."
+        "answer": 2,
+        "fact": "In 2013, atmospheric CO₂ passed 400 ppm for the first time in at least 800,000 years — based on ice core records. By 2024 it had reached 425 ppm. The last time CO₂ was this high, sea levels were 5–25 metres higher than today."
       },
       {
-        "type": "truefalse",
-        "statement": "2023 was the hottest year in recorded human history.",
-        "correct": true,
-        "fact": "2023 shattered temperature records, with global averages 1.45°C above pre-industrial levels. The Paris Agreement aims to limit warming to 1.5°C. We've nearly used our entire 'carbon budget' — and emissions are still rising."
+        "type": "minigame",
+        "game": "crossword",
+        "configId": "climate",
+        "instruction": "Fill in the climate crossword — the vocabulary of the crisis that defines our era.",
+        "fact": "Earth's atmosphere is 100 km thick — but 99% of its mass is in the bottom 32 km. It's proportionally thinner than the skin of an apple. The greenhouse gases we're adding to this thin shell are changing the planet's energy balance."
       },
       {
-        "type": "sort",
-        "question": "Arrange these climate milestones in chronological order:",
-        "items": [
-          "Foote describes greenhouse effect",
-          "Keeling curve begins measuring atmospheric CO2",
-          "First Earth Day held",
-          "Paris Agreement signed"
-        ],
-        "fact": "From first scientific warning (1856) to Paris Agreement (2015) took 159 years. Humanity knew about climate change long before political will emerged. The Keeling curve, started in 1958, shows CO2 rising from 315 ppm to over 420 ppm today."
+        "type": "minigame",
+        "game": "music",
+        "configId": "eco-hymn",
+        "instruction": "Climate activists sing for the planet. Arrange this solemn descending phrase — a lament for the Earth.",
+        "fact": "The Arctic is warming four times faster than the global average. Indigenous communities in the Arctic report that the sky, stars, and seasons have shifted — their traditional knowledge of ice, weather, and migration no longer holds."
       }
     ]
   },
@@ -2092,32 +1507,29 @@
     "challenges": [
       {
         "type": "quiz",
-        "question": "Neil Armstrong and Buzz Aldrin became the first humans to walk on the Moon during which mission?",
+        "question": "Apollo 11 landed on the Moon on which date?",
         "options": [
-          "Apollo 7",
-          "Apollo 11",
-          "Apollo 13",
-          "Apollo 17"
+          "July 4, 1969",
+          "July 16, 1969",
+          "July 20, 1969",
+          "August 1, 1969"
         ],
-        "answer": 1,
-        "fact": "Apollo 11 landed on July 20, 1969. Armstrong's 'one small step for man, one giant leap for mankind' was broadcast live to 530 million people — about one-sixth of Earth's entire population. Apollo 13 famously failed; Apollo 17 was the last Moon mission."
+        "answer": 2,
+        "fact": "Apollo 11 landed in the Sea of Tranquility on July 20, 1969. Neil Armstrong stepped onto the lunar surface at 02:56 UTC on July 21. Over 600 million people watched — the largest television audience in history at the time."
       },
       {
-        "type": "truefalse",
-        "statement": "The Space Race was initiated by the United States, with the Soviet Union responding.",
-        "correct": false,
-        "fact": "The USSR launched first: Sputnik (first satellite, 1957), Laika (first animal in orbit, 1957), Yuri Gagarin (first human in space, 1961). The US entered in shock and competitive determination, eventually winning by landing on the Moon."
+        "type": "minigame",
+        "game": "crossword",
+        "configId": "armstrong",
+        "instruction": "Solve the Apollo crossword — the vocabulary of the Moon landing that changed humanity forever.",
+        "fact": "NASA's Artemis programme aims to return humans to the Moon by 2026 and establish a permanent lunar Gateway station by 2030. The Moon is now seen as a stepping stone — not a destination — on the way to Mars."
       },
       {
-        "type": "sort",
-        "question": "Arrange these space exploration milestones in chronological order:",
-        "items": [
-          "First satellite launched (Sputnik)",
-          "First human in space (Gagarin)",
-          "First Moon landing",
-          "First reusable spacecraft (Space Shuttle)"
-        ],
-        "fact": "Sputnik (1957) → Gagarin (1961) → Moon landing (1969) → Space Shuttle (1981). Today, private companies like SpaceX have compressed development cycles that once took decades into years — the New Frontier is open to more than just superpowers now."
+        "type": "minigame",
+        "game": "music",
+        "configId": "space-theme",
+        "instruction": "Arrange the ascending fanfare that heralded humanity's arrival on the Moon — the sound of a new frontier.",
+        "fact": "The Moon's surface area is about 37.9 million km² — slightly less than Asia. Only 12 humans have walked on it, all between 1969 and 1972. Mars has a surface area of 144 million km² — the next frontier."
       }
     ]
   }

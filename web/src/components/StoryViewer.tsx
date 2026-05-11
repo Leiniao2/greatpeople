@@ -5,6 +5,14 @@ import MazeGame from '@/components/minigames/MazeGame'
 import MirrorGame from '@/components/minigames/MirrorGame'
 import CircuitGame from '@/components/minigames/CircuitGame'
 import SlidingPuzzle from '@/components/minigames/SlidingPuzzle'
+import CrosswordGame from '@/components/minigames/CrosswordGame'
+import GeometryGame from '@/components/minigames/GeometryGame'
+import PaintingGame from '@/components/minigames/PaintingGame'
+import MusicGame from '@/components/minigames/MusicGame'
+import TacticsGame from '@/components/minigames/TacticsGame'
+import ClassifyGame from '@/components/minigames/ClassifyGame'
+import CookingGame from '@/components/minigames/CookingGame'
+import Maze3DGame from '@/components/minigames/Maze3DGame'
 import { useAuth } from '@/hooks/useAuth'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
@@ -12,7 +20,7 @@ import { useAuth } from '@/hooks/useAuth'
 interface QuizChallenge { type: 'quiz'; question: string; options: string[]; answer: number; fact: string }
 interface TrueFalseChallenge { type: 'truefalse'; statement: string; correct: boolean; fact: string }
 interface SortChallenge { type: 'sort'; question: string; items: string[]; fact: string }
-interface MinigameChallenge { type: 'minigame'; game: 'maze'|'mirror'|'circuit'|'sliding'; configId: string; instruction: string; fact: string }
+interface MinigameChallenge { type: 'minigame'; game: 'maze'|'mirror'|'circuit'|'sliding'|'crossword'|'geometry'|'painting'|'music'|'tactics'|'classify'|'cooking'|'maze3d'; configId: string; instruction: string; fact: string }
 type Challenge = QuizChallenge | TrueFalseChallenge | SortChallenge | MinigameChallenge
 
 interface NarrationScene { type: 'narration'; text: string }
@@ -202,6 +210,14 @@ function MinigameView({ challenge, onResult }: { challenge: MinigameChallenge; o
         {challenge.game === 'mirror' && <MirrorGame configId={challenge.configId} onWin={handleWin} />}
         {challenge.game === 'circuit' && <CircuitGame configId={challenge.configId} onWin={handleWin} />}
         {challenge.game === 'sliding' && <SlidingPuzzle configId={challenge.configId} onWin={handleWin} />}
+        {challenge.game === 'crossword' && <CrosswordGame configId={challenge.configId} onWin={handleWin} />}
+        {challenge.game === 'geometry' && <GeometryGame configId={challenge.configId} onWin={handleWin} />}
+        {challenge.game === 'painting' && <PaintingGame configId={challenge.configId} onWin={handleWin} />}
+        {challenge.game === 'music' && <MusicGame configId={challenge.configId} onWin={handleWin} />}
+        {challenge.game === 'tactics' && <TacticsGame configId={challenge.configId} onWin={handleWin} />}
+        {challenge.game === 'classify' && <ClassifyGame configId={challenge.configId} onWin={handleWin} />}
+        {challenge.game === 'cooking' && <CookingGame configId={challenge.configId} onWin={handleWin} />}
+        {challenge.game === 'maze3d' && <Maze3DGame configId={challenge.configId} onWin={handleWin} />}
       </div>
     </div>
   )
