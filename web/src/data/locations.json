@@ -1,0 +1,61 @@
+{
+  "eras": [
+    "Ancient",
+    "Classical",
+    "Medieval",
+    "Renaissance",
+    "Steam",
+    "Electricity",
+    "Information"
+  ],
+  "locations": [
+    { "name": "Babylon",        "era": "Ancient" },
+    { "name": "Alexandria",     "era": "Ancient" },
+    { "name": "Athens",         "era": "Ancient" },
+    { "name": "Rome",           "era": "Ancient" },
+    { "name": "Memphis",        "era": "Ancient" },
+    { "name": "Ur",             "era": "Ancient" },
+
+    { "name": "Sparta",         "era": "Classical" },
+    { "name": "Carthage",       "era": "Classical" },
+    { "name": "Antioch",        "era": "Classical" },
+    { "name": "Pataliputra",    "era": "Classical" },
+    { "name": "Luoyang",        "era": "Classical" },
+    { "name": "Pergamon",       "era": "Classical" },
+
+    { "name": "Constantinople", "era": "Medieval" },
+    { "name": "Baghdad",        "era": "Medieval" },
+    { "name": "Chang'an",       "era": "Medieval" },
+    { "name": "Samarkand",      "era": "Medieval" },
+    { "name": "Kyoto",          "era": "Medieval" },
+    { "name": "Timbuktu",       "era": "Medieval" },
+
+    { "name": "Florence",       "era": "Renaissance" },
+    { "name": "Venice",         "era": "Renaissance" },
+    { "name": "Lisbon",         "era": "Renaissance" },
+    { "name": "Wittenberg",     "era": "Renaissance" },
+    { "name": "Bruges",         "era": "Renaissance" },
+    { "name": "Tenochtitlan",   "era": "Renaissance" },
+
+    { "name": "London",         "era": "Steam" },
+    { "name": "Paris",          "era": "Steam" },
+    { "name": "New York",       "era": "Steam" },
+    { "name": "Delhi",          "era": "Steam" },
+    { "name": "Edo",            "era": "Steam" },
+    { "name": "Vienna",         "era": "Steam" },
+
+    { "name": "Berlin",         "era": "Electricity" },
+    { "name": "Tokyo",          "era": "Electricity" },
+    { "name": "New York City",  "era": "Electricity" },
+    { "name": "Chicago",        "era": "Electricity" },
+    { "name": "Moscow",         "era": "Electricity" },
+    { "name": "Cairo",          "era": "Electricity" },
+
+    { "name": "Silicon Valley", "era": "Information" },
+    { "name": "Geneva",         "era": "Information" },
+    { "name": "Beijing",        "era": "Information" },
+    { "name": "São Paulo",      "era": "Information" },
+    { "name": "Dubai",          "era": "Information" },
+    { "name": "Lagos",          "era": "Information" }
+  ]
+}

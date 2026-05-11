@@ -6,6 +6,7 @@ import type {
   StatKey, EventType, EraMode, PlayerMode, MatchType,
 } from '@/types'
 import demoCardsJson from '@/data/demo_cards.json'
+import locationsJson from '@/data/locations.json'
 
 // ─── Static Card Data ─────────────────────────────────────────────────────────
 
@@ -96,59 +97,8 @@ function makeEventDeck(): EventCard[] {
 
 interface LocationTemplate { name: string; era: string }
 
-const LOCATION_POOL: LocationTemplate[] = [
-  // Ancient
-  { name: 'Babylon',        era: 'Ancient' },
-  { name: 'Alexandria',     era: 'Ancient' },
-  { name: 'Athens',         era: 'Ancient' },
-  { name: 'Rome',           era: 'Ancient' },
-  { name: 'Memphis',        era: 'Ancient' },
-  { name: 'Ur',             era: 'Ancient' },
-  // Classical
-  { name: 'Sparta',         era: 'Classical' },
-  { name: 'Carthage',       era: 'Classical' },
-  { name: 'Antioch',        era: 'Classical' },
-  { name: 'Pataliputra',    era: 'Classical' },
-  { name: 'Luoyang',        era: 'Classical' },
-  { name: 'Pergamon',       era: 'Classical' },
-  // Medieval
-  { name: 'Constantinople', era: 'Medieval' },
-  { name: 'Baghdad',        era: 'Medieval' },
-  { name: "Chang'an",       era: 'Medieval' },
-  { name: 'Samarkand',      era: 'Medieval' },
-  { name: 'Kyoto',          era: 'Medieval' },
-  { name: 'Timbuktu',       era: 'Medieval' },
-  // Renaissance
-  { name: 'Florence',       era: 'Renaissance' },
-  { name: 'Venice',         era: 'Renaissance' },
-  { name: 'Lisbon',         era: 'Renaissance' },
-  { name: 'Wittenberg',     era: 'Renaissance' },
-  { name: 'Bruges',         era: 'Renaissance' },
-  { name: 'Tenochtitlan',   era: 'Renaissance' },
-  // Steam
-  { name: 'London',         era: 'Steam' },
-  { name: 'Paris',          era: 'Steam' },
-  { name: 'New York',       era: 'Steam' },
-  { name: 'Delhi',          era: 'Steam' },
-  { name: 'Edo',            era: 'Steam' },
-  { name: 'Vienna',         era: 'Steam' },
-  // Electricity
-  { name: 'Berlin',         era: 'Electricity' },
-  { name: 'Tokyo',          era: 'Electricity' },
-  { name: 'New York City',  era: 'Electricity' },
-  { name: 'Chicago',        era: 'Electricity' },
-  { name: 'Moscow',         era: 'Electricity' },
-  { name: 'Cairo',          era: 'Electricity' },
-  // Information
-  { name: 'Silicon Valley', era: 'Information' },
-  { name: 'Geneva',         era: 'Information' },
-  { name: 'Beijing',        era: 'Information' },
-  { name: 'São Paulo',      era: 'Information' },
-  { name: 'Dubai',          era: 'Information' },
-  { name: 'Lagos',          era: 'Information' },
-]
-
-const ERAS = ['Ancient', 'Classical', 'Medieval', 'Renaissance', 'Steam', 'Electricity', 'Information']
+const LOCATION_POOL: LocationTemplate[] = locationsJson.locations
+const ERAS: string[] = locationsJson.eras
 
 const ERA_COLORS: Record<string, string> = {
   Ancient:     'bg-yellow-900/60 border-yellow-700/40',
