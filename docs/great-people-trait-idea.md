@@ -22,7 +22,7 @@
 
 # Chanel: Women's Fashion – All female Followers at this location gain +2 to their primary stat.
 
-# Clara: Musical Romance – If there is exactly one male Musician (Great Person or Follower) at this location, both this card and that card gain +3 to all stats.
+# Clara: Musical Bond – If there is exactly one male Musician (Great Person or Follower) at this location, both this card and that card gain +3 to all stats.
 
 # Michael Jackson: King of Pop – While at a certain location, all players can deploy an infinite number of Follower cards to this same location.
 
