@@ -1487,7 +1487,7 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
               {currentPlayer.name}{currentPlayer.isComputer ? ' (CPU)' : "'s Turn"}
             </span>
           </div>
-          <div className="flex gap-1.5 flex-wrap">
+          <div className="flex gap-1.5 flex-wrap justify-center">
             {gameState.players.map((p, idx) => {
               const color = PLAYER_COLORS[idx % 5]
               const isActive = idx === gameState.currentPlayerIdx
@@ -1508,7 +1508,7 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
 
       {/* Board: Locations */}
       <div className="relative z-10 flex-shrink-0 overflow-x-auto py-2 px-3 border-b border-white/[0.06]">
-        <div className="flex gap-2 w-max">
+        <div className="flex gap-2 justify-center min-w-full w-max mx-auto">
           {gameState.locations.map(loc => {
             const isLocationTarget = selection.mode === 'move-target' || selection.mode === 'deploy-gp' || selection.mode === 'add-follower' || selection.mode === 'start-event'
 
@@ -1601,7 +1601,7 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
       <div ref={logRef} className="relative z-10 px-4 py-1.5 border-b border-white/[0.06] shrink-0 bg-black/10">
         <div className="space-y-0.5 max-h-10 overflow-hidden">
           {gameState.log.slice(0, 2).map((entry, i) => (
-            <p key={i} className={`text-[10px] leading-tight ${i === 0 ? 'text-slate-400' : 'text-slate-600'}`}>
+            <p key={i} className={`text-[10px] leading-tight text-center ${i === 0 ? 'text-slate-400' : 'text-slate-600'}`}>
               {entry}
             </p>
           ))}
@@ -1611,8 +1611,8 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
       {/* Your Hand */}
       {isMyTurn && (
         <div className="relative z-10 px-3 py-2 border-b border-white/[0.06] shrink-0">
-          <p className="text-[10px] text-slate-600 uppercase tracking-widest mb-1.5">Your Hand</p>
-          <div className="flex gap-1.5 overflow-x-auto pb-1">
+          <p className="text-[10px] text-slate-600 uppercase tracking-widest mb-1.5 text-center">Your Hand</p>
+          <div className="flex gap-1.5 overflow-x-auto pb-1 justify-center">
             {currentPlayer.gpHand.map((id, i) => (
               <HandCard
                 key={id}
@@ -1654,7 +1654,7 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
       )}
 
       {/* Action Buttons */}
-      <div className="relative z-10 flex-1 px-3 py-3 flex flex-col gap-2">
+      <div className="relative z-10 flex-1 px-3 py-3 flex flex-col gap-2 max-w-lg mx-auto w-full">
         {/* Kill toggle (for attacks) */}
         {selection.mode === 'select-onboard' && selectedOnboard?.playerId === currentPlayer.id && (
           <div className="flex items-center gap-2 mb-1">
