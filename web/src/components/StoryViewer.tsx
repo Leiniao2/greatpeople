@@ -13,6 +13,11 @@ import TacticsGame from '@/components/minigames/TacticsGame'
 import ClassifyGame from '@/components/minigames/ClassifyGame'
 import CookingGame from '@/components/minigames/CookingGame'
 import Maze3DGame from '@/components/minigames/Maze3DGame'
+import FictionGame from '@/components/minigames/FictionGame'
+import SudokuGame from '@/components/minigames/SudokuGame'
+import VotingGame from '@/components/minigames/VotingGame'
+import ChemistryGame from '@/components/minigames/ChemistryGame'
+import MatchThreeGame from '@/components/minigames/MatchThreeGame'
 import { useAuth } from '@/hooks/useAuth'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
@@ -20,7 +25,7 @@ import { useAuth } from '@/hooks/useAuth'
 interface QuizChallenge { type: 'quiz'; question: string; options: string[]; answer: number; fact: string }
 interface TrueFalseChallenge { type: 'truefalse'; statement: string; correct: boolean; fact: string }
 interface SortChallenge { type: 'sort'; question: string; items: string[]; fact: string }
-interface MinigameChallenge { type: 'minigame'; game: 'maze'|'mirror'|'circuit'|'sliding'|'crossword'|'geometry'|'painting'|'music'|'tactics'|'classify'|'cooking'|'maze3d'; configId: string; instruction: string; fact: string }
+interface MinigameChallenge { type: 'minigame'; game: 'maze'|'mirror'|'circuit'|'sliding'|'crossword'|'geometry'|'painting'|'music'|'tactics'|'classify'|'cooking'|'maze3d'|'fiction'|'sudoku'|'voting'|'chemistry'|'matchthree'; configId: string; instruction: string; fact: string }
 type Challenge = QuizChallenge | TrueFalseChallenge | SortChallenge | MinigameChallenge
 
 interface NarrationScene { type: 'narration'; text: string }
@@ -230,6 +235,11 @@ function MinigameView({ challenge, onResult }: { challenge: MinigameChallenge; o
         {challenge.game === 'classify' && <ClassifyGame configId={challenge.configId} onWin={handleWin} />}
         {challenge.game === 'cooking' && <CookingGame configId={challenge.configId} onWin={handleWin} />}
         {challenge.game === 'maze3d' && <Maze3DGame configId={challenge.configId} onWin={handleWin} />}
+        {challenge.game === 'fiction' && <FictionGame configId={challenge.configId} onWin={handleWin} />}
+        {challenge.game === 'sudoku' && <SudokuGame configId={challenge.configId} onWin={handleWin} />}
+        {challenge.game === 'voting' && <VotingGame configId={challenge.configId} onWin={handleWin} />}
+        {challenge.game === 'chemistry' && <ChemistryGame configId={challenge.configId} onWin={handleWin} />}
+        {challenge.game === 'matchthree' && <MatchThreeGame configId={challenge.configId} onWin={handleWin} />}
       </div>
     </div>
   )
@@ -549,24 +559,37 @@ export default function StoryViewer({ eraName, storyTitle, figureName, portraitK
 
   return (
     <div className="fixed inset-0 z-[60] flex flex-col overflow-hidden">
-      {/* Location background — story-specific image, falls back to era representative */}
+      {/* ── Background stack ─────────────────────────────────────────────────── */}
+      <div className="absolute inset-0 bg-[#080812]" />
+
+      {/* Location image — story-specific city, clearly visible */}
       {locationImg && (
         <div className="absolute inset-0">
-          <img src={locationImg} alt="" className="w-full h-full object-cover opacity-20 scale-105" />
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/55 via-slate-950/70 to-slate-950/95" />
+          <img
+            src={locationImg}
+            alt=""
+            className="w-full h-full object-cover object-center"
+            style={{ opacity: 0.38 }}
+          />
+          {/* Top fade so header stays readable; bottom fade for text area */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/75" />
         </div>
       )}
-      {/* Character portrait layered on top */}
+
+      {/* Character portrait — blurred, right-anchored, subtle presence */}
       {bgUrl && (
-        <div className="absolute inset-0">
-          <img src={bgUrl} alt="" className="w-full h-full object-cover object-top scale-110 blur-sm opacity-20" />
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-slate-950/80 to-slate-950/95" />
+        <div className="absolute inset-0 flex justify-end overflow-hidden pointer-events-none">
+          <img
+            src={bgUrl}
+            alt=""
+            className="h-full w-1/2 object-cover object-top blur-md"
+            style={{ opacity: 0.18, maskImage: 'linear-gradient(to left, black 0%, transparent 100%)' }}
+          />
         </div>
       )}
-      {!bgUrl && !locationImg && (
-        <div className="absolute inset-0 bg-[#080812]">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-amber-600/8 blur-[120px]" />
-        </div>
+
+      {!locationImg && (
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-amber-600/8 blur-[120px] pointer-events-none" />
       )}
 
       {/* Top bar */}

@@ -220,7 +220,9 @@ export default function EpicPage() {
               const isDone = !!completed[key(activeEra, storyIdx)]
 
               const pKey = portraitKeyForFigure(story.figure)
-              const eraImg = ERA_LOCATION_IMAGE[era.name]
+              const cardImg = story.locationImage
+                ? `/locations/${story.locationImage}.jpeg`
+                : ERA_LOCATION_IMAGE[era.name]
               return (
                 <div
                   key={storyIdx}
@@ -231,15 +233,18 @@ export default function EpicPage() {
                     }
                     transition-all duration-200`}>
 
-                  {/* Era location background */}
-                  {eraImg && (
+                  {/* Story-specific location background */}
+                  <div className="absolute inset-0 bg-slate-950 pointer-events-none" />
+                  {cardImg && (
                     <div className="absolute inset-0 pointer-events-none">
-                      <img src={eraImg} alt="" className={`w-full h-full object-cover ${unlocked ? 'opacity-10' : 'opacity-5'}`} />
-                      <div className="absolute inset-0 bg-gradient-to-r from-slate-950/80 via-slate-950/60 to-slate-950/80" />
+                      <img
+                        src={cardImg}
+                        alt=""
+                        className="w-full h-full object-cover"
+                        style={{ opacity: unlocked ? 0.28 : 0.1 }}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-black/60" />
                     </div>
-                  )}
-                  {!eraImg && (
-                    <div className={`absolute inset-0 ${unlocked ? 'bg-white/[0.03]' : 'bg-white/[0.02]'}`} />
                   )}
 
                   {/* Portrait thumbnail */}
