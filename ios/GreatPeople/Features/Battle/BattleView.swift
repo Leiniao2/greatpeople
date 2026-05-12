@@ -68,7 +68,7 @@ struct BattleView: View {
                                 .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.gpIndigo.opacity(0.25), lineWidth: 1))
                                 .clipShape(RoundedRectangle(cornerRadius: 20))
 
-                            Text("BATTLE ARENA")
+                            Text("FIGHT ARENA")
                                 .font(.system(.title2, design: .serif).weight(.bold))
                                 .tracking(4)
                                 .foregroundColor(.white)
@@ -93,7 +93,7 @@ struct BattleView: View {
                 }
                 .padding(24)
             }
-            .navigationTitle("Battle")
+            .navigationTitle("Fight")
             .navigationBarTitleDisplayMode(.inline)
             .toolbarColorScheme(.dark, for: .navigationBar)
         }

@@ -21,7 +21,7 @@ fun BattleScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Battle Arena") },
+                title = { Text("Fight Arena") },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
@@ -49,7 +49,7 @@ fun BattleScreen(
                             Text("⚔", style = MaterialTheme.typography.displaySmall)
                         }
                     }
-                    Text("Sign In to Battle",
+                    Text("Sign In to Fight",
                         style = MaterialTheme.typography.headlineSmall,
                         textAlign = TextAlign.Center)
                     Text("Create a free account to challenge other players, earn cards, and build your collection.",

@@ -83,22 +83,22 @@ struct HomeView: View {
                     // Mode buttons
                     VStack(spacing: 12) {
                         NavigationLink(destination: EpicView()) {
-                            ModeRow(icon: "⚡", name: "EPIC", subtitle: "Unlock stories, earn cards")
+                            ModeRow(icon: "bolt.fill", name: "EPIC", subtitle: "Unlock stories, earn cards")
                         }
                         .buttonStyle(.plain)
 
                         NavigationLink(destination: CollectionView()) {
-                            ModeRow(icon: "♛", name: "COLLECTION", subtitle: "Your card gallery")
+                            ModeRow(icon: "rectangle.stack.fill", name: "COLLECTION", subtitle: "Your card gallery")
                         }
                         .buttonStyle(.plain)
 
                         NavigationLink(destination: BattleView()) {
-                            ModeRow(icon: "⚔", name: "BATTLE", subtitle: "Compete with others")
+                            ModeRow(icon: "shield.fill", name: "FIGHT", subtitle: "Deploy Great People, claim victory")
                         }
                         .buttonStyle(.plain)
 
                         NavigationLink(destination: ProfileView()) {
-                            ModeRow(icon: "◉", name: "PROFILE", subtitle: "Your account & stats")
+                            ModeRow(icon: "person.crop.circle.fill", name: "PROFILE", subtitle: "Your account & stats")
                         }
                         .buttonStyle(.plain)
                     }
@@ -121,8 +121,9 @@ private struct ModeRow: View {
     var body: some View {
         HStack(spacing: 14) {
             // Icon box
-            Text(icon)
-                .font(.system(size: 20))
+            Image(systemName: icon)
+                .font(.system(size: 20, weight: .semibold))
+                .foregroundColor(.gpAmber)
                 .frame(width: 44, height: 44)
                 .background(Color.gpAmber.opacity(0.12))
                 .overlay(

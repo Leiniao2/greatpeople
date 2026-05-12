@@ -57,7 +57,7 @@ fun CollectionScreen(
                 },
                 actions = {
                     Button(onClick = onBattleClick, modifier = Modifier.padding(end = 8.dp)) {
-                        Text("Battle")
+                        Text("Fight")
                     }
                 },
             )
