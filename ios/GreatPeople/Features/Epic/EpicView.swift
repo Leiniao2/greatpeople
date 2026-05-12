@@ -51,19 +51,9 @@ struct EpicView: View {
 
     private func storyKey(_ eraIdx: Int, _ storyIdx: Int) -> String { "\(eraIdx)-\(storyIdx)" }
 
-    private func isEraSelectable(_ eraIdx: Int) -> Bool {
-        guard eraIdx > 0 else { return true }
-        let prevCount = (0..<ERAS[eraIdx - 1].stories.count)
-            .filter { completedStories.contains(storyKey(eraIdx - 1, $0)) }.count
-        return prevCount >= STORIES_TO_ADVANCE
-    }
+    private func isEraSelectable(_ eraIdx: Int) -> Bool { true }
 
-    private func isStoryUnlocked(_ eraIdx: Int, _ storyIdx: Int) -> Bool {
-        if eraIdx == 0 && storyIdx == 0 { return true }
-        guard isEraSelectable(eraIdx) else { return false }
-        if storyIdx == 0 { return true }
-        return completedStories.contains(storyKey(eraIdx, storyIdx - 1))
-    }
+    private func isStoryUnlocked(_ eraIdx: Int, _ storyIdx: Int) -> Bool { true }
 
     private func completedCount(_ eraIdx: Int) -> Int {
         (0..<ERAS[eraIdx].stories.count)

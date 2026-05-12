@@ -82,19 +82,9 @@ fun EpicScreen(
 
     fun storyKey(eraIdx: Int, storyIdx: Int) = "$eraIdx-$storyIdx"
 
-    fun isEraSelectable(eraIdx: Int): Boolean {
-        if (eraIdx == 0) return true
-        val prevDone = (0 until ERAS[eraIdx - 1].stories.size)
-            .count { completed[storyKey(eraIdx - 1, it)] == true }
-        return prevDone >= STORIES_TO_ADVANCE
-    }
+    fun isEraSelectable(eraIdx: Int): Boolean = true
 
-    fun isStoryUnlocked(eraIdx: Int, storyIdx: Int): Boolean {
-        if (eraIdx == 0 && storyIdx == 0) return true
-        if (!isEraSelectable(eraIdx)) return false
-        if (storyIdx == 0) return true
-        return completed[storyKey(eraIdx, storyIdx - 1)] == true
-    }
+    fun isStoryUnlocked(eraIdx: Int, storyIdx: Int): Boolean = true
 
     fun completedCount(eraIdx: Int) =
         (0 until ERAS[eraIdx].stories.size).count { completed[storyKey(eraIdx, it)] == true }
@@ -196,6 +186,7 @@ fun EpicScreen(
                     onBegin = { storyIdx ->
                         activeStory = Pair(eraIdx, storyIdx)
                     },
+                    nextEraName = ERAS.getOrNull(eraIdx + 1)?.name,
                     onNextEra = if (eraIdx < ERAS.size - 1) ({
                         scope.launch { pagerState.animateScrollToPage(eraIdx + 1) }
                     }) else null,
@@ -228,6 +219,7 @@ private fun EraPage(
     completedCount: (Int) -> Int,
     isCompleted: (Int) -> Boolean,
     onBegin: (Int) -> Unit,
+    nextEraName: String? = null,
     onNextEra: (() -> Unit)? = null,
 ) {
     val done = completedCount(eraIdx)
@@ -297,7 +289,7 @@ private fun EraPage(
                         shape = RoundedCornerShape(12.dp),
                     ) {
                         Text(
-                            "Next Era: ${ERAS[eraIdx + 1].name} →",
+                            "Next Era: ${nextEraName ?: ""} →",
                             color = BgColor,
                             fontWeight = FontWeight.Bold,
                             fontSize = 14.sp,

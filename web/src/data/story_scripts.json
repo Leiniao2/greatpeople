@@ -4,18 +4,60 @@
     "story": "Pyramid Builders",
     "portraitKey": "imhotep",
     "scenes": [
-      { "type": "narration", "text": "Egypt, 2650 BCE. The sun hammers the desert like a bronze fist. Thousands of skilled craftsmen haul limestone blocks across the scorching sand — not as slaves, but as workers of the crown, fed and honored for their labor." },
-      { "type": "dialog", "speaker": "Pharaoh Djoser", "text": "Imhotep. I want a monument that touches the sky itself. Something the world has never seen." },
-      { "type": "dialog", "speaker": "Imhotep", "portraitKey": "imhotep", "text": "Great Pharaoh, I have dreamed of it. A stairway of stone, six steps reaching to the heavens. Your name will outlast every dynasty that follows." },
-      { "type": "challenge", "index": 0 },
-      { "type": "narration", "text": "The truth about the pyramid builders has long been buried under legend. They were citizens of Egypt — craftsmen, physicians, engineers — who took pride in their craft and left their names carved into the stone." },
-      { "type": "challenge", "index": 1 },
-      { "type": "dialog", "speaker": "Imhotep", "portraitKey": "imhotep", "text": "See how the outer casing catches the sun? White Tura limestone, polished to a mirror's sheen. From the desert, it will blaze like a second sun. That is how the gods will find us." },
-      { "type": "challenge", "index": 2 },
-      { "type": "dialog", "speaker": "Master Builder", "text": "Apprentice! Pharaoh demands a new pyramid: 500 paces long, 500 paces wide, 500 paces tall. Each brick is one pace by one pace by two paces. You must calculate the number of bricks before sunset — or face his wrath." },
-      { "type": "challenge", "index": 3 },
-      { "type": "narration", "text": "Deep in the sacred chambers, the air is still and ancient. Three levels of corridors wind into darkness — each guarded by the sacred geometry of Imhotep himself. Descend through all three chambers to reach the pharaoh's eternal resting place..." },
-      { "type": "challenge", "index": 4 }
+      {
+        "type": "narration",
+        "text": "Egypt, 2650 BCE. The sun hammers the desert like a bronze fist. Thousands of skilled craftsmen haul limestone blocks across the scorching sand — not as slaves, but as workers of the crown, fed and honored for their labor."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Pharaoh Djoser",
+        "text": "Imhotep. I want a monument that touches the sky itself. Something the world has never seen."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Imhotep",
+        "portraitKey": "imhotep",
+        "text": "Great Pharaoh, I have dreamed of it. A stairway of stone, six steps reaching to the heavens. Your name will outlast every dynasty that follows."
+      },
+      {
+        "type": "challenge",
+        "index": 0
+      },
+      {
+        "type": "narration",
+        "text": "The truth about the pyramid builders has long been buried under legend. They were citizens of Egypt — craftsmen, physicians, engineers — who took pride in their craft and left their names carved into the stone."
+      },
+      {
+        "type": "challenge",
+        "index": 1
+      },
+      {
+        "type": "dialog",
+        "speaker": "Imhotep",
+        "portraitKey": "imhotep",
+        "text": "See how the outer casing catches the sun? White Tura limestone, polished to a mirror's sheen. From the desert, it will blaze like a second sun. That is how the gods will find us."
+      },
+      {
+        "type": "challenge",
+        "index": 2
+      },
+      {
+        "type": "dialog",
+        "speaker": "Master Builder",
+        "text": "Apprentice! Pharaoh demands a new pyramid: 500 paces long, 500 paces wide, 500 paces tall. Each brick is one pace by one pace by two paces. You must calculate the number of bricks before sunset — or face his wrath."
+      },
+      {
+        "type": "challenge",
+        "index": 3
+      },
+      {
+        "type": "narration",
+        "text": "Deep in the sacred chambers, the air is still and ancient. Three levels of corridors wind into darkness — each guarded by the sacred geometry of Imhotep himself. Descend through all three chambers to reach the pharaoh's eternal resting place..."
+      },
+      {
+        "type": "challenge",
+        "index": 4
+      }
     ]
   },
   {
@@ -23,15 +65,46 @@
     "story": "The First Empire",
     "portraitKey": "sargon_i",
     "scenes": [
-      { "type": "narration", "text": "Mesopotamia, 2334 BCE. The river cities of Sumer have warred for centuries — Ur, Uruk, Lagash, Kish. Until one man, born in obscurity, forges them into something the world has never seen: an empire." },
-      { "type": "dialog", "speaker": "Sargon of Akkad", "portraitKey": "sargon_i", "text": "I was a cup-bearer once. Men laughed at the peasant who dared dream of kingship. Now those cities bow to Akkad. Power is not inherited — it is seized by those bold enough to reach for it." },
-      { "type": "challenge", "index": 0 },
-      { "type": "narration", "text": "Legend says Sargon's mother set him adrift in a basket on the Euphrates — an origin story echoed centuries later in tales of Moses. He rose from servant to conqueror through nothing but will and cunning." },
-      { "type": "challenge", "index": 1 },
-      { "type": "dialog", "speaker": "Sargon of Akkad", "portraitKey": "sargon_i", "text": "Write everything. Every grain of barley taxed. Every soldier mustered. Every law decreed. The empire lives and dies by its records — cuneiform pressed into clay, outlasting the men who made it." },
-      { "type": "challenge", "index": 2 },
-      { "type": "narration", "text": "Three thousand years of Mesopotamian civilization would rise and fall in succession. Each empire learned from the last — a chain of innovation in law, astronomy, and mathematics that underpins our world today. Place them in order..." },
-      { "type": "challenge", "index": 3 }
+      {
+        "type": "narration",
+        "text": "Mesopotamia, 2334 BCE. The river cities of Sumer have warred for centuries — Ur, Uruk, Lagash, Kish. Until one man, born in obscurity, forges them into something the world has never seen: an empire."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Sargon of Akkad",
+        "portraitKey": "sargon_i",
+        "text": "I was a cup-bearer once. Men laughed at the peasant who dared dream of kingship. Now those cities bow to Akkad. Power is not inherited — it is seized by those bold enough to reach for it."
+      },
+      {
+        "type": "challenge",
+        "index": 0
+      },
+      {
+        "type": "narration",
+        "text": "Legend says Sargon's mother set him adrift in a basket on the Euphrates — an origin story echoed centuries later in tales of Moses. He rose from servant to conqueror through nothing but will and cunning."
+      },
+      {
+        "type": "challenge",
+        "index": 1
+      },
+      {
+        "type": "dialog",
+        "speaker": "Sargon of Akkad",
+        "portraitKey": "sargon_i",
+        "text": "Write everything. Every grain of barley taxed. Every soldier mustered. Every law decreed. The empire lives and dies by its records — cuneiform pressed into clay, outlasting the men who made it."
+      },
+      {
+        "type": "challenge",
+        "index": 2
+      },
+      {
+        "type": "narration",
+        "text": "Three thousand years of Mesopotamian civilization would rise and fall in succession. Each empire learned from the last — a chain of innovation in law, astronomy, and mathematics that underpins our world today. Place them in order..."
+      },
+      {
+        "type": "challenge",
+        "index": 3
+      }
     ]
   },
   {
@@ -39,19 +112,66 @@
     "story": "The King and the Wild Man",
     "portraitKey": "gilgamesh",
     "scenes": [
-      { "type": "narration", "text": "Uruk, 2700 BCE. The mightiest city in the world is ruled by a king who is two-thirds god and one-third man. Gilgamesh is glorious — and terrible. He drives his people without mercy. They cry out to the gods for relief." },
-      { "type": "dialog", "speaker": "Gilgamesh", "portraitKey": "gilgamesh", "text": "I have built the walls of Uruk that will stand for eternity. I have defeated every man in battle. And yet... I am alone. No man is my equal. No friend stands beside me." },
-      { "type": "narration", "text": "The gods hear the prayers. They create Enkidu — wild, enormous, clothed in fur — living among the animals of the steppe. He runs with gazelles. He drinks at watering holes with lions. He is nature made flesh." },
-      { "type": "dialog", "speaker": "Enkidu", "portraitKey": "enkidu", "text": "They say you are two-thirds god. I say: let us see what that is worth." },
-      { "type": "challenge", "index": 0 },
-      { "type": "narration", "text": "They grappled at the city gate. The earth shook. And when it was over, something had changed in both of them. For the first time, each had met his equal." },
-      { "type": "dialog", "speaker": "Gilgamesh", "portraitKey": "gilgamesh", "text": "He is as strong as I am. In battle we are matched. But in friendship — he is everything I lacked. He is my brother." },
-      { "type": "challenge", "index": 1 },
-      { "type": "narration", "text": "Together they journey to the Cedar Forest to slay the monster Humbaba. Together they anger the gods. And then the unthinkable happens — Enkidu falls ill. He dies." },
-      { "type": "dialog", "speaker": "Gilgamesh", "portraitKey": "gilgamesh", "text": "Enkidu is dead. My friend, my brother. I touched his face and wept for six days. On the seventh — he did not rise. I will not accept death. I will find the secret of immortality." },
-      { "type": "challenge", "index": 2 },
-      { "type": "narration", "text": "Gilgamesh's quest for immortality ends in failure — a plant of eternal youth stolen by a serpent. But in failure he finds something deeper: acceptance. He returns to Uruk and sees its walls with new eyes." },
-      { "type": "challenge", "index": 3 }
+      {
+        "type": "narration",
+        "text": "Uruk, 2700 BCE. The mightiest city in the world is ruled by a king who is two-thirds god and one-third man. Gilgamesh is glorious — and terrible. He drives his people without mercy. They cry out to the gods for relief."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Gilgamesh",
+        "portraitKey": "gilgamesh",
+        "text": "I have built the walls of Uruk that will stand for eternity. I have defeated every man in battle. And yet... I am alone. No man is my equal. No friend stands beside me."
+      },
+      {
+        "type": "narration",
+        "text": "The gods hear the prayers. They create Enkidu — wild, enormous, clothed in fur — living among the animals of the steppe. He runs with gazelles. He drinks at watering holes with lions. He is nature made flesh."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Enkidu",
+        "portraitKey": "enkidu",
+        "text": "They say you are two-thirds god. I say: let us see what that is worth."
+      },
+      {
+        "type": "challenge",
+        "index": 0
+      },
+      {
+        "type": "narration",
+        "text": "They grappled at the city gate. The earth shook. And when it was over, something had changed in both of them. For the first time, each had met his equal."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Gilgamesh",
+        "portraitKey": "gilgamesh",
+        "text": "He is as strong as I am. In battle we are matched. But in friendship — he is everything I lacked. He is my brother."
+      },
+      {
+        "type": "challenge",
+        "index": 1
+      },
+      {
+        "type": "narration",
+        "text": "Together they journey to the Cedar Forest to slay the monster Humbaba. Together they anger the gods. And then the unthinkable happens — Enkidu falls ill. He dies."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Gilgamesh",
+        "portraitKey": "gilgamesh",
+        "text": "Enkidu is dead. My friend, my brother. I touched his face and wept for six days. On the seventh — he did not rise. I will not accept death. I will find the secret of immortality."
+      },
+      {
+        "type": "challenge",
+        "index": 2
+      },
+      {
+        "type": "narration",
+        "text": "Gilgamesh's quest for immortality ends in failure — a plant of eternal youth stolen by a serpent. But in failure he finds something deeper: acceptance. He returns to Uruk and sees its walls with new eyes."
+      },
+      {
+        "type": "challenge",
+        "index": 3
+      }
     ]
   },
   {
@@ -59,42 +179,46 @@
     "story": "Geometry of the World",
     "portraitKey": "euclid",
     "scenes": [
-      { "type": "narration", "text": "Alexandria, 300 BCE. The greatest library the world has ever seen stands at the edge of the Mediterranean — a beacon gathering the knowledge of a hundred civilizations. Here, a quiet mathematician sits at a wooden table." },
-      { "type": "dialog", "speaker": "Euclid", "portraitKey": "euclid", "text": "A point has no parts. A line extends infinitely in both directions. From these two truths alone, I can prove everything else in geometry. The universe speaks in mathematics, if only you know how to listen." },
-      { "type": "challenge", "index": 0 },
-      { "type": "narration", "text": "When King Ptolemy asked Euclid if there was a shorter road to mastering geometry, Euclid reportedly replied: 'There is no royal road to geometry.' Even kings had to do the work." },
-      { "type": "challenge", "index": 1 },
-      { "type": "dialog", "speaker": "Euclid", "portraitKey": "euclid", "text": "Eratosthenes tells me he has measured the circumference of the Earth using nothing but a stick and shadows. This is what geometry gives us — the power to measure the world without ever leaving our city." },
-      { "type": "challenge", "index": 2 },
-      { "type": "narration", "text": "Eratosthenes calculated Earth's circumference with remarkable accuracy around 240 BCE. His method — comparing shadow angles in two cities — was pure geometric reasoning. Calculate like the ancients..." },
-      { "type": "challenge", "index": 3 }
-    ]
-  },
-  {
-    "era": "Ancient",
-    "story": "Sacred Medicine",
-    "portraitKey": null,
-    "scenes": [
-      { "type": "narration", "text": "Ancient Egypt, 1550 BCE. The Ebers Papyrus, one of the oldest medical texts ever found, catalogues treatments for everything from crocodile bites to heart disease. Medicine is beginning — half science, half ritual." },
-      { "type": "dialog", "speaker": "Egyptian Physician", "text": "The heart is the center of all blood vessels. When it speaks, every limb listens. We cannot cure what we cannot understand — so we must observe, record, and dare to cut the body open after death." },
-      { "type": "challenge", "index": 0 },
-      { "type": "narration", "text": "Ancient physicians knew more than we credit them. They sutured wounds, set broken bones, performed cataract surgery, and prescribed willow bark — the natural precursor to aspirin — thousands of years before modern pharmacology." },
-      { "type": "challenge", "index": 1 },
-      { "type": "dialog", "speaker": "Hippocrates", "text": "Do no harm. Observe the patient. Record what you see. Base your treatment on what you observe, not on what the gods supposedly demand. Medicine must be separated from superstition." },
-      { "type": "challenge", "index": 2 }
-    ]
-  },
-  {
-    "era": "Ancient",
-    "story": "River Civilizations",
-    "portraitKey": null,
-    "scenes": [
-      { "type": "narration", "text": "Four great civilizations rose along river banks: the Nile, the Tigris-Euphrates, the Indus, and the Yellow River. Water was life — and the need to manage it forced humans to invent writing, law, taxation, and the calendar." },
-      { "type": "dialog", "speaker": "Mesopotamian Scribe", "text": "The river floods when it will. We cannot stop it — but we can predict it. Sixty years of records, and I can tell you almost exactly when the waters will rise. This is the power of writing things down." },
-      { "type": "challenge", "index": 0 },
-      { "type": "narration", "text": "The Indus Valley Civilization remains one of history's great mysteries — its script still undeciphered. They built planned cities with sewage systems more advanced than anything in Europe three thousand years later." },
-      { "type": "challenge", "index": 1 },
-      { "type": "challenge", "index": 2 }
+      {
+        "type": "narration",
+        "text": "Alexandria, 300 BCE. The greatest library the world has ever seen stands at the edge of the Mediterranean — a beacon gathering the knowledge of a hundred civilizations. Here, a quiet mathematician sits at a wooden table."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Euclid",
+        "portraitKey": "euclid",
+        "text": "A point has no parts. A line extends infinitely in both directions. From these two truths alone, I can prove everything else in geometry. The universe speaks in mathematics, if only you know how to listen."
+      },
+      {
+        "type": "challenge",
+        "index": 0
+      },
+      {
+        "type": "narration",
+        "text": "When King Ptolemy asked Euclid if there was a shorter road to mastering geometry, Euclid reportedly replied: 'There is no royal road to geometry.' Even kings had to do the work."
+      },
+      {
+        "type": "challenge",
+        "index": 1
+      },
+      {
+        "type": "dialog",
+        "speaker": "Euclid",
+        "portraitKey": "euclid",
+        "text": "Eratosthenes tells me he has measured the circumference of the Earth using nothing but a stick and shadows. This is what geometry gives us — the power to measure the world without ever leaving our city."
+      },
+      {
+        "type": "challenge",
+        "index": 2
+      },
+      {
+        "type": "narration",
+        "text": "Eratosthenes calculated Earth's circumference with remarkable accuracy around 240 BCE. His method — comparing shadow angles in two cities — was pure geometric reasoning. Calculate like the ancients..."
+      },
+      {
+        "type": "challenge",
+        "index": 3
+      }
     ]
   },
   {
@@ -102,15 +226,46 @@
     "story": "The Elements",
     "portraitKey": "euclid",
     "scenes": [
-      { "type": "narration", "text": "Alexandria, 300 BCE. Euclid is writing. Not just writing — constructing an architecture of pure reason, brick by logical brick. His Elements will become the most printed book in history after the Bible." },
-      { "type": "dialog", "speaker": "Euclid", "portraitKey": "euclid", "text": "Begin with what cannot be doubted. Then prove everything else from those foundations. Assumption is the enemy of knowledge. Every claim must be earned through rigorous proof." },
-      { "type": "challenge", "index": 0 },
-      { "type": "narration", "text": "Euclid's proof that prime numbers are infinite is still considered one of the most elegant proofs in all mathematics — a short argument from contradiction that leaves no possible doubt." },
-      { "type": "challenge", "index": 1 },
-      { "type": "dialog", "speaker": "Euclid", "portraitKey": "euclid", "text": "Archimedes wrote to me of circles. He says the ratio of circumference to diameter is constant — always the same mysterious number, regardless of size. I believe him. Some truths are beautiful precisely because they cannot be otherwise." },
-      { "type": "challenge", "index": 2 },
-      { "type": "narration", "text": "Archimedes of Syracuse pushed mathematics further than anyone before him. He calculated pi to remarkable precision, invented integral calculus 1800 years before Newton, and designed war machines that held off Rome. Sequence his discoveries..." },
-      { "type": "challenge", "index": 3 }
+      {
+        "type": "narration",
+        "text": "Alexandria, 300 BCE. Euclid is writing. Not just writing — constructing an architecture of pure reason, brick by logical brick. His Elements will become the most printed book in history after the Bible."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Euclid",
+        "portraitKey": "euclid",
+        "text": "Begin with what cannot be doubted. Then prove everything else from those foundations. Assumption is the enemy of knowledge. Every claim must be earned through rigorous proof."
+      },
+      {
+        "type": "challenge",
+        "index": 0
+      },
+      {
+        "type": "narration",
+        "text": "Euclid's proof that prime numbers are infinite is still considered one of the most elegant proofs in all mathematics — a short argument from contradiction that leaves no possible doubt."
+      },
+      {
+        "type": "challenge",
+        "index": 1
+      },
+      {
+        "type": "dialog",
+        "speaker": "Euclid",
+        "portraitKey": "euclid",
+        "text": "Archimedes wrote to me of circles. He says the ratio of circumference to diameter is constant — always the same mysterious number, regardless of size. I believe him. Some truths are beautiful precisely because they cannot be otherwise."
+      },
+      {
+        "type": "challenge",
+        "index": 2
+      },
+      {
+        "type": "narration",
+        "text": "Archimedes of Syracuse pushed mathematics further than anyone before him. He calculated pi to remarkable precision, invented integral calculus 1800 years before Newton, and designed war machines that held off Rome. Sequence his discoveries..."
+      },
+      {
+        "type": "challenge",
+        "index": 3
+      }
     ]
   },
   {
@@ -118,18 +273,64 @@
     "story": "The Golden Age of Athens",
     "portraitKey": "pericles",
     "scenes": [
-      { "type": "narration", "text": "Athens, 450 BCE. The city shimmers at the height of its glory. The Parthenon rises on the Acropolis. Sophocles writes his tragedies. And the man steering this golden age has at his side the most remarkable woman in Greece." },
-      { "type": "dialog", "speaker": "Pericles", "portraitKey": "pericles", "text": "Our constitution is called democracy because power is in the hands of the many, not the few. We do not imitate our neighbors — we are a pattern to others. We are the school of all Greece." },
-      { "type": "dialog", "speaker": "Aspasia", "portraitKey": "aspasia", "text": "And yet, Pericles, women may not vote, may not speak in the Assembly, may not be citizens. How free is a democracy that silences half its people? Tell me — does truth only count when a man speaks it?" },
-      { "type": "dialog", "speaker": "Pericles", "portraitKey": "pericles", "text": "You argue like a philosopher and counsel like a strategos. It is why I love you — and why Athens both admires and despises us for it." },
-      { "type": "challenge", "index": 0 },
-      { "type": "narration", "text": "Across the Aegean, Sparta watches Athens grow with suspicion and dread. Pleistoanax, king of Sparta, warns his council of what Athens' power will mean for Greece." },
-      { "type": "dialog", "speaker": "Pleistoanax", "portraitKey": "pleistoanax", "text": "Athens calls her empire an alliance. She takes tribute from her allies and spends it on her own temples. If we do not act, all of Greece will be Athenian before we draw breath to protest." },
-      { "type": "challenge", "index": 1 },
-      { "type": "dialog", "speaker": "Aspasia", "portraitKey": "aspasia", "text": "They drag me before the courts on charges of impiety. They cannot touch Pericles directly — so they strike at me. I will not dignify their cowardice with silence." },
-      { "type": "challenge", "index": 2 },
-      { "type": "narration", "text": "The Peloponnesian War between Athens and Sparta lasted 27 years and ended in Athens' defeat. But the ideas born in this golden age — democracy, philosophy, tragedy — outlasted every army and empire that followed." },
-      { "type": "challenge", "index": 3 }
+      {
+        "type": "narration",
+        "text": "Athens, 450 BCE. The city shimmers at the height of its glory. The Parthenon rises on the Acropolis. Sophocles writes his tragedies. And the man steering this golden age has at his side the most remarkable woman in Greece."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Pericles",
+        "portraitKey": "pericles",
+        "text": "Our constitution is called democracy because power is in the hands of the many, not the few. We do not imitate our neighbors — we are a pattern to others. We are the school of all Greece."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Aspasia",
+        "portraitKey": "aspasia",
+        "text": "And yet, Pericles, women may not vote, may not speak in the Assembly, may not be citizens. How free is a democracy that silences half its people? Tell me — does truth only count when a man speaks it?"
+      },
+      {
+        "type": "dialog",
+        "speaker": "Pericles",
+        "portraitKey": "pericles",
+        "text": "You argue like a philosopher and counsel like a strategos. It is why I love you — and why Athens both admires and despises us for it."
+      },
+      {
+        "type": "challenge",
+        "index": 0
+      },
+      {
+        "type": "narration",
+        "text": "Across the Aegean, Sparta watches Athens grow with suspicion and dread. Pleistoanax, king of Sparta, warns his council of what Athens' power will mean for Greece."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Pleistoanax",
+        "portraitKey": "pleistoanax",
+        "text": "Athens calls her empire an alliance. She takes tribute from her allies and spends it on her own temples. If we do not act, all of Greece will be Athenian before we draw breath to protest."
+      },
+      {
+        "type": "challenge",
+        "index": 1
+      },
+      {
+        "type": "dialog",
+        "speaker": "Aspasia",
+        "portraitKey": "aspasia",
+        "text": "They drag me before the courts on charges of impiety. They cannot touch Pericles directly — so they strike at me. I will not dignify their cowardice with silence."
+      },
+      {
+        "type": "challenge",
+        "index": 2
+      },
+      {
+        "type": "narration",
+        "text": "The Peloponnesian War between Athens and Sparta lasted 27 years and ended in Athens' defeat. But the ideas born in this golden age — democracy, philosophy, tragedy — outlasted every army and empire that followed."
+      },
+      {
+        "type": "challenge",
+        "index": 3
+      }
     ]
   },
   {
@@ -137,16 +338,52 @@
     "story": "The Voice of Rome",
     "portraitKey": "cicero",
     "scenes": [
-      { "type": "narration", "text": "Rome, 63 BCE. A conspiracy is unfolding. Lucius Sergius Catilina has plotted to seize the Republic by force. The Senate trembles. The consul — a self-made man who rose from the Italian middle class through nothing but eloquence — prepares to speak." },
-      { "type": "dialog", "speaker": "Cicero", "portraitKey": "cicero", "text": "How long, Catiline, will you abuse our patience? How long will your madness mock us? Do you not see that your plot is known? Quousque tandem abutere, Catilina, patientia nostra?" },
-      { "type": "narration", "text": "The hall falls silent. Catiline rises to defend himself — and finds he cannot. Cicero's words have stripped him bare before Rome. The greatest orator of the ancient world has just saved the Republic." },
-      { "type": "challenge", "index": 0 },
-      { "type": "dialog", "speaker": "Cicero", "portraitKey": "cicero", "text": "The law is not merely rules. Law is the bond of civil society, the foundation of liberty, the wellspring of justice. A state without law is merely force wearing a mask." },
-      { "type": "challenge", "index": 1 },
-      { "type": "narration", "text": "Decades later: Caesar is dead. Mark Antony seizes power. And Cicero, old and exhausted, takes up his pen one last time — writing the Philippics against Antony. He knows the cost." },
-      { "type": "dialog", "speaker": "Cicero", "portraitKey": "cicero", "text": "I know what I risk. Antony will not forget these words. But I have defended this Republic all my life. To be silent now — to be silent now would be to die before my death." },
-      { "type": "challenge", "index": 2 },
-      { "type": "challenge", "index": 3 }
+      {
+        "type": "narration",
+        "text": "Rome, 63 BCE. A conspiracy is unfolding. Lucius Sergius Catilina has plotted to seize the Republic by force. The Senate trembles. The consul — a self-made man who rose from the Italian middle class through nothing but eloquence — prepares to speak."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Cicero",
+        "portraitKey": "cicero",
+        "text": "How long, Catiline, will you abuse our patience? How long will your madness mock us? Do you not see that your plot is known? Quousque tandem abutere, Catilina, patientia nostra?"
+      },
+      {
+        "type": "narration",
+        "text": "The hall falls silent. Catiline rises to defend himself — and finds he cannot. Cicero's words have stripped him bare before Rome. The greatest orator of the ancient world has just saved the Republic."
+      },
+      {
+        "type": "challenge",
+        "index": 0
+      },
+      {
+        "type": "dialog",
+        "speaker": "Cicero",
+        "portraitKey": "cicero",
+        "text": "The law is not merely rules. Law is the bond of civil society, the foundation of liberty, the wellspring of justice. A state without law is merely force wearing a mask."
+      },
+      {
+        "type": "challenge",
+        "index": 1
+      },
+      {
+        "type": "narration",
+        "text": "Decades later: Caesar is dead. Mark Antony seizes power. And Cicero, old and exhausted, takes up his pen one last time — writing the Philippics against Antony. He knows the cost."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Cicero",
+        "portraitKey": "cicero",
+        "text": "I know what I risk. Antony will not forget these words. But I have defended this Republic all my life. To be silent now — to be silent now would be to die before my death."
+      },
+      {
+        "type": "challenge",
+        "index": 2
+      },
+      {
+        "type": "challenge",
+        "index": 3
+      }
     ]
   },
   {
@@ -154,70 +391,58 @@
     "story": "Before Socrates",
     "portraitKey": "anaxagoras",
     "scenes": [
-      { "type": "narration", "text": "The Greek world, 5th century BCE. Before Socrates asked 'How should we live?', other thinkers had already asked harder questions: What is the universe made of? Can motion truly exist? Are our senses trustworthy? Two thinkers push these questions to their breaking point." },
-      { "type": "dialog", "speaker": "Anaxagoras", "portraitKey": "anaxagoras", "text": "The sun is not a god. It is a burning rock, perhaps the size of the Peloponnese. The moon reflects light it borrows from the sun. Look up and you will see not divinity — but matter, in motion, following laws." },
-      { "type": "narration", "text": "This statement nearly got Anaxagoras executed in Athens. The friend and teacher of Pericles, he was tried for impiety and exiled — a reminder that even then, new ideas were dangerous." },
-      { "type": "challenge", "index": 0 },
-      { "type": "dialog", "speaker": "Zeno of Elea", "portraitKey": "zeno_of_elea", "text": "Consider Achilles racing a tortoise. Give the tortoise a head start. Achilles must first reach where the tortoise was. But by then the tortoise has moved. Achilles must reach that new point. But the tortoise has moved again. Logically — he can never catch it." },
-      { "type": "dialog", "speaker": "Anaxagoras", "portraitKey": "anaxagoras", "text": "And yet we observe that he does catch it. So where is the error in your reasoning?" },
-      { "type": "dialog", "speaker": "Zeno of Elea", "portraitKey": "zeno_of_elea", "text": "That is precisely my point. Our reasoning contradicts our senses, or our senses contradict our reason. One of them is lying. I trust reason." },
-      { "type": "challenge", "index": 1 },
-      { "type": "narration", "text": "Zeno's paradoxes tormented philosophers for two thousand years. They were only resolved when Newton and Leibniz invented calculus — the mathematics of infinite sums — in the 17th century." },
-      { "type": "challenge", "index": 2 },
-      { "type": "challenge", "index": 3 }
-    ]
-  },
-  {
-    "era": "Classical",
-    "story": "Senate and Forum",
-    "portraitKey": null,
-    "scenes": [
-      { "type": "narration", "text": "Rome, 100 BCE. The Forum Romanum hums with argument and ambition. Senators in white togas debate the future of the Republic while merchants and soldiers crowd the cobblestones below. The system is brilliant — and fragile." },
-      { "type": "dialog", "speaker": "Roman Senator", "text": "The Republic's genius is balance: the Consuls hold executive power, but only for one year. The Senate advises. The Tribunes protect the people's rights. No single man can hold too much power — or so we tell ourselves." },
-      { "type": "challenge", "index": 0 },
-      { "type": "narration", "text": "The Roman Republic lasted nearly 500 years before collapsing into civil war. Its innovations — separation of powers, rule of law, elected representation — directly inspired the US Constitution two thousand years later." },
-      { "type": "challenge", "index": 1 },
-      { "type": "dialog", "speaker": "Julius Caesar", "text": "They call me tyrant. But the Republic was already dead — strangled by its own contradictions. I merely gave the body a name. What comes next will last a thousand years." },
-      { "type": "challenge", "index": 2 }
-    ]
-  },
-  {
-    "era": "Classical",
-    "story": "Philosophy of Athens",
-    "portraitKey": null,
-    "scenes": [
-      { "type": "narration", "text": "Athens, 470 BCE. A barefoot, snub-nosed man wanders the marketplace — the Agora — questioning everyone he meets. The wealthy, the politicians, the poets. He believes wisdom begins with admitting you know nothing." },
-      { "type": "dialog", "speaker": "Socrates", "text": "I know that I know nothing. That makes me wiser than most — for they believe they know, and are deceived. The unexamined life is not worth living. So let us examine everything." },
-      { "type": "challenge", "index": 0 },
-      { "type": "narration", "text": "Socrates left no writings. Everything we know of him comes through his student Plato, who recorded his dialogues. Plato in turn taught Aristotle — creating history's most influential chain of philosophical transmission." },
-      { "type": "challenge", "index": 1 },
-      { "type": "challenge", "index": 2 }
-    ]
-  },
-  {
-    "era": "Classical",
-    "story": "Olympic Games",
-    "portraitKey": null,
-    "scenes": [
-      { "type": "narration", "text": "Olympia, 776 BCE. The first recorded Olympic Games draw athletes from across Greece's warring city-states. For the duration of the games, all hostilities cease. Even war bows to the sacred competition." },
-      { "type": "dialog", "speaker": "Greek Athlete", "text": "We do not compete for gold or wealth. The olive wreath is everything — proof that you are the finest in Greece. Your city will honor you for life. Your name will be sung by poets." },
-      { "type": "challenge", "index": 0 },
-      { "type": "narration", "text": "The ancient Olympics ran for over a thousand years before Emperor Theodosius banned them in 393 CE as pagan. They were revived in Athens in 1896 — a gap of 1503 years." },
-      { "type": "challenge", "index": 1 },
-      { "type": "challenge", "index": 2 }
-    ]
-  },
-  {
-    "era": "Classical",
-    "story": "Eastern Trade",
-    "portraitKey": null,
-    "scenes": [
-      { "type": "narration", "text": "100 CE. A caravan of camels crosses the Taklamakan Desert. Silk, spices, glass, and ideas move east and west along a 4,000-mile network of roads — the Silk Road — connecting Rome to China without either ever meeting the other." },
-      { "type": "dialog", "speaker": "Sogdian Merchant", "text": "I speak five languages and carry the goods of twenty kingdoms. A Roman buys Chinese silk without knowing where it came from. That is the beauty of trade — it connects worlds that would otherwise never speak." },
-      { "type": "challenge", "index": 0 },
-      { "type": "narration", "text": "The Silk Road carried more than goods. Buddhism, Islam, the Black Death, papermaking, and the compass all traveled its length. Trade routes have always been civilization's arteries — carrying knowledge as well as commerce." },
-      { "type": "challenge", "index": 1 },
-      { "type": "challenge", "index": 2 }
+      {
+        "type": "narration",
+        "text": "The Greek world, 5th century BCE. Before Socrates asked 'How should we live?', other thinkers had already asked harder questions: What is the universe made of? Can motion truly exist? Are our senses trustworthy? Two thinkers push these questions to their breaking point."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Anaxagoras",
+        "portraitKey": "anaxagoras",
+        "text": "The sun is not a god. It is a burning rock, perhaps the size of the Peloponnese. The moon reflects light it borrows from the sun. Look up and you will see not divinity — but matter, in motion, following laws."
+      },
+      {
+        "type": "narration",
+        "text": "This statement nearly got Anaxagoras executed in Athens. The friend and teacher of Pericles, he was tried for impiety and exiled — a reminder that even then, new ideas were dangerous."
+      },
+      {
+        "type": "challenge",
+        "index": 0
+      },
+      {
+        "type": "dialog",
+        "speaker": "Zeno of Elea",
+        "portraitKey": "zeno_of_elea",
+        "text": "Consider Achilles racing a tortoise. Give the tortoise a head start. Achilles must first reach where the tortoise was. But by then the tortoise has moved. Achilles must reach that new point. But the tortoise has moved again. Logically — he can never catch it."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Anaxagoras",
+        "portraitKey": "anaxagoras",
+        "text": "And yet we observe that he does catch it. So where is the error in your reasoning?"
+      },
+      {
+        "type": "dialog",
+        "speaker": "Zeno of Elea",
+        "portraitKey": "zeno_of_elea",
+        "text": "That is precisely my point. Our reasoning contradicts our senses, or our senses contradict our reason. One of them is lying. I trust reason."
+      },
+      {
+        "type": "challenge",
+        "index": 1
+      },
+      {
+        "type": "narration",
+        "text": "Zeno's paradoxes tormented philosophers for two thousand years. They were only resolved when Newton and Leibniz invented calculus — the mathematics of infinite sums — in the 17th century."
+      },
+      {
+        "type": "challenge",
+        "index": 2
+      },
+      {
+        "type": "challenge",
+        "index": 3
+      }
     ]
   },
   {
@@ -225,16 +450,51 @@
     "story": "The Last General",
     "portraitKey": "belisarius",
     "scenes": [
-      { "type": "narration", "text": "Constantinople, 527 CE. Emperor Justinian I sits upon the throne of a crumbling empire. The Western Roman Empire has fallen. But Justinian has a dream — reconquest. And he has one general capable of making it real." },
-      { "type": "dialog", "speaker": "Emperor Justinian", "text": "Belisarius. You are my sword. Reconquer Africa. Reconquer Italy. Give me back the Empire of Augustus." },
-      { "type": "dialog", "speaker": "Belisarius", "portraitKey": "belisarius", "text": "The Vandals think themselves safe behind the sea. Let them think so a little longer. I will take Carthage before they have time to prepare." },
-      { "type": "challenge", "index": 0 },
-      { "type": "narration", "text": "Belisarius defeated armies many times larger than his own through speed, tactics, and the trust he inspired in his soldiers. He conquered North Africa in two years — a campaign that shocked the world." },
-      { "type": "challenge", "index": 1 },
-      { "type": "dialog", "speaker": "Belisarius", "portraitKey": "belisarius", "text": "They have accused me of treason three times now. Three times I have served with perfect loyalty. An emperor who doubts his best general is an emperor who has already lost. But I serve. It is what I am." },
-      { "type": "challenge", "index": 2 },
-      { "type": "narration", "text": "Belisarius's supply lines stretched across the Mediterranean. Master the routing of his forces through the Byzantine corridors to reach the final objective..." },
-      { "type": "challenge", "index": 3 }
+      {
+        "type": "narration",
+        "text": "Constantinople, 527 CE. Emperor Justinian I sits upon the throne of a crumbling empire. The Western Roman Empire has fallen. But Justinian has a dream — reconquest. And he has one general capable of making it real."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Emperor Justinian",
+        "text": "Belisarius. You are my sword. Reconquer Africa. Reconquer Italy. Give me back the Empire of Augustus."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Belisarius",
+        "portraitKey": "belisarius",
+        "text": "The Vandals think themselves safe behind the sea. Let them think so a little longer. I will take Carthage before they have time to prepare."
+      },
+      {
+        "type": "challenge",
+        "index": 0
+      },
+      {
+        "type": "narration",
+        "text": "Belisarius defeated armies many times larger than his own through speed, tactics, and the trust he inspired in his soldiers. He conquered North Africa in two years — a campaign that shocked the world."
+      },
+      {
+        "type": "challenge",
+        "index": 1
+      },
+      {
+        "type": "dialog",
+        "speaker": "Belisarius",
+        "portraitKey": "belisarius",
+        "text": "They have accused me of treason three times now. Three times I have served with perfect loyalty. An emperor who doubts his best general is an emperor who has already lost. But I serve. It is what I am."
+      },
+      {
+        "type": "challenge",
+        "index": 2
+      },
+      {
+        "type": "narration",
+        "text": "Belisarius's supply lines stretched across the Mediterranean. Master the routing of his forces through the Byzantine corridors to reach the final objective..."
+      },
+      {
+        "type": "challenge",
+        "index": 3
+      }
     ]
   },
   {
@@ -242,15 +502,46 @@
     "story": "The Language of Algebra",
     "portraitKey": "al_khwarizmi",
     "scenes": [
-      { "type": "narration", "text": "Baghdad, 820 CE. The House of Wisdom stands at the center of the world's largest city — a library and research institute where scholars from every civilization translate and synthesize knowledge from Greece, India, Persia, and China." },
-      { "type": "dialog", "speaker": "Al-Khwarizmi", "portraitKey": "al_khwarizmi", "text": "The Indians have given us something extraordinary — a symbol for nothing. Zero. With zero, our numeral system becomes complete. Any number can now be expressed with just ten symbols. This will change everything." },
-      { "type": "challenge", "index": 0 },
-      { "type": "narration", "text": "Al-Khwarizmi's treatise — 'Al-Kitāb al-mukhtaṣar fī ḥisāb al-jabr waʾl-muqābala' — was so influential that the word 'al-jabr' became the modern word for the discipline he founded. His very name gave us another word." },
-      { "type": "challenge", "index": 1 },
-      { "type": "dialog", "speaker": "Al-Khwarizmi", "portraitKey": "al_khwarizmi", "text": "My method allows any problem involving an unknown quantity to be solved step by step. I call the unknown 'shay' — the thing. What matters is not what we call it, but that any such problem can be reduced to six basic forms and solved." },
-      { "type": "challenge", "index": 2 },
-      { "type": "narration", "text": "Al-Khwarizmi's name itself became a word: the Latin translation used 'algoritmi' for his name — which became 'algorithm.' His ideas live in the language of mathematics and computing to this day." },
-      { "type": "challenge", "index": 3 }
+      {
+        "type": "narration",
+        "text": "Baghdad, 820 CE. The House of Wisdom stands at the center of the world's largest city — a library and research institute where scholars from every civilization translate and synthesize knowledge from Greece, India, Persia, and China."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Al-Khwarizmi",
+        "portraitKey": "al_khwarizmi",
+        "text": "The Indians have given us something extraordinary — a symbol for nothing. Zero. With zero, our numeral system becomes complete. Any number can now be expressed with just ten symbols. This will change everything."
+      },
+      {
+        "type": "challenge",
+        "index": 0
+      },
+      {
+        "type": "narration",
+        "text": "Al-Khwarizmi's treatise — 'Al-Kitāb al-mukhtaṣar fī ḥisāb al-jabr waʾl-muqābala' — was so influential that the word 'al-jabr' became the modern word for the discipline he founded. His very name gave us another word."
+      },
+      {
+        "type": "challenge",
+        "index": 1
+      },
+      {
+        "type": "dialog",
+        "speaker": "Al-Khwarizmi",
+        "portraitKey": "al_khwarizmi",
+        "text": "My method allows any problem involving an unknown quantity to be solved step by step. I call the unknown 'shay' — the thing. What matters is not what we call it, but that any such problem can be reduced to six basic forms and solved."
+      },
+      {
+        "type": "challenge",
+        "index": 2
+      },
+      {
+        "type": "narration",
+        "text": "Al-Khwarizmi's name itself became a word: the Latin translation used 'algoritmi' for his name — which became 'algorithm.' His ideas live in the language of mathematics and computing to this day."
+      },
+      {
+        "type": "challenge",
+        "index": 3
+      }
     ]
   },
   {
@@ -258,15 +549,46 @@
     "story": "The Prophet of Light",
     "portraitKey": "mani",
     "scenes": [
-      { "type": "narration", "text": "Persia, 240 CE. A young man has a vision: an angel commands him to announce a new religion — one that will combine the teachings of Zoroaster, Buddha, and Jesus into one universal truth. Mani obeys." },
-      { "type": "dialog", "speaker": "Mani", "portraitKey": "mani", "text": "God of Light did not create darkness. Evil is not God's failure — it is a separate, opposing force. The universe is a battlefield between light and darkness, and every human soul is the ground on which that battle is fought." },
-      { "type": "challenge", "index": 0 },
-      { "type": "narration", "text": "Mani traveled from Persia to India to Central Asia, winning converts among merchants, princes, and scholars. His church spread across the known world within his own lifetime — from Rome to China." },
-      { "type": "dialog", "speaker": "Mani", "portraitKey": "mani", "text": "I am not founding a new religion separate from the others. I am giving the world the complete scripture — the final synthesis. After me, no new prophet is needed. I bring what the others began." },
-      { "type": "challenge", "index": 1 },
-      { "type": "narration", "text": "The Zoroastrian high priest Kartir convinced the Persian king to turn against Mani. Imprisoned and executed in 274 CE, Mani died in chains. His followers called it 'The Crucifixion.' His church survived for a thousand years after him." },
-      { "type": "challenge", "index": 2 },
-      { "type": "challenge", "index": 3 }
+      {
+        "type": "narration",
+        "text": "Persia, 240 CE. A young man has a vision: an angel commands him to announce a new religion — one that will combine the teachings of Zoroaster, Buddha, and Jesus into one universal truth. Mani obeys."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Mani",
+        "portraitKey": "mani",
+        "text": "God of Light did not create darkness. Evil is not God's failure — it is a separate, opposing force. The universe is a battlefield between light and darkness, and every human soul is the ground on which that battle is fought."
+      },
+      {
+        "type": "challenge",
+        "index": 0
+      },
+      {
+        "type": "narration",
+        "text": "Mani traveled from Persia to India to Central Asia, winning converts among merchants, princes, and scholars. His church spread across the known world within his own lifetime — from Rome to China."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Mani",
+        "portraitKey": "mani",
+        "text": "I am not founding a new religion separate from the others. I am giving the world the complete scripture — the final synthesis. After me, no new prophet is needed. I bring what the others began."
+      },
+      {
+        "type": "challenge",
+        "index": 1
+      },
+      {
+        "type": "narration",
+        "text": "The Zoroastrian high priest Kartir convinced the Persian king to turn against Mani. Imprisoned and executed in 274 CE, Mani died in chains. His followers called it 'The Crucifixion.' His church survived for a thousand years after him."
+      },
+      {
+        "type": "challenge",
+        "index": 2
+      },
+      {
+        "type": "challenge",
+        "index": 3
+      }
     ]
   },
   {
@@ -274,13 +596,38 @@
     "story": "Tea Ceremony",
     "portraitKey": "lu_yu",
     "scenes": [
-      { "type": "narration", "text": "Tang Dynasty China, 760 CE. A former orphan and court jester turned scholar sits alone in a bamboo pavilion. He lifts a bowl of green tea to his lips — and begins to write the work that will change how a civilization drinks." },
-      { "type": "dialog", "speaker": "Lu Yu", "portraitKey": "lu_yu", "text": "Tea is not merely a drink. The water must be spring water. The flame must be charcoal, not wood. The bowl matters. The moment of silence before drinking matters. Attention transforms the ordinary into the sacred." },
-      { "type": "challenge", "index": 0 },
-      { "type": "narration", "text": "Lu Yu's 'Classic of Tea' — the Chá Jīng — is the world's first monograph on tea. Written around 760 CE, it describes the plant's biology, cultivation, processing, and the philosophy of drinking. It created the aesthetic tradition of the tea ceremony." },
-      { "type": "challenge", "index": 1 },
-      { "type": "dialog", "speaker": "Lu Yu", "portraitKey": "lu_yu", "text": "The Tang poets write of wine and longing. I write of tea and presence. To truly taste a cup of tea, you must be nowhere else. That is harder than most men imagine." },
-      { "type": "challenge", "index": 2 }
+      {
+        "type": "narration",
+        "text": "Tang Dynasty China, 760 CE. A former orphan and court jester turned scholar sits alone in a bamboo pavilion. He lifts a bowl of green tea to his lips — and begins to write the work that will change how a civilization drinks."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Lu Yu",
+        "portraitKey": "lu_yu",
+        "text": "Tea is not merely a drink. The water must be spring water. The flame must be charcoal, not wood. The bowl matters. The moment of silence before drinking matters. Attention transforms the ordinary into the sacred."
+      },
+      {
+        "type": "challenge",
+        "index": 0
+      },
+      {
+        "type": "narration",
+        "text": "Lu Yu's 'Classic of Tea' — the Chá Jīng — is the world's first monograph on tea. Written around 760 CE, it describes the plant's biology, cultivation, processing, and the philosophy of drinking. It created the aesthetic tradition of the tea ceremony."
+      },
+      {
+        "type": "challenge",
+        "index": 1
+      },
+      {
+        "type": "dialog",
+        "speaker": "Lu Yu",
+        "portraitKey": "lu_yu",
+        "text": "The Tang poets write of wine and longing. I write of tea and presence. To truly taste a cup of tea, you must be nowhere else. That is harder than most men imagine."
+      },
+      {
+        "type": "challenge",
+        "index": 2
+      }
     ]
   },
   {
@@ -288,15 +635,46 @@
     "story": "The Disguised Warrior",
     "portraitKey": "hua_mulan",
     "scenes": [
-      { "type": "narration", "text": "Northern Wei Dynasty, 5th century CE. The imperial summons arrives: one man from every family must serve the Khan's army. Hua Mulan's father is old and ill. Her brother too young. So she makes a choice that will pass into legend." },
-      { "type": "dialog", "speaker": "Hua Mulan", "portraitKey": "hua_mulan", "text": "I will take my father's armor. I will ride his horse. For twelve years the army will know me as a man — and I will fight as well as any of them. Better." },
-      { "type": "challenge", "index": 0 },
-      { "type": "narration", "text": "The Ballad of Mulan was first recorded in the 6th century — its origins possibly even older. Whether historical or mythological, Mulan represents the idea that courage and skill belong to neither gender alone." },
-      { "type": "challenge", "index": 1 },
-      { "type": "dialog", "speaker": "Hua Mulan", "portraitKey": "hua_mulan", "text": "After twelve years of war, the Emperor offers me a title, a post, wealth. I ask only for a swift horse. I am going home. My family needs me more than the court does." },
-      { "type": "challenge", "index": 2 },
-      { "type": "narration", "text": "Mulan's journey through the northern campaigns required navigating treacherous mountain passes. Trace her path through the ancient fortifications to reach the final battle..." },
-      { "type": "challenge", "index": 3 }
+      {
+        "type": "narration",
+        "text": "Northern Wei Dynasty, 5th century CE. The imperial summons arrives: one man from every family must serve the Khan's army. Hua Mulan's father is old and ill. Her brother too young. So she makes a choice that will pass into legend."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Hua Mulan",
+        "portraitKey": "hua_mulan",
+        "text": "I will take my father's armor. I will ride his horse. For twelve years the army will know me as a man — and I will fight as well as any of them. Better."
+      },
+      {
+        "type": "challenge",
+        "index": 0
+      },
+      {
+        "type": "narration",
+        "text": "The Ballad of Mulan was first recorded in the 6th century — its origins possibly even older. Whether historical or mythological, Mulan represents the idea that courage and skill belong to neither gender alone."
+      },
+      {
+        "type": "challenge",
+        "index": 1
+      },
+      {
+        "type": "dialog",
+        "speaker": "Hua Mulan",
+        "portraitKey": "hua_mulan",
+        "text": "After twelve years of war, the Emperor offers me a title, a post, wealth. I ask only for a swift horse. I am going home. My family needs me more than the court does."
+      },
+      {
+        "type": "challenge",
+        "index": 2
+      },
+      {
+        "type": "narration",
+        "text": "Mulan's journey through the northern campaigns required navigating treacherous mountain passes. Trace her path through the ancient fortifications to reach the final battle..."
+      },
+      {
+        "type": "challenge",
+        "index": 3
+      }
     ]
   },
   {
@@ -304,16 +682,51 @@
     "story": "The Knight's Code",
     "portraitKey": "lancelot",
     "scenes": [
-      { "type": "narration", "text": "Camelot, the age of chivalry. The Knights of the Round Table represent an ideal — not just military skill, but a code of conduct binding warriors to honor, mercy, and service. Lancelot du Lac is the greatest of them — and its most tragic figure." },
-      { "type": "dialog", "speaker": "King Arthur", "text": "Lancelot, you are the finest knight who ever drew breath. In battle, no man is your equal. In honor — what say you?" },
-      { "type": "dialog", "speaker": "Lancelot", "portraitKey": "lancelot", "text": "I serve the code above all men — including kings. And yet... even the finest code meets its limits when the heart is tested. God forgive me." },
-      { "type": "challenge", "index": 0 },
-      { "type": "narration", "text": "The medieval chivalric code was not just a literary ideal. Knights were legally bound by oaths of fealty, honor, and protection of the weak. Violation could mean excommunication, exile, or death." },
-      { "type": "challenge", "index": 1 },
-      { "type": "dialog", "speaker": "Lancelot", "portraitKey": "lancelot", "text": "They say the Grail awaits the pure of heart. I have sought it my whole life. But a man cannot unsee what he has done. The quest is not for the Grail — it is for redemption." },
-      { "type": "challenge", "index": 2 },
-      { "type": "narration", "text": "The corridors of Camelot are long and labyrinthine. The true knight who knows the code may navigate them without error..." },
-      { "type": "challenge", "index": 3 }
+      {
+        "type": "narration",
+        "text": "Camelot, the age of chivalry. The Knights of the Round Table represent an ideal — not just military skill, but a code of conduct binding warriors to honor, mercy, and service. Lancelot du Lac is the greatest of them — and its most tragic figure."
+      },
+      {
+        "type": "dialog",
+        "speaker": "King Arthur",
+        "text": "Lancelot, you are the finest knight who ever drew breath. In battle, no man is your equal. In honor — what say you?"
+      },
+      {
+        "type": "dialog",
+        "speaker": "Lancelot",
+        "portraitKey": "lancelot",
+        "text": "I serve the code above all men — including kings. And yet... even the finest code meets its limits when the heart is tested. God forgive me."
+      },
+      {
+        "type": "challenge",
+        "index": 0
+      },
+      {
+        "type": "narration",
+        "text": "The medieval chivalric code was not just a literary ideal. Knights were legally bound by oaths of fealty, honor, and protection of the weak. Violation could mean excommunication, exile, or death."
+      },
+      {
+        "type": "challenge",
+        "index": 1
+      },
+      {
+        "type": "dialog",
+        "speaker": "Lancelot",
+        "portraitKey": "lancelot",
+        "text": "They say the Grail awaits the pure of heart. I have sought it my whole life. But a man cannot unsee what he has done. The quest is not for the Grail — it is for redemption."
+      },
+      {
+        "type": "challenge",
+        "index": 2
+      },
+      {
+        "type": "narration",
+        "text": "The corridors of Camelot are long and labyrinthine. The true knight who knows the code may navigate them without error..."
+      },
+      {
+        "type": "challenge",
+        "index": 3
+      }
     ]
   },
   {
@@ -321,13 +734,38 @@
     "story": "Words of Sorrow",
     "portraitKey": "li_qingzhao",
     "scenes": [
-      { "type": "narration", "text": "Song Dynasty China, 1127 CE. The Jurchen Jin have invaded and the emperor has fled south. Among the millions of refugees is China's greatest poet — Li Qingzhao — carrying a handcart of her most precious books and artwork." },
-      { "type": "dialog", "speaker": "Li Qingzhao", "portraitKey": "li_qingzhao", "text": "My husband gathered ten thousand books. We catalogued them by hand, argued over every character, drank wine in the lamplight. Now he is dead and the armies have taken even the books. What is left but words?" },
-      { "type": "challenge", "index": 0 },
-      { "type": "narration", "text": "Li Qingzhao broke the convention that ci poetry — song lyrics — was for lighthearted subjects. She poured grief, longing, and political despair into the form, permanently expanding what Chinese poetry could say." },
-      { "type": "challenge", "index": 1 },
-      { "type": "dialog", "speaker": "Li Qingzhao", "portraitKey": "li_qingzhao", "text": "I watch the chrysanthemums wilt on the windowsill. I used to write about their beauty with such ease. Now I understand that the poems worth writing are the ones that hurt to write." },
-      { "type": "challenge", "index": 2 }
+      {
+        "type": "narration",
+        "text": "Song Dynasty China, 1127 CE. The Jurchen Jin have invaded and the emperor has fled south. Among the millions of refugees is China's greatest poet — Li Qingzhao — carrying a handcart of her most precious books and artwork."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Li Qingzhao",
+        "portraitKey": "li_qingzhao",
+        "text": "My husband gathered ten thousand books. We catalogued them by hand, argued over every character, drank wine in the lamplight. Now he is dead and the armies have taken even the books. What is left but words?"
+      },
+      {
+        "type": "challenge",
+        "index": 0
+      },
+      {
+        "type": "narration",
+        "text": "Li Qingzhao broke the convention that ci poetry — song lyrics — was for lighthearted subjects. She poured grief, longing, and political despair into the form, permanently expanding what Chinese poetry could say."
+      },
+      {
+        "type": "challenge",
+        "index": 1
+      },
+      {
+        "type": "dialog",
+        "speaker": "Li Qingzhao",
+        "portraitKey": "li_qingzhao",
+        "text": "I watch the chrysanthemums wilt on the windowsill. I used to write about their beauty with such ease. Now I understand that the poems worth writing are the ones that hurt to write."
+      },
+      {
+        "type": "challenge",
+        "index": 2
+      }
     ]
   },
   {
@@ -335,29 +773,46 @@
     "story": "Way of the Sword",
     "portraitKey": "miyamoto_musashi",
     "scenes": [
-      { "type": "narration", "text": "Japan, 1604. A wandering swordsman arrives at the Yoshioka school in Kyoto — alone, unkempt, carrying a wooden sword. He has come to challenge the finest school in Japan. The students laugh. They will not laugh for long." },
-      { "type": "dialog", "speaker": "Miyamoto Musashi", "portraitKey": "miyamoto_musashi", "text": "I have fought sixty duels and not once carried a steel blade. The sword is in the mind. The mind that is disturbed, that fears death, has already lost the moment before the fight begins." },
-      { "type": "challenge", "index": 0 },
-      { "type": "narration", "text": "Musashi's philosophy — the Way of the Sword, Niten Ichi-ryū — was not merely about fighting. He believed that mastery in any discipline, from swordsmanship to painting to strategy, required the same fundamental principles." },
-      { "type": "challenge", "index": 1 },
-      { "type": "dialog", "speaker": "Miyamoto Musashi", "portraitKey": "miyamoto_musashi", "text": "The Book of Five Rings. Earth, Water, Fire, Wind, Void. Understand these elements in strategy and you will understand how any battle — in war, in business, in the mind — must be fought and won." },
-      { "type": "challenge", "index": 2 },
-      { "type": "narration", "text": "Musashi wrote The Book of Five Rings at age 60, retired to a cave. His strategic principles apply to any contest. Prove your understanding of the Way..." },
-      { "type": "challenge", "index": 3 }
-    ]
-  },
-  {
-    "era": "Renaissance",
-    "story": "Art and Science",
-    "portraitKey": null,
-    "scenes": [
-      { "type": "narration", "text": "Florence, 1490. Leonardo da Vinci dissects corpses by candlelight, paints the Mona Lisa by day, and designs flying machines in his notebooks by night. The Renaissance man is not a myth — he is one specific, astonishing person." },
-      { "type": "dialog", "speaker": "Leonardo da Vinci", "text": "The painter who knows only painting has a very small mind. The sky, the river, the muscles beneath skin, the way light bends through glass — all of it is one. Art and science are just two eyes looking at the same truth." },
-      { "type": "challenge", "index": 0 },
-      { "type": "narration", "text": "The Renaissance — meaning 'rebirth' — was a 14th-17th century explosion of art, science, and humanism centered in Italy. It drew from recovered Greek and Roman texts and produced figures whose work still shapes our world." },
-      { "type": "challenge", "index": 1 },
-      { "type": "dialog", "speaker": "Michelangelo", "text": "Four years on my back painting the Sistine ceiling. The paint drips in my eyes. My neck aches. And God reaches toward Adam's finger and they almost touch — but don't. That gap is everything. That is art." },
-      { "type": "challenge", "index": 2 }
+      {
+        "type": "narration",
+        "text": "Japan, 1604. A wandering swordsman arrives at the Yoshioka school in Kyoto — alone, unkempt, carrying a wooden sword. He has come to challenge the finest school in Japan. The students laugh. They will not laugh for long."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Miyamoto Musashi",
+        "portraitKey": "miyamoto_musashi",
+        "text": "I have fought sixty duels and not once carried a steel blade. The sword is in the mind. The mind that is disturbed, that fears death, has already lost the moment before the fight begins."
+      },
+      {
+        "type": "challenge",
+        "index": 0
+      },
+      {
+        "type": "narration",
+        "text": "Musashi's philosophy — the Way of the Sword, Niten Ichi-ryū — was not merely about fighting. He believed that mastery in any discipline, from swordsmanship to painting to strategy, required the same fundamental principles."
+      },
+      {
+        "type": "challenge",
+        "index": 1
+      },
+      {
+        "type": "dialog",
+        "speaker": "Miyamoto Musashi",
+        "portraitKey": "miyamoto_musashi",
+        "text": "The Book of Five Rings. Earth, Water, Fire, Wind, Void. Understand these elements in strategy and you will understand how any battle — in war, in business, in the mind — must be fought and won."
+      },
+      {
+        "type": "challenge",
+        "index": 2
+      },
+      {
+        "type": "narration",
+        "text": "Musashi wrote The Book of Five Rings at age 60, retired to a cave. His strategic principles apply to any contest. Prove your understanding of the Way..."
+      },
+      {
+        "type": "challenge",
+        "index": 3
+      }
     ]
   },
   {
@@ -365,28 +820,46 @@
     "story": "The Colors of Venice",
     "portraitKey": "titian",
     "scenes": [
-      { "type": "narration", "text": "Venice, 1510. The city floats on the lagoon, and its school of painting is about to float above all others. A young student of the aged Bellini is developing a technique so revolutionary it will change painting forever — not what he paints, but how." },
-      { "type": "dialog", "speaker": "Titian", "portraitKey": "titian", "text": "Bellini teaches us to build up the painting layer by layer: first the drawing, then the underpainting, then the color. I say: think in color from the first stroke. Let color carry the emotion, not the line." },
-      { "type": "challenge", "index": 0 },
-      { "type": "narration", "text": "Titian lived nearly a century and painted kings, popes, and emperors. Holy Roman Emperor Charles V reportedly stooped to pick up Titian's fallen brush — an honor no monarch had ever paid an artist." },
-      { "type": "dialog", "speaker": "Titian", "portraitKey": "titian", "text": "I do not paint men. I paint the light that falls on them. And the light that falls on a cardinal's robe is not the same light that falls on a farmer's face — because the light remembers what kind of life it has touched." },
-      { "type": "challenge", "index": 1 },
-      { "type": "challenge", "index": 2 },
-      { "type": "narration", "text": "Titian's final works — loose brushstrokes, patches of pure color — were centuries ahead of their time. He kept painting until his death at approximately 99, still pushing the boundaries of what paint could do." },
-      { "type": "challenge", "index": 3 }
-    ]
-  },
-  {
-    "era": "Renaissance",
-    "story": "The Printing Press",
-    "portraitKey": null,
-    "scenes": [
-      { "type": "narration", "text": "Mainz, Germany, 1450. Johannes Gutenberg pulls the first page from his wooden press. The ink is still wet. He doesn't know it yet — but in this moment, the medieval world ends and the modern world begins." },
-      { "type": "dialog", "speaker": "Johannes Gutenberg", "text": "Before the press, a single Bible cost a craftsman's entire life savings and took a monk two years to copy. After it, one press can produce three hundred books in the time it takes to copy one. What follows, I cannot predict." },
-      { "type": "challenge", "index": 0 },
-      { "type": "narration", "text": "The printing press did not just spread information. It created new information by enabling people to compare texts, spot contradictions, and question authorities. It triggered the Reformation, the Scientific Revolution, and modern democracy." },
-      { "type": "challenge", "index": 1 },
-      { "type": "challenge", "index": 2 }
+      {
+        "type": "narration",
+        "text": "Venice, 1510. The city floats on the lagoon, and its school of painting is about to float above all others. A young student of the aged Bellini is developing a technique so revolutionary it will change painting forever — not what he paints, but how."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Titian",
+        "portraitKey": "titian",
+        "text": "Bellini teaches us to build up the painting layer by layer: first the drawing, then the underpainting, then the color. I say: think in color from the first stroke. Let color carry the emotion, not the line."
+      },
+      {
+        "type": "challenge",
+        "index": 0
+      },
+      {
+        "type": "narration",
+        "text": "Titian lived nearly a century and painted kings, popes, and emperors. Holy Roman Emperor Charles V reportedly stooped to pick up Titian's fallen brush — an honor no monarch had ever paid an artist."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Titian",
+        "portraitKey": "titian",
+        "text": "I do not paint men. I paint the light that falls on them. And the light that falls on a cardinal's robe is not the same light that falls on a farmer's face — because the light remembers what kind of life it has touched."
+      },
+      {
+        "type": "challenge",
+        "index": 1
+      },
+      {
+        "type": "challenge",
+        "index": 2
+      },
+      {
+        "type": "narration",
+        "text": "Titian's final works — loose brushstrokes, patches of pure color — were centuries ahead of their time. He kept painting until his death at approximately 99, still pushing the boundaries of what paint could do."
+      },
+      {
+        "type": "challenge",
+        "index": 3
+      }
     ]
   },
   {
@@ -394,57 +867,97 @@
     "story": "Around the World",
     "portraitKey": "magellan",
     "scenes": [
-      { "type": "narration", "text": "Seville, September 20, 1519. Five ships and 270 men set sail westward under a Portuguese captain sailing for Spain. Ferdinand Magellan's goal is the Spice Islands. His route: westward around South America, across an unknown ocean." },
-      { "type": "dialog", "speaker": "Magellan", "portraitKey": "magellan", "text": "They say the Pacific is weeks wide. I believe it may be months. I will not share that belief with the crew. Mutiny begins in the mind before it reaches the hands." },
-      { "type": "challenge", "index": 0 },
-      { "type": "narration", "text": "The Pacific crossing nearly destroyed them. 98 days without land. The crew ate leather from the rigging. Rats sold for half a gold ducat each. Twenty-nine men died of scurvy before they reached the Philippines." },
-      { "type": "dialog", "speaker": "Magellan", "portraitKey": "magellan", "text": "I did not come this far to turn back. Whatever lies ahead — it lies ahead. We sail." },
-      { "type": "challenge", "index": 1 },
-      { "type": "narration", "text": "On April 27, 1521, Magellan was killed in the Philippines — caught in a local dispute he chose to fight. He never finished his own circumnavigation. His one remaining ship did, arriving home with 18 survivors of the original 270." },
-      { "type": "challenge", "index": 2 },
-      { "type": "challenge", "index": 3 }
+      {
+        "type": "narration",
+        "text": "Seville, September 20, 1519. Five ships and 270 men set sail westward under a Portuguese captain sailing for Spain. Ferdinand Magellan's goal is the Spice Islands. His route: westward around South America, across an unknown ocean."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Magellan",
+        "portraitKey": "magellan",
+        "text": "They say the Pacific is weeks wide. I believe it may be months. I will not share that belief with the crew. Mutiny begins in the mind before it reaches the hands."
+      },
+      {
+        "type": "challenge",
+        "index": 0
+      },
+      {
+        "type": "narration",
+        "text": "The Pacific crossing nearly destroyed them. 98 days without land. The crew ate leather from the rigging. Rats sold for half a gold ducat each. Twenty-nine men died of scurvy before they reached the Philippines."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Magellan",
+        "portraitKey": "magellan",
+        "text": "I did not come this far to turn back. Whatever lies ahead — it lies ahead. We sail."
+      },
+      {
+        "type": "challenge",
+        "index": 1
+      },
+      {
+        "type": "narration",
+        "text": "On April 27, 1521, Magellan was killed in the Philippines — caught in a local dispute he chose to fight. He never finished his own circumnavigation. His one remaining ship did, arriving home with 18 survivors of the original 270."
+      },
+      {
+        "type": "challenge",
+        "index": 2
+      },
+      {
+        "type": "challenge",
+        "index": 3
+      }
     ]
   },
   {
-    "era": "Renaissance",
-    "story": "New Worlds",
-    "portraitKey": null,
-    "scenes": [
-      { "type": "narration", "text": "Palos, Spain, August 3, 1492. Three ships — the Niña, Pinta, and Santa María — sail west into the unknown Atlantic. Columbus believes he is headed for Asia. He has no idea what he is about to find." },
-      { "type": "dialog", "speaker": "Christopher Columbus", "text": "The sailors are afraid. They say the ocean goes on forever, that we will fall off the edge. The edge does not exist. The world is round. And beyond the horizon lies... something. I am certain of it." },
-      { "type": "challenge", "index": 0 },
-      { "type": "narration", "text": "The 'Columbian Exchange' transformed the world. Potatoes, tomatoes, corn, chocolate, and tobacco moved east to Europe. Horses, cattle, wheat, and smallpox moved west. No event has shaped the modern global diet more profoundly." },
-      { "type": "challenge", "index": 1 },
-      { "type": "challenge", "index": 2 }
-    ]
-  },
-  {
-    "era": "Renaissance",
-    "story": "The Mystic Doctor",
+    "era": "Information",
+    "story": "Streets of Calcutta",
     "portraitKey": "saint_teresa",
     "scenes": [
-      { "type": "narration", "text": "Ávila, Spain, 1562. A 47-year-old Carmelite nun has just done something extraordinary — and dangerous. She has founded a new, stricter convent without permission from her superiors. In an age when the Inquisition can imprison anyone, Teresa of Ávila is about to reform the Church from within." },
-      { "type": "dialog", "speaker": "Teresa of Ávila", "portraitKey": "saint_teresa", "text": "The whole world is ablaze with heresies — Luther, Calvin, all pulling at the Church's walls. And what do we nuns do? We sit comfortably, chatting, receiving visitors. No more. We exist to pray. The reform begins here, with us." },
-      { "type": "challenge", "index": 0 },
-      { "type": "narration", "text": "Teresa's mystical experiences — levitation, visions, the sensation of her soul leaving her body — were witnessed by others in her convent. Rather than conceal them, she wrote about them with ruthless analytical precision." },
-      { "type": "dialog", "speaker": "Teresa of Ávila", "portraitKey": "saint_teresa", "text": "God is found in the pots and pans of the kitchen as easily as in the chapel. If you find Him there, carry Him everywhere. Prayer is not performed only in church — it is a posture of the entire life." },
-      { "type": "challenge", "index": 1 },
-      { "type": "dialog", "speaker": "Teresa of Ávila", "portraitKey": "saint_teresa", "text": "Let nothing disturb you, let nothing frighten you — all things pass. God never changes. Patience achieves everything. Whoever has God lacks nothing. God alone suffices." },
-      { "type": "challenge", "index": 2 },
-      { "type": "challenge", "index": 3 }
-    ]
-  },
-  {
-    "era": "Renaissance",
-    "story": "Reformation",
-    "portraitKey": null,
-    "scenes": [
-      { "type": "narration", "text": "Wittenberg, 1517. A German monk named Martin Luther nails 95 theses to a church door. He intends a scholarly debate. What he gets is a revolution that shatters the unity of European Christianity forever." },
-      { "type": "dialog", "speaker": "Martin Luther", "text": "They sell pieces of paper and call it salvation. God's grace cannot be purchased. If the Pope had the power to free souls from purgatory, why would he not free them all, out of love, without charging a single coin?" },
-      { "type": "challenge", "index": 0 },
-      { "type": "narration", "text": "Luther's ideas spread with unprecedented speed because of the printing press. Within two years, his theses had been printed in every major German city. The technology of the previous century made the next revolution inevitable." },
-      { "type": "challenge", "index": 1 },
-      { "type": "challenge", "index": 2 }
+      {
+        "type": "narration",
+        "text": "Calcutta, 1948. A slight Albanian nun steps off a train and into the most overwhelming poverty on earth. She has left her comfortable teaching post at Loreto Convent — with permission from the Vatican, but without any money, any plan, or any helpers."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Mother Teresa",
+        "portraitKey": "saint_teresa",
+        "text": "I heard a call within a call. It was a command to go to the poor and live among them. How can I teach clean, well-fed children about the love of God while the dying lie outside our gates?"
+      },
+      {
+        "type": "narration",
+        "text": "Teresa begins by washing the wounds of the sick on the streets of Motijhil, a slum behind Loreto Convent. She has no medicine, no building, no salary — only the certainty that each person is Christ in distressing disguise."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Mother Teresa",
+        "portraitKey": "saint_teresa",
+        "text": "The biggest disease today is not leprosy or tuberculosis — it is the feeling of being unwanted, uncared for, and deserted by everybody. The greatest evil is the lack of love and charity."
+      },
+      {
+        "type": "narration",
+        "text": "In 1950 she founds the Missionaries of Charity. In 1952 she opens Nirmal Hriday — Pure Heart — a home where the dying can be received from the streets and given a peaceful, dignified death, loved by someone."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Mother Teresa",
+        "portraitKey": "saint_teresa",
+        "text": "We ourselves feel that what we are doing is just a drop in the ocean. But the ocean would be less because of that missing drop."
+      },
+      {
+        "type": "narration",
+        "text": "By the 1970s her work has spread to five continents. Governments give her free transport. The Pope grants buildings. In 1979 she flies to Oslo to collect the Nobel Peace Prize — and asks that the banquet money feed the poor instead."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Mother Teresa",
+        "portraitKey": "saint_teresa",
+        "text": "Let us not be satisfied with just giving money. Money is not enough — money can be got. They need your hearts to love them. So spread your love everywhere you go."
+      },
+      {
+        "type": "narration",
+        "text": "She dies in 1997 with little to her name. The Missionaries of Charity continue in 133 countries. In 2016 she is canonised — Saint Teresa of Calcutta — patron of the poor and the unwanted."
+      }
     ]
   },
   {
@@ -452,15 +965,46 @@
     "story": "Soul Force",
     "portraitKey": "gandhi",
     "scenes": [
-      { "type": "narration", "text": "India, 1930. The British Empire controls the subcontinent of 300 million people with an army of 150,000. A 61-year-old lawyer in a loincloth is about to shake that empire to its foundations — not with weapons, but with a walk to the sea." },
-      { "type": "dialog", "speaker": "Mahatma Gandhi", "portraitKey": "gandhi", "text": "They have the guns. We have something they cannot answer: our willingness to suffer without striking back. Every blow they land on us is a blow against their own claim to civilized rule." },
-      { "type": "challenge", "index": 0 },
-      { "type": "narration", "text": "The Salt March: 240 miles on foot, 24 days, starting with 78 followers and ending with tens of thousands. Gandhi and his followers made salt from seawater in defiance of British law. 60,000 people were arrested. The world watched." },
-      { "type": "challenge", "index": 1 },
-      { "type": "dialog", "speaker": "Mahatma Gandhi", "portraitKey": "gandhi", "text": "Satyagraha — soul force. Truth force. It is not passive. It requires more courage than fighting. You must look your oppressor in the eye without hatred, accept his violence, and refuse to become like him." },
-      { "type": "challenge", "index": 2 },
-      { "type": "narration", "text": "Gandhi's path through British India required navigating complex colonial obstacles — reaching the people, the press, and the sea. Navigate his march toward the coast..." },
-      { "type": "challenge", "index": 3 }
+      {
+        "type": "narration",
+        "text": "India, 1930. The British Empire controls the subcontinent of 300 million people with an army of 150,000. A 61-year-old lawyer in a loincloth is about to shake that empire to its foundations — not with weapons, but with a walk to the sea."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Mahatma Gandhi",
+        "portraitKey": "gandhi",
+        "text": "They have the guns. We have something they cannot answer: our willingness to suffer without striking back. Every blow they land on us is a blow against their own claim to civilized rule."
+      },
+      {
+        "type": "challenge",
+        "index": 0
+      },
+      {
+        "type": "narration",
+        "text": "The Salt March: 240 miles on foot, 24 days, starting with 78 followers and ending with tens of thousands. Gandhi and his followers made salt from seawater in defiance of British law. 60,000 people were arrested. The world watched."
+      },
+      {
+        "type": "challenge",
+        "index": 1
+      },
+      {
+        "type": "dialog",
+        "speaker": "Mahatma Gandhi",
+        "portraitKey": "gandhi",
+        "text": "Satyagraha — soul force. Truth force. It is not passive. It requires more courage than fighting. You must look your oppressor in the eye without hatred, accept his violence, and refuse to become like him."
+      },
+      {
+        "type": "challenge",
+        "index": 2
+      },
+      {
+        "type": "narration",
+        "text": "Gandhi's path through British India required navigating complex colonial obstacles — reaching the people, the press, and the sea. Navigate his march toward the coast..."
+      },
+      {
+        "type": "challenge",
+        "index": 3
+      }
     ]
   },
   {
@@ -468,14 +1012,44 @@
     "story": "Keys and Concertos",
     "portraitKey": "clara_schumann",
     "scenes": [
-      { "type": "narration", "text": "Leipzig, 1838. Clara Wieck, age 18, is the most celebrated pianist in Europe. Emperors and kings have applauded her. Critics call her genius. Her father, her manager and teacher, has taken her to court to block her marriage to the young composer Robert Schumann." },
-      { "type": "dialog", "speaker": "Clara Schumann", "portraitKey": "clara_schumann", "text": "Father says a woman's place is in the salon, performing what men compose. But I compose too. I always have. Why should the music that comes from me be worth less than the music that comes from him?" },
-      { "type": "dialog", "speaker": "Robert Schumann", "portraitKey": "robert_schumann", "text": "They may try to keep us apart in law. But what Clara plays — when she sits at the piano and lets the music speak — I hear my own heart made sound. No court can silence that." },
-      { "type": "challenge", "index": 0 },
-      { "type": "narration", "text": "Clara and Robert married despite her father's legal opposition. She continued to perform and compose for decades after Robert's death, supporting their seven children through concertizing across Europe. She is now recognized as one of the 19th century's most important composers." },
-      { "type": "challenge", "index": 1 },
-      { "type": "dialog", "speaker": "Clara Schumann", "portraitKey": "clara_schumann", "text": "Johannes Brahms is here again, sitting in the corner, listening. He is twenty years younger than me. He understands music the way Robert did — as something sacred. I will champion his work for the rest of my life." },
-      { "type": "challenge", "index": 2 }
+      {
+        "type": "narration",
+        "text": "Leipzig, 1838. Clara Wieck, age 18, is the most celebrated pianist in Europe. Emperors and kings have applauded her. Critics call her genius. Her father, her manager and teacher, has taken her to court to block her marriage to the young composer Robert Schumann."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Clara Schumann",
+        "portraitKey": "clara_schumann",
+        "text": "Father says a woman's place is in the salon, performing what men compose. But I compose too. I always have. Why should the music that comes from me be worth less than the music that comes from him?"
+      },
+      {
+        "type": "dialog",
+        "speaker": "Robert Schumann",
+        "portraitKey": "robert_schumann",
+        "text": "They may try to keep us apart in law. But what Clara plays — when she sits at the piano and lets the music speak — I hear my own heart made sound. No court can silence that."
+      },
+      {
+        "type": "challenge",
+        "index": 0
+      },
+      {
+        "type": "narration",
+        "text": "Clara and Robert married despite her father's legal opposition. She continued to perform and compose for decades after Robert's death, supporting their seven children through concertizing across Europe. She is now recognized as one of the 19th century's most important composers."
+      },
+      {
+        "type": "challenge",
+        "index": 1
+      },
+      {
+        "type": "dialog",
+        "speaker": "Clara Schumann",
+        "portraitKey": "clara_schumann",
+        "text": "Johannes Brahms is here again, sitting in the corner, listening. He is twenty years younger than me. He understands music the way Robert did — as something sacred. I will champion his work for the rest of my life."
+      },
+      {
+        "type": "challenge",
+        "index": 2
+      }
     ]
   },
   {
@@ -483,15 +1057,48 @@
     "story": "The Naming of Everything",
     "portraitKey": "carl_linnaeus",
     "scenes": [
-      { "type": "narration", "text": "Uppsala, Sweden, 1735. A 28-year-old physician has just returned from a grueling nine-month journey through Lapland — 4,600 miles on foot and horseback — cataloguing 537 plants, 100 birds, and dozens of insects. He is about to impose order on all of life." },
-      { "type": "dialog", "speaker": "Carl Linnaeus", "portraitKey": "carl_linnaeus", "text": "The chaos of natural history is unbearable. Twelve thousand plants, thousands of animals — each bearing a dozen competing names in different languages. I will end this. I will give every creature one Latin name, shared by all nations, forever." },
-      { "type": "challenge", "index": 0 },
-      { "type": "narration", "text": "Linnaeus's Systema Naturae grew from 11 pages in its first edition to 2,400 pages in its twelfth. By his death he had named and classified 7,700 plants and 4,400 animals. Scientists still publish species descriptions using his system today." },
-      { "type": "dialog", "speaker": "Carl Linnaeus", "portraitKey": "carl_linnaeus", "text": "God created; Linnaeus organized. I say this not from pride but from task. Someone must build the catalog of creation. Every human, every elephant, every moss belongs to genus and species. I am its librarian." },
-      { "type": "challenge", "index": 1 },
-      { "type": "dialog", "speaker": "Carl Linnaeus", "portraitKey": "carl_linnaeus", "text": "I have placed humans among the primates in my classification. This will anger many. But a system based on anatomy cannot place humans apart from the great apes — the bones tell the same story." },
-      { "type": "challenge", "index": 2 },
-      { "type": "challenge", "index": 3 }
+      {
+        "type": "narration",
+        "text": "Uppsala, Sweden, 1735. A 28-year-old physician has just returned from a grueling nine-month journey through Lapland — 4,600 miles on foot and horseback — cataloguing 537 plants, 100 birds, and dozens of insects. He is about to impose order on all of life."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Carl Linnaeus",
+        "portraitKey": "carl_linnaeus",
+        "text": "The chaos of natural history is unbearable. Twelve thousand plants, thousands of animals — each bearing a dozen competing names in different languages. I will end this. I will give every creature one Latin name, shared by all nations, forever."
+      },
+      {
+        "type": "challenge",
+        "index": 0
+      },
+      {
+        "type": "narration",
+        "text": "Linnaeus's Systema Naturae grew from 11 pages in its first edition to 2,400 pages in its twelfth. By his death he had named and classified 7,700 plants and 4,400 animals. Scientists still publish species descriptions using his system today."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Carl Linnaeus",
+        "portraitKey": "carl_linnaeus",
+        "text": "God created; Linnaeus organized. I say this not from pride but from task. Someone must build the catalog of creation. Every human, every elephant, every moss belongs to genus and species. I am its librarian."
+      },
+      {
+        "type": "challenge",
+        "index": 1
+      },
+      {
+        "type": "dialog",
+        "speaker": "Carl Linnaeus",
+        "portraitKey": "carl_linnaeus",
+        "text": "I have placed humans among the primates in my classification. This will anger many. But a system based on anatomy cannot place humans apart from the great apes — the bones tell the same story."
+      },
+      {
+        "type": "challenge",
+        "index": 2
+      },
+      {
+        "type": "challenge",
+        "index": 3
+      }
     ]
   },
   {
@@ -499,15 +1106,46 @@
     "story": "Garden of Genetics",
     "portraitKey": "gregor_mendel",
     "scenes": [
-      { "type": "narration", "text": "Brno, Moravia, 1856. A quiet Augustinian friar tends his garden, planting peas in careful rows. He is tracking seven traits — seed color, pod shape, plant height. Over eight years he will grow 29,000 pea plants and discover the laws governing all inheritance." },
-      { "type": "dialog", "speaker": "Gregor Mendel", "portraitKey": "gregor_mendel", "text": "Dominant and recessive. These two words contain the secret of heredity. Cross a tall plant with a short one — all the offspring are tall. But the shortness is hiding, not gone. In the next generation, it returns, one in four." },
-      { "type": "challenge", "index": 0 },
-      { "type": "narration", "text": "Mendel presented his findings in 1865. The scientific community ignored them for 35 years. When his work was rediscovered in 1900, it instantly became the foundation of genetics and, eventually, of molecular biology." },
-      { "type": "challenge", "index": 1 },
-      { "type": "dialog", "speaker": "Gregor Mendel", "portraitKey": "gregor_mendel", "text": "The garden is my laboratory. The pea is my instrument. I believe that what I have found in these plants applies to all living things — including the nature that makes humans different from one another. Future scientists will confirm this." },
-      { "type": "challenge", "index": 2 },
-      { "type": "narration", "text": "Mendel's pea garden required careful routing of light for photosynthesis experiments. Redirect the light beam to separate the genetic trait columns..." },
-      { "type": "challenge", "index": 3 }
+      {
+        "type": "narration",
+        "text": "Brno, Moravia, 1856. A quiet Augustinian friar tends his garden, planting peas in careful rows. He is tracking seven traits — seed color, pod shape, plant height. Over eight years he will grow 29,000 pea plants and discover the laws governing all inheritance."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Gregor Mendel",
+        "portraitKey": "gregor_mendel",
+        "text": "Dominant and recessive. These two words contain the secret of heredity. Cross a tall plant with a short one — all the offspring are tall. But the shortness is hiding, not gone. In the next generation, it returns, one in four."
+      },
+      {
+        "type": "challenge",
+        "index": 0
+      },
+      {
+        "type": "narration",
+        "text": "Mendel presented his findings in 1865. The scientific community ignored them for 35 years. When his work was rediscovered in 1900, it instantly became the foundation of genetics and, eventually, of molecular biology."
+      },
+      {
+        "type": "challenge",
+        "index": 1
+      },
+      {
+        "type": "dialog",
+        "speaker": "Gregor Mendel",
+        "portraitKey": "gregor_mendel",
+        "text": "The garden is my laboratory. The pea is my instrument. I believe that what I have found in these plants applies to all living things — including the nature that makes humans different from one another. Future scientists will confirm this."
+      },
+      {
+        "type": "challenge",
+        "index": 2
+      },
+      {
+        "type": "narration",
+        "text": "Mendel's pea garden required careful routing of light for photosynthesis experiments. Redirect the light beam to separate the genetic trait columns..."
+      },
+      {
+        "type": "challenge",
+        "index": 3
+      }
     ]
   },
   {
@@ -515,13 +1153,38 @@
     "story": "Symphony of Shadows",
     "portraitKey": "johannes_brahms",
     "scenes": [
-      { "type": "narration", "text": "Vienna, 1876. Johannes Brahms is 43 years old and has not yet written a symphony. The ghost of Beethoven looms over him — 'the footsteps of a giant,' he calls it. Tonight, after twenty-one years of drafts and doubts, he premieres his First." },
-      { "type": "dialog", "speaker": "Johannes Brahms", "portraitKey": "johannes_brahms", "text": "You cannot hear what I hear before I write it down. The music exists perfectly in my mind — and then degrades as I put it on paper. A composer's tragedy is that the ideal is always just beyond the real." },
-      { "type": "challenge", "index": 0 },
-      { "type": "narration", "text": "Brahms was Clara Schumann's closest friend and champion of her husband Robert's music after Robert's breakdown and death. His relationship with Clara — intense, complex, never consummated — shaped his most personal compositions." },
-      { "type": "challenge", "index": 1 },
-      { "type": "dialog", "speaker": "Johannes Brahms", "portraitKey": "johannes_brahms", "text": "They say I am a conservative — a reactionary against the New German School. Wagner and Liszt may have their future. But counterpoint, structure, the sonata form — these are not antique fetters. They are the bones of music." },
-      { "type": "challenge", "index": 2 }
+      {
+        "type": "narration",
+        "text": "Vienna, 1876. Johannes Brahms is 43 years old and has not yet written a symphony. The ghost of Beethoven looms over him — 'the footsteps of a giant,' he calls it. Tonight, after twenty-one years of drafts and doubts, he premieres his First."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Johannes Brahms",
+        "portraitKey": "johannes_brahms",
+        "text": "You cannot hear what I hear before I write it down. The music exists perfectly in my mind — and then degrades as I put it on paper. A composer's tragedy is that the ideal is always just beyond the real."
+      },
+      {
+        "type": "challenge",
+        "index": 0
+      },
+      {
+        "type": "narration",
+        "text": "Brahms was Clara Schumann's closest friend and champion of her husband Robert's music after Robert's breakdown and death. His relationship with Clara — intense, complex, never consummated — shaped his most personal compositions."
+      },
+      {
+        "type": "challenge",
+        "index": 1
+      },
+      {
+        "type": "dialog",
+        "speaker": "Johannes Brahms",
+        "portraitKey": "johannes_brahms",
+        "text": "They say I am a conservative — a reactionary against the New German School. Wagner and Liszt may have their future. But counterpoint, structure, the sonata form — these are not antique fetters. They are the bones of music."
+      },
+      {
+        "type": "challenge",
+        "index": 2
+      }
     ]
   },
   {
@@ -529,16 +1192,52 @@
     "story": "The Gilded Court",
     "portraitKey": "louis_xvi",
     "scenes": [
-      { "type": "narration", "text": "Versailles, 1789. The most magnificent palace in the world sits fifteen miles from Paris, where the city's poor are paying half their income for bread. King Louis XVI is not cruel — he is weak. And in a revolution, weakness is fatal." },
-      { "type": "dialog", "speaker": "Louis XVI", "portraitKey": "louis_xvi", "text": "The treasury is empty. Three wars have bankrupted us. The nobles refuse to be taxed. The people are starving. I don't know what to do. I have never known what to do." },
-      { "type": "dialog", "speaker": "Marie Antoinette", "portraitKey": "marie_antoinette", "text": "They hate me. They call me Madame Deficit, as if I emptied the treasury alone. Louis, you must be strong. You must do something. Anything." },
-      { "type": "challenge", "index": 0 },
-      { "type": "narration", "text": "The French Revolution began not with violence but with fiscal crisis. France was bankrupt from supporting the American Revolution. When Louis XVI called the Estates-General — the first time in 175 years — he unleashed forces he could not control." },
-      { "type": "challenge", "index": 1 },
-      { "type": "dialog", "speaker": "Louis XVI", "portraitKey": "louis_xvi", "text": "They have voted to become a National Assembly. I told the court it meant nothing. But it means everything. The old world is ending. I can feel it but I cannot stop it." },
-      { "type": "challenge", "index": 2 },
-      { "type": "narration", "text": "The circuits of power in Versailles were elaborate — every decision requiring careful switching of alliances and factions. Navigate the political connections that led to the Revolution..." },
-      { "type": "challenge", "index": 3 }
+      {
+        "type": "narration",
+        "text": "Versailles, 1789. The most magnificent palace in the world sits fifteen miles from Paris, where the city's poor are paying half their income for bread. King Louis XVI is not cruel — he is weak. And in a revolution, weakness is fatal."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Louis XVI",
+        "portraitKey": "louis_xvi",
+        "text": "The treasury is empty. Three wars have bankrupted us. The nobles refuse to be taxed. The people are starving. I don't know what to do. I have never known what to do."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Marie Antoinette",
+        "portraitKey": "marie_antoinette",
+        "text": "They hate me. They call me Madame Deficit, as if I emptied the treasury alone. Louis, you must be strong. You must do something. Anything."
+      },
+      {
+        "type": "challenge",
+        "index": 0
+      },
+      {
+        "type": "narration",
+        "text": "The French Revolution began not with violence but with fiscal crisis. France was bankrupt from supporting the American Revolution. When Louis XVI called the Estates-General — the first time in 175 years — he unleashed forces he could not control."
+      },
+      {
+        "type": "challenge",
+        "index": 1
+      },
+      {
+        "type": "dialog",
+        "speaker": "Louis XVI",
+        "portraitKey": "louis_xvi",
+        "text": "They have voted to become a National Assembly. I told the court it meant nothing. But it means everything. The old world is ending. I can feel it but I cannot stop it."
+      },
+      {
+        "type": "challenge",
+        "index": 2
+      },
+      {
+        "type": "narration",
+        "text": "The circuits of power in Versailles were elaborate — every decision requiring careful switching of alliances and factions. Navigate the political connections that led to the Revolution..."
+      },
+      {
+        "type": "challenge",
+        "index": 3
+      }
     ]
   },
   {
@@ -546,15 +1245,46 @@
     "story": "Breaking Enigma",
     "portraitKey": "alan_turing",
     "scenes": [
-      { "type": "narration", "text": "Bletchley Park, 1940. The German Enigma machine produces 158 quintillion possible settings. The Nazis change the settings every 24 hours. Every day, the Allied cryptanalysts must break the code fresh. Thousands of ships and lives depend on it." },
-      { "type": "dialog", "speaker": "Alan Turing", "portraitKey": "alan_turing", "text": "The human mind searches randomly. That won't work — there are too many possibilities. We need a machine that reasons systematically. A machine that can ask: what must be true, given what we know? A machine that thinks." },
-      { "type": "challenge", "index": 0 },
-      { "type": "narration", "text": "Turing's Bombe machine could test thousands of Enigma settings per minute, narrowing the search to a manageable number. Combined with cribs — known phrases the Germans always used — it broke Enigma reliably by 1941." },
-      { "type": "challenge", "index": 1 },
-      { "type": "dialog", "speaker": "Alan Turing", "portraitKey": "alan_turing", "text": "Can a machine think? Everyone says obviously not. But why not? Define thinking. If a machine can answer any question indistinguishably from a human, what exactly is missing? The question matters more than they know." },
-      { "type": "challenge", "index": 2 },
-      { "type": "narration", "text": "The Enigma encoding required precise electrical circuit paths. Reconstruct the switch configuration that would allow the correct signal to pass through to decode the message..." },
-      { "type": "challenge", "index": 3 }
+      {
+        "type": "narration",
+        "text": "Bletchley Park, 1940. The German Enigma machine produces 158 quintillion possible settings. The Nazis change the settings every 24 hours. Every day, the Allied cryptanalysts must break the code fresh. Thousands of ships and lives depend on it."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Alan Turing",
+        "portraitKey": "alan_turing",
+        "text": "The human mind searches randomly. That won't work — there are too many possibilities. We need a machine that reasons systematically. A machine that can ask: what must be true, given what we know? A machine that thinks."
+      },
+      {
+        "type": "challenge",
+        "index": 0
+      },
+      {
+        "type": "narration",
+        "text": "Turing's Bombe machine could test thousands of Enigma settings per minute, narrowing the search to a manageable number. Combined with cribs — known phrases the Germans always used — it broke Enigma reliably by 1941."
+      },
+      {
+        "type": "challenge",
+        "index": 1
+      },
+      {
+        "type": "dialog",
+        "speaker": "Alan Turing",
+        "portraitKey": "alan_turing",
+        "text": "Can a machine think? Everyone says obviously not. But why not? Define thinking. If a machine can answer any question indistinguishably from a human, what exactly is missing? The question matters more than they know."
+      },
+      {
+        "type": "challenge",
+        "index": 2
+      },
+      {
+        "type": "narration",
+        "text": "The Enigma encoding required precise electrical circuit paths. Reconstruct the switch configuration that would allow the correct signal to pass through to decode the message..."
+      },
+      {
+        "type": "challenge",
+        "index": 3
+      }
     ]
   },
   {
@@ -562,14 +1292,42 @@
     "story": "Light Before Einstein",
     "portraitKey": "hendrik_lorentz",
     "scenes": [
-      { "type": "narration", "text": "Leiden, Netherlands, 1895. The most fundamental mystery in physics has just deepened. The Michelson-Morley experiment has proven light travels at the same speed regardless of direction — even as Earth moves through space. This should be impossible. Hendrik Lorentz is about to try to save the old theory — and accidentally lay the foundation for the new one." },
-      { "type": "dialog", "speaker": "Hendrik Lorentz", "portraitKey": "hendrik_lorentz", "text": "If Maxwell's equations describe light correctly — and they do — then moving objects must contract in the direction of motion. Time itself must stretch. These are not metaphors. They are mathematical necessities." },
-      { "type": "challenge", "index": 0 },
-      { "type": "narration", "text": "Lorentz derived the equations — now called the Lorentz transformations — describing how time and space change for objects moving near light speed. He won the Nobel Prize in 1902. Eleven years later, a young patent clerk named Einstein used those same equations — but gave them a wholly different meaning." },
-      { "type": "dialog", "speaker": "Hendrik Lorentz", "portraitKey": "hendrik_lorentz", "text": "Einstein says there is no ether. No absolute space. The transformations I derived as corrections to the old theory — he derives from first principles as the very nature of reality. He has seen further than I could. And he is right." },
-      { "type": "challenge", "index": 1 },
-      { "type": "challenge", "index": 2 },
-      { "type": "challenge", "index": 3 }
+      {
+        "type": "narration",
+        "text": "Leiden, Netherlands, 1895. The most fundamental mystery in physics has just deepened. The Michelson-Morley experiment has proven light travels at the same speed regardless of direction — even as Earth moves through space. This should be impossible. Hendrik Lorentz is about to try to save the old theory — and accidentally lay the foundation for the new one."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Hendrik Lorentz",
+        "portraitKey": "hendrik_lorentz",
+        "text": "If Maxwell's equations describe light correctly — and they do — then moving objects must contract in the direction of motion. Time itself must stretch. These are not metaphors. They are mathematical necessities."
+      },
+      {
+        "type": "challenge",
+        "index": 0
+      },
+      {
+        "type": "narration",
+        "text": "Lorentz derived the equations — now called the Lorentz transformations — describing how time and space change for objects moving near light speed. He won the Nobel Prize in 1902. Eleven years later, a young patent clerk named Einstein used those same equations — but gave them a wholly different meaning."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Hendrik Lorentz",
+        "portraitKey": "hendrik_lorentz",
+        "text": "Einstein says there is no ether. No absolute space. The transformations I derived as corrections to the old theory — he derives from first principles as the very nature of reality. He has seen further than I could. And he is right."
+      },
+      {
+        "type": "challenge",
+        "index": 1
+      },
+      {
+        "type": "challenge",
+        "index": 2
+      },
+      {
+        "type": "challenge",
+        "index": 3
+      }
     ]
   },
   {
@@ -577,13 +1335,38 @@
     "story": "Fashion Revolution",
     "portraitKey": "coco_chanel",
     "scenes": [
-      { "type": "narration", "text": "Paris, 1910. Women are still wearing whalebone corsets, suffocating layers of skirts, and hats the size of carriages. A milliner from Aubazine with a sharp eye and sharper tongue is about to liberate the female body — one design at a time." },
-      { "type": "dialog", "speaker": "Coco Chanel", "portraitKey": "coco_chanel", "text": "Fashion is not something that exists only in dresses. Fashion is in the sky, in the street. It has to do with ideas, the way we live, what is happening. The corset was a prison. I opened the door." },
-      { "type": "challenge", "index": 0 },
-      { "type": "narration", "text": "Chanel didn't just change clothes — she changed what elegance meant. Before Chanel, simplicity was poverty. After Chanel, simplicity was sophistication. The little black dress, the collarless jacket, jersey fabric — all revolutionary in their time." },
-      { "type": "challenge", "index": 1 },
-      { "type": "dialog", "speaker": "Coco Chanel", "portraitKey": "coco_chanel", "text": "I don't do fashion. I am fashion. And Chanel No. 5 — I wanted a woman's perfume that smells like a woman, not like a flower or like a lily of the valley. Something complex. Something that requires thought." },
-      { "type": "challenge", "index": 2 }
+      {
+        "type": "narration",
+        "text": "Paris, 1910. Women are still wearing whalebone corsets, suffocating layers of skirts, and hats the size of carriages. A milliner from Aubazine with a sharp eye and sharper tongue is about to liberate the female body — one design at a time."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Coco Chanel",
+        "portraitKey": "coco_chanel",
+        "text": "Fashion is not something that exists only in dresses. Fashion is in the sky, in the street. It has to do with ideas, the way we live, what is happening. The corset was a prison. I opened the door."
+      },
+      {
+        "type": "challenge",
+        "index": 0
+      },
+      {
+        "type": "narration",
+        "text": "Chanel didn't just change clothes — she changed what elegance meant. Before Chanel, simplicity was poverty. After Chanel, simplicity was sophistication. The little black dress, the collarless jacket, jersey fabric — all revolutionary in their time."
+      },
+      {
+        "type": "challenge",
+        "index": 1
+      },
+      {
+        "type": "dialog",
+        "speaker": "Coco Chanel",
+        "portraitKey": "coco_chanel",
+        "text": "I don't do fashion. I am fashion. And Chanel No. 5 — I wanted a woman's perfume that smells like a woman, not like a flower or like a lily of the valley. Something complex. Something that requires thought."
+      },
+      {
+        "type": "challenge",
+        "index": 2
+      }
     ]
   },
   {
@@ -591,14 +1374,42 @@
     "story": "Wings Over the Atlantic",
     "portraitKey": "amelia_earhart",
     "scenes": [
-      { "type": "narration", "text": "Newfoundland, May 20, 1932. A red Lockheed Vega sits on Harbour Grace airfield. The pilot climbs in alone — no navigator, minimal radio. Amelia Earhart intends to fly solo across the Atlantic Ocean. No woman has done it before. Tonight she follows Lindbergh's path — alone." },
-      { "type": "dialog", "speaker": "Amelia Earhart", "portraitKey": "amelia_earhart", "text": "Women must try to do things as men have tried. When they fail, their failure must be but a challenge to others. The most difficult thing is the decision to act. The rest is merely tenacity." },
-      { "type": "challenge", "index": 0 },
-      { "type": "narration", "text": "The flight was harrowing. Ice formed on the wings and caused a spin. Her altimeter broke. Fire broke out near the exhaust manifold. She flew through storms for 14 hours and 56 minutes — and landed in a field in Northern Ireland." },
-      { "type": "dialog", "speaker": "Amelia Earhart", "portraitKey": "amelia_earhart", "text": "A farmer walked up to my plane. He said, 'Have you come far?' I said, 'From America.' The look on his face was worth everything." },
-      { "type": "challenge", "index": 1 },
-      { "type": "challenge", "index": 2 },
-      { "type": "challenge", "index": 3 }
+      {
+        "type": "narration",
+        "text": "Newfoundland, May 20, 1932. A red Lockheed Vega sits on Harbour Grace airfield. The pilot climbs in alone — no navigator, minimal radio. Amelia Earhart intends to fly solo across the Atlantic Ocean. No woman has done it before. Tonight she follows Lindbergh's path — alone."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Amelia Earhart",
+        "portraitKey": "amelia_earhart",
+        "text": "Women must try to do things as men have tried. When they fail, their failure must be but a challenge to others. The most difficult thing is the decision to act. The rest is merely tenacity."
+      },
+      {
+        "type": "challenge",
+        "index": 0
+      },
+      {
+        "type": "narration",
+        "text": "The flight was harrowing. Ice formed on the wings and caused a spin. Her altimeter broke. Fire broke out near the exhaust manifold. She flew through storms for 14 hours and 56 minutes — and landed in a field in Northern Ireland."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Amelia Earhart",
+        "portraitKey": "amelia_earhart",
+        "text": "A farmer walked up to my plane. He said, 'Have you come far?' I said, 'From America.' The look on his face was worth everything."
+      },
+      {
+        "type": "challenge",
+        "index": 1
+      },
+      {
+        "type": "challenge",
+        "index": 2
+      },
+      {
+        "type": "challenge",
+        "index": 3
+      }
     ]
   },
   {
@@ -606,14 +1417,42 @@
     "story": "Cinema's Architect",
     "portraitKey": "sergei_eisenstein",
     "scenes": [
-      { "type": "narration", "text": "Petrograd, 1921. The Russian Revolution is two years old. The Bolsheviks urgently need an art form that speaks to the illiterate masses. A 23-year-old theatre director named Sergei Eisenstein quits the stage and picks up a camera." },
-      { "type": "dialog", "speaker": "Sergei Eisenstein", "portraitKey": "sergei_eisenstein", "text": "Cinema is not photography in motion. A film is not a play recorded. Cinema is editing — the collision of images. Two images placed side by side create a third meaning that neither contains alone. The cut is everything." },
-      { "type": "challenge", "index": 0 },
-      { "type": "narration", "text": "His 1925 film Battleship Potemkin — especially its 11-minute Odessa Steps sequence — invented visual storytelling language that every filmmaker since has borrowed. Hitchcock, Spielberg, Coppola all learned from Eisenstein." },
-      { "type": "dialog", "speaker": "Sergei Eisenstein", "portraitKey": "sergei_eisenstein", "text": "I show a grieving mother. Then I cut to soldiers firing. Then to a baby carriage rolling down the steps. The audience screams. None of those shots alone contains what they feel — only the sequence creates it." },
-      { "type": "challenge", "index": 1 },
-      { "type": "challenge", "index": 2 },
-      { "type": "challenge", "index": 3 }
+      {
+        "type": "narration",
+        "text": "Petrograd, 1921. The Russian Revolution is two years old. The Bolsheviks urgently need an art form that speaks to the illiterate masses. A 23-year-old theatre director named Sergei Eisenstein quits the stage and picks up a camera."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Sergei Eisenstein",
+        "portraitKey": "sergei_eisenstein",
+        "text": "Cinema is not photography in motion. A film is not a play recorded. Cinema is editing — the collision of images. Two images placed side by side create a third meaning that neither contains alone. The cut is everything."
+      },
+      {
+        "type": "challenge",
+        "index": 0
+      },
+      {
+        "type": "narration",
+        "text": "His 1925 film Battleship Potemkin — especially its 11-minute Odessa Steps sequence — invented visual storytelling language that every filmmaker since has borrowed. Hitchcock, Spielberg, Coppola all learned from Eisenstein."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Sergei Eisenstein",
+        "portraitKey": "sergei_eisenstein",
+        "text": "I show a grieving mother. Then I cut to soldiers firing. Then to a baby carriage rolling down the steps. The audience screams. None of those shots alone contains what they feel — only the sequence creates it."
+      },
+      {
+        "type": "challenge",
+        "index": 1
+      },
+      {
+        "type": "challenge",
+        "index": 2
+      },
+      {
+        "type": "challenge",
+        "index": 3
+      }
     ]
   },
   {
@@ -621,17 +1460,58 @@
     "story": "Top of the World",
     "portraitKey": "edmund_hillary",
     "scenes": [
-      { "type": "narration", "text": "Nepal, May 29, 1953. After five previous failed expeditions, a team of 400 people has pushed toward Everest's summit for weeks. Today, two men stand at 28,700 feet and prepare for the final push into the death zone." },
-      { "type": "dialog", "speaker": "Edmund Hillary", "portraitKey": "edmund_hillary", "text": "The summit ridge is narrow. Ice on the left, a 10,000-foot drop to Tibet on the right. Tenzing is behind me. Every step burns. I swing the ice-axe and cut a step. Another. Another." },
-      { "type": "dialog", "speaker": "Tenzing Norgay", "portraitKey": "tenzing_norgay", "text": "I am the ninth of thirteen children from a Sherpa family. Chomolungma is our mountain — the goddess mother of the world. I have tried to climb her six times. Today, I believe she will allow us to touch her crown." },
-      { "type": "challenge", "index": 0 },
-      { "type": "narration", "text": "They reached the summit at 11:30 AM. Hillary photographed Tenzing holding four flags — Nepal, Britain, the United Nations, and India. Tenzing pressed chocolate into the snow as an offering to the mountain." },
-      { "type": "dialog", "speaker": "Edmund Hillary", "portraitKey": "edmund_hillary", "text": "Well, we knocked the bastard off." },
-      { "type": "dialog", "speaker": "Tenzing Norgay", "portraitKey": "tenzing_norgay", "text": "Chomolungma has been kind to us today. I do not feel we have conquered her. She has allowed us to touch her crown." },
-      { "type": "challenge", "index": 1 },
-      { "type": "narration", "text": "Their partnership was perfect: Hillary, the New Zealand beekeeper with mountaineering skill; Tenzing, the Sherpa with intimate knowledge of Everest and unmatched high-altitude experience. Neither could have done it without the other." },
-      { "type": "challenge", "index": 2 },
-      { "type": "challenge", "index": 3 }
+      {
+        "type": "narration",
+        "text": "Nepal, May 29, 1953. After five previous failed expeditions, a team of 400 people has pushed toward Everest's summit for weeks. Today, two men stand at 28,700 feet and prepare for the final push into the death zone."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Edmund Hillary",
+        "portraitKey": "edmund_hillary",
+        "text": "The summit ridge is narrow. Ice on the left, a 10,000-foot drop to Tibet on the right. Tenzing is behind me. Every step burns. I swing the ice-axe and cut a step. Another. Another."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Tenzing Norgay",
+        "portraitKey": "tenzing_norgay",
+        "text": "I am the ninth of thirteen children from a Sherpa family. Chomolungma is our mountain — the goddess mother of the world. I have tried to climb her six times. Today, I believe she will allow us to touch her crown."
+      },
+      {
+        "type": "challenge",
+        "index": 0
+      },
+      {
+        "type": "narration",
+        "text": "They reached the summit at 11:30 AM. Hillary photographed Tenzing holding four flags — Nepal, Britain, the United Nations, and India. Tenzing pressed chocolate into the snow as an offering to the mountain."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Edmund Hillary",
+        "portraitKey": "edmund_hillary",
+        "text": "Well, we knocked the bastard off."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Tenzing Norgay",
+        "portraitKey": "tenzing_norgay",
+        "text": "Chomolungma has been kind to us today. I do not feel we have conquered her. She has allowed us to touch her crown."
+      },
+      {
+        "type": "challenge",
+        "index": 1
+      },
+      {
+        "type": "narration",
+        "text": "Their partnership was perfect: Hillary, the New Zealand beekeeper with mountaineering skill; Tenzing, the Sherpa with intimate knowledge of Everest and unmatched high-altitude experience. Neither could have done it without the other."
+      },
+      {
+        "type": "challenge",
+        "index": 2
+      },
+      {
+        "type": "challenge",
+        "index": 3
+      }
     ]
   },
   {
@@ -639,15 +1519,46 @@
     "story": "The Long March",
     "portraitKey": "mao_zedong",
     "scenes": [
-      { "type": "narration", "text": "Jiangxi Province, October 1934. Surrounded by Chiang Kai-shek's nationalist forces, 86,000 Communist soldiers begin an impossible retreat — a march of over 9,000 kilometers through mountains, swamps, and hostile territory. Only 8,000 will complete it." },
-      { "type": "dialog", "speaker": "Mao Zedong", "portraitKey": "mao_zedong", "text": "The revolution has not failed. The revolution is retreating — to regroup, to learn, to grow stronger. From defeat, we draw the lessons that will bring victory. This is not the end. This is the beginning." },
-      { "type": "challenge", "index": 0 },
-      { "type": "narration", "text": "The Long March became the founding myth of Chinese Communist power. Those who completed it became an elite — the hardened core around which the People's Republic would be built fifteen years later." },
-      { "type": "challenge", "index": 1 },
-      { "type": "dialog", "speaker": "Mao Zedong", "portraitKey": "mao_zedong", "text": "China is like a blank sheet of paper. It is possible to write the most beautiful characters on blank paper. The old China — feudal, exploited, humiliated — must be swept clean before the new one can be written." },
-      { "type": "challenge", "index": 2 },
-      { "type": "narration", "text": "The Long March route wound through the most treacherous terrain in China. Navigate the mountain passes to reach the safety of Yan'an..." },
-      { "type": "challenge", "index": 3 }
+      {
+        "type": "narration",
+        "text": "Jiangxi Province, October 1934. Surrounded by Chiang Kai-shek's nationalist forces, 86,000 Communist soldiers begin an impossible retreat — a march of over 9,000 kilometers through mountains, swamps, and hostile territory. Only 8,000 will complete it."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Mao Zedong",
+        "portraitKey": "mao_zedong",
+        "text": "The revolution has not failed. The revolution is retreating — to regroup, to learn, to grow stronger. From defeat, we draw the lessons that will bring victory. This is not the end. This is the beginning."
+      },
+      {
+        "type": "challenge",
+        "index": 0
+      },
+      {
+        "type": "narration",
+        "text": "The Long March became the founding myth of Chinese Communist power. Those who completed it became an elite — the hardened core around which the People's Republic would be built fifteen years later."
+      },
+      {
+        "type": "challenge",
+        "index": 1
+      },
+      {
+        "type": "dialog",
+        "speaker": "Mao Zedong",
+        "portraitKey": "mao_zedong",
+        "text": "China is like a blank sheet of paper. It is possible to write the most beautiful characters on blank paper. The old China — feudal, exploited, humiliated — must be swept clean before the new one can be written."
+      },
+      {
+        "type": "challenge",
+        "index": 2
+      },
+      {
+        "type": "narration",
+        "text": "The Long March route wound through the most treacherous terrain in China. Navigate the mountain passes to reach the safety of Yan'an..."
+      },
+      {
+        "type": "challenge",
+        "index": 3
+      }
     ]
   },
   {
@@ -655,14 +1566,44 @@
     "story": "A Martyr's Bullet",
     "portraitKey": "an_jung_geun",
     "scenes": [
-      { "type": "narration", "text": "Harbin railway station, Manchuria, October 26, 1909. Korean independence activist Ahn Jung-geun waits on the platform. Japan's most powerful statesman — Itō Hirobumi, the architect of Korea's annexation — is about to step from the train." },
-      { "type": "dialog", "speaker": "Itō Hirobumi", "portraitKey": "ito_hirobumi", "text": "Japan brings civilization to Korea — modern law, railways, schools. History will judge this as progress. The old feudal order could not last. Someone would come. We came first." },
-      { "type": "dialog", "speaker": "Ahn Jung-geun", "portraitKey": "an_jung_geun", "text": "I am not a criminal. I am a soldier of the Korean resistance. I have listed fifteen crimes against Itō before God and history. He knows what he has done. So do I." },
-      { "type": "challenge", "index": 0 },
-      { "type": "narration", "text": "Ahn Jung-geun spent his final weeks writing treatises on Asian peace and human dignity. He was executed in 1910 — the same year Japan formally annexed Korea. He is still regarded as a national hero in Korea and China." },
-      { "type": "challenge", "index": 1 },
-      { "type": "dialog", "speaker": "Ahn Jung-geun", "portraitKey": "an_jung_geun", "text": "I dream not of revenge, but of East Asia standing together: Korea, China, Japan — in true partnership. The bullets of empire produce only more empire. But I had no other weapon left." },
-      { "type": "challenge", "index": 2 }
+      {
+        "type": "narration",
+        "text": "Harbin railway station, Manchuria, October 26, 1909. Korean independence activist Ahn Jung-geun waits on the platform. Japan's most powerful statesman — Itō Hirobumi, the architect of Korea's annexation — is about to step from the train."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Itō Hirobumi",
+        "portraitKey": "ito_hirobumi",
+        "text": "Japan brings civilization to Korea — modern law, railways, schools. History will judge this as progress. The old feudal order could not last. Someone would come. We came first."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Ahn Jung-geun",
+        "portraitKey": "an_jung_geun",
+        "text": "I am not a criminal. I am a soldier of the Korean resistance. I have listed fifteen crimes against Itō before God and history. He knows what he has done. So do I."
+      },
+      {
+        "type": "challenge",
+        "index": 0
+      },
+      {
+        "type": "narration",
+        "text": "Ahn Jung-geun spent his final weeks writing treatises on Asian peace and human dignity. He was executed in 1910 — the same year Japan formally annexed Korea. He is still regarded as a national hero in Korea and China."
+      },
+      {
+        "type": "challenge",
+        "index": 1
+      },
+      {
+        "type": "dialog",
+        "speaker": "Ahn Jung-geun",
+        "portraitKey": "an_jung_geun",
+        "text": "I dream not of revenge, but of East Asia standing together: Korea, China, Japan — in true partnership. The bullets of empire produce only more empire. But I had no other weapon left."
+      },
+      {
+        "type": "challenge",
+        "index": 2
+      }
     ]
   },
   {
@@ -670,13 +1611,38 @@
     "story": "The Gilded Age",
     "portraitKey": "andrew_mellon",
     "scenes": [
-      { "type": "narration", "text": "Pittsburgh, 1890. Smoke blackens the sky above the steel mills. Carnegie, Rockefeller, Morgan — the titans of American industry are building fortunes that dwarf the GDP of most nations. Andrew Mellon watches, calculates, and invests." },
-      { "type": "dialog", "speaker": "Andrew Mellon", "portraitKey": "andrew_mellon", "text": "Capital is not evil. Capital is energy. Channel it correctly — fund the right industries, back the right men — and it lifts everyone. Channel it wrongly and you get monopoly, exploitation, and revolution." },
-      { "type": "challenge", "index": 0 },
-      { "type": "narration", "text": "Mellon served as Treasury Secretary through three presidencies. His deep tax cuts in the 1920s fueled the economic boom — and critics say contributed to the inequality that preceded the Great Crash of 1929." },
-      { "type": "challenge", "index": 1 },
-      { "type": "dialog", "speaker": "Andrew Mellon", "portraitKey": "andrew_mellon", "text": "I will give the National Gallery to the people of the United States — the most significant collection of art ever assembled, for a country that did not always believe it deserved such things. Wealth must eventually serve beauty." },
-      { "type": "challenge", "index": 2 }
+      {
+        "type": "narration",
+        "text": "Pittsburgh, 1890. Smoke blackens the sky above the steel mills. Carnegie, Rockefeller, Morgan — the titans of American industry are building fortunes that dwarf the GDP of most nations. Andrew Mellon watches, calculates, and invests."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Andrew Mellon",
+        "portraitKey": "andrew_mellon",
+        "text": "Capital is not evil. Capital is energy. Channel it correctly — fund the right industries, back the right men — and it lifts everyone. Channel it wrongly and you get monopoly, exploitation, and revolution."
+      },
+      {
+        "type": "challenge",
+        "index": 0
+      },
+      {
+        "type": "narration",
+        "text": "Mellon served as Treasury Secretary through three presidencies. His deep tax cuts in the 1920s fueled the economic boom — and critics say contributed to the inequality that preceded the Great Crash of 1929."
+      },
+      {
+        "type": "challenge",
+        "index": 1
+      },
+      {
+        "type": "dialog",
+        "speaker": "Andrew Mellon",
+        "portraitKey": "andrew_mellon",
+        "text": "I will give the National Gallery to the people of the United States — the most significant collection of art ever assembled, for a country that did not always believe it deserved such things. Wealth must eventually serve beauty."
+      },
+      {
+        "type": "challenge",
+        "index": 2
+      }
     ]
   },
   {
@@ -684,15 +1650,46 @@
     "story": "Breakfast at Tiffany's",
     "portraitKey": "audrey_hepburn",
     "scenes": [
-      { "type": "narration", "text": "Hollywood, 1953. A twenty-four year old Belgian actress arrives from the London stage. Her face is unlike any Hollywood had seen — all cheekbones and enormous dark eyes. Within a year she will win an Oscar, a Tony, and change what beauty means to an entire generation." },
-      { "type": "dialog", "speaker": "Audrey Hepburn", "portraitKey": "audrey_hepburn", "text": "I was a war child. I was hungry — truly hungry, as a child in occupied Netherlands. That changes you. I cannot look at abundance without thinking of those who have none. Which is why, in the end, UNICEF matters more to me than cinema." },
-      { "type": "challenge", "index": 0 },
-      { "type": "narration", "text": "In her final years, Hepburn served as a UNICEF Goodwill Ambassador, traveling to Somalia, Ethiopia, Sudan, and Bangladesh — places far from Hollywood's lights. She called her humanitarian work her greatest role." },
-      { "type": "challenge", "index": 1 },
-      { "type": "dialog", "speaker": "Audrey Hepburn", "portraitKey": "audrey_hepburn", "text": "I believe in pink. I believe that laughing is the best calorie burner. I believe in kissing, kissing a lot. I believe in being strong when everything seems to be going wrong. I believe that happy girls are the prettiest girls." },
-      { "type": "challenge", "index": 2 },
-      { "type": "narration", "text": "Audrey's path from wartime Netherlands to Hollywood stardom was a journey through chaos and reinvention. Navigate her story to reach the iconic moment..." },
-      { "type": "challenge", "index": 3 }
+      {
+        "type": "narration",
+        "text": "Hollywood, 1953. A twenty-four year old Belgian actress arrives from the London stage. Her face is unlike any Hollywood had seen — all cheekbones and enormous dark eyes. Within a year she will win an Oscar, a Tony, and change what beauty means to an entire generation."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Audrey Hepburn",
+        "portraitKey": "audrey_hepburn",
+        "text": "I was a war child. I was hungry — truly hungry, as a child in occupied Netherlands. That changes you. I cannot look at abundance without thinking of those who have none. Which is why, in the end, UNICEF matters more to me than cinema."
+      },
+      {
+        "type": "challenge",
+        "index": 0
+      },
+      {
+        "type": "narration",
+        "text": "In her final years, Hepburn served as a UNICEF Goodwill Ambassador, traveling to Somalia, Ethiopia, Sudan, and Bangladesh — places far from Hollywood's lights. She called her humanitarian work her greatest role."
+      },
+      {
+        "type": "challenge",
+        "index": 1
+      },
+      {
+        "type": "dialog",
+        "speaker": "Audrey Hepburn",
+        "portraitKey": "audrey_hepburn",
+        "text": "I believe in pink. I believe that laughing is the best calorie burner. I believe in kissing, kissing a lot. I believe in being strong when everything seems to be going wrong. I believe that happy girls are the prettiest girls."
+      },
+      {
+        "type": "challenge",
+        "index": 2
+      },
+      {
+        "type": "narration",
+        "text": "Audrey's path from wartime Netherlands to Hollywood stardom was a journey through chaos and reinvention. Navigate her story to reach the iconic moment..."
+      },
+      {
+        "type": "challenge",
+        "index": 3
+      }
     ]
   },
   {
@@ -700,68 +1697,42 @@
     "story": "Moonwalk",
     "portraitKey": "michael_jackson",
     "scenes": [
-      { "type": "narration", "text": "Gary, Indiana, 1969. A ten-year-old boy steps on stage with four older brothers. He stops the show. In the audience, Motown founder Berry Gordy watches in silence. Then: 'That kid is going to be a star.'" },
-      { "type": "dialog", "speaker": "Michael Jackson", "portraitKey": "michael_jackson", "text": "I watched James Brown's feet. The way they moved — it was like electricity from the earth was going through him. I practiced until my feet could do what his did. And then I made them do something else." },
-      { "type": "challenge", "index": 0 },
-      { "type": "narration", "text": "Thriller — released in 1982 — became the best-selling album of all time. Its 14-minute title-track music video was the first video to transform MTV. The moonwalk, performed live on television in 1983, instantly became the most iconic dance move in history." },
-      { "type": "dialog", "speaker": "Michael Jackson", "portraitKey": "michael_jackson", "text": "I just wanted to give the audience something they had never seen before. I didn't think about whether it was possible. I thought about what it would look like when I got it right." },
-      { "type": "challenge", "index": 1 },
-      { "type": "challenge", "index": 2 },
-      { "type": "challenge", "index": 3 }
-    ]
-  },
-  {
-    "era": "Information",
-    "story": "The Digital Revolution",
-    "portraitKey": null,
-    "scenes": [
-      { "type": "narration", "text": "Menlo Park, 1971. Intel releases the 4004 — the world's first commercial microprocessor. It has 2,300 transistors. By 2023, a single chip will contain 100 billion. The digital revolution begins not with a bang but with a chip the size of a fingernail." },
-      { "type": "dialog", "speaker": "Steve Jobs", "text": "We're here to put a dent in the universe. Otherwise why else even be here? The people who are crazy enough to think they can change the world are the ones who do." },
-      { "type": "challenge", "index": 0 },
-      { "type": "narration", "text": "Moore's Law — Gordon Moore's 1965 observation that transistor counts double roughly every two years — held for fifty years, driving an exponential improvement in computing power that transformed every industry on Earth." },
-      { "type": "challenge", "index": 1 },
-      { "type": "dialog", "speaker": "Tim Berners-Lee", "text": "The Web is not a technology. It is an agreement — a shared protocol for sharing information without needing to ask anyone's permission. That openness is what made it change everything. If I had patented it, none of this exists." },
-      { "type": "challenge", "index": 2 },
-      { "type": "challenge", "index": 3 }
-    ]
-  },
-  {
-    "era": "Information",
-    "story": "The Global Village",
-    "portraitKey": null,
-    "scenes": [
-      { "type": "narration", "text": "1989. The Berlin Wall falls live on television, watched by a billion people simultaneously. It is the first true global media moment. Marshall McLuhan predicted it in 1964: the world was becoming a village — connected by electric media, impossibly close." },
-      { "type": "dialog", "speaker": "Marshall McLuhan", "text": "The medium is the message. It's not what television says that matters — it's what television does to the brain that's watching. Electronic media creates a global nervous system. We feel each other's pain now, instantly, everywhere." },
-      { "type": "challenge", "index": 0 },
-      { "type": "narration", "text": "Globalization accelerated after 1989 with the fall of communism, the rise of the internet, and the WTO. Supply chains, capital markets, and cultural products became planetary in scope — with both liberating and destabilizing effects." },
-      { "type": "challenge", "index": 1 },
-      { "type": "challenge", "index": 2 }
-    ]
-  },
-  {
-    "era": "Information",
-    "story": "Climate Reckoning",
-    "portraitKey": null,
-    "scenes": [
-      { "type": "narration", "text": "Mauna Loa Observatory, 1958. Charles Keeling begins measuring atmospheric CO2. The reading is 315 parts per million. By 2023 it will be 421 — higher than at any point in the last 800,000 years. The curve rises like a patient accusation." },
-      { "type": "dialog", "speaker": "James Hansen", "text": "I testified to Congress in 1988: global warming is here. Not coming — here. The Earth is warmer now than at any point in recorded history, and we are the cause. We have known this for decades. The question is what we will do with knowing." },
-      { "type": "challenge", "index": 0 },
-      { "type": "narration", "text": "The IPCC — Intergovernmental Panel on Climate Change — synthesizes thousands of scientific papers to produce consensus reports. Its findings have grown more urgent with every publication since its founding in 1988." },
-      { "type": "challenge", "index": 1 },
-      { "type": "challenge", "index": 2 }
-    ]
-  },
-  {
-    "era": "Information",
-    "story": "The New Frontier",
-    "portraitKey": null,
-    "scenes": [
-      { "type": "narration", "text": "Boca Chica, Texas, 2023. A rocket taller than the Statue of Liberty stands on the launch pad. It is the most powerful machine humanity has ever built. Its goal: to make our species multi-planetary within a generation." },
-      { "type": "dialog", "speaker": "Elon Musk", "text": "You want to wake up in the morning and think the future is going to be great. That's what being a spacefaring civilization is about. It's about believing in the future and thinking that the future will be better than the past." },
-      { "type": "challenge", "index": 0 },
-      { "type": "narration", "text": "The Space Race of the 1960s was driven by Cold War politics. The new space age is driven by private capital. SpaceX, Blue Origin, and dozens of other companies have reduced the cost of reaching orbit by a factor of twenty since 2000." },
-      { "type": "challenge", "index": 1 },
-      { "type": "challenge", "index": 2 }
+      {
+        "type": "narration",
+        "text": "Gary, Indiana, 1969. A ten-year-old boy steps on stage with four older brothers. He stops the show. In the audience, Motown founder Berry Gordy watches in silence. Then: 'That kid is going to be a star.'"
+      },
+      {
+        "type": "dialog",
+        "speaker": "Michael Jackson",
+        "portraitKey": "michael_jackson",
+        "text": "I watched James Brown's feet. The way they moved — it was like electricity from the earth was going through him. I practiced until my feet could do what his did. And then I made them do something else."
+      },
+      {
+        "type": "challenge",
+        "index": 0
+      },
+      {
+        "type": "narration",
+        "text": "Thriller — released in 1982 — became the best-selling album of all time. Its 14-minute title-track music video was the first video to transform MTV. The moonwalk, performed live on television in 1983, instantly became the most iconic dance move in history."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Michael Jackson",
+        "portraitKey": "michael_jackson",
+        "text": "I just wanted to give the audience something they had never seen before. I didn't think about whether it was possible. I thought about what it would look like when I got it right."
+      },
+      {
+        "type": "challenge",
+        "index": 1
+      },
+      {
+        "type": "challenge",
+        "index": 2
+      },
+      {
+        "type": "challenge",
+        "index": 3
+      }
     ]
   }
 ]

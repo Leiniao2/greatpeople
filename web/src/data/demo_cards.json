@@ -753,12 +753,12 @@
   },
   {
     "id": "demo-34",
-    "figureName": "Teresa of Ávila",
-    "era": "Renaissance",
+    "figureName": "Mother Teresa",
+    "era": "Information",
     "gender": "female",
     "identities": [
       "Priest",
-      "Writer"
+      "Humanitarian"
     ],
     "portraitKey": "saint_teresa",
     "politics": 12,
@@ -769,10 +769,10 @@
     "technique": 5,
     "belief": 22,
     "reputation": 16,
-    "lore": "She reformed a faith and described the soul's journey to God with surgical precision.",
-    "trait": "Mystical Union — When Belief wins a round at this location, this card gains an Achievement Tick in addition to normal scoring.",
-    "achievement": "Mystic — when Belief wins 4 rounds, generate 1 winning point.",
-    "years": "1515–1582"
+    "lore": "She left the convent walls to cradle the dying in Calcutta's gutters — and sparked a worldwide movement of radical compassion.",
+    "trait": "Radical Compassion — When Belief wins a round at this location, this card gains an Achievement Tick in addition to normal scoring.",
+    "achievement": "Missionary — when Belief wins 4 rounds, generate 1 winning point.",
+    "years": "1910–1997"
   },
   {
     "id": "demo-35",

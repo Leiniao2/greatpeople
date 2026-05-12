@@ -28,20 +28,6 @@
     "quizzes": 4
   },
   {
-    "era": "Ancient",
-    "title": "Sacred Medicine",
-    "figure": null,
-    "tagline": "Before hospitals, healers walked between temples and tombs.",
-    "quizzes": 4
-  },
-  {
-    "era": "Ancient",
-    "title": "River Civilizations",
-    "figure": null,
-    "tagline": "Where rivers meet, the first cities rise.",
-    "quizzes": 3
-  },
-  {
     "era": "Classical",
     "title": "The Elements",
     "figure": "Euclid",
@@ -68,34 +54,6 @@
     "figure": "Anaxagoras",
     "tagline": "The philosopher who dared say the sun is a rock, not a god.",
     "quizzes": 4
-  },
-  {
-    "era": "Classical",
-    "title": "Senate and Forum",
-    "figure": null,
-    "tagline": "Power and oratory — the twin engines of the Roman Republic.",
-    "quizzes": 4
-  },
-  {
-    "era": "Classical",
-    "title": "Philosophy of Athens",
-    "figure": null,
-    "tagline": "A city where questioning everything was both virtue and danger.",
-    "quizzes": 3
-  },
-  {
-    "era": "Classical",
-    "title": "Olympic Games",
-    "figure": null,
-    "tagline": "Every four years, the warring city-states lay down their weapons.",
-    "quizzes": 3
-  },
-  {
-    "era": "Classical",
-    "title": "Eastern Trade",
-    "figure": null,
-    "tagline": "Silk, spice, and ideas flow along roads older than Rome.",
-    "quizzes": 3
   },
   {
     "era": "Medieval",
@@ -155,24 +113,10 @@
   },
   {
     "era": "Renaissance",
-    "title": "Art and Science",
-    "figure": null,
-    "tagline": "In the workshops of Florence, art and science become the same pursuit.",
-    "quizzes": 4
-  },
-  {
-    "era": "Renaissance",
     "title": "The Colors of Venice",
     "figure": "Titian",
     "tagline": "The last great master sets his canvas ablaze with color and light.",
     "quizzes": 4
-  },
-  {
-    "era": "Renaissance",
-    "title": "The Printing Press",
-    "figure": null,
-    "tagline": "A single invention shatters the Church's monopoly on knowledge.",
-    "quizzes": 3
   },
   {
     "era": "Renaissance",
@@ -182,24 +126,10 @@
     "quizzes": 4
   },
   {
-    "era": "Renaissance",
-    "title": "New Worlds",
-    "figure": null,
-    "tagline": "Two continents unknown to Europe rewrite the map of the world.",
-    "quizzes": 3
-  },
-  {
-    "era": "Renaissance",
-    "title": "The Mystic Doctor",
-    "figure": "Teresa of Ávila",
-    "tagline": "A nun reforms the Church from the inside — with a quill and an iron will.",
-    "quizzes": 4
-  },
-  {
-    "era": "Renaissance",
-    "title": "Reformation",
-    "figure": null,
-    "tagline": "A monk nails 95 theses to a door, and nothing is the same again.",
+    "era": "Information",
+    "title": "Streets of Calcutta",
+    "figure": "Mother Teresa",
+    "tagline": "A nun leaves the convent walls to serve the dying in the gutters of Calcutta.",
     "quizzes": 3
   },
   {
@@ -320,33 +250,5 @@
     "figure": "Michael Jackson",
     "tagline": "The King of Pop changes the world one performance at a time.",
     "quizzes": 4
-  },
-  {
-    "era": "Information",
-    "title": "The Digital Revolution",
-    "figure": null,
-    "tagline": "From transistors to the internet — the transformation of everything.",
-    "quizzes": 4
-  },
-  {
-    "era": "Information",
-    "title": "The Global Village",
-    "figure": null,
-    "tagline": "The world shrinks. Every voice can now reach every other voice.",
-    "quizzes": 3
-  },
-  {
-    "era": "Information",
-    "title": "Climate Reckoning",
-    "figure": null,
-    "tagline": "The bill for two centuries of progress comes due.",
-    "quizzes": 3
-  },
-  {
-    "era": "Information",
-    "title": "The New Frontier",
-    "figure": null,
-    "tagline": "From the Moon to Mars — humanity looks beyond its home.",
-    "quizzes": 3
   }
 ]

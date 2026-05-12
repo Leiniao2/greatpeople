@@ -24,9 +24,9 @@
       },
       {
         "type": "minigame",
-        "game": "maze",
-        "configId": "pyramid-deep",
-        "instruction": "Navigate Imhotep through THREE sacred burial chambers. Find the portal (▲) to descend to the next level!",
+        "game": "maze3d",
+        "configId": "himalayan-climb",
+        "instruction": "Navigate the treacherous passages deep inside the Great Pyramid",
         "fact": "The Step Pyramid of Djoser has six tiers and a subterranean maze of corridors. Imhotep designed every one."
       }
     ]
@@ -88,9 +88,9 @@
       },
       {
         "type": "minigame",
-        "game": "maze",
-        "configId": "gilgamesh",
-        "instruction": "Guide Gilgamesh through the labyrinthine streets of Uruk to find the Cedar Forest gate.",
+        "game": "maze3d",
+        "configId": "pacific-voyage",
+        "instruction": "Guide Gilgamesh through the Cedar Forest in search of glory",
         "fact": "Uruk was one of the world's earliest cities — home to 50,000–80,000 people in 3000 BCE. Gilgamesh was its legendary king and builder of its great walls."
       }
     ]
@@ -118,70 +118,6 @@
         "configId": "euclid",
         "instruction": "Prove Euclid's law of reflection — redirect the light beam to hit the target using mirrors.",
         "fact": "Euclid wrote 'Optica', one of the earliest works on optics and perspective, laying the groundwork for understanding how light behaves."
-      }
-    ]
-  },
-  {
-    "era": "Ancient",
-    "story": "Sacred Medicine",
-    "challenges": [
-      {
-        "type": "quiz",
-        "question": "In ancient Egypt, physicians were also:",
-        "options": [
-          "Warriors",
-          "Scribes only",
-          "Priests",
-          "Tax collectors"
-        ],
-        "answer": 2,
-        "fact": "Egyptian medicine was inseparable from religion. Doctors were trained in the Houses of Life attached to temples, and medical knowledge was considered divine wisdom passed from Thoth, the god of learning."
-      },
-      {
-        "type": "minigame",
-        "game": "painting",
-        "configId": "imhotep-temple",
-        "instruction": "Paint Imhotep's healing temple — where columns, herbs, and sacred geometry came together in Egyptian medicine.",
-        "fact": "The Edwin Smith Papyrus (c. 1600 BCE) contains the world's oldest rational medical analysis — 48 cases described and treated without magic, just observation. Imhotep was venerated as its patron."
-      },
-      {
-        "type": "minigame",
-        "game": "sliding",
-        "configId": "pyramid",
-        "instruction": "Rearrange the ancient stone tablets to reveal the medical knowledge of the pharaohs.",
-        "fact": "Ancient Egyptians successfully performed brain surgeries, treated broken bones with splints, and had specialist physicians — one inscription lists 'doctor of the left eye' and 'doctor of the right eye' as separate roles."
-      }
-    ]
-  },
-  {
-    "era": "Ancient",
-    "story": "River Civilizations",
-    "challenges": [
-      {
-        "type": "quiz",
-        "question": "The word 'Mesopotamia' means:",
-        "options": [
-          "Land of the gods",
-          "Land between two rivers",
-          "City of stone",
-          "Home of the stars"
-        ],
-        "answer": 1,
-        "fact": "Mesopotamia — from Greek meso (middle) and potamos (river) — sat between the Tigris and Euphrates. Their annual floods deposited rich silt, making this the cradle of agriculture, cities, and writing."
-      },
-      {
-        "type": "minigame",
-        "game": "geometry",
-        "configId": "triangle-sum",
-        "instruction": "Ancient surveyors used triangles to re-draw field boundaries after floods. Find the missing angle.",
-        "fact": "Flooding was both a blessing (fertile soil) and a problem (erased land boundaries). Egyptian rope-stretchers — harpedonaptai — redrew field borders using geometric triangles every year after the Nile receded."
-      },
-      {
-        "type": "minigame",
-        "game": "painting",
-        "configId": "egyptian-sunset",
-        "instruction": "Paint the ancient Egyptian river civilisation at dusk — where the Nile meets the desert sky.",
-        "fact": "The Sumerians invented writing (cuneiform), the wheel, and the sexagesimal number system (base 60) — which is why we have 60 seconds in a minute and 360 degrees in a circle."
       }
     ]
   },
@@ -304,128 +240,6 @@
         "configId": "anaxagoras",
         "instruction": "Anaxagoras claimed the sun is a fiery rock. Direct its light to prove his revolutionary theory.",
         "fact": "The Pre-Socratics were the world's first scientists — they sought natural explanations for natural events. Anaxagoras introduced the concept of Nous (mind or reason) as the force organising the universe."
-      }
-    ]
-  },
-  {
-    "era": "Classical",
-    "story": "Senate and Forum",
-    "challenges": [
-      {
-        "type": "quiz",
-        "question": "The Roman Senate originally had how many members?",
-        "options": [
-          "100",
-          "300",
-          "500",
-          "1000"
-        ],
-        "answer": 1,
-        "fact": "Tradition holds Romulus created a Senate of 100 elders. By the late Republic it had grown to 600–900 members. The word 'senate' comes from Latin senex, meaning old man."
-      },
-      {
-        "type": "minigame",
-        "game": "geometry",
-        "configId": "hexagon-interior",
-        "instruction": "Roman mosaics used hexagonal tiles for their efficient coverage. Calculate the hexagon's interior angle.",
-        "fact": "Roman engineers were masters of geometry — they built roads so straight that some are still followed today, aqueducts with a perfect gradient of 1 in 4,800, and domes that stood for 2,000 years."
-      },
-      {
-        "type": "minigame",
-        "game": "crossword",
-        "configId": "pericles",
-        "instruction": "Test your knowledge of classical Athens and Rome — the twin pillars of Western democratic thought.",
-        "fact": "The Roman Republic borrowed heavily from Athenian democracy: Senate debates, elected magistrates, and the concept of res publica (the public thing) all echo Periclean Athens."
-      }
-    ]
-  },
-  {
-    "era": "Classical",
-    "story": "Philosophy of Athens",
-    "challenges": [
-      {
-        "type": "quiz",
-        "question": "Socrates wrote:",
-        "options": [
-          "The Republic",
-          "Dialogues",
-          "The Nicomachean Ethics",
-          "Nothing — he only spoke"
-        ],
-        "answer": 3,
-        "fact": "Socrates left no writings. Everything we know about him comes from his students, especially Plato. He believed truth emerged through dialogue, not text — the Socratic method is still used in law schools today."
-      },
-      {
-        "type": "minigame",
-        "game": "geometry",
-        "configId": "pentagon-interior",
-        "instruction": "Plato's Academy used the pentagon in its geometry. 'Let no one ignorant of geometry enter here' — calculate the interior angle.",
-        "fact": "Above Plato's Academy was carved: 'Let no one ignorant of geometry enter here.' The golden ratio φ appears in the Parthenon, in pentagons, and in Plato's theories about ideal forms."
-      },
-      {
-        "type": "minigame",
-        "game": "maze",
-        "configId": "knight",
-        "instruction": "Navigate the philosophical labyrinth — just as Socrates led his students through the twisting paths of argument to reach truth.",
-        "fact": "Plato's allegory of the cave describes prisoners who mistake shadows for reality. He argued that philosophers must leave the cave — the world of appearances — and seek the sunlit realm of truth."
-      }
-    ]
-  },
-  {
-    "era": "Classical",
-    "story": "Olympic Games",
-    "challenges": [
-      {
-        "type": "truefalse",
-        "statement": "The original ancient Olympics included only a single foot race.",
-        "correct": true,
-        "fact": "The first recorded Olympic Games (776 BCE) had only one event: a 192-metre sprint called the stadion. Events were added over centuries — wrestling (708 BCE), the pentathlon (708 BCE), chariot racing (680 BCE), and boxing (688 BCE)."
-      },
-      {
-        "type": "minigame",
-        "game": "geometry",
-        "configId": "discus-angle",
-        "instruction": "Olympic discus throwers needed the perfect angle for maximum range. What is the optimal release angle?",
-        "fact": "The optimal angle for throwing a projectile (ignoring air resistance) is exactly 45°. Ancient athletes discovered this empirically — modern physics confirms it."
-      },
-      {
-        "type": "minigame",
-        "game": "maze",
-        "configId": "pyramid",
-        "instruction": "Navigate the stadium labyrinth — find the finish line of the ancient Olympic arena.",
-        "fact": "The Greek stadion was a standard unit of length — about 192 metres (the length of the foot race). Our word 'stadium' comes from this unit. Olympia's track had a 60-metre wide stone starting gate."
-      }
-    ]
-  },
-  {
-    "era": "Classical",
-    "story": "Eastern Trade",
-    "challenges": [
-      {
-        "type": "quiz",
-        "question": "The Silk Road connected which two empires at its height?",
-        "options": [
-          "Greece and Persia",
-          "Rome and China",
-          "Egypt and India",
-          "Babylon and Athens"
-        ],
-        "answer": 1,
-        "fact": "The Silk Road stretched 7,000 km from Rome to Chang'an (Xi'an). It carried silk, spices, glassware, and gold — but also ideas, religions, and diseases. Buddhism, Islam, and the Black Death all travelled its length."
-      },
-      {
-        "type": "minigame",
-        "game": "cooking",
-        "configId": "silk-road-spice",
-        "instruction": "Prepare the Silk Road feast — spices from India, China, and Arabia traded across the ancient world.",
-        "fact": "Caravanserais along the Silk Road were not just waypoints — they were cultural exchanges where recipes, spices, and cooking techniques crossed between civilisations."
-      },
-      {
-        "type": "minigame",
-        "game": "sliding",
-        "configId": "renaissance",
-        "instruction": "Rearrange the trade goods to match the historical caravan manifest.",
-        "fact": "The most valuable trade goods on the Silk Road were silk (China to Rome), glassware (Rome to China), spices (India everywhere), and paper (China to Europe). Paper eventually replaced papyrus worldwide."
       }
     ]
   },
@@ -569,9 +383,9 @@
       },
       {
         "type": "minigame",
-        "game": "maze",
-        "configId": "mulan",
-        "instruction": "Guide Mulan through the enemy encampment — stay undetected and find the exit.",
+        "game": "maze3d",
+        "configId": "himalayan-climb",
+        "instruction": "Help Hua Mulan slip through enemy lines undetected",
         "fact": "The Ballad of Mulan originated during the Northern Wei dynasty (386–534 CE), when the northern steppes were under constant threat. The poem celebrates loyalty, filial piety, and courage over gender roles."
       },
       {
@@ -659,9 +473,9 @@
       },
       {
         "type": "minigame",
-        "game": "maze",
-        "configId": "musashi",
-        "instruction": "Navigate Musashi's mountain training ground to reach the summit duel — move with precision.",
+        "game": "maze3d",
+        "configId": "flight-path",
+        "instruction": "Guide Musashi through the mountain paths to his final duel",
         "fact": "Musashi never lost a duel in 60+ fights. In his later years he renounced killing, became a painter and sculptor, and wrote The Book of Five Rings — still read by business leaders and martial artists worldwide."
       },
       {
@@ -670,38 +484,6 @@
         "configId": "musashi-dojo",
         "instruction": "Paint Musashi's dojo at night — the steel sword, wooden floor, and the darkness he trained through.",
         "fact": "Musashi's Niten Ichi-ryū (two-heaven school) used both a long and short sword simultaneously. The geometry of dual-weapon fighting requires understanding angles of attack that conventional swordsmanship ignored."
-      }
-    ]
-  },
-  {
-    "era": "Renaissance",
-    "story": "Art and Science",
-    "challenges": [
-      {
-        "type": "quiz",
-        "question": "Leonardo da Vinci left only approximately how many completed paintings?",
-        "options": [
-          "~5",
-          "~20",
-          "~100",
-          "~300"
-        ],
-        "answer": 1,
-        "fact": "Only about 20 paintings are definitively attributed to Leonardo. He spent years on each — the Mona Lisa took roughly four years. He left thousands of pages of notebooks but completed relatively few artworks."
-      },
-      {
-        "type": "minigame",
-        "game": "painting",
-        "configId": "venetian-palette",
-        "instruction": "Florence's artists mixed pigments by hand. Apply Leonardo's Renaissance palette to the masterpiece.",
-        "fact": "Renaissance painters ground their own pigments from minerals and plants: lapis lazuli for blue, vermilion from mercury sulphide for red, lead white for highlights. Each colour had a specific technique for longevity."
-      },
-      {
-        "type": "minigame",
-        "game": "geometry",
-        "configId": "golden-ratio",
-        "instruction": "Leonardo da Vinci used the golden ratio in his compositions. Explore the proportion φ that underlies the Vitruvian Man.",
-        "fact": "Luca Pacioli's 'De Divina Proportione' (1509), illustrated by Leonardo da Vinci, popularised the golden ratio in art and architecture. The Vitruvian Man itself is a study in geometric proportion."
       }
     ]
   },
@@ -728,38 +510,6 @@
         "configId": "venetian-madrigal",
         "instruction": "Titian's Venice was famous for its madrigals. Arrange notes of a Renaissance vocal phrase — the music Titian heard daily.",
         "fact": "Venice's Basilica di San Marco had two organ lofts facing each other, inspiring the 'cori spezzati' style — antiphonal music where choirs answer each other across space. Giovanni Gabrieli developed this into orchestral writing."
-      }
-    ]
-  },
-  {
-    "era": "Renaissance",
-    "story": "The Printing Press",
-    "challenges": [
-      {
-        "type": "quiz",
-        "question": "Gutenberg's first major printed work was the Bible. About how many copies were printed?",
-        "options": [
-          "~30",
-          "~180",
-          "~1,000",
-          "~10,000"
-        ],
-        "answer": 1,
-        "fact": "Approximately 180 Gutenberg Bibles were printed (c. 1455), of which 49 survive today. Each sold for 30 florins — three years' wages for a clerk. Within 50 years of the press's invention, over 20 million books had been printed in Europe."
-      },
-      {
-        "type": "minigame",
-        "game": "crossword",
-        "configId": "gutenberg",
-        "instruction": "Solve the printing press crossword — the vocabulary of Gutenberg's revolutionary workshop.",
-        "fact": "Gutenberg's genius was the adjustable type mould — allowing individual metal letters to be cast in different widths but at the exact same height. Over 290 different letter variants were used to make the Bible look hand-written."
-      },
-      {
-        "type": "minigame",
-        "game": "painting",
-        "configId": "gutenberg-workshop",
-        "instruction": "Paint Gutenberg's medieval workshop — the press, parchment, ink, and stone walls that changed the world.",
-        "fact": "Before the press, a Bible took a skilled monk a year to copy. Gutenberg's press printed 180 copies in about three years — a 60× increase in speed. It was the internet of its age: information that couldn't be controlled."
       }
     ]
   },
@@ -796,92 +546,37 @@
     ]
   },
   {
-    "era": "Renaissance",
-    "story": "New Worlds",
-    "challenges": [
-      {
-        "type": "truefalse",
-        "statement": "Columbus never believed he had found a new continent — he died convinced he had reached Asia.",
-        "correct": true,
-        "fact": "Columbus made four voyages to the Americas (1492–1504) and never accepted that he had found unknown continents. It was Amerigo Vespucci who first argued in 1502 that the lands were a 'New World' — and whose name was eventually given to the Americas."
-      },
-      {
-        "type": "minigame",
-        "game": "painting",
-        "configId": "new-world-coast",
-        "instruction": "Paint the Caribbean coast Columbus sighted — the lush jungle, turquoise sea, and sandy beach of the New World.",
-        "fact": "The Columbian Exchange that followed European contact with the Americas was the largest biological exchange in human history: potatoes, tomatoes, maize, and chocolate went east; horses, pigs, wheat, and smallpox went west."
-      },
-      {
-        "type": "minigame",
-        "game": "crossword",
-        "configId": "magellan",
-        "instruction": "Navigate the crossword of the Age of Discovery — the vocabulary of exploration that Columbus and Magellan shared.",
-        "fact": "The Americas had over 500 distinct Indigenous nations before European contact. The Aztec capital Tenochtitlán had 200,000 inhabitants — larger than any city in Europe at the time."
-      }
-    ]
-  },
-  {
-    "era": "Renaissance",
-    "story": "The Mystic Doctor",
+    "era": "Information",
+    "story": "Streets of Calcutta",
     "challenges": [
       {
         "type": "quiz",
-        "question": "Teresa of Ávila founded how many new convents during her lifetime?",
+        "question": "In what year did Mother Teresa found the Missionaries of Charity in Calcutta?",
         "options": [
-          "3",
-          "9",
-          "17",
-          "32"
-        ],
-        "answer": 2,
-        "fact": "Between 1562 and her death in 1582, Teresa of Ávila founded 17 convents across Spain, each practising the strict Carmelite reform she envisioned. She did this while writing masterpieces of mystical literature and suffering from chronic illness."
-      },
-      {
-        "type": "minigame",
-        "game": "music",
-        "configId": "gregorian-chant",
-        "instruction": "Teresa's convents sang Gregorian chant daily. Arrange the sacred melody in order.",
-        "fact": "Teresa described her experience of mystical prayer through metaphors of water and the Interior Castle — a palace with seven dwelling places. Her imagery was so vivid that she was named a Doctor of the Church in 1970."
-      },
-      {
-        "type": "minigame",
-        "game": "painting",
-        "configId": "teresa-chapel",
-        "instruction": "Paint the Gothic chapel of Teresa of Ávila — violet stained glass, stone walls, and the flicker of candlelight.",
-        "fact": "The Counter-Reformation Church needed Teresa's reforms — her Carmelite convents of poverty and contemplation were a spiritual answer to Protestant critiques. John of the Cross was her co-reformer and fellow Doctor of the Church."
-      }
-    ]
-  },
-  {
-    "era": "Renaissance",
-    "story": "Reformation",
-    "challenges": [
-      {
-        "type": "quiz",
-        "question": "Martin Luther nailed his 95 Theses to the church door in which year?",
-        "options": [
-          "1492",
-          "1517",
-          "1543",
-          "1555"
+          "1946",
+          "1950",
+          "1963",
+          "1979"
         ],
         "answer": 1,
-        "fact": "On October 31, 1517, Luther nailed his 95 Theses to the door of Wittenberg's Castle Church — a challenge to debate about indulgences. Thanks to Gutenberg's press, copies spread across Germany within weeks and across Europe within months."
+        "fact": "Mother Teresa founded the Missionaries of Charity on 7 October 1950. Beginning with just 13 members in Calcutta, the congregation grew to over 4,500 sisters operating in 133 countries by the time of her death in 1997."
       },
       {
-        "type": "minigame",
-        "game": "music",
-        "configId": "beethoven-opening",
-        "instruction": "Luther wrote 'A Mighty Fortress Is Our God' — a bold, powerful melody. Arrange these notes of a triumphant opening phrase.",
-        "fact": "Medieval churches used sacred geometry — pentagonals, golden ratios, and symbolic proportions. The Reformation stripped churches of images, music, and ornament — but Luther's own hymns kept the music alive."
+        "type": "truefalse",
+        "statement": "Mother Teresa asked that the traditional Nobel banquet be cancelled and the money given to the poor.",
+        "correct": true,
+        "fact": "When Mother Teresa received the Nobel Peace Prize in 1979, she asked that the $192,000 Nobel banquet fund be donated directly to the poor of Calcutta. She described the prize as recognition of 'the poorest of the poor.'"
       },
       {
-        "type": "minigame",
-        "game": "painting",
-        "configId": "luther-door",
-        "instruction": "Paint the Wittenberg church door where Luther nailed his 95 Theses — the autumn sky, limestone wall, and oak door.",
-        "fact": "The Reformation spread through print, public debate, and song. Luther himself wrote hymns — 'A Mighty Fortress Is Our God' — understanding that music could reach hearts that arguments could not."
+        "type": "sort",
+        "question": "Arrange these milestones of Mother Teresa's life in chronological order:",
+        "items": [
+          "Leaves the Loreto convent for Calcutta's slums",
+          "Founds the Missionaries of Charity",
+          "Opens Nirmal Hriday, Home for the Dying",
+          "Receives the Nobel Peace Prize"
+        ],
+        "fact": "Each step built on the last: leaving the convent (1948) gave her freedom to serve; the Missionaries (1950) gave her sisters; Nirmal Hriday (1952) gave the dying dignity; and the Nobel Prize (1979) gave her voice to the world."
       }
     ]
   },
@@ -1282,9 +977,9 @@
       },
       {
         "type": "minigame",
-        "game": "maze",
-        "configId": "long-march",
-        "instruction": "Navigate the mountain paths of the Long March — find the route through Guizhou to safety.",
+        "game": "maze3d",
+        "configId": "himalayan-climb",
+        "instruction": "Lead the column through the mountain passes of the Long March",
         "fact": "The most decisive battle of the Long March was the crossing of the Luding Bridge — a chain bridge over a gorge, its planks removed, defended by machine guns. Communist soldiers crawled across the chains under fire."
       }
     ]
@@ -1408,128 +1103,6 @@
         "configId": "thriller-riff",
         "instruction": "Thriller's bass riff is one of the most recognisable in pop history. Arrange these four descending notes.",
         "fact": "Michael Jackson debuted the Moonwalk on May 25, 1983, during a performance of 'Billie Jean' on Motown 25. It was not a new dance — it had roots in James Brown and mime — but Jackson's execution made it legend."
-      }
-    ]
-  },
-  {
-    "era": "Information",
-    "story": "The Digital Revolution",
-    "challenges": [
-      {
-        "type": "quiz",
-        "question": "ARPANET — the predecessor to the internet — first connected computers in which year?",
-        "options": [
-          "1958",
-          "1969",
-          "1975",
-          "1983"
-        ],
-        "answer": 1,
-        "fact": "ARPANET went live on October 29, 1969, connecting computers at UCLA, Stanford, UC Santa Barbara, and the University of Utah. The first message was 'LO' — they were trying to type 'LOGIN' when the system crashed."
-      },
-      {
-        "type": "minigame",
-        "game": "crossword",
-        "configId": "digital-cw",
-        "instruction": "Fill in the computing crossword — the vocabulary of silicon, screens, and the digital age.",
-        "fact": "Alan Turing's 1936 paper 'On Computable Numbers' described a theoretical machine that could perform any computation — the blueprint for every computer ever built. The Turing machine predates the transistor by 11 years."
-      },
-      {
-        "type": "minigame",
-        "game": "music",
-        "configId": "digital-pulse",
-        "instruction": "Binary code underlies all digital music. Arrange these notes in the pattern of a digital signal pulse.",
-        "fact": "The transistor (1947) replaced vacuum tubes and made personal computers possible. A modern processor contains over 50 billion transistors on a chip the size of a fingernail — each switching on and off billions of times per second."
-      }
-    ]
-  },
-  {
-    "era": "Information",
-    "story": "The Global Village",
-    "challenges": [
-      {
-        "type": "truefalse",
-        "statement": "Marshall McLuhan coined the phrase 'global village' in 1962 to describe how electronic media would shrink the world.",
-        "correct": true,
-        "fact": "McLuhan's 'The Gutenberg Galaxy' (1962) argued that electronic media were creating a new 'global village' — reversing the fragmentation caused by print and restoring the tribal, simultaneous awareness of oral culture. The internet proved him right."
-      },
-      {
-        "type": "minigame",
-        "game": "crossword",
-        "configId": "mcluhan",
-        "instruction": "Solve the crossword of McLuhan's global village — the vocabulary of media, message, and the connected world.",
-        "fact": "The Earth's surface area is about 510 million km². Submarine cables — which carry 95% of global internet traffic — stretch over 1.2 million km across this surface. McLuhan's village is wired with cables as fine as a human hair."
-      },
-      {
-        "type": "minigame",
-        "game": "music",
-        "configId": "global-anthem",
-        "instruction": "McLuhan's global village is united by shared music across all cultures. Arrange this universal five-note melody.",
-        "fact": "The internet reached 1 billion users in 2005, 2 billion in 2010, and 5 billion by 2023 — connecting half of humanity in 25 years. McLuhan predicted in 1962 that this was coming."
-      }
-    ]
-  },
-  {
-    "era": "Information",
-    "story": "Climate Reckoning",
-    "challenges": [
-      {
-        "type": "quiz",
-        "question": "CO₂ levels in the atmosphere surpassed 400 parts per million for the first time in how many years?",
-        "options": [
-          "10,000 years",
-          "100,000 years",
-          "800,000 years",
-          "3 million years"
-        ],
-        "answer": 2,
-        "fact": "In 2013, atmospheric CO₂ passed 400 ppm for the first time in at least 800,000 years — based on ice core records. By 2024 it had reached 425 ppm. The last time CO₂ was this high, sea levels were 5–25 metres higher than today."
-      },
-      {
-        "type": "minigame",
-        "game": "crossword",
-        "configId": "climate",
-        "instruction": "Fill in the climate crossword — the vocabulary of the crisis that defines our era.",
-        "fact": "Earth's atmosphere is 100 km thick — but 99% of its mass is in the bottom 32 km. It's proportionally thinner than the skin of an apple. The greenhouse gases we're adding to this thin shell are changing the planet's energy balance."
-      },
-      {
-        "type": "minigame",
-        "game": "music",
-        "configId": "eco-hymn",
-        "instruction": "Climate activists sing for the planet. Arrange this solemn descending phrase — a lament for the Earth.",
-        "fact": "The Arctic is warming four times faster than the global average. Indigenous communities in the Arctic report that the sky, stars, and seasons have shifted — their traditional knowledge of ice, weather, and migration no longer holds."
-      }
-    ]
-  },
-  {
-    "era": "Information",
-    "story": "The New Frontier",
-    "challenges": [
-      {
-        "type": "quiz",
-        "question": "Apollo 11 landed on the Moon on which date?",
-        "options": [
-          "July 4, 1969",
-          "July 16, 1969",
-          "July 20, 1969",
-          "August 1, 1969"
-        ],
-        "answer": 2,
-        "fact": "Apollo 11 landed in the Sea of Tranquility on July 20, 1969. Neil Armstrong stepped onto the lunar surface at 02:56 UTC on July 21. Over 600 million people watched — the largest television audience in history at the time."
-      },
-      {
-        "type": "minigame",
-        "game": "crossword",
-        "configId": "armstrong",
-        "instruction": "Solve the Apollo crossword — the vocabulary of the Moon landing that changed humanity forever.",
-        "fact": "NASA's Artemis programme aims to return humans to the Moon by 2026 and establish a permanent lunar Gateway station by 2030. The Moon is now seen as a stepping stone — not a destination — on the way to Mars."
-      },
-      {
-        "type": "minigame",
-        "game": "music",
-        "configId": "space-theme",
-        "instruction": "Arrange the ascending fanfare that heralded humanity's arrival on the Moon — the sound of a new frontier.",
-        "fact": "The Moon's surface area is about 37.9 million km² — slightly less than Asia. Only 12 humans have walked on it, all between 1969 and 1972. Mars has a surface area of 144 million km² — the next frontier."
       }
     ]
   },
