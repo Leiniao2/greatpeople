@@ -4,251 +4,287 @@
     "title": "Pyramid Builders",
     "figure": "Imhotep",
     "tagline": "Stone by stone, an immortal legacy rises from the desert.",
-    "quizzes": 5
+    "quizzes": 5,
+    "locationImage": "ancient_memphis"
   },
   {
     "era": "Ancient",
     "title": "The First Empire",
     "figure": "Sargon I",
     "tagline": "The world's first conqueror builds an empire from nothing but will.",
-    "quizzes": 4
+    "quizzes": 4,
+    "locationImage": "ancient_memphis"
   },
   {
     "era": "Ancient",
     "title": "The King and the Wild Man",
     "figure": "Gilgamesh",
     "tagline": "Two forces of nature meet — and become brothers.",
-    "quizzes": 4
+    "quizzes": 4,
+    "locationImage": "ancient_stonehenge"
   },
   {
     "era": "Classical",
     "title": "Geometry of the World",
     "figure": "Euclid",
     "tagline": "A single book of proofs shapes two thousand years of thought.",
-    "quizzes": 4
+    "quizzes": 4,
+    "locationImage": "ancient_petra"
   },
   {
     "era": "Classical",
     "title": "The Elements",
     "figure": "Euclid",
     "tagline": "Thirteen books that defined the shape of reason forever.",
-    "quizzes": 4
+    "quizzes": 4,
+    "locationImage": "ancient_petra"
   },
   {
     "era": "Classical",
     "title": "The Golden Age of Athens",
     "figure": "Pericles",
     "tagline": "A statesman, a philosopher, and a king debate the soul of democracy.",
-    "quizzes": 4
+    "quizzes": 4,
+    "locationImage": "classical_sparta"
   },
   {
     "era": "Classical",
     "title": "The Voice of Rome",
     "figure": "Cicero",
     "tagline": "The Senate hangs on every word — and words can cut like swords.",
-    "quizzes": 4
+    "quizzes": 4,
+    "locationImage": "classical_sparta"
   },
   {
     "era": "Classical",
     "title": "Before Socrates",
     "figure": "Anaxagoras",
     "tagline": "The philosopher who dared say the sun is a rock, not a god.",
-    "quizzes": 4
+    "quizzes": 4,
+    "locationImage": "classical_sparta"
   },
   {
     "era": "Medieval",
     "title": "The Last General",
     "figure": "Belisarius",
     "tagline": "Rome's final military genius fought enemies on every front — including his emperor.",
-    "quizzes": 4
+    "quizzes": 4,
+    "locationImage": "medieval_jerusalem"
   },
   {
     "era": "Medieval",
     "title": "The Language of Algebra",
     "figure": "Al-Khwarizmi",
     "tagline": "A mathematician in Baghdad creates the tool that will run every computer.",
-    "quizzes": 4
+    "quizzes": 4,
+    "locationImage": "renaissance_baghdad"
   },
   {
     "era": "Classical",
     "title": "The Prophet of Light",
     "figure": "Mani",
     "tagline": "A visionary paints his gospel across three continents in color and light.",
-    "quizzes": 4
+    "quizzes": 4,
+    "locationImage": "classical_carthage"
   },
   {
     "era": "Medieval",
     "title": "Tea Ceremony",
     "figure": "Lu Yu",
     "tagline": "A humble beverage becomes a philosophy of the mind.",
-    "quizzes": 3
+    "quizzes": 3,
+    "locationImage": "medieval_changan"
   },
   {
     "era": "Medieval",
     "title": "The Disguised Warrior",
     "figure": "Hua Mulan",
     "tagline": "She takes her father's armor and rewrites what courage looks like.",
-    "quizzes": 4
+    "quizzes": 4,
+    "locationImage": "medieval_changan"
   },
   {
     "era": "Medieval",
     "title": "The Knight's Code",
     "figure": "Lancelot",
     "tagline": "The greatest knight who ever lived is undone by the greatest love.",
-    "quizzes": 4
+    "quizzes": 4,
+    "locationImage": "medieval_krakow"
   },
   {
     "era": "Medieval",
     "title": "Words of Sorrow",
     "figure": "Li Qingzhao",
     "tagline": "A poet transforms grief into the most beautiful verse in Chinese history.",
-    "quizzes": 3
+    "quizzes": 3,
+    "locationImage": "medieval_changan"
   },
   {
     "era": "Renaissance",
     "title": "Way of the Sword",
     "figure": "Miyamoto Musashi",
     "tagline": "The legendary swordsman who mastered both blade and brush.",
-    "quizzes": 4
+    "quizzes": 4,
+    "locationImage": "medieval_kyoto"
   },
   {
     "era": "Renaissance",
     "title": "The Colors of Venice",
     "figure": "Titian",
     "tagline": "The last great master sets his canvas ablaze with color and light.",
-    "quizzes": 4
+    "quizzes": 4,
+    "locationImage": "renaissance_venice"
   },
   {
     "era": "Renaissance",
     "title": "Around the World",
     "figure": "Magellan",
     "tagline": "He bet his life — and lost it — on the shape of the Earth.",
-    "quizzes": 4
+    "quizzes": 4,
+    "locationImage": "renaissance_genoa"
   },
   {
     "era": "Information",
     "title": "Streets of Calcutta",
     "figure": "Mother Teresa",
     "tagline": "A nun leaves the convent walls to serve the dying in the gutters of Calcutta.",
-    "quizzes": 3
+    "quizzes": 3,
+    "locationImage": "electricity_delhi"
   },
   {
     "era": "Electricity",
     "title": "Soul Force",
     "figure": "Gandhi",
     "tagline": "Against the greatest empire in history, one man chooses a different kind of weapon.",
-    "quizzes": 4
+    "quizzes": 4,
+    "locationImage": "electricity_delhi"
   },
   {
     "era": "Steam",
     "title": "Keys and Concertos",
     "figure": "Clara Schumann",
     "tagline": "She plays with a brilliance the world barely lets itself acknowledge.",
-    "quizzes": 3
+    "quizzes": 3,
+    "locationImage": "steam_london"
   },
   {
     "era": "Renaissance",
     "title": "The Naming of Everything",
     "figure": "Carl Linnaeus",
     "tagline": "He gives every living creature a name — and creates the language of biology.",
-    "quizzes": 4
+    "quizzes": 4,
+    "locationImage": "steam_london"
   },
   {
     "era": "Steam",
     "title": "Garden of Genetics",
     "figure": "Gregor Mendel",
     "tagline": "A monk in a garden uncovers the hidden code of life.",
-    "quizzes": 4
+    "quizzes": 4,
+    "locationImage": "steam_london"
   },
   {
     "era": "Steam",
     "title": "Symphony of Shadows",
     "figure": "Johannes Brahms",
     "tagline": "He lives under Beethoven's shadow and finds his own towering voice.",
-    "quizzes": 3
+    "quizzes": 3,
+    "locationImage": "steam_london"
   },
   {
     "era": "Steam",
     "title": "The Gilded Court",
     "figure": "Louis XVI",
     "tagline": "A king inherits a revolution he is not equipped to survive.",
-    "quizzes": 4
+    "quizzes": 4,
+    "locationImage": "electricity_paris"
   },
   {
     "era": "Electricity",
     "title": "Breaking Enigma",
     "figure": "Alan Turing",
     "tagline": "The mathematician who cracked the uncrackable code and saved millions of lives.",
-    "quizzes": 4
+    "quizzes": 4,
+    "locationImage": "electricity_london"
   },
   {
     "era": "Electricity",
     "title": "Light Before Einstein",
     "figure": "Hendrik Lorentz",
     "tagline": "He builds the mathematics of relativity — and gives Einstein the tools to prove it.",
-    "quizzes": 4
+    "quizzes": 4,
+    "locationImage": "electricity_london"
   },
   {
     "era": "Electricity",
     "title": "Fashion Revolution",
     "figure": "Coco Chanel",
     "tagline": "She strips away the corsets and dresses an entire century in freedom.",
-    "quizzes": 3
+    "quizzes": 3,
+    "locationImage": "electricity_paris"
   },
   {
     "era": "Electricity",
     "title": "Wings Over the Atlantic",
     "figure": "Amelia Earhart",
     "tagline": "The skies were closed to women — until she flew through them.",
-    "quizzes": 4
+    "quizzes": 4,
+    "locationImage": "electricity_london"
   },
   {
     "era": "Electricity",
     "title": "Cinema's Architect",
     "figure": "Sergei Eisenstein",
     "tagline": "He invents the grammar of film — a language that changes how the world sees itself.",
-    "quizzes": 4
+    "quizzes": 4,
+    "locationImage": "electricity_london"
   },
   {
     "era": "Electricity",
     "title": "Top of the World",
     "figure": "Edmund Hillary",
     "tagline": "Two climbers from opposite ends of the Earth reach the same impossible peak together.",
-    "quizzes": 4
+    "quizzes": 4,
+    "locationImage": "electricity_delhi"
   },
   {
     "era": "Electricity",
     "title": "The Long March",
     "figure": "Mao Zedong",
     "tagline": "A revolution born in starvation, hardened in philosophy, written in history.",
-    "quizzes": 4
+    "quizzes": 4,
+    "locationImage": "medieval_changan"
   },
   {
     "era": "Electricity",
     "title": "A Martyr's Bullet",
     "figure": "An Jung-geun",
     "tagline": "One shot. One act of defiance. An entire nation's will made visible.",
-    "quizzes": 3
+    "quizzes": 3,
+    "locationImage": "information_tokyo"
   },
   {
     "era": "Electricity",
     "title": "The Gilded Age",
     "figure": "Andrew Mellon",
     "tagline": "A fortune that shaped an era — and the questions it could never answer.",
-    "quizzes": 3
+    "quizzes": 3,
+    "locationImage": "steam_manchester"
   },
   {
     "era": "Electricity",
     "title": "Breakfast at Tiffany's",
     "figure": "Audrey Hepburn",
     "tagline": "Grace in every frame, humanity in every cause.",
-    "quizzes": 4
+    "quizzes": 4,
+    "locationImage": "steam_manchester"
   },
   {
     "era": "Information",
     "title": "Moonwalk",
     "figure": "Michael Jackson",
     "tagline": "The King of Pop changes the world one performance at a time.",
-    "quizzes": 4
+    "quizzes": 4,
+    "locationImage": "information_sanjose"
   }
 ]

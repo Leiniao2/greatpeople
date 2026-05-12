@@ -20,6 +20,7 @@ interface Story {
   figure: string | null
   tagline: string
   quizzes: number
+  locationImage?: string
 }
 
 interface Era {
@@ -331,6 +332,7 @@ export default function EpicPage() {
             storyTitle={story.title}
             figureName={story.figure}
             portraitKey={pKey}
+            locationImage={story.locationImage ? `/locations/${story.locationImage}.jpeg` : undefined}
             onComplete={(unlockKey) => { handleStoryComplete(modal.eraIdx, modal.storyIdx, unlockKey); setModal(null) }}
             onClose={() => setModal(null)}
           />

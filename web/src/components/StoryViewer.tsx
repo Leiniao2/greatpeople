@@ -459,11 +459,12 @@ interface StoryViewerProps {
   storyTitle: string
   figureName: string | null
   portraitKey: string | null
+  locationImage?: string
   onComplete: (unlockKey: string | null) => void
   onClose: () => void
 }
 
-export default function StoryViewer({ eraName, storyTitle, figureName, portraitKey, onComplete, onClose }: StoryViewerProps) {
+export default function StoryViewer({ eraName, storyTitle, figureName, portraitKey, locationImage, onComplete, onClose }: StoryViewerProps) {
   const { isAdmin } = useAuth()
   const script = useMemo(() => getScript(eraName, storyTitle), [eraName, storyTitle])
   const challenges = useMemo(() => getChallenges(eraName, storyTitle), [eraName, storyTitle])
@@ -544,25 +545,25 @@ export default function StoryViewer({ eraName, storyTitle, figureName, portraitK
 
   const progressPct = scenes.length > 0 ? (sceneIdx / scenes.length) * 100 : 0
 
-  const eraLocationImg = ERA_LOCATION_IMAGE[eraName]
+  const locationImg = locationImage ?? ERA_LOCATION_IMAGE[eraName]
 
   return (
     <div className="fixed inset-0 z-[60] flex flex-col overflow-hidden">
-      {/* Era location ambient background */}
-      {eraLocationImg && (
+      {/* Location background — story-specific image, falls back to era representative */}
+      {locationImg && (
         <div className="absolute inset-0">
-          <img src={eraLocationImg} alt="" className="w-full h-full object-cover opacity-15 scale-105" />
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/60 via-slate-950/75 to-slate-950/95" />
+          <img src={locationImg} alt="" className="w-full h-full object-cover opacity-20 scale-105" />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/55 via-slate-950/70 to-slate-950/95" />
         </div>
       )}
-      {/* Character portrait background (layered over location) */}
+      {/* Character portrait layered on top */}
       {bgUrl && (
         <div className="absolute inset-0">
           <img src={bgUrl} alt="" className="w-full h-full object-cover object-top scale-110 blur-sm opacity-20" />
           <div className="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-slate-950/80 to-slate-950/95" />
         </div>
       )}
-      {!bgUrl && !eraLocationImg && (
+      {!bgUrl && !locationImg && (
         <div className="absolute inset-0 bg-[#080812]">
           <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-amber-600/8 blur-[120px]" />
         </div>
