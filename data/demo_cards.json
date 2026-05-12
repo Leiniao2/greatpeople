@@ -2,7 +2,7 @@
   {
     "id": "demo-1",
     "figureName": "Gandhi",
-    "era": "Steam",
+    "era": "Electricity",
     "gender": "male",
     "identities": [
       "Statesman",
@@ -218,7 +218,7 @@
   {
     "id": "demo-10",
     "figureName": "Audrey Hepburn",
-    "era": "Information",
+    "era": "Electricity",
     "gender": "female",
     "identities": [
       "Actor",

@@ -2,7 +2,7 @@
   {
     "id": "demo-1",
     "figureName": "Gandhi",
-    "era": "Steam",
+    "era": "Electricity",
     "gender": "male",
     "identities": [
       "Statesman",
@@ -208,7 +208,7 @@
   {
     "id": "demo-10",
     "figureName": "Audrey Hepburn",
-    "era": "Information",
+    "era": "Electricity",
     "gender": "female",
     "identities": [
       "Actor",
@@ -687,7 +687,7 @@
   {
     "id": "demo-31",
     "figureName": "Mani",
-    "era": "Medieval",
+    "era": "Classical",
     "gender": "male",
     "identities": [
       "Prophet",
@@ -777,7 +777,7 @@
   {
     "id": "demo-35",
     "figureName": "Carl Linnaeus",
-    "era": "Steam",
+    "era": "Renaissance",
     "gender": "male",
     "identities": [
       "Naturalist"
@@ -1001,7 +1001,7 @@
   {
     "id": "demo-45",
     "figureName": "Gregory Peck",
-    "era": "Information",
+    "era": "Electricity",
     "gender": "male",
     "identities": [
       "Artist"
