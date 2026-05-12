@@ -91,7 +91,7 @@
     "belief": 13,
     "reputation": 19,
     "lore": "The last great general of Rome.",
-    "trait": "Reconquest — While outnumbered at this location (more opponent cards than allied cards), this card gains +5 Strength and +5 Politics.",
+    "trait": "Reconquest — While outnumbered at this location (more opponent cards than allied), this card gains +5 to all stats.",
     "achievement": "Reconquest — when Strength wins 3 rounds, generate 1 winning point.",
     "years": "505–565 AD"
   },
@@ -115,7 +115,7 @@
     "belief": 18,
     "reputation": 21,
     "lore": "Deified by two civilizations for mastery of stone and medicine.",
-    "trait": "Grand Architect — While 2 or more Followers are at this location, this card's Technique and Intelligence each count as 8 higher.",
+    "trait": "Grand Architect — Once per match, permanently grant +5 to all stats of one other allied Great Person at this location. The bonus persists even if this card later moves or is archived.",
     "achievement": "Monument — when Technique wins 4 rounds, generate 1 winning point.",
     "years": "c. 2650–2600 BC"
   },
@@ -187,7 +187,7 @@
     "belief": 20,
     "reputation": 18,
     "lore": "A bullet for a nation's soul.",
-    "trait": "Martyr's Will — When this card is killed by an opponent, all allied cards across all locations gain +8 Strength for one round.",
+    "trait": "For the Nation — When this card is eliminated by an opponent, the player may immediately play one event card from hand without discarding it.",
     "achievement": "Martyr — when defeated in a round by 20+ points, generate 1 winning point.",
     "years": "1879–1910"
   },
@@ -211,7 +211,7 @@
     "belief": 9,
     "reputation": 16,
     "lore": "His fortune shaped an era, for better and worse.",
-    "trait": "Consolidated Capital — For each Merchant Follower at this location, this card gains +5 Wealth.",
+    "trait": "The Syndicate — Once per round, this card earns one additional Achievement Tick whenever any other allied Great Person on the field earns one.",
     "achievement": "Capital — when Wealth wins 3 rounds, generate 1 winning point.",
     "years": "1855–1937"
   },
@@ -235,7 +235,7 @@
     "belief": 14,
     "reputation": 23,
     "lore": "Grace in every frame, humanity in every cause.",
-    "trait": "Goodwill Ambassador — While this card is on the field, all allied cards' Reputation counts as 5 higher across all locations.",
+    "trait": "Humanitarian Presence — While this card is face-up on the field, once per round the player may redirect one opponent event targeting any allied card at any location to have no effect.",
     "achievement": "Icon — when Reputation wins 3 rounds, generate 1 winning point.",
     "years": "1929–1993"
   },
@@ -379,7 +379,7 @@
     "belief": 15,
     "reputation": 21,
     "lore": "The greatest knight of the realm, undone by the greatest love.",
-    "trait": "Greatest Knight — This card wins all Strength ties; however, if Politics is the active stat, its Politics counts as 10 lower.",
+    "trait": "Oath of Valor — While this card has never moved since deployment, it wins all stat ties. If it ever moves, it permanently loses this ability for the rest of the match.",
     "achievement": "Champion — when Strength wins 4 rounds, generate 1 winning point.",
     "years": "Arthurian legend"
   },
@@ -403,7 +403,7 @@
     "belief": 13,
     "reputation": 18,
     "lore": "Sorrow and beauty, distilled into verse.",
-    "trait": "Lyrical Elegy — Whenever this card or an allied card at this location loses a round, this card gains +5 Culture.",
+    "trait": "Poetry of Loss — Whenever an allied Great Person at this location is archived or eliminated, this card permanently gains +3 to all stats.",
     "achievement": "Verse — when Culture wins 3 rounds, generate 1 winning point.",
     "years": "1084–c.1155"
   },
@@ -451,7 +451,7 @@
     "belief": 15,
     "reputation": 20,
     "lore": "She wore the crown of Versailles until the crowd came for it.",
-    "trait": "Royal Excess — At game start, this card's Wealth counts as 15 higher, but its Politics counts as 10 lower.",
+    "trait": "Versailles — At deployment, secretly swap the values of any two of this card's stats. The new values are permanent and revealed only when this card becomes public.",
     "achievement": "Excess — when Wealth wins 3 rounds, generate 1 winning point.",
     "years": "1755–1793"
   },
