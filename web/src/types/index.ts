@@ -76,6 +76,7 @@ export interface LocationState {
   id: string
   name: string
   era: string
+  imageKey?: string
   cards: OnboardCard[]
   activeEvent: EventCard | null
   eventRoundsLeft: number

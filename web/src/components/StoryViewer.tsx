@@ -33,6 +33,18 @@ interface StoryScript {
 }
 interface StoryChallengeData { era: string; story: string; challenges: Challenge[] }
 
+// ── Era location images ───────────────────────────────────────────────────────
+
+const ERA_LOCATION_IMAGE: Record<string, string> = {
+  Ancient:     '/locations/ancient_stonehenge.jpeg',
+  Classical:   '/locations/classical_sparta.jpeg',
+  Medieval:    '/locations/medieval_changan.jpeg',
+  Renaissance: '/locations/renaissance_venice.jpeg',
+  Steam:       '/locations/steam_london.jpeg',
+  Electricity: '/locations/electricity_berlin.jpeg',
+  Information: '/locations/information_sanjose.jpeg',
+}
+
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
 function getScript(era: string, story: string): StoryScript | null {
@@ -532,16 +544,25 @@ export default function StoryViewer({ eraName, storyTitle, figureName, portraitK
 
   const progressPct = scenes.length > 0 ? (sceneIdx / scenes.length) * 100 : 0
 
+  const eraLocationImg = ERA_LOCATION_IMAGE[eraName]
+
   return (
     <div className="fixed inset-0 z-50 flex flex-col overflow-hidden">
-      {/* Background portrait */}
+      {/* Era location ambient background */}
+      {eraLocationImg && (
+        <div className="absolute inset-0">
+          <img src={eraLocationImg} alt="" className="w-full h-full object-cover opacity-15 scale-105" />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/60 via-slate-950/75 to-slate-950/95" />
+        </div>
+      )}
+      {/* Character portrait background (layered over location) */}
       {bgUrl && (
         <div className="absolute inset-0">
           <img src={bgUrl} alt="" className="w-full h-full object-cover object-top scale-110 blur-sm opacity-20" />
           <div className="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-slate-950/80 to-slate-950/95" />
         </div>
       )}
-      {!bgUrl && (
+      {!bgUrl && !eraLocationImg && (
         <div className="absolute inset-0 bg-[#080812]">
           <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-amber-600/8 blur-[120px]" />
         </div>

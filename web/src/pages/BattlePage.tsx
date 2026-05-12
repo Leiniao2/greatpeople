@@ -87,7 +87,7 @@ function makeEventDeck(): EventCard[] {
 
 // ─── Location Data ────────────────────────────────────────────────────────────
 
-interface LocationTemplate { name: string; era: string }
+interface LocationTemplate { name: string; era: string; imageKey?: string }
 
 const LOCATION_POOL: LocationTemplate[] = locationsJson.locations
 const ERAS: string[] = locationsJson.eras
@@ -218,6 +218,7 @@ function initGame(setup: GameSetup): GameState {
     id: `loc-${i}`,
     name: lt.name,
     era: lt.era,
+    imageKey: lt.imageKey,
     cards: [],
     activeEvent: null,
     eventRoundsLeft: 0,
@@ -1513,19 +1514,30 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
               <div
                 key={loc.id}
                 onClick={() => handleLocationTap(loc.id)}
-                className={`relative rounded-xl border p-2 w-40 cursor-pointer transition-all duration-150
+                className={`relative rounded-xl border p-2 w-40 cursor-pointer transition-all duration-150 overflow-hidden
                   ${ERA_COLORS[loc.era] ?? 'bg-slate-900/60 border-slate-700/40'}
                   ${isLocationTarget ? 'border-amber-400/60 ring-1 ring-amber-400/30' : ''}`}
               >
+                {/* Location background image */}
+                {loc.imageKey && (
+                  <div className="absolute inset-0 pointer-events-none">
+                    <img
+                      src={`/locations/${loc.imageKey}.jpeg`}
+                      alt=""
+                      className="w-full h-full object-cover opacity-25"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60" />
+                  </div>
+                )}
                 {/* Location name */}
-                <div className="mb-1">
+                <div className="relative mb-1">
                   <p className={`text-[10px] font-bold truncate ${ERA_TEXT[loc.era] ?? 'text-slate-300'}`}>{loc.name}</p>
                   <p className="text-[9px] text-slate-600">{loc.era}</p>
                 </div>
 
                 {/* Active event badge */}
                 {loc.activeEvent && (
-                  <div className={`text-[8px] text-white px-1 py-0.5 rounded mb-1 truncate ${getEventBadgeColor(loc.activeEvent.type)}`}>
+                  <div className={`relative text-[8px] text-white px-1 py-0.5 rounded mb-1 truncate ${getEventBadgeColor(loc.activeEvent.type)}`}>
                     {loc.activeEvent.name}
                   </div>
                 )}
@@ -1535,13 +1547,13 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
                   const playerCards = loc.cards.filter(c => c.playerId === p.id)
                   const pColor = PLAYER_COLORS[pidx % 5]
                   if (playerCards.length === 0) return (
-                    <div key={p.id} className="mb-1 h-4 flex items-center gap-1">
+                    <div key={p.id} className="relative mb-1 h-4 flex items-center gap-1">
                       <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${pColor.dot} opacity-30`} />
                       <span className="text-[9px] text-slate-700 italic">{p.name.split(' ')[0]}</span>
                     </div>
                   )
                   return (
-                    <div key={p.id} className="mb-1">
+                    <div key={p.id} className="relative mb-1">
                       <div className="flex items-center gap-1 mb-0.5">
                         <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${pColor.dot}`} />
                         <p className={`text-[8px] font-medium ${pColor.text}`}>{p.name.split(' ')[0]}</p>

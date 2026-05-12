@@ -29,6 +29,16 @@ interface Era {
 
 const ERA_ORDER = ['Ancient', 'Classical', 'Medieval', 'Renaissance', 'Steam', 'Electricity', 'Information']
 
+const ERA_LOCATION_IMAGE: Record<string, string> = {
+  Ancient:     '/locations/ancient_stonehenge.jpeg',
+  Classical:   '/locations/classical_sparta.jpeg',
+  Medieval:    '/locations/medieval_changan.jpeg',
+  Renaissance: '/locations/renaissance_venice.jpeg',
+  Steam:       '/locations/steam_london.jpeg',
+  Electricity: '/locations/electricity_berlin.jpeg',
+  Information: '/locations/information_sanjose.jpeg',
+}
+
 const ERAS: Era[] = ERA_ORDER.map(eraName => ({
   name: eraName,
   stories: (storyConfigsData as Story[]).filter(s => (s as unknown as { era: string }).era === eraName),
@@ -208,30 +218,53 @@ export default function EpicPage() {
               const unlocked = isStoryUnlocked(activeEra, storyIdx)
               const isDone = !!completed[key(activeEra, storyIdx)]
 
+              const pKey = portraitKeyForFigure(story.figure)
+              const eraImg = ERA_LOCATION_IMAGE[era.name]
               return (
                 <div
                   key={storyIdx}
-                  className={`relative rounded-2xl p-4 flex items-center gap-4
+                  className={`relative rounded-2xl overflow-hidden flex items-center gap-4
                     ${unlocked
-                      ? 'bg-white/[0.03] border border-amber-500/30'
-                      : 'bg-white/[0.02] border border-slate-800/60'
+                      ? 'border border-amber-500/30'
+                      : 'border border-slate-800/60'
                     }
                     transition-all duration-200`}>
 
-                  {/* Lock / Done indicator */}
-                  <div
-                    className={`flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-xl text-base
-                      ${unlocked
-                        ? isDone
-                          ? 'bg-amber-500/20 text-amber-400'
-                          : 'bg-amber-500/10 text-amber-500/70'
-                        : 'bg-slate-800/60 text-slate-600'
-                      }`}>
-                    {!unlocked ? '🔒' : isDone ? '✓' : '▶'}
+                  {/* Era location background */}
+                  {eraImg && (
+                    <div className="absolute inset-0 pointer-events-none">
+                      <img src={eraImg} alt="" className={`w-full h-full object-cover ${unlocked ? 'opacity-10' : 'opacity-5'}`} />
+                      <div className="absolute inset-0 bg-gradient-to-r from-slate-950/80 via-slate-950/60 to-slate-950/80" />
+                    </div>
+                  )}
+                  {!eraImg && (
+                    <div className={`absolute inset-0 ${unlocked ? 'bg-white/[0.03]' : 'bg-white/[0.02]'}`} />
+                  )}
+
+                  {/* Portrait thumbnail */}
+                  <div className="relative flex-shrink-0 w-16 h-16 overflow-hidden rounded-l-2xl">
+                    {pKey ? (
+                      <img
+                        src={`/portraits/portrait_${pKey}.jpeg`}
+                        alt=""
+                        className={`w-full h-full object-cover object-top ${unlocked ? 'opacity-80' : 'opacity-30 grayscale'}`}
+                      />
+                    ) : (
+                      <div className={`w-full h-full flex items-center justify-center text-2xl
+                        ${unlocked ? 'bg-amber-500/10 text-amber-500/50' : 'bg-slate-800/60 text-slate-600'}`}>
+                        {!unlocked ? '🔒' : isDone ? '✓' : '▶'}
+                      </div>
+                    )}
+                    {pKey && !unlocked && (
+                      <div className="absolute inset-0 flex items-center justify-center text-lg bg-black/40">🔒</div>
+                    )}
+                    {pKey && unlocked && isDone && (
+                      <div className="absolute bottom-1 right-1 w-4 h-4 rounded-full bg-amber-500 flex items-center justify-center text-[9px] font-bold text-slate-950">✓</div>
+                    )}
                   </div>
 
                   {/* Text */}
-                  <div className="flex-1 min-w-0">
+                  <div className="relative flex-1 min-w-0 py-3">
                     <p className={`text-sm font-semibold leading-tight
                       ${unlocked ? 'text-white' : 'text-slate-600'}`}>
                       {story.title}
@@ -252,7 +285,7 @@ export default function EpicPage() {
                   {unlocked && (
                     <button
                       onClick={() => handleBegin(activeEra, storyIdx)}
-                      className={`flex-shrink-0 px-4 py-2 rounded-xl text-xs font-bold tracking-wide
+                      className={`relative flex-shrink-0 mr-4 px-4 py-2 rounded-xl text-xs font-bold tracking-wide
                                  shadow shadow-amber-500/25 transition-all duration-200
                                  ${isDone
                                    ? 'text-amber-400 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30'
