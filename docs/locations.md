@@ -6,6 +6,13 @@
 ## Yin
 ## Mohenjo-daro
 ## Zhaoge
+## Uruk
+## Nippur
+## Ur
+## Babylon
+## Hattusa
+## Nineveh
+## Ashur
 
 # classic era 800BC-400AD 1200 years
 ## Carthage
@@ -36,6 +43,7 @@
 ## Tenochtitlan
 ## Gao
 ## Lisbon
+## Malacca
 
 # steam era 1760AD-1880AD 120 years
 ## St Petersburg
@@ -58,6 +66,8 @@
 ## Istanbul
 ## New York
 ## Tehran
+## Jakarta
+## Buenos Aires
 
 # information era 1960AD-2010AD 60 years
 ## Singapore 
@@ -70,3 +80,4 @@
 ## San Jose
 ## Los Angeles
 ## Vancouver
+## Rio de Janeiro
