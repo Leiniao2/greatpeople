@@ -1222,6 +1222,16 @@ function BattleLobby({ matchType, onStart, onBack }: LobbyProps) {
   )
 }
 
+// ─── Player Colors ────────────────────────────────────────────────────────────
+
+const PLAYER_COLORS = [
+  { text: 'text-amber-400',   bg: 'bg-amber-500/15',   border: 'border-amber-500/40',   ring: 'border-amber-500/40',   dot: 'bg-amber-400'   },
+  { text: 'text-indigo-400',  bg: 'bg-indigo-500/15',  border: 'border-indigo-500/40',  ring: 'border-indigo-500/40',  dot: 'bg-indigo-400'  },
+  { text: 'text-emerald-400', bg: 'bg-emerald-500/15', border: 'border-emerald-500/40', ring: 'border-emerald-500/40', dot: 'bg-emerald-400' },
+  { text: 'text-violet-400',  bg: 'bg-violet-500/15',  border: 'border-violet-500/40',  ring: 'border-violet-500/40',  dot: 'bg-violet-400'  },
+  { text: 'text-rose-400',    bg: 'bg-rose-500/15',    border: 'border-rose-500/40',    ring: 'border-rose-500/40',    dot: 'bg-rose-400'    },
+]
+
 // ─── Game Board Component ─────────────────────────────────────────────────────
 
 type SelectionMode = 'none' | 'deploy-gp' | 'add-follower' | 'select-onboard' | 'attack-select-target' | 'move-target' | 'start-event'
@@ -1247,6 +1257,8 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
   const [showRewardDialog, setShowRewardDialog] = useState(false)
   const [globalCompWinner] = useState<string | null>(null)
   const [cardDetail, setCardDetail] = useState<Card | null>(null)
+  // Hot-seat: shown between human turns so previous player can't see next player's hand
+  const [awaitingHandoff, setAwaitingHandoff] = useState(false)
   const logRef = useRef<HTMLDivElement>(null)
   const computerTurnRef = useRef(false)
 
@@ -1463,26 +1475,32 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
       </div>
 
       {/* Header */}
-      <div className="relative z-10 px-4 py-2.5 flex items-center gap-3 border-b border-white/[0.06] bg-black/20 shrink-0">
-        <div className="flex-1">
-          <div className="flex items-center gap-2">
-            <span className="text-xs text-slate-500 uppercase tracking-widest">Round {gameState.round}</span>
+      <div className="relative z-10 px-4 py-2 flex items-center gap-3 border-b border-white/[0.06] bg-black/20 shrink-0">
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2 mb-1">
+            <span className="text-[10px] text-slate-500 uppercase tracking-widest shrink-0">Round {gameState.round}</span>
             <span className="text-white/20">·</span>
-            <span className="text-amber-400 text-xs font-semibold">{currentPlayer.name}'s Turn</span>
-            {currentPlayer.isComputer && (
-              <span className="text-[10px] bg-slate-800 border border-white/10 rounded px-1.5 py-0.5 text-slate-400">CPU</span>
-            )}
+            <span className={`text-xs font-bold truncate ${PLAYER_COLORS[gameState.currentPlayerIdx % 5].text}`}>
+              {currentPlayer.name}{currentPlayer.isComputer ? ' (CPU)' : "'s Turn"}
+            </span>
           </div>
-          <div className="flex gap-2 mt-0.5">
-            {gameState.players.map(p => (
-              <div key={p.id} className="flex items-center gap-1">
-                <span className="text-[10px] text-slate-500">{p.name.split(' ')[0]}</span>
-                <span className="text-[10px] font-bold text-amber-400">{p.winningPoints}pt</span>
-              </div>
-            ))}
+          <div className="flex gap-1.5 flex-wrap">
+            {gameState.players.map((p, idx) => {
+              const color = PLAYER_COLORS[idx % 5]
+              const isActive = idx === gameState.currentPlayerIdx
+              return (
+                <div key={p.id}
+                  className={`flex items-center gap-1 px-1.5 py-0.5 rounded-md text-[10px] transition-all
+                    ${isActive ? `${color.bg} ${color.border} border` : 'opacity-50'}`}>
+                  <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${color.dot}`} />
+                  <span className={`font-medium ${color.text}`}>{p.name.split(' ')[0]}</span>
+                  <span className={`font-bold ${color.text}`}>{p.winningPoints}★</span>
+                </div>
+              )
+            })}
           </div>
         </div>
-        <button onClick={onExit} className="text-slate-600 hover:text-slate-400 text-xs transition-colors px-2">Exit</button>
+        <button onClick={onExit} className="text-slate-600 hover:text-slate-400 text-xs transition-colors px-2 shrink-0">Exit</button>
       </div>
 
       {/* Board: Locations */}
@@ -1513,16 +1531,21 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
                 )}
 
                 {/* Cards per player */}
-                {gameState.players.map(p => {
+                {gameState.players.map((p, pidx) => {
                   const playerCards = loc.cards.filter(c => c.playerId === p.id)
+                  const pColor = PLAYER_COLORS[pidx % 5]
                   if (playerCards.length === 0) return (
-                    <div key={p.id} className="mb-1 h-4 flex items-center">
-                      <span className="text-[9px] text-slate-700 italic">{p.name.split(' ')[0]}: –</span>
+                    <div key={p.id} className="mb-1 h-4 flex items-center gap-1">
+                      <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${pColor.dot} opacity-30`} />
+                      <span className="text-[9px] text-slate-700 italic">{p.name.split(' ')[0]}</span>
                     </div>
                   )
                   return (
                     <div key={p.id} className="mb-1">
-                      <p className="text-[8px] text-slate-600 mb-0.5">{p.name.split(' ')[0]}</p>
+                      <div className="flex items-center gap-1 mb-0.5">
+                        <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${pColor.dot}`} />
+                        <p className={`text-[8px] font-medium ${pColor.text}`}>{p.name.split(' ')[0]}</p>
+                      </div>
                       <div className="flex flex-wrap gap-0.5">
                         {playerCards.map(oc => (
                           <CompactCard
@@ -1744,7 +1767,17 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
         <div className="mt-auto">
           <button
             disabled={!isMyTurn || !canEndTurn}
-            onClick={() => { dispatch({ type: 'END_TURN' }); setSelection({ mode: 'none' }) }}
+            onClick={() => {
+              const numPlayers = gameState.players.length
+              const nextIdx = (gameState.currentPlayerIdx + 1) % numPlayers
+              const nextPlayer = gameState.players[nextIdx]
+              dispatch({ type: 'END_TURN' })
+              setSelection({ mode: 'none' })
+              // Hot-seat: if the next player is human, hide the board until they confirm
+              if (!nextPlayer.isComputer) {
+                setAwaitingHandoff(true)
+              }
+            }}
             className="w-full py-3 rounded-xl font-bold text-sm tracking-wide text-slate-950
               bg-amber-500 hover:bg-amber-400 active:bg-amber-600
               disabled:opacity-30 disabled:cursor-not-allowed
@@ -1782,6 +1815,37 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
 
       {/* Card detail modal */}
       {cardDetail && <CardDetailModal card={cardDetail} onClose={() => setCardDetail(null)} />}
+
+      {/* Hot-seat handoff screen — covers everything until the next player confirms */}
+      {awaitingHandoff && (() => {
+        const pidx = gameState.currentPlayerIdx
+        const color = PLAYER_COLORS[pidx % 5]
+        const player = gameState.players[pidx]
+        return (
+          <div className="fixed inset-0 z-[200] bg-[#080812] flex flex-col items-center justify-center p-8">
+            <div className="text-center max-w-xs w-full">
+              <div className={`w-20 h-20 rounded-3xl mx-auto mb-6 flex items-center justify-center text-4xl ${color.bg} border ${color.border}`}>
+                ⚔
+              </div>
+              <p className="text-slate-500 text-xs uppercase tracking-widest mb-2">Next up</p>
+              <h2 className={`text-3xl font-bold mb-1 ${color.text}`}>{player.name}</h2>
+              <div className="flex items-center justify-center gap-1 mb-8">
+                <span className={`w-2 h-2 rounded-full ${color.dot}`} />
+                <span className="text-slate-500 text-sm">{player.winningPoints} winning point{player.winningPoints !== 1 ? 's' : ''}</span>
+              </div>
+              <p className="text-slate-600 text-xs mb-6 leading-relaxed">
+                Hand the device to this player.<br />Others look away.
+              </p>
+              <button
+                onClick={() => setAwaitingHandoff(false)}
+                className={`w-full py-4 rounded-2xl font-bold text-sm tracking-wide border transition-all
+                  ${color.bg} ${color.border} ${color.text} hover:opacity-90 active:scale-95`}>
+                I'm Ready →
+              </button>
+            </div>
+          </div>
+        )
+      })()}
     </div>
   )
 }
