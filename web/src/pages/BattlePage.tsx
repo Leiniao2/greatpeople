@@ -18,6 +18,16 @@ const ALL_GP_CARDS: Card[] = (demoCardsJson as Card[]).map(c => ({
 
 const FOLLOWER_TEMPLATES: Omit<FollowerCard, 'id'>[] = followersJson as Omit<FollowerCard, 'id'>[]
 
+// IDs are "follower-<Name>-<n>" — look up template by name for deployed followers
+const FOLLOWER_TMPL_BY_NAME: Record<string, Omit<FollowerCard, 'id'>> = {}
+for (const t of FOLLOWER_TEMPLATES) FOLLOWER_TMPL_BY_NAME[t.name] = t
+function followerFromId(id: string): FollowerCard | null {
+  // strip "follower-" prefix and trailing "-<number>"
+  const inner = id.replace(/^follower-/, '').replace(/-\d+$/, '')
+  const tmpl = FOLLOWER_TMPL_BY_NAME[inner]
+  return tmpl ? { ...tmpl, id } : null
+}
+
 function makeFollowerDeck(): FollowerCard[] {
   const deck: FollowerCard[] = []
   let counter = 0
@@ -146,13 +156,201 @@ function getGPCard(id: string): Card | undefined {
   return ALL_GP_CARDS.find(c => c.id === id)
 }
 
-function computeLocationTotal(locationCards: OnboardCard[], playerId: string, stat: StatKey, gpCards: Record<string, Card>, followerCards: Record<string, FollowerCard>): number {
+// ─── Achievement specs: which stat + how many wins to earn a point ────────────
+
+interface AchievementSpec { stat: StatKey; threshold: number }
+
+const ACHIEVEMENT_SPECS: Record<string, AchievementSpec> = {
+  'Gandhi':               { stat: 'belief',        threshold: 3 },
+  'Coco Chanel':          { stat: 'culture',        threshold: 3 },
+  'Mao Zedong':           { stat: 'politics',       threshold: 4 },
+  'Belisarius':           { stat: 'strength',       threshold: 3 },
+  'Imhotep':              { stat: 'technique',      threshold: 4 },
+  'Lu Yu':                { stat: 'culture',        threshold: 3 },
+  'Alan Turing':          { stat: 'intelligence',   threshold: 3 },
+  'Andrew Mellon':        { stat: 'wealth',         threshold: 3 },
+  'Audrey Hepburn':       { stat: 'reputation',     threshold: 3 },
+  'Clara Schumann':       { stat: 'culture',        threshold: 3 },
+  'Euclid':               { stat: 'intelligence',   threshold: 5 },
+  'Hua Mulan':            { stat: 'strength',       threshold: 3 },
+  'Johannes Brahms':      { stat: 'culture',        threshold: 3 },
+  'Lancelot':             { stat: 'strength',       threshold: 4 },
+  'Li Qingzhao':          { stat: 'culture',        threshold: 3 },
+  'Marie Antoinette':     { stat: 'wealth',         threshold: 3 },
+  'Miyamoto Musashi':     { stat: 'strength',       threshold: 4 },
+  'Sargon I':             { stat: 'politics',       threshold: 4 },
+  'Gilgamesh':            { stat: 'strength',       threshold: 3 },
+  'Enkidu':               { stat: 'strength',       threshold: 3 },
+  'Pericles':             { stat: 'politics',       threshold: 4 },
+  'Aspasia':              { stat: 'intelligence',   threshold: 3 },
+  'Pleistoanax':          { stat: 'politics',       threshold: 3 },
+  'Cicero':               { stat: 'politics',       threshold: 4 },
+  'Anaxagoras':           { stat: 'intelligence',   threshold: 4 },
+  'Zeno of Elea':         { stat: 'intelligence',   threshold: 3 },
+  'Al-Khwarizmi':         { stat: 'technique',      threshold: 4 },
+  'Mani':                 { stat: 'belief',         threshold: 3 },
+  'Titian':               { stat: 'culture',        threshold: 4 },
+  'Magellan':             { stat: 'technique',      threshold: 3 },
+  'Mother Teresa':        { stat: 'belief',         threshold: 4 },
+  'Carl Linnaeus':        { stat: 'intelligence',   threshold: 3 },
+  'Robert Schumann':      { stat: 'culture',        threshold: 3 },
+  'Hendrik Lorentz':      { stat: 'intelligence',   threshold: 4 },
+  'Amelia Earhart':       { stat: 'technique',      threshold: 3 },
+  'Sergei Eisenstein':    { stat: 'culture',        threshold: 3 },
+  'Edmund Hillary':       { stat: 'strength',       threshold: 3 },
+  'Tenzing Norgay':       { stat: 'strength',       threshold: 3 },
+  'Itō Hirobumi':         { stat: 'politics',       threshold: 4 },
+  'Michael Jackson':      { stat: 'culture',        threshold: 4 },
+  'George Bernard Shaw':  { stat: 'culture',        threshold: 3 },
+  'Gregory Peck':         { stat: 'belief',         threshold: 3 },
+  'Isabel I of Castile':  { stat: 'belief',         threshold: 3 },
+  'Manuel I of Portugal': { stat: 'wealth',         threshold: 3 },
+  'An Jung-geun':         { stat: 'strength',       threshold: 3 },
+  'Gregor Mendel':        { stat: 'intelligence',   threshold: 3 },
+  'Louis XVI':            { stat: 'politics',       threshold: 3 },
+}
+
+function getAchievementThreshold(figureName: string): number {
+  return ACHIEVEMENT_SPECS[figureName]?.threshold ?? 3
+}
+
+// ─── Trait bonuses: per-GP stat modifier based on board state ─────────────────
+
+function traitBonusForGP(
+  gp: Card,
+  stat: StatKey,
+  locationCards: OnboardCard[],
+  playerId: string,
+  allLocations: LocationState[],
+  gpMap: Record<string, Card>,
+  followerMap: Record<string, FollowerCard>,
+): number {
+  let bonus = 0
+  const alliedCards = locationCards.filter(c => c.playerId === playerId)
+  const opponentCards = locationCards.filter(c => c.playerId !== playerId)
+  const alliedFollowers = alliedCards
+    .filter(c => c.type === 'follower')
+    .map(c => followerMap[c.cardId])
+    .filter((f): f is FollowerCard => !!f)
+  const alliedGPCards = alliedCards
+    .filter(c => c.type === 'gp')
+    .map(c => gpMap[c.cardId])
+    .filter((g): g is Card => !!g)
+
+  switch (gp.figureName) {
+    case 'Belisarius':
+      if (opponentCards.length > alliedCards.length && (stat === 'strength' || stat === 'politics'))
+        bonus += 5
+      break
+
+    case 'Imhotep':
+      if (alliedFollowers.length >= 2 && (stat === 'technique' || stat === 'intelligence'))
+        bonus += 8
+      break
+
+    case 'Lu Yu':
+      if (alliedGPCards.length === 1)
+        bonus += 5
+      break
+
+    case 'Andrew Mellon':
+      if (stat === 'wealth')
+        bonus += alliedFollowers.filter(f => f.name === 'Merchant').length * 5
+      break
+
+    case 'Pericles':
+      bonus += alliedFollowers.length
+      break
+
+    case 'Aspasia': {
+      const pericelesOnField = allLocations.some(loc =>
+        loc.cards.some(c => c.type === 'gp' && gpMap[c.cardId]?.figureName === 'Pericles')
+      )
+      if (pericelesOnField && (stat === 'politics' || stat === 'intelligence'))
+        bonus += 8
+      break
+    }
+
+    case 'Enkidu': {
+      const femaleGPAtLoc = locationCards
+        .filter(c => c.type === 'gp')
+        .some(c => gpMap[c.cardId]?.gender === 'female')
+      if (femaleGPAtLoc) {
+        if (stat === 'strength') bonus += 10
+        if (stat === 'culture') bonus += 5
+      }
+      break
+    }
+
+    case 'Lancelot':
+      if (stat === 'politics') bonus -= 10
+      break
+
+    case 'Marie Antoinette':
+      if (stat === 'wealth') bonus += 15
+      if (stat === 'politics') bonus -= 10
+      break
+
+    case 'Mani': {
+      const erasOnField = new Set(
+        allLocations.flatMap(loc =>
+          loc.cards
+            .filter(c => c.type === 'gp')
+            .map(c => gpMap[c.cardId]?.era)
+            .filter(Boolean)
+        )
+      ).size
+      if (stat === 'belief' || stat === 'intelligence')
+        bonus += erasOnField * 3
+      break
+    }
+
+    case 'Johannes Brahms': {
+      let alliedStatSum = 0
+      for (const oc of alliedCards) {
+        if (oc.type === 'gp') {
+          const g = gpMap[oc.cardId]
+          if (g) alliedStatSum += g[stat]
+        }
+      }
+      bonus += alliedStatSum >= 25 ? 3 : -3
+      break
+    }
+
+    case 'Sergei Eisenstein':
+      if (stat === 'culture') bonus += Math.max(0, gp.intelligence - gp.culture)
+      break
+
+    case 'Gregory Peck': {
+      const hasOpponentEvent = allLocations
+        .find(loc => loc.cards.some(c => c.instanceId === locationCards[0]?.instanceId))
+        ?.activeEvent != null
+      if (hasOpponentEvent && stat === 'reputation') bonus += 5
+      break
+    }
+  }
+
+  return bonus
+}
+
+function computeLocationTotal(
+  locationCards: OnboardCard[],
+  playerId: string,
+  stat: StatKey,
+  gpCards: Record<string, Card>,
+  followerCards: Record<string, FollowerCard>,
+  allLocations?: LocationState[],
+): number {
+  const locs = allLocations ?? []
   let total = 0
   for (const oc of locationCards) {
     if (oc.playerId !== playerId) continue
     if (oc.type === 'gp') {
       const gp = gpCards[oc.cardId]
-      if (gp) total += gp[stat]
+      if (gp) {
+        total += gp[stat]
+        total += traitBonusForGP(gp, stat, locationCards, playerId, locs, gpCards, followerCards)
+      }
     } else {
       const f = followerCards[oc.cardId]
       if (f && f.stat === stat) total += f.bonus
@@ -273,18 +471,12 @@ function buildLookups(state: GameState) {
   for (const p of state.players) {
     for (const f of p.followerHand) followerMap[f.id] = f
   }
-  // Also find followers that are on board
+  // Deployed followers are no longer in any hand — rebuild from template
   for (const loc of state.locations) {
     for (const oc of loc.cards) {
-      if (oc.type === 'follower') {
-        // Look up from player hands OR already found
-        if (!followerMap[oc.cardId]) {
-          // try to find in any player
-          for (const p of state.players) {
-            const f = p.followerHand.find(x => x.id === oc.cardId)
-            if (f) { followerMap[f.id] = f; break }
-          }
-        }
+      if (oc.type === 'follower' && !followerMap[oc.cardId]) {
+        const f = followerFromId(oc.cardId)
+        if (f) followerMap[oc.cardId] = f
       }
     }
   }
@@ -475,7 +667,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
       } else {
         // Rebuild follower from deck info
         const followerInDeck = state.followerDeck.find(f => f.id === card.cardId)
-          ?? { id: card.cardId, name: 'Follower', stat: 'culture' as StatKey, bonus: 6 }
+          ?? { id: card.cardId, name: 'Follower', stat: 'culture' as StatKey, bonus: 6, imageKey: 'artist' }
         newPlayers = state.players.map((p, i) =>
           i === playerIdx ? { ...p, followerHand: [...p.followerHand, followerInDeck] } : p
         )
@@ -502,10 +694,14 @@ function gameReducer(state: GameState, action: GameAction): GameState {
       const newLocations = state.locations.map(loc => ({
         ...loc,
         cards: loc.cards.map(c => {
-          if (c.instanceId === action.instanceId && c.playerId === player.id && c.type === 'gp' && c.achievementTicks >= 3 && c.isPublic) {
-            found = true
-            gpName = getGPCard(c.cardId)?.figureName ?? 'Card'
-            return { ...c, achievementTicks: 0 }
+          if (c.instanceId === action.instanceId && c.playerId === player.id && c.type === 'gp' && c.isPublic) {
+            const figure = getGPCard(c.cardId)?.figureName ?? ''
+            const threshold = getAchievementThreshold(figure)
+            if (c.achievementTicks >= threshold) {
+              found = true
+              gpName = figure || 'Card'
+              return { ...c, achievementTicks: 0 }
+            }
           }
           return c
         }),
@@ -563,8 +759,8 @@ function gameReducer(state: GameState, action: GameAction): GameState {
       const stat = loc.activeEvent.stat!
       const { gpMap, followerMap } = buildLookups(state)
 
-      const myTotal = computeLocationTotal(loc.cards, player.id, stat, gpMap, followerMap)
-      const theirTotal = computeLocationTotal(loc.cards, theirCard.playerId, stat, gpMap, followerMap)
+      const myTotal = computeLocationTotal(loc.cards, player.id, stat, gpMap, followerMap, state.locations)
+      const theirTotal = computeLocationTotal(loc.cards, theirCard.playerId, stat, gpMap, followerMap, state.locations)
 
       const myWon = myTotal > theirTotal
       const theirWon = theirTotal > myTotal
@@ -595,13 +791,31 @@ function gameReducer(state: GameState, action: GameAction): GameState {
               ? { ...l, cards: l.cards.filter(c => c.instanceId !== loserInstanceId) }
               : l
           )
-          // Achievement tick for winner's GP
+          // Achievement ticks: increment for winning GP if the event stat matches their achievement stat
           if (myWon && myCard.type === 'gp') {
+            const attackerGP = gpMap[myCard.cardId]
+            const achSpec = attackerGP ? ACHIEVEMENT_SPECS[attackerGP.figureName] : null
+            const tickCount = (achSpec?.stat === stat ? 1 : 0) +
+              (attackerGP?.figureName === 'Edmund Hillary' ? 1 : 0) + // Hillary gains 2 ticks on win
+              (attackerGP?.figureName === 'Sargon I' ? 1 : 0)         // Sargon gains extra tick on defeat
             newLocations = newLocations.map(l => ({
               ...l,
               cards: l.cards.map(c =>
-                c.instanceId === action.myInstanceId ? { ...c, achievementTicks: c.achievementTicks + 1 } : c
+                c.instanceId === action.myInstanceId
+                  ? { ...c, achievementTicks: c.achievementTicks + Math.max(1, tickCount) }
+                  : c
               ),
+            }))
+          }
+          // Mother Teresa: extra tick when Belief wins
+          if (myWon && stat === 'belief') {
+            newLocations = newLocations.map(l => ({
+              ...l,
+              cards: l.cards.map(c => {
+                if (c.instanceId !== action.myInstanceId || c.type !== 'gp') return c
+                const g = gpMap[c.cardId]
+                return g?.figureName === 'Mother Teresa' ? { ...c, achievementTicks: c.achievementTicks + 1 } : c
+              }),
             }))
           }
         } else {
@@ -617,7 +831,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
             )
           } else {
             const followerInDeck = state.followerDeck.find(f => f.id === loserCard.cardId)
-              ?? { id: loserCard.cardId, name: 'Follower', stat: 'culture' as StatKey, bonus: 6 }
+              ?? { id: loserCard.cardId, name: 'Follower', stat: 'culture' as StatKey, bonus: 6, imageKey: 'artist' }
             newPlayers = newPlayers.map(p =>
               p.id === loserCard.playerId ? { ...p, followerHand: [...p.followerHand, followerInDeck] } : p
             )
@@ -865,7 +1079,7 @@ interface CompactCardProps {
   isCurrentPlayer: boolean
   isSelected: boolean
   onClick: () => void
-  onInfo?: (card: Card) => void
+  onInfo?: (card: Card, ticks?: number) => void
   gpMap: Record<string, Card>
   followerTemplates: Record<string, FollowerCard>
 }
@@ -894,9 +1108,15 @@ function CompactCard({ card, isCurrentPlayer, isSelected, onClick, onInfo, gpMap
       {card.justDeployed && (
         <span className="absolute top-0.5 right-0.5 z-10 w-2 h-2 rounded-full bg-amber-400 border border-black" />
       )}
-      {card.achievementTicks > 0 && (
-        <span className="absolute top-0.5 left-0.5 z-10 text-[7px] text-amber-300 font-bold bg-black/60 rounded px-0.5">{card.achievementTicks}</span>
-      )}
+      {card.achievementTicks > 0 && (() => {
+        const threshold = gp ? getAchievementThreshold(gp.figureName) : 3
+        const ready = card.achievementTicks >= threshold
+        return (
+          <span className={`absolute top-0.5 left-0.5 z-10 text-[7px] font-bold rounded px-0.5 ${ready ? 'bg-amber-400 text-slate-950' : 'bg-black/60 text-amber-300'}`}>
+            {card.achievementTicks}/{threshold}
+          </span>
+        )
+      })()}
 
       {isPrivate ? (
         <div className="flex-1 flex items-center justify-center">
@@ -914,7 +1134,7 @@ function CompactCard({ card, isCurrentPlayer, isSelected, onClick, onInfo, gpMap
             {onInfo && (
               <div
                 role="button"
-                onClick={e => { e.stopPropagation(); onInfo(gp) }}
+                onClick={e => { e.stopPropagation(); onInfo(gp, card.achievementTicks) }}
                 className="absolute top-0.5 right-0.5 w-4 h-4 rounded-full bg-black/70 flex items-center justify-center text-[8px] text-white/80 cursor-pointer z-10 hover:bg-black/90"
               >i</div>
             )}
@@ -924,11 +1144,20 @@ function CompactCard({ card, isCurrentPlayer, isSelected, onClick, onInfo, gpMap
           </div>
         </>
       ) : follower ? (
-        <div className="flex-1 flex flex-col items-center justify-center p-0.5 text-center">
-          <div className="text-[9px] text-white/80 font-medium leading-tight">{follower.name}</div>
-          <div className="text-[9px] text-indigo-300 mt-0.5">+3</div>
-          <div className="text-[8px] text-indigo-400">{STAT_LABELS[follower.stat].slice(0, 3)}</div>
-        </div>
+        <>
+          <div className="flex-1 w-full relative overflow-hidden bg-indigo-950">
+            <img
+              src={`/followers/${follower.imageKey}.jpeg`}
+              alt={follower.name}
+              className="w-full h-full object-cover object-center"
+              onError={e => { (e.target as HTMLImageElement).style.display = 'none' }}
+            />
+          </div>
+          <div className="w-full bg-black/80 px-0.5 py-0.5 shrink-0">
+            <span className="text-[7px] text-indigo-200 leading-none truncate block">{follower.name}</span>
+            <span className="text-[6px] text-indigo-400">+3 {STAT_LABELS[follower.stat].slice(0, 3)}</span>
+          </div>
+        </>
       ) : null}
 
       {!isPrivate && !card.isPublic && gp && (
@@ -994,11 +1223,21 @@ function HandCard({ cardId, type, isSelected, onClick, onInfo, gpMap, eventCard,
         </div>
       )}
       {type === 'follower' && followerCard && (
-        <div className="flex flex-col items-center justify-between h-full p-1.5">
-          <span className="text-[8px] text-indigo-300 uppercase tracking-wide">Follower</span>
-          <span className="text-[9px] text-white font-medium text-center">{followerCard.name}</span>
-          <span className="text-[8px] text-indigo-300">+3 {STAT_LABELS[followerCard.stat].slice(0, 3)}</span>
-        </div>
+        <>
+          <div className="flex-1 w-full relative overflow-hidden bg-indigo-950">
+            <img
+              src={`/followers/${followerCard.imageKey}.jpeg`}
+              alt={followerCard.name}
+              className="w-full h-full object-cover object-center"
+              onError={e => { (e.target as HTMLImageElement).style.display = 'none' }}
+            />
+            <div className="absolute inset-x-0 bottom-0 h-5 bg-gradient-to-t from-black/60 to-transparent" />
+          </div>
+          <div className="w-full bg-black/80 px-1 py-0.5 shrink-0">
+            <div className="text-[8px] text-indigo-200 font-semibold leading-tight truncate">{followerCard.name}</div>
+            <div className="text-[8px] text-indigo-400">+3 {STAT_LABELS[followerCard.stat].slice(0, 3)}</div>
+          </div>
+        </>
       )}
     </button>
   )
@@ -1006,7 +1245,11 @@ function HandCard({ cardId, type, isSelected, onClick, onInfo, gpMap, eventCard,
 
 // ─── Card Detail Modal ────────────────────────────────────────────────────────
 
-function CardDetailModal({ card, onClose }: { card: Card; onClose: () => void }) {
+function CardDetailModal({ card, achievementTicks, onClose }: { card: Card; achievementTicks?: number; onClose: () => void }) {
+  const achSpec = ACHIEVEMENT_SPECS[card.figureName]
+  const ticks = achievementTicks ?? 0
+  const threshold = achSpec?.threshold ?? 3
+
   return (
     <div
       className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-4"
@@ -1017,7 +1260,7 @@ function CardDetailModal({ card, onClose }: { card: Card; onClose: () => void })
         onClick={e => e.stopPropagation()}
       >
         {/* Portrait with name overlay */}
-        <div className="relative w-full h-52 bg-slate-900">
+        <div className="relative w-full h-48 bg-slate-900">
           <img
             src={card.portraitUrl}
             alt={card.figureName}
@@ -1035,8 +1278,9 @@ function CardDetailModal({ card, onClose }: { card: Card; onClose: () => void })
           </div>
         </div>
 
-        <div className="px-4 pt-3 pb-4">
+        <div className="px-4 pt-3 pb-4 space-y-3 max-h-[60vh] overflow-y-auto">
 
+          {/* Stats grid */}
           <div className="grid grid-cols-2 gap-1.5">
             {STATS.map(stat => {
               const val = card[stat]
@@ -1049,6 +1293,32 @@ function CardDetailModal({ card, onClose }: { card: Card; onClose: () => void })
               )
             })}
           </div>
+
+          {/* Trait */}
+          {card.trait && (
+            <div className="bg-amber-500/[0.07] border border-amber-500/20 rounded-xl px-3 py-2.5">
+              <p className="text-[10px] text-amber-400/70 uppercase tracking-widest font-semibold mb-1">Trait</p>
+              <p className="text-amber-200/90 text-xs leading-relaxed">{card.trait}</p>
+            </div>
+          )}
+
+          {/* Achievement */}
+          {card.achievement && (
+            <div className="bg-violet-500/[0.07] border border-violet-500/20 rounded-xl px-3 py-2.5">
+              <div className="flex items-center justify-between mb-1">
+                <p className="text-[10px] text-violet-400/70 uppercase tracking-widest font-semibold">Achievement</p>
+                {achievementTicks !== undefined && (
+                  <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${ticks >= threshold ? 'bg-amber-500 text-slate-950' : 'bg-white/10 text-slate-400'}`}>
+                    {ticks} / {threshold}
+                  </span>
+                )}
+              </div>
+              <p className="text-violet-200/90 text-xs leading-relaxed">{card.achievement}</p>
+              {achievementTicks !== undefined && ticks >= threshold && (
+                <p className="text-amber-400 text-[10px] font-bold mt-1.5">★ Ready to claim!</p>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </div>
@@ -1259,7 +1529,7 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
   const [attackKill, setAttackKill] = useState(false)
   const [showRewardDialog, setShowRewardDialog] = useState(false)
   const [globalCompWinner] = useState<string | null>(null)
-  const [cardDetail, setCardDetail] = useState<Card | null>(null)
+  const [cardDetail, setCardDetail] = useState<{ card: Card; ticks?: number } | null>(null)
   // Hot-seat: shown between human turns so previous player can't see next player's hand
   const [awaitingHandoff, setAwaitingHandoff] = useState(false)
   const logRef = useRef<HTMLDivElement>(null)
@@ -1285,6 +1555,15 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
   for (const p of gameState.players) {
     for (const f of p.followerHand) followerMap[f.id] = f
   }
+  // Deployed followers are removed from followerHand — rebuild from template
+  for (const loc of gameState.locations) {
+    for (const oc of loc.cards) {
+      if (oc.type === 'follower' && !followerMap[oc.cardId]) {
+        const f = followerFromId(oc.cardId)
+        if (f) followerMap[oc.cardId] = f
+      }
+    }
+  }
 
   const canDeployGP = !gameState.turnActions.deployedGP && currentPlayer.gpHand.length > 0
   const canAddFollower = !gameState.turnActions.addedFollower && currentPlayer.followerHand.length > 0
@@ -1296,7 +1575,7 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
 
   const canClaimAchievement = selectedOnboard?.type === 'gp'
     && selectedOnboard.playerId === currentPlayer.id
-    && selectedOnboard.achievementTicks >= 3
+    && selectedOnboard.achievementTicks >= getAchievementThreshold(gpMap[selectedOnboard.cardId]?.figureName ?? '')
     && selectedOnboard.isPublic
     && !gameState.turnActions.actedCards.includes(selectedOnboard.instanceId)
 
@@ -1329,20 +1608,30 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
           return gpTotal > bestTotal ? id : best
         }, currentPlayer.gpHand[0])
 
-        // Find location with most opponents' cards
+        // Spread out: prefer locations where this CPU has no cards yet, break ties by opponent presence + randomness
+        const randomStart = gameState.locations[Math.floor(Math.random() * gameState.locations.length)]
         const targetLoc = gameState.locations.reduce((best, loc) => {
+          const myCards = loc.cards.filter(c => c.playerId === currentPlayer.id).length
+          const bestMyCards = best.cards.filter(c => c.playerId === currentPlayer.id).length
+          if (myCards !== bestMyCards) return myCards < bestMyCards ? loc : best
           const oppCount = loc.cards.filter(c => c.playerId !== currentPlayer.id).length
           const bestOppCount = best.cards.filter(c => c.playerId !== currentPlayer.id).length
-          return oppCount > bestOppCount ? loc : best
-        }, gameState.locations[0])
+          if (oppCount !== bestOppCount) return oppCount > bestOppCount ? loc : best
+          return Math.random() < 0.5 ? loc : best
+        }, randomStart)
 
         dispatch({ type: 'DEPLOY_GP', cardId: bestCard, locationId: targetLoc.id, isPublic: false })
       }
 
-      // 2. Add follower if possible
+      // 2. Add follower if possible — prefer location with fewest of CPU's own cards (spread out)
       if (currentPlayer.followerHand.length > 0 && !gameState.turnActions.addedFollower) {
-        const locWithGP = gameState.locations.find(l => l.cards.some(c => c.type === 'gp' && c.playerId === currentPlayer.id))
-        if (locWithGP) {
+        const locsWithGP = gameState.locations.filter(l => l.cards.some(c => c.type === 'gp' && c.playerId === currentPlayer.id))
+        if (locsWithGP.length > 0) {
+          const locWithGP = locsWithGP.reduce((best, loc) => {
+            const myCards = loc.cards.filter(c => c.playerId === currentPlayer.id).length
+            const bestMyCards = best.cards.filter(c => c.playerId === currentPlayer.id).length
+            return myCards < bestMyCards ? loc : best
+          }, locsWithGP[0])
           const follower = currentPlayer.followerHand[0]
           dispatch({ type: 'ADD_FOLLOWER', followerId: follower.id, locationId: locWithGP.id, instanceId: follower.id })
         }
@@ -1351,7 +1640,7 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
       // 3. Claim achievement if possible
       for (const loc of gameState.locations) {
         for (const oc of loc.cards) {
-          if (oc.type === 'gp' && oc.playerId === currentPlayer.id && oc.achievementTicks >= 3 && oc.isPublic) {
+          if (oc.type === 'gp' && oc.playerId === currentPlayer.id && oc.achievementTicks >= getAchievementThreshold(gpMap[oc.cardId]?.figureName ?? '') && oc.isPublic) {
             dispatch({ type: 'CLAIM_ACHIEVEMENT', instanceId: oc.instanceId })
           }
         }
@@ -1568,7 +1857,7 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
                             isCurrentPlayer={p.id === currentPlayer.id}
                             isSelected={selection.onboardInstanceId === oc.instanceId}
                             onClick={() => handleOnboardCardTap(oc, loc.id)}
-                            onInfo={setCardDetail}
+                            onInfo={(c, ticks) => setCardDetail({ card: c, ticks })}
                             gpMap={gpMap}
                             followerTemplates={followerMap}
                           />
@@ -1620,7 +1909,7 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
                 type="gp"
                 isSelected={selection.handCardId === id}
                 onClick={() => handleHandCardTap(id, 'gp', i)}
-                onInfo={setCardDetail}
+                onInfo={(c) => setCardDetail({ card: c })}
                 gpMap={gpMap}
               />
             ))}
@@ -1828,7 +2117,7 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
       </div>
 
       {/* Card detail modal */}
-      {cardDetail && <CardDetailModal card={cardDetail} onClose={() => setCardDetail(null)} />}
+      {cardDetail && <CardDetailModal card={cardDetail.card} achievementTicks={cardDetail.ticks} onClose={() => setCardDetail(null)} />}
 
       {/* Hot-seat handoff screen — covers everything until the next player confirms */}
       {awaitingHandoff && (() => {
