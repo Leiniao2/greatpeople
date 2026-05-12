@@ -11,7 +11,7 @@ Achievement: Join Army for Father - Win a battlefield defence with at least one 
 Achievement: Lorentz Force - When some GP on the board is forced retrieved without being attacked.
 
 # Euclid: Geometric Deduction – The special effects of this card's current location also apply to all other locations on the field.
-Achievement: Geometry - Your allied GP and Followers on board has distributed to all the locations existing on the board.
+Achievement: Geometry - Your allied GP and Followers on board has distributed to all the locations existing on the board, and identical number each location.
 
 # Al-Khwarizmi: Algebraic Induction – This card gains all numerical stat bonuses currently received by other revealed Great Persons on the field.
 Achievement: Algebra - Your allied GP and Followers on board has all the numbers of base stat from 1 to 25.
