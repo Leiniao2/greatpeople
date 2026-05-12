@@ -533,7 +533,7 @@ export default function StoryViewer({ eraName, storyTitle, figureName, portraitK
   // No script fallback — show simple message
   if (scenes.length === 0) {
     return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm">
+      <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/90 backdrop-blur-sm">
         <div className="text-center">
           <p className="text-slate-400 text-sm mb-4">No story content found.</p>
           <button onClick={onClose} className="px-6 py-2 rounded-xl bg-amber-500 text-slate-950 font-bold text-sm">Close</button>
@@ -547,7 +547,7 @@ export default function StoryViewer({ eraName, storyTitle, figureName, portraitK
   const eraLocationImg = ERA_LOCATION_IMAGE[eraName]
 
   return (
-    <div className="fixed inset-0 z-50 flex flex-col overflow-hidden">
+    <div className="fixed inset-0 z-[60] flex flex-col overflow-hidden">
       {/* Era location ambient background */}
       {eraLocationImg && (
         <div className="absolute inset-0">
@@ -586,7 +586,7 @@ export default function StoryViewer({ eraName, storyTitle, figureName, portraitK
       </div>
 
       {/* Scene content */}
-      <div className="relative z-10 flex-1 flex flex-col px-4 py-4 overflow-y-auto">
+      <div className="relative z-10 flex-1 flex flex-col px-4 py-4 pb-8 overflow-y-auto">
         {currentScene?.type === 'narration' && (
           <NarrationScene key={sceneIdx} scene={currentScene} onNext={advanceScene} />
         )}
