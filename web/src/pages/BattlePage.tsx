@@ -1016,7 +1016,7 @@ function CardDetailModal({ card, onClose }: { card: Card; onClose: () => void })
         className="relative bg-[#0e0e1a] border border-white/10 rounded-2xl overflow-hidden w-full max-w-xs shadow-2xl"
         onClick={e => e.stopPropagation()}
       >
-        {/* Portrait */}
+        {/* Portrait with name overlay */}
         <div className="relative w-full h-52 bg-slate-900">
           <img
             src={card.portraitUrl}
@@ -1024,16 +1024,18 @@ function CardDetailModal({ card, onClose }: { card: Card; onClose: () => void })
             className="w-full h-full object-cover object-top"
             onError={e => { (e.target as HTMLImageElement).style.display = 'none' }}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0e0e1a] via-[#0e0e1a]/10 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
           <button
             onClick={onClose}
             className="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/60 border border-white/10 flex items-center justify-center text-white/70 hover:text-white text-sm transition-colors"
           >✕</button>
+          <div className="absolute bottom-0 left-0 right-0 px-4 pb-3">
+            <h2 className="text-white text-lg font-bold leading-tight">{card.figureName}</h2>
+            <p className={`text-sm font-medium ${ERA_TEXT[card.era] ?? 'text-slate-400'}`}>{card.era}</p>
+          </div>
         </div>
 
-        <div className="px-4 pb-4 -mt-2">
-          <h2 className="text-white text-lg font-bold leading-tight">{card.figureName}</h2>
-          <p className={`text-sm font-medium mb-3 ${ERA_TEXT[card.era] ?? 'text-slate-400'}`}>{card.era}</p>
+        <div className="px-4 pt-3 pb-4">
 
           <div className="grid grid-cols-2 gap-1.5">
             {STATS.map(stat => {
