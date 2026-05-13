@@ -96,7 +96,7 @@
     "locationImage": "medieval_changan"
   },
   {
-    "era": "Medieval",
+    "era": "Classical",
     "title": "The Disguised Warrior",
     "figure": "Hua Mulan",
     "tagline": "She takes her father's armor and rewrites what courage looks like.",
@@ -144,7 +144,7 @@
     "locationImage": "renaissance_lisbon"
   },
   {
-    "era": "Electricity",
+    "era": "Information",
     "title": "Streets of Calcutta",
     "figure": "Mother Teresa",
     "tagline": "A nun leaves the convent walls to serve the dying in the gutters of Calcutta.",
@@ -160,7 +160,7 @@
     "locationImage": "electricity_delhi"
   },
   {
-    "era": "Steam",
+    "era": "Electricity",
     "title": "Keys and Concertos",
     "figure": "Clara Schumann",
     "tagline": "She plays with a brilliance the world barely lets itself acknowledge.",
@@ -176,7 +176,7 @@
     "locationImage": "renaissance_genoa"
   },
   {
-    "era": "Steam",
+    "era": "Electricity",
     "title": "Garden of Genetics",
     "figure": "Gregor Mendel",
     "tagline": "A monk in a garden uncovers the hidden code of life.",
@@ -184,7 +184,7 @@
     "locationImage": "steam_manchester"
   },
   {
-    "era": "Steam",
+    "era": "Electricity",
     "title": "Symphony of Shadows",
     "figure": "Johannes Brahms",
     "tagline": "He lives under Beethoven's shadow and finds his own towering voice.",
@@ -240,7 +240,7 @@
     "locationImage": "electricity_moscow"
   },
   {
-    "era": "Electricity",
+    "era": "Information",
     "title": "Top of the World",
     "figure": "Edmund Hillary",
     "tagline": "Two climbers from opposite ends of the Earth reach the same impossible peak together.",
@@ -272,7 +272,7 @@
     "locationImage": "electricity_london"
   },
   {
-    "era": "Electricity",
+    "era": "Information",
     "title": "Breakfast at Tiffany's",
     "figure": "Audrey Hepburn",
     "tagline": "Grace in every frame, humanity in every cause.",

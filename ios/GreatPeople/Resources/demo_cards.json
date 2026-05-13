@@ -235,7 +235,7 @@
   {
     "id": "demo-10",
     "figureName": "Audrey Hepburn",
-    "era": "Electricity",
+    "era": "Information",
     "gender": "female",
     "identities": [
       "Actor",
@@ -262,7 +262,7 @@
   {
     "id": "demo-11",
     "figureName": "Clara Schumann",
-    "era": "Steam",
+    "era": "Electricity",
     "gender": "female",
     "identities": [
       "Musician",
@@ -314,7 +314,7 @@
   {
     "id": "demo-13",
     "figureName": "Gregor Mendel",
-    "era": "Steam",
+    "era": "Electricity",
     "gender": "male",
     "identities": [
       "Scientist",
@@ -340,7 +340,7 @@
   {
     "id": "demo-14",
     "figureName": "Hua Mulan",
-    "era": "Medieval",
+    "era": "Classical",
     "gender": "female",
     "identities": [
       "Warrior",
@@ -366,7 +366,7 @@
   {
     "id": "demo-15",
     "figureName": "Johannes Brahms",
-    "era": "Steam",
+    "era": "Electricity",
     "gender": "male",
     "identities": [
       "Musician"
@@ -856,7 +856,7 @@
   {
     "id": "demo-34",
     "figureName": "Mother Teresa",
-    "era": "Electricity",
+    "era": "Information",
     "gender": "female",
     "identities": [
       "Priest",
@@ -1009,7 +1009,7 @@
   {
     "id": "demo-40",
     "figureName": "Edmund Hillary",
-    "era": "Electricity",
+    "era": "Information",
     "gender": "male",
     "identities": [
       "Explorer"
@@ -1060,7 +1060,7 @@
   {
     "id": "demo-42",
     "figureName": "Itō Hirobumi",
-    "era": "Steam",
+    "era": "Electricity",
     "gender": "male",
     "identities": [
       "Statesman",
@@ -1139,7 +1139,7 @@
   {
     "id": "demo-45",
     "figureName": "Gregory Peck",
-    "era": "Electricity",
+    "era": "Information",
     "gender": "male",
     "identities": [
       "Artist"
