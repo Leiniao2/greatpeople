@@ -1,16 +1,26 @@
 # ancient era 4000BC-800BC 3500 years
 ## Memphis
+Palace, Temple, Workshop
 ## Stonehenge
+Monument
 ## San Lorenzo
+Temple
 ## La Venta
+Temple
 ## Yin
+Palace
 ## Mohenjo-daro
+Workshop
 ## Zhaoge
+Palace
 ## Uruk
+Temple, Workshop, Monument
 ## Nippur
+Temple
 ## Ur
 ## Babylon
 ## Hattusa
+Palace
 ## Nineveh
 ## Ashur
 
