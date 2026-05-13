@@ -23,6 +23,7 @@ Temple
 Palace
 ## Nineveh
 ## Ashur
+Barrack
 
 # classic era 800BC-400AD 1200 years
 ## Carthage
