@@ -2,7 +2,7 @@
   {
     "id": "demo-1",
     "figureName": "Gandhi",
-    "era": "Steam",
+    "era": "Electricity",
     "gender": "male",
     "identities": [
       "Statesman",
@@ -183,7 +183,7 @@
   {
     "id": "demo-8",
     "figureName": "An Jung-geun",
-    "era": "Steam",
+    "era": "Electricity",
     "gender": "male",
     "identities": [
       "Warrior",
@@ -209,7 +209,7 @@
   {
     "id": "demo-9",
     "figureName": "Andrew Mellon",
-    "era": "Steam",
+    "era": "Electricity",
     "gender": "male",
     "identities": [
       "Banker",
@@ -883,7 +883,7 @@
   {
     "id": "demo-35",
     "figureName": "Carl Linnaeus",
-    "era": "Renaissance",
+    "era": "Steam",
     "gender": "male",
     "identities": [
       "Naturalist"
@@ -933,7 +933,7 @@
   {
     "id": "demo-37",
     "figureName": "Hendrik Lorentz",
-    "era": "Steam",
+    "era": "Electricity",
     "gender": "male",
     "identities": [
       "Scientist",
@@ -1086,7 +1086,7 @@
   {
     "id": "demo-43",
     "figureName": "Michael Jackson",
-    "era": "Electricity",
+    "era": "Information",
     "gender": "male",
     "identities": [
       "Musician",
@@ -1112,7 +1112,7 @@
   {
     "id": "demo-44",
     "figureName": "George Bernard Shaw",
-    "era": "Steam",
+    "era": "Electricity",
     "gender": "male",
     "identities": [
       "Writer",

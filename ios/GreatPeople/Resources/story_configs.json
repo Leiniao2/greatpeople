@@ -152,7 +152,7 @@
     "locationImage": "electricity_delhi"
   },
   {
-    "era": "Steam",
+    "era": "Electricity",
     "title": "Soul Force",
     "figure": "Gandhi",
     "tagline": "Against the greatest empire in history, one man chooses a different kind of weapon.",
@@ -168,7 +168,7 @@
     "locationImage": "steam_london"
   },
   {
-    "era": "Renaissance",
+    "era": "Steam",
     "title": "The Naming of Everything",
     "figure": "Carl Linnaeus",
     "tagline": "He gives every living creature a name — and creates the language of biology.",
@@ -256,7 +256,7 @@
     "locationImage": "electricity_hongkong"
   },
   {
-    "era": "Steam",
+    "era": "Electricity",
     "title": "A Martyr's Bullet",
     "figure": "An Jung-geun",
     "tagline": "One shot. One act of defiance. An entire nation's will made visible.",
@@ -280,7 +280,7 @@
     "locationImage": "information_sanjose"
   },
   {
-    "era": "Electricity",
+    "era": "Information",
     "title": "Moonwalk",
     "figure": "Michael Jackson",
     "tagline": "The King of Pop changes the world one performance at a time.",
