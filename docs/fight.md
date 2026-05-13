@@ -48,14 +48,14 @@ When a card is bring to the board, he/she could decide if it initialized as publ
 
 Each stat has 3 different scenarios, the 1st is local conflict, the 2nd is local survival, the 3rd is global competition
 
-politics: coup, Terrorist Attack, international conference
-strength: battlefield, riot, olympics
-culture: art critique, censorship, roadshow
-wealth: businese war, Depression, auction
-technique: Tech Race, Sanctions, World Fair
-intelligence: Argument, puzzle, Expedition
-belief: Miracle, Inquisition, pilgrimage
-reputation: Lawsuit, Scandal, Celebration
+### politics: coup, Terrorist Attack, international conference
+### strength: battlefield, riot, olympics
+### culture: art critique, censorship, roadshow
+### wealth: businese war, Depression, auction
+### technique: Tech Race, Sanctions, World Fair
+### intelligence: Argument, puzzle, Expedition
+### belief: Miracle, Inquisition, pilgrimage
+### reputation: Lawsuit, Scandal, Celebration
 
 Special: natural hazard (has several different types: flood, blizzard, storm, earthquake, fire, tsunami, pandemic, drought)
 
