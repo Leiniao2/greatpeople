@@ -1212,5 +1212,474 @@
     "countries": [
       "Portugal"
     ]
+  },
+  {
+    "id": "demo-48",
+    "figureName": "Ashurbanipal",
+    "era": "Ancient",
+    "gender": "male",
+    "identities": [
+      "Sovereign",
+      "Scholar"
+    ],
+    "portraitKey": "ashurbanipal",
+    "politics": 18,
+    "strength": 14,
+    "culture": 8,
+    "wealth": 10,
+    "intelligence": 16,
+    "technique": 5,
+    "belief": 8,
+    "reputation": 13,
+    "lore": "The warrior-king who built the world's first great library.",
+    "trait": "Library of Nineveh — Once per match, look at the top 3 cards of any one pile; rearrange them in any order.",
+    "achievement": "Conqueror-Scholar — Have this card at the same location as an allied Sch (Scholar) GP while this location is under your control.",
+    "years": "c. 685–627 BC",
+    "countries": [
+      "Iraq"
+    ]
+  },
+  {
+    "id": "demo-49",
+    "figureName": "Chanakya",
+    "era": "Classical",
+    "gender": "male",
+    "identities": [
+      "Philosopher",
+      "Statesman"
+    ],
+    "portraitKey": "chanakya",
+    "politics": 20,
+    "strength": 3,
+    "culture": 9,
+    "wealth": 8,
+    "intelligence": 22,
+    "technique": 4,
+    "belief": 7,
+    "reputation": 15,
+    "lore": "The architect of empires — his Arthashastra mapped every lever of power.",
+    "trait": "Arthashastra — Whenever an opponent deploys a card, this player may reveal a card from hand; if it shares an identity with the deployed card, that opponent's card gets −2 to all checks this round.",
+    "achievement": "Kingmaker — Have this card allied with a Sovereign GP at the same location while winning a Diplomacy scenario.",
+    "years": "c. 350–275 BC",
+    "countries": [
+      "India"
+    ]
+  },
+  {
+    "id": "demo-50",
+    "figureName": "Diego Maradona",
+    "era": "Information",
+    "gender": "male",
+    "identities": [
+      "Athlete"
+    ],
+    "portraitKey": "diego_maradona",
+    "politics": 2,
+    "strength": 18,
+    "culture": 14,
+    "wealth": 8,
+    "intelligence": 5,
+    "technique": 20,
+    "belief": 3,
+    "reputation": 22,
+    "lore": "His feet rewrote the rules of what a human body could do.",
+    "trait": "Hand of God — Once per match, this card may convert a failed Conflict attempt into a draw instead of a loss.",
+    "achievement": "Goal of the Century — Have this card succeed in a Conflict scenario against an opponent with 2 or more Followers at that location.",
+    "years": "1960–2020",
+    "countries": [
+      "Argentina"
+    ]
+  },
+  {
+    "id": "demo-51",
+    "figureName": "Lei Zu",
+    "era": "Ancient",
+    "gender": "female",
+    "identities": [
+      "Sovereign",
+      "Naturalist"
+    ],
+    "portraitKey": "lei_zu",
+    "politics": 10,
+    "strength": 2,
+    "culture": 14,
+    "wealth": 16,
+    "intelligence": 12,
+    "technique": 18,
+    "belief": 6,
+    "reputation": 10,
+    "lore": "A silkworm fell into her cup — and she wove civilization's finest thread.",
+    "trait": "Silk Secret — All allied Mch (Merchant) GP or Followers at this location gain +3 to wealth checks.",
+    "achievement": "Sericulture — Have this card at the same location as at least 1 allied Mch (Merchant) and 1 allied Nat (Naturalist) GP or Follower simultaneously.",
+    "years": "c. 2700 BC",
+    "countries": [
+      "China"
+    ]
+  },
+  {
+    "id": "demo-52",
+    "figureName": "Hesy-Ra",
+    "era": "Ancient",
+    "gender": "male",
+    "identities": [
+      "Doctor",
+      "Scholar"
+    ],
+    "portraitKey": "hesy_ra",
+    "politics": 4,
+    "strength": 3,
+    "culture": 7,
+    "wealth": 9,
+    "intelligence": 18,
+    "technique": 20,
+    "belief": 10,
+    "reputation": 12,
+    "lore": "He held the first title of physician — carved in wood at the dawn of medicine.",
+    "trait": "First Physician — Once per match, when any GP at this location would be eliminated, this card may prevent that elimination.",
+    "achievement": "Ancient Healing — Have this card at the same location as 2 or more allied GP cards that are not Doctors.",
+    "years": "c. 2700–2600 BC",
+    "countries": [
+      "Egypt"
+    ]
+  },
+  {
+    "id": "demo-53",
+    "figureName": "James Hutton",
+    "era": "Steam",
+    "gender": "male",
+    "identities": [
+      "Scientist",
+      "Explorer"
+    ],
+    "portraitKey": "james_hutton",
+    "politics": 2,
+    "strength": 5,
+    "culture": 8,
+    "wealth": 6,
+    "intelligence": 18,
+    "technique": 16,
+    "belief": 4,
+    "reputation": 14,
+    "lore": "No vestige of a beginning, no prospect of an end — he read time in stone.",
+    "trait": "Deep Time — Each round this card stays at the same location without acting, it gains +1 to all stat checks (max +3).",
+    "achievement": "Geological Survey — Have this card remain at the same location for 3 consecutive rounds without being moved.",
+    "years": "1726–1797",
+    "countries": [
+      "United Kingdom"
+    ]
+  },
+  {
+    "id": "demo-54",
+    "figureName": "Jane Goodall",
+    "era": "Information",
+    "gender": "female",
+    "identities": [
+      "Scientist",
+      "Naturalist",
+      "Humanitarian"
+    ],
+    "portraitKey": "jane_goodall",
+    "politics": 8,
+    "strength": 4,
+    "culture": 14,
+    "wealth": 3,
+    "intelligence": 18,
+    "technique": 10,
+    "belief": 15,
+    "reputation": 20,
+    "lore": "She sat with chimpanzees and taught the world what it means to be human.",
+    "trait": "Field Study — Whenever this card is at a location for 2 or more consecutive rounds, allied Nat (Naturalist) GP or Followers here gain +4 to their primary stat.",
+    "achievement": "Gombe Legacy — Have this card spend 3 rounds at the same location, allied with at least 1 Nat (Naturalist) GP or Follower.",
+    "years": "1934–",
+    "countries": [
+      "United Kingdom"
+    ]
+  },
+  {
+    "id": "demo-55",
+    "figureName": "Josiah Wedgwood",
+    "era": "Steam",
+    "gender": "male",
+    "identities": [
+      "Merchant",
+      "Artist"
+    ],
+    "portraitKey": "josiah_wedgwood",
+    "politics": 6,
+    "strength": 2,
+    "culture": 14,
+    "wealth": 18,
+    "intelligence": 10,
+    "technique": 16,
+    "belief": 3,
+    "reputation": 11,
+    "lore": "He turned clay into an empire — and pottery into prestige.",
+    "trait": "Industrialist Potter — Each round this card earns wealth, all allied Mch (Merchant) GP or Followers at any location gain +2 to wealth checks.",
+    "achievement": "Wedgwood Blue — Have this card at a location where the combined technique of allied GP totals 30 or more.",
+    "years": "1730–1795",
+    "countries": [
+      "United Kingdom"
+    ]
+  },
+  {
+    "id": "demo-56",
+    "figureName": "Joël Robuchon",
+    "era": "Information",
+    "gender": "male",
+    "identities": [
+      "Gourmet",
+      "Artist"
+    ],
+    "portraitKey": "joel_robuchon",
+    "politics": 1,
+    "strength": 2,
+    "culture": 16,
+    "wealth": 14,
+    "intelligence": 12,
+    "technique": 22,
+    "belief": 2,
+    "reputation": 15,
+    "lore": "More Michelin stars than any chef in history — perfection plated, always.",
+    "trait": "Chef de la Cuisine — Allied Gou (Gourmet) GP or Followers at this location gain +3 to technique checks and +2 to wealth checks.",
+    "achievement": "L'Atelier — Have this card at a location with 3 or more Followers deployed by the same player.",
+    "years": "1945–2018",
+    "countries": [
+      "France"
+    ]
+  },
+  {
+    "id": "demo-57",
+    "figureName": "King Telepinu",
+    "era": "Ancient",
+    "gender": "male",
+    "identities": [
+      "Sovereign",
+      "Statesman"
+    ],
+    "portraitKey": "king_telepinu",
+    "politics": 16,
+    "strength": 10,
+    "culture": 8,
+    "wealth": 11,
+    "intelligence": 12,
+    "technique": 4,
+    "belief": 14,
+    "reputation": 13,
+    "lore": "He stopped the cycle of blood — the first king to rule by written law, not murder.",
+    "trait": "Edict of Succession — Once per match, prevent the forced removal of any one allied card from the field.",
+    "achievement": "Law of the Land — Win a Diplomacy scenario while this card is at the same location as an allied Sta (Statesman) GP.",
+    "years": "c. 1620–1590 BC",
+    "countries": [
+      "Turkey"
+    ]
+  },
+  {
+    "id": "demo-58",
+    "figureName": "Mahavira",
+    "era": "Ancient",
+    "gender": "male",
+    "identities": [
+      "Philosopher",
+      "Monastic",
+      "Prophet"
+    ],
+    "portraitKey": "mahavira",
+    "politics": 3,
+    "strength": 2,
+    "culture": 10,
+    "wealth": 1,
+    "intelligence": 16,
+    "technique": 2,
+    "belief": 24,
+    "reputation": 14,
+    "lore": "The great hero who renounced the world to conquer the self.",
+    "trait": "Ahimsa — While this card is on the field, allied Followers cannot be used in Conflict actions but gain +3 to all non-Conflict checks.",
+    "achievement": "Nirvana — Have this card at the same location as at least 2 allied Monastic or Prophet GP or Followers while winning a non-Conflict scenario.",
+    "years": "c. 599–527 BC",
+    "countries": [
+      "India"
+    ]
+  },
+  {
+    "id": "demo-59",
+    "figureName": "Nakht",
+    "era": "Ancient",
+    "gender": "male",
+    "identities": [
+      "Scholar",
+      "Naturalist"
+    ],
+    "portraitKey": "nakht",
+    "politics": 8,
+    "strength": 3,
+    "culture": 14,
+    "wealth": 7,
+    "intelligence": 16,
+    "technique": 12,
+    "belief": 11,
+    "reputation": 9,
+    "lore": "He tracked the stars and seasons — his tomb paintings still teach us how Egyptians lived.",
+    "trait": "Star Chart — At the start of each round, the player may look at the top card of the event deck before deciding their action.",
+    "achievement": "Astronomical Record — Have this card at the same location as 2 different Sch (Scholar) GP or Followers simultaneously.",
+    "years": "c. 1425–1375 BC",
+    "countries": [
+      "Egypt"
+    ]
+  },
+  {
+    "id": "demo-60",
+    "figureName": "Pediamenopet",
+    "era": "Ancient",
+    "gender": "male",
+    "identities": [
+      "Priest",
+      "Scholar"
+    ],
+    "portraitKey": "pediamenopet",
+    "politics": 8,
+    "strength": 2,
+    "culture": 16,
+    "wealth": 6,
+    "intelligence": 14,
+    "technique": 4,
+    "belief": 20,
+    "reputation": 12,
+    "lore": "He carved the world's longest funerary text — a library etched in stone for eternity.",
+    "trait": "Sacred Texts — All allied Mon (Monastic) and Prs (Priest) GP or Followers at this location gain +2 to belief checks.",
+    "achievement": "High Priest — Have this card at a location with at least 2 allied Monastic or Priest cards while winning a Diplomacy scenario.",
+    "years": "c. 680–640 BC",
+    "countries": [
+      "Egypt"
+    ]
+  },
+  {
+    "id": "demo-61",
+    "figureName": "Peseshet",
+    "era": "Ancient",
+    "gender": "female",
+    "identities": [
+      "Doctor",
+      "Educator"
+    ],
+    "portraitKey": "peseshet",
+    "politics": 5,
+    "strength": 2,
+    "culture": 10,
+    "wealth": 4,
+    "intelligence": 18,
+    "technique": 16,
+    "belief": 12,
+    "reputation": 11,
+    "lore": "Lady Overseer of Female Physicians — history's first known female doctor.",
+    "trait": "Lady of Medicine — Once per match, when any female GP at this location would be eliminated, this card may prevent that elimination.",
+    "achievement": "Medical Overseer — Have this card at the same location as 2 or more allied female GP or Followers.",
+    "years": "c. 2500–2450 BC",
+    "countries": [
+      "Egypt"
+    ]
+  },
+  {
+    "id": "demo-62",
+    "figureName": "Peter Arnett",
+    "era": "Information",
+    "gender": "male",
+    "identities": [
+      "Writer",
+      "Educator"
+    ],
+    "portraitKey": "peter_arnett",
+    "politics": 8,
+    "strength": 3,
+    "culture": 12,
+    "wealth": 5,
+    "intelligence": 16,
+    "technique": 6,
+    "belief": 4,
+    "reputation": 18,
+    "lore": "He broadcast from Baghdad while the bombs fell — the voice from inside the storm.",
+    "trait": "On the Ground — Whenever a Conflict scenario resolves at this location, this player draws 1 extra card from the event deck.",
+    "achievement": "War Correspondent — Have this card present at the same location as a Conflict scenario resolution 3 times in a match.",
+    "years": "1934–",
+    "countries": [
+      "New Zealand"
+    ]
+  },
+  {
+    "id": "demo-63",
+    "figureName": "Steve Jobs",
+    "era": "Information",
+    "gender": "male",
+    "identities": [
+      "Merchant",
+      "Artist"
+    ],
+    "portraitKey": "steve_jobs",
+    "politics": 5,
+    "strength": 2,
+    "culture": 16,
+    "wealth": 15,
+    "intelligence": 14,
+    "technique": 18,
+    "belief": 4,
+    "reputation": 20,
+    "lore": "He put a thousand songs in your pocket and a computer in your hand.",
+    "trait": "Think Different — Once per match, this card may ignore one card effect that targets it.",
+    "achievement": "One More Thing — Have this card at a location where the combined technique of allied GP exceeds that of any opponent's GP at the same location.",
+    "years": "1955–2011",
+    "countries": [
+      "United States"
+    ]
+  },
+  {
+    "id": "demo-64",
+    "figureName": "Valmiki",
+    "era": "Classical",
+    "gender": "male",
+    "identities": [
+      "Writer",
+      "Philosopher"
+    ],
+    "portraitKey": "valmiki",
+    "politics": 3,
+    "strength": 2,
+    "culture": 20,
+    "wealth": 4,
+    "intelligence": 14,
+    "technique": 6,
+    "belief": 16,
+    "reputation": 18,
+    "lore": "He sang the world's first Sanskrit epic and set the hero's journey in verse.",
+    "trait": "Adi Kavi — Allied Wri (Writer) GP or Followers at this location gain +3 to culture checks; the first time this card is attacked each match, negate the attack.",
+    "achievement": "Epic Verse — Have this card at the same location as 2 or more allied Wri (Writer) or Phi (Philosopher) GP or Followers.",
+    "years": "c. 500–400 BC",
+    "countries": [
+      "India"
+    ]
+  },
+  {
+    "id": "demo-65",
+    "figureName": "Catherine the Great",
+    "era": "Steam",
+    "gender": "female",
+    "identities": [
+      "Sovereign",
+      "Statesman"
+    ],
+    "portraitKey": "yekaterina",
+    "politics": 20,
+    "strength": 6,
+    "culture": 14,
+    "wealth": 12,
+    "intelligence": 18,
+    "technique": 4,
+    "belief": 6,
+    "reputation": 14,
+    "lore": "She seized an empire, expanded it beyond imagination, and ruled it with an iron intellect.",
+    "trait": "Enlightened Empress — While this card is on the field, allied Sov (Sovereign) and Sta (Statesman) GP gain +2 to politics checks.",
+    "achievement": "Mother of Russia — Have this card as the only GP at a location while allied GP are simultaneously present at 2 other locations.",
+    "years": "1729–1796",
+    "countries": [
+      "Russia"
+    ]
   }
 ]

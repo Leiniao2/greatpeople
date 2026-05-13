@@ -286,5 +286,293 @@
     "tagline": "The King of Pop changes the world one performance at a time.",
     "quizzes": 4,
     "locationImage": "information_sanjose"
+  },
+  {
+    "era": "Ancient",
+    "title": "The Warrior-Scholar",
+    "figure": "Ashurbanipal",
+    "tagline": "A king who conquered nations by day and read tablets by night.",
+    "quizzes": 4,
+    "locationImage": "ancient_uruk"
+  },
+  {
+    "era": "Ancient",
+    "title": "The Great Library of Nineveh",
+    "figure": "Ashurbanipal",
+    "tagline": "He gathered the world's knowledge before the world knew it was worth keeping.",
+    "quizzes": 3,
+    "locationImage": "ancient_uruk"
+  },
+  {
+    "era": "Classical",
+    "title": "The Art of Statecraft",
+    "figure": "Chanakya",
+    "tagline": "Before Machiavelli, there was Chanakya — master of power and strategy.",
+    "quizzes": 4,
+    "locationImage": "classical_rome"
+  },
+  {
+    "era": "Classical",
+    "title": "The Maurya Empire",
+    "figure": "Chanakya",
+    "tagline": "He built the greatest empire of ancient India, one calculated move at a time.",
+    "quizzes": 3,
+    "locationImage": "classical_rome"
+  },
+  {
+    "era": "Information",
+    "title": "The Hand of God",
+    "figure": "Diego Maradona",
+    "tagline": "One goal illegal, one goal divine — the most famous 10 minutes in football history.",
+    "quizzes": 4,
+    "locationImage": "information_sanjose"
+  },
+  {
+    "era": "Information",
+    "title": "El Diego",
+    "figure": "Diego Maradona",
+    "tagline": "From the slums of Buenos Aires to the greatest footballer on earth.",
+    "quizzes": 3,
+    "locationImage": "information_sanjose"
+  },
+  {
+    "era": "Ancient",
+    "title": "The Discovery of Silk",
+    "figure": "Lei Zu",
+    "tagline": "A cocoon falls into tea — and civilization is changed forever.",
+    "quizzes": 4,
+    "locationImage": "ancient_memphis"
+  },
+  {
+    "era": "Ancient",
+    "title": "The Silk Road Begins",
+    "figure": "Lei Zu",
+    "tagline": "From her hands came thread — from that thread, an empire of trade.",
+    "quizzes": 3,
+    "locationImage": "ancient_memphis"
+  },
+  {
+    "era": "Ancient",
+    "title": "The First Physician",
+    "figure": "Hesy-Ra",
+    "tagline": "More than four thousand years ago, one man received the world's first doctor's title.",
+    "quizzes": 4,
+    "locationImage": "ancient_memphis"
+  },
+  {
+    "era": "Ancient",
+    "title": "Medicine in the Age of Pharaohs",
+    "figure": "Hesy-Ra",
+    "tagline": "He practiced dentistry when teeth were mysteries — and left his name carved in wood.",
+    "quizzes": 3,
+    "locationImage": "ancient_memphis"
+  },
+  {
+    "era": "Steam",
+    "title": "Deep Time",
+    "figure": "James Hutton",
+    "tagline": "He looked at rock and saw millions of years — when the world thought Earth was 6,000 years old.",
+    "quizzes": 4,
+    "locationImage": "steam_london"
+  },
+  {
+    "era": "Steam",
+    "title": "Father of Geology",
+    "figure": "James Hutton",
+    "tagline": "His Theory of the Earth overturned every assumption about our planet's age.",
+    "quizzes": 3,
+    "locationImage": "steam_manchester"
+  },
+  {
+    "era": "Information",
+    "title": "Among the Chimpanzees",
+    "figure": "Jane Goodall",
+    "tagline": "A young woman sat in the forest and changed what it means to be human.",
+    "quizzes": 4,
+    "locationImage": "information_sanjose"
+  },
+  {
+    "era": "Information",
+    "title": "Roots and Shoots",
+    "figure": "Jane Goodall",
+    "tagline": "From scientist to activist — one lifetime, one planet, one fight.",
+    "quizzes": 3,
+    "locationImage": "information_sanjose"
+  },
+  {
+    "era": "Steam",
+    "title": "The Potter's Empire",
+    "figure": "Josiah Wedgwood",
+    "tagline": "He made china fashionable, pottery industrial, and beauty accessible to all.",
+    "quizzes": 4,
+    "locationImage": "steam_manchester"
+  },
+  {
+    "era": "Steam",
+    "title": "Clay and Commerce",
+    "figure": "Josiah Wedgwood",
+    "tagline": "His kilns sparked England's industrial revolution — and dressed every queen's table.",
+    "quizzes": 3,
+    "locationImage": "steam_london"
+  },
+  {
+    "era": "Information",
+    "title": "The Chef of the Century",
+    "figure": "Joël Robuchon",
+    "tagline": "He earned more Michelin stars than any chef in history — through obsession and perfection.",
+    "quizzes": 4,
+    "locationImage": "information_sanjose"
+  },
+  {
+    "era": "Information",
+    "title": "L'Atelier de Joël Robuchon",
+    "figure": "Joël Robuchon",
+    "tagline": "He reinvented fine dining — and made mashed potato a luxury.",
+    "quizzes": 3,
+    "locationImage": "information_sanjose"
+  },
+  {
+    "era": "Ancient",
+    "title": "Edict of Telepinu",
+    "figure": "King Telepinu",
+    "tagline": "The Hittite king who broke the cycle of royal murder with a single document.",
+    "quizzes": 4,
+    "locationImage": "ancient_uruk"
+  },
+  {
+    "era": "Ancient",
+    "title": "Law Before the Law",
+    "figure": "King Telepinu",
+    "tagline": "Centuries before Rome, one king wrote: succession shall be peaceful.",
+    "quizzes": 3,
+    "locationImage": "ancient_uruk"
+  },
+  {
+    "era": "Ancient",
+    "title": "The Great Hero",
+    "figure": "Mahavira",
+    "tagline": "He gave up wealth, family, and comfort — and found something no empire could match.",
+    "quizzes": 4,
+    "locationImage": "ancient_memphis"
+  },
+  {
+    "era": "Ancient",
+    "title": "Ahimsa — The Path of Non-Harm",
+    "figure": "Mahavira",
+    "tagline": "His doctrine of non-violence shaped Jainism — and echoed through Gandhi 2,000 years later.",
+    "quizzes": 3,
+    "locationImage": "ancient_memphis"
+  },
+  {
+    "era": "Ancient",
+    "title": "The Scribe of Seasons",
+    "figure": "Nakht",
+    "tagline": "His tomb holds Egypt's most vivid paintings — a window into everyday ancient life.",
+    "quizzes": 4,
+    "locationImage": "ancient_memphis"
+  },
+  {
+    "era": "Ancient",
+    "title": "Stars Over the Nile",
+    "figure": "Nakht",
+    "tagline": "He tracked the heavens and harvests — Egypt's astronomer-official.",
+    "quizzes": 3,
+    "locationImage": "ancient_memphis"
+  },
+  {
+    "era": "Ancient",
+    "title": "The Longest Text",
+    "figure": "Pediamenopet",
+    "tagline": "His tomb holds the longest funerary inscription in ancient Egypt — a library in stone.",
+    "quizzes": 4,
+    "locationImage": "ancient_memphis"
+  },
+  {
+    "era": "Ancient",
+    "title": "High Priest of Amun",
+    "figure": "Pediamenopet",
+    "tagline": "He served at the pinnacle of Egyptian religious power as the world around him changed.",
+    "quizzes": 3,
+    "locationImage": "ancient_memphis"
+  },
+  {
+    "era": "Ancient",
+    "title": "Lady Overseer",
+    "figure": "Peseshet",
+    "tagline": "History's first named female doctor supervised physicians when women rarely held titles.",
+    "quizzes": 4,
+    "locationImage": "ancient_memphis"
+  },
+  {
+    "era": "Ancient",
+    "title": "Medicine Before Hippocrates",
+    "figure": "Peseshet",
+    "tagline": "Two thousand years before Hippocrates, she led a school of physicians.",
+    "quizzes": 3,
+    "locationImage": "ancient_memphis"
+  },
+  {
+    "era": "Information",
+    "title": "Voice from Baghdad",
+    "figure": "Peter Arnett",
+    "tagline": "He broadcast live as bombs fell — the first reporter to cover a war in real time.",
+    "quizzes": 4,
+    "locationImage": "information_sanjose"
+  },
+  {
+    "era": "Information",
+    "title": "Pulitzer in the Field",
+    "figure": "Peter Arnett",
+    "tagline": "From Vietnam to the Gulf War — five decades of bearing witness where others fled.",
+    "quizzes": 3,
+    "locationImage": "information_seoul"
+  },
+  {
+    "era": "Information",
+    "title": "One More Thing",
+    "figure": "Steve Jobs",
+    "tagline": "The man who made computers human — and changed how the world communicates.",
+    "quizzes": 4,
+    "locationImage": "information_sanjose"
+  },
+  {
+    "era": "Information",
+    "title": "Think Different",
+    "figure": "Steve Jobs",
+    "tagline": "Fired from his own company, he came back and built the most valuable brand in history.",
+    "quizzes": 4,
+    "locationImage": "information_sanjose"
+  },
+  {
+    "era": "Classical",
+    "title": "The First Poet",
+    "figure": "Valmiki",
+    "tagline": "He heard a bird cry for its slain mate — and composed the world's first Sanskrit verse.",
+    "quizzes": 4,
+    "locationImage": "classical_rome"
+  },
+  {
+    "era": "Classical",
+    "title": "Ramayana",
+    "figure": "Valmiki",
+    "tagline": "24,000 verses, one epic — the story of Rama still lives in a billion hearts.",
+    "quizzes": 3,
+    "locationImage": "classical_rome"
+  },
+  {
+    "era": "Steam",
+    "title": "The Empress Seizes Power",
+    "figure": "Catherine the Great",
+    "tagline": "She overthrew her husband, took the throne, and ruled Russia for 34 years.",
+    "quizzes": 4,
+    "locationImage": "steam_amsterdam"
+  },
+  {
+    "era": "Steam",
+    "title": "The Enlightened Ruler",
+    "figure": "Catherine the Great",
+    "tagline": "She corresponded with Voltaire, reformed Russia's laws, and expanded its borders.",
+    "quizzes": 4,
+    "locationImage": "steam_london"
   }
 ]

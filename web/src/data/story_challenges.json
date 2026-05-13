@@ -92,6 +92,13 @@
         "configId": "cedar-forest",
         "instruction": "Guide Gilgamesh through the Cedar Forest in search of glory",
         "fact": "Uruk was one of the world's earliest cities — home to 50,000–80,000 people in 3000 BCE. Gilgamesh was its legendary king and builder of its great walls."
+      },
+      {
+        "type": "minigame",
+        "game": "matchthree",
+        "configId": "babylon-tablets",
+        "instruction": "Babylonian scribes recorded grain trades in vertical cuneiform columns. Only vertical matches score — clear 52 symbols on the 8×8 tablet.",
+        "fact": "Babylonian clay tablets recorded grain prices, interest rates and commodity contracts with astonishing precision — the world's first commodity futures market. Cuneiform records from 600 BCE show silver-denominated wheat prices responding to floods and harvests across Mesopotamia."
       }
     ]
   },
@@ -304,6 +311,13 @@
         "configId": "al-khwarizmi-grid",
         "instruction": "Al-Khwārizmī's algebra reduces every problem to a balanced equation — no term appears without its counterpart. Fill the grid so each row, column, and 2×2 box contains 1–4 exactly once.",
         "fact": "Al-Khwārizmī's Kitāb al-jabr (c. 820 CE) gave us the word 'algebra.' He illustrated algebraic equations with geometric diagrams, proving solutions by drawing and rearranging squares — the origin of 'completing the square.'"
+      },
+      {
+        "type": "minigame",
+        "game": "matchthree",
+        "configId": "cairo-alchemy",
+        "instruction": "In the House of Wisdom, scholars matched planetary symbols to decode alchemical texts. Clear 44 tiles — but only chains of 4 or more count.",
+        "fact": "The House of Wisdom in Abbasid Baghdad synthesised Greek, Indian, and Persian knowledge. Al-Kindi, al-Farabi and al-Razi worked there — translating Aristotle, developing algebra, and mapping the stars with planetary symbols inherited from Hellenistic alchemy."
       }
     ]
   },
@@ -522,6 +536,13 @@
         "configId": "venetian-madrigal",
         "instruction": "Titian's Venice was famous for its madrigals. Arrange notes of a Renaissance vocal phrase — the music Titian heard daily.",
         "fact": "Venice's Basilica di San Marco had two organ lofts facing each other, inspiring the 'cori spezzati' style — antiphonal music where choirs answer each other across space. Giovanni Gabrieli developed this into orchestral writing."
+      },
+      {
+        "type": "minigame",
+        "game": "matchthree",
+        "configId": "venice-glass",
+        "instruction": "Murano glassmakers arranged geometric forms to hide their secrets — matches can run in any direction, even diagonally. Clear 40 shapes.",
+        "fact": "Venice ordered all glassmakers to the island of Murano in 1291 — ostensibly to prevent fires, really to contain the secrets of cristallo glass. Murano craftsmen held rare freedom: they could marry nobility and carry swords, but leaving the island was punishable by death."
       }
     ]
   },
@@ -558,6 +579,13 @@
           "One surviving ship returns to Spain with 18 men"
         ],
         "fact": "Magellan's voyage proved the Earth is a sphere and that the Pacific is far larger than anyone imagined. He left in 1519 with five ships and 270 men; one ship, the Victoria, returned in 1522 with 18 skeletal survivors. The Strait of Magellan — 570 kilometres of treacherous winding channels — took 38 days to navigate."
+      },
+      {
+        "type": "minigame",
+        "game": "matchthree",
+        "configId": "aztec-market",
+        "instruction": "Tlatelolco's market rows stretched horizon to horizon — only horizontal matches count. Clear 46 glyphs across the 7×7 trading floor.",
+        "fact": "Hernán Cortés wrote to Charles V that Tlatelolco was larger than any market in Spain. It drew 60,000 traders daily — cacao, jade, feathers, obsidian blades, and human beings. Dedicated judges walked the aisles enforcing weights and punishing fraud on the spot."
       }
     ]
   },
@@ -593,6 +621,13 @@
           "Receives the Nobel Peace Prize"
         ],
         "fact": "Each step built on the last: leaving the convent (1948) gave her freedom to serve; the Missionaries (1950) gave her sisters; Nirmal Hriday (1952) gave the dying dignity; and the Nobel Prize (1979) gave her voice to the world."
+      },
+      {
+        "type": "minigame",
+        "game": "matchthree",
+        "configId": "mughal-gems",
+        "instruction": "Agra's jewellers demanded perfection — only chains of 4 or more gems matter, and diagonals count. Clear 36 gems from the 7×7 bazaar.",
+        "fact": "Akbar's Mughal Empire controlled the world's richest gem pipeline: rubies from Burma, emeralds from Colombia via Portuguese Goa, sapphires from Ceylon, and diamonds from Golconda — the mine that produced the Koh-i-Noor. European merchants called Agra's Jauhari Bazaar the most magnificent market on Earth."
       }
     ]
   },
@@ -1261,6 +1296,1525 @@
         "configId": "lisbon-spices",
         "instruction": "Trade the spices in Lisbon's market — match three or more to clear the board.",
         "fact": "Under Manuel I, Portugal controlled the spice trade from 1498 to the 1580s. A cargo of cloves from Maluku could return 100× its cost in Lisbon — funding the Manueline architecture still standing in Belém."
+      },
+      {
+        "type": "minigame",
+        "game": "matchthree",
+        "configId": "hanseatic-runes",
+        "instruction": "The Hanseatic League traded in six commodities across northern Europe. Six rune-marked goods flood the board — match 3 or more to clear them. 56 tiles to clear on a 7×7 grid.",
+        "fact": "The Hanseatic League at its peak united over 200 Northern European cities in a merchant alliance that bypassed feudal lords entirely. Its Kontors in London, Bergen, Bruges and Novgorod operated as sovereign trading colonies, complete with their own courts, weights, and private armies."
+      }
+    ]
+  },
+  {
+    "era": "Ancient",
+    "story": "The Warrior-Scholar",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "Ashurbanipal was a king of which ancient empire?",
+        "options": [
+          "Babylonian Empire",
+          "Assyrian Empire",
+          "Persian Empire",
+          "Egyptian Empire"
+        ],
+        "answer": 1,
+        "fact": "Ashurbanipal (c. 685–627 BCE) was the last great king of the Neo-Assyrian Empire, ruling from Nineveh (in modern Iraq). His empire stretched from Egypt to Persia — the largest in the ancient world at the time."
+      },
+      {
+        "type": "quiz",
+        "question": "What made Ashurbanipal unique among ancient rulers?",
+        "options": [
+          "He was the first king to use chariots in battle",
+          "He created the world's largest library of clay tablets",
+          "He built the Hanging Gardens of Babylon",
+          "He introduced coinage to the Middle East"
+        ],
+        "answer": 1,
+        "fact": "The Library of Ashurbanipal at Nineveh contained over 30,000 clay tablets — including the Epic of Gilgamesh. It is considered the world's first systematically organized library, preserving Mesopotamian literature and science."
+      },
+      {
+        "type": "quiz",
+        "question": "Which famous epic poem was recovered from Ashurbanipal's library?",
+        "options": [
+          "The Iliad",
+          "The Ramayana",
+          "The Epic of Gilgamesh",
+          "The Mahabharata"
+        ],
+        "answer": 2,
+        "fact": "Tablets from Ashurbanipal's library preserved the complete Epic of Gilgamesh, one of the oldest works of literature in the world. Without his royal collection, this story would have been lost to history."
+      }
+    ]
+  },
+  {
+    "era": "Ancient",
+    "story": "The Great Library of Nineveh",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "Ashurbanipal's library tablets were written in which script?",
+        "options": [
+          "Hieroglyphics",
+          "Linear B",
+          "Cuneiform",
+          "Proto-Sinaitic"
+        ],
+        "answer": 2,
+        "fact": "Cuneiform — one of the earliest writing systems — was pressed into wet clay tablets using a wedge-shaped stylus. Ashurbanipal's scribes copied thousands of texts onto tablets that survived because clay hardens when fired (or when the palace burned)."
+      },
+      {
+        "type": "quiz",
+        "question": "How were the clay tablets in Ashurbanipal's library accidentally preserved?",
+        "options": [
+          "They were coated in beeswax",
+          "The palace fire baked the clay hard",
+          "They were stored in airtight jars",
+          "A flood buried and sealed them"
+        ],
+        "answer": 1,
+        "fact": "When enemies sacked Nineveh in 612 BCE, the palace burned — but the fire accidentally baked thousands of clay tablets, hardening them for millennia. Archaeologists rediscovered them in the 19th century CE."
+      },
+      {
+        "type": "quiz",
+        "question": "Ashurbanipal is notable for being literate at a time when:",
+        "options": [
+          "Writing had not yet been invented",
+          "Literacy was rare even among royalty",
+          "Only women were allowed to read",
+          "Reading was punishable by death"
+        ],
+        "answer": 1,
+        "fact": "Ashurbanipal could read and write in multiple languages — an extraordinary feat for a king. He boasted of this in inscriptions, proud of mastering both the scribal arts and the military campaigns typical of Assyrian rulers."
+      }
+    ]
+  },
+  {
+    "era": "Classical",
+    "story": "The Art of Statecraft",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "Chanakya is also known by which other name?",
+        "options": [
+          "Arjuna",
+          "Kautilya",
+          "Ashoka",
+          "Bhishma"
+        ],
+        "answer": 1,
+        "fact": "Chanakya is also called Kautilya or Vishnugupta. He served as advisor to Chandragupta Maurya, the founder of the Maurya Empire, and authored the Arthashastra — an ancient Indian treatise on statecraft and political economy."
+      },
+      {
+        "type": "quiz",
+        "question": "The Arthashastra, written by Chanakya, is a treatise on:",
+        "options": [
+          "Military tactics only",
+          "Statecraft, economics, and political strategy",
+          "Religious philosophy",
+          "Agricultural techniques"
+        ],
+        "answer": 1,
+        "fact": "The Arthashastra ('Science of Wealth/Politics') covers statecraft, economic policy, military strategy, law, and espionage. Written around 300 BCE, it is often compared to Machiavelli's The Prince — but predates it by 1,800 years."
+      },
+      {
+        "type": "quiz",
+        "question": "Which empire did Chanakya help establish?",
+        "options": [
+          "Gupta Empire",
+          "Mughal Empire",
+          "Maurya Empire",
+          "Kushan Empire"
+        ],
+        "answer": 2,
+        "fact": "Chanakya masterminded the overthrow of the Nanda Dynasty and helped Chandragupta Maurya establish the Maurya Empire (c. 321–297 BCE) — one of the largest empires in Indian history, encompassing most of the Indian subcontinent."
+      }
+    ]
+  },
+  {
+    "era": "Classical",
+    "story": "The Maurya Empire",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "According to legend, how did Chanakya identify Chandragupta as a future emperor?",
+        "options": [
+          "By reading his horoscope",
+          "By watching him command other children in play",
+          "By finding him in a royal lineage",
+          "By a prophecy from a sage"
+        ],
+        "answer": 1,
+        "fact": "Chanakya reportedly spotted young Chandragupta directing other village children as if commanding an army, and recognized his natural leadership. He took the boy under his mentorship and trained him for over a decade before launching their campaign."
+      },
+      {
+        "type": "quiz",
+        "question": "Chanakya's political philosophy is often compared to which European thinker?",
+        "options": [
+          "Plato",
+          "Aristotle",
+          "Machiavelli",
+          "Hobbes"
+        ],
+        "answer": 2,
+        "fact": "Chanakya is often called 'the Indian Machiavelli' for his pragmatic, realpolitik approach to governance. His Arthashastra describes using espionage, political maneuvering, and calculated strategy — themes echoed in Machiavelli's The Prince 1,800 years later."
+      },
+      {
+        "type": "quiz",
+        "question": "What happened to Chanakya after Chandragupta secured the throne?",
+        "options": [
+          "He became king himself",
+          "He served as the empire's chief minister",
+          "He was exiled for treason",
+          "He built a great temple"
+        ],
+        "answer": 1,
+        "fact": "Chanakya served as Prime Minister (Mahamatya) to Chandragupta Maurya, continuing to shape the empire's policy. Later accounts differ on his end — some say he starved himself to death in fasting, others that he retired to a forest."
+      }
+    ]
+  },
+  {
+    "era": "Information",
+    "story": "The Hand of God",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "In which 1986 World Cup quarterfinal match did Maradona score both the 'Hand of God' and 'Goal of the Century'?",
+        "options": [
+          "Argentina vs Brazil",
+          "Argentina vs England",
+          "Argentina vs Germany",
+          "Argentina vs Italy"
+        ],
+        "answer": 1,
+        "fact": "In the 1986 World Cup quarterfinal, Maradona scored twice against England — first with a handball he called 'the Hand of God,' then with a dribble past five players that was later voted the Goal of the Century. Argentina won 2–1."
+      },
+      {
+        "type": "quiz",
+        "question": "How did Maradona describe his controversial handball goal?",
+        "options": [
+          "An act of God",
+          "A mistake by the referee",
+          "A little with the head, a little with the hand of God",
+          "The greatest goal ever scored"
+        ],
+        "answer": 2,
+        "fact": "After the match, Maradona said the goal was scored 'a little with the head of Maradona, and a little with the hand of God.' The phrase became one of the most famous quotes in football history — a blend of cheek and genius."
+      },
+      {
+        "type": "quiz",
+        "question": "Maradona led which club team to two Serie A titles in Italy?",
+        "options": [
+          "AC Milan",
+          "Juventus",
+          "Napoli",
+          "Inter Milan"
+        ],
+        "answer": 2,
+        "fact": "Maradona joined SSC Napoli in 1984 for a then-world record fee. He led the club — a southern Italian side historically overlooked — to its first (1987) and second (1990) Serie A titles, becoming a god in Naples."
+      }
+    ]
+  },
+  {
+    "era": "Information",
+    "story": "El Diego",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "In which Buenos Aires neighborhood did Maradona grow up in poverty?",
+        "options": [
+          "Palermo",
+          "Recoleta",
+          "Villa Fiorito",
+          "San Telmo"
+        ],
+        "answer": 2,
+        "fact": "Maradona grew up in Villa Fiorito, a poor shantytown on the outskirts of Buenos Aires. His journey from dirt-floor poverty to becoming the world's best footballer became one of sport's greatest rags-to-riches stories."
+      },
+      {
+        "type": "quiz",
+        "question": "How old was Maradona when he debuted professionally in Argentina's top division?",
+        "options": [
+          "14",
+          "16",
+          "18",
+          "20"
+        ],
+        "answer": 1,
+        "fact": "Maradona made his professional debut for Argentinos Juniors on October 20, 1976, at just 15 years and 11 months old — one of the youngest debuts in Argentine football history. He had been identified as a prodigy at age 8."
+      },
+      {
+        "type": "quiz",
+        "question": "Which country did Argentina beat in the 1986 World Cup Final, with Maradona as captain?",
+        "options": [
+          "Brazil",
+          "England",
+          "West Germany",
+          "France"
+        ],
+        "answer": 2,
+        "fact": "Argentina beat West Germany 3–2 in the 1986 World Cup Final in Mexico City. Maradona was named the tournament's best player (winning the Golden Ball) and remains the dominant force in every memory of that tournament."
+      }
+    ]
+  },
+  {
+    "era": "Ancient",
+    "story": "The Discovery of Silk",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "According to Chinese legend, who discovered silk?",
+        "options": [
+          "The Yellow Emperor",
+          "Lei Zu, wife of the Yellow Emperor",
+          "Confucius",
+          "The Jade Emperor"
+        ],
+        "answer": 1,
+        "fact": "Chinese tradition credits Lei Zu (also written Leizu or Si Ling-chi), wife of the Yellow Emperor Huangdi, with discovering silk around 2700 BCE when a silkworm cocoon fell into her tea and she unravelled its thread."
+      },
+      {
+        "type": "quiz",
+        "question": "What insect produces the raw material for silk?",
+        "options": [
+          "Bee",
+          "Spider",
+          "Silkworm",
+          "Aphid"
+        ],
+        "answer": 2,
+        "fact": "Silk comes from the cocoon of the Bombyx mori silkworm. A single cocoon can yield between 300 and 900 meters of continuous silk thread. Lei Zu is credited with discovering that these threads could be woven into fabric."
+      },
+      {
+        "type": "quiz",
+        "question": "For how many centuries did China keep the secret of silk production?",
+        "options": [
+          "One century",
+          "Five centuries",
+          "About 30 centuries",
+          "Ten centuries"
+        ],
+        "answer": 2,
+        "fact": "China kept sericulture (silk production) a closely guarded state secret for roughly 3,000 years. The penalty for smuggling silkworm eggs or mulberry seeds out of China was death. The secret finally escaped around 550 CE via Byzantine monks."
+      }
+    ]
+  },
+  {
+    "era": "Ancient",
+    "story": "The Silk Road Begins",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "What tree's leaves are essential for raising silkworms?",
+        "options": [
+          "Oak",
+          "Mulberry",
+          "Willow",
+          "Bamboo"
+        ],
+        "answer": 1,
+        "fact": "Silkworms feed almost exclusively on mulberry leaves. Lei Zu is also credited with planting mulberry trees to cultivate silkworms — making sericulture (silk farming) possible on a large scale."
+      },
+      {
+        "type": "quiz",
+        "question": "Silk was so valuable in ancient times that it was used as:",
+        "options": [
+          "Building material for temples",
+          "Currency and diplomatic gifts",
+          "Medical bandages only",
+          "Fuel for fire"
+        ],
+        "answer": 1,
+        "fact": "Silk served as a form of currency in ancient China — soldiers were paid in it, taxes were collected in it, and it was presented as tribute and diplomatic gifts to foreign rulers. Its value drove the creation of the Silk Road trade network."
+      },
+      {
+        "type": "quiz",
+        "question": "The Silk Road was primarily a network of:",
+        "options": [
+          "Paved Roman roads",
+          "Sea lanes",
+          "Overland trade routes",
+          "Underground tunnels"
+        ],
+        "answer": 2,
+        "fact": "The Silk Road was a 7,000-kilometre network of overland trade routes connecting China to the Mediterranean. Though silk gave it its name, merchants also traded spices, glassware, precious metals, and ideas along these routes for centuries."
+      }
+    ]
+  },
+  {
+    "era": "Ancient",
+    "story": "The First Physician",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "Hesy-Ra is considered the first person in history to hold what title?",
+        "options": [
+          "Pharaoh",
+          "Physician",
+          "Architect",
+          "Astronomer"
+        ],
+        "answer": 1,
+        "fact": "Hesy-Ra (c. 2700–2600 BCE) is the earliest known physician in recorded history. He held the title 'Chief of Dentists and Physicians' — inscribed on a wooden panel in his tomb at Saqqara, making him the first named doctor in history."
+      },
+      {
+        "type": "quiz",
+        "question": "In which part of Egypt was Hesy-Ra's tomb discovered?",
+        "options": [
+          "Luxor",
+          "Saqqara",
+          "Karnak",
+          "Abu Simbel"
+        ],
+        "answer": 1,
+        "fact": "Hesy-Ra's mastaba tomb was found at Saqqara, the ancient necropolis near Memphis. His tomb panels are among the finest wooden carvings to survive from ancient Egypt, showing him with scribal equipment — he was also a high-ranking scribe."
+      },
+      {
+        "type": "quiz",
+        "question": "Hesy-Ra served under which famous pharaoh?",
+        "options": [
+          "Ramesses II",
+          "Tutankhamun",
+          "Djoser",
+          "Cleopatra"
+        ],
+        "answer": 2,
+        "fact": "Hesy-Ra served under Pharaoh Djoser (c. 2670–2640 BCE) — the same pharaoh for whom Imhotep built the Step Pyramid. Hesy-Ra held several prestigious titles, including 'Great One of the Tens of Upper Egypt.'"
+      }
+    ]
+  },
+  {
+    "era": "Ancient",
+    "story": "Medicine in the Age of Pharaohs",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "Ancient Egyptian medicine was notable for combining:",
+        "options": [
+          "Only supernatural rituals",
+          "Only empirical treatments",
+          "Both rational medicine and magical beliefs",
+          "Chinese herbal remedies"
+        ],
+        "answer": 2,
+        "fact": "Egyptian medicine blended empirical observation (examination, diagnosis, prognosis) with magical spells and prayers. Medical papyri describe both surgical techniques and incantations — reflecting a culture where science and belief were inseparable."
+      },
+      {
+        "type": "quiz",
+        "question": "The Edwin Smith Papyrus, from Hesy-Ra's era, is famous for being:",
+        "options": [
+          "The oldest love poem",
+          "The earliest known surgical text",
+          "A tax record",
+          "A star map"
+        ],
+        "answer": 1,
+        "fact": "The Edwin Smith Papyrus (c. 1600 BCE, copying older material) is the world's earliest known surgical text, describing 48 cases of injury with rational diagnosis and treatment — no magic, just observation. It reflects medical knowledge that began in Hesy-Ra's time."
+      },
+      {
+        "type": "quiz",
+        "question": "Which ancient Egyptian god was Hesy-Ra's era contemporary Imhotep later deified as?",
+        "options": [
+          "God of the sun",
+          "God of medicine and healing",
+          "God of the dead",
+          "God of writing"
+        ],
+        "answer": 1,
+        "fact": "Imhotep, Hesy-Ra's contemporary, was posthumously deified as a god of medicine and healing — worshipped for over 2,000 years after his death. Greeks later identified him with Asclepius, their own god of medicine."
+      }
+    ]
+  },
+  {
+    "era": "Steam",
+    "story": "Deep Time",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "James Hutton is known as the 'Father of' which science?",
+        "options": [
+          "Chemistry",
+          "Modern geology",
+          "Evolutionary biology",
+          "Astronomy"
+        ],
+        "answer": 1,
+        "fact": "James Hutton (1726–1797) is called the 'Father of Modern Geology' for his Theory of the Earth (1788), which proposed that the Earth's features were shaped by slow, ongoing natural processes — not a single catastrophic event."
+      },
+      {
+        "type": "quiz",
+        "question": "What principle did Hutton establish, later called 'Uniformitarianism'?",
+        "options": [
+          "The Earth was created 6,000 years ago",
+          "Present geological processes explain the past",
+          "Continents are fixed in place",
+          "Mountains form from volcanic eruptions only"
+        ],
+        "answer": 1,
+        "fact": "Uniformitarianism — 'the present is the key to the past' — holds that the same natural laws and processes operating today have always operated throughout Earth's history. Hutton's insight overturned Biblical chronology and made deep time imaginable."
+      },
+      {
+        "type": "quiz",
+        "question": "Famous quote: Hutton saw rock strata and wrote that Earth had 'no vestige of a beginning, no prospect of an end.' What did he mean?",
+        "options": [
+          "The Earth was created by God",
+          "The Earth is so old its origins are unknowable",
+          "The Earth will last forever",
+          "Rock layers prove a global flood"
+        ],
+        "answer": 1,
+        "fact": "Hutton meant that the geological record showed such vast ages of erosion, deposition, and uplift that the Earth's beginning was beyond human reckoning. This idea — 'deep time' — was revolutionary in an era when most Europeans believed Earth was ~6,000 years old."
+      }
+    ]
+  },
+  {
+    "era": "Steam",
+    "story": "Father of Geology",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "Hutton's key insight came from observing rock formations at which Scottish landmark?",
+        "options": [
+          "Ben Nevis",
+          "Siccar Point",
+          "Loch Ness",
+          "Edinburgh Castle"
+        ],
+        "answer": 1,
+        "fact": "At Siccar Point on the Scottish coast, Hutton observed an 'unconformity' — ancient tilted rocks overlaid by younger horizontal layers. The time gap between them implied millions of years of erosion and deposition — a staggering revelation."
+      },
+      {
+        "type": "quiz",
+        "question": "Hutton was also a farmer. How did his agricultural experience inform his geology?",
+        "options": [
+          "He used soil for experiments",
+          "Farming made him observe how soil forms from eroded rock",
+          "He grew crystals in fields",
+          "Farming funded his research"
+        ],
+        "answer": 1,
+        "fact": "Hutton's years farming in Berwickshire made him observe how rain and wind erode rocks into soil — and how rivers carry that sediment to the sea. This practical observation of slow, continuous processes became the foundation of uniformitarianism."
+      },
+      {
+        "type": "quiz",
+        "question": "Which later scientist was directly influenced by Hutton's work on deep time and gradual change?",
+        "options": [
+          "Isaac Newton",
+          "Charles Darwin",
+          "Albert Einstein",
+          "Louis Pasteur"
+        ],
+        "answer": 1,
+        "fact": "Charles Darwin read Charles Lyell's Principles of Geology — which built on Hutton's ideas — during the voyage of the Beagle. Deep time was essential to Darwin's theory: evolution by natural selection requires millions of years to work."
+      }
+    ]
+  },
+  {
+    "era": "Information",
+    "story": "Among the Chimpanzees",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "Where did Jane Goodall conduct her famous study of chimpanzees, beginning in 1960?",
+        "options": [
+          "Congo Basin",
+          "Gombe Stream National Park, Tanzania",
+          "Serengeti, Kenya",
+          "Borneo rainforest"
+        ],
+        "answer": 1,
+        "fact": "Jane Goodall arrived at Gombe Stream (then a chimpanzee reserve in Tanganyika, now Tanzania) in July 1960, sent by paleoanthropologist Louis Leakey. She was 26 years old and had no formal scientific degree — but her patience and observation changed science forever."
+      },
+      {
+        "type": "quiz",
+        "question": "What discovery by Goodall overturned the belief that only humans use tools?",
+        "options": [
+          "Chimps building shelters",
+          "Chimps using sticks to extract termites from mounds",
+          "Chimps painting on trees",
+          "Chimps using stones to crack nuts"
+        ],
+        "answer": 1,
+        "fact": "In 1960, Goodall observed chimpanzees stripping leaves from twigs to fish termites from mounds — the first recorded instance of animals making and using tools. When she reported this to Louis Leakey, he replied: 'Now we must redefine tool, redefine man, or accept chimpanzees as humans.'"
+      },
+      {
+        "type": "quiz",
+        "question": "Jane Goodall's work was notable for naming individual chimpanzees rather than numbering them. Why was this controversial?",
+        "options": [
+          "Scientists considered it too expensive",
+          "It was seen as unscientific — implying chimps had personalities",
+          "Naming chimps was against the law",
+          "Other researchers wanted to name them first"
+        ],
+        "answer": 1,
+        "fact": "The scientific establishment expected researchers to remain emotionally detached and number subjects rather than name them. Goodall's insistence on naming chimps (David Greybeard, Flo, Goliath) was radical — implying each had an individual personality and inner life."
+      }
+    ]
+  },
+  {
+    "era": "Information",
+    "story": "Roots and Shoots",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "Jane Goodall received her PhD in Ethology from which university, without ever earning an undergraduate degree?",
+        "options": [
+          "Oxford University",
+          "Cambridge University",
+          "Harvard University",
+          "University of London"
+        ],
+        "answer": 1,
+        "fact": "In 1965, Goodall received her PhD from Cambridge University — becoming one of the few people admitted to a PhD program without a bachelor's degree. Cambridge made an exception because of the significance of her fieldwork at Gombe."
+      },
+      {
+        "type": "quiz",
+        "question": "What organization did Jane Goodall found in 1977 to protect chimpanzees and their habitats?",
+        "options": [
+          "WWF",
+          "The Jane Goodall Institute",
+          "Greenpeace",
+          "Conservation International"
+        ],
+        "answer": 1,
+        "fact": "The Jane Goodall Institute (JGI), founded in 1977, works to protect chimpanzees and their habitats while improving the lives of local communities. It now operates in over 30 countries and includes the Roots & Shoots youth program."
+      },
+      {
+        "type": "quiz",
+        "question": "What alarming discovery about chimpanzee behavior did Goodall document, challenging the view that only humans wage war?",
+        "options": [
+          "Chimps eat other chimp species",
+          "Chimps conduct organized raids and kill members of rival groups",
+          "Chimps steal food from humans",
+          "Chimps destroy their own habitat"
+        ],
+        "answer": 1,
+        "fact": "In the Gombe chimpanzee war (1974–1978), Goodall documented a four-year conflict in which one community systematically hunted and killed all males in a rival group. This overturned the assumption that lethal organized violence was uniquely human."
+      }
+    ]
+  },
+  {
+    "era": "Steam",
+    "story": "The Potter's Empire",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "Josiah Wedgwood is famous for producing what type of ceramics, named after him?",
+        "options": [
+          "Delftware",
+          "Jasperware",
+          "Faience",
+          "Stoneware"
+        ],
+        "answer": 1,
+        "fact": "Wedgwood's Jasperware — an unglazed stoneware typically in pale blue with white relief figures — became his most iconic product after 1775. It was inspired by ancient Greek and Roman cameo designs, making classical beauty affordable for a growing middle class."
+      },
+      {
+        "type": "quiz",
+        "question": "Wedgwood was an early adopter of which business innovation?",
+        "options": [
+          "Direct mail marketing",
+          "Money-back guarantees and catalogue sales",
+          "Factory assembly lines",
+          "Export trade insurance"
+        ],
+        "answer": 1,
+        "fact": "Wedgwood pioneered modern marketing: he offered money-back guarantees, used celebrity endorsements (Queen Charlotte ordered his creamware, making it 'Queen's Ware'), and sent illustrated catalogues across Europe — revolutionizing how luxury goods were sold."
+      },
+      {
+        "type": "quiz",
+        "question": "Josiah Wedgwood was the grandfather of which famous scientist?",
+        "options": [
+          "Isaac Newton",
+          "Michael Faraday",
+          "Charles Darwin",
+          "James Watt"
+        ],
+        "answer": 2,
+        "fact": "Charles Darwin was Josiah Wedgwood's grandson — his mother Susannah was Wedgwood's daughter, and his wife Emma was Wedgwood's granddaughter. Darwin married his own cousin from the Wedgwood family, a common practice in Victorian upper-class families."
+      }
+    ]
+  },
+  {
+    "era": "Steam",
+    "story": "Clay and Commerce",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "Wedgwood suffered a serious illness in childhood that led to what lasting consequence?",
+        "options": [
+          "He lost his eyesight",
+          "His right leg was amputated",
+          "He became deaf",
+          "He lost his sense of smell"
+        ],
+        "answer": 1,
+        "fact": "A childhood bout of smallpox left Wedgwood with a weakened right knee; the leg was later amputated in 1768. His disability prevented him from operating the potter's wheel himself — pushing him toward design, innovation, and business management instead."
+      },
+      {
+        "type": "quiz",
+        "question": "Wedgwood's factory, the Etruria Works, was built on the new canal that James Brindley had just completed. Why was canal access important?",
+        "options": [
+          "Canals brought fresh water for clay mixing",
+          "Ceramics were fragile — canals offered smoother transport than roads",
+          "Workers arrived by boat",
+          "Canals carried the raw coal for kilns"
+        ],
+        "answer": 1,
+        "fact": "Road transport in 18th-century England was rough enough to shatter fine ceramics. The Trent and Mersey Canal gave Wedgwood smooth water transport from his Staffordshire factory to Liverpool's docks — and later to the world. He lobbied hard for the canal's construction."
+      },
+      {
+        "type": "quiz",
+        "question": "Wedgwood was a passionate abolitionist. What famous piece of anti-slavery imagery did his factory produce?",
+        "options": [
+          "A portrait of Olaudah Equiano",
+          "The 'Am I Not a Man and a Brother?' cameo medallion",
+          "A map of slave trade routes",
+          "Chains made into jewelry"
+        ],
+        "answer": 1,
+        "fact": "The 'Am I Not a Man and a Brother?' jasperware medallion — showing a kneeling enslaved man in chains — was produced by Wedgwood's factory in 1787 for the Society for Effecting the Abolition of the Slave Trade. It became one of the first mass-produced political images."
+      }
+    ]
+  },
+  {
+    "era": "Information",
+    "story": "The Chef of the Century",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "How many Michelin stars did Joël Robuchon hold at the peak of his career?",
+        "options": [
+          "12",
+          "18",
+          "28",
+          "32"
+        ],
+        "answer": 2,
+        "fact": "At his peak, Joël Robuchon held 32 Michelin stars across his restaurants worldwide — more than any chef in history. His empire spanned Paris, Monte Carlo, Las Vegas, Tokyo, Hong Kong, and beyond, each kitchen reflecting his obsessive pursuit of perfection."
+      },
+      {
+        "type": "quiz",
+        "question": "In 1994, Robuchon did something shocking for a famous chef. What was it?",
+        "options": [
+          "He opened a fast food restaurant",
+          "He retired from cooking at the height of his fame",
+          "He moved to the United States permanently",
+          "He published all his secret recipes"
+        ],
+        "answer": 1,
+        "fact": "At age 49, at the height of his fame, Robuchon retired — closing his flagship Jamin restaurant in Paris. He said he was exhausted. He returned years later with his more casual L'Atelier concept, and earned even more stars in his second career."
+      },
+      {
+        "type": "quiz",
+        "question": "Robuchon's most famous dish — a simple preparation that became legendary — was:",
+        "options": [
+          "Foie gras terrine",
+          "Pommes purée (mashed potatoes)",
+          "Beef tartare",
+          "Soufflé au chocolat"
+        ],
+        "answer": 1,
+        "fact": "Robuchon's pommes purée — made with a 1:2 ratio of potatoes to butter — became his most famous dish despite its simplicity. He believed the best cooking elevated humble ingredients to perfection, and his mashed potato proved the point."
+      }
+    ]
+  },
+  {
+    "era": "Information",
+    "story": "L'Atelier de Joël Robuchon",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "Robuchon's L'Atelier restaurants were innovative for their format. What was different about them?",
+        "options": [
+          "No waiters — all self-service",
+          "Counter seating around an open kitchen",
+          "Guests cooked their own food",
+          "Menus written only in Japanese"
+        ],
+        "answer": 1,
+        "fact": "L'Atelier de Joël Robuchon (opened 2003) featured counter seating around an open kitchen — inspired by Japanese sushi bars. Diners watched chefs work, creating an intimate connection between kitchen and table. The format was revolutionary in French fine dining."
+      },
+      {
+        "type": "quiz",
+        "question": "Robuchon held the title 'Chef of the Century' by which culinary authority?",
+        "options": [
+          "Julia Child",
+          "Gault Millau guide",
+          "The New York Times",
+          "UNESCO"
+        ],
+        "answer": 1,
+        "fact": "The Gault Millau guide named Joël Robuchon 'Chef of the Century' in 1990. The same guide had previously pioneered the Nouvelle Cuisine movement that transformed French cooking — making its recognition of Robuchon a major honor."
+      },
+      {
+        "type": "quiz",
+        "question": "Robuchon was known for training many chefs who later became famous. What word describes this tradition in professional kitchens?",
+        "options": [
+          "Mentorship",
+          "Brigade system",
+          "Apprenticeship",
+          "All of the above"
+        ],
+        "answer": 3,
+        "fact": "Robuchon's kitchens were famous for their rigorous standards and training — producing chefs who went on to earn their own Michelin stars. The French brigade system (hierarchy of kitchen roles) gave structure to this apprenticeship tradition, creating culinary lineages."
+      }
+    ]
+  },
+  {
+    "era": "Ancient",
+    "story": "Edict of Telepinu",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "What problem was the Edict of Telepinu designed to solve?",
+        "options": [
+          "Tax collection across the empire",
+          "Bloody succession disputes in the Hittite royal family",
+          "The treatment of conquered peoples",
+          "Trade disputes with Babylon"
+        ],
+        "answer": 1,
+        "fact": "The Hittite royal family had suffered generations of murder, coup, and revenge killings over succession. Telepinu's Edict (c. 1600 BCE) established a clear line of succession and banned the killing of royal family members — replacing blood with law."
+      },
+      {
+        "type": "quiz",
+        "question": "The Hittites were a major power in which region?",
+        "options": [
+          "Mesopotamia (modern Iraq)",
+          "Anatolia (modern Turkey)",
+          "The Nile Delta",
+          "The Indus Valley"
+        ],
+        "answer": 1,
+        "fact": "The Hittite Empire was centered in Anatolia (modern Turkey), with its capital at Hattusa (near modern Boğazkale). At its height, it rivaled Egypt as the dominant power of the ancient Near East, famously fighting the Battle of Kadesh against Ramesses II in 1274 BCE."
+      },
+      {
+        "type": "quiz",
+        "question": "The Edict of Telepinu is considered historically significant because it:",
+        "options": [
+          "Was the first written law code",
+          "Established one of history's earliest constitutional frameworks for orderly succession",
+          "Created the first democracy",
+          "Abolished slavery in the Hittite Empire"
+        ],
+        "answer": 1,
+        "fact": "The Edict of Telepinu is one of the earliest attempts to codify royal succession through law rather than force. Scholars consider it a forerunner of constitutional governance — a remarkable innovation in a world where succession was typically decided by the sword."
+      }
+    ]
+  },
+  {
+    "era": "Ancient",
+    "story": "Law Before the Law",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "The Hittite Edict predates which more famous law code?",
+        "options": [
+          "The Code of Hammurabi",
+          "Draco's laws of Athens",
+          "The Twelve Tables of Rome",
+          "The laws of Solon"
+        ],
+        "answer": 2,
+        "fact": "Draco's laws (621 BCE) and the Twelve Tables of Rome (450 BCE) came centuries after Telepinu's Edict (c. 1600 BCE). The Hittites were sophisticated legal innovators — they also created some of history's earliest peace treaties, including the Treaty of Kadesh with Egypt."
+      },
+      {
+        "type": "quiz",
+        "question": "What happened to the Hittite Empire after Telepinu's reign?",
+        "options": [
+          "It immediately collapsed",
+          "It entered a period of stability and later expansion",
+          "It was conquered by Assyria",
+          "It was absorbed by Egypt"
+        ],
+        "answer": 1,
+        "fact": "After Telepinu's stabilizing reforms, the Hittite Kingdom recovered and eventually became the Hittite Empire — reaching its peak around 1350–1200 BCE. It became one of the great powers of the ancient world before collapsing during the Late Bronze Age crisis around 1200 BCE."
+      },
+      {
+        "type": "quiz",
+        "question": "The Hittites are notable for being among the first to master which metal-working technology?",
+        "options": [
+          "Bronze casting",
+          "Iron smelting",
+          "Gold filigree",
+          "Copper alloys"
+        ],
+        "answer": 1,
+        "fact": "The Hittites were among the earliest peoples to smelt and use iron effectively, giving them a military advantage. Their iron technology was a closely guarded secret — when the empire fell, the knowledge spread and iron gradually replaced bronze across the ancient world."
+      }
+    ]
+  },
+  {
+    "era": "Ancient",
+    "story": "The Great Hero",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "Mahavira is the 24th and last Tirthankara (ford-maker) of which religion?",
+        "options": [
+          "Hinduism",
+          "Buddhism",
+          "Jainism",
+          "Sikhism"
+        ],
+        "answer": 2,
+        "fact": "Mahavira (c. 599–527 BCE) is the 24th and last Tirthankara — a spiritual teacher who has attained enlightenment and shows others the path to liberation in Jain cosmology. He systematized Jain philosophy and is considered the religion's most recent spiritual founding teacher."
+      },
+      {
+        "type": "quiz",
+        "question": "The word 'Mahavira' means:",
+        "options": [
+          "Great King",
+          "Great Hero",
+          "Great Teacher",
+          "Great Father"
+        ],
+        "answer": 1,
+        "fact": "'Mahavira' is a Sanskrit title meaning 'Great Hero.' His birth name was Vardhamana. He received the title for his extraordinary austerity — spending 12 years in meditation and mortification before attaining Kevala Jnana (omniscience)."
+      },
+      {
+        "type": "quiz",
+        "question": "Mahavira's central ethical principle was Ahimsa. What does this mean?",
+        "options": [
+          "Non-attachment",
+          "Non-violence toward all living beings",
+          "Truth-telling",
+          "Renunciation of wealth"
+        ],
+        "answer": 1,
+        "fact": "Ahimsa (non-violence) is the supreme ethical principle of Jainism, elevated by Mahavira. It extends to all living beings — including insects. Jain monks carry brooms to sweep the path before them so they do not accidentally step on any creature."
+      }
+    ]
+  },
+  {
+    "era": "Ancient",
+    "story": "Ahimsa — The Path of Non-Harm",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "Mahavira was a contemporary of which other major religious figure?",
+        "options": [
+          "Jesus of Nazareth",
+          "Siddhartha Gautama (the Buddha)",
+          "Confucius",
+          "Zoroaster"
+        ],
+        "answer": 1,
+        "fact": "Mahavira and Siddhartha Gautama (the Buddha) were near-contemporaries in ancient India, both living in the 5th–6th centuries BCE. They preached in some of the same regions and knew of each other's movements — a remarkable moment of parallel spiritual innovation."
+      },
+      {
+        "type": "quiz",
+        "question": "Jains believe the universe is:",
+        "options": [
+          "Created by a god",
+          "Eternal — without beginning or end",
+          "A dream of Brahma",
+          "Doomed to end in fire"
+        ],
+        "answer": 1,
+        "fact": "Jainism holds that the universe is eternal — uncreated and indestructible — operating through its own natural laws. There is no creator god in Jain philosophy; instead, every soul has the potential to achieve liberation through right knowledge, faith, and conduct."
+      },
+      {
+        "type": "quiz",
+        "question": "How many centuries later did Gandhi explicitly acknowledge being influenced by Mahavira's Ahimsa?",
+        "options": [
+          "About 5 centuries",
+          "About 10 centuries",
+          "About 25 centuries",
+          "About 50 centuries"
+        ],
+        "answer": 2,
+        "fact": "Gandhi, born roughly 2,400 years after Mahavira, openly cited Jain philosophy — especially Ahimsa — as central to his doctrine of Satyagraha (non-violent resistance). Mahavira's ethics traveled 2,500 years to inspire India's independence movement."
+      }
+    ]
+  },
+  {
+    "era": "Ancient",
+    "story": "The Scribe of Seasons",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "Nakht was an official in the court of which pharaoh?",
+        "options": [
+          "Ramesses II",
+          "Tuthmose IV or Amenhotep III",
+          "Tutankhamun",
+          "Akhenaten"
+        ],
+        "answer": 1,
+        "fact": "Nakht likely served during the reigns of Tuthmose IV or Amenhotep III (c. 1425–1375 BCE), in Egypt's 18th Dynasty — the golden age of the New Kingdom. He held the titles 'Scribe of the Granaries' and 'Astronomer of Amun.'"
+      },
+      {
+        "type": "quiz",
+        "question": "What is the Tomb of Nakht most famous for?",
+        "options": [
+          "Its gold treasures",
+          "Its vivid wall paintings showing everyday Egyptian life",
+          "Its complex hieroglyphic texts",
+          "Its massive stone sarcophagus"
+        ],
+        "answer": 1,
+        "fact": "The Tomb of Nakht at Luxor (Sheikh Abd el-Qurna) is celebrated for its exceptional, vibrantly colored wall paintings depicting banquets, hunting, fishing, and agricultural scenes. They offer our most vivid glimpse of wealthy Egyptian daily life from the New Kingdom."
+      },
+      {
+        "type": "quiz",
+        "question": "As 'Astronomer of Amun,' what would Nakht's main duty have been?",
+        "options": [
+          "Mapping new stars",
+          "Tracking the calendar for religious festivals and agricultural seasons",
+          "Predicting eclipses for military campaigns",
+          "Naming the constellations"
+        ],
+        "answer": 1,
+        "fact": "Egyptian astronomers tracked the stars and the heliacal rising of Sirius to determine the annual Nile flood and religious festival dates. Nakht's role as temple astronomer made him essential to Egypt's religious and agricultural calendar — civilization ran on his star charts."
+      }
+    ]
+  },
+  {
+    "era": "Ancient",
+    "story": "Stars Over the Nile",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "The heliacal rising of which star signaled the annual Nile flood to Egyptians?",
+        "options": [
+          "Polaris",
+          "Sirius (Sopdet)",
+          "Orion",
+          "Jupiter"
+        ],
+        "answer": 1,
+        "fact": "The heliacal rising of Sirius — called Sopdet by Egyptians — occurred just before the Nile's annual flood. This celestial signal was so important that the Egyptian calendar year began on this day. Astronomer-officials like Nakht were responsible for predicting it."
+      },
+      {
+        "type": "quiz",
+        "question": "Egyptian tomb paintings like Nakht's show agricultural scenes. Why were these included in tombs?",
+        "options": [
+          "To decorate the walls for visitors",
+          "To magically ensure the deceased continued to enjoy these activities in the afterlife",
+          "To record historical events",
+          "To display the owner's wealth to thieves"
+        ],
+        "answer": 1,
+        "fact": "Egyptian tomb art was magical — not decorative. Paintings of feasting, farming, and pleasure were believed to activate these pleasures for the deceased in the afterlife. The images were literally meant to be 'real' in the next world."
+      },
+      {
+        "type": "quiz",
+        "question": "In the 18th Dynasty (Nakht's era), Egypt was at the height of the:",
+        "options": [
+          "Old Kingdom",
+          "Middle Kingdom",
+          "New Kingdom",
+          "Late Period"
+        ],
+        "answer": 2,
+        "fact": "The New Kingdom (c. 1550–1070 BCE) was Egypt's imperial golden age — the era of Tutankhamun, Ramesses II, Queen Hatshepsut, and the Valley of the Kings. Nakht lived near the height of this civilization, when Egypt dominated northeast Africa and the Levant."
+      }
+    ]
+  },
+  {
+    "era": "Ancient",
+    "story": "The Longest Text",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "Pediamenopet's tomb contains the longest known ancient Egyptian funerary text. Approximately how many lines does it contain?",
+        "options": [
+          "100 lines",
+          "500 lines",
+          "Over 2,000 lines",
+          "Over 10,000 lines"
+        ],
+        "answer": 2,
+        "fact": "The tomb of Pediamenopet at Luxor (Tomb TT27) contains over 2,000 lines of religious and funerary text — the longest such compilation in ancient Egypt. It drew from the Book of the Dead, Pyramid Texts, Coffin Texts, and other ritual collections."
+      },
+      {
+        "type": "quiz",
+        "question": "Pediamenopet served as High Priest during what period of Egyptian history?",
+        "options": [
+          "New Kingdom peak",
+          "Late Period — a time of foreign domination",
+          "Old Kingdom",
+          "Ptolemaic era"
+        ],
+        "answer": 1,
+        "fact": "Pediamenopet lived during Egypt's Late Period (c. 680–640 BCE), when Egypt was dominated first by Nubian (Kushite) pharaohs, then by Assyrian invaders. His massive tomb may have been an attempt to preserve Egyptian religious tradition against foreign disruption."
+      },
+      {
+        "type": "quiz",
+        "question": "As 'Third Prophet of Amun,' Pediamenopet held what kind of position?",
+        "options": [
+          "Military general",
+          "Senior religious official in Egypt's most powerful temple",
+          "Royal architect",
+          "Tax collector"
+        ],
+        "answer": 1,
+        "fact": "The Temple of Amun at Karnak was Egypt's wealthiest and most politically powerful institution. As Third Prophet, Pediamenopet was among its senior clergy — a position of enormous prestige and influence, rivaling that of pharaohs in some periods."
+      }
+    ]
+  },
+  {
+    "era": "Ancient",
+    "story": "High Priest of Amun",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "The title 'Prophet of Amun' in ancient Egypt referred to:",
+        "options": [
+          "Someone who predicted the future",
+          "A senior priest who entered the sacred sanctuary and performed rituals",
+          "A military commander",
+          "A traveling preacher"
+        ],
+        "answer": 1,
+        "fact": "In ancient Egypt, 'Prophet' (literally 'one who speaks before god') was a priestly rank. Prophets of Amun were the senior clergy who physically entered the god's sanctuary, performed daily rituals, carried the divine barque, and managed temple estates."
+      },
+      {
+        "type": "quiz",
+        "question": "The Assyrian invasion of Egypt in 671 BCE occurred during Pediamenopet's likely lifetime. Who led this invasion?",
+        "options": [
+          "Sargon II",
+          "Esarhaddon",
+          "Ashurbanipal",
+          "Tiglath-Pileser"
+        ],
+        "answer": 1,
+        "fact": "Esarhaddon of Assyria invaded and conquered Egypt in 671 BCE. His son Ashurbanipal later sacked Thebes (663 BCE). Pediamenopet lived through this Assyrian occupation — his monumental tomb may reflect a determination to preserve Egyptian religious identity."
+      },
+      {
+        "type": "quiz",
+        "question": "Which ancient texts were compiled in Pediamenopet's tomb, preserved from earlier periods?",
+        "options": [
+          "Only the Book of the Dead",
+          "Texts from multiple traditions — Pyramid Texts, Coffin Texts, Amduat, and more",
+          "Only military records",
+          "Personal letters to the pharaoh"
+        ],
+        "answer": 1,
+        "fact": "Pediamenopet's tomb is a remarkable anthology of Egyptian religious literature — drawing from the Pyramid Texts (Old Kingdom), Coffin Texts (Middle Kingdom), Book of the Dead (New Kingdom), and other ritual texts. It served as a kind of sacred library carved in stone."
+      }
+    ]
+  },
+  {
+    "era": "Ancient",
+    "story": "Lady Overseer",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "Peseshet held the title 'Lady Overseer of Female Physicians.' What was extraordinary about this?",
+        "options": [
+          "She performed surgery without tools",
+          "She was the first woman to hold an administrative medical title in recorded history",
+          "She refused to treat men",
+          "She practiced medicine for free"
+        ],
+        "answer": 1,
+        "fact": "Peseshet (c. 2500–2450 BCE) is the earliest known female medical administrator in history. Her title 'Imy-r swnwt' — 'Lady Overseer of Female Physicians' — indicates she supervised a group of female medical practitioners, making her a pioneering figure in both medicine and women's leadership."
+      },
+      {
+        "type": "quiz",
+        "question": "During Peseshet's era (Old Kingdom, 4th–5th Dynasty), Egyptian medicine was distinguished from other ancient cultures by:",
+        "options": [
+          "Using only magic for healing",
+          "A systematic approach including examination, diagnosis, and prognosis",
+          "Relying exclusively on herbal remedies",
+          "Treating only pharaohs"
+        ],
+        "answer": 1,
+        "fact": "Egyptian medicine of the Old Kingdom already showed systematic clinical thinking — doctors were trained to examine patients, make diagnoses, assess prognoses ('this is a condition I will treat / I will not treat'), and apply treatments. This rational approach coexisted with ritual healing."
+      },
+      {
+        "type": "quiz",
+        "question": "How do we know about Peseshet?",
+        "options": [
+          "From a papyrus medical text she wrote",
+          "From an inscription in her son's tomb at Giza",
+          "From Greek historical records",
+          "From the Rosetta Stone"
+        ],
+        "answer": 1,
+        "fact": "Peseshet is known from a single inscription in the false door of her son Akhethotep's tomb at Giza. Despite this sparse record, her title reveals an organized female medical profession in the Old Kingdom — centuries before the more famous Greek physicians."
+      }
+    ]
+  },
+  {
+    "era": "Ancient",
+    "story": "Medicine Before Hippocrates",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "Hippocrates, often called the 'Father of Medicine,' lived approximately how many years after Peseshet?",
+        "options": [
+          "100 years",
+          "500 years",
+          "2,000 years",
+          "Over 2,000 years"
+        ],
+        "answer": 3,
+        "fact": "Hippocrates lived c. 460–370 BCE — roughly 2,000 years after Peseshet (c. 2500 BCE). Ancient Greek medicine built on Egyptian foundations: Hippocrates himself reportedly studied in Egypt, and Greek texts acknowledge Egyptian medical knowledge."
+      },
+      {
+        "type": "quiz",
+        "question": "The Ebers Papyrus, one of the oldest medical texts, dates from around 1550 BCE. What does it describe?",
+        "options": [
+          "Astronomical observations",
+          "Over 700 medical formulas and remedies",
+          "Building the pyramids",
+          "Religious funeral rites"
+        ],
+        "answer": 1,
+        "fact": "The Ebers Papyrus contains 877 prescriptions for treating everything from crocodile bites to heart disease. It reflects medical knowledge accumulated over centuries — much of it from the Old Kingdom era when Peseshet practiced, passed down through scribal tradition."
+      },
+      {
+        "type": "quiz",
+        "question": "In ancient Egypt, who typically trained to become a physician?",
+        "options": [
+          "Only nobles",
+          "Primarily temple-trained scribes and their apprentices",
+          "Only men",
+          "Foreigners from Babylon"
+        ],
+        "answer": 1,
+        "fact": "Egyptian physicians trained in 'Houses of Life' (Per Ankh) — temple scriptoria attached to major sanctuaries. These institutions trained scribes, priests, and healers together — which is why medical texts were preserved alongside religious texts in temple archives."
+      }
+    ]
+  },
+  {
+    "era": "Information",
+    "story": "Voice from Baghdad",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "Peter Arnett became internationally famous for his live TV coverage of which war?",
+        "options": [
+          "The Vietnam War",
+          "The 1991 Gulf War from Baghdad",
+          "The Korean War",
+          "The Falklands War"
+        ],
+        "answer": 1,
+        "fact": "Peter Arnett broadcast live from Baghdad for CNN during the Gulf War air campaign on January 17, 1991 — the first time a war had been broadcast live on television. His reports from inside the enemy capital were watched by hundreds of millions worldwide."
+      },
+      {
+        "type": "quiz",
+        "question": "What Pulitzer Prize-winning photograph was associated with Peter Arnett's Vietnam War coverage?",
+        "options": [
+          "The Napalm Girl (Nick Ut)",
+          "Eddie Adams' 'Saigon Execution'",
+          "Raising the Flag at Iwo Jima",
+          "The Tank Man at Tiananmen"
+        ],
+        "answer": 1,
+        "fact": "Arnett was present and reporting when Eddie Adams took 'Saigon Execution' (1968) — one of Vietnam's most iconic photographs. Arnett himself won the Pulitzer Prize for International Reporting in 1966 for his Vietnam War coverage for the Associated Press."
+      },
+      {
+        "type": "quiz",
+        "question": "Arnett's live Gulf War broadcast was possible because of which technology?",
+        "options": [
+          "Satellite uplink from Baghdad",
+          "Radio relay through Turkey",
+          "Hand-delivered tapes flown to London",
+          "Underwater cable communication"
+        ],
+        "answer": 0,
+        "fact": "CNN had a special four-wire telephone line and satellite uplink equipment in Baghdad's Al-Rashid Hotel. While other networks evacuated, Arnett and his CNN colleagues stayed — using this equipment to deliver the first live war coverage in television history."
+      }
+    ]
+  },
+  {
+    "era": "Information",
+    "story": "Pulitzer in the Field",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "Peter Arnett is from which country?",
+        "options": [
+          "Australia",
+          "New Zealand",
+          "United Kingdom",
+          "United States"
+        ],
+        "answer": 1,
+        "fact": "Peter Arnett was born in Riverton, New Zealand in 1934. He began his journalism career in New Zealand before moving to Southeast Asia, where he covered the Vietnam War as a young AP reporter — launching one of journalism's most consequential careers."
+      },
+      {
+        "type": "quiz",
+        "question": "What was controversial about Arnett's 1998 CNN interview with Osama bin Laden?",
+        "options": [
+          "He published bin Laden's location",
+          "It was the first Western TV interview with bin Laden after he declared war on the US",
+          "He refused to ask difficult questions",
+          "CNN refused to air it"
+        ],
+        "answer": 1,
+        "fact": "Arnett conducted CNN's 1997 interview with Osama bin Laden — one of the first Western television interviews after bin Laden issued his declaration of jihad against Americans. The interview was controversial for giving bin Laden a platform, but documented his stated intentions years before 9/11."
+      },
+      {
+        "type": "quiz",
+        "question": "War correspondents face which unique ethical challenge?",
+        "options": [
+          "Whether to report facts that might endanger military operations or personnel",
+          "How to write interesting headlines",
+          "Whether to use color or black-and-white photography",
+          "How long to stay in one location"
+        ],
+        "answer": 0,
+        "fact": "War correspondents constantly navigate between their duty to inform the public and the risk of inadvertently sharing information that endangers lives. Arnett faced this throughout his career — from Vietnam to Baghdad — and was criticized and praised for different reports across five decades."
+      }
+    ]
+  },
+  {
+    "era": "Information",
+    "story": "One More Thing",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "Steve Jobs co-founded Apple Computer with Steve Wozniak and Ronald Wayne in which year?",
+        "options": [
+          "1972",
+          "1976",
+          "1980",
+          "1984"
+        ],
+        "answer": 1,
+        "fact": "Apple Computer was founded on April 1, 1976 in the Jobs family garage in Los Altos, California. Jobs was 21 years old. Wayne sold his 10% stake for $800 shortly after — a share that would have been worth over $100 billion by 2021."
+      },
+      {
+        "type": "quiz",
+        "question": "In 1985, Jobs was forced out of Apple. What did he do next?",
+        "options": [
+          "He retired from technology",
+          "He founded NeXT Computer and acquired Pixar",
+          "He joined Microsoft",
+          "He went to work in academia"
+        ],
+        "answer": 1,
+        "fact": "Jobs founded NeXT Computer (whose operating system later became the foundation of macOS) and purchased Pixar from George Lucas for $5 million in 1986. Pixar went on to produce Toy Story (1995) and transform animated filmmaking."
+      },
+      {
+        "type": "quiz",
+        "question": "The 2007 iPhone launch is famous because Jobs announced it as three devices in one. What were they?",
+        "options": [
+          "Phone, tablet, camera",
+          "Widescreen iPod, phone, internet communicator",
+          "Computer, phone, GPS",
+          "Music player, camera, phone"
+        ],
+        "answer": 1,
+        "fact": "Jobs said: 'We're announcing three revolutionary products today. The first is a widescreen iPod with touch controls. The second is a revolutionary mobile phone. And the third is a breakthrough internet communications device. These are not three separate devices — this is one device. And we are calling it iPhone.'"
+      }
+    ]
+  },
+  {
+    "era": "Information",
+    "story": "Think Different",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "After returning to Apple in 1997, Jobs' first major move was to eliminate most of Apple's product lines. Why?",
+        "options": [
+          "Apple was losing money on all products",
+          "He wanted to focus — fewer products done brilliantly",
+          "He didn't understand the products",
+          "The government required it"
+        ],
+        "answer": 1,
+        "fact": "When Jobs returned to Apple in 1997, the company had 350 products and was weeks from bankruptcy. He cut the product line to just 4 items. His philosophy: 'Deciding what not to do is as important as deciding what to do.' The iMac, announced the following year, saved the company."
+      },
+      {
+        "type": "quiz",
+        "question": "What is the significance of Apple's 1984 Macintosh commercial?",
+        "options": [
+          "It was the first TV ad for a computer",
+          "Directed by Ridley Scott, it aired during the Super Bowl and is considered one of the greatest ads ever",
+          "It featured Steve Jobs himself",
+          "It was banned in most countries"
+        ],
+        "answer": 1,
+        "fact": "Directed by Ridley Scott and aired once during Super Bowl XVIII (1984), the '1984' Macintosh commercial depicted Apple as a liberator smashing IBM's Orwellian conformity. It is credited with transforming advertising into a medium for brand mythology."
+      },
+      {
+        "type": "quiz",
+        "question": "Jobs was known for his 'reality distortion field.' What did this term mean?",
+        "options": [
+          "His use of virtual reality technology",
+          "His charismatic ability to convince people to do what seemed impossible",
+          "His practice of lying about product features",
+          "His tendency to ignore financial reality"
+        ],
+        "answer": 1,
+        "fact": "The 'reality distortion field' was coined by Apple engineer Bud Tribble: Jobs could convince engineers that the impossible was achievable through sheer force of conviction, charm, and willpower — often causing them to actually achieve the impossible. It was part admiration, part alarm."
+      }
+    ]
+  },
+  {
+    "era": "Classical",
+    "story": "The First Poet",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "According to legend, how did Valmiki compose the world's first verse (shloka)?",
+        "options": [
+          "He was inspired by a dream",
+          "Grief at seeing a hunter kill a crane caused him to cry out in a metered verse",
+          "A god appeared and taught him",
+          "He found an ancient tablet"
+        ],
+        "answer": 1,
+        "fact": "Valmiki is said to have witnessed a hunter kill one of a pair of mating cranes. Overcome with grief for the surviving bird, he spontaneously cried out a curse in a perfectly metered verse — later recognized as the first shloka (Sanskrit verse). He is called 'Adi Kavi' — the First Poet."
+      },
+      {
+        "type": "quiz",
+        "question": "The Ramayana tells the story of which prince?",
+        "options": [
+          "Arjuna",
+          "Rama",
+          "Bhima",
+          "Yudhishthira"
+        ],
+        "answer": 1,
+        "fact": "The Ramayana centers on Prince Rama of Ayodhya — his exile with his wife Sita and brother Lakshmana, Sita's abduction by the demon king Ravana, and Rama's journey to rescue her with the help of Hanuman and an army of monkeys. It remains one of Asia's most beloved epics."
+      },
+      {
+        "type": "quiz",
+        "question": "How many verses (shlokas) does the Valmiki Ramayana contain?",
+        "options": [
+          "About 2,000",
+          "About 24,000",
+          "About 100,000",
+          "About 500,000"
+        ],
+        "answer": 1,
+        "fact": "The Valmiki Ramayana contains approximately 24,000 shlokas (verses) organized into seven books (kandas). By comparison, Homer's Iliad has about 15,000 lines. The Ramayana has been translated into over 300 languages and continues to shape South and Southeast Asian cultures."
+      }
+    ]
+  },
+  {
+    "era": "Classical",
+    "story": "Ramayana",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "The character Hanuman in the Ramayana is a:",
+        "options": [
+          "Human warrior",
+          "Divine monkey general who helps Rama",
+          "Demon villain",
+          "Sea captain"
+        ],
+        "answer": 1,
+        "fact": "Hanuman is a divine being with the form of a monkey — son of the wind god Vayu, devotee of Rama, and one of Hinduism's most beloved figures. He leaps across the ocean to Lanka, finds Sita, and serves as the epitome of selfless devotion (bhakti)."
+      },
+      {
+        "type": "quiz",
+        "question": "In which present-day country is the Ramayana epic most likely set?",
+        "options": [
+          "Pakistan and Afghanistan",
+          "India and Sri Lanka",
+          "Nepal and Tibet",
+          "Bangladesh and Myanmar"
+        ],
+        "answer": 1,
+        "fact": "The Ramayana is set primarily in the Indian subcontinent — Ayodhya (Uttar Pradesh), the forests of central India, and Lanka (traditionally identified with Sri Lanka). Its geography has made it a defining text for Hindu culture across South and Southeast Asia."
+      },
+      {
+        "type": "quiz",
+        "question": "The Ramayana's influence in Southeast Asia is visible today in:",
+        "options": [
+          "Arabic calligraphy",
+          "Temple reliefs at Angkor Wat and traditional dance forms across the region",
+          "Japanese tea ceremony",
+          "Chinese opera"
+        ],
+        "answer": 1,
+        "fact": "The Ramayana spread through Southeast Asia with Indian cultural influence. Angkor Wat (Cambodia) features Ramayana scenes on its walls; Thailand's Ramakien, Indonesia's Ramayana ballet, and Malaysia's Hikayat Seri Rama are all local versions. Valmiki's story shaped an entire civilization."
+      }
+    ]
+  },
+  {
+    "era": "Steam",
+    "story": "The Empress Seizes Power",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "How did Catherine the Great come to power in Russia?",
+        "options": [
+          "She was elected by the nobility",
+          "She led a coup and deposed her husband, Tsar Peter III",
+          "She was the legitimate heir to the throne",
+          "She married the previous tsar's heir"
+        ],
+        "answer": 1,
+        "fact": "In July 1762, Catherine organized a coup against her husband Tsar Peter III — who was widely seen as weak and pro-Prussian. The Imperial Guard supported her; Peter was arrested and died days later (likely murdered). Catherine ruled Russia for 34 years as Catherine II."
+      },
+      {
+        "type": "quiz",
+        "question": "Catherine the Great was born in Germany and came to Russia as a princess. What was her birth name?",
+        "options": [
+          "Maria Theresa",
+          "Sophie Friederike Auguste",
+          "Yekaterina Alexeyevna",
+          "Anna of Brunswick"
+        ],
+        "answer": 1,
+        "fact": "Catherine was born Sophie Friederike Auguste von Anhalt-Zerbst in 1729 in Stettin (now Poland). She converted to Russian Orthodoxy and took the name Yekaterina (Catherine) when she married the future Peter III. She was entirely self-made as a Russian ruler."
+      },
+      {
+        "type": "quiz",
+        "question": "Under Catherine the Great, Russia's territory expanded significantly in which directions?",
+        "options": [
+          "North into Scandinavia and west into France",
+          "South toward the Black Sea and west into Poland and Lithuania",
+          "East into China and south into India",
+          "North into the Arctic and east into Alaska"
+        ],
+        "answer": 1,
+        "fact": "Catherine expanded Russia southward, winning wars against the Ottoman Empire and gaining access to the Black Sea (Crimea, 1783). She also participated in the partitions of Poland (1772, 1793, 1795), adding vast territories. Russia became a major European power under her rule."
+      }
+    ]
+  },
+  {
+    "era": "Steam",
+    "story": "The Enlightened Ruler",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "Catherine corresponded with Voltaire, Diderot, and d'Alembert. What intellectual movement was she associated with?",
+        "options": [
+          "Romanticism",
+          "The Enlightenment",
+          "The Counter-Reformation",
+          "Mercantilism"
+        ],
+        "answer": 1,
+        "fact": "Catherine styled herself as an 'Enlightened Despot' — a ruler who applied Enlightenment rationalism to governance. She exchanged hundreds of letters with Voltaire, invited Diderot to St. Petersburg, and founded the Hermitage Museum. But her liberal reforms were often limited in practice."
+      },
+      {
+        "type": "quiz",
+        "question": "Catherine founded the Hermitage Museum in St. Petersburg, now one of the world's greatest art collections. What sparked its creation?",
+        "options": [
+          "A gift from Prussia",
+          "Her personal art collection, purchased from European dealers",
+          "Looted art from Turkey",
+          "A donation from Voltaire"
+        ],
+        "answer": 1,
+        "fact": "Catherine was a voracious art collector, purchasing entire private collections from European dealers and nobility. Her personal collection grew to over 4,000 paintings. What began as private apartments became the Hermitage — now housing over 3 million items."
+      },
+      {
+        "type": "quiz",
+        "question": "Despite her Enlightenment ideals, Catherine's reign saw a major peasant uprising. Who led it?",
+        "options": [
+          "Alexander Suvorov",
+          "Yemelyan Pugachev",
+          "Grigory Potemkin",
+          "Ivan the Terrible"
+        ],
+        "answer": 1,
+        "fact": "The Pugachev Rebellion (1773–1775) was the largest peasant revolt in Russian history — led by Yemelyan Pugachev, a Cossack who claimed to be Tsar Peter III. Catherine crushed it brutally. The rebellion revealed the gap between her Enlightenment ideals and Russia's feudal reality."
       }
     ]
   }
