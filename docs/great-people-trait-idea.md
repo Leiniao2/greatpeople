@@ -61,17 +61,20 @@ Achievement: Sheng Sheng Man - When All Player has exactly 2 cards (GP or Follow
 # An Jung-Geun: Assasination - if this is card was private and just become public this turn, it could conduct an attack regardless if there is a conflict scenario, to a Player that has only 1 GP in this location. This attack will kill the target GP.
 Achievement: Korea Commemoration - All the Korean locations onboard (at least one) only have Korean GP but not GP from other countries.
 
-# Bi SHeng: Printing Press - Gains the trait of the last allied Great Person that was Archived.
+# Bi Sheng: Printing Press - Gains the trait of the last allied Great Person that was Archived.
 Achievement: Movable Type - If the Allied Great People on board has all the characters of the Alphabet in their names.
 
 # Gutenburg: Printing Press - Gains the trait of the last allied Great Person that was Archived.
 Achievement: Gutenburg Bible - The GP spend a turn with at least 2 allied Pri or Mon (GP or Follower) at the same location.
 
-# Jane Goodall: Primates Expert - Locations with Jungle feature provide +2 Technique and +2 Intelligence to you and all your Allied GP and Follower.
+# Jane Goodall: Primates Expert - A Location with Jungle feature provide +2 Technique and +2 Intelligence to you and all your Allied GP and Followers at it.
 Achievement: Chimpanzee Feeding Stations - At a location with Jungle feature, this GP ends a Survival.
 
 # Magellan: Long-distance Voyage - This card and all Allied GP get extra +1 on all stat in a Global Competition.
 Achievement: Circumnavigation - Visit all the locations on the board in public continuously (without being turned into private, being retrieved or being killed).
 
-# Enkidu: Forest Wildman - Locations with Forest feature provide +2 Strength and +2 Technique to you and all your Allied GP and Follower.
+# Enkidu: Forest Wildman - A Location with Forest feature provide +2 Strength and +2 Technique to you and all your Allied GP and Followers at it.
+Achievement: Gilgamesh Epic - This card and another Sumer GP card move from a Mesopotamia location to another Mesopotamia location together at the same turn.
+
+# Mendel: Mendel's Law - 
 Achievement: 
