@@ -12,6 +12,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.greatpeople.card.ui.screens.ArcadeScreen
 import com.greatpeople.card.ui.screens.BattleScreen
 import com.greatpeople.card.ui.screens.CardDetailScreen
 import com.greatpeople.card.ui.screens.CollectionScreen
@@ -27,6 +28,7 @@ sealed class Screen(val route: String) {
     object Collection : Screen("collection")
     object Battle : Screen("battle")
     object Profile : Screen("profile")
+    object Arcade : Screen("arcade")
     object CardDetail : Screen("card/{cardId}") {
         fun route(cardId: String) = "card/$cardId"
     }
@@ -71,6 +73,7 @@ fun GreatPeopleNavHost() {
                         }
                     },
                     onEpic = { navController.navigate(Screen.Epic.route) },
+                    onArcade = { navController.navigate(Screen.Arcade.route) },
                     onCollection = { navController.navigate(Screen.Collection.route) },
                     onBattle = { navController.navigate(Screen.Battle.route) },
                     onProfile = { navController.navigate(Screen.Profile.route) },
@@ -79,6 +82,12 @@ fun GreatPeopleNavHost() {
 
             composable(Screen.Epic.route) {
                 EpicScreen(
+                    onBack = { navController.popBackStack() },
+                )
+            }
+
+            composable(Screen.Arcade.route) {
+                ArcadeScreen(
                     onBack = { navController.popBackStack() },
                 )
             }

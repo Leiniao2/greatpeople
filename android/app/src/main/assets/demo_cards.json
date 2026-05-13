@@ -20,7 +20,10 @@
     "lore": "The soul force that moved an empire.",
     "trait": "Mahatma — While on the field, all Conflict scenarios are negated (do not take effect).",
     "achievement": "Independence — when Belief wins 3 rounds, generate 1 winning point.",
-    "years": "1869–1948"
+    "years": "1869–1948",
+    "countries": [
+      "India"
+    ]
   },
   {
     "id": "demo-2",
@@ -42,7 +45,10 @@
     "lore": "She dressed the world in modernity.",
     "trait": "Women's Fashion — All female Followers at this location gain +2 to their primary stat.",
     "achievement": "Icon — when Culture wins 3 rounds, generate 1 winning point.",
-    "years": "1883–1971"
+    "years": "1883–1971",
+    "countries": [
+      "France"
+    ]
   },
   {
     "id": "demo-3",
@@ -65,7 +71,10 @@
     "lore": "A revolution forged from peasant to chairman.",
     "trait": "The Long March — When killed or forced to be retrieved, this card can relocate to another location chosen by its player.",
     "achievement": "Revolution — when Politics wins 4 rounds, generate 1 winning point.",
-    "years": "1893–1976"
+    "years": "1893–1976",
+    "countries": [
+      "China"
+    ]
   },
   {
     "id": "demo-4",
@@ -88,7 +97,10 @@
     "lore": "The last great general of Rome.",
     "trait": "Reconquest — While outnumbered at this location (more opponent cards than allied), this card gains +5 to all stats.",
     "achievement": "Reconquest — when Strength wins 3 rounds, generate 1 winning point.",
-    "years": "505–565 AD"
+    "years": "505–565 AD",
+    "countries": [
+      "Byzantine Empire"
+    ]
   },
   {
     "id": "demo-5",
@@ -111,7 +123,10 @@
     "lore": "Deified by two civilizations for mastery of stone and medicine.",
     "trait": "Grand Architect — Once per match, permanently grant +5 to all stats of one other allied Great Person at this location. The bonus persists even if this card later moves or is archived.",
     "achievement": "Monument — when Technique wins 4 rounds, generate 1 winning point.",
-    "years": "c. 2650–2600 BC"
+    "years": "c. 2650–2600 BC",
+    "countries": [
+      "Egypt"
+    ]
   },
   {
     "id": "demo-6",
@@ -134,7 +149,10 @@
     "lore": "He turned leaves and water into philosophy.",
     "trait": "Tea Ceremony — If this card is the only Great Person at this location, all its stats gain +5.",
     "achievement": "The Classic — when Culture wins 3 rounds, generate 1 winning point.",
-    "years": "733–804 AD"
+    "years": "733–804 AD",
+    "countries": [
+      "China"
+    ]
   },
   {
     "id": "demo-7",
@@ -157,7 +175,10 @@
     "lore": "He built the machine that broke the unbreakable.",
     "trait": "Artificial Intelligence — Gains the highest stat of the last allied Great Person that was Archived.",
     "achievement": "Cracked — when Intelligence wins 3 rounds, generate 1 winning point.",
-    "years": "1912–1954"
+    "years": "1912–1954",
+    "countries": [
+      "United Kingdom"
+    ]
   },
   {
     "id": "demo-8",
@@ -180,7 +201,10 @@
     "lore": "A bullet for a nation's soul.",
     "trait": "For the Nation — When this card is eliminated by an opponent, the player may immediately play one event card from hand without discarding it.",
     "achievement": "Martyr — when defeated in a round by 20+ points, generate 1 winning point.",
-    "years": "1879–1910"
+    "years": "1879–1910",
+    "countries": [
+      "Korea"
+    ]
   },
   {
     "id": "demo-9",
@@ -203,7 +227,10 @@
     "lore": "His fortune shaped an era, for better and worse.",
     "trait": "The Syndicate — Once per round, this card earns one additional Achievement Tick whenever any other allied Great Person on the field earns one.",
     "achievement": "Capital — when Wealth wins 3 rounds, generate 1 winning point.",
-    "years": "1855–1937"
+    "years": "1855–1937",
+    "countries": [
+      "United States"
+    ]
   },
   {
     "id": "demo-10",
@@ -226,7 +253,11 @@
     "lore": "Grace in every frame, humanity in every cause.",
     "trait": "Humanitarian Presence — While this card is face-up on the field, once per round the player may redirect one opponent event targeting any allied card at any location to have no effect.",
     "achievement": "Icon — when Reputation wins 3 rounds, generate 1 winning point.",
-    "years": "1929–1993"
+    "years": "1929–1993",
+    "countries": [
+      "Belgium",
+      "United Kingdom"
+    ]
   },
   {
     "id": "demo-11",
@@ -249,7 +280,10 @@
     "lore": "She played from the heart when the world told her to stand aside.",
     "trait": "Musical Romance — If there is exactly one male Musician (Great Person or Follower) at this location, both this card and that card gain +3 to all stats.",
     "achievement": "Virtuoso — when Culture wins 3 rounds, generate 1 winning point.",
-    "years": "1819–1896"
+    "years": "1819–1896",
+    "countries": [
+      "Germany"
+    ]
   },
   {
     "id": "demo-12",
@@ -272,7 +306,10 @@
     "lore": "He handed the world a ruler and said: begin.",
     "trait": "Geometric Deduction — The special effects of this card's current location also apply to all other locations on the field.",
     "achievement": "Axiom — when Intelligence wins 5 rounds total, generate 1 winning point.",
-    "years": "c. 300 BC"
+    "years": "c. 300 BC",
+    "countries": [
+      "Greece"
+    ]
   },
   {
     "id": "demo-13",
@@ -295,7 +332,10 @@
     "lore": "In a monastery garden, he found the code of life.",
     "trait": "Heredity Laws — When this card is Archived, the player may grant +10 to any one stat of the next Great Person they deploy.",
     "achievement": "Inheritance — when this card wins a round by 30+ points, generate 1 winning point.",
-    "years": "1822–1884"
+    "years": "1822–1884",
+    "countries": [
+      "Austria"
+    ]
   },
   {
     "id": "demo-14",
@@ -318,7 +358,10 @@
     "lore": "She rode in her father's armor and shook the walls of legend.",
     "trait": "Gender Disguise — All Great Person traits related to Gender on the field are disabled.",
     "achievement": "Honor — when Strength wins 3 rounds, generate 1 winning point.",
-    "years": "c. 386–534 AD"
+    "years": "c. 386–534 AD",
+    "countries": [
+      "China"
+    ]
   },
   {
     "id": "demo-15",
@@ -340,7 +383,10 @@
     "lore": "He carried Beethoven's shadow and carved his own light.",
     "trait": "Perfectionism — If the sum of a specific stat of all allied cards at this location is ≥ 25, gain +3 to that stat; otherwise −3.",
     "achievement": "Harmony — when Culture wins 3 consecutive rounds, generate 1 winning point.",
-    "years": "1833–1897"
+    "years": "1833–1897",
+    "countries": [
+      "Germany"
+    ]
   },
   {
     "id": "demo-16",
@@ -363,7 +409,10 @@
     "lore": "The greatest knight of the realm, undone by the greatest love.",
     "trait": "Oath of Valor — While this card has never moved since deployment, it wins all stat ties. If it ever moves, it permanently loses this ability for the rest of the match.",
     "achievement": "Champion — when Strength wins 4 rounds, generate 1 winning point.",
-    "years": "Arthurian legend"
+    "years": "Arthurian legend",
+    "countries": [
+      "France"
+    ]
   },
   {
     "id": "demo-17",
@@ -385,7 +434,10 @@
     "lore": "Sorrow and beauty, distilled into verse.",
     "trait": "Poetry of Loss — Whenever an allied Great Person at this location is archived or eliminated, this card permanently gains +3 to all stats.",
     "achievement": "Verse — when Culture wins 3 rounds, generate 1 winning point.",
-    "years": "1084–c.1155"
+    "years": "1084–c.1155",
+    "countries": [
+      "China"
+    ]
   },
   {
     "id": "demo-18",
@@ -408,7 +460,10 @@
     "lore": "A kingdom inherited, a revolution unleashed.",
     "trait": "Guillotine — Can unconditionally attack one opponent at the current location. If victorious, all of that player's Followers at this location are killed. Invalid if this card moved this turn.",
     "achievement": "Downfall — when this card loses 3 rounds, generate 1 winning point.",
-    "years": "1754–1793"
+    "years": "1754–1793",
+    "countries": [
+      "France"
+    ]
   },
   {
     "id": "demo-19",
@@ -431,7 +486,11 @@
     "lore": "She wore the crown of Versailles until the crowd came for it.",
     "trait": "Versailles — At deployment, secretly swap the values of any two of this card's stats. The new values are permanent and revealed only when this card becomes public.",
     "achievement": "Excess — when Wealth wins 3 rounds, generate 1 winning point.",
-    "years": "1755–1793"
+    "years": "1755–1793",
+    "countries": [
+      "Austria",
+      "France"
+    ]
   },
   {
     "id": "demo-20",
@@ -454,7 +513,10 @@
     "lore": "The sword and the mind — both perfected.",
     "trait": "Niten Ichi-ryu — Can attack twice per turn.",
     "achievement": "Undefeated — if this card wins 4+ consecutive rounds, generate 1 winning point.",
-    "years": "1584–1645"
+    "years": "1584–1645",
+    "countries": [
+      "Japan"
+    ]
   },
   {
     "id": "demo-21",
@@ -477,7 +539,10 @@
     "lore": "He built the world's first empire from nothing but will.",
     "trait": "First Empire — When this card defeats an opponent in combat, it gains an additional Achievement Tick.",
     "achievement": "Empire — when Politics wins 4 rounds, generate 1 winning point.",
-    "years": "c. 2334–2279 BC"
+    "years": "c. 2334–2279 BC",
+    "countries": [
+      "Mesopotamia"
+    ]
   },
   {
     "id": "demo-22",
@@ -500,7 +565,10 @@
     "lore": "Two-thirds god, one-third man — he built the walls of Uruk and sought the secret of eternal life.",
     "trait": "Epic of Gilgamesh — After this card wins 3 rounds at this location, it gains +10 to all stats for the rest of the game.",
     "achievement": "Epic Journey — when Strength wins 3 rounds, generate 1 winning point.",
-    "years": "c. 2700 BCE"
+    "years": "c. 2700 BCE",
+    "countries": [
+      "Mesopotamia"
+    ]
   },
   {
     "id": "demo-23",
@@ -522,7 +590,10 @@
     "lore": "Born of clay and wildness, he became the greatest friend a king ever had.",
     "trait": "Wild Companion — While Gilgamesh is at this location, both cards' stats are combined for all scenario purposes, and neither card can be targeted by event effects.",
     "achievement": "Brotherhood — when Strength wins 3 rounds, generate 1 winning point.",
-    "years": "c. 2700 BCE"
+    "years": "c. 2700 BCE",
+    "countries": [
+      "Mesopotamia"
+    ]
   },
   {
     "id": "demo-24",
@@ -545,7 +616,10 @@
     "lore": "Under his hand, Athens became the school of Hellas.",
     "trait": "Athenian Democracy — Gains an additional +1 to all stats for each allied Follower at this location.",
     "achievement": "Athenian — when Politics wins 4 rounds, generate 1 winning point.",
-    "years": "c. 495–429 BCE"
+    "years": "c. 495–429 BCE",
+    "countries": [
+      "Greece"
+    ]
   },
   {
     "id": "demo-25",
@@ -568,7 +642,10 @@
     "lore": "She taught the greatest minds of Athens — including Socrates himself.",
     "trait": "Voice Behind the Throne — This card cannot be directly attacked. Any scenario that would eliminate an allied Great Person here may instead eliminate one allied Follower of the player's choice.",
     "achievement": "Mentor — when Intelligence wins 3 rounds, generate 1 winning point.",
-    "years": "c. 470–400 BCE"
+    "years": "c. 470–400 BCE",
+    "countries": [
+      "Greece"
+    ]
   },
   {
     "id": "demo-26",
@@ -591,7 +668,10 @@
     "lore": "King of Sparta, twice exiled, twice restored — a king who chose peace over glory.",
     "trait": "The Recalled King — Whenever this card would be eliminated, retrieve it to hand instead. It may then be immediately redeployed to any location for free.",
     "achievement": "Truce — when this card draws a round, generate 1 winning point.",
-    "years": "c. 480–409 BCE"
+    "years": "c. 480–409 BCE",
+    "countries": [
+      "Greece"
+    ]
   },
   {
     "id": "demo-27",
@@ -614,7 +694,10 @@
     "lore": "The greatest orator of Rome — words were his sword and shield.",
     "trait": "Consul's Veto — Once per match, cancel any single opponent action at this location — deployment, move, event, or attack. The action is void and any costs are refunded.",
     "achievement": "Consul — when Politics wins 4 rounds, generate 1 winning point.",
-    "years": "106–43 BCE"
+    "years": "106–43 BCE",
+    "countries": [
+      "Rome"
+    ]
   },
   {
     "id": "demo-28",
@@ -637,7 +720,10 @@
     "lore": "He first declared the sun is not a god, but a burning stone larger than all of Greece.",
     "trait": "Mind Over Matter — Once per match, when this card would be eliminated, discard 2 Follower cards instead to keep it on the field with +5 to all stats.",
     "achievement": "First Principles — when Intelligence wins 4 rounds, generate 1 winning point.",
-    "years": "c. 500–428 BCE"
+    "years": "c. 500–428 BCE",
+    "countries": [
+      "Greece"
+    ]
   },
   {
     "id": "demo-29",
@@ -660,7 +746,10 @@
     "lore": "He proved motion was impossible — and the world has never stopped arguing.",
     "trait": "The Paradox — Once per match, declare the current scenario a draw: neither side wins, no Achievement Ticks are awarded, and both cards remain on the field.",
     "achievement": "Infinite Steps — when Intelligence wins 3 consecutive rounds, generate 1 winning point.",
-    "years": "c. 490–430 BCE"
+    "years": "c. 490–430 BCE",
+    "countries": [
+      "Greece"
+    ]
   },
   {
     "id": "demo-30",
@@ -682,7 +771,10 @@
     "lore": "He gave us algebra and the algorithm — the invisible foundation of every computer ever built.",
     "trait": "Algebraic Induction — This card gains all numerical stat bonuses currently received by other revealed Great Persons on the field.",
     "achievement": "Algebra — when Technique wins 4 rounds, generate 1 winning point.",
-    "years": "c. 780–850 CE"
+    "years": "c. 780–850 CE",
+    "countries": [
+      "Persia"
+    ]
   },
   {
     "id": "demo-31",
@@ -705,7 +797,10 @@
     "lore": "The Prophet of Light painted his gospels in vivid color across three continents.",
     "trait": "Two Lights — This card is immune to all Survival Scenario effects. While allied Great Persons of two or more different eras share this location, all allied cards here gain +3 to all stats.",
     "achievement": "Light — when Belief wins 3 rounds, generate 1 winning point.",
-    "years": "c. 216–274 CE"
+    "years": "c. 216–274 CE",
+    "countries": [
+      "Persia"
+    ]
   },
   {
     "id": "demo-32",
@@ -727,7 +822,10 @@
     "lore": "His brush turned the Renaissance into fire and flesh — the last great master standing.",
     "trait": "The Portraitist — Gains the trait of the last allied Great Person that was Archived.",
     "achievement": "Masterpiece — when Culture wins 4 rounds, generate 1 winning point.",
-    "years": "c. 1488–1576"
+    "years": "c. 1488–1576",
+    "countries": [
+      "Italy"
+    ]
   },
   {
     "id": "demo-33",
@@ -749,7 +847,11 @@
     "lore": "He proved the world was round by sailing its circumference — and died before he saw it complete.",
     "trait": "Circumnavigator — Once per match, this card may immediately relocate to any location on the board without using a move action.",
     "achievement": "Circumnavigation — when Technique wins 3 rounds, generate 1 winning point.",
-    "years": "1480–1521"
+    "years": "1480–1521",
+    "countries": [
+      "Portugal",
+      "Spain"
+    ]
   },
   {
     "id": "demo-34",
@@ -772,7 +874,11 @@
     "lore": "She left the convent walls to cradle the dying in Calcutta's gutters — and sparked a worldwide movement of radical compassion.",
     "trait": "Called to Serve — Once per match, voluntarily archive this card to return up to 3 allied Followers that were eliminated from any location back to the player's hand.",
     "achievement": "Missionary — when Belief wins 4 rounds, generate 1 winning point.",
-    "years": "1910–1997"
+    "years": "1910–1997",
+    "countries": [
+      "Albania",
+      "India"
+    ]
   },
   {
     "id": "demo-35",
@@ -794,7 +900,10 @@
     "lore": "He named the world — every living thing classified by his elegant two-word system.",
     "trait": "Systema Naturae — Once per match, swap any two allied Great Persons' locations as a free action. Both relocated cards count as freshly deployed for that round.",
     "achievement": "Classification — when Intelligence wins 3 rounds, generate 1 winning point.",
-    "years": "1707–1778"
+    "years": "1707–1778",
+    "countries": [
+      "Sweden"
+    ]
   },
   {
     "id": "demo-36",
@@ -816,7 +925,10 @@
     "lore": "His music spoke what words could not — joy and madness in the same key.",
     "trait": "Fantasia — Cards at this location are immune to Survival Scenario effects on the first round this card is deployed here; this card cannot terminate the Survival Scenario.",
     "achievement": "Composition — when Culture wins 3 rounds, generate 1 winning point.",
-    "years": "1810–1856"
+    "years": "1810–1856",
+    "countries": [
+      "Germany"
+    ]
   },
   {
     "id": "demo-37",
@@ -839,7 +951,10 @@
     "lore": "He gave Einstein the mathematics to prove relativity — and modestly called it Einstein's theory.",
     "trait": "Lorentz Transformation — All Great Person traits related to Era or Location on the field are disabled.",
     "achievement": "Relativity — when Intelligence wins 4 rounds, generate 1 winning point.",
-    "years": "1853–1928"
+    "years": "1853–1928",
+    "countries": [
+      "Netherlands"
+    ]
   },
   {
     "id": "demo-38",
@@ -861,7 +976,10 @@
     "lore": "She aimed for the horizon and flew straight through every barrier in her path.",
     "trait": "The Lady Lindy — This card is immune to all Survival Scenario effects; it always survives regardless of stat thresholds.",
     "achievement": "Altitude Record — when Technique wins 3 rounds, generate 1 winning point.",
-    "years": "1897–1937"
+    "years": "1897–1937",
+    "countries": [
+      "United States"
+    ]
   },
   {
     "id": "demo-39",
@@ -883,7 +1001,10 @@
     "lore": "He invented the language of film — montage as a weapon of art and revolution.",
     "trait": "Dialectical Montage — Once per match, play two event cards simultaneously from your hand at this location. Both effects resolve in the order you choose.",
     "achievement": "Battleship — when Culture wins 3 rounds, generate 1 winning point.",
-    "years": "1898–1948"
+    "years": "1898–1948",
+    "countries": [
+      "Russia"
+    ]
   },
   {
     "id": "demo-40",
@@ -905,7 +1026,10 @@
     "lore": "He stood on top of the world — and then spent decades helping the people who lived there.",
     "trait": "First Ascent — When this card wins an attack, it gains 2 Achievement Ticks instead of 1.",
     "achievement": "Everest — when Strength wins 3 rounds, generate 1 winning point.",
-    "years": "1919–2008"
+    "years": "1919–2008",
+    "countries": [
+      "New Zealand"
+    ]
   },
   {
     "id": "demo-41",
@@ -927,7 +1051,11 @@
     "lore": "He knew every ridge and crevice of Everest — and chose to climb it side by side.",
     "trait": "Mountain Guide — Once per turn, move one other allied Great Person to this location as a free action (does not consume that card's move).",
     "achievement": "Together — when both Tenzing and Edmund Hillary win a round in the same match, generate 2 winning points.",
-    "years": "1914–1986"
+    "years": "1914–1986",
+    "countries": [
+      "Nepal",
+      "India"
+    ]
   },
   {
     "id": "demo-42",
@@ -950,7 +1078,10 @@
     "lore": "He modernized Japan in a generation — and paid the ultimate price for empire.",
     "trait": "Meiji Architect — Once per match, declare this location's era to be any era of your choice for one round.",
     "achievement": "Modernization — when Politics wins 4 rounds, generate 1 winning point.",
-    "years": "1841–1909"
+    "years": "1841–1909",
+    "countries": [
+      "Japan"
+    ]
   },
   {
     "id": "demo-43",
@@ -973,7 +1104,10 @@
     "lore": "The King of Pop — the most famous entertainer in human history.",
     "trait": "King of Pop — While at a location, all players may deploy an unlimited number of Follower cards to this same location.",
     "achievement": "Thriller — when Culture wins 4 rounds, generate 1 winning point.",
-    "years": "1958–2009"
+    "years": "1958–2009",
+    "countries": [
+      "United States"
+    ]
   },
   {
     "id": "demo-44",
@@ -996,7 +1130,11 @@
     "lore": "He turned the stage into a philosopher's lecture hall.",
     "trait": "Paradoxical Wit — Once per match, negate all trait-based stat bonuses of all cards at this location for one round.",
     "achievement": "Major Barbara — when Culture wins 3 rounds, generate 1 winning point.",
-    "years": "1856–1950"
+    "years": "1856–1950",
+    "countries": [
+      "Ireland",
+      "United Kingdom"
+    ]
   },
   {
     "id": "demo-45",
@@ -1018,7 +1156,10 @@
     "lore": "In a role he was born to play, he gave America its conscience.",
     "trait": "Standing for Justice — All events played by opponents at this location must be declared publicly before resolving. The player may discard one Follower to negate any such event.",
     "achievement": "Atticus — when Belief wins 3 rounds, generate 1 winning point.",
-    "years": "1916–2003"
+    "years": "1916–2003",
+    "countries": [
+      "United States"
+    ]
   },
   {
     "id": "demo-46",
@@ -1041,7 +1182,10 @@
     "lore": "She united a kingdom, funded a new world, and reshaped history.",
     "trait": "Royal Decree — Once per match, remove all Followers of one chosen opponent from any one location on the field. This card must then move to that location.",
     "achievement": "Reconquista — when Belief wins 3 rounds, generate 1 winning point.",
-    "years": "1451–1504"
+    "years": "1451–1504",
+    "countries": [
+      "Spain"
+    ]
   },
   {
     "id": "demo-47",
@@ -1064,6 +1208,9 @@
     "lore": "Under his reign, Portugal held the key to the world's treasure chest.",
     "trait": "Maritime Empire — Whenever this card moves to a new location, the player may bring any number of allied Followers from the previous location to the new one at no cost.",
     "achievement": "Empire of Spice — when Wealth wins 3 rounds, generate 1 winning point.",
-    "years": "1469–1521"
+    "years": "1469–1521",
+    "countries": [
+      "Portugal"
+    ]
   }
 ]

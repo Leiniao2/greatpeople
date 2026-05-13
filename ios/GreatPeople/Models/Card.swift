@@ -6,6 +6,7 @@ struct Card: Identifiable, Codable, Equatable, Hashable {
     let era: String
     let gender: String
     let identities: [String]
+    let countries: [String]
     let lore: String
     let portraitUrl: String
     let years: String

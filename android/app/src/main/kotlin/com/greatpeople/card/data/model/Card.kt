@@ -16,6 +16,7 @@ data class Card(
     val era: String,
     val gender: String = "",
     val identities: List<String> = emptyList(),
+    val countries: List<String> = emptyList(),
     val lore: String,
     val portraitUrl: String,
     val years: String = "",

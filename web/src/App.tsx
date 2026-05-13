@@ -7,6 +7,7 @@ import CardDetailPage from '@/pages/CardDetailPage'
 import BattlePage from '@/pages/BattlePage'
 import EpicPage from '@/pages/EpicPage'
 import ProfilePage from '@/pages/ProfilePage'
+import MiniChallengePage from '@/pages/MiniChallengePage'
 import MainLayout from '@/pages/MainLayout'
 
 function PrivateRoute({ children }: { children: React.ReactNode }) {
@@ -22,6 +23,9 @@ export default function App() {
 
       {/* Home — private, no tab bar */}
       <Route path="/home" element={<PrivateRoute><HomePage /></PrivateRoute>} />
+
+      {/* Arcade — private, no tab bar */}
+      <Route path="/arcade" element={<PrivateRoute><MiniChallengePage /></PrivateRoute>} />
 
       {/* Full-screen detail — private, no tab bar */}
       <Route path="/card/:id" element={<PrivateRoute><CardDetailPage /></PrivateRoute>} />

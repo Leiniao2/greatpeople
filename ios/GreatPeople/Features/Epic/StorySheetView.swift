@@ -362,7 +362,7 @@ struct StorySheetView: View {
 
 // MARK: - Sort Challenge View
 
-private struct SortChallengeView: View {
+struct SortChallengeView: View {
     let challenge: ChallengeDTO
     @Binding var answered: Bool
     @Binding var lastCorrect: Bool

@@ -6,7 +6,8 @@ struct HomeView: View {
     private let modes: [(icon: String, name: String, subtitle: String)] = [
         ("⚡", "EPIC",       "Unlock stories, earn cards"),
         ("♛", "COLLECTION", "Your card gallery"),
-        ("⚔", "BATTLE",     "Compete with others"),
+        ("⚔", "FIGHT",      "Compete with others"),
+        ("🎮", "ARCADE",     "120 mini challenges, play freely"),
         ("◉", "PROFILE",    "Your account & stats"),
     ]
 
@@ -94,6 +95,11 @@ struct HomeView: View {
 
                         NavigationLink(destination: BattleView()) {
                             ModeRow(icon: "shield.fill", name: "FIGHT", subtitle: "Deploy Great People, claim victory")
+                        }
+                        .buttonStyle(.plain)
+
+                        NavigationLink(destination: ArcadeView()) {
+                            ModeRow(icon: "gamecontroller.fill", name: "ARCADE", subtitle: "120 mini challenges, play freely")
                         }
                         .buttonStyle(.plain)
 

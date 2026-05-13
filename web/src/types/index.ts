@@ -4,6 +4,7 @@ export interface Card {
   era: string
   gender: string
   identities: string[]
+  countries?: string[]
   lore: string
   portraitUrl: string
   portraitKey?: string
@@ -78,6 +79,7 @@ export interface LocationState {
   name: string
   era: string
   imageKey?: string
+  countries?: string[]
   cards: OnboardCard[]
   activeEvent: EventCard | null
   eventRoundsLeft: number

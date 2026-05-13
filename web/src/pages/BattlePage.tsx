@@ -99,7 +99,7 @@ function makeEventDeck(): EventCard[] {
 
 // ─── Location Data ────────────────────────────────────────────────────────────
 
-interface LocationTemplate { name: string; era: string; imageKey?: string }
+interface LocationTemplate { name: string; era: string; imageKey?: string; countries?: string[] }
 
 const LOCATION_POOL: LocationTemplate[] = locationsJson.locations
 const ERAS: string[] = locationsJson.eras
@@ -471,6 +471,7 @@ function initGame(setup: GameSetup): GameState {
     name: lt.name,
     era: lt.era,
     imageKey: lt.imageKey,
+    countries: lt.countries,
     cards: [],
     activeEvent: null,
     eventRoundsLeft: 0,

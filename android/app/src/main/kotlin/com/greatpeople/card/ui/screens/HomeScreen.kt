@@ -26,7 +26,8 @@ private data class ModeItem(
 private val modes = listOf(
     ModeItem("⚡", "EPIC",       "Unlock stories, earn cards"),
     ModeItem("♛", "COLLECTION", "Your card gallery"),
-    ModeItem("⚔", "BATTLE",     "Compete with others"),
+    ModeItem("⚔", "FIGHT",      "Compete with others"),
+    ModeItem("🎮", "ARCADE",     "120 mini challenges, play freely"),
     ModeItem("◉", "PROFILE",    "Your account & stats"),
 )
 
@@ -35,11 +36,12 @@ fun HomeScreen(
     isGuest: Boolean = false,
     onSignIn: () -> Unit = {},
     onEpic: () -> Unit = {},
+    onArcade: () -> Unit = {},
     onCollection: () -> Unit = {},
     onBattle: () -> Unit = {},
     onProfile: () -> Unit = {},
 ) {
-    val modeCallbacks = listOf(onEpic, onCollection, onBattle, onProfile)
+    val modeCallbacks = listOf(onEpic, onCollection, onBattle, onArcade, onProfile)
 
     Scaffold(
         containerColor = BackgroundColor,

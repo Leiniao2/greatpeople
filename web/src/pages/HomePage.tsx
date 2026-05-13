@@ -16,9 +16,15 @@ const MODES = [
   },
   {
     icon: '⚔',
-    name: 'BATTLE',
+    name: 'FIGHT',
     subtitle: 'Compete with others',
     path: '/battle',
+  },
+  {
+    icon: '🎮',
+    name: 'ARCADE',
+    subtitle: '120 mini challenges, play freely',
+    path: '/arcade',
   },
   {
     icon: '◉',
