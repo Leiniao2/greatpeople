@@ -56,75 +56,75 @@ GP and Follower must act on locations, most are cities.
 
 In terms of Building
 
-Ancient
-Politics: Palace
-Streanth: Barracks
-Culture: Monument
-Wealth: Port
-Technique: Workshop
-Intelligence: Observatory
-Belief: Temple
-Reputation: Forum
+#### Ancient
+##### Politics: Palace
+##### Streanth: Barracks
+##### Culture: Monument
+##### Wealth: Port
+##### Technique: Workshop
+##### Intelligence: Observatory
+##### Belief: Temple
+##### Reputation: Forum
 
-Classical
-Politics: Palace, Parliament
-Strength: Arena, Barracks
-Culture: Monument, Theatre
-Wealth: Port, Plantation
-Technique: Infrastructure, Workshop
-Intelligence: Observatory, Library
-Belief: Temple, Sanctuary
-Reputation: Court, Forum
+#### Classical
+##### Politics: Palace, Parliament
+##### Strength: Arena, Barracks
+##### Culture: Monument, Theatre
+##### Wealth: Port, Plantation
+##### Technique: Infrastructure, Workshop
+##### Intelligence: Observatory, Library
+##### Belief: Temple, Sanctuary
+##### Reputation: Court, Forum
 
-Medieval
-Politics: Palace, Castle
-Strength: Arena, Barracks
-Culture: Monument, Gallery
-Wealth: Port, Plantation
-Technique: Guild, Workshop
-Intelligence: Observatory, University
-Belief: Monastry, Sanctuary
-Reputation: Court, Garden
+#### Medieval
+##### Politics: Palace, Castle
+##### Strength: Arena, Barracks
+##### Culture: Monument, Gallery
+##### Wealth: Port, Plantation
+##### Technique: Guild, Workshop
+##### Intelligence: Observatory, University
+##### Belief: Monastry, Sanctuary
+##### Reputation: Court, Garden
 
-Renaissance
-Politics: Palace, Castle, Parliament
-Strength: Arena, Barracks, Fortress
-Culture: Monument, Theatre, Gallery
-Wealth: Port, Plantation, Bank
-Technique: Guild, Workshop, Hospital
-Intelligence: Observatory, Library, University
-Belief: Temple, Monastry, Sanctuary
-Reputation: Court, Forum, Garden
+#### Renaissance
+##### Politics: Palace, Castle, Parliament
+##### Strength: Arena, Barracks, Fortress
+##### Culture: Monument, Theatre, Gallery
+##### Wealth: Port, Plantation, Bank
+##### Technique: Guild, Workshop, Hospital
+##### Intelligence: Observatory, Library, University
+##### Belief: Temple, Monastry, Sanctuary
+##### Reputation: Court, Forum, Garden
 
-Steam
-Politics: Palace, Parliament, Intelligence Agency
-Strength: Barracks, Military Academy, Fortress
-Culture: Theatre, Gallery, Concert Hall
-Wealth: Port, Bank, Stock Exchange
-Technique: Infrastructure, Factory, Hospital
-Intelligence: University, Library, Academy
-Belief: Temple, Sanctuary, Salon
-Reputation: Court, Garden, News Agency
+#### Steam
+##### Politics: Palace, Parliament, Intelligence Agency
+##### Strength: Barracks, Military Academy, Fortress
+##### Culture: Theatre, Gallery, Concert Hall
+##### Wealth: Port, Bank, Stock Exchange
+##### Technique: Infrastructure, Factory, Hospital
+##### Intelligence: University, Library, Academy
+##### Belief: Temple, Sanctuary, Salon
+##### Reputation: Court, Garden, News Agency
 
-Electricity
-politics: Palace, Parliament, Intelligence Agency, Prison
-Strength: Barracks, Military Academy, Fortress, Gym
-Culture: Theatre, Gallery, Concert Hall, Museum
-Wealth: Port, Bank, Stock Exchange, Enterprise Quarter
-Technique: Infrastructure, Factory, Hospital, Workshop
-Intelligence: University, Library, Academy, Laboratory
-Belief: Temple, Sanctuary, Salon, Reserve
-Reputation: Fine Dining, Garden, News Agency, Court
+#### Electricity
+##### Politics: Palace, Parliament, Intelligence Agency, Prison
+##### Strength: Barracks, Military Academy, Fortress, Gym
+##### Culture: Theatre, Gallery, Concert Hall, Museum
+##### Wealth: Port, Bank, Stock Exchange, Enterprise Quarter
+##### Technique: Infrastructure, Factory, Hospital, Workshop
+##### Intelligence: University, Library, Academy, Laboratory
+##### Belief: Temple, Sanctuary, Salon, Reserve
+##### Reputation: Fine Dining, Garden, News Agency, Court
 
-Information
-Politics: Parliament, Intelligence Agency, Prison, Forum
-Strength: Barracks, Military Academy, Gym, Observatory
-Culture: Theatre, Concert Hall, Museum, Castle
-Wealth: Bank, Stock Exchange, Enterprise Quarter, Temple
-Technique: Infrastructure, Factory, Hospital, Plantation
-Intelligence: University, Academy, Laboratory, Workshop
-Belief: Salon, Sanctuary, Reserve, Monument
-Reputation: Court, News Agency, Fine Dining, Arena
+#### Information
+##### Politics: Parliament, Intelligence Agency, Prison, Forum
+##### Strength: Barracks, Military Academy, Gym, Observatory
+##### Culture: Theatre, Concert Hall, Museum, Castle
+##### Wealth: Bank, Stock Exchange, Enterprise Quarter, Temple
+##### Technique: Infrastructure, Factory, Hospital, Plantation
+##### Intelligence: University, Academy, Laboratory, Workshop
+##### Belief: Salon, Sanctuary, Reserve, Monument
+##### Reputation: Court, News Agency, Fine Dining, Arena
 
 ### Card Profile Synchronization
 
