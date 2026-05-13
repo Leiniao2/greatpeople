@@ -1,22 +1,20 @@
 # ancient era 4000BC-800BC 3500 years
 ## Memphis
-Palace, Temple, Workshop
+Palace, Tomb
 ## Stonehenge
 Monument
 ## San Lorenzo
-Temple
+Monument
 ## La Venta
-Temple
+Monument
 ## Yin
 Palace
 ## Mohenjo-daro
-Workshop
 ## Zhaoge
 Palace
 ## Uruk
-Temple, Workshop, Monument
+Monument
 ## Nippur
-Temple
 ## Ur
 ## Babylon
 ## Hattusa
@@ -30,19 +28,19 @@ Barracks
 Port
 ## Petra
 ## Sparta
-Barracks, Temple
+Barracks
 ## Anthem
-Forum, Temple, Theatre
+Forum, Theatre
 ## Xianyang
 Barracks, Palace
 ## Rome
-Forum, Temple, Theatre, Arena, Parliament
+Forum, Theatre, Arena, Parliament, Infrastructure
 ## Teotihuacan
-Temple
+Tomb, Sanctuary
 ## Persepolis
 Palace
 ## Jerusalem
-Temple
+Sanctuary
 ## Alexandria
 Port, Libray
 
