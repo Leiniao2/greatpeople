@@ -60,8 +60,8 @@ In terms of Building
 ##### Politics: Palace
 ##### Streanth: Barracks
 ##### Culture: Monument
-##### Wealth: Port
-##### Technique: Workshop
+##### Wealth: Mint
+##### Technique: Port
 ##### Intelligence: Observatory
 ##### Belief: Tomb
 ##### Reputation: Forum
@@ -70,8 +70,8 @@ In terms of Building
 ##### Politics: Palace, Parliament
 ##### Strength: Arena, Barracks
 ##### Culture: Monument, Theatre
-##### Wealth: Port, Plantation
-##### Technique: Infrastructure, Workshop
+##### Wealth: Mint, Plantation
+##### Technique: Infrastructure, Port
 ##### Intelligence: Observatory, Library
 ##### Belief: Sanctuary, Tomb
 ##### Reputation: Court, Forum
@@ -80,8 +80,8 @@ In terms of Building
 ##### Politics: Palace, Castle
 ##### Strength: Arena, Barracks
 ##### Culture: Monument, Gallery
-##### Wealth: Port, Plantation
-##### Technique: Guild, Workshop
+##### Wealth: Mint, Plantation
+##### Technique: Guild, Port
 ##### Intelligence: Observatory, University
 ##### Belief: Monastry, Sanctuary
 ##### Reputation: Court, Garden
@@ -90,8 +90,8 @@ In terms of Building
 ##### Politics: Palace, Castle, Parliament
 ##### Strength: Arena, Barracks, Fortress
 ##### Culture: Monument, Theatre, Gallery
-##### Wealth: Port, Plantation, Bank
-##### Technique: Guild, Workshop, Hospital
+##### Wealth: Mint, Plantation, Bank
+##### Technique: Guild, Port, Hospital
 ##### Intelligence: Observatory, Library, University
 ##### Belief: Sanctuary, Monastry, Tomb
 ##### Reputation: Court, Forum, Garden
@@ -100,7 +100,7 @@ In terms of Building
 ##### Politics: Palace, Parliament, Intelligence Agency
 ##### Strength: Barracks, Military Academy, Fortress
 ##### Culture: Theatre, Gallery, Concert Hall
-##### Wealth: Port, Bank, Stock Exchange
+##### Wealth: Mint, Bank, Stock Exchange
 ##### Technique: Infrastructure, Factory, Hospital
 ##### Intelligence: University, Library, Laboratory
 ##### Belief: Sanctuary, Monastry, Salon
@@ -110,8 +110,8 @@ In terms of Building
 ##### Politics: Palace, Parliament, Intelligence Agency, Prison
 ##### Strength: Barracks, Military Academy, Fortress, Gym
 ##### Culture: Theatre, Gallery, Concert Hall, Museum
-##### Wealth: Port, Bank, Stock Exchange, Enterprise Quarter
-##### Technique: Infrastructure, Factory, Hospital, Workshop
+##### Wealth: Mint, Bank, Stock Exchange, Enterprise Quarter
+##### Technique: Infrastructure, Factory, Hospital, Port
 ##### Intelligence: University, Library, Laboratory, Reserve
 ##### Belief: Charity, Sanctuary, Salon, Monastry
 ##### Reputation: Fine Dining, Garden, News Agency, Court
@@ -121,8 +121,8 @@ In terms of Building
 ##### Strength: Barracks, Military Academy, Gym, Observatory
 ##### Culture: Theatre, Concert Hall, Museum, Castle
 ##### Wealth: Bank, Stock Exchange, Enterprise Quarter, Monastry
-##### Technique: Infrastructure, Factory, Hospital, Plantation
-##### Intelligence: University, Laboratory, Reserve, Workshop
+##### Technique: Infrastructure, Factory, Port, Plantation
+##### Intelligence: University, Laboratory, Reserve, Hospital
 ##### Belief: Salon, Sanctuary, Charity, Monument
 ##### Reputation: Court, News Agency, Fine Dining, Arena
 
