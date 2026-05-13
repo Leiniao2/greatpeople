@@ -2,7 +2,7 @@
   {
     "id": "demo-1",
     "figureName": "Gandhi",
-    "era": "Electricity",
+    "era": "Steam",
     "gender": "male",
     "identities": [
       "Statesman",
@@ -19,7 +19,7 @@
     "reputation": 20,
     "lore": "The soul force that moved an empire.",
     "trait": "Mahatma — While on the field, all Conflict scenarios are negated (do not take effect).",
-    "achievement": "Independence — when Belief wins 3 rounds, generate 1 winning point.",
+    "achievement": "Satyagraha — Win a defence while none of this card's allied GP or Followers performed any action (move, retrieve, deploy, attack) in the same round.",
     "years": "1869–1948",
     "countries": [
       "India"
@@ -44,7 +44,7 @@
     "reputation": 12,
     "lore": "She dressed the world in modernity.",
     "trait": "Women's Fashion — All female Followers at this location gain +2 to their primary stat.",
-    "achievement": "Icon — when Culture wins 3 rounds, generate 1 winning point.",
+    "achievement": "Chanel No. 5 — Have this card spend a turn with at least 1 allied Nat (GP or Follower) and 2 allied female (GP or Follower) at the same location.",
     "years": "1883–1971",
     "countries": [
       "France"
@@ -69,8 +69,8 @@
     "belief": 1,
     "reputation": 18,
     "lore": "A revolution forged from peasant to chairman.",
-    "trait": "The Long March — When killed or forced to be retrieved, this card can relocate to another location chosen by its player.",
-    "achievement": "Revolution — when Politics wins 4 rounds, generate 1 winning point.",
+    "trait": "The Long March — When being killed, this card can automatically get retrieved to its Player's hand instead.",
+    "achievement": "Cultural Revolution — Have a non-allied Mus, Art, Act, or Wri GP or Follower removed from the board after a Censorship scenario ends.",
     "years": "1893–1976",
     "countries": [
       "China"
@@ -96,7 +96,7 @@
     "reputation": 16,
     "lore": "The last great general of Rome.",
     "trait": "Reconquest — While outnumbered at this location (more opponent cards than allied), this card gains +5 to all stats.",
-    "achievement": "Reconquest — when Strength wins 3 rounds, generate 1 winning point.",
+    "achievement": "Reconquest — Win a combat attack while having fewer total allied cards at this location than the opponent.",
     "years": "505–565 AD",
     "countries": [
       "Byzantine Empire"
@@ -122,7 +122,7 @@
     "reputation": 14,
     "lore": "Deified by two civilizations for mastery of stone and medicine.",
     "trait": "Grand Architect — Once per match, permanently grant +5 to all stats of one other allied Great Person at this location. The bonus persists even if this card later moves or is archived.",
-    "achievement": "Monument — when Technique wins 4 rounds, generate 1 winning point.",
+    "achievement": "Pyramid — Have at least 1 allied Arc and 1 allied Eng or Sci (GP or Follower) at this location at the same time.",
     "years": "c. 2650–2600 BC",
     "countries": [
       "Egypt"
@@ -148,7 +148,7 @@
     "reputation": 1,
     "lore": "He turned leaves and water into philosophy.",
     "trait": "Tea Ceremony — If this card is the only Great Person at this location, all its stats gain +5.",
-    "achievement": "The Classic — when Culture wins 3 rounds, generate 1 winning point.",
+    "achievement": "The Classic of Tea — Have this card be the only GP at a location for 3 consecutive rounds.",
     "years": "733–804 AD",
     "countries": [
       "China"
@@ -174,7 +174,7 @@
     "reputation": 18,
     "lore": "He built the machine that broke the unbreakable.",
     "trait": "Artificial Intelligence — Gains the highest stat of the last allied Great Person that was Archived.",
-    "achievement": "Cracked — when Intelligence wins 3 rounds, generate 1 winning point.",
+    "achievement": "Turing Test — Use this card's Artificial Intelligence trait to survive a Survival Scenario that the card could not have survived without it.",
     "years": "1912–1954",
     "countries": [
       "United Kingdom"
@@ -183,7 +183,7 @@
   {
     "id": "demo-8",
     "figureName": "An Jung-geun",
-    "era": "Electricity",
+    "era": "Steam",
     "gender": "male",
     "identities": [
       "Warrior",
@@ -199,8 +199,8 @@
     "belief": 16,
     "reputation": 10,
     "lore": "A bullet for a nation's soul.",
-    "trait": "For the Nation — When this card is eliminated by an opponent, the player may immediately play one event card from hand without discarding it.",
-    "achievement": "Martyr — when defeated in a round by 20+ points, generate 1 winning point.",
+    "trait": "Assassination — If this card was private and becomes public this turn, it may attack regardless of whether a Conflict scenario is active, targeting a player with only 1 GP at this location. This attack kills the target GP.",
+    "achievement": "Korea Commemoration — Have at least one Korean location on the board occupied exclusively by Korean GP (no GP from other countries).",
     "years": "1879–1910",
     "countries": [
       "Korea"
@@ -209,7 +209,7 @@
   {
     "id": "demo-9",
     "figureName": "Andrew Mellon",
-    "era": "Electricity",
+    "era": "Steam",
     "gender": "male",
     "identities": [
       "Banker",
@@ -226,7 +226,7 @@
     "reputation": 2,
     "lore": "His fortune shaped an era, for better and worse.",
     "trait": "The Syndicate — Once per round, this card earns one additional Achievement Tick whenever any other allied Great Person on the field earns one.",
-    "achievement": "Capital — when Wealth wins 3 rounds, generate 1 winning point.",
+    "achievement": "The Syndicate — Have at least 3 allied Ban or Mer (GP or Follower) across all locations at the same time.",
     "years": "1855–1937",
     "countries": [
       "United States"
@@ -252,7 +252,7 @@
     "reputation": 16,
     "lore": "Grace in every frame, humanity in every cause.",
     "trait": "Humanitarian Presence — While this card is face-up on the field, once per round the player may redirect one opponent event targeting any allied card at any location to have no effect.",
-    "achievement": "Icon — when Reputation wins 3 rounds, generate 1 winning point.",
+    "achievement": "UNICEF — Have this card spend a turn at the same location as at least 1 allied Doc or Mon (GP or Follower) while no conflict scenario is active.",
     "years": "1929–1993",
     "countries": [
       "Belgium",
@@ -278,8 +278,8 @@
     "belief": 5,
     "reputation": 16,
     "lore": "She played from the heart when the world told her to stand aside.",
-    "trait": "Musical Romance — If there is exactly one male Musician (Great Person or Follower) at this location, both this card and that card gain +3 to all stats.",
-    "achievement": "Virtuoso — when Culture wins 3 rounds, generate 1 winning point.",
+    "trait": "Musical Bond — If there is exactly one male Musician (Great Person or Follower) at this location, both this card and that card gain +3 to all stats.",
+    "achievement": "Lieder Album — Have this card at the same location as exactly one allied male Mus GP or Follower for 2 consecutive rounds.",
     "years": "1819–1896",
     "countries": [
       "Germany"
@@ -305,7 +305,7 @@
     "reputation": 18,
     "lore": "He handed the world a ruler and said: begin.",
     "trait": "Geometric Deduction — The special effects of this card's current location also apply to all other locations on the field.",
-    "achievement": "Axiom — when Intelligence wins 5 rounds total, generate 1 winning point.",
+    "achievement": "Elements — Have allied GP and Followers distributed across every location currently on the board, with an equal number at each.",
     "years": "c. 300 BC",
     "countries": [
       "Greece"
@@ -331,7 +331,7 @@
     "reputation": 3,
     "lore": "In a monastery garden, he found the code of life.",
     "trait": "Heredity Laws — When this card is Archived, the player may grant +10 to any one stat of the next Great Person they deploy.",
-    "achievement": "Inheritance — when this card wins a round by 30+ points, generate 1 winning point.",
+    "achievement": "Pea Garden — Have at least 2 allied Nat (GP or Follower) at this location at the same time.",
     "years": "1822–1884",
     "countries": [
       "Austria"
@@ -357,7 +357,7 @@
     "reputation": 16,
     "lore": "She rode in her father's armor and shook the walls of legend.",
     "trait": "Gender Disguise — All Great Person traits related to Gender on the field are disabled.",
-    "achievement": "Honor — when Strength wins 3 rounds, generate 1 winning point.",
+    "achievement": "Join Army for Father — Win a Battlefield defence with at least one allied Sol GP or Follower at the same location.",
     "years": "c. 386–534 AD",
     "countries": [
       "China"
@@ -382,7 +382,7 @@
     "reputation": 11,
     "lore": "He carried Beethoven's shadow and carved his own light.",
     "trait": "Perfectionism — If the sum of a specific stat of all allied cards at this location is ≥ 25, gain +3 to that stat; otherwise −3.",
-    "achievement": "Harmony — when Culture wins 3 consecutive rounds, generate 1 winning point.",
+    "achievement": "Hungarian Dances — Have this card at the same location as at least 1 allied Mus and 1 allied Wri (GP or Follower) at the same time.",
     "years": "1833–1897",
     "countries": [
       "Germany"
@@ -408,7 +408,7 @@
     "reputation": 16,
     "lore": "The greatest knight of the realm, undone by the greatest love.",
     "trait": "Oath of Valor — While this card has never moved since deployment, it wins all stat ties. If it ever moves, it permanently loses this ability for the rest of the match.",
-    "achievement": "Champion — when Strength wins 4 rounds, generate 1 winning point.",
+    "achievement": "The Grail Quest — Have this card at the same location as 2 or more allied Sol (GP or Follower), none of which moved this turn.",
     "years": "Arthurian legend",
     "countries": [
       "France"
@@ -432,8 +432,8 @@
     "belief": 12,
     "reputation": 8,
     "lore": "Sorrow and beauty, distilled into verse.",
-    "trait": "Poetry of Loss — Whenever an allied Great Person at this location is archived or eliminated, this card permanently gains +3 to all stats.",
-    "achievement": "Verse — when Culture wins 3 rounds, generate 1 winning point.",
+    "trait": "Delicate Restraint — While this card is on board, you may deploy an unlimited number of Wri, Art, Mus, or Act Followers per turn.",
+    "achievement": "Sheng Sheng Man — Have every player deploy exactly 2 cards (GP or Follower total) to this location at the same time.",
     "years": "1084–c.1155",
     "countries": [
       "China"
@@ -458,8 +458,8 @@
     "belief": 2,
     "reputation": 8,
     "lore": "A kingdom inherited, a revolution unleashed.",
-    "trait": "Guillotine — Can unconditionally attack one opponent at the current location. If victorious, all of that player's Followers at this location are killed. Invalid if this card moved this turn.",
-    "achievement": "Downfall — when this card loses 3 rounds, generate 1 winning point.",
+    "trait": "Locksmith — All non-allied GP and Followers at the same location cannot move to another location or be retrieved by their player.",
+    "achievement": "Guillotine — Have more than 1 GP or Follower killed at this location in the same turn while Louis XVI is present.",
     "years": "1754–1793",
     "countries": [
       "France"
@@ -484,8 +484,8 @@
     "belief": 8,
     "reputation": 16,
     "lore": "She wore the crown of Versailles until the crowd came for it.",
-    "trait": "Versailles — At deployment, secretly swap the values of any two of this card's stats. The new values are permanent and revealed only when this card becomes public.",
-    "achievement": "Excess — when Wealth wins 3 rounds, generate 1 winning point.",
+    "trait": "Madame Déficit — All GP at the same location as this card get −3 Wealth.",
+    "achievement": "Queen's Designer — Have an Art or Mer GP at this location get archived in the same turn.",
     "years": "1755–1793",
     "countries": [
       "Austria",
@@ -512,7 +512,7 @@
     "reputation": 12,
     "lore": "The sword and the mind — both perfected.",
     "trait": "Niten Ichi-ryu — Can attack twice per turn.",
-    "achievement": "Undefeated — if this card wins 4+ consecutive rounds, generate 1 winning point.",
+    "achievement": "Undefeated — Win 2 attacks in the same turn using this card.",
     "years": "1584–1645",
     "countries": [
       "Japan"
@@ -538,7 +538,7 @@
     "reputation": 18,
     "lore": "He built the world's first empire from nothing but will.",
     "trait": "First Empire — When this card defeats an opponent in combat, it gains an additional Achievement Tick.",
-    "achievement": "Empire — when Politics wins 4 rounds, generate 1 winning point.",
+    "achievement": "First Empire — Have allied GP or Followers deployed to at least 4 different locations at the same time.",
     "years": "c. 2334–2279 BC",
     "countries": [
       "Mesopotamia"
@@ -564,7 +564,7 @@
     "reputation": 20,
     "lore": "Two-thirds god, one-third man — he built the walls of Uruk and sought the secret of eternal life.",
     "trait": "Epic of Gilgamesh — After this card wins 3 rounds at this location, it gains +10 to all stats for the rest of the game.",
-    "achievement": "Epic Journey — when Strength wins 3 rounds, generate 1 winning point.",
+    "achievement": "Two-Thirds Divine — Have this card and Enkidu at the same location at the same time.",
     "years": "c. 2700 BCE",
     "countries": [
       "Mesopotamia"
@@ -589,7 +589,7 @@
     "reputation": 14,
     "lore": "Born of clay and wildness, he became the greatest friend a king ever had.",
     "trait": "Wild Companion — While Gilgamesh is at this location, both cards' stats are combined for all scenario purposes, and neither card can be targeted by event effects.",
-    "achievement": "Brotherhood — when Strength wins 3 rounds, generate 1 winning point.",
+    "achievement": "Wild Birth — Be the first card (GP or Follower) deployed to a location that currently has no cards.",
     "years": "c. 2700 BCE",
     "countries": [
       "Mesopotamia"
@@ -615,7 +615,7 @@
     "reputation": 20,
     "lore": "Under his hand, Athens became the school of Hellas.",
     "trait": "Athenian Democracy — Gains an additional +1 to all stats for each allied Follower at this location.",
-    "achievement": "Athenian — when Politics wins 4 rounds, generate 1 winning point.",
+    "achievement": "Funeral Oration — Have an allied GP killed at this location by an opponent in the same turn.",
     "years": "c. 495–429 BCE",
     "countries": [
       "Greece"
@@ -641,7 +641,7 @@
     "reputation": 12,
     "lore": "She taught the greatest minds of Athens — including Socrates himself.",
     "trait": "Voice Behind the Throne — This card cannot be directly attacked. Any scenario that would eliminate an allied Great Person here may instead eliminate one allied Follower of the player's choice.",
-    "achievement": "Mentor — when Intelligence wins 3 rounds, generate 1 winning point.",
+    "achievement": "School of Athens — Have this card at the same location as at least 2 allied Phi (GP or Follower) at the same time.",
     "years": "c. 470–400 BCE",
     "countries": [
       "Greece"
@@ -667,7 +667,7 @@
     "reputation": 11,
     "lore": "King of Sparta, twice exiled, twice restored — a king who chose peace over glory.",
     "trait": "The Recalled King — Whenever this card would be eliminated, retrieve it to hand instead. It may then be immediately redeployed to any location for free.",
-    "achievement": "Truce — when this card draws a round, generate 1 winning point.",
+    "achievement": "Thirty Years' Peace — Have this card draw 2 different rounds (combat or event) during the same game.",
     "years": "c. 480–409 BCE",
     "countries": [
       "Greece"
@@ -693,7 +693,7 @@
     "reputation": 18,
     "lore": "The greatest orator of Rome — words were his sword and shield.",
     "trait": "Consul's Veto — Once per match, cancel any single opponent action at this location — deployment, move, event, or attack. The action is void and any costs are refunded.",
-    "achievement": "Consul — when Politics wins 4 rounds, generate 1 winning point.",
+    "achievement": "Philippics — Use the Consul's Veto trait and have at least 1 allied Sta (GP or Follower) at this location in the same turn.",
     "years": "106–43 BCE",
     "countries": [
       "Rome"
@@ -719,7 +719,7 @@
     "reputation": 3,
     "lore": "He first declared the sun is not a god, but a burning stone larger than all of Greece.",
     "trait": "Mind Over Matter — Once per match, when this card would be eliminated, discard 2 Follower cards instead to keep it on the field with +5 to all stats.",
-    "achievement": "First Principles — when Intelligence wins 4 rounds, generate 1 winning point.",
+    "achievement": "Nous — Have this card at the same location as at least 2 allied Phi or Sci (GP or Follower) at the same time.",
     "years": "c. 500–428 BCE",
     "countries": [
       "Greece"
@@ -745,7 +745,7 @@
     "reputation": 10,
     "lore": "He proved motion was impossible — and the world has never stopped arguing.",
     "trait": "The Paradox — Once per match, declare the current scenario a draw: neither side wins, no Achievement Ticks are awarded, and both cards remain on the field.",
-    "achievement": "Infinite Steps — when Intelligence wins 3 consecutive rounds, generate 1 winning point.",
+    "achievement": "Achilles and the Tortoise — Use the Paradox trait and have this card remain at the same location without moving for 3 consecutive rounds.",
     "years": "c. 490–430 BCE",
     "countries": [
       "Greece"
@@ -770,7 +770,7 @@
     "reputation": 14,
     "lore": "He gave us algebra and the algorithm — the invisible foundation of every computer ever built.",
     "trait": "Algebraic Induction — This card gains all numerical stat bonuses currently received by other revealed Great Persons on the field.",
-    "achievement": "Algebra — when Technique wins 4 rounds, generate 1 winning point.",
+    "achievement": "Algebra — Have allied GP and Followers on board whose base stats together include every integer from 1 to 25.",
     "years": "c. 780–850 CE",
     "countries": [
       "Persia"
@@ -796,7 +796,7 @@
     "reputation": 12,
     "lore": "The Prophet of Light painted his gospels in vivid color across three continents.",
     "trait": "Two Lights — This card is immune to all Survival Scenario effects. While allied Great Persons of two or more different eras share this location, all allied cards here gain +3 to all stats.",
-    "achievement": "Light — when Belief wins 3 rounds, generate 1 winning point.",
+    "achievement": "Light and Dark — Have allied GP or Followers from at least 2 different eras at this location at the same time.",
     "years": "c. 216–274 CE",
     "countries": [
       "Persia"
@@ -821,7 +821,7 @@
     "reputation": 18,
     "lore": "His brush turned the Renaissance into fire and flesh — the last great master standing.",
     "trait": "The Portraitist — Gains the trait of the last allied Great Person that was Archived.",
-    "achievement": "Masterpiece — when Culture wins 4 rounds, generate 1 winning point.",
+    "achievement": "Self-Portrait — Have at least 1 allied archived GP whose trait this card has inherited.",
     "years": "c. 1488–1576",
     "countries": [
       "Italy"
@@ -846,7 +846,7 @@
     "reputation": 14,
     "lore": "He proved the world was round by sailing its circumference — and died before he saw it complete.",
     "trait": "Circumnavigator — Once per match, this card may immediately relocate to any location on the board without using a move action.",
-    "achievement": "Circumnavigation — when Technique wins 3 rounds, generate 1 winning point.",
+    "achievement": "Around the World — Have this card move to at least 3 different locations during the same game.",
     "years": "1480–1521",
     "countries": [
       "Portugal",
@@ -856,7 +856,7 @@
   {
     "id": "demo-34",
     "figureName": "Mother Teresa",
-    "era": "Information",
+    "era": "Electricity",
     "gender": "female",
     "identities": [
       "Priest",
@@ -873,7 +873,7 @@
     "reputation": 16,
     "lore": "She left the convent walls to cradle the dying in Calcutta's gutters — and sparked a worldwide movement of radical compassion.",
     "trait": "Called to Serve — Once per match, voluntarily archive this card to return up to 3 allied Followers that were eliminated from any location back to the player's hand.",
-    "achievement": "Missionary — when Belief wins 4 rounds, generate 1 winning point.",
+    "achievement": "Houses of the Dying — Have at least 2 allied Mon (GP or Follower) at this location at the same time.",
     "years": "1910–1997",
     "countries": [
       "Albania",
@@ -899,7 +899,7 @@
     "reputation": 10,
     "lore": "He named the world — every living thing classified by his elegant two-word system.",
     "trait": "Systema Naturae — Once per match, swap any two allied Great Persons' locations as a free action. Both relocated cards count as freshly deployed for that round.",
-    "achievement": "Classification — when Intelligence wins 3 rounds, generate 1 winning point.",
+    "achievement": "Systema Naturae — Have at least 4 different identity types of allied Followers at this location at the same time.",
     "years": "1707–1778",
     "countries": [
       "Sweden"
@@ -923,8 +923,8 @@
     "belief": 3,
     "reputation": 14,
     "lore": "His music spoke what words could not — joy and madness in the same key.",
-    "trait": "Fantasia — Cards at this location are immune to Survival Scenario effects on the first round this card is deployed here; this card cannot terminate the Survival Scenario.",
-    "achievement": "Composition — when Culture wins 3 rounds, generate 1 winning point.",
+    "trait": "Fantasia — Cards at this location are immune to Survival Scenario effects in the first round this card is deployed or moved here; this card cannot terminate the Survival Scenario.",
+    "achievement": "Marriage of Love — Have this card spend a turn with only 1 allied female Mus (GP or Follower) at the same location, both performing no actions.",
     "years": "1810–1856",
     "countries": [
       "Germany"
@@ -933,7 +933,7 @@
   {
     "id": "demo-37",
     "figureName": "Hendrik Lorentz",
-    "era": "Electricity",
+    "era": "Steam",
     "gender": "male",
     "identities": [
       "Scientist",
@@ -950,7 +950,7 @@
     "reputation": 10,
     "lore": "He gave Einstein the mathematics to prove relativity — and modestly called it Einstein's theory.",
     "trait": "Lorentz Transformation — All Great Person traits related to Era or Location on the field are disabled.",
-    "achievement": "Relativity — when Intelligence wins 4 rounds, generate 1 winning point.",
+    "achievement": "Lorentz Force — Have a GP on the board get force-retrieved without being attacked.",
     "years": "1853–1928",
     "countries": [
       "Netherlands"
@@ -975,7 +975,7 @@
     "reputation": 14,
     "lore": "She aimed for the horizon and flew straight through every barrier in her path.",
     "trait": "The Lady Lindy — This card is immune to all Survival Scenario effects; it always survives regardless of stat thresholds.",
-    "achievement": "Altitude Record — when Technique wins 3 rounds, generate 1 winning point.",
+    "achievement": "First Solo Atlantic — Have this card survive a natural hazard scenario at a location where no other allied GP or Follower is present.",
     "years": "1897–1937",
     "countries": [
       "United States"
@@ -1000,7 +1000,7 @@
     "reputation": 14,
     "lore": "He invented the language of film — montage as a weapon of art and revolution.",
     "trait": "Dialectical Montage — Once per match, play two event cards simultaneously from your hand at this location. Both effects resolve in the order you choose.",
-    "achievement": "Battleship — when Culture wins 3 rounds, generate 1 winning point.",
+    "achievement": "Battleship Potemkin — Play 2 event cards at this location in the same turn.",
     "years": "1898–1948",
     "countries": [
       "Russia"
@@ -1025,7 +1025,7 @@
     "reputation": 14,
     "lore": "He stood on top of the world — and then spent decades helping the people who lived there.",
     "trait": "First Ascent — When this card wins an attack, it gains 2 Achievement Ticks instead of 1.",
-    "achievement": "Everest — when Strength wins 3 rounds, generate 1 winning point.",
+    "achievement": "Summit — Have this card and Tenzing Norgay at the same location at the same time.",
     "years": "1919–2008",
     "countries": [
       "New Zealand"
@@ -1050,7 +1050,7 @@
     "reputation": 12,
     "lore": "He knew every ridge and crevice of Everest — and chose to climb it side by side.",
     "trait": "Mountain Guide — Once per turn, move one other allied Great Person to this location as a free action (does not consume that card's move).",
-    "achievement": "Together — when both Tenzing and Edmund Hillary win a round in the same match, generate 2 winning points.",
+    "achievement": "Together — Have this card and Edmund Hillary at the same location at the same time.",
     "years": "1914–1986",
     "countries": [
       "Nepal",
@@ -1060,7 +1060,7 @@
   {
     "id": "demo-42",
     "figureName": "Itō Hirobumi",
-    "era": "Electricity",
+    "era": "Steam",
     "gender": "male",
     "identities": [
       "Statesman",
@@ -1077,7 +1077,7 @@
     "reputation": 16,
     "lore": "He modernized Japan in a generation — and paid the ultimate price for empire.",
     "trait": "Meiji Architect — Once per match, declare this location's era to be any era of your choice for one round.",
-    "achievement": "Modernization — when Politics wins 4 rounds, generate 1 winning point.",
+    "achievement": "Meiji Constitution — Have at least 1 allied Sta and 1 allied Eng or Sci (GP or Follower) at this location at the same time.",
     "years": "1841–1909",
     "countries": [
       "Japan"
@@ -1086,7 +1086,7 @@
   {
     "id": "demo-43",
     "figureName": "Michael Jackson",
-    "era": "Information",
+    "era": "Electricity",
     "gender": "male",
     "identities": [
       "Musician",
@@ -1103,7 +1103,7 @@
     "reputation": 20,
     "lore": "The King of Pop — the most famous entertainer in human history.",
     "trait": "King of Pop — While at a location, all players may deploy an unlimited number of Follower cards to this same location.",
-    "achievement": "Thriller — when Culture wins 4 rounds, generate 1 winning point.",
+    "achievement": "Moon Walk — Have this card spend a turn with at least 1 allied Ast (GP or Follower) and 1 allied Mus (GP or Follower) at the same location.",
     "years": "1958–2009",
     "countries": [
       "United States"
@@ -1112,7 +1112,7 @@
   {
     "id": "demo-44",
     "figureName": "George Bernard Shaw",
-    "era": "Electricity",
+    "era": "Steam",
     "gender": "male",
     "identities": [
       "Writer",
@@ -1129,7 +1129,7 @@
     "reputation": 18,
     "lore": "He turned the stage into a philosopher's lecture hall.",
     "trait": "Paradoxical Wit — Once per match, negate all trait-based stat bonuses of all cards at this location for one round.",
-    "achievement": "Major Barbara — when Culture wins 3 rounds, generate 1 winning point.",
+    "achievement": "Pygmalion — Have this card at the same location as at least 1 allied Act and 1 allied Wri (GP or Follower) at the same time.",
     "years": "1856–1950",
     "countries": [
       "Ireland",
@@ -1155,7 +1155,7 @@
     "reputation": 18,
     "lore": "In a role he was born to play, he gave America its conscience.",
     "trait": "Standing for Justice — All events played by opponents at this location must be declared publicly before resolving. The player may discard one Follower to negate any such event.",
-    "achievement": "Atticus — when Belief wins 3 rounds, generate 1 winning point.",
+    "achievement": "To Kill a Mockingbird — Have this card at the same location as at least 1 allied Law (GP or Follower) while a Conflict scenario is active.",
     "years": "1916–2003",
     "countries": [
       "United States"
@@ -1181,7 +1181,7 @@
     "reputation": 13,
     "lore": "She united a kingdom, funded a new world, and reshaped history.",
     "trait": "Royal Decree — Once per match, remove all Followers of one chosen opponent from any one location on the field. This card must then move to that location.",
-    "achievement": "Reconquista — when Belief wins 3 rounds, generate 1 winning point.",
+    "achievement": "New World Patronage — Have at least 1 allied Exp (GP or Follower) at this location while it is your turn.",
     "years": "1451–1504",
     "countries": [
       "Spain"
@@ -1207,7 +1207,7 @@
     "reputation": 12,
     "lore": "Under his reign, Portugal held the key to the world's treasure chest.",
     "trait": "Maritime Empire — Whenever this card moves to a new location, the player may bring any number of allied Followers from the previous location to the new one at no cost.",
-    "achievement": "Empire of Spice — when Wealth wins 3 rounds, generate 1 winning point.",
+    "achievement": "Spice Routes — Have allied GP or Followers at 3 or more different locations simultaneously, each from a different era.",
     "years": "1469–1521",
     "countries": [
       "Portugal"

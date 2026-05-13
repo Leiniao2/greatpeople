@@ -144,7 +144,7 @@
     "locationImage": "renaissance_lisbon"
   },
   {
-    "era": "Information",
+    "era": "Electricity",
     "title": "Streets of Calcutta",
     "figure": "Mother Teresa",
     "tagline": "A nun leaves the convent walls to serve the dying in the gutters of Calcutta.",
@@ -152,7 +152,7 @@
     "locationImage": "electricity_delhi"
   },
   {
-    "era": "Electricity",
+    "era": "Steam",
     "title": "Soul Force",
     "figure": "Gandhi",
     "tagline": "Against the greatest empire in history, one man chooses a different kind of weapon.",
@@ -256,7 +256,7 @@
     "locationImage": "electricity_hongkong"
   },
   {
-    "era": "Electricity",
+    "era": "Steam",
     "title": "A Martyr's Bullet",
     "figure": "An Jung-geun",
     "tagline": "One shot. One act of defiance. An entire nation's will made visible.",
@@ -280,7 +280,7 @@
     "locationImage": "information_sanjose"
   },
   {
-    "era": "Information",
+    "era": "Electricity",
     "title": "Moonwalk",
     "figure": "Michael Jackson",
     "tagline": "The King of Pop changes the world one performance at a time.",

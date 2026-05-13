@@ -2,7 +2,7 @@
   {
     "id": "demo-1",
     "figureName": "Gandhi",
-    "era": "Electricity",
+    "era": "Steam",
     "gender": "male",
     "identities": [
       "Statesman",
@@ -183,7 +183,7 @@
   {
     "id": "demo-8",
     "figureName": "An Jung-geun",
-    "era": "Electricity",
+    "era": "Steam",
     "gender": "male",
     "identities": [
       "Warrior",
@@ -209,7 +209,7 @@
   {
     "id": "demo-9",
     "figureName": "Andrew Mellon",
-    "era": "Electricity",
+    "era": "Steam",
     "gender": "male",
     "identities": [
       "Banker",
@@ -856,7 +856,7 @@
   {
     "id": "demo-34",
     "figureName": "Mother Teresa",
-    "era": "Information",
+    "era": "Electricity",
     "gender": "female",
     "identities": [
       "Priest",
@@ -933,7 +933,7 @@
   {
     "id": "demo-37",
     "figureName": "Hendrik Lorentz",
-    "era": "Electricity",
+    "era": "Steam",
     "gender": "male",
     "identities": [
       "Scientist",
@@ -1060,7 +1060,7 @@
   {
     "id": "demo-42",
     "figureName": "Itō Hirobumi",
-    "era": "Electricity",
+    "era": "Steam",
     "gender": "male",
     "identities": [
       "Statesman",
@@ -1086,7 +1086,7 @@
   {
     "id": "demo-43",
     "figureName": "Michael Jackson",
-    "era": "Information",
+    "era": "Electricity",
     "gender": "male",
     "identities": [
       "Musician",
@@ -1112,7 +1112,7 @@
   {
     "id": "demo-44",
     "figureName": "George Bernard Shaw",
-    "era": "Electricity",
+    "era": "Steam",
     "gender": "male",
     "identities": [
       "Writer",
