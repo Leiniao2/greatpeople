@@ -139,19 +139,25 @@ function uid(): string {
   return Math.random().toString(36).slice(2, 9)
 }
 
+const NUM_LOCATIONS = 7
+
 function pickLocations(eraMode: EraMode, singleEra?: string): LocationTemplate[] {
   if (eraMode === 'single' && singleEra) {
     const pool = LOCATION_POOL.filter(l => l.era === singleEra)
-    return shuffle(pool).slice(0, 6)
+    return shuffle(pool).slice(0, NUM_LOCATIONS)
   }
-  // All era: pick 1 from each of the 6 eras
-  const result: LocationTemplate[] = []
+  // All-era: guarantee 1 location per era, then fill remaining slots randomly
+  const guaranteed: LocationTemplate[] = []
+  const extras: LocationTemplate[] = []
   for (const era of ERAS) {
-    const pool = LOCATION_POOL.filter(l => l.era === era)
-    const pick = shuffle(pool).slice(0, 1)
-    result.push(...pick)
+    const pool = shuffle(LOCATION_POOL.filter(l => l.era === era))
+    if (pool.length > 0) {
+      guaranteed.push(pool[0])
+      extras.push(...pool.slice(1))
+    }
   }
-  return result
+  const combined = [...guaranteed, ...shuffle(extras)]
+  return combined.slice(0, NUM_LOCATIONS)
 }
 
 function getGPCard(id: string): Card | undefined {
