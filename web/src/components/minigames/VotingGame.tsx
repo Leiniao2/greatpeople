@@ -1,367 +1,457 @@
-import { useState } from 'react'
+import { useState, useEffect, useCallback, useMemo } from 'react'
 
-interface Choice { label: string; gain: number; note: string }
-interface Round { situation: string; choices: Choice[] }
-interface VotingConfig {
-  title: string
-  intro: string
-  target: number
-  maxPossible: number
-  rounds: Round[]
-  fact: string
+// ── Types ──────────────────────────────────────────────────────────────────────
+
+type Pref = 'economic' | 'military' | 'cultural' | 'religious' | 'political' | 'scientific'
+type Allegiance = 'player' | 'ai' | 'neutral'
+type Phase = 'select' | 'thinking' | 'reveal' | 'resolving' | 'stageclear' | 'won' | 'lost'
+
+interface Voter { id: number; x: number; y: number; pref: Pref; allegiance: Allegiance }
+interface Policy { id: string; name: string; desc: string; pref: Pref; strength: number }
+
+// ── Constants ──────────────────────────────────────────────────────────────────
+
+const TOTAL = 80
+const STAGE_TARGETS = [28, 40, 52] // 35%, 50%, 65% of 80
+const STAGE_LABELS = ['Primary', 'Regional Vote', 'National Election']
+const PREFS: Pref[] = ['economic', 'military', 'cultural', 'religious', 'political', 'scientific']
+
+const PREF_COLOR: Record<Pref, string> = {
+  economic:  '#4ade80',
+  military:  '#f87171',
+  cultural:  '#c084fc',
+  religious: '#fb923c',
+  political: '#60a5fa',
+  scientific:'#22d3ee',
+}
+const PREF_LABEL: Record<Pref, string> = {
+  economic: 'Economic', military: 'Military', cultural: 'Cultural',
+  religious: 'Religious', political: 'Political', scientific: 'Scientific',
+}
+const PREF_ICON: Record<Pref, string> = {
+  economic: '₿', military: '⚔', cultural: '♪',
+  religious: '✦', political: '⚖', scientific: '⚗',
 }
 
-const CONFIGS: Record<string, VotingConfig> = {
-  'roman-senate': {
-    title: 'Senatorial Crisis',
-    intro: "Cicero addresses the Senate. He must win enough senatorial votes to authorise emergency action against Catiline's conspirators.",
-    target: 7, maxPossible: 9,
-    rounds: [
-      {
-        situation: "Catiline sits in the Senate, glaring. You rise to speak. How do you open?",
-        choices: [
-          { label: '"How long, Catiline, will you abuse our patience?" — denounce him directly', gain: 3, note: 'The bold opening puts Catiline on the defensive and galvanises wavering senators.' },
-          { label: 'Present evidence methodically before naming the accused', gain: 2, note: 'Careful, but loses the drama of the moment.' },
-          { label: 'Propose a procedural delay to gather further evidence', gain: 1, note: 'Overly cautious — Catiline uses the delay to consolidate his allies.' },
-        ],
-      },
-      {
-        situation: "Senators fear executing citizens without trial sets a dangerous precedent. Cato demands death; Caesar argues for exile.",
-        choices: [
-          { label: 'Side with Cato — those who take arms against Rome forfeit their rights', gain: 3, note: 'Hard but decisive. The crisis demands the ultimate sanction.' },
-          { label: 'Invoke the safety of the state superseding ordinary constitutional rights', gain: 2, note: 'Legally creative, though some senators remain uneasy.' },
-          { label: 'Propose indefinite imprisonment pending a full trial', gain: 1, note: 'Too lenient — the conspirators use the delay to flee.' },
-        ],
-      },
-      {
-        situation: "Lentulus has been caught with incriminating letters sealed with his own ring. How do you present this evidence?",
-        choices: [
-          { label: 'Read the letters aloud and let Lentulus identify his own seal before the Senate', gain: 3, note: 'Devastating. The Senate erupts; Lentulus cannot deny it.' },
-          { label: 'Summarise the evidence in your own words', gain: 2, note: 'Clear, but without the theatrical impact of the letters themselves.' },
-          { label: 'Ask another senator to authenticate the letters', gain: 1, note: 'Diffuses the moment — the personal confrontation is lost.' },
-        ],
-      },
-    ],
-    fact: "Cicero's Catilinarian Orations (63 BCE) are among the most famous speeches in history. He secured the Senate's vote for emergency execution of the conspirators — and was later exiled for it, as Caesar's faction argued he had violated Roman citizens' right to trial. The tension between state security and civil liberties is 2,000 years old.",
-  },
-  'spanish-court': {
-    title: "Isabel's Gamble",
-    intro: 'Queen Isabel must build court support to fund Columbus\'s westward voyage. Sceptics are many; the treasury is drained by war.',
-    target: 7, maxPossible: 9,
-    rounds: [
-      {
-        situation: "The learned committee of Salamanca challenges Columbus's calculation of the Earth's circumference — they say it is far too small.",
-        choices: [
-          { label: "Point out that even if Columbus is wrong, the prize of a western route justifies the risk", gain: 3, note: 'Strategic framing — courtiers respond to ambition, not arithmetic.' },
-          { label: "Stand behind Columbus and directly challenge the committee's mathematics", gain: 2, note: 'Bold, but risks embarrassing the scholars publicly.' },
-          { label: "Commission a second committee from Alcalá to review the calculations", gain: 1, note: 'Another delay — Columbus has already waited years.' },
-        ],
-      },
-      {
-        situation: "Ferdinand is sceptical. The Granada war drains the treasury and he sees little return from Atlantic speculation.",
-        choices: [
-          { label: 'Offer your own jewels as collateral for the three ships', gain: 3, note: 'The personal sacrifice silences objectors. Ferdinand is moved.' },
-          { label: 'Argue that the glory of Spain demands the gamble', gain: 2, note: 'Patriotism lands well but does not resolve the budget concern.' },
-          { label: "Ask Columbus to find private Genoese investors to share the cost", gain: 1, note: 'Practical but diminishes the crown\'s claim to any profits.' },
-        ],
-      },
-      {
-        situation: "Court jesters mock Columbus's plan openly. The mood has turned. Key nobles hedge their support.",
-        choices: [
-          { label: 'Arrange a private dinner with Columbus and the key nobles to rebuild confidence', gain: 3, note: 'Personal diplomacy restores the coalition quietly and effectively.' },
-          { label: 'Dismiss the jesters publicly — court is no place for mockery of enterprise', gain: 2, note: 'Assertive, though some nobles quietly resent the rebuke.' },
-          { label: 'Press forward and sign the Capitulations of Santa Fe regardless', gain: 1, note: 'Contract signed, but without noble support the voyage begins in ill favour.' },
-        ],
-      },
-    ],
-    fact: "Isabel I of Castile finally approved Columbus's expedition in January 1492 — the same year Granada fell. The Capitulations of Santa Fe gave Columbus the title of Admiral and a share of any wealth discovered. Her gamble yielded the largest territorial windfall in European history. The jewels story is possibly apocryphal, but it endures because it captures Isabel's decisive character.",
-  },
-  'akkadian-council': {
-    title: "Sargon's Council",
-    intro: "Sargon of Akkad has conquered the Sumerian city-states. He must win loyalty among the governors to hold the world's first empire together.",
-    target: 7, maxPossible: 9,
-    rounds: [
-      {
-        situation: "The conquered Sumerian governors resist answering to a foreign king. How do you win their allegiance?",
-        choices: [
-          { label: 'Adopt Sumerian titles and worship Sumerian gods alongside Akkadian ones', gain: 3, note: 'Cultural bridge-building: Sargon earned legitimacy by becoming partly Sumerian. His daughter Enheduanna served as High Priestess of Ur.' },
-          { label: 'Place Akkadian loyalists in each city to monitor the governors', gain: 2, note: 'Effective but breeds the resentment that will fuel future rebellions.' },
-          { label: 'Demand tribute and threaten force for any resistance', gain: 1, note: 'Raw power works short-term but creates enemies at every border.' },
-        ],
-      },
-      {
-        situation: "Your daughter Enheduanna has been appointed High Priestess of Ur. The old priests object to a foreign woman holding the role.",
-        choices: [
-          { label: "Support Enheduanna — have her compose hymns that blend Akkadian and Sumerian worship", gain: 3, note: 'A masterstroke. Enheduanna became history\'s first named author; her hymns united the empire spiritually.' },
-          { label: 'Negotiate with the priests — offer gifts and donations to the temple', gain: 2, note: 'Transactional peace, but their loyalty remains conditional on continued payment.' },
-          { label: 'Remove the objecting priests and replace them with Akkadian loyalists', gain: 1, note: 'Silences dissent but permanently alienates the religious establishment.' },
-        ],
-      },
-      {
-        situation: "Rebellion breaks out in Ur. Three other governors waver on their pledges of loyalty.",
-        choices: [
-          { label: 'Personally lead the army to Ur — your visible command is the message', gain: 3, note: "Sargon's personal presence in the field was legendary. The rebellion collapses; the wavering governors fall back into line." },
-          { label: 'Send your general to Ur while you address the wavering governors by envoy', gain: 2, note: 'Sound strategy, though splitting focus slows both responses.' },
-          { label: 'Negotiate terms with the rebel leaders to end the crisis quickly', gain: 1, note: 'Concession reads as weakness — the other governors draw exactly the wrong lesson.' },
-        ],
-      },
-    ],
-    fact: "Sargon of Akkad (c. 2334–2279 BCE) built the world's first recorded empire, stretching from the Persian Gulf to the Mediterranean. His daughter Enheduanna, High Priestess of Ur, is history's first named author — her hymns to Inanna survive on clay tablets. Sargon's empire lasted 150 years through exactly this combination of military force and cultural assimilation.",
-  },
-  'athenian-assembly': {
-    title: "The Parthenon Vote",
-    intro: "Pericles addresses the Athenian Assembly. He must win a majority to fund the Parthenon — using tribute money from the Delian League.",
-    target: 7, maxPossible: 9,
-    rounds: [
-      {
-        situation: "Critics accuse you of using allied tribute — meant for defence — to build Athenian monuments. How do you answer?",
-        choices: [
-          { label: "Athens provides security for all the allies — a magnificent Athens is their greatest protection", gain: 3, note: 'The pragmatic argument lands: the Assembly cheers. Athens deserves to benefit from the leadership it provides.' },
-          { label: "Promise to consult the allies before any further major expenditure", gain: 2, note: 'Placatory but undermines Athenian authority — a concession you may regret later.' },
-          { label: "Point out that the treasury is in surplus — allies are paying no more than before", gain: 1, note: 'Technically correct but sounds evasive. The critics press harder.' },
-        ],
-      },
-      {
-        situation: "Phidias, your chosen sculptor, is accused of stealing temple gold. Your opponents use it to undermine the whole project.",
-        choices: [
-          { label: "Demonstrate publicly that the statue's gold is detachable for weighing — proving no theft occurred", gain: 3, note: "Brilliant. Phidias had suggested making the gold removable precisely for this purpose. The accusation collapses." },
-          { label: 'Offer a full public audit of all temple accounts', gain: 2, note: 'Transparent, but delays the project and gives opponents a prolonged platform.' },
-          { label: 'Dismiss the accusation as political persecution and move on', gain: 1, note: 'True, but without proof it looks like a cover-up.' },
-        ],
-      },
-      {
-        situation: "Sparta sends an envoy warning that Athenian power has grown too great. Some in the Assembly argue for restraint.",
-        choices: [
-          { label: "Athens will not be intimidated — we build as our greatness demands", gain: 3, note: "Pericles' defiance rallies the Assembly behind Athenian pride. The Parthenon proceeds." },
-          { label: 'Reassure the Assembly that the Thirty Years\' Peace holds — Sparta is posturing', gain: 2, note: 'Calm and rational, but concedes rhetorical ground to Spartan pressure.' },
-          { label: 'Propose a conference with Sparta to address their concerns', gain: 1, note: 'Diplomatic but reads as weakness in a chamber that voted for monuments, not modesty.' },
-        ],
-      },
-    ],
-    fact: "The Parthenon (447–432 BCE) was built under Pericles' direction by architects Ictinus and Callicrates, with sculpture by Phidias. Its columns are subtly curved to correct optical distortion; its proportions follow the golden ratio. The Elgin Marbles, now in the British Museum, were removed from its frieze in 1801.",
-  },
-  'versailles-crisis': {
-    title: "The Hall of Mirrors",
-    intro: "It is July 1789. The Bastille has fallen. Louis XVI must navigate three decisions that will define whether France has a revolution — or a king.",
-    target: 7, maxPossible: 9,
-    rounds: [
-      {
-        situation: "The National Assembly has declared itself the sovereign power of France. Your advisors are divided between recognition and force.",
-        choices: [
-          { label: 'Formally recognise the Assembly — demonstrate willingness to share power', gain: 3, note: 'The concession buys crucial goodwill. The moderate deputies might have steered the Revolution away from regicide.' },
-          { label: 'Dismiss the Assembly and recall the old Estates-General', gain: 2, note: 'Preserves royal theory but inflames the crisis — the Assembly simply refuses to leave.' },
-          { label: 'Deploy the army around Paris to signal royal strength', gain: 1, note: 'Triggers panic in the city. The Bastille falls the next day.' },
-        ],
-      },
-      {
-        situation: "Bread prices have tripled. A women's march is approaching Versailles with pikes and pitchforks. How do you receive them?",
-        choices: [
-          { label: 'Meet the delegation personally and promise to send grain wagons to Paris at once', gain: 3, note: "The personal gesture works: the crowd's fury softens. The march becomes a victory for the people, not a revolution." },
-          { label: 'Send Marie Antoinette to address the crowd', gain: 2, note: 'She is composed and effective — but her appearance feeds the narrative of a detached queen.' },
-          { label: 'Order the palace gates sealed and wait for military reinforcements', gain: 1, note: 'The crowd breaches the gates. The royal family is forcibly moved to Paris, prisoners in all but name.' },
-        ],
-      },
-      {
-        situation: "Your brother Artois and the court conservatives urge you to flee to the Austrian border and return with a foreign army.",
-        choices: [
-          { label: 'Remain in Paris — flee and you confirm you are at war with your own people', gain: 3, note: 'The one path to constitutional monarchy. Louis chose the opposite — and paid with his life.' },
-          { label: 'Negotiate secretly with Prussia for military intervention', gain: 2, note: "Discovered, it becomes the evidence that convicts him of treason." },
-          { label: 'Flee to Varennes with the royal family', gain: 1, note: 'He made this choice. He was caught, brought back, and the flight ended any hope of reconciliation.' },
-        ],
-      },
-    ],
-    fact: "Louis XVI was guillotined on 21 January 1793, convicted of treason. His fatal error — the Flight to Varennes in June 1791, attempting to reach Austrian troops — proved to the Revolutionary government that he was conspiring against France. Had he worked with the constitutional moderates in 1789, the Revolution might have produced a constitutional monarchy rather than a republic of terror.",
-  },
-  'mellon-treasury': {
-    title: "The Treasury Decision",
-    intro: "Andrew Mellon faces the Senate with his Revenue Act, proposing to slash the top income tax rate from 73% to 25%. He must win enough votes to pass it.",
-    target: 7, maxPossible: 9,
-    rounds: [
-      {
-        situation: "Progressive senators argue that cutting taxes on the wealthy will increase inequality while working Americans struggle.",
-        choices: [
-          { label: "High tax rates drive capital underground — lower rates produce more revenue by releasing investment", gain: 3, note: "The 'scientific taxation' argument. Tax revenues did rise in the 1920s — though critics disputed who benefitted." },
-          { label: 'Present historical data showing that lower rates correlate with stronger growth periods', gain: 2, note: 'Persuasive to moderates, but progressives have their own data and push back hard.' },
-          { label: 'Argue that productive citizens deserve to keep the fruits of their enterprise', gain: 1, note: 'Principled but politically toxic in an era of Progressive reform sentiment.' },
-        ],
-      },
-      {
-        situation: "Farm-state senators demand agricultural subsidies in exchange for their votes. The farmers are struggling while Wall Street booms.",
-        choices: [
-          { label: 'Offer targeted tax relief for agricultural businesses — within your fiscal framework', gain: 3, note: 'A workable compromise: farm senators get something real; Mellon avoids direct spending he opposes.' },
-          { label: "Promise to revisit agricultural support in a separate bill next session", gain: 2, note: 'Kicks the issue forward — farm senators accept reluctantly, knowing they may never get the separate bill.' },
-          { label: 'Reject agricultural intervention as outside Treasury\'s mandate', gain: 1, note: 'Philosophically consistent but loses four critical votes.' },
-        ],
-      },
-      {
-        situation: "The bill passes the Senate but hits a conference committee. Democrats insist on keeping the estate tax at 40%.",
-        choices: [
-          { label: 'Accept a slightly higher estate tax in exchange for the full income tax cuts', gain: 3, note: "Mellon prioritised income tax reduction above everything else. The estate tax concession was worth the trade." },
-          { label: 'Delay the bill and build more public support before the final vote', gain: 2, note: 'Produces a stronger bill theoretically but risks losing the legislative momentum of the Harding boom.' },
-          { label: 'Threaten to walk away from the compromise entirely', gain: 1, note: 'The other side calls the bluff. Mellon blinks first.' },
-        ],
-      },
-    ],
-    fact: "Andrew Mellon's Revenue Acts of 1921, 1924, and 1926 cut the top marginal tax rate from 73% to 25%. Tax revenues rose during the 1920s boom, but the same policies concentrated wealth so severely that the Great Depression, when it came, proved catastrophic. Mellon famously advised Hoover to 'liquidate labour, liquidate stocks, liquidate the farmers' in 1929 — advice that deepened the crisis he helped create.",
-  },
-  'mockingbird-jury': {
-    title: "To the Jury",
-    intro: "Atticus Finch closes his argument for Tom Robinson — an innocent man tried in 1930s Alabama. He must win enough jurors to his side.",
-    target: 7, maxPossible: 9,
-    rounds: [
-      {
-        situation: "The prosecution claims Mayella was beaten on her right side, implying a left-handed attacker. Tom Robinson's left arm is crippled.",
-        choices: [
-          { label: "Demonstrate Tom's crippled arm directly — he physically cannot have delivered those blows", gain: 3, note: "The physical evidence is irrefutable. Several jurors lean forward." },
-          { label: "Focus on Mayella's inconsistent testimony under cross-examination", gain: 2, note: "Effective, but the concrete evidence is stronger." },
-          { label: "Ask the jury to consider who in Maycomb has motive to lie", gain: 1, note: "Too indirect — without naming Bob Ewell the point is diffused." },
-        ],
-      },
-      {
-        situation: "The jury is all-white in a county where racial prejudice runs deep. The law alone may not be enough.",
-        choices: [
-          { label: "Appeal directly to their conscience — ask them to be honest with themselves in the jury room", gain: 3, note: "The moral directness cuts through. Atticus trusts the jury's better nature." },
-          { label: "Invoke the Constitution's equal protection clause", gain: 2, note: "Legally sound, but legal argument alone seldom moves prejudiced hearts." },
-          { label: "Focus exclusively on the forensic inconsistencies", gain: 1, note: "Technically correct, but it sidesteps the real barrier in that courtroom." },
-        ],
-      },
-      {
-        situation: "In your final words, you must give the jury a reason to acquit despite the social pressure of Maycomb.",
-        choices: [
-          { label: '"In this country our courts are the great levellers — all men are created equal." Leave them with that.', gain: 3, note: "The appeal to American ideals is the closing Atticus believes in — and it echoes." },
-          { label: "Remind them that a miscarriage of justice will haunt this town's reputation", gain: 2, note: "Pragmatic, but Atticus doesn't argue from reputation — he argues from principle." },
-          { label: "Ask them to imagine what Tom Robinson's children will think of Maycomb's justice", gain: 1, note: "Emotionally resonant but risks alienating jurors uncomfortable with that framing." },
-        ],
-      },
-    ],
-    fact: "Harper Lee's To Kill a Mockingbird (1960) is based partly on the 1931 Scottsboro Boys case. Atticus Finch's closing speech is one of American fiction's most quoted passages. In the novel, the jury convicts despite the evidence — Lee's point being that moral courage is not always enough against structural injustice.",
-  },
+// ── Era policy pools ───────────────────────────────────────────────────────────
+
+const ERA_POLICIES: Record<string, Policy[]> = {
+  ancient: [
+    { id:'a1', name:'Build a Temple',     desc:'Consecrate a new temple to unite the people under the gods.',    pref:'religious', strength:7 },
+    { id:'a2', name:'Conscript Warriors', desc:'Expand the army with new recruits and better weapons.',           pref:'military',  strength:6 },
+    { id:'a3', name:'Lower Grain Taxes',  desc:'Reduce taxes on grain to ease the burden on farmers.',           pref:'economic',  strength:7 },
+    { id:'a4', name:'Sponsor the Games',  desc:'Fund public festivals and athletic competitions.',               pref:'cultural',  strength:5 },
+    { id:'a5', name:'Codify the Laws',    desc:'Write new laws protecting citizens from arbitrary punishment.',   pref:'political', strength:6 },
+    { id:'a6', name:'Fund the Scribes',   desc:'Endow a school of scribes, astronomers, and healers.',           pref:'scientific',strength:5 },
+    { id:'a7', name:'Open the Granaries', desc:'Distribute stored grain reserves to the hungry populace.',      pref:'economic',  strength:8 },
+    { id:'a8', name:'Raise a Garrison',   desc:'Station soldiers at key city gates and border posts.',           pref:'military',  strength:7 },
+  ],
+  classical: [
+    { id:'c1', name:'Fund the Navy',        desc:'Expand the fleet to protect trade routes and project power.',   pref:'military',  strength:7 },
+    { id:'c2', name:'Expand the Agora',     desc:'Build new market stalls, roads, and trading infrastructure.',  pref:'economic',  strength:6 },
+    { id:'c3', name:'Commission Theatre',   desc:'Fund new plays and open the theatre to all citizens.',         pref:'cultural',  strength:6 },
+    { id:'c4', name:'Extend Democracy',     desc:'Expand citizen voting rights and powers of the Assembly.',     pref:'political', strength:7 },
+    { id:'c5', name:'Endow the Academy',    desc:'Fund philosophers, mathematicians, and the arts of reason.',   pref:'scientific',strength:6 },
+    { id:'c6', name:'Honor the Gods',       desc:'Dedicate public sacrifices and new offerings to the temples.', pref:'religious', strength:6 },
+    { id:'c7', name:'Reduce Tribute',       desc:'Lower tribute demands on allied city-states.',                 pref:'economic',  strength:7 },
+    { id:'c8', name:'Reinforce the Walls',  desc:'Fortify the city walls against siege and invasion.',           pref:'military',  strength:6 },
+  ],
+  medieval: [
+    { id:'m1', name:'Raise a Cathedral',   desc:'Commission a great cathedral to inspire and unite the faithful.', pref:'religious', strength:8 },
+    { id:'m2', name:'Fortify the City',    desc:'Strengthen walls and garrison the keep against attack.',          pref:'military',  strength:6 },
+    { id:'m3', name:'Grant Guild Rights',  desc:'Give merchant guilds legal protections and trading privileges.',  pref:'economic',  strength:7 },
+    { id:'m4', name:'Hold a Tournament',   desc:'Sponsor a grand jousting tournament and three-day feast.',       pref:'cultural',  strength:6 },
+    { id:'m5', name:'Reform the Courts',   desc:'Replace trial by combat with evidence-based legal judgment.',    pref:'political', strength:6 },
+    { id:'m6', name:'Fund the University', desc:'Invite scholars and establish a seat of learning.',              pref:'scientific',strength:5 },
+    { id:'m7', name:'Forgive Church Tax',  desc:'Exempt the clergy from royal taxation to win their favour.',    pref:'religious', strength:7 },
+    { id:'m8', name:'Raise a Crusade',     desc:'Rally the faithful to a holy campaign for glory and faith.',    pref:'military',  strength:7 },
+  ],
+  renaissance: [
+    { id:'r1', name:'Commission Art',      desc:'Patronize a great artist to adorn the city with beauty.',       pref:'cultural',  strength:7 },
+    { id:'r2', name:'Sign a Trade Treaty', desc:'Open new trade routes with neighbouring states.',              pref:'economic',  strength:8 },
+    { id:'r3', name:'Fund Explorers',      desc:'Finance an expedition to chart unknown lands and seas.',        pref:'scientific',strength:7 },
+    { id:'r4', name:'Uphold the Church',   desc:'Affirm religious orthodoxy and fund monasteries.',             pref:'religious', strength:6 },
+    { id:'r5', name:'Raise an Army',       desc:'Recruit mercenaries and fortify the border.',                  pref:'military',  strength:6 },
+    { id:'r6', name:'Reform Parliament',   desc:'Expand representation in the governing council.',              pref:'political', strength:7 },
+    { id:'r7', name:'Charter a Bank',      desc:'Establish a lending house to fund enterprise.',                pref:'economic',  strength:7 },
+    { id:'r8', name:'Open a Library',      desc:'Collect manuscripts and open them to public learning.',        pref:'scientific',strength:6 },
+  ],
+  steam: [
+    { id:'s1', name:'Build Railways',    desc:'Connect the nation with a new steam-powered rail network.',    pref:'economic',  strength:8 },
+    { id:'s2', name:'Reform Parliament', desc:'Expand voting rights to new classes and property holders.',    pref:'political', strength:7 },
+    { id:'s3', name:'Public Schools',    desc:'Open free schools for the children of working families.',     pref:'scientific',strength:7 },
+    { id:'s4', name:'Abolish Slavery',   desc:'Declare a permanent end to the slave trade and bondage.',     pref:'cultural',  strength:8 },
+    { id:'s5', name:'Modernise Army',    desc:'Equip the military with rifles, artillery, and steam ships.', pref:'military',  strength:6 },
+    { id:'s6', name:'Support the Church',desc:'Fund religious missions and uphold Sunday observance laws.',  pref:'religious', strength:5 },
+    { id:'s7', name:'Protect Industry',  desc:'Place tariffs on foreign goods to shield domestic factories.',pref:'economic',  strength:7 },
+    { id:'s8', name:'Fund Hospitals',    desc:'Build public hospitals in overcrowded industrial towns.',     pref:'cultural',  strength:7 },
+  ],
+  electricity: [
+    { id:'e1', name:'Universal Healthcare', desc:'Guarantee free medical care for every citizen.',          pref:'cultural',  strength:8 },
+    { id:'e2', name:'Military Rearmament',  desc:'Rebuild the armed forces with modern tanks and aircraft.',pref:'military',  strength:7 },
+    { id:'e3', name:'Regulate Industry',    desc:'Control monopolies and protect workers\' wages by law.',   pref:'economic',  strength:7 },
+    { id:'e4', name:'Fund Science',         desc:'Invest in research institutes and university laboratories.',pref:'scientific',strength:7 },
+    { id:'e5', name:"Women's Suffrage",     desc:'Extend the vote to all adult citizens regardless of sex.',pref:'political', strength:8 },
+    { id:'e6', name:'National Faith',       desc:'Promote religious identity as part of national pride.',   pref:'religious', strength:5 },
+    { id:'e7', name:'Public Works',         desc:'Launch a nationwide construction and employment drive.',  pref:'economic',  strength:8 },
+    { id:'e8', name:'End Conscription',     desc:'Replace mandatory military service with professional volunteers.', pref:'political', strength:6 },
+  ],
+  information: [
+    { id:'i1', name:'Tech Investment',   desc:'Fund innovation hubs, broadband, and digital infrastructure.', pref:'scientific',strength:8 },
+    { id:'i2', name:'Healthcare Reform', desc:'Expand access to affordable universal medical care.',          pref:'cultural',  strength:8 },
+    { id:'i3', name:'Tax Cuts',          desc:'Reduce income and corporate taxes to stimulate growth.',      pref:'economic',  strength:7 },
+    { id:'i4', name:'Climate Policy',    desc:'Commit to emissions targets and renewable energy investment.', pref:'scientific',strength:7 },
+    { id:'i5', name:'Defense Spending',  desc:'Increase military budget and overseas troop presence.',       pref:'military',  strength:6 },
+    { id:'i6', name:'Electoral Reform',  desc:'Overhaul voting systems and campaign finance rules.',         pref:'political', strength:7 },
+    { id:'i7', name:'Universal Income',  desc:'Provide a monthly basic income payment to every adult.',     pref:'economic',  strength:8 },
+    { id:'i8', name:'Religious Freedom', desc:'Enshrine protections for religious communities in law.',      pref:'religious', strength:5 },
+  ],
 }
 
-export default function VotingGame({ configId, onWin }: { configId: string; onWin: () => void }) {
-  const config = CONFIGS[configId] ?? CONFIGS['roman-senate']
-  const [roundIdx, setRoundIdx] = useState(0)
-  const [support, setSupport] = useState(0)
-  const [picked, setPicked] = useState<number | null>(null)
-  const [finished, setFinished] = useState(false)
-  const [won, setWon] = useState(false)
+// ── Config → era mapping ───────────────────────────────────────────────────────
 
-  const round = config.rounds[roundIdx]
-  const isLast = roundIdx === config.rounds.length - 1
+const CONFIG_ERA: Record<string, string> = {
+  'roman-senate': 'classical', 'athenian-assembly': 'classical',
+  'spanish-court': 'renaissance',
+  'akkadian-council': 'ancient',
+  'versailles-crisis': 'steam',
+  'mellon-treasury': 'electricity', 'mockingbird-jury': 'electricity',
+}
 
-  const choose = (i: number) => {
-    if (picked !== null) return
-    setPicked(i)
-    setSupport(s => s + round.choices[i].gain)
+// ── Helpers ────────────────────────────────────────────────────────────────────
+
+function resolveEra(configId: string): string {
+  return CONFIG_ERA[configId] ?? (ERA_POLICIES[configId] ? configId : 'classical')
+}
+
+function initVoters(politics: number): Voter[] {
+  const voters: Voter[] = []
+  for (let i = 0; i < TOTAL; i++) {
+    voters.push({ id: i, x: 3 + Math.random() * 94, y: 3 + Math.random() * 94, pref: PREFS[i % 6], allegiance: 'neutral' })
+  }
+  const shuffled = [...voters].sort(() => Math.random() - 0.5)
+  const start = 3 + Math.floor(politics * 0.35)
+  shuffled.slice(0, start).forEach(v => { v.allegiance = 'player' })
+  shuffled.slice(start, start * 2).forEach(v => { v.allegiance = 'ai' })
+  return voters
+}
+
+function drawPolicies(era: string): Policy[] {
+  const pool = ERA_POLICIES[era] ?? ERA_POLICIES['classical']
+  return [...pool].sort(() => Math.random() - 0.5).slice(0, 4)
+}
+
+function pickAiPolicy(voters: Voter[], policies: Policy[]): Policy {
+  const available: Partial<Record<Pref, number>> = {}
+  voters.filter(v => v.allegiance !== 'ai').forEach(v => {
+    available[v.pref] = (available[v.pref] ?? 0) + 1
+  })
+  return policies.reduce((best, p) => (available[p.pref] ?? 0) > (available[best.pref] ?? 0) ? p : best)
+}
+
+function applyPolicies(voters: Voter[], pp: Policy, ap: Policy, politics: number): Voter[] {
+  const next = voters.map(v => ({ ...v }))
+  const pEff = pp.strength + Math.floor(politics / 6)
+  const aEff = ap.strength
+
+  // Player: convert neutral first, then AI voters
+  let n = 0
+  for (const v of next.filter(v => v.pref === pp.pref).sort(a => a.allegiance === 'neutral' ? -1 : 1)) {
+    if (n >= pEff || v.allegiance === 'player') continue
+    v.allegiance = 'player'; n++
   }
 
-  const advance = () => {
-    if (isLast) {
-      const finalSupport = support + (picked !== null ? 0 : 0)
-      const didWin = finalSupport >= config.target
-      setFinished(true)
-      setWon(didWin)
-      if (didWin) setTimeout(onWin, 800)
-    } else {
-      setRoundIdx(r => r + 1)
-      setPicked(null)
-    }
+  // AI: convert neutral first, then player voters
+  n = 0
+  for (const v of next.filter(v => v.pref === ap.pref).sort(a => a.allegiance === 'neutral' ? -1 : 1)) {
+    if (n >= aEff || v.allegiance === 'ai') continue
+    v.allegiance = 'ai'; n++
   }
 
-  const supportPct = Math.min(support / config.maxPossible, 1)
+  return next
+}
 
-  if (finished) {
-    return (
-      <div className="flex flex-col gap-4 bg-slate-950 rounded-xl p-4">
-        <p className="text-amber-400/80 text-[10px] font-bold uppercase tracking-widest">{config.title}</p>
-        <div className={`flex flex-col items-center gap-3 p-6 rounded-xl border ${won ? 'bg-emerald-500/10 border-emerald-500/30' : 'bg-red-500/10 border-red-500/30'}`}>
-          <span className="text-3xl">{won ? '🏛️' : '⚖️'}</span>
-          <p className={`font-bold text-lg ${won ? 'text-emerald-300' : 'text-red-300'}`}>
-            {won ? 'Motion Carried!' : 'Motion Defeated'}
-          </p>
-          <p className="text-slate-400 text-sm text-center">
-            {won ? `You secured ${support} / ${config.maxPossible} support — enough to prevail.` : `You gathered ${support} / ${config.target} required — not enough.`}
-          </p>
-        </div>
-        <div className="p-3 rounded-xl border bg-amber-500/10 border-amber-500/20 text-xs leading-relaxed text-slate-400">
-          <span className="font-bold text-amber-300 mr-1">Historical note:</span>{config.fact}
-        </div>
-      </div>
-    )
+function tally(voters: Voter[]) {
+  return {
+    player: voters.filter(v => v.allegiance === 'player').length,
+    ai:     voters.filter(v => v.allegiance === 'ai').length,
+    neutral:voters.filter(v => v.allegiance === 'neutral').length,
   }
+}
+
+// ── Component ──────────────────────────────────────────────────────────────────
+
+interface Props { configId: string; onWin: () => void; politics?: number }
+
+export default function VotingGame({ configId, onWin, politics = 10 }: Props) {
+  const era = useMemo(() => resolveEra(configId), [configId])
+
+  const [voters,      setVoters]      = useState<Voter[]>(() => initVoters(politics))
+  const [stage,       setStage]       = useState(0)
+  const [phase,       setPhase]       = useState<Phase>('select')
+  const [policies,    setPolicies]    = useState<Policy[]>(() => drawPolicies(era))
+  const [playerPick,  setPlayerPick]  = useState<Policy | null>(null)
+  const [aiPick,      setAiPick]      = useState<Policy | null>(null)
+  const [hovered,     setHovered]     = useState<Pref | null>(null)
+  const [gainMsg,     setGainMsg]     = useState('')
+
+  const votes  = useMemo(() => tally(voters), [voters])
+  const target = STAGE_TARGETS[stage]
+
+  // Player selects a policy
+  const selectPolicy = useCallback((p: Policy) => {
+    if (phase !== 'select') return
+    setPlayerPick(p)
+    setHovered(null)
+    setPhase('thinking')
+  }, [phase])
+
+  // Thinking → reveal (AI picks after delay)
+  useEffect(() => {
+    if (phase !== 'thinking') return
+    const t = setTimeout(() => {
+      setAiPick(pickAiPolicy(voters, policies))
+      setPhase('reveal')
+    }, 1200)
+    return () => clearTimeout(t)
+  }, [phase, voters, policies])
+
+  // Reveal → apply effects
+  useEffect(() => {
+    if (phase !== 'reveal' || !playerPick || !aiPick) return
+    const before = votes.player
+    const t = setTimeout(() => {
+      setVoters(prev => {
+        const next = applyPolicies(prev, playerPick, aiPick, politics)
+        const after = next.filter(v => v.allegiance === 'player').length
+        const gain = after - before
+        setGainMsg(gain > 0 ? `+${gain} voters joined you` : gain < 0 ? `${gain} voters defected` : 'No votes changed')
+        return next
+      })
+      setPhase('resolving')
+    }, 1400)
+    return () => clearTimeout(t)
+  }, [phase, playerPick, aiPick, votes.player, politics])
+
+  // Resolving → check milestone or next round
+  useEffect(() => {
+    if (phase !== 'resolving') return
+    const t = setTimeout(() => {
+      const v = tally(voters)
+      if (v.player >= target) {
+        setPhase(stage === 2 ? 'won' : 'stageclear')
+        if (stage === 2) setTimeout(onWin, 900)
+      } else if (v.ai >= target) {
+        setPhase('lost')
+      } else {
+        setPlayerPick(null); setAiPick(null)
+        setPolicies(drawPolicies(era))
+        setPhase('select')
+      }
+    }, 1800)
+    return () => clearTimeout(t)
+  }, [phase, voters, target, stage, era, onWin])
+
+  const advanceStage = () => {
+    setStage(s => s + 1)
+    setPlayerPick(null); setAiPick(null)
+    setPolicies(drawPolicies(era))
+    setPhase('select')
+  }
+
+  const playerPct = (votes.player / TOTAL) * 100
+  const aiPct     = (votes.ai     / TOTAL) * 100
+  const targetPct = (target       / TOTAL) * 100
+
+  // ── Render ─────────────────────────────────────────────────────────────────
 
   return (
-    <div className="flex flex-col gap-4 bg-slate-950 rounded-xl p-4">
+    <div className="flex flex-col gap-3 bg-slate-950 rounded-xl p-4">
+
+      {/* Stage header */}
       <div className="flex items-center justify-between">
-        <p className="text-amber-400/80 text-[10px] font-bold uppercase tracking-widest">{config.title}</p>
-        <p className="text-slate-500 text-[10px]">Round {roundIdx + 1} / {config.rounds.length}</p>
+        <span className="text-amber-400/80 text-[10px] font-bold uppercase tracking-widest">
+          Stage {stage + 1} — {STAGE_LABELS[stage]}
+        </span>
+        <span className="text-slate-500 text-[10px]">First to {target} votes advances</span>
       </div>
 
-      {roundIdx === 0 && (
-        <p className="text-slate-400 text-xs leading-relaxed border-l-2 border-amber-500/30 pl-3">{config.intro}</p>
-      )}
-
-      {/* Support meter */}
-      <div className="flex flex-col gap-1">
-        <div className="flex justify-between text-[10px] text-slate-500">
-          <span>Support</span>
-          <span>{support} / {config.target} needed</span>
-        </div>
-        <div className="h-2 bg-white/[0.06] rounded-full overflow-hidden">
-          <div
-            className="h-full bg-amber-500 rounded-full transition-all duration-500"
-            style={{ width: `${supportPct * 100}%` }}
-          />
-        </div>
-        <div className="flex justify-end">
-          <div
-            className="h-2 w-px bg-white/30 relative"
-            style={{ marginRight: `${(1 - config.target / config.maxPossible) * 100}%` }}
-            title="Target"
-          />
+      {/* Vote bars */}
+      <div className="flex flex-col gap-1.5">
+        {([['player', playerPct, '#f59e0b', votes.player] , ['ai', aiPct, '#818cf8', votes.ai]] as const).map(([who, pct, color, count]) => (
+          <div key={who} className="flex items-center gap-2">
+            <span className="text-[10px] font-bold w-14 text-right" style={{ color }}>
+              {count} {who === 'player' ? '▶' : '▶'}
+            </span>
+            <div className="flex-1 h-2.5 bg-white/[0.06] rounded-full overflow-hidden relative">
+              <div
+                className="absolute left-0 top-0 h-full rounded-full transition-all duration-700"
+                style={{ width: `${pct}%`, background: color }}
+              />
+              <div className="absolute top-0 bottom-0 w-px bg-white/30" style={{ left: `${targetPct}%` }} />
+            </div>
+          </div>
+        ))}
+        <div className="flex items-center gap-2">
+          <span className="w-14" />
+          <div className="flex-1 relative h-3">
+            <span
+              className="absolute text-[9px] text-white/25"
+              style={{ left: `${targetPct}%`, transform: 'translateX(-50%)' }}
+            >
+              {target}
+            </span>
+          </div>
         </div>
       </div>
 
-      {/* Situation */}
-      <div className="bg-white/[0.03] border border-white/10 rounded-xl p-4">
-        <p className="text-white text-sm font-medium leading-snug">{round.situation}</p>
-      </div>
+      {/* Voter field */}
+      <svg
+        viewBox="0 0 380 170"
+        className="w-full rounded-xl border border-white/[0.05]"
+        style={{ background: '#0f1220', height: 150 }}
+      >
+        {voters.map(v => {
+          const isTarget = hovered === v.pref && v.allegiance === 'neutral'
+          const fill =
+            v.allegiance === 'player' ? '#f59e0b' :
+            v.allegiance === 'ai'     ? '#818cf8' :
+            isTarget                  ? PREF_COLOR[v.pref] :
+            '#1e293b'
+          const stroke =
+            v.allegiance === 'player' ? '#fbbf24' :
+            v.allegiance === 'ai'     ? '#a5b4fc' :
+            isTarget                  ? PREF_COLOR[v.pref] :
+            PREF_COLOR[v.pref]
+          const strokeOpacity = v.allegiance === 'neutral' && !isTarget ? 0.3 : 0.9
+          const fillOpacity   = v.allegiance === 'neutral' && !isTarget ? 0.25 : 1
 
-      {/* Choices */}
-      <div className="flex flex-col gap-2">
-        {round.choices.map((ch, i) => {
-          const isSelected = picked === i
-          let cls = 'w-full text-left px-4 py-3 rounded-xl text-sm transition-all border '
-          if (picked === null) {
-            cls += 'bg-white/[0.04] border-white/10 text-slate-200 hover:border-amber-500/40 hover:text-white cursor-pointer'
-          } else if (isSelected) {
-            const good = ch.gain === 3
-            cls += good
-              ? 'bg-emerald-500/10 border-emerald-500/40 text-emerald-200'
-              : ch.gain === 2
-              ? 'bg-amber-500/10 border-amber-500/30 text-amber-200'
-              : 'bg-red-500/10 border-red-500/20 text-red-200'
-          } else {
-            cls += 'bg-white/[0.02] border-white/[0.05] text-slate-500'
-          }
           return (
-            <button key={i} onClick={() => choose(i)} className={cls}>
-              {ch.label}
-              {isSelected && (
-                <p className="text-xs mt-1 opacity-80 font-normal leading-relaxed">{ch.note}</p>
-              )}
-            </button>
+            <circle
+              key={v.id}
+              cx={v.x * 3.8}
+              cy={v.y * 1.7}
+              r={v.allegiance === 'neutral' ? 4 : 5}
+              fill={fill}
+              fillOpacity={fillOpacity}
+              stroke={stroke}
+              strokeWidth={1.5}
+              strokeOpacity={strokeOpacity}
+              style={{ transition: 'fill 0.6s ease, fill-opacity 0.4s ease, stroke 0.6s ease' }}
+            />
           )
         })}
+      </svg>
+
+      {/* Preference legend */}
+      <div className="flex flex-wrap gap-x-3 gap-y-1 justify-center">
+        {PREFS.map(p => (
+          <div key={p} className="flex items-center gap-1">
+            <div className="w-2 h-2 rounded-full" style={{ background: PREF_COLOR[p] }} />
+            <span className="text-[9px] text-slate-500">{PREF_LABEL[p]}</span>
+          </div>
+        ))}
       </div>
 
-      {picked !== null && (
-        <button
-          onClick={advance}
-          className="py-2.5 rounded-xl bg-amber-500 text-slate-950 font-bold text-sm hover:bg-amber-400 transition-all"
-        >
-          {isLast ? 'See Outcome →' : 'Next Round →'}
-        </button>
+      {/* Phase: select */}
+      {phase === 'select' && (
+        <>
+          <p className="text-slate-500 text-[10px] uppercase tracking-widest">Choose a policy to propose</p>
+          <div className="grid grid-cols-2 gap-2">
+            {policies.map(p => (
+              <button
+                key={p.id}
+                onClick={() => selectPolicy(p)}
+                onMouseEnter={() => setHovered(p.pref)}
+                onMouseLeave={() => setHovered(null)}
+                className="flex flex-col gap-1 text-left p-3 rounded-xl border border-white/10 bg-white/[0.03] hover:border-amber-500/40 hover:bg-amber-500/[0.05] transition-all group cursor-pointer"
+              >
+                <div className="flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: PREF_COLOR[p.pref] }} />
+                  <span className="text-white text-xs font-semibold leading-tight group-hover:text-amber-100">{p.name}</span>
+                </div>
+                <p className="text-slate-500 text-[10px] leading-snug">{p.desc}</p>
+                <span className="text-slate-600 text-[10px]">{PREF_ICON[p.pref]} {PREF_LABEL[p.pref]} voters</span>
+              </button>
+            ))}
+          </div>
+        </>
+      )}
+
+      {/* Phase: thinking */}
+      {phase === 'thinking' && (
+        <div className="flex items-center justify-center gap-2 py-4">
+          {[0, 150, 300].map(d => (
+            <div
+              key={d}
+              className="w-2.5 h-2.5 rounded-full bg-indigo-400 animate-bounce"
+              style={{ animationDelay: `${d}ms` }}
+            />
+          ))}
+          <span className="text-slate-500 text-xs ml-1">Opponent is choosing…</span>
+        </div>
+      )}
+
+      {/* Phase: reveal / resolving */}
+      {(phase === 'reveal' || phase === 'resolving') && playerPick && aiPick && (
+        <div className="flex flex-col gap-2">
+          <div className="grid grid-cols-2 gap-2">
+            <div className="flex flex-col gap-1 p-3 rounded-xl border border-amber-500/30 bg-amber-500/10">
+              <span className="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Your policy</span>
+              <span className="text-white text-sm font-semibold leading-snug">{playerPick.name}</span>
+              <span className="text-[10px]" style={{ color: PREF_COLOR[playerPick.pref] }}>
+                {PREF_ICON[playerPick.pref]} {PREF_LABEL[playerPick.pref]}
+              </span>
+            </div>
+            <div className="flex flex-col gap-1 p-3 rounded-xl border border-indigo-500/30 bg-indigo-500/10">
+              <span className="text-[10px] text-indigo-400 font-bold uppercase tracking-wider">Their policy</span>
+              <span className="text-white text-sm font-semibold leading-snug">{aiPick.name}</span>
+              <span className="text-[10px]" style={{ color: PREF_COLOR[aiPick.pref] }}>
+                {PREF_ICON[aiPick.pref]} {PREF_LABEL[aiPick.pref]}
+              </span>
+            </div>
+          </div>
+          {phase === 'resolving' && (
+            <p className="text-center text-slate-400 text-xs">{gainMsg}</p>
+          )}
+        </div>
+      )}
+
+      {/* Phase: stage clear */}
+      {phase === 'stageclear' && (
+        <div className="flex flex-col items-center gap-2 p-4 rounded-xl border bg-amber-500/10 border-amber-500/30">
+          <span className="text-2xl">🎯</span>
+          <p className="font-bold text-amber-300">{STAGE_LABELS[stage]} won!</p>
+          <p className="text-slate-400 text-xs">You secured {votes.player} votes — advance to the next stage.</p>
+          <button
+            onClick={advanceStage}
+            className="mt-1 px-4 py-2 rounded-xl bg-amber-500 text-slate-950 font-bold text-sm hover:bg-amber-400 transition-all"
+          >
+            Next Stage →
+          </button>
+        </div>
+      )}
+
+      {/* Phase: won */}
+      {phase === 'won' && (
+        <div className="flex flex-col items-center gap-2 p-4 rounded-xl border bg-emerald-500/10 border-emerald-500/30">
+          <span className="text-2xl">🏆</span>
+          <p className="font-bold text-emerald-300">Election won!</p>
+          <p className="text-slate-400 text-xs text-center">
+            You secured {votes.player} / {TOTAL} votes — the people have chosen you.
+          </p>
+        </div>
+      )}
+
+      {/* Phase: lost */}
+      {phase === 'lost' && (
+        <div className="flex flex-col items-center gap-2 p-4 rounded-xl border bg-red-500/10 border-red-500/30">
+          <span className="text-2xl">🗳️</span>
+          <p className="font-bold text-red-300">Election lost</p>
+          <p className="text-slate-400 text-xs text-center">
+            Your opponent reached {target} votes before you — they won {STAGE_LABELS[stage]}.
+          </p>
+        </div>
       )}
     </div>
   )
