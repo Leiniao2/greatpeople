@@ -1,4 +1,4 @@
-# Mao: The Long March – When killed or forced to be retrieved, this card can relocate to another location chosen by its player.
+# Mao: The Long March – When being killed, this card can automatically get retrieved to its Player's hand instead.
 Achievement: Cultural Revolution - Non-allied Mus, Art, Act, or Wri GP or Follower on the board after a Censorship scenario ended.
 
 # Gandhi: Mahatma – While on the field, all Conflict scenarios are negated (do not take effect).
@@ -28,7 +28,7 @@ Achievement:
 # Titian: The Portraitist – Gains the trait of the last allied Great Person that was Archived.
 Achievement: 
 
-# Louis XVI: Locksmith - All non-allied GP and Followers at the same location with this card cannot move to another location.
+# Louis XVI: Locksmith - All non-allied GP and Followers at the same location with this card cannot move to another location or getting retrieved by their Player.
 Achievement: Guillotine – More than 1 GP or Followers are killed at the same location with Louis XVI in 1 turn.
 
 # Chanel: Women's Fashion – All female Followers at this location gain +2 to their primary stat.
@@ -46,3 +46,17 @@ Achievement: Turing Test - Use Turing's trait Artificial Intelligence to survive
 # Schumann: Fantasia – Your cards in this location won't be affected by Survival Scenario in the first round this card deployed/moved to, however cannot terminate the Survival Scenario.
 Achievement: Marriage of Love - The GP spend this turn only with 1 allied Female Mus (GP or Follower) at the same location, both did none action (move, retrieve, deploy, attack etc).
 
+# Montezuma II: 
+Achievement: 
+
+# Marie Antoinette: Madame Déficit - All GP in the same location with this card get -3 wealth.
+Achievement: Queen's Designer - Art or Mer GP at the same location get archived.
+
+# Ana Nzinga: Makunzes - If a Follower from another Player is forced retrieved from the same location, it will directly go to hand of this card's player instead.
+Achievement: Angola Peace - Ends a conflict scenario at a location with Fortress and Palace.
+
+# Li Qingzhao: Delicate Restriant - When this card is on board, you can deploy unlimited number of Wri/Art/Mus/Act Followers per turn.
+Achievement: Sheng Sheng Man - When All Player has exactly 2 cards (GP or Follower) deployed to this location.
+
+# An Jung-Geun: Assasination - if this is card was private and just become public this turn, it could conduct an attack regardless if there is a conflict scenario, to a Player that has only 1 GP in this location. This attack will kill the target GP.
+Achievement: Korea Commemoration - All the Korean locations onboard (at least one) only have Korean GP but not GP from other countries.
