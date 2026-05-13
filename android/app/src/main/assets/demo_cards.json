@@ -1220,7 +1220,7 @@
     "gender": "male",
     "identities": [
       "Sovereign",
-      "Scholar"
+      "Philosopher"
     ],
     "portraitKey": "ashurbanipal",
     "politics": 18,
@@ -1271,7 +1271,7 @@
     "era": "Information",
     "gender": "male",
     "identities": [
-      "Athlete"
+      "Warrior"
     ],
     "portraitKey": "diego_maradona",
     "politics": 2,
@@ -1323,7 +1323,7 @@
     "gender": "male",
     "identities": [
       "Doctor",
-      "Scholar"
+      "Scientist"
     ],
     "portraitKey": "hesy_ra",
     "politics": 4,
@@ -1506,7 +1506,7 @@
     "era": "Ancient",
     "gender": "male",
     "identities": [
-      "Scholar",
+      "Educator",
       "Naturalist"
     ],
     "portraitKey": "nakht",
@@ -1533,7 +1533,7 @@
     "gender": "male",
     "identities": [
       "Priest",
-      "Scholar"
+      "Philosopher"
     ],
     "portraitKey": "pediamenopet",
     "politics": 8,
