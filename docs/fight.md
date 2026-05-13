@@ -96,7 +96,9 @@ Manual Retrieve: Any card may be retrieved by player from board.
 
 Relocation: Any card may move to a different location.
 
-Attack: Execute attacks using Great Person cards.
+Change Private/Public Status: Any card may change from private to public or vise versa.
+
+Attack: Execute attacks using Great Person cards. To conduct attack, the GP card has to be public.
 
 Survival Resolution: Calculate the outcomes of Survival scenarios.
 
