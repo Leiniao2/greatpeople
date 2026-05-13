@@ -23,18 +23,28 @@ Temple
 Palace
 ## Nineveh
 ## Ashur
-Barrack
+Barracks
 
 # classic era 800BC-400AD 1200 years
 ## Carthage
+Port
 ## Petra
 ## Sparta
+Barracks, Temple
 ## Anthem
+Forum, Temple, Theatre
 ## Xianyang
+Barracks, Palace
 ## Rome
+Forum, Temple, Theatre, Arena, Parliament
 ## Teotihuacan
+Temple
 ## Persepolis
+Palace
 ## Jerusalem
+Temple
+## Alexandria
+Port, Libray
 
 # medieval era 400AD-1200AD 800 years
 ## Krakow
