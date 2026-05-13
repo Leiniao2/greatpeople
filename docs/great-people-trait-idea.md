@@ -2,7 +2,7 @@
 Achievement: Cultural Revolution - Non-allied Mus, Art, Act, or Wri GP or Follower on the board after a Censorship scenario ended.
 
 # Gandhi: Mahatma – While on the field, all Conflict scenarios are negated (do not take effect).
-Achievement: Satyagraha - Win a defence when none of its allied GP or Follower has any action (move, retrieve, deploy, attack etc) in the same round.
+Achievement: Satyagraha - This card is in a certain scenario, but none of its allied GP or Follower has any action (move, retrieve, deploy, attack etc) in the same round.
 
 # Mulan: Gender Disguise – All Great Person traits related to Gender on the field are disabled.
 Achievement: Join Army for Father - Win a battlefield defence with at least one allied Soldier GP or Follower at the same location.
