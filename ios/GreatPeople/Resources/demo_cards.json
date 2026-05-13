@@ -860,7 +860,7 @@
     "gender": "female",
     "identities": [
       "Priest",
-      "Humanitarian"
+      "Educator"
     ],
     "portraitKey": "saint_teresa",
     "politics": 12,
@@ -1271,7 +1271,7 @@
     "era": "Information",
     "gender": "male",
     "identities": [
-      "Warrior"
+      "Athlete"
     ],
     "portraitKey": "diego_maradona",
     "politics": 2,
@@ -1376,7 +1376,7 @@
     "identities": [
       "Scientist",
       "Naturalist",
-      "Humanitarian"
+      "Educator"
     ],
     "portraitKey": "jane_goodall",
     "politics": 8,
