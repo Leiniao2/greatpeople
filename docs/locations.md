@@ -79,8 +79,9 @@ Port
 ## St Petersburg
 Museum, Palace
 ## London
-Factory, Stock Exchange, Bank
+Factory, Stock Exchange, Bank, Parliament
 ## Paris
+Parliament, Salon
 ## Cairo
 ## Amsterdam
 Port, Stock Exchange, Bank
@@ -90,15 +91,17 @@ Palace
 Palace
 ## Boston
 University
+## Manchester
+Factory, Port
 
 # electricity era 1880AD-1960AD 80 years
 ## Moskow
 University, Palace
 ## Kiev
 ## London
-Stock Exchange, Museum, Bank
+Stock Exchange, Museum, Bank, Parliament
 ## Paris
-Museum, Gallery
+Museum, Gallery, Salon, Fine Dining
 ## Berlin
 Military Academy, Museum
 ## Beijing
@@ -119,9 +122,9 @@ Stock Exchange, Port
 
 # information era 1960AD-2010AD 60 years
 ## Singapore 
-Enterprise Quarter
+Enterprise Quarter, Port
 ## Tokyo
-Stock Exchange, Enterprise Quarter
+Stock Exchange, Enterprise Quarter, Fine Dining
 ## Shenzhen
 Stock Exchange, Enterprise Quarter
 ## Taipei
@@ -129,12 +132,14 @@ Enterprise Quarter
 ## Sydney
 Concert Hall, Port
 ## Dubai
+Port
 ## Seoul
 Stock Exchange
 ## San Jose
 Enterprise Quarter
 ## Los Angeles
+Port
 ## Vancouver
 Port
 ## Rio de Janeiro
-Monument
+Monument, Arena
