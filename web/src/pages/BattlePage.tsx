@@ -84,17 +84,17 @@ function makeEventDeck(): EventCard[] {
     }
   }
 
-  for (const hz of HAZARD_TYPES) {
-    deck.push({
-      id: `event-hazard-${hz.toLowerCase()}-${counter++}`,
-      name: `Natural Hazard: ${hz}`,
-      type: 'natural_hazard',
-      hazardType: hz,
-      description: `Natural hazard (${hz}): any card at this location with total stats < 100 is discarded.`,
-    })
-  }
-
   return shuffle(deck)
+}
+
+function makeHazardDeck(): EventCard[] {
+  return HAZARD_TYPES.map((hz, i) => ({
+    id: `event-hazard-${hz.toLowerCase()}-${i}`,
+    name: `Natural Hazard: ${hz}`,
+    type: 'natural_hazard' as const,
+    hazardType: hz,
+    description: `Natural hazard (${hz}): any card at this location with total stats < 100 is discarded.`,
+  }))
 }
 
 // ─── Location Data ────────────────────────────────────────────────────────────
@@ -478,7 +478,7 @@ function initGame(setup: GameSetup): GameState {
   }))
 
   // Natural hazards: randomly place 1 at game start
-  const hazardEventDeck = makeEventDeck().filter(e => e.type === 'natural_hazard')
+  const hazardEventDeck = makeHazardDeck()
   if (hazardEventDeck.length > 0 && locations.length > 0) {
     const hazard = hazardEventDeck[0]
     const targetIdx = Math.floor(Math.random() * locations.length)
@@ -1061,7 +1061,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
 
         // Random natural hazard: 20% chance per new round
         if (Math.random() < 0.2) {
-          const hazardEvents = makeEventDeck().filter(e => e.type === 'natural_hazard')
+          const hazardEvents = makeHazardDeck()
           if (hazardEvents.length > 0) {
             const hazard = hazardEvents[Math.floor(Math.random() * hazardEvents.length)]
             const eligibleLocs = newLocations.filter(l => l.cards.length > 0)
@@ -1151,6 +1151,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
       const loc = state.locations.find(l => l.id === action.locationId)
       if (!loc?.activeEvent) return state
       if (loc.activeEvent.type === 'global_competition') return state // can't manually end global
+      if (loc.activeEvent.type === 'natural_hazard') return state // natural hazards resolve automatically
 
       const hasGPHere = loc.cards.some(c => c.type === 'gp' && c.playerId === player.id && !c.justDeployed)
       if (!hasGPHere) return state
@@ -1203,8 +1204,8 @@ function CompactCard({ card, isCurrentPlayer, isSelected, onClick, onInfo, gpMap
     <button
       onClick={onClick}
       className={`relative flex flex-col rounded-lg overflow-hidden w-14 h-20 transition-all duration-150
-        ${eraColor} ${borderCls} ${isSelected ? 'scale-105' : 'hover:scale-[1.03]'}
-        ${isPrivate ? 'opacity-50' : 'opacity-100'}`}
+        ${isPrivate ? 'bg-slate-900 border-slate-700/50' : eraColor} ${borderCls}
+        ${isSelected ? 'scale-105' : 'hover:scale-[1.03]'}`}
     >
       {card.justDeployed && (
         <span className="absolute top-0.5 right-0.5 z-10 w-2 h-2 rounded-full bg-amber-400 border border-black" />
@@ -1220,8 +1221,12 @@ function CompactCard({ card, isCurrentPlayer, isSelected, onClick, onInfo, gpMap
       })()}
 
       {isPrivate ? (
-        <div className="flex-1 flex items-center justify-center">
-          <span className="text-slate-400 text-xl font-bold">?</span>
+        <div className="flex-1 w-full relative overflow-hidden">
+          <img
+            src={card.type === 'follower' ? '/card-backs/follower.jpeg' : '/card-backs/gp.jpeg'}
+            alt="face down"
+            className="w-full h-full object-cover object-center"
+          />
         </div>
       ) : gp ? (
         <>
@@ -2406,7 +2411,7 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
           {(() => {
             if (!isMyTurn || !selectedOnboard || selectedOnboard.type !== 'gp' || selectedOnboard.playerId !== currentPlayer.id || selectedOnboard.justDeployed) return null
             const loc = gameState.locations.find(l => l.cards.some(c => c.instanceId === selectedOnboard.instanceId))
-            if (!loc?.activeEvent || loc.activeEvent.type === 'global_competition') return null
+            if (!loc?.activeEvent || loc.activeEvent.type === 'global_competition' || loc.activeEvent.type === 'natural_hazard') return null
             const alreadyDone = gameState.turnActions.actedCards.includes(`end-scenario-${loc.id}`)
             return (
               <button
