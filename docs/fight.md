@@ -98,7 +98,7 @@ Relocation: Any card may move to a different location.
 
 Change Private/Public Status: Any card may change from private to public or vise versa.
 
-Attack: Execute attacks using Great Person cards. To conduct attack, the GP card and all the other cards belong to the same Player at the same location has to be public.
+Attack: Execute attacks using Great Person cards. To conduct attack, the GP card has to be public, besides any public Followers and GP belong to the same Player will also automatically join the attack. The defense side will automatically have all its card at the same location revealed as public.
 
 Survival Resolution: Calculate the outcomes of Survival scenarios.
 
