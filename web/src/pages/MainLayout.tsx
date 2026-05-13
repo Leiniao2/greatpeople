@@ -4,6 +4,7 @@ const TABS = [
   { path: '/epic',       label: 'Epic',       icon: '⚡' },
   { path: '/collection', label: 'Collection', icon: '♛' },
   { path: '/battle',     label: 'Fight',      icon: '⚔' },
+  { path: '/arcade',     label: 'Arcade',     icon: '🎮' },
   { path: '/profile',    label: 'Profile',    icon: '◉' },
 ] as const
 
@@ -23,7 +24,7 @@ export default function MainLayout() {
         className="fixed bottom-0 left-0 right-0 z-50
                    bg-[#0d0d1a] border-t border-white/[0.06]"
         style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}>
-        <div className="grid grid-cols-4">
+        <div className="grid grid-cols-5">
           {TABS.map((tab) => {
             const isActive = pathname === tab.path || pathname.startsWith(tab.path + '/')
             return (

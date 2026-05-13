@@ -2580,9 +2580,9 @@ export default function BattlePage() {
         </div>
 
         <div className="relative z-10 px-6 py-6 flex items-center gap-4 border-b border-white/[0.06]">
-          <button onClick={() => navigate('/collection')}
+          <button onClick={() => navigate('/home')}
             className="text-slate-500 hover:text-slate-300 transition-colors text-sm">
-            ← Collection
+            ← Home
           </button>
           <h1 className="font-display text-xl font-bold tracking-[0.1em] text-white uppercase">Fight Arena</h1>
         </div>

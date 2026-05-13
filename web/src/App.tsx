@@ -21,11 +21,8 @@ export default function App() {
       {/* Public routes — no tab bar */}
       <Route path="/login" element={<LoginPage />} />
 
-      {/* Home — private, no tab bar */}
+      {/* Home — private, full-screen landing, no tab bar */}
       <Route path="/home" element={<PrivateRoute><HomePage /></PrivateRoute>} />
-
-      {/* Arcade — private, no tab bar */}
-      <Route path="/arcade" element={<PrivateRoute><MiniChallengePage /></PrivateRoute>} />
 
       {/* Full-screen detail — private, no tab bar */}
       <Route path="/card/:id" element={<PrivateRoute><CardDetailPage /></PrivateRoute>} />
@@ -41,6 +38,7 @@ export default function App() {
         <Route path="/epic"       element={<EpicPage />} />
         <Route path="/collection" element={<CollectionPage />} />
         <Route path="/battle"     element={<BattlePage />} />
+        <Route path="/arcade"     element={<MiniChallengePage />} />
         <Route path="/profile"    element={<ProfilePage />} />
         <Route path="*"           element={<Navigate to="/home" replace />} />
       </Route>
