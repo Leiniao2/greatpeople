@@ -63,7 +63,7 @@ In terms of Building
 ##### Wealth: Port
 ##### Technique: Workshop
 ##### Intelligence: Observatory
-##### Belief: Temple
+##### Belief: Tomb
 ##### Reputation: Forum
 
 #### Classical
@@ -73,7 +73,7 @@ In terms of Building
 ##### Wealth: Port, Plantation
 ##### Technique: Infrastructure, Workshop
 ##### Intelligence: Observatory, Library
-##### Belief: Temple, Sanctuary
+##### Belief: Sanctuary, Tomb
 ##### Reputation: Court, Forum
 
 #### Medieval
@@ -93,7 +93,7 @@ In terms of Building
 ##### Wealth: Port, Plantation, Bank
 ##### Technique: Guild, Workshop, Hospital
 ##### Intelligence: Observatory, Library, University
-##### Belief: Temple, Monastry, Sanctuary
+##### Belief: Sanctuary, Monastry, Tomb
 ##### Reputation: Court, Forum, Garden
 
 #### Steam
@@ -103,7 +103,7 @@ In terms of Building
 ##### Wealth: Port, Bank, Stock Exchange
 ##### Technique: Infrastructure, Factory, Hospital
 ##### Intelligence: University, Library, Academy
-##### Belief: Temple, Sanctuary, Salon
+##### Belief: Sanctuary, Monastry, Salon
 ##### Reputation: Court, Garden, News Agency
 
 #### Electricity
@@ -113,14 +113,14 @@ In terms of Building
 ##### Wealth: Port, Bank, Stock Exchange, Enterprise Quarter
 ##### Technique: Infrastructure, Factory, Hospital, Workshop
 ##### Intelligence: University, Library, Academy, Laboratory
-##### Belief: Temple, Sanctuary, Salon, Reserve
+##### Belief: Reserve, Sanctuary, Salon, Monastry
 ##### Reputation: Fine Dining, Garden, News Agency, Court
 
 #### Information
 ##### Politics: Parliament, Intelligence Agency, Prison, Forum
 ##### Strength: Barracks, Military Academy, Gym, Observatory
 ##### Culture: Theatre, Concert Hall, Museum, Castle
-##### Wealth: Bank, Stock Exchange, Enterprise Quarter, Temple
+##### Wealth: Bank, Stock Exchange, Enterprise Quarter, Monastry
 ##### Technique: Infrastructure, Factory, Hospital, Plantation
 ##### Intelligence: University, Academy, Laboratory, Workshop
 ##### Belief: Salon, Sanctuary, Reserve, Monument
