@@ -15,19 +15,6 @@ extension Color {
     static let gpOutlineHigh = Color.white.opacity(0.12)
 }
 
-// MARK: - Tier colors
-
-extension Color {
-    static func tierColor(for tier: String) -> Color {
-        switch tier.lowercased() {
-        case "legendary": return Color(red: 0.851, green: 0.467, blue: 0.027)
-        case "epic":      return Color(red: 0.486, green: 0.231, blue: 0.929)
-        case "rare":      return Color(red: 0.145, green: 0.388, blue: 0.922)
-        default:          return Color(red: 0.278, green: 0.333, blue: 0.412)
-        }
-    }
-}
-
 // MARK: - View modifiers
 
 struct GPCardStyle: ViewModifier {

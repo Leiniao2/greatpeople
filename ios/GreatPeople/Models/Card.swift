@@ -1,14 +1,11 @@
 import Foundation
 
-enum CardTier: String, Codable { case common, rare, epic, legendary }
-
 struct Card: Identifiable, Codable, Equatable, Hashable {
     let id: String
     let figureName: String
     let era: String
     let gender: String
     let identities: [String]
-    let tier: CardTier
     let lore: String
     let portraitUrl: String
     let years: String

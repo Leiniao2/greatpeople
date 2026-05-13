@@ -24,8 +24,8 @@
       },
       {
         "type": "minigame",
-        "game": "maze3d",
-        "configId": "himalayan-climb",
+        "game": "maze",
+        "configId": "pyramid-deep",
         "instruction": "Navigate the treacherous passages deep inside the Great Pyramid",
         "fact": "The Step Pyramid of Djoser has six tiers and a subterranean maze of corridors. Imhotep designed every one."
       }
@@ -56,10 +56,10 @@
       },
       {
         "type": "minigame",
-        "game": "painting",
-        "configId": "mesopotamia",
-        "instruction": "Paint Sargon's Akkad — the ziggurat rising above the rivers of Mesopotamia.",
-        "fact": "Akkad's empire stretched from the Persian Gulf to the Mediterranean — the largest political entity the world had yet seen, centred on the ziggurat cities of ancient Iraq."
+        "game": "voting",
+        "configId": "akkadian-council",
+        "instruction": "Sargon has conquered the city-states. Win the loyalty of the Sumerian governors to hold the world's first empire together.",
+        "fact": "Sargon of Akkad (c. 2334–2279 BCE) built the world's first empire by combining military conquest with cultural assimilation. His daughter Enheduanna, High Priestess of Ur, is history's first named author."
       }
     ]
   },
@@ -88,8 +88,8 @@
       },
       {
         "type": "minigame",
-        "game": "maze3d",
-        "configId": "pacific-voyage",
+        "game": "maze",
+        "configId": "cedar-forest",
         "instruction": "Guide Gilgamesh through the Cedar Forest in search of glory",
         "fact": "Uruk was one of the world's earliest cities — home to 50,000–80,000 people in 3000 BCE. Gilgamesh was its legendary king and builder of its great walls."
       }
@@ -146,10 +146,10 @@
       },
       {
         "type": "minigame",
-        "game": "mirror",
-        "configId": "digital",
-        "instruction": "Euclid's Optica proved light travels in straight lines — route the signal through fiber optic cables, just as Euclid described light's path.",
-        "fact": "Euclid's 'Optica' established that light travels in straight lines and that the angle of incidence equals the angle of reflection — foundations of optics used in every mirror and lens ever built."
+        "game": "sudoku",
+        "configId": "euclid-grid",
+        "instruction": "Euclid's Elements organises 465 propositions so each depends strictly on what came before. Fill the grid so each row, column, and 2×2 box contains 1–4 exactly once.",
+        "fact": "Euclid's Elements (c. 300 BCE) derived all of classical geometry from five axioms alone. Its logical structure — every proposition built strictly on prior proofs — served as the definitive mathematics textbook for over 2,000 years."
       }
     ]
   },
@@ -178,10 +178,10 @@
       },
       {
         "type": "minigame",
-        "game": "painting",
-        "configId": "olympia-scene",
-        "instruction": "Paint the sacred site of Olympia — the Greek Games that Pericles' Athens celebrated as the pinnacle of civilisation.",
-        "fact": "The golden ratio (φ ≈ 1.618) appears in the Parthenon's proportions. Pericles commissioned Phidias to ensure every detail of Athens' buildings embodied mathematical perfection."
+        "game": "voting",
+        "configId": "athenian-assembly",
+        "instruction": "Pericles must win a majority in the Athenian Assembly to fund the Parthenon using Delian League tribute.",
+        "fact": "The Parthenon (447–432 BCE) was built under Pericles' direction. Its columns are subtly curved to correct optical distortion, and its proportions follow the golden ratio — mathematical perfection in marble."
       }
     ]
   },
@@ -210,10 +210,10 @@
       },
       {
         "type": "minigame",
-        "game": "painting",
-        "configId": "roman-forum",
-        "instruction": "Paint the Roman Forum where Cicero gave his legendary speeches.",
-        "fact": "The Forum Romanum was the centre of Roman public life — marketplace, religious site, political stage, and legal court all in one. Cicero mastered every one of these arenas."
+        "game": "voting",
+        "configId": "roman-senate",
+        "instruction": "Step into Cicero's sandals: win enough senatorial votes to authorise action against Catiline's conspirators.",
+        "fact": "Cicero's four Catilinarian Orations (63 BCE) are among history's most famous speeches. He secured the Senate's emergency vote — and was later exiled for bypassing the right to trial."
       }
     ]
   },
@@ -236,10 +236,10 @@
       },
       {
         "type": "minigame",
-        "game": "mirror",
-        "configId": "anaxagoras",
-        "instruction": "Anaxagoras claimed the sun is a fiery rock. Direct its light to prove his revolutionary theory.",
-        "fact": "The Pre-Socratics were the world's first scientists — they sought natural explanations for natural events. Anaxagoras introduced the concept of Nous (mind or reason) as the force organising the universe."
+        "game": "sudoku",
+        "configId": "anaxagoras-grid",
+        "instruction": "Anaxagoras held that Nous (Mind) imposes order on chaos — each element in its proper place. Fill the grid so each row, column, and 2×2 box contains 1–4 exactly once.",
+        "fact": "Anaxagoras (c. 500–428 BCE) was the first to introduce Nous — cosmic Mind — as the ordering principle of the universe. He correctly deduced that the moon shines with reflected sunlight and that eclipses are caused by the moon blocking the sun."
       }
     ]
   },
@@ -300,10 +300,10 @@
       },
       {
         "type": "minigame",
-        "game": "mirror",
-        "configId": "al-khwarizmi",
-        "instruction": "Baghdad's House of Wisdom studied optics. Route the light beam through the library to the lens.",
-        "fact": "The House of Wisdom in Baghdad was the world's greatest library and research centre. Al-Khwarizmi worked there alongside scholars in astronomy, medicine, and philosophy — translating Greek texts and advancing every field."
+        "game": "sudoku",
+        "configId": "al-khwarizmi-grid",
+        "instruction": "Al-Khwārizmī's algebra reduces every problem to a balanced equation — no term appears without its counterpart. Fill the grid so each row, column, and 2×2 box contains 1–4 exactly once.",
+        "fact": "Al-Khwārizmī's Kitāb al-jabr (c. 820 CE) gave us the word 'algebra.' He illustrated algebraic equations with geometric diagrams, proving solutions by drawing and rearranging squares — the origin of 'completing the square.'"
       }
     ]
   },
@@ -319,10 +319,10 @@
       },
       {
         "type": "minigame",
-        "game": "painting",
-        "configId": "mani-shrine",
-        "instruction": "Paint Mani's sacred shrine — where divine light triumphs over the darkness of the material world.",
-        "fact": "Manichaean manuscripts used gold, lapis lazuli, and brilliant red — colours that symbolised divine light. Their artistic tradition influenced Persian, Sogdian, and eventually Chinese Buddhist art."
+        "game": "fiction",
+        "configId": "mani-parable",
+        "instruction": "Read Mani's parable and choose the ending that reflects his Manichaean teaching.",
+        "fact": "Mani (216–274 CE) founded one of the ancient world's great universal religions, blending Zoroastrian, Christian, and Buddhist elements into a cosmic drama of Light versus Darkness."
       },
       {
         "type": "minigame",
@@ -358,10 +358,10 @@
       },
       {
         "type": "minigame",
-        "game": "painting",
-        "configId": "japanese-blossom",
-        "instruction": "Paint the tea garden where Lu Yu perfected his art — cherry blossoms over the stone lantern path.",
-        "fact": "The ideal tea garden (roji) was designed to make visitors forget the outside world before entering the tea room. Every stone, plant, and stepping stone was placed with intentional imperfection."
+        "game": "chemistry",
+        "configId": "tea-blend",
+        "instruction": "Combine the ingredients in the proportions Lu Yu prescribed in the Classic of Tea.",
+        "fact": "Lu Yu's Classic of Tea (茶經) specified precise proportions for water, tea leaves, and salt — the world's first systematic sensory science, written around 760 CE."
       }
     ]
   },
@@ -383,17 +383,21 @@
       },
       {
         "type": "minigame",
-        "game": "maze3d",
-        "configId": "himalayan-climb",
+        "game": "maze",
+        "configId": "mulan",
         "instruction": "Help Hua Mulan slip through enemy lines undetected",
         "fact": "The Ballad of Mulan originated during the Northern Wei dynasty (386–534 CE), when the northern steppes were under constant threat. The poem celebrates loyalty, filial piety, and courage over gender roles."
       },
       {
-        "type": "minigame",
-        "game": "painting",
-        "configId": "mulan-forest",
-        "instruction": "Paint the snow-covered northern Chinese landscape that Hua Mulan rode through — pines, snow, and the hidden path.",
-        "fact": "The Northern Wei ruled a multi-ethnic empire — Mulan's story reflects a society where nomadic traditions (women riding and fighting) mixed with Confucian ideals. Her legend crossed cultural boundaries as freely as she did."
+        "type": "sort",
+        "question": "Arrange Hua Mulan's journey in chronological order:",
+        "items": [
+          "Father receives the conscription order from the Emperor",
+          "Mulan secretly enlists in the army in her father's place",
+          "Serves twelve years in battle disguised as a man",
+          "Returns home and changes back into women's dress — her comrades are astonished"
+        ],
+        "fact": "In the original Ballad of Mulan, her years of service number twelve — not the single battle of later retellings. The poem ends not with a battle but with transformation: the warrior removes her armour and becomes herself again, and her fellow soldiers cannot believe who they had fought beside."
       }
     ]
   },
@@ -408,11 +412,15 @@
         "fact": "Chivalry combined three loyalties: to God (religious duty), to the lord (feudal duty), and to women and the weak (courtly duty). Loyalty to the king was central — a knight who broke this oath was stripped of knighthood."
       },
       {
-        "type": "minigame",
-        "game": "mirror",
-        "configId": "plato",
-        "instruction": "Chivalry taught knights to see beyond surface appearances — like Plato's cave, true honour is reflected in deeds not rank. Redirect the beam of virtue to reach the target.",
-        "fact": "The legend of the Round Table was designed to symbolise equality — no seat was more important than another. Arthur sat where everyone else did, a radical idea in a world of strict hierarchy."
+        "type": "sort",
+        "question": "Arrange the stages of a medieval knight's training in the correct order:",
+        "items": [
+          "Page (ages 7–14): enters a lord's household to learn courtly manners and service",
+          "Squire (ages 14–21): trains under a knight, cares for arms and horse",
+          "Knighting ceremony: dubbed by sword, swears the chivalric oath",
+          "First tournament: proves skill, honour, and the code in open combat"
+        ],
+        "fact": "A knight's training took fourteen years. The progression from page to squire to knight was as formalised as any modern profession. The Round Table's innovation — every seat equal, no place more honoured than another — was a radical reimagining of hierarchy in a world of strict rank."
       },
       {
         "type": "minigame",
@@ -447,11 +455,15 @@
         "fact": "The ci poems of Li Qingzhao were written to specific tunes — each tune had a name and a set pattern of tones. Her poems about loss, love, and exile have been sung and recited for 900 years."
       },
       {
-        "type": "minigame",
-        "game": "music",
-        "configId": "pentatonic",
-        "instruction": "The pentatonic scale carries the spirit of Chinese music. Arrange these notes from lowest to highest — as Li Qingzhao's melodies rose and fell.",
-        "fact": "Li Qingzhao's later poems were written after she fled south during the Jin invasion, her husband had died, and she'd lost most of her prized collection of bronzes and books. Her grief became immortal art."
+        "type": "sort",
+        "question": "Arrange these events of Li Qingzhao's life in chronological order:",
+        "items": [
+          "Marries Zhao Mingcheng; together they collect bronzes, books, and paintings",
+          "Jin dynasty invades northern China; they flee south with what they can carry",
+          "Zhao Mingcheng dies; she loses most of her prized collection",
+          "Writes her most celebrated late poems — elegies of exile, loss, and autumn"
+        ],
+        "fact": "Li Qingzhao's life split sharply in two: the happy early years in Jinan collecting and writing beside her husband, and the desolate later years as a refugee. Her poem 'Sheng Sheng Man' opens with eighteen consecutive monosyllables evoking emptiness and longing — one of the most technically daring openings in all of Chinese poetry."
       }
     ]
   },
@@ -473,17 +485,17 @@
       },
       {
         "type": "minigame",
-        "game": "maze3d",
-        "configId": "flight-path",
+        "game": "maze",
+        "configId": "musashi",
         "instruction": "Guide Musashi through the mountain paths to his final duel",
         "fact": "Musashi never lost a duel in 60+ fights. In his later years he renounced killing, became a painter and sculptor, and wrote The Book of Five Rings — still read by business leaders and martial artists worldwide."
       },
       {
         "type": "minigame",
-        "game": "painting",
-        "configId": "musashi-dojo",
-        "instruction": "Paint Musashi's dojo at night — the steel sword, wooden floor, and the darkness he trained through.",
-        "fact": "Musashi's Niten Ichi-ryū (two-heaven school) used both a long and short sword simultaneously. The geometry of dual-weapon fighting requires understanding angles of attack that conventional swordsmanship ignored."
+        "game": "tactics",
+        "configId": "musashi-duel",
+        "instruction": "Musashi holds the high ground on Ganryū Island. Find the one move that wins the duel.",
+        "fact": "Musashi arrived two hours late — deliberately. The waiting destroyed Kojirō's composure. 'You have already lost,' Musashi said, then charged."
       }
     ]
   },
@@ -531,17 +543,21 @@
       },
       {
         "type": "minigame",
-        "game": "maze3d",
-        "configId": "pacific-voyage",
+        "game": "maze",
+        "configId": "pacific-strait",
         "instruction": "Navigate the fog-shrouded straits that Magellan first crossed.",
         "fact": "The Strait of Magellan (1520) was so treacherous that Magellan spent 38 days navigating 570 km of winding channels. Three ships entered; only one finished the circumnavigation."
       },
       {
-        "type": "minigame",
-        "game": "painting",
-        "configId": "ocean-voyage",
-        "instruction": "Paint the open ocean as Magellan's sailors saw it — nothing but water for 99 days.",
-        "fact": "Magellan's fleet crossed the Pacific on starvation rations — eating rats, sawdust mixed with water, and leather straps softened by soaking. Scurvy killed many. The survivors arrived at the Philippines skeletal."
+        "type": "sort",
+        "question": "Arrange the key milestones of Magellan's circumnavigation in order:",
+        "items": [
+          "Fleet of five ships departs Seville with 270 men",
+          "Discovery and navigation of the Strait of Magellan",
+          "Magellan killed in the Philippines — he never completes the journey",
+          "One surviving ship returns to Spain with 18 men"
+        ],
+        "fact": "Magellan's voyage proved the Earth is a sphere and that the Pacific is far larger than anyone imagined. He left in 1519 with five ships and 270 men; one ship, the Victoria, returned in 1522 with 18 skeletal survivors. The Strait of Magellan — 570 kilometres of treacherous winding channels — took 38 days to navigate."
       }
     ]
   },
@@ -636,11 +652,15 @@
         "fact": "Clara Schumann's Piano Concerto in A minor (Op. 7) was composed when she was 14 — the same age Mendelssohn was when he wrote his Octet. The Romantic era produced prodigies who rewrote what was possible in music."
       },
       {
-        "type": "minigame",
-        "game": "painting",
-        "configId": "clara-recital",
-        "instruction": "Paint the elegant piano salon where Clara Schumann performed — velvet curtains, ebony piano, and candlelight.",
-        "fact": "Clara Schumann performed over 1,300 concerts in her career, championing the works of Brahms, Schumann, and Beethoven. After Robert Schumann's death, she continued performing to support their seven children."
+        "type": "sort",
+        "question": "Arrange these milestones of Clara Schumann's life in chronological order:",
+        "items": [
+          "First public concert at age 9 in Leipzig",
+          "Composes her Piano Concerto in A minor, Op. 7",
+          "Marries Robert Schumann against her father's fierce opposition",
+          "Performs her final public concert at age 72"
+        ],
+        "fact": "Clara Schumann's performing career spanned over 60 years. After Robert's death in 1856, she became the family's sole breadwinner, supporting seven children through concerts across Europe. She gave over 1,300 performances and championed Brahms's music at a time when few took it seriously."
       }
     ]
   },
@@ -668,11 +688,15 @@
         "fact": "Linnaeus created the system we still use today. His binomial names — like Homo sapiens — gave every species a unique two-word Latin identity understood by scientists worldwide."
       },
       {
-        "type": "minigame",
-        "game": "painting",
-        "configId": "spring-garden",
-        "instruction": "Paint Linnaeus's Uppsala botanical garden — sky, grass, and the flowers he catalogued with such care.",
-        "fact": "Linnaeus transformed the Uppsala Botanical Garden into one of Europe's most important research centres. He sent 'apostles' around the world — students who collected specimens on voyages with Cook, Banks, and others."
+        "type": "sort",
+        "question": "Arrange these milestones in Linnaeus's development of biological classification:",
+        "items": [
+          "Publishes Systema Naturae — the first systematic classification of nature",
+          "Invents binomial nomenclature: every species gets a two-word Latin name",
+          "Names Homo sapiens — placing humans formally in the animal kingdom",
+          "Sends 'apostles' worldwide on voyages with Cook and Banks to collect specimens"
+        ],
+        "fact": "Linnaeus classified 7,700 plant species and 4,400 animal species. His binomial system — genus plus species — replaced unwieldy Latin phrases with clean two-word names still used by every scientist on Earth. Naming Homo sapiens was audacious: placing humanity inside the animal kingdom challenged centuries of theological certainty."
       }
     ]
   },
@@ -701,10 +725,10 @@
       },
       {
         "type": "minigame",
-        "game": "mirror",
-        "configId": "mendel",
-        "instruction": "Mendel's pea garden experiment: redirect the light of knowledge through Mendel's genetic maze.",
-        "fact": "Mendel's work was ignored for 35 years after publication. Rediscovered in 1900 by three biologists independently, it became the foundation of modern genetics — one of science's great tales of posthumous vindication."
+        "game": "sudoku",
+        "configId": "mendel-grid",
+        "instruction": "Mendel's laws ensure dominant and recessive traits distribute in strict ratios — no pattern repeats the same way twice. Fill the grid so each row, column, and 2×2 box contains 1–4 exactly once.",
+        "fact": "Gregor Mendel crossed 29,000 pea plants over eight years. His 3:1 ratio revealed the hidden mathematics of heredity. His paper sat unread for 35 years; rediscovered in 1900 by three scientists independently, it became the founding document of modern genetics."
       }
     ]
   },
@@ -733,10 +757,10 @@
       },
       {
         "type": "minigame",
-        "game": "painting",
-        "configId": "brahms-vienna",
-        "instruction": "Paint the Vienna concert hall where Brahms premiered his symphonies — gilded ceiling, warm walls, and the dark stage.",
-        "fact": "Brahms was the last of the three great Bs — Bach, Beethoven, Brahms. Unlike his rival Wagner, he never sought revolution — he believed the classical forms of sonata and symphony still had infinite depths to explore."
+        "game": "sudoku",
+        "configId": "brahms-pattern",
+        "instruction": "Brahms organised his motifs so no phrase repeated in the same voice. Fill the grid so each row, column, and 2×2 box contains 1–4 exactly once.",
+        "fact": "Brahms spent 14 years revising his First Symphony. Its rigorous structure earned it the nickname 'Beethoven's Tenth' — yet it pulses with Romantic emotion."
       }
     ]
   },
@@ -765,10 +789,10 @@
       },
       {
         "type": "minigame",
-        "game": "painting",
-        "configId": "versailles-hall",
-        "instruction": "Paint the Hall of Mirrors at Versailles — Louis XVI's gilded world, about to be swept away by revolution.",
-        "fact": "The French court at Versailles housed 10,000 nobles and servants, each with a defined rank and role. The cost of this spectacle — while France starved — was one of the primary causes of the Revolution."
+        "game": "voting",
+        "configId": "versailles-crisis",
+        "instruction": "It is July 1789. The Bastille has fallen. Louis XVI must navigate three decisions that will determine whether France has a revolution — or a king.",
+        "fact": "Louis XVI was guillotined on 21 January 1793, convicted of treason. His fatal error — the Flight to Varennes in June 1791 — proved to the Revolutionary government that he was conspiring against France with foreign powers."
       }
     ]
   },
@@ -823,10 +847,10 @@
       },
       {
         "type": "minigame",
-        "game": "mirror",
-        "configId": "lorentz",
-        "instruction": "Lorentz showed light's path changes with velocity. Guide the beam to demonstrate time dilation.",
-        "fact": "The Michelson-Morley experiment (1887) showed light travels at the same speed regardless of direction — baffling everyone. Lorentz explained this with his contraction theory, which Einstein unified into relativity."
+        "game": "sudoku",
+        "configId": "lorentz-grid",
+        "instruction": "Lorentz's transformation equations describe a universe where time, space, and mass change with velocity — yet follow exact constraints. Fill the grid so each row, column, and 2×2 box contains 1–4 exactly once.",
+        "fact": "Hendrik Lorentz derived his transformation equations in 1895–1904, showing mathematically that length, time, and mass change with velocity. Einstein took these equations and provided the physical interpretation: special relativity. Lorentz considered Einstein's insight the greater achievement."
       }
     ]
   },
@@ -847,11 +871,15 @@
         "fact": "Chanel's 'little black dress' (1926) appeared in Vogue, which compared it to Ford's Model T — a fashion so universal and timeless it was available to everyone. Black had previously been reserved for mourning."
       },
       {
-        "type": "minigame",
-        "game": "painting",
-        "configId": "chanel-atelier",
-        "instruction": "Paint Chanel's Paris atelier — white walls, the iconic black dress, silver mirrors, and the grey floor.",
-        "fact": "Chanel was influenced by Japanese aesthetics — simplicity, monochrome, clean lines. She also drew on jersey fabric (formerly used only for men's underwear) to create comfortable women's clothing, liberating them from corsets."
+        "type": "sort",
+        "question": "Arrange these milestones of Chanel's fashion revolution in chronological order:",
+        "items": [
+          "Opens her first millinery shop in Paris — hats only, no corsets",
+          "Introduces jersey fabric into women's fashion, replacing stiff silk",
+          "Chanel No. 5 becomes the world's best-selling perfume",
+          "Launches the little black dress in Vogue — 'the Ford of fashion'"
+        ],
+        "fact": "Each of Chanel's innovations stripped away constraint. Jersey replaced stiff silk; cardigan suits replaced corsets; black replaced colour as the dominant fashion statement. She built freedom into fashion at a time when clothing was still architecture built to restrict women's bodies."
       },
       {
         "type": "minigame",
@@ -880,8 +908,8 @@
       },
       {
         "type": "minigame",
-        "game": "maze3d",
-        "configId": "flight-path",
+        "game": "maze",
+        "configId": "atlantic-sky",
         "instruction": "Chart Earhart's course through the storm corridors over the Atlantic.",
         "fact": "In 1932, Earhart flew solo from Newfoundland to Northern Ireland in 14 hours 56 minutes — battling icing, storm turbulence, and a leaking fuel tank."
       },
@@ -912,17 +940,17 @@
       },
       {
         "type": "minigame",
-        "game": "painting",
-        "configId": "film-still",
-        "instruction": "Compose an Eisenstein frame — use light, shadow, and geometry to create meaning.",
-        "fact": "Eisenstein studied theatre under Vsevolod Meyerhold and architecture before cinema. His films Battleship Potemkin (1925) and Alexander Nevsky (1938) are still studied in film schools as masterpieces of visual storytelling."
+        "game": "fiction",
+        "configId": "eisenstein-ending",
+        "instruction": "Eisenstein's Odessa Steps sequence builds to a critical cut. Choose how he resolved it.",
+        "fact": "Eisenstein's montage theory holds that meaning is created between shots, not within them. The Battleship Potemkin (1925) remains the most studied example of this principle."
       },
       {
         "type": "minigame",
-        "game": "music",
-        "configId": "film-score",
-        "instruction": "Eisenstein synchronised Prokofiev's music to picture in Alexander Nevsky. Arrange these bold orchestral notes.",
-        "fact": "Early cinema projection required arc lamps burning at intense heat. Cinema operators were trained electricians. The technology of film — sprocket holes, 24 frames per second, silver nitrate chemistry — was pure applied science."
+        "game": "sudoku",
+        "configId": "eisenstein-grid",
+        "instruction": "Eisenstein's montage: juxtapose shots so no image repeats the same idea in the same context — meaning emerges between them. Fill the grid so each row, column, and 2×2 box contains 1–4 exactly once.",
+        "fact": "Eisenstein's montage theory holds that meaning is created between shots, not within them. The Kuleshov effect proves it: the same neutral face, cut to food, reads as hunger; cut to a coffin, reads as grief. The Odessa Steps sequence in Battleship Potemkin (1925) remains the most studied example of this principle."
       }
     ]
   },
@@ -938,8 +966,8 @@
       },
       {
         "type": "minigame",
-        "game": "maze3d",
-        "configId": "himalayan-climb",
+        "game": "maze",
+        "configId": "everest-peak",
         "instruction": "Find the route Hillary and Tenzing took through the icefall to the summit.",
         "fact": "The South Col route up Everest required navigating the Khumbu Icefall — a constantly shifting maze of ice towers. Hillary and Tenzing reached the summit on 29 May 1953."
       },
@@ -977,8 +1005,8 @@
       },
       {
         "type": "minigame",
-        "game": "maze3d",
-        "configId": "himalayan-climb",
+        "game": "maze",
+        "configId": "long-march",
         "instruction": "Lead the column through the mountain passes of the Long March",
         "fact": "The most decisive battle of the Long March was the crossing of the Luding Bridge — a chain bridge over a gorge, its planks removed, defended by machine guns. Communist soldiers crawled across the chains under fire."
       }
@@ -1035,10 +1063,10 @@
       },
       {
         "type": "minigame",
-        "game": "music",
-        "configId": "war-march",
-        "instruction": "The Gilded Age moved to the rhythm of industry — steel mills, railways, and mechanical music. Arrange this bold march phrase.",
-        "fact": "Mellon secretly bought 21 paintings from the Soviet government during the 1930s — the Hermitage needed currency to fund industrialisation. He paid $7 million for works now worth hundreds of millions."
+        "game": "voting",
+        "configId": "mellon-treasury",
+        "instruction": "Andrew Mellon faces the Senate with his Revenue Act, proposing to cut the top income tax rate from 73% to 25%. Win enough votes to pass it.",
+        "fact": "Mellon's Revenue Acts of 1921, 1924, and 1926 cut the top marginal rate from 73% to 25%. Tax revenues rose during the 1920s boom, but the same policies concentrated wealth so severely that the Depression proved catastrophic. Mellon advised Hoover to 'liquidate labour, liquidate stocks' in 1929 — advice that deepened the crisis."
       }
     ]
   },
@@ -1066,11 +1094,15 @@
         "fact": "'Moon River' won the 1962 Academy Award for Best Original Song. When Paramount executives suggested cutting it, Hepburn reportedly said: 'Over my dead body!' Henry Mancini's melody became her signature."
       },
       {
-        "type": "minigame",
-        "game": "painting",
-        "configId": "night-sky",
-        "instruction": "Holly Golightly stared at the stars from her New York window. Paint the night sky she loved — before the city lights drowned it out.",
-        "fact": "The black dress Hepburn wore in 'Breakfast at Tiffany's' (1961) was designed by Hubert de Givenchy. It sold at auction in 2006 for £467,200. It remains the most iconic dress in cinema history."
+        "type": "sort",
+        "question": "Arrange Audrey Hepburn's career milestones in chronological order:",
+        "items": [
+          "Wins the Academy Award for Best Actress for Roman Holiday",
+          "Stars in Breakfast at Tiffany's — Givenchy's black dress becomes iconic",
+          "Appointed UNICEF Goodwill Ambassador",
+          "Receives Emmy and Grammy Awards — completing the EGOT"
+        ],
+        "fact": "Hepburn won the Oscar, Tony, Emmy, and Grammy — one of very few EGOT recipients. But she considered her UNICEF work her greatest achievement, visiting famine-stricken communities in Ethiopia, Sudan, Bangladesh, and Central America in her final years."
       }
     ]
   },
@@ -1098,11 +1130,15 @@
         "fact": "Jackson's falsetto vocal style, rhythmic precision, and melodic invention were unprecedented in pop music. His vocal range spanned 4 octaves — from bass to soprano — and he used his voice as a percussive instrument as much as a melodic one."
       },
       {
-        "type": "minigame",
-        "game": "music",
-        "configId": "thriller-riff",
-        "instruction": "Thriller's bass riff is one of the most recognisable in pop history. Arrange these four descending notes.",
-        "fact": "Michael Jackson debuted the Moonwalk on May 25, 1983, during a performance of 'Billie Jean' on Motown 25. It was not a new dance — it had roots in James Brown and mime — but Jackson's execution made it legend."
+        "type": "sort",
+        "question": "Arrange these milestones of Michael Jackson's career in chronological order:",
+        "items": [
+          "Off the Wall establishes him as a solo superstar",
+          "Thriller becomes the best-selling album in history",
+          "Moonwalk debut on the Motown 25 television special",
+          "Earth Song released — his most overtly political statement"
+        ],
+        "fact": "Jackson's arc — from Off the Wall's sophistication (1979) to Thriller's global domination (1982) to the moonwalk's cultural moment (1983) to Earth Song's social conscience (1995) — spanned every register of popular music. He is the only artist to have debuted a dance move that became a permanent part of world culture."
       }
     ]
   },
@@ -1131,10 +1167,10 @@
       },
       {
         "type": "minigame",
-        "game": "painting",
-        "configId": "shaw-theater",
-        "instruction": "Paint the Edwardian theater where Shaw challenged every social convention from the stage.",
-        "fact": "Shaw wrote over 60 plays across seven decades. His plays addressed women's rights, class inequality, and religious hypocrisy — subjects rarely spoken of openly in Edwardian England."
+        "game": "fiction",
+        "configId": "pygmalion-ending",
+        "instruction": "A Hungarian phonetics expert approaches Eliza Doolittle at the ambassador's party. What does he conclude?",
+        "fact": "Shaw's irony: Eliza succeeds so perfectly that the expert concludes she must be foreign nobility — her English is too refined for a native. Class is performance, not origin."
       }
     ]
   },
@@ -1163,10 +1199,10 @@
       },
       {
         "type": "minigame",
-        "game": "painting",
-        "configId": "peck-courtroom",
-        "instruction": "Paint the Alabama courthouse where Atticus Finch delivered his closing argument for justice.",
-        "fact": "Harper Lee's novel has sold over 45 million copies. Peck was also a founding member of the National Endowment for the Arts and campaigned for racial equality long after the film made him famous."
+        "game": "voting",
+        "configId": "mockingbird-jury",
+        "instruction": "Atticus Finch makes his closing argument. Win enough jurors to acquit Tom Robinson.",
+        "fact": "Harper Lee's novel (1960) is based partly on the 1931 Scottsboro Boys case. Despite Atticus's brilliant argument, the jury convicts — Lee's point being that moral courage alone cannot overcome structural injustice."
       }
     ]
   },
@@ -1189,10 +1225,10 @@
       },
       {
         "type": "minigame",
-        "game": "painting",
-        "configId": "isabel-court",
-        "instruction": "Paint the Moorish-Gothic palace of Isabel's Castilian court — where faith and political power fused.",
-        "fact": "Isabel and Fernando's marriage united Castile and Aragon into modern Spain. They funded the Inquisition, expelled Jews and Muslims in 1492, and in the same year sponsored Columbus — three decisions that reshaped the world."
+        "game": "voting",
+        "configId": "spanish-court",
+        "instruction": "Queen Isabel must build court support to fund Columbus's westward voyage. The treasury is drained; sceptics are many.",
+        "fact": "The Capitulations of Santa Fe (1492) gave Columbus the title of Admiral and a share of profits. Isabel's gamble yielded the largest territorial windfall in European history."
       }
     ]
   },
@@ -1221,10 +1257,10 @@
       },
       {
         "type": "minigame",
-        "game": "painting",
-        "configId": "lisbon-harbor",
-        "instruction": "Paint the Tagus estuary as Manuel's caravels depart for the spice routes of the Indian Ocean.",
-        "fact": "The 'Manueline' architectural style — Portugal's late Gothic adorned with maritime ropes, coral, and armillary spheres — was born in Manuel's reign. The Jerónimos Monastery in Lisbon, celebrating Vasco da Gama's voyage, is a UNESCO World Heritage Site."
+        "game": "matchthree",
+        "configId": "lisbon-spices",
+        "instruction": "Trade the spices in Lisbon's market — match three or more to clear the board.",
+        "fact": "Under Manuel I, Portugal controlled the spice trade from 1498 to the 1580s. A cargo of cloves from Maluku could return 100× its cost in Lisbon — funding the Manueline architecture still standing in Belém."
       }
     ]
   }

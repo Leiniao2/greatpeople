@@ -11,7 +11,8 @@
       {
         "type": "dialog",
         "speaker": "Pharaoh Djoser",
-        "text": "Imhotep. I want a monument that touches the sky itself. Something the world has never seen."
+        "text": "Imhotep. I want a monument that touches the sky itself. Something the world has never seen.",
+        "portraitKey": "follower:sovereign"
       },
       {
         "type": "dialog",
@@ -44,7 +45,8 @@
       {
         "type": "dialog",
         "speaker": "Master Builder",
-        "text": "Apprentice! Pharaoh demands a new pyramid: 500 paces long, 500 paces wide, 500 paces tall. Each brick is one pace by one pace by two paces. You must calculate the number of bricks before sunset — or face his wrath."
+        "text": "Apprentice! Pharaoh demands a new pyramid: 500 paces long, 500 paces wide, 500 paces tall. Each brick is one pace by one pace by two paces. You must calculate the number of bricks before sunset — or face his wrath.",
+        "portraitKey": "follower:architect"
       },
       {
         "type": "challenge",
@@ -457,7 +459,8 @@
       {
         "type": "dialog",
         "speaker": "Emperor Justinian",
-        "text": "Belisarius. You are my sword. Reconquer Africa. Reconquer Italy. Give me back the Empire of Augustus."
+        "text": "Belisarius. You are my sword. Reconquer Africa. Reconquer Italy. Give me back the Empire of Augustus.",
+        "portraitKey": "follower:sovereign"
       },
       {
         "type": "dialog",
@@ -689,7 +692,8 @@
       {
         "type": "dialog",
         "speaker": "King Arthur",
-        "text": "Lancelot, you are the finest knight who ever drew breath. In battle, no man is your equal. In honor — what say you?"
+        "text": "Lancelot, you are the finest knight who ever drew breath. In battle, no man is your equal. In honor — what say you?",
+        "portraitKey": "follower:sovereign"
       },
       {
         "type": "dialog",

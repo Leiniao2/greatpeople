@@ -2,7 +2,6 @@ package com.greatpeople.card.data
 
 import android.content.Context
 import com.greatpeople.card.data.model.Card
-import com.greatpeople.card.data.model.CardTier
 import org.json.JSONArray
 
 fun loadDemoCards(context: Context): List<Card> {
@@ -18,7 +17,6 @@ fun loadDemoCards(context: Context): List<Card> {
             era = obj.getString("era"),
             gender = obj.getString("gender"),
             identities = (0 until identitiesArr.length()).map { identitiesArr.getString(it) },
-            tier = CardTier.valueOf(obj.getString("tier").uppercase()),
             lore = obj.getString("lore"),
             portraitUrl = "file:///android_asset/portraits/portrait_$key.jpeg",
             years = obj.getString("years"),

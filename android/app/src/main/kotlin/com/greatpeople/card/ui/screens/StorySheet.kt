@@ -42,6 +42,7 @@ fun StorySheet(
         StoryChallengesLoader.getChallenges(context, eraName, storyTitle)
     }
     val total = challenges.size
+    val scoreableCount = challenges.count { it.type != ChallengeType.minigame }
 
     var idx by remember { mutableIntStateOf(0) }
     var answered by remember { mutableStateOf(false) }
@@ -73,7 +74,7 @@ fun StorySheet(
         }
 
         if (finished) {
-            ResultsView(storyTitle, score, total, onComplete = { onComplete(); onDismiss() })
+            ResultsView(storyTitle, score, scoreableCount, onComplete = { onComplete(); onDismiss() })
             return@ModalBottomSheet
         }
 
@@ -125,13 +126,17 @@ fun StorySheet(
                     ChallengeType.sort -> SortChallenge(ch, answered) { correct ->
                         lastCorrect = correct; answered = true; if (correct) score++
                     }
-                    ChallengeType.minigame -> {} // filtered out at load time; never reached
+                    ChallengeType.minigame -> DiscoveryCard(ch, answered) {
+                        lastCorrect = true; answered = true
+                    }
                 }
             }
 
             if (answered) {
-                item {
-                    FactBanner(ch.fact, lastCorrect)
+                if (ch.type != ChallengeType.minigame) {
+                    item {
+                        FactBanner(ch.fact, lastCorrect)
+                    }
                 }
                 item {
                     Button(
@@ -141,7 +146,7 @@ fun StorySheet(
                         shape = RoundedCornerShape(12.dp),
                     ) {
                         Text(
-                            if (idx + 1 < total) "Next Challenge →" else "See Results →",
+                            if (idx + 1 < total) "Next →" else "See Results →",
                             color = BgDark,
                             fontWeight = FontWeight.Bold,
                             fontSize = 14.sp,
@@ -332,6 +337,65 @@ private fun SortChallenge(ch: ChallengeDTO, answered: Boolean, onAnswer: (Boolea
                 shape = RoundedCornerShape(12.dp),
             ) {
                 Text("Check Order", color = BgDark, fontWeight = FontWeight.Bold)
+            }
+        }
+    }
+}
+
+// ── Discovery card (minigame fallback) ───────────────────────────────────────
+
+@Composable
+private fun DiscoveryCard(ch: ChallengeDTO, revealed: Boolean, onReveal: () -> Unit) {
+    val gameLabel = when (ch.game) {
+        "crossword"    -> "Word Puzzle"
+        "maze3d"       -> "Navigation Challenge"
+        "geometry"     -> "Geometry Challenge"
+        "painting"     -> "Creative Challenge"
+        "tactics"      -> "Tactics Puzzle"
+        "matchthree"   -> "Market Challenge"
+        "chemistry"    -> "Chemistry Lab"
+        "sudoku"       -> "Logic Puzzle"
+        "voting"       -> "Voting Strategy"
+        "fiction"      -> "Story Choice"
+        else           -> "Challenge"
+    }
+    Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+        // Game type badge
+        Text(
+            "✦ $gameLabel",
+            color = Amber,
+            fontSize = 10.sp,
+            fontWeight = FontWeight.Bold,
+            letterSpacing = 1.sp,
+        )
+        // Instruction
+        Text(
+            ch.instruction ?: ch.question ?: "Discover more about this story.",
+            color = Color.White,
+            fontWeight = FontWeight.SemiBold,
+            fontSize = 14.sp,
+        )
+        if (!revealed) {
+            Button(
+                onClick = onReveal,
+                modifier = Modifier.fillMaxWidth(),
+                colors = ButtonDefaults.buttonColors(containerColor = Amber.copy(alpha = 0.15f)),
+                shape = RoundedCornerShape(12.dp),
+            ) {
+                Text("Reveal Discovery →", color = Amber, fontWeight = FontWeight.Bold, fontSize = 13.sp)
+            }
+        } else {
+            // Fact revealed
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(Amber.copy(alpha = 0.07f), RoundedCornerShape(12.dp))
+                    .border(1.dp, Amber.copy(alpha = 0.25f), RoundedCornerShape(12.dp))
+                    .padding(12.dp),
+                verticalArrangement = Arrangement.spacedBy(4.dp),
+            ) {
+                Text("✦ Discovery", color = Amber, fontWeight = FontWeight.Bold, fontSize = 11.sp)
+                Text(ch.fact, color = Slate400, fontSize = 12.sp)
             }
         }
     }

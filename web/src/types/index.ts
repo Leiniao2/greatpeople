@@ -49,6 +49,7 @@ export interface FollowerCard {
   name: string
   stat: StatKey
   bonus: number
+  imageKey: string
 }
 
 export type EventType = 'local_event' | 'local_survival' | 'global_competition' | 'natural_hazard'
@@ -115,6 +116,55 @@ export interface GameSetup {
   numComputers: number
 }
 
+// ── Combat / event summary (shown in modal after resolution) ─────────────────
+
+export interface CardContrib {
+  type: 'gp' | 'follower'
+  name: string
+  portraitUrl?: string
+  imageKey?: string
+  baseStat: number
+  traitBonus: number
+  followerBonus: number
+}
+
+export interface CombatSide {
+  playerName: string
+  cards: CardContrib[]
+  total: number
+}
+
+export interface CombatSummary {
+  kind: 'combat'
+  locationName: string
+  stat: StatKey
+  attacker: CombatSide
+  defender: CombatSide
+  result: 'attacker' | 'defender' | 'draw'
+  kill: boolean
+}
+
+export interface EventPlayerResult {
+  playerName: string
+  total: number
+  threshold: number
+  survived: boolean
+  cards: CardContrib[]
+}
+
+export interface EventSummary {
+  kind: 'event'
+  eventName: string
+  eventType: string
+  stat?: StatKey
+  locationName: string
+  threshold: number
+  results: EventPlayerResult[]
+  winnerName?: string
+}
+
+export type GameSummary = CombatSummary | EventSummary
+
 export interface GameState {
   setup: GameSetup
   phase: 'playing' | 'ended'
@@ -129,4 +179,5 @@ export interface GameState {
   winner: string | null
   log: string[]
   globalCompetitionActive: EventCard | null
+  pendingSummary: GameSummary | null
 }

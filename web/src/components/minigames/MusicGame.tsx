@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useRef, useCallback } from 'react'
 
 interface MusicConfig {
   title: string
@@ -22,6 +22,12 @@ const NOTE_HEIGHTS: Record<string, number> = {
   C: 64, D: 58, E: 52, F: 46, G: 40, A: 34, B: 28,
 }
 
+// Base frequencies (octave 4)
+const NOTE_FREQ: Record<string, number> = {
+  C: 261.63, D: 293.66, E: 329.63, Eb: 311.13,
+  F: 349.23, G: 392.00, A: 440.00, B: 493.88,
+}
+
 function getNoteColor(note: string) {
   const base = note.replace(/[^A-G]/g, '')
   return NOTE_COLORS[base] ?? 'from-slate-500 to-slate-600'
@@ -29,6 +35,14 @@ function getNoteColor(note: string) {
 function getNoteHeight(note: string) {
   const base = note.replace(/[^A-G]/g, '')
   return NOTE_HEIGHTS[base] ?? 48
+}
+
+// Parse note name to frequency; label with trailing ' means one octave up
+function getFreq(note: string, label: string): number {
+  // note may be 'C', 'Eb', 'G', etc. — look up directly, fall back to stripping accidentals
+  let freq = NOTE_FREQ[note] ?? NOTE_FREQ[note.replace(/[^A-G]/g, '')] ?? 261.63
+  if (label.endsWith("'")) freq *= 2
+  return freq
 }
 
 const CONFIGS: Record<string, MusicConfig> = {
@@ -171,7 +185,6 @@ export default function MusicGame({ configId, onWin }: { configId: string; onWin
   const config = CONFIGS[configId] ?? CONFIGS['c-major-scale']
   const labels = config.noteLabels ?? config.notes
 
-  // Each note has an original index to track duplicates
   const indexedCorrect = useMemo(() =>
     config.notes.map((n, i) => ({ note: n, label: labels[i], idx: i })),
     [config.notes, labels]
@@ -181,25 +194,108 @@ export default function MusicGame({ configId, onWin }: { configId: string; onWin
 
   const [chosen, setChosen] = useState<typeof indexedCorrect>([])
   const [submitted, setSubmitted] = useState(false)
+  const [isPlaying, setIsPlaying] = useState(false)
+
+  const audioCtxRef = useRef<AudioContext | null>(null)
+
+  const getAudioCtx = useCallback(() => {
+    if (!audioCtxRef.current) {
+      audioCtxRef.current = new AudioContext()
+    }
+    return audioCtxRef.current
+  }, [])
+
+  const playTone = useCallback((freq: number, startTime: number, duration = 0.4) => {
+    const ctx = getAudioCtx()
+
+    // Primary sine oscillator
+    const osc = ctx.createOscillator()
+    const gain = ctx.createGain()
+    osc.connect(gain)
+    gain.connect(ctx.destination)
+    osc.type = 'sine'
+    osc.frequency.value = freq
+
+    // Harmonic overtone for richer, piano-like tone
+    const osc2 = ctx.createOscillator()
+    const gain2 = ctx.createGain()
+    osc2.connect(gain2)
+    gain2.connect(ctx.destination)
+    osc2.type = 'sine'
+    osc2.frequency.value = freq * 2
+    gain2.gain.setValueAtTime(0.15, startTime)
+    gain2.gain.exponentialRampToValueAtTime(0.001, startTime + duration)
+
+    // Attack → sustain → release envelope
+    gain.gain.setValueAtTime(0, startTime)
+    gain.gain.linearRampToValueAtTime(0.5, startTime + 0.015)
+    gain.gain.exponentialRampToValueAtTime(0.25, startTime + 0.08)
+    gain.gain.exponentialRampToValueAtTime(0.001, startTime + duration)
+
+    osc.start(startTime)
+    osc.stop(startTime + duration + 0.05)
+    osc2.start(startTime)
+    osc2.stop(startTime + duration + 0.05)
+  }, [getAudioCtx])
+
+  const playNote = useCallback((note: string, label: string) => {
+    const freq = getFreq(note, label)
+    const ctx = getAudioCtx()
+    playTone(freq, ctx.currentTime)
+  }, [playTone, getAudioCtx])
+
+  const playSequence = useCallback((
+    items: Array<{ note: string; label: string }>,
+    onDone?: () => void
+  ) => {
+    const ctx = getAudioCtx()
+    const spacing = 0.45
+    const duration = 0.4
+    const start = ctx.currentTime + 0.05
+
+    items.forEach((item, i) => {
+      const freq = getFreq(item.note, item.label)
+      playTone(freq, start + i * spacing, duration)
+    })
+
+    const totalMs = (items.length * spacing + duration) * 1000
+    if (onDone) setTimeout(onDone, totalMs)
+  }, [playTone, getAudioCtx])
 
   const remaining = shuffled.filter(n => !chosen.some(c => c.idx === n.idx))
 
   const select = (item: (typeof indexedCorrect)[number]) => {
-    if (submitted) return
+    if (submitted || isPlaying) return
+    playNote(item.note, item.label)
     setChosen(prev => [...prev, item])
   }
 
   const remove = (idx: number) => {
-    if (submitted) return
+    if (submitted || isPlaying) return
+    const item = chosen.find(c => c.idx === idx)
+    if (item) playNote(item.note, item.label)
     setChosen(prev => prev.filter(c => c.idx !== idx))
   }
 
   const allPicked = chosen.length === indexedCorrect.length
 
-  const handleCheck = () => {
-    const correct = chosen.every((c, i) => c.idx === indexedCorrect[i].idx)
-    setSubmitted(true)
-    if (correct) setTimeout(onWin, 800)
+  const isCorrect = submitted && chosen.every((c, i) => c.idx === indexedCorrect[i].idx)
+
+  const handlePlayAndCheck = () => {
+    if (isPlaying) return
+    setIsPlaying(true)
+    playSequence(chosen, () => {
+      const correct = chosen.every((c, i) => c.idx === indexedCorrect[i].idx)
+      setSubmitted(true)
+      setIsPlaying(false)
+      if (correct) setTimeout(onWin, 800)
+    })
+  }
+
+  const handleHearAnswer = () => {
+    if (isPlaying) return
+    setIsPlaying(true)
+    playSequence(indexedCorrect, () => setIsPlaying(false))
   }
 
   return (
@@ -219,17 +315,17 @@ export default function MusicGame({ configId, onWin }: { configId: string; onWin
           {/* Chosen notes on staff */}
           <div className="absolute inset-0 flex items-center gap-3 px-2">
             {chosen.map((c, pos) => {
-              const isCorrect = submitted && c.idx === indexedCorrect[pos].idx
-              const isWrong = submitted && c.idx !== indexedCorrect[pos].idx
+              const noteCorrect = submitted && c.idx === indexedCorrect[pos].idx
+              const noteWrong = submitted && c.idx !== indexedCorrect[pos].idx
               const h = getNoteHeight(c.note)
               const color = getNoteColor(c.note)
               return (
                 <button
                   key={c.idx}
                   onClick={() => remove(c.idx)}
-                  disabled={submitted}
+                  disabled={submitted || isPlaying}
                   className={`relative w-9 rounded-full bg-gradient-to-b ${color} flex items-center justify-center shadow-lg transition-all
-                    ${isCorrect ? 'ring-2 ring-emerald-400' : isWrong ? 'ring-2 ring-red-400' : 'hover:scale-110'}
+                    ${noteCorrect ? 'ring-2 ring-emerald-400' : noteWrong ? 'ring-2 ring-red-400' : 'hover:scale-110'}
                   `}
                   style={{ height: '28px', marginTop: `${h - 14}px`, flexShrink: 0 }}
                 >
@@ -255,7 +351,7 @@ export default function MusicGame({ configId, onWin }: { configId: string; onWin
           <button
             key={item.idx}
             onClick={() => select(item)}
-            disabled={submitted}
+            disabled={submitted || isPlaying}
             className={`w-12 h-12 rounded-xl bg-gradient-to-b ${getNoteColor(item.note)} text-white font-bold text-sm shadow-md hover:scale-105 active:scale-95 transition-all`}
           >
             {item.label}
@@ -265,33 +361,44 @@ export default function MusicGame({ configId, onWin }: { configId: string; onWin
 
       {allPicked && !submitted && (
         <button
-          onClick={handleCheck}
-          className="py-2.5 rounded-xl bg-amber-500 text-slate-950 font-bold text-sm hover:bg-amber-400 transition-all"
+          onClick={handlePlayAndCheck}
+          disabled={isPlaying}
+          className="py-2.5 rounded-xl bg-amber-500 text-slate-950 font-bold text-sm hover:bg-amber-400 transition-all disabled:opacity-60"
         >
-          Play Melody →
+          {isPlaying ? '♪ Playing…' : 'Play Melody →'}
         </button>
       )}
 
       {submitted && (
         <div className={`p-3 rounded-xl border text-xs leading-relaxed ${
-          chosen.every((c, i) => c.idx === indexedCorrect[i].idx)
+          isCorrect
             ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300'
             : 'bg-red-500/10 border-red-500/30 text-red-300'
         }`}>
           <span className="font-bold mr-1">
-            {chosen.every((c, i) => c.idx === indexedCorrect[i].idx) ? '✓ Perfect melody!' : '✗ Not quite —'}
+            {isCorrect ? '✓ Perfect melody!' : '✗ Not quite —'}
           </span>
           {config.fact}
         </div>
       )}
 
-      {submitted && !chosen.every((c, i) => c.idx === indexedCorrect[i].idx) && (
-        <button
-          onClick={() => { setChosen([]); setSubmitted(false) }}
-          className="py-2 rounded-xl border border-slate-700 text-slate-400 text-xs hover:border-slate-600 transition-all"
-        >
-          Try again
-        </button>
+      {submitted && !isCorrect && (
+        <div className="flex gap-2">
+          <button
+            onClick={handleHearAnswer}
+            disabled={isPlaying}
+            className="flex-1 py-2 rounded-xl border border-amber-700/50 text-amber-400 text-xs hover:border-amber-600 transition-all disabled:opacity-50"
+          >
+            {isPlaying ? '♪ Playing…' : 'Hear Answer ▶'}
+          </button>
+          <button
+            onClick={() => { setChosen([]); setSubmitted(false) }}
+            disabled={isPlaying}
+            className="flex-1 py-2 rounded-xl border border-slate-700 text-slate-400 text-xs hover:border-slate-600 transition-all disabled:opacity-50"
+          >
+            Try again
+          </button>
+        </div>
       )}
     </div>
   )

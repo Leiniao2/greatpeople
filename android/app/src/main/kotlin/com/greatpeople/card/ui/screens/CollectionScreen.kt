@@ -26,7 +26,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import com.greatpeople.card.data.loadDemoCards
 import com.greatpeople.card.data.model.Card
-import com.greatpeople.card.data.model.CardTier
 import com.greatpeople.card.ui.viewmodel.CollectionViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -107,12 +106,7 @@ fun CollectionScreen(
 
 @Composable
 private fun CardItem(card: Card, onClick: () -> Unit = {}) {
-    val tierColor = when (card.tier) {
-        CardTier.LEGENDARY -> Color(0xFFD97706)
-        CardTier.EPIC      -> Color(0xFF7C3AED)
-        CardTier.RARE      -> Color(0xFF2563EB)
-        CardTier.COMMON    -> Color(0xFF475569)
-    }
+    val accentColor = Color(0xFFF59E0B)
 
     Card(
         modifier = Modifier.fillMaxWidth().clickable { onClick() },
@@ -122,7 +116,7 @@ private fun CardItem(card: Card, onClick: () -> Unit = {}) {
             // Portrait
             Box(
                 modifier = Modifier.fillMaxWidth().height(140.dp)
-                    .background(tierColor.copy(alpha = 0.15f)),
+                    .background(accentColor.copy(alpha = 0.15f)),
                 contentAlignment = Alignment.Center,
             ) {
                 if (card.portraitUrl.isNotEmpty()) {
@@ -133,7 +127,7 @@ private fun CardItem(card: Card, onClick: () -> Unit = {}) {
                     )
                 } else {
                     Text("♟", style = MaterialTheme.typography.displaySmall,
-                        color = tierColor.copy(alpha = 0.4f))
+                        color = accentColor.copy(alpha = 0.4f))
                 }
             }
 

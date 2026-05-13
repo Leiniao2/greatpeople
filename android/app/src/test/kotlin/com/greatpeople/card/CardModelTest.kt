@@ -1,7 +1,6 @@
 package com.greatpeople.card
 
 import com.greatpeople.card.data.model.Card
-import com.greatpeople.card.data.model.CardTier
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
 import org.junit.Test
@@ -14,7 +13,6 @@ class CardModelTest {
         era: String = "Electricity",
         gender: String = "male",
         identities: List<String> = emptyList(),
-        tier: CardTier = CardTier.LEGENDARY,
         lore: String = "He built the machine that broke the unbreakable.",
         portraitUrl: String = "https://example.com/turing.png",
         years: String = "1912–1954",
@@ -34,7 +32,6 @@ class CardModelTest {
         era = era,
         gender = gender,
         identities = identities,
-        tier = tier,
         lore = lore,
         portraitUrl = portraitUrl,
         years = years,
@@ -49,8 +46,6 @@ class CardModelTest {
         belief = belief,
         reputation = reputation,
     )
-
-    // Default value tests
 
     @Test
     fun `Card years defaults to provided value`() {
@@ -102,10 +97,7 @@ class CardModelTest {
 
     @Test
     fun `Card stat defaults are zero`() {
-        val card = Card(
-            id = "x", figureName = "X", era = "Ancient",
-            tier = CardTier.COMMON, lore = "", portraitUrl = "",
-        )
+        val card = Card(id = "x", figureName = "X", era = "Ancient", lore = "", portraitUrl = "")
         assertEquals(0, card.politics)
         assertEquals(0, card.strength)
         assertEquals(0, card.culture)
@@ -129,35 +121,6 @@ class CardModelTest {
         assertEquals("Codebreaker: if opponent's Intelligence is higher, treat as equal.", card.trait)
         assertEquals("Cracked — when Intelligence wins 3 rounds, generate 1 winning point.", card.achievement)
     }
-
-    // CardTier enum tests
-
-    @Test
-    fun `CardTier enum has exactly 4 values`() {
-        assertEquals(4, CardTier.entries.size)
-    }
-
-    @Test
-    fun `CardTier enum contains COMMON`() {
-        assertEquals(CardTier.COMMON, CardTier.valueOf("COMMON"))
-    }
-
-    @Test
-    fun `CardTier enum contains RARE`() {
-        assertEquals(CardTier.RARE, CardTier.valueOf("RARE"))
-    }
-
-    @Test
-    fun `CardTier enum contains EPIC`() {
-        assertEquals(CardTier.EPIC, CardTier.valueOf("EPIC"))
-    }
-
-    @Test
-    fun `CardTier enum contains LEGENDARY`() {
-        assertEquals(CardTier.LEGENDARY, CardTier.valueOf("LEGENDARY"))
-    }
-
-    // Card equality tests
 
     @Test
     fun `two Cards with same id and fields are equal`() {
@@ -186,8 +149,6 @@ class CardModelTest {
         val modified = card.copy(id = "different")
         assertNotEquals(card, modified)
     }
-
-    // Era validation
 
     @Test
     fun `Card stores all 7 era values`() {

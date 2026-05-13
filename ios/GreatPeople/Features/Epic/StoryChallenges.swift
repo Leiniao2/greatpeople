@@ -37,7 +37,10 @@ struct ChallengeDTO: Decodable {
     // sort
     let items: [String]?
     // shared
-    let fact: String
+    let fact: String?
+    // minigame
+    let game: String?
+    let instruction: String?
 }
 
 struct StoryChallengeEntry: Decodable {
@@ -54,13 +57,7 @@ enum StoryChallengesLoader {
               let data = try? Data(contentsOf: url),
               let entries = try? JSONDecoder().decode([StoryChallengeEntry].self, from: data)
         else { return [] }
-        return entries.map { entry in
-            StoryChallengeEntry(
-                era: entry.era,
-                story: entry.story,
-                challenges: entry.challenges.filter { $0.type != .minigame }
-            )
-        }
+        return entries
     }()
 
     static func challenges(era: String, story: String) -> [ChallengeDTO] {

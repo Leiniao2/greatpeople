@@ -15,6 +15,20 @@ interface TacticsConfig {
 }
 
 const CONFIGS: Record<string, TacticsConfig> = {
+  'musashi-duel': {
+    title: 'Ganryū Island',
+    question: "Musashi holds the high ground. One move wins the duel — find it.",
+    rows: 5, cols: 5,
+    board: [
+      { piece: 'BK', row: 0, col: 4 },
+      { piece: 'BP', row: 0, col: 3 },
+      { piece: 'BP', row: 1, col: 4 },
+      { piece: 'WQ', row: 3, col: 1 },
+      { piece: 'WK', row: 4, col: 4 },
+    ],
+    winFrom: [3, 1], winTo: [0, 4],
+    fact: "Musashi arrived two hours late to his duel with Sasaki Kojirō — deliberately. The waiting shattered Kojirō's composure. When Kojirō threw his scabbard into the sea, Musashi said, 'You have already lost.' He then charged, striking before Kojirō could complete his famous Swallow Cut.",
+  },
   senate: {
     title: 'Senate Gambit',
     question: 'Pericles commands the white pieces. Find the move that delivers checkmate in one.',

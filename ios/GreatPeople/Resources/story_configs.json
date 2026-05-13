@@ -13,7 +13,7 @@
     "figure": "Sargon I",
     "tagline": "The world's first conqueror builds an empire from nothing but will.",
     "quizzes": 4,
-    "locationImage": "ancient_memphis"
+    "locationImage": "ancient_uruk"
   },
   {
     "era": "Ancient",
@@ -21,7 +21,7 @@
     "figure": "Gilgamesh",
     "tagline": "Two forces of nature meet — and become brothers.",
     "quizzes": 4,
-    "locationImage": "ancient_stonehenge"
+    "locationImage": "ancient_uruk"
   },
   {
     "era": "Classical",
@@ -29,7 +29,7 @@
     "figure": "Euclid",
     "tagline": "A single book of proofs shapes two thousand years of thought.",
     "quizzes": 4,
-    "locationImage": "ancient_petra"
+    "locationImage": "ancient_athens"
   },
   {
     "era": "Classical",
@@ -37,7 +37,7 @@
     "figure": "Euclid",
     "tagline": "Thirteen books that defined the shape of reason forever.",
     "quizzes": 4,
-    "locationImage": "ancient_petra"
+    "locationImage": "ancient_athens"
   },
   {
     "era": "Classical",
@@ -45,7 +45,7 @@
     "figure": "Pericles",
     "tagline": "A statesman, a philosopher, and a king debate the soul of democracy.",
     "quizzes": 4,
-    "locationImage": "classical_sparta"
+    "locationImage": "ancient_athens"
   },
   {
     "era": "Classical",
@@ -53,7 +53,7 @@
     "figure": "Cicero",
     "tagline": "The Senate hangs on every word — and words can cut like swords.",
     "quizzes": 4,
-    "locationImage": "classical_sparta"
+    "locationImage": "classical_rome"
   },
   {
     "era": "Classical",
@@ -61,7 +61,7 @@
     "figure": "Anaxagoras",
     "tagline": "The philosopher who dared say the sun is a rock, not a god.",
     "quizzes": 4,
-    "locationImage": "classical_sparta"
+    "locationImage": "ancient_athens"
   },
   {
     "era": "Medieval",
@@ -69,7 +69,7 @@
     "figure": "Belisarius",
     "tagline": "Rome's final military genius fought enemies on every front — including his emperor.",
     "quizzes": 4,
-    "locationImage": "medieval_jerusalem"
+    "locationImage": "steam_istanbul"
   },
   {
     "era": "Medieval",
@@ -85,7 +85,7 @@
     "figure": "Mani",
     "tagline": "A visionary paints his gospel across three continents in color and light.",
     "quizzes": 4,
-    "locationImage": "classical_carthage"
+    "locationImage": "medieval_damascus"
   },
   {
     "era": "Medieval",
@@ -141,7 +141,7 @@
     "figure": "Magellan",
     "tagline": "He bet his life — and lost it — on the shape of the Earth.",
     "quizzes": 4,
-    "locationImage": "renaissance_genoa"
+    "locationImage": "renaissance_lisbon"
   },
   {
     "era": "Information",
@@ -173,7 +173,7 @@
     "figure": "Carl Linnaeus",
     "tagline": "He gives every living creature a name — and creates the language of biology.",
     "quizzes": 4,
-    "locationImage": "steam_london"
+    "locationImage": "renaissance_genoa"
   },
   {
     "era": "Steam",
@@ -181,7 +181,7 @@
     "figure": "Gregor Mendel",
     "tagline": "A monk in a garden uncovers the hidden code of life.",
     "quizzes": 4,
-    "locationImage": "steam_london"
+    "locationImage": "steam_manchester"
   },
   {
     "era": "Steam",
@@ -213,7 +213,7 @@
     "figure": "Hendrik Lorentz",
     "tagline": "He builds the mathematics of relativity — and gives Einstein the tools to prove it.",
     "quizzes": 4,
-    "locationImage": "electricity_london"
+    "locationImage": "steam_amsterdam"
   },
   {
     "era": "Electricity",
@@ -229,7 +229,7 @@
     "figure": "Amelia Earhart",
     "tagline": "The skies were closed to women — until she flew through them.",
     "quizzes": 4,
-    "locationImage": "electricity_london"
+    "locationImage": "information_sanjose"
   },
   {
     "era": "Electricity",
@@ -237,7 +237,7 @@
     "figure": "Sergei Eisenstein",
     "tagline": "He invents the grammar of film — a language that changes how the world sees itself.",
     "quizzes": 4,
-    "locationImage": "electricity_london"
+    "locationImage": "electricity_moscow"
   },
   {
     "era": "Electricity",
@@ -245,7 +245,7 @@
     "figure": "Edmund Hillary",
     "tagline": "Two climbers from opposite ends of the Earth reach the same impossible peak together.",
     "quizzes": 4,
-    "locationImage": "electricity_delhi"
+    "locationImage": "electricity_mt_everest"
   },
   {
     "era": "Electricity",
@@ -253,7 +253,7 @@
     "figure": "Mao Zedong",
     "tagline": "A revolution born in starvation, hardened in philosophy, written in history.",
     "quizzes": 4,
-    "locationImage": "medieval_changan"
+    "locationImage": "electricity_hongkong"
   },
   {
     "era": "Electricity",
@@ -261,7 +261,7 @@
     "figure": "An Jung-geun",
     "tagline": "One shot. One act of defiance. An entire nation's will made visible.",
     "quizzes": 3,
-    "locationImage": "information_tokyo"
+    "locationImage": "information_seoul"
   },
   {
     "era": "Electricity",
@@ -269,7 +269,7 @@
     "figure": "Andrew Mellon",
     "tagline": "A fortune that shaped an era — and the questions it could never answer.",
     "quizzes": 3,
-    "locationImage": "steam_manchester"
+    "locationImage": "electricity_london"
   },
   {
     "era": "Electricity",
@@ -277,7 +277,7 @@
     "figure": "Audrey Hepburn",
     "tagline": "Grace in every frame, humanity in every cause.",
     "quizzes": 4,
-    "locationImage": "steam_manchester"
+    "locationImage": "information_sanjose"
   },
   {
     "era": "Information",

@@ -7,8 +7,6 @@ import androidx.room.TypeConverters
 import com.greatpeople.card.data.local.StringListConverter
 import kotlinx.parcelize.Parcelize
 
-enum class CardTier { COMMON, RARE, EPIC, LEGENDARY }
-
 @Parcelize
 @Entity(tableName = "cards")
 @TypeConverters(StringListConverter::class)
@@ -18,7 +16,6 @@ data class Card(
     val era: String,
     val gender: String = "",
     val identities: List<String> = emptyList(),
-    val tier: CardTier,
     val lore: String,
     val portraitUrl: String,
     val years: String = "",

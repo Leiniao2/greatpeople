@@ -1,9 +1,11 @@
 import { useEffect, useCallback, useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '@/hooks/useAuth'
 import type {
   Card, FollowerCard, EventCard, OnboardCard, LocationState,
   PlayerState, GameState, GameSetup,
   StatKey, EventType, EraMode, PlayerMode, MatchType,
+  CardContrib, CombatSide, CombatSummary, EventPlayerResult, GameSummary,
 } from '@/types'
 import demoCardsJson from '@/data/demo_cards.json'
 import locationsJson from '@/data/locations.json'
@@ -359,22 +361,74 @@ function computeLocationTotal(
   return total
 }
 
-function computeLocationTotalStats(locationCards: OnboardCard[], playerId: string, gpCards: Record<string, Card>, followerCards: Record<string, FollowerCard>): number {
+function computeSide(
+  locationCards: OnboardCard[],
+  playerId: string,
+  playerName: string,
+  stat: StatKey,
+  gpMap: Record<string, Card>,
+  followerMap: Record<string, FollowerCard>,
+  allLocations: LocationState[],
+): CombatSide {
+  const cards: CardContrib[] = []
   let total = 0
   for (const oc of locationCards) {
     if (oc.playerId !== playerId) continue
     if (oc.type === 'gp') {
-      const gp = gpCards[oc.cardId]
-      if (gp) {
-        total += gp.politics + gp.strength + gp.culture + gp.wealth +
-                 gp.intelligence + gp.technique + gp.belief + gp.reputation
-      }
+      const gp = gpMap[oc.cardId]
+      if (!gp) continue
+      const baseStat = gp[stat]
+      const traitBonus = traitBonusForGP(gp, stat, locationCards, playerId, allLocations, gpMap, followerMap)
+      cards.push({ type: 'gp', name: gp.figureName, portraitUrl: gp.portraitUrl, baseStat, traitBonus, followerBonus: 0 })
+      total += baseStat + traitBonus
     } else {
-      const f = followerCards[oc.cardId]
-      if (f) total += f.bonus
+      const f = followerMap[oc.cardId]
+      if (!f) continue
+      const followerBonus = f.stat === stat ? f.bonus : 0
+      cards.push({ type: 'follower', name: f.name, imageKey: f.imageKey, baseStat: 0, traitBonus: 0, followerBonus })
+      total += followerBonus
     }
   }
-  return total
+  return { playerName, cards, total }
+}
+
+function computeEventSide(
+  locationCards: OnboardCard[],
+  playerId: string,
+  playerName: string,
+  stat: StatKey | null,
+  threshold: number,
+  gpMap: Record<string, Card>,
+  followerMap: Record<string, FollowerCard>,
+  allLocations: LocationState[],
+): EventPlayerResult {
+  const cards: CardContrib[] = []
+  let total = 0
+  for (const oc of locationCards) {
+    if (oc.playerId !== playerId) continue
+    if (oc.type === 'gp') {
+      const gp = gpMap[oc.cardId]
+      if (!gp) continue
+      if (stat) {
+        const baseStat = gp[stat]
+        const traitBonus = traitBonusForGP(gp, stat, locationCards, playerId, allLocations, gpMap, followerMap)
+        cards.push({ type: 'gp', name: gp.figureName, portraitUrl: gp.portraitUrl, baseStat, traitBonus, followerBonus: 0 })
+        total += baseStat + traitBonus
+      } else {
+        // Natural hazard: all stats
+        const allStats = gp.politics + gp.strength + gp.culture + gp.wealth + gp.intelligence + gp.technique + gp.belief + gp.reputation
+        cards.push({ type: 'gp', name: gp.figureName, portraitUrl: gp.portraitUrl, baseStat: allStats, traitBonus: 0, followerBonus: 0 })
+        total += allStats
+      }
+    } else {
+      const f = followerMap[oc.cardId]
+      if (!f) continue
+      const followerBonus = stat ? (f.stat === stat ? f.bonus : 0) : f.bonus
+      cards.push({ type: 'follower', name: f.name, imageKey: f.imageKey, baseStat: 0, traitBonus: 0, followerBonus })
+      total += followerBonus
+    }
+  }
+  return { playerName, total, threshold, survived: total >= threshold, cards }
 }
 
 // ─── Game Initialization ──────────────────────────────────────────────────────
@@ -445,6 +499,7 @@ function initGame(setup: GameSetup): GameState {
     winner: null,
     log: ['Game started! Good luck to all players.'],
     globalCompetitionActive: null,
+    pendingSummary: null,
   }
 }
 
@@ -462,6 +517,7 @@ type GameAction =
   | { type: 'END_SCENARIO'; locationId: string }
   | { type: 'END_TURN' }
   | { type: 'GLOBAL_COMP_REWARD'; playerId: string; rewardType: 'events' | 'followers' | 'gp' }
+  | { type: 'DISMISS_SUMMARY' }
 
 function buildLookups(state: GameState) {
   const gpMap: Record<string, Card> = {}
@@ -847,10 +903,25 @@ function gameReducer(state: GameState, action: GameAction): GameState {
         ? `${player.name}'s ${attackerName} lost! (${myTotal} vs ${theirTotal})`
         : `Draw! (${myTotal} vs ${theirTotal})`
 
+      // Build combat summary
+      const defenderPlayer = state.players.find(p => p.id === theirCard.playerId)
+      const attackerSide = computeSide(loc.cards, player.id, player.name, stat, gpMap, followerMap, state.locations)
+      const defenderSide = computeSide(loc.cards, theirCard.playerId, defenderPlayer?.name ?? 'Opponent', stat, gpMap, followerMap, state.locations)
+      const combatSummary: CombatSummary = {
+        kind: 'combat',
+        locationName: loc.name,
+        stat,
+        attacker: attackerSide,
+        defender: defenderSide,
+        result: myWon ? 'attacker' : theirWon ? 'defender' : 'draw',
+        kill: action.kill,
+      }
+
       return {
         ...state,
         players: newPlayers,
         locations: newLocations,
+        pendingSummary: combatSummary,
         log: [`Attack: ${attackerName} vs ${defenderName}. ${resultMsg}`, ...state.log.slice(0, 19)],
       }
     }
@@ -896,6 +967,8 @@ function gameReducer(state: GameState, action: GameAction): GameState {
       let newGpDeck = state.gpDeck
       const logEntries: string[] = []
 
+      let roundSummary: GameSummary | null = null
+
       if (isNewRound) {
         newRound = state.round + 1
 
@@ -903,52 +976,75 @@ function gameReducer(state: GameState, action: GameAction): GameState {
         if (newGlobalComp) {
           const { gpMap } = buildLookups(state)
           const stat = newGlobalComp.stat!
+          const compResults: EventPlayerResult[] = []
           let bestTotal = -1
           let bestPlayerId = ''
           for (const p of newPlayers) {
             let total = 0
+            const cards: CardContrib[] = []
             for (const loc of newLocations) {
               for (const oc of loc.cards) {
                 if (oc.playerId === p.id && oc.type === 'gp' && oc.isPublic) {
                   const gp = gpMap[oc.cardId]
-                  if (gp) total += gp[stat]
+                  if (gp) { total += gp[stat]; cards.push({ type: 'gp', name: gp.figureName, portraitUrl: gp.portraitUrl, baseStat: gp[stat], traitBonus: 0, followerBonus: 0 }) }
                 }
               }
             }
+            compResults.push({ playerName: p.name, total, threshold: 0, survived: true, cards })
             if (total > bestTotal) { bestTotal = total; bestPlayerId = p.id }
           }
-          if (bestPlayerId) {
-            logEntries.push(`Global competition resolved! Winner: ${newPlayers.find(p => p.id === bestPlayerId)?.name} (${STAT_LABELS[stat]}: ${bestTotal})`)
+          compResults.sort((a, b) => b.total - a.total)
+          const winnerName = newPlayers.find(p => p.id === bestPlayerId)?.name
+          if (bestPlayerId) logEntries.push(`Global competition resolved! Winner: ${winnerName} (${STAT_LABELS[stat]}: ${bestTotal})`)
+          roundSummary = {
+            kind: 'event',
+            eventName: newGlobalComp.name,
+            eventType: 'global_competition',
+            stat,
+            locationName: 'All Locations',
+            threshold: 0,
+            results: compResults,
+            winnerName,
           }
           newGlobalComp = null
         }
 
-        // Resolve local survival events
+        // Resolve local survival and hazard events
         newLocations = newLocations.map(loc => {
           if (!loc.activeEvent) return loc
           const event = loc.activeEvent
           let updatedCards = [...loc.cards]
           const { gpMap, followerMap } = buildLookups({ ...state, locations: newLocations })
+          const playerGroups = Array.from(new Set(updatedCards.map(c => c.playerId)))
+          const involvedPlayers = playerGroups.filter(pid =>
+            updatedCards.some(c => c.playerId === pid)
+          )
 
-          if (event.type === 'local_survival' && event.stat) {
-            const stat = event.stat
-            const playerGroups = new Set(updatedCards.map(c => c.playerId))
-            for (const pid of playerGroups) {
-              const total = computeLocationTotal(updatedCards, pid, stat, gpMap, followerMap)
-              if (total < 10) {
+          if ((event.type === 'local_survival' || event.type === 'natural_hazard') && involvedPlayers.length > 0) {
+            const stat = event.type === 'local_survival' ? event.stat ?? null : null
+            const threshold = event.type === 'local_survival' ? 10 : 100
+            const results: EventPlayerResult[] = []
+
+            for (const pid of involvedPlayers) {
+              const pName = newPlayers.find(p => p.id === pid)?.name ?? pid
+              const result = computeEventSide(updatedCards, pid, pName, stat, threshold, gpMap, followerMap, state.locations)
+              results.push(result)
+              if (!result.survived) {
                 updatedCards = updatedCards.filter(c => c.playerId !== pid)
-                logEntries.push(`Local survival: ${newPlayers.find(p => p.id === pid)?.name}'s cards in ${loc.name} discarded (${STAT_LABELS[stat]} < 10)`)
+                logEntries.push(`${event.type === 'local_survival' ? 'Local survival' : 'Natural hazard'}: ${pName}'s cards in ${loc.name} discarded`)
               }
             }
-          }
 
-          if (event.type === 'natural_hazard') {
-            const playerGroups = new Set(updatedCards.map(c => c.playerId))
-            for (const pid of playerGroups) {
-              const total = computeLocationTotalStats(updatedCards, pid, gpMap, followerMap)
-              if (total < 100) {
-                updatedCards = updatedCards.filter(c => c.playerId !== pid)
-                logEntries.push(`Natural hazard: ${newPlayers.find(p => p.id === pid)?.name}'s cards in ${loc.name} discarded (total < 100)`)
+            // Only emit summary if any player is involved
+            if (!roundSummary && results.length > 0) {
+              roundSummary = {
+                kind: 'event',
+                eventName: event.name,
+                eventType: event.type,
+                stat: stat ?? undefined,
+                locationName: loc.name,
+                threshold,
+                results,
               }
             }
           }
@@ -998,9 +1094,13 @@ function gameReducer(state: GameState, action: GameAction): GameState {
         followerDeck: newFollowerDeck,
         winner,
         phase: winner ? 'ended' : 'playing',
+        pendingSummary: roundSummary,
         log: [...logEntries, `Round ${newRound}: ${state.players[nextIdx].name}'s turn.`, ...state.log.slice(0, 19)],
       }
     }
+
+    case 'DISMISS_SUMMARY':
+      return { ...state, pendingSummary: null }
 
     case 'GLOBAL_COMP_REWARD': {
       const { playerId, rewardType } = action
@@ -1505,6 +1605,44 @@ const PLAYER_COLORS = [
   { text: 'text-rose-400',    bg: 'bg-rose-500/15',    border: 'border-rose-500/40',    ring: 'border-rose-500/40',    dot: 'bg-rose-400'    },
 ]
 
+// ─── CPU AI helpers ───────────────────────────────────────────────────────────
+
+// Cards whose trait actively benefits from being revealed (public):
+// - Al-Khwarizmi: gains bonuses from other *revealed* GPs on the field
+// - Aspasia: her bonus to Pericles is positional, but she wants Pericles visible
+// - Edmund Hillary: gains 2 ticks per win — worth getting into events fast
+// - Sargon I: extra achievement tick on defeat — needs to be in play publicly
+// - Audrey Hepburn: global Reputation boost to all allies (telegraphs value)
+// - Mani: Belief/Intelligence scale with distinct eras on field — being revealed helps other Manis
+const PUBLIC_TRAIT_FIGURES = new Set([
+  'Al-Khwarizmi', 'Edmund Hillary', 'Sargon I', 'Audrey Hepburn', 'Mani',
+])
+
+// Cards whose trait benefits most from staying *hidden* (private):
+// - Belisarius: trait activates when outnumbered — surprise value is high
+// - Miyamoto Musashi: attack-twice trait is more dangerous unseen
+// - Mao Zedong: relocate-on-death trait is a surprise escape
+const PRIVATE_TRAIT_FIGURES = new Set([
+  'Belisarius', 'Miyamoto Musashi', 'Mao Zedong',
+])
+
+function cpuShouldDeployPublic(gp: Card, allLocations: LocationState[], gpMap: Record<string, Card>): boolean {
+  if (PRIVATE_TRAIT_FIGURES.has(gp.figureName)) return false
+  if (PUBLIC_TRAIT_FIGURES.has(gp.figureName)) return true
+
+  // Go public if another revealed allied GP benefits from it (Al-Khwarizmi on the board)
+  const alKhwarizmiDeployed = allLocations.some(loc =>
+    loc.cards.some(c => c.type === 'gp' && c.isPublic && gpMap[c.cardId]?.figureName === 'Al-Khwarizmi')
+  )
+  if (alKhwarizmiDeployed) return Math.random() < 0.7
+
+  // High-stat cards have less to hide — they win on raw numbers
+  const total = STATS.reduce((sum, s) => sum + gp[s], 0)
+  if (total >= 450) return Math.random() < 0.60
+  if (total >= 380) return Math.random() < 0.35
+  return Math.random() < 0.20
+}
+
 // ─── Game Board Component ─────────────────────────────────────────────────────
 
 type SelectionMode = 'none' | 'deploy-gp' | 'add-follower' | 'select-onboard' | 'attack-select-target' | 'move-target' | 'start-event'
@@ -1516,6 +1654,149 @@ interface Selection {
   handCardType?: 'gp' | 'event' | 'follower'
   handFollowerId?: string
   onboardInstanceId?: string
+}
+
+// ─── Summary Modal ─────────────────────────────────────────────────────────────
+
+function ContribRow({ c }: { c: CardContrib }) {
+  const hasBonus = c.traitBonus !== 0 || c.followerBonus !== 0
+  const portrait = c.portraitUrl ?? (c.imageKey ? `/followers/${c.imageKey}.jpeg` : null)
+  return (
+    <div className="flex items-center gap-2 py-1 border-b border-white/5 last:border-0">
+      {portrait ? (
+        <img src={portrait} alt={c.name} className="w-7 h-7 rounded-full object-cover shrink-0 border border-white/10" />
+      ) : (
+        <div className="w-7 h-7 rounded-full bg-slate-800 shrink-0 flex items-center justify-center text-xs">
+          {c.type === 'follower' ? '👥' : '👤'}
+        </div>
+      )}
+      <div className="flex-1 min-w-0">
+        <div className="flex items-center gap-1 flex-wrap">
+          <span className="text-xs text-slate-300 font-medium truncate">{c.name}</span>
+          {c.type === 'follower' && <span className="text-[9px] text-indigo-400 bg-indigo-900/40 px-1 rounded">follower</span>}
+        </div>
+        {hasBonus && (
+          <div className="flex gap-2 mt-0.5">
+            {c.traitBonus !== 0 && (
+              <span className="text-[9px] text-amber-400">trait {c.traitBonus > 0 ? '+' : ''}{c.traitBonus}</span>
+            )}
+            {c.followerBonus !== 0 && (
+              <span className="text-[9px] text-indigo-400">follower +{c.followerBonus}</span>
+            )}
+          </div>
+        )}
+      </div>
+      <span className="text-sm font-bold text-white shrink-0">
+        {c.baseStat + c.traitBonus + c.followerBonus}
+      </span>
+    </div>
+  )
+}
+
+function SummaryModal({ summary, onDismiss }: { summary: GameSummary; onDismiss: () => void }) {
+  if (summary.kind === 'combat') {
+    const s = summary
+    const resultColor = s.result === 'attacker' ? 'text-emerald-400' : s.result === 'defender' ? 'text-red-400' : 'text-slate-400'
+    const resultLabel = s.result === 'attacker' ? 'Attacker wins!' : s.result === 'defender' ? 'Defender holds!' : 'Draw'
+    return (
+      <div className="fixed inset-0 z-[150] flex items-center justify-center bg-black/80 p-4">
+        <div className="bg-[#0e1020] border border-white/10 rounded-2xl w-full max-w-sm shadow-2xl overflow-hidden">
+          {/* Header */}
+          <div className="bg-red-900/20 border-b border-white/10 px-4 py-3 text-center">
+            <div className="text-lg">⚔️</div>
+            <h3 className="font-bold text-white text-sm uppercase tracking-wide">Battle Report</h3>
+            <p className="text-slate-400 text-xs mt-0.5">{s.locationName} · {STAT_LABELS[s.stat]}</p>
+          </div>
+
+          <div className="p-4 space-y-3 max-h-[60vh] overflow-y-auto">
+            {/* Attacker side */}
+            <div>
+              <div className="flex justify-between items-center mb-1">
+                <span className="text-[10px] uppercase tracking-widest text-slate-500">Attacker — {s.attacker.playerName}</span>
+                <span className="text-sm font-bold text-emerald-400">{s.attacker.total}</span>
+              </div>
+              {s.attacker.cards.map((c, i) => <ContribRow key={i} c={c} />)}
+            </div>
+
+            <div className="border-t border-white/10" />
+
+            {/* Defender side */}
+            <div>
+              <div className="flex justify-between items-center mb-1">
+                <span className="text-[10px] uppercase tracking-widest text-slate-500">Defender — {s.defender.playerName}</span>
+                <span className="text-sm font-bold text-indigo-400">{s.defender.total}</span>
+              </div>
+              {s.defender.cards.map((c, i) => <ContribRow key={i} c={c} />)}
+            </div>
+          </div>
+
+          {/* Outcome */}
+          <div className="border-t border-white/10 px-4 py-3 text-center space-y-1">
+            <p className={`font-bold text-sm ${resultColor}`}>{resultLabel}</p>
+            {s.kill && <p className="text-xs text-red-400">Defender's card eliminated!</p>}
+          </div>
+
+          <div className="px-4 pb-4">
+            <button onClick={onDismiss}
+              className="w-full py-2.5 rounded-xl text-sm font-bold bg-slate-800 hover:bg-slate-700 text-white transition-all">
+              Continue
+            </button>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  // EventSummary
+  const s = summary
+  const isGlobal = s.eventType === 'global_competition'
+  const headerColor = isGlobal ? 'bg-purple-900/20' : s.eventType === 'local_survival' ? 'bg-red-900/20' : 'bg-orange-900/20'
+  const icon = isGlobal ? '🌍' : s.eventType === 'local_survival' ? '☠️' : '⚡'
+
+  return (
+    <div className="fixed inset-0 z-[150] flex items-center justify-center bg-black/80 p-4">
+      <div className="bg-[#0e1020] border border-white/10 rounded-2xl w-full max-w-sm shadow-2xl overflow-hidden">
+        <div className={`${headerColor} border-b border-white/10 px-4 py-3 text-center`}>
+          <div className="text-lg">{icon}</div>
+          <h3 className="font-bold text-white text-sm uppercase tracking-wide">{s.eventName}</h3>
+          <p className="text-slate-400 text-xs mt-0.5">
+            {s.locationName}{s.stat ? ` · ${STAT_LABELS[s.stat]}` : ''}
+            {s.threshold > 0 ? ` · threshold ${s.threshold}` : ''}
+          </p>
+        </div>
+
+        <div className="p-4 space-y-4 max-h-[60vh] overflow-y-auto">
+          {s.results.map((r, ri) => (
+            <div key={ri}>
+              <div className="flex justify-between items-center mb-1">
+                <div className="flex items-center gap-1.5">
+                  <span className="text-[10px] uppercase tracking-widest text-slate-500">{r.playerName}</span>
+                  {!isGlobal && (
+                    <span className={`text-[9px] font-bold px-1.5 rounded ${r.survived ? 'bg-emerald-900/50 text-emerald-400' : 'bg-red-900/50 text-red-400'}`}>
+                      {r.survived ? 'Survived' : 'Eliminated'}
+                    </span>
+                  )}
+                  {isGlobal && s.winnerName === r.playerName && (
+                    <span className="text-[9px] font-bold px-1.5 rounded bg-purple-900/50 text-purple-300">Winner</span>
+                  )}
+                </div>
+                <span className="text-sm font-bold text-white">{r.total}</span>
+              </div>
+              {r.cards.map((c, i) => <ContribRow key={i} c={c} />)}
+              {ri < s.results.length - 1 && <div className="mt-3 border-t border-white/10" />}
+            </div>
+          ))}
+        </div>
+
+        <div className="px-4 pb-4 pt-2">
+          <button onClick={onDismiss}
+            className="w-full py-2.5 rounded-xl text-sm font-bold bg-slate-800 hover:bg-slate-700 text-white transition-all">
+            Continue
+          </button>
+        </div>
+      </div>
+    </div>
+  )
 }
 
 interface BattleGameProps {
@@ -1596,19 +1877,19 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
     computerTurnRef.current = true
 
     const timer = setTimeout(() => {
-      // 1. Deploy best GP to location with most opponents
+      // 1. Deploy best GP — pick strongest card, choose location smartly, decide public/private per trait
       if (currentPlayer.gpHand.length > 0 && !gameState.turnActions.deployedGP) {
         const bestCard = currentPlayer.gpHand.reduce((best, id) => {
           const gp = gpMap[id]
           if (!gp) return best
           const bestGp = gpMap[best]
           if (!bestGp) return id
-          const gpTotal = gp.politics + gp.strength + gp.culture + gp.wealth + gp.intelligence + gp.technique + gp.belief + gp.reputation
-          const bestTotal = bestGp.politics + bestGp.strength + bestGp.culture + bestGp.wealth + bestGp.intelligence + bestGp.technique + bestGp.belief + bestGp.reputation
+          const gpTotal = STATS.reduce((s, k) => s + gp[k], 0)
+          const bestTotal = STATS.reduce((s, k) => s + bestGp[k], 0)
           return gpTotal > bestTotal ? id : best
         }, currentPlayer.gpHand[0])
 
-        // Spread out: prefer locations where this CPU has no cards yet, break ties by opponent presence + randomness
+        // Spread out: prefer empty locations, break ties by opponent presence
         const randomStart = gameState.locations[Math.floor(Math.random() * gameState.locations.length)]
         const targetLoc = gameState.locations.reduce((best, loc) => {
           const myCards = loc.cards.filter(c => c.playerId === currentPlayer.id).length
@@ -1620,27 +1901,100 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
           return Math.random() < 0.5 ? loc : best
         }, randomStart)
 
-        dispatch({ type: 'DEPLOY_GP', cardId: bestCard, locationId: targetLoc.id, isPublic: false })
+        const gp = gpMap[bestCard]
+        const isPublic = gp ? cpuShouldDeployPublic(gp, gameState.locations, gpMap) : false
+        dispatch({ type: 'DEPLOY_GP', cardId: bestCard, locationId: targetLoc.id, isPublic })
       }
 
-      // 2. Add follower if possible — prefer location with fewest of CPU's own cards (spread out)
+      // 2. Add follower — prefer location matching follower's stat to the strongest allied GP there
       if (currentPlayer.followerHand.length > 0 && !gameState.turnActions.addedFollower) {
-        const locsWithGP = gameState.locations.filter(l => l.cards.some(c => c.type === 'gp' && c.playerId === currentPlayer.id))
+        const locsWithGP = gameState.locations.filter(l =>
+          l.cards.some(c => c.type === 'gp' && c.playerId === currentPlayer.id)
+        )
         if (locsWithGP.length > 0) {
+          // Pick the follower whose stat best complements the location with the most opponents
+          const follower = (() => {
+            const contested = locsWithGP.find(l => l.activeEvent?.stat) ?? locsWithGP[0]
+            const eventStat = contested.activeEvent?.stat
+            if (eventStat) {
+              const match = currentPlayer.followerHand.find(f => f.stat === eventStat)
+              if (match) return match
+            }
+            return currentPlayer.followerHand[0]
+          })()
+
           const locWithGP = locsWithGP.reduce((best, loc) => {
+            // Prefer location where follower's stat matches an active event
+            const eventMatch = loc.activeEvent?.stat === follower.stat ? 1 : 0
+            const bestEventMatch = best.activeEvent?.stat === follower.stat ? 1 : 0
+            if (eventMatch !== bestEventMatch) return eventMatch > bestEventMatch ? loc : best
             const myCards = loc.cards.filter(c => c.playerId === currentPlayer.id).length
             const bestMyCards = best.cards.filter(c => c.playerId === currentPlayer.id).length
             return myCards < bestMyCards ? loc : best
           }, locsWithGP[0])
-          const follower = currentPlayer.followerHand[0]
+
           dispatch({ type: 'ADD_FOLLOWER', followerId: follower.id, locationId: locWithGP.id, instanceId: follower.id })
         }
       }
 
-      // 3. Claim achievement if possible
+      // 3. Visibility management — reveal cards that need to be public to claim achievement,
+      //    or whose trait prefers being seen; hide cards where surprise still has value
+      let toggled = false
+      for (const loc of gameState.locations) {
+        if (toggled) break
+        for (const oc of loc.cards) {
+          if (oc.type !== 'gp' || oc.playerId !== currentPlayer.id || oc.justDeployed) continue
+          if (gameState.turnActions.actedCards.includes(`vis-${oc.instanceId}`)) continue
+          const gp = gpMap[oc.cardId]
+          if (!gp) continue
+          const threshold = getAchievementThreshold(gp.figureName)
+
+          // Priority 1: must go public to claim achievement at or near threshold
+          if (!oc.isPublic && oc.achievementTicks >= threshold - 1) {
+            dispatch({ type: 'TOGGLE_VISIBILITY', instanceId: oc.instanceId })
+            toggled = true
+            break
+          }
+
+          // Priority 2: trait-preferred-public card that is still private — reveal with some probability
+          if (!oc.isPublic && PUBLIC_TRAIT_FIGURES.has(gp.figureName) && Math.random() < 0.55) {
+            dispatch({ type: 'TOGGLE_VISIBILITY', instanceId: oc.instanceId })
+            toggled = true
+            break
+          }
+
+          // Priority 3: strong card (>420 total) in a contested location — go public to use event combat
+          if (!oc.isPublic) {
+            const total = STATS.reduce((s, k) => s + gp[k], 0)
+            const hasEvent = loc.activeEvent?.type === 'local_event'
+            const outnumbered = loc.cards.filter(c => c.playerId !== currentPlayer.id).length >
+                                loc.cards.filter(c => c.playerId === currentPlayer.id).length
+            if (total >= 420 && hasEvent && !outnumbered && Math.random() < 0.65) {
+              dispatch({ type: 'TOGGLE_VISIBILITY', instanceId: oc.instanceId })
+              toggled = true
+              break
+            }
+          }
+
+          // Priority 4: already public but private-trait card with no pending achievement — hide again
+          if (oc.isPublic && PRIVATE_TRAIT_FIGURES.has(gp.figureName) && oc.achievementTicks < threshold - 1 && Math.random() < 0.4) {
+            dispatch({ type: 'TOGGLE_VISIBILITY', instanceId: oc.instanceId })
+            toggled = true
+            break
+          }
+        }
+      }
+
+      // 4. Claim achievement for any ready public GP
       for (const loc of gameState.locations) {
         for (const oc of loc.cards) {
-          if (oc.type === 'gp' && oc.playerId === currentPlayer.id && oc.achievementTicks >= getAchievementThreshold(gpMap[oc.cardId]?.figureName ?? '') && oc.isPublic) {
+          if (
+            oc.type === 'gp' &&
+            oc.playerId === currentPlayer.id &&
+            oc.isPublic &&
+            oc.achievementTicks >= getAchievementThreshold(gpMap[oc.cardId]?.figureName ?? '') &&
+            !gameState.turnActions.actedCards.includes(oc.instanceId)
+          ) {
             dispatch({ type: 'CLAIM_ACHIEVEMENT', instanceId: oc.instanceId })
           }
         }
@@ -2116,6 +2470,14 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
         )}
       </div>
 
+      {/* Battle / event summary modal */}
+      {gameState.pendingSummary && (
+        <SummaryModal
+          summary={gameState.pendingSummary}
+          onDismiss={() => dispatch({ type: 'DISMISS_SUMMARY' })}
+        />
+      )}
+
       {/* Card detail modal */}
       {cardDetail && <CardDetailModal card={cardDetail.card} achievementTicks={cardDetail.ticks} onClose={() => setCardDetail(null)} />}
 
@@ -2186,8 +2548,10 @@ const MATCH_MODES: { type: MatchType; icon: string; title: string; desc: string;
 
 export default function BattlePage() {
   const navigate = useNavigate()
+  const { isGuest, exitGuestMode } = useAuth()
   const [pagePhase, setPagePhase] = useState<PagePhase>('home')
   const [selectedMatchType, setSelectedMatchType] = useState<MatchType>('casual')
+  const [showGuestPrompt, setShowGuestPrompt] = useState(false)
 
   // Maintain game state in a ref to allow flexible initialization
   const gameStateRef = useRef<GameState | null>(null)
@@ -2233,20 +2597,65 @@ export default function BattlePage() {
           </div>
 
           <div className="w-full max-w-sm space-y-3">
-            {MATCH_MODES.map(m => (
-              <button
-                key={m.type}
-                onClick={() => { setSelectedMatchType(m.type); setPagePhase('lobby') }}
-                className={`w-full flex items-center gap-4 px-5 py-4 rounded-2xl border bg-white/[0.03] transition-all duration-200 text-left ${m.border}`}>
-                <span className="text-3xl shrink-0">{m.icon}</span>
-                <div>
-                  <p className={`text-base font-bold tracking-wide ${m.accent}`}>{m.title}</p>
-                  <p className="text-xs text-slate-500 mt-0.5">{m.desc}</p>
-                </div>
-                <span className="ml-auto text-slate-600 text-sm">›</span>
-              </button>
-            ))}
+            {MATCH_MODES.map(m => {
+              const locked = isGuest && m.type !== 'pvc'
+              return (
+                <button
+                  key={m.type}
+                  onClick={() => {
+                    if (locked) { setShowGuestPrompt(true); return }
+                    setSelectedMatchType(m.type); setPagePhase('lobby')
+                  }}
+                  className={`w-full flex items-center gap-4 px-5 py-4 rounded-2xl border bg-white/[0.03] transition-all duration-200 text-left
+                    ${locked ? 'border-white/[0.06] opacity-50' : m.border}`}>
+                  <span className="text-3xl shrink-0">{m.icon}</span>
+                  <div className="flex-1">
+                    <p className={`text-base font-bold tracking-wide ${locked ? 'text-slate-500' : m.accent}`}>{m.title}</p>
+                    <p className="text-xs text-slate-500 mt-0.5">{m.desc}</p>
+                  </div>
+                  {locked
+                    ? <span className="text-slate-600 text-sm">🔒</span>
+                    : <span className="ml-auto text-slate-600 text-sm">›</span>
+                  }
+                </button>
+              )
+            })}
           </div>
+
+          {isGuest && (
+            <p className="text-xs text-slate-600 text-center max-w-xs">
+              Sign in to unlock Casual & Ranked matches
+            </p>
+          )}
+
+          {/* Guest sign-in prompt overlay */}
+          {showGuestPrompt && (
+            <div
+              className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-6"
+              onClick={() => setShowGuestPrompt(false)}
+            >
+              <div
+                className="bg-[#0e0e1a] border border-white/10 rounded-2xl p-6 max-w-xs w-full space-y-4 text-center"
+                onClick={e => e.stopPropagation()}
+              >
+                <div className="text-4xl">🔒</div>
+                <h3 className="text-white font-bold text-lg">Sign In Required</h3>
+                <p className="text-slate-400 text-sm">Create a free account to play Casual and Ranked matches against other players.</p>
+                <button
+                  onClick={() => { setShowGuestPrompt(false); exitGuestMode() }}
+                  className="w-full py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm transition-colors"
+                >
+                  Sign In / Register
+                </button>
+                <button
+                  onClick={() => setShowGuestPrompt(false)}
+                  className="w-full py-2 text-slate-500 text-sm hover:text-slate-400 transition-colors"
+                >
+                  Maybe later
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     )

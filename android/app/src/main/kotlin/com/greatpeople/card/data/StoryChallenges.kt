@@ -15,6 +15,8 @@ data class ChallengeDTO(
     val correct: Boolean?,
     val items: List<String>?,
     val fact: String,
+    val game: String?,
+    val instruction: String?,
 )
 
 data class StoryChallengeEntry(
@@ -38,7 +40,6 @@ object StoryChallengesLoader {
                 story = entry.getString("story"),
                 challenges = (0 until challengesArr.length())
                     .map { j -> parseChallenge(challengesArr.getJSONObject(j)) }
-                    .filter { it.type != ChallengeType.minigame }
             )
         }
         loaded = result
@@ -59,7 +60,9 @@ object StoryChallengesLoader {
             items = if (obj.has("items")) {
                 val a = obj.getJSONArray("items"); (0 until a.length()).map { a.getString(it) }
             } else null,
-            fact = obj.getString("fact"),
+            fact = if (obj.has("fact")) obj.getString("fact") else "",
+            game = if (obj.has("game")) obj.getString("game") else null,
+            instruction = if (obj.has("instruction")) obj.getString("instruction") else null,
         )
     }
 

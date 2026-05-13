@@ -86,6 +86,7 @@ struct StorySheetView: View {
 
     private var challenges: [ChallengeDTO] { StoryChallengesLoader.challenges(era: eraName, story: storyTitle) }
     private var total: Int { challenges.count }
+    private var scoreableTotal: Int { challenges.filter { $0.type != .minigame }.count }
 
     var body: some View {
         NavigationStack {
@@ -145,13 +146,15 @@ struct StorySheetView: View {
                     case .sort:
                         SortChallengeView(challenge: ch, answered: $answered, lastCorrect: $lastCorrect)
                     case .minigame:
-                        EmptyView() // filtered at load time; never reached
+                        discoveryView(ch)
                     }
                 }
 
-                // Fact
+                // Fact / next
                 if answered {
-                    factBanner
+                    if ch.type != .minigame {
+                        factBanner
+                    }
                     nextButton
                 }
 
@@ -217,6 +220,63 @@ struct StorySheetView: View {
         }
     }
 
+    // MARK: - Discovery card (minigame fallback)
+
+    @State private var discoveryRevealed = false
+
+    private func discoveryView(_ ch: ChallengeDTO) -> some View {
+        let gameLabel: String = {
+            switch ch.game {
+            case "crossword":  return "Word Puzzle"
+            case "maze3d":     return "Navigation Challenge"
+            case "geometry":   return "Geometry Challenge"
+            case "painting":   return "Creative Challenge"
+            case "tactics":    return "Tactics Puzzle"
+            case "matchthree": return "Market Challenge"
+            case "chemistry":  return "Chemistry Lab"
+            case "sudoku":     return "Logic Puzzle"
+            case "voting":     return "Voting Strategy"
+            case "fiction":    return "Story Choice"
+            default:           return "Challenge"
+            }
+        }()
+        return VStack(alignment: .leading, spacing: 12) {
+            Text("✦ \(gameLabel)")
+                .font(.caption.weight(.bold))
+                .foregroundColor(.gpAmber)
+                .tracking(1)
+            Text(ch.instruction ?? ch.question ?? "Discover more about this story.")
+                .font(.subheadline.weight(.semibold))
+                .foregroundColor(.white)
+            if !discoveryRevealed {
+                Button("Reveal Discovery →") {
+                    discoveryRevealed = true
+                    lastCorrect = true
+                    answered = true
+                }
+                .font(.subheadline.weight(.bold))
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 12)
+                .background(Color.gpAmber.opacity(0.15))
+                .foregroundColor(.gpAmber)
+                .clipShape(RoundedRectangle(cornerRadius: 12))
+            } else {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("✦ Discovery")
+                        .font(.caption.weight(.bold))
+                        .foregroundColor(.gpAmber)
+                    Text(ch.fact ?? "")
+                        .font(.caption)
+                        .foregroundColor(.gpSlate400)
+                }
+                .padding(12)
+                .background(Color.gpAmber.opacity(0.07))
+                .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.gpAmber.opacity(0.25), lineWidth: 1))
+                .clipShape(RoundedRectangle(cornerRadius: 12))
+            }
+        }
+    }
+
     // MARK: - Shared
 
     private var factBanner: some View {
@@ -225,7 +285,7 @@ struct StorySheetView: View {
             Text(lastCorrect ? "✓ Correct!" : "✗ Not quite.")
                 .font(.caption.weight(.bold))
                 .foregroundColor(lastCorrect ? .green : .red)
-            Text(ch.fact)
+            Text(ch.fact ?? "")
                 .font(.caption)
                 .foregroundColor(.gpSlate400)
         }
@@ -236,7 +296,7 @@ struct StorySheetView: View {
     }
 
     private var nextButton: some View {
-        Button(idx + 1 < total ? "Next Challenge →" : "See Results →") {
+        Button(idx + 1 < total ? "Next →" : "See Results →") {
             if idx + 1 >= total {
                 finished = true
             } else {
@@ -245,6 +305,7 @@ struct StorySheetView: View {
                 lastCorrect = false
                 selectedOption = nil
                 tfChoice = nil
+                discoveryRevealed = false
             }
         }
         .font(.subheadline.weight(.bold))
@@ -259,16 +320,16 @@ struct StorySheetView: View {
 
     private var resultsView: some View {
         VStack(spacing: 20) {
-            Text(score == total ? "🏆" : score >= total / 2 ? "⭐" : "📖")
+            Text(score == scoreableTotal ? "🏆" : score >= scoreableTotal / 2 ? "⭐" : "📖")
                 .font(.system(size: 56))
             Text(storyTitle)
                 .font(.title3.weight(.bold))
                 .foregroundColor(.white)
                 .multilineTextAlignment(.center)
-            Text("\(score) / \(total) correct")
+            Text("\(score) / \(scoreableTotal) correct")
                 .font(.title2.weight(.semibold))
                 .foregroundColor(.gpAmber)
-            Text(score == total ? "Perfect score! Story complete." : "Story complete! Keep exploring.")
+            Text(score == scoreableTotal ? "Perfect score! Story complete." : "Story complete! Keep exploring.")
                 .font(.subheadline)
                 .foregroundColor(.gpSlate400)
                 .multilineTextAlignment(.center)

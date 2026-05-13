@@ -4,7 +4,7 @@ import UIKit
 struct CardDetailView: View {
     let card: Card
 
-    private var tierColor: Color { .tierColor(for: card.tier.rawValue) }
+    private let tierColor: Color = .gpAmber
 
     var body: some View {
         ZStack {

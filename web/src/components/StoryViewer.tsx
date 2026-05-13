@@ -12,7 +12,6 @@ import MusicGame from '@/components/minigames/MusicGame'
 import TacticsGame from '@/components/minigames/TacticsGame'
 import ClassifyGame from '@/components/minigames/ClassifyGame'
 import CookingGame from '@/components/minigames/CookingGame'
-import Maze3DGame from '@/components/minigames/Maze3DGame'
 import FictionGame from '@/components/minigames/FictionGame'
 import SudokuGame from '@/components/minigames/SudokuGame'
 import VotingGame from '@/components/minigames/VotingGame'
@@ -25,7 +24,7 @@ import { useAuth } from '@/hooks/useAuth'
 interface QuizChallenge { type: 'quiz'; question: string; options: string[]; answer: number; fact: string }
 interface TrueFalseChallenge { type: 'truefalse'; statement: string; correct: boolean; fact: string }
 interface SortChallenge { type: 'sort'; question: string; items: string[]; fact: string }
-interface MinigameChallenge { type: 'minigame'; game: 'maze'|'mirror'|'circuit'|'sliding'|'crossword'|'geometry'|'painting'|'music'|'tactics'|'classify'|'cooking'|'maze3d'|'fiction'|'sudoku'|'voting'|'chemistry'|'matchthree'; configId: string; instruction: string; fact: string }
+interface MinigameChallenge { type: 'minigame'; game: 'maze'|'mirror'|'circuit'|'sliding'|'crossword'|'geometry'|'painting'|'music'|'tactics'|'classify'|'cooking'|'fiction'|'sudoku'|'voting'|'chemistry'|'matchthree'; configId: string; instruction: string; fact: string }
 type Challenge = QuizChallenge | TrueFalseChallenge | SortChallenge | MinigameChallenge
 
 interface NarrationScene { type: 'narration'; text: string }
@@ -72,6 +71,7 @@ function shuffle<T>(arr: T[]): T[] {
 
 function portraitUrl(key: string | null | undefined) {
   if (!key) return null
+  if (key.startsWith('follower:')) return `/followers/${key.slice(9)}.jpeg`
   return `/portraits/portrait_${key}.jpeg`
 }
 
@@ -234,7 +234,6 @@ function MinigameView({ challenge, onResult }: { challenge: MinigameChallenge; o
         {challenge.game === 'tactics' && <TacticsGame configId={challenge.configId} onWin={handleWin} />}
         {challenge.game === 'classify' && <ClassifyGame configId={challenge.configId} onWin={handleWin} />}
         {challenge.game === 'cooking' && <CookingGame configId={challenge.configId} onWin={handleWin} />}
-        {challenge.game === 'maze3d' && <Maze3DGame configId={challenge.configId} onWin={handleWin} />}
         {challenge.game === 'fiction' && <FictionGame configId={challenge.configId} onWin={handleWin} />}
         {challenge.game === 'sudoku' && <SudokuGame configId={challenge.configId} onWin={handleWin} />}
         {challenge.game === 'voting' && <VotingGame configId={challenge.configId} onWin={handleWin} />}

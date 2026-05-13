@@ -22,18 +22,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.greatpeople.card.data.model.Card
-import com.greatpeople.card.data.model.CardTier
 import com.greatpeople.card.ui.theme.GPBackground
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CardDetailScreen(card: Card, onBack: () -> Unit) {
-    val tierColor = when (card.tier) {
-        CardTier.LEGENDARY -> Color(0xFFF59E0B)
-        CardTier.EPIC      -> Color(0xFF8B5CF6)
-        CardTier.RARE      -> Color(0xFF3B82F6)
-        CardTier.COMMON    -> Color(0xFF64748B)
-    }
+    val tierColor = Color(0xFFF59E0B)
 
     Scaffold(
         topBar = {

@@ -79,7 +79,7 @@ struct CollectionView: View {
 
 struct CardCell: View {
     let card: Card
-    private var tierColor: Color { .tierColor(for: card.tier.rawValue) }
+    private let tierColor: Color = .gpAmber
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {

@@ -6,7 +6,6 @@ private struct DemoCardDTO: Decodable {
     let era: String
     let gender: String
     let identities: [String]
-    let tier: String
     let portraitKey: String
     let lore: String
     let years: String
@@ -28,7 +27,6 @@ private struct DemoCardDTO: Decodable {
             era: era,
             gender: gender,
             identities: identities,
-            tier: CardTier(rawValue: tier) ?? .common,
             lore: lore,
             portraitUrl: "asset:portrait_\(portraitKey)",
             years: years,
