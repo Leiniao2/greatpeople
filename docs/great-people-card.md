@@ -102,7 +102,7 @@ In terms of Building
 ##### Culture: Theatre, Gallery, Concert Hall
 ##### Wealth: Port, Bank, Stock Exchange
 ##### Technique: Infrastructure, Factory, Hospital
-##### Intelligence: University, Library, Academy
+##### Intelligence: University, Library, Laboratory
 ##### Belief: Sanctuary, Monastry, Salon
 ##### Reputation: Court, Garden, News Agency
 
@@ -112,8 +112,8 @@ In terms of Building
 ##### Culture: Theatre, Gallery, Concert Hall, Museum
 ##### Wealth: Port, Bank, Stock Exchange, Enterprise Quarter
 ##### Technique: Infrastructure, Factory, Hospital, Workshop
-##### Intelligence: University, Library, Academy, Laboratory
-##### Belief: Reserve, Sanctuary, Salon, Monastry
+##### Intelligence: University, Library, Laboratory, Reserve
+##### Belief: Charity, Sanctuary, Salon, Monastry
 ##### Reputation: Fine Dining, Garden, News Agency, Court
 
 #### Information
@@ -122,8 +122,8 @@ In terms of Building
 ##### Culture: Theatre, Concert Hall, Museum, Castle
 ##### Wealth: Bank, Stock Exchange, Enterprise Quarter, Monastry
 ##### Technique: Infrastructure, Factory, Hospital, Plantation
-##### Intelligence: University, Academy, Laboratory, Workshop
-##### Belief: Salon, Sanctuary, Reserve, Monument
+##### Intelligence: University, Laboratory, Reserve, Workshop
+##### Belief: Salon, Sanctuary, Charity, Monument
 ##### Reputation: Court, News Agency, Fine Dining, Arena
 
 ### Card Profile Synchronization
