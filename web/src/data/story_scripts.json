@@ -3459,5 +3459,770 @@
         "index": 4
       }
     ]
+  },
+  {
+    "story": "Queen of Two Thrones",
+    "figure": "Anna Nzinga",
+    "portraitKey": "anna_nzinga",
+    "scenes": [
+      {
+        "type": "narration",
+        "text": "Angola, 1622. Portuguese colonizers hold Luanda and push inland, enslaving thousands. The Kingdom of Ndongo needs a negotiator — and Queen Anna Nzinga will not kneel."
+      },
+      {
+        "type": "narration",
+        "text": "At the peace talks, the Portuguese offer no chair for her. Nzinga signals to one of her attendants, who kneels — and she sits on the attendant's back. She will not be lesser."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 0
+      },
+      {
+        "type": "narration",
+        "text": "The Portuguese break the treaty. Nzinga retreats east, conquers Matamba, and builds a new base of power — welcoming escaped slaves and Imbangala warriors."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 1
+      },
+      {
+        "type": "narration",
+        "text": "For decades she fights on — allying with the Dutch, leading armies personally, and negotiating across three colonial powers. She rules until her 80s, never truly conquered."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 2
+      },
+      {
+        "type": "narration",
+        "text": "She even negotiates the release of Portuguese prisoners, turning each crisis into leverage. Her diplomacy is as deadly as her sword."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 3
+      },
+      {
+        "type": "narration",
+        "text": "Anna Nzinga dies in 1663, still queen, still free. Her name becomes a symbol of African resistance against colonialism for centuries to come."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 4
+      }
+    ]
+  },
+  {
+    "story": "The Golden Horde Rides",
+    "figure": "Batu Khan",
+    "portraitKey": "batu_khan",
+    "scenes": [
+      {
+        "type": "narration",
+        "text": "1236. Batu Khan, grandson of Genghis, leads the largest mounted army in history westward. The Mongol Empire will touch Europe."
+      },
+      {
+        "type": "narration",
+        "text": "Rus principalities fall one by one — Vladimir, Kiev, Ryazan. The Mongol cavalry moves faster than any army before it."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 0
+      },
+      {
+        "type": "narration",
+        "text": "Poland and Hungary are shattered at the battles of Legnica and Mohi. Western Europe trembles. Then — a miracle for Europe — Ögedei Khan dies. Batu turns back."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 1
+      },
+      {
+        "type": "narration",
+        "text": "Batu founds the Golden Horde on the Volga steppes — a Mongol khanate that will rule Russia for 200 years. He rules from his golden tent, dispensing justice and tribute."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 2
+      },
+      {
+        "type": "narration",
+        "text": "He hosts Persian ambassadors, Chinese envoys, and European monks — a cosmopolitan court on horseback."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 3
+      },
+      {
+        "type": "narration",
+        "text": "The Golden Horde reshapes Eurasian trade and politics for generations. Batu Khan: conqueror, founder, statesman of the steppe."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 4
+      }
+    ]
+  },
+  {
+    "story": "Lord of Three Kingdoms",
+    "figure": "Bayinnaung",
+    "portraitKey": "bayinnaung",
+    "scenes": [
+      {
+        "type": "narration",
+        "text": "Burma, 1550s. Bayinnaung rises from commoner-born general to king — and turns his eyes on all of Southeast Asia."
+      },
+      {
+        "type": "narration",
+        "text": "He conquers Ava, then Chiang Mai, then Ayutthaya — the kingdom of Thailand. At his peak he rules Burma, Laos, and Thailand simultaneously."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 0
+      },
+      {
+        "type": "narration",
+        "text": "He earns the title 'King of Kings.' But he rules not just through force — he absorbs court rituals, embraces Theravada Buddhism, and unifies cultures."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 1
+      },
+      {
+        "type": "narration",
+        "text": "Trade flourishes. Merchants from China, India, and Portugal fill his ports. He builds magnificent pagodas that still stand today."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 2
+      },
+      {
+        "type": "narration",
+        "text": "His army is enormous — reportedly over a million men. Yet he personally leads campaigns, rides with his troops, and earns loyalty through presence."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 3
+      },
+      {
+        "type": "narration",
+        "text": "Bayinnaung's Toungoo Empire is the largest in Southeast Asian history. He died in 1581 after 30 years of reign — leaving behind a united world."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 4
+      }
+    ]
+  },
+  {
+    "story": "Characters of Clay",
+    "figure": "Bi Sheng",
+    "portraitKey": "bi_sheng",
+    "scenes": [
+      {
+        "type": "narration",
+        "text": "China, Song Dynasty, ~1040 CE. Bi Sheng, a craftsman, stares at a block of clay. He has an idea that will change the world — though the world won't know his name for centuries."
+      },
+      {
+        "type": "narration",
+        "text": "He carves individual characters into clay tiles, fires them hard, and arranges them in an iron frame. Movable type: each character reusable, reconfigurable — infinite books from finite pieces."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 0
+      },
+      {
+        "type": "narration",
+        "text": "He tests the process methodically — two frames allow one to print while the other is set. Speed doubles. His innovation is also a system."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 1
+      },
+      {
+        "type": "narration",
+        "text": "The Chinese writing system's thousands of characters make movable type harder than in alphabetic scripts — but Bi Sheng organizes them by rhyme category for fast retrieval."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 2
+      },
+      {
+        "type": "narration",
+        "text": "We know about Bi Sheng only because the polymath Shen Kuo recorded his invention decades later. Bi Sheng himself left no writings — just the type blocks, and the idea."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 3
+      },
+      {
+        "type": "narration",
+        "text": "Gutenberg's press came 400 years later. But the concept — movable, reusable type — was first pressed into clay by an artisan in Song Dynasty China."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 4
+      }
+    ]
+  },
+  {
+    "story": "The Infinite Curve",
+    "figure": "Francesco Borromini",
+    "portraitKey": "borromini",
+    "scenes": [
+      {
+        "type": "narration",
+        "text": "Rome, 1630s. Francesco Borromini works in the shadow of Bernini — despised by the establishment, yet obsessed with a different kind of beauty."
+      },
+      {
+        "type": "narration",
+        "text": "Where Bernini uses grand columns and classical order, Borromini bends walls into concave curves. His church of San Carlo alle Quattro Fontane fits inside one pillar of St. Peter's — but feels infinite."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 0
+      },
+      {
+        "type": "narration",
+        "text": "He uses geometry — triangles, ovals, hexagons — as the hidden skeleton of his buildings. Nothing is arbitrary. Every curve obeys a mathematical relationship."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 1
+      },
+      {
+        "type": "narration",
+        "text": "His patrons appreciate him grudgingly. He works for the Oratorians, the Sapienza University — commissions he can keep, commissions Bernini disdained."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 2
+      },
+      {
+        "type": "narration",
+        "text": "He clashes bitterly with Bernini throughout his life. Their rivalry becomes legendary — the classical versus the radical, the celebrated versus the misunderstood."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 3
+      },
+      {
+        "type": "narration",
+        "text": "Borromini died by suicide in 1667. But his spiraling lantern on Sant'Ivo della Sapienza, his concave-convex facades, his impossible interiors — they outlived every critic."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 4
+      }
+    ]
+  },
+  {
+    "story": "Marble Into Breath",
+    "figure": "Gian Lorenzo Bernini",
+    "portraitKey": "bernini",
+    "scenes": [
+      {
+        "type": "narration",
+        "text": "Rome, 1620s. The 25-year-old Bernini completes Apollo and Daphne — marble that moves, that breathes, where a god's fingers reach and a woman transforms into laurel. Rome is astonished."
+      },
+      {
+        "type": "narration",
+        "text": "Pope Urban VIII becomes his patron. Bernini is handed the keys to the Eternal City itself — he will shape it for fifty years."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 0
+      },
+      {
+        "type": "narration",
+        "text": "He designs the baldachin above St. Peter's tomb — 30 meters of twisted bronze columns pulling the eye upward into Michelangelo's dome. Theater and architecture as one."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 1
+      },
+      {
+        "type": "narration",
+        "text": "His Ecstasy of Saint Teresa scandalizes and mesmerizes — a nun in rapture, angels with golden arrows, light streaming through hidden windows. It is a complete theatrical experience."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 2
+      },
+      {
+        "type": "narration",
+        "text": "The great colonnade of St. Peter's Square: two arms of columns wrapping the faithful in an embrace. Bernini says they represent the Church reaching out to the world."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 3
+      },
+      {
+        "type": "narration",
+        "text": "Bernini outlives his rivals and his patrons. He works into his 80s and dies in 1680 — the man who made Rome Baroque, who turned marble into belief."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 4
+      }
+    ]
+  },
+  {
+    "story": "The Great Journey",
+    "figure": "Ibn Battuta",
+    "portraitKey": "ibn_battuta",
+    "scenes": [
+      {
+        "type": "narration",
+        "text": "Tangier, 1325. Ibn Battuta, 21 years old, sets off for Mecca. He will not return home for 29 years — and he will travel 75,000 miles, more than any person before him."
+      },
+      {
+        "type": "narration",
+        "text": "After the Hajj he keeps going — Egypt, Syria, Persia, East Africa. Every city he reaches offers a new sultan, a new language, a new wonder. He is welcomed as a scholar everywhere."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 0
+      },
+      {
+        "type": "narration",
+        "text": "He crosses the Black Death in Central Asia, survives storms at sea, and serves as a judge (qadi) in the Maldives and Mali. He collects four wives and countless stories."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 1
+      },
+      {
+        "type": "narration",
+        "text": "India: he serves the Sultan of Delhi for 8 years, nearly killed multiple times by politics and disaster. Yet he survives to write about it all."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 2
+      },
+      {
+        "type": "narration",
+        "text": "China, Southeast Asia, the Golden Horde — he witnesses the Mongol world at its height and its collapse. He meets sultans who remember Genghis's sons."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 3
+      },
+      {
+        "type": "narration",
+        "text": "Back in Morocco, he dictates the Rihla to a scribe — a book that maps the medieval Islamic world more completely than any other document of its age."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 4
+      }
+    ]
+  },
+  {
+    "story": "Words for the World",
+    "figure": "Johannes Gutenberg",
+    "portraitKey": "gutenberg",
+    "scenes": [
+      {
+        "type": "narration",
+        "text": "Mainz, 1440s. Johannes Gutenberg works in secrecy — mixing wine-press mechanics with metalsmith's craft, experimenting with oil-based inks and hand-cast metal type."
+      },
+      {
+        "type": "narration",
+        "text": "The problem: copying a book takes a monk a year. Gutenberg's press can print 3,600 pages a day. The economics of knowledge are about to change forever."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 0
+      },
+      {
+        "type": "narration",
+        "text": "He borrows heavily from a financier named Fust and pours everything into the Bible of 42 Lines — 180 copies, each identical, printed in two volumes."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 1
+      },
+      {
+        "type": "narration",
+        "text": "Fust sues him before the Bible is complete. Gutenberg loses the press and most copies. He dies relatively poor — but his invention has already escaped into the world."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 2
+      },
+      {
+        "type": "narration",
+        "text": "Within 50 years, presses operate in every major European city. By 1500, 20 million books have been printed. The Reformation, the Scientific Revolution — impossible without Gutenberg."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 3
+      },
+      {
+        "type": "narration",
+        "text": "Gutenberg never became rich. But Time magazine named his press the most important invention of the second millennium. Every book, every newspaper, every democracy owes him a debt."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 4
+      }
+    ]
+  },
+  {
+    "story": "The Turtle Ship",
+    "figure": "Lee Sun-sin",
+    "portraitKey": "lee_sun_sin",
+    "scenes": [
+      {
+        "type": "narration",
+        "text": "Korea, 1592. Japan's Toyotomi Hideyoshi launches an invasion with 160,000 soldiers. The Korean army collapses. Only the navy — commanded by Admiral Yi Sun-sin — holds."
+      },
+      {
+        "type": "narration",
+        "text": "Yi has already prepared. His turtle ship — the geobukseon — is iron-plated, arrow-proof, and fitted with cannons on all sides. The Japanese have never seen anything like it."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 0
+      },
+      {
+        "type": "narration",
+        "text": "Battle of Hansan Island: Yi lures the Japanese fleet into open water with a crane-wing formation. 59 Japanese ships are sunk or captured. Korea's southern sea is saved."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 1
+      },
+      {
+        "type": "narration",
+        "text": "He is falsely accused by jealous officials, tortured, stripped of rank. He fights the next campaign as a common soldier — still winning battles."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 2
+      },
+      {
+        "type": "narration",
+        "text": "Battle of Myeongnyang, 1597: 13 Korean ships vs 333 Japanese. Yi positions his fleet in a narrow strait where tides neutralize numbers. He wins — arguably the greatest naval victory in history."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 3
+      },
+      {
+        "type": "narration",
+        "text": "He is killed at the final battle of Noryang — the war won, Korea saved. His last words: 'Do not let them know I am dead.' The battle continued. Korea survived."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 4
+      }
+    ]
+  },
+  {
+    "story": "The Sun Emperor",
+    "figure": "Montezuma II",
+    "portraitKey": "montezuma_ii",
+    "scenes": [
+      {
+        "type": "narration",
+        "text": "Tenochtitlan, 1502. Montezuma II ascends as the ninth tlatoani of the Aztec Triple Alliance — ruler of the largest empire in Mesoamerican history."
+      },
+      {
+        "type": "narration",
+        "text": "His capital city rivals any in the world: 200,000 people, floating gardens, a great market at Tlatelolco, pyramids that align with the stars. Cortés will call it the most beautiful city he has ever seen."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 0
+      },
+      {
+        "type": "narration",
+        "text": "Montezuma expands the empire further south and east, demanding tribute in gold, jade, and jaguar skins. The Aztec calendar stone is carved during his reign — a map of time itself."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 1
+      },
+      {
+        "type": "narration",
+        "text": "1519: Hernán Cortés arrives with 600 men and local allies. Montezuma — perhaps viewing the Spaniards through a lens of prophecy — allows them into Tenochtitlan."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 2
+      },
+      {
+        "type": "narration",
+        "text": "He is taken hostage in his own palace. For months he cooperates, maintaining fragile peace. Then a massacre sparks revolt — and Montezuma is killed, circumstances still disputed."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 3
+      },
+      {
+        "type": "narration",
+        "text": "The Aztec Empire falls two years later. But the greatness of Tenochtitlan — its markets, its art, its cosmic architecture — remains one of humanity's greatest achievements."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 4
+      }
+    ]
+  },
+  {
+    "story": "The Art of Perspective",
+    "figure": "Nian Xiyao",
+    "portraitKey": "nian_xiyao",
+    "scenes": [
+      {
+        "type": "narration",
+        "text": "Beijing, 1720s. Nian Xiyao serves the Yongzheng Emperor as overseer of the imperial kilns at Jingdezhen. He is also a student — of a Jesuit missionary named Castiglione who is teaching Western perspective."
+      },
+      {
+        "type": "narration",
+        "text": "Nian Xiyao becomes fascinated. Western linear perspective — the mathematics of how parallel lines converge — is entirely absent from Chinese painting tradition. He will change that."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 0
+      },
+      {
+        "type": "narration",
+        "text": "He writes Shiyue ('The Study of Vision') — the first Chinese treatise on perspective geometry, with diagrams, proofs, and architectural applications."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 1
+      },
+      {
+        "type": "narration",
+        "text": "At Jingdezhen he applies these ideas to porcelain design — European architectural scenes painted with geometrically accurate perspective onto imperial porcelain. An East-West fusion of art and science."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 2
+      },
+      {
+        "type": "narration",
+        "text": "The Qianlong Emperor continues this tradition. Nian Xiyao's contribution is to translate a Western mathematical vision into Chinese aesthetics — not copying, but synthesizing."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 3
+      },
+      {
+        "type": "narration",
+        "text": "Nian Xiyao is a bridge figure — court official, ceramics supervisor, mathematician, art theorist, cross-cultural translator. The perspectival tradition he started echoes in Chinese art for generations."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 4
+      }
+    ]
+  },
+  {
+    "story": "The Jade King",
+    "figure": "Pakal the Great",
+    "portraitKey": "pakal",
+    "scenes": [
+      {
+        "type": "narration",
+        "text": "Palenque, 615 CE. K'inich Janaab' Pakal I ascends to the throne at age 12. He will reign for 68 years — longer than any other documented ruler in the Americas."
+      },
+      {
+        "type": "narration",
+        "text": "He begins rebuilding a kingdom that has suffered military defeats. His mother served as regent for years; he inherits instability and turns it into a golden age."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 0
+      },
+      {
+        "type": "narration",
+        "text": "The Temple of the Inscriptions: a nine-level pyramid encoding his life, his lineage, and the Maya concept of cyclical time. It will serve as his tomb — discovered sealed for 1,300 years."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 1
+      },
+      {
+        "type": "narration",
+        "text": "The Palenque Palace — a vast complex with a four-story tower unique in Classic Maya architecture. Astronomers used it to track Venus, eclipses, and the movement of the sun."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 2
+      },
+      {
+        "type": "narration",
+        "text": "The Maya Long Count calendar inscribed at Palenque reaches back 4 billion years — evidence of cosmological thinking that dwarfs contemporary European astronomy."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 3
+      },
+      {
+        "type": "narration",
+        "text": "When Alberto Ruz Lhuillier unsealed Pakal's tomb in 1952, he found jade mosaic mask, jade jewelry, red cinnabar — a king preserved in jade for eternity. History confirmed mythology."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 4
+      }
+    ]
+  },
+  {
+    "story": "The Last Fire",
+    "figure": "Rumiñahui",
+    "portraitKey": "ruminahui",
+    "scenes": [
+      {
+        "type": "narration",
+        "text": "The Inca Empire, 1533. The Spanish have captured Atahualpa, collected his ransom in gold — and strangled him anyway. Rumiñahui, the greatest Inca general, will not wait to be next."
+      },
+      {
+        "type": "narration",
+        "text": "He races south to Quito — the northern capital — arriving before the Spanish. He buries Atahualpa's gold treasure so the conquerers will never find it. Some believe it has never been found."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 0
+      },
+      {
+        "type": "narration",
+        "text": "When Sebastián de Belalcázar approaches with a Spanish force and thousands of native allies, Rumiñahui employs Inca guerrilla tactics — ambushes in mountain passes, scorched crops, scattered forces."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 1
+      },
+      {
+        "type": "narration",
+        "text": "He cannot win in open battle — Spanish steel, horses, and guns are decisive. But he refuses to surrender. He burns Quito to the ground rather than let it become a Spanish trophy."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 2
+      },
+      {
+        "type": "narration",
+        "text": "Captured after a volcanic eruption disrupts his forces, he is tortured to reveal the treasure's location. He says nothing. His silence is the last act of resistance."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 3
+      },
+      {
+        "type": "narration",
+        "text": "Rumiñahui is executed in Quito in 1535. Today he is a national hero of Ecuador — a symbol of indigenous resistance, of a world that burned rather than submitted."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 4
+      }
+    ]
+  },
+  {
+    "story": "The Poem in the Armor",
+    "figure": "Taira no Tadanori",
+    "portraitKey": "taira_no_tadanori",
+    "scenes": [
+      {
+        "type": "narration",
+        "text": "Japan, 1183. The Genpei War pits the Taira clan against the Minamoto. Taira no Tadanori — samurai, provincial governor, and devoted poet — rides to the capital as it falls."
+      },
+      {
+        "type": "narration",
+        "text": "The night before the Taira flee Kyoto, Tadanori rides alone to the house of the great poetry master Fujiwara no Shunzei. He leaves a scroll of his poems — asking that even one be remembered."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 0
+      },
+      {
+        "type": "narration",
+        "text": "The Taira retreat south. For two years they fight a losing war — islands, sea battles, the slow narrowing of a doomed world. Tadanori composes poems throughout."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 1
+      },
+      {
+        "type": "narration",
+        "text": "Battle of Ichi-no-Tani, 1184: the Minamoto attack from the cliffs above. In the chaos, Tadanori is unhorsed and falls into single combat. He is killed — a poem on his person reveals his name."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 2
+      },
+      {
+        "type": "narration",
+        "text": "His killer weeps. Even an enemy honors a warrior who wrote such verse. The poem found in his armor that day: 'As the evening dark descends, I rest beneath this cherry tree — a flower is my inn.'"
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 3
+      },
+      {
+        "type": "narration",
+        "text": "Fujiwara no Shunzei includes one of Tadanori's poems in the imperial anthology — anonymously, because Tadanori died as an enemy of the crown. The poem outlives the war and the clan."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 4
+      }
+    ]
+  },
+  {
+    "story": "The Shadow Behind the Throne",
+    "figure": "Tlacaelel",
+    "portraitKey": "tlacaelel",
+    "scenes": [
+      {
+        "type": "narration",
+        "text": "Tenochtitlan, 1427. The Aztec are a minor tributary people under the Tepanec Empire. Tlacaelel, nephew of the tlatoani, sees an opening — and changes everything."
+      },
+      {
+        "type": "narration",
+        "text": "He engineers the Triple Alliance: Tenochtitlan, Texcoco, and Tlacopan unite to overthrow their Tepanec overlords. It works. The Aztec Empire is born, and Tlacaelel is its architect."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 0
+      },
+      {
+        "type": "narration",
+        "text": "Three times he is offered the throne. Three times he refuses. He prefers the role of Cihuacoatl — co-ruler, advisor, the power behind every emperor. Itzcoatl. Motecuhzoma I. Axayacatl."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 1
+      },
+      {
+        "type": "narration",
+        "text": "He orders the burning of all previous historical records — and rewrites Aztec history, placing their people as the chosen of the sun god, destined to rule. Ideology as political weapon."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 2
+      },
+      {
+        "type": "narration",
+        "text": "He expands the institution of 'Flower Wars' — ritualized combat to capture prisoners for sacrifice. It is brutal, efficient, and keeps neighboring states in a permanent state of military tension."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 3
+      },
+      {
+        "type": "narration",
+        "text": "Tlacaelel lives to nearly 90 — outliving three emperors, watching the empire he designed conquer much of Mesoamerica. He dies peacefully. Montezuma II will inherit the world he made."
+      },
+      {
+        "type": "challenge",
+        "challengeIndex": 4
+      }
+    ]
   }
 ]
