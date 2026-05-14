@@ -286,7 +286,7 @@ private fun ChallengeDialog(ch: FlatChallenge, onClose: () -> Unit) {
                         .border(1.dp, cat.color.copy(alpha = 0.4f), CircleShape)
                         .padding(horizontal = 10.dp, vertical = 4.dp),
                 ) {
-                    Text(GAME_LABEL[ch.game] ?: ch.game, fontSize = 10.sp,
+                    Text(GAME_LABEL[ch.game] ?: ch.game ?: "", fontSize = 10.sp,
                         fontWeight = FontWeight.Bold, letterSpacing = 1.sp, color = cat.color)
                 }
                 Text(ch.storyName, fontSize = 11.sp, color = Slate400, modifier = Modifier.weight(1f))
