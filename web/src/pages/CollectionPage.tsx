@@ -3,10 +3,10 @@ import { useNavigate } from 'react-router-dom'
 import { useAuth } from '@/hooks/useAuth'
 import { useUnlockedCards } from '@/hooks/useUnlockedCards'
 import type { Card } from '@/types'
-import demoCardsJson from '@/data/demo_cards.json'
+import cardsJson from '@/data/cards.json'
 
 
-const ALL_CARDS: Card[] = demoCardsJson.map(c => ({
+const ALL_CARDS: Card[] = cardsJson.map(c => ({
   ...c,
   portraitUrl: `/portraits/portrait_${c.portraitKey}.jpeg`,
 }))

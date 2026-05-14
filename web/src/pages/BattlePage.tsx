@@ -7,13 +7,13 @@ import type {
   StatKey, EventType, EraMode, PlayerMode, MatchType,
   CardContrib, CombatSide, CombatSummary, EventPlayerResult, GameSummary,
 } from '@/types'
-import demoCardsJson from '@/data/demo_cards.json'
+import cardsJson from '@/data/cards.json'
 import locationsJson from '@/data/locations.json'
 import followersJson from '@/data/followers.json'
 
 // ─── Static Card Data ─────────────────────────────────────────────────────────
 
-const ALL_GP_CARDS: Card[] = (demoCardsJson as Card[]).map(c => ({
+const ALL_GP_CARDS: Card[] = (cardsJson as Card[]).map(c => ({
   ...c,
   portraitUrl: `/portraits/portrait_${c.portraitKey}.jpeg`,
 }))

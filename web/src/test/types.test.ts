@@ -10,6 +10,7 @@ function makeCard(overrides: Partial<Card> = {}): Card {
     era: 'Steam',
     gender: 'male',
     identities: [],
+    countries: [],
     lore: 'Some lore',
     portraitUrl: '',
     years: '2000–2024',
@@ -50,6 +51,31 @@ describe('Card type shape', () => {
   it('portraitUrl defaults to empty string', () => {
     const c = makeCard()
     expect(c.portraitUrl).toBe('')
+  })
+
+  it('countries defaults to empty array', () => {
+    const c = makeCard()
+    expect(c.countries).toEqual([])
+  })
+
+  it('countries can hold multiple values', () => {
+    const c = makeCard({ countries: ['Egypt', 'Persia'] })
+    expect(c.countries).toHaveLength(2)
+    expect(c.countries![0]).toBe('Egypt')
+  })
+
+  it('countries is optional (undefined when omitted)', () => {
+    // countries?: string[] — can be absent from the object
+    const c: Card = { ...makeCard(), countries: undefined }
+    expect(c.countries).toBeUndefined()
+  })
+
+  it('all 7 era values are valid', () => {
+    const eras = ['Ancient', 'Classical', 'Medieval', 'Renaissance', 'Steam', 'Electricity', 'Information']
+    eras.forEach((era) => {
+      const c = makeCard({ era })
+      expect(c.era).toBe(era)
+    })
   })
 })
 

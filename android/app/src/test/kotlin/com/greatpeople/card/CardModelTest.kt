@@ -13,6 +13,7 @@ class CardModelTest {
         era: String = "Electricity",
         gender: String = "male",
         identities: List<String> = emptyList(),
+        countries: List<String> = emptyList(),
         lore: String = "He built the machine that broke the unbreakable.",
         portraitUrl: String = "https://example.com/turing.png",
         years: String = "1912–1954",
@@ -32,6 +33,7 @@ class CardModelTest {
         era = era,
         gender = gender,
         identities = identities,
+        countries = countries,
         lore = lore,
         portraitUrl = portraitUrl,
         years = years,
@@ -148,6 +150,18 @@ class CardModelTest {
         val card = makeCard(id = "abc123")
         val modified = card.copy(id = "different")
         assertNotEquals(card, modified)
+    }
+
+    @Test
+    fun `Card countries defaults to empty list`() {
+        val card = makeCard()
+        assertEquals(emptyList<String>(), card.countries)
+    }
+
+    @Test
+    fun `Card stores countries correctly`() {
+        val card = makeCard(countries = listOf("England", "France"))
+        assertEquals(listOf("England", "France"), card.countries)
     }
 
     @Test

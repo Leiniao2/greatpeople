@@ -65,6 +65,18 @@ final class GreatPeopleTests: XCTestCase {
         }
     }
 
+    // MARK: - Card.countries
+
+    func testCardCountriesDefaultsToEmpty() {
+        let card = makeCard()
+        XCTAssertTrue(card.countries.isEmpty)
+    }
+
+    func testCardStoresCountries() {
+        let card = makeCard(countries: ["England", "France"])
+        XCTAssertEqual(card.countries, ["England", "France"])
+    }
+
     // MARK: - Card.portraitURL (remote URL)
 
     func testPortraitURLParsesHttpURL() {
@@ -152,6 +164,7 @@ private func makeCard(
     era: String = "Steam",
     gender: String = "male",
     identities: [String] = [],
+    countries: [String] = [],
     lore: String = "",
     portraitUrl: String = "",
     years: String = "2000–2024",
@@ -168,7 +181,7 @@ private func makeCard(
 ) -> Card {
     Card(
         id: id, figureName: figureName, era: era, gender: gender,
-        identities: identities, lore: lore,
+        identities: identities, countries: countries, lore: lore,
         portraitUrl: portraitUrl, years: years,
         trait: trait, achievement: achievement,
         politics: politics, strength: strength, culture: culture,

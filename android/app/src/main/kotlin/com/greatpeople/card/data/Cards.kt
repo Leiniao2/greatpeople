@@ -1,0 +1,37 @@
+package com.greatpeople.card.data
+
+import android.content.Context
+import com.greatpeople.card.data.model.Card
+import org.json.JSONArray
+
+fun loadCards(context: Context): List<Card> {
+    val json = context.assets.open("cards.json").bufferedReader().use { it.readText() }
+    val arr = JSONArray(json)
+    return (0 until arr.length()).map { i ->
+        val obj = arr.getJSONObject(i)
+        val key = obj.getString("portraitKey")
+        val identitiesArr = obj.getJSONArray("identities")
+        val countriesArr = if (obj.has("countries")) obj.getJSONArray("countries") else null
+        Card(
+            id = obj.getString("id"),
+            figureName = obj.getString("figureName"),
+            era = obj.getString("era"),
+            gender = obj.getString("gender"),
+            identities = (0 until identitiesArr.length()).map { identitiesArr.getString(it) },
+            countries = countriesArr?.let { (0 until it.length()).map { j -> it.getString(j) } } ?: emptyList(),
+            lore = obj.getString("lore"),
+            portraitUrl = "file:///android_asset/portraits/portrait_$key.jpeg",
+            years = obj.getString("years"),
+            trait = obj.getString("trait"),
+            achievement = obj.getString("achievement"),
+            politics = obj.getInt("politics"),
+            strength = obj.getInt("strength"),
+            culture = obj.getInt("culture"),
+            wealth = obj.getInt("wealth"),
+            intelligence = obj.getInt("intelligence"),
+            technique = obj.getInt("technique"),
+            belief = obj.getInt("belief"),
+            reputation = obj.getInt("reputation"),
+        )
+    }
+}

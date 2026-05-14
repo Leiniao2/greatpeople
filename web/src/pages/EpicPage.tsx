@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useAuth } from '@/hooks/useAuth'
 import StoryViewer from '@/components/StoryViewer'
 import { useUnlockedCards } from '@/hooks/useUnlockedCards'
-import cardsData from '@/data/demo_cards.json'
+import cardsData from '@/data/cards.json'
 import storyConfigsData from '@/data/story_configs.json'
 
 function portraitKeyForFigure(name: string | null): string | null {

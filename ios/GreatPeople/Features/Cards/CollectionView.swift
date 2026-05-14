@@ -1,7 +1,7 @@
 import SwiftUI
 import UIKit
 
-private let demoCards: [Card] = loadDemoCards()
+private let demoCards: [Card] = loadCards()
 
 struct CollectionView: View {
     @EnvironmentObject var authStore: AuthStore

@@ -24,7 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
-import com.greatpeople.card.data.loadDemoCards
+import com.greatpeople.card.data.loadCards
 import com.greatpeople.card.data.model.Card
 import com.greatpeople.card.ui.viewmodel.CollectionViewModel
 
@@ -38,7 +38,7 @@ fun CollectionScreen(
     viewModel: CollectionViewModel = hiltViewModel(),
 ) {
     val context = LocalContext.current
-    val demoCards = remember { loadDemoCards(context) }
+    val demoCards = remember { loadCards(context) }
     val vmCards by viewModel.cards.collectAsState()
     val loading by viewModel.loading.collectAsState()
     val cards = if (isGuest) demoCards else vmCards
