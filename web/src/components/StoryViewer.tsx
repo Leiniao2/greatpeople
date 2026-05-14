@@ -26,6 +26,8 @@ import WargameGame from '@/components/minigames/WargameGame'
 import BigMazeGame from '@/components/minigames/BigMazeGame'
 import TradeGame from '@/components/minigames/TradeGame'
 import PunnettGame from '@/components/minigames/PunnettGame'
+import AuctionGame from '@/components/minigames/AuctionGame'
+import PseudoCodeGame from '@/components/minigames/PseudoCodeGame'
 import { useAuth } from '@/hooks/useAuth'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
@@ -33,7 +35,7 @@ import { useAuth } from '@/hooks/useAuth'
 interface QuizChallenge { type: 'quiz'; question: string; options: string[]; answer: number; fact: string }
 interface TrueFalseChallenge { type: 'truefalse'; statement: string; correct: boolean; fact: string }
 interface SortChallenge { type: 'sort'; question: string; items: string[]; fact: string }
-interface MinigameChallenge { type: 'minigame'; game: 'maze'|'mirror'|'circuit'|'sliding'|'crossword'|'geometry'|'painting'|'music'|'tactics'|'classify'|'cooking'|'fiction'|'sudoku'|'voting'|'chemistry'|'matchthree'|'klotski'|'lorentz'|'porcelain'|'wordle'|'decode'|'wargame'|'bigmaze'|'trade'|'punnett'; configId: string; instruction: string; fact: string }
+interface MinigameChallenge { type: 'minigame'; game: 'maze'|'mirror'|'circuit'|'sliding'|'crossword'|'geometry'|'painting'|'music'|'tactics'|'classify'|'cooking'|'fiction'|'sudoku'|'voting'|'chemistry'|'matchthree'|'klotski'|'lorentz'|'porcelain'|'wordle'|'decode'|'wargame'|'bigmaze'|'trade'|'punnett'|'auction'|'pseudocode'; configId: string; instruction: string; fact: string }
 type Challenge = QuizChallenge | TrueFalseChallenge | SortChallenge | MinigameChallenge
 
 interface NarrationScene { type: 'narration'; text: string }
@@ -255,8 +257,10 @@ function MinigameView({ challenge, onResult }: { challenge: MinigameChallenge; o
         {challenge.game === 'decode' && <DecodeGame configId={challenge.configId} onWin={handleWin} />}
         {challenge.game === 'wargame' && <WargameGame configId={challenge.configId} onWin={handleWin} />}
         {challenge.game === 'bigmaze'  && <BigMazeGame configId={challenge.configId} onWin={handleWin} />}
-        {challenge.game === 'trade'    && <TradeGame configId={challenge.configId} onWin={handleWin} />}
-        {challenge.game === 'punnett'  && <PunnettGame configId={challenge.configId} onWin={handleWin} />}
+        {challenge.game === 'trade'      && <TradeGame configId={challenge.configId} onWin={handleWin} />}
+        {challenge.game === 'punnett'    && <PunnettGame configId={challenge.configId} onWin={handleWin} />}
+        {challenge.game === 'auction'    && <AuctionGame configId={challenge.configId} onWin={handleWin} />}
+        {challenge.game === 'pseudocode' && <PseudoCodeGame configId={challenge.configId} onWin={handleWin} />}
       </div>
     </div>
   )

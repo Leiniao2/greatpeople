@@ -21,6 +21,8 @@ import LorentzGame from '@/components/minigames/LorentzGame'
 import PorcelainGame from '@/components/minigames/PorcelainGame'
 import TradeGame from '@/components/minigames/TradeGame'
 import PunnettGame from '@/components/minigames/PunnettGame'
+import AuctionGame from '@/components/minigames/AuctionGame'
+import PseudoCodeGame from '@/components/minigames/PseudoCodeGame'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -31,6 +33,7 @@ type GameType =
   | 'cooking' | 'fiction' | 'sudoku' | 'voting' | 'chemistry' | 'matchthree'
   | 'klotski' | 'lorentz' | 'porcelain' | 'trade' | 'punnett'
   | 'wordle' | 'decode' | 'wargame' | 'bigmaze'
+  | 'auction' | 'pseudocode'
 
 interface FlatChallenge {
   id: string
@@ -65,7 +68,8 @@ const GAME_CATEGORY: Record<string, CategoryKey> = {
   crossword: 'Language', fiction: 'Language', wordle: 'Language', decode: 'Language',
   painting: 'Creative', cooking: 'Creative', matchthree: 'Creative', mirror: 'Creative', porcelain: 'Creative',
   lorentz: 'Logic', punnett: 'Logic',
-  trade: 'History',
+  trade: 'History', auction: 'History',
+  pseudocode: 'Logic',
 }
 
 const GAME_LABEL: Record<string, string> = {
@@ -78,6 +82,7 @@ const GAME_LABEL: Record<string, string> = {
   klotski: 'Klotski', lorentz: 'Lorentz Force', porcelain: 'Porcelain',
   trade: 'Trade', punnett: 'Punnett Square',
   wordle: 'Wordle', decode: 'Decode', wargame: 'Wargame', bigmaze: 'Big Maze',
+  auction: 'Auction', pseudocode: 'Pseudo Code',
 }
 
 // ── Flatten all challenges ────────────────────────────────────────────────────
@@ -229,8 +234,10 @@ function ChallengeOverlay({ ch, onClose }: { ch: FlatChallenge; onClose: () => v
       {g === 'klotski'    && <KlotskiGame configId={cId} onWin={handleWin} />}
       {g === 'lorentz'    && <LorentzGame configId={cId} onWin={handleWin} />}
       {g === 'porcelain'  && <PorcelainGame configId={cId} onWin={handleWin} />}
-      {g === 'trade'      && <TradeGame configId={cId} onWin={handleWin} />}
-      {g === 'punnett'    && <PunnettGame configId={cId} onWin={handleWin} />}
+      {g === 'trade'       && <TradeGame configId={cId} onWin={handleWin} />}
+      {g === 'punnett'     && <PunnettGame configId={cId} onWin={handleWin} />}
+      {g === 'auction'     && <AuctionGame configId={cId} onWin={handleWin} />}
+      {g === 'pseudocode'  && <PseudoCodeGame configId={cId} onWin={handleWin} />}
       {ch.raw.fact && won === false && (
         <p className="text-slate-600 text-[10px] leading-relaxed mt-1 px-1">{ch.raw.fact}</p>
       )}

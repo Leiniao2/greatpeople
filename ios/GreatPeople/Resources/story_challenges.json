@@ -1492,6 +1492,13 @@
         "configId": "cobalt-bowl",
         "instruction": "Paint each section of the bowl with the right metal oxide glaze before firing.",
         "fact": "Venetian glassmakers on Murano pioneered cobalt blue glass using smalt — cobalt oxide imported from Saxony — becoming the dominant blue pigment in Renaissance Europe."
+      },
+      {
+        "type": "minigame",
+        "game": "auction",
+        "configId": "venetian-auction",
+        "instruction": "Bid on rare Renaissance goods at the Rialto Auction House. Win the starred items before your budget runs out.",
+        "fact": "Venice's Rialto market was one of Europe's first commodity exchanges, trading silk, spices, and art from across the known world."
       }
     ]
   },
@@ -2184,6 +2191,13 @@
         "configId": "steel-stocks",
         "instruction": "Trade Carnegie Steel shares over 8 rounds of market events. Reach the target portfolio to win.",
         "fact": "Carnegie Steel's rise mirrored the Gilded Age: astonishing wealth creation alongside brutal labour conditions. The 1892 Homestead Strike left seven dead and fatally damaged Carnegie's public image, despite his later philanthropic legacy."
+      },
+      {
+        "type": "minigame",
+        "game": "auction",
+        "configId": "gilded-auction",
+        "instruction": "Bid on industrial-era assets at the Gilded Age estate sale. Secure your target investments wisely.",
+        "fact": "The Gilded Age saw explosive growth in auction houses and financial markets as railroads, steel, and electricity transformed the American economy."
       }
     ]
   },
@@ -2506,6 +2520,13 @@
         "configId": "enigma-rotors",
         "instruction": "Rearrange the rotor blocks to bring the cipher module to its target position.",
         "fact": "Alan Turing's bombe machine exploited a flaw in Enigma — no letter ever encrypted to itself — to narrow down rotor positions and crack the daily key."
+      },
+      {
+        "type": "minigame",
+        "game": "pseudocode",
+        "configId": "turing-machine",
+        "instruction": "Arrange the pseudo-code lines in the correct logical order to build working algorithms — just as Turing formalized computation.",
+        "fact": "Turing's 1936 paper introduced the concept of a universal machine: a theoretical device that could simulate any algorithm by reading and writing symbols on a tape."
       }
     ]
   },
@@ -3087,6 +3108,20 @@
         ],
         "answer": 1,
         "fact": "Jobs founded NeXT Computer (whose operating system later became the foundation of macOS) and purchased Pixar from George Lucas for $5 million in 1986. Pixar went on to produce Toy Story (1995) and transform animated filmmaking."
+      },
+      {
+        "type": "minigame",
+        "game": "pseudocode",
+        "configId": "jobs-code",
+        "instruction": "Arrange the pseudo-code in the right order. Jobs famously believed every programmer should learn to code — it teaches you how to think.",
+        "fact": "Steve Jobs said: 'Everybody in this country should learn how to program a computer... because it teaches you how to think.'"
+      },
+      {
+        "type": "minigame",
+        "game": "auction",
+        "configId": "tech-auction",
+        "instruction": "Bid on landmark Silicon Valley assets. Win the starred computing relics before your rivals claim them.",
+        "fact": "The early Silicon Valley era saw fierce competition over patents and prototypes. Apple's lawsuit against Xerox over the GUI and Jobs' NeXT venture shaped the modern tech landscape."
       }
     ]
   }
