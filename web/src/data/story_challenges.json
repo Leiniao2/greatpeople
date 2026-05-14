@@ -187,11 +187,17 @@
         "fact": "The goddess Aruru shaped Enkidu from clay and spit, creating him as a wild companion for the restless king Gilgamesh — a being of equal strength and wildness."
       },
       {
-        "type": "minigame",
-        "game": "bigmaze",
-        "configId": "enkidu-steppe",
-        "instruction": "Navigate the wild steppe maze — find the key, then reach the exit.",
-        "fact": "Enkidu roamed the ancient wilderness as a wild man before Gilgamesh's messenger civilized him — his journey through the unknown mirrored humanity's own emergence from chaos."
+        "type": "sort",
+        "question": "Arrange the key events of Enkidu's life in order:",
+        "items": [
+          "Enkidu roams the steppe as a wild man, companion to animals",
+          "A temple priestess teaches Enkidu language and the ways of civilization",
+          "Enkidu and Gilgamesh clash at the gates of Uruk",
+          "The two become inseparable brothers in arms",
+          "Enkidu falls ill, cursed by the gods after slaying Humbaba",
+          "Enkidu dies — and Gilgamesh confronts human mortality for the first time"
+        ],
+        "fact": "Enkidu roamed the ancient wilderness as a wild man before Gilgamesh's messenger civilized him — his journey from chaos to civilization mirrored humanity's own emergence from the wild."
       },
       {
         "type": "quiz",
@@ -1541,9 +1547,9 @@
       },
       {
         "type": "minigame",
-        "game": "bigmaze",
-        "configId": "pacific-strait",
-        "instruction": "Chart a course through the treacherous Pacific. Find the passage key and navigate to open sea.",
+        "game": "classify",
+        "configId": "magellan-seas",
+        "instruction": "Sort each port or landmark into the ocean Magellan's fleet crossed to reach it.",
         "fact": "Magellan named the Pacific Ocean 'Mar Pacífico' — the peaceful sea — after the violent storms of the strait that now bears his name. The irony was that the Pacific crossing nearly killed his crew from starvation."
       },
       {
@@ -2620,11 +2626,17 @@
         "fact": "Tenzing Norgay and Edmund Hillary summited Everest on May 29, 1953. The news reached London on June 2 — the morning of Queen Elizabeth II's coronation — making it a double celebration for Britain."
       },
       {
-        "type": "minigame",
-        "game": "bigmaze",
-        "configId": "everest-summit",
-        "instruction": "Navigate the icy slopes of Everest. Collect the oxygen key and reach the summit.",
-        "fact": "Tenzing Norgay had attempted Everest six times before the 1953 expedition. His intimate knowledge of the mountain's routes was as essential as any piece of equipment."
+        "type": "sort",
+        "question": "Arrange the milestones of the 1953 Everest expedition in order:",
+        "items": [
+          "The expedition leaves Kathmandu and treks to base camp",
+          "Tom Bourdillon and Charles Evans reach the South Summit — highest point yet reached",
+          "Hillary and Tenzing establish Camp IX at 27,900 feet",
+          "Hillary overcomes the 40-foot rock step now called the Hillary Step",
+          "Tenzing and Hillary reach the summit at 11:30 AM on 29 May",
+          "News of the summit reaches London on Coronation Day"
+        ],
+        "fact": "Tenzing Norgay had attempted Everest six times before the 1953 expedition. His intimate knowledge of the mountain's routes — every ice wall, every crevasse — was as essential as any piece of equipment."
       },
       {
         "type": "truefalse",
