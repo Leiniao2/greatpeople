@@ -584,6 +584,6 @@ private fun ArcadeMinigameCard(ch: ChallengeDTO) {
             color = Color.White, fontWeight = FontWeight.SemiBold, fontSize = 14.sp)
         Text("Open the story in Epic mode to play this interactive challenge.",
             color = Slate400, fontSize = 12.sp, lineHeight = 18.sp)
-        Text(ch.dto.fact, color = Slate600, fontSize = 11.sp, lineHeight = 17.sp)
+        Text(ch.fact, color = Slate600, fontSize = 11.sp, lineHeight = 17.sp)
     }
 }

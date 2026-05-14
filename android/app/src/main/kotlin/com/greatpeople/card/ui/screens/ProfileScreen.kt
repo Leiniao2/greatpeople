@@ -140,7 +140,7 @@ private fun LoggedInContent(
         Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(4.dp)) {
             Text(name, color = Color.White, fontSize = 20.sp, fontWeight = FontWeight.Bold, letterSpacing = 2.sp)
             if (email != null) {
-                Text(email, color = Slate400, style = MaterialTheme.typography.bodySmall)
+                Text(email!!, color = Slate400, style = MaterialTheme.typography.bodySmall)
             }
         }
 
