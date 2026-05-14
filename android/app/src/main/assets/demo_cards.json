@@ -186,8 +186,8 @@
     "era": "Electricity",
     "gender": "male",
     "identities": [
-      "Warrior",
-      "Statesman"
+      "Spy",
+      "Warrior"
     ],
     "portraitKey": "an_jung_geun",
     "politics": 1,
@@ -757,7 +757,8 @@
     "era": "Medieval",
     "gender": "male",
     "identities": [
-      "Mathematician"
+      "Mathematician",
+      "Astronomer"
     ],
     "portraitKey": "al_khwarizmi",
     "politics": 2,
