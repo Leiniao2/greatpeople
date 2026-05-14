@@ -522,5 +522,110 @@
     "tagline": "Some roles choose you. Some voices can only belong to one man.",
     "quizzes": 3,
     "locationImage": "information_sanjose"
+  },
+  {
+    "era": "Steam",
+    "title": "Queen of Two Thrones",
+    "figure": "Anna Nzinga",
+    "tagline": "She led armies, negotiated empires, and never surrendered Angola.",
+    "quizzes": 5
+  },
+  {
+    "era": "Medieval",
+    "title": "The Golden Horde Rides",
+    "figure": "Batu Khan",
+    "tagline": "From Mongolia to Poland — the unstoppable cavalry of the steppes.",
+    "quizzes": 5
+  },
+  {
+    "era": "Renaissance",
+    "title": "Lord of Three Kingdoms",
+    "figure": "Bayinnaung",
+    "tagline": "He unified Southeast Asia through conquest and ceremony alike.",
+    "quizzes": 5
+  },
+  {
+    "era": "Medieval",
+    "title": "Characters of Clay",
+    "figure": "Bi Sheng",
+    "tagline": "He invented movable type four centuries before Gutenberg.",
+    "quizzes": 5
+  },
+  {
+    "era": "Steam",
+    "title": "The Infinite Curve",
+    "figure": "Francesco Borromini",
+    "tagline": "His spirals and concave facades bent the rules of space itself.",
+    "quizzes": 5
+  },
+  {
+    "era": "Steam",
+    "title": "Marble Into Breath",
+    "figure": "Gian Lorenzo Bernini",
+    "tagline": "He sculpted the soul of Baroque Rome into stone and light.",
+    "quizzes": 5
+  },
+  {
+    "era": "Medieval",
+    "title": "The Great Journey",
+    "figure": "Ibn Battuta",
+    "tagline": "He traveled 75,000 miles and wrote the medieval world's greatest travelogue.",
+    "quizzes": 5
+  },
+  {
+    "era": "Renaissance",
+    "title": "Words for the World",
+    "figure": "Johannes Gutenberg",
+    "tagline": "His printing press made knowledge cheap and revolutions possible.",
+    "quizzes": 5
+  },
+  {
+    "era": "Renaissance",
+    "title": "The Turtle Ship",
+    "figure": "Lee Sun-sin",
+    "tagline": "With 13 ships he defeated 333 — and saved Korea.",
+    "quizzes": 5
+  },
+  {
+    "era": "Renaissance",
+    "title": "The Sun Emperor",
+    "figure": "Montezuma II",
+    "tagline": "He ruled the height of Aztec glory — until two worlds collided.",
+    "quizzes": 5
+  },
+  {
+    "era": "Steam",
+    "title": "The Art of Perspective",
+    "figure": "Nian Xiyao",
+    "tagline": "He fused Western geometry with Chinese porcelain to create imperial art.",
+    "quizzes": 5
+  },
+  {
+    "era": "Medieval",
+    "title": "The Jade King",
+    "figure": "Pakal the Great",
+    "tagline": "He ruled Palenque 68 years and inscribed eternity in stone.",
+    "quizzes": 5
+  },
+  {
+    "era": "Renaissance",
+    "title": "The Last Fire",
+    "figure": "Rumiñahui",
+    "tagline": "He burned Quito rather than let it fall — a warrior's final act.",
+    "quizzes": 5
+  },
+  {
+    "era": "Medieval",
+    "title": "The Poem in the Armor",
+    "figure": "Taira no Tadanori",
+    "tagline": "He was the samurai who wrote verses on the night before battle.",
+    "quizzes": 5
+  },
+  {
+    "era": "Renaissance",
+    "title": "The Shadow Behind the Throne",
+    "figure": "Tlacaelel",
+    "tagline": "He shaped three emperors and rewrote the soul of the Aztec world.",
+    "quizzes": 5
   }
 ]

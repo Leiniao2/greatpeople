@@ -1,0 +1,791 @@
+{
+  "eras": [
+    "Ancient",
+    "Classical",
+    "Medieval",
+    "Renaissance",
+    "Steam",
+    "Electricity",
+    "Information"
+  ],
+  "locations": [
+    {
+      "name": "Memphis",
+      "era": "Ancient",
+      "imageKey": "ancient_memphis",
+      "countries": [
+        "Egypt"
+      ],
+      "buildings": [
+        "Palace",
+        "Tomb"
+      ]
+    },
+    {
+      "name": "Stonehenge",
+      "era": "Ancient",
+      "imageKey": "ancient_stonehenge",
+      "countries": [
+        "United Kingdom"
+      ],
+      "buildings": [
+        "Monument"
+      ]
+    },
+    {
+      "name": "San Lorenzo",
+      "era": "Ancient",
+      "imageKey": "ancient_olmec_sanlorenzo",
+      "countries": [
+        "Mexico"
+      ],
+      "buildings": [
+        "Monument"
+      ]
+    },
+    {
+      "name": "La Venta",
+      "era": "Ancient",
+      "imageKey": "ancient_olmec_laventa",
+      "countries": [
+        "Mexico"
+      ],
+      "buildings": [
+        "Monument"
+      ]
+    },
+    {
+      "name": "Yin",
+      "era": "Ancient",
+      "imageKey": "ancient_yin_city",
+      "countries": [
+        "China"
+      ],
+      "buildings": [
+        "Palace"
+      ]
+    },
+    {
+      "name": "Mohenjo-daro",
+      "era": "Ancient",
+      "imageKey": "ancient_mohenjo_daro",
+      "countries": [
+        "Pakistan",
+        "India"
+      ],
+      "buildings": []
+    },
+    {
+      "name": "Zhaoge",
+      "era": "Ancient",
+      "imageKey": "ancient_zhaoge",
+      "countries": [
+        "China"
+      ],
+      "buildings": [
+        "Palace"
+      ]
+    },
+    {
+      "name": "Uruk",
+      "era": "Ancient",
+      "imageKey": "ancient_uruk",
+      "countries": [
+        "Iraq"
+      ],
+      "buildings": [
+        "Monument"
+      ]
+    },
+    {
+      "name": "Nippur",
+      "era": "Ancient",
+      "imageKey": "ancient_nippur",
+      "countries": [
+        "Iraq"
+      ],
+      "buildings": []
+    },
+    {
+      "name": "Ur",
+      "era": "Ancient",
+      "imageKey": "ancient_memphis",
+      "countries": [
+        "Iraq"
+      ],
+      "buildings": []
+    },
+    {
+      "name": "Babylon",
+      "era": "Ancient",
+      "imageKey": "ancient_memphis",
+      "countries": [
+        "Iraq"
+      ],
+      "buildings": []
+    },
+    {
+      "name": "Hattusa",
+      "era": "Ancient",
+      "imageKey": "classical_petra",
+      "countries": [
+        "Turkey"
+      ],
+      "buildings": [
+        "Palace"
+      ]
+    },
+    {
+      "name": "Nineveh",
+      "era": "Ancient",
+      "imageKey": "ancient_nippur",
+      "countries": [
+        "Iraq"
+      ],
+      "buildings": []
+    },
+    {
+      "name": "Ashur",
+      "era": "Ancient",
+      "imageKey": "ancient_nippur",
+      "countries": [
+        "Iraq"
+      ],
+      "buildings": [
+        "Barracks"
+      ]
+    },
+    {
+      "name": "Carthage",
+      "era": "Classical",
+      "imageKey": "classical_carthage",
+      "countries": [
+        "Tunisia"
+      ],
+      "buildings": [
+        "Port"
+      ]
+    },
+    {
+      "name": "Petra",
+      "era": "Classical",
+      "imageKey": "classical_petra",
+      "countries": [
+        "Jordan"
+      ],
+      "buildings": []
+    },
+    {
+      "name": "Sparta",
+      "era": "Classical",
+      "imageKey": "classical_sparta",
+      "countries": [
+        "Greece"
+      ],
+      "buildings": [
+        "Barracks"
+      ]
+    },
+    {
+      "name": "Anthem",
+      "era": "Classical",
+      "imageKey": "anthem_city",
+      "countries": [
+        "Greece"
+      ],
+      "buildings": [
+        "Forum",
+        "Theatre"
+      ]
+    },
+    {
+      "name": "Xianyang",
+      "era": "Classical",
+      "imageKey": "classical_xianyang",
+      "countries": [
+        "China"
+      ],
+      "buildings": [
+        "Barracks",
+        "Palace"
+      ]
+    },
+    {
+      "name": "Rome",
+      "era": "Classical",
+      "imageKey": "classical_rome",
+      "countries": [
+        "Italy"
+      ],
+      "buildings": [
+        "Forum",
+        "Theatre",
+        "Arena",
+        "Parliament",
+        "Infrastructure"
+      ]
+    },
+    {
+      "name": "Teotihuacan",
+      "era": "Classical",
+      "imageKey": "classical_teotihuacan",
+      "countries": [
+        "Mexico"
+      ],
+      "buildings": [
+        "Tomb",
+        "Sanctuary"
+      ]
+    },
+    {
+      "name": "Persepolis",
+      "era": "Classical",
+      "imageKey": "classical_petra",
+      "countries": [
+        "Iran"
+      ],
+      "buildings": [
+        "Palace"
+      ]
+    },
+    {
+      "name": "Jerusalem",
+      "era": "Classical",
+      "imageKey": "medieval_jerusalem",
+      "countries": [
+        "Israel",
+        "Palestine"
+      ],
+      "buildings": [
+        "Sanctuary"
+      ]
+    },
+    {
+      "name": "Krakow",
+      "era": "Medieval",
+      "imageKey": "medieval_krakow",
+      "countries": [
+        "Poland"
+      ],
+      "buildings": [
+        "Palace"
+      ]
+    },
+    {
+      "name": "Changan",
+      "era": "Medieval",
+      "imageKey": "medieval_changan",
+      "countries": [
+        "China"
+      ],
+      "buildings": [
+        "Palace"
+      ]
+    },
+    {
+      "name": "Kyoto",
+      "era": "Medieval",
+      "imageKey": "medieval_kyoto",
+      "countries": [
+        "Japan"
+      ],
+      "buildings": []
+    },
+    {
+      "name": "Damascus",
+      "era": "Medieval",
+      "imageKey": "medieval_damascus",
+      "countries": [
+        "Syria"
+      ],
+      "buildings": []
+    },
+    {
+      "name": "Baghdad",
+      "era": "Medieval",
+      "imageKey": "renaissance_baghdad",
+      "countries": [
+        "Iraq"
+      ],
+      "buildings": []
+    },
+    {
+      "name": "Qaraqorum",
+      "era": "Medieval",
+      "imageKey": "medieval_changan",
+      "countries": [
+        "Mongolia"
+      ],
+      "buildings": []
+    },
+    {
+      "name": "Jerusalem",
+      "era": "Medieval",
+      "imageKey": "medieval_jerusalem",
+      "countries": [
+        "Israel",
+        "Palestine"
+      ],
+      "buildings": [
+        "Sanctuary"
+      ]
+    },
+    {
+      "name": "Chichen Itza",
+      "era": "Medieval",
+      "imageKey": "medieval_chichen_itza",
+      "countries": [
+        "Mexico"
+      ],
+      "buildings": [
+        "Sanctuary"
+      ]
+    },
+    {
+      "name": "Genoa",
+      "era": "Renaissance",
+      "imageKey": "renaissance_genoa",
+      "countries": [
+        "Italy"
+      ],
+      "buildings": [
+        "Port"
+      ]
+    },
+    {
+      "name": "Venice",
+      "era": "Renaissance",
+      "imageKey": "renaissance_venice",
+      "countries": [
+        "Italy"
+      ],
+      "buildings": [
+        "Port",
+        "Gallery"
+      ]
+    },
+    {
+      "name": "Rome",
+      "era": "Renaissance",
+      "imageKey": "classical_rome",
+      "countries": [
+        "Italy"
+      ],
+      "buildings": [
+        "Gallery",
+        "Sanctuary"
+      ]
+    },
+    {
+      "name": "Qusqu",
+      "era": "Renaissance",
+      "imageKey": "renaissance_qusqu",
+      "countries": [
+        "Peru"
+      ],
+      "buildings": [
+        "Infrastructure"
+      ]
+    },
+    {
+      "name": "Tenochtitlan",
+      "era": "Renaissance",
+      "imageKey": "renaissance_tenochtitlan",
+      "countries": [
+        "Mexico"
+      ],
+      "buildings": [
+        "Infrastructure"
+      ]
+    },
+    {
+      "name": "Gao",
+      "era": "Renaissance",
+      "imageKey": "renaissance_baghdad",
+      "countries": [
+        "Mali"
+      ],
+      "buildings": []
+    },
+    {
+      "name": "Lisbon",
+      "era": "Renaissance",
+      "imageKey": "renaissance_lisbon",
+      "countries": [
+        "Portugal"
+      ],
+      "buildings": [
+        "Port"
+      ]
+    },
+    {
+      "name": "Malacca",
+      "era": "Renaissance",
+      "imageKey": "renaissance_genoa",
+      "countries": [
+        "Malaysia"
+      ],
+      "buildings": [
+        "Port"
+      ]
+    },
+    {
+      "name": "St Petersburg",
+      "era": "Steam",
+      "imageKey": "steam_st_petersburg",
+      "countries": [
+        "Russia"
+      ],
+      "buildings": [
+        "Museum",
+        "Palace"
+      ]
+    },
+    {
+      "name": "London",
+      "era": "Steam",
+      "imageKey": "steam_london",
+      "countries": [
+        "United Kingdom"
+      ],
+      "buildings": [
+        "Factory",
+        "Stock Exchange",
+        "Bank",
+        "Parliament"
+      ]
+    },
+    {
+      "name": "Paris",
+      "era": "Steam",
+      "imageKey": "electricity_paris",
+      "countries": [
+        "France"
+      ],
+      "buildings": [
+        "Parliament",
+        "Salon"
+      ]
+    },
+    {
+      "name": "Cairo",
+      "era": "Steam",
+      "imageKey": "steam_cairo",
+      "countries": [
+        "Egypt"
+      ],
+      "buildings": []
+    },
+    {
+      "name": "Amsterdam",
+      "era": "Steam",
+      "imageKey": "steam_amsterdam",
+      "countries": [
+        "Netherlands"
+      ],
+      "buildings": [
+        "Port",
+        "Stock Exchange",
+        "Bank"
+      ]
+    },
+    {
+      "name": "Beijing",
+      "era": "Steam",
+      "imageKey": "electricity_hongkong",
+      "countries": [
+        "China"
+      ],
+      "buildings": [
+        "Palace"
+      ]
+    },
+    {
+      "name": "Delhi",
+      "era": "Steam",
+      "imageKey": "electricity_delhi",
+      "countries": [
+        "India"
+      ],
+      "buildings": [
+        "Palace"
+      ]
+    },
+    {
+      "name": "Boston",
+      "era": "Steam",
+      "imageKey": "steam_manchester",
+      "countries": [
+        "United States"
+      ],
+      "buildings": [
+        "University"
+      ]
+    },
+    {
+      "name": "Moscow",
+      "era": "Electricity",
+      "imageKey": "electricity_moscow",
+      "countries": [
+        "Russia"
+      ],
+      "buildings": [
+        "University",
+        "Palace"
+      ]
+    },
+    {
+      "name": "Kiev",
+      "era": "Electricity",
+      "imageKey": "electricity_london",
+      "countries": [
+        "Ukraine"
+      ],
+      "buildings": []
+    },
+    {
+      "name": "London",
+      "era": "Electricity",
+      "imageKey": "electricity_london",
+      "countries": [
+        "United Kingdom"
+      ],
+      "buildings": [
+        "Stock Exchange",
+        "Museum",
+        "Bank",
+        "Parliament"
+      ]
+    },
+    {
+      "name": "Paris",
+      "era": "Electricity",
+      "imageKey": "electricity_paris",
+      "countries": [
+        "France"
+      ],
+      "buildings": [
+        "Museum",
+        "Gallery",
+        "Salon",
+        "Fine Dining"
+      ]
+    },
+    {
+      "name": "Berlin",
+      "era": "Electricity",
+      "imageKey": "electricity_berlin",
+      "countries": [
+        "Germany"
+      ],
+      "buildings": [
+        "Military Academy",
+        "Museum"
+      ]
+    },
+    {
+      "name": "Beijing",
+      "era": "Electricity",
+      "imageKey": "electricity_hongkong",
+      "countries": [
+        "China"
+      ],
+      "buildings": [
+        "Palace"
+      ]
+    },
+    {
+      "name": "Delhi",
+      "era": "Electricity",
+      "imageKey": "electricity_delhi",
+      "countries": [
+        "India"
+      ],
+      "buildings": [
+        "Palace"
+      ]
+    },
+    {
+      "name": "Istanbul",
+      "era": "Electricity",
+      "imageKey": "steam_istanbul",
+      "countries": [
+        "Turkey"
+      ],
+      "buildings": [
+        "Palace"
+      ]
+    },
+    {
+      "name": "New York",
+      "era": "Electricity",
+      "imageKey": "electricity_london",
+      "countries": [
+        "United States"
+      ],
+      "buildings": [
+        "Stock Exchange",
+        "Museum",
+        "Bank"
+      ]
+    },
+    {
+      "name": "Tehran",
+      "era": "Electricity",
+      "imageKey": "medieval_damascus",
+      "countries": [
+        "Iran"
+      ],
+      "buildings": []
+    },
+    {
+      "name": "Jakarta",
+      "era": "Electricity",
+      "imageKey": "electricity_hongkong",
+      "countries": [
+        "Indonesia"
+      ],
+      "buildings": [
+        "Port"
+      ]
+    },
+    {
+      "name": "Buenos Aires",
+      "era": "Electricity",
+      "imageKey": "electricity_paris",
+      "countries": [
+        "Argentina"
+      ],
+      "buildings": [
+        "Port"
+      ]
+    },
+    {
+      "name": "Singapore",
+      "era": "Information",
+      "imageKey": "information_singapore",
+      "countries": [
+        "Singapore"
+      ],
+      "buildings": [
+        "Enterprise Quarter",
+        "Port"
+      ]
+    },
+    {
+      "name": "Tokyo",
+      "era": "Information",
+      "imageKey": "information_tokyo",
+      "countries": [
+        "Japan"
+      ],
+      "buildings": [
+        "Stock Exchange",
+        "Enterprise Quarter",
+        "Fine Dining"
+      ]
+    },
+    {
+      "name": "Shenzhen",
+      "era": "Information",
+      "imageKey": "information_shenzhen",
+      "countries": [
+        "China"
+      ],
+      "buildings": [
+        "Stock Exchange",
+        "Enterprise Quarter"
+      ]
+    },
+    {
+      "name": "Taipei",
+      "era": "Information",
+      "imageKey": "information_tokyo",
+      "countries": [
+        "Taiwan"
+      ],
+      "buildings": [
+        "Enterprise Quarter"
+      ]
+    },
+    {
+      "name": "Sydney",
+      "era": "Information",
+      "imageKey": "information_sydney",
+      "countries": [
+        "Australia"
+      ],
+      "buildings": [
+        "Concert Hall",
+        "Port"
+      ]
+    },
+    {
+      "name": "Dubai",
+      "era": "Information",
+      "imageKey": "information_dubai",
+      "countries": [
+        "United Arab Emirates"
+      ],
+      "buildings": [
+        "Port"
+      ]
+    },
+    {
+      "name": "Seoul",
+      "era": "Information",
+      "imageKey": "information_seoul",
+      "countries": [
+        "South Korea"
+      ],
+      "buildings": [
+        "Stock Exchange"
+      ]
+    },
+    {
+      "name": "San Jose",
+      "era": "Information",
+      "imageKey": "information_sanjose",
+      "countries": [
+        "United States"
+      ],
+      "buildings": [
+        "Enterprise Quarter"
+      ]
+    },
+    {
+      "name": "Los Angeles",
+      "era": "Information",
+      "imageKey": "information_sanjose",
+      "countries": [
+        "United States"
+      ],
+      "buildings": [
+        "Port"
+      ]
+    },
+    {
+      "name": "Vancouver",
+      "era": "Information",
+      "imageKey": "information_sydney",
+      "countries": [
+        "Canada"
+      ],
+      "buildings": [
+        "Port"
+      ]
+    },
+    {
+      "name": "Rio de Janeiro",
+      "era": "Information",
+      "imageKey": "information_rio",
+      "countries": [
+        "Brazil"
+      ],
+      "buildings": [
+        "Monument",
+        "Arena"
+      ]
+    }
+  ]
+}
