@@ -15,6 +15,10 @@
       "imageKey": "ancient_memphis",
       "countries": [
         "Egypt"
+      ],
+      "buildings": [
+        "Palace",
+        "Tomb"
       ]
     },
     {
@@ -23,6 +27,9 @@
       "imageKey": "ancient_stonehenge",
       "countries": [
         "United Kingdom"
+      ],
+      "buildings": [
+        "Monument"
       ]
     },
     {
@@ -31,6 +38,9 @@
       "imageKey": "ancient_olmec_sanlorenzo",
       "countries": [
         "Mexico"
+      ],
+      "buildings": [
+        "Monument"
       ]
     },
     {
@@ -39,6 +49,9 @@
       "imageKey": "ancient_olmec_laventa",
       "countries": [
         "Mexico"
+      ],
+      "buildings": [
+        "Monument"
       ]
     },
     {
@@ -47,6 +60,9 @@
       "imageKey": "ancient_yin_city",
       "countries": [
         "China"
+      ],
+      "buildings": [
+        "Palace"
       ]
     },
     {
@@ -56,7 +72,8 @@
       "countries": [
         "Pakistan",
         "India"
-      ]
+      ],
+      "buildings": []
     },
     {
       "name": "Zhaoge",
@@ -64,6 +81,9 @@
       "imageKey": "ancient_zhaoge",
       "countries": [
         "China"
+      ],
+      "buildings": [
+        "Palace"
       ]
     },
     {
@@ -72,6 +92,9 @@
       "imageKey": "ancient_uruk",
       "countries": [
         "Iraq"
+      ],
+      "buildings": [
+        "Monument"
       ]
     },
     {
@@ -80,7 +103,8 @@
       "imageKey": "ancient_nippur",
       "countries": [
         "Iraq"
-      ]
+      ],
+      "buildings": []
     },
     {
       "name": "Ur",
@@ -88,7 +112,8 @@
       "imageKey": "ancient_memphis",
       "countries": [
         "Iraq"
-      ]
+      ],
+      "buildings": []
     },
     {
       "name": "Babylon",
@@ -96,7 +121,8 @@
       "imageKey": "ancient_memphis",
       "countries": [
         "Iraq"
-      ]
+      ],
+      "buildings": []
     },
     {
       "name": "Hattusa",
@@ -104,6 +130,9 @@
       "imageKey": "classical_petra",
       "countries": [
         "Turkey"
+      ],
+      "buildings": [
+        "Palace"
       ]
     },
     {
@@ -112,7 +141,8 @@
       "imageKey": "ancient_nippur",
       "countries": [
         "Iraq"
-      ]
+      ],
+      "buildings": []
     },
     {
       "name": "Ashur",
@@ -120,6 +150,9 @@
       "imageKey": "ancient_nippur",
       "countries": [
         "Iraq"
+      ],
+      "buildings": [
+        "Barracks"
       ]
     },
     {
@@ -128,6 +161,9 @@
       "imageKey": "classical_carthage",
       "countries": [
         "Tunisia"
+      ],
+      "buildings": [
+        "Port"
       ]
     },
     {
@@ -136,7 +172,8 @@
       "imageKey": "classical_petra",
       "countries": [
         "Jordan"
-      ]
+      ],
+      "buildings": []
     },
     {
       "name": "Sparta",
@@ -144,6 +181,9 @@
       "imageKey": "classical_sparta",
       "countries": [
         "Greece"
+      ],
+      "buildings": [
+        "Barracks"
       ]
     },
     {
@@ -152,6 +192,10 @@
       "imageKey": "anthem_city",
       "countries": [
         "Greece"
+      ],
+      "buildings": [
+        "Forum",
+        "Theatre"
       ]
     },
     {
@@ -160,6 +204,10 @@
       "imageKey": "classical_xianyang",
       "countries": [
         "China"
+      ],
+      "buildings": [
+        "Barracks",
+        "Palace"
       ]
     },
     {
@@ -168,6 +216,13 @@
       "imageKey": "classical_rome",
       "countries": [
         "Italy"
+      ],
+      "buildings": [
+        "Forum",
+        "Theatre",
+        "Arena",
+        "Parliament",
+        "Infrastructure"
       ]
     },
     {
@@ -176,6 +231,10 @@
       "imageKey": "classical_teotihuacan",
       "countries": [
         "Mexico"
+      ],
+      "buildings": [
+        "Tomb",
+        "Sanctuary"
       ]
     },
     {
@@ -184,6 +243,9 @@
       "imageKey": "classical_petra",
       "countries": [
         "Iran"
+      ],
+      "buildings": [
+        "Palace"
       ]
     },
     {
@@ -193,6 +255,9 @@
       "countries": [
         "Israel",
         "Palestine"
+      ],
+      "buildings": [
+        "Sanctuary"
       ]
     },
     {
@@ -201,6 +266,9 @@
       "imageKey": "medieval_krakow",
       "countries": [
         "Poland"
+      ],
+      "buildings": [
+        "Palace"
       ]
     },
     {
@@ -209,6 +277,9 @@
       "imageKey": "medieval_changan",
       "countries": [
         "China"
+      ],
+      "buildings": [
+        "Palace"
       ]
     },
     {
@@ -217,7 +288,8 @@
       "imageKey": "medieval_kyoto",
       "countries": [
         "Japan"
-      ]
+      ],
+      "buildings": []
     },
     {
       "name": "Damascus",
@@ -225,7 +297,8 @@
       "imageKey": "medieval_damascus",
       "countries": [
         "Syria"
-      ]
+      ],
+      "buildings": []
     },
     {
       "name": "Baghdad",
@@ -233,7 +306,8 @@
       "imageKey": "renaissance_baghdad",
       "countries": [
         "Iraq"
-      ]
+      ],
+      "buildings": []
     },
     {
       "name": "Qaraqorum",
@@ -241,7 +315,8 @@
       "imageKey": "medieval_changan",
       "countries": [
         "Mongolia"
-      ]
+      ],
+      "buildings": []
     },
     {
       "name": "Jerusalem",
@@ -250,6 +325,9 @@
       "countries": [
         "Israel",
         "Palestine"
+      ],
+      "buildings": [
+        "Sanctuary"
       ]
     },
     {
@@ -258,6 +336,9 @@
       "imageKey": "medieval_chichen_itza",
       "countries": [
         "Mexico"
+      ],
+      "buildings": [
+        "Sanctuary"
       ]
     },
     {
@@ -266,6 +347,9 @@
       "imageKey": "renaissance_genoa",
       "countries": [
         "Italy"
+      ],
+      "buildings": [
+        "Port"
       ]
     },
     {
@@ -274,6 +358,10 @@
       "imageKey": "renaissance_venice",
       "countries": [
         "Italy"
+      ],
+      "buildings": [
+        "Port",
+        "Gallery"
       ]
     },
     {
@@ -282,6 +370,10 @@
       "imageKey": "classical_rome",
       "countries": [
         "Italy"
+      ],
+      "buildings": [
+        "Gallery",
+        "Sanctuary"
       ]
     },
     {
@@ -290,6 +382,9 @@
       "imageKey": "renaissance_qusqu",
       "countries": [
         "Peru"
+      ],
+      "buildings": [
+        "Infrastructure"
       ]
     },
     {
@@ -298,6 +393,9 @@
       "imageKey": "renaissance_tenochtitlan",
       "countries": [
         "Mexico"
+      ],
+      "buildings": [
+        "Infrastructure"
       ]
     },
     {
@@ -306,7 +404,8 @@
       "imageKey": "renaissance_baghdad",
       "countries": [
         "Mali"
-      ]
+      ],
+      "buildings": []
     },
     {
       "name": "Lisbon",
@@ -314,6 +413,9 @@
       "imageKey": "renaissance_lisbon",
       "countries": [
         "Portugal"
+      ],
+      "buildings": [
+        "Port"
       ]
     },
     {
@@ -322,6 +424,9 @@
       "imageKey": "renaissance_genoa",
       "countries": [
         "Malaysia"
+      ],
+      "buildings": [
+        "Port"
       ]
     },
     {
@@ -330,6 +435,10 @@
       "imageKey": "steam_st_petersburg",
       "countries": [
         "Russia"
+      ],
+      "buildings": [
+        "Museum",
+        "Palace"
       ]
     },
     {
@@ -338,6 +447,12 @@
       "imageKey": "steam_london",
       "countries": [
         "United Kingdom"
+      ],
+      "buildings": [
+        "Factory",
+        "Stock Exchange",
+        "Bank",
+        "Parliament"
       ]
     },
     {
@@ -346,6 +461,10 @@
       "imageKey": "electricity_paris",
       "countries": [
         "France"
+      ],
+      "buildings": [
+        "Parliament",
+        "Salon"
       ]
     },
     {
@@ -354,7 +473,8 @@
       "imageKey": "steam_cairo",
       "countries": [
         "Egypt"
-      ]
+      ],
+      "buildings": []
     },
     {
       "name": "Amsterdam",
@@ -362,6 +482,11 @@
       "imageKey": "steam_amsterdam",
       "countries": [
         "Netherlands"
+      ],
+      "buildings": [
+        "Port",
+        "Stock Exchange",
+        "Bank"
       ]
     },
     {
@@ -370,6 +495,9 @@
       "imageKey": "electricity_hongkong",
       "countries": [
         "China"
+      ],
+      "buildings": [
+        "Palace"
       ]
     },
     {
@@ -378,6 +506,9 @@
       "imageKey": "electricity_delhi",
       "countries": [
         "India"
+      ],
+      "buildings": [
+        "Palace"
       ]
     },
     {
@@ -386,6 +517,9 @@
       "imageKey": "steam_manchester",
       "countries": [
         "United States"
+      ],
+      "buildings": [
+        "University"
       ]
     },
     {
@@ -394,6 +528,10 @@
       "imageKey": "electricity_moscow",
       "countries": [
         "Russia"
+      ],
+      "buildings": [
+        "University",
+        "Palace"
       ]
     },
     {
@@ -402,7 +540,8 @@
       "imageKey": "electricity_london",
       "countries": [
         "Ukraine"
-      ]
+      ],
+      "buildings": []
     },
     {
       "name": "London",
@@ -410,6 +549,12 @@
       "imageKey": "electricity_london",
       "countries": [
         "United Kingdom"
+      ],
+      "buildings": [
+        "Stock Exchange",
+        "Museum",
+        "Bank",
+        "Parliament"
       ]
     },
     {
@@ -418,6 +563,12 @@
       "imageKey": "electricity_paris",
       "countries": [
         "France"
+      ],
+      "buildings": [
+        "Museum",
+        "Gallery",
+        "Salon",
+        "Fine Dining"
       ]
     },
     {
@@ -426,6 +577,10 @@
       "imageKey": "electricity_berlin",
       "countries": [
         "Germany"
+      ],
+      "buildings": [
+        "Military Academy",
+        "Museum"
       ]
     },
     {
@@ -434,6 +589,9 @@
       "imageKey": "electricity_hongkong",
       "countries": [
         "China"
+      ],
+      "buildings": [
+        "Palace"
       ]
     },
     {
@@ -442,6 +600,9 @@
       "imageKey": "electricity_delhi",
       "countries": [
         "India"
+      ],
+      "buildings": [
+        "Palace"
       ]
     },
     {
@@ -450,6 +611,9 @@
       "imageKey": "steam_istanbul",
       "countries": [
         "Turkey"
+      ],
+      "buildings": [
+        "Palace"
       ]
     },
     {
@@ -458,6 +622,11 @@
       "imageKey": "electricity_london",
       "countries": [
         "United States"
+      ],
+      "buildings": [
+        "Stock Exchange",
+        "Museum",
+        "Bank"
       ]
     },
     {
@@ -466,7 +635,8 @@
       "imageKey": "medieval_damascus",
       "countries": [
         "Iran"
-      ]
+      ],
+      "buildings": []
     },
     {
       "name": "Jakarta",
@@ -474,6 +644,9 @@
       "imageKey": "electricity_hongkong",
       "countries": [
         "Indonesia"
+      ],
+      "buildings": [
+        "Port"
       ]
     },
     {
@@ -482,6 +655,9 @@
       "imageKey": "electricity_paris",
       "countries": [
         "Argentina"
+      ],
+      "buildings": [
+        "Port"
       ]
     },
     {
@@ -490,6 +666,10 @@
       "imageKey": "information_singapore",
       "countries": [
         "Singapore"
+      ],
+      "buildings": [
+        "Enterprise Quarter",
+        "Port"
       ]
     },
     {
@@ -498,6 +678,11 @@
       "imageKey": "information_tokyo",
       "countries": [
         "Japan"
+      ],
+      "buildings": [
+        "Stock Exchange",
+        "Enterprise Quarter",
+        "Fine Dining"
       ]
     },
     {
@@ -506,6 +691,10 @@
       "imageKey": "information_shenzhen",
       "countries": [
         "China"
+      ],
+      "buildings": [
+        "Stock Exchange",
+        "Enterprise Quarter"
       ]
     },
     {
@@ -514,6 +703,9 @@
       "imageKey": "information_tokyo",
       "countries": [
         "Taiwan"
+      ],
+      "buildings": [
+        "Enterprise Quarter"
       ]
     },
     {
@@ -522,6 +714,10 @@
       "imageKey": "information_sydney",
       "countries": [
         "Australia"
+      ],
+      "buildings": [
+        "Concert Hall",
+        "Port"
       ]
     },
     {
@@ -530,6 +726,9 @@
       "imageKey": "information_dubai",
       "countries": [
         "United Arab Emirates"
+      ],
+      "buildings": [
+        "Port"
       ]
     },
     {
@@ -538,6 +737,9 @@
       "imageKey": "information_seoul",
       "countries": [
         "South Korea"
+      ],
+      "buildings": [
+        "Stock Exchange"
       ]
     },
     {
@@ -546,6 +748,9 @@
       "imageKey": "information_sanjose",
       "countries": [
         "United States"
+      ],
+      "buildings": [
+        "Enterprise Quarter"
       ]
     },
     {
@@ -554,6 +759,9 @@
       "imageKey": "information_sanjose",
       "countries": [
         "United States"
+      ],
+      "buildings": [
+        "Port"
       ]
     },
     {
@@ -562,6 +770,9 @@
       "imageKey": "information_sydney",
       "countries": [
         "Canada"
+      ],
+      "buildings": [
+        "Port"
       ]
     },
     {
@@ -570,6 +781,10 @@
       "imageKey": "information_rio",
       "countries": [
         "Brazil"
+      ],
+      "buildings": [
+        "Monument",
+        "Arena"
       ]
     }
   ]

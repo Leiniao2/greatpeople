@@ -175,6 +175,17 @@ function CardItem({ card, owned, onClick }: { card: Card; owned: boolean; onClic
             ))}
           </div>
         )}
+        {card.countries && card.countries.length > 0 && (
+          <div className="flex flex-wrap gap-1 mt-1">
+            {card.countries.map(c => (
+              <span key={c}
+                className={`text-[9px] px-1.5 py-0.5 rounded-full border
+                  ${owned ? 'border-cyan-500/30 text-cyan-400/80' : 'border-slate-700/40 text-slate-700'}`}>
+                {c}
+              </span>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   )

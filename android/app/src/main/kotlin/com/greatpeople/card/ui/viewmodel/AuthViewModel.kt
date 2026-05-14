@@ -37,7 +37,10 @@ class AuthViewModel @Inject constructor(
             _state.value = AuthUiState.Loading
             try {
                 val resp = apiService.login(LoginRequest(email, password))
-                prefs.edit().putString("access_token", resp.accessToken).apply()
+                prefs.edit()
+                    .putString("access_token", resp.accessToken)
+                    .putString("user_email", email)
+                    .apply()
                 _state.value = AuthUiState.Success
             } catch (e: Exception) {
                 _state.value = AuthUiState.Error("Invalid email or password.")
@@ -50,7 +53,10 @@ class AuthViewModel @Inject constructor(
             _state.value = AuthUiState.Loading
             try {
                 val resp = apiService.register(RegisterRequest(email, password, displayName))
-                prefs.edit().putString("access_token", resp.accessToken).apply()
+                prefs.edit()
+                    .putString("access_token", resp.accessToken)
+                    .putString("user_email", email)
+                    .apply()
                 _state.value = AuthUiState.Success
             } catch (e: Exception) {
                 _state.value = AuthUiState.Error("Registration failed. Please try again.")
@@ -58,12 +64,15 @@ class AuthViewModel @Inject constructor(
         }
     }
 
-    fun googleLogin(idToken: String) {
+    fun googleLogin(idToken: String, email: String? = null) {
         viewModelScope.launch {
             _state.value = AuthUiState.Loading
             try {
                 val resp = apiService.googleLogin(GoogleLoginRequest(idToken))
-                prefs.edit().putString("access_token", resp.accessToken).apply()
+                prefs.edit()
+                    .putString("access_token", resp.accessToken)
+                    .also { if (email != null) it.putString("user_email", email) }
+                    .apply()
                 _state.value = AuthUiState.Success
             } catch (e: Exception) {
                 _state.value = AuthUiState.Error("Google sign-in failed. Please try again.")

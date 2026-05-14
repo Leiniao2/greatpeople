@@ -1,9 +1,27 @@
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '@/hooks/useAuth'
+import { apiClient } from '@/api/client'
+
+function toDisplayName(email: string): string {
+  return email.split('@')[0].replace(/[._]/g, ' ').replace(/\b\w/g, c => c.toUpperCase())
+}
+
+function toInitials(name: string): string {
+  return name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2)
+}
 
 export default function ProfilePage() {
   const navigate = useNavigate()
-  const { isLoggedIn, isGuest, logout, exitGuestMode } = useAuth()
+  const { isLoggedIn, isGuest, email, logout, exitGuestMode } = useAuth()
+  const [cardsCount, setCardsCount] = useState<number | null>(null)
+
+  useEffect(() => {
+    if (!isLoggedIn) return
+    apiClient.get<{ cards: unknown[] }>('/profile/cards')
+      .then(r => setCardsCount(r.data.cards.length))
+      .catch(() => {})
+  }, [isLoggedIn])
 
   const handleSignOut = async () => {
     await logout()
@@ -61,60 +79,65 @@ export default function ProfilePage() {
         )}
 
         {/* Logged-in state */}
-        {isLoggedIn && (
-          <div className="w-full max-w-sm">
-            <div
-              className="rounded-3xl p-8 flex flex-col items-center text-center gap-6
-                         bg-white/[0.03] backdrop-blur-sm"
-              style={{ border: '1px solid rgba(255,255,255,0.07)' }}>
-
-              {/* Avatar */}
+        {isLoggedIn && (() => {
+          const displayName = email ? toDisplayName(email) : 'Player'
+          const initials = toInitials(displayName)
+          return (
+            <div className="w-full max-w-sm">
               <div
-                className="inline-flex items-center justify-center w-24 h-24 rounded-2xl"
-                style={{ background: 'rgba(245,158,11,0.12)', border: '1px solid rgba(245,158,11,0.25)' }}>
-                <span className="text-6xl select-none">◉</span>
-              </div>
+                className="rounded-3xl p-8 flex flex-col items-center text-center gap-6
+                           bg-white/[0.03] backdrop-blur-sm"
+                style={{ border: '1px solid rgba(255,255,255,0.07)' }}>
 
-              <div>
-                <h2 className="font-display text-xl font-bold tracking-wide text-white uppercase mb-1">
-                  Your Profile
-                </h2>
-                <p className="text-slate-500 text-xs tracking-widest uppercase">
-                  Great People Player
-                </p>
-              </div>
+                {/* Avatar with initials */}
+                <div
+                  className="inline-flex items-center justify-center w-24 h-24 rounded-2xl"
+                  style={{ background: 'rgba(245,158,11,0.12)', border: '1px solid rgba(245,158,11,0.25)' }}>
+                  <span className="text-3xl font-bold text-amber-400 select-none tracking-wider">
+                    {initials}
+                  </span>
+                </div>
 
-              {/* Stats row */}
-              <div
-                className="w-full grid grid-cols-3 rounded-xl overflow-hidden"
-                style={{
-                  background: 'rgba(255,255,255,0.04)',
-                  border: '1px solid rgba(255,255,255,0.07)',
-                }}>
-                {[
-                  { label: 'Wins',  value: '—' },
-                  { label: 'Cards', value: '—' },
-                  { label: 'ELO',   value: '—' },
-                ].map(({ label, value }, i) => (
-                  <div key={label} className="flex flex-col items-center py-4"
-                    style={i < 2 ? { borderRight: '1px solid rgba(255,255,255,0.07)' } : undefined}>
-                    <span className="text-amber-400 font-bold text-lg">{value}</span>
-                    <span className="text-slate-600 text-[10px] tracking-widest uppercase mt-0.5">{label}</span>
+                <div>
+                  <h2 className="font-display text-xl font-bold tracking-wide text-white uppercase mb-1">
+                    {displayName}
+                  </h2>
+                  {email && (
+                    <p className="text-slate-500 text-xs">
+                      {email}
+                    </p>
+                  )}
+                </div>
+
+                {/* Cards stat */}
+                <div
+                  className="w-full rounded-xl overflow-hidden"
+                  style={{
+                    background: 'rgba(255,255,255,0.04)',
+                    border: '1px solid rgba(255,255,255,0.07)',
+                  }}>
+                  <div className="flex flex-col items-center py-5">
+                    <span className="text-amber-400 font-bold text-2xl">
+                      {cardsCount ?? '—'}
+                    </span>
+                    <span className="text-slate-600 text-[10px] tracking-widest uppercase mt-1">
+                      Cards Collected
+                    </span>
                   </div>
-                ))}
-              </div>
+                </div>
 
-              {/* Sign out */}
-              <button
-                onClick={handleSignOut}
-                className="w-full py-3 rounded-xl font-semibold text-sm text-red-400
-                           border border-red-900/50 hover:border-red-700/60 hover:bg-red-950/30
-                           transition-all duration-200">
-                Sign Out
-              </button>
+                {/* Sign out */}
+                <button
+                  onClick={handleSignOut}
+                  className="w-full py-3 rounded-xl font-semibold text-sm text-red-400
+                             border border-red-900/50 hover:border-red-700/60 hover:bg-red-950/30
+                             transition-all duration-200">
+                  Sign Out
+                </button>
+              </div>
             </div>
-          </div>
-        )}
+          )
+        })()}
       </div>
     </div>
   )

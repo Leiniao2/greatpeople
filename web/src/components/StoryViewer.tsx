@@ -17,6 +17,15 @@ import SudokuGame from '@/components/minigames/SudokuGame'
 import VotingGame from '@/components/minigames/VotingGame'
 import ChemistryGame from '@/components/minigames/ChemistryGame'
 import MatchThreeGame from '@/components/minigames/MatchThreeGame'
+import KlotskiGame from '@/components/minigames/KlotskiGame'
+import LorentzGame from '@/components/minigames/LorentzGame'
+import PorcelainGame from '@/components/minigames/PorcelainGame'
+import WordleGame from '@/components/minigames/WordleGame'
+import DecodeGame from '@/components/minigames/DecodeGame'
+import WargameGame from '@/components/minigames/WargameGame'
+import BigMazeGame from '@/components/minigames/BigMazeGame'
+import TradeGame from '@/components/minigames/TradeGame'
+import PunnettGame from '@/components/minigames/PunnettGame'
 import { useAuth } from '@/hooks/useAuth'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
@@ -24,7 +33,7 @@ import { useAuth } from '@/hooks/useAuth'
 interface QuizChallenge { type: 'quiz'; question: string; options: string[]; answer: number; fact: string }
 interface TrueFalseChallenge { type: 'truefalse'; statement: string; correct: boolean; fact: string }
 interface SortChallenge { type: 'sort'; question: string; items: string[]; fact: string }
-interface MinigameChallenge { type: 'minigame'; game: 'maze'|'mirror'|'circuit'|'sliding'|'crossword'|'geometry'|'painting'|'music'|'tactics'|'classify'|'cooking'|'fiction'|'sudoku'|'voting'|'chemistry'|'matchthree'; configId: string; instruction: string; fact: string }
+interface MinigameChallenge { type: 'minigame'; game: 'maze'|'mirror'|'circuit'|'sliding'|'crossword'|'geometry'|'painting'|'music'|'tactics'|'classify'|'cooking'|'fiction'|'sudoku'|'voting'|'chemistry'|'matchthree'|'klotski'|'lorentz'|'porcelain'|'wordle'|'decode'|'wargame'|'bigmaze'|'trade'|'punnett'; configId: string; instruction: string; fact: string }
 type Challenge = QuizChallenge | TrueFalseChallenge | SortChallenge | MinigameChallenge
 
 interface NarrationScene { type: 'narration'; text: string }
@@ -239,6 +248,15 @@ function MinigameView({ challenge, onResult }: { challenge: MinigameChallenge; o
         {challenge.game === 'voting' && <VotingGame configId={challenge.configId} onWin={handleWin} />}
         {challenge.game === 'chemistry' && <ChemistryGame configId={challenge.configId} onWin={handleWin} />}
         {challenge.game === 'matchthree' && <MatchThreeGame configId={challenge.configId} onWin={handleWin} />}
+        {challenge.game === 'klotski' && <KlotskiGame configId={challenge.configId} onWin={handleWin} />}
+        {challenge.game === 'lorentz' && <LorentzGame configId={challenge.configId} onWin={handleWin} />}
+        {challenge.game === 'porcelain' && <PorcelainGame configId={challenge.configId} onWin={handleWin} />}
+        {challenge.game === 'wordle' && <WordleGame configId={challenge.configId} onWin={handleWin} />}
+        {challenge.game === 'decode' && <DecodeGame configId={challenge.configId} onWin={handleWin} />}
+        {challenge.game === 'wargame' && <WargameGame configId={challenge.configId} onWin={handleWin} />}
+        {challenge.game === 'bigmaze'  && <BigMazeGame configId={challenge.configId} onWin={handleWin} />}
+        {challenge.game === 'trade'    && <TradeGame configId={challenge.configId} onWin={handleWin} />}
+        {challenge.game === 'punnett'  && <PunnettGame configId={challenge.configId} onWin={handleWin} />}
       </div>
     </div>
   )
@@ -468,12 +486,13 @@ interface StoryViewerProps {
   storyTitle: string
   figureName: string | null
   portraitKey: string | null
+  bonusCard?: { figureName: string; portraitKey: string | null } | null
   locationImage?: string
   onComplete: (unlockKey: string | null) => void
   onClose: () => void
 }
 
-export default function StoryViewer({ eraName, storyTitle, figureName, portraitKey, locationImage, onComplete, onClose }: StoryViewerProps) {
+export default function StoryViewer({ eraName, storyTitle, figureName, portraitKey, bonusCard, locationImage, onComplete, onClose }: StoryViewerProps) {
   const { isAdmin } = useAuth()
   const script = useMemo(() => getScript(eraName, storyTitle), [eraName, storyTitle])
   const challenges = useMemo(() => getChallenges(eraName, storyTitle), [eraName, storyTitle])
@@ -485,6 +504,7 @@ export default function StoryViewer({ eraName, storyTitle, figureName, portraitK
   const [failing, setFailing] = useState(false)
   const [storyComplete, setStoryComplete] = useState(false)
   const [cardUnlock, setCardUnlock] = useState(false)
+  const [bonusUnlock, setBonusUnlock] = useState(false)
   const [challengeKey, setChallengeKey] = useState(0)
 
   const totalChallenges = scenes.filter(s => s.type === 'challenge').length
@@ -538,6 +558,20 @@ export default function StoryViewer({ eraName, storyTitle, figureName, portraitK
     } else {
       onComplete(null)
     }
+  }
+
+  const handlePrimaryCollect = () => {
+    setCardUnlock(false)
+    if (bonusCard?.portraitKey) {
+      setBonusUnlock(true)
+    } else {
+      onComplete(portraitKey)
+    }
+  }
+
+  const handleBonusCollect = () => {
+    setBonusUnlock(false)
+    onComplete(portraitKey)
   }
 
   // No script fallback — show simple message
@@ -656,13 +690,23 @@ export default function StoryViewer({ eraName, storyTitle, figureName, portraitK
         />
       )}
 
-      {/* Card unlock */}
+      {/* Card unlock — primary figure */}
       {cardUnlock && (
         <CardUnlock
           portraitKey={portraitKey}
           figureName={figureName ?? storyTitle}
           era={eraName}
-          onCollect={() => { setCardUnlock(false); onComplete(portraitKey) }}
+          onCollect={handlePrimaryCollect}
+        />
+      )}
+
+      {/* Card unlock — bonus figure */}
+      {bonusUnlock && bonusCard && (
+        <CardUnlock
+          portraitKey={bonusCard.portraitKey}
+          figureName={bonusCard.figureName}
+          era={eraName}
+          onCollect={handleBonusCollect}
         />
       )}
 

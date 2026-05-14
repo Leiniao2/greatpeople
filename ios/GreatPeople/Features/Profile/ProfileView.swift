@@ -1,5 +1,17 @@
 import SwiftUI
 
+private func displayName(from email: String) -> String {
+    let local = email.split(separator: "@").first.map(String.init) ?? email
+    return local.replacingOccurrences(of: "[._]", with: " ", options: .regularExpression)
+        .split(separator: " ")
+        .map { $0.prefix(1).uppercased() + $0.dropFirst() }
+        .joined(separator: " ")
+}
+
+private func initials(from name: String) -> String {
+    String(name.split(separator: " ").compactMap(\.first).prefix(2).map { String($0).uppercased() }.joined())
+}
+
 struct ProfileView: View {
     @EnvironmentObject var authStore: AuthStore
 
@@ -63,28 +75,59 @@ private struct GuestProfileView: View {
 
 private struct LoggedInProfileView: View {
     @EnvironmentObject var authStore: AuthStore
+    @State private var cardsCount: Int? = nil
+    @State private var loadingCards = false
+
+    private var name: String {
+        authStore.email.map(displayName) ?? "Player"
+    }
 
     var body: some View {
         VStack(spacing: 24) {
-            // Avatar
-            Text("◉")
-                .font(.system(size: 56))
-                .padding(20)
-                .background(Color.gpAmber.opacity(0.12))
-                .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.gpAmber.opacity(0.25), lineWidth: 1))
-                .clipShape(RoundedRectangle(cornerRadius: 20))
+            // Avatar with initials
+            ZStack {
+                RoundedRectangle(cornerRadius: 20)
+                    .fill(Color.gpAmber.opacity(0.12))
+                    .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.gpAmber.opacity(0.25), lineWidth: 1))
+                    .frame(width: 96, height: 96)
+                Text(initials(from: name))
+                    .font(.system(size: 32, weight: .bold))
+                    .tracking(2)
+                    .foregroundColor(.gpAmber)
+            }
 
-            Text("Your Profile")
-                .font(.system(.title2, design: .serif).weight(.bold))
-                .tracking(3)
-                .foregroundColor(.white)
-
-            // Stat row
-            HStack(spacing: 12) {
-                ForEach([("Wins", "—"), ("Cards", "—"), ("ELO", "—")], id: \.0) { stat in
-                    StatBox(label: stat.0, value: stat.1)
+            // Name + email
+            VStack(spacing: 4) {
+                Text(name)
+                    .font(.system(.title2, design: .serif).weight(.bold))
+                    .tracking(2)
+                    .foregroundColor(.white)
+                if let email = authStore.email {
+                    Text(email)
+                        .font(.caption)
+                        .foregroundColor(.gpSlate400)
                 }
             }
+
+            // Cards stat
+            VStack(spacing: 4) {
+                if loadingCards {
+                    ProgressView().tint(.gpAmber).scaleEffect(0.8)
+                } else {
+                    Text(cardsCount.map(String.init) ?? "—")
+                        .font(.system(size: 36, weight: .bold))
+                        .foregroundColor(.gpAmber)
+                }
+                Text("Cards Collected")
+                    .font(.system(size: 10, weight: .semibold))
+                    .tracking(1)
+                    .foregroundColor(.gpSlate400)
+            }
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 20)
+            .background(Color.white.opacity(0.03))
+            .overlay(RoundedRectangle(cornerRadius: 14).stroke(Color.gpOutline, lineWidth: 1))
+            .clipShape(RoundedRectangle(cornerRadius: 14))
 
             // Sign out
             Button("Sign Out") {
@@ -100,27 +143,12 @@ private struct LoggedInProfileView: View {
             .padding(.top, 8)
         }
         .padding(32)
-    }
-}
-
-private struct StatBox: View {
-    let label: String
-    let value: String
-
-    var body: some View {
-        VStack(spacing: 4) {
-            Text(value)
-                .font(.system(.title2).weight(.bold))
-                .foregroundColor(.gpAmber)
-            Text(label)
-                .font(.system(size: 10).weight(.semibold))
-                .tracking(1)
-                .foregroundColor(.gpSlate400)
+        .task {
+            loadingCards = true
+            if let cards = try? await APIClient.shared.fetchCards() {
+                cardsCount = cards.count
+            }
+            loadingCards = false
         }
-        .frame(maxWidth: .infinity)
-        .padding(.vertical, 16)
-        .background(Color.white.opacity(0.03))
-        .overlay(RoundedRectangle(cornerRadius: 14).stroke(Color.gpOutline, lineWidth: 1))
-        .clipShape(RoundedRectangle(cornerRadius: 14))
     }
 }

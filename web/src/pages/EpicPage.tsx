@@ -21,6 +21,7 @@ interface Story {
   tagline: string
   quizzes: number
   locationImage?: string
+  bonusCard?: string
 }
 
 interface Era {
@@ -88,9 +89,14 @@ export default function EpicPage() {
 
   const handleStoryComplete = (eraIdx: number, storyIdx: number, unlockKey: string | null) => {
     setCompleted(prev => ({ ...prev, [key(eraIdx, storyIdx)]: true }))
+    const story = ERAS[eraIdx].stories[storyIdx]
     if (unlockKey) {
       unlock(unlockKey)
-      showToast('Card unlocked! Check your Collection.')
+      if (story.bonusCard) {
+        const bonusKey = portraitKeyForFigure(story.bonusCard)
+        if (bonusKey) unlock(bonusKey)
+      }
+      showToast(story.bonusCard ? '2 cards unlocked! Check your Collection.' : 'Card unlocked! Check your Collection.')
     } else {
       showToast('Story completed! Next story unlocked.')
     }
@@ -331,12 +337,17 @@ export default function EpicPage() {
       {modal && (() => {
         const story = ERAS[modal.eraIdx].stories[modal.storyIdx]
         const pKey = portraitKeyForFigure(story.figure)
+        const bonusKey = story.bonusCard ? portraitKeyForFigure(story.bonusCard) : null
+        const bonusCard = story.bonusCard && bonusKey
+          ? { figureName: story.bonusCard, portraitKey: bonusKey }
+          : null
         return (
           <StoryViewer
             eraName={ERAS[modal.eraIdx].name}
             storyTitle={story.title}
             figureName={story.figure}
             portraitKey={pKey}
+            bonusCard={bonusCard}
             locationImage={story.locationImage ? `/locations/${story.locationImage}.jpeg` : undefined}
             onComplete={(unlockKey) => { handleStoryComplete(modal.eraIdx, modal.storyIdx, unlockKey); setModal(null) }}
             onClose={() => setModal(null)}

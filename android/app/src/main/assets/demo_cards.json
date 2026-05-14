@@ -588,8 +588,8 @@
     "belief": 16,
     "reputation": 14,
     "lore": "Born of clay and wildness, he became the greatest friend a king ever had.",
-    "trait": "Wild Companion — While Gilgamesh is at this location, both cards' stats are combined for all scenario purposes, and neither card can be targeted by event effects.",
-    "achievement": "Wild Birth — Be the first card (GP or Follower) deployed to a location that currently has no cards.",
+    "trait": "Forest Wildman — A Location with Forest feature provides +2 Strength and +2 Technique to this card and all Allied GP and Followers at it.",
+    "achievement": "Gilgamesh Epic — This card and another Sumer GP card move from a Mesopotamia location to another Mesopotamia location together in the same turn.",
     "years": "c. 2700 BCE",
     "countries": [
       "Mesopotamia"
@@ -820,7 +820,7 @@
     "belief": 9,
     "reputation": 18,
     "lore": "His brush turned the Renaissance into fire and flesh — the last great master standing.",
-    "trait": "The Portraitist — Gains the trait of the last allied Great Person that was Archived.",
+    "trait": "The Portraitist — Get the trait of the Allied Great People if there is only one at the same location.",
     "achievement": "Self-Portrait — Have at least 1 allied archived GP whose trait this card has inherited.",
     "years": "c. 1488–1576",
     "countries": [
@@ -845,8 +845,8 @@
     "belief": 1,
     "reputation": 14,
     "lore": "He proved the world was round by sailing its circumference — and died before he saw it complete.",
-    "trait": "Circumnavigator — Once per match, this card may immediately relocate to any location on the board without using a move action.",
-    "achievement": "Around the World — Have this card move to at least 3 different locations during the same game.",
+    "trait": "Long-distance Voyage — This card and all Allied GP get extra +1 on all stats in a Global Competition.",
+    "achievement": "Circumnavigation — Visit all the locations on the board in public continuously (without being turned into private, being retrieved or being killed).",
     "years": "1480–1521",
     "countries": [
       "Portugal",
@@ -1388,8 +1388,8 @@
     "belief": 15,
     "reputation": 20,
     "lore": "She sat with chimpanzees and taught the world what it means to be human.",
-    "trait": "Field Study — Whenever this card is at a location for 2 or more consecutive rounds, allied Nat (Naturalist) GP or Followers here gain +4 to their primary stat.",
-    "achievement": "Gombe Legacy — Have this card spend 3 rounds at the same location, allied with at least 1 Nat (Naturalist) GP or Follower.",
+    "trait": "Primates Expert — A Location with Jungle feature provides +2 Technique and +2 Intelligence to this card and all Allied GP and Followers at it.",
+    "achievement": "Chimpanzee Feeding Stations — At a location with Jungle feature, this GP ends a Survival.",
     "years": "1934–",
     "countries": [
       "United Kingdom"

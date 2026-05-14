@@ -1253,6 +1253,9 @@ function CompactCard({ card, isCurrentPlayer, isSelected, onClick, onInfo, gpMap
           </div>
           <div className="w-full bg-black/75 px-0.5 py-0.5 shrink-0">
             <span className="text-[7px] text-white leading-none truncate block">{gp.figureName.split(' ').pop()}</span>
+            {gp.countries && gp.countries.length > 0 && (
+              <span className="text-[6px] text-cyan-400/70 leading-none truncate block">{gp.countries[0]}</span>
+            )}
           </div>
         </>
       ) : follower ? (
@@ -1323,7 +1326,9 @@ function HandCard({ cardId, type, isSelected, onClick, onInfo, gpMap, eventCard,
           </div>
           <div className="w-full bg-black/80 px-1 py-0.5 shrink-0">
             <div className="text-[8px] text-white font-semibold leading-tight truncate">{gp.figureName}</div>
-            <div className="text-[8px] text-slate-500">{gp.era}</div>
+            <div className="text-[8px] text-slate-500 truncate">
+              {gp.countries && gp.countries.length > 0 ? gp.countries[0] : gp.era}
+            </div>
           </div>
         </>
       )}
@@ -2189,7 +2194,12 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
                 {/* Location name */}
                 <div className="relative mb-1">
                   <p className={`text-[10px] font-bold truncate ${ERA_TEXT[loc.era] ?? 'text-slate-300'}`}>{loc.name}</p>
-                  <p className="text-[9px] text-slate-600">{loc.era}</p>
+                  <div className="flex items-center gap-1 flex-wrap">
+                    <p className="text-[9px] text-slate-600">{loc.era}</p>
+                    {loc.countries && loc.countries.length > 0 && (
+                      <p className="text-[9px] text-slate-500">{loc.countries.join(', ')}</p>
+                    )}
+                  </div>
                 </div>
 
                 {/* Active event badge */}

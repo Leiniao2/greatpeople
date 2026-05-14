@@ -5,20 +5,23 @@ import GoogleSignIn
 final class AuthStore: ObservableObject {
     @Published var isLoggedIn = false
     @Published var isGuest = false
+    @Published var email: String?
     private let tokenKey = "access_token"
+    private let emailKey = "user_email"
 
     init() {
         isLoggedIn = UserDefaults.standard.string(forKey: tokenKey) != nil
+        email = UserDefaults.standard.string(forKey: emailKey)
     }
 
     func login(email: String, password: String) async throws {
         let resp = try await APIClient.shared.login(LoginRequest(email: email, password: password))
-        store(token: resp.accessToken)
+        store(token: resp.accessToken, email: email)
     }
 
     func register(email: String, password: String, displayName: String) async throws {
         let resp = try await APIClient.shared.register(RegisterRequest(email: email, password: password, displayName: displayName))
-        store(token: resp.accessToken)
+        store(token: resp.accessToken, email: email)
     }
 
     func googleLogin() async throws {
@@ -31,7 +34,7 @@ final class AuthStore: ObservableObject {
             throw AuthError.noIdToken
         }
         let resp = try await APIClient.shared.googleSSO(idToken: idToken)
-        store(token: resp.accessToken)
+        store(token: resp.accessToken, email: result.user.profile?.email)
     }
 
     func enterGuestMode() { isGuest = true }
@@ -41,14 +44,20 @@ final class AuthStore: ObservableObject {
         GIDSignIn.sharedInstance.signOut()
         try? await APIClient.shared.logout()
         UserDefaults.standard.removeObject(forKey: tokenKey)
+        UserDefaults.standard.removeObject(forKey: emailKey)
         APIClient.shared.clearToken()
         isLoggedIn = false
+        email = nil
     }
 
-    private func store(token: String) {
+    private func store(token: String, email: String? = nil) {
         UserDefaults.standard.set(token, forKey: tokenKey)
         APIClient.shared.setToken(token)
         isLoggedIn = true
+        if let email {
+            UserDefaults.standard.set(email, forKey: emailKey)
+            self.email = email
+        }
     }
 }
 

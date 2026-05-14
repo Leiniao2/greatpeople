@@ -114,7 +114,7 @@ export default function CardDetailPage() {
             ))}
           </div>
 
-          {/* Era / Gender / Identities */}
+          {/* Era / Gender / Identities / Countries */}
           <div className="flex items-center gap-2 text-xs text-slate-500 flex-wrap">
             <span className="uppercase tracking-wider">{card.era}</span>
             <span className="w-1 h-1 rounded-full bg-slate-700" />
@@ -126,6 +126,16 @@ export default function CardDetailPage() {
               </>
             )}
           </div>
+          {card.countries && card.countries.length > 0 && (
+            <div className="flex flex-wrap gap-2">
+              {card.countries.map(c => (
+                <span key={c}
+                  className="px-3 py-1 rounded-full text-xs font-medium border border-cyan-500/30 text-cyan-400/90 bg-cyan-500/[0.07]">
+                  {c}
+                </span>
+              ))}
+            </div>
+          )}
 
           {/* Lore */}
           {card.lore && (

@@ -121,20 +121,6 @@ final class GreatPeopleTests: XCTestCase {
         XCTAssertEqual(set.count, 1)
     }
 
-    // MARK: - CardTier
-
-    func testCardTierRawValues() {
-        XCTAssertEqual(CardTier.common.rawValue, "common")
-        XCTAssertEqual(CardTier.rare.rawValue, "rare")
-        XCTAssertEqual(CardTier.epic.rawValue, "epic")
-        XCTAssertEqual(CardTier.legendary.rawValue, "legendary")
-    }
-
-    func testCardTierDecodable() {
-        XCTAssertEqual(CardTier(rawValue: "legendary"), .legendary)
-        XCTAssertNil(CardTier(rawValue: "unknown"))
-    }
-
     // MARK: - AuthStore guest mode
 
     @MainActor func testEnterGuestModeSetsFlagTrue() {
@@ -166,7 +152,6 @@ private func makeCard(
     era: String = "Steam",
     gender: String = "male",
     identities: [String] = [],
-    tier: CardTier = .common,
     lore: String = "",
     portraitUrl: String = "",
     years: String = "2000–2024",
@@ -183,7 +168,7 @@ private func makeCard(
 ) -> Card {
     Card(
         id: id, figureName: figureName, era: era, gender: gender,
-        identities: identities, tier: tier, lore: lore,
+        identities: identities, lore: lore,
         portraitUrl: portraitUrl, years: years,
         trait: trait, achievement: achievement,
         politics: politics, strength: strength, culture: culture,

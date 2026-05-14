@@ -57,7 +57,7 @@ fun LoginScreen(
                 val account = GoogleSignIn
                     .getSignedInAccountFromIntent(result.data)
                     .getResult(ApiException::class.java)
-                account.idToken?.let { viewModel.googleLogin(it) }
+                account.idToken?.let { viewModel.googleLogin(it, account.email) }
             } catch (_: ApiException) {
                 // sign-in cancelled or failed — state stays Idle
             }

@@ -16,14 +16,21 @@ import SudokuGame from '@/components/minigames/SudokuGame'
 import VotingGame from '@/components/minigames/VotingGame'
 import ChemistryGame from '@/components/minigames/ChemistryGame'
 import MatchThreeGame from '@/components/minigames/MatchThreeGame'
+import KlotskiGame from '@/components/minigames/KlotskiGame'
+import LorentzGame from '@/components/minigames/LorentzGame'
+import PorcelainGame from '@/components/minigames/PorcelainGame'
+import TradeGame from '@/components/minigames/TradeGame'
+import PunnettGame from '@/components/minigames/PunnettGame'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
 type GameType =
   | 'quiz' | 'truefalse' | 'sort'
-  | 'maze' | 'maze3d' | 'mirror' | 'circuit' | 'crossword'
+  | 'maze' | 'mirror' | 'circuit' | 'crossword'
   | 'geometry' | 'painting' | 'music' | 'tactics' | 'classify'
   | 'cooking' | 'fiction' | 'sudoku' | 'voting' | 'chemistry' | 'matchthree'
+  | 'klotski' | 'lorentz' | 'porcelain' | 'trade' | 'punnett'
+  | 'wordle' | 'decode' | 'wargame' | 'bigmaze'
 
 interface FlatChallenge {
   id: string
@@ -54,18 +61,23 @@ const GAME_CATEGORY: Record<string, CategoryKey> = {
   music: 'Music',
   sudoku: 'Logic', geometry: 'Logic', classify: 'Logic', chemistry: 'Logic', circuit: 'Logic',
   sort: 'History', voting: 'History', quiz: 'History', truefalse: 'History',
-  tactics: 'Strategy', maze: 'Strategy', maze3d: 'Strategy',
-  crossword: 'Language', fiction: 'Language',
-  painting: 'Creative', cooking: 'Creative', matchthree: 'Creative', mirror: 'Creative',
+  tactics: 'Strategy', maze: 'Strategy', klotski: 'Strategy', wargame: 'Strategy', bigmaze: 'Strategy',
+  crossword: 'Language', fiction: 'Language', wordle: 'Language', decode: 'Language',
+  painting: 'Creative', cooking: 'Creative', matchthree: 'Creative', mirror: 'Creative', porcelain: 'Creative',
+  lorentz: 'Logic', punnett: 'Logic',
+  trade: 'History',
 }
 
 const GAME_LABEL: Record<string, string> = {
   quiz: 'Quiz', truefalse: 'True / False', sort: 'Sort',
-  maze: 'Maze', maze3d: '3D Maze', mirror: 'Mirror', circuit: 'Circuit',
+  maze: 'Maze', mirror: 'Mirror', circuit: 'Circuit',
   crossword: 'Crossword', geometry: 'Geometry', painting: 'Painting',
   music: 'Music', tactics: 'Tactics', classify: 'Classify',
   cooking: 'Cooking', fiction: 'Fiction', sudoku: 'Sudoku',
   voting: 'Voting', chemistry: 'Chemistry', matchthree: 'Match Three',
+  klotski: 'Klotski', lorentz: 'Lorentz Force', porcelain: 'Porcelain',
+  trade: 'Trade', punnett: 'Punnett Square',
+  wordle: 'Wordle', decode: 'Decode', wargame: 'Wargame', bigmaze: 'Big Maze',
 }
 
 // ── Flatten all challenges ────────────────────────────────────────────────────
@@ -214,6 +226,11 @@ function ChallengeOverlay({ ch, onClose }: { ch: FlatChallenge; onClose: () => v
       {g === 'voting'     && <VotingGame configId={cId} onWin={handleWin} />}
       {g === 'chemistry'  && <ChemistryGame configId={cId} onWin={handleWin} />}
       {g === 'matchthree' && <MatchThreeGame configId={cId} onWin={handleWin} />}
+      {g === 'klotski'    && <KlotskiGame configId={cId} onWin={handleWin} />}
+      {g === 'lorentz'    && <LorentzGame configId={cId} onWin={handleWin} />}
+      {g === 'porcelain'  && <PorcelainGame configId={cId} onWin={handleWin} />}
+      {g === 'trade'      && <TradeGame configId={cId} onWin={handleWin} />}
+      {g === 'punnett'    && <PunnettGame configId={cId} onWin={handleWin} />}
       {ch.raw.fact && won === false && (
         <p className="text-slate-600 text-[10px] leading-relaxed mt-1 px-1">{ch.raw.fact}</p>
       )}
