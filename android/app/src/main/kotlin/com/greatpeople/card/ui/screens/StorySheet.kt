@@ -348,7 +348,6 @@ private fun SortChallenge(ch: ChallengeDTO, answered: Boolean, onAnswer: (Boolea
 private fun DiscoveryCard(ch: ChallengeDTO, revealed: Boolean, onReveal: () -> Unit) {
     val gameLabel = when (ch.game) {
         "crossword"    -> "Word Puzzle"
-        "maze3d"       -> "Navigation Challenge"
         "geometry"     -> "Geometry Challenge"
         "painting"     -> "Creative Challenge"
         "tactics"      -> "Tactics Puzzle"

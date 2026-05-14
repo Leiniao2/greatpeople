@@ -1,11 +1,11 @@
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 
 const TABS = [
-  { path: '/epic',       label: 'Epic',       icon: '⚡' },
-  { path: '/collection', label: 'Collection', icon: '♛' },
-  { path: '/battle',     label: 'Fight',      icon: '⚔' },
-  { path: '/arcade',     label: 'Arcade',     icon: '🎮' },
-  { path: '/profile',    label: 'Profile',    icon: '◉' },
+  { path: '/epic',       label: 'Epic',       icon: '⚡', title: 'Epic — Read stories and unlock Great People cards through quizzes and mini-challenges' },
+  { path: '/collection', label: 'Collection', icon: '♛', title: 'Collection — Browse and manage all the Great People cards you have unlocked' },
+  { path: '/battle',     label: 'Fight',      icon: '⚔', title: 'Fight — Deploy your cards across history\'s greatest cities and battle other players' },
+  { path: '/arcade',     label: 'Arcade',     icon: '🎮', title: 'Arcade — Play any mini-challenge freely, without going through a story' },
+  { path: '/profile',    label: 'Profile',    icon: '◉', title: 'Profile — View your account, stats, and sign in or out' },
 ] as const
 
 export default function MainLayout() {
@@ -31,6 +31,7 @@ export default function MainLayout() {
               <button
                 key={tab.path}
                 onClick={() => navigate(tab.path)}
+                title={tab.title}
                 className={`flex flex-col items-center justify-center gap-1 py-3 transition-colors duration-200
                             ${isActive ? 'text-amber-400' : 'text-slate-600 hover:text-slate-400'}`}>
                 <span className="text-xl leading-none select-none">{tab.icon}</span>

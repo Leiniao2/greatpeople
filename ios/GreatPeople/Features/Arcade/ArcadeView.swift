@@ -11,28 +11,26 @@ private struct ArcadeCategory {
 
 private let arcadeCategories: [ArcadeCategory] = [
     .init(key: "All",      label: "All",      icon: "◈", color: .gpSlate400),
-    .init(key: "Music",    label: "Music",    icon: "♪", color: .gpAmber),
-    .init(key: "Logic",    label: "Logic",    icon: "◻", color: Color(red: 0.02, green: 0.71, blue: 0.83)),
-    .init(key: "History",  label: "History",  icon: "⏳", color: Color(red: 0.92, green: 0.71, blue: 0.03)),
-    .init(key: "Strategy", label: "Strategy", icon: "⚔", color: Color(red: 0.94, green: 0.27, blue: 0.27)),
-    .init(key: "Language", label: "Language", icon: "✦", color: Color(red: 0.55, green: 0.36, blue: 0.97)),
+    .init(key: "Trivia",   label: "Trivia",   icon: "?", color: .gpAmber),
+    .init(key: "Puzzle",   label: "Puzzle",   icon: "◻", color: Color(red: 0.02, green: 0.71, blue: 0.83)),
     .init(key: "Creative", label: "Creative", icon: "✿", color: Color(red: 0.06, green: 0.71, blue: 0.51)),
+    .init(key: "Story",    label: "Story",    icon: "✦", color: Color(red: 0.55, green: 0.36, blue: 0.97)),
+    .init(key: "Explore",  label: "Explore",  icon: "◎", color: Color(red: 0.94, green: 0.27, blue: 0.27)),
 ]
 
 private let gameCategory: [String: String] = [
-    "music": "Music",
-    "sudoku": "Logic", "geometry": "Logic", "classify": "Logic",
-    "chemistry": "Logic", "circuit": "Logic",
-    "sort": "History", "voting": "History", "quiz": "History", "truefalse": "History",
-    "tactics": "Strategy", "maze": "Strategy", "maze3d": "Strategy",
-    "crossword": "Language", "fiction": "Language",
-    "painting": "Creative", "cooking": "Creative",
-    "matchthree": "Creative", "mirror": "Creative",
+    "quiz": "Trivia", "truefalse": "Trivia",
+    "mirror": "Puzzle", "sudoku": "Puzzle", "circuit": "Puzzle",
+    "geometry": "Puzzle", "chemistry": "Puzzle", "classify": "Puzzle",
+    "crossword": "Puzzle", "matchthree": "Puzzle",
+    "painting": "Creative", "cooking": "Creative", "music": "Creative",
+    "fiction": "Story", "voting": "Story", "sort": "Story", "tactics": "Story",
+    "maze": "Explore",
 ]
 
 private let gameLabel: [String: String] = [
     "quiz": "Quiz", "truefalse": "True / False", "sort": "Sort",
-    "maze": "Maze", "maze3d": "3D Maze", "mirror": "Mirror",
+    "maze": "Maze", "mirror": "Mirror",
     "circuit": "Circuit", "crossword": "Crossword", "geometry": "Geometry",
     "painting": "Painting", "music": "Music", "tactics": "Tactics",
     "classify": "Classify", "cooking": "Cooking", "fiction": "Fiction",

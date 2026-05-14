@@ -49,28 +49,26 @@ private data class Category(
 
 private val CATEGORIES = listOf(
     Category("All",      "All",      "◈", Slate400),
-    Category("Music",    "Music",    "♪", Color(0xFFF59E0B)),
-    Category("Logic",    "Logic",    "◻", Color(0xFF06B6D4)),
-    Category("History",  "History",  "⏳", Color(0xFFEAB308)),
-    Category("Strategy", "Strategy", "⚔", Color(0xFFEF4444)),
-    Category("Language", "Language", "✦", Color(0xFF8B5CF6)),
+    Category("Trivia",   "Trivia",   "?", Color(0xFFF59E0B)),
+    Category("Puzzle",   "Puzzle",   "◻", Color(0xFF06B6D4)),
     Category("Creative", "Creative", "✿", Color(0xFF10B981)),
+    Category("Story",    "Story",    "✦", Color(0xFF8B5CF6)),
+    Category("Explore",  "Explore",  "◎", Color(0xFFEF4444)),
 )
 
 private val GAME_CATEGORY = mapOf(
-    "music" to "Music",
-    "sudoku" to "Logic", "geometry" to "Logic", "classify" to "Logic",
-    "chemistry" to "Logic", "circuit" to "Logic",
-    "sort" to "History", "voting" to "History", "quiz" to "History", "truefalse" to "History",
-    "tactics" to "Strategy", "maze" to "Strategy", "maze3d" to "Strategy",
-    "crossword" to "Language", "fiction" to "Language",
-    "painting" to "Creative", "cooking" to "Creative",
-    "matchthree" to "Creative", "mirror" to "Creative",
+    "quiz" to "Trivia", "truefalse" to "Trivia",
+    "mirror" to "Puzzle", "sudoku" to "Puzzle", "circuit" to "Puzzle",
+    "geometry" to "Puzzle", "chemistry" to "Puzzle", "classify" to "Puzzle",
+    "crossword" to "Puzzle", "matchthree" to "Puzzle",
+    "painting" to "Creative", "cooking" to "Creative", "music" to "Creative",
+    "fiction" to "Story", "voting" to "Story", "sort" to "Story", "tactics" to "Story",
+    "maze" to "Explore",
 )
 
 private val GAME_LABEL = mapOf(
     "quiz" to "Quiz", "truefalse" to "True / False", "sort" to "Sort",
-    "maze" to "Maze", "maze3d" to "3D Maze", "mirror" to "Mirror",
+    "maze" to "Maze", "mirror" to "Mirror",
     "circuit" to "Circuit", "crossword" to "Crossword", "geometry" to "Geometry",
     "painting" to "Painting", "music" to "Music", "tactics" to "Tactics",
     "classify" to "Classify", "cooking" to "Cooking", "fiction" to "Fiction",

@@ -113,6 +113,26 @@ const CONFIGS: Record<string, ClassifyConfig> = {
     ],
     fact: 'Linnaeus understood that nature formed an "economy" — each species occupying a role. His concept of the "balance of nature" foreshadowed modern ecology.',
   },
+  'magellan-seas': {
+    title: "Magellan's Seas",
+    question: "Sort each port or landmark into the ocean Magellan's fleet crossed to reach it.",
+    categories: [
+      { id: 'atlantic', label: 'Atlantic', emoji: '🌊' },
+      { id: 'pacific',  label: 'Pacific',  emoji: '🌏' },
+      { id: 'indian',   label: 'Indian',   emoji: '⚓' },
+    ],
+    items: [
+      { label: 'Canary Islands',     category: 'atlantic', emoji: '🏝️' },
+      { label: 'Rio de Janeiro',     category: 'atlantic', emoji: '🌴' },
+      { label: 'Patagonia',          category: 'atlantic', emoji: '🦙' },
+      { label: 'Guam',               category: 'pacific',  emoji: '🐟' },
+      { label: 'Philippines (Cebu)', category: 'pacific',  emoji: '🌺' },
+      { label: 'Spice Islands',      category: 'pacific',  emoji: '🌶️' },
+      { label: 'Mozambique Channel', category: 'indian',   emoji: '🐘' },
+      { label: 'Cape of Good Hope',  category: 'indian',   emoji: '🐧' },
+    ],
+    fact: "Magellan's fleet crossed three oceans: the Atlantic on the outward leg, the Pacific in the longest and most grueling stretch (98 days with no landfall), and the Indian Ocean on the homeward run after Magellan's death in the Philippines.",
+  },
 }
 
 export default function ClassifyGame({ configId, onWin }: { configId: string; onWin: () => void }) {

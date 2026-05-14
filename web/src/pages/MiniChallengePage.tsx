@@ -32,7 +32,7 @@ type GameType =
   | 'geometry' | 'painting' | 'music' | 'tactics' | 'classify'
   | 'cooking' | 'fiction' | 'sudoku' | 'voting' | 'chemistry' | 'matchthree'
   | 'klotski' | 'lorentz' | 'porcelain' | 'trade' | 'punnett'
-  | 'wordle' | 'decode' | 'wargame' | 'bigmaze'
+  | 'wordle' | 'decode' | 'wargame'
   | 'auction' | 'pseudocode'
 
 interface FlatChallenge {
@@ -49,27 +49,26 @@ interface FlatChallenge {
 // ── Category config ───────────────────────────────────────────────────────────
 
 const CATEGORIES = [
-  { key: 'All',      label: 'All',      icon: '◈', color: 'text-slate-300', border: 'border-slate-500', bg: 'bg-slate-500/20' },
-  { key: 'Music',    label: 'Music',    icon: '♪', color: 'text-amber-400', border: 'border-amber-500', bg: 'bg-amber-500/20' },
-  { key: 'Logic',    label: 'Logic',    icon: '◻', color: 'text-cyan-400',  border: 'border-cyan-500',  bg: 'bg-cyan-500/20'  },
-  { key: 'History',  label: 'History',  icon: '⏳', color: 'text-yellow-400', border: 'border-yellow-500', bg: 'bg-yellow-500/20' },
-  { key: 'Strategy', label: 'Strategy', icon: '⚔', color: 'text-red-400',   border: 'border-red-500',   bg: 'bg-red-500/20'   },
-  { key: 'Language', label: 'Language', icon: '✦', color: 'text-violet-400', border: 'border-violet-500', bg: 'bg-violet-500/20' },
+  { key: 'All',      label: 'All',      icon: '◈', color: 'text-slate-300',   border: 'border-slate-500',   bg: 'bg-slate-500/20'   },
+  { key: 'Trivia',   label: 'Trivia',   icon: '?', color: 'text-amber-400',   border: 'border-amber-500',   bg: 'bg-amber-500/20'   },
+  { key: 'Puzzle',   label: 'Puzzle',   icon: '◻', color: 'text-cyan-400',    border: 'border-cyan-500',    bg: 'bg-cyan-500/20'    },
   { key: 'Creative', label: 'Creative', icon: '✿', color: 'text-emerald-400', border: 'border-emerald-500', bg: 'bg-emerald-500/20' },
+  { key: 'Story',    label: 'Story',    icon: '✦', color: 'text-violet-400',  border: 'border-violet-500',  bg: 'bg-violet-500/20'  },
+  { key: 'Explore',  label: 'Explore',  icon: '◎', color: 'text-red-400',     border: 'border-red-500',     bg: 'bg-red-500/20'     },
 ] as const
 
 type CategoryKey = typeof CATEGORIES[number]['key']
 
 const GAME_CATEGORY: Record<string, CategoryKey> = {
-  music: 'Music',
-  sudoku: 'Logic', geometry: 'Logic', classify: 'Logic', chemistry: 'Logic', circuit: 'Logic',
-  sort: 'History', voting: 'History', quiz: 'History', truefalse: 'History',
-  tactics: 'Strategy', maze: 'Strategy', klotski: 'Strategy', wargame: 'Strategy', bigmaze: 'Strategy',
-  crossword: 'Language', fiction: 'Language', wordle: 'Language', decode: 'Language',
-  painting: 'Creative', cooking: 'Creative', matchthree: 'Creative', mirror: 'Creative', porcelain: 'Creative',
-  lorentz: 'Logic', punnett: 'Logic',
-  trade: 'History', auction: 'History',
-  pseudocode: 'Logic',
+  quiz: 'Trivia', truefalse: 'Trivia',
+  mirror: 'Puzzle', sudoku: 'Puzzle', circuit: 'Puzzle', geometry: 'Puzzle',
+  chemistry: 'Puzzle', classify: 'Puzzle', crossword: 'Puzzle', matchthree: 'Puzzle',
+  klotski: 'Puzzle', lorentz: 'Puzzle', punnett: 'Puzzle', decode: 'Puzzle',
+  wordle: 'Puzzle', pseudocode: 'Puzzle',
+  painting: 'Creative', cooking: 'Creative', music: 'Creative', porcelain: 'Creative',
+  fiction: 'Story', voting: 'Story', sort: 'Story', tactics: 'Story',
+  wargame: 'Story', trade: 'Story', auction: 'Story',
+  maze: 'Explore',
 }
 
 const GAME_LABEL: Record<string, string> = {
@@ -81,7 +80,7 @@ const GAME_LABEL: Record<string, string> = {
   voting: 'Voting', chemistry: 'Chemistry', matchthree: 'Match Three',
   klotski: 'Klotski', lorentz: 'Lorentz Force', porcelain: 'Porcelain',
   trade: 'Trade', punnett: 'Punnett Square',
-  wordle: 'Wordle', decode: 'Decode', wargame: 'Wargame', bigmaze: 'Big Maze',
+  wordle: 'Wordle', decode: 'Decode', wargame: 'Wargame',
   auction: 'Auction', pseudocode: 'Pseudo Code',
 }
 

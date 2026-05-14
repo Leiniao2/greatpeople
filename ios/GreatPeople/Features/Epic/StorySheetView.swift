@@ -228,7 +228,6 @@ struct StorySheetView: View {
         let gameLabel: String = {
             switch ch.game {
             case "crossword":  return "Word Puzzle"
-            case "maze3d":     return "Navigation Challenge"
             case "geometry":   return "Geometry Challenge"
             case "painting":   return "Creative Challenge"
             case "tactics":    return "Tactics Puzzle"
