@@ -791,6 +791,13 @@
           "Democritus: reality consists of invisible atoms (c. 460 BCE)"
         ],
         "fact": "The pre-Socratics were the first to explain nature without myth. Their debate between flux (Heraclitus) and permanence (Parmenides) set up every major argument in Western philosophy that followed."
+      },
+      {
+        "type": "minigame",
+        "game": "mirror",
+        "configId": "huygens",
+        "instruction": "Anaxagoras said the sun is a fiery rock that lights the moon. Prove it — use one mirror to route sunlight across three reflections and illuminate the far corner.",
+        "fact": "Anaxagoras was the first to correctly explain lunar phases and eclipses: the moon reflects the sun's light and the earth's shadow causes eclipses. He deduced this by reasoning about light and geometry, 2,500 years before anyone could test it directly."
       }
     ]
   },
@@ -1057,6 +1064,13 @@
         "configId": "euclid",
         "instruction": "Prove Euclid's law of reflection — redirect the light beam to hit the target using mirrors.",
         "fact": "Euclid wrote 'Optica', one of the earliest works on optics and perspective, laying the groundwork for understanding how light behaves."
+      },
+      {
+        "type": "minigame",
+        "game": "mirror",
+        "configId": "newton-prism",
+        "instruction": "Euclid knew light reflects — but what about refraction? Route the beam through two fixed deflectors using two mirrors of your own.",
+        "fact": "Euclid's 'Catoptrics' studied mirrors and reflection. It took nearly two thousand more years for Newton to explain why white light splits into a spectrum — but the geometry Euclid laid down made that discovery possible."
       }
     ]
   },
@@ -1292,6 +1306,13 @@
         "configId": "cairo-alchemy",
         "instruction": "In the House of Wisdom, scholars matched planetary symbols to decode alchemical texts. Clear 44 tiles — but only chains of 4 or more count.",
         "fact": "The House of Wisdom in Abbasid Baghdad synthesised Greek, Indian, and Persian knowledge. Al-Kindi, al-Farabi and al-Razi worked there — translating Aristotle, developing algebra, and mapping the stars with planetary symbols inherited from Hellenistic alchemy."
+      },
+      {
+        "type": "minigame",
+        "game": "mirror",
+        "configId": "archimedes-mirror",
+        "instruction": "The House of Wisdom translated Archimedes — including his mirror theories. Thread the beam through the array using two mirrors across an 8×8 grid.",
+        "fact": "Ibn al-Haytham, working a century after Al-Khwarizmi, built on the House of Wisdom's translations to write 'Kitab al-Manazir' (Book of Optics) — the first correct account of how vision works. Light enters the eye; the eye does not emit rays."
       }
     ]
   },
@@ -1629,6 +1650,13 @@
         ],
         "answer": 1,
         "fact": "Carl Linnaeus established the two-part Latin naming system still used today. He named over 7,700 plant and 4,400 animal species, and he named our own species Homo sapiens — \"wise human\" — in 1758."
+      },
+      {
+        "type": "minigame",
+        "game": "mirror",
+        "configId": "snell",
+        "instruction": "Just as Linnaeus gave every species a precise law of naming, Snell gave every ray of light a precise law of bending. One mirror, four bounces — find the path.",
+        "fact": "Willebrord Snell (1580–1626) discovered his law of refraction in 1621 but never published it. René Descartes rediscovered it independently and published it first. The law — n₁ sin θ₁ = n₂ sin θ₂ — predicts exactly how much light bends when crossing between media of different densities."
       }
     ]
   },
@@ -2231,6 +2259,13 @@
         "configId": "lorentz-basic",
         "instruction": "Control the magnetic field strength to guide the charged particle to the target.",
         "fact": "The Lorentz force (F = qv × B) causes charged particles to curve in a magnetic field — the foundation of cathode ray tubes, particle accelerators, and mass spectrometers."
+      },
+      {
+        "type": "minigame",
+        "game": "mirror",
+        "configId": "foucault",
+        "instruction": "Léon Foucault measured the speed of light by bouncing a beam off a spinning mirror. You have one mirror — route the beam through four fixed reflectors to reach the exit.",
+        "fact": "Foucault measured the speed of light at 298,000 km/s in 1850 — within 0.6% of the true value — using a rotating mirror that shifted while light was in transit. Lorentz's equations later explained why light's speed is constant for all observers."
       }
     ]
   },

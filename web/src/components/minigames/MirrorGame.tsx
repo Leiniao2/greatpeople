@@ -23,6 +23,7 @@ interface FixedMirror {
 }
 
 type MirrorKey = 'mendel' | 'euclid' | 'digital' | 'plato' | 'anaxagoras' | 'al-khwarizmi' | 'lorentz'
+  | 'newton-prism' | 'huygens' | 'foucault' | 'archimedes-mirror' | 'snell'
 
 interface MirrorConfig {
   title: string
@@ -97,6 +98,68 @@ const CONFIGS: Record<MirrorKey, MirrorConfig> = {
     target: { row: 6, col: 5 },
     fixed: [{ row: 1, col: 0, mirror: '\\' }, { row: 1, col: 4, mirror: '/' }],
     maxMirrors: 2,
+  },
+  'newton-prism': {
+    title: "Newton's Prism",
+    instruction: "White light splits into a spectrum when it bends. Route the beam through two deflections to reach the far corner.",
+    gridSize: 7,
+    source: { row: -1, col: 0, dir: 'down' },
+    target: { row: 7, col: 6 },
+    fixed: [{ row: 2, col: 0, mirror: '\\' }, { row: 2, col: 4, mirror: '/' }],
+    maxMirrors: 2,
+  },
+  huygens: {
+    title: "Huygens' Wave Front",
+    instruction: "Each point on a wave front is itself a source. Use one mirror to guide the beam across three reflections to the exit.",
+    gridSize: 7,
+    source: { row: 6, col: -1, dir: 'right' },
+    target: { row: 0, col: 7 },
+    fixed: [
+      { row: 6, col: 2, mirror: '/' },
+      { row: 2, col: 2, mirror: '/' },
+      { row: 2, col: 5, mirror: '/' },
+    ],
+    maxMirrors: 1,
+  },
+  foucault: {
+    title: "Foucault's Rotating Mirror",
+    instruction: "Foucault measured the speed of light using a spinning mirror. With only one mirror to place, route the beam through four reflections to exit right.",
+    gridSize: 7,
+    source: { row: -1, col: 0, dir: 'down' },
+    target: { row: 3, col: 7 },
+    fixed: [
+      { row: 5, col: 0, mirror: '\\' },
+      { row: 5, col: 4, mirror: '/' },
+      { row: 0, col: 4, mirror: '\\' },
+      { row: 0, col: 1, mirror: '/' },
+    ],
+    maxMirrors: 1,
+  },
+  'archimedes-mirror': {
+    title: "Archimedes' Burning Mirrors",
+    instruction: "Archimedes focused sunlight to set ships ablaze. Thread the beam through the mirror array — two placements, five bounces.",
+    gridSize: 8,
+    source: { row: -1, col: 2, dir: 'down' },
+    target: { row: 5, col: 8 },
+    fixed: [
+      { row: 3, col: 2, mirror: '\\' },
+      { row: 3, col: 5, mirror: '/' },
+      { row: 0, col: 5, mirror: '\\' },
+    ],
+    maxMirrors: 2,
+  },
+  snell: {
+    title: "Snell's Law",
+    instruction: "Light bends precisely when crossing between media. One mirror is all you have — trace the full four-bounce path to the target.",
+    gridSize: 8,
+    source: { row: -1, col: 3, dir: 'down' },
+    target: { row: 8, col: 7 },
+    fixed: [
+      { row: 2, col: 3, mirror: '/' },
+      { row: 2, col: 0, mirror: '\\' },
+      { row: 0, col: 0, mirror: '/' },
+    ],
+    maxMirrors: 1,
   },
 }
 
