@@ -31,8 +31,7 @@
     "era": "Electricity",
     "gender": "female",
     "identities": [
-      "Merchant",
-      "Artist"
+      "Merchant"
     ],
     "portraitKey": "coco_chanel",
     "politics": 1,
@@ -370,8 +369,7 @@
     "era": "Electricity",
     "gender": "male",
     "identities": [
-      "Musician",
-      "Educator"
+      "Musician"
     ],
     "portraitKey": "johannes_brahms",
     "politics": 1,
@@ -422,8 +420,7 @@
     "era": "Medieval",
     "gender": "female",
     "identities": [
-      "Writer",
-      "Educator"
+      "Writer"
     ],
     "portraitKey": "li_qingzhao",
     "politics": 1,
@@ -579,8 +576,7 @@
     "era": "Ancient",
     "gender": "male",
     "identities": [
-      "Warrior",
-      "Explorer"
+      "Warrior"
     ],
     "portraitKey": "enkidu",
     "politics": 5,
@@ -813,8 +809,7 @@
     "era": "Renaissance",
     "gender": "male",
     "identities": [
-      "Artist",
-      "Noble"
+      "Artist"
     ],
     "portraitKey": "titian",
     "politics": 1,
@@ -839,8 +834,7 @@
     "era": "Renaissance",
     "gender": "male",
     "identities": [
-      "Explorer",
-      "Soldier"
+      "Explorer"
     ],
     "portraitKey": "magellan",
     "politics": 1,
@@ -893,8 +887,7 @@
     "era": "Steam",
     "gender": "male",
     "identities": [
-      "Naturalist",
-      "Educator"
+      "Naturalist"
     ],
     "portraitKey": "carl_linnaeus",
     "politics": 1,
@@ -919,8 +912,7 @@
     "era": "Steam",
     "gender": "male",
     "identities": [
-      "Musician",
-      "Writer"
+      "Musician"
     ],
     "portraitKey": "robert_schumann",
     "politics": 1,
@@ -971,8 +963,7 @@
     "era": "Electricity",
     "gender": "female",
     "identities": [
-      "Explorer",
-      "Educator"
+      "Explorer"
     ],
     "portraitKey": "amelia_earhart",
     "politics": 1,
@@ -997,8 +988,7 @@
     "era": "Electricity",
     "gender": "male",
     "identities": [
-      "Artist",
-      "Educator"
+      "Artist"
     ],
     "portraitKey": "sergei_eisenstein",
     "politics": 1,
@@ -1023,8 +1013,7 @@
     "era": "Information",
     "gender": "male",
     "identities": [
-      "Explorer",
-      "Educator"
+      "Explorer"
     ],
     "portraitKey": "edmund_hillary",
     "politics": 1,
@@ -1049,8 +1038,7 @@
     "era": "Electricity",
     "gender": "male",
     "identities": [
-      "Explorer",
-      "Educator"
+      "Explorer"
     ],
     "portraitKey": "tenzing_norgay",
     "politics": 1,
@@ -1155,8 +1143,7 @@
     "era": "Information",
     "gender": "male",
     "identities": [
-      "Actor",
-      "Statesman"
+      "Artist"
     ],
     "portraitKey": "gregory_peck",
     "politics": 6,
@@ -1285,8 +1272,7 @@
     "era": "Information",
     "gender": "male",
     "identities": [
-      "Athlete",
-      "Educator"
+      "Athlete"
     ],
     "portraitKey": "diego_maradona",
     "politics": 2,
@@ -1390,7 +1376,8 @@
     "gender": "female",
     "identities": [
       "Scientist",
-      "Naturalist"
+      "Naturalist",
+      "Educator"
     ],
     "portraitKey": "jane_goodall",
     "politics": 8,
@@ -1494,6 +1481,7 @@
     "gender": "male",
     "identities": [
       "Philosopher",
+      "Monastic",
       "Prophet"
     ],
     "portraitKey": "mahavira",
