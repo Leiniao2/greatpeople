@@ -169,7 +169,7 @@ function getGPCard(id: string): Card | undefined {
 interface AchievementSpec { stat: StatKey; threshold: number }
 
 const ACHIEVEMENT_SPECS: Record<string, AchievementSpec> = {
-  'Gandhi':               { stat: 'belief',        threshold: 3 },
+  'Mohandas Gandhi':      { stat: 'belief',        threshold: 3 },
   'Coco Chanel':          { stat: 'culture',        threshold: 3 },
   'Mao Zedong':           { stat: 'politics',       threshold: 4 },
   'Belisarius':           { stat: 'strength',       threshold: 3 },
