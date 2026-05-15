@@ -4,7 +4,8 @@ from google.cloud import secretmanager
 
 def _get_secret(secret_id: str) -> str:
     project = os.environ['SECRET_MANAGER_PROJECT']
-    client = secretmanager.SecretManagerServiceClient()
+    # Use REST transport to avoid gRPC/eventlet socket-patching incompatibility.
+    client = secretmanager.SecretManagerServiceClient(transport='rest')
     name = f'projects/{project}/secrets/{secret_id}/versions/latest'
     return client.access_secret_version(name=name).payload.data.decode()
 
