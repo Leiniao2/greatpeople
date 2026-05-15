@@ -170,6 +170,51 @@ const CONFIGS: Record<string, MusicConfig> = {
     noteLabels: ['C', 'G', 'C\'', 'E', 'G\''],
     fact: "NASA's Apollo missions inspired a generation of composers. Also Sprach Zarathustra (Strauss, 1896) became the sonic symbol of the space age when Kubrick used it in 2001: A Space Odyssey (1968) — one year before the Moon landing.",
   },
+
+  // ── Harder: longer sequences with repeated notes ──────────────────────────
+
+  'ode-to-joy': {
+    title: "Ode to Joy",
+    question: "Arrange the first seven notes of Beethoven's Ode to Joy — the same note appears three times, but order matters:",
+    notes: ['E', 'E', 'F', 'G', 'G', 'F', 'E'],
+    noteLabels: ['E¹', 'E²', 'F¹', 'G¹', 'G²', 'F²', 'E³'],
+    fact: "Beethoven composed the Ninth Symphony entirely deaf — he never heard a single note of it performed. The Ode to Joy melody (from Schiller's poem) opens with three repeated Es before stepping up — a motif of stubborn persistence breaking into joy.",
+  },
+  'twinkle-canon': {
+    title: 'Twinkle Twinkle',
+    question: "Arrange the first six notes of 'Twinkle Twinkle Little Star' — each pitch appears twice:",
+    notes: ['C', 'C', 'G', 'G', 'A', 'A'],
+    noteLabels: ['C¹', 'C²', 'G¹', 'G²', 'A¹', 'A²'],
+    fact: "The melody was composed in 1761 by Mozart (as a set of variations on a French tune) when he was five years old. Mozart's prodigious memory allowed him to compose entire symphonies in his head before writing a single note.",
+  },
+  'chinese-court': {
+    title: 'Tang Court Music',
+    question: "Arrange these six notes of the Tang imperial court pentatonic scale from lowest to highest:",
+    notes: ['C', 'D', 'F', 'G', 'A', 'C'],
+    noteLabels: ['C', 'D', 'F', 'G', 'A', 'C\''],
+    fact: "The Tang Dynasty (618–907 CE) maintained a Music Bureau of 30,000 court musicians. The pentatonic scale — C D F G A — was the foundation of Chinese imperial music, and silk instruments like the guqin were considered tools of moral cultivation.",
+  },
+  'rondo-alla-turca': {
+    title: 'Turkish March',
+    question: "Arrange the first seven notes of Mozart's famous Rondo alla Turca — listen carefully for the descending pattern:",
+    notes: ['B', 'A', 'G', 'A', 'B', 'B', 'B'],
+    noteLabels: ['B¹', 'A¹', 'G', 'A²', 'B²', 'B³', 'B⁴'],
+    fact: "Mozart's Turkish March imitates the janissary military band style that fascinated 18th-century Europe. The Ottoman Empire's mehter bands — the world's oldest military band — used cymbals, kettledrums, and shawms to project power across battlefields.",
+  },
+  'canon-bass': {
+    title: "Pachelbel's Canon",
+    question: "Arrange the six bass notes of Pachelbel's Canon in D — the same sequence repeats 28 times in the piece:",
+    notes: ['D', 'A', 'B', 'F', 'G', 'D'],
+    noteLabels: ['D¹', 'A', 'B', 'F', 'G', 'D²'],
+    fact: "Pachelbel's Canon in D (c. 1680) uses an ostinato — a repeating bass line that anchors endless melodic variations above. The same 8-note bass pattern repeats continuously, making it one of the earliest examples of structured harmonic repetition in Western music.",
+  },
+  'persian-scale': {
+    title: 'Persian Dastgāh',
+    question: "Arrange these six notes of the Persian Shur scale — used in classical Persian music for over a thousand years:",
+    notes: ['D', 'E', 'F', 'G', 'A', 'B'],
+    noteLabels: ['D', 'E', 'F', 'G', 'A', 'B'],
+    fact: "The Persian dastgāh system is one of the oldest documented musical frameworks in the world. During the Islamic Golden Age, Al-Farabi wrote extensively on the mathematical properties of the Persian scale, influencing both Eastern and Western music theory.",
+  },
 }
 
 function shuffle<T>(arr: T[]): T[] {

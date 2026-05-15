@@ -112,11 +112,92 @@ const SWORD_FORMATION: KlotskiConfig = {
   fact: 'Renaissance military tacticians like Machiavelli revived Roman formation tactics. The "sword and shield" formation allowed disciplined infantry to hold against cavalry charges.',
 }
 
+// ── Harder configs ────────────────────────────────────────────────────────────
+
+// 'great-wall': 5×4 – goal top-center, row-4 blocked by two horizontal pieces
+const GREAT_WALL: KlotskiConfig = {
+  title: 'The Great Wall',
+  rows: 5, cols: 4,
+  pieces: [
+    { id: 1,  cells: [[0,1],[0,2],[1,1],[1,2]], color: '#f59e0b', label: '长', isGoal: true },
+    { id: 2,  cells: [[0,0],[1,0]],             color: '#818cf8', label: '|' },
+    { id: 3,  cells: [[0,3],[1,3]],             color: '#818cf8', label: '|' },
+    { id: 4,  cells: [[2,0],[3,0]],             color: '#34d399', label: '|' },
+    { id: 5,  cells: [[2,1]],                   color: '#f87171', label: '□' },
+    { id: 6,  cells: [[2,2]],                   color: '#f87171', label: '□' },
+    { id: 7,  cells: [[2,3],[3,3]],             color: '#34d399', label: '|' },
+    { id: 8,  cells: [[4,0],[4,1]],             color: '#60a5fa', label: '—' },
+    { id: 9,  cells: [[4,2],[4,3]],             color: '#60a5fa', label: '—' },
+  ],
+  targetRow: 3, targetCol: 1,
+  fact: 'The Great Wall was not a single structure but a series of walls built over centuries. The most famous sections were built during the Ming Dynasty — requiring over a million workers and 100 years of labour.',
+}
+
+// 'silk-road-passage': 5×4 – mix of horizontal and vertical blockers
+const SILK_ROAD: KlotskiConfig = {
+  title: 'Silk Road Passage',
+  rows: 5, cols: 4,
+  pieces: [
+    { id: 1,  cells: [[0,1],[0,2],[1,1],[1,2]], color: '#f59e0b', label: '絲', isGoal: true },
+    { id: 2,  cells: [[0,0],[1,0]],             color: '#818cf8', label: '|' },
+    { id: 3,  cells: [[0,3],[1,3]],             color: '#818cf8', label: '|' },
+    { id: 4,  cells: [[2,0],[2,1]],             color: '#34d399', label: '—' },
+    { id: 5,  cells: [[2,2],[3,2]],             color: '#60a5fa', label: '|' },
+    { id: 6,  cells: [[2,3],[3,3]],             color: '#60a5fa', label: '|' },
+    { id: 7,  cells: [[3,0],[4,0]],             color: '#a78bfa', label: '|' },
+    { id: 8,  cells: [[4,2],[4,3]],             color: '#34d399', label: '—' },
+  ],
+  targetRow: 3, targetCol: 1,
+  fact: 'Ibn Battuta travelled the Silk Road extensively, covering over 75,000 miles across 40+ countries. The road was less a single route than a web of shifting passages — each requiring careful navigation around obstacles.',
+}
+
+// 'forbidden-maze': 5×4 – more 1×1 pieces, tighter board
+const FORBIDDEN_MAZE: KlotskiConfig = {
+  title: 'Forbidden City Maze',
+  rows: 5, cols: 4,
+  pieces: [
+    { id: 1,  cells: [[0,1],[0,2],[1,1],[1,2]], color: '#f59e0b', label: '紫', isGoal: true },
+    { id: 2,  cells: [[0,0],[1,0]],             color: '#818cf8', label: '|' },
+    { id: 3,  cells: [[0,3],[1,3]],             color: '#818cf8', label: '|' },
+    { id: 4,  cells: [[2,0],[3,0]],             color: '#34d399', label: '|' },
+    { id: 5,  cells: [[2,1],[2,2]],             color: '#60a5fa', label: '—' },
+    { id: 6,  cells: [[2,3],[3,3]],             color: '#34d399', label: '|' },
+    { id: 7,  cells: [[3,1]],                   color: '#f87171', label: '□' },
+    { id: 8,  cells: [[3,2]],                   color: '#f87171', label: '□' },
+    { id: 9,  cells: [[4,0],[4,1]],             color: '#a78bfa', label: '—' },
+    { id: 10, cells: [[4,2],[4,3]],             color: '#a78bfa', label: '—' },
+  ],
+  targetRow: 3, targetCol: 1,
+  fact: 'The Forbidden City contains 980 buildings with 8,700 rooms. Its layout is a labyrinth of courtyards and gates deliberately designed to disorient enemies and impress visitors with the emperor\'s power.',
+}
+
+// 'ming-gate': 5×4 – goal starts top-left, must reach bottom-center
+const MING_GATE: KlotskiConfig = {
+  title: 'The Ming Gate',
+  rows: 5, cols: 4,
+  pieces: [
+    { id: 1,  cells: [[0,0],[0,1],[1,0],[1,1]], color: '#f59e0b', label: '明', isGoal: true },
+    { id: 2,  cells: [[0,2],[1,2]],             color: '#818cf8', label: '|' },
+    { id: 3,  cells: [[0,3],[1,3]],             color: '#818cf8', label: '|' },
+    { id: 4,  cells: [[2,0],[3,0]],             color: '#34d399', label: '|' },
+    { id: 5,  cells: [[2,1]],                   color: '#f87171', label: '□' },
+    { id: 6,  cells: [[2,2]],                   color: '#f87171', label: '□' },
+    { id: 7,  cells: [[2,3],[3,3]],             color: '#34d399', label: '|' },
+    { id: 8,  cells: [[4,1],[4,2]],             color: '#60a5fa', label: '—' },
+  ],
+  targetRow: 3, targetCol: 1,
+  fact: 'The Yongle Emperor moved China\'s capital to Beijing in 1421 and built the Forbidden City\'s main gate — the Meridian Gate — as the symbolic threshold of imperial power. Only the emperor could use the central passage.',
+}
+
 const CONFIGS: Record<string, KlotskiConfig> = {
   'pyramid-capstone': PYRAMID,
   'enigma-rotors': ENIGMA,
   'last-general': LAST_GENERAL,
   'sword-formation': SWORD_FORMATION,
+  'great-wall': GREAT_WALL,
+  'silk-road-passage': SILK_ROAD,
+  'forbidden-maze': FORBIDDEN_MAZE,
+  'ming-gate': MING_GATE,
 }
 
 // ── Board helpers ─────────────────────────────────────────────────────────────

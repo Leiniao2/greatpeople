@@ -24,6 +24,7 @@ interface FixedMirror {
 
 type MirrorKey = 'mendel' | 'euclid' | 'digital' | 'plato' | 'anaxagoras' | 'al-khwarizmi' | 'lorentz'
   | 'newton-prism' | 'huygens' | 'foucault' | 'archimedes-mirror' | 'snell'
+  | 'maya-light' | 'ptolemy-lens' | 'al-biruni-ray' | 'viking-aurora' | 'mongol-signal' | 'aztec-sun'
 
 interface MirrorConfig {
   title: string
@@ -158,6 +159,82 @@ const CONFIGS: Record<MirrorKey, MirrorConfig> = {
       { row: 2, col: 3, mirror: '/' },
       { row: 2, col: 0, mirror: '\\' },
       { row: 0, col: 0, mirror: '/' },
+    ],
+    maxMirrors: 1,
+  },
+  'maya-light': {
+    title: 'Maya Solstice Observatory',
+    instruction: "Chichen Itza was built so sunlight hits the altar on the solstice. One mirror completes the optical path — place it to reach the target.",
+    gridSize: 7,
+    source: { row: -1, col: 3, dir: 'down' },
+    target: { row: 7, col: 2 },
+    fixed: [
+      { row: 2, col: 3, mirror: '\\' },
+      { row: 2, col: 6, mirror: '/' },
+      { row: 0, col: 6, mirror: '\\' },
+    ],
+    maxMirrors: 1,
+  },
+  'ptolemy-lens': {
+    title: "Ptolemy's Optics",
+    instruction: "Ptolemy catalogued the angles of refraction. Three fixed mirrors set the path — you supply the one that completes it.",
+    gridSize: 7,
+    source: { row: -1, col: 3, dir: 'down' },
+    target: { row: 2, col: 7 },
+    fixed: [
+      { row: 5, col: 3, mirror: '\\' },
+      { row: 2, col: 6, mirror: '/' },
+    ],
+    maxMirrors: 1,
+  },
+  'al-biruni-ray': {
+    title: "Al-Bīrūnī's Camera Obscura",
+    instruction: "Al-Bīrūnī built a light chamber to study the angles of incidence. Guide the beam through four reflections using just one placed mirror.",
+    gridSize: 8,
+    source: { row: 8, col: 0, dir: 'up' },
+    target: { row: 8, col: 3 },
+    fixed: [
+      { row: 4, col: 0, mirror: '/' },
+      { row: 4, col: 7, mirror: '\\' },
+      { row: 7, col: 7, mirror: '/' },
+    ],
+    maxMirrors: 1,
+  },
+  'viking-aurora': {
+    title: 'Viking Sólarsteinn',
+    instruction: "Norse navigators used a sunstone (sólarsteinn) to find the sun through clouds by polarised light. Chart the beam's four-bounce path — one mirror.",
+    gridSize: 7,
+    source: { row: 6, col: -1, dir: 'right' },
+    target: { row: 4, col: -1 },
+    fixed: [
+      { row: 6, col: 2, mirror: '/' },
+      { row: 0, col: 2, mirror: '/' },
+      { row: 0, col: 5, mirror: '\\' },
+    ],
+    maxMirrors: 1,
+  },
+  'mongol-signal': {
+    title: 'Mongol Fire Relay',
+    instruction: "Mongol armies used fire signals to send messages 100 miles in hours. One mirror redirects the beam across five bounces to the distant beacon.",
+    gridSize: 8,
+    source: { row: 3, col: -1, dir: 'right' },
+    target: { row: 5, col: 8 },
+    fixed: [
+      { row: 3, col: 5, mirror: '/' },
+      { row: 0, col: 5, mirror: '\\' },
+      { row: 0, col: 2, mirror: '/' },
+    ],
+    maxMirrors: 1,
+  },
+  'aztec-sun': {
+    title: 'Aztec Sun Temple',
+    instruction: "The Aztec calendar stone was used to track the sun's path. Two fixed mirrors guide the beam — place the third to reach the far altar.",
+    gridSize: 7,
+    source: { row: -1, col: 0, dir: 'down' },
+    target: { row: 2, col: 7 },
+    fixed: [
+      { row: 3, col: 0, mirror: '\\' },
+      { row: 3, col: 4, mirror: '/' },
     ],
     maxMirrors: 1,
   },
