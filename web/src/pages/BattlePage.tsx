@@ -1822,12 +1822,62 @@ interface BattleGameProps {
   onExit: () => void
 }
 
+function RulesModal({ onClose }: { onClose: () => void }) {
+  return (
+    <div className="fixed inset-0 z-[200] flex items-end sm:items-center justify-center bg-black/70 p-4" onClick={onClose}>
+      <div className="bg-[#0e1020] border border-white/10 rounded-2xl w-full max-w-sm shadow-2xl overflow-hidden" onClick={e => e.stopPropagation()}>
+        <div className="flex items-center justify-between px-4 py-3 border-b border-white/10">
+          <span className="text-sm font-bold text-white tracking-wide">📖 How to Play</span>
+          <button onClick={onClose} className="text-slate-500 hover:text-white text-lg leading-none transition-colors">✕</button>
+        </div>
+        <div className="p-4 space-y-4 max-h-[70vh] overflow-y-auto text-sm">
+          <section>
+            <p className="text-[10px] font-bold text-amber-400 uppercase tracking-widest mb-1.5">Objective</p>
+            <p className="text-slate-300 leading-relaxed">First player to earn <span className="text-amber-400 font-bold">5 Victory Points</span> wins the game.</p>
+          </section>
+          <section>
+            <p className="text-[10px] font-bold text-amber-400 uppercase tracking-widest mb-1.5">On Your Turn</p>
+            <ul className="space-y-1.5 text-slate-300 leading-relaxed">
+              <li><span className="text-white font-semibold">Deploy</span> — Play one Great Person from your hand to any location.</li>
+              <li><span className="text-white font-semibold">Add Follower</span> — Place a follower at a location where you have a Great Person.</li>
+              <li><span className="text-white font-semibold">Move</span> — Relocate one of your cards to a different location.</li>
+              <li><span className="text-white font-semibold">Trigger Event</span> — Activate the event card at a location where you have a Great Person.</li>
+              <li><span className="text-white font-semibold">Attack</span> — During a Local Event, challenge a rival's card.</li>
+              <li><span className="text-white font-semibold">Retrieve</span> — Return one of your cards from the board to your hand.</li>
+            </ul>
+          </section>
+          <section>
+            <p className="text-[10px] font-bold text-amber-400 uppercase tracking-widest mb-1.5">Events</p>
+            <ul className="space-y-1.5 text-slate-300 leading-relaxed">
+              <li><span className="text-white font-semibold">⚔ Local Event</span> — Compare your total stat vs. rivals. Winner may attack the loser's card.</li>
+              <li><span className="text-white font-semibold">☠ Local Survival</span> — Any card at this location with that stat below 10 is discarded.</li>
+              <li><span className="text-white font-semibold">🏆 Global Competition</span> — Player with the highest total stat across all public cards earns a prize bundle.</li>
+              <li><span className="text-white font-semibold">🌊 Natural Hazard</span> — Cards with total stats below 100 are discarded.</li>
+            </ul>
+          </section>
+          <section>
+            <p className="text-[10px] font-bold text-amber-400 uppercase tracking-widest mb-1.5">Victory Points</p>
+            <p className="text-slate-300 leading-relaxed">Win events and complete card achievements to earn points. Each card's achievement is shown on its detail view.</p>
+          </section>
+        </div>
+        <div className="px-4 pb-4 pt-1">
+          <button onClick={onClose}
+            className="w-full py-2.5 rounded-xl text-sm font-bold bg-slate-800 hover:bg-slate-700 text-white transition-all">
+            Got it
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
   const [selection, setSelection] = useState<Selection>({ mode: 'none' })
   const [attackKill, setAttackKill] = useState(false)
   const [showRewardDialog, setShowRewardDialog] = useState(false)
   const [globalCompWinner] = useState<string | null>(null)
   const [cardDetail, setCardDetail] = useState<{ card: Card; ticks?: number } | null>(null)
+  const [showRules, setShowRules] = useState(false)
   // Hot-seat: shown between human turns so previous player can't see next player's hand
   const [awaitingHandoff, setAwaitingHandoff] = useState(false)
   const logRef = useRef<HTMLDivElement>(null)
@@ -2163,8 +2213,12 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
             })}
           </div>
         </div>
-        <button onClick={onExit} className="text-slate-600 hover:text-slate-400 text-xs transition-colors px-2 shrink-0">Exit</button>
+        <div className="flex items-center gap-1 shrink-0">
+          <button onClick={() => setShowRules(true)} className="text-slate-500 hover:text-amber-400 text-base transition-colors px-2" title="Rules">📖</button>
+          <button onClick={onExit} className="text-slate-600 hover:text-slate-400 text-xs transition-colors px-2">Exit</button>
+        </div>
       </div>
+      {showRules && <RulesModal onClose={() => setShowRules(false)} />}
 
       {/* Board: Locations */}
       <div className="relative z-10 flex-shrink-0 overflow-x-auto py-2 px-3 border-b border-white/[0.06]">

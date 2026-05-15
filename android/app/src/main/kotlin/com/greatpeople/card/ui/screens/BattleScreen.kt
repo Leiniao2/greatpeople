@@ -2,16 +2,21 @@ package com.greatpeople.card.ui.screens
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Book
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 private data class BattleMode(
     val icon: String,
@@ -35,6 +40,7 @@ fun BattleScreen(
     onSignIn: () -> Unit = {},
 ) {
     var showGuestDialog by remember { mutableStateOf(false) }
+    var showRules by remember { mutableStateOf(false) }
 
     Scaffold(
         topBar = {
@@ -43,6 +49,11 @@ fun BattleScreen(
                 navigationIcon = {
                     IconButton(onClick = onBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                    }
+                },
+                actions = {
+                    IconButton(onClick = { showRules = true }) {
+                        Icon(Icons.Filled.Book, contentDescription = "Rules", tint = Color(0xFFF59E0B))
                     }
                 },
             )
@@ -98,6 +109,11 @@ fun BattleScreen(
                     modifier = Modifier.padding(top = 4.dp),
                 )
             }
+        }
+
+        // Rules dialog
+        if (showRules) {
+            BattleRulesDialog(onDismiss = { showRules = false })
         }
 
         // Guest sign-in dialog
@@ -171,4 +187,78 @@ private fun BattleModeCard(mode: BattleMode, locked: Boolean, onClick: () -> Uni
             )
         }
     }
+}
+
+// ── Rules dialog ──────────────────────────────────────────────────────────────
+
+private data class RuleItem(val head: String, val body: String)
+private data class RuleSection(val title: String, val items: List<RuleItem>)
+
+private val BATTLE_RULES = listOf(
+    RuleSection("Objective", listOf(
+        RuleItem("", "First player to earn 5 Victory Points wins the game."),
+    )),
+    RuleSection("On Your Turn", listOf(
+        RuleItem("Deploy", "Play one Great Person from your hand to any location."),
+        RuleItem("Add Follower", "Place a follower at a location where you have a Great Person."),
+        RuleItem("Move", "Relocate one of your cards to a different location."),
+        RuleItem("Trigger Event", "Activate the event at a location where you have a Great Person."),
+        RuleItem("Attack", "During a Local Event, challenge a rival's card."),
+        RuleItem("Retrieve", "Return one of your cards from the board to your hand."),
+    )),
+    RuleSection("Events", listOf(
+        RuleItem("⚔ Local Event", "Compare your total stat vs. rivals. Winner may attack the loser's card."),
+        RuleItem("☠ Local Survival", "Cards at this location with that stat below 10 are discarded."),
+        RuleItem("🏆 Global Competition", "Player with the highest total stat across all public cards earns a prize."),
+        RuleItem("🌊 Natural Hazard", "Cards with total stats below 100 are discarded."),
+    )),
+    RuleSection("Victory Points", listOf(
+        RuleItem("", "Win events and complete card achievements to earn points. Each card's achievement is shown in its detail view."),
+    )),
+)
+
+@Composable
+private fun BattleRulesDialog(onDismiss: () -> Unit) {
+    val amber = Color(0xFFF59E0B)
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text("📖 How to Play") },
+        text = {
+            Column(
+                verticalArrangement = Arrangement.spacedBy(20.dp),
+                modifier = Modifier.verticalScroll(rememberScrollState()),
+            ) {
+                BATTLE_RULES.forEach { section ->
+                    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                        Text(
+                            section.title.uppercase(),
+                            fontSize = 10.sp,
+                            fontWeight = FontWeight.Bold,
+                            letterSpacing = 1.5.sp,
+                            color = amber,
+                        )
+                        section.items.forEach { item ->
+                            if (item.head.isEmpty()) {
+                                Text(item.body, style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant)
+                            } else {
+                                Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                                    Text(item.head, style = MaterialTheme.typography.bodySmall,
+                                        fontWeight = FontWeight.SemiBold,
+                                        color = MaterialTheme.colorScheme.onSurface,
+                                        modifier = Modifier.width(100.dp))
+                                    Text(item.body, style = MaterialTheme.typography.bodySmall,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                        modifier = Modifier.weight(1f))
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        confirmButton = {
+            TextButton(onClick = onDismiss) { Text("Got it", color = amber) }
+        },
+    )
 }

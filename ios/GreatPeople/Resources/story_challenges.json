@@ -13,6 +13,7 @@
           "The world's oldest map"
         ],
         "answer": 0,
+        "countdown": 10,
         "fact": "The Epic of Gilgamesh, preserved on twelve clay tablets, predates Homer's Iliad by at least 1,500 years. It contains a great flood story remarkably similar to Noah's in the Bible."
       },
       {
@@ -23,18 +24,38 @@
         "fact": "Babylonian mathematicians knew the Pythagorean theorem over a thousand years before Pythagoras. Plimpton 322, a clay tablet from 1800 BCE, lists Pythagorean triples."
       },
       {
+        "type": "sort",
+        "question": "Arrange the key events of Enkidu's life in order:",
+        "items": [
+          "Enkidu roams the steppe as a wild man, companion to animals",
+          "A temple priestess teaches Enkidu language and the ways of civilisation",
+          "Enkidu and Gilgamesh clash at the gates of Uruk",
+          "The two become inseparable brothers in arms",
+          "Enkidu falls ill, cursed by the gods after slaying Humbaba",
+          "Enkidu dies — and Gilgamesh confronts human mortality for the first time"
+        ],
+        "fact": "Enkidu's journey from wilderness to brotherhood mirrors humanity's own emergence — his taming by a priestess represents the Mesopotamian belief that civilisation elevated human beings above the animals they had once lived among."
+      },
+      {
+        "type": "truefalse",
+        "statement": "Enkidu became Gilgamesh's enemy and they fought to the death at the end of the epic.",
+        "correct": false,
+        "countdown": 10,
+        "fact": "Enkidu and Gilgamesh fought briefly at the city gate, but quickly became the closest of friends. Enkidu's death from divine punishment drives the epic's second half and Gilgamesh's desperate quest for immortality."
+      },
+      {
         "type": "minigame",
         "game": "maze",
         "configId": "cedar-forest",
-        "instruction": "Guide Gilgamesh through the Cedar Forest in search of glory",
-        "fact": "Uruk was one of the world's earliest cities — home to 50,000–80,000 people in 3000 BCE. Gilgamesh was its legendary king and builder of its great walls."
+        "instruction": "Guide Gilgamesh through the Cedar Forest in search of glory — and Enkidu at his side.",
+        "fact": "Uruk was one of the world's earliest cities — home to 50,000–80,000 people in 3000 BCE. Gilgamesh was its legendary king and the builder of its great walls."
       },
       {
         "type": "minigame",
         "game": "matchthree",
         "configId": "babylon-tablets",
         "instruction": "Babylonian scribes recorded grain trades in vertical cuneiform columns. Only vertical matches score — clear 52 symbols on the 8×8 tablet.",
-        "fact": "Babylonian clay tablets recorded grain prices, interest rates and commodity contracts with astonishing precision — the world's first commodity futures market. Cuneiform records from 600 BCE show silver-denominated wheat prices responding to floods and harvests across Mesopotamia."
+        "fact": "Babylonian clay tablets recorded grain prices, interest rates and commodity contracts — the world's first commodity futures market. Cuneiform records from 600 BCE show silver-denominated wheat prices responding to floods and harvests."
       }
     ]
   },
@@ -52,7 +73,8 @@
           "The Jade Emperor"
         ],
         "answer": 1,
-        "fact": "Chinese tradition credits Lei Zu (also written Leizu or Si Ling-chi), wife of the Yellow Emperor Huangdi, with discovering silk around 2700 BCE when a silkworm cocoon fell into her tea and she unravelled its thread."
+        "fact": "Chinese tradition credits Lei Zu (also written Leizu or Si Ling-chi), wife of the Yellow Emperor Huangdi, with discovering silk around 2700 BCE when a silkworm cocoon fell into her tea and she unravelled its thread.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -64,7 +86,8 @@
           "Aphid"
         ],
         "answer": 2,
-        "fact": "Silk comes from the cocoon of the Bombyx mori silkworm. A single cocoon can yield between 300 and 900 meters of continuous silk thread. Lei Zu is credited with discovering that these threads could be woven into fabric."
+        "fact": "Silk comes from the cocoon of the Bombyx mori silkworm. A single cocoon can yield between 300 and 900 meters of continuous silk thread. Lei Zu is credited with discovering that these threads could be woven into fabric.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -76,7 +99,8 @@
           "Ten centuries"
         ],
         "answer": 2,
-        "fact": "China kept sericulture (silk production) a closely guarded state secret for roughly 3,000 years. The penalty for smuggling silkworm eggs or mulberry seeds out of China was death. The secret finally escaped around 550 CE via Byzantine monks."
+        "fact": "China kept sericulture (silk production) a closely guarded state secret for roughly 3,000 years. The penalty for smuggling silkworm eggs or mulberry seeds out of China was death. The secret finally escaped around 550 CE via Byzantine monks.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -88,7 +112,8 @@
           "Bamboo"
         ],
         "answer": 1,
-        "fact": "Silkworms feed almost exclusively on mulberry leaves. Lei Zu is also credited with planting mulberry trees to cultivate silkworms — making sericulture (silk farming) possible on a large scale."
+        "fact": "Silkworms feed almost exclusively on mulberry leaves. Lei Zu is also credited with planting mulberry trees to cultivate silkworms — making sericulture (silk farming) possible on a large scale.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -100,7 +125,8 @@
           "Fuel for fire"
         ],
         "answer": 1,
-        "fact": "Silk served as a form of currency in ancient China — soldiers were paid in it, taxes were collected in it, and it was presented as tribute and diplomatic gifts to foreign rulers. Its value drove the creation of the Silk Road trade network."
+        "fact": "Silk served as a form of currency in ancient China — soldiers were paid in it, taxes were collected in it, and it was presented as tribute and diplomatic gifts to foreign rulers. Its value drove the creation of the Silk Road trade network.",
+        "countdown": 10
       }
     ]
   },
@@ -118,7 +144,8 @@
           "Astronomer"
         ],
         "answer": 1,
-        "fact": "Hesy-Ra (c. 2700–2600 BCE) is the earliest known physician in recorded history. He held the title 'Chief of Dentists and Physicians' — inscribed on a wooden panel in his tomb at Saqqara, making him the first named doctor in history."
+        "fact": "Hesy-Ra (c. 2700–2600 BCE) is the earliest known physician in recorded history. He held the title 'Chief of Dentists and Physicians' — inscribed on a wooden panel in his tomb at Saqqara, making him the first named doctor in history.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -130,7 +157,8 @@
           "Abu Simbel"
         ],
         "answer": 1,
-        "fact": "Hesy-Ra's mastaba tomb was found at Saqqara, the ancient necropolis near Memphis. His tomb panels are among the finest wooden carvings to survive from ancient Egypt, showing him with scribal equipment — he was also a high-ranking scribe."
+        "fact": "Hesy-Ra's mastaba tomb was found at Saqqara, the ancient necropolis near Memphis. His tomb panels are among the finest wooden carvings to survive from ancient Egypt, showing him with scribal equipment — he was also a high-ranking scribe.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -142,7 +170,8 @@
           "Cleopatra"
         ],
         "answer": 2,
-        "fact": "Hesy-Ra served under Pharaoh Djoser (c. 2670–2640 BCE) — the same pharaoh for whom Imhotep built the Step Pyramid. Hesy-Ra held several prestigious titles, including 'Great One of the Tens of Upper Egypt.'"
+        "fact": "Hesy-Ra served under Pharaoh Djoser (c. 2670–2640 BCE) — the same pharaoh for whom Imhotep built the Step Pyramid. Hesy-Ra held several prestigious titles, including 'Great One of the Tens of Upper Egypt.'",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -154,7 +183,8 @@
           "Chinese herbal remedies"
         ],
         "answer": 2,
-        "fact": "Egyptian medicine blended empirical observation (examination, diagnosis, prognosis) with magical spells and prayers. Medical papyri describe both surgical techniques and incantations — reflecting a culture where science and belief were inseparable."
+        "fact": "Egyptian medicine blended empirical observation (examination, diagnosis, prognosis) with magical spells and prayers. Medical papyri describe both surgical techniques and incantations — reflecting a culture where science and belief were inseparable.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -166,56 +196,8 @@
           "A star map"
         ],
         "answer": 1,
-        "fact": "The Edwin Smith Papyrus (c. 1600 BCE, copying older material) is the world's earliest known surgical text, describing 48 cases of injury with rational diagnosis and treatment — no magic, just observation. It reflects medical knowledge that began in Hesy-Ra's time."
-      }
-    ]
-  },
-  {
-    "era": "Ancient",
-    "story": "Born of Clay and Wild",
-    "challenges": [
-      {
-        "type": "quiz",
-        "question": "Who created Enkidu in the Epic of Gilgamesh?",
-        "options": [
-          "The sun god Shamash",
-          "The goddess Aruru",
-          "Gilgamesh himself",
-          "The god Enlil"
-        ],
-        "answer": 1,
-        "fact": "The goddess Aruru shaped Enkidu from clay and spit, creating him as a wild companion for the restless king Gilgamesh — a being of equal strength and wildness."
-      },
-      {
-        "type": "sort",
-        "question": "Arrange the key events of Enkidu's life in order:",
-        "items": [
-          "Enkidu roams the steppe as a wild man, companion to animals",
-          "A temple priestess teaches Enkidu language and the ways of civilization",
-          "Enkidu and Gilgamesh clash at the gates of Uruk",
-          "The two become inseparable brothers in arms",
-          "Enkidu falls ill, cursed by the gods after slaying Humbaba",
-          "Enkidu dies — and Gilgamesh confronts human mortality for the first time"
-        ],
-        "fact": "Enkidu roamed the ancient wilderness as a wild man before Gilgamesh's messenger civilized him — his journey from chaos to civilization mirrored humanity's own emergence from the wild."
-      },
-      {
-        "type": "quiz",
-        "question": "In the Epic of Gilgamesh, how was Enkidu created?",
-        "options": [
-          "He was born of a human mother",
-          "He was shaped from clay by the goddess Aruru",
-          "He emerged from the sea",
-          "He descended from the gods directly"
-        ],
-        "answer": 1,
-        "fact": "Aruru pinched off clay and threw it into the wild, creating Enkidu — a being of pure nature who lived among animals before his encounter with civilization."
-      },
-      {
-        "type": "truefalse",
-        "statement": "Enkidu became Gilgamesh's enemy and they fought to the death at the end of the epic.",
-        "correct": false,
-        "fact": "Enkidu and Gilgamesh fought briefly, but quickly became the closest of friends. Enkidu's death from divine punishment drives the second half of the epic and Gilgamesh's quest for immortality."
+        "fact": "The Edwin Smith Papyrus (c. 1600 BCE, copying older material) is the world's earliest known surgical text, describing 48 cases of injury with rational diagnosis and treatment — no magic, just observation. It reflects medical knowledge that began in Hesy-Ra's time.",
+        "countdown": 10
       }
     ]
   },
@@ -272,7 +254,8 @@
           "She practiced medicine for free"
         ],
         "answer": 1,
-        "fact": "Peseshet (c. 2500–2450 BCE) is the earliest known female medical administrator in history. Her title 'Imy-r swnwt' — 'Lady Overseer of Female Physicians' — indicates she supervised a group of female medical practitioners, making her a pioneering figure in both medicine and women's leadership."
+        "fact": "Peseshet (c. 2500–2450 BCE) is the earliest known female medical administrator in history. Her title 'Imy-r swnwt' — 'Lady Overseer of Female Physicians' — indicates she supervised a group of female medical practitioners, making her a pioneering figure in both medicine and women's leadership.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -284,7 +267,8 @@
           "Treating only pharaohs"
         ],
         "answer": 1,
-        "fact": "Egyptian medicine of the Old Kingdom already showed systematic clinical thinking — doctors were trained to examine patients, make diagnoses, assess prognoses ('this is a condition I will treat / I will not treat'), and apply treatments. This rational approach coexisted with ritual healing."
+        "fact": "Egyptian medicine of the Old Kingdom already showed systematic clinical thinking — doctors were trained to examine patients, make diagnoses, assess prognoses ('this is a condition I will treat / I will not treat'), and apply treatments. This rational approach coexisted with ritual healing.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -296,7 +280,8 @@
           "From the Rosetta Stone"
         ],
         "answer": 1,
-        "fact": "Peseshet is known from a single inscription in the false door of her son Akhethotep's tomb at Giza. Despite this sparse record, her title reveals an organized female medical profession in the Old Kingdom — centuries before the more famous Greek physicians."
+        "fact": "Peseshet is known from a single inscription in the false door of her son Akhethotep's tomb at Giza. Despite this sparse record, her title reveals an organized female medical profession in the Old Kingdom — centuries before the more famous Greek physicians.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -308,7 +293,8 @@
           "Over 2,000 years"
         ],
         "answer": 3,
-        "fact": "Hippocrates lived c. 460–370 BCE — roughly 2,000 years after Peseshet (c. 2500 BCE). Ancient Greek medicine built on Egyptian foundations: Hippocrates himself reportedly studied in Egypt, and Greek texts acknowledge Egyptian medical knowledge."
+        "fact": "Hippocrates lived c. 460–370 BCE — roughly 2,000 years after Peseshet (c. 2500 BCE). Ancient Greek medicine built on Egyptian foundations: Hippocrates himself reportedly studied in Egypt, and Greek texts acknowledge Egyptian medical knowledge.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -320,7 +306,8 @@
           "Religious funeral rites"
         ],
         "answer": 1,
-        "fact": "The Ebers Papyrus contains 877 prescriptions for treating everything from crocodile bites to heart disease. It reflects medical knowledge accumulated over centuries — much of it from the Old Kingdom era when Peseshet practiced, passed down through scribal tradition."
+        "fact": "The Ebers Papyrus contains 877 prescriptions for treating everything from crocodile bites to heart disease. It reflects medical knowledge accumulated over centuries — much of it from the Old Kingdom era when Peseshet practiced, passed down through scribal tradition.",
+        "countdown": 10
       }
     ]
   },
@@ -381,7 +368,8 @@
           "Trade disputes with Babylon"
         ],
         "answer": 1,
-        "fact": "The Hittite royal family had suffered generations of murder, coup, and revenge killings over succession. Telepinu's Edict (c. 1600 BCE) established a clear line of succession and banned the killing of royal family members — replacing blood with law."
+        "fact": "The Hittite royal family had suffered generations of murder, coup, and revenge killings over succession. Telepinu's Edict (c. 1600 BCE) established a clear line of succession and banned the killing of royal family members — replacing blood with law.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -393,7 +381,8 @@
           "The Indus Valley"
         ],
         "answer": 1,
-        "fact": "The Hittite Empire was centered in Anatolia (modern Turkey), with its capital at Hattusa (near modern Boğazkale). At its height, it rivaled Egypt as the dominant power of the ancient Near East, famously fighting the Battle of Kadesh against Ramesses II in 1274 BCE."
+        "fact": "The Hittite Empire was centered in Anatolia (modern Turkey), with its capital at Hattusa (near modern Boğazkale). At its height, it rivaled Egypt as the dominant power of the ancient Near East, famously fighting the Battle of Kadesh against Ramesses II in 1274 BCE.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -405,7 +394,8 @@
           "Abolished slavery in the Hittite Empire"
         ],
         "answer": 1,
-        "fact": "The Edict of Telepinu is one of the earliest attempts to codify royal succession through law rather than force. Scholars consider it a forerunner of constitutional governance — a remarkable innovation in a world where succession was typically decided by the sword."
+        "fact": "The Edict of Telepinu is one of the earliest attempts to codify royal succession through law rather than force. Scholars consider it a forerunner of constitutional governance — a remarkable innovation in a world where succession was typically decided by the sword.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -417,7 +407,8 @@
           "The laws of Solon"
         ],
         "answer": 2,
-        "fact": "Draco's laws (621 BCE) and the Twelve Tables of Rome (450 BCE) came centuries after Telepinu's Edict (c. 1600 BCE). The Hittites were sophisticated legal innovators — they also created some of history's earliest peace treaties, including the Treaty of Kadesh with Egypt."
+        "fact": "Draco's laws (621 BCE) and the Twelve Tables of Rome (450 BCE) came centuries after Telepinu's Edict (c. 1600 BCE). The Hittites were sophisticated legal innovators — they also created some of history's earliest peace treaties, including the Treaty of Kadesh with Egypt.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -429,7 +420,8 @@
           "It was absorbed by Egypt"
         ],
         "answer": 1,
-        "fact": "After Telepinu's stabilizing reforms, the Hittite Kingdom recovered and eventually became the Hittite Empire — reaching its peak around 1350–1200 BCE. It became one of the great powers of the ancient world before collapsing during the Late Bronze Age crisis around 1200 BCE."
+        "fact": "After Telepinu's stabilizing reforms, the Hittite Kingdom recovered and eventually became the Hittite Empire — reaching its peak around 1350–1200 BCE. It became one of the great powers of the ancient world before collapsing during the Late Bronze Age crisis around 1200 BCE.",
+        "countdown": 10
       }
     ]
   },
@@ -513,7 +505,8 @@
           "Over 10,000 lines"
         ],
         "answer": 2,
-        "fact": "The tomb of Pediamenopet at Luxor (Tomb TT27) contains over 2,000 lines of religious and funerary text — the longest such compilation in ancient Egypt. It drew from the Book of the Dead, Pyramid Texts, Coffin Texts, and other ritual collections."
+        "fact": "The tomb of Pediamenopet at Luxor (Tomb TT27) contains over 2,000 lines of religious and funerary text — the longest such compilation in ancient Egypt. It drew from the Book of the Dead, Pyramid Texts, Coffin Texts, and other ritual collections.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -525,7 +518,8 @@
           "Ptolemaic era"
         ],
         "answer": 1,
-        "fact": "Pediamenopet lived during Egypt's Late Period (c. 680–640 BCE), when Egypt was dominated first by Nubian (Kushite) pharaohs, then by Assyrian invaders. His massive tomb may have been an attempt to preserve Egyptian religious tradition against foreign disruption."
+        "fact": "Pediamenopet lived during Egypt's Late Period (c. 680–640 BCE), when Egypt was dominated first by Nubian (Kushite) pharaohs, then by Assyrian invaders. His massive tomb may have been an attempt to preserve Egyptian religious tradition against foreign disruption.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -537,7 +531,8 @@
           "Tax collector"
         ],
         "answer": 1,
-        "fact": "The Temple of Amun at Karnak was Egypt's wealthiest and most politically powerful institution. As Third Prophet, Pediamenopet was among its senior clergy — a position of enormous prestige and influence, rivaling that of pharaohs in some periods."
+        "fact": "The Temple of Amun at Karnak was Egypt's wealthiest and most politically powerful institution. As Third Prophet, Pediamenopet was among its senior clergy — a position of enormous prestige and influence, rivaling that of pharaohs in some periods.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -549,7 +544,8 @@
           "A traveling preacher"
         ],
         "answer": 1,
-        "fact": "In ancient Egypt, 'Prophet' (literally 'one who speaks before god') was a priestly rank. Prophets of Amun were the senior clergy who physically entered the god's sanctuary, performed daily rituals, carried the divine barque, and managed temple estates."
+        "fact": "In ancient Egypt, 'Prophet' (literally 'one who speaks before god') was a priestly rank. Prophets of Amun were the senior clergy who physically entered the god's sanctuary, performed daily rituals, carried the divine barque, and managed temple estates.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -561,7 +557,8 @@
           "Tiglath-Pileser"
         ],
         "answer": 1,
-        "fact": "Esarhaddon of Assyria invaded and conquered Egypt in 671 BCE. His son Ashurbanipal later sacked Thebes (663 BCE). Pediamenopet lived through this Assyrian occupation — his monumental tomb may reflect a determination to preserve Egyptian religious identity."
+        "fact": "Esarhaddon of Assyria invaded and conquered Egypt in 671 BCE. His son Ashurbanipal later sacked Thebes (663 BCE). Pediamenopet lived through this Assyrian occupation — his monumental tomb may reflect a determination to preserve Egyptian religious identity.",
+        "countdown": 10
       }
     ]
   },
@@ -579,7 +576,8 @@
           "Proto-Sinaitic"
         ],
         "answer": 2,
-        "fact": "Cuneiform — one of the earliest writing systems — was pressed into wet clay tablets using a wedge-shaped stylus. Ashurbanipal's scribes copied thousands of texts onto tablets that survived because clay hardens when fired (or when the palace burned)."
+        "fact": "Cuneiform — one of the earliest writing systems — was pressed into wet clay tablets using a wedge-shaped stylus. Ashurbanipal's scribes copied thousands of texts onto tablets that survived because clay hardens when fired (or when the palace burned).",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -591,7 +589,8 @@
           "A flood buried and sealed them"
         ],
         "answer": 1,
-        "fact": "When enemies sacked Nineveh in 612 BCE, the palace burned — but the fire accidentally baked thousands of clay tablets, hardening them for millennia. Archaeologists rediscovered them in the 19th century CE."
+        "fact": "When enemies sacked Nineveh in 612 BCE, the palace burned — but the fire accidentally baked thousands of clay tablets, hardening them for millennia. Archaeologists rediscovered them in the 19th century CE.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -603,7 +602,8 @@
           "Reading was punishable by death"
         ],
         "answer": 1,
-        "fact": "Ashurbanipal could read and write in multiple languages — an extraordinary feat for a king. He boasted of this in inscriptions, proud of mastering both the scribal arts and the military campaigns typical of Assyrian rulers."
+        "fact": "Ashurbanipal could read and write in multiple languages — an extraordinary feat for a king. He boasted of this in inscriptions, proud of mastering both the scribal arts and the military campaigns typical of Assyrian rulers.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -615,7 +615,8 @@
           "Egyptian Empire"
         ],
         "answer": 1,
-        "fact": "Ashurbanipal (c. 685–627 BCE) was the last great king of the Neo-Assyrian Empire, ruling from Nineveh (in modern Iraq). His empire stretched from Egypt to Persia — the largest in the ancient world at the time."
+        "fact": "Ashurbanipal (c. 685–627 BCE) was the last great king of the Neo-Assyrian Empire, ruling from Nineveh (in modern Iraq). His empire stretched from Egypt to Persia — the largest in the ancient world at the time.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -627,7 +628,8 @@
           "He introduced coinage to the Middle East"
         ],
         "answer": 1,
-        "fact": "The Library of Ashurbanipal at Nineveh contained over 30,000 clay tablets — including the Epic of Gilgamesh. It is considered the world's first systematically organized library, preserving Mesopotamian literature and science."
+        "fact": "The Library of Ashurbanipal at Nineveh contained over 30,000 clay tablets — including the Epic of Gilgamesh. It is considered the world's first systematically organized library, preserving Mesopotamian literature and science.",
+        "countdown": 10
       }
     ]
   },
@@ -711,7 +713,8 @@
           "He found an ancient tablet"
         ],
         "answer": 1,
-        "fact": "Valmiki is said to have witnessed a hunter kill one of a pair of mating cranes. Overcome with grief for the surviving bird, he spontaneously cried out a curse in a perfectly metered verse — later recognized as the first shloka (Sanskrit verse). He is called 'Adi Kavi' — the First Poet."
+        "fact": "Valmiki is said to have witnessed a hunter kill one of a pair of mating cranes. Overcome with grief for the surviving bird, he spontaneously cried out a curse in a perfectly metered verse — later recognized as the first shloka (Sanskrit verse). He is called 'Adi Kavi' — the First Poet.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -723,7 +726,8 @@
           "Yudhishthira"
         ],
         "answer": 1,
-        "fact": "The Ramayana centers on Prince Rama of Ayodhya — his exile with his wife Sita and brother Lakshmana, Sita's abduction by the demon king Ravana, and Rama's journey to rescue her with the help of Hanuman and an army of monkeys. It remains one of Asia's most beloved epics."
+        "fact": "The Ramayana centers on Prince Rama of Ayodhya — his exile with his wife Sita and brother Lakshmana, Sita's abduction by the demon king Ravana, and Rama's journey to rescue her with the help of Hanuman and an army of monkeys. It remains one of Asia's most beloved epics.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -735,7 +739,8 @@
           "About 500,000"
         ],
         "answer": 1,
-        "fact": "The Valmiki Ramayana contains approximately 24,000 shlokas (verses) organized into seven books (kandas). By comparison, Homer's Iliad has about 15,000 lines. The Ramayana has been translated into over 300 languages and continues to shape South and Southeast Asian cultures."
+        "fact": "The Valmiki Ramayana contains approximately 24,000 shlokas (verses) organized into seven books (kandas). By comparison, Homer's Iliad has about 15,000 lines. The Ramayana has been translated into over 300 languages and continues to shape South and Southeast Asian cultures.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -747,7 +752,8 @@
           "Sea captain"
         ],
         "answer": 1,
-        "fact": "Hanuman is a divine being with the form of a monkey — son of the wind god Vayu, devotee of Rama, and one of Hinduism's most beloved figures. He leaps across the ocean to Lanka, finds Sita, and serves as the epitome of selfless devotion (bhakti)."
+        "fact": "Hanuman is a divine being with the form of a monkey — son of the wind god Vayu, devotee of Rama, and one of Hinduism's most beloved figures. He leaps across the ocean to Lanka, finds Sita, and serves as the epitome of selfless devotion (bhakti).",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -759,7 +765,8 @@
           "Bangladesh and Myanmar"
         ],
         "answer": 1,
-        "fact": "The Ramayana is set primarily in the Indian subcontinent — Ayodhya (Uttar Pradesh), the forests of central India, and Lanka (traditionally identified with Sri Lanka). Its geography has made it a defining text for Hindu culture across South and Southeast Asia."
+        "fact": "The Ramayana is set primarily in the Indian subcontinent — Ayodhya (Uttar Pradesh), the forests of central India, and Lanka (traditionally identified with Sri Lanka). Its geography has made it a defining text for Hindu culture across South and Southeast Asia.",
+        "countdown": 10
       }
     ]
   },
@@ -821,39 +828,36 @@
           "Hadrian's Wall"
         ],
         "answer": 1,
-        "fact": "The Parthenon, completed in 438 BCE, was a temple to Athena and a symbol of Athenian wealth and power. Its proportions use the golden ratio and are so precise that its 'straight' columns are actually slightly curved to correct optical illusions."
+        "countdown": 10,
+        "fact": "The Parthenon, completed in 438 BCE, was a temple to Athena. Its proportions use the golden ratio and its 'straight' columns are actually slightly curved to correct optical illusions — mathematical perfection in marble."
+      },
+      {
+        "type": "truefalse",
+        "statement": "Aspasia was born in Athens and was a full citizen of the city.",
+        "correct": false,
+        "countdown": 10,
+        "fact": "Aspasia was from Miletus — a Greek city in modern Turkey. Her foreign birth placed her outside Athenian citizenship, but also freed her from the strict domestic confinement imposed on Athenian women."
       },
       {
         "type": "minigame",
         "game": "tactics",
         "configId": "senate",
         "instruction": "Pericles outmanoeuvres rivals in the Athenian assembly — can you find the winning move?",
-        "fact": "Pericles dominated Athenian politics for three decades through strategic alliances and oratorical power, never allowing his opponents room to manoeuvre."
+        "fact": "Pericles dominated Athenian politics for three decades through strategic alliances and oratorical power — power that his enemies claimed was shaped by Aspasia."
       },
       {
         "type": "minigame",
         "game": "voting",
         "configId": "athenian-assembly",
         "instruction": "Pericles must win a majority in the Athenian Assembly to fund the Parthenon using Delian League tribute.",
-        "fact": "The Parthenon (447–432 BCE) was built under Pericles' direction. Its columns are subtly curved to correct optical distortion, and its proportions follow the golden ratio — mathematical perfection in marble."
+        "fact": "The Parthenon (447–432 BCE) was built under Pericles' direction. It took fifteen years, 20,000 workers and 13,400 blocks of Pentelic marble cut to tolerances of 0.2 mm."
       },
       {
-        "type": "truefalse",
-        "statement": "The Parthenon was built as a treasury for Athenian silver, not primarily as a temple.",
-        "correct": false,
-        "fact": "The Parthenon was a temple to Athena, but it did serve as a treasury. Its 13,400 blocks of Pentelic marble were cut to tolerances of 0.2 mm — a feat of engineering that took fifteen years and 20,000 workers."
-      }
-    ]
-  },
-  {
-    "era": "Classical",
-    "story": "The Athenian Muse",
-    "challenges": [
-      {
-        "type": "truefalse",
-        "statement": "Aspasia was born in Athens and was a full citizen of the city.",
-        "correct": false,
-        "fact": "Aspasia was from Miletus — a Greek city in what is now Turkey. Her foreign birth placed her outside Athenian citizenship, but also freed her from the strict domestic confinement imposed on Athenian women."
+        "type": "minigame",
+        "game": "voting",
+        "configId": "aspasia-trial",
+        "instruction": "Aspasia is on trial in Athens. Defend her reputation with the right arguments before the jury.",
+        "fact": "Pericles wept openly before the jury defending Aspasia — an extraordinary breach of Athenian decorum. She was acquitted. His tears won more votes than the logic."
       },
       {
         "type": "minigame",
@@ -861,13 +865,6 @@
         "configId": "aspasia",
         "instruction": "Fill in the crossword with words from Aspasia's world — philosophy, rhetoric, and Athenian society.",
         "fact": "The philosopher Socrates visited Aspasia's school. Plato has Socrates claim he learned the art of persuasion from Aspasia — whether seriously or satirically, it shows her intellectual reputation."
-      },
-      {
-        "type": "minigame",
-        "game": "voting",
-        "configId": "aspasia-trial",
-        "instruction": "Aspasia is on trial in Athens. Defend her reputation with the right arguments.",
-        "fact": "Pericles wept openly before the jury defending Aspasia — an extraordinary breach of Athenian decorum. She was acquitted. His tears won more votes than the logic."
       },
       {
         "type": "quiz",
@@ -879,7 +876,15 @@
           "Wrote the first Greek philosophical treatise"
         ],
         "answer": 1,
-        "fact": "Aspasia, a metic (resident alien) from Miletus, ran an intellectual salon and reportedly helped draft Pericles' famous Funeral Oration. Socrates, Plato and Xenophon all mentioned her influence with respect — remarkable for a woman in classical Athens."
+        "countdown": 10,
+        "fact": "Aspasia, a metic (resident alien) from Miletus, ran an intellectual salon and reportedly helped draft Pericles' Funeral Oration. Socrates, Plato and Xenophon all mentioned her influence — remarkable for a woman in classical Athens."
+      },
+      {
+        "type": "truefalse",
+        "statement": "The Parthenon was built as a treasury for Athenian silver, not primarily as a temple.",
+        "correct": false,
+        "countdown": 10,
+        "fact": "The Parthenon was a temple to Athena, though it did serve as a treasury. Its columns are subtly curved to correct optical distortion — a feat of engineering that took fifteen years."
       }
     ]
   },
@@ -983,7 +988,8 @@
           "Bhishma"
         ],
         "answer": 1,
-        "fact": "Chanakya is also called Kautilya or Vishnugupta. He served as advisor to Chandragupta Maurya, the founder of the Maurya Empire, and authored the Arthashastra — an ancient Indian treatise on statecraft and political economy."
+        "fact": "Chanakya is also called Kautilya or Vishnugupta. He served as advisor to Chandragupta Maurya, the founder of the Maurya Empire, and authored the Arthashastra — an ancient Indian treatise on statecraft and political economy.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -995,7 +1001,8 @@
           "Agricultural techniques"
         ],
         "answer": 1,
-        "fact": "The Arthashastra ('Science of Wealth/Politics') covers statecraft, economic policy, military strategy, law, and espionage. Written around 300 BCE, it is often compared to Machiavelli's The Prince — but predates it by 1,800 years."
+        "fact": "The Arthashastra ('Science of Wealth/Politics') covers statecraft, economic policy, military strategy, law, and espionage. Written around 300 BCE, it is often compared to Machiavelli's The Prince — but predates it by 1,800 years.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -1007,7 +1014,8 @@
           "Kushan Empire"
         ],
         "answer": 2,
-        "fact": "Chanakya masterminded the overthrow of the Nanda Dynasty and helped Chandragupta Maurya establish the Maurya Empire (c. 321–297 BCE) — one of the largest empires in Indian history, encompassing most of the Indian subcontinent."
+        "fact": "Chanakya masterminded the overthrow of the Nanda Dynasty and helped Chandragupta Maurya establish the Maurya Empire (c. 321–297 BCE) — one of the largest empires in Indian history, encompassing most of the Indian subcontinent.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -1019,7 +1027,8 @@
           "By a prophecy from a sage"
         ],
         "answer": 1,
-        "fact": "Chanakya reportedly spotted young Chandragupta directing other village children as if commanding an army, and recognized his natural leadership. He took the boy under his mentorship and trained him for over a decade before launching their campaign."
+        "fact": "Chanakya reportedly spotted young Chandragupta directing other village children as if commanding an army, and recognized his natural leadership. He took the boy under his mentorship and trained him for over a decade before launching their campaign.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -1031,7 +1040,8 @@
           "Hobbes"
         ],
         "answer": 2,
-        "fact": "Chanakya is often called 'the Indian Machiavelli' for his pragmatic, realpolitik approach to governance. His Arthashastra describes using espionage, political maneuvering, and calculated strategy — themes echoed in Machiavelli's The Prince 1,800 years later."
+        "fact": "Chanakya is often called 'the Indian Machiavelli' for his pragmatic, realpolitik approach to governance. His Arthashastra describes using espionage, political maneuvering, and calculated strategy — themes echoed in Machiavelli's The Prince 1,800 years later.",
+        "countdown": 10
       }
     ]
   },
@@ -1195,6 +1205,13 @@
         "statement": "The legend of Hua Mulan appears in a poem written during the Northern Wei Dynasty, over 1,400 years before the Disney film.",
         "correct": true,
         "fact": "The Ballad of Mulan (木兰辞) dates to the Northern Wei period (386–534 CE). It describes Mulan serving twelve years in the army before returning home, refusing reward, and revealing her true identity. The poem's values — filial piety over personal ambition — are distinctly Confucian."
+      },
+      {
+        "type": "minigame",
+        "game": "weapondeploy",
+        "configId": "sun-tzu-ambush",
+        "instruction": "Sun Tzu's Art of War was 900 years old when Mulan's story is set. Deploy your forces to control the ground — then spring the ambush.",
+        "fact": "The Art of War teaches that the best victory is the one won before battle begins — through positioning, deception, and choosing terrain that turns the enemy's strength against itself."
       }
     ]
   },
@@ -1234,6 +1251,13 @@
         "configId": "last-general",
         "instruction": "Guide the general (gold block) through the formation to the exit at the bottom.",
         "fact": "HuaRong Road (华容道) is a Chinese sliding puzzle based on Cao Cao's escape after the Battle of Red Cliffs in 208 AD — one of the most analyzed puzzles in combinatorics."
+      },
+      {
+        "type": "minigame",
+        "game": "weapondeploy",
+        "configId": "macedonian-phalanx",
+        "instruction": "Belisarius always faced superior numbers. Deploy your archers and catapults before the battle begins — then launch the attack and watch your strategy unfold.",
+        "fact": "Belisarius reconquered North Africa, Italy, and Spain for Emperor Justinian with armies of 10,000–15,000 against forces of 100,000+. He relied on disciplined cavalry and coordinated missile fire — tactics that anticipated modern combined arms."
       }
     ]
   },
@@ -1526,6 +1550,20 @@
         "configId": "venetian-auction",
         "instruction": "Bid on rare Renaissance goods at the Rialto Auction House. Win the starred items before your budget runs out.",
         "fact": "Venice's Rialto market was one of Europe's first commodity exchanges, trading silk, spices, and art from across the known world."
+      },
+      {
+        "type": "minigame",
+        "game": "jigsaw",
+        "configId": "venetian-master",
+        "instruction": "Titian painted at breakneck speed. Reassemble the fragments of his Assumption of the Virgin — swap tiles until the composition is whole.",
+        "fact": "Titian's Assumption of the Virgin (1518) shattered every convention of Renaissance altarpiece painting. The Cardinal of Venice initially refused to accept it — then stood speechless before it."
+      },
+      {
+        "type": "minigame",
+        "game": "museum",
+        "configId": "uffizi-gallery",
+        "instruction": "You are the new curator of the Uffizi. Assign each Renaissance masterpiece to the room where it earns the greatest bonus and hit the target score.",
+        "fact": "The Uffizi Gallery in Florence holds the finest concentration of Renaissance masterpieces in the world — Botticelli's Venus, da Vinci's Annunciation, and Titian's Venus of Urbino under one roof."
       }
     ]
   },
@@ -1680,7 +1718,8 @@
           "She married the previous tsar's heir"
         ],
         "answer": 1,
-        "fact": "In July 1762, Catherine organized a coup against her husband Tsar Peter III — who was widely seen as weak and pro-Prussian. The Imperial Guard supported her; Peter was arrested and died days later (likely murdered). Catherine ruled Russia for 34 years as Catherine II."
+        "fact": "In July 1762, Catherine organized a coup against her husband Tsar Peter III — who was widely seen as weak and pro-Prussian. The Imperial Guard supported her; Peter was arrested and died days later (likely murdered). Catherine ruled Russia for 34 years as Catherine II.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -1692,7 +1731,8 @@
           "Anna of Brunswick"
         ],
         "answer": 1,
-        "fact": "Catherine was born Sophie Friederike Auguste von Anhalt-Zerbst in 1729 in Stettin (now Poland). She converted to Russian Orthodoxy and took the name Yekaterina (Catherine) when she married the future Peter III. She was entirely self-made as a Russian ruler."
+        "fact": "Catherine was born Sophie Friederike Auguste von Anhalt-Zerbst in 1729 in Stettin (now Poland). She converted to Russian Orthodoxy and took the name Yekaterina (Catherine) when she married the future Peter III. She was entirely self-made as a Russian ruler.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -1704,7 +1744,8 @@
           "North into the Arctic and east into Alaska"
         ],
         "answer": 1,
-        "fact": "Catherine expanded Russia southward, winning wars against the Ottoman Empire and gaining access to the Black Sea (Crimea, 1783). She also participated in the partitions of Poland (1772, 1793, 1795), adding vast territories. Russia became a major European power under her rule."
+        "fact": "Catherine expanded Russia southward, winning wars against the Ottoman Empire and gaining access to the Black Sea (Crimea, 1783). She also participated in the partitions of Poland (1772, 1793, 1795), adding vast territories. Russia became a major European power under her rule.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -1716,7 +1757,8 @@
           "Mercantilism"
         ],
         "answer": 1,
-        "fact": "Catherine styled herself as an 'Enlightened Despot' — a ruler who applied Enlightenment rationalism to governance. She exchanged hundreds of letters with Voltaire, invited Diderot to St. Petersburg, and founded the Hermitage Museum. But her liberal reforms were often limited in practice."
+        "fact": "Catherine styled herself as an 'Enlightened Despot' — a ruler who applied Enlightenment rationalism to governance. She exchanged hundreds of letters with Voltaire, invited Diderot to St. Petersburg, and founded the Hermitage Museum. But her liberal reforms were often limited in practice.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -1728,7 +1770,8 @@
           "A donation from Voltaire"
         ],
         "answer": 1,
-        "fact": "Catherine was a voracious art collector, purchasing entire private collections from European dealers and nobility. Her personal collection grew to over 4,000 paintings. What began as private apartments became the Hermitage — now housing over 3 million items."
+        "fact": "Catherine was a voracious art collector, purchasing entire private collections from European dealers and nobility. Her personal collection grew to over 4,000 paintings. What began as private apartments became the Hermitage — now housing over 3 million items.",
+        "countdown": 10
       }
     ]
   },
@@ -1844,7 +1887,8 @@
           "Astronomy"
         ],
         "answer": 1,
-        "fact": "James Hutton (1726–1797) is called the 'Father of Modern Geology' for his Theory of the Earth (1788), which proposed that the Earth's features were shaped by slow, ongoing natural processes — not a single catastrophic event."
+        "fact": "James Hutton (1726–1797) is called the 'Father of Modern Geology' for his Theory of the Earth (1788), which proposed that the Earth's features were shaped by slow, ongoing natural processes — not a single catastrophic event.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -1856,7 +1900,8 @@
           "Mountains form from volcanic eruptions only"
         ],
         "answer": 1,
-        "fact": "Uniformitarianism — 'the present is the key to the past' — holds that the same natural laws and processes operating today have always operated throughout Earth's history. Hutton's insight overturned Biblical chronology and made deep time imaginable."
+        "fact": "Uniformitarianism — 'the present is the key to the past' — holds that the same natural laws and processes operating today have always operated throughout Earth's history. Hutton's insight overturned Biblical chronology and made deep time imaginable.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -1868,7 +1913,8 @@
           "Rock layers prove a global flood"
         ],
         "answer": 1,
-        "fact": "Hutton meant that the geological record showed such vast ages of erosion, deposition, and uplift that the Earth's beginning was beyond human reckoning. This idea — 'deep time' — was revolutionary in an era when most Europeans believed Earth was ~6,000 years old."
+        "fact": "Hutton meant that the geological record showed such vast ages of erosion, deposition, and uplift that the Earth's beginning was beyond human reckoning. This idea — 'deep time' — was revolutionary in an era when most Europeans believed Earth was ~6,000 years old.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -1880,7 +1926,8 @@
           "Edinburgh Castle"
         ],
         "answer": 1,
-        "fact": "At Siccar Point on the Scottish coast, Hutton observed an 'unconformity' — ancient tilted rocks overlaid by younger horizontal layers. The time gap between them implied millions of years of erosion and deposition — a staggering revelation."
+        "fact": "At Siccar Point on the Scottish coast, Hutton observed an 'unconformity' — ancient tilted rocks overlaid by younger horizontal layers. The time gap between them implied millions of years of erosion and deposition — a staggering revelation.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -1892,7 +1939,8 @@
           "Farming funded his research"
         ],
         "answer": 1,
-        "fact": "Hutton's years farming in Berwickshire made him observe how rain and wind erode rocks into soil — and how rivers carry that sediment to the sea. This practical observation of slow, continuous processes became the foundation of uniformitarianism."
+        "fact": "Hutton's years farming in Berwickshire made him observe how rain and wind erode rocks into soil — and how rivers carry that sediment to the sea. This practical observation of slow, continuous processes became the foundation of uniformitarianism.",
+        "countdown": 10
       }
     ]
   },
@@ -1942,7 +1990,7 @@
   },
   {
     "era": "Steam",
-    "story": "Fantasia",
+    "story": "Fantasia and Keys",
     "challenges": [
       {
         "type": "quiz",
@@ -1954,34 +2002,9 @@
           "Major and Minor"
         ],
         "answer": 1,
-        "fact": "Schumann's Florestan (passionate extrovert) and Eusebius (dreaming introvert) represented the two sides of Romantic artistic temperament. He founded the Neue Zeitschrift für Musik journal in 1834 and used both names to review music."
+        "countdown": 10,
+        "fact": "Schumann's Florestan (passionate extrovert) and Eusebius (dreaming introvert) represented the two sides of Romantic temperament. He used both names in his music journal Neue Zeitschrift für Musik, which he founded in 1834."
       },
-      {
-        "type": "minigame",
-        "game": "crossword",
-        "configId": "schumann",
-        "instruction": "Solve the Romantic music crossword — notes, composers, and the language of the soul.",
-        "fact": "Schumann championed young talent — he was one of the first critics to publicly recognize both Chopin and Brahms. His review of Brahms' debut announced: 'a young eagle has arrived.' Brahms was twenty, Schumann forty-three."
-      },
-      {
-        "type": "minigame",
-        "game": "sudoku",
-        "configId": "schumann-opus",
-        "instruction": "Fill in the missing opus numbers — each Schumann work belongs in its rightful place.",
-        "fact": "Schumann composed almost exclusively for piano until 1840, the year he married Clara. Then in a creative explosion, he wrote over 100 songs in a single year. His Dichterliebe remains one of the greatest song cycles in classical music."
-      },
-      {
-        "type": "truefalse",
-        "statement": "Robert Schumann permanently damaged his right hand by using a mechanical device he invented to strengthen his fingers faster.",
-        "correct": true,
-        "fact": "Schumann designed a finger-strengthening apparatus that held some fingers stationary while exercising others. It permanently injured his right hand, ending his career as a concert pianist and redirecting him entirely to composition and music criticism."
-      }
-    ]
-  },
-  {
-    "era": "Steam",
-    "story": "Keys and Concertos",
-    "challenges": [
       {
         "type": "quiz",
         "question": "Clara Schumann gave her first public piano recital at age:",
@@ -1992,14 +2015,8 @@
           "16"
         ],
         "answer": 1,
-        "fact": "Clara Wieck (later Schumann) gave her first major public concert at age 9 in Leipzig. By 16 she was performing for crowned heads across Europe. In an era that rarely took women composers seriously, she composed, performed, and taught across a 60-year career."
-      },
-      {
-        "type": "minigame",
-        "game": "music",
-        "configId": "clara-schumann",
-        "instruction": "Arrange the notes of a Clara Schumann melodic phrase — a rising chord journey.",
-        "fact": "Clara Schumann's Piano Concerto in A minor (Op. 7) was composed when she was 14 — the same age Mendelssohn was when he wrote his Octet. The Romantic era produced prodigies who rewrote what was possible in music."
+        "countdown": 10,
+        "fact": "Clara Wieck gave her first major public concert at age 9 in Leipzig. By 16 she was performing for crowned heads across Europe. In an era that rarely took women composers seriously, she composed, performed, and taught for sixty years."
       },
       {
         "type": "sort",
@@ -2010,19 +2027,34 @@
           "Marries Robert Schumann against her father's fierce opposition",
           "Performs her final public concert at age 72"
         ],
-        "fact": "Clara Schumann's performing career spanned over 60 years. After Robert's death in 1856, she became the family's sole breadwinner, supporting seven children through concerts across Europe. She gave over 1,300 performances and championed Brahms's music at a time when few took it seriously."
+        "fact": "Clara Schumann's performing career spanned over 60 years. After Robert's death in 1856, she became the family's sole breadwinner, supporting seven children through concerts across Europe and championing Brahms's music."
       },
       {
-        "type": "quiz",
-        "question": "Clara Schumann was unusual among 19th-century women musicians because she:",
-        "options": [
-          "Performed exclusively religious music",
-          "Was one of the first women to compose and perform her own concertos professionally",
-          "Refused to perform the music of male composers",
-          "Learned piano from Frédéric Chopin"
-        ],
-        "answer": 1,
-        "fact": "Clara Wieck (1819–1896) performed her own Piano Concerto in A minor at age 16 before royalty. She later championed her husband Robert Schumann's works and helped establish Brahms's reputation. She gave public concerts for 61 years — the longest performing career in 19th-century music."
+        "type": "minigame",
+        "game": "crossword",
+        "configId": "schumann",
+        "instruction": "Solve the Romantic music crossword — notes, composers, and the language of the soul.",
+        "fact": "Schumann championed young talent — he was one of the first critics to recognise Chopin and Brahms publicly. His review of Brahms' debut announced: 'a young eagle has arrived.' Brahms was twenty, Schumann forty-three."
+      },
+      {
+        "type": "minigame",
+        "game": "music",
+        "configId": "clara-schumann",
+        "instruction": "Arrange the notes of a Clara Schumann melodic phrase — a rising chord journey in the Romantic style.",
+        "fact": "Clara Schumann's Piano Concerto in A minor (Op. 7) was composed when she was 14 — the same age Mendelssohn was when he wrote his Octet. She revised it at 16 and performed it before royalty."
+      },
+      {
+        "type": "truefalse",
+        "statement": "Robert Schumann permanently damaged his right hand by using a mechanical device he invented to strengthen his fingers faster.",
+        "correct": true,
+        "fact": "Schumann's finger-strengthening apparatus held some fingers stationary while exercising others. It permanently injured his right hand, ending his piano career and redirecting him entirely to composition and music criticism."
+      },
+      {
+        "type": "minigame",
+        "game": "compose",
+        "configId": "brahms-lullaby-compose",
+        "instruction": "Brahms — Clara's closest companion after Robert's death — wrote his German Requiem during these years. Arrange its movements in the correct order.",
+        "fact": "Brahms was devoted to Clara for the rest of her life. She championed his music from his first compositions, and he dedicated works to her memory. Their 40-year friendship was the great sustaining relationship of both their lives."
       }
     ]
   },
@@ -2100,6 +2132,13 @@
         "statement": "Johannes Brahms completed his First Symphony at age 43, after working on it for over twenty years.",
         "correct": true,
         "fact": "Brahms began sketching his First Symphony in 1854 but was paralysed by the looming shadow of Beethoven. He finally premiered it in 1876 at age 43. Conductor Hans von Bülow called it \"Beethoven's Tenth\" — the highest possible compliment, and the heaviest possible burden."
+      },
+      {
+        "type": "minigame",
+        "game": "compose",
+        "configId": "brahms-lullaby-compose",
+        "instruction": "Brahms' greatest choral work unfolds across four pivotal movements. Arrange them in the correct order to trace the arc from grief to resurrection.",
+        "fact": "Brahms burned most of his early compositions but kept the German Requiem. He worked on it for over a decade, completing it in 1868. It remains the most performed German-language choral work in the world."
       }
     ]
   },
@@ -2457,7 +2496,8 @@
           "Midway"
         ],
         "answer": 2,
-        "fact": "Earhart and navigator Fred Noonan disappeared on July 2, 1937, near tiny Howland Island in the Central Pacific — one of the most remote spots on Earth. They were never found. Her disappearance remains one of aviation's great mysteries."
+        "fact": "Earhart and navigator Fred Noonan disappeared on July 2, 1937, near tiny Howland Island in the Central Pacific — one of the most remote spots on Earth. They were never found. Her disappearance remains one of aviation's great mysteries.",
+        "countdown": 10
       },
       {
         "type": "minigame",
@@ -2478,6 +2518,13 @@
         "statement": "Amelia Earhart was the first person to fly solo across the Atlantic Ocean.",
         "correct": false,
         "fact": "Charles Lindbergh made the first solo transatlantic flight in 1927. Earhart was the first WOMAN to do so — in 1932, flying from Newfoundland to Northern Ireland in 14 hours 56 minutes. She also set the record for fastest transatlantic solo flight at that time."
+      },
+      {
+        "type": "minigame",
+        "game": "flight",
+        "configId": "earhart-atlantic",
+        "instruction": "Pilot Amelia's Lockheed Vega across the storm-tossed Atlantic. Tap to climb, let gravity pull you down — survive the entire crossing.",
+        "fact": "Amelia Earhart flew solo across the Atlantic on 20 May 1932 in 14 h 56 min — fighting ice on her wings, a broken altimeter, and a flame leaking from her exhaust manifold."
       }
     ]
   },
@@ -2539,7 +2586,8 @@
           "1 trillion"
         ],
         "answer": 1,
-        "fact": "The Enigma machine had 17,576 possible rotor starting positions (26×26×26). But with plugboard settings, the actual number of configurations was 158 quintillion — the Bombe exploited cribs (known plaintext) to narrow the search."
+        "fact": "The Enigma machine had 17,576 possible rotor starting positions (26×26×26). But with plugboard settings, the actual number of configurations was 158 quintillion — the Bombe exploited cribs (known plaintext) to narrow the search.",
+        "countdown": 10
       },
       {
         "type": "minigame",
@@ -2576,56 +2624,6 @@
     "story": "Top of the World",
     "challenges": [
       {
-        "type": "truefalse",
-        "statement": "Hillary and Tenzing reached the summit of Everest at exactly 11:30 AM on May 29, 1953.",
-        "correct": true,
-        "fact": "Hillary later wrote: 'We knocked the bastard off.' They spent 15 minutes on the summit — enough for photographs and a buried chocolate. The news was withheld until Queen Elizabeth II's coronation on June 2, providing a gift to the nation."
-      },
-      {
-        "type": "minigame",
-        "game": "maze",
-        "configId": "everest-peak",
-        "instruction": "Find the route Hillary and Tenzing took through the icefall to the summit.",
-        "fact": "The South Col route up Everest required navigating the Khumbu Icefall — a constantly shifting maze of ice towers. Hillary and Tenzing reached the summit on 29 May 1953."
-      },
-      {
-        "type": "minigame",
-        "game": "geometry",
-        "configId": "cone-surface",
-        "instruction": "A mountain's conical shape — calculate the surface area of the tent Hillary used at the summit camp.",
-        "fact": "The Khumbu Icefall moves up to a metre per day — its seracs and crevasses constantly shift, meaning the safe route must be re-established every day. Hillary called it the crux of the entire climb."
-      },
-      {
-        "type": "quiz",
-        "question": "Edmund Hillary and Tenzing Norgay reached the summit of Everest on May 29, 1953. What was the first thing Hillary did at the top?",
-        "options": [
-          "Planted the British flag",
-          "Photographed Tenzing holding flags, then took snow samples",
-          "Radioed base camp immediately",
-          "Prayed for twenty minutes"
-        ],
-        "answer": 1,
-        "fact": "Hillary photographed Tenzing holding the flags of the UN, UK, Nepal and India — but there are no photos of Hillary on the summit, because Tenzing said he did not know how to use the camera. Hillary also took snow samples and searched for signs of Mallory and Irvine."
-      }
-    ]
-  },
-  {
-    "era": "Electricity",
-    "story": "Sherpa's Summit",
-    "challenges": [
-      {
-        "type": "quiz",
-        "question": "On which date did Tenzing Norgay and Edmund Hillary first reach the summit of Everest?",
-        "options": [
-          "April 12, 1953",
-          "May 29, 1953",
-          "June 2, 1953",
-          "May 15, 1953"
-        ],
-        "answer": 1,
-        "fact": "Tenzing Norgay and Edmund Hillary summited Everest on May 29, 1953. The news reached London on June 2 — the morning of Queen Elizabeth II's coronation — making it a double celebration for Britain."
-      },
-      {
         "type": "sort",
         "question": "Arrange the milestones of the 1953 Everest expedition in order:",
         "items": [
@@ -2636,13 +2634,21 @@
           "Tenzing and Hillary reach the summit at 11:30 AM on 29 May",
           "News of the summit reaches London on Coronation Day"
         ],
-        "fact": "Tenzing Norgay had attempted Everest six times before the 1953 expedition. His intimate knowledge of the mountain's routes — every ice wall, every crevasse — was as essential as any piece of equipment."
+        "fact": "Tenzing Norgay had attempted Everest six times before 1953. His intimate knowledge of the mountain — every ice wall, every crevasse — was as essential as any piece of equipment. Without Tenzing, no summit."
       },
       {
         "type": "truefalse",
         "statement": "Tenzing Norgay was the first Sherpa ever to attempt Everest when he joined the 1953 expedition.",
         "correct": false,
-        "fact": "Tenzing had attempted Everest six times before the 1953 expedition — first in 1935. He was chosen partly because of his unmatched experience. Sherpas had been essential to every serious Himalayan expedition since the 1920s, but rarely received equivalent recognition."
+        "countdown": 10,
+        "fact": "Tenzing had attempted Everest six times before 1953 — first in 1935. He was chosen for his unmatched experience. Sherpas had been essential to every serious Himalayan expedition since the 1920s, but rarely received equivalent recognition."
+      },
+      {
+        "type": "truefalse",
+        "statement": "Hillary and Tenzing reached the summit of Everest at exactly 11:30 AM on May 29, 1953.",
+        "correct": true,
+        "countdown": 10,
+        "fact": "They spent 15 minutes on the summit — enough for photographs and a buried chocolate offering. The news was withheld until Queen Elizabeth II's coronation on June 2, providing a double gift to the nation."
       },
       {
         "type": "quiz",
@@ -2654,7 +2660,35 @@
           "Tenzing's diary proved he stepped up first"
         ],
         "answer": 1,
-        "fact": "Both men agreed to say they summited together and refused to reveal the order. Hillary later wrote in a private letter that he stepped up first, but Tenzing always maintained that what mattered was they did it as a team. The spirit of partnership defined how the achievement was presented to the world."
+        "countdown": 10,
+        "fact": "Both men agreed to say they summited together and refused to reveal the order. Hillary later wrote in a private letter that he stepped up first, but Tenzing always maintained what mattered was they did it as a team."
+      },
+      {
+        "type": "quiz",
+        "question": "Edmund Hillary and Tenzing Norgay reached the summit of Everest on May 29, 1953. What was the first thing Hillary did at the top?",
+        "options": [
+          "Planted the British flag",
+          "Photographed Tenzing holding flags, then took snow samples",
+          "Radioed base camp immediately",
+          "Prayed for twenty minutes"
+        ],
+        "answer": 1,
+        "countdown": 10,
+        "fact": "Hillary photographed Tenzing holding the flags of the UN, UK, Nepal and India — but there are no photos of Hillary at the summit, because Tenzing said he did not know how to use the camera. Hillary also took snow samples and searched for signs of Mallory and Irvine."
+      },
+      {
+        "type": "minigame",
+        "game": "maze",
+        "configId": "everest-peak",
+        "instruction": "Navigate the route Hillary and Tenzing took through the Khumbu Icefall to the summit.",
+        "fact": "The Khumbu Icefall moves up to a metre per day — its seracs and crevasses constantly shift, meaning the safe route must be re-established every morning. Hillary called it the crux of the entire climb."
+      },
+      {
+        "type": "minigame",
+        "game": "flight",
+        "configId": "earhart-atlantic",
+        "instruction": "Another explorer who made an impossible flight alone — pilot Amelia Earhart across the Atlantic.",
+        "fact": "The same year Tenzing and Hillary summited Everest, Amelia Earhart was still celebrated 16 years after her 1937 disappearance. Solo feats of endurance — Earhart's Atlantic crossing, Hillary's summit — defined the era's heroism."
       }
     ]
   },
@@ -2714,7 +2748,8 @@
           "Oscar, Tony, Cannes Palme d'Or, Grammy"
         ],
         "answer": 0,
-        "fact": "Audrey Hepburn won an Oscar (Roman Holiday, 1953), Tony (Ondine, 1954), Emmy (Love Among Thieves, 1993), and Grammy (spoken word album, 1993) — becoming one of very few EGOT winners. She also received the Presidential Medal of Freedom."
+        "fact": "Audrey Hepburn won an Oscar (Roman Holiday, 1953), Tony (Ondine, 1954), Emmy (Love Among Thieves, 1993), and Grammy (spoken word album, 1993) — becoming one of very few EGOT winners. She also received the Presidential Medal of Freedom.",
+        "countdown": 10
       },
       {
         "type": "minigame",
@@ -2739,6 +2774,20 @@
         "statement": "Audrey Hepburn won the Academy Award for Best Actress for her role in Breakfast at Tiffany's.",
         "correct": false,
         "fact": "Hepburn won the Oscar for Roman Holiday (1953), her film debut. For Breakfast at Tiffany's (1961), she received a nomination but lost to Sophia Loren. The film's song \"Moon River\" won the Oscar for Best Original Song — Henry Mancini wrote it specifically for Hepburn's vocal range."
+      },
+      {
+        "type": "minigame",
+        "game": "jigsaw",
+        "configId": "mona-lisa",
+        "instruction": "Audrey Hepburn loved the Louvre. Reassemble da Vinci's Mona Lisa — swap tiles until her enigmatic smile is whole again.",
+        "fact": "Da Vinci worked on the Mona Lisa from approximately 1503 to 1517, carrying it with him when he moved to France. X-ray scans reveal three entirely different compositions beneath the final paint."
+      },
+      {
+        "type": "minigame",
+        "game": "museum",
+        "configId": "louvre-arrangement",
+        "instruction": "Four wings of the Louvre await your curatorial eye. Place each masterpiece in the room that earns the greatest bonus and open the museum doors.",
+        "fact": "Audrey Hepburn was a devoted visitor of European museums and served as a UNICEF ambassador for the last five years of her life, championing education and the arts for children worldwide."
       }
     ]
   },
@@ -2756,7 +2805,8 @@
           "Borneo rainforest"
         ],
         "answer": 1,
-        "fact": "Jane Goodall arrived at Gombe Stream (then a chimpanzee reserve in Tanganyika, now Tanzania) in July 1960, sent by paleoanthropologist Louis Leakey. She was 26 years old and had no formal scientific degree — but her patience and observation changed science forever."
+        "fact": "Jane Goodall arrived at Gombe Stream (then a chimpanzee reserve in Tanganyika, now Tanzania) in July 1960, sent by paleoanthropologist Louis Leakey. She was 26 years old and had no formal scientific degree — but her patience and observation changed science forever.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -2768,7 +2818,8 @@
           "Chimps using stones to crack nuts"
         ],
         "answer": 1,
-        "fact": "In 1960, Goodall observed chimpanzees stripping leaves from twigs to fish termites from mounds — the first recorded instance of animals making and using tools. When she reported this to Louis Leakey, he replied: 'Now we must redefine tool, redefine man, or accept chimpanzees as humans.'"
+        "fact": "In 1960, Goodall observed chimpanzees stripping leaves from twigs to fish termites from mounds — the first recorded instance of animals making and using tools. When she reported this to Louis Leakey, he replied: 'Now we must redefine tool, redefine man, or accept chimpanzees as humans.'",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -2780,7 +2831,8 @@
           "Other researchers wanted to name them first"
         ],
         "answer": 1,
-        "fact": "The scientific establishment expected researchers to remain emotionally detached and number subjects rather than name them. Goodall's insistence on naming chimps (David Greybeard, Flo, Goliath) was radical — implying each had an individual personality and inner life."
+        "fact": "The scientific establishment expected researchers to remain emotionally detached and number subjects rather than name them. Goodall's insistence on naming chimps (David Greybeard, Flo, Goliath) was radical — implying each had an individual personality and inner life.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -2792,7 +2844,8 @@
           "University of London"
         ],
         "answer": 1,
-        "fact": "In 1965, Goodall received her PhD from Cambridge University — becoming one of the few people admitted to a PhD program without a bachelor's degree. Cambridge made an exception because of the significance of her fieldwork at Gombe."
+        "fact": "In 1965, Goodall received her PhD from Cambridge University — becoming one of the few people admitted to a PhD program without a bachelor's degree. Cambridge made an exception because of the significance of her fieldwork at Gombe.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -2804,7 +2857,8 @@
           "Conservation International"
         ],
         "answer": 1,
-        "fact": "The Jane Goodall Institute (JGI), founded in 1977, works to protect chimpanzees and their habitats while improving the lives of local communities. It now operates in over 30 countries and includes the Roots & Shoots youth program."
+        "fact": "The Jane Goodall Institute (JGI), founded in 1977, works to protect chimpanzees and their habitats while improving the lives of local communities. It now operates in over 30 countries and includes the Roots & Shoots youth program.",
+        "countdown": 10
       }
     ]
   },
@@ -2908,7 +2962,8 @@
           "32"
         ],
         "answer": 2,
-        "fact": "At his peak, Joël Robuchon held 32 Michelin stars across his restaurants worldwide — more than any chef in history. His empire spanned Paris, Monte Carlo, Las Vegas, Tokyo, Hong Kong, and beyond, each kitchen reflecting his obsessive pursuit of perfection."
+        "fact": "At his peak, Joël Robuchon held 32 Michelin stars across his restaurants worldwide — more than any chef in history. His empire spanned Paris, Monte Carlo, Las Vegas, Tokyo, Hong Kong, and beyond, each kitchen reflecting his obsessive pursuit of perfection.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -2920,7 +2975,8 @@
           "He published all his secret recipes"
         ],
         "answer": 1,
-        "fact": "At age 49, at the height of his fame, Robuchon retired — closing his flagship Jamin restaurant in Paris. He said he was exhausted. He returned years later with his more casual L'Atelier concept, and earned even more stars in his second career."
+        "fact": "At age 49, at the height of his fame, Robuchon retired — closing his flagship Jamin restaurant in Paris. He said he was exhausted. He returned years later with his more casual L'Atelier concept, and earned even more stars in his second career.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -2932,7 +2988,8 @@
           "Soufflé au chocolat"
         ],
         "answer": 1,
-        "fact": "Robuchon's pommes purée — made with a 1:2 ratio of potatoes to butter — became his most famous dish despite its simplicity. He believed the best cooking elevated humble ingredients to perfection, and his mashed potato proved the point."
+        "fact": "Robuchon's pommes purée — made with a 1:2 ratio of potatoes to butter — became his most famous dish despite its simplicity. He believed the best cooking elevated humble ingredients to perfection, and his mashed potato proved the point.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -2944,7 +3001,8 @@
           "Menus written only in Japanese"
         ],
         "answer": 1,
-        "fact": "L'Atelier de Joël Robuchon (opened 2003) featured counter seating around an open kitchen — inspired by Japanese sushi bars. Diners watched chefs work, creating an intimate connection between kitchen and table. The format was revolutionary in French fine dining."
+        "fact": "L'Atelier de Joël Robuchon (opened 2003) featured counter seating around an open kitchen — inspired by Japanese sushi bars. Diners watched chefs work, creating an intimate connection between kitchen and table. The format was revolutionary in French fine dining.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -2956,7 +3014,8 @@
           "UNESCO"
         ],
         "answer": 1,
-        "fact": "The Gault Millau guide named Joël Robuchon 'Chef of the Century' in 1990. The same guide had previously pioneered the Nouvelle Cuisine movement that transformed French cooking — making its recognition of Robuchon a major honor."
+        "fact": "The Gault Millau guide named Joël Robuchon 'Chef of the Century' in 1990. The same guide had previously pioneered the Nouvelle Cuisine movement that transformed French cooking — making its recognition of Robuchon a major honor.",
+        "countdown": 10
       }
     ]
   },
@@ -2974,7 +3033,8 @@
           "Argentina vs Italy"
         ],
         "answer": 1,
-        "fact": "In the 1986 World Cup quarterfinal, Maradona scored twice against England — first with a handball he called 'the Hand of God,' then with a dribble past five players that was later voted the Goal of the Century. Argentina won 2–1."
+        "fact": "In the 1986 World Cup quarterfinal, Maradona scored twice against England — first with a handball he called 'the Hand of God,' then with a dribble past five players that was later voted the Goal of the Century. Argentina won 2–1.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -2986,7 +3046,8 @@
           "The greatest goal ever scored"
         ],
         "answer": 2,
-        "fact": "After the match, Maradona said the goal was scored 'a little with the head of Maradona, and a little with the hand of God.' The phrase became one of the most famous quotes in football history — a blend of cheek and genius."
+        "fact": "After the match, Maradona said the goal was scored 'a little with the head of Maradona, and a little with the hand of God.' The phrase became one of the most famous quotes in football history — a blend of cheek and genius.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -2998,7 +3059,8 @@
           "Inter Milan"
         ],
         "answer": 2,
-        "fact": "Maradona joined SSC Napoli in 1984 for a then-world record fee. He led the club — a southern Italian side historically overlooked — to its first (1987) and second (1990) Serie A titles, becoming a god in Naples."
+        "fact": "Maradona joined SSC Napoli in 1984 for a then-world record fee. He led the club — a southern Italian side historically overlooked — to its first (1987) and second (1990) Serie A titles, becoming a god in Naples.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -3010,7 +3072,8 @@
           "San Telmo"
         ],
         "answer": 2,
-        "fact": "Maradona grew up in Villa Fiorito, a poor shantytown on the outskirts of Buenos Aires. His journey from dirt-floor poverty to becoming the world's best footballer became one of sport's greatest rags-to-riches stories."
+        "fact": "Maradona grew up in Villa Fiorito, a poor shantytown on the outskirts of Buenos Aires. His journey from dirt-floor poverty to becoming the world's best footballer became one of sport's greatest rags-to-riches stories.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -3022,7 +3085,8 @@
           "20"
         ],
         "answer": 1,
-        "fact": "Maradona made his professional debut for Argentinos Juniors on October 20, 1976, at just 15 years and 11 months old — one of the youngest debuts in Argentine football history. He had been identified as a prodigy at age 8."
+        "fact": "Maradona made his professional debut for Argentinos Juniors on October 20, 1976, at just 15 years and 11 months old — one of the youngest debuts in Argentine football history. He had been identified as a prodigy at age 8.",
+        "countdown": 10
       }
     ]
   },
@@ -3040,7 +3104,8 @@
           "The Falklands War"
         ],
         "answer": 1,
-        "fact": "Peter Arnett broadcast live from Baghdad for CNN during the Gulf War air campaign on January 17, 1991 — the first time a war had been broadcast live on television. His reports from inside the enemy capital were watched by hundreds of millions worldwide."
+        "fact": "Peter Arnett broadcast live from Baghdad for CNN during the Gulf War air campaign on January 17, 1991 — the first time a war had been broadcast live on television. His reports from inside the enemy capital were watched by hundreds of millions worldwide.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -3052,7 +3117,8 @@
           "The Tank Man at Tiananmen"
         ],
         "answer": 1,
-        "fact": "Arnett was present and reporting when Eddie Adams took 'Saigon Execution' (1968) — one of Vietnam's most iconic photographs. Arnett himself won the Pulitzer Prize for International Reporting in 1966 for his Vietnam War coverage for the Associated Press."
+        "fact": "Arnett was present and reporting when Eddie Adams took 'Saigon Execution' (1968) — one of Vietnam's most iconic photographs. Arnett himself won the Pulitzer Prize for International Reporting in 1966 for his Vietnam War coverage for the Associated Press.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -3064,7 +3130,8 @@
           "Underwater cable communication"
         ],
         "answer": 0,
-        "fact": "CNN had a special four-wire telephone line and satellite uplink equipment in Baghdad's Al-Rashid Hotel. While other networks evacuated, Arnett and his CNN colleagues stayed — using this equipment to deliver the first live war coverage in television history."
+        "fact": "CNN had a special four-wire telephone line and satellite uplink equipment in Baghdad's Al-Rashid Hotel. While other networks evacuated, Arnett and his CNN colleagues stayed — using this equipment to deliver the first live war coverage in television history.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -3076,7 +3143,8 @@
           "United States"
         ],
         "answer": 1,
-        "fact": "Peter Arnett was born in Riverton, New Zealand in 1934. He began his journalism career in New Zealand before moving to Southeast Asia, where he covered the Vietnam War as a young AP reporter — launching one of journalism's most consequential careers."
+        "fact": "Peter Arnett was born in Riverton, New Zealand in 1934. He began his journalism career in New Zealand before moving to Southeast Asia, where he covered the Vietnam War as a young AP reporter — launching one of journalism's most consequential careers.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -3088,7 +3156,8 @@
           "CNN refused to air it"
         ],
         "answer": 1,
-        "fact": "Arnett conducted CNN's 1997 interview with Osama bin Laden — one of the first Western television interviews after bin Laden issued his declaration of jihad against Americans. The interview was controversial for giving bin Laden a platform, but documented his stated intentions years before 9/11."
+        "fact": "Arnett conducted CNN's 1997 interview with Osama bin Laden — one of the first Western television interviews after bin Laden issued his declaration of jihad against Americans. The interview was controversial for giving bin Laden a platform, but documented his stated intentions years before 9/11.",
+        "countdown": 10
       }
     ]
   },
@@ -3106,7 +3175,8 @@
           "The government required it"
         ],
         "answer": 1,
-        "fact": "When Jobs returned to Apple in 1997, the company had 350 products and was weeks from bankruptcy. He cut the product line to just 4 items. His philosophy: 'Deciding what not to do is as important as deciding what to do.' The iMac, announced the following year, saved the company."
+        "fact": "When Jobs returned to Apple in 1997, the company had 350 products and was weeks from bankruptcy. He cut the product line to just 4 items. His philosophy: 'Deciding what not to do is as important as deciding what to do.' The iMac, announced the following year, saved the company.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -3118,7 +3188,8 @@
           "It was banned in most countries"
         ],
         "answer": 1,
-        "fact": "Directed by Ridley Scott and aired once during Super Bowl XVIII (1984), the '1984' Macintosh commercial depicted Apple as a liberator smashing IBM's Orwellian conformity. It is credited with transforming advertising into a medium for brand mythology."
+        "fact": "Directed by Ridley Scott and aired once during Super Bowl XVIII (1984), the '1984' Macintosh commercial depicted Apple as a liberator smashing IBM's Orwellian conformity. It is credited with transforming advertising into a medium for brand mythology.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -3130,7 +3201,8 @@
           "His tendency to ignore financial reality"
         ],
         "answer": 1,
-        "fact": "The 'reality distortion field' was coined by Apple engineer Bud Tribble: Jobs could convince engineers that the impossible was achievable through sheer force of conviction, charm, and willpower — often causing them to actually achieve the impossible. It was part admiration, part alarm."
+        "fact": "The 'reality distortion field' was coined by Apple engineer Bud Tribble: Jobs could convince engineers that the impossible was achievable through sheer force of conviction, charm, and willpower — often causing them to actually achieve the impossible. It was part admiration, part alarm.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -3142,7 +3214,8 @@
           "1984"
         ],
         "answer": 1,
-        "fact": "Apple Computer was founded on April 1, 1976 in the Jobs family garage in Los Altos, California. Jobs was 21 years old. Wayne sold his 10% stake for $800 shortly after — a share that would have been worth over $100 billion by 2021."
+        "fact": "Apple Computer was founded on April 1, 1976 in the Jobs family garage in Los Altos, California. Jobs was 21 years old. Wayne sold his 10% stake for $800 shortly after — a share that would have been worth over $100 billion by 2021.",
+        "countdown": 10
       },
       {
         "type": "quiz",
@@ -3154,7 +3227,8 @@
           "He went to work in academia"
         ],
         "answer": 1,
-        "fact": "Jobs founded NeXT Computer (whose operating system later became the foundation of macOS) and purchased Pixar from George Lucas for $5 million in 1986. Pixar went on to produce Toy Story (1995) and transform animated filmmaking."
+        "fact": "Jobs founded NeXT Computer (whose operating system later became the foundation of macOS) and purchased Pixar from George Lucas for $5 million in 1986. Pixar went on to produce Toy Story (1995) and transform animated filmmaking.",
+        "countdown": 10
       },
       {
         "type": "minigame",

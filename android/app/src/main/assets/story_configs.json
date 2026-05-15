@@ -154,10 +154,10 @@
     "locationImage": "electricity_delhi"
   },
   {
-    "era": "Electricity",
-    "title": "Keys and Concertos",
+    "era": "Steam",
+    "title": "Fantasia and Keys",
     "figure": "Clara Schumann",
-    "tagline": "She plays with a brilliance the world barely lets itself acknowledge.",
+    "tagline": "Two voices, one music — they lived what they composed, and composed what they lived.",
     "quizzes": 3,
     "locationImage": "steam_london",
     "bonusCard": "Robert Schumann"
@@ -428,22 +428,6 @@
     "locationImage": "steam_amsterdam"
   },
   {
-    "era": "Ancient",
-    "title": "Born of Clay and Wild",
-    "figure": "Enkidu",
-    "tagline": "From wilderness to brotherhood, the gods shaped a companion for the ages.",
-    "quizzes": 3,
-    "locationImage": "ancient_nippur"
-  },
-  {
-    "era": "Classical",
-    "title": "The Athenian Muse",
-    "figure": "Aspasia",
-    "tagline": "Behind every great statesman stood a mind even greater.",
-    "quizzes": 3,
-    "locationImage": "ancient_athens"
-  },
-  {
     "era": "Classical",
     "title": "The Recalled King",
     "figure": "Pleistoanax",
@@ -482,22 +466,6 @@
     "tagline": "Versailles blazed brightest just before the darkness fell.",
     "quizzes": 3,
     "locationImage": "steam_st_petersburg"
-  },
-  {
-    "era": "Steam",
-    "title": "Fantasia",
-    "figure": "Robert Schumann",
-    "tagline": "The music that lived inside him was too vast for the world to contain.",
-    "quizzes": 3,
-    "locationImage": "electricity_berlin"
-  },
-  {
-    "era": "Electricity",
-    "title": "Sherpa's Summit",
-    "figure": "Tenzing Norgay",
-    "tagline": "The mountain did not care who reached the top first — but history would.",
-    "quizzes": 3,
-    "locationImage": "electricity_mt_everest"
   },
   {
     "era": "Electricity",

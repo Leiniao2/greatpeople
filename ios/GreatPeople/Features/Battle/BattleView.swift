@@ -6,6 +6,7 @@ struct BattleView: View {
     @State private var matchId: String?
     @State private var finding = false
     @State private var showGuestPrompt = false
+    @State private var showRules = false
 
     var body: some View {
         NavigationStack {
@@ -23,12 +24,25 @@ struct BattleView: View {
             .navigationTitle("Fight")
             .navigationBarTitleDisplayMode(.inline)
             .toolbarColorScheme(.dark, for: .navigationBar)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button { showRules = true } label: {
+                        Image(systemName: "book.closed")
+                            .font(.system(size: 16))
+                            .foregroundColor(.gpAmber)
+                    }
+                }
+            }
             .sheet(isPresented: $showGuestPrompt) {
                 GuestPromptView(onSignIn: {
                     showGuestPrompt = false
                     authStore.exitGuestMode()
                 })
                 .presentationDetents([.medium])
+            }
+            .sheet(isPresented: $showRules) {
+                BattleRulesView()
+                    .presentationDetents([.large])
             }
         }
     }
@@ -115,6 +129,91 @@ struct BattleView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 14))
         }
         .padding(24)
+    }
+}
+
+// ── Rules sheet ───────────────────────────────────────────────────────────────
+
+private struct BattleRulesView: View {
+    @Environment(\.dismiss) private var dismiss
+
+    private struct RuleSection {
+        let title: String
+        let items: [(head: String, body: String)]
+    }
+
+    private let sections: [RuleSection] = [
+        .init(title: "Objective", items: [
+            ("", "First player to earn 5 Victory Points wins the game."),
+        ]),
+        .init(title: "On Your Turn", items: [
+            ("Deploy", "Play one Great Person from your hand to any location."),
+            ("Add Follower", "Place a follower at a location where you have a Great Person."),
+            ("Move", "Relocate one of your cards to a different location."),
+            ("Trigger Event", "Activate the event at a location where you have a Great Person."),
+            ("Attack", "During a Local Event, challenge a rival's card."),
+            ("Retrieve", "Return one of your cards from the board to your hand."),
+        ]),
+        .init(title: "Events", items: [
+            ("⚔ Local Event", "Compare your total stat vs. rivals. Winner may attack the loser's card."),
+            ("☠ Local Survival", "Cards at this location with that stat below 10 are discarded."),
+            ("🏆 Global Competition", "Player with the highest total stat across all public cards earns a prize."),
+            ("🌊 Natural Hazard", "Cards with total stats below 100 are discarded."),
+        ]),
+        .init(title: "Victory Points", items: [
+            ("", "Win events and complete card achievements to earn points. Each card's achievement is shown in its detail view."),
+        ]),
+    ]
+
+    var body: some View {
+        NavigationStack {
+            ZStack {
+                Color.gpBackground.ignoresSafeArea()
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 24) {
+                        ForEach(sections, id: \.title) { section in
+                            VStack(alignment: .leading, spacing: 10) {
+                                Text(section.title.uppercased())
+                                    .font(.system(size: 10, weight: .bold))
+                                    .tracking(1.5)
+                                    .foregroundColor(.gpAmber)
+
+                                VStack(alignment: .leading, spacing: 8) {
+                                    ForEach(section.items, id: \.head) { item in
+                                        HStack(alignment: .top, spacing: 8) {
+                                            if !item.head.isEmpty {
+                                                Text(item.head)
+                                                    .font(.subheadline.weight(.semibold))
+                                                    .foregroundColor(.white)
+                                                    .frame(width: 110, alignment: .leading)
+                                            }
+                                            Text(item.body)
+                                                .font(.subheadline)
+                                                .foregroundColor(.gpSlate400)
+                                                .fixedSize(horizontal: false, vertical: true)
+                                        }
+                                    }
+                                }
+                                .padding(14)
+                                .background(Color.white.opacity(0.03))
+                                .overlay(RoundedRectangle(cornerRadius: 14).stroke(Color.white.opacity(0.07), lineWidth: 1))
+                                .clipShape(RoundedRectangle(cornerRadius: 14))
+                            }
+                        }
+                    }
+                    .padding(20)
+                }
+            }
+            .navigationTitle("How to Play")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbarColorScheme(.dark, for: .navigationBar)
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Done") { dismiss() }
+                        .foregroundColor(.gpAmber)
+                }
+            }
+        }
     }
 }
 
