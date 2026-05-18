@@ -93,7 +93,7 @@ function makeHazardDeck(): EventCard[] {
     name: `Natural Hazard: ${hz}`,
     type: 'natural_hazard' as const,
     hazardType: hz,
-    description: `Natural hazard (${hz}): any card at this location with total stats < 30 is discarded.`,
+    description: `Natural hazard (${hz}): any card at this location whose minimum stat is below 5 is discarded.`,
   }))
 }
 
@@ -428,11 +428,6 @@ function computeEventSide(
         const traitBonus = traitBonusForGP(gp, stat, locationCards, playerId, allLocations, gpMap, followerMap)
         cards.push({ type: 'gp', name: gp.figureName, portraitUrl: gp.portraitUrl, baseStat, traitBonus, followerBonus: 0 })
         total += baseStat + traitBonus
-      } else {
-        // Natural hazard: all stats
-        const allStats = gp.politics + gp.strength + gp.culture + gp.wealth + gp.intelligence + gp.technique + gp.belief + gp.reputation
-        cards.push({ type: 'gp', name: gp.figureName, portraitUrl: gp.portraitUrl, baseStat: allStats, traitBonus: 0, followerBonus: 0 })
-        total += allStats
       }
     } else {
       const f = followerMap[oc.cardId]
@@ -1040,9 +1035,9 @@ function gameReducer(state: GameState, action: GameAction): GameState {
             updatedCards.some(c => c.playerId === pid)
           )
 
-          if ((event.type === 'local_survival' || event.type === 'natural_hazard') && involvedPlayers.length > 0) {
-            const stat = event.type === 'local_survival' ? event.stat ?? null : null
-            const threshold = event.type === 'local_survival' ? 5 : 30
+          if (event.type === 'local_survival' && involvedPlayers.length > 0) {
+            const stat = event.stat ?? null
+            const threshold = 5
             const results: EventPlayerResult[] = []
 
             for (const pid of involvedPlayers) {
@@ -1051,20 +1046,50 @@ function gameReducer(state: GameState, action: GameAction): GameState {
               results.push(result)
               if (!result.survived) {
                 updatedCards = updatedCards.filter(c => c.playerId !== pid)
-                logEntries.push(`${event.type === 'local_survival' ? 'Local survival' : 'Natural hazard'}: ${pName}'s cards in ${loc.name} discarded`)
+                logEntries.push(`Local survival: ${pName}'s cards in ${loc.name} discarded`)
               }
             }
 
-            // Only emit summary if any player is involved
             if (!roundSummary && results.length > 0) {
               roundSummary = {
-                kind: 'event',
-                eventName: event.name,
-                eventType: event.type,
-                stat: stat ?? undefined,
-                locationName: loc.name,
-                threshold,
-                results,
+                kind: 'event', eventName: event.name, eventType: event.type,
+                stat: stat ?? undefined, locationName: loc.name, threshold, results,
+              }
+            }
+          }
+
+          if (event.type === 'natural_hazard' && involvedPlayers.length > 0) {
+            const HAZARD_MIN = 5
+            const results: EventPlayerResult[] = []
+
+            for (const pid of involvedPlayers) {
+              const pName = newPlayers.find(p => p.id === pid)?.name ?? pid
+              const gpCards: CardContrib[] = []
+              const dyingIds: string[] = []
+
+              for (const oc of updatedCards) {
+                if (oc.playerId !== pid || oc.type !== 'gp') continue
+                const gp = gpMap[oc.cardId]
+                if (!gp) continue
+                const minStat = Math.min(gp.politics, gp.strength, gp.culture, gp.wealth, gp.intelligence, gp.technique, gp.belief, gp.reputation)
+                gpCards.push({ type: 'gp', name: gp.figureName, portraitUrl: gp.portraitUrl, baseStat: minStat, traitBonus: 0, followerBonus: 0 })
+                if (minStat < HAZARD_MIN) dyingIds.push(oc.instanceId)
+              }
+
+              const survived = dyingIds.length === 0
+              const weakest = gpCards.length > 0 ? Math.min(...gpCards.map(c => c.baseStat)) : HAZARD_MIN
+              results.push({ playerName: pName, total: weakest, threshold: HAZARD_MIN, survived, cards: gpCards })
+
+              if (!survived) {
+                updatedCards = updatedCards.filter(c => !dyingIds.includes(c.instanceId))
+                logEntries.push(`Natural hazard: ${pName}'s weak cards in ${loc.name} discarded`)
+              }
+            }
+
+            if (!roundSummary && results.length > 0) {
+              roundSummary = {
+                kind: 'event', eventName: event.name, eventType: event.type,
+                locationName: loc.name, threshold: HAZARD_MIN, results,
               }
             }
           }
