@@ -93,7 +93,7 @@ function makeHazardDeck(): EventCard[] {
     name: `Natural Hazard: ${hz}`,
     type: 'natural_hazard' as const,
     hazardType: hz,
-    description: `Natural hazard (${hz}): any card at this location whose minimum stat is below 5 is discarded.`,
+    description: `Natural hazard (${hz}): if a player's combined minimum stat at this location is below 5, all their cards here are discarded.`,
   }))
 }
 
@@ -1064,25 +1064,39 @@ function gameReducer(state: GameState, action: GameAction): GameState {
 
             for (const pid of involvedPlayers) {
               const pName = newPlayers.find(p => p.id === pid)?.name ?? pid
-              const gpCards: CardContrib[] = []
-              const dyingIds: string[] = []
+              const cards: CardContrib[] = []
 
+              // Accumulate each stat across all GPs and matching followers
+              const statTotals: Record<StatKey, number> = {
+                politics: 0, strength: 0, culture: 0, wealth: 0,
+                intelligence: 0, technique: 0, belief: 0, reputation: 0,
+              }
               for (const oc of updatedCards) {
-                if (oc.playerId !== pid || oc.type !== 'gp') continue
-                const gp = gpMap[oc.cardId]
-                if (!gp) continue
-                const minStat = Math.min(gp.politics, gp.strength, gp.culture, gp.wealth, gp.intelligence, gp.technique, gp.belief, gp.reputation)
-                gpCards.push({ type: 'gp', name: gp.figureName, portraitUrl: gp.portraitUrl, baseStat: minStat, traitBonus: 0, followerBonus: 0 })
-                if (minStat < HAZARD_MIN) dyingIds.push(oc.instanceId)
+                if (oc.playerId !== pid) continue
+                if (oc.type === 'gp') {
+                  const gp = gpMap[oc.cardId]
+                  if (!gp) continue
+                  for (const s of STATS) statTotals[s] += gp[s]
+                  cards.push({ type: 'gp', name: gp.figureName, portraitUrl: gp.portraitUrl, baseStat: 0, traitBonus: 0, followerBonus: 0 })
+                } else {
+                  const f = followerMap[oc.cardId]
+                  if (!f) continue
+                  const hasIdentityMatch = updatedCards.some(
+                    lc => lc.playerId === pid && lc.type === 'gp' && gpMap[lc.cardId]?.identities?.includes(f.name)
+                  )
+                  const bonus = hasIdentityMatch ? 3 : f.bonus
+                  statTotals[f.stat as StatKey] += bonus
+                  cards.push({ type: 'follower', name: f.name, imageKey: f.imageKey, baseStat: 0, traitBonus: 0, followerBonus: bonus })
+                }
               }
 
-              const survived = dyingIds.length === 0
-              const weakest = gpCards.length > 0 ? Math.min(...gpCards.map(c => c.baseStat)) : HAZARD_MIN
-              results.push({ playerName: pName, total: weakest, threshold: HAZARD_MIN, survived, cards: gpCards })
+              const minStatTotal = Math.min(...STATS.map(s => statTotals[s]))
+              const survived = minStatTotal >= HAZARD_MIN
+              results.push({ playerName: pName, total: minStatTotal, threshold: HAZARD_MIN, survived, cards })
 
               if (!survived) {
-                updatedCards = updatedCards.filter(c => !dyingIds.includes(c.instanceId))
-                logEntries.push(`Natural hazard: ${pName}'s weak cards in ${loc.name} discarded`)
+                updatedCards = updatedCards.filter(c => c.playerId !== pid)
+                logEntries.push(`Natural hazard: ${pName}'s cards in ${loc.name} discarded`)
               }
             }
 
