@@ -1,41 +1,194 @@
 [
-  { "name": "Sovereign",     "stat": "politics",     "bonus": 3, "imageKey": "sovereign" },
-  { "name": "Statesman",     "stat": "politics",     "bonus": 3, "imageKey": "statesman" },
-  { "name": "Official",      "stat": "politics",     "bonus": 3, "imageKey": "official" },
-  { "name": "Spy",           "stat": "politics",     "bonus": 3, "imageKey": "spy" },
-
-  { "name": "General",       "stat": "strength",     "bonus": 3, "imageKey": "general" },
-  { "name": "Soldier",       "stat": "strength",     "bonus": 3, "imageKey": "soldier" },
-  { "name": "Warrior",       "stat": "strength",     "bonus": 3, "imageKey": "warrior" },
-  { "name": "Athlete",       "stat": "strength",     "bonus": 3, "imageKey": "athlete" },
-
-  { "name": "Artist",        "stat": "culture",      "bonus": 3, "imageKey": "artist" },
-  { "name": "Musician",      "stat": "culture",      "bonus": 3, "imageKey": "musician" },
-  { "name": "Writer",        "stat": "culture",      "bonus": 3, "imageKey": "writer" },
-  { "name": "Actor",         "stat": "culture",      "bonus": 3, "imageKey": "actor" },
-
-  { "name": "Economist",     "stat": "wealth",       "bonus": 3, "imageKey": "economist" },
-  { "name": "Banker",        "stat": "wealth",       "bonus": 3, "imageKey": "banker" },
-  { "name": "Merchant",      "stat": "wealth",       "bonus": 3, "imageKey": "merchant" },
-  { "name": "Noble",         "stat": "wealth",       "bonus": 3, "imageKey": "noble" },
-
-  { "name": "Scientist",     "stat": "intelligence", "bonus": 3, "imageKey": "scientist" },
-  { "name": "Mathematician", "stat": "intelligence", "bonus": 3, "imageKey": "mathematician" },
-  { "name": "Naturalist",    "stat": "intelligence", "bonus": 3, "imageKey": "naturalist" },
-  { "name": "Astronomer",    "stat": "intelligence", "bonus": 3, "imageKey": "astronomer" },
-
-  { "name": "Engineer",      "stat": "technique",    "bonus": 3, "imageKey": "engineer" },
-  { "name": "Architect",     "stat": "technique",    "bonus": 3, "imageKey": "architect" },
-  { "name": "Doctor",        "stat": "technique",    "bonus": 3, "imageKey": "doctor" },
-  { "name": "Explorer",      "stat": "technique",    "bonus": 3, "imageKey": "explorer" },
-
-  { "name": "Prophet",       "stat": "belief",       "bonus": 3, "imageKey": "prophet" },
-  { "name": "Priest",        "stat": "belief",       "bonus": 3, "imageKey": "priest" },
-  { "name": "Philosopher",   "stat": "belief",       "bonus": 3, "imageKey": "philosopher" },
-  { "name": "Monastic",      "stat": "belief",       "bonus": 3, "imageKey": "monastic" },
-
-  { "name": "Educator",      "stat": "reputation",   "bonus": 3, "imageKey": "educator" },
-  { "name": "Journalist",    "stat": "reputation",   "bonus": 3, "imageKey": "journalist" },
-  { "name": "Gourmet",       "stat": "reputation",   "bonus": 3, "imageKey": "gourmet" },
-  { "name": "Lawyer",        "stat": "reputation",   "bonus": 3, "imageKey": "lawyer" }
+  {
+    "name": "Sovereign",
+    "stat": "politics",
+    "bonus": 2,
+    "imageKey": "sovereign"
+  },
+  {
+    "name": "Statesman",
+    "stat": "politics",
+    "bonus": 2,
+    "imageKey": "statesman"
+  },
+  {
+    "name": "Official",
+    "stat": "politics",
+    "bonus": 2,
+    "imageKey": "official"
+  },
+  {
+    "name": "Spy",
+    "stat": "politics",
+    "bonus": 2,
+    "imageKey": "spy"
+  },
+  {
+    "name": "General",
+    "stat": "strength",
+    "bonus": 2,
+    "imageKey": "general"
+  },
+  {
+    "name": "Soldier",
+    "stat": "strength",
+    "bonus": 2,
+    "imageKey": "soldier"
+  },
+  {
+    "name": "Warrior",
+    "stat": "strength",
+    "bonus": 2,
+    "imageKey": "warrior"
+  },
+  {
+    "name": "Athlete",
+    "stat": "strength",
+    "bonus": 2,
+    "imageKey": "athlete"
+  },
+  {
+    "name": "Artist",
+    "stat": "culture",
+    "bonus": 2,
+    "imageKey": "artist"
+  },
+  {
+    "name": "Musician",
+    "stat": "culture",
+    "bonus": 2,
+    "imageKey": "musician"
+  },
+  {
+    "name": "Writer",
+    "stat": "culture",
+    "bonus": 2,
+    "imageKey": "writer"
+  },
+  {
+    "name": "Actor",
+    "stat": "culture",
+    "bonus": 2,
+    "imageKey": "actor"
+  },
+  {
+    "name": "Economist",
+    "stat": "wealth",
+    "bonus": 2,
+    "imageKey": "economist"
+  },
+  {
+    "name": "Banker",
+    "stat": "wealth",
+    "bonus": 2,
+    "imageKey": "banker"
+  },
+  {
+    "name": "Merchant",
+    "stat": "wealth",
+    "bonus": 2,
+    "imageKey": "merchant"
+  },
+  {
+    "name": "Noble",
+    "stat": "wealth",
+    "bonus": 2,
+    "imageKey": "noble"
+  },
+  {
+    "name": "Scientist",
+    "stat": "intelligence",
+    "bonus": 2,
+    "imageKey": "scientist"
+  },
+  {
+    "name": "Mathematician",
+    "stat": "intelligence",
+    "bonus": 2,
+    "imageKey": "mathematician"
+  },
+  {
+    "name": "Naturalist",
+    "stat": "intelligence",
+    "bonus": 2,
+    "imageKey": "naturalist"
+  },
+  {
+    "name": "Astronomer",
+    "stat": "intelligence",
+    "bonus": 2,
+    "imageKey": "astronomer"
+  },
+  {
+    "name": "Engineer",
+    "stat": "technique",
+    "bonus": 2,
+    "imageKey": "engineer"
+  },
+  {
+    "name": "Architect",
+    "stat": "technique",
+    "bonus": 2,
+    "imageKey": "architect"
+  },
+  {
+    "name": "Doctor",
+    "stat": "technique",
+    "bonus": 2,
+    "imageKey": "doctor"
+  },
+  {
+    "name": "Explorer",
+    "stat": "technique",
+    "bonus": 2,
+    "imageKey": "explorer"
+  },
+  {
+    "name": "Prophet",
+    "stat": "belief",
+    "bonus": 2,
+    "imageKey": "prophet"
+  },
+  {
+    "name": "Priest",
+    "stat": "belief",
+    "bonus": 2,
+    "imageKey": "priest"
+  },
+  {
+    "name": "Philosopher",
+    "stat": "belief",
+    "bonus": 2,
+    "imageKey": "philosopher"
+  },
+  {
+    "name": "Monastic",
+    "stat": "belief",
+    "bonus": 2,
+    "imageKey": "monastic"
+  },
+  {
+    "name": "Educator",
+    "stat": "reputation",
+    "bonus": 2,
+    "imageKey": "educator"
+  },
+  {
+    "name": "Journalist",
+    "stat": "reputation",
+    "bonus": 2,
+    "imageKey": "journalist"
+  },
+  {
+    "name": "Gourmet",
+    "stat": "reputation",
+    "bonus": 2,
+    "imageKey": "gourmet"
+  },
+  {
+    "name": "Lawyer",
+    "stat": "reputation",
+    "bonus": 2,
+    "imageKey": "lawyer"
+  }
 ]

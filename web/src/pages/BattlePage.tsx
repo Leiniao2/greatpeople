@@ -78,7 +78,7 @@ function makeEventDeck(): EventCard[] {
         description: type === 'local_event'
           ? `Local event: compare ${STAT_LABELS[stat]} totals. Winner may attack loser.`
           : type === 'local_survival'
-          ? `Local survival: cards with ${STAT_LABELS[stat]} < 10 are discarded.`
+          ? `Local survival: cards with ${STAT_LABELS[stat]} < 5 are discarded.`
           : `Global competition: player with highest total ${STAT_LABELS[stat]} (public cards) wins a prize bundle.`,
       })
     }
@@ -93,7 +93,7 @@ function makeHazardDeck(): EventCard[] {
     name: `Natural Hazard: ${hz}`,
     type: 'natural_hazard' as const,
     hazardType: hz,
-    description: `Natural hazard (${hz}): any card at this location with total stats < 100 is discarded.`,
+    description: `Natural hazard (${hz}): any card at this location with total stats < 30 is discarded.`,
   }))
 }
 
@@ -248,22 +248,22 @@ function traitBonusForGP(
   switch (gp.figureName) {
     case 'Belisarius':
       if (opponentCards.length > alliedCards.length && (stat === 'strength' || stat === 'politics'))
-        bonus += 5
+        bonus += 3
       break
 
     case 'Imhotep':
       if (alliedFollowers.length >= 2 && (stat === 'technique' || stat === 'intelligence'))
-        bonus += 8
+        bonus += 4
       break
 
     case 'Lu Yu':
       if (alliedGPCards.length === 1)
-        bonus += 5
+        bonus += 3
       break
 
     case 'Andrew Mellon':
       if (stat === 'wealth')
-        bonus += alliedFollowers.filter(f => f.name === 'Merchant').length * 5
+        bonus += alliedFollowers.filter(f => f.name === 'Merchant').length * 2
       break
 
     case 'Pericles':
@@ -275,7 +275,7 @@ function traitBonusForGP(
         loc.cards.some(c => c.type === 'gp' && gpMap[c.cardId]?.figureName === 'Pericles')
       )
       if (pericelesOnField && (stat === 'politics' || stat === 'intelligence'))
-        bonus += 8
+        bonus += 4
       break
     }
 
@@ -284,19 +284,19 @@ function traitBonusForGP(
         .filter(c => c.type === 'gp')
         .some(c => gpMap[c.cardId]?.gender === 'female')
       if (femaleGPAtLoc) {
-        if (stat === 'strength') bonus += 10
-        if (stat === 'culture') bonus += 5
+        if (stat === 'strength') bonus += 5
+        if (stat === 'culture') bonus += 3
       }
       break
     }
 
     case 'Lancelot':
-      if (stat === 'politics') bonus -= 10
+      if (stat === 'politics') bonus -= 5
       break
 
     case 'Marie Antoinette':
-      if (stat === 'wealth') bonus += 15
-      if (stat === 'politics') bonus -= 10
+      if (stat === 'wealth') bonus += 8
+      if (stat === 'politics') bonus -= 5
       break
 
     case 'Mani': {
@@ -309,7 +309,7 @@ function traitBonusForGP(
         )
       ).size
       if (stat === 'belief' || stat === 'intelligence')
-        bonus += erasOnField * 3
+        bonus += erasOnField
       break
     }
 
@@ -321,7 +321,7 @@ function traitBonusForGP(
           if (g) alliedStatSum += g[stat]
         }
       }
-      bonus += alliedStatSum >= 25 ? 3 : -3
+      bonus += alliedStatSum >= 13 ? 2 : -2
       break
     }
 
@@ -333,7 +333,7 @@ function traitBonusForGP(
       const hasOpponentEvent = allLocations
         .find(loc => loc.cards.some(c => c.instanceId === locationCards[0]?.instanceId))
         ?.activeEvent != null
-      if (hasOpponentEvent && stat === 'reputation') bonus += 5
+      if (hasOpponentEvent && stat === 'reputation') bonus += 3
       break
     }
   }
@@ -361,7 +361,12 @@ function computeLocationTotal(
       }
     } else {
       const f = followerCards[oc.cardId]
-      if (f && f.stat === stat) total += f.bonus
+      if (f && f.stat === stat) {
+        const hasIdentityMatch = locationCards.some(
+          lc => lc.playerId === playerId && lc.type === 'gp' && gpCards[lc.cardId]?.identities?.includes(f.name)
+        )
+        total += hasIdentityMatch ? 3 : f.bonus
+      }
     }
   }
   return total
@@ -390,7 +395,10 @@ function computeSide(
     } else {
       const f = followerMap[oc.cardId]
       if (!f) continue
-      const followerBonus = f.stat === stat ? f.bonus : 0
+      const hasIdentityMatch = f.stat === stat && locationCards.some(
+        lc => lc.playerId === playerId && lc.type === 'gp' && gpMap[lc.cardId]?.identities?.includes(f.name)
+      )
+      const followerBonus = f.stat === stat ? (hasIdentityMatch ? 3 : f.bonus) : 0
       cards.push({ type: 'follower', name: f.name, imageKey: f.imageKey, baseStat: 0, traitBonus: 0, followerBonus })
       total += followerBonus
     }
@@ -429,7 +437,12 @@ function computeEventSide(
     } else {
       const f = followerMap[oc.cardId]
       if (!f) continue
-      const followerBonus = stat ? (f.stat === stat ? f.bonus : 0) : f.bonus
+      const hasIdentityMatch = (!stat || f.stat === stat) && locationCards.some(
+        lc => lc.playerId === playerId && lc.type === 'gp' && gpMap[lc.cardId]?.identities?.includes(f.name)
+      )
+      const followerBonus = stat
+        ? (f.stat === stat ? (hasIdentityMatch ? 3 : f.bonus) : 0)
+        : (hasIdentityMatch ? 3 : f.bonus)
       cards.push({ type: 'follower', name: f.name, imageKey: f.imageKey, baseStat: 0, traitBonus: 0, followerBonus })
       total += followerBonus
     }
@@ -1029,7 +1042,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
 
           if ((event.type === 'local_survival' || event.type === 'natural_hazard') && involvedPlayers.length > 0) {
             const stat = event.type === 'local_survival' ? event.stat ?? null : null
-            const threshold = event.type === 'local_survival' ? 10 : 100
+            const threshold = event.type === 'local_survival' ? 5 : 30
             const results: EventPlayerResult[] = []
 
             for (const pid of involvedPlayers) {
