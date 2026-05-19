@@ -23,6 +23,11 @@ import TradeGame from '@/components/minigames/TradeGame'
 import PunnettGame from '@/components/minigames/PunnettGame'
 import AuctionGame from '@/components/minigames/AuctionGame'
 import PseudoCodeGame from '@/components/minigames/PseudoCodeGame'
+import FlightGame from '@/components/minigames/FlightGame'
+import ComposeMusicGame from '@/components/minigames/ComposeMusicGame'
+import WeaponDeployGame from '@/components/minigames/WeaponDeployGame'
+import MuseumGame from '@/components/minigames/MuseumGame'
+import DecodeGame from '@/components/minigames/DecodeGame'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -34,6 +39,7 @@ type GameType =
   | 'klotski' | 'lorentz' | 'porcelain' | 'trade' | 'punnett'
   | 'wordle' | 'decode' | 'wargame'
   | 'auction' | 'pseudocode'
+  | 'flight' | 'compose' | 'weapondeploy' | 'museum'
 
 interface FlatChallenge {
   id: string
@@ -68,7 +74,9 @@ const GAME_CATEGORY: Record<string, CategoryKey> = {
   painting: 'Creative', cooking: 'Creative', music: 'Creative', porcelain: 'Creative',
   fiction: 'Story', voting: 'Story', sort: 'Story', tactics: 'Story',
   wargame: 'Story', trade: 'Story', auction: 'Story',
-  maze: 'Explore',
+  weapondeploy: 'Story', museum: 'Story',
+  maze: 'Explore', flight: 'Explore',
+  compose: 'Creative',
 }
 
 const GAME_LABEL: Record<string, string> = {
@@ -82,6 +90,7 @@ const GAME_LABEL: Record<string, string> = {
   trade: 'Trade', punnett: 'Punnett Square',
   wordle: 'Wordle', decode: 'Decode', wargame: 'Wargame',
   auction: 'Auction', pseudocode: 'Pseudo Code',
+  flight: 'Flight', compose: 'Compose', weapondeploy: 'Weapon Deploy', museum: 'Museum',
 }
 
 // ── Flatten all challenges ────────────────────────────────────────────────────
@@ -235,8 +244,13 @@ function ChallengeOverlay({ ch, onClose }: { ch: FlatChallenge; onClose: () => v
       {g === 'porcelain'  && <PorcelainGame configId={cId} onWin={handleWin} />}
       {g === 'trade'       && <TradeGame configId={cId} onWin={handleWin} />}
       {g === 'punnett'     && <PunnettGame configId={cId} onWin={handleWin} />}
-      {g === 'auction'     && <AuctionGame configId={cId} onWin={handleWin} />}
-      {g === 'pseudocode'  && <PseudoCodeGame configId={cId} onWin={handleWin} />}
+      {g === 'auction'      && <AuctionGame configId={cId} onWin={handleWin} />}
+      {g === 'pseudocode'   && <PseudoCodeGame configId={cId} onWin={handleWin} />}
+{g === 'flight'       && <FlightGame configId={cId} onWin={handleWin} />}
+      {g === 'compose'      && <ComposeMusicGame configId={cId} onWin={handleWin} />}
+      {g === 'weapondeploy' && <WeaponDeployGame configId={cId} onWin={handleWin} />}
+      {g === 'museum'       && <MuseumGame configId={cId} onWin={handleWin} />}
+      {g === 'decode'       && <DecodeGame configId={cId} onWin={handleWin} />}
       {ch.raw.fact && won === false && (
         <p className="text-slate-600 text-[10px] leading-relaxed mt-1 px-1">{ch.raw.fact}</p>
       )}
