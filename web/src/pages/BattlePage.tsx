@@ -169,53 +169,53 @@ function getGPCard(id: string): Card | undefined {
 interface AchievementSpec { stat: StatKey; threshold: number }
 
 const ACHIEVEMENT_SPECS: Record<string, AchievementSpec> = {
-  'Mohandas Gandhi':      { stat: 'belief',        threshold: 3 },
-  'Coco Chanel':          { stat: 'culture',        threshold: 3 },
-  'Mao Zedong':           { stat: 'politics',       threshold: 4 },
-  'Belisarius':           { stat: 'strength',       threshold: 3 },
-  'Imhotep':              { stat: 'technique',      threshold: 4 },
-  'Lu Yu':                { stat: 'culture',        threshold: 3 },
-  'Alan Turing':          { stat: 'intelligence',   threshold: 3 },
-  'Andrew Mellon':        { stat: 'wealth',         threshold: 3 },
-  'Audrey Hepburn':       { stat: 'reputation',     threshold: 3 },
-  'Clara Schumann':       { stat: 'culture',        threshold: 3 },
-  'Euclid':               { stat: 'intelligence',   threshold: 5 },
-  'Hua Mulan':            { stat: 'strength',       threshold: 3 },
-  'Johannes Brahms':      { stat: 'culture',        threshold: 3 },
-  'Lancelot':             { stat: 'strength',       threshold: 4 },
-  'Li Qingzhao':          { stat: 'culture',        threshold: 3 },
-  'Marie Antoinette':     { stat: 'wealth',         threshold: 3 },
-  'Miyamoto Musashi':     { stat: 'strength',       threshold: 4 },
-  'Sargon I':             { stat: 'politics',       threshold: 4 },
-  'Gilgamesh':            { stat: 'strength',       threshold: 3 },
-  'Enkidu':               { stat: 'strength',       threshold: 3 },
-  'Pericles':             { stat: 'politics',       threshold: 4 },
-  'Aspasia':              { stat: 'intelligence',   threshold: 3 },
-  'Pleistoanax':          { stat: 'politics',       threshold: 3 },
-  'Cicero':               { stat: 'politics',       threshold: 4 },
-  'Anaxagoras':           { stat: 'intelligence',   threshold: 4 },
-  'Zeno of Elea':         { stat: 'intelligence',   threshold: 3 },
-  'Al-Khwarizmi':         { stat: 'technique',      threshold: 4 },
-  'Mani':                 { stat: 'belief',         threshold: 3 },
-  'Titian':               { stat: 'culture',        threshold: 4 },
-  'Magellan':             { stat: 'technique',      threshold: 3 },
-  'Mother Teresa':        { stat: 'belief',         threshold: 4 },
-  'Carl Linnaeus':        { stat: 'intelligence',   threshold: 3 },
-  'Robert Schumann':      { stat: 'culture',        threshold: 3 },
-  'Hendrik Lorentz':      { stat: 'intelligence',   threshold: 4 },
-  'Amelia Earhart':       { stat: 'technique',      threshold: 3 },
-  'Sergei Eisenstein':    { stat: 'culture',        threshold: 3 },
-  'Edmund Hillary':       { stat: 'strength',       threshold: 3 },
-  'Tenzing Norgay':       { stat: 'strength',       threshold: 3 },
-  'Itō Hirobumi':         { stat: 'politics',       threshold: 4 },
-  'Michael Jackson':      { stat: 'culture',        threshold: 4 },
-  'George Bernard Shaw':  { stat: 'culture',        threshold: 3 },
-  'Gregory Peck':         { stat: 'belief',         threshold: 3 },
-  'Isabel I of Castile':  { stat: 'belief',         threshold: 3 },
-  'Manuel I of Portugal': { stat: 'wealth',         threshold: 3 },
-  'An Jung-geun':         { stat: 'strength',       threshold: 3 },
-  'Gregor Mendel':        { stat: 'intelligence',   threshold: 3 },
-  'Louis XVI':            { stat: 'politics',       threshold: 3 },
+  'Mohandas Gandhi':      { stat: 'belief',        threshold: 1 },
+  'Coco Chanel':          { stat: 'culture',        threshold: 1 },
+  'Mao Zedong':           { stat: 'politics',       threshold: 1 },
+  'Belisarius':           { stat: 'strength',       threshold: 1 },
+  'Imhotep':              { stat: 'technique',      threshold: 1 },
+  'Lu Yu':                { stat: 'culture',        threshold: 1 },
+  'Alan Turing':          { stat: 'intelligence',   threshold: 1 },
+  'Andrew Mellon':        { stat: 'wealth',         threshold: 1 },
+  'Audrey Hepburn':       { stat: 'reputation',     threshold: 1 },
+  'Clara Schumann':       { stat: 'culture',        threshold: 1 },
+  'Euclid':               { stat: 'intelligence',   threshold: 1 },
+  'Hua Mulan':            { stat: 'strength',       threshold: 1 },
+  'Johannes Brahms':      { stat: 'culture',        threshold: 1 },
+  'Lancelot':             { stat: 'strength',       threshold: 1 },
+  'Li Qingzhao':          { stat: 'culture',        threshold: 1 },
+  'Marie Antoinette':     { stat: 'wealth',         threshold: 1 },
+  'Miyamoto Musashi':     { stat: 'strength',       threshold: 1 },
+  'Sargon I':             { stat: 'politics',       threshold: 1 },
+  'Gilgamesh':            { stat: 'strength',       threshold: 1 },
+  'Enkidu':               { stat: 'strength',       threshold: 1 },
+  'Pericles':             { stat: 'politics',       threshold: 1 },
+  'Aspasia':              { stat: 'intelligence',   threshold: 1 },
+  'Pleistoanax':          { stat: 'politics',       threshold: 1 },
+  'Cicero':               { stat: 'politics',       threshold: 1 },
+  'Anaxagoras':           { stat: 'intelligence',   threshold: 1 },
+  'Zeno of Elea':         { stat: 'intelligence',   threshold: 1 },
+  'Al-Khwarizmi':         { stat: 'technique',      threshold: 1 },
+  'Mani':                 { stat: 'belief',         threshold: 1 },
+  'Titian':               { stat: 'culture',        threshold: 1 },
+  'Magellan':             { stat: 'technique',      threshold: 1 },
+  'Mother Teresa':        { stat: 'belief',         threshold: 1 },
+  'Carl Linnaeus':        { stat: 'intelligence',   threshold: 1 },
+  'Robert Schumann':      { stat: 'culture',        threshold: 1 },
+  'Hendrik Lorentz':      { stat: 'intelligence',   threshold: 1 },
+  'Amelia Earhart':       { stat: 'technique',      threshold: 1 },
+  'Sergei Eisenstein':    { stat: 'culture',        threshold: 1 },
+  'Edmund Hillary':       { stat: 'strength',       threshold: 1 },
+  'Tenzing Norgay':       { stat: 'strength',       threshold: 1 },
+  'Itō Hirobumi':         { stat: 'politics',       threshold: 1 },
+  'Michael Jackson':      { stat: 'culture',        threshold: 1 },
+  'George Bernard Shaw':  { stat: 'culture',        threshold: 1 },
+  'Gregory Peck':         { stat: 'belief',         threshold: 1 },
+  'Isabel I of Castile':  { stat: 'belief',         threshold: 1 },
+  'Manuel I of Portugal': { stat: 'wealth',         threshold: 1 },
+  'An Jung-geun':         { stat: 'strength',       threshold: 1 },
+  'Gregor Mendel':        { stat: 'intelligence',   threshold: 1 },
+  'Louis XVI':            { stat: 'politics',       threshold: 1 },
 }
 
 function getAchievementThreshold(figureName: string): number {
@@ -862,32 +862,23 @@ function gameReducer(state: GameState, action: GameAction): GameState {
               ? { ...l, cards: l.cards.filter(c => c.instanceId !== loserInstanceId) }
               : l
           )
-          // Achievement ticks: increment for winning GP if the event stat matches their achievement stat
-          if (myWon && myCard.type === 'gp') {
+          // Achievement tick: awarded once when the winning GP defeats a worthy opponent
+          // (opponent GP must have the achievement stat >= 5 to count as a meaningful victory)
+          if (myWon && myCard.type === 'gp' && loserCard.type === 'gp') {
             const attackerGP = gpMap[myCard.cardId]
+            const defenderGP = gpMap[loserCard.cardId]
             const achSpec = attackerGP ? ACHIEVEMENT_SPECS[attackerGP.figureName] : null
-            const tickCount = (achSpec?.stat === stat ? 1 : 0) +
-              (attackerGP?.figureName === 'Edmund Hillary' ? 1 : 0) + // Hillary gains 2 ticks on win
-              (attackerGP?.figureName === 'Sargon I' ? 1 : 0)         // Sargon gains extra tick on defeat
-            newLocations = newLocations.map(l => ({
-              ...l,
-              cards: l.cards.map(c =>
-                c.instanceId === action.myInstanceId
-                  ? { ...c, achievementTicks: c.achievementTicks + Math.max(1, tickCount) }
-                  : c
-              ),
-            }))
-          }
-          // Mother Teresa: extra tick when Belief wins
-          if (myWon && stat === 'belief') {
-            newLocations = newLocations.map(l => ({
-              ...l,
-              cards: l.cards.map(c => {
-                if (c.instanceId !== action.myInstanceId || c.type !== 'gp') return c
-                const g = gpMap[c.cardId]
-                return g?.figureName === 'Mother Teresa' ? { ...c, achievementTicks: c.achievementTicks + 1 } : c
-              }),
-            }))
+            const worthyOpponent = achSpec && defenderGP && defenderGP[achSpec.stat] >= 5
+            if (achSpec?.stat === stat && worthyOpponent) {
+              newLocations = newLocations.map(l => ({
+                ...l,
+                cards: l.cards.map(c =>
+                  c.instanceId === action.myInstanceId
+                    ? { ...c, achievementTicks: c.achievementTicks + 1 }
+                    : c
+                ),
+              }))
+            }
           }
         } else {
           // Retrieve to hand
