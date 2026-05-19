@@ -96,18 +96,18 @@
         "fact": "A single silkworm cocoon is made from one continuous thread up to 900 metres long. It takes about 2,500 cocoons to make one pound of raw silk — explaining why silk was worth its weight in gold."
       },
       {
-        "type": "truefalse",
-        "statement": "China shared the secret of silk production with Persia after the two empires signed a formal trade treaty.",
-        "correct": false,
-        "countdown": 10,
-        "fact": "China guarded the secret of silk production for over 3,000 years. According to one account, the secret finally escaped when two Nestorian monks smuggled silkworm eggs out of China inside hollow walking staffs, delivering them to the Byzantine Emperor Justinian I around 550 CE."
+        "type": "minigame",
+        "game": "matchthree",
+        "configId": "babylon-tablets",
+        "instruction": "Silk merchants logged every shipment in clay. Match the trade symbols vertically — only column matches score on the ancient tablet.",
+        "fact": "Along the Silk Road, merchants kept meticulous records of goods in transit. Babylonian clay tablet accounting spread westward just as Chinese silk spread east — commerce and literacy moved together."
       },
       {
-        "type": "truefalse",
-        "statement": "Silk was used as currency in ancient China — rolls of silk functioned like money and were accepted as payment for taxes.",
-        "correct": true,
-        "countdown": 10,
-        "fact": "Silk was so fundamental to the Chinese economy that bolts of silk cloth were accepted as tax payments, military salaries, and diplomatic gifts. It functioned as a form of currency centuries before paper money existed — and its value was stable enough to serve as an international reserve."
+        "type": "minigame",
+        "game": "geometry",
+        "configId": "pythagorean",
+        "instruction": "Chinese mathematicians solved right-triangle problems in the Nine Chapters on the Mathematical Art — centuries before Pythagoras. Solve this ancient construction problem.",
+        "fact": "The Zhoubi Suanjing (c. 1000 BCE) proves the Pythagorean theorem using a visual 'proof without words.' China's mathematical tradition was as rigorous as Greece's — and developed independently, along the same trade routes that carried silk westward."
       }
     ]
   },
@@ -147,18 +147,18 @@
         "fact": "Ancient Egyptian medical knowledge was remarkably advanced. The Edwin Smith Papyrus describes 48 surgical cases with diagnoses, treatments, and prognoses — a clinical approach that would not be surpassed in Europe for thousands of years."
       },
       {
-        "type": "truefalse",
-        "statement": "Ancient Egyptian doctors understood that the heart pumped blood through the body in a circulatory system.",
-        "correct": false,
-        "countdown": 10,
-        "fact": "Egyptian doctors knew the heart was important and felt the pulse, but believed the heart circulated not just blood but air, tears, and other fluids. The concept of blood circulation awaited William Harvey in 1628 — nearly 4,300 years after Hesy-Ra."
+        "type": "minigame",
+        "game": "crossword",
+        "configId": "imhotep",
+        "instruction": "Hesy-Ra and Imhotep were contemporaries under Pharaoh Djoser. Fill in the crossword of their shared world — pyramids, medicine, and ancient Egypt.",
+        "fact": "Hesy-Ra and Imhotep both served under Djoser at Saqqara around 2650 BCE — one built the world's first pyramid, the other held the world's first physician title. They may have walked the same palace corridors."
       },
       {
-        "type": "truefalse",
-        "statement": "The Edwin Smith Papyrus is remarkable for describing many conditions clinically — with diagnosis, prognosis, and treatment — rather than relying solely on magical spells.",
-        "correct": true,
-        "countdown": 10,
-        "fact": "The Edwin Smith Papyrus (c. 1600 BCE) describes 48 surgical cases. For many, the approach is clinical: examine the wound, form a diagnosis ('an ailment I will treat' vs 'an ailment not to be treated'), and recommend treatment. It is one of the earliest examples of evidence-based medicine in history."
+        "type": "minigame",
+        "game": "maze",
+        "configId": "pyramid-deep",
+        "instruction": "Egyptian doctors worked beside priests in the labyrinthine temples of Memphis. Navigate the inner passages — every turn holds a medical secret.",
+        "fact": "Egyptian medicine was practised in temple 'Houses of Life' — scriptorium-hospitals where physicians copied medical papyri alongside religious texts. Hesy-Ra's work as both scribe and physician reflects this union of healing and sacred knowledge."
       }
     ]
   },
@@ -237,18 +237,18 @@
         "fact": "We know of Peseshet entirely through a false door stele in her son's tomb at Giza. This was a common way for high-status women to be memorialized. The inscription preserves for 4,500 years the name of the world's first known female physician."
       },
       {
-        "type": "truefalse",
-        "statement": "Women in ancient Greece were legally barred by written law from practising medicine.",
-        "correct": false,
-        "countdown": 10,
-        "fact": "There was no written law banning women from medicine in ancient Greece — but social customs effectively excluded them from formal training and public practice. Egypt's social structure gave women more professional freedom. Agnodice of Athens (c. 300 BCE) reportedly disguised herself as a man to study and practise medicine."
+        "type": "minigame",
+        "game": "geometry",
+        "configId": "volume-pyramid",
+        "instruction": "Peseshet's world was defined by monumental mathematics. The engineers who built the pyramids at Giza were her contemporaries — calculate the volume of the great monument.",
+        "fact": "The Great Pyramid of Giza was built within a century of Peseshet's career. The same mathematical precision used to align its base to within 3.7 cm of perfect was applied by Egyptian physicians to their dosage calculations — geometry and medicine shared the same scribal tradition."
       },
       {
-        "type": "truefalse",
-        "statement": "The Ebers Papyrus contains prescriptions for conditions we still recognise today, including depression, diabetes-like symptoms, and intestinal parasites.",
-        "correct": true,
-        "countdown": 10,
-        "fact": "The Ebers Papyrus (c. 1550 BCE) describes recognisable treatments for depression, diabetes-like thirst and frequent urination, and intestinal worms. The Egyptians recorded what worked and what didn't — a remarkably empirical approach for a culture that also used magical incantations alongside herbal remedies."
+        "type": "minigame",
+        "game": "klotski",
+        "configId": "pyramid-capstone",
+        "instruction": "Slide the golden capstone into its final position — as Egypt's monument-builders did, solving spatial puzzles in stone and copper.",
+        "fact": "Ancient Egyptian construction used a form of modular planning — calculating how blocks must slide and stack to achieve the final form. The same systematic thinking appears in Egyptian medical texts, where treatments are sequenced step by step, building toward a cure."
       }
     ]
   },
@@ -331,18 +331,18 @@
         "fact": "Telepinu's Edict predates Greek democratic codes by centuries. Its core principle — that even kings must follow established succession rules — represented a revolutionary idea: that the most powerful rulers were subject to written law."
       },
       {
-        "type": "truefalse",
-        "statement": "After the Battle of Kadesh, the Hittites and Egyptians signed the earliest surviving international peace treaty in history.",
-        "correct": true,
-        "countdown": 10,
-        "fact": "The Egyptian-Hittite Peace Treaty of c. 1259 BCE, signed by Ramesses II and Hattusili III, is the oldest known international peace treaty. Copies exist in Egyptian hieroglyphics and Hittite cuneiform. A reproduction hangs today at United Nations headquarters in New York."
+        "type": "minigame",
+        "game": "voting",
+        "configId": "akkadian-council",
+        "instruction": "Telepinu must win the loyalty of the assembled Hittite nobles to pass his succession law. Sway enough governors before the council dissolves.",
+        "fact": "The Hittite pankus — an assembly of nobles — had real power to check the king. Telepinu's Edict was partly designed to give this body constitutional authority, so that future kings could not simply murder their way to the throne. It was one of history's first constitutional checks on royal power."
       },
       {
-        "type": "truefalse",
-        "statement": "The Hittite Empire declined gradually over centuries before being absorbed by the Assyrian Empire.",
-        "correct": false,
-        "countdown": 10,
-        "fact": "The Hittite Empire collapsed suddenly around 1200 BCE during the mysterious Bronze Age Collapse — a catastrophe involving invading 'Sea Peoples,' famines, and internal rebellions that simultaneously destroyed nearly every major civilisation in the eastern Mediterranean. The Hittites vanished so completely that their existence was forgotten until archaeological rediscovery in the 19th century."
+        "type": "minigame",
+        "game": "klotski",
+        "configId": "last-general",
+        "instruction": "The Hittite Empire's final years required desperate strategic moves. Slide the last general to safety before the Bronze Age Collapse closes every escape.",
+        "fact": "Around 1200 BCE, the Hittite Empire was one of several great powers destroyed by the Bronze Age Collapse. Invaders known as the 'Sea Peoples,' combined with drought and internal revolt, wiped out civilisations across the eastern Mediterranean within decades. The Hittites were so thoroughly destroyed that their very existence was forgotten for 3,000 years."
       }
     ]
   },
@@ -351,11 +351,11 @@
     "story": "The Scribe of Seasons",
     "challenges": [
       {
-        "type": "truefalse",
-        "statement": "Nakht's tomb paintings were so vivid that a facsimile panel was placed aboard the RMS Titanic in 1912 as a gift.",
-        "correct": true,
-        "countdown": 10,
-        "fact": "TT52, Nakht's tomb in Thebes, contains paintings of extraordinary colour depicting banquets, hunting, and agriculture. Howard Carter made detailed copies, and a replica panel was included as a diplomatic gift on the Titanic's maiden voyage in 1912 — it sank with the ship."
+        "type": "minigame",
+        "game": "matchthree",
+        "configId": "babylon-tablets",
+        "instruction": "Nakht recorded every flood and harvest on papyrus. Match the scribal symbols vertically — column by column, season by season.",
+        "fact": "Egyptian scribes and Babylonian scribes independently developed similar record-keeping systems. Agricultural data — flood levels, grain yields, star positions — was the first 'big data,' used to predict and plan. Nakht's astronomical records fed the same cycle."
       },
       {
         "type": "sort",
@@ -369,11 +369,11 @@
         "fact": "The Egyptian civil calendar was based on the Nile's flooding cycle. As Astronomer of Amun, Nakht would have tracked Sirius (Sopdet) — the star's first appearance above the horizon at dawn — which predicted the flood with remarkable accuracy."
       },
       {
-        "type": "truefalse",
-        "statement": "Egyptian astronomers divided the night sky into 36 star groups called decans, using them as a celestial clock to track the night hours.",
-        "correct": true,
-        "countdown": 10,
-        "fact": "Egyptian decans — star clusters rising at ten-day intervals — allowed priests to track the hours of night. Each appeared on tomb ceilings as a star clock. Their system influenced later Babylonian and Greek astronomy, eventually feeding into the 24-hour day we still use."
+        "type": "minigame",
+        "game": "sudoku",
+        "configId": "anaxagoras-grid",
+        "instruction": "An astronomer's mind is a grid of order. Nakht tracked the stars to impose regularity on chaos — fill each row, column, and box with every value exactly once.",
+        "fact": "Egyptian astronomers divided the night into 12 hours using 'decan' stars that rose sequentially. Nakht's role as 'Astronomer of Amun' meant charting these risings with calendar precision — the same logical discipline that fills a grid with no repeats."
       },
       {
         "type": "quiz",
@@ -388,11 +388,11 @@
         "fact": "The heliacal rising of Sirius — called Sopdet by Egyptians — occurred just before the Nile's annual flood. This celestial signal was so important that the Egyptian calendar year began on this day. Astronomer-officials like Nakht were responsible for predicting it."
       },
       {
-        "type": "truefalse",
-        "statement": "Egyptian tomb paintings of feasting, hunting, and farming were decorative — a way to display wealth and status to visitors.",
-        "correct": false,
-        "countdown": 10,
-        "fact": "Egyptian tomb paintings were magical, not decorative. The scenes depicted activities the deceased would need in the afterlife: food, servants, music, and a successful harvest. Speaking the names of the painted objects aloud was believed to bring them into existence in the next world."
+        "type": "minigame",
+        "game": "geometry",
+        "configId": "circle-circumference",
+        "instruction": "Nakht tracked the sun's arc across the sky. Calculate the circumference of the celestial circle the sun traces — the geometry of Egyptian astronomical thought.",
+        "fact": "Egyptian priests calculated the solar year at 365 days — off by only a quarter-day. They tracked the sun's annual path using shadow clocks and star tables. The geometry of circles, arcs, and angles was essential astronomical knowledge long before Greek mathematicians formalised it."
       }
     ]
   },
@@ -432,18 +432,18 @@
         "fact": "The Book of the Dead (more accurately 'Book of Coming Forth by Day') was a personal funerary guide. Spell 125, the Weighing of the Heart, was the most critical: the deceased's heart was weighed against the feather of Ma'at. A heart heavier than the feather — burdened by sins — was devoured by the monster Ammit."
       },
       {
-        "type": "truefalse",
-        "statement": "Pediamenopet served as the chief political administrator of Egypt during the Assyrian invasion.",
-        "correct": false,
-        "countdown": 10,
-        "fact": "Pediamenopet was a high priest — not a political ruler. His role was religious and scholarly: overseeing rituals, managing sacred wealth, and preserving knowledge. During the Assyrian invasion (671 BCE), actual governance passed to Assyrian-appointed administrators while priests maintained religious functions."
+        "type": "minigame",
+        "game": "sudoku",
+        "configId": "al-khwarizmi-grid",
+        "instruction": "Pediamenopet's tomb was a grid of ordered knowledge — every text in its place. Fill the grid so that logic, not chaos, governs every cell.",
+        "fact": "The High Priests of Amun were administrators as much as theologians — they managed vast temple estates, supervised scribes, and maintained archives. The same orderly thinking that filled a grid filled Pediamenopet's tomb with the world's largest collection of funerary knowledge."
       },
       {
-        "type": "truefalse",
-        "statement": "The ancient Egyptian language and hieroglyphics were unreadable for over 1,400 years until Jean-François Champollion deciphered the Rosetta Stone in 1822.",
-        "correct": true,
-        "countdown": 10,
-        "fact": "When the last known hieroglyphic inscription was carved in 394 CE, knowledge of how to read it began dying with the last trained priests. By 700 CE it was completely unreadable. Champollion's 1822 decipherment reopened a window into 3,000 years of Egyptian civilisation — including the texts in Pediamenopet's tomb."
+        "type": "minigame",
+        "game": "matchthree",
+        "configId": "babylon-tablets",
+        "instruction": "The ancient world recorded its wisdom in columns on clay and papyrus. Match the scribal symbols — the same act Pediamenopet's scribes performed copying 3,000 years of Egyptian sacred text.",
+        "fact": "Pediamenopet's tomb contains texts copied from sources spanning 2,000 years — from Old Kingdom pyramid texts to New Kingdom funerary literature. His scribes were the original archivists, assembling a complete library of the afterlife's instruction manual in one underground room."
       }
     ]
   },
@@ -452,11 +452,11 @@
     "story": "The Great Library of Nineveh",
     "challenges": [
       {
-        "type": "truefalse",
-        "statement": "Cuneiform, used on Ashurbanipal's library tablets, was written by pressing a wedge-shaped reed into wet clay.",
-        "correct": true,
-        "countdown": 10,
-        "fact": "The word 'cuneiform' comes from the Latin cuneus (wedge). Scribes pressed a trimmed reed into wet clay at different angles to create wedge-shaped marks. After drying or firing, the tablets became remarkably durable — which is why 30,000+ of Ashurbanipal's tablets survived 2,600 years."
+        "type": "minigame",
+        "game": "matchthree",
+        "configId": "babylon-tablets",
+        "instruction": "Ashurbanipal's scribes copied tablets column by column across the empire. Match the cuneiform symbols vertically — only column matches score on the ancient clay.",
+        "fact": "Cuneiform tablets were written in vertical columns read top to bottom, right to left. Ashurbanipal's library catalogue tablets — listing every text by first line — are among the oldest library indexes ever found. The Epic of Gilgamesh was filed under its opening words: 'He who saw the deep.'"
       },
       {
         "type": "sort",
@@ -490,11 +490,11 @@
         "fact": "Ashurbanipal sent scribes across his empire to copy every text they could find — myths, astronomy, medicine, and administration. Catalogue tablets listing the library's contents show it was deliberately organised by subject — the world's first planned library. The Epic of Gilgamesh was found among its holdings."
       },
       {
-        "type": "truefalse",
-        "statement": "Ashurbanipal was purely a scholar — he left military campaigns entirely to his generals and never led armies himself.",
-        "correct": false,
-        "countdown": 10,
-        "fact": "Ashurbanipal was simultaneously scholar and warrior. His palace reliefs show him personally hunting lions from a chariot — a royal sport that tested courage. He launched brutal military campaigns against Egypt, Elam, and Babylon. His inscription reads: 'Among kings my predecessors, none have learned this art' — referring to reading."
+        "type": "minigame",
+        "game": "klotski",
+        "configId": "last-general",
+        "instruction": "The Assyrian Empire is falling. Slide the last general through the collapsing kingdom before Nineveh is surrounded and burned.",
+        "fact": "Nineveh fell in 612 BCE to a coalition of Babylonians, Medes, and Scythians. The city was so thoroughly sacked that the Greek historian Xenophon marched past its ruins 200 years later without knowing what it had been. The library survived only because fire baked the clay tablets into permanence."
       }
     ]
   },
@@ -515,11 +515,11 @@
         "fact": "Mahavira added the fifth vow — Brahmacharya — to the four already taught by the previous Tirthankara. Together, these five vows form the ethical core of Jain monasticism, practised by Jain monks today with the same rigour as in Mahavira's time, over 2,500 years ago."
       },
       {
-        "type": "truefalse",
-        "statement": "Mahavira renounced all possessions — including clothing — and walked naked for over twelve years before achieving enlightenment.",
-        "correct": true,
-        "countdown": 10,
-        "fact": "Mahavira practised extreme asceticism for 12 years and 6 months, eventually discarding even clothing to demonstrate complete non-attachment. The digambara (sky-clad) practice is still followed by one sect of Jain monks today. His enlightenment came while meditating under a Sal tree near the Rijupalika River."
+        "type": "minigame",
+        "game": "geometry",
+        "configId": "sphere-surface",
+        "instruction": "Indian mathematicians of Mahavira's era calculated the surface of the earth and the motion of heavenly spheres — a tradition as rigorous as any in Greece. Solve the spherical surface problem.",
+        "fact": "Indian mathematics in the 5th century BCE was extraordinarily advanced. The Sulbasutras gave precise geometric rules for constructing altars — the same geometric thinking that produced Mahavira's systematic cosmology, mapping the universe into precise spherical layers."
       },
       {
         "type": "quiz",
@@ -534,11 +534,11 @@
         "fact": "Ahimsa (non-violence) is the supreme ethical principle of Jainism, elevated by Mahavira. It extends to all living beings — including insects. Jain monks carry brooms to sweep the path before them so they do not accidentally step on any creature."
       },
       {
-        "type": "truefalse",
-        "statement": "Mahavira and the Buddha were contemporaries, both teaching in the Ganges valley during the 5th–6th century BCE.",
-        "correct": true,
-        "countdown": 10,
-        "fact": "The 6th–5th century BCE was a remarkable era of spiritual awakening: Mahavira and the Buddha taught in India, Confucius taught in China, and Zoroaster refined his teachings in Persia. The philosopher Karl Jaspers called this the 'Axial Age' — when human thought made a great leap forward simultaneously across multiple civilisations."
+        "type": "minigame",
+        "game": "sudoku",
+        "configId": "anaxagoras-grid",
+        "instruction": "Jain philosophy holds that the universe operates by perfect logical laws — karma as mathematics, action and consequence as a grid with no exceptions. Fill every cell.",
+        "fact": "Mahavira's contemporary Anaxagoras (in Greece) also sought to explain the universe through rational principle rather than divine whim — one called it Nous (Mind), the other called it karma. The Axial Age produced parallel leaps of rational thought across three continents simultaneously."
       },
       {
         "type": "truefalse",
@@ -554,11 +554,11 @@
     "story": "The First Poet",
     "challenges": [
       {
-        "type": "truefalse",
-        "statement": "Valmiki is said to have composed the world's first verse spontaneously, after witnessing a hunter kill a mating bird — overcome by grief and compassion.",
-        "correct": true,
-        "countdown": 10,
-        "fact": "According to tradition, Valmiki saw a hunter kill a male krauncha bird as it called to its mate. His grief erupted as a couplet in a perfect rhythmic metre — the shloka — which he had never used before. The sage Brahma told him this was a divine gift, and instructed him to compose the Ramayana in the same metre."
+        "type": "minigame",
+        "game": "tactics",
+        "configId": "general",
+        "instruction": "Rama must lead his army of allies across the ocean to Lanka. Find the decisive tactical move that breaks Ravana's defence.",
+        "fact": "The Ramayana's battle sequences describe military formations, siege tactics, and the strategic use of terrain that reflect real Bronze Age warfare in ancient India. The epic's narrative of a righteous king leading a coalition army against an unjust ruler became a template for political legitimacy across South Asia."
       },
       {
         "type": "quiz",
@@ -586,11 +586,11 @@
         "fact": "The Ramayana's themes — the duty of a prince, the devotion of a wife, the loyalty of a friend — have resonated across Asia for 2,500 years. The epic has more than 300 known versions across South and Southeast Asia, each reflecting the values of its culture."
       },
       {
-        "type": "truefalse",
-        "statement": "Hanuman, the monkey-warrior in the Ramayana, is worshipped in Hinduism as a symbol of devotion, strength, and selfless service.",
-        "correct": true,
-        "countdown": 10,
-        "fact": "Hanuman is one of the most widely worshipped figures in Hinduism. He is revered for his absolute devotion to Rama — legend says he tore open his chest to show Rama and Sita living within his heart. The Hanuman Chalisa, a 40-verse devotional hymn, is recited by hundreds of millions of Hindus daily."
+        "type": "minigame",
+        "game": "music",
+        "configId": "pentatonic-descend",
+        "instruction": "Valmiki's first shloka was spontaneous music — grief transformed into metre. Arrange the descending musical phrase as it falls, note by note, like a poet's lament.",
+        "fact": "The shloka metre — the pattern Valmiki invented in that moment of grief — became the dominant verse form of Sanskrit epic poetry. The Mahabharata, the Puranas, and thousands of religious texts all use the same metre that Valmiki created spontaneously, in sorrow, beside a river."
       },
       {
         "type": "truefalse",
@@ -698,18 +698,18 @@
         "fact": "The philosopher Socrates visited Aspasia's school. Plato has Socrates claim he learned the art of persuasion from Aspasia — whether seriously or satirically, it shows her intellectual reputation."
       },
       {
-        "type": "truefalse",
-        "statement": "In Plato's dialogue Menexenus, Socrates claims that Aspasia of Miletus taught him rhetoric and even composed a funeral oration which he recites from memory.",
-        "correct": true,
-        "countdown": 10,
-        "fact": "Whether Plato intended this seriously or as satire is debated — but the passage preserves Aspasia's remarkable intellectual reputation in a city that otherwise excluded women from public life. Pericles' enemies mocked him for taking political advice from a foreign woman; his supporters found it plausible."
+        "type": "minigame",
+        "game": "sudoku",
+        "configId": "anaxagoras-grid",
+        "instruction": "Socrates, Aspasia's student, held that the unexamined life is not worth living. An ordered mind finds logic where others see chaos — fill the grid.",
+        "fact": "Aspasia ran an intellectual salon in Athens that attracted Socrates, Anaxagoras, and other leading thinkers of the age. Socrates is said to have learned rhetoric from her — and Plato later has Socrates recite one of her speeches from memory in the Menexenus dialogue."
       },
       {
-        "type": "truefalse",
-        "statement": "The Parthenon was built as a treasury for Athenian silver, not primarily as a temple.",
-        "correct": false,
-        "countdown": 10,
-        "fact": "The Parthenon was a temple to Athena, though it did serve as a treasury. Its columns are subtly curved to correct optical distortion — a feat of engineering that took fifteen years."
+        "type": "minigame",
+        "game": "geometry",
+        "configId": "circle-circumference",
+        "instruction": "The Parthenon's architects used advanced geometry to create optical illusions — its columns bulge slightly, its steps curve upward. Calculate the perfect classical circle.",
+        "fact": "The Parthenon (447–432 BCE) was built with astonishing precision: its columns taper, its platform curves, and its lines are never quite straight — all deliberate optical corrections to make the building appear perfect to the human eye. Greek architecture and geometry were inseparable."
       }
     ]
   },
@@ -743,11 +743,11 @@
         "fact": "Zeno's paradoxes were not resolved until Newton and Leibniz developed calculus in the 17th century. The infinite series 1/2 + 1/4 + 1/8 + ... converges to 1 — Achilles catches the tortoise, and the math finally proved it."
       },
       {
-        "type": "truefalse",
-        "statement": "The resolution to Zeno's paradoxes came through the development of calculus by Newton and Leibniz — over 2,000 years after Zeno posed them.",
-        "correct": true,
-        "countdown": 10,
-        "fact": "Zeno's paradoxes tormented mathematicians for two millennia. The resolution came with calculus (1660s–1680s): an infinite series of terms can sum to a finite value. Achilles catches the tortoise because the infinite number of intervals he must cross adds up to a finite amount of time — exactly what Zeno refused to accept."
+        "type": "minigame",
+        "game": "geometry",
+        "configId": "zeno-infinity",
+        "instruction": "Zeno proved — or tried to — that you can never cross a room. Solve the infinite division: how does halving space endlessly still add up to something finite?",
+        "fact": "The mathematical resolution to Zeno's paradoxes came with calculus: an infinite sum of terms can converge to a finite value. The series ½ + ¼ + ⅛ + … = 1. Newton and Leibniz solved in the 1660s what Zeno posed in 450 BCE — it took 2,100 years to find the right mathematical language."
       }
     ]
   },
@@ -775,11 +775,11 @@
         "fact": "The Peace of Nicias (421 BCE) was negotiated largely by Pleistoanax on the Spartan side. It guaranteed fifty years of peace between Athens and Sparta — though it lasted less than seven before the Sicilian Expedition shattered it."
       },
       {
-        "type": "truefalse",
-        "statement": "The Thirty Years' Peace signed between Athens and Sparta in 446 BCE actually lasted less than fifteen years before the Peloponnesian War broke out.",
-        "correct": true,
-        "countdown": 10,
-        "fact": "The Thirty Years' Peace (446 BCE) collapsed in 431 BCE — just fifteen years later — when Sparta declared war on Athens, beginning the Peloponnesian War. Pleistoanax, recalled from exile to broker peace, watched the agreement he had helped forge unravel in his own lifetime."
+        "type": "minigame",
+        "game": "tactics",
+        "configId": "pleistoanax-sparta",
+        "instruction": "Pleistoanax must outmanoeuvre the Athenian alliance on the Spartan board. Find the decisive move that secures a lasting peace — or at least a temporary one.",
+        "fact": "Pleistoanax negotiated the Thirty Years' Peace in 446 BCE after withdrawing from Attica — a withdrawal his enemies called cowardice or corruption. The peace lasted only fifteen years before the Peloponnesian War erupted, but it gave Greece a generation of relative stability in which philosophy, drama, and architecture flourished."
       },
       {
         "type": "truefalse",
@@ -818,18 +818,18 @@
         "fact": "The Arthashastra (c. 300 BCE) is remarkably pragmatic — Chanakya advises a king to plant spies even in his own court, test ministers with temptations, and treat foreign relations as perpetual competition. Its realpolitik predates Machiavelli's The Prince by nearly 1,800 years."
       },
       {
-        "type": "truefalse",
-        "statement": "Chanakya's Arthashastra predates Machiavelli's The Prince by approximately 1,800 years.",
-        "correct": true,
-        "countdown": 10,
-        "fact": "The Arthashastra (c. 300 BCE) and The Prince (1513 CE) are both great works of political realism — both advise rulers to use whatever means necessary to maintain power. But Chanakya also addressed economics, law, and civic administration with a sophistication The Prince never attempted."
+        "type": "minigame",
+        "game": "tactics",
+        "configId": "senate",
+        "instruction": "Chanakya taught that a king must outmanoeuvre rivals in his own court before facing enemies abroad. Find the decisive move in the council chamber.",
+        "fact": "The Arthashastra devotes entire chapters to managing the king's inner circle — testing ministers with planted temptations, using counterintelligence against spies, and playing factions against each other. Chanakya's political realism was as relevant in the Maurya court as in any modern boardroom."
       },
       {
-        "type": "truefalse",
-        "statement": "According to tradition, Chanakya identified Chandragupta Maurya as a future king while he was still a child, recognising his natural leadership qualities.",
-        "correct": true,
-        "countdown": 10,
-        "fact": "According to tradition, Chanakya found the young Chandragupta playing 'king' with other village boys — commanding them naturally. He paid the boy's guardian a small sum and took him on, beginning years of rigorous training in military strategy, administration, and statecraft that would produce the founder of the Maurya Empire."
+        "type": "minigame",
+        "game": "voting",
+        "configId": "akkadian-council",
+        "instruction": "Chandragupta must win the loyalty of the Sumerian-descended Mesopotamian governors to consolidate the empire's western border. Sway the council.",
+        "fact": "The Maurya Empire under Chandragupta extended westward to meet the successor kingdoms of Alexander the Great. Chanakya's Arthashastra describes in detail how to manage the governors of conquered territories — through a combination of incentives, surveillance, and the projection of royal legitimacy."
       },
       {
         "type": "truefalse",
@@ -1230,10 +1230,11 @@
     "story": "The Catholic Monarchs",
     "challenges": [
       {
-        "type": "truefalse",
-        "statement": "Queen Isabel I personally funded Columbus's first voyage by selling her own jewellery collection.",
-        "correct": false,
-        "fact": "This is a romantic legend. The voyage was funded from the Castilian royal treasury, managed by treasurer Luis de Santangel. Isabel rejected Columbus twice before approving his third proposal in 1492."
+        "type": "minigame",
+        "game": "voting",
+        "configId": "spanish-court",
+        "instruction": "Queen Isabel must win court support to fund Columbus's westward voyage. The treasury is empty and the nobles are sceptical — persuade the council.",
+        "fact": "Columbus spent seven years seeking royal patronage before Isabel and Ferdinand agreed to fund his voyage. The myth that Isabel sold her jewels is almost certainly false — the funding came from the royal treasury and private investors. But Isabel's personal intervention was decisive after her council had already rejected the proposal."
       },
       {
         "type": "minigame",
@@ -1518,18 +1519,18 @@
         "fact": "Catherine ruled Russia for 34 years — longer than any other female ruler in Russian history. She expanded Russia's territory by 520,000 square kilometres and corresponded with Voltaire and Diderot while suppressing the very freedoms they championed."
       },
       {
-        "type": "truefalse",
-        "statement": "Catherine seized power with the help of the Imperial Guard regiments, who swore loyalty to her while her husband Peter III was away at his summer palace.",
-        "correct": true,
-        "countdown": 10,
-        "fact": "On 9 July 1762, Catherine left the palace at dawn and rode to the Izmailovsky Guard regiment, where she was proclaimed Empress. One by one the guard regiments joined her. By the time Peter III heard what had happened, the capital was secured and his own troops had deserted him. He abdicated the same day."
+        "type": "minigame",
+        "game": "matchthree",
+        "configId": "marie-versailles",
+        "instruction": "Catherine's Winter Palace rivalled Versailles in splendour. Match the treasures of the imperial court — candlesticks, mirrors, porcelain, and gold.",
+        "fact": "Catherine the Great transformed the Winter Palace into one of Europe's greatest art collections, acquiring over 4,000 paintings, 10,000 drawings, and 16,000 coins. She wrote to Voltaire: 'I am devouring without discrimination. It is not love of art — it is greed.' The Hermitage Museum was born from that greed."
       },
       {
-        "type": "truefalse",
-        "statement": "Born a German princess, Catherine converted to Russian Orthodox Christianity and became so fluent in Russian she was considered more Russian than her German-born husband Peter III.",
-        "correct": true,
-        "countdown": 10,
-        "fact": "Born Sophie of Anhalt-Zerbst in Prussia, Catherine's transformation was deliberate and strategic: to be accepted as a legitimate Russian ruler, she had to become Russian. She mastered the language, embraced the religion, and immersed herself in Russian culture — while Peter III made the fatal mistake of openly preferring Prussia."
+        "type": "minigame",
+        "game": "voting",
+        "configId": "versailles-crisis",
+        "instruction": "Catherine's coup is underway. Win the loyalty of the imperial regiments before Peter III realises what is happening — every vote of loyalty counts.",
+        "fact": "Catherine's coup on 9 July 1762 succeeded because she personally rode to each Guard regiment and asked for their loyalty. The five regiments that mattered swore allegiance to her within hours. Peter III, who had alienated the military by admiring Prussia, found himself without a single defender. He abdicated by evening."
       },
       {
         "type": "truefalse",
@@ -1556,11 +1557,11 @@
         "fact": "Josiah Wedgwood didn't just make pottery — he invented modern manufacturing. He introduced quality control, a money-back guarantee, free delivery, and celebrity endorsements. His factory pioneered the division of labour decades before Adam Smith wrote about it."
       },
       {
-        "type": "truefalse",
-        "statement": "Josiah Wedgwood was an early and passionate opponent of the slave trade, producing his famous antislavery cameo as a tool of mass-produced political activism.",
-        "correct": true,
-        "countdown": 10,
-        "fact": "Wedgwood's 'Am I Not a Man and a Brother?' cameo (1787) depicted a kneeling enslaved man in chains. He produced hundreds and gave them away as brooches, snuff boxes, and pendants — turning mass-production into political activism. Benjamin Franklin declared them the most effective abolitionist image of the era."
+        "type": "minigame",
+        "game": "porcelain",
+        "configId": "cobalt-bowl",
+        "instruction": "Wedgwood's breakthrough was Jasperware — a matte stoneware that could hold fine detail. Craft the cobalt bowl with the precision of his Etruria Works.",
+        "fact": "Wedgwood spent years and thousands of experiments to develop Jasperware — a ceramic so consistent that every piece looked identical. He believed in what today we call quality control: testing every batch, recording every failure. His laboratory notebooks survive, filled with meticulous records of clay, glaze, and kiln temperature."
       },
       {
         "type": "quiz",
@@ -1575,11 +1576,11 @@
         "fact": "Charles Darwin was Josiah Wedgwood's grandson — his mother Susannah was Wedgwood's daughter, and his wife Emma was Wedgwood's granddaughter. Darwin married his own cousin from the Wedgwood family, a common practice in Victorian upper-class families."
       },
       {
-        "type": "truefalse",
-        "statement": "Josiah Wedgwood had his right leg amputated below the knee after a childhood bout of smallpox permanently weakened it.",
-        "correct": true,
-        "countdown": 10,
-        "fact": "Wedgwood contracted smallpox as a child, which repeatedly infected his right knee. Years of recurring abscesses eventually required amputation in 1768. Rather than slowing him down, the surgery seemed to energize him — he opened the Etruria Works the very next year, and walked with a prosthetic leg for the rest of his life."
+        "type": "minigame",
+        "game": "trade",
+        "configId": "steel-stocks",
+        "instruction": "The Industrial Revolution ran on raw materials and capital. Bid on commodities to supply Wedgwood's Etruria factory — clay, coal, and canal shares.",
+        "fact": "Wedgwood was a major investor in the Grand Trunk Canal, which connected his Staffordshire potteries to the ports at Liverpool and Hull. He understood that transport was as important as manufacturing — cheap bulk movement of clay in and finished goods out made his mass-production model possible."
       },
       {
         "type": "truefalse",
@@ -1615,10 +1616,11 @@
         "fact": "In 1791, the royal family disguised themselves and fled toward Austria. They were recognized and captured at Varennes — the king's profile on French coins had been recognized by a local postmaster. The failed flight sealed the monarchy's fate."
       },
       {
-        "type": "truefalse",
-        "statement": "Marie Antoinette actually said \"Let them eat cake\" when told the poor had no bread.",
-        "correct": false,
-        "fact": "No historical evidence links this quote to Marie Antoinette. It first appeared in Rousseau's Confessions (written c.1765) attributed to \"a great princess\" — when Marie Antoinette was only nine years old. The quote became attached to her posthumously as a symbol of royal indifference."
+        "type": "minigame",
+        "game": "matchthree",
+        "configId": "marie-versailles",
+        "instruction": "Versailles was a world of mirrors and gilded excess. Match the treasures of the palace — the same luxury that the revolutionary crowds outside could not afford.",
+        "fact": "Marie Antoinette's reputation for extravagance was partly real and partly manufactured. Her annual clothing budget was enormous — but Louis XVI actually cut it after they married. Revolutionary pamphlets exaggerated her spending into legend. The 'Madame Deficit' nickname stuck regardless of the facts."
       }
     ]
   },
@@ -1651,18 +1653,18 @@
         "fact": "The geological timescale assembled during and after Hutton's lifetime required his key insight: processes we observe today — erosion, deposition, volcanism — are the same ones that shaped ancient rocks. If the present is the key to the past, the past must be unimaginably long."
       },
       {
-        "type": "truefalse",
-        "statement": "James Hutton trained as a medical doctor before turning to farming and geology.",
-        "correct": true,
-        "countdown": 10,
-        "fact": "Hutton earned his MD at Leiden in 1749 but never practised. He turned to farming to apply chemistry to agriculture, then to geology when he realised his farmlands were eroding and depositing material — and that this process must have repeated millions of times to form the layered rocks he saw. His medical training gave him a naturalist's eye for evidence."
+        "type": "minigame",
+        "game": "geometry",
+        "configId": "cylinder-volume",
+        "instruction": "Hutton calculated the volume of rock removed by erosion over millions of years. Work out the geometry of a rock column — the same calculation that proved the Earth was ancient.",
+        "fact": "Hutton realised that the volume of sediment deposited in river deltas must equal the volume of rock eroded from mountains — and that the mountains were still there. The rates of erosion he could observe were so slow that the cycle must have repeated millions of times. Geometry became an argument for deep time."
       },
       {
-        "type": "truefalse",
-        "statement": "Hutton's observation at Siccar Point on the Scottish coast — of tilted ancient rock overlain by flat younger rock — revealed millions of years of hidden geological history.",
-        "correct": true,
-        "countdown": 10,
-        "fact": "Siccar Point (1788) was Hutton's epiphany. Nearly vertical Silurian greywacke (440 million years old) is overlain by nearly horizontal Devonian red sandstone (370 million years old). Between them lay 70 million years of mountain-building, erosion, and submergence. His companion John Playfair wrote he 'felt giddy' to contemplate the abyss of time that opened before them."
+        "type": "minigame",
+        "game": "classify",
+        "configId": "ecosystems",
+        "instruction": "Hutton saw Earth as a self-regulating system — soil erodes, rivers carry it to the sea, it becomes new rock, which uplifts into new mountains. Classify each element into the correct part of the natural cycle.",
+        "fact": "Hutton's 1788 paper 'Theory of the Earth' proposed that the planet was a self-maintaining system — soil feeds plants, erosion renews the soil, uplift renews the mountains. This 'steady-state' Earth anticipated modern geology and ecology by two centuries. James Lovelock's Gaia hypothesis of 1972 owes an explicit debt to Hutton."
       },
       {
         "type": "truefalse",
@@ -1730,11 +1732,11 @@
         "fact": "Schumann's Florestan (passionate extrovert) and Eusebius (dreaming introvert) represented the two sides of Romantic temperament. He used both names in his music journal Neue Zeitschrift für Musik, which he founded in 1834."
       },
       {
-        "type": "truefalse",
-        "statement": "Clara Schumann continued performing publicly well into old age, giving her last public concert at the age of 71.",
-        "correct": true,
-        "countdown": 10,
-        "fact": "Clara Schumann (1819–1896) gave her last public performance in Frankfurt in March 1891, at age 71 — shortly before a paralysis of her right hand ended her career. She had performed publicly for over 60 years, supported eight children, and survived her husband Robert by 40 years, becoming the pre-eminent pianist in Europe."
+        "type": "minigame",
+        "game": "music",
+        "configId": "clara-schumann",
+        "instruction": "Clara Schumann performed this phrase publicly for sixty years. Play the ascending melody — the voice of history's greatest concert pianist.",
+        "fact": "Clara Schumann (1819–1896) gave her first public performance at age nine and her last at seventy-one. She performed across Europe for over sixty years, premiering works by her husband Robert and her closest friend Johannes Brahms. Brahms said: 'Clara is the most gifted artist and personality I have ever known.'"
       },
       {
         "type": "sort",
@@ -2335,18 +2337,18 @@
         "fact": "Tenzing Norgay had attempted Everest six times before 1953. His intimate knowledge of the mountain — every ice wall, every crevasse — was as essential as any piece of equipment. Without Tenzing, no summit."
       },
       {
-        "type": "truefalse",
-        "statement": "Tenzing Norgay was the first Sherpa ever to attempt Everest when he joined the 1953 expedition.",
-        "correct": false,
-        "countdown": 10,
-        "fact": "Tenzing had attempted Everest six times before 1953 — first in 1935. He was chosen for his unmatched experience. Sherpas had been essential to every serious Himalayan expedition since the 1920s, but rarely received equivalent recognition."
+        "type": "minigame",
+        "game": "geometry",
+        "configId": "sphere-surface",
+        "instruction": "Mountaineers calculating Everest's altitude used spherical trigonometry — the same geometry that measures the surface of the Earth. Solve the spherical surface problem.",
+        "fact": "Everest's height was first calculated in 1856 by the Great Trigonometrical Survey of India, using triangulation across 150 km of terrain. The calculation involved correcting for the curvature of the Earth, atmospheric refraction of light, and the deflection of plumb bobs by the Himalayas' own gravitational mass."
       },
       {
-        "type": "truefalse",
-        "statement": "Hillary and Tenzing reached the summit of Everest at exactly 11:30 AM on May 29, 1953.",
-        "correct": true,
-        "countdown": 10,
-        "fact": "They spent 15 minutes on the summit — enough for photographs and a buried chocolate offering. The news was withheld until Queen Elizabeth II's coronation on June 2, providing a double gift to the nation."
+        "type": "minigame",
+        "game": "maze",
+        "configId": "everest-peak",
+        "instruction": "Navigate the route Hillary and Tenzing took through the Khumbu Icefall — the most dangerous section of the Everest approach — to reach the summit.",
+        "fact": "The Khumbu Icefall is a slow-moving frozen river of seracs — massive ice towers that collapse without warning. Hillary described it as 'one of the most awe-inspiring and terrifying places I have ever seen.' The 1953 expedition crossed it twenty-five times. Today it remains the deadliest section of the standard Everest route."
       },
       {
         "type": "quiz",
@@ -2513,18 +2515,18 @@
         "countdown": 10
       },
       {
-        "type": "truefalse",
-        "statement": "Jane Goodall's mentor Louis Leakey believed that discovering tool use in chimpanzees would force a fundamental redefinition of what it means to be human.",
-        "correct": true,
-        "countdown": 10,
-        "fact": "When Goodall sent Leakey her notes on chimpanzees stripping leaves from twigs to fish for termites, he replied: 'Now we must redefine tool, redefine man, or accept chimpanzees as human.' The discovery became one of the most significant in 20th-century science, demonstrating that toolmaking predates our own species."
+        "type": "minigame",
+        "game": "classify",
+        "configId": "ecosystems",
+        "instruction": "Gombe Stream is a complex ecosystem of rainforest, savannah, and lakeshore. Classify each species into its correct ecological role — as Goodall mapped her chimpanzees' world.",
+        "fact": "Jane Goodall's research at Gombe revealed that chimpanzee communities have distinct cultures — different groups use different tools, have different social customs, and even different vocalizations. Culture, once thought uniquely human, turns out to be a primate invention at least 7 million years old."
       },
       {
-        "type": "truefalse",
-        "statement": "Jane Goodall observed chimpanzees hunting and eating other animals — disproving the assumption that chimps were vegetarians.",
-        "correct": true,
-        "countdown": 10,
-        "fact": "Goodall's observation of chimpanzees hunting red colobus monkeys, sharing the meat, and even engaging in what appeared to be organised warfare shocked the scientific world. Chimps, it turned out, were omnivores with complex social politics. Her findings transformed understanding of primate behaviour and early human evolution."
+        "type": "minigame",
+        "game": "classify",
+        "configId": "darwin-beaks",
+        "instruction": "Goodall's chimps used different tools for different tasks — just as Darwin's finches evolved different beaks for different foods. Classify each beak by what it eats.",
+        "fact": "Darwin's finches and Goodall's chimps are linked by the same insight: organisms adapt their behaviour and bodies to their environment. When Goodall observed chimps selecting and modifying specific twigs to fish for termites, she was watching tool-use behaviour — a hallmark of intelligence — arising from the same evolutionary pressures Darwin described."
       },
       {
         "type": "truefalse",
@@ -2646,18 +2648,18 @@
         "fact": "Robuchon's retirement in 1996 was unprecedented in fine dining. He said he was exhausted and wanted to explore life beyond the kitchen. Seven years later, his return with the L'Atelier concept — casual counter seating around an open kitchen — reinvented fine dining for a new generation."
       },
       {
-        "type": "truefalse",
-        "statement": "Robuchon's celebrated mashed potato recipe uses approximately equal parts potato and butter by weight.",
-        "correct": false,
-        "countdown": 10,
-        "fact": "Robuchon's iconic pommes purée uses roughly one part butter to two parts potato by weight — about 250g of butter per kilogram of potato, passed through a drum sieve. It is an astonishing amount of butter for what appears to be a humble side dish — which is precisely the point. The absurd simplicity and absurd richness are the entire joke and the entire genius."
+        "type": "minigame",
+        "game": "cooking",
+        "configId": "japanese-tea",
+        "instruction": "Robuchon's perfectionism matched the Japanese tea ceremony — every gesture deliberate, every ingredient chosen with absolute care. Prepare the tea with the same precision he brought to mashed potatoes.",
+        "fact": "Robuchon spent years studying Japanese culinary philosophy — the concept of shokunin kishitsu (craftsman's spirit) deeply influenced his cooking. His L'Atelier restaurants, modelled on Japanese counter dining, blended French technique with Japanese minimalism and obsessive attention to the guest experience."
       },
       {
-        "type": "truefalse",
-        "statement": "The Michelin Guide was created by a French tyre company to encourage motorists to travel — thereby wearing out their tyres and buying more.",
-        "correct": true,
-        "countdown": 10,
-        "fact": "André Michelin published the first Michelin Guide in 1900 to help French motorists find petrol stations, garages, and hotels — boosting demand for rubber tyres. The little red guide gave away 35,000 free copies. It began rating restaurants in 1926 and awarding stars in 1931. The tyre company still publishes the world's most influential restaurant guide today."
+        "type": "minigame",
+        "game": "matchthree",
+        "configId": "venice-glass",
+        "instruction": "Robuchon's plating was art — each element placed with the precision of a Renaissance craftsman. Match the Venetian glass pieces into a perfect arrangement.",
+        "fact": "Robuchon's approach to plating transformed fine dining aesthetics. He said: 'The most important ingredient in a recipe is love for the work.' His kitchens were run with military discipline — every plate identical, every temperature precise. He earned more Michelin stars than any chef in history because perfection, for him, was the minimum standard."
       },
       {
         "type": "truefalse",
@@ -2698,18 +2700,18 @@
         "fact": "Maradona's career compressed triumph and tragedy into a single volcanic life. He carried Argentina and Napoli to heights neither had reached before — and his personal demons brought him just as low. The 1978 World Cup, won without him, haunted him; 1986, with him at the centre, is the defining image of his legacy."
       },
       {
-        "type": "truefalse",
-        "statement": "Maradona's second goal against England in the 1986 World Cup — scored in the same match as the 'Hand of God' — is widely voted the greatest goal in the history of football.",
-        "correct": true,
-        "countdown": 10,
-        "fact": "Four minutes after the 'Hand of God,' Maradona received the ball in his own half and dribbled past five English players and the goalkeeper to score. FIFA fans voted it the 'Goal of the Century' in 2002. Maradona later said: 'Sometimes I think I can't believe I scored that goal. Was that really me?'"
+        "type": "minigame",
+        "game": "klotski",
+        "configId": "sword-formation",
+        "instruction": "Maradona's Goal of the Century — dribbling past five defenders in 10 seconds — was a formation broken by individual genius. Slide through the defence.",
+        "fact": "Maradona received the ball in his own half and dribbled 60 metres, evading five English players and the goalkeeper before scoring. Peter Reid, one of the defenders he beat, said: 'I just kept thinking — this can't be happening.' It happened. FIFA fans voted it the Goal of the Century in 2002."
       },
       {
-        "type": "truefalse",
-        "statement": "Napoli had never won the Italian league (Serie A) before Maradona arrived — he led them to their first championships.",
-        "correct": true,
-        "countdown": 10,
-        "fact": "Napoli, a club from Italy's poorer south, had never won the Scudetto in their 60-year history. Maradona led them to two titles (1987, 1990) and a UEFA Cup (1989). His impact on the city was religious in intensity — a banner at his 2020 funeral read: 'Even God sometimes cries.' Napoli finally won their third Scudetto in 2023, 33 years later."
+        "type": "minigame",
+        "game": "tactics",
+        "configId": "musashi-duel",
+        "instruction": "One player against the world. Maradona's genius was being unpredictable. Find the decisive move in the one-on-one duel — just like the Goal of the Century.",
+        "fact": "Maradona's duel with England in 1986 was personal as well as sporting — four years after the Falklands War, England and Argentina met in a World Cup quarter-final. Maradona scored both goals: one with his hand, one with his feet. He later said both were scored 'with the hand of God and the head of Maradona.'"
       },
       {
         "type": "truefalse",
@@ -2749,18 +2751,18 @@
         "fact": "War journalism transformed how governments prosecute and justify wars. Russell's dispatches triggered military reforms; Adams' photo changed American public opinion on Vietnam; Arnett's Gulf War broadcasts created the first live war on television — watched simultaneously by world leaders and ordinary viewers."
       },
       {
-        "type": "truefalse",
-        "statement": "CNN's live broadcast from Baghdad during the 1991 Gulf War was the first time a portable satellite uplink had been used to report live from inside a war zone.",
-        "correct": true,
-        "countdown": 10,
-        "fact": "CNN used a portable satellite uplink supplied by the US military to broadcast live from the Al-Rashid Hotel in Baghdad. Arnett, Bernard Shaw, and John Holliman reported live through the first night of bombing. The technology invented the template for 24-hour live war coverage that all major news networks now follow."
+        "type": "minigame",
+        "game": "decode",
+        "configId": "cipher-al",
+        "instruction": "Arnett's Gulf War dispatches were scrutinised by military censors before broadcast. Decode the message — what gets through when every word is watched?",
+        "fact": "CNN's Baghdad correspondents operated under military press pools and Iraqi government minders simultaneously. Every broadcast was monitored. Arnett later said he chose his words carefully — describing what he could see while knowing the military and the Iraqi government were both watching. Real-time war journalism was born under those constraints."
       },
       {
-        "type": "truefalse",
-        "statement": "Peter Arnett was born in the United States and began his career at the New York Times before joining AP in Vietnam.",
-        "correct": false,
-        "countdown": 10,
-        "fact": "Peter Arnett was born in New Zealand in 1934. He began his journalism career working for newspapers in New Zealand and Australia before moving to Southeast Asia, where his coverage of the Vietnam War for the Associated Press won him the Pulitzer Prize for International Reporting in 1966."
+        "type": "minigame",
+        "game": "sudoku",
+        "configId": "eisenstein-grid",
+        "instruction": "War correspondents must impose order on chaos — filing accurate reports under fire. The grid has one solution. Find it before the deadline.",
+        "fact": "Live television journalism from a war zone required split-second decisions: what to broadcast, how to frame it, what to leave out. Arnett's reporting from Baghdad was criticised by the US military as too sympathetic to Iraq and praised by journalists as the only independent witness in the city. Both sides were watching the same broadcast."
       },
       {
         "type": "truefalse",
@@ -2776,11 +2778,11 @@
     "story": "Think Different",
     "challenges": [
       {
-        "type": "truefalse",
-        "statement": "When Steve Jobs returned to Apple in 1997, the company was approximately 90 days from bankruptcy, with cash reserves nearly exhausted.",
-        "correct": true,
-        "countdown": 10,
-        "fact": "Apple was burning through $1 billion a year in 1997 with no profitable products. Michael Dell, asked what he would do with Apple, said: 'Shut it down and give the money back to the shareholders.' Jobs secured a $150 million investment from Microsoft, cut Apple's product line from 350 to 10, and began the turnaround with the iMac in 1998."
+        "type": "minigame",
+        "game": "pseudocode",
+        "configId": "jobs-code",
+        "instruction": "Jobs believed every great product was 10,000 decisions, each one right. Arrange the pseudo-code in the correct order — the logic that made Apple's comeback possible.",
+        "fact": "When Jobs returned to Apple in 1997, the company had 350 products. He cut it to 10 — a 2×2 grid of consumer and professional, desktop and portable. 'Deciding what not to do is as important as deciding what to do,' he said. The focus that followed produced the iMac, iPod, iPhone, and iPad within a decade."
       },
       {
         "type": "quiz",
@@ -2808,11 +2810,11 @@
         "fact": "Each Apple product under Jobs didn't just sell — it created or redefined an entire category. The Mac made personal computing accessible; the iPod destroyed the CD model; the iPhone made every previous phone obsolete. Jobs launched five industry-defining products in 26 years."
       },
       {
-        "type": "truefalse",
-        "statement": "Steve Jobs dropped out of Reed College but kept attending classes informally — including a calligraphy course whose lessons later shaped Mac typography.",
-        "correct": true,
-        "countdown": 10,
-        "fact": "Jobs dropped out after one semester but stayed on campus for 18 months, sleeping on floors and attending classes informally. A calligraphy course showed him the beauty of typefaces — knowledge he applied when designing the Mac's fonts, giving it the first proportionally-spaced computer typography. 'If I had never dropped in on that single course in college,' he said, 'the Mac would have never had multiple typefaces.'"
+        "type": "minigame",
+        "game": "auction",
+        "configId": "tech-auction",
+        "instruction": "Silicon Valley's founding artefacts are up for bid. Compete for the relics of the digital revolution — the same objects Jobs touched, pitched, and obsessed over.",
+        "fact": "Jobs dropped out of Reed College in 1972 but kept auditing classes — including a calligraphy course by Lloyd Reynolds. That course taught him about serif and sans-serif typefaces, proportional spacing, and typographic beauty. Ten years later, the Macintosh became the first computer with multiple typefaces. 'If I had never dropped in on that course, every Mac would have had the same boring font.'"
       },
       {
         "type": "truefalse",
