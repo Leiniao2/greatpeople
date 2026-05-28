@@ -786,6 +786,851 @@
         "Monument",
         "Arena"
       ]
+    },
+    {
+      "name": "Thebes",
+      "era": "Ancient",
+      "imageKey": "ancient_thebes",
+      "countries": [
+        "Egypt"
+      ],
+      "buildings": [
+        "Palace",
+        "Tomb"
+      ]
+    },
+    {
+      "name": "Aksum",
+      "era": "Ancient",
+      "imageKey": "ancient_aksum",
+      "countries": [
+        "Ethiopia"
+      ],
+      "buildings": [
+        "Monument",
+        "Port"
+      ]
+    },
+    {
+      "name": "Knossos",
+      "era": "Ancient",
+      "imageKey": "ancient_knossos",
+      "countries": [
+        "Greece"
+      ],
+      "buildings": [
+        "Palace",
+        "Monument"
+      ]
+    },
+    {
+      "name": "Caral",
+      "era": "Ancient",
+      "imageKey": "ancient_caral",
+      "countries": [
+        "Peru"
+      ],
+      "buildings": [
+        "Monument",
+        "Forum"
+      ]
+    },
+    {
+      "name": "Monte Albán",
+      "era": "Ancient",
+      "imageKey": "ancient_monte_alban",
+      "countries": [
+        "Mexico"
+      ],
+      "buildings": [
+        "Observatory",
+        "Tomb"
+      ]
+    },
+    {
+      "name": "Anyang",
+      "era": "Ancient",
+      "imageKey": "ancient_anyang",
+      "countries": [
+        "China"
+      ],
+      "buildings": [
+        "Palace",
+        "Barracks"
+      ]
+    },
+    {
+      "name": "Troy",
+      "era": "Ancient",
+      "imageKey": "ancient_troy",
+      "countries": [
+        "Turkey"
+      ],
+      "buildings": [
+        "Barracks",
+        "Forum"
+      ]
+    },
+    {
+      "name": "Taxila",
+      "era": "Ancient",
+      "imageKey": "ancient_taxila",
+      "countries": [
+        "Pakistan"
+      ],
+      "buildings": [
+        "Observatory",
+        "Mint"
+      ]
+    },
+    {
+      "name": "Kerma",
+      "era": "Ancient",
+      "imageKey": "ancient_kerma",
+      "countries": [
+        "Sudan"
+      ],
+      "buildings": [
+        "Tomb",
+        "Mint"
+      ]
+    },
+    {
+      "name": "Poverty Point",
+      "era": "Ancient",
+      "imageKey": "ancient_poverty_point",
+      "countries": [
+        "United States"
+      ],
+      "buildings": [
+        "Monument",
+        "Forum"
+      ]
+    },
+    {
+      "name": "Alexandria",
+      "era": "Classical",
+      "imageKey": "classical_alexandria",
+      "countries": [
+        "Egypt"
+      ],
+      "buildings": [
+        "Library",
+        "Port"
+      ]
+    },
+    {
+      "name": "Pataliputra",
+      "era": "Classical",
+      "imageKey": "classical_pataliputra",
+      "countries": [
+        "India"
+      ],
+      "buildings": [
+        "Palace",
+        "Library"
+      ]
+    },
+    {
+      "name": "Antioch",
+      "era": "Classical",
+      "imageKey": "classical_antioch",
+      "countries": [
+        "Syria"
+      ],
+      "buildings": [
+        "Forum",
+        "Port"
+      ]
+    },
+    {
+      "name": "Tiwanaku",
+      "era": "Classical",
+      "imageKey": "classical_tiwanaku",
+      "countries": [
+        "Bolivia"
+      ],
+      "buildings": [
+        "Sanctuary",
+        "Observatory"
+      ]
+    },
+    {
+      "name": "Meroe",
+      "era": "Classical",
+      "imageKey": "classical_meroe",
+      "countries": [
+        "Sudan"
+      ],
+      "buildings": [
+        "Barracks",
+        "Parliament"
+      ]
+    },
+    {
+      "name": "Luoyang",
+      "era": "Classical",
+      "imageKey": "classical_luoyang",
+      "countries": [
+        "China"
+      ],
+      "buildings": [
+        "Palace",
+        "Monument"
+      ]
+    },
+    {
+      "name": "Óc Eo",
+      "era": "Classical",
+      "imageKey": "classical_oc_eo",
+      "countries": [
+        "Vietnam"
+      ],
+      "buildings": [
+        "Port",
+        "Plantation"
+      ]
+    },
+    {
+      "name": "Samarkand",
+      "era": "Classical",
+      "imageKey": "classical_samarkand",
+      "countries": [
+        "Uzbekistan"
+      ],
+      "buildings": [
+        "Court",
+        "Port"
+      ]
+    },
+    {
+      "name": "Carthago Nova",
+      "era": "Classical",
+      "imageKey": "classical_carthago_nova",
+      "countries": [
+        "Spain"
+      ],
+      "buildings": [
+        "Barracks",
+        "Port"
+      ]
+    },
+    {
+      "name": "Chersonesus",
+      "era": "Classical",
+      "imageKey": "classical_chersonesus",
+      "countries": [
+        "Ukraine"
+      ],
+      "buildings": [
+        "Port",
+        "Forum"
+      ]
+    },
+    {
+      "name": "Timbuktu",
+      "era": "Medieval",
+      "imageKey": "medieval_timbuktu",
+      "countries": [
+        "Mali"
+      ],
+      "buildings": [
+        "University",
+        "Sanctuary"
+      ]
+    },
+    {
+      "name": "Angkor",
+      "era": "Medieval",
+      "imageKey": "medieval_angkor",
+      "countries": [
+        "Cambodia"
+      ],
+      "buildings": [
+        "Sanctuary",
+        "Guild"
+      ]
+    },
+    {
+      "name": "Constantinople",
+      "era": "Medieval",
+      "imageKey": "medieval_constantinople",
+      "countries": [
+        "Turkey"
+      ],
+      "buildings": [
+        "Palace",
+        "Barracks"
+      ]
+    },
+    {
+      "name": "Great Zimbabwe",
+      "era": "Medieval",
+      "imageKey": "medieval_great_zimbabwe",
+      "countries": [
+        "Zimbabwe"
+      ],
+      "buildings": [
+        "Castle",
+        "Sanctuary"
+      ]
+    },
+    {
+      "name": "Kilwa",
+      "era": "Medieval",
+      "imageKey": "medieval_kilwa",
+      "countries": [
+        "Tanzania"
+      ],
+      "buildings": [
+        "Port",
+        "Monastery"
+      ]
+    },
+    {
+      "name": "Cahokia",
+      "era": "Medieval",
+      "imageKey": "medieval_cahokia",
+      "countries": [
+        "United States"
+      ],
+      "buildings": [
+        "Monument",
+        "Garden"
+      ]
+    },
+    {
+      "name": "Córdoba",
+      "era": "Medieval",
+      "imageKey": "medieval_cordoba",
+      "countries": [
+        "Spain"
+      ],
+      "buildings": [
+        "University",
+        "Monastery"
+      ]
+    },
+    {
+      "name": "Nara",
+      "era": "Medieval",
+      "imageKey": "medieval_nara",
+      "countries": [
+        "Japan"
+      ],
+      "buildings": [
+        "Sanctuary",
+        "Garden"
+      ]
+    },
+    {
+      "name": "Novgorod",
+      "era": "Medieval",
+      "imageKey": "medieval_novgorod",
+      "countries": [
+        "Russia"
+      ],
+      "buildings": [
+        "Castle",
+        "Port"
+      ]
+    },
+    {
+      "name": "Lalibela",
+      "era": "Medieval",
+      "imageKey": "medieval_lalibela",
+      "countries": [
+        "Ethiopia"
+      ],
+      "buildings": [
+        "Sanctuary",
+        "Monument"
+      ]
+    },
+    {
+      "name": "Istanbul",
+      "era": "Renaissance",
+      "imageKey": "renaissance_istanbul",
+      "countries": [
+        "Turkey"
+      ],
+      "buildings": [
+        "Palace",
+        "Port",
+        "Bank"
+      ]
+    },
+    {
+      "name": "Edo",
+      "era": "Renaissance",
+      "imageKey": "renaissance_edo",
+      "countries": [
+        "Japan"
+      ],
+      "buildings": [
+        "Castle",
+        "Forum"
+      ]
+    },
+    {
+      "name": "Potosí",
+      "era": "Renaissance",
+      "imageKey": "renaissance_potosi",
+      "countries": [
+        "Bolivia"
+      ],
+      "buildings": [
+        "Mint",
+        "Bank"
+      ]
+    },
+    {
+      "name": "Antwerp",
+      "era": "Renaissance",
+      "imageKey": "renaissance_antwerp",
+      "countries": [
+        "Belgium"
+      ],
+      "buildings": [
+        "Port",
+        "Bank",
+        "Parliament"
+      ]
+    },
+    {
+      "name": "Calicut",
+      "era": "Renaissance",
+      "imageKey": "renaissance_calicut",
+      "countries": [
+        "India"
+      ],
+      "buildings": [
+        "Port",
+        "Plantation"
+      ]
+    },
+    {
+      "name": "Augsburg",
+      "era": "Renaissance",
+      "imageKey": "renaissance_augsburg",
+      "countries": [
+        "Germany"
+      ],
+      "buildings": [
+        "Bank",
+        "University"
+      ]
+    },
+    {
+      "name": "Samarkand",
+      "era": "Renaissance",
+      "imageKey": "renaissance_samarkand",
+      "countries": [
+        "Uzbekistan"
+      ],
+      "buildings": [
+        "Observatory",
+        "Library"
+      ]
+    },
+    {
+      "name": "Nanjing",
+      "era": "Renaissance",
+      "imageKey": "renaissance_nanjing",
+      "countries": [
+        "China"
+      ],
+      "buildings": [
+        "Palace",
+        "Port"
+      ]
+    },
+    {
+      "name": "Kilwa",
+      "era": "Renaissance",
+      "imageKey": "renaissance_kilwa",
+      "countries": [
+        "Tanzania"
+      ],
+      "buildings": [
+        "Port",
+        "Monastery"
+      ]
+    },
+    {
+      "name": "Cuzco",
+      "era": "Renaissance",
+      "imageKey": "renaissance_cuzco",
+      "countries": [
+        "Peru"
+      ],
+      "buildings": [
+        "Fortress",
+        "Sanctuary"
+      ]
+    },
+    {
+      "name": "Calcutta",
+      "era": "Steam",
+      "imageKey": "steam_calcutta",
+      "countries": [
+        "India"
+      ],
+      "buildings": [
+        "Port",
+        "Parliament"
+      ]
+    },
+    {
+      "name": "Osaka",
+      "era": "Steam",
+      "imageKey": "steam_osaka",
+      "countries": [
+        "Japan"
+      ],
+      "buildings": [
+        "Mint",
+        "Factory"
+      ]
+    },
+    {
+      "name": "Cape Town",
+      "era": "Steam",
+      "imageKey": "steam_cape_town",
+      "countries": [
+        "South Africa"
+      ],
+      "buildings": [
+        "Port",
+        "News Agency"
+      ]
+    },
+    {
+      "name": "Shanghai",
+      "era": "Steam",
+      "imageKey": "steam_shanghai",
+      "countries": [
+        "China"
+      ],
+      "buildings": [
+        "Port",
+        "Bank",
+        "Factory"
+      ]
+    },
+    {
+      "name": "Vienna",
+      "era": "Steam",
+      "imageKey": "steam_vienna",
+      "countries": [
+        "Austria"
+      ],
+      "buildings": [
+        "Concert Hall",
+        "University"
+      ]
+    },
+    {
+      "name": "Chicago",
+      "era": "Steam",
+      "imageKey": "steam_chicago",
+      "countries": [
+        "United States"
+      ],
+      "buildings": [
+        "Factory",
+        "Stock Exchange"
+      ]
+    },
+    {
+      "name": "Lima",
+      "era": "Steam",
+      "imageKey": "steam_lima",
+      "countries": [
+        "Peru"
+      ],
+      "buildings": [
+        "Port",
+        "Sanctuary"
+      ]
+    },
+    {
+      "name": "Lagos",
+      "era": "Steam",
+      "imageKey": "steam_lagos",
+      "countries": [
+        "Nigeria"
+      ],
+      "buildings": [
+        "Port",
+        "Mint"
+      ]
+    },
+    {
+      "name": "Melbourne",
+      "era": "Steam",
+      "imageKey": "steam_melbourne",
+      "countries": [
+        "Australia"
+      ],
+      "buildings": [
+        "Port",
+        "University"
+      ]
+    },
+    {
+      "name": "São Paulo",
+      "era": "Steam",
+      "imageKey": "steam_sao_paulo",
+      "countries": [
+        "Brazil"
+      ],
+      "buildings": [
+        "Factory",
+        "Court"
+      ]
+    },
+    {
+      "name": "Mumbai",
+      "era": "Electricity",
+      "imageKey": "electricity_mumbai",
+      "countries": [
+        "India"
+      ],
+      "buildings": [
+        "Port",
+        "Stock Exchange"
+      ]
+    },
+    {
+      "name": "Osaka",
+      "era": "Electricity",
+      "imageKey": "electricity_osaka",
+      "countries": [
+        "Japan"
+      ],
+      "buildings": [
+        "Stock Exchange",
+        "Port"
+      ]
+    },
+    {
+      "name": "São Paulo",
+      "era": "Electricity",
+      "imageKey": "electricity_sao_paulo",
+      "countries": [
+        "Brazil"
+      ],
+      "buildings": [
+        "Stock Exchange",
+        "Port"
+      ]
+    },
+    {
+      "name": "Lagos",
+      "era": "Electricity",
+      "imageKey": "electricity_lagos",
+      "countries": [
+        "Nigeria"
+      ],
+      "buildings": [
+        "Port",
+        "Palace"
+      ]
+    },
+    {
+      "name": "Nairobi",
+      "era": "Electricity",
+      "imageKey": "electricity_nairobi",
+      "countries": [
+        "Kenya"
+      ],
+      "buildings": [
+        "University",
+        "Palace"
+      ]
+    },
+    {
+      "name": "Melbourne",
+      "era": "Electricity",
+      "imageKey": "electricity_melbourne",
+      "countries": [
+        "Australia"
+      ],
+      "buildings": [
+        "Port",
+        "University",
+        "Parliament"
+      ]
+    },
+    {
+      "name": "Vienna",
+      "era": "Electricity",
+      "imageKey": "electricity_vienna",
+      "countries": [
+        "Austria"
+      ],
+      "buildings": [
+        "Museum",
+        "Gallery",
+        "University"
+      ]
+    },
+    {
+      "name": "Chicago",
+      "era": "Electricity",
+      "imageKey": "electricity_chicago",
+      "countries": [
+        "United States"
+      ],
+      "buildings": [
+        "Stock Exchange",
+        "Military Academy"
+      ]
+    },
+    {
+      "name": "Johannesburg",
+      "era": "Electricity",
+      "imageKey": "electricity_johannesburg",
+      "countries": [
+        "South Africa"
+      ],
+      "buildings": [
+        "Bank",
+        "Palace"
+      ]
+    },
+    {
+      "name": "Cape Town",
+      "era": "Electricity",
+      "imageKey": "electricity_cape_town",
+      "countries": [
+        "South Africa"
+      ],
+      "buildings": [
+        "Port",
+        "Museum"
+      ]
+    },
+    {
+      "name": "London",
+      "era": "Information",
+      "imageKey": "information_london",
+      "countries": [
+        "United Kingdom"
+      ],
+      "buildings": [
+        "Stock Exchange",
+        "Monument"
+      ]
+    },
+    {
+      "name": "Bangalore",
+      "era": "Information",
+      "imageKey": "information_bangalore",
+      "countries": [
+        "India"
+      ],
+      "buildings": [
+        "Enterprise Quarter",
+        "Stock Exchange"
+      ]
+    },
+    {
+      "name": "Nairobi",
+      "era": "Information",
+      "imageKey": "information_nairobi",
+      "countries": [
+        "Kenya"
+      ],
+      "buildings": [
+        "Enterprise Quarter",
+        "Port"
+      ]
+    },
+    {
+      "name": "Stockholm",
+      "era": "Information",
+      "imageKey": "information_stockholm",
+      "countries": [
+        "Sweden"
+      ],
+      "buildings": [
+        "Enterprise Quarter",
+        "Concert Hall"
+      ]
+    },
+    {
+      "name": "Tel Aviv",
+      "era": "Information",
+      "imageKey": "information_tel_aviv",
+      "countries": [
+        "Israel"
+      ],
+      "buildings": [
+        "Enterprise Quarter",
+        "Monument"
+      ]
+    },
+    {
+      "name": "Berlin",
+      "era": "Information",
+      "imageKey": "information_berlin",
+      "countries": [
+        "Germany"
+      ],
+      "buildings": [
+        "Enterprise Quarter",
+        "Concert Hall"
+      ]
+    },
+    {
+      "name": "São Paulo",
+      "era": "Information",
+      "imageKey": "information_sao_paulo",
+      "countries": [
+        "Brazil"
+      ],
+      "buildings": [
+        "Stock Exchange",
+        "Fine Dining"
+      ]
+    },
+    {
+      "name": "Mumbai",
+      "era": "Information",
+      "imageKey": "information_mumbai",
+      "countries": [
+        "India"
+      ],
+      "buildings": [
+        "Stock Exchange",
+        "Port"
+      ]
+    },
+    {
+      "name": "Amsterdam",
+      "era": "Information",
+      "imageKey": "information_amsterdam",
+      "countries": [
+        "Netherlands"
+      ],
+      "buildings": [
+        "Stock Exchange",
+        "Port"
+      ]
+    },
+    {
+      "name": "Lagos",
+      "era": "Information",
+      "imageKey": "information_lagos",
+      "countries": [
+        "Nigeria"
+      ],
+      "buildings": [
+        "Port",
+        "Arena"
+      ]
     }
   ]
 }

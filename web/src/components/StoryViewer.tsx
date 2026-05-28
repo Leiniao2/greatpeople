@@ -32,6 +32,10 @@ import BridgeGame from '@/components/minigames/BridgeGame'
 import ComposeMusicGame from '@/components/minigames/ComposeMusicGame'
 import WeaponDeployGame from '@/components/minigames/WeaponDeployGame'
 import MuseumGame from '@/components/minigames/MuseumGame'
+import PipelineGame from '@/components/minigames/PipelineGame'
+import ColorMixGame from '@/components/minigames/ColorMixGame'
+import HuntingGame from '@/components/minigames/HuntingGame'
+import StorySortGame from '@/components/minigames/StorySortGame'
 import { useAuth } from '@/hooks/useAuth'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
@@ -39,7 +43,7 @@ import { useAuth } from '@/hooks/useAuth'
 interface QuizChallenge { type: 'quiz'; question: string; options: string[]; answer: number; fact: string; countdown?: number }
 interface TrueFalseChallenge { type: 'truefalse'; statement: string; correct: boolean; fact: string }
 interface SortChallenge { type: 'sort'; question: string; items: string[]; fact: string }
-interface MinigameChallenge { type: 'minigame'; game: 'maze'|'mirror'|'circuit'|'sliding'|'crossword'|'geometry'|'painting'|'music'|'tactics'|'classify'|'cooking'|'fiction'|'sudoku'|'voting'|'chemistry'|'matchthree'|'klotski'|'lorentz'|'porcelain'|'wordle'|'decode'|'wargame'|'trade'|'punnett'|'auction'|'pseudocode'|'iceslide'|'bridge'|'compose'|'weapondeploy'|'museum'; configId: string; instruction: string; fact: string }
+interface MinigameChallenge { type: 'minigame'; game: 'maze'|'mirror'|'circuit'|'sliding'|'crossword'|'geometry'|'painting'|'music'|'tactics'|'classify'|'cooking'|'fiction'|'sudoku'|'voting'|'chemistry'|'matchthree'|'klotski'|'lorentz'|'porcelain'|'wordle'|'decode'|'wargame'|'trade'|'punnett'|'auction'|'pseudocode'|'iceslide'|'bridge'|'compose'|'weapondeploy'|'museum'|'pipeline'|'colormix'|'hunting'|'storysort'; configId: string; instruction: string; fact: string }
 type Challenge = QuizChallenge | TrueFalseChallenge | SortChallenge | MinigameChallenge
 
 interface NarrationScene { type: 'narration'; text: string }
@@ -303,6 +307,10 @@ function MinigameView({ challenge, onResult }: { challenge: MinigameChallenge; o
         {challenge.game === 'compose'      && <ComposeMusicGame configId={challenge.configId} onWin={handleWin} />}
         {challenge.game === 'weapondeploy' && <WeaponDeployGame configId={challenge.configId} onWin={handleWin} />}
         {challenge.game === 'museum'       && <MuseumGame configId={challenge.configId} onWin={handleWin} />}
+        {challenge.game === 'pipeline'     && <PipelineGame configId={challenge.configId} onWin={handleWin} />}
+        {challenge.game === 'colormix'     && <ColorMixGame configId={challenge.configId} onWin={handleWin} />}
+        {challenge.game === 'hunting'      && <HuntingGame configId={challenge.configId} onWin={handleWin} />}
+        {challenge.game === 'storysort'    && <StorySortGame configId={challenge.configId} onWin={handleWin} />}
       </div>
     </div>
   )

@@ -4,10 +4,18 @@
     "name": "Memphis",
     "era": "Ancient",
     "imageKey": "ancient_memphis",
-    "countries": ["Egypt"],
-    "buildings": ["Palace", "Tomb"],
+    "countries": [
+      "Egypt"
+    ],
+    "buildings": [
+      "Palace",
+      "Tomb"
+    ],
     "capacity": 2,
-    "bonuses": { "politics": 2, "belief": 1 },
+    "bonuses": {
+      "politics": 2,
+      "belief": 1
+    },
     "trait": "**City of Pharaohs** — GP deployed here gain +1 reputation at the start of each round while a card with the Ruler identity is present."
   },
   {
@@ -15,10 +23,16 @@
     "name": "Stonehenge",
     "era": "Ancient",
     "imageKey": "ancient_stonehenge",
-    "countries": ["United Kingdom"],
-    "buildings": ["Monument"],
+    "countries": [
+      "United Kingdom"
+    ],
+    "buildings": [
+      "Monument"
+    ],
     "capacity": 2,
-    "bonuses": { "reputation": 2 },
+    "bonuses": {
+      "belief": 2
+    },
     "trait": "**Sacred Circle** — Once per game, a GP here may ignore one Conflict scenario targeting them."
   },
   {
@@ -26,10 +40,17 @@
     "name": "San Lorenzo",
     "era": "Ancient",
     "imageKey": "ancient_olmec_sanlorenzo",
-    "countries": ["Mexico"],
-    "buildings": ["Monument"],
+    "countries": [
+      "Mexico"
+    ],
+    "buildings": [
+      "Monument"
+    ],
     "capacity": 2,
-    "bonuses": { "reputation": 2 },
+    "bonuses": {
+      "reputation": 2,
+      "culture": 1
+    },
     "trait": "**Olmec Heartland** — GP with the Artist or Priest identity placed here gain +1 belief."
   },
   {
@@ -37,10 +58,17 @@
     "name": "La Venta",
     "era": "Ancient",
     "imageKey": "ancient_olmec_laventa",
-    "countries": ["Mexico"],
-    "buildings": ["Monument"],
+    "countries": [
+      "Mexico"
+    ],
+    "buildings": [
+      "Monument"
+    ],
     "capacity": 2,
-    "bonuses": { "reputation": 2 },
+    "bonuses": {
+      "belief": 2,
+      "culture": 1
+    },
     "trait": "**Colossal Heads** — At the end of each round, the GP with the highest strength here gains +1 reputation."
   },
   {
@@ -48,10 +76,17 @@
     "name": "Yin",
     "era": "Ancient",
     "imageKey": "ancient_yin_city",
-    "countries": ["China"],
-    "buildings": ["Palace"],
+    "countries": [
+      "China"
+    ],
+    "buildings": [
+      "Palace"
+    ],
     "capacity": 2,
-    "bonuses": { "politics": 2 },
+    "bonuses": {
+      "culture": 2,
+      "technique": 1
+    },
     "trait": "**Oracle Bones** — Once per round, the owning player may look at the top card of any deck."
   },
   {
@@ -59,10 +94,16 @@
     "name": "Mohenjo-daro",
     "era": "Ancient",
     "imageKey": "ancient_mohenjo_daro",
-    "countries": ["Pakistan", "India"],
+    "countries": [
+      "Pakistan",
+      "India"
+    ],
     "buildings": [],
     "capacity": 1,
-    "bonuses": {},
+    "bonuses": {
+      "intelligence": 2,
+      "technique": 1
+    },
     "trait": "**Grid City** — GP here cannot be displaced by Conflict scenarios; they may only be moved by their owner."
   },
   {
@@ -70,10 +111,16 @@
     "name": "Zhaoge",
     "era": "Ancient",
     "imageKey": "ancient_zhaoge",
-    "countries": ["China"],
-    "buildings": ["Palace"],
+    "countries": [
+      "China"
+    ],
+    "buildings": [
+      "Palace"
+    ],
     "capacity": 2,
-    "bonuses": { "politics": 2 },
+    "bonuses": {
+      "politics": 2
+    },
     "trait": "**Shang Capital** — When a Ruler identity GP occupies this location, politics bonuses from all allied Palace buildings are doubled for that round."
   },
   {
@@ -81,10 +128,16 @@
     "name": "Uruk",
     "era": "Ancient",
     "imageKey": "ancient_uruk",
-    "countries": ["Iraq"],
-    "buildings": ["Monument"],
+    "countries": [
+      "Iraq"
+    ],
+    "buildings": [
+      "Monument"
+    ],
     "capacity": 2,
-    "bonuses": { "reputation": 2 },
+    "bonuses": {
+      "reputation": 2
+    },
     "trait": "**First City** — Each GP played to this location for the first time this game gains +2 reputation permanently."
   },
   {
@@ -92,10 +145,15 @@
     "name": "Nippur",
     "era": "Ancient",
     "imageKey": "ancient_nippur",
-    "countries": ["Iraq"],
+    "countries": [
+      "Iraq"
+    ],
     "buildings": [],
     "capacity": 1,
-    "bonuses": {},
+    "bonuses": {
+      "belief": 2,
+      "intelligence": 1
+    },
     "trait": "**Scribal Centre** — GP with the Scholar or Priest identity placed here gain +1 intelligence."
   },
   {
@@ -103,10 +161,14 @@
     "name": "Ur",
     "era": "Ancient",
     "imageKey": "ancient_memphis",
-    "countries": ["Iraq"],
+    "countries": [
+      "Iraq"
+    ],
     "buildings": [],
     "capacity": 1,
-    "bonuses": {},
+    "bonuses": {
+      "wealth": 2
+    },
     "trait": "**Ziggurat City** — Once per game, a GP here may perform a free Deploy action without spending an action point."
   },
   {
@@ -114,10 +176,15 @@
     "name": "Babylon",
     "era": "Ancient",
     "imageKey": "ancient_memphis",
-    "countries": ["Iraq"],
+    "countries": [
+      "Iraq"
+    ],
     "buildings": [],
     "capacity": 1,
-    "bonuses": {},
+    "bonuses": {
+      "intelligence": 2,
+      "politics": 1
+    },
     "trait": "**Gate of the Gods** — GP here gain +1 to all stat checks involving intelligence or belief."
   },
   {
@@ -125,10 +192,17 @@
     "name": "Hattusa",
     "era": "Ancient",
     "imageKey": "classical_petra",
-    "countries": ["Turkey"],
-    "buildings": ["Palace"],
+    "countries": [
+      "Turkey"
+    ],
+    "buildings": [
+      "Palace"
+    ],
     "capacity": 2,
-    "bonuses": { "politics": 2 },
+    "bonuses": {
+      "strength": 2,
+      "politics": 1
+    },
     "trait": "**Hittite Citadel** — GP with the Warrior or Ruler identity here gain +1 strength at the start of combat."
   },
   {
@@ -136,10 +210,15 @@
     "name": "Nineveh",
     "era": "Ancient",
     "imageKey": "ancient_nippur",
-    "countries": ["Iraq"],
+    "countries": [
+      "Iraq"
+    ],
     "buildings": [],
     "capacity": 1,
-    "bonuses": {},
+    "bonuses": {
+      "strength": 2,
+      "intelligence": 1
+    },
     "trait": "**Library of Ashurbanipal** — Once per game, draw an extra card when a Scholar GP is deployed here."
   },
   {
@@ -147,10 +226,16 @@
     "name": "Ashur",
     "era": "Ancient",
     "imageKey": "ancient_nippur",
-    "countries": ["Iraq"],
-    "buildings": ["Barracks"],
+    "countries": [
+      "Iraq"
+    ],
+    "buildings": [
+      "Barracks"
+    ],
     "capacity": 2,
-    "bonuses": { "strength": 2 },
+    "bonuses": {
+      "strength": 2
+    },
     "trait": "**Assyrian Stronghold** — GP deployed here at the start of a Conflict round may add +1 to their attack roll."
   },
   {
@@ -158,10 +243,17 @@
     "name": "Carthage",
     "era": "Classical",
     "imageKey": "classical_carthage",
-    "countries": ["Tunisia"],
-    "buildings": ["Port"],
+    "countries": [
+      "Tunisia"
+    ],
+    "buildings": [
+      "Port"
+    ],
     "capacity": 2,
-    "bonuses": { "wealth": 1 },
+    "bonuses": {
+      "reputation": 2,
+      "strength": 1
+    },
     "trait": "**Mediterranean Rival** — Each round an allied GP is here, the owner collects +1 wealth from any active trade scenario."
   },
   {
@@ -169,10 +261,15 @@
     "name": "Petra",
     "era": "Classical",
     "imageKey": "classical_petra",
-    "countries": ["Jordan"],
+    "countries": [
+      "Jordan"
+    ],
     "buildings": [],
     "capacity": 1,
-    "bonuses": {},
+    "bonuses": {
+      "technique": 2,
+      "reputation": 1
+    },
     "trait": "**Rose-Red City** — GP here are hidden from Espionage scenarios on the first round of any era."
   },
   {
@@ -180,10 +277,17 @@
     "name": "Sparta",
     "era": "Classical",
     "imageKey": "classical_sparta",
-    "countries": ["Greece"],
-    "buildings": ["Barracks"],
+    "countries": [
+      "Greece"
+    ],
+    "buildings": [
+      "Barracks"
+    ],
     "capacity": 2,
-    "bonuses": { "strength": 2 },
+    "bonuses": {
+      "strength": 2,
+      "reputation": 1
+    },
     "trait": "**Agoge Discipline** — GP with the Warrior identity here gain +2 strength but cannot use culture-based actions."
   },
   {
@@ -191,10 +295,18 @@
     "name": "Anthem",
     "era": "Classical",
     "imageKey": "anthem_city",
-    "countries": ["Greece"],
-    "buildings": ["Forum", "Theatre"],
+    "countries": [
+      "Greece"
+    ],
+    "buildings": [
+      "Forum",
+      "Theatre"
+    ],
     "capacity": 2,
-    "bonuses": { "politics": 1, "culture": 1 },
+    "bonuses": {
+      "culture": 2,
+      "intelligence": 2
+    },
     "trait": "**Birthplace of Democracy** — Once per round, the owning player may veto one non-combat scenario that targets a GP here."
   },
   {
@@ -202,10 +314,18 @@
     "name": "Xianyang",
     "era": "Classical",
     "imageKey": "classical_xianyang",
-    "countries": ["China"],
-    "buildings": ["Barracks", "Palace"],
+    "countries": [
+      "China"
+    ],
+    "buildings": [
+      "Barracks",
+      "Palace"
+    ],
     "capacity": 2,
-    "bonuses": { "strength": 2, "politics": 2 },
+    "bonuses": {
+      "strength": 2,
+      "politics": 2
+    },
     "trait": "**Qin Imperial Capital** — While occupied, this location counts as two locations for scoring purposes at end of era."
   },
   {
@@ -213,10 +333,22 @@
     "name": "Rome",
     "era": "Classical",
     "imageKey": "classical_rome",
-    "countries": ["Italy"],
-    "buildings": ["Forum", "Theatre", "Arena", "Parliament", "Infrastructure"],
+    "countries": [
+      "Italy"
+    ],
+    "buildings": [
+      "Forum",
+      "Theatre",
+      "Arena",
+      "Parliament",
+      "Infrastructure"
+    ],
     "capacity": 4,
-    "bonuses": { "politics": 3, "culture": 1, "strength": 1, "technique": 1 },
+    "bonuses": {
+      "politics": 2,
+      "strength": 2,
+      "technique": 2
+    },
     "trait": "**Eternal City** — GP here gain +1 to every stat check; this location cannot be razed by any scenario effect."
   },
   {
@@ -224,10 +356,18 @@
     "name": "Teotihuacan",
     "era": "Classical",
     "imageKey": "classical_teotihuacan",
-    "countries": ["Mexico"],
-    "buildings": ["Tomb", "Sanctuary"],
+    "countries": [
+      "Mexico"
+    ],
+    "buildings": [
+      "Tomb",
+      "Sanctuary"
+    ],
     "capacity": 2,
-    "bonuses": { "belief": 3 },
+    "bonuses": {
+      "belief": 2,
+      "reputation": 1
+    },
     "trait": "**City of the Gods** — GP with the Priest identity here gain an extra action point each round."
   },
   {
@@ -235,10 +375,17 @@
     "name": "Persepolis",
     "era": "Classical",
     "imageKey": "classical_petra",
-    "countries": ["Iran"],
-    "buildings": ["Palace"],
+    "countries": [
+      "Iran"
+    ],
+    "buildings": [
+      "Palace"
+    ],
     "capacity": 2,
-    "bonuses": { "politics": 2 },
+    "bonuses": {
+      "politics": 2,
+      "wealth": 1
+    },
     "trait": "**Achaemenid Throne** — At the start of each round, the owning player may move one GP from any adjacent location to here at no cost."
   },
   {
@@ -246,21 +393,56 @@
     "name": "Jerusalem",
     "era": "Classical",
     "imageKey": "medieval_jerusalem",
-    "countries": ["Israel", "Palestine"],
-    "buildings": ["Sanctuary"],
+    "countries": [
+      "Israel",
+      "Palestine"
+    ],
+    "buildings": [
+      "Sanctuary"
+    ],
     "capacity": 2,
-    "bonuses": { "belief": 2 },
+    "bonuses": {
+      "belief": 2,
+      "reputation": 1
+    },
     "trait": "**City of Covenant** — GP with the Priest identity here generate +1 belief for each allied GP in any adjacent location."
+  },
+  {
+    "id": "classical-athens",
+    "name": "Athens",
+    "era": "Classical",
+    "imageKey": "ancient_athens",
+    "countries": [
+      "Greece"
+    ],
+    "buildings": [
+      "Academy",
+      "Theatre",
+      "Agora"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "politics": 2,
+      "intelligence": 1
+    },
+    "trait": "**Cradle of Democracy** — Once per era, the owning player may invoke a free vote scenario; the outcome grants +2 politics to the winning GP regardless of other modifiers."
   },
   {
     "id": "medieval-krakow",
     "name": "Krakow",
     "era": "Medieval",
     "imageKey": "medieval_krakow",
-    "countries": ["Poland"],
-    "buildings": ["Palace"],
+    "countries": [
+      "Poland"
+    ],
+    "buildings": [
+      "Palace"
+    ],
     "capacity": 2,
-    "bonuses": { "politics": 2 },
+    "bonuses": {
+      "politics": 2,
+      "reputation": 1
+    },
     "trait": "**Piast Royal Seat** — Once per era, the owning player may swap this card's GP with an allied GP in any other location."
   },
   {
@@ -268,10 +450,17 @@
     "name": "Changan",
     "era": "Medieval",
     "imageKey": "medieval_changan",
-    "countries": ["China"],
-    "buildings": ["Palace"],
+    "countries": [
+      "China"
+    ],
+    "buildings": [
+      "Palace"
+    ],
     "capacity": 2,
-    "bonuses": { "politics": 2 },
+    "bonuses": {
+      "culture": 2,
+      "belief": 1
+    },
     "trait": "**Tang Cosmopolis** — GP of any nationality deployed here gain +1 culture due to the city's international character."
   },
   {
@@ -279,10 +468,15 @@
     "name": "Kyoto",
     "era": "Medieval",
     "imageKey": "medieval_kyoto",
-    "countries": ["Japan"],
+    "countries": [
+      "Japan"
+    ],
     "buildings": [],
     "capacity": 1,
-    "bonuses": {},
+    "bonuses": {
+      "culture": 2,
+      "belief": 1
+    },
     "trait": "**Heian Capital** — GP with the Artist identity here generate +1 culture at the end of each round."
   },
   {
@@ -290,10 +484,15 @@
     "name": "Damascus",
     "era": "Medieval",
     "imageKey": "medieval_damascus",
-    "countries": ["Syria"],
+    "countries": [
+      "Syria"
+    ],
     "buildings": [],
     "capacity": 1,
-    "bonuses": {},
+    "bonuses": {
+      "wealth": 2,
+      "technique": 1
+    },
     "trait": "**Silk Road Crossroads** — GP here gain +1 wealth whenever a trade scenario is resolved anywhere on the board."
   },
   {
@@ -301,10 +500,15 @@
     "name": "Baghdad",
     "era": "Medieval",
     "imageKey": "renaissance_baghdad",
-    "countries": ["Iraq"],
+    "countries": [
+      "Iraq"
+    ],
     "buildings": [],
     "capacity": 1,
-    "bonuses": {},
+    "bonuses": {
+      "intelligence": 2,
+      "culture": 1
+    },
     "trait": "**House of Wisdom** — GP with the Scholar identity here gain +2 intelligence at the start of the round."
   },
   {
@@ -312,10 +516,15 @@
     "name": "Qaraqorum",
     "era": "Medieval",
     "imageKey": "medieval_changan",
-    "countries": ["Mongolia"],
+    "countries": [
+      "Mongolia"
+    ],
     "buildings": [],
     "capacity": 1,
-    "bonuses": {},
+    "bonuses": {
+      "strength": 2,
+      "politics": 1
+    },
     "trait": "**Mongol Seat of Power** — GP here may move to any location on the board as a free action once per era, ignoring adjacency."
   },
   {
@@ -323,10 +532,18 @@
     "name": "Jerusalem",
     "era": "Medieval",
     "imageKey": "medieval_jerusalem",
-    "countries": ["Israel", "Palestine"],
-    "buildings": ["Sanctuary"],
+    "countries": [
+      "Israel",
+      "Palestine"
+    ],
+    "buildings": [
+      "Sanctuary"
+    ],
     "capacity": 2,
-    "bonuses": { "belief": 2 },
+    "bonuses": {
+      "belief": 2,
+      "reputation": 1
+    },
     "trait": "**Crusader Holy City** — All Conflict scenarios targeting this location deal +1 extra damage; GP here gain +1 strength in defence."
   },
   {
@@ -334,10 +551,17 @@
     "name": "Chichen Itza",
     "era": "Medieval",
     "imageKey": "medieval_chichen_itza",
-    "countries": ["Mexico"],
-    "buildings": ["Sanctuary"],
+    "countries": [
+      "Mexico"
+    ],
+    "buildings": [
+      "Sanctuary"
+    ],
     "capacity": 2,
-    "bonuses": { "belief": 2 },
+    "bonuses": {
+      "belief": 2,
+      "technique": 1
+    },
     "trait": "**Maya Sacred Hub** — Once per round, the owning player may spend 1 belief to cancel a non-combat scenario targeting a GP here."
   },
   {
@@ -345,10 +569,17 @@
     "name": "Genoa",
     "era": "Renaissance",
     "imageKey": "renaissance_genoa",
-    "countries": ["Italy"],
-    "buildings": ["Port"],
+    "countries": [
+      "Italy"
+    ],
+    "buildings": [
+      "Port"
+    ],
     "capacity": 2,
-    "bonuses": { "wealth": 1 },
+    "bonuses": {
+      "wealth": 2,
+      "intelligence": 1
+    },
     "trait": "**Banking Pioneer** — GP with the Merchant identity here gain +1 wealth and may perform one extra trade action per round."
   },
   {
@@ -356,10 +587,18 @@
     "name": "Venice",
     "era": "Renaissance",
     "imageKey": "renaissance_venice",
-    "countries": ["Italy"],
-    "buildings": ["Port", "Gallery"],
+    "countries": [
+      "Italy"
+    ],
+    "buildings": [
+      "Port",
+      "Gallery"
+    ],
     "capacity": 2,
-    "bonuses": { "wealth": 1, "culture": 2 },
+    "bonuses": {
+      "wealth": 2,
+      "culture": 2
+    },
     "trait": "**Serene Republic** — At the end of each round, the owning player gains +1 wealth for each GP with the Artist or Merchant identity here."
   },
   {
@@ -367,10 +606,18 @@
     "name": "Rome",
     "era": "Renaissance",
     "imageKey": "classical_rome",
-    "countries": ["Italy"],
-    "buildings": ["Gallery", "Sanctuary"],
+    "countries": [
+      "Italy"
+    ],
+    "buildings": [
+      "Gallery",
+      "Sanctuary"
+    ],
     "capacity": 2,
-    "bonuses": { "culture": 2, "belief": 2 },
+    "bonuses": {
+      "culture": 2,
+      "belief": 2
+    },
     "trait": "**Papal Renaissance** — GP with the Priest or Artist identity here may each generate +1 culture and +1 belief per round."
   },
   {
@@ -378,10 +625,17 @@
     "name": "Qusqu",
     "era": "Renaissance",
     "imageKey": "renaissance_qusqu",
-    "countries": ["Peru"],
-    "buildings": ["Infrastructure"],
+    "countries": [
+      "Peru"
+    ],
+    "buildings": [
+      "Infrastructure"
+    ],
     "capacity": 2,
-    "bonuses": { "technique": 1 },
+    "bonuses": {
+      "technique": 2,
+      "strength": 2
+    },
     "trait": "**Navel of the World** — GP here may use Inca road networks: once per era, move two GP simultaneously from here as a single action."
   },
   {
@@ -389,10 +643,17 @@
     "name": "Tenochtitlan",
     "era": "Renaissance",
     "imageKey": "renaissance_tenochtitlan",
-    "countries": ["Mexico"],
-    "buildings": ["Infrastructure"],
+    "countries": [
+      "Mexico"
+    ],
+    "buildings": [
+      "Infrastructure"
+    ],
     "capacity": 2,
-    "bonuses": { "technique": 1 },
+    "bonuses": {
+      "technique": 2,
+      "strength": 1
+    },
     "trait": "**Floating City** — This location cannot be targeted by Invasion scenarios unless the owning player controls no adjacent locations."
   },
   {
@@ -400,10 +661,15 @@
     "name": "Gao",
     "era": "Renaissance",
     "imageKey": "renaissance_baghdad",
-    "countries": ["Mali"],
+    "countries": [
+      "Mali"
+    ],
     "buildings": [],
     "capacity": 1,
-    "bonuses": {},
+    "bonuses": {
+      "wealth": 2,
+      "intelligence": 1
+    },
     "trait": "**Songhai Crossroads** — GP here gain +1 wealth at the end of each round while any trade scenario is active on the board."
   },
   {
@@ -411,10 +677,17 @@
     "name": "Lisbon",
     "era": "Renaissance",
     "imageKey": "renaissance_lisbon",
-    "countries": ["Portugal"],
-    "buildings": ["Port"],
+    "countries": [
+      "Portugal"
+    ],
+    "buildings": [
+      "Port"
+    ],
     "capacity": 2,
-    "bonuses": { "wealth": 1 },
+    "bonuses": {
+      "wealth": 2,
+      "technique": 1
+    },
     "trait": "**Age of Exploration** — GP with the Explorer identity here may discover one new location card from the next era once per game."
   },
   {
@@ -422,10 +695,17 @@
     "name": "Malacca",
     "era": "Renaissance",
     "imageKey": "renaissance_genoa",
-    "countries": ["Malaysia"],
-    "buildings": ["Port"],
+    "countries": [
+      "Malaysia"
+    ],
+    "buildings": [
+      "Port"
+    ],
     "capacity": 2,
-    "bonuses": { "wealth": 1 },
+    "bonuses": {
+      "wealth": 2,
+      "reputation": 1
+    },
     "trait": "**Spice Entrepot** — Each round a GP is here, the owning player gains +1 wealth from any active sea trade scenario."
   },
   {
@@ -433,10 +713,18 @@
     "name": "St Petersburg",
     "era": "Steam",
     "imageKey": "steam_st_petersburg",
-    "countries": ["Russia"],
-    "buildings": ["Museum", "Palace"],
+    "countries": [
+      "Russia"
+    ],
+    "buildings": [
+      "Museum",
+      "Palace"
+    ],
     "capacity": 2,
-    "bonuses": { "reputation": 2, "politics": 2 },
+    "bonuses": {
+      "culture": 2,
+      "politics": 1
+    },
     "trait": "**Window to the West** — GP with the Ruler or Artist identity here may each act in one extra scenario per round."
   },
   {
@@ -444,10 +732,21 @@
     "name": "London",
     "era": "Steam",
     "imageKey": "steam_london",
-    "countries": ["United Kingdom"],
-    "buildings": ["Factory", "Stock Exchange", "Bank", "Parliament"],
+    "countries": [
+      "United Kingdom"
+    ],
+    "buildings": [
+      "Factory",
+      "Stock Exchange",
+      "Bank",
+      "Parliament"
+    ],
     "capacity": 3,
-    "bonuses": { "technique": 2, "wealth": 4, "politics": 2 },
+    "bonuses": {
+      "technique": 2,
+      "wealth": 2,
+      "intelligence": 1
+    },
     "trait": "**Workshop of the World** — Once per round, the owning player may convert any 2 technique points here into 1 wealth."
   },
   {
@@ -455,10 +754,18 @@
     "name": "Paris",
     "era": "Steam",
     "imageKey": "electricity_paris",
-    "countries": ["France"],
-    "buildings": ["Parliament", "Salon"],
+    "countries": [
+      "France"
+    ],
+    "buildings": [
+      "Parliament",
+      "Salon"
+    ],
     "capacity": 2,
-    "bonuses": { "politics": 2, "culture": 1 },
+    "bonuses": {
+      "culture": 2,
+      "intelligence": 2
+    },
     "trait": "**Revolutionary Capital** — At the start of each round, if two or more GP are here, all gain +1 politics from the spirit of debate."
   },
   {
@@ -466,10 +773,15 @@
     "name": "Cairo",
     "era": "Steam",
     "imageKey": "steam_cairo",
-    "countries": ["Egypt"],
+    "countries": [
+      "Egypt"
+    ],
     "buildings": [],
     "capacity": 1,
-    "bonuses": {},
+    "bonuses": {
+      "reputation": 2,
+      "strength": 1
+    },
     "trait": "**Nile Gateway** — GP here gain +1 wealth at the end of any round in which a trade scenario was resolved."
   },
   {
@@ -477,10 +789,19 @@
     "name": "Amsterdam",
     "era": "Steam",
     "imageKey": "steam_amsterdam",
-    "countries": ["Netherlands"],
-    "buildings": ["Port", "Stock Exchange", "Bank"],
+    "countries": [
+      "Netherlands"
+    ],
+    "buildings": [
+      "Port",
+      "Stock Exchange",
+      "Bank"
+    ],
     "capacity": 3,
-    "bonuses": { "wealth": 5 },
+    "bonuses": {
+      "wealth": 2,
+      "intelligence": 1
+    },
     "trait": "**Golden Age Commerce** — At the end of each round, the owning player gains +1 wealth for each allied GP across all Port locations on the board."
   },
   {
@@ -488,10 +809,17 @@
     "name": "Beijing",
     "era": "Steam",
     "imageKey": "electricity_hongkong",
-    "countries": ["China"],
-    "buildings": ["Palace"],
+    "countries": [
+      "China"
+    ],
+    "buildings": [
+      "Palace"
+    ],
     "capacity": 2,
-    "bonuses": { "politics": 2 },
+    "bonuses": {
+      "politics": 2,
+      "intelligence": 1
+    },
     "trait": "**Forbidden City** — Non-allied GP may only enter this location if the owning player does not control it; otherwise they are immediately displaced."
   },
   {
@@ -499,10 +827,17 @@
     "name": "Delhi",
     "era": "Steam",
     "imageKey": "electricity_delhi",
-    "countries": ["India"],
-    "buildings": ["Palace"],
+    "countries": [
+      "India"
+    ],
+    "buildings": [
+      "Palace"
+    ],
     "capacity": 2,
-    "bonuses": { "politics": 2 },
+    "bonuses": {
+      "reputation": 2,
+      "belief": 1
+    },
     "trait": "**Mughal Seat** — GP with the Ruler identity here generate +1 politics and +1 wealth each round from imperial tribute."
   },
   {
@@ -510,10 +845,17 @@
     "name": "Boston",
     "era": "Steam",
     "imageKey": "steam_manchester",
-    "countries": ["United States"],
-    "buildings": ["University"],
+    "countries": [
+      "United States"
+    ],
+    "buildings": [
+      "University"
+    ],
     "capacity": 2,
-    "bonuses": { "intelligence": 2 },
+    "bonuses": {
+      "intelligence": 2,
+      "politics": 1
+    },
     "trait": "**Cradle of Liberty** — GP with the Scholar or Statesman identity here gain +1 intelligence and may draw one extra card per era."
   },
   {
@@ -521,10 +863,18 @@
     "name": "Moscow",
     "era": "Electricity",
     "imageKey": "electricity_moscow",
-    "countries": ["Russia"],
-    "buildings": ["University", "Palace"],
+    "countries": [
+      "Russia"
+    ],
+    "buildings": [
+      "University",
+      "Palace"
+    ],
     "capacity": 2,
-    "bonuses": { "intelligence": 2, "politics": 2 },
+    "bonuses": {
+      "intelligence": 2,
+      "politics": 1
+    },
     "trait": "**Third Rome** — Once per era, the owning player may redirect any Conflict scenario targeting a GP here to a different location."
   },
   {
@@ -532,10 +882,15 @@
     "name": "Kiev",
     "era": "Electricity",
     "imageKey": "electricity_london",
-    "countries": ["Ukraine"],
+    "countries": [
+      "Ukraine"
+    ],
     "buildings": [],
     "capacity": 1,
-    "bonuses": {},
+    "bonuses": {
+      "technique": 2,
+      "strength": 1
+    },
     "trait": "**Dnieper Crossroads** — GP here gain +1 to all stat checks when defending against Conflict scenarios."
   },
   {
@@ -543,10 +898,20 @@
     "name": "London",
     "era": "Electricity",
     "imageKey": "electricity_london",
-    "countries": ["United Kingdom"],
-    "buildings": ["Stock Exchange", "Museum", "Bank", "Parliament"],
+    "countries": [
+      "United Kingdom"
+    ],
+    "buildings": [
+      "Stock Exchange",
+      "Museum",
+      "Bank",
+      "Parliament"
+    ],
     "capacity": 3,
-    "bonuses": { "wealth": 4, "reputation": 2, "politics": 2 },
+    "bonuses": {
+      "wealth": 2,
+      "reputation": 2
+    },
     "trait": "**Imperial Metropolis** — GP here generate +1 reputation at the start of each round; this bonus doubles while the owner controls three or more locations."
   },
   {
@@ -554,10 +919,20 @@
     "name": "Paris",
     "era": "Electricity",
     "imageKey": "electricity_paris",
-    "countries": ["France"],
-    "buildings": ["Museum", "Gallery", "Salon", "Fine Dining"],
+    "countries": [
+      "France"
+    ],
+    "buildings": [
+      "Museum",
+      "Gallery",
+      "Salon",
+      "Fine Dining"
+    ],
     "capacity": 3,
-    "bonuses": { "reputation": 2, "culture": 4 },
+    "bonuses": {
+      "culture": 2,
+      "intelligence": 2
+    },
     "trait": "**Belle Epoque** — At the end of each round, the GP with the highest culture stat here gains +1 reputation permanently."
   },
   {
@@ -565,10 +940,18 @@
     "name": "Berlin",
     "era": "Electricity",
     "imageKey": "electricity_berlin",
-    "countries": ["Germany"],
-    "buildings": ["Military Academy", "Museum"],
+    "countries": [
+      "Germany"
+    ],
+    "buildings": [
+      "Military Academy",
+      "Museum"
+    ],
     "capacity": 2,
-    "bonuses": { "strength": 3, "reputation": 2 },
+    "bonuses": {
+      "strength": 2,
+      "intelligence": 2
+    },
     "trait": "**Prussian Precision** — GP with the Warrior or Scholar identity here may perform one combat and one research action in the same round."
   },
   {
@@ -576,10 +959,17 @@
     "name": "Beijing",
     "era": "Electricity",
     "imageKey": "electricity_hongkong",
-    "countries": ["China"],
-    "buildings": ["Palace"],
+    "countries": [
+      "China"
+    ],
+    "buildings": [
+      "Palace"
+    ],
     "capacity": 2,
-    "bonuses": { "politics": 2 },
+    "bonuses": {
+      "politics": 2,
+      "intelligence": 1
+    },
     "trait": "**Late Imperial Throne** — The owning player may prevent any single scenario from affecting this location once per round by spending 2 politics."
   },
   {
@@ -587,10 +977,17 @@
     "name": "Delhi",
     "era": "Electricity",
     "imageKey": "electricity_delhi",
-    "countries": ["India"],
-    "buildings": ["Palace"],
+    "countries": [
+      "India"
+    ],
+    "buildings": [
+      "Palace"
+    ],
     "capacity": 2,
-    "bonuses": { "politics": 2 },
+    "bonuses": {
+      "reputation": 2,
+      "belief": 1
+    },
     "trait": "**Raj Capital** — GP with the Statesman or Educator identity here gain +1 politics each round from colonial administrative networks."
   },
   {
@@ -598,10 +995,17 @@
     "name": "Istanbul",
     "era": "Electricity",
     "imageKey": "steam_istanbul",
-    "countries": ["Turkey"],
-    "buildings": ["Palace"],
+    "countries": [
+      "Turkey"
+    ],
+    "buildings": [
+      "Palace"
+    ],
     "capacity": 2,
-    "bonuses": { "politics": 2 },
+    "bonuses": {
+      "wealth": 2,
+      "belief": 1
+    },
     "trait": "**Where Empires Meet** — GP here are immune to displacement by Conflict scenarios on the first round they are deployed."
   },
   {
@@ -609,10 +1013,19 @@
     "name": "New York",
     "era": "Electricity",
     "imageKey": "electricity_london",
-    "countries": ["United States"],
-    "buildings": ["Stock Exchange", "Museum", "Bank"],
+    "countries": [
+      "United States"
+    ],
+    "buildings": [
+      "Stock Exchange",
+      "Museum",
+      "Bank"
+    ],
     "capacity": 3,
-    "bonuses": { "wealth": 4, "reputation": 2 },
+    "bonuses": {
+      "wealth": 2,
+      "reputation": 2
+    },
     "trait": "**City That Never Sleeps** — GP here may participate in one additional scenario per round beyond the normal limit."
   },
   {
@@ -620,10 +1033,15 @@
     "name": "Tehran",
     "era": "Electricity",
     "imageKey": "medieval_damascus",
-    "countries": ["Iran"],
+    "countries": [
+      "Iran"
+    ],
     "buildings": [],
     "capacity": 1,
-    "bonuses": {},
+    "bonuses": {
+      "belief": 2,
+      "intelligence": 1
+    },
     "trait": "**Qajar Crossroads** — GP here gain +1 politics at the end of any round in which a Diplomacy scenario was resolved anywhere."
   },
   {
@@ -631,10 +1049,17 @@
     "name": "Jakarta",
     "era": "Electricity",
     "imageKey": "electricity_hongkong",
-    "countries": ["Indonesia"],
-    "buildings": ["Port"],
+    "countries": [
+      "Indonesia"
+    ],
+    "buildings": [
+      "Port"
+    ],
     "capacity": 2,
-    "bonuses": { "wealth": 1 },
+    "bonuses": {
+      "politics": 2,
+      "culture": 1
+    },
     "trait": "**Colonial Port** — Each round, the owning player may transfer 1 wealth from this location to any adjacent location at no cost."
   },
   {
@@ -642,10 +1067,17 @@
     "name": "Buenos Aires",
     "era": "Electricity",
     "imageKey": "electricity_paris",
-    "countries": ["Argentina"],
-    "buildings": ["Port"],
+    "countries": [
+      "Argentina"
+    ],
+    "buildings": [
+      "Port"
+    ],
     "capacity": 2,
-    "bonuses": { "wealth": 1 },
+    "bonuses": {
+      "wealth": 2,
+      "reputation": 1
+    },
     "trait": "**Paris of the South** — GP with the Artist or Merchant identity here gain +1 culture each round from the city's vibrant cosmopolitan scene."
   },
   {
@@ -653,10 +1085,18 @@
     "name": "Singapore",
     "era": "Information",
     "imageKey": "information_singapore",
-    "countries": ["Singapore"],
-    "buildings": ["Enterprise Quarter", "Port"],
+    "countries": [
+      "Singapore"
+    ],
+    "buildings": [
+      "Enterprise Quarter",
+      "Port"
+    ],
     "capacity": 2,
-    "bonuses": { "technique": 2, "wealth": 1 },
+    "bonuses": {
+      "technique": 2,
+      "wealth": 2
+    },
     "trait": "**Asian Tiger** — GP with the Entrepreneur identity here generate double technique bonuses from this location."
   },
   {
@@ -664,10 +1104,19 @@
     "name": "Tokyo",
     "era": "Information",
     "imageKey": "information_tokyo",
-    "countries": ["Japan"],
-    "buildings": ["Stock Exchange", "Enterprise Quarter", "Fine Dining"],
+    "countries": [
+      "Japan"
+    ],
+    "buildings": [
+      "Stock Exchange",
+      "Enterprise Quarter",
+      "Fine Dining"
+    ],
     "capacity": 3,
-    "bonuses": { "wealth": 2, "technique": 2, "culture": 1 },
+    "bonuses": {
+      "culture": 2,
+      "technique": 1
+    },
     "trait": "**Harmonious Megacity** — GP here suffer no penalty from overcrowding; all capacity limits at this location are treated as +1 higher."
   },
   {
@@ -675,10 +1124,18 @@
     "name": "Shenzhen",
     "era": "Information",
     "imageKey": "information_shenzhen",
-    "countries": ["China"],
-    "buildings": ["Stock Exchange", "Enterprise Quarter"],
+    "countries": [
+      "China"
+    ],
+    "buildings": [
+      "Stock Exchange",
+      "Enterprise Quarter"
+    ],
     "capacity": 2,
-    "bonuses": { "wealth": 2, "technique": 2 },
+    "bonuses": {
+      "technique": 2,
+      "intelligence": 1
+    },
     "trait": "**Silicon Delta** — Once per round, the owning player may convert 1 wealth into 2 technique points while a GP is present here."
   },
   {
@@ -686,10 +1143,17 @@
     "name": "Taipei",
     "era": "Information",
     "imageKey": "information_tokyo",
-    "countries": ["Taiwan"],
-    "buildings": ["Enterprise Quarter"],
+    "countries": [
+      "Taiwan"
+    ],
+    "buildings": [
+      "Enterprise Quarter"
+    ],
     "capacity": 2,
-    "bonuses": { "technique": 2 },
+    "bonuses": {
+      "technique": 2,
+      "intelligence": 1
+    },
     "trait": "**Semiconductor Hub** — GP with the Scientist or Entrepreneur identity here gain +1 technique each round from the global chip supply chain."
   },
   {
@@ -697,10 +1161,18 @@
     "name": "Sydney",
     "era": "Information",
     "imageKey": "information_sydney",
-    "countries": ["Australia"],
-    "buildings": ["Concert Hall", "Port"],
+    "countries": [
+      "Australia"
+    ],
+    "buildings": [
+      "Concert Hall",
+      "Port"
+    ],
     "capacity": 2,
-    "bonuses": { "culture": 2, "wealth": 1 },
+    "bonuses": {
+      "reputation": 2,
+      "culture": 1
+    },
     "trait": "**Harbour City** — GP with the Artist identity here gain +1 reputation at the end of each round while the Concert Hall is active."
   },
   {
@@ -708,10 +1180,17 @@
     "name": "Dubai",
     "era": "Information",
     "imageKey": "information_dubai",
-    "countries": ["United Arab Emirates"],
-    "buildings": ["Port"],
+    "countries": [
+      "United Arab Emirates"
+    ],
+    "buildings": [
+      "Port"
+    ],
     "capacity": 2,
-    "bonuses": { "wealth": 1 },
+    "bonuses": {
+      "wealth": 2,
+      "technique": 1
+    },
     "trait": "**Desert Supercity** — Once per era, the owning player may spend 3 wealth to immediately gain control of any unclaimed location on the board."
   },
   {
@@ -719,10 +1198,17 @@
     "name": "Seoul",
     "era": "Information",
     "imageKey": "information_seoul",
-    "countries": ["South Korea"],
-    "buildings": ["Stock Exchange"],
+    "countries": [
+      "South Korea"
+    ],
+    "buildings": [
+      "Stock Exchange"
+    ],
     "capacity": 2,
-    "bonuses": { "wealth": 2 },
+    "bonuses": {
+      "culture": 2,
+      "reputation": 1
+    },
     "trait": "**Hallyu Capital** — GP with the Artist identity here generate +1 culture and +1 reputation each round from the Korean Wave."
   },
   {
@@ -730,10 +1216,17 @@
     "name": "San Jose",
     "era": "Information",
     "imageKey": "information_sanjose",
-    "countries": ["United States"],
-    "buildings": ["Enterprise Quarter"],
+    "countries": [
+      "United States"
+    ],
+    "buildings": [
+      "Enterprise Quarter"
+    ],
     "capacity": 2,
-    "bonuses": { "technique": 2 },
+    "bonuses": {
+      "technique": 2,
+      "intelligence": 2
+    },
     "trait": "**Silicon Valley** — GP here may deploy one follower card from their hand at no cost once per round."
   },
   {
@@ -741,10 +1234,17 @@
     "name": "Los Angeles",
     "era": "Information",
     "imageKey": "information_sanjose",
-    "countries": ["United States"],
-    "buildings": ["Port"],
+    "countries": [
+      "United States"
+    ],
+    "buildings": [
+      "Port"
+    ],
     "capacity": 2,
-    "bonuses": { "wealth": 1 },
+    "bonuses": {
+      "culture": 2,
+      "intelligence": 1
+    },
     "trait": "**Entertainment Capital** — GP with the Artist identity here gain +2 reputation once per era when a culture scenario is resolved."
   },
   {
@@ -752,10 +1252,17 @@
     "name": "Vancouver",
     "era": "Information",
     "imageKey": "information_sydney",
-    "countries": ["Canada"],
-    "buildings": ["Port"],
+    "countries": [
+      "Canada"
+    ],
+    "buildings": [
+      "Port"
+    ],
     "capacity": 2,
-    "bonuses": { "wealth": 1 },
+    "bonuses": {
+      "reputation": 2,
+      "intelligence": 1
+    },
     "trait": "**Pacific Gateway** — Each round a GP is here, the owning player may draw one extra card from the Information era deck."
   },
   {
@@ -763,10 +1270,1370 @@
     "name": "Rio de Janeiro",
     "era": "Information",
     "imageKey": "information_rio",
-    "countries": ["Brazil"],
-    "buildings": ["Monument", "Arena"],
+    "countries": [
+      "Brazil"
+    ],
+    "buildings": [
+      "Monument",
+      "Arena"
+    ],
     "capacity": 2,
-    "bonuses": { "reputation": 2, "strength": 1 },
+    "bonuses": {
+      "reputation": 2,
+      "culture": 1
+    },
     "trait": "**Marvelous City** — Once per era, all GP here gain +1 reputation and +1 culture simultaneously during any Festival scenario."
+  },
+  {
+    "id": "information-mt-everest",
+    "name": "Mt. Everest",
+    "era": "Information",
+    "imageKey": "electricity_mt_everest",
+    "countries": [
+      "Nepal",
+      "China"
+    ],
+    "buildings": [
+      "Base Camp"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "strength": 2,
+      "reputation": 1
+    },
+    "trait": "**Roof of the World** — GP with the Explorer identity here gain +2 reputation the first time they participate in any physical challenge scenario each era."
+  },
+  {
+    "id": "ancient-thebes",
+    "name": "Thebes",
+    "era": "Ancient",
+    "imageKey": "ancient_thebes",
+    "countries": [
+      "Egypt"
+    ],
+    "buildings": [
+      "Palace",
+      "Tomb"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "politics": 2,
+      "belief": 2
+    },
+    "trait": "**Seat of Amun** — Priest and Ruler GP here each gain +1 to their primary stat at the start of each round."
+  },
+  {
+    "id": "ancient-aksum",
+    "name": "Aksum",
+    "era": "Ancient",
+    "imageKey": "ancient_aksum",
+    "countries": [
+      "Ethiopia"
+    ],
+    "buildings": [
+      "Monument",
+      "Port"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "reputation": 2,
+      "technique": 1
+    },
+    "trait": "**Obelisk Kingdom** — GP here gain +1 reputation for each round they survive a Conflict scenario."
+  },
+  {
+    "id": "ancient-knossos",
+    "name": "Knossos",
+    "era": "Ancient",
+    "imageKey": "ancient_knossos",
+    "countries": [
+      "Greece"
+    ],
+    "buildings": [
+      "Palace",
+      "Monument"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "politics": 1,
+      "culture": 2
+    },
+    "trait": "**Minoan Labyrinth** — Opponent GP cannot attack a GP here without having been deployed for at least 1 full round."
+  },
+  {
+    "id": "ancient-caral",
+    "name": "Caral",
+    "era": "Ancient",
+    "imageKey": "ancient_caral",
+    "countries": [
+      "Peru"
+    ],
+    "buildings": [
+      "Monument",
+      "Forum"
+    ],
+    "capacity": 1,
+    "bonuses": {
+      "culture": 1,
+      "reputation": 2
+    },
+    "trait": "**Oldest City of the Americas** — The first GP deployed here each game permanently gains +2 reputation."
+  },
+  {
+    "id": "ancient-monte-alban",
+    "name": "Monte Albán",
+    "era": "Ancient",
+    "imageKey": "ancient_monte_alban",
+    "countries": [
+      "Mexico"
+    ],
+    "buildings": [
+      "Observatory",
+      "Tomb"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "intelligence": 2,
+      "belief": 1
+    },
+    "trait": "**Zapotec Stargazers** — During global competitions, the owning player adds +2 to all intelligence totals from this location."
+  },
+  {
+    "id": "ancient-anyang",
+    "name": "Anyang",
+    "era": "Ancient",
+    "imageKey": "ancient_anyang",
+    "countries": [
+      "China"
+    ],
+    "buildings": [
+      "Palace",
+      "Barracks"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "politics": 2,
+      "strength": 1
+    },
+    "trait": "**Shang Bronze Age** — Warrior and Ruler GP deployed here permanently gain +1 to their primary stat."
+  },
+  {
+    "id": "ancient-troy",
+    "name": "Troy",
+    "era": "Ancient",
+    "imageKey": "ancient_troy",
+    "countries": [
+      "Turkey"
+    ],
+    "buildings": [
+      "Barracks",
+      "Forum"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "strength": 2,
+      "reputation": 1
+    },
+    "trait": "**Legendary Walls** — GP here gain +2 strength when defending any Conflict scenario."
+  },
+  {
+    "id": "ancient-taxila",
+    "name": "Taxila",
+    "era": "Ancient",
+    "imageKey": "ancient_taxila",
+    "countries": [
+      "Pakistan"
+    ],
+    "buildings": [
+      "Observatory",
+      "Mint"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "intelligence": 2,
+      "wealth": 1
+    },
+    "trait": "**Ancient Crossroads** — Scholar GP here may look at the top 3 cards of any deck once per round."
+  },
+  {
+    "id": "ancient-kerma",
+    "name": "Kerma",
+    "era": "Ancient",
+    "imageKey": "ancient_kerma",
+    "countries": [
+      "Sudan"
+    ],
+    "buildings": [
+      "Tomb",
+      "Mint"
+    ],
+    "capacity": 1,
+    "bonuses": {
+      "belief": 1,
+      "wealth": 2
+    },
+    "trait": "**Nubian Gold** — At the end of each round, the owning player gains +1 wealth for each GP present at this location."
+  },
+  {
+    "id": "ancient-poverty-point",
+    "name": "Poverty Point",
+    "era": "Ancient",
+    "imageKey": "ancient_poverty_point",
+    "countries": [
+      "United States"
+    ],
+    "buildings": [
+      "Monument",
+      "Forum"
+    ],
+    "capacity": 1,
+    "bonuses": {
+      "reputation": 2,
+      "culture": 1
+    },
+    "trait": "**Trade Mounds** — Once per era, copy the bonus stat of any adjacent location for one round."
+  },
+  {
+    "id": "classical-alexandria",
+    "name": "Alexandria",
+    "era": "Classical",
+    "imageKey": "classical_alexandria",
+    "countries": [
+      "Egypt"
+    ],
+    "buildings": [
+      "Library",
+      "Port"
+    ],
+    "capacity": 3,
+    "bonuses": {
+      "intelligence": 3,
+      "wealth": 2
+    },
+    "trait": "**Great Library** — Once per round, the owning player may look at one card in any opponent's hand."
+  },
+  {
+    "id": "classical-pataliputra",
+    "name": "Pataliputra",
+    "era": "Classical",
+    "imageKey": "classical_pataliputra",
+    "countries": [
+      "India"
+    ],
+    "buildings": [
+      "Palace",
+      "Library"
+    ],
+    "capacity": 3,
+    "bonuses": {
+      "politics": 2,
+      "intelligence": 2
+    },
+    "trait": "**Mauryan Empire** — Ruler GP generate +1 politics for each allied location occupied this round."
+  },
+  {
+    "id": "classical-antioch",
+    "name": "Antioch",
+    "era": "Classical",
+    "imageKey": "classical_antioch",
+    "countries": [
+      "Syria"
+    ],
+    "buildings": [
+      "Forum",
+      "Port"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "wealth": 2,
+      "culture": 1
+    },
+    "trait": "**Silk Road Gateway** — +1 wealth whenever any GP moves between adjacent locations on the board."
+  },
+  {
+    "id": "classical-tiwanaku",
+    "name": "Tiwanaku",
+    "era": "Classical",
+    "imageKey": "classical_tiwanaku",
+    "countries": [
+      "Bolivia"
+    ],
+    "buildings": [
+      "Sanctuary",
+      "Observatory"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "belief": 2,
+      "intelligence": 1
+    },
+    "trait": "**Andean Cosmology** — Belief and intelligence are interchangeable for all stat checks at this location."
+  },
+  {
+    "id": "classical-meroe",
+    "name": "Meroe",
+    "era": "Classical",
+    "imageKey": "classical_meroe",
+    "countries": [
+      "Sudan"
+    ],
+    "buildings": [
+      "Barracks",
+      "Parliament"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "strength": 2,
+      "politics": 1
+    },
+    "trait": "**Iron Kingdom** — Warrior GP here gain +2 technique when attacking; this bonus is applied before combat totals are calculated."
+  },
+  {
+    "id": "classical-luoyang",
+    "name": "Luoyang",
+    "era": "Classical",
+    "imageKey": "classical_luoyang",
+    "countries": [
+      "China"
+    ],
+    "buildings": [
+      "Palace",
+      "Monument"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "politics": 2,
+      "culture": 1
+    },
+    "trait": "**Han Eastern Capital** — Once per era, the owning player may draw 2 extra GP cards."
+  },
+  {
+    "id": "classical-oc-eo",
+    "name": "Óc Eo",
+    "era": "Classical",
+    "imageKey": "classical_oc_eo",
+    "countries": [
+      "Vietnam"
+    ],
+    "buildings": [
+      "Port",
+      "Plantation"
+    ],
+    "capacity": 1,
+    "bonuses": {
+      "wealth": 2,
+      "technique": 1
+    },
+    "trait": "**Maritime Crossroads** — All follower bonuses at this location are increased by +1."
+  },
+  {
+    "id": "classical-samarkand",
+    "name": "Samarkand",
+    "era": "Classical",
+    "imageKey": "classical_samarkand",
+    "countries": [
+      "Uzbekistan"
+    ],
+    "buildings": [
+      "Court",
+      "Port"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "reputation": 1,
+      "wealth": 2
+    },
+    "trait": "**Silk Road Hub** — GP here gain +1 wealth for every other Port location currently in play on the board."
+  },
+  {
+    "id": "classical-carthago-nova",
+    "name": "Carthago Nova",
+    "era": "Classical",
+    "imageKey": "classical_carthago_nova",
+    "countries": [
+      "Spain"
+    ],
+    "buildings": [
+      "Barracks",
+      "Port"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "strength": 1,
+      "wealth": 2
+    },
+    "trait": "**Silver Mines** — Once per era, gain 3 wealth when a GP is first deployed here."
+  },
+  {
+    "id": "classical-chersonesus",
+    "name": "Chersonesus",
+    "era": "Classical",
+    "imageKey": "classical_chersonesus",
+    "countries": [
+      "Ukraine"
+    ],
+    "buildings": [
+      "Port",
+      "Forum"
+    ],
+    "capacity": 1,
+    "bonuses": {
+      "wealth": 1,
+      "reputation": 2
+    },
+    "trait": "**Black Sea Colony** — GP here cannot be affected by natural hazard events."
+  },
+  {
+    "id": "medieval-timbuktu",
+    "name": "Timbuktu",
+    "era": "Medieval",
+    "imageKey": "medieval_timbuktu",
+    "countries": [
+      "Mali"
+    ],
+    "buildings": [
+      "University",
+      "Sanctuary"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "intelligence": 2,
+      "belief": 1
+    },
+    "trait": "**City of 333 Saints** — Scholar and Priest GP here gain +2 to all stat checks."
+  },
+  {
+    "id": "medieval-angkor",
+    "name": "Angkor",
+    "era": "Medieval",
+    "imageKey": "medieval_angkor",
+    "countries": [
+      "Cambodia"
+    ],
+    "buildings": [
+      "Sanctuary",
+      "Guild"
+    ],
+    "capacity": 3,
+    "bonuses": {
+      "belief": 3,
+      "technique": 1
+    },
+    "trait": "**Hydraulic Empire** — Once per round, redistribute 1 stat bonus from this location to any adjacent allied location."
+  },
+  {
+    "id": "medieval-constantinople",
+    "name": "Constantinople",
+    "era": "Medieval",
+    "imageKey": "medieval_constantinople",
+    "countries": [
+      "Turkey"
+    ],
+    "buildings": [
+      "Palace",
+      "Barracks"
+    ],
+    "capacity": 3,
+    "bonuses": {
+      "politics": 3,
+      "strength": 1
+    },
+    "trait": "**Crossroads of Civilisations** — GP here gain +1 to whichever stat the active event targets."
+  },
+  {
+    "id": "medieval-great-zimbabwe",
+    "name": "Great Zimbabwe",
+    "era": "Medieval",
+    "imageKey": "medieval_great_zimbabwe",
+    "countries": [
+      "Zimbabwe"
+    ],
+    "buildings": [
+      "Castle",
+      "Sanctuary"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "politics": 2,
+      "belief": 1
+    },
+    "trait": "**Stone City** — GP here cannot be killed — they may only be retrieved."
+  },
+  {
+    "id": "medieval-kilwa",
+    "name": "Kilwa",
+    "era": "Medieval",
+    "imageKey": "medieval_kilwa",
+    "countries": [
+      "Tanzania"
+    ],
+    "buildings": [
+      "Port",
+      "Monastery"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "wealth": 2,
+      "belief": 1
+    },
+    "trait": "**Indian Ocean Trade** — +1 wealth for each Port location the owning player currently controls."
+  },
+  {
+    "id": "medieval-cahokia",
+    "name": "Cahokia",
+    "era": "Medieval",
+    "imageKey": "medieval_cahokia",
+    "countries": [
+      "United States"
+    ],
+    "buildings": [
+      "Monument",
+      "Garden"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "culture": 1,
+      "reputation": 2
+    },
+    "trait": "**Mississippian Network** — Once per era, deploy one follower here for free."
+  },
+  {
+    "id": "medieval-cordoba",
+    "name": "Córdoba",
+    "era": "Medieval",
+    "imageKey": "medieval_cordoba",
+    "countries": [
+      "Spain"
+    ],
+    "buildings": [
+      "University",
+      "Monastery"
+    ],
+    "capacity": 3,
+    "bonuses": {
+      "intelligence": 2,
+      "belief": 2
+    },
+    "trait": "**House of Translators** — Any GP here may substitute intelligence for any other stat in a check, once per round."
+  },
+  {
+    "id": "medieval-nara",
+    "name": "Nara",
+    "era": "Medieval",
+    "imageKey": "medieval_nara",
+    "countries": [
+      "Japan"
+    ],
+    "buildings": [
+      "Sanctuary",
+      "Garden"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "belief": 2,
+      "reputation": 1
+    },
+    "trait": "**Tōdai-ji** — Spend 2 belief to cancel any natural hazard targeting this location."
+  },
+  {
+    "id": "medieval-novgorod",
+    "name": "Novgorod",
+    "era": "Medieval",
+    "imageKey": "medieval_novgorod",
+    "countries": [
+      "Russia"
+    ],
+    "buildings": [
+      "Castle",
+      "Port"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "politics": 1,
+      "wealth": 2
+    },
+    "trait": "**Merchant Republic** — Merchant identity GP here count as +1 capacity; this location can hold one extra GP."
+  },
+  {
+    "id": "medieval-lalibela",
+    "name": "Lalibela",
+    "era": "Medieval",
+    "imageKey": "medieval_lalibela",
+    "countries": [
+      "Ethiopia"
+    ],
+    "buildings": [
+      "Sanctuary",
+      "Monument"
+    ],
+    "capacity": 1,
+    "bonuses": {
+      "belief": 3
+    },
+    "trait": "**Rock-Hewn Churches** — Priest GP gain +1 strength in all Conflict scenarios at this location."
+  },
+  {
+    "id": "renaissance-istanbul",
+    "name": "Istanbul",
+    "era": "Renaissance",
+    "imageKey": "renaissance_istanbul",
+    "countries": [
+      "Turkey"
+    ],
+    "buildings": [
+      "Palace",
+      "Port",
+      "Bank"
+    ],
+    "capacity": 3,
+    "bonuses": {
+      "politics": 3,
+      "wealth": 2
+    },
+    "trait": "**Ottoman Crossroads** — GP of any identity gain +1 to their single highest stat when deployed here."
+  },
+  {
+    "id": "renaissance-edo",
+    "name": "Edo",
+    "era": "Renaissance",
+    "imageKey": "renaissance_edo",
+    "countries": [
+      "Japan"
+    ],
+    "buildings": [
+      "Castle",
+      "Forum"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "politics": 2,
+      "reputation": 1
+    },
+    "trait": "**Tokugawa Order** — GP here cannot be relocated to another location by any opponent action."
+  },
+  {
+    "id": "renaissance-potosi",
+    "name": "Potosí",
+    "era": "Renaissance",
+    "imageKey": "renaissance_potosi",
+    "countries": [
+      "Bolivia"
+    ],
+    "buildings": [
+      "Mint",
+      "Bank"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "wealth": 3,
+      "technique": 1
+    },
+    "trait": "**Silver Mountain** — Once per round, the owning player may convert 1 technique into 2 wealth."
+  },
+  {
+    "id": "renaissance-antwerp",
+    "name": "Antwerp",
+    "era": "Renaissance",
+    "imageKey": "renaissance_antwerp",
+    "countries": [
+      "Belgium"
+    ],
+    "buildings": [
+      "Port",
+      "Bank",
+      "Parliament"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "wealth": 3,
+      "politics": 1
+    },
+    "trait": "**Financial Capital of Europe** — The owning player's total wealth counts as +2 in all global competitions."
+  },
+  {
+    "id": "renaissance-calicut",
+    "name": "Calicut",
+    "era": "Renaissance",
+    "imageKey": "renaissance_calicut",
+    "countries": [
+      "India"
+    ],
+    "buildings": [
+      "Port",
+      "Plantation"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "wealth": 2,
+      "technique": 1
+    },
+    "trait": "**Spice Hub** — +1 wealth for each other Port location the owning player currently controls."
+  },
+  {
+    "id": "renaissance-augsburg",
+    "name": "Augsburg",
+    "era": "Renaissance",
+    "imageKey": "renaissance_augsburg",
+    "countries": [
+      "Germany"
+    ],
+    "buildings": [
+      "Bank",
+      "University"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "wealth": 2,
+      "intelligence": 1
+    },
+    "trait": "**Fugger Banking** — Once per game, cancel one wealth-loss event targeting any allied location."
+  },
+  {
+    "id": "renaissance-samarkand",
+    "name": "Samarkand",
+    "era": "Renaissance",
+    "imageKey": "renaissance_samarkand",
+    "countries": [
+      "Uzbekistan"
+    ],
+    "buildings": [
+      "Observatory",
+      "Library"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "intelligence": 2,
+      "belief": 1
+    },
+    "trait": "**Timurid Renaissance** — GP here may count culture as intelligence for any stat check once per round."
+  },
+  {
+    "id": "renaissance-nanjing",
+    "name": "Nanjing",
+    "era": "Renaissance",
+    "imageKey": "renaissance_nanjing",
+    "countries": [
+      "China"
+    ],
+    "buildings": [
+      "Palace",
+      "Port"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "politics": 2,
+      "technique": 1
+    },
+    "trait": "**Ming Treasure Fleet** — Once per era, move a GP and all its followers to any other location for free."
+  },
+  {
+    "id": "renaissance-kilwa",
+    "name": "Kilwa",
+    "era": "Renaissance",
+    "imageKey": "renaissance_kilwa",
+    "countries": [
+      "Tanzania"
+    ],
+    "buildings": [
+      "Port",
+      "Monastery"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "wealth": 2,
+      "belief": 1
+    },
+    "trait": "**Swahili Gold Route** — +2 wealth at the end of any round in which a GP here survives a Conflict scenario."
+  },
+  {
+    "id": "renaissance-cuzco",
+    "name": "Cuzco",
+    "era": "Renaissance",
+    "imageKey": "renaissance_cuzco",
+    "countries": [
+      "Peru"
+    ],
+    "buildings": [
+      "Fortress",
+      "Sanctuary"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "strength": 2,
+      "belief": 2
+    },
+    "trait": "**Inca Sun Throne** — Once per era, all Ruler GP on the board gain +1 politics."
+  },
+  {
+    "id": "steam-calcutta",
+    "name": "Calcutta",
+    "era": "Steam",
+    "imageKey": "steam_calcutta",
+    "countries": [
+      "India"
+    ],
+    "buildings": [
+      "Port",
+      "Parliament"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "wealth": 2,
+      "politics": 1
+    },
+    "trait": "**Colonial Port City** — +1 wealth and +1 politics for each GP from a different country present at this location."
+  },
+  {
+    "id": "steam-osaka",
+    "name": "Osaka",
+    "era": "Steam",
+    "imageKey": "steam_osaka",
+    "countries": [
+      "Japan"
+    ],
+    "buildings": [
+      "Mint",
+      "Factory"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "wealth": 2,
+      "technique": 1
+    },
+    "trait": "**Merchant Capital** — Merchant GP here may participate in two trade scenarios per round."
+  },
+  {
+    "id": "steam-cape-town",
+    "name": "Cape Town",
+    "era": "Steam",
+    "imageKey": "steam_cape_town",
+    "countries": [
+      "South Africa"
+    ],
+    "buildings": [
+      "Port",
+      "News Agency"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "wealth": 2,
+      "reputation": 1
+    },
+    "trait": "**Gateway to Africa** — Once per era, reveal any one private GP card on the board."
+  },
+  {
+    "id": "steam-shanghai",
+    "name": "Shanghai",
+    "era": "Steam",
+    "imageKey": "steam_shanghai",
+    "countries": [
+      "China"
+    ],
+    "buildings": [
+      "Port",
+      "Bank",
+      "Factory"
+    ],
+    "capacity": 3,
+    "bonuses": {
+      "wealth": 3,
+      "technique": 1
+    },
+    "trait": "**Treaty Port** — GP here gain +1 wealth for each full era that has passed in the current game."
+  },
+  {
+    "id": "steam-vienna",
+    "name": "Vienna",
+    "era": "Steam",
+    "imageKey": "steam_vienna",
+    "countries": [
+      "Austria"
+    ],
+    "buildings": [
+      "Concert Hall",
+      "University"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "culture": 2,
+      "intelligence": 1
+    },
+    "trait": "**City of Music** — Once per round, a GP with culture ≥ 7 here may directly claim 1 winning point."
+  },
+  {
+    "id": "steam-chicago",
+    "name": "Chicago",
+    "era": "Steam",
+    "imageKey": "steam_chicago",
+    "countries": [
+      "United States"
+    ],
+    "buildings": [
+      "Factory",
+      "Stock Exchange"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "technique": 2,
+      "wealth": 2
+    },
+    "trait": "**Second City** — GP here gain +1 technique for each Factory building in play across all locations on the board."
+  },
+  {
+    "id": "steam-lima",
+    "name": "Lima",
+    "era": "Steam",
+    "imageKey": "steam_lima",
+    "countries": [
+      "Peru"
+    ],
+    "buildings": [
+      "Port",
+      "Sanctuary"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "wealth": 1,
+      "belief": 1
+    },
+    "trait": "**Silver Gateway** — Once per era, gain 2 wealth when a GP is first deployed here."
+  },
+  {
+    "id": "steam-lagos",
+    "name": "Lagos",
+    "era": "Steam",
+    "imageKey": "steam_lagos",
+    "countries": [
+      "Nigeria"
+    ],
+    "buildings": [
+      "Port",
+      "Mint"
+    ],
+    "capacity": 1,
+    "bonuses": {
+      "wealth": 2
+    },
+    "trait": "**Atlantic Trade Node** — +1 wealth whenever a trade scenario resolves anywhere on the board."
+  },
+  {
+    "id": "steam-melbourne",
+    "name": "Melbourne",
+    "era": "Steam",
+    "imageKey": "steam_melbourne",
+    "countries": [
+      "Australia"
+    ],
+    "buildings": [
+      "Port",
+      "University"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "wealth": 1,
+      "intelligence": 1
+    },
+    "trait": "**Gold Rush City** — Once per game, a GP here draws 3 extra follower cards."
+  },
+  {
+    "id": "steam-sao-paulo",
+    "name": "São Paulo",
+    "era": "Steam",
+    "imageKey": "steam_sao_paulo",
+    "countries": [
+      "Brazil"
+    ],
+    "buildings": [
+      "Factory",
+      "Court"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "technique": 1,
+      "reputation": 1
+    },
+    "trait": "**Coffee Republic** — Once per round, convert 1 reputation into 1 wealth."
+  },
+  {
+    "id": "electricity-mumbai",
+    "name": "Mumbai",
+    "era": "Electricity",
+    "imageKey": "electricity_mumbai",
+    "countries": [
+      "India"
+    ],
+    "buildings": [
+      "Port",
+      "Stock Exchange"
+    ],
+    "capacity": 3,
+    "bonuses": {
+      "wealth": 3,
+      "technique": 1
+    },
+    "trait": "**City of Industry** — GP here with culture or technique ≥ 6 generate +1 of both stats per round."
+  },
+  {
+    "id": "electricity-osaka",
+    "name": "Osaka",
+    "era": "Electricity",
+    "imageKey": "electricity_osaka",
+    "countries": [
+      "Japan"
+    ],
+    "buildings": [
+      "Stock Exchange",
+      "Port"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "technique": 2,
+      "wealth": 2
+    },
+    "trait": "**Industrial Heartland** — GP here may participate in both a trade and a Conflict scenario in the same round."
+  },
+  {
+    "id": "electricity-sao-paulo",
+    "name": "São Paulo",
+    "era": "Electricity",
+    "imageKey": "electricity_sao_paulo",
+    "countries": [
+      "Brazil"
+    ],
+    "buildings": [
+      "Stock Exchange",
+      "Port"
+    ],
+    "capacity": 3,
+    "bonuses": {
+      "wealth": 3,
+      "technique": 1
+    },
+    "trait": "**Coffee and Industry** — Gain +1 wealth at the start of each round a GP is present here."
+  },
+  {
+    "id": "electricity-lagos",
+    "name": "Lagos",
+    "era": "Electricity",
+    "imageKey": "electricity_lagos",
+    "countries": [
+      "Nigeria"
+    ],
+    "buildings": [
+      "Port",
+      "Palace"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "wealth": 2,
+      "politics": 1
+    },
+    "trait": "**Niger Delta** — +1 wealth for each consecutive round any allied GP remains at this location."
+  },
+  {
+    "id": "electricity-nairobi",
+    "name": "Nairobi",
+    "era": "Electricity",
+    "imageKey": "electricity_nairobi",
+    "countries": [
+      "Kenya"
+    ],
+    "buildings": [
+      "University",
+      "Palace"
+    ],
+    "capacity": 1,
+    "bonuses": {
+      "intelligence": 1,
+      "politics": 1
+    },
+    "trait": "**East African Hub** — GP here are immune to the first natural hazard event each game."
+  },
+  {
+    "id": "electricity-melbourne",
+    "name": "Melbourne",
+    "era": "Electricity",
+    "imageKey": "electricity_melbourne",
+    "countries": [
+      "Australia"
+    ],
+    "buildings": [
+      "Port",
+      "University",
+      "Parliament"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "wealth": 2,
+      "intelligence": 1
+    },
+    "trait": "**Federation Capital** — Once per era, the owning player may veto one global competition result."
+  },
+  {
+    "id": "electricity-vienna",
+    "name": "Vienna",
+    "era": "Electricity",
+    "imageKey": "electricity_vienna",
+    "countries": [
+      "Austria"
+    ],
+    "buildings": [
+      "Museum",
+      "Gallery",
+      "University"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "culture": 3,
+      "intelligence": 1
+    },
+    "trait": "**Fin-de-Siècle** — GP with culture ≥ 7 here gain +1 reputation permanently at the end of each round."
+  },
+  {
+    "id": "electricity-chicago",
+    "name": "Chicago",
+    "era": "Electricity",
+    "imageKey": "electricity_chicago",
+    "countries": [
+      "United States"
+    ],
+    "buildings": [
+      "Stock Exchange",
+      "Military Academy"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "wealth": 2,
+      "strength": 2
+    },
+    "trait": "**City of Big Shoulders** — GP here gain +1 strength in all Conflict scenarios."
+  },
+  {
+    "id": "electricity-johannesburg",
+    "name": "Johannesburg",
+    "era": "Electricity",
+    "imageKey": "electricity_johannesburg",
+    "countries": [
+      "South Africa"
+    ],
+    "buildings": [
+      "Bank",
+      "Palace"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "wealth": 3,
+      "politics": 1
+    },
+    "trait": "**Gold Rush Capital** — Once per era, spend 2 wealth to gain 1 winning point."
+  },
+  {
+    "id": "electricity-cape-town",
+    "name": "Cape Town",
+    "era": "Electricity",
+    "imageKey": "electricity_cape_town",
+    "countries": [
+      "South Africa"
+    ],
+    "buildings": [
+      "Port",
+      "Museum"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "wealth": 1,
+      "culture": 1
+    },
+    "trait": "**Cape of Good Hope** — GP here cannot be targeted by the same Conflict scenario twice in a row."
+  },
+  {
+    "id": "information-london",
+    "name": "London",
+    "era": "Information",
+    "imageKey": "information_london",
+    "countries": [
+      "United Kingdom"
+    ],
+    "buildings": [
+      "Stock Exchange",
+      "Monument"
+    ],
+    "capacity": 3,
+    "bonuses": {
+      "wealth": 3,
+      "culture": 1
+    },
+    "trait": "**Global Finance** — Once per round, the owning player may move 2 wealth between any two allied locations."
+  },
+  {
+    "id": "information-bangalore",
+    "name": "Bangalore",
+    "era": "Information",
+    "imageKey": "information_bangalore",
+    "countries": [
+      "India"
+    ],
+    "buildings": [
+      "Enterprise Quarter",
+      "Stock Exchange"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "technique": 3,
+      "wealth": 1
+    },
+    "trait": "**Silicon Plateau** — GP here may deploy two followers in a single action once per round."
+  },
+  {
+    "id": "information-nairobi",
+    "name": "Nairobi",
+    "era": "Information",
+    "imageKey": "information_nairobi",
+    "countries": [
+      "Kenya"
+    ],
+    "buildings": [
+      "Enterprise Quarter",
+      "Port"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "technique": 2,
+      "wealth": 1
+    },
+    "trait": "**Silicon Savannah** — GP here gain +1 technique for each allied Enterprise Quarter location on the board."
+  },
+  {
+    "id": "information-stockholm",
+    "name": "Stockholm",
+    "era": "Information",
+    "imageKey": "information_stockholm",
+    "countries": [
+      "Sweden"
+    ],
+    "buildings": [
+      "Enterprise Quarter",
+      "Concert Hall"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "technique": 2,
+      "culture": 1
+    },
+    "trait": "**Startup Capital** — Once per era, a GP here gains 2 wealth and 1 reputation as a product launch bonus."
+  },
+  {
+    "id": "information-tel-aviv",
+    "name": "Tel Aviv",
+    "era": "Information",
+    "imageKey": "information_tel_aviv",
+    "countries": [
+      "Israel"
+    ],
+    "buildings": [
+      "Enterprise Quarter",
+      "Monument"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "technique": 2,
+      "intelligence": 1
+    },
+    "trait": "**Startup Nation** — All followers at this location are treated as identity-matched regardless of GP identity."
+  },
+  {
+    "id": "information-berlin",
+    "name": "Berlin",
+    "era": "Information",
+    "imageKey": "information_berlin",
+    "countries": [
+      "Germany"
+    ],
+    "buildings": [
+      "Enterprise Quarter",
+      "Concert Hall"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "technique": 2,
+      "culture": 2
+    },
+    "trait": "**Creative Capital** — Artist and Scholar GP here gain +1 culture and +1 intelligence per round."
+  },
+  {
+    "id": "information-sao-paulo",
+    "name": "São Paulo",
+    "era": "Information",
+    "imageKey": "information_sao_paulo",
+    "countries": [
+      "Brazil"
+    ],
+    "buildings": [
+      "Stock Exchange",
+      "Fine Dining"
+    ],
+    "capacity": 3,
+    "bonuses": {
+      "wealth": 3,
+      "reputation": 1
+    },
+    "trait": "**Digital Economy** — Once per round, convert 1 culture into 1 technique or vice versa."
+  },
+  {
+    "id": "information-mumbai",
+    "name": "Mumbai",
+    "era": "Information",
+    "imageKey": "information_mumbai",
+    "countries": [
+      "India"
+    ],
+    "buildings": [
+      "Stock Exchange",
+      "Port"
+    ],
+    "capacity": 3,
+    "bonuses": {
+      "wealth": 3,
+      "technique": 1
+    },
+    "trait": "**Bollywood Fintech** — GP with reputation ≥ 6 here generate +1 wealth per round."
+  },
+  {
+    "id": "information-amsterdam",
+    "name": "Amsterdam",
+    "era": "Information",
+    "imageKey": "information_amsterdam",
+    "countries": [
+      "Netherlands"
+    ],
+    "buildings": [
+      "Stock Exchange",
+      "Port"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "wealth": 2,
+      "technique": 1
+    },
+    "trait": "**Data Capital** — GP here are immune to all Espionage scenarios."
+  },
+  {
+    "id": "information-lagos",
+    "name": "Lagos",
+    "era": "Information",
+    "imageKey": "information_lagos",
+    "countries": [
+      "Nigeria"
+    ],
+    "buildings": [
+      "Port",
+      "Arena"
+    ],
+    "capacity": 2,
+    "bonuses": {
+      "wealth": 2,
+      "reputation": 1
+    },
+    "trait": "**Afrotech** — Once per era, a GP here draws 2 extra cards from any deck."
   }
 ]
