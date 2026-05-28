@@ -430,6 +430,12 @@ export default function WargameGame({ configId, onWin }: { configId: string; onW
                 >
                   Try Again
                 </button>
+                <button
+                  onClick={onWin}
+                  className="w-full py-2 rounded-xl bg-slate-700 text-slate-300 text-sm hover:bg-slate-600 transition-colors"
+                >
+                  Continue →
+                </button>
               </>
             )}
           </div>

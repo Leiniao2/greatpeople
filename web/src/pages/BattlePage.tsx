@@ -9,6 +9,7 @@ import type {
 } from '@/types'
 import cardsJson from '@/data/cards.json'
 import locationsJson from '@/data/locations.json'
+import locationCardsJson from '@/data/location_cards.json'
 import followersJson from '@/data/followers.json'
 
 // ─── Static Card Data ─────────────────────────────────────────────────────────
@@ -98,6 +99,31 @@ function makeHazardDeck(): EventCard[] {
 }
 
 // ─── Location Data ────────────────────────────────────────────────────────────
+
+interface LocationCardData {
+  id: string; name: string; era: string
+  bonuses: Partial<Record<StatKey, number>>
+  trait?: string
+}
+
+const LOCATION_CARD_MAP: Record<string, LocationCardData> = {}
+for (const lc of locationCardsJson as LocationCardData[]) {
+  LOCATION_CARD_MAP[`${lc.era}-${lc.name}`] = lc
+}
+
+function locationFightBonus(locationName: string, locationEra: string, stat: StatKey): number {
+  const card = LOCATION_CARD_MAP[`${locationEra}-${locationName}`]
+  return (card?.bonuses as Record<string, number> | undefined)?.[stat] ?? 0
+}
+
+function locationAbilityText(locationName: string, locationEra: string, stat: StatKey): string | undefined {
+  const card = LOCATION_CARD_MAP[`${locationEra}-${locationName}`]
+  const amount = (card?.bonuses as Record<string, number> | undefined)?.[stat] ?? 0
+  if (!amount || !card?.trait) return undefined
+  const match = card.trait.match(/\*\*(.*?)\*\*/)
+  const abilityName = match?.[1] ?? locationName
+  return `${abilityName}: +${amount} ${stat} per GP`
+}
 
 interface LocationTemplate { name: string; era: string; imageKey?: string; countries?: string[] }
 
@@ -348,8 +374,11 @@ function computeLocationTotal(
   gpCards: Record<string, Card>,
   followerCards: Record<string, FollowerCard>,
   allLocations?: LocationState[],
+  locationName?: string,
+  locationEra?: string,
 ): number {
   const locs = allLocations ?? []
+  const locBonus = (locationName && locationEra) ? locationFightBonus(locationName, locationEra, stat) : 0
   let total = 0
   for (const oc of locationCards) {
     if (oc.playerId !== playerId) continue
@@ -358,6 +387,7 @@ function computeLocationTotal(
       if (gp) {
         total += gp[stat]
         total += traitBonusForGP(gp, stat, locationCards, playerId, locs, gpCards, followerCards)
+        total += locBonus
       }
     } else {
       const f = followerCards[oc.cardId]
@@ -380,7 +410,10 @@ function computeSide(
   gpMap: Record<string, Card>,
   followerMap: Record<string, FollowerCard>,
   allLocations: LocationState[],
+  locationName?: string,
+  locationEra?: string,
 ): CombatSide {
+  const locBonus = (locationName && locationEra) ? locationFightBonus(locationName, locationEra, stat) : 0
   const cards: CardContrib[] = []
   let total = 0
   for (const oc of locationCards) {
@@ -390,8 +423,8 @@ function computeSide(
       if (!gp) continue
       const baseStat = gp[stat]
       const traitBonus = traitBonusForGP(gp, stat, locationCards, playerId, allLocations, gpMap, followerMap)
-      cards.push({ type: 'gp', name: gp.figureName, portraitUrl: gp.portraitUrl, baseStat, traitBonus, followerBonus: 0 })
-      total += baseStat + traitBonus
+      cards.push({ type: 'gp', name: gp.figureName, portraitUrl: gp.portraitUrl, baseStat, traitBonus, followerBonus: 0, locationBonus: locBonus })
+      total += baseStat + traitBonus + locBonus
     } else {
       const f = followerMap[oc.cardId]
       if (!f) continue
@@ -399,7 +432,7 @@ function computeSide(
         lc => lc.playerId === playerId && lc.type === 'gp' && gpMap[lc.cardId]?.identities?.includes(f.name)
       )
       const followerBonus = f.stat === stat ? (hasIdentityMatch ? 3 : f.bonus) : 0
-      cards.push({ type: 'follower', name: f.name, imageKey: f.imageKey, baseStat: 0, traitBonus: 0, followerBonus })
+      cards.push({ type: 'follower', name: f.name, imageKey: f.imageKey, baseStat: 0, traitBonus: 0, followerBonus, locationBonus: 0 })
       total += followerBonus
     }
   }
@@ -426,7 +459,7 @@ function computeEventSide(
       if (stat) {
         const baseStat = gp[stat]
         const traitBonus = traitBonusForGP(gp, stat, locationCards, playerId, allLocations, gpMap, followerMap)
-        cards.push({ type: 'gp', name: gp.figureName, portraitUrl: gp.portraitUrl, baseStat, traitBonus, followerBonus: 0 })
+        cards.push({ type: 'gp', name: gp.figureName, portraitUrl: gp.portraitUrl, baseStat, traitBonus, followerBonus: 0, locationBonus: 0 })
         total += baseStat + traitBonus
       }
     } else {
@@ -438,7 +471,7 @@ function computeEventSide(
       const followerBonus = stat
         ? (f.stat === stat ? (hasIdentityMatch ? 3 : f.bonus) : 0)
         : (hasIdentityMatch ? 3 : f.bonus)
-      cards.push({ type: 'follower', name: f.name, imageKey: f.imageKey, baseStat: 0, traitBonus: 0, followerBonus })
+      cards.push({ type: 'follower', name: f.name, imageKey: f.imageKey, baseStat: 0, traitBonus: 0, followerBonus, locationBonus: 0 })
       total += followerBonus
     }
   }
@@ -830,8 +863,8 @@ function gameReducer(state: GameState, action: GameAction): GameState {
       const stat = loc.activeEvent.stat!
       const { gpMap, followerMap } = buildLookups(state)
 
-      const myTotal = computeLocationTotal(loc.cards, player.id, stat, gpMap, followerMap, state.locations)
-      const theirTotal = computeLocationTotal(loc.cards, theirCard.playerId, stat, gpMap, followerMap, state.locations)
+      const myTotal = computeLocationTotal(loc.cards, player.id, stat, gpMap, followerMap, state.locations, loc.name, loc.era)
+      const theirTotal = computeLocationTotal(loc.cards, theirCard.playerId, stat, gpMap, followerMap, state.locations, loc.name, loc.era)
 
       const myWon = myTotal > theirTotal
       const theirWon = theirTotal > myTotal
@@ -911,8 +944,8 @@ function gameReducer(state: GameState, action: GameAction): GameState {
 
       // Build combat summary
       const defenderPlayer = state.players.find(p => p.id === theirCard.playerId)
-      const attackerSide = computeSide(loc.cards, player.id, player.name, stat, gpMap, followerMap, state.locations)
-      const defenderSide = computeSide(loc.cards, theirCard.playerId, defenderPlayer?.name ?? 'Opponent', stat, gpMap, followerMap, state.locations)
+      const attackerSide = computeSide(loc.cards, player.id, player.name, stat, gpMap, followerMap, state.locations, loc.name, loc.era)
+      const defenderSide = computeSide(loc.cards, theirCard.playerId, defenderPlayer?.name ?? 'Opponent', stat, gpMap, followerMap, state.locations, loc.name, loc.era)
       const combatSummary: CombatSummary = {
         kind: 'combat',
         locationName: loc.name,
@@ -921,6 +954,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
         defender: defenderSide,
         result: myWon ? 'attacker' : theirWon ? 'defender' : 'draw',
         kill: action.kill,
+        locationAbility: locationAbilityText(loc.name, loc.era, stat),
       }
 
       return {
@@ -992,7 +1026,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
               for (const oc of loc.cards) {
                 if (oc.playerId === p.id && oc.type === 'gp' && oc.isPublic) {
                   const gp = gpMap[oc.cardId]
-                  if (gp) { total += gp[stat]; cards.push({ type: 'gp', name: gp.figureName, portraitUrl: gp.portraitUrl, baseStat: gp[stat], traitBonus: 0, followerBonus: 0 }) }
+                  if (gp) { total += gp[stat]; cards.push({ type: 'gp', name: gp.figureName, portraitUrl: gp.portraitUrl, baseStat: gp[stat], traitBonus: 0, followerBonus: 0, locationBonus: 0 }) }
                 }
               }
             }
@@ -1068,7 +1102,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
                   const gp = gpMap[oc.cardId]
                   if (!gp) continue
                   for (const s of STATS) statTotals[s] += gp[s]
-                  cards.push({ type: 'gp', name: gp.figureName, portraitUrl: gp.portraitUrl, baseStat: 0, traitBonus: 0, followerBonus: 0 })
+                  cards.push({ type: 'gp', name: gp.figureName, portraitUrl: gp.portraitUrl, baseStat: 0, traitBonus: 0, followerBonus: 0, locationBonus: 0 })
                 } else {
                   const f = followerMap[oc.cardId]
                   if (!f) continue
@@ -1077,7 +1111,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
                   )
                   const bonus = hasIdentityMatch ? 3 : f.bonus
                   statTotals[f.stat as StatKey] += bonus
-                  cards.push({ type: 'follower', name: f.name, imageKey: f.imageKey, baseStat: 0, traitBonus: 0, followerBonus: bonus })
+                  cards.push({ type: 'follower', name: f.name, imageKey: f.imageKey, baseStat: 0, traitBonus: 0, followerBonus: bonus, locationBonus: 0 })
                 }
               }
 
@@ -1719,7 +1753,7 @@ interface Selection {
 // ─── Summary Modal ─────────────────────────────────────────────────────────────
 
 function ContribRow({ c }: { c: CardContrib }) {
-  const hasBonus = c.traitBonus !== 0 || c.followerBonus !== 0
+  const hasBonus = c.traitBonus !== 0 || c.followerBonus !== 0 || c.locationBonus !== 0
   const portrait = c.portraitUrl ?? (c.imageKey ? `/followers/${c.imageKey}.jpeg` : null)
   return (
     <div className="flex items-center gap-2 py-1 border-b border-white/5 last:border-0">
@@ -1743,11 +1777,14 @@ function ContribRow({ c }: { c: CardContrib }) {
             {c.followerBonus !== 0 && (
               <span className="text-[9px] text-indigo-400">follower +{c.followerBonus}</span>
             )}
+            {c.locationBonus !== 0 && (
+              <span className="text-[9px] text-yellow-300">terrain +{c.locationBonus}</span>
+            )}
           </div>
         )}
       </div>
       <span className="text-sm font-bold text-white shrink-0">
-        {c.baseStat + c.traitBonus + c.followerBonus}
+        {c.baseStat + c.traitBonus + c.followerBonus + c.locationBonus}
       </span>
     </div>
   )
@@ -1766,6 +1803,9 @@ function SummaryModal({ summary, onDismiss }: { summary: GameSummary; onDismiss:
             <div className="text-lg">⚔️</div>
             <h3 className="font-bold text-white text-sm uppercase tracking-wide">Battle Report</h3>
             <p className="text-slate-400 text-xs mt-0.5">{s.locationName} · {STAT_LABELS[s.stat]}</p>
+            {s.locationAbility && (
+              <p className="text-yellow-300/80 text-[10px] mt-1 italic">{s.locationAbility}</p>
+            )}
           </div>
 
           <div className="p-4 space-y-3 max-h-[60vh] overflow-y-auto">

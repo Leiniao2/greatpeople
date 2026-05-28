@@ -29,14 +29,17 @@ import AuctionGame from '@/components/minigames/AuctionGame'
 import PseudoCodeGame from '@/components/minigames/PseudoCodeGame'
 import IceSlideGame from '@/components/minigames/IceSlideGame'
 import BridgeGame from '@/components/minigames/BridgeGame'
+import ComposeMusicGame from '@/components/minigames/ComposeMusicGame'
+import WeaponDeployGame from '@/components/minigames/WeaponDeployGame'
+import MuseumGame from '@/components/minigames/MuseumGame'
 import { useAuth } from '@/hooks/useAuth'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
-interface QuizChallenge { type: 'quiz'; question: string; options: string[]; answer: number; fact: string }
+interface QuizChallenge { type: 'quiz'; question: string; options: string[]; answer: number; fact: string; countdown?: number }
 interface TrueFalseChallenge { type: 'truefalse'; statement: string; correct: boolean; fact: string }
 interface SortChallenge { type: 'sort'; question: string; items: string[]; fact: string }
-interface MinigameChallenge { type: 'minigame'; game: 'maze'|'mirror'|'circuit'|'sliding'|'crossword'|'geometry'|'painting'|'music'|'tactics'|'classify'|'cooking'|'fiction'|'sudoku'|'voting'|'chemistry'|'matchthree'|'klotski'|'lorentz'|'porcelain'|'wordle'|'decode'|'wargame'|'trade'|'punnett'|'auction'|'pseudocode'|'iceslide'|'bridge'; configId: string; instruction: string; fact: string }
+interface MinigameChallenge { type: 'minigame'; game: 'maze'|'mirror'|'circuit'|'sliding'|'crossword'|'geometry'|'painting'|'music'|'tactics'|'classify'|'cooking'|'fiction'|'sudoku'|'voting'|'chemistry'|'matchthree'|'klotski'|'lorentz'|'porcelain'|'wordle'|'decode'|'wargame'|'trade'|'punnett'|'auction'|'pseudocode'|'iceslide'|'bridge'|'compose'|'weapondeploy'|'museum'; configId: string; instruction: string; fact: string }
 type Challenge = QuizChallenge | TrueFalseChallenge | SortChallenge | MinigameChallenge
 
 interface NarrationScene { type: 'narration'; text: string }
@@ -122,9 +125,43 @@ function useTypewriter(text: string, speed = 22) {
 
 function QuizView({ challenge, onResult }: { challenge: QuizChallenge; onResult: (c: boolean) => void }) {
   const [selected, setSelected] = useState<number | null>(null)
-  const answered = selected !== null
+  const [timedOut, setTimedOut] = useState(false)
+  const [timeLeft, setTimeLeft] = useState<number | null>(challenge.countdown ?? null)
+  const answered = selected !== null || timedOut
+
+  useEffect(() => {
+    if (!challenge.countdown || answered) return
+    setTimeLeft(challenge.countdown)
+    const iv = setInterval(() => {
+      setTimeLeft(prev => {
+        if (prev === null || prev <= 1) {
+          clearInterval(iv)
+          setTimedOut(true)
+          onResult(false)
+          return 0
+        }
+        return prev - 1
+      })
+    }, 1000)
+    return () => clearInterval(iv)
+  }, [challenge]) // eslint-disable-line react-hooks/exhaustive-deps
+
   return (
     <div className="flex flex-col gap-3">
+      {challenge.countdown != null && timeLeft !== null && !answered && (
+        <div className="flex items-center gap-2">
+          <div className="flex-1 h-1.5 bg-white/[0.06] rounded-full overflow-hidden">
+            <div
+              className={`h-full rounded-full transition-all duration-1000 ${timeLeft <= 3 ? 'bg-red-500' : 'bg-amber-500'}`}
+              style={{ width: `${(timeLeft / challenge.countdown) * 100}%` }}
+            />
+          </div>
+          <span className={`text-xs font-bold tabular-nums w-6 text-right ${timeLeft <= 3 ? 'text-red-400' : 'text-amber-400'}`}>{timeLeft}s</span>
+        </div>
+      )}
+      {timedOut && (
+        <p className="text-red-400 text-xs font-bold">⏱ Time's up!</p>
+      )}
       <p className="text-white text-sm font-medium leading-snug">{challenge.question}</p>
       <div className="flex flex-col gap-2">
         {challenge.options.map((opt, i) => {
@@ -261,8 +298,11 @@ function MinigameView({ challenge, onResult }: { challenge: MinigameChallenge; o
         {challenge.game === 'punnett'    && <PunnettGame configId={challenge.configId} onWin={handleWin} />}
         {challenge.game === 'auction'    && <AuctionGame configId={challenge.configId} onWin={handleWin} />}
         {challenge.game === 'pseudocode' && <PseudoCodeGame configId={challenge.configId} onWin={handleWin} />}
-        {challenge.game === 'iceslide'   && <IceSlideGame configId={challenge.configId} onWin={handleWin} />}
-        {challenge.game === 'bridge'     && <BridgeGame configId={challenge.configId} onWin={handleWin} />}
+        {challenge.game === 'iceslide'     && <IceSlideGame configId={challenge.configId} onWin={handleWin} />}
+        {challenge.game === 'bridge'       && <BridgeGame configId={challenge.configId} onWin={handleWin} />}
+        {challenge.game === 'compose'      && <ComposeMusicGame configId={challenge.configId} onWin={handleWin} />}
+        {challenge.game === 'weapondeploy' && <WeaponDeployGame configId={challenge.configId} onWin={handleWin} />}
+        {challenge.game === 'museum'       && <MuseumGame configId={challenge.configId} onWin={handleWin} />}
       </div>
     </div>
   )

@@ -63,7 +63,7 @@ const CONFIGS: Record<string, Config> = {
   },
 }
 
-type Phase = 'reveal' | 'bidding' | 'ai-thinking' | 'item-done' | 'finished'
+type Phase = 'rules' | 'reveal' | 'bidding' | 'ai-thinking' | 'item-done' | 'finished'
 
 export default function AuctionGame({
   configId,
@@ -75,7 +75,7 @@ export default function AuctionGame({
   const cfg = CONFIGS[configId] ?? CONFIGS['venetian-auction']
 
   const [itemIdx,    setItemIdx]    = useState(0)
-  const [phase,      setPhase]      = useState<Phase>('reveal')
+  const [phase,      setPhase]      = useState<Phase>('rules')
   const [currentBid, setCurrentBid] = useState(cfg.items[0].startBid)
   const [playerHigh, setPlayerHigh] = useState(false)
   const [budget,     setBudget]     = useState(cfg.budget)
@@ -89,7 +89,7 @@ export default function AuctionGame({
 
   useEffect(() => {
     if (phase !== 'reveal') return
-    const t = setTimeout(() => setPhase('bidding'), 800)
+    const t = setTimeout(() => setPhase('bidding'), 600)
     return () => clearTimeout(t)
   }, [phase, itemIdx])
 
@@ -159,8 +159,48 @@ export default function AuctionGame({
   const wonTargetCnt = targetItems.filter(i => wonIds.includes(i.id)).length
   const canBid       = phase === 'bidding' && currentBid + BID_STEP <= budget
 
+  // ── Rules screen ──────────────────────────────────────────────────────────
+  if (phase === 'rules') {
+    return (
+      <div className="flex flex-col gap-4 bg-[#0a0a18] text-white p-5 rounded-xl select-none">
+        <div>
+          <p className="text-amber-400 text-[10px] font-bold uppercase tracking-widest mb-1">{cfg.title}</p>
+          <p className="text-white font-bold text-base">How the Auction Works</p>
+        </div>
+        <div className="flex flex-col gap-2 text-sm text-slate-300">
+          <div className="flex gap-2 items-start">
+            <span className="text-amber-400 font-bold mt-0.5">💰</span>
+            <span>You have <span className="text-amber-300 font-bold">{cfg.budget} coins</span> to bid with. Don't spend it all on decoys.</span>
+          </div>
+          <div className="flex gap-2 items-start">
+            <span className="text-amber-400 font-bold mt-0.5">★</span>
+            <span>Items marked <span className="text-amber-300 font-bold">★ Target</span> are what you need. Win <span className="text-amber-300 font-bold">{cfg.targetWins}</span> of them to succeed.</span>
+          </div>
+          <div className="flex gap-2 items-start">
+            <span className="text-emerald-400 font-bold mt-0.5">↑</span>
+            <span><span className="text-emerald-300 font-bold">Bid</span> — raise the current bid by {BID_STEP} coins. The rival will respond.</span>
+          </div>
+          <div className="flex gap-2 items-start">
+            <span className="text-slate-400 font-bold mt-0.5">→</span>
+            <span><span className="text-slate-300 font-bold">Pass</span> — if you're the highest bidder, you <span className="text-emerald-300">win</span> the item at your price. If the rival is higher, you <span className="text-red-300">let it go</span>.</span>
+          </div>
+          <div className="flex gap-2 items-start">
+            <span className="text-slate-500 font-bold mt-0.5">⚠</span>
+            <span className="text-slate-400 text-xs">The rival will bid up to a hidden limit. Outbid that limit and they'll fold.</span>
+          </div>
+        </div>
+        <button
+          onClick={() => setPhase('reveal')}
+          className="mt-1 py-3 rounded-xl bg-amber-500 text-slate-950 font-bold text-sm hover:bg-amber-400 active:scale-95 transition-all"
+        >
+          Start Auction →
+        </button>
+      </div>
+    )
+  }
+
   return (
-    <div className="flex flex-col h-full bg-[#0a0a18] text-white select-none">
+    <div className="relative flex flex-col bg-[#0a0a18] text-white select-none rounded-xl overflow-hidden" style={{ minHeight: 400 }}>
 
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-3 border-b border-slate-800">
@@ -286,6 +326,12 @@ export default function AuctionGame({
               ? `You secured ${wonTargetCnt} target items.`
               : `Only ${wonTargetCnt} of ${cfg.targetWins} targets acquired.`}
           </p>
+          <button
+            onClick={onWin}
+            className="mt-6 px-8 py-3 rounded-xl font-bold text-sm bg-slate-700 text-slate-200 hover:bg-slate-600 active:scale-95 transition-all"
+          >
+            Continue →
+          </button>
         </div>
       )}
     </div>

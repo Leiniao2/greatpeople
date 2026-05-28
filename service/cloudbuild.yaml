@@ -1,18 +1,31 @@
 steps:
+  # ── 1. Build the React frontend ──────────────────────────────────────────────
+  - name: node:20-slim
+    dir: web
+    entrypoint: bash
+    args:
+      - -c
+      - |
+        npm ci
+        npm run build
+
+  # ── 2. Copy built assets into service/static/ ────────────────────────────────
+  - name: ubuntu
+    entrypoint: bash
+    args:
+      - -c
+      - |
+        rm -rf service/static
+        cp -r web/dist service/static
+
+  # ── 3. Run backend tests ─────────────────────────────────────────────────────
   - name: python:3.11-slim
+    dir: service
     entrypoint: bash
     args:
       - -c
       - |
         pip install -r requirements.txt
         python -m pytest tests/ -v
-
-  - name: gcr.io/cloud-builders/gcloud
-    args:
-      - app
-      - deploy
-      - app.yaml
-      - --quiet
-      - --project=$PROJECT_ID
 
 timeout: 1200s

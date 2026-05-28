@@ -6,23 +6,23 @@
     "scenes": [
       {
         "type": "narration",
-        "text": "Uruk, 2700 BCE. The mightiest city in the world is ruled by a king who is two-thirds god and one-third man. Gilgamesh is glorious — and terrible. He drives his people without mercy. They cry out to the gods for relief."
+        "text": "The gods heard the cries of Uruk. Gilgamesh was mighty — two-thirds god, one-third man — but he crushed his own people with the weight of his restless energy. They prayed for relief. The gods heard them. The goddess Aruru listened, and from the clay of the earth she shaped an answer."
       },
       {
         "type": "dialog",
-        "speaker": "Gilgamesh",
-        "portraitKey": "gilgamesh",
-        "text": "I have built the walls of Uruk that will stand for eternity. I have defeated every man in battle. And yet... I am alone. No man is my equal. No friend stands beside me."
+        "speaker": "Aruru",
+        "portraitKey": "follower:sovereign",
+        "text": "He shall be Enkidu — born of wildness and clay. A wild man, ignorant of people and land, covered in hair like the god of animals. He will match Gilgamesh strength for strength. Let the king find his equal."
       },
       {
         "type": "narration",
-        "text": "The gods hear the prayers. They create Enkidu — wild, enormous, clothed in fur — living among the animals of the steppe. He runs with gazelles. He drinks at watering holes with lions. He is nature made flesh."
+        "text": "Enkidu roamed the steppes beyond Uruk, running with the gazelles, drinking at watering holes with lions. He was not man, not beast — something between. He freed animals from hunters' traps. He was nature made flesh."
       },
       {
         "type": "dialog",
         "speaker": "Enkidu",
         "portraitKey": "enkidu",
-        "text": "They say you are two-thirds god. I say: let us see what that is worth."
+        "text": "The gazelles were my brothers. The lions did not fear me. I did not know what a city was. I did not know what a king was. Then someone told me: there is a man in Uruk who calls himself the greatest. I laughed. Let us see."
       },
       {
         "type": "challenge",
@@ -30,13 +30,13 @@
       },
       {
         "type": "narration",
-        "text": "They grappled at the city gate. The earth shook. And when it was over, something had changed in both of them. For the first time, each had met his equal."
+        "text": "In Uruk, the great king sat on his throne — and felt alone. No man was his equal. No friend stood beside him. Then came the news: a wild giant was living on the steppe, freeing animals from traps."
       },
       {
         "type": "dialog",
         "speaker": "Gilgamesh",
         "portraitKey": "gilgamesh",
-        "text": "He is as strong as I am. In battle we are matched. But in friendship — he is everything I lacked. He is my brother."
+        "text": "I have built the walls of Uruk that will stand for eternity. I have defeated every man in battle. And yet — I am alone. No man is my equal. No friend stands beside me."
       },
       {
         "type": "challenge",
@@ -44,13 +44,7 @@
       },
       {
         "type": "narration",
-        "text": "Together they journey to the Cedar Forest to slay the monster Humbaba. Together they anger the gods. And then the unthinkable happens — Enkidu falls ill. He dies."
-      },
-      {
-        "type": "dialog",
-        "speaker": "Gilgamesh",
-        "portraitKey": "gilgamesh",
-        "text": "Enkidu is dead. My friend, my brother. I touched his face and wept for six days. On the seventh — he did not rise. I will not accept death. I will find the secret of immortality."
+        "text": "A priestess was sent to bring Enkidu to civilisation — to teach him language, bread, clothing, the ways of men. Enkidu learned. And then he walked to Uruk to find the king who was said to be the greatest in the world."
       },
       {
         "type": "challenge",
@@ -58,11 +52,45 @@
       },
       {
         "type": "narration",
-        "text": "Gilgamesh's quest for immortality ends in failure — a plant of eternal youth stolen by a serpent. But in failure he finds something deeper: acceptance. He returns to Uruk and sees its walls with new eyes."
+        "text": "They grappled at the city gate. The earth shook. The doorposts trembled. And when it was over, something had changed in both of them. For the first time in their lives, each had met his equal."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Enkidu",
+        "portraitKey": "enkidu",
+        "text": "They say you are two-thirds god. I say: let us see what that is worth. I have lived in the wild places. I have wrestled lions. Come then — let us find out which of us is great."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Gilgamesh",
+        "portraitKey": "gilgamesh",
+        "text": "He is as strong as I am. In battle we are matched — perfectly matched. But in friendship, he is everything I lacked. He is my brother. My equal. At last, my equal."
       },
       {
         "type": "challenge",
         "index": 3
+      },
+      {
+        "type": "narration",
+        "text": "Together they journeyed to the Cedar Forest to slay the monster Humbaba. Together they angered the gods. And then the unthinkable happened — Enkidu fell ill. He died."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Gilgamesh",
+        "portraitKey": "gilgamesh",
+        "text": "Enkidu is dead. My friend. My brother. I touched his face and I wept for six days. On the seventh he did not rise. If he is gone — what is left? I will not accept this. I will find the secret of immortality."
+      },
+      {
+        "type": "challenge",
+        "index": 4
+      },
+      {
+        "type": "narration",
+        "text": "Gilgamesh's quest for immortality ends in failure — a plant of eternal youth stolen by a serpent while he slept. But in failure he finds something deeper: acceptance. He returns to Uruk and sees its walls with new eyes."
+      },
+      {
+        "type": "challenge",
+        "index": 5
       }
     ]
   },
@@ -189,55 +217,6 @@
       {
         "type": "challenge",
         "index": 4
-      }
-    ]
-  },
-  {
-    "era": "Ancient",
-    "story": "Born of Clay and Wild",
-    "portraitKey": "enkidu",
-    "scenes": [
-      {
-        "type": "narration",
-        "text": "The gods heard the cries of Uruk. Gilgamesh was great but restless — so mighty he crushed his own people with his energy. The goddess Aruru listened, and from the clay of the earth and the spit of Anu, she shaped an answer."
-      },
-      {
-        "type": "dialog",
-        "speaker": "Aruru",
-        "text": "He shall be Enkidu — born of wildness and clay. A wild man, ignorant of people and land. Covered in hair like the god of animals.",
-        "portraitKey": "follower:sovereign"
-      },
-      {
-        "type": "challenge",
-        "index": 0
-      },
-      {
-        "type": "narration",
-        "text": "Enkidu roamed the steppes beyond Uruk, drinking with the gazelles, freeing animals from hunters' traps. He was not man, not beast — something between. When the trappers brought news to Gilgamesh, the king sent someone to civilize this wild creature."
-      },
-      {
-        "type": "challenge",
-        "index": 1
-      },
-      {
-        "type": "dialog",
-        "speaker": "Enkidu",
-        "text": "I will go to Uruk. I will challenge Gilgamesh. They say he is the greatest — let us see if this is true.",
-        "portraitKey": "enkidu"
-      },
-      {
-        "type": "narration",
-        "text": "The two titans clashed at the gate of Uruk. The ground shook. The doorposts trembled. Then — something unexpected. The great struggle ended not in death, but in laughter. In recognition. In brotherhood."
-      },
-      {
-        "type": "dialog",
-        "speaker": "Gilgamesh",
-        "text": "There is no one like you, Enkidu. You shall be my companion, my second self. Together we will face what no single man can face alone.",
-        "portraitKey": "gilgamesh"
-      },
-      {
-        "type": "challenge",
-        "index": 2
       }
     ]
   },
@@ -858,13 +837,13 @@
     "scenes": [
       {
         "type": "narration",
-        "text": "Athens, 450 BCE. The city shimmers at the height of its glory. The Parthenon rises on the Acropolis. Sophocles writes his tragedies. And the man steering this golden age has at his side the most remarkable woman in Greece."
+        "text": "Athens, 450 BCE. The city shimmers at the height of its glory. The Parthenon rises on the Acropolis. Sophocles writes his tragedies. Democracy shapes every argument in the agora. And the man steering this golden age has at his side the most remarkable woman in Greece."
       },
       {
         "type": "dialog",
         "speaker": "Pericles",
         "portraitKey": "pericles",
-        "text": "Our constitution is called democracy because power is in the hands of the many, not the few. We do not imitate our neighbors — we are a pattern to others. We are the school of all Greece."
+        "text": "Our constitution is called democracy because power is in the hands of the many, not the few. We do not imitate our neighbours — we are a pattern to others. Athens is the school of all Greece."
       },
       {
         "type": "dialog",
@@ -884,6 +863,26 @@
       },
       {
         "type": "narration",
+        "text": "Aspasia of Miletus ran a salon in Athens where the greatest minds of the age gathered. Socrates came. Alcibiades came. She discussed rhetoric, politics, and philosophy with them as an equal. Her foreign birth placed her outside Athenian law — and ironically, gave her freedoms Athenian women did not have."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Aspasia",
+        "portraitKey": "aspasia",
+        "text": "A city that silences half its people silences half its wisdom. Tell me, Socrates — is it Athens that is great, or the minds Athens has not yet learned to silence?"
+      },
+      {
+        "type": "dialog",
+        "speaker": "Pericles",
+        "portraitKey": "pericles",
+        "text": "They say I speak well. They are wrong. I speak what she has taught me. Aspasia sees through to the heart of every argument. My Funeral Oration — the words that will outlast stone — I did not write alone."
+      },
+      {
+        "type": "challenge",
+        "index": 1
+      },
+      {
+        "type": "narration",
         "text": "Across the Aegean, Sparta watches Athens grow with suspicion and dread. Pleistoanax, king of Sparta, warns his council of what Athens' power will mean for Greece."
       },
       {
@@ -894,74 +893,41 @@
       },
       {
         "type": "challenge",
-        "index": 1
+        "index": 2
+      },
+      {
+        "type": "challenge",
+        "index": 3
+      },
+      {
+        "type": "narration",
+        "text": "Aspasia's enemies, unable to attack Pericles directly, dragged her before the courts on charges of impiety. It was an assault on him through her. She faced Athenian justice as a foreigner, a woman, and a partner of the most powerful man in the city."
       },
       {
         "type": "dialog",
         "speaker": "Aspasia",
         "portraitKey": "aspasia",
-        "text": "They drag me before the courts on charges of impiety. They cannot touch Pericles directly — so they strike at me. I will not dignify their cowardice with silence."
+        "text": "They cannot touch Pericles directly — so they strike at me. I will not dignify their cowardice with silence. Let them carve their accusations in stone. Every word only proves they listened."
       },
       {
         "type": "challenge",
-        "index": 2
+        "index": 4
+      },
+      {
+        "type": "challenge",
+        "index": 5
       },
       {
         "type": "narration",
-        "text": "The Peloponnesian War between Athens and Sparta lasted 27 years and ended in Athens' defeat. But the ideas born in this golden age — democracy, philosophy, tragedy — outlasted every army and empire that followed."
+        "text": "The Peloponnesian War lasted 27 years and ended in Athens' defeat. But the ideas born in this golden age — democracy, philosophy, tragedy — outlasted every army and empire that followed. And later writers credited Aspasia with some of Pericles' most famous words."
       },
       {
         "type": "challenge",
-        "index": 3
-      }
-    ]
-  },
-  {
-    "era": "Classical",
-    "story": "The Athenian Muse",
-    "portraitKey": "aspasia",
-    "scenes": [
-      {
-        "type": "narration",
-        "text": "Athens, 450 BCE. The city glitters with new stone — the Parthenon rises, philosophy fills the agora, and democracy shapes every argument. Yet for Athenian women, the world remains narrow. For one woman from Miletus, it would not be narrow at all."
-      },
-      {
-        "type": "dialog",
-        "speaker": "Pericles",
-        "text": "They say I speak well. They are wrong. I speak what she has taught me. Aspasia sees through to the heart of every argument.",
-        "portraitKey": "follower:sovereign"
+        "index": 6
       },
       {
         "type": "challenge",
-        "index": 0
-      },
-      {
-        "type": "narration",
-        "text": "Aspasia ran a salon where the greatest minds of the age gathered. Socrates came. So did Alcibiades. So did Pericles, who would take her as his partner for life. Her enemies used her as a weapon against Pericles — she was tried for impiety."
-      },
-      {
-        "type": "dialog",
-        "speaker": "Aspasia",
-        "text": "A city that silences half its people silences half its wisdom. Tell me, Socrates — is it Athens that is great, or the minds Athens has not yet learned to silence?",
-        "portraitKey": "aspasia"
-      },
-      {
-        "type": "challenge",
-        "index": 1
-      },
-      {
-        "type": "dialog",
-        "speaker": "Aspasia",
-        "text": "Let them call me what they will. Every word they carve in stone against me only proves they listened.",
-        "portraitKey": "aspasia"
-      },
-      {
-        "type": "narration",
-        "text": "Later writers credited Aspasia with some of Pericles' most famous speeches — including his Funeral Oration. Whether hers or his, what remains is the undeniable fact that the Golden Age of Athens was lit, in part, by a mind the city barely acknowledged."
-      },
-      {
-        "type": "challenge",
-        "index": 2
+        "index": 7
       }
     ]
   },
@@ -2162,8 +2128,8 @@
   },
   {
     "era": "Steam",
-    "story": "Fantasia",
-    "portraitKey": "robert_schumann",
+    "story": "Fantasia and Keys",
+    "portraitKey": "clara_schumann",
     "scenes": [
       {
         "type": "narration",
@@ -2172,8 +2138,8 @@
       {
         "type": "dialog",
         "speaker": "Robert Schumann",
-        "text": "Florestan says play faster, louder, with fire. Eusebius says slower, with longing. I cannot silence either of them — they are both me.",
-        "portraitKey": "robert_schumann"
+        "portraitKey": "robert_schumann",
+        "text": "Florestan says play faster, louder, with fire. Eusebius says slower — with longing, with restraint. I cannot silence either of them. They are both me. Perhaps a composer must be two people at once."
       },
       {
         "type": "challenge",
@@ -2181,70 +2147,99 @@
       },
       {
         "type": "narration",
-        "text": "Schumann invented Romantic piano writing as much as he discovered it. He also fought Clara's father Friedrich Wieck in court for the right to marry her — and won. Their marriage became one of the great artistic partnerships of the 19th century."
-      },
-      {
-        "type": "dialog",
-        "speaker": "Clara Wieck",
-        "text": "Father forbids us to see each other. He says you are unstable. But I have heard your music, Robert. A man who writes like that cannot bring ruin.",
-        "portraitKey": "follower:performer"
-      },
-      {
-        "type": "challenge",
-        "index": 1
-      },
-      {
-        "type": "narration",
-        "text": "But the voices never stopped. In 1854, Robert threw himself into the Rhine. He was pulled from the water and spent his last years in an asylum. Brahms — the young composer he had championed — visited him there. He died in 1856, at forty-six, with music still unfinished in his mind."
-      },
-      {
-        "type": "challenge",
-        "index": 2
-      }
-    ]
-  },
-  {
-    "era": "Steam",
-    "story": "Keys and Concertos",
-    "portraitKey": "clara_schumann",
-    "scenes": [
-      {
-        "type": "narration",
-        "text": "Leipzig, 1838. Clara Wieck, age 18, is the most celebrated pianist in Europe. Emperors and kings have applauded her. Critics call her genius. Her father, her manager and teacher, has taken her to court to block her marriage to the young composer Robert Schumann."
+        "text": "Two years later, Robert sees nine-year-old Clara Wieck perform at her father's concert. He is astonished. By the time she is thirteen, he has moved into the Wieck household as a student. He watches her practise six hours a day — and compose."
       },
       {
         "type": "dialog",
         "speaker": "Clara Schumann",
         "portraitKey": "clara_schumann",
-        "text": "Father says a woman's place is in the salon, performing what men compose. But I compose too. I always have. Why should the music that comes from me be worth less than the music that comes from him?"
+        "text": "Father has trained me since I could walk. But there is music inside me that no teacher gave me. The Piano Concerto — I hear it all at once when I sit still and close my eyes. It is mine."
       },
       {
         "type": "dialog",
         "speaker": "Robert Schumann",
         "portraitKey": "robert_schumann",
-        "text": "They may try to keep us apart in law. But what Clara plays — when she sits at the piano and lets the music speak — I hear my own heart made sound. No court can silence that."
-      },
-      {
-        "type": "challenge",
-        "index": 0
-      },
-      {
-        "type": "narration",
-        "text": "Clara and Robert married despite her father's legal opposition. She continued to perform and compose for decades after Robert's death, supporting their seven children through concertizing across Europe. She is now recognized as one of the 19th century's most important composers."
+        "text": "She plays as if the piano is part of her. And she composes — at thirteen, she composes things I could not have written at twenty. I am in love with her music before I am in love with her."
       },
       {
         "type": "challenge",
         "index": 1
       },
       {
+        "type": "narration",
+        "text": "Clara's father, Friedrich Wieck, forbade the match absolutely. He despised Robert as unstable and improvident. He took them to court. The legal battle lasted years."
+      },
+      {
         "type": "dialog",
         "speaker": "Clara Schumann",
         "portraitKey": "clara_schumann",
-        "text": "Johannes Brahms is here again, sitting in the corner, listening. He is twenty years younger than me. He understands music the way Robert did — as something sacred. I will champion his work for the rest of my life."
+        "text": "Father calls you unstable. He says you have no prospects, no discipline. But I have heard your music, Robert. A man who hears the world that way cannot bring ruin — he can only bring more of that."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Robert Schumann",
+        "portraitKey": "robert_schumann",
+        "text": "They can try to keep us apart in law. But what Clara plays when she sits at the piano — I hear my own heart made sound. No court in Europe can silence that."
       },
       {
         "type": "challenge",
         "index": 2
+      },
+      {
+        "type": "narration",
+        "text": "They won. Robert and Clara married in September 1840, the day before her 21st birthday. In that single year, Robert composed over 100 songs — the great 'song year' — a creative torrent released by love and relief."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Robert Schumann",
+        "portraitKey": "robert_schumann",
+        "text": "This year — it all pours from me. The Dichterliebe. The Frauenliebe. I hear the next song before the last one is finished. I think this is what happiness sounds like from the inside."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Clara Schumann",
+        "portraitKey": "clara_schumann",
+        "text": "And I carry them out into the world on my fingers. That is the bargain we made — unspoken, but real. He hears it. I play it. Between us, the music finds its audience."
+      },
+      {
+        "type": "challenge",
+        "index": 3
+      },
+      {
+        "type": "narration",
+        "text": "But Robert's inner voices grew darker through the 1840s. He heard phantom music at night — an A that would not stop. In February 1854, he threw himself from a bridge into the Rhine. He was pulled out alive and placed in the Endenich asylum, where he spent his last two years."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Clara Schumann",
+        "portraitKey": "clara_schumann",
+        "text": "I have seven children. Robert is in Endenich. Brahms sits in the corner — young, twenty, watching over us all. And I play. Concert after concert, city after city. For the children. For Robert's name. For the music."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Robert Schumann",
+        "portraitKey": "robert_schumann",
+        "text": "Dearest Clara — I hear music still. It is not always clear, not always kind. But it is still there. Do not let them forget what we made together. The music knows the way home."
+      },
+      {
+        "type": "challenge",
+        "index": 4
+      },
+      {
+        "type": "narration",
+        "text": "Robert died in July 1856, at forty-six. Clara outlived him by forty years. She gave over 1,300 concerts, refused to lower her fees because men did not lower theirs, and premiered Brahms's greatest works. She composed until her hands gave out. She never stopped."
+      },
+      {
+        "type": "challenge",
+        "index": 5
+      },
+      {
+        "type": "narration",
+        "text": "She performed her final public concert at age 72. The programme included Robert's music."
+      },
+      {
+        "type": "challenge",
+        "index": 6
       }
     ]
   },
@@ -2838,19 +2833,13 @@
     "scenes": [
       {
         "type": "narration",
-        "text": "Nepal, May 29, 1953. After five previous failed expeditions, a team of 400 people has pushed toward Everest's summit for weeks. Today, two men stand at 28,700 feet and prepare for the final push into the death zone."
-      },
-      {
-        "type": "dialog",
-        "speaker": "Edmund Hillary",
-        "portraitKey": "edmund_hillary",
-        "text": "The summit ridge is narrow. Ice on the left, a 10,000-foot drop to Tibet on the right. Tenzing is behind me. Every step burns. I swing the ice-axe and cut a step. Another. Another."
+        "text": "Nepal, May 1953. For Tenzing Norgay, this is the seventh attempt on Everest. He has spent more time on this mountain than almost any living person — he knows its ice, its sudden storms, its moods. He calls it Chomolungma: the goddess mother of the world."
       },
       {
         "type": "dialog",
         "speaker": "Tenzing Norgay",
         "portraitKey": "tenzing_norgay",
-        "text": "I am the ninth of thirteen children from a Sherpa family. Chomolungma is our mountain — the goddess mother of the world. I have tried to climb her six times. Today, I believe she will allow us to touch her crown."
+        "text": "I have been to this mountain before. Six times I have tried. Six times the mountain sent me back. This time — this time I believe she will allow it. I do not know why. I only know I feel it."
       },
       {
         "type": "challenge",
@@ -2858,7 +2847,47 @@
       },
       {
         "type": "narration",
-        "text": "They reached the summit at 11:30 AM. Hillary photographed Tenzing holding four flags — Nepal, Britain, the United Nations, and India. Tenzing pressed chocolate into the snow as an offering to the mountain."
+        "text": "Edmund Hillary is a New Zealand beekeeper who learned mountaineering in the Alps and the Southern Alps of New Zealand. He is not a professional climber — he is simply someone for whom the impossible is interesting. He and Tenzing have been roped together for weeks."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Edmund Hillary",
+        "portraitKey": "edmund_hillary",
+        "text": "The summit ridge is narrow as a knife. Ice on the left, a 10,000-foot drop to Tibet on the right. Tenzing is behind me. Every step burns. I swing the ice-axe and cut a step. Another. Another. Another."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Tenzing Norgay",
+        "portraitKey": "tenzing_norgay",
+        "text": "Chomolungma is our mountain — the goddess mother of the world. I am the ninth of thirteen children from a Sherpa family. To stand here is not just my ambition. It is an answer to something the mountain has been asking of my people for a long time."
+      },
+      {
+        "type": "challenge",
+        "index": 1
+      },
+      {
+        "type": "narration",
+        "text": "They reach the Hillary Step — a 40-foot rock wall at 28,710 feet, just below the summit. No one has climbed it before. On one side: Tibet. On the other: Nepal. Hillary wedges himself into a crack in the ice and chimney-climbs upward."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Edmund Hillary",
+        "portraitKey": "edmund_hillary",
+        "text": "We go for the top at first light. Together. Neither of us could do this alone — and neither of us should have to."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Tenzing Norgay",
+        "portraitKey": "tenzing_norgay",
+        "text": "Together. The mountain asks everything of a man. But two men together — perhaps that is something even the mountain must answer."
+      },
+      {
+        "type": "challenge",
+        "index": 2
+      },
+      {
+        "type": "narration",
+        "text": "They reached the summit at 11:30 AM on May 29, 1953. Hillary photographed Tenzing holding four flags — Nepal, Britain, the United Nations, and India. Tenzing pressed chocolate and biscuits into the snow as an offering to the Buddhist gods. They spent fifteen minutes on the roof of the world."
       },
       {
         "type": "dialog",
@@ -2870,72 +2899,31 @@
         "type": "dialog",
         "speaker": "Tenzing Norgay",
         "portraitKey": "tenzing_norgay",
-        "text": "Chomolungma has been kind to us today. I do not feel we have conquered her. She has allowed us to touch her crown."
-      },
-      {
-        "type": "challenge",
-        "index": 1
-      },
-      {
-        "type": "narration",
-        "text": "Their partnership was perfect: Hillary, the New Zealand beekeeper with mountaineering skill; Tenzing, the Sherpa with intimate knowledge of Everest and unmatched high-altitude experience. Neither could have done it without the other."
-      },
-      {
-        "type": "challenge",
-        "index": 2
+        "text": "Chomolungma has been kind to us today. I do not feel we have conquered her. She has allowed us to touch her crown — and that is a very different thing."
       },
       {
         "type": "challenge",
         "index": 3
-      }
-    ]
-  },
-  {
-    "era": "Electricity",
-    "story": "Sherpa's Summit",
-    "portraitKey": "tenzing_norgay",
-    "scenes": [
-      {
-        "type": "narration",
-        "text": "Nepal, 1953. The race to the summit of Everest has become something greater than mountaineering. It is a test of human limits — of body, will, and trust between two men from two different worlds, roped together above the clouds."
-      },
-      {
-        "type": "dialog",
-        "speaker": "Tenzing Norgay",
-        "text": "I have been to this mountain before. Six times I have tried. Six times I have turned back. This time — this time I will stand on the top.",
-        "portraitKey": "tenzing_norgay"
-      },
-      {
-        "type": "challenge",
-        "index": 0
       },
       {
         "type": "narration",
-        "text": "Tenzing Norgay was born near the base of the mountain he would one day conquer. By 1953, he was the most experienced high-altitude climber in the world — a man who knew Everest's moods, its ice, its sudden storms."
-      },
-      {
-        "type": "dialog",
-        "speaker": "Edmund Hillary",
-        "text": "We go for the top tomorrow at first light. Together. Neither of us could do this alone.",
-        "portraitKey": "follower:explorer"
-      },
-      {
-        "type": "dialog",
-        "speaker": "Tenzing Norgay",
-        "text": "Together. The mountain asks everything of a man. But two men together — perhaps that is something even the mountain must answer.",
-        "portraitKey": "tenzing_norgay"
+        "text": "Back in the world below, the question immediately arose: who stepped on top first? They had agreed, on the mountain, to say nothing. The summit belonged to both of them equally — and that was the only answer they would give."
       },
       {
         "type": "challenge",
-        "index": 1
+        "index": 4
       },
       {
         "type": "narration",
-        "text": "On May 29, 1953, at 11:30 a.m., Tenzing and Hillary stood on the summit of Everest. Tenzing buried offerings in the snow for the Buddhist gods. Who stepped on top first? They both agreed never to say — the summit belonged to both of them, equally."
+        "text": "Hillary was knighted. Tenzing received the George Medal. Both returned to Nepal and devoted decades to the Himalayan people — Hillary through the Himalayan Trust, which built over 30 schools. Their partnership outlasted the summit."
       },
       {
         "type": "challenge",
-        "index": 2
+        "index": 5
+      },
+      {
+        "type": "challenge",
+        "index": 6
       }
     ]
   },

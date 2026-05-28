@@ -301,9 +301,17 @@ export default function WordleGame({ configId, onWin }: { configId: string; onWi
         </p>
       )}
       {lost && (
-        <p className="text-red-400 font-bold text-sm">
-          Answer: <span className="tracking-widest">{word}</span>
-        </p>
+        <>
+          <p className="text-red-400 font-bold text-sm">
+            Answer: <span className="tracking-widest">{word}</span>
+          </p>
+          <button
+            onClick={onWin}
+            className="px-6 py-2.5 rounded-xl bg-slate-700 text-slate-200 font-bold text-sm hover:bg-slate-600 active:scale-95 transition-all"
+          >
+            Continue →
+          </button>
+        </>
       )}
 
       {/* On-screen keyboard */}

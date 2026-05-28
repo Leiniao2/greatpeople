@@ -56,6 +56,13 @@
         "configId": "babylon-tablets",
         "instruction": "Babylonian scribes recorded grain trades in vertical cuneiform columns. Only vertical matches score — clear 52 symbols on the 8×8 tablet.",
         "fact": "Babylonian clay tablets recorded grain prices, interest rates and commodity contracts — the world's first commodity futures market. Cuneiform records from 600 BCE show silver-denominated wheat prices responding to floods and harvests."
+      },
+      {
+        "type": "minigame",
+        "game": "pipeline",
+        "configId": "mesopotamia-canal",
+        "instruction": "Route Sennacherib's canal to bring water to Nineveh — the world's first long-distance water supply, built 500 years before the Roman aqueducts.",
+        "fact": "King Sennacherib of Assyria built an 80 km canal system supplying Nineveh around 700 BCE, complete with a proto-aqueduct bridge over a valley. It was the world's first known long-distance water supply."
       }
     ]
   },
@@ -108,6 +115,13 @@
         "configId": "pythagorean",
         "instruction": "Chinese mathematicians solved right-triangle problems in the Nine Chapters on the Mathematical Art — centuries before Pythagoras. Solve this ancient construction problem.",
         "fact": "The Zhoubi Suanjing (c. 1000 BCE) proves the Pythagorean theorem using a visual 'proof without words.' China's mathematical tradition was as rigorous as Greece's — and developed independently, along the same trade routes that carried silk westward."
+      },
+      {
+        "type": "minigame",
+        "game": "pipeline",
+        "configId": "silk-road-caravan",
+        "instruction": "Connect the Silk Road caravan route from Chang'an westward — rotate pipe tiles to find the path through the Taklamakan Desert.",
+        "fact": "Zhang Qian's westward mission in 130 BCE established the first official Silk Road routes. The trade network eventually stretched 7,000 km from China to Rome, carrying silk, spices, glassware, and ideas."
       }
     ]
   },
@@ -198,6 +212,13 @@
         "configId": "pyramid-capstone",
         "instruction": "Slide the golden capstone block to the marked position at the base.",
         "fact": "The pyramids were built with a workforce of skilled, paid laborers — not slaves — who received food, medical care, and honored burial near the site."
+      },
+      {
+        "type": "minigame",
+        "game": "colormix",
+        "configId": "egyptian-blue",
+        "instruction": "Mix the royal Egyptian blue that adorned the tombs of pharaohs — the world's first synthetic pigment, made from copper, sand, and limestone.",
+        "fact": "Egyptian blue (cuprorivaite) was manufactured from around 3200 BCE by heating quartz, copper minerals, and limestone to 900°C. It was traded across the ancient world and when exposed to infrared light it glows so brightly it can be detected from orbit."
       }
     ]
   },
@@ -495,6 +516,13 @@
         "configId": "last-general",
         "instruction": "The Assyrian Empire is falling. Slide the last general through the collapsing kingdom before Nineveh is surrounded and burned.",
         "fact": "Nineveh fell in 612 BCE to a coalition of Babylonians, Medes, and Scythians. The city was so thoroughly sacked that the Greek historian Xenophon marched past its ruins 200 years later without knowing what it had been. The library survived only because fire baked the clay tablets into permanence."
+      },
+      {
+        "type": "minigame",
+        "game": "hunting",
+        "configId": "roman-venatio",
+        "instruction": "Assurbanipal was as famous for his lion hunts as his library — the palace reliefs at Nineveh show him alone in a chariot, shooting lions with a bow. Prove your skill before the hunt closes.",
+        "fact": "The Nineveh lion hunt reliefs (c. 640 BCE) are among the greatest achievements of ancient sculpture. Assurbanipal's hunt was ceremonial — royal power displayed through mastery over dangerous animals. The Assyrian lion population was hunted to extinction within centuries."
       }
     ]
   },
@@ -546,6 +574,13 @@
         "correct": false,
         "countdown": 10,
         "fact": "Jainism is unique among major world religions in completely rejecting the concept of a creator god. The universe, in Jain philosophy, is eternal and uncreated. Karma operates as an impersonal natural law — not divine judgment — and liberated souls reach a state of perfect knowledge but do not intervene in worldly affairs."
+      },
+      {
+        "type": "minigame",
+        "game": "storysort",
+        "configId": "odyssey-return",
+        "instruction": "Put Homer's account of Odysseus' return to Ithaca back in order — the scene where he wakes on his homeland shore for the first time in twenty years.",
+        "fact": "Homer's Odyssey is one of the foundational texts of Western literature. The hero Odysseus spent ten years at war in Troy and another ten trying to reach home — opposed by Poseidon but guided by Athena's favour."
       }
     ]
   },
@@ -642,6 +677,13 @@
         "configId": "huygens",
         "instruction": "Anaxagoras said the sun is a fiery rock that lights the moon. Prove it — use one mirror to route sunlight across three reflections and illuminate the far corner.",
         "fact": "Anaxagoras was the first to correctly explain lunar phases and eclipses: the moon reflects the sun's light and the earth's shadow causes eclipses. He deduced this by reasoning about light and geometry, 2,500 years before anyone could test it directly."
+      },
+      {
+        "type": "minigame",
+        "game": "storysort",
+        "configId": "iliad-achilles",
+        "instruction": "Restore Homer's opening to the Iliad — the invocation of the Muse and the quarrel that sets ten years of war in motion.",
+        "fact": "Homer's Iliad, composed around 750 BCE, was the closest thing ancient Greeks had to a sacred text. Alexander the Great slept with an annotated copy under his pillow, alongside a dagger. The poem covers only 51 days of the decade-long Trojan War, yet captures the whole arc of human conflict."
       }
     ]
   },
@@ -837,6 +879,13 @@
         "correct": true,
         "countdown": 10,
         "fact": "Under Chandragupta Maurya and his grandson Ashoka, the Maurya Empire became one of the largest empires of the ancient world, spanning from modern Afghanistan across the entire subcontinent to Bengal. At its peak under Ashoka (c. 268–232 BCE), it covered about 5 million square kilometres — the first political unification of India."
+      },
+      {
+        "type": "minigame",
+        "game": "hunting",
+        "configId": "mongol-hunt",
+        "instruction": "Kautilya's Arthashastra prescribed hunting as essential training for kings. The great nerge (encircling hunt) honed logistics and discipline — the same skills that built empires. Use your arrows wisely.",
+        "fact": "The Mongol nerge involved thousands of soldiers forming a vast encircling ring over weeks, slowly contracting until animals were packed together. It was a strategic training exercise as much as a hunt — teaching the same coordinated envelopment tactics used at Mohi and Legnica."
       }
     ]
   },
@@ -920,6 +969,13 @@
         "statement": "Cicero's Catilinarian orations persuaded the Senate to give Catiline a fair trial before punishment.",
         "correct": false,
         "fact": "Cicero convinced the Senate to execute the Catilinarian conspirators without trial — a legally questionable act for which he was later exiled. His famous line \"Quousque tandem abutere, Catilina, patientia nostra?\" (How long, Catiline, will you abuse our patience?) is still quoted today."
+      },
+      {
+        "type": "minigame",
+        "game": "pipeline",
+        "configId": "roman-aqueduct",
+        "instruction": "Route Rome's Aqua Claudia from mountain springs to the city — the engineering marvel that gave Rome water for a million people.",
+        "fact": "Rome's eleven major aqueducts delivered over one billion litres of water per day. The Aqua Claudia ran 69 km, mostly underground, with spectacular arched sections up to 28 metres high. No pumps were needed — only gravity and precision."
       }
     ]
   },
@@ -1138,6 +1194,13 @@
         "configId": "archimedes-mirror",
         "instruction": "The House of Wisdom translated Archimedes — including his mirror theories. Thread the beam through the array using two mirrors across an 8×8 grid.",
         "fact": "Ibn al-Haytham, working a century after Al-Khwarizmi, built on the House of Wisdom's translations to write 'Kitab al-Manazir' (Book of Optics) — the first correct account of how vision works. Light enters the eye; the eye does not emit rays."
+      },
+      {
+        "type": "minigame",
+        "game": "storysort",
+        "configId": "arabian-nights-opening",
+        "instruction": "Arrange the opening of One Thousand and One Nights in the correct order — the frame story that gave Scheherazade her voice.",
+        "fact": "One Thousand and One Nights was compiled during the Islamic Golden Age (8th–13th centuries) from Persian, Indian, and Arab sources. It reached Europe in Antoine Galland's 1704 French translation, which added stories like Aladdin and Ali Baba that don't appear in the original Arabic manuscripts."
       }
     ]
   },
@@ -1181,6 +1244,13 @@
         "correct": true,
         "countdown": 10,
         "fact": "Li Qingzhao lost her husband, her home, and her famous art collection when the Jin dynasty invaded northern China in 1127. Her later ci poems are hauntingly different from her earlier joyful verses. She wrote: 'Who is left to share the fragrance of the wine?' — a line that still resonates 900 years later."
+      },
+      {
+        "type": "minigame",
+        "game": "storysort",
+        "configId": "genji-moonlight",
+        "instruction": "Arrange the opening of Genji's story as Murasaki Shikibu wrote it — the Emperor's doomed love for a lady not of the first rank.",
+        "fact": "Written around 1008 CE by a court lady, The Tale of Genji is considered the world's first novel. Its author, known as Murasaki Shikibu, wrote in hiragana (considered 'women's script' then) while men wrote formal documents in Chinese — a subversion that produced one of humanity's great literary works."
       }
     ]
   },
@@ -1222,6 +1292,13 @@
           "Protection of the weak (largesse)"
         ],
         "fact": "Chivalry evolved over three centuries. Early codes (c.1000 CE) emphasised martial courage; by 1200 CE, troubadour poetry had added courtesy and romantic love. By 1300 CE, protection of the poor and weak entered as the Church sought to direct knightly violence toward Christian purposes."
+      },
+      {
+        "type": "minigame",
+        "game": "colormix",
+        "configId": "woad-blue",
+        "instruction": "Mix the woad blue worn by Frankish knights and medieval dyers — a plant-based indigo that tinted cloth from Celtic Britain to Charlemagne's court.",
+        "fact": "Woad (Isatis tinctoria) was Europe's primary source of blue dye for millennia. In the 13th century the woad trade was so valuable it funded Gothic cathedrals in France. It was eventually displaced by imported indigo from India, devastating the European woad industry."
       }
     ]
   },
@@ -1255,6 +1332,13 @@
         "statement": "Ferdinand and Isabella funded Columbus' 1492 voyage primarily because they believed the Earth was flat.",
         "correct": false,
         "fact": "Educated Europeans had known the Earth was spherical since ancient Greece. The debate was about the Earth's SIZE — Columbus's critics correctly argued the ocean was too wide. He survived only because the Americas existed where he wrongly placed Asia."
+      },
+      {
+        "type": "minigame",
+        "game": "storysort",
+        "configId": "don-quixote-windmills",
+        "instruction": "Reassemble the most famous scene in Spanish literature — Don Quixote's charge against the windmills he mistakes for giants.",
+        "fact": "Don Quixote (1605) by Cervantes is considered the first modern novel. The windmill scene became one of literature's greatest metaphors. Cervantes wrote Part I while imprisoned in Seville; the success was so great he wrote Part II a decade later."
       }
     ]
   },
@@ -1294,6 +1378,13 @@
         "configId": "hanseatic-runes",
         "instruction": "The Hanseatic League traded in six commodities across northern Europe. Six rune-marked goods flood the board — match 3 or more to clear them. 56 tiles to clear on a 7×7 grid.",
         "fact": "The Hanseatic League at its peak united over 200 Northern European cities in a merchant alliance that bypassed feudal lords entirely. Its Kontors in London, Bergen, Bruges and Novgorod operated as sovereign trading colonies, complete with their own courts, weights, and private armies."
+      },
+      {
+        "type": "minigame",
+        "game": "colormix",
+        "configId": "ultramarine-lapis",
+        "instruction": "Mix the ultramarine blue reserved for the Virgin Mary — mined from a single valley in Afghanistan and worth more than gold in the Renaissance.",
+        "fact": "Medieval contracts specified exactly how many grams of lapis lazuli an artist could use. Jan van Eyck and Fra Angelico reserved it solely for the Virgin Mary's robe. Michelangelo reportedly left the Entombment unfinished because his patron refused to supply enough lapis."
       }
     ]
   },
@@ -1355,6 +1446,13 @@
         "configId": "uffizi-gallery",
         "instruction": "You are the new curator of the Uffizi. Assign each Renaissance masterpiece to the room where it earns the greatest bonus and hit the target score.",
         "fact": "The Uffizi Gallery in Florence holds the finest concentration of Renaissance masterpieces in the world — Botticelli's Venus, da Vinci's Annunciation, and Titian's Venus of Urbino under one roof."
+      },
+      {
+        "type": "minigame",
+        "game": "colormix",
+        "configId": "titian-red",
+        "instruction": "Recreate Titian's legendary crimson — a layered blend of vermilion and kermes lake that defined Venetian painting for a century.",
+        "fact": "Titian's reds were so celebrated that 'rosso Tizianesco' became a byword for luminous crimson. He applied multiple thin glazes of kermes lake over a vermilion ground — a method only perfected over decades."
       }
     ]
   },
@@ -2226,9 +2324,9 @@
       },
       {
         "type": "minigame",
-        "game": "flight",
-        "configId": "earhart-atlantic",
-        "instruction": "Pilot Amelia's Lockheed Vega across the storm-tossed Atlantic. Tap to climb, let gravity pull you down — survive the entire crossing.",
+        "game": "wordle",
+        "configId": "aviate",
+        "instruction": "Earhart communicated with ground crew using radio codes. Guess the 6-letter word that describes her mission across the Atlantic.",
         "fact": "Amelia Earhart flew solo across the Atlantic on 20 May 1932 in 14 h 56 min — fighting ice on her wings, a broken altimeter, and a flame leaking from her exhaust manifold."
       }
     ]
@@ -2379,9 +2477,9 @@
       },
       {
         "type": "minigame",
-        "game": "flight",
-        "configId": "earhart-atlantic",
-        "instruction": "Another explorer who made an impossible flight alone — pilot Amelia Earhart across the Atlantic.",
+        "game": "maze",
+        "configId": "summit-ridge",
+        "instruction": "Navigate the South Col route to the summit — the same path Hillary and Tenzing pioneered in 1953.",
         "fact": "The same year Tenzing and Hillary summited Everest, Amelia Earhart was still celebrated 16 years after her 1937 disappearance. Solo feats of endurance — Earhart's Atlantic crossing, Hillary's summit — defined the era's heroism."
       }
     ]
@@ -2534,6 +2632,13 @@
         "correct": true,
         "countdown": 10,
         "fact": "More than 60 years after Goodall first set up camp at Gombe, researchers continue her work, following multiple generations of chimpanzees. The study has revealed the transmission of cultural practices across generations and the devastating impact of habitat loss — no other wildlife study has tracked a single population for so long."
+      },
+      {
+        "type": "minigame",
+        "game": "hunting",
+        "configId": "african-safari",
+        "instruction": "Before Goodall arrived in Gombe, European trophy hunters had devastated African wildlife for generations. Step into the 1880s and see what they hunted — then consider what was nearly lost.",
+        "fact": "Theodore Roosevelt's 1909 African safari killed over 11,000 animals for the Smithsonian. The backlash helped spark the modern conservation movement. Jane Goodall's 1960 arrival in Gombe coincided with a global shift: from exploitation to study and protection."
       }
     ]
   },

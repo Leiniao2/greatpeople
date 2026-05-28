@@ -1,5 +1,22 @@
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '@/hooks/useAuth'
+import allChallenges from '@/data/story_challenges.json'
+
+const CHALLENGE_COUNT = (allChallenges as { challenges: unknown[] }[])
+  .reduce((sum, s) => sum + s.challenges.length, 0)
+
+const APP_VERSION = '1.0.0'
+
+const CHANGELOG = [
+  { date: 'May 2026', note: 'New minigames: Compose, Museum, Weapon Deploy, Jigsaw' },
+  { date: 'May 2026', note: 'Arcade instruction text now shown when playing' },
+  { date: 'May 2026', note: 'Quiz countdown timer added' },
+  { date: 'Apr 2026', note: 'Replaced excess trivia with interactive minigames' },
+  { date: 'Apr 2026', note: 'GP stats rescaled to 1–12, follower identity bonuses' },
+  { date: 'Apr 2026', note: 'Natural hazard: per-card min-stat elimination' },
+  { date: 'Apr 2026', note: 'Achievements: single-trigger, require worthy opponent' },
+]
 
 const MODES = [
   {
@@ -23,7 +40,7 @@ const MODES = [
   {
     icon: '🎮',
     name: 'ARCADE',
-    subtitle: '120 mini challenges, play freely',
+    subtitle: `${CHALLENGE_COUNT} mini challenges, play freely`,
     path: '/arcade',
   },
   {
@@ -34,9 +51,66 @@ const MODES = [
   },
 ]
 
+function AboutSheet({ onClose }: { onClose: () => void }) {
+  return (
+    <div className="fixed inset-0 z-50 flex flex-col justify-end" onClick={onClose}>
+      <div
+        className="relative bg-[#0d0d1a] border-t border-white/[0.08] rounded-t-3xl px-6 pt-5 pb-safe pb-8 max-h-[70vh] overflow-y-auto"
+        onClick={e => e.stopPropagation()}
+      >
+        {/* Handle */}
+        <div className="w-10 h-1 bg-white/20 rounded-full mx-auto mb-5" />
+
+        {/* Header */}
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <h2 className="text-white font-bold text-base tracking-wider">GREAT PEOPLE</h2>
+            <p className="text-amber-400/70 text-[10px] uppercase tracking-widest mt-0.5">v{APP_VERSION}</p>
+          </div>
+          <button onClick={onClose}
+            className="w-8 h-8 flex items-center justify-center rounded-xl bg-white/[0.05] text-slate-400 hover:text-white transition-all text-lg">
+            ✕
+          </button>
+        </div>
+
+        {/* Stats row */}
+        <div className="grid grid-cols-3 gap-2 mb-5">
+          {[
+            { value: '80', label: 'Cards' },
+            { value: '76', label: 'Stories' },
+            { value: String(CHALLENGE_COUNT), label: 'Challenges' },
+          ].map(s => (
+            <div key={s.label} className="flex flex-col items-center py-3 rounded-xl bg-white/[0.04] border border-white/[0.07]">
+              <span className="text-amber-400 font-bold text-lg leading-none">{s.value}</span>
+              <span className="text-slate-500 text-[10px] mt-1">{s.label}</span>
+            </div>
+          ))}
+        </div>
+
+        {/* Changelog */}
+        <p className="text-slate-500 text-[10px] uppercase tracking-widest font-semibold mb-2">Recent Updates</p>
+        <div className="flex flex-col gap-2">
+          {CHANGELOG.map((entry, i) => (
+            <div key={i} className="flex gap-3 items-start">
+              <span className="text-slate-600 text-[10px] shrink-0 pt-0.5 w-14">{entry.date}</span>
+              <p className="text-slate-300 text-xs leading-snug">{entry.note}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Footer */}
+        <p className="text-slate-700 text-[10px] text-center mt-5">
+          Collectible Card Game · All eras, all greatness
+        </p>
+      </div>
+    </div>
+  )
+}
+
 export default function HomePage() {
   const navigate = useNavigate()
   const { isGuest, exitGuestMode } = useAuth()
+  const [showAbout, setShowAbout] = useState(false)
 
   return (
     <div className="relative min-h-screen bg-[#080812] flex flex-col overflow-hidden">
@@ -117,7 +191,16 @@ export default function HomePage() {
             </button>
           ))}
         </div>
+
+        {/* About button */}
+        <button
+          onClick={() => setShowAbout(true)}
+          className="mt-8 text-slate-600 text-[11px] hover:text-slate-400 transition-colors tracking-wider">
+          ⓘ about · v{APP_VERSION}
+        </button>
       </div>
+
+      {showAbout && <AboutSheet onClose={() => setShowAbout(false)} />}
     </div>
   )
 }

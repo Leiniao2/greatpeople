@@ -313,12 +313,18 @@ export default function TradeGame({ configId, onWin }: { configId: string; onWin
         </div>
         <SparkLine prices={priceHistory} />
         <p className="text-slate-400 text-xs leading-relaxed">{cfg.fact}</p>
-        {lost && (
-          <button onClick={reset}
-            className="w-full py-2.5 rounded-xl bg-white/[0.07] border border-white/10 text-slate-300 text-sm font-semibold hover:bg-white/10 transition-all">
-            Try Again
+        <div className="flex gap-2">
+          {lost && (
+            <button onClick={reset}
+              className="flex-1 py-2.5 rounded-xl bg-white/[0.07] border border-white/10 text-slate-300 text-sm font-semibold hover:bg-white/10 transition-all">
+              Try Again
+            </button>
+          )}
+          <button onClick={onWin}
+            className="flex-1 py-2.5 rounded-xl bg-slate-700 text-slate-200 text-sm font-semibold hover:bg-slate-600 active:scale-95 transition-all">
+            Continue →
           </button>
-        )}
+        </div>
       </div>
     )
   }

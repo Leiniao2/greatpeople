@@ -128,6 +128,7 @@ export interface CardContrib {
   baseStat: number
   traitBonus: number
   followerBonus: number
+  locationBonus: number
 }
 
 export interface CombatSide {
@@ -144,6 +145,7 @@ export interface CombatSummary {
   defender: CombatSide
   result: 'attacker' | 'defender' | 'draw'
   kill: boolean
+  locationAbility?: string
 }
 
 export interface EventPlayerResult {

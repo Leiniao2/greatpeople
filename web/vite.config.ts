@@ -9,6 +9,7 @@ export default defineConfig({
   },
   server: {
     port: 3001,
+    strictPort: true,
     proxy: {
       '/auth': 'http://localhost:8080',
       '/profile': 'http://localhost:8080',

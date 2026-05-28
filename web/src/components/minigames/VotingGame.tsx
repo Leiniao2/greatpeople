@@ -451,6 +451,9 @@ export default function VotingGame({ configId, onWin, politics = 10 }: Props) {
           <p className="text-slate-400 text-xs text-center">
             Your opponent reached {target} votes before you — they won {STAGE_LABELS[stage]}.
           </p>
+          <button onClick={onWin} className="mt-1 px-5 py-2 bg-slate-700 text-slate-200 text-xs rounded-lg hover:bg-slate-600 transition-all">
+            Continue →
+          </button>
         </div>
       )}
     </div>
