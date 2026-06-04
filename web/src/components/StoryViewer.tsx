@@ -36,6 +36,11 @@ import PipelineGame from '@/components/minigames/PipelineGame'
 import ColorMixGame from '@/components/minigames/ColorMixGame'
 import HuntingGame from '@/components/minigames/HuntingGame'
 import StorySortGame from '@/components/minigames/StorySortGame'
+import BattleArenaGame from '@/components/minigames/BattleArenaGame'
+import SoccerGame from '@/components/minigames/SoccerGame'
+import ReporterFleeGame from '@/components/minigames/ReporterFleeGame'
+import ChimpMathGame from '@/components/minigames/ChimpMathGame'
+import WorldClockGame from '@/components/minigames/WorldClockGame'
 import { useAuth } from '@/hooks/useAuth'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
@@ -43,7 +48,7 @@ import { useAuth } from '@/hooks/useAuth'
 interface QuizChallenge { type: 'quiz'; question: string; options: string[]; answer: number; fact: string; countdown?: number }
 interface TrueFalseChallenge { type: 'truefalse'; statement: string; correct: boolean; fact: string }
 interface SortChallenge { type: 'sort'; question: string; items: string[]; fact: string }
-interface MinigameChallenge { type: 'minigame'; game: 'maze'|'mirror'|'circuit'|'sliding'|'crossword'|'geometry'|'painting'|'music'|'tactics'|'classify'|'cooking'|'fiction'|'sudoku'|'voting'|'chemistry'|'matchthree'|'klotski'|'lorentz'|'porcelain'|'wordle'|'decode'|'wargame'|'trade'|'punnett'|'auction'|'pseudocode'|'iceslide'|'bridge'|'compose'|'weapondeploy'|'museum'|'pipeline'|'colormix'|'hunting'|'storysort'; configId: string; instruction: string; fact: string }
+interface MinigameChallenge { type: 'minigame'; game: 'maze'|'mirror'|'circuit'|'sliding'|'crossword'|'geometry'|'painting'|'music'|'tactics'|'classify'|'cooking'|'fiction'|'sudoku'|'voting'|'chemistry'|'matchthree'|'klotski'|'lorentz'|'porcelain'|'wordle'|'decode'|'wargame'|'trade'|'punnett'|'auction'|'pseudocode'|'iceslide'|'bridge'|'compose'|'weapondeploy'|'museum'|'pipeline'|'colormix'|'hunting'|'storysort'|'battlearena'|'soccer'|'reporterflee'|'chimpmath'|'worldclock'; configId: string; instruction: string; fact: string }
 type Challenge = QuizChallenge | TrueFalseChallenge | SortChallenge | MinigameChallenge
 
 interface NarrationScene { type: 'narration'; text: string }
@@ -311,6 +316,11 @@ function MinigameView({ challenge, onResult }: { challenge: MinigameChallenge; o
         {challenge.game === 'colormix'     && <ColorMixGame configId={challenge.configId} onWin={handleWin} />}
         {challenge.game === 'hunting'      && <HuntingGame configId={challenge.configId} onWin={handleWin} />}
         {challenge.game === 'storysort'    && <StorySortGame configId={challenge.configId} onWin={handleWin} />}
+        {challenge.game === 'battlearena'  && <BattleArenaGame configId={challenge.configId} onWin={handleWin} />}
+        {challenge.game === 'soccer'       && <SoccerGame configId={challenge.configId} onWin={handleWin} />}
+        {challenge.game === 'reporterflee' && <ReporterFleeGame configId={challenge.configId} onWin={handleWin} />}
+        {challenge.game === 'chimpmath'    && <ChimpMathGame configId={challenge.configId} onWin={handleWin} />}
+        {challenge.game === 'worldclock'   && <WorldClockGame configId={challenge.configId} onWin={handleWin} />}
       </div>
     </div>
   )

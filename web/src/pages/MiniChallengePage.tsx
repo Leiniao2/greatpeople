@@ -33,6 +33,11 @@ import PipelineGame from '@/components/minigames/PipelineGame'
 import ColorMixGame from '@/components/minigames/ColorMixGame'
 import HuntingGame from '@/components/minigames/HuntingGame'
 import StorySortGame from '@/components/minigames/StorySortGame'
+import BattleArenaGame from '@/components/minigames/BattleArenaGame'
+import SoccerGame from '@/components/minigames/SoccerGame'
+import ReporterFleeGame from '@/components/minigames/ReporterFleeGame'
+import ChimpMathGame from '@/components/minigames/ChimpMathGame'
+import WorldClockGame from '@/components/minigames/WorldClockGame'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -46,6 +51,7 @@ type GameType =
   | 'auction' | 'pseudocode'
   | 'compose' | 'weapondeploy' | 'museum'
   | 'pipeline' | 'colormix' | 'hunting' | 'storysort'
+  | 'battlearena' | 'soccer' | 'reporterflee' | 'chimpmath' | 'worldclock'
 
 interface FlatChallenge {
   id: string
@@ -84,6 +90,7 @@ const GAME_CATEGORY: Record<string, CategoryKey> = {
   maze: 'Explore',
   compose: 'Creative',
   pipeline: 'Puzzle', colormix: 'Creative', hunting: 'Explore', storysort: 'Story',
+  battlearena: 'Story', soccer: 'Explore', reporterflee: 'Explore', chimpmath: 'Puzzle', worldclock: 'Puzzle',
 }
 
 const GAME_LABEL: Record<string, string> = {
@@ -99,6 +106,7 @@ const GAME_LABEL: Record<string, string> = {
   auction: 'Auction', pseudocode: 'Pseudo Code',
   compose: 'Compose', weapondeploy: 'Weapon Deploy', museum: 'Museum',
   pipeline: 'Pipeline', colormix: 'Color Mix', hunting: 'Hunting', storysort: 'Story Sort',
+  battlearena: 'Battle Arena', soccer: 'Soccer', reporterflee: 'Reporter Flee', chimpmath: 'Chimp Math', worldclock: 'World Clock',
 }
 
 // ── Flatten all challenges ────────────────────────────────────────────────────
@@ -269,6 +277,11 @@ function ChallengeOverlay({ ch, onClose }: { ch: FlatChallenge; onClose: () => v
       {g === 'colormix'     && <ColorMixGame configId={cId} onWin={handleWin} />}
       {g === 'hunting'      && <HuntingGame configId={cId} onWin={handleWin} />}
       {g === 'storysort'    && <StorySortGame configId={cId} onWin={handleWin} />}
+      {g === 'battlearena'  && <BattleArenaGame configId={cId} onWin={handleWin} />}
+      {g === 'soccer'       && <SoccerGame configId={cId} onWin={handleWin} />}
+      {g === 'reporterflee' && <ReporterFleeGame configId={cId} onWin={handleWin} />}
+      {g === 'chimpmath'    && <ChimpMathGame configId={cId} onWin={handleWin} />}
+      {g === 'worldclock'   && <WorldClockGame configId={cId} onWin={handleWin} />}
       {ch.raw.fact && won === false && (
         <p className="text-slate-600 text-[10px] leading-relaxed mt-1 px-1">{ch.raw.fact}</p>
       )}

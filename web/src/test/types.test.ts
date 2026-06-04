@@ -5,7 +5,7 @@ import type {
   OnboardCard, LocationState, PlayerState, TurnActions,
   GameMode, PlayerMode, EraMode, MatchType, GameSetup,
   CardContrib, CombatSide, CombatSummary, EventPlayerResult,
-  EventSummary, GameSummary, GameState,
+  EventSummary, GameSummary,
 } from '@/types'
 
 // Runtime helpers — build valid objects that satisfy the TypeScript interfaces
