@@ -6,7 +6,7 @@
     "gender": "male",
     "identities": [
       "Statesman",
-      "Educator"
+      "Lawyer"
     ],
     "portraitKey": "gandhi",
     "politics": 22,
@@ -82,8 +82,7 @@
     "era": "Medieval",
     "gender": "male",
     "identities": [
-      "General",
-      "Soldier"
+      "General"
     ],
     "portraitKey": "belisarius",
     "politics": 14,
@@ -134,8 +133,8 @@
     "era": "Medieval",
     "gender": "male",
     "identities": [
-      "Educator",
-      "Gourmet"
+      "Gourmet",
+      "Actor"
     ],
     "portraitKey": "lu_yu",
     "politics": 1,
@@ -161,7 +160,7 @@
     "gender": "male",
     "identities": [
       "Mathematician",
-      "Scientist"
+      "Engineer"
     ],
     "portraitKey": "alan_turing",
     "politics": 8,
@@ -186,8 +185,7 @@
     "era": "Electricity",
     "gender": "male",
     "identities": [
-      "Spy",
-      "Warrior"
+      "Spy"
     ],
     "portraitKey": "an_jung_geun",
     "politics": 1,
@@ -238,8 +236,7 @@
     "era": "Information",
     "gender": "female",
     "identities": [
-      "Actor",
-      "Educator"
+      "Actor"
     ],
     "portraitKey": "audrey_hepburn",
     "politics": 1,
@@ -291,8 +288,7 @@
     "era": "Classical",
     "gender": "male",
     "identities": [
-      "Mathematician",
-      "Educator"
+      "Mathematician"
     ],
     "portraitKey": "euclid",
     "politics": 5,
@@ -343,7 +339,6 @@
     "era": "Classical",
     "gender": "female",
     "identities": [
-      "Warrior",
       "Soldier"
     ],
     "portraitKey": "hua_mulan",
@@ -394,7 +389,6 @@
     "era": "Medieval",
     "gender": "male",
     "identities": [
-      "General",
       "Warrior"
     ],
     "portraitKey": "lancelot",
@@ -446,7 +440,7 @@
     "gender": "male",
     "identities": [
       "Sovereign",
-      "Noble"
+      "Engineer"
     ],
     "portraitKey": "louis_xvi",
     "politics": 6,
@@ -471,8 +465,7 @@
     "era": "Steam",
     "gender": "female",
     "identities": [
-      "Noble",
-      "Sovereign"
+      "Noble"
     ],
     "portraitKey": "marie_antoinette",
     "politics": 10,
@@ -498,8 +491,7 @@
     "era": "Renaissance",
     "gender": "male",
     "identities": [
-      "Warrior",
-      "Philosopher"
+      "Warrior"
     ],
     "portraitKey": "miyamoto_musashi",
     "politics": 1,
@@ -601,8 +593,7 @@
     "era": "Classical",
     "gender": "male",
     "identities": [
-      "Statesman",
-      "General"
+      "Statesman"
     ],
     "portraitKey": "pericles",
     "politics": 22,
@@ -627,7 +618,6 @@
     "era": "Classical",
     "gender": "female",
     "identities": [
-      "Educator",
       "Philosopher"
     ],
     "portraitKey": "aspasia",
@@ -783,8 +773,7 @@
     "era": "Classical",
     "gender": "male",
     "identities": [
-      "Prophet",
-      "Artist"
+      "Prophet"
     ],
     "portraitKey": "mani",
     "politics": 1,
@@ -937,8 +926,7 @@
     "era": "Electricity",
     "gender": "male",
     "identities": [
-      "Scientist",
-      "Mathematician"
+      "Scientist"
     ],
     "portraitKey": "hendrik_lorentz",
     "politics": 1,
@@ -1013,7 +1001,8 @@
     "era": "Information",
     "gender": "male",
     "identities": [
-      "Explorer"
+      "Explorer",
+      "Athlete"
     ],
     "portraitKey": "edmund_hillary",
     "politics": 1,
@@ -1038,7 +1027,8 @@
     "era": "Electricity",
     "gender": "male",
     "identities": [
-      "Explorer"
+      "Explorer",
+      "Athlete"
     ],
     "portraitKey": "tenzing_norgay",
     "politics": 1,
@@ -1064,8 +1054,7 @@
     "era": "Electricity",
     "gender": "male",
     "identities": [
-      "Statesman",
-      "Sovereign"
+      "Statesman"
     ],
     "portraitKey": "ito_hirobumi",
     "politics": 22,
@@ -1090,8 +1079,7 @@
     "era": "Information",
     "gender": "male",
     "identities": [
-      "Musician",
-      "Actor"
+      "Musician"
     ],
     "portraitKey": "michael_jackson",
     "politics": 1,
@@ -1116,8 +1104,7 @@
     "era": "Electricity",
     "gender": "male",
     "identities": [
-      "Writer",
-      "Philosopher"
+      "Writer"
     ],
     "portraitKey": "george_bernard_shaw",
     "politics": 12,
@@ -1143,7 +1130,7 @@
     "era": "Information",
     "gender": "male",
     "identities": [
-      "Artist"
+      "Actor"
     ],
     "portraitKey": "gregory_peck",
     "politics": 6,
@@ -1168,8 +1155,7 @@
     "era": "Renaissance",
     "gender": "female",
     "identities": [
-      "Statesman",
-      "Monastic"
+      "Sovereign"
     ],
     "portraitKey": "isabel_i",
     "politics": 18,
@@ -1194,7 +1180,7 @@
     "era": "Renaissance",
     "gender": "male",
     "identities": [
-      "Statesman",
+      "Sovereign",
       "Merchant"
     ],
     "portraitKey": "manuel_i",
@@ -1220,8 +1206,7 @@
     "era": "Ancient",
     "gender": "male",
     "identities": [
-      "Sovereign",
-      "Philosopher"
+      "Sovereign"
     ],
     "portraitKey": "ashurbanipal",
     "politics": 18,
@@ -1247,7 +1232,7 @@
     "gender": "male",
     "identities": [
       "Philosopher",
-      "Statesman"
+      "Official"
     ],
     "portraitKey": "chanakya",
     "politics": 20,
@@ -1297,8 +1282,8 @@
     "era": "Ancient",
     "gender": "female",
     "identities": [
-      "Sovereign",
-      "Naturalist"
+      "Naturalist",
+      "Noble"
     ],
     "portraitKey": "lei_zu",
     "politics": 10,
@@ -1349,8 +1334,7 @@
     "era": "Steam",
     "gender": "male",
     "identities": [
-      "Scientist",
-      "Explorer"
+      "Scientist"
     ],
     "portraitKey": "james_hutton",
     "politics": 2,
@@ -1376,8 +1360,7 @@
     "gender": "female",
     "identities": [
       "Scientist",
-      "Naturalist",
-      "Educator"
+      "Naturalist"
     ],
     "portraitKey": "jane_goodall",
     "politics": 8,
@@ -1402,8 +1385,7 @@
     "era": "Steam",
     "gender": "male",
     "identities": [
-      "Merchant",
-      "Artist"
+      "Merchant"
     ],
     "portraitKey": "josiah_wedgwood",
     "politics": 6,
@@ -1428,8 +1410,7 @@
     "era": "Information",
     "gender": "male",
     "identities": [
-      "Gourmet",
-      "Artist"
+      "Gourmet"
     ],
     "portraitKey": "joel_robuchon",
     "politics": 1,
@@ -1454,8 +1435,7 @@
     "era": "Ancient",
     "gender": "male",
     "identities": [
-      "Sovereign",
-      "Statesman"
+      "Sovereign"
     ],
     "portraitKey": "king_telepinu",
     "politics": 16,
@@ -1480,8 +1460,6 @@
     "era": "Ancient",
     "gender": "male",
     "identities": [
-      "Philosopher",
-      "Monastic",
       "Prophet"
     ],
     "portraitKey": "mahavira",
@@ -1507,8 +1485,8 @@
     "era": "Ancient",
     "gender": "male",
     "identities": [
-      "Educator",
-      "Naturalist"
+      "Official",
+      "Astronomer"
     ],
     "portraitKey": "nakht",
     "politics": 8,
@@ -1533,8 +1511,7 @@
     "era": "Ancient",
     "gender": "male",
     "identities": [
-      "Priest",
-      "Philosopher"
+      "Priest"
     ],
     "portraitKey": "pediamenopet",
     "politics": 8,
@@ -1559,8 +1536,7 @@
     "era": "Ancient",
     "gender": "female",
     "identities": [
-      "Doctor",
-      "Educator"
+      "Doctor"
     ],
     "portraitKey": "peseshet",
     "politics": 5,
@@ -1585,8 +1561,7 @@
     "era": "Information",
     "gender": "male",
     "identities": [
-      "Writer",
-      "Educator"
+      "Journalist"
     ],
     "portraitKey": "peter_arnett",
     "politics": 8,
@@ -1611,8 +1586,7 @@
     "era": "Information",
     "gender": "male",
     "identities": [
-      "Merchant",
-      "Artist"
+      "Merchant"
     ],
     "portraitKey": "steve_jobs",
     "politics": 5,
@@ -1637,8 +1611,7 @@
     "era": "Classical",
     "gender": "male",
     "identities": [
-      "Writer",
-      "Philosopher"
+      "Writer"
     ],
     "portraitKey": "valmiki",
     "politics": 3,
@@ -1663,8 +1636,7 @@
     "era": "Steam",
     "gender": "female",
     "identities": [
-      "Sovereign",
-      "Statesman"
+      "Sovereign"
     ],
     "portraitKey": "yekaterina",
     "politics": 20,
@@ -1682,5 +1654,410 @@
     "countries": [
       "Russia"
     ]
+  },
+  {
+    "figureName": "Anna Nzinga",
+    "era": "Steam",
+    "gender": "female",
+    "countries": [
+      "Angola"
+    ],
+    "identities": [
+      "Sovereign",
+      "Warrior"
+    ],
+    "portraitKey": "anna_nzinga",
+    "politics": 20,
+    "strength": 16,
+    "culture": 12,
+    "wealth": 8,
+    "intelligence": 18,
+    "technique": 6,
+    "belief": 10,
+    "reputation": 20,
+    "lore": "She negotiated with kings and conquered kingdoms — never surrendering to empire.",
+    "trait": "Queen of Ndongo — When this card defends against a Conflict, the attacking player must first discard an Event card, or the attack is cancelled.",
+    "achievement": "Resilient Throne — Have this card's location survive three consecutive Rounds without losing a Conflict.",
+    "years": "1583–1663",
+    "id": "demo-66",
+    "portraitUrl": "/portraits/portrait_anna_nzinga.jpeg"
+  },
+  {
+    "figureName": "Batu Khan",
+    "era": "Medieval",
+    "gender": "male",
+    "countries": [
+      "Mongolia"
+    ],
+    "identities": [
+      "Sovereign",
+      "General"
+    ],
+    "portraitKey": "batu_khan",
+    "politics": 18,
+    "strength": 22,
+    "culture": 8,
+    "wealth": 16,
+    "intelligence": 14,
+    "technique": 12,
+    "belief": 6,
+    "reputation": 20,
+    "lore": "From the steppes of Asia, his cavalry swept across the world's largest empire.",
+    "trait": "Golden Horde — When this card attacks, it may bring 1 allied Warrior or Soldier at the same location to join the attack for free.",
+    "achievement": "Conquest March — Have this card successfully attack 3 different locations in a single game.",
+    "years": "1207–1255",
+    "id": "demo-67",
+    "portraitUrl": "/portraits/portrait_batu_khan.jpeg"
+  },
+  {
+    "figureName": "Bayinnaung",
+    "era": "Renaissance",
+    "gender": "male",
+    "countries": [
+      "Myanmar"
+    ],
+    "identities": [
+      "Sovereign",
+      "General"
+    ],
+    "portraitKey": "bayinnaung",
+    "politics": 20,
+    "strength": 22,
+    "culture": 10,
+    "wealth": 18,
+    "intelligence": 16,
+    "technique": 14,
+    "belief": 12,
+    "reputation": 18,
+    "lore": "He built the greatest empire Southeast Asia had ever known — through war and wisdom alike.",
+    "trait": "Toungoo Expansion — When this card moves, it may immediately deploy 1 Follower from hand at the destination for free.",
+    "achievement": "Unified Realm — Have this card and 2 allied GP at the same location for 3 consecutive turns.",
+    "years": "1516–1581",
+    "id": "demo-68",
+    "portraitUrl": "/portraits/portrait_bayinnaung.jpeg"
+  },
+  {
+    "figureName": "Bi Sheng",
+    "era": "Medieval",
+    "gender": "male",
+    "countries": [
+      "China"
+    ],
+    "identities": [
+      "Engineer",
+      "Scientist"
+    ],
+    "portraitKey": "bi_sheng",
+    "politics": 4,
+    "strength": 2,
+    "culture": 16,
+    "wealth": 8,
+    "intelligence": 22,
+    "technique": 24,
+    "belief": 4,
+    "reputation": 16,
+    "lore": "He pressed clay into ceramic type, and from his hands the world began to read.",
+    "trait": "Movable Type — Once per game, this card may copy 1 achievement from any card in the GP discard pile.",
+    "achievement": "Print Run — Have this card in play while an allied Writer or Educator GP resolves an achievement in the same round.",
+    "years": "c. 990–1051",
+    "id": "demo-69",
+    "portraitUrl": "/portraits/portrait_bi_sheng.jpeg"
+  },
+  {
+    "figureName": "Francesco Borromini",
+    "era": "Steam",
+    "gender": "male",
+    "countries": [
+      "Italy"
+    ],
+    "identities": [
+      "Architect",
+      "Artist"
+    ],
+    "portraitKey": "borromini",
+    "politics": 2,
+    "strength": 2,
+    "culture": 22,
+    "wealth": 6,
+    "intelligence": 18,
+    "technique": 22,
+    "belief": 14,
+    "reputation": 16,
+    "lore": "He bent stone to the rules of the infinite — curves where others saw only walls.",
+    "trait": "Infinite Spiral — When this card is at a location with a Bernini card, both cards gain +3 Culture.",
+    "achievement": "Roman Baroque — Have this card at an Italy location while another Architect GP is also present.",
+    "years": "1599–1667",
+    "id": "demo-70",
+    "portraitUrl": "/portraits/portrait_borromini.jpeg"
+  },
+  {
+    "figureName": "Gian Lorenzo Bernini",
+    "era": "Steam",
+    "gender": "male",
+    "countries": [
+      "Italy"
+    ],
+    "identities": [
+      "Artist",
+      "Architect"
+    ],
+    "portraitKey": "bernini",
+    "politics": 8,
+    "strength": 4,
+    "culture": 24,
+    "wealth": 14,
+    "intelligence": 16,
+    "technique": 22,
+    "belief": 12,
+    "reputation": 20,
+    "lore": "He turned marble into breath, giving stone the warmth of living skin.",
+    "trait": "Papal Sculptor — While at a Rome location, this card gains +4 Reputation and its achievements trigger on 1 fewer turn.",
+    "achievement": "St. Peter's Colonnade — Have this card's location have the highest Culture total on the board for 2 consecutive turns.",
+    "years": "1598–1680",
+    "id": "demo-71",
+    "portraitUrl": "/portraits/portrait_bernini.jpeg"
+  },
+  {
+    "figureName": "Ibn Battuta",
+    "era": "Medieval",
+    "gender": "male",
+    "countries": [
+      "Morocco"
+    ],
+    "identities": [
+      "Explorer",
+      "Writer"
+    ],
+    "portraitKey": "ibn_battuta",
+    "politics": 10,
+    "strength": 8,
+    "culture": 18,
+    "wealth": 12,
+    "intelligence": 20,
+    "technique": 6,
+    "belief": 14,
+    "reputation": 22,
+    "lore": "He walked 75,000 miles across three continents — every step written into the Rihla.",
+    "trait": "Rihla — This card may move freely each turn without spending an action. At each new location, draw 1 Event card.",
+    "achievement": "Seven Seas — Have this card visit 5 different locations over the course of a game.",
+    "years": "1304–1368/1369",
+    "id": "demo-72",
+    "portraitUrl": "/portraits/portrait_ibn_battuta.jpeg"
+  },
+  {
+    "figureName": "Johannes Gutenberg",
+    "era": "Renaissance",
+    "gender": "male",
+    "countries": [
+      "Germany"
+    ],
+    "identities": [
+      "Engineer",
+      "Merchant"
+    ],
+    "portraitKey": "gutenberg",
+    "politics": 6,
+    "strength": 2,
+    "culture": 18,
+    "wealth": 12,
+    "intelligence": 20,
+    "technique": 24,
+    "belief": 8,
+    "reputation": 22,
+    "lore": "He pressed ink to paper and printed a revolution — one page at a time.",
+    "trait": "Printing Press — When any allied Writer or Educator resolves an achievement, this card also gains 1 Winning Point.",
+    "achievement": "Bible of 42 Lines — Have this card in play at a location while 2 allied Writers or Educators are also present.",
+    "years": "c. 1400–1468",
+    "id": "demo-73",
+    "portraitUrl": "/portraits/portrait_gutenberg.jpeg"
+  },
+  {
+    "figureName": "Lee Sun-sin",
+    "era": "Renaissance",
+    "gender": "male",
+    "countries": [
+      "Korea"
+    ],
+    "identities": [
+      "General",
+      "Soldier"
+    ],
+    "portraitKey": "lee_sun_sin",
+    "politics": 12,
+    "strength": 20,
+    "culture": 8,
+    "wealth": 6,
+    "intelligence": 22,
+    "technique": 20,
+    "belief": 14,
+    "reputation": 22,
+    "lore": "With 13 ships he faced 333 — and won. The turtle ship cut through the Japanese fleet like iron.",
+    "trait": "Turtle Ship — When this card defends at a water or coastal location, its Strength is doubled.",
+    "achievement": "Battle of Myeongnyang — Win a Conflict while outnumbered (fewer allied cards than the opponent at this location).",
+    "years": "1545–1598",
+    "id": "demo-74",
+    "portraitUrl": "/portraits/portrait_lee_sun_sin.jpeg"
+  },
+  {
+    "figureName": "Montezuma II",
+    "era": "Renaissance",
+    "gender": "male",
+    "countries": [
+      "Aztec"
+    ],
+    "identities": [
+      "Sovereign",
+      "Priest"
+    ],
+    "portraitKey": "montezuma_ii",
+    "politics": 20,
+    "strength": 14,
+    "culture": 18,
+    "wealth": 20,
+    "intelligence": 16,
+    "technique": 12,
+    "belief": 22,
+    "reputation": 18,
+    "lore": "He ruled the greatest empire of the Americas — until the world he knew ended in fire and betrayal.",
+    "trait": "Sun King — While this card is in play, all Belief-based actions cost enemy players 1 extra action to perform.",
+    "achievement": "Tenochtitlan — Have this card at the same location as 3 Followers for 2 consecutive turns.",
+    "years": "1466–1520",
+    "id": "demo-75",
+    "portraitUrl": "/portraits/portrait_montezuma_ii.jpeg"
+  },
+  {
+    "figureName": "Nian Xiyao",
+    "era": "Steam",
+    "gender": "male",
+    "countries": [
+      "China"
+    ],
+    "identities": [
+      "Artist",
+      "Educator"
+    ],
+    "portraitKey": "nian_xiyao",
+    "politics": 12,
+    "strength": 2,
+    "culture": 22,
+    "wealth": 14,
+    "intelligence": 18,
+    "technique": 20,
+    "belief": 8,
+    "reputation": 14,
+    "lore": "He mastered Western perspective from Jesuit missionaries and turned it into imperial porcelain.",
+    "trait": "Jingdezhen Kilns — Wealth-based Followers at this card's location gain +3 Technique.",
+    "achievement": "Shiyue — Have this card in play while 2 allied Artist or Merchant GP are at the same location.",
+    "years": "1671–1738",
+    "id": "demo-76",
+    "portraitUrl": "/portraits/portrait_nian_xiyao.jpeg"
+  },
+  {
+    "figureName": "Pakal the Great",
+    "era": "Medieval",
+    "gender": "male",
+    "countries": [
+      "Maya"
+    ],
+    "identities": [
+      "Sovereign",
+      "Architect"
+    ],
+    "portraitKey": "pakal",
+    "politics": 20,
+    "strength": 14,
+    "culture": 20,
+    "wealth": 18,
+    "intelligence": 18,
+    "technique": 16,
+    "belief": 20,
+    "reputation": 18,
+    "lore": "He ruled Palenque for 68 years and built temples that encoded the mathematics of time.",
+    "trait": "Temple of Inscriptions — When this card is in play, all Belief-based events at its location deal only half damage (rounded down).",
+    "achievement": "Palenque — Have this card deploy a Follower at the same location 3 times.",
+    "years": "603–683",
+    "id": "demo-77",
+    "portraitUrl": "/portraits/portrait_pakal.jpeg"
+  },
+  {
+    "figureName": "Rumiñahui",
+    "era": "Renaissance",
+    "gender": "male",
+    "countries": [
+      "Inca"
+    ],
+    "identities": [
+      "General",
+      "Warrior"
+    ],
+    "portraitKey": "ruminahui",
+    "politics": 14,
+    "strength": 20,
+    "culture": 10,
+    "wealth": 12,
+    "intelligence": 16,
+    "technique": 8,
+    "belief": 12,
+    "reputation": 16,
+    "lore": "He burned Quito rather than surrender it — the last fire of a free Inca world.",
+    "trait": "Scorched Earth — When this card's location is about to be captured, destroy all Followers there. The enemy gains no Winning Points from that capture.",
+    "achievement": "Last Stand — Win a Conflict against a Sovereign GP while this card has no Followers at its location.",
+    "years": "?–1535",
+    "id": "demo-78",
+    "portraitUrl": "/portraits/portrait_ruminahui.jpeg"
+  },
+  {
+    "figureName": "Taira no Tadanori",
+    "era": "Medieval",
+    "gender": "male",
+    "countries": [
+      "Japan"
+    ],
+    "identities": [
+      "Warrior",
+      "Writer"
+    ],
+    "portraitKey": "taira_no_tadanori",
+    "politics": 10,
+    "strength": 18,
+    "culture": 20,
+    "wealth": 8,
+    "intelligence": 12,
+    "technique": 8,
+    "belief": 14,
+    "reputation": 16,
+    "lore": "He died at Dan-no-Ura with poems sewn into his armor — a warrior who chose beauty as his final shield.",
+    "trait": "Warrior-Poet — When this card is killed, reveal the top card of your GP deck. If it is a Writer or Artist, deploy it immediately for free.",
+    "achievement": "Twilight Verse — Have this card survive a Conflict while having 0 Followers at its location.",
+    "years": "1144–1184",
+    "id": "demo-79",
+    "portraitUrl": "/portraits/portrait_taira_no_tadanori.jpeg"
+  },
+  {
+    "figureName": "Tlacaelel",
+    "era": "Renaissance",
+    "gender": "male",
+    "countries": [
+      "Aztec"
+    ],
+    "identities": [
+      "Statesman",
+      "Philosopher"
+    ],
+    "portraitKey": "tlacaelel",
+    "politics": 22,
+    "strength": 10,
+    "culture": 18,
+    "wealth": 16,
+    "intelligence": 22,
+    "technique": 10,
+    "belief": 22,
+    "reputation": 20,
+    "lore": "Behind three emperors, he rewrote Aztec history — shaping a civilization's soul from the shadows.",
+    "trait": "Cihuacoatl — Once per game, this card may change the outcome of any non-combat event at its location to a success.",
+    "achievement": "Shadow Throne — Have this card's location win 2 consecutive Conflicts without this card being the attacker.",
+    "years": "c. 1397–1487",
+    "id": "demo-80",
+    "portraitUrl": "/portraits/portrait_tlacaelel.jpeg"
   }
 ]

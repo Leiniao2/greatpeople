@@ -75,51 +75,6 @@ struct EpicView: View {
                     .blur(radius: 120).offset(x: 80, y: -80)
 
                 VStack(spacing: 0) {
-                    // Era selector
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 8) {
-                            ForEach(0..<ERAS.count, id: \.self) { idx in
-                                let selectable = isEraSelectable(idx)
-                                let active = idx == currentEra
-                                Button {
-                                    if selectable {
-                                        currentEra = idx
-                                    } else {
-                                        showToast("Complete 4 stories in the current era first.")
-                                    }
-                                } label: {
-                                    Text(ERAS[idx].name)
-                                        .font(.caption.weight(.semibold))
-                                        .padding(.horizontal, 14)
-                                        .padding(.vertical, 6)
-                                        .background(
-                                            active
-                                                ? Color.gpAmber
-                                                : selectable
-                                                    ? Color.white.opacity(0.05)
-                                                    : Color.white.opacity(0.03)
-                                        )
-                                        .foregroundColor(
-                                            active
-                                                ? Color.gpBackground
-                                                : selectable
-                                                    ? Color.white.opacity(0.8)
-                                                    : Color.white.opacity(0.3)
-                                        )
-                                        .clipShape(Capsule())
-                                        .overlay(
-                                            Capsule().stroke(
-                                                active ? Color.clear : selectable ? Color.white.opacity(0.1) : Color.white.opacity(0.05),
-                                                lineWidth: 1
-                                            )
-                                        )
-                                }
-                            }
-                        }
-                        .padding(.horizontal, 16)
-                        .padding(.vertical, 12)
-                    }
-
                     // Era pager via TabView with PageTabViewStyle
                     TabView(selection: $currentEra) {
                         ForEach(0..<ERAS.count, id: \.self) { eraIdx in

@@ -11,12 +11,14 @@ fun loadDemoCards(context: Context): List<Card> {
         val obj = arr.getJSONObject(i)
         val key = obj.getString("portraitKey")
         val identitiesArr = obj.getJSONArray("identities")
+        val countriesArr = if (obj.has("countries")) obj.getJSONArray("countries") else null
         Card(
             id = obj.getString("id"),
             figureName = obj.getString("figureName"),
             era = obj.getString("era"),
             gender = obj.getString("gender"),
             identities = (0 until identitiesArr.length()).map { identitiesArr.getString(it) },
+            countries = countriesArr?.let { (0 until it.length()).map { j -> it.getString(j) } } ?: emptyList(),
             lore = obj.getString("lore"),
             portraitUrl = "file:///android_asset/portraits/portrait_$key.jpeg",
             years = obj.getString("years"),

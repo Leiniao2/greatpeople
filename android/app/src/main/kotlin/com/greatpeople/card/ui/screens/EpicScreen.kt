@@ -12,7 +12,6 @@ import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
-import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -130,47 +129,6 @@ fun EpicScreen(
                 .fillMaxSize()
                 .padding(padding),
         ) {
-            // Era tab row
-            ScrollableTabRow(
-                selectedTabIndex = pagerState.currentPage,
-                containerColor = BgColor,
-                contentColor = Amber,
-                indicator = { tabPositions ->
-                    if (pagerState.currentPage < tabPositions.size) {
-                        TabRowDefaults.SecondaryIndicator(
-                            modifier = Modifier.tabIndicatorOffset(tabPositions[pagerState.currentPage]),
-                            color = Amber,
-                        )
-                    }
-                },
-                edgePadding = 8.dp,
-            ) {
-                ERAS.forEachIndexed { idx, era ->
-                    val selectable = isEraSelectable(idx)
-                    Tab(
-                        selected = pagerState.currentPage == idx,
-                        onClick = {
-                            if (selectable) {
-                                scope.launch { pagerState.animateScrollToPage(idx) }
-                            } else {
-                                showToast("Complete 4 stories in the current era first.")
-                            }
-                        },
-                        text = {
-                            Text(
-                                era.name,
-                                color = when {
-                                    pagerState.currentPage == idx -> Amber
-                                    selectable -> Color.White.copy(alpha = 0.7f)
-                                    else -> Slate700
-                                },
-                                fontSize = 12.sp,
-                            )
-                        },
-                    )
-                }
-            }
-
             // Pager
             HorizontalPager(
                 state = pagerState,
