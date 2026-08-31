@@ -1,15 +1,16 @@
 import SwiftUI
 import UIKit
 
-private let demoCards: [Card] = loadCards()
+private let allCards: [Card] = loadCards()
 
 struct CollectionView: View {
     @EnvironmentObject var authStore: AuthStore
     @StateObject private var viewModel = CollectionViewModel()
     let columns = [GridItem(.adaptive(minimum: 160), spacing: 12)]
 
-    private var displayCards: [Card] {
-        authStore.isGuest ? demoCards : viewModel.cards
+    private func isOwned(_ card: Card) -> Bool {
+        guard !authStore.isGuest else { return false }
+        return viewModel.ownedIds.contains(card.id)
     }
 
     var body: some View {
@@ -21,7 +22,7 @@ struct CollectionView: View {
                     // Guest banner
                     if authStore.isGuest {
                         HStack {
-                            Text("Exploring as guest — demo cards only")
+                            Text("Complete stories in Epic mode to unlock cards")
                                 .font(.caption)
                                 .foregroundColor(.gpAmber.opacity(0.8))
                             Spacer()
@@ -37,24 +38,16 @@ struct CollectionView: View {
                         .overlay(Rectangle().frame(height: 1).foregroundColor(Color.gpAmber.opacity(0.2)), alignment: .bottom)
                     }
 
-                    if viewModel.loading && !authStore.isGuest {
+                    if viewModel.loading {
                         Spacer()
                         ProgressView().tint(.gpAmber)
-                        Spacer()
-                    } else if displayCards.isEmpty {
-                        Spacer()
-                        VStack(spacing: 12) {
-                            Text("♛").font(.system(size: 48)).foregroundColor(.gpAmber.opacity(0.4))
-                            Text("No cards yet").foregroundColor(.white).font(.headline)
-                            Text("Win battles to earn cards").foregroundColor(.gpSlate400).font(.subheadline)
-                        }
                         Spacer()
                     } else {
                         ScrollView {
                             LazyVGrid(columns: columns, spacing: 12) {
-                                ForEach(displayCards) { card in
+                                ForEach(allCards) { card in
                                     NavigationLink(value: card) {
-                                        CardCell(card: card)
+                                        CardCell(card: card, owned: isOwned(card))
                                     }
                                     .buttonStyle(.plain)
                                 }
@@ -67,7 +60,7 @@ struct CollectionView: View {
                     }
                 }
             }
-            .navigationTitle(authStore.isGuest ? "Demo Collection" : "My Collection")
+            .navigationTitle("Collection")
             .navigationBarTitleDisplayMode(.large)
             .toolbarColorScheme(.dark, for: .navigationBar)
             .task {
@@ -79,6 +72,7 @@ struct CollectionView: View {
 
 struct CardCell: View {
     let card: Card
+    let owned: Bool
     private let tierColor: Color = .gpAmber
 
     var body: some View {
@@ -102,14 +96,24 @@ struct CardCell: View {
                 }
                 .frame(height: 140)
                 .clipped()
+                .opacity(owned ? 1.0 : 0.35)
 
+                if !owned {
+                    Image(systemName: "lock.fill")
+                        .font(.system(size: 14, weight: .semibold))
+                        .foregroundColor(.white.opacity(0.7))
+                        .padding(6)
+                        .background(Color.black.opacity(0.5))
+                        .clipShape(Circle())
+                        .padding(8)
+                }
             }
 
             // Info
             VStack(alignment: .leading, spacing: 6) {
                 Text(card.figureName)
                     .font(.subheadline.weight(.semibold))
-                    .foregroundColor(.white)
+                    .foregroundColor(owned ? .white : .gpSlate400)
                     .lineLimit(1)
                 Text("\(card.era) · \(card.gender)")
                     .font(.system(size: 10))
@@ -123,7 +127,7 @@ struct CardCell: View {
                                 .font(.system(size: 8).weight(.medium))
                                 .padding(.horizontal, 6).padding(.vertical, 2)
                                 .background(Color.gpAmber.opacity(0.08))
-                                .foregroundColor(.gpAmber.opacity(0.7))
+                                .foregroundColor(.gpAmber.opacity(owned ? 0.7 : 0.35))
                                 .overlay(Capsule().stroke(Color.gpAmber.opacity(0.25), lineWidth: 0.5))
                                 .clipShape(Capsule())
                         }
@@ -132,20 +136,21 @@ struct CardCell: View {
             }
             .padding(10)
         }
-        .background(Color.white.opacity(0.03))
-        .overlay(RoundedRectangle(cornerRadius: 14).stroke(tierColor.opacity(0.25), lineWidth: 1))
+        .background(Color.white.opacity(owned ? 0.03 : 0.015))
+        .overlay(RoundedRectangle(cornerRadius: 14).stroke(tierColor.opacity(owned ? 0.25 : 0.1), lineWidth: 1))
         .clipShape(RoundedRectangle(cornerRadius: 14))
     }
 }
 
 @MainActor
 final class CollectionViewModel: ObservableObject {
-    @Published var cards: [Card] = []
+    @Published var ownedIds: Set<String> = []
     @Published var loading = false
 
     func load() async {
         loading = true
-        cards = (try? await APIClient.shared.fetchCards()) ?? []
+        let fetched = (try? await APIClient.shared.fetchCards()) ?? []
+        ownedIds = Set(fetched.map(\.id))
         loading = false
     }
 }

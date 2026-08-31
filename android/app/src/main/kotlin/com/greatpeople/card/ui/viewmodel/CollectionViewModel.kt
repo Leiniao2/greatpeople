@@ -2,7 +2,6 @@ package com.greatpeople.card.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.greatpeople.card.data.model.Card
 import com.greatpeople.card.data.remote.ApiService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,8 +14,8 @@ class CollectionViewModel @Inject constructor(
     private val apiService: ApiService,
 ) : ViewModel() {
 
-    private val _cards = MutableStateFlow<List<Card>>(emptyList())
-    val cards = _cards.asStateFlow()
+    private val _ownedIds = MutableStateFlow<Set<String>>(emptySet())
+    val ownedIds = _ownedIds.asStateFlow()
 
     private val _loading = MutableStateFlow(false)
     val loading = _loading.asStateFlow()
@@ -26,7 +25,10 @@ class CollectionViewModel @Inject constructor(
     fun load() {
         viewModelScope.launch {
             _loading.value = true
-            try { _cards.value = apiService.getCards().cards }
+            try {
+                val fetched = apiService.getCards().cards
+                _ownedIds.value = fetched.map { it.id }.toSet()
+            }
             catch (_: Exception) {}
             finally { _loading.value = false }
         }

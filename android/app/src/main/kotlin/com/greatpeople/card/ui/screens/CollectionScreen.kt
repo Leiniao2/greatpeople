@@ -38,18 +38,19 @@ fun CollectionScreen(
     viewModel: CollectionViewModel = hiltViewModel(),
 ) {
     val context = LocalContext.current
-    val demoCards = remember { loadCards(context) }
-    val vmCards by viewModel.cards.collectAsState()
+    val allCards = remember { loadCards(context) }
+    val ownedIds by viewModel.ownedIds.collectAsState()
     val loading by viewModel.loading.collectAsState()
-    val cards = if (isGuest) demoCards else vmCards
+
+    fun isOwned(card: Card) = !isGuest && ownedIds.contains(card.id)
 
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
                     Column {
-                        Text(if (isGuest) "Demo Collection" else "My Collection")
-                        if (!loading || isGuest) Text("${cards.size} cards",
+                        Text("Collection")
+                        if (!loading || isGuest) Text("${allCards.size} cards",
                             style = MaterialTheme.typography.labelSmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant)
                     }
@@ -71,7 +72,7 @@ fun CollectionScreen(
                         .padding(horizontal = 16.dp, vertical = 10.dp),
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
-                    Text("Exploring as guest — demo cards only",
+                    Text("Complete stories in Epic mode to unlock cards",
                         style = MaterialTheme.typography.labelSmall,
                         color = Color(0xFFF59E0B).copy(alpha = 0.8f),
                         modifier = Modifier.weight(1f))
@@ -86,16 +87,15 @@ fun CollectionScreen(
 
             Box(modifier = Modifier.fillMaxSize()) {
                 when {
-                    loading && !isGuest -> CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
-                    cards.isEmpty() -> EmptyState(modifier = Modifier.align(Alignment.Center))
+                    loading -> CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
                     else -> LazyVerticalGrid(
                         columns = GridCells.Adaptive(160.dp),
                         contentPadding = PaddingValues(12.dp),
                         verticalArrangement = Arrangement.spacedBy(12.dp),
                         horizontalArrangement = Arrangement.spacedBy(12.dp),
                     ) {
-                        items(cards, key = { it.id }) { card ->
-                            CardItem(card, onClick = { onCardClick(card) })
+                        items(allCards, key = { it.id }) { card ->
+                            CardItem(card, owned = isOwned(card), onClick = { onCardClick(card) })
                         }
                     }
                 }
@@ -105,7 +105,7 @@ fun CollectionScreen(
 }
 
 @Composable
-private fun CardItem(card: Card, onClick: () -> Unit = {}) {
+private fun CardItem(card: Card, owned: Boolean = true, onClick: () -> Unit = {}) {
     val accentColor = Color(0xFFF59E0B)
 
     Card(
@@ -123,17 +123,34 @@ private fun CardItem(card: Card, onClick: () -> Unit = {}) {
                     AsyncImage(
                         model = card.portraitUrl, contentDescription = card.figureName,
                         contentScale = ContentScale.Crop,
-                        modifier = Modifier.fillMaxSize(),
+                        modifier = Modifier.fillMaxSize().then(
+                            if (!owned) Modifier.clip(MaterialTheme.shapes.medium) else Modifier
+                        ),
+                        alpha = if (owned) 1f else 0.35f,
                     )
                 } else {
                     Text("♟", style = MaterialTheme.typography.displaySmall,
                         color = accentColor.copy(alpha = 0.4f))
                 }
+                if (!owned) {
+                    Box(
+                        modifier = Modifier
+                            .align(Alignment.TopEnd)
+                            .padding(8.dp)
+                            .background(Color.Black.copy(alpha = 0.5f), CircleShape)
+                            .padding(6.dp),
+                    ) {
+                        Text("🔒", style = MaterialTheme.typography.labelSmall)
+                    }
+                }
             }
 
             // Info
             Column(modifier = Modifier.padding(10.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                Text(card.figureName, style = MaterialTheme.typography.titleSmall,
+                Text(card.figureName,
+                    style = MaterialTheme.typography.titleSmall.copy(
+                        color = if (owned) Color.Unspecified else Color(0xFF94A3B8)
+                    ),
                     maxLines = 1, overflow = TextOverflow.Ellipsis)
                 Text("${card.era} · ${card.gender}",
                     style = MaterialTheme.typography.labelSmall,
