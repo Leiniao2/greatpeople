@@ -100,6 +100,49 @@ describe('story_challenges.json — structural integrity', () => {
   })
 })
 
+describe('story_challenges.json — era coverage', () => {
+  const VALID_ERAS = ['Ancient', 'Classical', 'Medieval', 'Renaissance', 'Steam', 'Electricity', 'Information']
+
+  it('contains stories for all 7 eras', () => {
+    const eras = new Set(stories.map((s: { era: string }) => s.era))
+    for (const era of VALID_ERAS) {
+      expect(eras.has(era), `Era "${era}" has no story challenges`).toBe(true)
+    }
+  })
+
+  it('each era has at least 9 stories', () => {
+    const byEra: Record<string, number> = {}
+    for (const s of stories) byEra[s.era] = (byEra[s.era] ?? 0) + 1
+    for (const era of VALID_ERAS) {
+      expect(byEra[era] ?? 0, `Era "${era}" has only ${byEra[era] ?? 0} stories`).toBeGreaterThanOrEqual(9)
+    }
+  })
+
+  it('total story count is at least 80', () => {
+    expect(stories.length).toBeGreaterThanOrEqual(80)
+  })
+})
+
+describe('story_challenges.json — sort challenge structure', () => {
+  it('sort challenges have question and items array', () => {
+    for (const s of stories) {
+      for (const ch of s.challenges) {
+        if (ch.type === 'sort') {
+          expect(typeof ch.question, `"${s.story}" sort missing question`).toBe('string')
+          expect(Array.isArray(ch.items), `"${s.story}" sort missing items`).toBe(true)
+          expect(ch.items.length, `"${s.story}" sort needs ≥2 items`).toBeGreaterThanOrEqual(2)
+        }
+      }
+    }
+  })
+
+  it('has at least 40 sort challenges across all stories', () => {
+    const count = stories.reduce((n: number, s: { challenges: { type: string }[] }) =>
+      n + s.challenges.filter(ch => ch.type === 'sort').length, 0)
+    expect(count).toBeGreaterThanOrEqual(40)
+  })
+})
+
 describe('story_challenges.json — new mini-game entries', () => {
   it('has at least one storysort challenge', () => {
     const found = stories.some(s => s.challenges.some((ch: { type: string; game: string }) => ch.type === 'minigame' && ch.game === 'storysort'))
