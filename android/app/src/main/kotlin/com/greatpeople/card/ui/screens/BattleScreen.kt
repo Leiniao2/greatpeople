@@ -7,7 +7,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.Book
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -53,7 +53,7 @@ fun BattleScreen(
                 },
                 actions = {
                     IconButton(onClick = { showRules = true }) {
-                        Icon(Icons.Filled.Book, contentDescription = "Rules", tint = Color(0xFFF59E0B))
+                        Icon(Icons.Filled.Info, contentDescription = "Rules", tint = Color(0xFFF59E0B))
                     }
                 },
             )
