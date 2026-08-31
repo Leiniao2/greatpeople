@@ -2943,5 +2943,1209 @@
         "fact": "The early Silicon Valley era saw fierce competition over patents and prototypes. Apple's lawsuit against Xerox over the GUI and Jobs' NeXT venture shaped the modern tech landscape."
       }
     ]
+  },
+  {
+    "era": "Classical",
+    "story": "The Prophet of Light",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "What religion did Mani found in the 3rd century CE?",
+        "options": [
+          "Manichaeism",
+          "Zoroastrianism",
+          "Nestorian Christianity",
+          "Mithraism"
+        ],
+        "answer": 0,
+        "countdown": 10,
+        "fact": "Mani (216–274 CE) founded Manichaeism, a dualistic religion blending Zoroastrian light-and-darkness cosmology, Christian ethics, and Buddhist concepts of spiritual purification. At its height, Manichaeism spread from the Roman Empire to Tang Dynasty China — one of history's most geographically expansive faiths."
+      },
+      {
+        "type": "truefalse",
+        "statement": "Mani was only a preacher — he had no talent for visual art.",
+        "correct": false,
+        "countdown": 10,
+        "fact": "Mani was a gifted painter who created the Ardahang, an illustrated holy book of extraordinary beauty. He used visual art as a missionary tool, believing images could convey divine truth across language barriers. His followers called him 'the Apostle of Light' and celebrated his paintings as sacred revelation."
+      },
+      {
+        "type": "sort",
+        "question": "Arrange the key events of Mani's life in order:",
+        "items": [
+          "Mani receives his first divine revelation at age twelve",
+          "Mani studies with a Jewish-Christian baptismal sect in Mesopotamia",
+          "Mani embarks on missions to the Kushan Empire and India",
+          "Mani gains the patronage of the Sassanid emperor Shapur I",
+          "Bahram I imprisons Mani under pressure from Zoroastrian clergy",
+          "Mani dies in prison — his followers call it his crucifixion"
+        ],
+        "fact": "Mani's death in 274 CE echoed the martyrdom narratives of the very religions he synthesized. His followers spread his teachings across the Silk Road for centuries — Manichaean texts were still being copied in China in the 13th century."
+      },
+      {
+        "type": "minigame",
+        "game": "fiction",
+        "configId": "mani-parable",
+        "instruction": "Mani taught through parables — stories of light trapped in darkness. Complete his parable of the soul's journey from matter back to the realm of pure light.",
+        "fact": "Mani believed the material world was a prison of darkness and that human souls were fragments of divine light awaiting liberation. His parables, hymns, and paintings were all instruments of the same message: light will eventually triumph over darkness."
+      },
+      {
+        "type": "minigame",
+        "game": "music",
+        "configId": "mani-hymn",
+        "instruction": "Mani composed hymns for every corner of his cosmic map. Arrange the descending phrases of a Manichaean hymn — light descending into the world, note by note.",
+        "fact": "Mani composed hymnbooks in multiple languages, including Middle Persian, Parthian, and Syriac. The Coptic Manichaean Psalm-Book, discovered in Egypt in 1930, preserves hundreds of hymns that reveal a sophisticated musical tradition within his church."
+      }
+    ]
+  },
+  {
+    "era": "Classical",
+    "story": "The Disguised Warrior",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "Why does Hua Mulan disguise herself as a man in the Ballad of Mulan?",
+        "options": [
+          "To take her elderly father's place in the imperial army",
+          "To escape an arranged marriage",
+          "To spy on an enemy kingdom",
+          "To reclaim her family's stolen land"
+        ],
+        "answer": 0,
+        "countdown": 10,
+        "fact": "The Ballad of Mulan, a poem dating to the Northern Wei dynasty (386–534 CE), tells of a daughter who disguises herself as a man to spare her aged, ailing father from conscription. She fights for twelve years, earns high honours, and then reveals her identity — astonishing her comrades."
+      },
+      {
+        "type": "sort",
+        "question": "Arrange the key events of Mulan's story in narrative order:",
+        "items": [
+          "The imperial decree arrives — one man from each family must serve",
+          "Mulan sees her father's name on the conscription list and resolves to go in his place",
+          "She buys a horse and equipment at the market and rides north disguised as a soldier",
+          "She fights campaigns across the northern frontier for twelve years",
+          "The emperor offers her a high post in recognition of her service",
+          "Mulan declines the honour and asks only to return home to her family"
+        ],
+        "fact": "The ballad's ending is deliberately understated: Mulan's comrades, who fought beside her for a decade, are stunned to discover she is a woman. The poem asks no moral question — it simply presents her choice as natural and her courage as obvious."
+      },
+      {
+        "type": "truefalse",
+        "statement": "After revealing her identity, Mulan accepted the emperor's offer of a high imperial post.",
+        "correct": false,
+        "countdown": 10,
+        "fact": "Mulan refused the emperor's offer of office and asked only for a fast horse to carry her home. The original ballad ends with her reunited family and Mulan in her women's clothes again — her identity secure, her duty complete, her reward the return of ordinary life."
+      },
+      {
+        "type": "minigame",
+        "game": "maze",
+        "configId": "mulan",
+        "instruction": "Lead Mulan's cavalry through the northern frontier — avoid ambushes and reach the enemy encampment before dawn.",
+        "fact": "The ballad describes a real frontier: the northern Wei territories were under constant pressure from the Rouran Khaganate. The poem's military details — twelve years of campaigns, the yellow river crossing, the Black Mountain pass — reflect genuine geography and the brutal reality of steppe warfare."
+      },
+      {
+        "type": "minigame",
+        "game": "tactics",
+        "configId": "general",
+        "instruction": "As a disguised officer earning trust through merit alone, find the decisive move that breaks the enemy's northern line.",
+        "fact": "The Ballad of Mulan became one of China's most enduring stories because it celebrated filial piety and personal courage simultaneously — two of Confucian culture's highest values. It has been retold in opera, film, and literature across fourteen centuries."
+      }
+    ]
+  },
+  {
+    "era": "Electricity",
+    "story": "Soul Force",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "What term did Gandhi coin for his philosophy of nonviolent resistance?",
+        "options": [
+          "Satyagraha",
+          "Swaraj",
+          "Ahimsa",
+          "Hartal"
+        ],
+        "answer": 0,
+        "countdown": 10,
+        "fact": "Gandhi coined 'Satyagraha' — from Sanskrit satya (truth) and agraha (holding firmly) — in South Africa in 1906. It means 'truth-force' or 'soul-force,' and distinguished his method from passive resistance: Satyagraha was an active, courageous confrontation with injustice using love rather than violence."
+      },
+      {
+        "type": "sort",
+        "question": "Arrange these milestones of Gandhi's life in chronological order:",
+        "items": [
+          "Travels to South Africa and experiences racial discrimination",
+          "Leads the Champaran Satyagraha — first mass civil disobedience in India",
+          "Leads the 240-mile Salt March to Dandi, defying British salt monopoly",
+          "Negotiates with Viceroy Irwin — the Gandhi-Irwin Pact",
+          "India achieves independence — and partition",
+          "Assassinated by Nathuram Godse in New Delhi"
+        ],
+        "fact": "The Salt March of 1930 transformed Gandhi from a respected Indian leader into a global symbol. When he picked up a pinch of salt on the Dandi beach, he broke British law — and the world was watching. Within weeks, 60,000 Indians had been arrested for the same act of defiance."
+      },
+      {
+        "type": "truefalse",
+        "statement": "Gandhi opposed Indian independence from Britain, believing the British Empire could be reformed from within.",
+        "correct": false,
+        "countdown": 10,
+        "fact": "Gandhi devoted his life to Indian independence (swaraj). However, he insisted the path must be nonviolent. His Quit India speech of 1942 demanded immediate British withdrawal — 'Do or Die' — and triggered mass arrests. Gandhi saw independence not merely as political freedom but as moral regeneration."
+      },
+      {
+        "type": "minigame",
+        "game": "crossword",
+        "configId": "gandhi",
+        "instruction": "Complete the crossword of Gandhi's India — the people, places, and principles that shaped a revolution without rifles.",
+        "fact": "Gandhi's methods were studied and adopted by civil rights leaders around the world. Martin Luther King Jr. called Gandhi's philosophy 'the guiding light of our technique of nonviolent social change.' Nelson Mandela, Cesar Chavez, and Aung San Suu Kyi all cited Gandhi's example."
+      },
+      {
+        "type": "minigame",
+        "game": "maze",
+        "configId": "long-march",
+        "instruction": "Walk Gandhi's Salt March — 240 miles in 24 days. Navigate the coastal road to Dandi, where a handful of salt will shake an empire.",
+        "fact": "The 1930 Salt March began with 78 hand-picked followers and ended with tens of thousands. When Gandhi arrived at the sea after 24 days, he said: 'With this, I am shaking the foundations of the British Empire.' The American press called it 'the most spectacular individual act of defiance in modern history.'"
+      }
+    ]
+  },
+  {
+    "era": "Electricity",
+    "story": "Garden of Genetics",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "What plant did Gregor Mendel use in his heredity experiments?",
+        "options": [
+          "Pea plants",
+          "Apple trees",
+          "Wheat",
+          "Sunflowers"
+        ],
+        "answer": 0,
+        "countdown": 10,
+        "fact": "Mendel chose pea plants (Pisum sativum) with extraordinary care. They had clearly distinguishable traits — smooth or wrinkled seeds, yellow or green pods, tall or short stems — that produced consistent, countable offspring. Over eight years, he tracked 29,000 plants and applied mathematics to biology for the first time."
+      },
+      {
+        "type": "truefalse",
+        "statement": "Mendel's discovery of the laws of heredity was immediately celebrated by the scientific community.",
+        "correct": false,
+        "countdown": 10,
+        "fact": "When Mendel published his results in 1866, the scientific world largely ignored them. His paper was cited only a handful of times in the next 35 years. It was not until 1900 — 16 years after Mendel's death — that three botanists independently rediscovered his laws and finally found his original paper, launching the science of genetics."
+      },
+      {
+        "type": "sort",
+        "question": "Arrange the key steps of Mendel's pea experiment in order:",
+        "items": [
+          "Mendel selects pure-breeding parent plants with contrasting traits",
+          "He cross-pollinates parents by hand to produce first-generation hybrids (F1)",
+          "F1 plants all show the dominant trait — the recessive trait vanishes",
+          "He allows F1 plants to self-pollinate, producing second-generation seeds (F2)",
+          "The recessive trait reappears in F2 in a 3:1 ratio",
+          "Mendel concludes that inheritance is governed by discrete, paired units"
+        ],
+        "fact": "The 3:1 ratio Mendel observed — three dominant to one recessive — was not a coincidence or approximation. It was a mathematical law. Mendel was the first scientist to apply statistical analysis to biology, and his insight that inheritance comes in discrete packets (what we now call genes) was centuries ahead of its time."
+      },
+      {
+        "type": "minigame",
+        "game": "punnett",
+        "configId": "mendel-peas",
+        "instruction": "Use Mendel's Punnett square to predict which pea offspring will be smooth and which will be wrinkled. The garden holds its secrets in mathematics.",
+        "fact": "A Punnett square maps out all possible genetic combinations from two parents. When Mendel crossed smooth-seeded (Ss) plants together, the square predicts 25% SS, 50% Ss, and 25% ss offspring — 75% smooth, 25% wrinkled. The 3:1 ratio that baffled naturalists for centuries was hiding in plain arithmetic."
+      },
+      {
+        "type": "minigame",
+        "game": "classify",
+        "configId": "mendel-traits",
+        "instruction": "Classify each pea plant trait as dominant or recessive — just as Mendel did in his monastery garden, sorting thousands of seeds by hand.",
+        "fact": "Mendel identified seven distinct traits in pea plants, each with a dominant and recessive form. Remarkably, the genes controlling these seven traits happen to lie on different chromosomes, which is why Mendel's Law of Independent Assortment holds perfectly for them — a stroke of extraordinary scientific luck."
+      },
+      {
+        "type": "minigame",
+        "game": "sudoku",
+        "configId": "mendel-grid",
+        "instruction": "Mendel counted and sorted thousands of seeds using meticulous grid records. Fill the inheritance grid — each row, column, and box must contain every trait combination exactly once.",
+        "fact": "Mendel kept records of extraordinary precision across eight years of experiments. He tracked 29,000 plants through multiple generations, recording results in tables that would not be out of place in a modern biology lab. His data was so clean that statistician R.A. Fisher later controversially suggested it was too perfect."
+      }
+    ]
+  },
+  {
+    "era": "Electricity",
+    "story": "Symphony of Shadows",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "Which composer served as Brahms' most important early mentor and champion?",
+        "options": [
+          "Robert Schumann",
+          "Franz Liszt",
+          "Richard Wagner",
+          "Felix Mendelssohn"
+        ],
+        "answer": 0,
+        "countdown": 10,
+        "fact": "Robert Schumann heard the 20-year-old Brahms play in 1853 and immediately published an article declaring him 'the one called to give ideal expression to the times.' It was an extraordinary endorsement that launched Brahms' career — and also set impossible expectations that would haunt him for decades."
+      },
+      {
+        "type": "truefalse",
+        "statement": "Brahms completed his First Symphony quickly, finishing it within a year of beginning it.",
+        "correct": false,
+        "countdown": 10,
+        "fact": "Brahms labored over his First Symphony for 21 years, from 1854 to 1876. He was paralyzed by the shadow of Beethoven — convinced that any symphony he wrote would be compared unfavorably to Beethoven's nine. When it finally premiered, the conductor Hans von Bülow called it 'Beethoven's Tenth' — the highest compliment and a backhanded burden."
+      },
+      {
+        "type": "sort",
+        "question": "Arrange these milestones of Brahms' life in chronological order:",
+        "items": [
+          "Brahms meets Robert Schumann, who immediately champions him publicly",
+          "Robert Schumann is committed to a sanatorium — Brahms supports Clara",
+          "Brahms moves to Vienna, his permanent home for the rest of his life",
+          "His German Requiem premieres to international acclaim",
+          "Brahms finally completes and premieres his First Symphony",
+          "He destroys manuscripts he deems unworthy and retires from composition"
+        ],
+        "fact": "Brahms was his own harshest critic. He destroyed dozens of works he judged inferior, including a complete string quintet and multiple early symphonies. What survives — four symphonies, two piano concertos, the German Requiem, the Lullaby — represents only what passed his merciless standard."
+      },
+      {
+        "type": "minigame",
+        "game": "music",
+        "configId": "brahms-lullaby",
+        "instruction": "Brahms composed his famous Lullaby in 1868 as a gift for a friend's newborn son. Play the melody that has soothed children to sleep for 150 years.",
+        "fact": "Brahms based the Lullaby (Op. 49, No. 4) on a folk song he heard a childhood sweetheart sing, weaving his memory of her voice into the melody. It became the most hummed tune of the 19th century — and today it plays in hospitals worldwide to announce a birth."
+      },
+      {
+        "type": "minigame",
+        "game": "sudoku",
+        "configId": "brahms-pattern",
+        "instruction": "Brahms constructed his symphonies with mathematical precision, layering motifs like a counterpoint puzzle. Solve the harmonic grid that mirrors his structural thinking.",
+        "fact": "Brahms was deeply influenced by Baroque counterpoint, studying Bach's manuscripts obsessively. His technique of 'developing variation' — transforming a small motif through subtle changes across an entire symphony — influenced Schoenberg, Webern, and the entire 20th-century tradition of motivic composition."
+      }
+    ]
+  },
+  {
+    "era": "Information",
+    "story": "Top of the World",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "When did Edmund Hillary and Tenzing Norgay first reach the summit of Mount Everest?",
+        "options": [
+          "29 May 1953",
+          "12 April 1950",
+          "3 June 1955",
+          "29 May 1956"
+        ],
+        "answer": 0,
+        "countdown": 10,
+        "fact": "Hillary and Tenzing summited at 11:30 AM on 29 May 1953, spending only 15 minutes on top before descending — long enough for photographs and to bury a small cross and some sweets as offerings. The news reached London in time to appear on the morning of Queen Elizabeth II's coronation."
+      },
+      {
+        "type": "truefalse",
+        "statement": "Hillary claimed to the press that he reached the summit alone, ahead of Tenzing Norgay.",
+        "correct": false,
+        "countdown": 10,
+        "fact": "Hillary always insisted that he and Tenzing summited together as a team, refusing to say who stepped onto the peak first. He later wrote: 'We didn't talk about it much — it didn't seem important.' For the rest of his life, Hillary devoted enormous energy to building schools, hospitals, and water pipelines for the Sherpa communities of Nepal."
+      },
+      {
+        "type": "sort",
+        "question": "Arrange the key events of the 1953 Everest expedition in order:",
+        "items": [
+          "The expedition team of 400 assembles in Kathmandu under Colonel John Hunt",
+          "Climbers establish a series of high camps up the South Col route",
+          "Tom Bourdillon and Charles Evans reach the South Summit — a first — but must turn back",
+          "Hillary and Tenzing move into position at Camp IX, 27,900 ft",
+          "They summit Everest at 11:30 AM on 29 May",
+          "News reaches London on the morning of Queen Elizabeth II's coronation"
+        ],
+        "fact": "The 1953 expedition was a meticulous logistical operation: 400 porters, 362 loads of equipment, months of acclimatization. John Hunt's planning was military in precision. But in the end, it came down to two men in the predawn cold, kicking steps into ice above the Hillary Step."
+      },
+      {
+        "type": "minigame",
+        "game": "maze",
+        "configId": "everest-peak",
+        "instruction": "Navigate the South Col route to the summit — through the Khumbu Icefall, up the Lhotse Face, past the South Summit. Every step at 29,000 feet costs twice the oxygen it would at sea level.",
+        "fact": "Above 8,000 metres, the human body cannot acclimatize — it only deteriorates. In the 'Death Zone,' each breath delivers half the oxygen of sea level. Hillary later described the final ridge as 'a knife-edge of ice, with a drop of eight thousand feet on each side.' The Hillary Step — a 12-metre rock wall near the summit — remained the crux of every Everest ascent until 2017, when it collapsed in an earthquake."
+      },
+      {
+        "type": "minigame",
+        "game": "geometry",
+        "configId": "sphere-surface",
+        "instruction": "Surveyors had to calculate Everest's true height from miles away, correcting for Earth's curvature. Calculate the surface area of the Earth's sphere at Everest's latitude.",
+        "fact": "Everest's height of 8,849 metres (as of 2023 measurements) was first calculated mathematically in 1856 by the Survey of India, who observed the peak from over 160 km away. They named it after Sir George Everest, the Surveyor General — though locals had always called it Chomolungma (Tibetan) or Sagarmatha (Nepali), meaning 'Goddess of the Sky' and 'Forehead of the Sky.'"
+      }
+    ]
+  },
+  {
+    "era": "Steam",
+    "story": "Queen of Two Thrones",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "Which two kingdoms did Queen Anna Nzinga rule over her lifetime?",
+        "options": [
+          "Ndongo and Matamba",
+          "Kongo and Loango",
+          "Benin and Dahomey",
+          "Oyo and Ashanti"
+        ],
+        "answer": 0,
+        "countdown": 10,
+        "fact": "Nzinga was born into the royal family of Ndongo (in modern Angola) and became its ruler in the 1620s. When Portuguese pressure forced her from Ndongo, she conquered the neighboring kingdom of Matamba and turned it into a military powerhouse — ruling both territories into her eighties."
+      },
+      {
+        "type": "truefalse",
+        "statement": "Anna Nzinga ultimately surrendered her kingdom to the Portuguese in exchange for peace.",
+        "correct": false,
+        "countdown": 10,
+        "fact": "Nzinga never surrendered. She fought the Portuguese for over thirty years, forging alliances with the Dutch, leading guerrilla campaigns from the jungle, and negotiating with extraordinary skill. At age 80, she signed a peace treaty on her own terms. She died in her eighties, having protected Matamba's independence to the end."
+      },
+      {
+        "type": "sort",
+        "question": "Arrange the key events of Anna Nzinga's life in order:",
+        "items": [
+          "Nzinga negotiates with the Portuguese governor in Luanda — famously sitting on an attendant's back when denied a chair",
+          "She is baptized as a Christian, taking the name Anna, as a diplomatic strategy",
+          "Portuguese forces drive her from Ndongo — she retreats and reorganizes",
+          "Nzinga conquers Matamba and builds a powerful military state",
+          "She allies with the Dutch and launches campaigns against Portuguese slave traders",
+          "At nearly eighty, she signs a peace treaty and rules Matamba until her death"
+        ],
+        "fact": "The story of Nzinga refusing a chair during negotiations — and instead using one of her attendants as a throne — became one of history's most celebrated acts of diplomatic defiance. Whether literally true or legendary, it perfectly captures her method: she refused the terms of any encounter she had not defined herself."
+      },
+      {
+        "type": "minigame",
+        "game": "hunting",
+        "configId": "african-safari",
+        "instruction": "Nzinga trained as a warrior and led her troops personally. Navigate the Central African terrain, reading the land as both hunter and commander.",
+        "fact": "Nzinga commanded a military force that included a women's regiment, former Portuguese-allied soldiers who defected to her cause, and a network of Imbangala warriors. She was known to fight in the front lines herself and trained her soldiers in guerrilla tactics that kept the Portuguese at bay for decades."
+      },
+      {
+        "type": "minigame",
+        "game": "tactics",
+        "configId": "general",
+        "instruction": "Lead Nzinga's forces in a flanking raid against a Portuguese supply column. Speed and terrain are your weapons — European cannon cannot aim at what it cannot see.",
+        "fact": "Portuguese military reports describe Nzinga's forces as extraordinarily mobile and difficult to engage in pitched battle. She understood that her army could not match European firepower in open confrontation, so she avoided it — choosing ambushes, river crossings, and night raids that neutralized the Portuguese advantage."
+      },
+      {
+        "type": "minigame",
+        "game": "voting",
+        "configId": "spanish-court",
+        "instruction": "Nzinga understood European courts as well as she understood the African bush. Navigate the Portuguese diplomatic chamber — every word a move, every concession a feint.",
+        "fact": "Nzinga was multilingual and converted to Christianity strategically, understanding that the Portuguese were far more willing to negotiate with a Christian queen than a 'pagan' ruler. She later renounced Christianity when the political winds shifted, then accepted it again — always on her own terms. European diplomats found her simultaneously charming, erudite, and utterly undefeatable."
+      }
+    ]
+  },
+  {
+    "era": "Medieval",
+    "story": "The Golden Horde Rides",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "Whose grandson was Batu Khan, and what western invasion did he lead?",
+        "options": [
+          "Grandson of Genghis Khan; led the Mongol invasion of Eastern Europe",
+          "Son of Ögedei Khan; led the invasion of China",
+          "Grandson of Kublai Khan; led the invasion of Persia",
+          "Son of Chagatai Khan; led the invasion of India"
+        ],
+        "answer": 0,
+        "countdown": 10,
+        "fact": "Batu Khan (c.1207–1255) was the grandson of Genghis Khan and founder of the Golden Horde. In 1241, he led the most western Mongol campaign in history, crushing Polish and Hungarian armies simultaneously and reaching the gates of Vienna — before news of Ögedei Khan's death caused the army to withdraw."
+      },
+      {
+        "type": "truefalse",
+        "statement": "The Mongol army that invaded Europe in 1241 was defeated by the armies of Poland and Hungary.",
+        "correct": false,
+        "countdown": 10,
+        "fact": "At the Battle of Legnica (1241), the Mongols annihilated a combined Polish-German force. At the Battle of Mohi the same month, they destroyed the Hungarian army. Western Europe was essentially undefended. The Mongols withdrew not because of military defeat but because of succession politics — Ögedei Khan's death required the princes to return east."
+      },
+      {
+        "type": "sort",
+        "question": "Arrange the key events of Batu Khan's western campaign in order:",
+        "items": [
+          "The Mongol army crosses the Volga River and subdues the Cumans",
+          "Mongols sack Kiev, the greatest city of Rus, burning it to the ground",
+          "Battle of Legnica — Polish and German knights are destroyed in Silesia",
+          "Battle of Mohi — the Hungarian army is routed on the River Sajo",
+          "Mongol vanguard reaches the Adriatic coast of Croatia",
+          "Ögedei Khan dies — Batu orders withdrawal to elect a new Great Khan"
+        ],
+        "fact": "The Mongol campaign of 1241 was one of the most devastating military events in medieval European history. Poland, Hungary, and Moravia were devastated. Poland lost an estimated 25% of its population. When the Mongols withdrew, medieval Europe assumed it was a temporary pause — for years, communities lived in terror of their return."
+      },
+      {
+        "type": "minigame",
+        "game": "hunting",
+        "configId": "mongol-hunt",
+        "instruction": "Mongol warriors trained for war through the nerge — a great coordinated hunt. Encircle the game across the steppe, tightening the ring until nothing escapes. The same maneuver will encircle armies.",
+        "fact": "The Mongol nerge (battue hunt) was simultaneously sport and military training. Thousands of horsemen would spread across hundreds of miles, drive game into an ever-tightening circle, then slaughter it. Generals studied the hunt's coordination problems — timing, communication over distance, simultaneous flanking — and applied the same solutions in battle."
+      },
+      {
+        "type": "minigame",
+        "game": "tactics",
+        "configId": "general",
+        "instruction": "Batu Khan's commanders used feigned retreats to lure heavy European cavalry out of formation. Spring the trap — draw them forward, then encircle.",
+        "fact": "The feigned retreat was the signature Mongol tactic in Europe. Heavy knights, trained to charge and pursue, could not resist a retreating enemy. The Mongols would fall back for miles, drawing the pursuers into scattered disorder, then wheel and destroy them in detail. European commanders had no answer for an 'enemy' that ran away only to fight on its own terms."
+      },
+      {
+        "type": "minigame",
+        "game": "klotski",
+        "configId": "sword-formation",
+        "instruction": "Break the European shield wall — heavy cavalry blocks every direct path. Rearrange the pieces to open a line for the horse archers to exploit.",
+        "fact": "The Golden Horde that Batu established dominated the Russian steppe for 250 years, collecting tribute from every Russian principality. Moscow grew wealthy as a tax collector for the Horde — a relationship that profoundly shaped Russian political culture, centralizing power and accustoming rulers to absolute authority."
+      }
+    ]
+  },
+  {
+    "era": "Renaissance",
+    "story": "Lord of Three Kingdoms",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "Bayinnaung unified most of mainland Southeast Asia under his rule. Which kingdoms did he conquer?",
+        "options": [
+          "Shan States, Lan Na, and Ayutthaya (Siam)",
+          "Majapahit, Malacca, and Champa",
+          "Lan Xang, Khmer, and Dai Viet",
+          "Pegu, Arakan, and the Malabar Coast"
+        ],
+        "answer": 0,
+        "countdown": 10,
+        "fact": "Bayinnaung (1516–1581) built the largest empire in Southeast Asian history, conquering the Shan States, the Lan Na kingdom (Chiang Mai), and twice capturing Ayutthaya (the Siamese capital). His Toungoo Empire briefly unified Burma, Thailand, Laos, and portions of Yunnan under one administration."
+      },
+      {
+        "type": "truefalse",
+        "statement": "Bayinnaung imposed Burmese Buddhism on conquered peoples and suppressed their local religions.",
+        "correct": false,
+        "countdown": 10,
+        "fact": "Bayinnaung was known for remarkable religious tolerance. He allowed conquered rulers to keep their thrones as vassals, permitted local customs to continue, and interfered with Portuguese missionaries in Pegu only when they destroyed Buddhist temples. He sought legitimacy through ceremony and generosity as much as through force."
+      },
+      {
+        "type": "sort",
+        "question": "Arrange the key events of Bayinnaung's conquests in order:",
+        "items": [
+          "Bayinnaung becomes king of Toungoo after his brother-in-law's death",
+          "He reunifies Burma after decades of fragmentation",
+          "He conquers the Shan States, ending centuries of Shan dominance",
+          "His armies capture Chiang Mai and the Lan Na kingdom",
+          "He captures Ayutthaya for the first time and takes the Siamese white elephants",
+          "Ayutthaya rebels — Bayinnaung captures it a second time and demands a permanent peace"
+        ],
+        "fact": "The white elephant was the ultimate symbol of royal legitimacy in Southeast Asia. When Bayinnaung captured Ayutthaya's white elephants, he was claiming the spiritual mandate of regional kingship. His Pegu capital became one of the most cosmopolitan cities in Asia, hosting Portuguese traders, Siamese princes, and Chinese merchants simultaneously."
+      },
+      {
+        "type": "minigame",
+        "game": "tactics",
+        "configId": "general",
+        "instruction": "Bayinnaung's armies crossed rivers and jungle to strike cities that believed themselves unreachable. Choose the line of advance that keeps your forces supplied across 500 miles of rainforest.",
+        "fact": "Bayinnaung's military campaigns required extraordinary logistical sophistication — moving armies through tropical jungle with no road infrastructure. He developed a system of river transport, local supply contracts, and staged advance bases that would not have been out of place in a modern campaign."
+      },
+      {
+        "type": "minigame",
+        "game": "matchthree",
+        "configId": "lisbon-spices",
+        "instruction": "Pegu's markets traded silks, rubies, elephants, and spices with Portuguese merchants and Chinese fleets. Match the commodities that flow through the greatest emporium of Southeast Asia.",
+        "fact": "The city of Pegu under Bayinnaung was described by the Portuguese merchant Fernão Mendes Pinto as the most magnificent city he had ever seen — and he had visited Malacca, Goa, and Hormuz. Its markets brought together goods from China, India, the Spice Islands, and Europe in a single magnificent bazaar."
+      },
+      {
+        "type": "minigame",
+        "game": "trade",
+        "configId": "steel-stocks",
+        "instruction": "Bayinnaung's treasury ran on tribute, trade tolls, and monopolies. Balance the empire's revenues — wars are expensive and white elephants require golden stables.",
+        "fact": "Bayinnaung's empire was as much a trade network as a military conquest. Control of the overland route between China and the Indian Ocean gave his treasury a cut of the most profitable commerce in Asia. The Portuguese paid handsomely for port rights in Pegu — and Bayinnaung collected from everyone."
+      }
+    ]
+  },
+  {
+    "era": "Medieval",
+    "story": "Characters of Clay",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "What material did Bi Sheng use to create the world's first movable type, around 1040 CE?",
+        "options": [
+          "Baked clay",
+          "Carved wood",
+          "Cast bronze",
+          "Carved stone"
+        ],
+        "answer": 0,
+        "countdown": 10,
+        "fact": "Bi Sheng invented movable type during the Song Dynasty (c.1040 CE) using baked clay — the same material Chinese potters had mastered for thousands of years. Each character was carved in clay, hardened by fire, then set in an iron frame with pine resin. After printing, the resin was heated and the characters removed for reuse."
+      },
+      {
+        "type": "truefalse",
+        "statement": "Bi Sheng's movable type immediately replaced traditional woodblock printing across China.",
+        "correct": false,
+        "countdown": 10,
+        "fact": "Despite its ingenuity, Bi Sheng's clay type did not replace woodblock printing, which remained dominant in China for centuries. Chinese has tens of thousands of characters, making movable type logistically complex — a single print job might require thousands of individual pieces. Woodblock printing remained faster for short texts. Movable type proved more revolutionary in alphabetic languages like Korean and later European languages."
+      },
+      {
+        "type": "sort",
+        "question": "Arrange the steps of Bi Sheng's printing process in order:",
+        "items": [
+          "Carve each character into soft clay — one per piece",
+          "Harden the clay characters in fire to create durable type",
+          "Arrange characters in an iron frame using pine resin to hold them flat",
+          "Ink the assembled type and press paper firmly against it",
+          "Heat the frame to soften the resin and remove the characters",
+          "Sort the characters back into their cases for the next print run"
+        ],
+        "fact": "Bi Sheng's system was described in detail by the statesman Shen Kuo in his 'Dream Pool Essays' (1088 CE) — one of the great scientific documents of the medieval world. Without Shen Kuo's account, we might never have known of Bi Sheng's invention, since none of his actual type survives."
+      },
+      {
+        "type": "minigame",
+        "game": "porcelain",
+        "configId": "cobalt-bowl",
+        "instruction": "Bi Sheng's clay type was fired in the same kilns that produced Song Dynasty ceramics. Shape and fire the clay — the same hands that made bowls made the letters that carried the world's knowledge.",
+        "fact": "Song Dynasty China (960–1279 CE) was a civilization of extraordinary technological creativity: compass navigation, gunpowder weapons, paper money, paddlewheel ships, and movable type all emerged in a single century. The Song state funded scientific investigation and published encyclopedias — creating the world's first information economy."
+      },
+      {
+        "type": "minigame",
+        "game": "matchthree",
+        "configId": "babylon-tablets",
+        "instruction": "Before Bi Sheng's press, scholars hand-copied every text. Clear the clay tablet — match the ancient records that his invention would eventually make obsolete.",
+        "fact": "Writing had been recorded on clay tablets since Mesopotamia in 3500 BCE. Bi Sheng's great insight was that clay — the oldest writing substrate in human history — could itself become the tool for mass reproduction of text. He connected the ancient world of clay and the modern world of print in a single creative act."
+      }
+    ]
+  },
+  {
+    "era": "Steam",
+    "story": "The Infinite Curve",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "Francesco Borromini is best known for which type of architectural innovation?",
+        "options": [
+          "Concave and convex facades that made walls appear to breathe",
+          "Classical Roman domes scaled to an unprecedented size",
+          "Pointed Gothic arches adapted for Baroque interiors",
+          "Flat, rational facades inspired by ancient Greek temples"
+        ],
+        "answer": 0,
+        "countdown": 10,
+        "fact": "Borromini (1599–1667) invented a new architectural language: walls that curved inward and outward, spaces that expanded and contracted as you moved through them, and geometry derived from interlocking triangles rather than squares. His buildings feel alive — as if the stone itself is breathing."
+      },
+      {
+        "type": "truefalse",
+        "statement": "Borromini and his rival Bernini collaborated closely and admired each other's work throughout their careers.",
+        "correct": false,
+        "countdown": 10,
+        "fact": "Borromini and Bernini were bitter rivals who despised each other. Bernini — charming, wealthy, papal favourite — represented everything Borromini was not. Borromini was ascetic, difficult, and constantly overshadowed. He believed Bernini stole his ideas and received undeserved credit. The rivalry drove both to their greatest achievements — and contributed to Borromini's deepening depression."
+      },
+      {
+        "type": "sort",
+        "question": "Arrange the key works of Borromini's career in chronological order:",
+        "items": [
+          "Works under Bernini on St. Peter's Basilica — already showing signs of rivalry",
+          "Designs San Carlo alle Quattro Fontane — his first independent commission",
+          "Creates the Oratorio dei Filippini for the Congregation of the Oratory",
+          "Redesigns Sant'Ivo alla Sapienza — a spiral lantern atop a star-shaped plan",
+          "Works on San Giovanni in Laterano — his most prestigious commission",
+          "Dies by self-inflicted wound — his last act is to dictate his life story"
+        ],
+        "fact": "San Carlo alle Quattro Fontane is perhaps the most astonishing building in Rome: its interior could fit inside one of the columns of St. Peter's Basilica, yet it is more architecturally complex than the entire basilica. Borromini spent his career making small spaces feel infinite."
+      },
+      {
+        "type": "minigame",
+        "game": "geometry",
+        "configId": "ellipse-area",
+        "instruction": "Borromini derived his curved facades from interlocking ellipses and equilateral triangles. Calculate the ellipse that governs the rhythm of San Carlo's undulating wall.",
+        "fact": "Borromini's geometry was rooted in medieval sacred mathematics — he derived church plans from the proportions of the equilateral triangle, believing divine truth was encoded in geometric relationships. His buildings are not just beautiful; they are arguments about the nature of space and the presence of God within it."
+      },
+      {
+        "type": "minigame",
+        "game": "museum",
+        "configId": "uffizi-gallery",
+        "instruction": "Rome in Borromini's day was an open-air gallery of competing architectural ambitions. Arrange the Baroque masters' works in the order that best reveals the evolution of the style.",
+        "fact": "The Baroque was born in Rome as the Catholic Church's answer to Protestant austerity. Where Protestantism stripped churches bare, the Counter-Reformation filled them with overwhelming beauty. Borromini's contribution was to make that beauty geometrically impossible — a space that could not exist by the rules of classical architecture yet stood before you undeniably real."
+      }
+    ]
+  },
+  {
+    "era": "Steam",
+    "story": "Marble Into Breath",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "Which of Bernini's sculptures is considered his greatest early masterpiece?",
+        "options": [
+          "Apollo and Daphne",
+          "The Pietà",
+          "The Ecstasy of Saint Teresa",
+          "The Fountain of the Four Rivers"
+        ],
+        "answer": 0,
+        "countdown": 10,
+        "fact": "Apollo and Daphne (1622–1625) shows the moment Daphne transforms into a laurel tree to escape Apollo — her fingers becoming branches, bark creeping up her legs. Bernini carved this in marble when he was in his mid-twenties. Viewers reported that the finished work looked impossible, as if he had found a way to capture a single instant of motion in stone."
+      },
+      {
+        "type": "truefalse",
+        "statement": "Bernini designed St. Peter's Square's famous colonnade to enclose the piazza completely, blocking the view from the streets of Rome.",
+        "correct": false,
+        "countdown": 10,
+        "fact": "Bernini designed St. Peter's Square's twin colonnades to open at their ends, creating a welcoming gesture toward the city. He described them as 'the motherly arms of the Church' reaching out to embrace the faithful — Catholics to confirm their faith, heretics to reunite with the Church, and unbelievers to discover the light. The design is both engineering and theology."
+      },
+      {
+        "type": "sort",
+        "question": "Arrange these major works of Bernini's career in the order they were created:",
+        "items": [
+          "David — a marble figure in dynamic twisting motion, unlike any previous sculpture",
+          "Apollo and Daphne — bark and leaves erupting from marble skin",
+          "The Baldachin — a 29-metre bronze canopy above St. Peter's tomb",
+          "Fountain of the Four Rivers in Piazza Navona",
+          "The Ecstasy of Saint Teresa — divine rapture carved in marble and lit from above",
+          "The Colonnade of St. Peter's Square — completed after 11 years of construction"
+        ],
+        "fact": "Bernini dominated Roman art for six decades, serving under eight popes. Unlike most artists, he died wealthy, celebrated, and with his genius universally acknowledged in his own lifetime. When Louis XIV invited him to Paris to redesign the Louvre, the King of France came personally to see the great man off."
+      },
+      {
+        "type": "minigame",
+        "game": "museum",
+        "configId": "louvre-arrangement",
+        "instruction": "Louis XIV summoned Bernini to Paris to redesign the Louvre — the greatest commission in Europe. Arrange the gallery to reveal the Baroque at its most commanding.",
+        "fact": "Bernini's 1665 Paris visit was a diplomatic triumph and an artistic failure. His plans for the Louvre were ultimately rejected in favour of a French classical design. But his reception was extraordinary: the King walked his horse beside Bernini's carriage, the streets were lined with spectators, and the court treated him as the greatest living artist in the world."
+      },
+      {
+        "type": "minigame",
+        "game": "jigsaw",
+        "configId": "venetian-master",
+        "instruction": "Bernini painted as well as he sculpted — studying Titian's color to understand how light reveals form. Reassemble the Baroque canvas, restoring its luminous depth.",
+        "fact": "Bernini credited painting, not sculpture, as his primary creative exercise. He claimed that painting allowed him to study light and color, which he then translated into marble. The Ecstasy of Saint Teresa uses hidden windows to cast a single shaft of light onto the sculpture — painting with architecture."
+      },
+      {
+        "type": "minigame",
+        "game": "colormix",
+        "configId": "ultramarine-lapis",
+        "instruction": "Bernini's Rome blazed with color — gilded ceilings, lapis lazuli altars, porphyry columns. Mix the pigments that transformed a city into an act of worship.",
+        "fact": "The ultramarine pigment used in Rome's greatest Baroque decorations was made from lapis lazuli ground to powder — worth more than gold by weight. A single altarpiece might consume the annual output of Afghan mines. The Church's lavish use of precious pigment was itself a theological statement: nothing is too costly to offer God."
+      }
+    ]
+  },
+  {
+    "era": "Medieval",
+    "story": "The Great Journey",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "How far did Ibn Battuta travel over the course of his 29-year journey?",
+        "options": [
+          "Approximately 75,000 miles",
+          "Approximately 25,000 miles",
+          "Approximately 40,000 miles",
+          "Approximately 10,000 miles"
+        ],
+        "answer": 0,
+        "countdown": 10,
+        "fact": "Ibn Battuta (1304–1368) traveled an estimated 75,000 miles — three times the distance of Marco Polo's journey — visiting the equivalent of 44 modern countries. He crossed the Sahara, sailed the Indian Ocean, traversed the steppes of Central Asia, visited China, and explored the Kingdom of Mali, all within a single lifetime of restless curiosity."
+      },
+      {
+        "type": "truefalse",
+        "statement": "Ibn Battuta set out from Morocco with a clear plan to circumnavigate the known world.",
+        "correct": false,
+        "countdown": 10,
+        "fact": "Ibn Battuta left Tangier in 1325 intending only to make the hajj to Mecca. He was 21 years old. The journey expanded as his curiosity grew — he kept finding reasons not to return home, following trade routes, accepting appointments, and exploring rumors of distant courts. He finally returned to Morocco 29 years later and immediately began planning further travels."
+      },
+      {
+        "type": "sort",
+        "question": "Arrange the major regions Ibn Battuta visited in the order of his travels:",
+        "items": [
+          "North Africa and Egypt — his first journey, heading to Mecca",
+          "The Arabian Peninsula — making the hajj to Mecca for the first time",
+          "Persia and Iraq — visiting the ruins of ancient Mesopotamia",
+          "The Black Sea coast and Constantinople",
+          "India — serving as a judge in the Sultan of Delhi's court",
+          "China — reaching the terminus of the Silk Road at Quanzhou"
+        ],
+        "fact": "Ibn Battuta's Rihla (A Gift to Those Who Contemplate the Wonders of Cities) was dictated to a court secretary, Ibn Juzayy, on his return. Some scholars have questioned whether he visited every place he describes — the China account in particular is suspiciously vague — but his eyewitness descriptions of Mali, India, and Constantinople remain invaluable historical documents."
+      },
+      {
+        "type": "minigame",
+        "game": "pipeline",
+        "configId": "silk-road-caravan",
+        "instruction": "Route Ibn Battuta's caravan across Central Asia — threading through oasis cities and mountain passes, connecting the known world's great trading hubs.",
+        "fact": "The Silk Road was not a single road but a network of shifting routes connecting China to the Mediterranean. Ibn Battuta traveled it in both directions, recording the hospitality of Mongol khans, the luxury of Persian court life, and the stunning efficiency of the Pax Mongolica — the peace imposed by Mongol dominance that made the entire route safe for travelers for the first time."
+      },
+      {
+        "type": "minigame",
+        "game": "matchthree",
+        "configId": "cairo-alchemy",
+        "instruction": "Cairo was the greatest city in the Islamic world when Ibn Battuta passed through — a crossroads of African gold, Asian spices, and Mediterranean scholarship. Clear the market board as trade flows through the medieval world's busiest hub.",
+        "fact": "Ibn Battuta described Cairo as 'the mother of cities' — sprawling, noisy, and overwhelming with life. The Mamluk sultan's court received caravans from Sub-Saharan Africa bearing gold, ivory, and enslaved people, while Mediterranean merchants arrived with silver, glass, and cloth. Cairo was the clearing house of the medieval world economy."
+      },
+      {
+        "type": "minigame",
+        "game": "decode",
+        "configId": "cipher-al",
+        "instruction": "Arabic script linked the scholars, judges, and merchants that Ibn Battuta encountered across 29 years of travel. Decode the message written in the ink of the medieval Islamic world.",
+        "fact": "The Arabic language was Ibn Battuta's greatest asset. Across the vast arc from Morocco to China, he could walk into any mosque and find educated men who shared his language, his faith, and his legal tradition. The Islamic world of the 14th century was in many ways more unified than any political empire — held together by shared scripture, shared law, and shared script."
+      }
+    ]
+  },
+  {
+    "era": "Renaissance",
+    "story": "Words for the World",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "What key innovation made Gutenberg's printing press transformative, compared to woodblock printing?",
+        "options": [
+          "Individual metal letters that could be rearranged for any text",
+          "The use of oil-based ink that dried permanently on paper",
+          "A mechanical screw press borrowed from winemaking",
+          "Paper made from wood pulp rather than cloth rags"
+        ],
+        "answer": 0,
+        "countdown": 10,
+        "fact": "Gutenberg's breakthrough was casting individual metal letters that could be arranged, printed, and rearranged indefinitely. The same 26 letters (in his case Gothic type) could print any text in any order — unlike woodblocks, which could only print the single text carved into them. His oil-based ink and screw press were important innovations, but the movable metal type was the revolution."
+      },
+      {
+        "type": "truefalse",
+        "statement": "Gutenberg became enormously wealthy from his printing press invention.",
+        "correct": false,
+        "countdown": 10,
+        "fact": "Gutenberg died nearly broke. His primary financial backer, Johann Fust, sued him over unpaid loans and won — seizing the printing equipment and the first run of Bibles. The press that changed the world made little money for its inventor. Gutenberg was awarded a pension by the Archbishop of Mainz in his final years, dying in 1468 largely unrewarded by the revolution he had started."
+      },
+      {
+        "type": "sort",
+        "question": "Arrange these consequences of Gutenberg's press in roughly chronological order after 1450:",
+        "items": [
+          "The Gutenberg Bible — 180 copies printed, the first major book from the press (c.1455)",
+          "Printing spreads to every major European city within 50 years of Gutenberg's press",
+          "Martin Luther's 95 Theses are printed and distributed across Germany in weeks (1517)",
+          "The Protestant Reformation fractures European Christianity",
+          "Scientific works by Copernicus and Galileo reach educated readers across Europe",
+          "The Enlightenment — a republic of letters that the press made possible"
+        ],
+        "fact": "It took 50 years for printing to reach every corner of Europe. By 1500, over 20 million books had been printed — more than all the manuscripts produced in the previous thousand years of European history. The printing press did not merely copy existing knowledge; it transformed who could access it, who could challenge it, and who could add to it."
+      },
+      {
+        "type": "minigame",
+        "game": "matchthree",
+        "configId": "hanseatic-runes",
+        "instruction": "Gutenberg's Mainz sat on the Rhine trade route linking the Hanseatic League's northern cities to Italy's wealth. Match the trading symbols as his Bibles flow out of the workshop and into a hungry Europe.",
+        "fact": "The Hanseatic League — the great merchant confederation of northern Europe — had already built the infrastructure that carried Gutenberg's books. Trading cities like Lübeck, Hamburg, and Cologne had warehouses, ships, and agents throughout Europe, and they became the distribution network for the first mass-produced books. Commerce and knowledge traveled the same roads."
+      },
+      {
+        "type": "minigame",
+        "game": "storysort",
+        "configId": "don-quixote-windmills",
+        "instruction": "Gutenberg's press made Don Quixote possible — a book about a man who read too many books. Sort the scenes of the windmill chapter: without printing, this story could never have reached you.",
+        "fact": "Cervantes' Don Quixote (1605) is sometimes called the first modern novel — and it exists because of Gutenberg. Without mass printing, literary culture remained in monasteries and palaces. With it, a middle-class Spaniard could read romances, go mad imagining himself a knight, and become a character in the world's first self-aware fiction."
+      }
+    ]
+  },
+  {
+    "era": "Renaissance",
+    "story": "The Turtle Ship",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "What was the decisive ratio of ships at the Battle of Myeongnyang (1597), which Admiral Yi Sun-sin won?",
+        "options": [
+          "13 Korean ships against approximately 333 Japanese warships",
+          "50 Korean ships against 200 Japanese warships",
+          "30 Korean ships against 100 Japanese ships",
+          "13 Korean ships against 50 Japanese warships"
+        ],
+        "answer": 0,
+        "countdown": 10,
+        "fact": "At Myeongnyang in 1597, Admiral Yi commanded just 13 remaining warships against a Japanese fleet of over 300. He positioned his ships in the narrow strait where the current reversed twice daily, luring the Japanese into a bottleneck where numbers meant nothing. He sank or damaged 31 enemy ships without losing a single one of his own."
+      },
+      {
+        "type": "truefalse",
+        "statement": "Admiral Yi Sun-sin was never removed from command during the Japanese invasions.",
+        "correct": false,
+        "countdown": 10,
+        "fact": "Yi was arrested, tortured, and demoted twice — the victim of court intrigue and a Japanese deception operation that planted false intelligence to undermine him. He served as a common soldier before being hastily reinstated when the navy collapsed without him. Myeongnyang was fought with the 13 ships that remained after his absence."
+      },
+      {
+        "type": "sort",
+        "question": "Arrange the key events of the Imjin War and Yi Sun-sin's role in order:",
+        "items": [
+          "Japan invades Korea with 150,000 troops — the army sweeps north in weeks",
+          "Yi wins the Battle of Okpo — the first Korean naval victory of the war",
+          "The turtle ship is deployed at Sacheon — its iron-clad deck deflects Japanese muskets",
+          "Yi is arrested on false charges and demoted — the Korean navy is destroyed without him",
+          "Yi is reinstated with 13 ships and wins the Battle of Myeongnyang",
+          "Yi is killed by a stray bullet at the Battle of Noryang — his last victory, his last breath"
+        ],
+        "fact": "Yi Sun-sin died at Noryang in 1598 — struck by a bullet during the battle that would finally expel Japanese forces from Korea. His last words, reportedly, were: 'The battle is at its height — do not announce my death.' He won the battle from his deathbed, concealing his death until the Japanese had fled."
+      },
+      {
+        "type": "minigame",
+        "game": "wargame",
+        "configId": "an-jung-geun",
+        "instruction": "Korean resistance against invasion required total commitment. Command the naval engagement — read the current, hold the strait, and let geography be your fleet.",
+        "fact": "The turtle ship (geobukseon) was the world's first ironclad warship — its curved, iron-plated deck prevented Japanese boarding parties from swarming the deck in their preferred hand-to-hand style. It carried cannons on all sides and a dragon's head at the bow that could emit smoke to disorient the enemy. Yi deployed it as a spearhead to break enemy formations before his lighter warships engaged."
+      },
+      {
+        "type": "minigame",
+        "game": "tactics",
+        "configId": "general",
+        "instruction": "At Hansan Island, Yi surrounded the Japanese fleet using the 'Crane Wing' formation — a classic envelopment. Execute the maneuver: extend the wings, close the trap, allow no escape.",
+        "fact": "The Battle of Hansan Island (1592) is considered one of the most significant naval battles in Asian history. Yi used a feigned retreat to draw the Japanese fleet into open water, then sprang the crane-wing encirclement. He sank 47 Japanese ships and captured 12, breaking Japan's naval dominance in a single afternoon."
+      },
+      {
+        "type": "minigame",
+        "game": "weapondeploy",
+        "configId": "sun-tzu-ambush",
+        "instruction": "Yi studied Sun Tzu as carefully as he studied tides. Deploy your forces where terrain, timing, and surprise multiply every ship's effectiveness.",
+        "fact": "Yi's battle reports, collected in his Nanjung Ilgi (War Diary), are among the most detailed military documents of the 16th century. He recorded his tactics, his anxieties, his observations of weather and tide, and his grief. The diary survived the war hidden under floorboards. It is now a Korean national treasure."
+      }
+    ]
+  },
+  {
+    "era": "Renaissance",
+    "story": "The Sun Emperor",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "What was the Aztec capital city that Montezuma II ruled, which amazed the Spanish conquistadors?",
+        "options": [
+          "Tenochtitlan",
+          "Texcoco",
+          "Teotihuacan",
+          "Tlatelolco"
+        ],
+        "answer": 0,
+        "countdown": 10,
+        "fact": "Tenochtitlan, built on an island in Lake Texcoco, was one of the largest cities in the world in 1500 — home to 200,000–300,000 people, larger than London, Paris, or any city in Spain. When Hernán Cortés' soldiers first saw it, they wrote that they thought they were dreaming. Its causeways, aqueducts, and floating gardens had no parallel in European experience."
+      },
+      {
+        "type": "truefalse",
+        "statement": "Montezuma II believed Hernán Cortés was the god Quetzalcoatl returning as prophesied.",
+        "correct": false,
+        "countdown": 10,
+        "fact": "The story that Montezuma mistook Cortés for Quetzalcoatl appears in later accounts heavily influenced by Spanish interpreters and indigenous collaborators with reasons to justify the conquest. Modern historians believe Montezuma was an experienced and politically sophisticated ruler who recognized the Spanish as dangerous strangers — not gods. He attempted to manage the threat diplomatically before it overwhelmed him."
+      },
+      {
+        "type": "sort",
+        "question": "Arrange these events of Montezuma II's reign and the Spanish conquest in order:",
+        "items": [
+          "Montezuma II takes the throne of the Aztec Triple Alliance and expands its territory",
+          "Hernán Cortés lands in Mexico with 500 soldiers and makes alliances with Aztec enemies",
+          "Cortés arrives in Tenochtitlan — Montezuma receives him with extraordinary ceremony",
+          "Cortés takes Montezuma hostage within the city, ruling through him",
+          "The Noche Triste — Aztecs drive the Spanish out of Tenochtitlan, Montezuma dies",
+          "Cortés returns with tens of thousands of indigenous allies and besieges Tenochtitlan"
+        ],
+        "fact": "The conquest of the Aztec Empire was not a European conquest of indigenous people — it was a coalition war. Cortés' key allies, the Tlaxcalans, had been enemies of the Aztec Triple Alliance for generations and contributed far more warriors to the siege of Tenochtitlan than the Spanish did. The Aztec empire fell to its own enemies as much as to European weapons."
+      },
+      {
+        "type": "minigame",
+        "game": "matchthree",
+        "configId": "aztec-market",
+        "instruction": "The Tlatelolco market next to Tenochtitlan was the largest in the Americas — Cortés' soldiers estimated 60,000 traders attended on market day. Clear the rows of cacao, jade, cotton, and gold that flowed through the empire's commercial heart.",
+        "fact": "The Spanish soldier Bernal Díaz del Castillo wrote that the Tlatelolco market was 'like the squares of Salamanca, but twice as big, crowded with people, and more orderly.' It traded everything: food, textiles, gold, slaves, feathers, medicine, and pottery. Every item had a fixed price and market inspectors enforced fair trading."
+      },
+      {
+        "type": "minigame",
+        "game": "cooking",
+        "configId": "aztec-chocolate",
+        "instruction": "Montezuma reportedly drank fifty cups of cacao daily from golden cups — the drink of emperors. Prepare the xocolatl as the palace kitchens did: bitter, spiced, and served cold.",
+        "fact": "Cacao was the currency and the luxury of the Aztec world simultaneously — you could pay your taxes with it, or drink it if you were noble enough. The xocolatl the Aztecs drank was nothing like modern chocolate: it was ground cacao mixed with water, vanilla, chili, and achiote, beaten to a foam and served cold. The Spanish found it revolting at first, then addictive."
+      },
+      {
+        "type": "minigame",
+        "game": "voting",
+        "configId": "spanish-court",
+        "instruction": "After the conquest, Aztec leaders faced Spanish tribunals that would decide the fate of their civilization. Navigate the court — where every answer is a trap and mercy is always conditional.",
+        "fact": "The Spanish justified conquest through legal documents read aloud in Spanish to people who spoke Nahuatl — the Requerimiento, which declared Spanish sovereignty and demanded submission, promising war if refused. It was a legal fiction that satisfied Spanish lawyers while meaning nothing to those who heard it. The document was sometimes read to empty beaches before landing."
+      }
+    ]
+  },
+  {
+    "era": "Steam",
+    "story": "The Art of Perspective",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "What was Nian Xiyao's most significant scholarly contribution to Chinese art?",
+        "options": [
+          "Writing 'Shixue', the first Chinese treatise on Western linear perspective",
+          "Introducing oil painting techniques from European missionaries",
+          "Designing the Summer Palace gardens for Emperor Qianlong",
+          "Translating Euclid's geometry into Manchu for the imperial court"
+        ],
+        "answer": 0,
+        "countdown": 10,
+        "fact": "Nian Xiyao (1671–1738) published Shixue ('The Science of Vision') in 1729, systematically explaining Western linear perspective — vanishing points, foreshortening, and the geometry of sight — to Chinese readers for the first time. He worked closely with the Jesuit painter Giuseppe Castiglione at the Yongzheng court, blending Eastern aesthetic sensibility with Western mathematical precision."
+      },
+      {
+        "type": "truefalse",
+        "statement": "Chinese painting traditions had long used the same perspective system as European art before Nian Xiyao's book.",
+        "correct": false,
+        "countdown": 10,
+        "fact": "Traditional Chinese painting used 'axonometric' perspective — objects remained the same size regardless of distance, and there was no single vanishing point. This was a deliberate artistic choice, not a technical limitation: it allowed the eye to travel through a landscape rather than fix on one point. Nian Xiyao presented Western perspective as a complementary system, not a replacement."
+      },
+      {
+        "type": "sort",
+        "question": "Arrange these key contributions of Nian Xiyao's career in order:",
+        "items": [
+          "Appointed superintendent of the imperial kilns at Jingdezhen under Yongzheng",
+          "Studies Western art techniques with Jesuit painter Giuseppe Castiglione at court",
+          "Supervises the production of revolutionary enamel-on-copper wares using European pigments",
+          "Publishes the first edition of Shixue, introducing linear perspective to Chinese readers",
+          "Expands Shixue with additional geometric diagrams and practical painting exercises",
+          "His porcelain innovations — new colors and firing techniques — become imperial standards"
+        ],
+        "fact": "Nian Xiyao's imperial kilns at Jingdezhen produced some of the most technically spectacular porcelain in Chinese history: new enamel colors mixed from European pigments, copper-red glazes that had been lost for centuries, and forms that reflected Western shapes while remaining distinctly Chinese. His career embodied the Yongzheng court's sophisticated engagement with global culture."
+      },
+      {
+        "type": "minigame",
+        "game": "porcelain",
+        "configId": "cobalt-bowl",
+        "instruction": "Nian Xiyao supervised the imperial kilns — where European pigments met Chinese clay. Shape and glaze a bowl that speaks two artistic languages at once.",
+        "fact": "The Jingdezhen kilns employed 100,000 workers at their peak, organized into specialized workshops — some mixed clay, some threw pots, some applied glaze, some painted designs, and some loaded the kilns. Nian Xiyao introduced quality control systems borrowed from the engineering approach of the Jesuit missionaries at court."
+      },
+      {
+        "type": "minigame",
+        "game": "geometry",
+        "configId": "anaxagoras-shadow",
+        "instruction": "Western perspective begins with a single point of light casting predictable shadows. Master the geometry of sight that Nian Xiyao translated for the Qing imperial court.",
+        "fact": "Linear perspective was developed by Filippo Brunelleschi in Florence around 1420 and became the dominant visual system of European art. Nian Xiyao's Shixue explained that perspective was not merely an artistic convention but a mathematical truth — that sight itself operates geometrically. This was a revolutionary claim in a culture that viewed painting as an act of imagination rather than observation."
+      },
+      {
+        "type": "minigame",
+        "game": "colormix",
+        "configId": "ultramarine-lapis",
+        "instruction": "Nian Xiyao introduced European enamel pigments to the imperial palette — cobalt blues, copper greens, and opaque whites unknown in China. Mix the colors that fused two worlds on a single porcelain surface.",
+        "fact": "The 'famille rose' enamel palette that transformed 18th-century Chinese porcelain — pink, purple, and opaque white — was introduced during Nian Xiyao's tenure as kiln superintendent. The key ingredient was a tin-based opacifier previously unknown in Chinese ceramic chemistry. These colors made Qing porcelain unlike anything before or since."
+      }
+    ]
+  },
+  {
+    "era": "Medieval",
+    "story": "The Jade King",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "How long did Pakal the Great rule the Maya city of Palenque?",
+        "options": [
+          "68 years — the longest reign in recorded Maya history",
+          "32 years",
+          "44 years",
+          "55 years"
+        ],
+        "answer": 0,
+        "countdown": 10,
+        "fact": "Pakal became king of Palenque at age 12 in 615 CE and ruled until his death in 683 CE — 68 years on the throne, the longest reign in all of pre-Columbian history. Under his rule, Palenque transformed from a minor city into one of the most powerful and artistically sophisticated kingdoms of the Classic Maya world."
+      },
+      {
+        "type": "truefalse",
+        "statement": "Pakal's tomb was discovered by archaeologists long before his Temple of the Inscriptions was excavated.",
+        "correct": false,
+        "countdown": 10,
+        "fact": "The Temple of the Inscriptions stood in plain sight for centuries — one of Palenque's most prominent structures. But its tomb was not discovered until 1952, when Mexican archaeologist Alberto Ruz Lhuillier noticed a stone floor with plugged holes and spent four years clearing a rubble-filled staircase before reaching Pakal's burial chamber 25 metres below."
+      },
+      {
+        "type": "sort",
+        "question": "Arrange the key events of Pakal's reign at Palenque in order:",
+        "items": [
+          "Pakal ascends to the throne of Palenque at age 12, guided by his mother Lady Sak K'uk'",
+          "He defeats rivals and expands Palenque's military power after years of weakness",
+          "Pakal commissions the Palace complex — a sprawling administrative and ceremonial center",
+          "He begins constructing the Temple of the Inscriptions — designed as his eternal tomb",
+          "The Temple's interior walls are carved with 617 glyphs recording Pakal's genealogy",
+          "Pakal dies at 80 and is sealed in his jade-masked sarcophagus beneath the pyramid"
+        ],
+        "fact": "The sarcophagus lid of Pakal's tomb shows him at the moment of death, descending into the Maya underworld (Xibalba) on the World Tree. For decades Western scholars misread the image as an astronaut in a spacecraft — a famous case of wishful thinking overriding careful analysis. Maya specialists recognized it as a standard resurrection narrative immediately."
+      },
+      {
+        "type": "minigame",
+        "game": "maze",
+        "configId": "pyramid-deep",
+        "instruction": "Navigate the hidden staircase beneath the Temple of the Inscriptions — sealed for 1,300 years. Descend through the rubble to the jade king's chamber at the pyramid's heart.",
+        "fact": "The staircase descending to Pakal's tomb is 25 metres long and was completely filled with rubble when Alberto Ruz first entered. His team spent four excavation seasons (1949–1952) removing it stone by stone. When they finally broke through the sealed chamber door, they found a jade-encrusted sarcophagus surrounded by six sacrificed retainers and walls painted with the nine lords of the Maya underworld."
+      },
+      {
+        "type": "minigame",
+        "game": "klotski",
+        "configId": "pyramid-capstone",
+        "instruction": "Place the final stone — the capstone of Pakal's pyramid. Each block must slide into position without disturbing the others. The king's tomb must be sealed perfectly.",
+        "fact": "Maya pyramids were not simply stacked stones — they were precisely calculated structures with internal staircases, chambers, and drainage systems built to last millennia. The Temple of the Inscriptions has survived 1,300 years of tropical storms, earthquakes, and vegetation. Its interior staircase is still structurally sound."
+      },
+      {
+        "type": "minigame",
+        "game": "geometry",
+        "configId": "volume-pyramid",
+        "instruction": "Calculate the volume of Pakal's stepped pyramid — built without metal tools, wheels, or draft animals. Every stone was cut with obsidian, moved on wooden rollers, and lifted by human hands.",
+        "fact": "Maya builders achieved extraordinary geometric precision without metal tools or wheeled vehicles. They used astronomical alignments, knotted ropes, and water levels to plan their monuments. The Temple of the Inscriptions aligns so that at the winter solstice sunset, the sun appears to descend into the pyramid along the same axis as the internal staircase to Pakal's tomb."
+      }
+    ]
+  },
+  {
+    "era": "Renaissance",
+    "story": "The Last Fire",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "Why is Rumiñahui remembered as one of the great symbols of Inca resistance?",
+        "options": [
+          "He burned Quito's treasures rather than let the Spanish capture them",
+          "He defeated a Spanish cavalry force in open battle",
+          "He negotiated a treaty that preserved Inca sovereignty in the highlands",
+          "He organized the Inca army that rescued Atahualpa from Pizarro"
+        ],
+        "answer": 0,
+        "countdown": 10,
+        "fact": "Rumiñahui ('Stone Eye') was Atahualpa's most capable general. When Pizarro captured and executed the Inca emperor in 1533, Rumiñahui gathered the northern army and led resistance from Quito. Rather than let Pizarro's forces loot the city's treasures, he burned Quito and hid its gold — a legendary hoard that has never been found."
+      },
+      {
+        "type": "truefalse",
+        "statement": "Rumiñahui was treated as a prisoner of war and eventually released after the conquest of Quito.",
+        "correct": false,
+        "countdown": 10,
+        "fact": "After months of guerrilla resistance, Rumiñahui was captured in early 1535. He was tortured by the Spanish, who demanded to know where he had hidden Quito's treasure. He revealed nothing. He was publicly executed in Quito in early 1535 — an act the Spanish intended as a demonstration of power, which instead made him an immortal symbol of defiance."
+      },
+      {
+        "type": "sort",
+        "question": "Arrange the key events of Rumiñahui's resistance in order:",
+        "items": [
+          "Atahualpa is captured by Pizarro at Cajamarca — the Inca world fractures",
+          "Rumiñahui consolidates the northern Inca army and prepares Quito for defence",
+          "Spanish forces march north toward Quito after executing Atahualpa",
+          "Rumiñahui burns Quito and removes its treasures — denying the Spanish their prize",
+          "Rumiñahui continues guerrilla resistance across the northern highlands for months",
+          "He is captured, tortured, and executed — revealing nothing of the hidden gold"
+        ],
+        "fact": "The lost treasure of Quito became one of the great legends of the Americas. Expeditions searched for it for centuries, and legends of El Dorado were partly inspired by the belief that Rumiñahui had hidden an incomprehensible fortune somewhere in the Andes. No credible discovery has ever been made."
+      },
+      {
+        "type": "minigame",
+        "game": "tactics",
+        "configId": "general",
+        "instruction": "Rumiñahui had no answer to Spanish cavalry on flat ground — so he chose mountain passes, river crossings, and jungle ambushes. Position your forces where horsemen cannot charge.",
+        "fact": "The Spanish advantage in the Inca conquest was not just steel and gunpowder — it was horses. The Inca had no large domesticated animals. The sight of mounted soldiers, armored in steel, was psychologically devastating. Rumiñahui understood this and consistently drew Spanish forces into terrain that negated the horse — steep trails, forest, and fast rivers."
+      },
+      {
+        "type": "minigame",
+        "game": "klotski",
+        "configId": "last-general",
+        "instruction": "Rumiñahui's final campaign was a strategic puzzle — how to keep an army in the field when the enemy controls every city. Rearrange the pieces to find the one path that keeps resistance alive.",
+        "fact": "Rumiñahui's resistance lasted over a year after Atahualpa's execution — longer than most regional Inca leaders managed. He maintained cohesion through personal authority and the loyalty of the Quitan military class. When he was finally taken, it was through betrayal rather than defeat in battle, which the Spanish admitted privately."
+      },
+      {
+        "type": "minigame",
+        "game": "voting",
+        "configId": "spanish-court",
+        "instruction": "The Spanish conducted formal legal proceedings to justify the conquest. Navigate the colonial tribunal where Inca resistance was reframed as rebellion against legitimate Spanish authority.",
+        "fact": "The Spanish legal doctrine of the time held that indigenous rulers who resisted after being informed of Spanish sovereignty were rebels, not sovereign enemies — removing any obligation to treat them as prisoners of war. This legal fiction allowed the Spanish to torture and execute leaders like Rumiñahui without violating their own laws. It was the first formal deployment of what modern scholars call the 'lawfare' of conquest."
+      }
+    ]
+  },
+  {
+    "era": "Medieval",
+    "story": "The Poem in the Armor",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "What is Taira no Tadanori best remembered for, beyond his role as a Taira clan general?",
+        "options": [
+          "His poetry — he was included in the imperial Senzai Wakashū anthology after his death",
+          "His invention of a new sword technique adopted across Japan",
+          "His diplomatic mission to the Song Dynasty court in China",
+          "His construction of Kyoto's most famous temple"
+        ],
+        "answer": 0,
+        "countdown": 10,
+        "fact": "Tadanori was one of the leading waka poets of his generation, a student of the master Fujiwara no Shunzei. On the eve of the Taira clan's final flight from Kyoto, he rode back alone through the night to deliver a scroll of his poems to Shunzei — asking only that one be included in the imperial anthology. One was: it appears in the Senzai Wakashū without his name, since he died a rebel."
+      },
+      {
+        "type": "truefalse",
+        "statement": "Tadanori's poem was attributed to him by name in the imperial anthology after his death.",
+        "correct": false,
+        "countdown": 10,
+        "fact": "Because Tadanori died on the losing side of the Genpei War, his poem was included in the Senzai Wakashū as 'anonymous' — it would have been politically unacceptable to honor a Taira rebel by name. Yet the poem's inclusion was itself an act of aesthetic respect. Everyone knew whose poem it was, and that silent knowledge became part of the poem's beauty."
+      },
+      {
+        "type": "sort",
+        "question": "Arrange the key events of Taira no Tadanori's life in order:",
+        "items": [
+          "Tadanori studies waka poetry under the master Fujiwara no Shunzei",
+          "The Genpei War begins — Taira and Minamoto clans fight for control of Japan",
+          "The Taira clan loses Kyoto to Minamoto forces and flees west",
+          "Tadanori rides back alone through the night to deliver his poem scroll to Shunzei",
+          "The final battle at Ichi-no-Tani — Tadanori falls in combat",
+          "Shunzei includes Tadanori's poem anonymously in the imperial anthology"
+        ],
+        "fact": "The tale of Tadanori riding back to his poetry master on the night of defeat became one of the most celebrated stories in Japanese literary history. It appears in the Heike Monogatari — the great narrative of the Genpei War — as the moment when a warrior reveals that poetry, not victory, is what he cannot bear to leave behind."
+      },
+      {
+        "type": "minigame",
+        "game": "music",
+        "configId": "pentatonic-descend",
+        "instruction": "The Heike Monogatari was performed by blind biwa monks — its tales chanted in a pentatonic mode that matched the falling cadence of the Taira clan's fall. Arrange the descending phrase that closes Tadanori's story.",
+        "fact": "The Heike Monogatari opens with the most famous line in Japanese literature: 'The sound of the Gion Shoja bells echoes the impermanence of all things.' It was not read but performed — chanted to biwa accompaniment by traveling monks who served as medieval Japan's living archive of history and loss."
+      },
+      {
+        "type": "minigame",
+        "game": "tactics",
+        "configId": "musashi-duel",
+        "instruction": "At Ichi-no-Tani, samurai combat was still partly individual — warrior sought warrior in the chaos. Choose your moment and your ground: skill and honor matter as much as numbers.",
+        "fact": "The Battle of Ichi-no-Tani (1184) was a Minamoto tactical masterpiece: while one force engaged the Taira from the front, Minamoto Yoshitsune led cavalry down a cliff believed to be impassable. The surprise attack from above broke the Taira position. Tadanori died fighting in this rout — killed by a Minamoto warrior who recognized him only by a poem tucked inside his armour."
+      },
+      {
+        "type": "minigame",
+        "game": "storysort",
+        "configId": "genji-moonlight",
+        "instruction": "Tadanori lived inside the literary world of the Heian court — where the Tale of Genji set the terms for all beauty. Arrange the moonlit scenes of Japanese court literature that his poems breathed.",
+        "fact": "Waka poetry — 31 syllables in a 5-7-5-7-7 pattern — was the highest art form of Heian Japan. To compose a poem in the moment, on the correct seasonal image, in response to a situation, was the mark of a complete human being. Tadanori carried his poems into battle. When his killer discovered the scroll tucked in his armour, he wept."
+      }
+    ]
+  },
+  {
+    "era": "Renaissance",
+    "story": "The Shadow Behind the Throne",
+    "challenges": [
+      {
+        "type": "quiz",
+        "question": "What was Tlacaelel's title, and what unique power did he hold in the Aztec state?",
+        "options": [
+          "Cihuacoatl — the second-in-command who wielded more real power than three consecutive emperors",
+          "Huey Tlatoani — the supreme ruler of the Triple Alliance",
+          "Quetzalcoatl — the high priest of the feathered serpent cult",
+          "Tlacochcalcatl — the supreme military commander of all Aztec armies"
+        ],
+        "answer": 0,
+        "countdown": 10,
+        "fact": "Tlacaelel (c.1397–1487) held the office of Cihuacoatl — officially the second speaker, the emperor's shadow. In practice, he directed state policy under three emperors (Itzcoatl, Motecuhzoma I, and Axayacatl) for over fifty years. He was offered the supreme throne three times and refused it each time — understanding that the power behind the throne is more durable than the throne itself."
+      },
+      {
+        "type": "truefalse",
+        "statement": "Tlacaelel preserved the Aztec historical records and expanded their archives during his time in power.",
+        "correct": false,
+        "countdown": 10,
+        "fact": "Tlacaelel ordered the burning of existing historical codices — the painted books that recorded Aztec history before his reforms. He then commissioned new histories that placed the Mexica at the center of a divinely ordained cosmic narrative. The burning was not destruction for its own sake: it was the replacement of one story with a more useful one."
+      },
+      {
+        "type": "sort",
+        "question": "Arrange the key reforms and events of Tlacaelel's career in order:",
+        "items": [
+          "Tlacaelel leads the decisive military strategy that defeats the powerful Tepanec Empire",
+          "He refuses the throne after the victory — but becomes Cihuacoatl, the power behind it",
+          "He orders the burning of existing historical codices to enable a new official history",
+          "He expands the cult of Huitzilopochtli, framing the Aztec people as chosen to sustain the sun",
+          "He institutes the Flower Wars — ritualized conflict designed to produce sacrificial captives",
+          "Tlacaelel serves a third emperor while outliving his contemporaries — dying in his nineties"
+        ],
+        "fact": "Tlacaelel's greatest achievement was ideological: he transformed the Mexica from one of many Nahua-speaking peoples into the chosen people of the sun god, with a cosmic obligation to feed Huitzilopochtli through human sacrifice. This narrative made every war a religious act and every conquest a divine duty — creating the psychological engine that drove Aztec expansion for a century."
+      },
+      {
+        "type": "minigame",
+        "game": "matchthree",
+        "configId": "aztec-market",
+        "instruction": "The Aztec empire ran on tribute — cloth, cacao, jade, and gold flowing into Tenochtitlan from every conquered province. Clear the tribute board that fed the greatest empire in the Americas.",
+        "fact": "The Aztec tribute system was Tlacaelel's administrative masterpiece. He formalized the list of goods each conquered province owed the empire and created the bureaucratic machinery to collect it. The Mendoza Codex — a post-conquest record of the tribute system — shows 400 towns paying tribute in 42 categories of goods. It was the most elaborate tax system in the pre-Columbian Americas."
+      },
+      {
+        "type": "minigame",
+        "game": "voting",
+        "configId": "akkadian-council",
+        "instruction": "Tlacaelel governed through persuasion as much as power. Present your policy to the council of lords — frame the war as cosmic necessity, the sacrifice as divine service, the conquest as salvation.",
+        "fact": "The Aztec ruling council (tlatocan) included leaders of the Triple Alliance's three cities and was theoretically a collective body. Tlacaelel's genius was making its decisions feel consensual while ensuring they reflected his vision. He was a master of what modern political scientists call 'agenda control' — determining not just how issues were decided but which issues were ever discussed."
+      },
+      {
+        "type": "minigame",
+        "game": "tactics",
+        "configId": "senate",
+        "instruction": "Behind every Aztec emperor stood Tlacaelel — the counselor who turned political advantage into permanent architecture. Navigate the council chamber where empires are made with words.",
+        "fact": "The Flower Wars (Xochiyaoyotl) that Tlacaelel institutionalized were a unique form of ritualized conflict: neighboring states would agree to scheduled battles whose purpose was not territorial conquest but the capture of living warriors for sacrifice. Critics called them morally monstrous; defenders argued they were a more humane alternative to wars of annihilation. The truth is that they also kept potential rivals permanently weak."
+      }
+    ]
   }
 ]
