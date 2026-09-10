@@ -8,6 +8,7 @@ vi.mock('@/api/auth', () => ({
     register: vi.fn(),
     logout: vi.fn(),
     ssoLogin: vi.fn(),
+    me: vi.fn(),
   },
 }))
 
@@ -18,12 +19,13 @@ const mockedAuthApi = authApi as {
   register: ReturnType<typeof vi.fn>
   logout: ReturnType<typeof vi.fn>
   ssoLogin: ReturnType<typeof vi.fn>
+  me: ReturnType<typeof vi.fn>
 }
 
 // Reset Zustand store state between tests
 beforeEach(() => {
   localStorage.clear()
-  useAuth.setState({ isLoggedIn: false, isGuest: false })
+  useAuth.setState({ isLoggedIn: false, isGuest: false, email: null, isAdmin: false })
   vi.clearAllMocks()
 })
 
@@ -76,6 +78,59 @@ describe('useAuth — register', () => {
 
     expect(useAuth.getState().isLoggedIn).toBe(true)
     expect(localStorage.getItem('access_token')).toBe('newtok')
+  })
+})
+
+describe('useAuth — ssoLogin', () => {
+  const profile = { id: 'u1', email: 'a@b.com', displayName: 'Alice', elo: 1000 }
+
+  it('stores the token and populates email from the profile', async () => {
+    mockedAuthApi.ssoLogin.mockResolvedValue({ accessToken: 'ssotok', refreshToken: 'ssoref' })
+    mockedAuthApi.me.mockResolvedValue(profile)
+
+    await useAuth.getState().ssoLogin('google', 'google-access-token')
+
+    expect(localStorage.getItem('access_token')).toBe('ssotok')
+    expect(useAuth.getState().isLoggedIn).toBe(true)
+    // The SSO response has no email, so this must come from /auth/me.
+    expect(useAuth.getState().email).toBe('a@b.com')
+    expect(localStorage.getItem('user_email')).toBe('a@b.com')
+  })
+
+  it('sets isAdmin for the admin email', async () => {
+    mockedAuthApi.ssoLogin.mockResolvedValue({ accessToken: 'ssotok', refreshToken: 'ssoref' })
+    mockedAuthApi.me.mockResolvedValue({ ...profile, email: 'yinhangtsinghua@gmail.com' })
+
+    await useAuth.getState().ssoLogin('google', 'google-access-token')
+
+    expect(useAuth.getState().isAdmin).toBe(true)
+  })
+
+  it('leaves isAdmin false for a non-admin email', async () => {
+    mockedAuthApi.ssoLogin.mockResolvedValue({ accessToken: 'ssotok', refreshToken: 'ssoref' })
+    mockedAuthApi.me.mockResolvedValue(profile)
+
+    await useAuth.getState().ssoLogin('google', 'google-access-token')
+
+    expect(useAuth.getState().isAdmin).toBe(false)
+  })
+
+  it('stays signed in when the profile fetch fails', async () => {
+    mockedAuthApi.ssoLogin.mockResolvedValue({ accessToken: 'ssotok', refreshToken: 'ssoref' })
+    mockedAuthApi.me.mockRejectedValue(new Error('profile unavailable'))
+
+    await useAuth.getState().ssoLogin('google', 'google-access-token')
+
+    expect(useAuth.getState().isLoggedIn).toBe(true)
+    expect(useAuth.getState().email).toBeNull()
+  })
+
+  it('propagates the error when the SSO exchange itself fails', async () => {
+    mockedAuthApi.ssoLogin.mockRejectedValue(new Error('Invalid Google token'))
+
+    await expect(useAuth.getState().ssoLogin('google', 'bad-token')).rejects.toThrow()
+    expect(useAuth.getState().isLoggedIn).toBe(false)
+    expect(mockedAuthApi.me).not.toHaveBeenCalled()
   })
 })
 

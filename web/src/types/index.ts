@@ -26,6 +26,14 @@ export interface AuthResponse {
   refreshToken: string
 }
 
+/** Shape returned by GET /auth/me. */
+export interface UserProfile {
+  id: string
+  email: string
+  displayName: string
+  elo: number
+}
+
 export interface Match {
   id: string
   playerAId: string

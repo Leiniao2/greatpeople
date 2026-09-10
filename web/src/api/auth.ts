@@ -1,7 +1,9 @@
 import { apiClient } from './client'
-import type { AuthResponse } from '@/types'
+import type { AuthResponse, UserProfile } from '@/types'
 
 export const authApi = {
+  me: () => apiClient.get<UserProfile>('/auth/me').then((r) => r.data),
+
   login: (email: string, password: string) =>
     apiClient.post<AuthResponse>('/auth/login', { email, password }).then((r) => r.data),
 

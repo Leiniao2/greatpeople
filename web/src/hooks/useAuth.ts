@@ -57,7 +57,20 @@ export const useAuth = create<AuthState>((set) => ({
   ssoLogin: async (provider, accessToken) => {
     const { accessToken: jwt } = await authApi.ssoLogin(provider, accessToken)
     storeToken(jwt)
-    set({ isLoggedIn: true })
+
+    // The SSO response carries tokens only, so ask the API who this is.
+    // Without it email and isAdmin stay unset and the collection reports
+    // nothing unlocked even though sign-in succeeded.  The token is already
+    // stored, so the request interceptor authenticates this call.
+    let email: string | null = null
+    try {
+      email = (await authApi.me()).email || null
+    } catch {
+      // Sign-in did succeed; failing to read the profile must not undo it.
+    }
+
+    if (email) storeEmail(email)
+    set({ isLoggedIn: true, email, isAdmin: email === ADMIN_EMAIL })
   },
 
   logout: async () => {
