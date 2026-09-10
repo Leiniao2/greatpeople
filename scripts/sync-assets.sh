@@ -12,6 +12,7 @@ AND="$ROOT/android/app/src/main/assets"
 FILES=(
   demo_cards.json
   followers.json
+  location_image_fallbacks.json
   locations.json
   story_challenges.json
   story_configs.json

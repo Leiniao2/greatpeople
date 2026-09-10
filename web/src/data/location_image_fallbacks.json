@@ -1,0 +1,285 @@
+{
+  "_comment": "Location cards whose own imageKey has no file in the platform's locations/ image folder fall back to the image named here, chosen for regional, cultural and era proximity. When real artwork lands, add the file and delete the entry.",
+  "fallbacks": {
+    "ancient_aksum": {
+      "image": "ancient_petra",
+      "note": "rock-cut monumental, arid highland"
+    },
+    "ancient_anyang": {
+      "image": "ancient_yin_city",
+      "note": "Yin stood at Anyang — same site"
+    },
+    "ancient_caral": {
+      "image": "ancient_olmec_laventa",
+      "note": "earliest monumental Americas"
+    },
+    "ancient_kerma": {
+      "image": "ancient_memphis",
+      "note": "Nubian Nile valley"
+    },
+    "ancient_knossos": {
+      "image": "ancient_athens",
+      "note": "Aegean palace complex"
+    },
+    "ancient_monte_alban": {
+      "image": "ancient_olmec_sanlorenzo",
+      "note": "Mesoamerican ceremonial centre"
+    },
+    "ancient_poverty_point": {
+      "image": "ancient_olmec_laventa",
+      "note": "earthwork mound complex"
+    },
+    "ancient_taxila": {
+      "image": "ancient_mohenjo_daro",
+      "note": "Indus valley, same region"
+    },
+    "ancient_thebes": {
+      "image": "ancient_memphis",
+      "note": "Egyptian palace and tombs"
+    },
+    "ancient_troy": {
+      "image": "ancient_athens",
+      "note": "Aegean fortified city"
+    },
+    "classical_alexandria": {
+      "image": "classical_carthage",
+      "note": "Mediterranean harbour city"
+    },
+    "classical_antioch": {
+      "image": "classical_petra",
+      "note": "Levantine classical"
+    },
+    "classical_carthago_nova": {
+      "image": "classical_carthage",
+      "note": "literally \"New Carthage\""
+    },
+    "classical_chersonesus": {
+      "image": "classical_sparta",
+      "note": "Greek colony"
+    },
+    "classical_luoyang": {
+      "image": "classical_xianyang",
+      "note": "Chinese imperial capital"
+    },
+    "classical_meroe": {
+      "image": "ancient_memphis",
+      "note": "Nubian pyramids echo Egypt"
+    },
+    "classical_oc_eo": {
+      "image": "ancient_mohenjo_daro",
+      "note": "Indianised riverine port"
+    },
+    "classical_pataliputra": {
+      "image": "ancient_mohenjo_daro",
+      "note": "South Asian capital"
+    },
+    "classical_samarkand": {
+      "image": "classical_petra",
+      "note": "arid Silk Road caravan city"
+    },
+    "classical_tiwanaku": {
+      "image": "classical_teotihuacan",
+      "note": "Andean/American monumental"
+    },
+    "medieval_angkor": {
+      "image": "medieval_kyoto",
+      "note": "Asian temple complex"
+    },
+    "medieval_cahokia": {
+      "image": "medieval_chichen_itza",
+      "note": "pre-Columbian mound city"
+    },
+    "medieval_constantinople": {
+      "image": "medieval_jerusalem",
+      "note": "Byzantine Levantine domes"
+    },
+    "medieval_cordoba": {
+      "image": "medieval_damascus",
+      "note": "Moorish/Islamic architecture"
+    },
+    "medieval_great_zimbabwe": {
+      "image": "medieval_chichen_itza",
+      "note": "dry-stone monumental enclosure"
+    },
+    "medieval_kilwa": {
+      "image": "classical_carthage",
+      "note": "African coastal trading port"
+    },
+    "medieval_lalibela": {
+      "image": "ancient_petra",
+      "note": "rock-hewn churches"
+    },
+    "medieval_nara": {
+      "image": "medieval_kyoto",
+      "note": "Japanese Buddhist capital"
+    },
+    "medieval_novgorod": {
+      "image": "medieval_krakow",
+      "note": "Slavic medieval town"
+    },
+    "medieval_timbuktu": {
+      "image": "medieval_damascus",
+      "note": "Islamic scholarly city"
+    },
+    "renaissance_antwerp": {
+      "image": "renaissance_venice",
+      "note": "Renaissance mercantile port"
+    },
+    "renaissance_augsburg": {
+      "image": "renaissance_genoa",
+      "note": "Renaissance banking city"
+    },
+    "renaissance_calicut": {
+      "image": "renaissance_lisbon",
+      "note": "Portuguese Indian Ocean trade"
+    },
+    "renaissance_cuzco": {
+      "image": "renaissance_qusqu",
+      "note": "Qusqu is Cuzco — same city"
+    },
+    "renaissance_edo": {
+      "image": "medieval_kyoto",
+      "note": "Japanese castle town"
+    },
+    "renaissance_istanbul": {
+      "image": "steam_istanbul",
+      "note": "same city, one era later"
+    },
+    "renaissance_kilwa": {
+      "image": "renaissance_lisbon",
+      "note": "Portuguese Indian Ocean port"
+    },
+    "renaissance_nanjing": {
+      "image": "medieval_changan",
+      "note": "Chinese imperial capital"
+    },
+    "renaissance_potosi": {
+      "image": "renaissance_qusqu",
+      "note": "Andean colonial highland"
+    },
+    "renaissance_samarkand": {
+      "image": "renaissance_baghdad",
+      "note": "Timurid/Islamic observatory city"
+    },
+    "steam_calcutta": {
+      "image": "electricity_delhi",
+      "note": "British Raj India"
+    },
+    "steam_cape_town": {
+      "image": "steam_cairo",
+      "note": "African colonial port"
+    },
+    "steam_chicago": {
+      "image": "steam_manchester",
+      "note": "industrial factory city"
+    },
+    "steam_lagos": {
+      "image": "steam_cairo",
+      "note": "African colonial port"
+    },
+    "steam_lima": {
+      "image": "renaissance_lisbon",
+      "note": "Iberian colonial port"
+    },
+    "steam_melbourne": {
+      "image": "steam_london",
+      "note": "Victorian British colonial"
+    },
+    "steam_osaka": {
+      "image": "steam_manchester",
+      "note": "industrialising mill city"
+    },
+    "steam_sao_paulo": {
+      "image": "renaissance_lisbon",
+      "note": "Portuguese colonial Brazil"
+    },
+    "steam_shanghai": {
+      "image": "electricity_hongkong",
+      "note": "Chinese treaty port"
+    },
+    "steam_vienna": {
+      "image": "steam_st_petersburg",
+      "note": "imperial European capital"
+    },
+    "electricity_cape_town": {
+      "image": "steam_cairo",
+      "note": "African port city"
+    },
+    "electricity_chicago": {
+      "image": "electricity_london",
+      "note": "electric-era metropolis"
+    },
+    "electricity_johannesburg": {
+      "image": "electricity_berlin",
+      "note": "early-20thC banking district"
+    },
+    "electricity_lagos": {
+      "image": "steam_cairo",
+      "note": "African port city"
+    },
+    "electricity_melbourne": {
+      "image": "electricity_london",
+      "note": "British imperial civic"
+    },
+    "electricity_mumbai": {
+      "image": "electricity_delhi",
+      "note": "Indian port metropolis"
+    },
+    "electricity_nairobi": {
+      "image": "steam_cairo",
+      "note": "African colonial city"
+    },
+    "electricity_osaka": {
+      "image": "electricity_hongkong",
+      "note": "East Asian port"
+    },
+    "electricity_sao_paulo": {
+      "image": "electricity_berlin",
+      "note": "early-20thC exchange district"
+    },
+    "electricity_vienna": {
+      "image": "electricity_berlin",
+      "note": "Central European capital"
+    },
+    "information_amsterdam": {
+      "image": "steam_amsterdam",
+      "note": "same city, earlier era"
+    },
+    "information_bangalore": {
+      "image": "information_shenzhen",
+      "note": "modern tech hub"
+    },
+    "information_berlin": {
+      "image": "electricity_berlin",
+      "note": "same city, earlier era"
+    },
+    "information_lagos": {
+      "image": "information_dubai",
+      "note": "modern non-Western metropolis"
+    },
+    "information_london": {
+      "image": "electricity_london",
+      "note": "same city, earlier era"
+    },
+    "information_mumbai": {
+      "image": "information_singapore",
+      "note": "Indian Ocean financial hub"
+    },
+    "information_nairobi": {
+      "image": "information_dubai",
+      "note": "modern metropolis"
+    },
+    "information_sao_paulo": {
+      "image": "information_rio",
+      "note": "same country"
+    },
+    "information_stockholm": {
+      "image": "information_seoul",
+      "note": "modern tech-forward city"
+    },
+    "information_tel_aviv": {
+      "image": "information_dubai",
+      "note": "Middle Eastern modern skyline"
+    }
+  }
+}
