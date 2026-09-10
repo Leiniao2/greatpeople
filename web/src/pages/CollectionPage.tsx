@@ -5,6 +5,7 @@ import { useUnlockedCards } from '@/hooks/useUnlockedCards'
 import type { Card, StatKey } from '@/types'
 import cardsJson from '@/data/cards.json'
 import locationCardsJson from '@/data/location_cards.json'
+import { locationImageUrl } from '@/data/location_images'
 
 // ── GP cards ─────────────────────────────────────────────────────────────────
 
@@ -291,7 +292,7 @@ function CardItem({ card, owned, onClick }: { card: Card; owned: boolean; onClic
 
 function LocationItem({ loc, onClick }: { loc: LocationCard; onClick: () => void }) {
   const eraStyle = ERA_COLORS[loc.era] ?? 'bg-slate-800/50 text-slate-400 border-slate-600/30'
-  const imageUrl = loc.imageKey ? `/locations/${loc.imageKey}.jpeg` : null
+  const imageUrl = locationImageUrl(loc.imageKey)
 
   return (
     <div
@@ -343,7 +344,7 @@ function LocationItem({ loc, onClick }: { loc: LocationCard; onClick: () => void
 // ── Location detail modal ─────────────────────────────────────────────────────
 
 function LocationDetailModal({ loc, onClose }: { loc: LocationCard; onClose: () => void }) {
-  const imageUrl = loc.imageKey ? `/locations/${loc.imageKey}.jpeg` : null
+  const imageUrl = locationImageUrl(loc.imageKey)
   const eraStyle = ERA_COLORS[loc.era] ?? 'bg-slate-800/50 text-slate-400 border-slate-600/30'
   const ability = parseTraitText(loc.trait)
   const bonusEntries = Object.entries(loc.bonuses ?? {}) as [StatKey, number][]

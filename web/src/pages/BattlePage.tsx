@@ -11,6 +11,7 @@ import cardsJson from '@/data/cards.json'
 import locationsJson from '@/data/locations.json'
 import locationCardsJson from '@/data/location_cards.json'
 import followersJson from '@/data/followers.json'
+import { locationImageUrl } from '@/data/location_images'
 
 // ─── Static Card Data ─────────────────────────────────────────────────────────
 
@@ -2321,7 +2322,7 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
                 {loc.imageKey && (
                   <div className="absolute inset-0 pointer-events-none">
                     <img
-                      src={`/locations/${loc.imageKey}.jpeg`}
+                      src={locationImageUrl(loc.imageKey) ?? undefined}
                       alt=""
                       className="w-full h-full object-cover opacity-25"
                     />
