@@ -56,4 +56,15 @@ def create_app() -> Flask:
 app = create_app()
 
 if __name__ == '__main__':
-    socketio.run(app, host='0.0.0.0', port=8080, debug=True)
+    # Local development entrypoint only — production serves via App Engine
+    # with eventlet (see create_app's async_mode).  flask_socketio refuses to
+    # start on Werkzeug unless explicitly allowed, so opt in for dev and leave
+    # it off in production, where eventlet handles serving instead.
+    is_production = os.environ.get('FLASK_ENV') == 'production'
+    socketio.run(
+        app,
+        host='0.0.0.0',
+        port=int(os.environ.get('PORT', 8080)),
+        debug=not is_production,
+        allow_unsafe_werkzeug=not is_production,
+    )

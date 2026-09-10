@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Keep web/iOS/Android JSON assets in step with data/ on every commit.
+#
+# Version-controlled so it cannot drift from scripts/sync-assets.sh the way an
+# untracked .git/hooks copy did.  Enable once per clone:
+#
+#   git config core.hooksPath .githooks
+
+set -euo pipefail
+
+exec "$(git rev-parse --show-toplevel)/scripts/sync-assets.sh" --stage

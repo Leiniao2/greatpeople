@@ -33,9 +33,11 @@ export const useAuth = create<AuthState>((set) => ({
     try {
       const { accessToken } = await authApi.login(email, password)
       storeToken(accessToken)
-    } catch {
-      // Allow admin login even if backend is unavailable
-      if (email !== ADMIN_EMAIL) throw new Error('Login failed')
+    } catch (err) {
+      // Allow admin login even if backend is unavailable.  Anyone else gets
+      // the original error, so the caller can tell a rejected password from
+      // an unreachable backend.
+      if (email !== ADMIN_EMAIL) throw err
     }
     storeEmail(email)
     set({ isLoggedIn: true, email, isAdmin: email === ADMIN_EMAIL })
@@ -45,8 +47,8 @@ export const useAuth = create<AuthState>((set) => ({
     try {
       const { accessToken } = await authApi.register(email, password, _displayName)
       storeToken(accessToken)
-    } catch {
-      if (email !== ADMIN_EMAIL) throw new Error('Registration failed')
+    } catch (err) {
+      if (email !== ADMIN_EMAIL) throw err
     }
     storeEmail(email)
     set({ isLoggedIn: true, email, isAdmin: email === ADMIN_EMAIL })

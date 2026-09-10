@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useGoogleLogin } from '@react-oauth/google'
 import { useAuth } from '@/hooks/useAuth'
+import { describeApiError } from '@/api/errors'
 
 type Tab = 'login' | 'register'
 
@@ -69,8 +70,11 @@ export default function LoginPage() {
         ? await login(email, password)
         : await register(email, password, displayName)
       succeed()
-    } catch {
-      fail(tab === 'login' ? 'Invalid email or password.' : 'Registration failed. Please try again.')
+    } catch (err) {
+      fail(describeApiError(
+        err,
+        tab === 'login' ? 'Invalid email or password.' : 'Registration failed. Please try again.',
+      ))
     } finally {
       setLoading(false)
     }
@@ -78,10 +82,12 @@ export default function LoginPage() {
 
   // ── Google SSO ────────────────────────────────────────────────────
   const handleGoogleToken = async (accessToken: string) => {
-    if (!accessToken) { fail('Google sign-in failed. Please try again.'); return }
+    // Empty token means Google's own popup failed or was dismissed, which is a
+    // different problem from our backend rejecting a valid token.
+    if (!accessToken) { fail('Google sign-in was cancelled or blocked. Please try again.'); return }
     setLoading(true)
     try { await ssoLogin('google', accessToken); succeed() }
-    catch { fail('Google sign-in failed. Please try again.') }
+    catch (err) { fail(describeApiError(err, 'Google rejected the sign-in. Please try again.')) }
     finally { setLoading(false) }
   }
 
