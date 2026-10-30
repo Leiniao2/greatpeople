@@ -349,11 +349,14 @@ interface StoryViewerProps {
   locationImage?: string
   /** Lives per stage; a lost life retries the challenge, none left retries the stage. */
   lives?: number
+  /** Stage index (0–3) to resume from. */
+  startStage?: number
+  onStageReached?: (stageIdx: number) => void
   onComplete: (unlockKey: string | null) => void
   onClose: () => void
 }
 
-export default function StoryViewer({ eraName, storyTitle, figureName, portraitKey, bonusCard, locationImage, lives = 3, onComplete, onClose }: StoryViewerProps) {
+export default function StoryViewer({ eraName, storyTitle, figureName, portraitKey, bonusCard, locationImage, lives = 3, startStage = 0, onStageReached, onComplete, onClose }: StoryViewerProps) {
   const { isAdmin } = useAuth()
   const script = useMemo(() => getScript(eraName, storyTitle), [eraName, storyTitle])
   const challenges = useMemo(() => getChallenges(eraName, storyTitle), [eraName, storyTitle])
@@ -375,7 +378,11 @@ export default function StoryViewer({ eraName, storyTitle, figureName, portraitK
   }, [bgUrl, locationImg, scenes])
   const { ready: assetsReady, progress: assetsProgress } = useAssetPreload(storyAssets)
 
-  const [sceneIdx, setSceneIdx] = useState(0)
+  // Stage bookkeeping: stages are marker scenes, so the current stage is the
+  // last marker at or before the current scene.
+  const stageStarts = useMemo(() => scenes.map((s, i) => (s.type === 'stage' ? i : -1)).filter(i => i >= 0), [scenes])
+
+  const [sceneIdx, setSceneIdx] = useState(() => stageStarts[Math.min(startStage, stageStarts.length - 1)] ?? 0)
   const [livesLeft, setLivesLeft] = useState(lives)
   const [lifeLost, setLifeLost] = useState(false)
   const [failing, setFailing] = useState(false)
@@ -388,14 +395,13 @@ export default function StoryViewer({ eraName, storyTitle, figureName, portraitK
   const totalChallenges = scenes.filter(s => s.type === 'challenge').length
   const currentScene = scenes[sceneIdx]
 
-  // Stage bookkeeping: stages are marker scenes, so the current stage is the
-  // last marker at or before the current scene.
-  const stageStarts = useMemo(() => scenes.map((s, i) => (s.type === 'stage' ? i : -1)).filter(i => i >= 0), [scenes])
   const stageIdx = Math.max(0, stageStarts.filter(i => i <= sceneIdx).length - 1)
   const stageStart = stageStarts[stageIdx] ?? 0
   const stageScene = scenes[stageStart]
   const stageLabel = stageScene?.type === 'stage' ? stageScene.label : ''
   const passedCount = scenes.slice(0, sceneIdx).filter(s => s.type === 'challenge').length
+
+  useEffect(() => { onStageReached?.(stageIdx) }, [stageIdx]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const advanceScene = useCallback(() => {
     setSceneIdx(prev => {

@@ -1,6 +1,7 @@
-import { Suspense, lazy } from 'react'
+import { Suspense, lazy, useEffect } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { useAuth } from '@/hooks/useAuth'
+import { useStoryProgress } from '@/hooks/useStoryProgress'
 import LoadingScreen from '@/components/LoadingScreen'
 import LoginPage from '@/pages/LoginPage'
 
@@ -21,6 +22,11 @@ function PrivateRoute({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
+  const isLoggedIn = useAuth(s => s.isLoggedIn)
+  const pullAndMerge = useStoryProgress(s => s.pullAndMerge)
+  // Merge the server's copy of story progress whenever a session starts.
+  useEffect(() => { if (isLoggedIn) void pullAndMerge() }, [isLoggedIn, pullAndMerge])
+
   return (
     <Suspense fallback={<LoadingScreen />}>
       <Routes>

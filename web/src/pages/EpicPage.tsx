@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useAuth } from '@/hooks/useAuth'
 import StoryViewer from '@/components/StoryViewer'
 import { useUnlockedCards } from '@/hooks/useUnlockedCards'
+import { useStoryProgress } from '@/hooks/useStoryProgress'
 import storyConfigsData from '@/data/story_configs.json'
 import { eraBackdropUrl, locationImageUrl, portraitUrl } from '@/data/images'
 import PageLoader from '@/components/PageLoader'
@@ -68,8 +69,9 @@ function EpicContent() {
   const navigate = useNavigate()
   const { isGuest, exitGuestMode, isAdmin } = useAuth()
   const { unlock } = useUnlockedCards()
+  const progress = useStoryProgress(s => s.doc)
+  const { markComplete, markStage } = useStoryProgress()
   const [activeEra, setActiveEra] = useState(0)
-  const [completed, setCompleted] = useState<Record<string, boolean>>({})
   const [toast, setToast] = useState<string | null>(null)
   const [modal, setModal] = useState<{ eraIdx: number; storyIdx: number } | null>(null)
   const tabsRef = useRef<HTMLDivElement>(null)
@@ -77,14 +79,14 @@ function EpicContent() {
   // full loading screen so the tabs stay put.
   const { ready: eraReady, progress: eraProgress } = useAssetPreload(eraAssets(activeEra), { minMs: 0 })
 
-  const key = (eraIdx: number, storyIdx: number) => `${eraIdx}-${storyIdx}`
+  const isDone = (eraIdx: number, storyIdx: number) => !!progress.stories[ERAS[eraIdx].stories[storyIdx].slug]?.completed
 
   // Era E is selectable when era E-1 has >= STORIES_TO_ADVANCE completed stories.
   // Admin bypasses all gating.
   const isEraSelectable = (eraIdx: number): boolean => {
     if (isAdmin) return true
     if (eraIdx === 0) return true
-    const prevCompleted = ERAS[eraIdx - 1].stories.filter((_, i) => completed[key(eraIdx - 1, i)]).length
+    const prevCompleted = ERAS[eraIdx - 1].stories.filter((_, i) => isDone(eraIdx - 1, i)).length
     return prevCompleted >= STORIES_TO_ADVANCE
   }
 
@@ -94,19 +96,19 @@ function EpicContent() {
     if (isAdmin) return true
     if (!isEraSelectable(eraIdx)) return false
     if (storyIdx === 0) return true
-    return !!completed[key(eraIdx, storyIdx - 1)]
+    return isDone(eraIdx, storyIdx - 1)
   }
 
   const completedInEra = (eraIdx: number) =>
-    ERAS[eraIdx].stories.filter((_, i) => completed[key(eraIdx, i)]).length
+    ERAS[eraIdx].stories.filter((_, i) => isDone(eraIdx, i)).length
 
   const handleBegin = (eraIdx: number, storyIdx: number) => {
     setModal({ eraIdx, storyIdx })
   }
 
   const handleStoryComplete = (eraIdx: number, storyIdx: number, unlockKey: string | null) => {
-    setCompleted(prev => ({ ...prev, [key(eraIdx, storyIdx)]: true }))
     const story = ERAS[eraIdx].stories[storyIdx]
+    markComplete(story.slug)
     if (unlockKey) {
       unlock(unlockKey)
       if (story.bonusCard?.portraitKey) unlock(story.bonusCard.portraitKey)
@@ -245,7 +247,7 @@ function EpicContent() {
           <div className="flex flex-col gap-3">
             {era.stories.map((story, storyIdx) => {
               const unlocked = isStoryUnlocked(activeEra, storyIdx)
-              const isDone = !!completed[key(activeEra, storyIdx)]
+              const done = isDone(activeEra, storyIdx)
 
               const pKey = story.portraitKey
               const cardImg = story.locationImage
@@ -286,13 +288,13 @@ function EpicContent() {
                     ) : (
                       <div className={`w-full h-full flex items-center justify-center text-2xl
                         ${unlocked ? 'bg-accent/10 text-accent/50' : 'bg-panel-2 text-muted/80'}`}>
-                        {!unlocked ? '🔒' : isDone ? '✓' : '▶'}
+                        {!unlocked ? '🔒' : done ? '✓' : '▶'}
                       </div>
                     )}
                     {pKey && !unlocked && (
                       <div className="absolute inset-0 flex items-center justify-center text-lg bg-ink/50">🔒</div>
                     )}
-                    {pKey && unlocked && isDone && (
+                    {pKey && unlocked && done && (
                       <div className="absolute bottom-1 right-1 w-4 h-4 rounded-full bg-accent flex items-center justify-center text-[9px] font-bold text-accent-fg">✓</div>
                     )}
                   </div>
@@ -321,11 +323,11 @@ function EpicContent() {
                       onClick={() => handleBegin(activeEra, storyIdx)}
                       className={`relative flex-shrink-0 mr-4 px-4 py-2 rounded-xl text-xs font-bold tracking-wide
                                  shadow shadow-accent/25 transition-all duration-200
-                                 ${isDone
+                                 ${done
                                    ? 'text-accent bg-accent/10 hover:bg-accent/20 border border-accent/30'
                                    : 'text-accent-fg bg-accent hover:bg-accent-hover active:bg-accent-hover'
                                  }`}>
-                      {isDone ? 'Replay' : 'Begin →'}
+                      {done ? 'Replay' : 'Begin →'}
                     </button>
                   )}
                 </div>
@@ -368,6 +370,8 @@ function EpicContent() {
             portraitKey={pKey}
             bonusCard={bonusCard}
             lives={story.lives}
+            startStage={progress.stories[story.slug]?.completed ? 0 : (progress.stories[story.slug]?.stage ?? 0)}
+            onStageReached={stage => markStage(story.slug, stage)}
             locationImage={locationImageUrl(story.locationImage) ?? undefined}
             onComplete={(unlockKey) => { handleStoryComplete(modal.eraIdx, modal.storyIdx, unlockKey); setModal(null) }}
             onClose={() => setModal(null)}

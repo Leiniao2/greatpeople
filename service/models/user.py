@@ -8,7 +8,8 @@ class User:
     KIND = 'User'
 
     def __init__(self, id=None, email='', display_name='',
-                 password_hash=None, oauth_provider=None, oauth_id=None, elo=1000):
+                 password_hash=None, oauth_provider=None, oauth_id=None, elo=1000,
+                 progress_json=None):
         self.id = id or str(uuid.uuid4())
         self.email = email
         self.display_name = display_name
@@ -16,6 +17,9 @@ class User:
         self.oauth_provider = oauth_provider
         self.oauth_id = oauth_id
         self.elo = elo
+        # Story progress and unlocked cards, as the JSON document the web app
+        # keeps in localStorage; opaque to the server beyond a size cap.
+        self.progress_json = progress_json
 
     @classmethod
     def get(cls, user_id: str) -> 'User | None':
@@ -41,7 +45,7 @@ class User:
 
     def put(self) -> None:
         key = client.key(self.KIND, self.id)
-        entity = datastore.Entity(key=key, exclude_from_indexes=['password_hash'])
+        entity = datastore.Entity(key=key, exclude_from_indexes=['password_hash', 'progress_json'])
         entity.update({
             'email': self.email,
             'display_name': self.display_name,
@@ -49,6 +53,7 @@ class User:
             'oauth_provider': self.oauth_provider,
             'oauth_id': self.oauth_id,
             'elo': self.elo,
+            'progress_json': self.progress_json,
         })
         client.put(entity)
 
@@ -76,4 +81,5 @@ class User:
             oauth_provider=entity.get('oauth_provider'),
             oauth_id=entity.get('oauth_id'),
             elo=entity.get('elo', 1000),
+            progress_json=entity.get('progress_json'),
         )
