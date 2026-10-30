@@ -62,6 +62,11 @@ export const GAMES = {
   reporterflee: def('Reporter Flee', 'Explore',  () => import('@/components/minigames/ReporterFleeGame'), true),
   chimpmath:    def('Chimp Math',    'Puzzle',   () => import('@/components/minigames/ChimpMathGame'), true),
   worldclock:   def('World Clock',   'Puzzle',   () => import('@/components/minigames/WorldClockGame'), true),
+  // ── New engines (growth-arc redesign)
+  expedition:   def('Expedition',    'Strategy', () => import('@/components/minigames/ExpeditionGame'), true),
+  cipher:       def('Cipher',        'Puzzle',   () => import('@/components/minigames/CipherGame'), true),
+  debate:       def('Debate',        'Story',    () => import('@/components/minigames/DebateGame'), true),
+  siege:        def('Siege',         'Strategy', () => import('@/components/minigames/SiegeGame'), true),
 } satisfies Record<string, GameDef>
 
 export type GameKey = keyof typeof GAMES
