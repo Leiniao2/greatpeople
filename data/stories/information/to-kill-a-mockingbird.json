@@ -1,0 +1,116 @@
+{
+  "slug": "to-kill-a-mockingbird",
+  "era": "Information",
+  "order": 9,
+  "title": "To Kill a Mockingbird",
+  "figure": "Gregory Peck",
+  "portraitKey": "gregory_peck",
+  "tagline": "Some roles choose you. Some voices can only belong to one man.",
+  "locationImage": "information_sanjose",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Hollywood, 1962. Producer Alan Pakula sends the script to Gregory Peck. It is adapted from Harper Lee's Pulitzer Prize-winning novel — a story about Atticus Finch, a lawyer who defends a Black man falsely accused, knowing he will lose and doing it anyway."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Gregory Peck",
+          "text": "I read it in one sitting. I called Alan immediately. I said: this is my father. This is the man I knew. I have to play this role.",
+          "portraitKey": "gregory_peck"
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "Gregory Peck won the 1963 Best Actor Oscar for his portrayal of Atticus Finch. What was Atticus defending Tom Robinson against?",
+            "options": [
+              "Tax fraud",
+              "A wrongful murder accusation",
+              "Treason",
+              "Land theft"
+            ],
+            "answer": 1,
+            "fact": "Harper Lee based Atticus partly on her own father, a lawyer who defended two Black men in Alabama. Peck and Harper Lee became lifelong friends after the 1962 film."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Gregory Peck was known for his moral authority — a quality inseparable from his physical presence. He was not acting Atticus Finch. He was, in some essential way, becoming him."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Atticus Finch",
+          "text": "You never really understand a person until you consider things from his point of view — until you climb into his skin and walk around in it.",
+          "portraitKey": "gregory_peck"
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "classify",
+            "configId": "ecosystems",
+            "instruction": "Maycomb's rigid social order works like a food chain. Sort the roles: who produces, who consumes, who dominates.",
+            "fact": "The AFI voted Atticus Finch the greatest movie hero of the 20th century. Peck later said the role was the one closest to his own moral convictions — he fought for civil rights throughout his career."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Harper Lee visited the set and watched Peck work. Afterward, she gave him her father's watch — the real lawyer who had inspired Atticus. When Peck won the Academy Award for Best Actor in 1963, Lee was in the audience. She said: Gregory Peck is Atticus Finch."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Gregory Peck",
+          "text": "Atticus made me do the same thing on film that I do in my private life — examine where I stand on things.",
+          "portraitKey": "gregory_peck"
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "voting",
+            "configId": "mockingbird-jury",
+            "instruction": "Atticus Finch makes his closing argument. Win enough jurors to acquit Tom Robinson.",
+            "fact": "Harper Lee's novel (1960) is based partly on the 1931 Scottsboro Boys case. Despite Atticus's brilliant argument, the jury convicts — Lee's point being that moral courage alone cannot overcome structural injustice."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "Harper Lee's To Kill a Mockingbird won the Pulitzer Prize for Fiction in 1961, just one year after its publication.",
+            "correct": true,
+            "countdown": 10,
+            "fact": "To Kill a Mockingbird (1960) won the Pulitzer Prize in 1961 and became an immediate bestseller. It has sold more than 40 million copies and remains widely taught in schools. Harper Lee published almost nothing for 55 years afterward, until Go Set a Watchman appeared in 2015, shortly before her death in 2016."
+          }
+        }
+      ]
+    }
+  ]
+}

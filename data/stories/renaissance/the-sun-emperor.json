@@ -1,0 +1,136 @@
+{
+  "slug": "the-sun-emperor",
+  "era": "Renaissance",
+  "order": 8,
+  "title": "The Sun Emperor",
+  "figure": "Montezuma II",
+  "portraitKey": "montezuma_ii",
+  "tagline": "He ruled the height of Aztec glory — until two worlds collided.",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Tenochtitlan, 1502. Montezuma II ascends as the ninth tlatoani of the Aztec Triple Alliance — ruler of the largest empire in Mesoamerican history."
+        },
+        {
+          "type": "narration",
+          "text": "His capital city rivals any in the world: 200,000 people, floating gardens, a great market at Tlatelolco, pyramids that align with the stars. Cortés will call it the most beautiful city he has ever seen."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "What was the Aztec capital city that Montezuma II ruled, which amazed the Spanish conquistadors?",
+            "options": [
+              "Tenochtitlan",
+              "Texcoco",
+              "Teotihuacan",
+              "Tlatelolco"
+            ],
+            "answer": 0,
+            "countdown": 10,
+            "fact": "Tenochtitlan, built on an island in Lake Texcoco, was one of the largest cities in the world in 1500 — home to 200,000–300,000 people, larger than London, Paris, or any city in Spain. When Hernán Cortés' soldiers first saw it, they wrote that they thought they were dreaming. Its causeways, aqueducts, and floating gardens had no parallel in European experience."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Montezuma expands the empire further south and east, demanding tribute in gold, jade, and jaguar skins. The Aztec calendar stone is carved during his reign — a map of time itself."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "Montezuma II believed Hernán Cortés was the god Quetzalcoatl returning as prophesied.",
+            "correct": false,
+            "countdown": 10,
+            "fact": "The story that Montezuma mistook Cortés for Quetzalcoatl appears in later accounts heavily influenced by Spanish interpreters and indigenous collaborators with reasons to justify the conquest. Modern historians believe Montezuma was an experienced and politically sophisticated ruler who recognized the Spanish as dangerous strangers — not gods. He attempted to manage the threat diplomatically before it overwhelmed him."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "1519: Hernán Cortés arrives with 600 men and local allies. Montezuma — perhaps viewing the Spaniards through a lens of prophecy — allows them into Tenochtitlan."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "sort",
+            "question": "Arrange these events of Montezuma II's reign and the Spanish conquest in order:",
+            "items": [
+              "Montezuma II takes the throne of the Aztec Triple Alliance and expands its territory",
+              "Hernán Cortés lands in Mexico with 500 soldiers and makes alliances with Aztec enemies",
+              "Cortés arrives in Tenochtitlan — Montezuma receives him with extraordinary ceremony",
+              "Cortés takes Montezuma hostage within the city, ruling through him",
+              "The Noche Triste — Aztecs drive the Spanish out of Tenochtitlan, Montezuma dies",
+              "Cortés returns with tens of thousands of indigenous allies and besieges Tenochtitlan"
+            ],
+            "fact": "The conquest of the Aztec Empire was not a European conquest of indigenous people — it was a coalition war. Cortés' key allies, the Tlaxcalans, had been enemies of the Aztec Triple Alliance for generations and contributed far more warriors to the siege of Tenochtitlan than the Spanish did. The Aztec empire fell to its own enemies as much as to European weapons."
+          }
+        },
+        {
+          "type": "narration",
+          "text": "He is taken hostage in his own palace. For months he cooperates, maintaining fragile peace. Then a massacre sparks revolt — and Montezuma is killed, circumstances still disputed."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "matchthree",
+            "configId": "aztec-market",
+            "instruction": "The Tlatelolco market next to Tenochtitlan was the largest in the Americas — Cortés' soldiers estimated 60,000 traders attended on market day. Clear the rows of cacao, jade, cotton, and gold that flowed through the empire's commercial heart.",
+            "fact": "The Spanish soldier Bernal Díaz del Castillo wrote that the Tlatelolco market was 'like the squares of Salamanca, but twice as big, crowded with people, and more orderly.' It traded everything: food, textiles, gold, slaves, feathers, medicine, and pottery. Every item had a fixed price and market inspectors enforced fair trading."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "The Aztec Empire falls two years later. But the greatness of Tenochtitlan — its markets, its art, its cosmic architecture — remains one of humanity's greatest achievements."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "cooking",
+            "configId": "aztec-chocolate",
+            "instruction": "Montezuma reportedly drank fifty cups of cacao daily from golden cups — the drink of emperors. Prepare the xocolatl as the palace kitchens did: bitter, spiced, and served cold.",
+            "fact": "Cacao was the currency and the luxury of the Aztec world simultaneously — you could pay your taxes with it, or drink it if you were noble enough. The xocolatl the Aztecs drank was nothing like modern chocolate: it was ground cacao mixed with water, vanilla, chili, and achiote, beaten to a foam and served cold. The Spanish found it revolting at first, then addictive."
+          }
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "voting",
+            "configId": "spanish-court",
+            "instruction": "After the conquest, Aztec leaders faced Spanish tribunals that would decide the fate of their civilization. Navigate the court — where every answer is a trap and mercy is always conditional.",
+            "fact": "The Spanish justified conquest through legal documents read aloud in Spanish to people who spoke Nahuatl — the Requerimiento, which declared Spanish sovereignty and demanded submission, promising war if refused. It was a legal fiction that satisfied Spanish lawyers while meaning nothing to those who heard it. The document was sometimes read to empty beaches before landing."
+          }
+        }
+      ]
+    }
+  ]
+}

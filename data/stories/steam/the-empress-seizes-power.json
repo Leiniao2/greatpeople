@@ -1,0 +1,137 @@
+{
+  "slug": "the-empress-seizes-power",
+  "era": "Steam",
+  "order": 5,
+  "title": "The Empress Seizes Power",
+  "figure": "Catherine the Great",
+  "portraitKey": "yekaterina",
+  "tagline": "She overthrew her husband, took the throne, and ruled Russia for 34 years.",
+  "locationImage": "steam_amsterdam",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "St. Petersburg, June 28, 1762. A German princess named Sophie — who has lived in Russia since age 14 and remade herself into more Russian than the Russians — puts on a military uniform, rides at the head of the Preobrazhensky Guards, and deposes her own husband from the throne of Russia."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Catherine the Great",
+          "portraitKey": "yekaterina",
+          "text": "Peter was a tsar who despised Russia, mocked the Orthodox Church, and insulted the army that protected him. I love Russia. I have spent my life learning its language, its faith, its history. If one of us should rule it, let it be me."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "How did Catherine the Great come to power in Russia?",
+            "options": [
+              "She was elected by the nobility",
+              "She led a coup and deposed her husband, Tsar Peter III",
+              "She was the legitimate heir to the throne",
+              "She married the previous tsar's heir"
+            ],
+            "answer": 1,
+            "fact": "In July 1762, Catherine organized a coup against her husband Tsar Peter III — who was widely seen as weak and pro-Prussian. The Imperial Guard supported her; Peter was arrested and died days later (likely murdered). Catherine ruled Russia for 34 years as Catherine II.",
+            "countdown": 10
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Catherine ruled for 34 years — longer than any other Russian monarch. She corresponded with Voltaire and Diderot, commissioned translations of the Encyclopédie, founded the Hermitage Museum, established the Smolny Institute for the education of women, and expanded Russia's borders to encompass 200,000 additional square miles."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Voltaire",
+          "text": "Your Majesty writes to me of legal reform, of education, of the abolition of torture. Europe's monarchs have not gone so far. What inspires you?",
+          "portraitKey": "follower:philosopher"
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "sort",
+            "question": "Arrange these key events of Catherine the Great's reign in chronological order:",
+            "items": [
+              "Catherine's coup deposes her husband Peter III, who dies in custody shortly after (1762)",
+              "Catherine's Decree on Provincial Reform reorganises Russia into 50 provinces (1775)",
+              "The Pugachev Rebellion — a massive peasant uprising — is crushed after three years (1773–1775)",
+              "Russia annexes Crimea from the Ottoman Empire, securing a warm-water port (1783)"
+            ],
+            "fact": "Catherine ruled Russia for 34 years — longer than any other female ruler in Russian history. She expanded Russia's territory by 520,000 square kilometres and corresponded with Voltaire and Diderot while suppressing the very freedoms they championed."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "dialog",
+          "speaker": "Catherine the Great",
+          "portraitKey": "yekaterina",
+          "text": "Russia is a vast country that has been asleep. I intend to wake it without breaking it. Enlightenment cannot be imposed on serfs at bayonet point — it must be grown from the top down, school by school, law by law. I am patient. A country this large rewards patience."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "matchthree",
+            "configId": "venice-glass",
+            "instruction": "Catherine's Winter Palace rivalled Versailles in splendour. Match the treasures of the imperial court — candlesticks, mirrors, porcelain, and gold.",
+            "fact": "Catherine the Great transformed the Winter Palace into one of Europe's greatest art collections, acquiring over 4,000 paintings, 10,000 drawings, and 16,000 coins. She wrote to Voltaire: 'I am devouring without discrimination. It is not love of art — it is greed.' The Hermitage Museum was born from that greed."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Catherine's contradictions were enormous: she wrote eloquently about liberty while owning millions of serfs. She corresponded with philosophers about human rights while crushing the Pugachev Rebellion with brutal force. She was the Enlightenment's greatest patron and, in some ways, its most revealing hypocrite."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "voting",
+            "configId": "versailles-crisis",
+            "instruction": "Catherine's coup is underway. Win the loyalty of the imperial regiments before Peter III realises what is happening — every vote of loyalty counts.",
+            "fact": "Catherine's coup on 9 July 1762 succeeded because she personally rode to each Guard regiment and asked for their loyalty. The five regiments that mattered swore allegiance to her within hours. Peter III, who had alienated the military by admiring Prussia, found himself without a single defender. He abdicated by evening."
+          }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Catherine the Great",
+          "portraitKey": "yekaterina",
+          "text": "I am accused of contradiction. Very well. I rule the largest country on earth with a borrowed philosophy and an army of advisors who disagree with each other. A ruler who is never contradicted is a ruler who is no longer listening. I would rather be a contradiction than a tyrant who never questions herself."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "The Hermitage Museum began as Catherine's private art collection — she called it her 'hermitage' because she could retreat there alone with her paintings.",
+            "correct": true,
+            "countdown": 10,
+            "fact": "Catherine collected art obsessively — she bought entire collections from European aristocrats, sometimes acquiring over 2,000 paintings at once. Her private 'hermitage' adjacent to the Winter Palace held works by Rembrandt, Raphael, and Titian. It opened to the public in 1852 and today holds over 3 million objects, making it one of the world's largest museums."
+          }
+        }
+      ]
+    }
+  ]
+}

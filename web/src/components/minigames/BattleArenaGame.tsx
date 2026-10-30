@@ -140,9 +140,9 @@ export default function BattleArenaGame({ configId, onWin }: { configId: string;
   if (phase === 'won') return (
     <div className="flex flex-col items-center gap-4 p-6 text-center">
       <div className="text-5xl">🏆</div>
-      <div className="text-xl font-bold text-amber-400">Victory!</div>
-      <p className="text-sm text-slate-300 max-w-xs leading-relaxed">{cfg.fact}</p>
-      <button onClick={onWin} className="px-6 py-2 bg-amber-500 hover:bg-amber-400 rounded-lg font-semibold text-slate-900">Complete</button>
+      <div className="text-xl font-bold text-accent">Victory!</div>
+      <p className="text-sm text-ink-2 max-w-xs leading-relaxed">{cfg.fact}</p>
+      <button onClick={onWin} className="px-6 py-2 bg-accent hover:bg-accent-hover rounded-lg font-semibold text-accent-fg">Complete</button>
     </div>
   )
 
@@ -150,7 +150,7 @@ export default function BattleArenaGame({ configId, onWin }: { configId: string;
     <div className="flex flex-col items-center gap-4 p-6 text-center">
       <div className="text-5xl">💀</div>
       <div className="text-xl font-bold text-red-400">Defeated!</div>
-      <p className="text-sm text-slate-400 max-w-xs">Use the right weapon — the enemy type and tips tell you their weakness.</p>
+      <p className="text-sm text-muted max-w-xs">Use the right weapon — the enemy type and tips tell you their weakness.</p>
       <button onClick={restart} className="px-6 py-2 bg-red-600 hover:bg-red-500 rounded-lg font-semibold text-white">Try Again</button>
     </div>
   )
@@ -159,14 +159,14 @@ export default function BattleArenaGame({ configId, onWin }: { configId: string;
 
   return (
     <div className="flex flex-col gap-3 p-4 max-w-xs mx-auto select-none">
-      <div className="text-center font-semibold text-amber-400 text-sm">{cfg.title}</div>
+      <div className="text-center font-semibold text-accent text-sm">{cfg.title}</div>
 
       {/* Enemy */}
-      <div className="bg-slate-800 rounded-xl p-3 text-center border border-slate-700">
+      <div className="bg-panel-2 rounded-xl p-3 text-center border border-line">
         <div className="text-5xl mb-1">{enemy.emoji}</div>
         <div className="font-semibold text-sm">{enemy.name}</div>
-        <div className="text-xs text-slate-400 capitalize mb-2">Type: <span className="text-slate-300">{enemy.type}</span></div>
-        <div className="w-full bg-slate-700 rounded-full h-2.5">
+        <div className="text-xs text-muted capitalize mb-2">Type: <span className="text-ink-2">{enemy.type}</span></div>
+        <div className="w-full bg-line rounded-full h-2.5">
           <div
             className="bg-red-500 h-2.5 rounded-full transition-all duration-500"
             style={{ width: `${(Math.max(0, enemyHp) / maxEnemyHp) * 100}%` }}
@@ -177,8 +177,8 @@ export default function BattleArenaGame({ configId, onWin }: { configId: string;
 
       {/* Player HP */}
       <div className="flex items-center gap-2 px-1">
-        <span className="text-xs text-slate-400 shrink-0">Your HP</span>
-        <div className="flex-1 bg-slate-700 rounded-full h-2">
+        <span className="text-xs text-muted shrink-0">Your HP</span>
+        <div className="flex-1 bg-line rounded-full h-2">
           <div
             className="bg-green-500 h-2 rounded-full transition-all duration-500"
             style={{ width: `${(Math.max(0, playerHp) / cfg.playerHp) * 100}%` }}
@@ -192,7 +192,7 @@ export default function BattleArenaGame({ configId, onWin }: { configId: string;
         <div className={`text-xs text-center py-1.5 rounded px-2 ${
           lastResult.effLevel === 2 ? 'text-yellow-300 bg-yellow-900/30' :
           lastResult.effLevel === 0 ? 'text-red-400 bg-red-900/20' :
-          'text-slate-300 bg-slate-800'
+          'text-ink-2 bg-panel-2'
         }`}>
           {lastResult.effLevel === 2 ? '⚡ Super effective! ' :
            lastResult.effLevel === 0 ? '🚫 Not very effective! ' : ''}
@@ -201,30 +201,33 @@ export default function BattleArenaGame({ configId, onWin }: { configId: string;
       )}
 
       {/* Weapon buttons */}
-      <div className="text-xs text-center text-slate-400">Pick your weapon:</div>
+      <div className="text-xs text-center text-muted">Pick your weapon:</div>
       <div className="grid grid-cols-5 gap-1.5">
         {WEAPONS.map(w => (
           <button
             key={w.key}
             onClick={() => attack(w)}
             disabled={phase !== 'choose'}
-            className="flex flex-col items-center gap-0.5 bg-slate-700 hover:bg-slate-600 active:scale-95 disabled:opacity-40 rounded-lg p-2 transition-all"
+            className="flex flex-col items-center gap-0.5 bg-line hover:bg-line-2 active:scale-95 disabled:opacity-40 rounded-lg p-2 transition-all"
           >
             <span className="text-2xl">{w.emoji}</span>
-            <span className="text-xs text-slate-300 leading-tight">{w.name}</span>
-            <span className="text-xs text-slate-500 leading-tight text-center">{w.tip}</span>
+            <span className="text-xs text-ink-2 leading-tight">{w.name}</span>
+            <span className="text-xs text-muted leading-tight text-center">{w.tip}</span>
           </button>
         ))}
       </div>
 
       {/* Battle log */}
       {log.length > 0 && (
-        <div className="bg-slate-900/70 rounded-lg p-2 space-y-0.5">
+        <div className="bg-paper-2 rounded-lg p-2 space-y-0.5">
           {log.map((entry, i) => (
-            <div key={i} className="text-xs text-slate-500 leading-snug">{entry}</div>
+            <div key={i} className="text-xs text-muted leading-snug">{entry}</div>
           ))}
         </div>
       )}
     </div>
   )
 }
+
+// Every hand-authored config id; the registry test renders each one.
+export const CONFIG_IDS = Object.keys(CONFIGS)

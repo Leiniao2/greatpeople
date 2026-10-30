@@ -1,8 +1,18 @@
-import { useState, useEffect, useCallback, useRef } from 'react'
+import { useState, useEffect, useCallback, useRef, useMemo } from 'react'
+import type { MinigameProps, Difficulty } from '@/games/types'
+import { mulberry32, resolveConfig, scale, useGameOutcome } from './_shared'
+
+// The maze engine: procedurally generated levels seen through a scrolling
+// viewport, with fog of war, an optional key, and wandering monsters that
+// hunt the player at higher difficulties.
+//
+// Difficulty (1–4) scales what a config asks for:
+//   levels     1 / 2 / 2 / all      monsters   1 / 2 / 3 / 4 (chase from 2)
+//   fog radius – / 6 / 5 / 4        key        from 3        step budget at 4
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
-type Theme = 'dungeon' | 'arctic' | 'underground' | 'forest'
+type Theme = 'dungeon' | 'arctic' | 'underground' | 'forest' | 'sky'
 
 interface BigMazeConfig {
   title: string
@@ -11,9 +21,10 @@ interface BigMazeConfig {
   levels: number
   size: number          // odd number, e.g. 21, 23, 25
   shape: 'square' | 'cross' | 'diamond' | 'irregular'
-  fogRadius: number     // 0 = no fog
+  fogRadius: number     // 0 = never fogged
   hasKey: boolean
   seedBase: number
+  monsterCount?: number // overrides the difficulty default
 }
 
 const CONFIGS: Record<string, BigMazeConfig> = {
@@ -62,6 +73,21 @@ const CONFIGS: Record<string, BigMazeConfig> = {
     theme: 'forest', levels: 2, size: 23, shape: 'irregular',
     fogRadius: 0, hasKey: false, seedBase: 63,
   },
+  'atlantic-sky': {
+    title: 'Atlantic Crossing', subtitle: "Chart Earhart's course through storm corridors over the Atlantic",
+    theme: 'sky', levels: 2, size: 23, shape: 'irregular',
+    fogRadius: 5, hasKey: false, seedBase: 311,
+  },
+  mulan: {
+    title: 'The Northern Passes', subtitle: "Slip Mulan's company through the mountain passes to the front",
+    theme: 'forest', levels: 2, size: 23, shape: 'cross',
+    fogRadius: 4, hasKey: false, seedBase: 419,
+  },
+  musashi: {
+    title: 'Road to Ganryū Island', subtitle: 'Reach the duelling ground before the tide turns',
+    theme: 'forest', levels: 2, size: 21, shape: 'diamond',
+    fogRadius: 4, hasKey: false, seedBase: 523,
+  },
 }
 
 // ── Theme definitions ──────────────────────────────────────────────────────────
@@ -75,59 +101,40 @@ interface ThemeDef {
   exitCls: string
   keyCls: string
   textAccent: string
+  monsters: string[]
 }
 
 const THEME: Record<Theme, ThemeDef> = {
   dungeon: {
-    bg: '#0a0a14',
-    wallCls: 'bg-slate-800',
-    floorCls: 'bg-slate-900/60',
-    playerCls: 'bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.7)]',
-    voidCls: 'bg-slate-950',
-    exitCls: 'bg-emerald-900/60',
-    keyCls: 'bg-yellow-900/60',
-    textAccent: 'text-amber-400',
+    bg: '#0a0a14', wallCls: 'bg-panel-2', floorCls: 'bg-paper-2',
+    playerCls: 'bg-accent shadow-[0_0_8px_rgba(155,44,35,0.7)]',
+    voidCls: 'bg-paper-2', exitCls: 'bg-emerald-900/60', keyCls: 'bg-yellow-900/60',
+    textAccent: 'text-accent', monsters: ['💀', '🦇', '🐍'],
   },
   arctic: {
-    bg: '#0d1a2e',
-    wallCls: 'bg-slate-300',
-    floorCls: 'bg-slate-700/40',
+    bg: '#0d1a2e', wallCls: 'bg-slate-300', floorCls: 'bg-line',
     playerCls: 'bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.7)]',
-    voidCls: 'bg-slate-950',
-    exitCls: 'bg-cyan-800/40',
-    keyCls: 'bg-yellow-700/50',
-    textAccent: 'text-cyan-400',
+    voidCls: 'bg-paper-2', exitCls: 'bg-cyan-800/40', keyCls: 'bg-yellow-700/50',
+    textAccent: 'text-cyan-600', monsters: ['🐻‍❄️', '🌨️', '🐺'],
   },
   underground: {
-    bg: '#0d0800',
-    wallCls: 'bg-amber-950',
-    floorCls: 'bg-yellow-950/60',
+    bg: '#0d0800', wallCls: 'bg-amber-950', floorCls: 'bg-yellow-950/60',
     playerCls: 'bg-yellow-400 shadow-[0_0_8px_rgba(234,179,8,0.7)]',
-    voidCls: 'bg-stone-950',
-    exitCls: 'bg-orange-900/50',
-    keyCls: 'bg-yellow-800/60',
-    textAccent: 'text-yellow-400',
+    voidCls: 'bg-stone-950', exitCls: 'bg-orange-900/50', keyCls: 'bg-yellow-800/60',
+    textAccent: 'text-yellow-600', monsters: ['🦑', '🌊', '🦈'],
   },
   forest: {
-    bg: '#0a1505',
-    wallCls: 'bg-green-900',
-    floorCls: 'bg-green-950/50',
+    bg: '#0a1505', wallCls: 'bg-green-900', floorCls: 'bg-green-950/50',
     playerCls: 'bg-lime-400 shadow-[0_0_8px_rgba(163,230,53,0.7)]',
-    voidCls: 'bg-slate-950',
-    exitCls: 'bg-teal-900/50',
-    keyCls: 'bg-yellow-900/60',
-    textAccent: 'text-lime-400',
+    voidCls: 'bg-paper-2', exitCls: 'bg-teal-900/50', keyCls: 'bg-yellow-900/60',
+    textAccent: 'text-lime-600', monsters: ['🐺', '🐗', '🦊'],
   },
-}
-
-// ── Seeded RNG ─────────────────────────────────────────────────────────────────
-
-function seededRand(seed: number): () => number {
-  let s = seed >>> 0
-  return () => {
-    s = (Math.imul(1664525, s) + 1013904223) >>> 0
-    return s / 4294967296
-  }
+  sky: {
+    bg: '#9ccbe8', wallCls: 'bg-panel', floorCls: 'bg-sky-300/30',
+    playerCls: 'bg-blue-600 shadow-[0_0_8px_rgba(37,99,235,0.7)]',
+    voidCls: 'bg-sky-200', exitCls: 'bg-yellow-300/50', keyCls: 'bg-yellow-300/60',
+    textAccent: 'text-blue-700', monsters: ['🦅', '⚡', '🌪️'],
+  },
 }
 
 // ── Shape mask ─────────────────────────────────────────────────────────────────
@@ -157,15 +164,46 @@ function makeShapeMask(rows: number, cols: number, shape: string): (r: number, c
 
 // ── Maze generation ────────────────────────────────────────────────────────────
 
-function generateMaze(rows: number, cols: number, shape: string, seed: number, hasKey: boolean): string[][] {
+const DIRS4: [number, number][] = [[-1, 0], [1, 0], [0, -1], [0, 1]]
+
+type Pos = [number, number]
+
+interface Level {
+  grid: string[][]
+  start: Pos
+  exit: Pos
+  monsters: Pos[]
+  /** Shortest walk from start to exit (via the key when there is one). */
+  shortest: number
+}
+
+function bfs(grid: string[][], from: Pos): number[][] {
+  const rows = grid.length, cols = grid[0].length
+  const dist = Array.from({ length: rows }, () => Array(cols).fill(-1))
+  const queue: Pos[] = [from]
+  dist[from[0]][from[1]] = 0
+  while (queue.length) {
+    const [r, c] = queue.shift()!
+    for (const [dr, dc] of DIRS4) {
+      const nr = r + dr, nc = c + dc
+      if (nr >= 0 && nr < rows && nc >= 0 && nc < cols && dist[nr][nc] === -1 && grid[nr][nc] !== '#') {
+        dist[nr][nc] = dist[r][c] + 1
+        queue.push([nr, nc])
+      }
+    }
+  }
+  return dist
+}
+
+function generateLevel(size: number, shape: string, seed: number, hasKey: boolean, monsterCount: number): Level {
+  const rows = size, cols = size
   const grid: string[][] = Array.from({ length: rows }, () => Array(cols).fill('#'))
-  const rand = seededRand(seed)
+  const rand = mulberry32(seed)
   const isVoid = makeShapeMask(rows, cols, shape)
 
   function carve(r: number, c: number) {
     grid[r][c] = '.'
     const dirs: [number, number][] = [[0, 2], [0, -2], [2, 0], [-2, 0]]
-    // Shuffle dirs
     for (let i = dirs.length - 1; i > 0; i--) {
       const j = Math.floor(rand() * (i + 1));
       [dirs[i], dirs[j]] = [dirs[j], dirs[i]]
@@ -179,151 +217,166 @@ function generateMaze(rows: number, cols: number, shape: string, seed: number, h
     }
   }
 
-  // Find a valid start cell (must be odd coords and not void)
   let startR = 1, startC = 1
   outer: for (let r = 1; r < rows - 1; r += 2) {
     for (let c = 1; c < cols - 1; c += 2) {
       if (!isVoid(r, c)) { startR = r; startC = c; break outer }
     }
   }
-
   carve(startR, startC)
-
-  // Mark all void cells back as walls (they may have been untouched)
   for (let r = 0; r < rows; r++)
     for (let c = 0; c < cols; c++)
       if (isVoid(r, c)) grid[r][c] = '#'
-
   grid[startR][startC] = 'S'
 
-  // Place exit: find farthest reachable open cell from start
-  let farthestR = rows - 2, farthestC = cols - 2
-  let maxDist = -1
+  // Exit: the farthest reachable cell from the start.
+  const fromStart = bfs(grid, [startR, startC])
+  let exit: Pos = [rows - 2, cols - 2], maxDist = -1
+  for (let r = 0; r < rows; r++)
+    for (let c = 0; c < cols; c++)
+      if (fromStart[r][c] > maxDist && grid[r][c] === '.') { maxDist = fromStart[r][c]; exit = [r, c] }
+  grid[exit[0]][exit[1]] = 'E'
 
-  // BFS to find farthest
-  const visited = Array.from({ length: rows }, () => Array(cols).fill(-1))
-  const queue: [number, number, number][] = [[startR, startC, 0]]
-  visited[startR][startC] = 0
-  const DIRS4: [number, number][] = [[-1, 0], [1, 0], [0, -1], [0, 1]]
-  while (queue.length > 0) {
-    const [r, c, d] = queue.shift()!
-    if (d > maxDist && grid[r][c] !== '#' && !isVoid(r, c) && (r !== startR || c !== startC)) {
-      maxDist = d
-      farthestR = r
-      farthestC = c
-    }
-    for (const [dr, dc] of DIRS4) {
-      const nr = r + dr, nc = c + dc
-      if (nr >= 0 && nr < rows && nc >= 0 && nc < cols && visited[nr][nc] === -1 && grid[nr][nc] !== '#') {
-        visited[nr][nc] = d + 1
-        queue.push([nr, nc, d + 1])
-      }
-    }
-  }
-
-  grid[farthestR][farthestC] = 'E'
-
-  // Place key at ~60% distance if needed
+  // Key: an open cell about 55% of the way to the exit.
+  let shortest = maxDist
   if (hasKey && maxDist > 4) {
     const target = Math.floor(maxDist * 0.55)
-    let bestR = startR, bestC = startC, bestDiff = Infinity
-    for (let r = 0; r < rows; r++) {
+    let best: Pos | null = null, bestDiff = Infinity
+    for (let r = 0; r < rows; r++)
       for (let c = 0; c < cols; c++) {
         if (grid[r][c] !== '.') continue
-        const d = visited[r][c]
-        if (d < 0) continue
-        const diff = Math.abs(d - target)
-        if (diff < bestDiff) { bestDiff = diff; bestR = r; bestC = c }
+        const diff = Math.abs(fromStart[r][c] - target)
+        if (fromStart[r][c] >= 0 && diff < bestDiff) { bestDiff = diff; best = [r, c] }
       }
+    if (best) {
+      grid[best[0]][best[1]] = 'K'
+      const fromKey = bfs(grid, best)
+      shortest = fromStart[best[0]][best[1]] + fromKey[exit[0]][exit[1]]
     }
-    if (bestR !== startR || bestC !== startC) grid[bestR][bestC] = 'K'
   }
 
-  return grid
+  // Monsters: open cells well away from the start, spread out from each other.
+  const candidates: Pos[] = []
+  for (let r = 0; r < rows; r++)
+    for (let c = 0; c < cols; c++)
+      if (grid[r][c] === '.' && fromStart[r][c] >= 8) candidates.push([r, c])
+  const monsters: Pos[] = []
+  for (let i = candidates.length - 1; i > 0; i--) {
+    const j = Math.floor(rand() * (i + 1));
+    [candidates[i], candidates[j]] = [candidates[j], candidates[i]]
+  }
+  for (const cand of candidates) {
+    if (monsters.length >= monsterCount) break
+    if (monsters.every(m => Math.abs(m[0] - cand[0]) + Math.abs(m[1] - cand[1]) >= 6)) monsters.push(cand)
+  }
+
+  return { grid, start: [startR, startC], exit, monsters, shortest }
 }
 
 // ── Component ──────────────────────────────────────────────────────────────────
 
 const VIEWPORT = 13   // must be odd
-const HALF_VP = Math.floor(VIEWPORT / 2)  // 6
+const HALF_VP = Math.floor(VIEWPORT / 2)
 const CELL_SIZE = 28
 
-export default function BigMazeGame({ configId, onWin }: { configId: string; onWin: () => void }) {
-  const config = CONFIGS[configId] ?? CONFIGS['pyramid-deep']
+function settings(config: BigMazeConfig, difficulty: Difficulty) {
+  return {
+    levels: Math.min(config.levels, scale(difficulty, [1, 2, 2, config.levels])),
+    fogRadius: config.fogRadius > 0 ? scale(difficulty, [0, 6, 5, 4]) : 0,
+    monsters: config.monsterCount ?? scale(difficulty, [1, 2, 3, 4]),
+    monstersChase: difficulty >= 2,
+    hasKey: config.hasKey && difficulty >= 3,
+    stepBudgetFactor: difficulty >= 4 ? 2.5 : 0,
+  }
+}
+
+export default function BigMazeGame({ configId, difficulty, seed, params, onWin, onLose }: MinigameProps) {
+  const config = resolveConfig(CONFIGS, configId, params, 'pyramid-deep')
   const th = THEME[config.theme]
+  const rules = useMemo(() => settings(config, difficulty), [config, difficulty])
+  const { outcome, lost, win, lose } = useGameOutcome({ onWin, onLose, delayMs: 900 })
+  const [lostHow, setLostHow] = useState('')
+
+  const makeLevel = useCallback((idx: number) =>
+    generateLevel(config.size, config.shape, config.seedBase + seed * 31 + idx * 7919, rules.hasKey, rules.monsters),
+    [config, seed, rules])
 
   const [levelIdx, setLevelIdx] = useState(0)
-  const [grid, setGrid] = useState<string[][]>(() =>
-    generateMaze(config.size, config.size, config.shape, config.seedBase + 0, config.hasKey)
-  )
-  const [playerPos, setPlayerPos] = useState<[number, number]>([1, 1])
+  const [level, setLevel] = useState<Level>(() => makeLevel(0))
+  const [grid, setGrid] = useState<string[][]>(level.grid)
+  const [playerPos, setPlayerPos] = useState<Pos>(level.start)
+  const [monsters, setMonsters] = useState<Pos[]>(level.monsters)
   const [hasKey, setHasKey] = useState(false)
   const [steps, setSteps] = useState(0)
   const [levelFlash, setLevelFlash] = useState(false)
-  const [won, setWon] = useState(false)
+  const stepBudget = rules.stepBudgetFactor ? Math.ceil(level.shortest * rules.stepBudgetFactor) : 0
 
-  const gridRef = useRef(grid)
-  const playerRef = useRef(playerPos)
-  const hasKeyRef = useRef(hasKey)
-  const wonRef = useRef(won)
-  useEffect(() => { gridRef.current = grid }, [grid])
-  useEffect(() => { playerRef.current = playerPos }, [playerPos])
-  useEffect(() => { hasKeyRef.current = hasKey }, [hasKey])
-  useEffect(() => { wonRef.current = won }, [won])
-
-  // Find start position in new grid
-  function findStart(g: string[][]): [number, number] {
-    for (let r = 0; r < g.length; r++)
-      for (let c = 0; c < g[r].length; c++)
-        if (g[r][c] === 'S') return [r, c]
-    return [1, 1]
-  }
+  // Monster movement needs the latest state inside the move handler.
+  const rng = useRef(mulberry32(seed ^ 0x9e3779b9))
+  const state = useRef({ grid, playerPos, monsters, hasKey, steps, outcome })
+  useEffect(() => { state.current = { grid, playerPos, monsters, hasKey, steps, outcome } }, [grid, playerPos, monsters, hasKey, steps, outcome])
 
   const loadLevel = useCallback((idx: number) => {
-    const newGrid = generateMaze(config.size, config.size, config.shape, config.seedBase + idx * 7919, config.hasKey)
-    const start = findStart(newGrid)
-    setGrid(newGrid)
-    setPlayerPos(start)
+    const next = makeLevel(idx)
+    setLevel(next)
+    setGrid(next.grid)
+    setPlayerPos(next.start)
+    setMonsters(next.monsters)
     setHasKey(false)
     setLevelFlash(true)
     setTimeout(() => setLevelFlash(false), 900)
-  }, [config])
+  }, [makeLevel])
+
+  const caught = useCallback((how: string) => { setLostHow(how); lose(how) }, [lose])
+
+  // Each monster takes one step after the player: toward the player when
+  // chasing (most of the time), otherwise to a random open neighbour.
+  const stepMonsters = useCallback((g: string[][], player: Pos, current: Pos[]): Pos[] => {
+    if (!rules.monstersChase) return current
+    return current.map(([r, c]) => {
+      const open = DIRS4.map(([dr, dc]) => [r + dr, c + dc] as Pos)
+        .filter(([nr, nc]) => g[nr]?.[nc] !== undefined && g[nr][nc] !== '#')
+      if (open.length === 0) return [r, c]
+      const chase = rng.current() < 0.7
+      if (chase) {
+        open.sort((a, b) =>
+          (Math.abs(a[0] - player[0]) + Math.abs(a[1] - player[1])) -
+          (Math.abs(b[0] - player[0]) + Math.abs(b[1] - player[1])))
+        return open[0]
+      }
+      return open[Math.floor(rng.current() * open.length)]
+    })
+  }, [rules.monstersChase])
 
   const move = useCallback((dr: number, dc: number) => {
-    if (wonRef.current) return
-    const [pr, pc] = playerRef.current
-    const g = gridRef.current
+    const s = state.current
+    if (s.outcome || levelFlash) return
+    const [pr, pc] = s.playerPos
     const nr = pr + dr, nc = pc + dc
-    const rows = g.length, cols = g[0]?.length ?? 0
-    if (nr < 0 || nr >= rows || nc < 0 || nc >= cols) return
-    const cell = g[nr][nc]
-    if (cell === '#') return
+    const cell = s.grid[nr]?.[nc]
+    if (cell === undefined || cell === '#') return
 
-    setSteps(s => s + 1)
+    const nextSteps = s.steps + 1
+    setSteps(nextSteps)
     setPlayerPos([nr, nc])
+
+    if (s.monsters.some(([mr, mc]) => mr === nr && mc === nc)) { caught('caught'); return }
 
     if (cell === 'K') {
       setHasKey(true)
-      // Remove key from grid
-      setGrid(prev => {
-        const next = prev.map(row => [...row])
-        next[nr][nc] = '.'
-        return next
-      })
-    } else if (cell === 'E') {
-      const canExit = !config.hasKey || hasKeyRef.current
-      if (canExit) {
-        const nextIdx = levelIdx + 1
-        if (nextIdx >= config.levels) {
-          setWon(true)
-          setTimeout(onWin, 800)
-        } else {
-          setLevelIdx(nextIdx)
-          setTimeout(() => loadLevel(nextIdx), 300)
-        }
-      }
+      setGrid(prev => { const next = prev.map(row => [...row]); next[nr][nc] = '.'; return next })
+    } else if (cell === 'E' && (!rules.hasKey || s.hasKey)) {
+      const nextIdx = levelIdx + 1
+      if (nextIdx >= rules.levels) win()
+      else { setLevelIdx(nextIdx); setTimeout(() => loadLevel(nextIdx), 300) }
+      return
     }
-  }, [levelIdx, config, loadLevel, onWin])
+
+    const moved = stepMonsters(s.grid, [nr, nc], s.monsters)
+    setMonsters(moved)
+    if (moved.some(([mr, mc]) => mr === nr && mc === nc)) { caught('caught'); return }
+    if (stepBudget && nextSteps >= stepBudget) caught('out of steps')
+  }, [levelIdx, rules, loadLevel, stepMonsters, caught, win, stepBudget, levelFlash])
 
   // Keyboard controls
   useEffect(() => {
@@ -340,7 +393,8 @@ export default function BigMazeGame({ configId, onWin }: { configId: string; onW
   }, [move])
 
   const [pr, pc] = playerPos
-  const fogRadius = config.fogRadius
+  const fogRadius = rules.fogRadius
+  const monsterAt = (r: number, c: number) => monsters.findIndex(([mr, mc]) => mr === r && mc === c)
 
   // Render viewport cells
   const cells: JSX.Element[] = []
@@ -348,21 +402,18 @@ export default function BigMazeGame({ configId, onWin }: { configId: string; onW
     for (let vc = 0; vc < VIEWPORT; vc++) {
       const mr = pr - HALF_VP + vr
       const mc = pc - HALF_VP + vc
-
       const isPlayerCell = vr === HALF_VP && vc === HALF_VP
 
-      // Fog of war
       const chebDist = Math.max(Math.abs(vr - HALF_VP), Math.abs(vc - HALF_VP))
       const inFog = fogRadius > 0 && chebDist > fogRadius
       const nearFog = fogRadius > 0 && chebDist === fogRadius + 1
 
-      // Out of bounds = wall
-      const rows = grid.length, cols = grid[0]?.length ?? 0
-      const outOfBounds = mr < 0 || mr >= rows || mc < 0 || mc >= cols
+      const outOfBounds = mr < 0 || mr >= grid.length || mc < 0 || mc >= grid[0].length
       const cell = outOfBounds ? '#' : grid[mr][mc]
       const isWall = cell === '#'
       const isExit = cell === 'E'
       const isKey = cell === 'K'
+      const monster = outOfBounds ? -1 : monsterAt(mr, mc)
 
       let bgCls = th.floorCls
       if (inFog) bgCls = ''
@@ -381,123 +432,95 @@ export default function BigMazeGame({ configId, onWin }: { configId: string; onW
           className={`relative flex items-center justify-center ${bgCls}`}
           style={{ width: CELL_SIZE, height: CELL_SIZE, ...fogStyle }}
         >
-          {!inFog && isExit && !isPlayerCell && (
-            <span className="text-[14px] leading-none select-none">🚪</span>
-          )}
-          {!inFog && isKey && !isPlayerCell && (
-            <span className="text-[14px] leading-none select-none">🔑</span>
+          {!inFog && isExit && !isPlayerCell && <span className="text-[14px] leading-none select-none">🚪</span>}
+          {!inFog && isKey && !isPlayerCell && <span className="text-[14px] leading-none select-none">🔑</span>}
+          {!inFog && monster >= 0 && !isPlayerCell && (
+            <span className="text-[16px] leading-none select-none">{th.monsters[monster % th.monsters.length]}</span>
           )}
           {isPlayerCell && (
-            <div
-              className={`rounded-full z-10 ${th.playerCls}`}
-              style={{ width: CELL_SIZE - 8, height: CELL_SIZE - 8 }}
-            />
+            <div className={`rounded-full z-10 ${lost ? 'bg-red-500' : th.playerCls}`}
+              style={{ width: CELL_SIZE - 8, height: CELL_SIZE - 8 }} />
           )}
         </div>
       )
     }
   }
 
-  const exitNeedsKey = config.hasKey && !hasKey
-  const [pr2, pc2] = playerPos
-  const exitVisible = fogRadius === 0 || (() => {
-    for (let r = 0; r < grid.length; r++)
-      for (let c = 0; c < grid[r].length; c++)
-        if (grid[r][c] === 'E') {
-          const cheb = Math.max(Math.abs(r - pr2), Math.abs(c - pc2))
-          return fogRadius === 0 || cheb <= fogRadius
-        }
-    return false
-  })()
-  void exitVisible  // may be used for status hint in future
+  const exitNeedsKey = rules.hasKey && !hasKey
 
   return (
-    <div className="flex flex-col items-center gap-3 text-white select-none">
-
-      {/* Header */}
+    <div className="flex flex-col items-center gap-3 text-ink select-none">
       <div className="text-center">
         <p className={`font-bold text-sm tracking-wide ${th.textAccent}`}>{config.title}</p>
-        <p className="text-slate-400 text-[10px]">{config.subtitle}</p>
+        <p className="text-muted text-[10px]">{config.subtitle}</p>
       </div>
 
-      {/* Level & steps bar */}
-      <div className="flex items-center gap-5 text-xs">
-        <span className="text-slate-400">
-          Level <span className={`font-bold ${th.textAccent}`}>{levelIdx + 1}/{config.levels}</span>
+      <div className="flex items-center gap-4 text-xs">
+        <span className="text-muted">
+          Level <span className={`font-bold ${th.textAccent}`}>{levelIdx + 1}/{rules.levels}</span>
         </span>
-        <span className="text-slate-400">
-          Steps <span className={`font-bold ${th.textAccent}`}>{steps}</span>
+        <span className={stepBudget && steps > stepBudget * 0.8 ? 'text-red-600 font-bold' : 'text-muted'}>
+          Steps <span className={`font-bold ${th.textAccent}`}>{steps}</span>{stepBudget ? ` / ${stepBudget}` : ''}
         </span>
-        {config.hasKey && (
-          <span className={hasKey ? 'text-yellow-400 font-bold' : 'text-slate-600'}>
+        {rules.hasKey && (
+          <span className={hasKey ? 'text-yellow-600 font-bold' : 'text-muted/80'}>
             {hasKey ? '🔑 Key collected' : '🔑 Find the key'}
           </span>
         )}
       </div>
 
-      {/* Viewport */}
-      <div
-        className="relative rounded-xl overflow-hidden border border-slate-600/40"
-        style={{ width: CELL_SIZE * VIEWPORT, height: CELL_SIZE * VIEWPORT, background: th.bg }}
-      >
-        <div
-          className="grid"
-          style={{
-            gridTemplateColumns: `repeat(${VIEWPORT}, ${CELL_SIZE}px)`,
-            gridTemplateRows: `repeat(${VIEWPORT}, ${CELL_SIZE}px)`,
-          }}
-        >
+      <div className="relative rounded-xl overflow-hidden border border-line"
+        style={{ width: CELL_SIZE * VIEWPORT, height: CELL_SIZE * VIEWPORT, background: th.bg }}>
+        <div className="grid"
+          style={{ gridTemplateColumns: `repeat(${VIEWPORT}, ${CELL_SIZE}px)`, gridTemplateRows: `repeat(${VIEWPORT}, ${CELL_SIZE}px)` }}>
           {cells}
         </div>
 
-        {/* Level flash overlay */}
         {levelFlash && (
-          <div className="absolute inset-0 bg-white/10 flex items-center justify-center pointer-events-none z-20 rounded-xl">
-            <div className="bg-slate-950/90 border border-slate-600 rounded-xl px-5 py-3 text-center">
-              <p className={`font-bold text-sm ${th.textAccent}`}>Level {levelIdx + 1} / {config.levels}</p>
-              <p className="text-slate-400 text-[10px] mt-0.5">{config.title}</p>
+          <div className="absolute inset-0 bg-panel flex items-center justify-center pointer-events-none z-20 rounded-xl">
+            <div className="bg-paper-2 border border-line rounded-xl px-5 py-3 text-center">
+              <p className={`font-bold text-sm ${th.textAccent}`}>Level {levelIdx + 1} / {rules.levels}</p>
+              <p className="text-muted text-[10px] mt-0.5">{config.title}</p>
             </div>
           </div>
         )}
-
-        {/* Won flash */}
-        {won && (
+        {outcome === 'won' && (
           <div className="absolute inset-0 bg-emerald-500/20 flex items-center justify-center pointer-events-none z-20 rounded-xl animate-pulse" />
+        )}
+        {lost && (
+          <div className="absolute inset-0 bg-red-900/50 flex items-center justify-center z-20 rounded-xl">
+            <p className="text-paper font-bold text-lg drop-shadow">{lostHow === 'out of steps' ? 'Out of steps' : 'Caught!'}</p>
+          </div>
         )}
       </div>
 
-      {/* Hint */}
-      <p className="text-slate-600 text-[10px]">
+      <p className="text-muted/80 text-[10px]">
         {exitNeedsKey ? 'Find the 🔑 key before the 🚪 exit opens' : 'Reach the 🚪 exit'}
+        {rules.monsters > 0 && (rules.monstersChase ? ' — the hunters follow your every step' : ' — don\'t touch the lurking beasts')}
       </p>
 
-      {/* D-pad */}
       <div className="flex flex-col items-center gap-1 mt-1">
-        <DPadBtn label="↑" onClick={() => move(-1, 0)} accent={th.textAccent} />
+        <DPadBtn label="↑" onClick={() => move(-1, 0)} />
         <div className="flex items-center gap-1">
-          <DPadBtn label="←" onClick={() => move(0, -1)} accent={th.textAccent} />
-          <div
-            className="flex items-center justify-center rounded-lg bg-slate-800/30 border border-slate-700/30"
-            style={{ width: 44, height: 44 }}
-          >
-            <div className="w-2 h-2 rounded-full bg-slate-600/50" />
+          <DPadBtn label="←" onClick={() => move(0, -1)} />
+          <div className="flex items-center justify-center rounded-lg bg-panel-2 border border-line" style={{ width: 44, height: 44 }}>
+            <div className="w-2 h-2 rounded-full bg-line-2" />
           </div>
-          <DPadBtn label="→" onClick={() => move(0, 1)} accent={th.textAccent} />
+          <DPadBtn label="→" onClick={() => move(0, 1)} />
         </div>
-        <DPadBtn label="↓" onClick={() => move(1, 0)} accent={th.textAccent} />
+        <DPadBtn label="↓" onClick={() => move(1, 0)} />
       </div>
     </div>
   )
 }
 
-function DPadBtn({ label, onClick, accent }: { label: string; onClick: () => void; accent: string }) {
-  void accent
+function DPadBtn({ label, onClick }: { label: string; onClick: () => void }) {
   return (
     <button
       onPointerDown={e => { e.preventDefault(); onClick() }}
       className="flex items-center justify-center rounded-lg border text-lg font-bold
-        bg-white/10 border-slate-600/50 text-slate-300
-        hover:bg-white/20 active:bg-amber-500/30 active:border-amber-500/50
+        bg-panel border-line text-ink-2
+        hover:bg-panel-2 active:bg-accent/30 active:border-accent/50
         transition-all duration-100 select-none touch-none"
       style={{ width: 44, height: 44 }}
     >
@@ -505,3 +528,6 @@ function DPadBtn({ label, onClick, accent }: { label: string; onClick: () => voi
     </button>
   )
 }
+
+// Every hand-authored config id; the registry test renders each one.
+export const CONFIG_IDS = Object.keys(CONFIGS)

@@ -30,7 +30,7 @@ private data class Story(
     val title: String,
     val figure: String?,
     val tagline: String,
-    val quizzes: Int,
+    val challengeCount: Int,
 )
 
 private data class EraData(
@@ -51,7 +51,7 @@ private fun loadEras(context: Context): List<EraData> {
             title   = obj.getString("title"),
             figure  = if (obj.isNull("figure")) null else obj.getString("figure"),
             tagline = obj.getString("tagline"),
-            quizzes = obj.getInt("quizzes"),
+            challengeCount = obj.getInt("challengeCount"),
         )
         byEra.getOrPut(era) { mutableListOf() }.add(story)
     }
@@ -342,7 +342,7 @@ private fun StoryCard(
                 )
             }
             Text(
-                "${story.quizzes} ${if (story.quizzes == 1) "quiz" else "quizzes"}",
+                "${story.challengeCount} ${if (story.challengeCount == 1) "challenge" else "challenges"}",
                 style = MaterialTheme.typography.labelSmall.copy(
                     fontSize = 10.sp,
                     color = if (unlocked) Slate700 else Slate700.copy(alpha = 0.5f),

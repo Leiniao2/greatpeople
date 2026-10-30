@@ -119,14 +119,14 @@ export default function CookingGame({ configId, onWin }: { configId: string; onW
   const isCorrect = submitted && chosen.every((s, i) => s === config.steps[i])
 
   return (
-    <div className="flex flex-col gap-3 bg-slate-950 rounded-xl p-3">
-      <p className="text-amber-400/80 text-[10px] font-bold uppercase tracking-widest">{config.title}</p>
-      <p className="text-white text-sm font-medium leading-snug">{config.question}</p>
+    <div className="flex flex-col gap-3 bg-paper-2 rounded-xl p-3">
+      <p className="text-accent/80 text-[10px] font-bold uppercase tracking-widest">{config.title}</p>
+      <p className="text-ink text-sm font-medium leading-snug">{config.question}</p>
 
       {/* Chosen steps in order */}
-      <div className="flex flex-col gap-1.5 min-h-[60px] p-2 rounded-xl bg-slate-900 border border-white/[0.06]">
+      <div className="flex flex-col gap-1.5 min-h-[60px] p-2 rounded-xl bg-paper-2 border border-line">
         {chosen.length === 0 && (
-          <p className="text-slate-600 text-xs italic self-center my-1">Tap steps below in order…</p>
+          <p className="text-muted/80 text-xs italic self-center my-1">Tap steps below in order…</p>
         )}
         {chosen.map((step, i) => {
           const isStepCorrect = submitted && step === config.steps[i]
@@ -139,9 +139,9 @@ export default function CookingGame({ configId, onWin }: { configId: string; onW
               className={`text-left px-3 py-1.5 rounded-lg text-xs border transition-all flex items-start gap-2
                 ${isStepCorrect ? 'border-emerald-500/40 bg-emerald-500/10 text-emerald-300'
                   : isStepWrong ? 'border-red-500/40 bg-red-500/10 text-red-300'
-                  : 'border-amber-500/20 bg-amber-500/5 text-amber-200'}`}
+                  : 'border-accent/20 bg-accent/5 text-ink-2'}`}
             >
-              <span className="text-slate-500 font-mono shrink-0">{i + 1}.</span>
+              <span className="text-muted font-mono shrink-0">{i + 1}.</span>
               {step}
             </button>
           )
@@ -155,7 +155,7 @@ export default function CookingGame({ configId, onWin }: { configId: string; onW
             key={step}
             onClick={() => select(step)}
             disabled={submitted}
-            className="text-left px-3 py-1.5 rounded-lg text-xs border border-white/10 bg-white/5 text-slate-300 hover:border-amber-500/30 hover:text-amber-200 transition-all"
+            className="text-left px-3 py-1.5 rounded-lg text-xs border border-line bg-panel text-ink-2 hover:border-accent/30 hover:text-ink-2 transition-all"
           >
             {step}
           </button>
@@ -165,7 +165,7 @@ export default function CookingGame({ configId, onWin }: { configId: string; onW
       {allPicked && !submitted && (
         <button
           onClick={handleCheck}
-          className="py-2.5 rounded-xl bg-amber-500 text-slate-950 font-bold text-sm hover:bg-amber-400 transition-all"
+          className="py-2.5 rounded-xl bg-accent text-accent-fg font-bold text-sm hover:bg-accent-hover transition-all"
         >
           Follow Recipe →
         </button>
@@ -185,7 +185,7 @@ export default function CookingGame({ configId, onWin }: { configId: string; onW
       {submitted && !isCorrect && (
         <button
           onClick={() => { setChosen([]); setSubmitted(false) }}
-          className="py-2 rounded-xl border border-slate-700 text-slate-400 text-xs hover:border-slate-600 transition-all"
+          className="py-2 rounded-xl border border-line text-muted text-xs hover:border-line-2 transition-all"
         >
           Try again
         </button>
@@ -193,3 +193,6 @@ export default function CookingGame({ configId, onWin }: { configId: string; onW
     </div>
   )
 }
+
+// Every hand-authored config id; the registry test renders each one.
+export const CONFIG_IDS = Object.keys(CONFIGS)

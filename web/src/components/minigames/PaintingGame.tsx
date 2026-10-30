@@ -516,13 +516,13 @@ export default function PaintingGame({ configId, onWin }: { configId: string; on
   const correctCount = config.regions.filter(r => filled[r.id] === r.targetColor).length
 
   return (
-    <div className="flex flex-col gap-3 bg-slate-950 rounded-xl p-3">
-      <p className="text-amber-400/80 text-[10px] font-bold uppercase tracking-widest">{config.title}</p>
-      <p className="text-slate-400 text-xs">{config.instruction}</p>
+    <div className="flex flex-col gap-3 bg-paper-2 rounded-xl p-3">
+      <p className="text-accent/80 text-[10px] font-bold uppercase tracking-widest">{config.title}</p>
+      <p className="text-muted text-xs">{config.instruction}</p>
 
       {/* Canvas */}
       <div
-        className="rounded-xl overflow-hidden border border-white/[0.08] bg-slate-900"
+        className="rounded-xl overflow-hidden border border-line bg-paper-2"
         onClick={(e) => {
           if (won) return
           const target = e.target as SVGElement
@@ -544,7 +544,7 @@ export default function PaintingGame({ configId, onWin }: { configId: string; on
               className={`px-2.5 py-1 rounded-lg text-[10px] font-semibold border transition-all ${
                 isCorrect ? 'border-emerald-500/50 text-emerald-300 bg-emerald-500/10'
                   : isFilled ? 'border-red-500/40 text-red-300 bg-red-500/10'
-                  : 'border-slate-600 text-slate-400 bg-slate-800 hover:border-amber-500/40'
+                  : 'border-line text-muted bg-panel-2 hover:border-accent/40'
               }`}
             >
               <span
@@ -559,7 +559,7 @@ export default function PaintingGame({ configId, onWin }: { configId: string; on
 
       {/* Palette */}
       <div>
-        <p className="text-slate-500 text-[10px] mb-1.5">Select color, then tap a region:</p>
+        <p className="text-muted text-[10px] mb-1.5">Select color, then tap a region:</p>
         <div className="flex flex-wrap gap-2">
           {config.palette.map(p => (
             <button
@@ -574,15 +574,15 @@ export default function PaintingGame({ configId, onWin }: { configId: string; on
           ))}
         </div>
         {selectedColor && (
-          <p className="text-slate-500 text-[10px] mt-1">
-            Selected: <span className="text-white">{config.palette.find(p => p.color === selectedColor)?.name}</span>
+          <p className="text-muted text-[10px] mt-1">
+            Selected: <span className="text-ink">{config.palette.find(p => p.color === selectedColor)?.name}</span>
           </p>
         )}
       </div>
 
       {/* Progress */}
       {allFilled && !won && (
-        <div className="text-center text-slate-400 text-xs">
+        <div className="text-center text-muted text-xs">
           {correctCount} / {config.regions.length} correct
           {correctCount < config.regions.length && ' — try adjusting some colors'}
         </div>
@@ -594,3 +594,6 @@ export default function PaintingGame({ configId, onWin }: { configId: string; on
     </div>
   )
 }
+
+// Every hand-authored config id; the registry test renders each one.
+export const CONFIG_IDS = Object.keys(CONFIGS)

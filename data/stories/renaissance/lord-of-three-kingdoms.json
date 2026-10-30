@@ -1,0 +1,136 @@
+{
+  "slug": "lord-of-three-kingdoms",
+  "era": "Renaissance",
+  "order": 5,
+  "title": "Lord of Three Kingdoms",
+  "figure": "Bayinnaung",
+  "portraitKey": "bayinnaung",
+  "tagline": "He unified Southeast Asia through conquest and ceremony alike.",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Burma, 1550s. Bayinnaung rises from commoner-born general to king — and turns his eyes on all of Southeast Asia."
+        },
+        {
+          "type": "narration",
+          "text": "He conquers Ava, then Chiang Mai, then Ayutthaya — the kingdom of Thailand. At his peak he rules Burma, Laos, and Thailand simultaneously."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "Bayinnaung unified most of mainland Southeast Asia under his rule. Which kingdoms did he conquer?",
+            "options": [
+              "Shan States, Lan Na, and Ayutthaya (Siam)",
+              "Majapahit, Malacca, and Champa",
+              "Lan Xang, Khmer, and Dai Viet",
+              "Pegu, Arakan, and the Malabar Coast"
+            ],
+            "answer": 0,
+            "countdown": 10,
+            "fact": "Bayinnaung (1516–1581) built the largest empire in Southeast Asian history, conquering the Shan States, the Lan Na kingdom (Chiang Mai), and twice capturing Ayutthaya (the Siamese capital). His Toungoo Empire briefly unified Burma, Thailand, Laos, and portions of Yunnan under one administration."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "He earns the title 'King of Kings.' But he rules not just through force — he absorbs court rituals, embraces Theravada Buddhism, and unifies cultures."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "Bayinnaung imposed Burmese Buddhism on conquered peoples and suppressed their local religions.",
+            "correct": false,
+            "countdown": 10,
+            "fact": "Bayinnaung was known for remarkable religious tolerance. He allowed conquered rulers to keep their thrones as vassals, permitted local customs to continue, and interfered with Portuguese missionaries in Pegu only when they destroyed Buddhist temples. He sought legitimacy through ceremony and generosity as much as through force."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Trade flourishes. Merchants from China, India, and Portugal fill his ports. He builds magnificent pagodas that still stand today."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "sort",
+            "question": "Arrange the key events of Bayinnaung's conquests in order:",
+            "items": [
+              "Bayinnaung becomes king of Toungoo after his brother-in-law's death",
+              "He reunifies Burma after decades of fragmentation",
+              "He conquers the Shan States, ending centuries of Shan dominance",
+              "His armies capture Chiang Mai and the Lan Na kingdom",
+              "He captures Ayutthaya for the first time and takes the Siamese white elephants",
+              "Ayutthaya rebels — Bayinnaung captures it a second time and demands a permanent peace"
+            ],
+            "fact": "The white elephant was the ultimate symbol of royal legitimacy in Southeast Asia. When Bayinnaung captured Ayutthaya's white elephants, he was claiming the spiritual mandate of regional kingship. His Pegu capital became one of the most cosmopolitan cities in Asia, hosting Portuguese traders, Siamese princes, and Chinese merchants simultaneously."
+          }
+        },
+        {
+          "type": "narration",
+          "text": "His army is enormous — reportedly over a million men. Yet he personally leads campaigns, rides with his troops, and earns loyalty through presence."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "tactics",
+            "configId": "general",
+            "instruction": "Bayinnaung's armies crossed rivers and jungle to strike cities that believed themselves unreachable. Choose the line of advance that keeps your forces supplied across 500 miles of rainforest.",
+            "fact": "Bayinnaung's military campaigns required extraordinary logistical sophistication — moving armies through tropical jungle with no road infrastructure. He developed a system of river transport, local supply contracts, and staged advance bases that would not have been out of place in a modern campaign."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Bayinnaung's Toungoo Empire is the largest in Southeast Asian history. He died in 1581 after 30 years of reign — leaving behind a united world."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "matchthree",
+            "configId": "lisbon-spices",
+            "instruction": "Pegu's markets traded silks, rubies, elephants, and spices with Portuguese merchants and Chinese fleets. Match the commodities that flow through the greatest emporium of Southeast Asia.",
+            "fact": "The city of Pegu under Bayinnaung was described by the Portuguese merchant Fernão Mendes Pinto as the most magnificent city he had ever seen — and he had visited Malacca, Goa, and Hormuz. Its markets brought together goods from China, India, the Spice Islands, and Europe in a single magnificent bazaar."
+          }
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "trade",
+            "configId": "steel-stocks",
+            "instruction": "Bayinnaung's treasury ran on tribute, trade tolls, and monopolies. Balance the empire's revenues — wars are expensive and white elephants require golden stables.",
+            "fact": "Bayinnaung's empire was as much a trade network as a military conquest. Control of the overland route between China and the Indian Ocean gave his treasury a cut of the most profitable commerce in Asia. The Portuguese paid handsomely for port rights in Pegu — and Bayinnaung collected from everyone."
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -111,6 +111,7 @@ const ERA_POLICIES: Record<string, Policy[]> = {
 // ── Config → era mapping ───────────────────────────────────────────────────────
 
 const CONFIG_ERA: Record<string, string> = {
+  'aspasia-trial': 'classical',
   'roman-senate': 'classical', 'athenian-assembly': 'classical',
   'spanish-court': 'renaissance',
   'akkadian-council': 'ancient',
@@ -266,14 +267,14 @@ export default function VotingGame({ configId, onWin, politics = 10 }: Props) {
   // ── Render ─────────────────────────────────────────────────────────────────
 
   return (
-    <div className="flex flex-col gap-3 bg-slate-950 rounded-xl p-4">
+    <div className="flex flex-col gap-3 bg-paper-2 rounded-xl p-4">
 
       {/* Stage header */}
       <div className="flex items-center justify-between">
-        <span className="text-amber-400/80 text-[10px] font-bold uppercase tracking-widest">
+        <span className="text-accent/80 text-[10px] font-bold uppercase tracking-widest">
           Stage {stage + 1} — {STAGE_LABELS[stage]}
         </span>
-        <span className="text-slate-500 text-[10px]">First to {target} votes advances</span>
+        <span className="text-muted text-[10px]">First to {target} votes advances</span>
       </div>
 
       {/* Vote bars */}
@@ -283,12 +284,12 @@ export default function VotingGame({ configId, onWin, politics = 10 }: Props) {
             <span className="text-[10px] font-bold w-14 text-right" style={{ color }}>
               {count} {who === 'player' ? '▶' : '▶'}
             </span>
-            <div className="flex-1 h-2.5 bg-white/[0.06] rounded-full overflow-hidden relative">
+            <div className="flex-1 h-2.5 bg-panel rounded-full overflow-hidden relative">
               <div
                 className="absolute left-0 top-0 h-full rounded-full transition-all duration-700"
                 style={{ width: `${pct}%`, background: color }}
               />
-              <div className="absolute top-0 bottom-0 w-px bg-white/30" style={{ left: `${targetPct}%` }} />
+              <div className="absolute top-0 bottom-0 w-px bg-line-2" style={{ left: `${targetPct}%` }} />
             </div>
           </div>
         ))}
@@ -296,7 +297,7 @@ export default function VotingGame({ configId, onWin, politics = 10 }: Props) {
           <span className="w-14" />
           <div className="flex-1 relative h-3">
             <span
-              className="absolute text-[9px] text-white/25"
+              className="absolute text-[9px] text-ink/25"
               style={{ left: `${targetPct}%`, transform: 'translateX(-50%)' }}
             >
               {target}
@@ -308,7 +309,7 @@ export default function VotingGame({ configId, onWin, politics = 10 }: Props) {
       {/* Voter field */}
       <svg
         viewBox="0 0 380 170"
-        className="w-full rounded-xl border border-white/[0.05]"
+        className="w-full rounded-xl border border-line"
         style={{ background: '#0f1220', height: 150 }}
       >
         {voters.map(v => {
@@ -348,7 +349,7 @@ export default function VotingGame({ configId, onWin, politics = 10 }: Props) {
         {PREFS.map(p => (
           <div key={p} className="flex items-center gap-1">
             <div className="w-2 h-2 rounded-full" style={{ background: PREF_COLOR[p] }} />
-            <span className="text-[9px] text-slate-500">{PREF_LABEL[p]}</span>
+            <span className="text-[9px] text-muted">{PREF_LABEL[p]}</span>
           </div>
         ))}
       </div>
@@ -356,7 +357,7 @@ export default function VotingGame({ configId, onWin, politics = 10 }: Props) {
       {/* Phase: select */}
       {phase === 'select' && (
         <>
-          <p className="text-slate-500 text-[10px] uppercase tracking-widest">Choose a policy to propose</p>
+          <p className="text-muted text-[10px] uppercase tracking-widest">Choose a policy to propose</p>
           <div className="grid grid-cols-2 gap-2">
             {policies.map(p => (
               <button
@@ -364,14 +365,14 @@ export default function VotingGame({ configId, onWin, politics = 10 }: Props) {
                 onClick={() => selectPolicy(p)}
                 onMouseEnter={() => setHovered(p.pref)}
                 onMouseLeave={() => setHovered(null)}
-                className="flex flex-col gap-1 text-left p-3 rounded-xl border border-white/10 bg-white/[0.03] hover:border-amber-500/40 hover:bg-amber-500/[0.05] transition-all group cursor-pointer"
+                className="flex flex-col gap-1 text-left p-3 rounded-xl border border-line bg-panel hover:border-accent/40 hover:bg-accent/[0.05] transition-all group cursor-pointer"
               >
                 <div className="flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: PREF_COLOR[p.pref] }} />
-                  <span className="text-white text-xs font-semibold leading-tight group-hover:text-amber-100">{p.name}</span>
+                  <span className="text-ink text-xs font-semibold leading-tight group-hover:text-ink-2">{p.name}</span>
                 </div>
-                <p className="text-slate-500 text-[10px] leading-snug">{p.desc}</p>
-                <span className="text-slate-600 text-[10px]">{PREF_ICON[p.pref]} {PREF_LABEL[p.pref]} voters</span>
+                <p className="text-muted text-[10px] leading-snug">{p.desc}</p>
+                <span className="text-muted/80 text-[10px]">{PREF_ICON[p.pref]} {PREF_LABEL[p.pref]} voters</span>
               </button>
             ))}
           </div>
@@ -388,7 +389,7 @@ export default function VotingGame({ configId, onWin, politics = 10 }: Props) {
               style={{ animationDelay: `${d}ms` }}
             />
           ))}
-          <span className="text-slate-500 text-xs ml-1">Opponent is choosing…</span>
+          <span className="text-muted text-xs ml-1">Opponent is choosing…</span>
         </div>
       )}
 
@@ -396,36 +397,36 @@ export default function VotingGame({ configId, onWin, politics = 10 }: Props) {
       {(phase === 'reveal' || phase === 'resolving') && playerPick && aiPick && (
         <div className="flex flex-col gap-2">
           <div className="grid grid-cols-2 gap-2">
-            <div className="flex flex-col gap-1 p-3 rounded-xl border border-amber-500/30 bg-amber-500/10">
-              <span className="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Your policy</span>
-              <span className="text-white text-sm font-semibold leading-snug">{playerPick.name}</span>
+            <div className="flex flex-col gap-1 p-3 rounded-xl border border-accent/30 bg-accent/10">
+              <span className="text-[10px] text-accent font-bold uppercase tracking-wider">Your policy</span>
+              <span className="text-ink text-sm font-semibold leading-snug">{playerPick.name}</span>
               <span className="text-[10px]" style={{ color: PREF_COLOR[playerPick.pref] }}>
                 {PREF_ICON[playerPick.pref]} {PREF_LABEL[playerPick.pref]}
               </span>
             </div>
             <div className="flex flex-col gap-1 p-3 rounded-xl border border-indigo-500/30 bg-indigo-500/10">
               <span className="text-[10px] text-indigo-400 font-bold uppercase tracking-wider">Their policy</span>
-              <span className="text-white text-sm font-semibold leading-snug">{aiPick.name}</span>
+              <span className="text-ink text-sm font-semibold leading-snug">{aiPick.name}</span>
               <span className="text-[10px]" style={{ color: PREF_COLOR[aiPick.pref] }}>
                 {PREF_ICON[aiPick.pref]} {PREF_LABEL[aiPick.pref]}
               </span>
             </div>
           </div>
           {phase === 'resolving' && (
-            <p className="text-center text-slate-400 text-xs">{gainMsg}</p>
+            <p className="text-center text-muted text-xs">{gainMsg}</p>
           )}
         </div>
       )}
 
       {/* Phase: stage clear */}
       {phase === 'stageclear' && (
-        <div className="flex flex-col items-center gap-2 p-4 rounded-xl border bg-amber-500/10 border-amber-500/30">
+        <div className="flex flex-col items-center gap-2 p-4 rounded-xl border bg-accent/10 border-accent/30">
           <span className="text-2xl">🎯</span>
-          <p className="font-bold text-amber-300">{STAGE_LABELS[stage]} won!</p>
-          <p className="text-slate-400 text-xs">You secured {votes.player} votes — advance to the next stage.</p>
+          <p className="font-bold text-accent">{STAGE_LABELS[stage]} won!</p>
+          <p className="text-muted text-xs">You secured {votes.player} votes — advance to the next stage.</p>
           <button
             onClick={advanceStage}
-            className="mt-1 px-4 py-2 rounded-xl bg-amber-500 text-slate-950 font-bold text-sm hover:bg-amber-400 transition-all"
+            className="mt-1 px-4 py-2 rounded-xl bg-accent text-accent-fg font-bold text-sm hover:bg-accent-hover transition-all"
           >
             Next Stage →
           </button>
@@ -437,7 +438,7 @@ export default function VotingGame({ configId, onWin, politics = 10 }: Props) {
         <div className="flex flex-col items-center gap-2 p-4 rounded-xl border bg-emerald-500/10 border-emerald-500/30">
           <span className="text-2xl">🏆</span>
           <p className="font-bold text-emerald-300">Election won!</p>
-          <p className="text-slate-400 text-xs text-center">
+          <p className="text-muted text-xs text-center">
             You secured {votes.player} / {TOTAL} votes — the people have chosen you.
           </p>
         </div>
@@ -448,10 +449,10 @@ export default function VotingGame({ configId, onWin, politics = 10 }: Props) {
         <div className="flex flex-col items-center gap-2 p-4 rounded-xl border bg-red-500/10 border-red-500/30">
           <span className="text-2xl">🗳️</span>
           <p className="font-bold text-red-300">Election lost</p>
-          <p className="text-slate-400 text-xs text-center">
+          <p className="text-muted text-xs text-center">
             Your opponent reached {target} votes before you — they won {STAGE_LABELS[stage]}.
           </p>
-          <button onClick={onWin} className="mt-1 px-5 py-2 bg-slate-700 text-slate-200 text-xs rounded-lg hover:bg-slate-600 transition-all">
+          <button onClick={onWin} className="mt-1 px-5 py-2 bg-line text-ink-2 text-xs rounded-lg hover:bg-line-2 transition-all">
             Continue →
           </button>
         </div>
@@ -459,3 +460,6 @@ export default function VotingGame({ configId, onWin, politics = 10 }: Props) {
     </div>
   )
 }
+
+// Every hand-authored config id; the registry test renders each one.
+export const CONFIG_IDS = [...Object.keys(CONFIG_ERA), ...Object.keys(ERA_POLICIES)]

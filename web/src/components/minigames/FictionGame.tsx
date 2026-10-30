@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import type { MinigameProps } from '@/games/types'
 
 interface FictionConfig {
   title: string
@@ -10,6 +11,19 @@ interface FictionConfig {
 }
 
 const CONFIGS: Record<string, FictionConfig> = {
+  'marie-escape': {
+    title: 'The Flight to Varennes',
+    passage: 'June 1791. The royal family slipped out of the Tuileries at night in a heavy berline coach, disguised as a Russian baroness and her household. Marie Antoinette had insisted the family travel together rather than in fast, separate carriages. By the next evening the great coach was hours behind schedule, and at Sainte-Menehould a postmaster named Drouet looked hard at the "valet" — then reached into his pocket for a banknote.',
+    prompt: 'What happened next?',
+    options: [
+      'The postmaster accepted a bribe and the family crossed safely into the Austrian Netherlands.',
+      'Drouet recognised the king from his portrait on the banknote, rode ahead, and the family was stopped at Varennes.',
+      'Royalist troops met the coach at Sainte-Menehould and escorted it to the frontier.',
+      'The family abandoned the coach and continued on foot, reaching Montmédy by dawn.',
+    ],
+    answer: 1,
+    fact: 'The family was arrested at Varennes, fifty kilometres short of the loyal garrison at Montmédy, and brought back to Paris through silent crowds. The failed flight destroyed what remained of trust in the monarchy; fourteen months later the Tuileries was stormed and the king deposed.',
+  },
   'mani-parable': {
     title: "The Prophet's Parable",
     passage: 'Mani told his disciples of two great forces locked in eternal conflict: Light and Darkness. Each soul, he said, was a spark of Light trapped in the material world. A king summoned Mani to his court and demanded: "If Light is always good and Darkness always evil, what is the purpose of this world of suffering?"',
@@ -77,7 +91,7 @@ const CONFIGS: Record<string, FictionConfig> = {
   },
 }
 
-export default function FictionGame({ configId, onWin }: { configId: string; onWin: () => void }) {
+export default function FictionGame({ configId, onWin, onLose }: MinigameProps) {
   const config = CONFIGS[configId] ?? CONFIGS['mani-parable']
   const [selected, setSelected] = useState<number | null>(null)
   const revealed = selected !== null
@@ -87,29 +101,30 @@ export default function FictionGame({ configId, onWin }: { configId: string; onW
     if (revealed) return
     setSelected(i)
     if (i === config.answer) setTimeout(onWin, 900)
+    else setTimeout(() => onLose(), 900)
   }
 
   return (
-    <div className="flex flex-col gap-4 bg-slate-950 rounded-xl p-4">
-      <p className="text-amber-400/80 text-[10px] font-bold uppercase tracking-widest">{config.title}</p>
+    <div className="flex flex-col gap-4 bg-paper-2 rounded-xl p-4">
+      <p className="text-accent/80 text-[10px] font-bold uppercase tracking-widest">{config.title}</p>
 
-      <div className="bg-white/[0.03] border border-white/10 rounded-xl p-4">
-        <p className="text-slate-300 text-sm leading-relaxed">{config.passage}</p>
+      <div className="bg-panel border border-line rounded-xl p-4">
+        <p className="text-ink-2 text-sm leading-relaxed">{config.passage}</p>
       </div>
 
-      <p className="text-white text-sm font-semibold">{config.prompt}</p>
+      <p className="text-ink text-sm font-semibold">{config.prompt}</p>
 
       <div className="flex flex-col gap-2">
         {config.options.map((opt, i) => {
           let cls = 'w-full text-left px-4 py-3 rounded-xl text-sm transition-all border '
           if (!revealed) {
-            cls += 'bg-white/[0.04] border-white/10 text-slate-200 hover:border-amber-500/40 hover:text-white cursor-pointer'
+            cls += 'bg-panel border-line text-ink-2 hover:border-accent/40 hover:text-ink cursor-pointer'
           } else if (i === config.answer) {
             cls += 'bg-emerald-500/10 border-emerald-500/40 text-emerald-300 font-medium'
           } else if (i === selected) {
             cls += 'bg-red-500/10 border-red-500/30 text-red-300'
           } else {
-            cls += 'bg-white/[0.02] border-white/[0.05] text-slate-500'
+            cls += 'bg-panel border-line text-muted'
           }
           return (
             <button key={i} onClick={() => pick(i)} className={cls}>
@@ -121,13 +136,16 @@ export default function FictionGame({ configId, onWin }: { configId: string; onW
       </div>
 
       {revealed && (
-        <div className={`p-3 rounded-xl border text-xs leading-relaxed ${correct ? 'bg-emerald-500/10 border-emerald-500/30' : 'bg-amber-500/10 border-amber-500/30'}`}>
-          <span className={`font-bold ${correct ? 'text-emerald-300' : 'text-amber-300'}`}>
+        <div className={`p-3 rounded-xl border text-xs leading-relaxed ${correct ? 'bg-emerald-500/10 border-emerald-500/30' : 'bg-accent/10 border-accent/30'}`}>
+          <span className={`font-bold ${correct ? 'text-emerald-300' : 'text-accent'}`}>
             {correct ? '✓ Correct! ' : '✗ Not quite — '}
           </span>
-          <span className="text-slate-400">{config.fact}</span>
+          <span className="text-muted">{config.fact}</span>
         </div>
       )}
     </div>
   )
 }
+
+// Every hand-authored config id; the registry test renders each one.
+export const CONFIG_IDS = Object.keys(CONFIGS)

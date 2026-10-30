@@ -1,0 +1,136 @@
+{
+  "slug": "marble-into-breath",
+  "era": "Steam",
+  "order": 9,
+  "title": "Marble Into Breath",
+  "figure": "Gian Lorenzo Bernini",
+  "portraitKey": "bernini",
+  "tagline": "He sculpted the soul of Baroque Rome into stone and light.",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Rome, 1620s. The 25-year-old Bernini completes Apollo and Daphne — marble that moves, that breathes, where a god's fingers reach and a woman transforms into laurel. Rome is astonished."
+        },
+        {
+          "type": "narration",
+          "text": "Pope Urban VIII becomes his patron. Bernini is handed the keys to the Eternal City itself — he will shape it for fifty years."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "Which of Bernini's sculptures is considered his greatest early masterpiece?",
+            "options": [
+              "Apollo and Daphne",
+              "The Pietà",
+              "The Ecstasy of Saint Teresa",
+              "The Fountain of the Four Rivers"
+            ],
+            "answer": 0,
+            "countdown": 10,
+            "fact": "Apollo and Daphne (1622–1625) shows the moment Daphne transforms into a laurel tree to escape Apollo — her fingers becoming branches, bark creeping up her legs. Bernini carved this in marble when he was in his mid-twenties. Viewers reported that the finished work looked impossible, as if he had found a way to capture a single instant of motion in stone."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "He designs the baldachin above St. Peter's tomb — 30 meters of twisted bronze columns pulling the eye upward into Michelangelo's dome. Theater and architecture as one."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "Bernini designed St. Peter's Square's famous colonnade to enclose the piazza completely, blocking the view from the streets of Rome.",
+            "correct": false,
+            "countdown": 10,
+            "fact": "Bernini designed St. Peter's Square's twin colonnades to open at their ends, creating a welcoming gesture toward the city. He described them as 'the motherly arms of the Church' reaching out to embrace the faithful — Catholics to confirm their faith, heretics to reunite with the Church, and unbelievers to discover the light. The design is both engineering and theology."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "His Ecstasy of Saint Teresa scandalizes and mesmerizes — a nun in rapture, angels with golden arrows, light streaming through hidden windows. It is a complete theatrical experience."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "sort",
+            "question": "Arrange these major works of Bernini's career in the order they were created:",
+            "items": [
+              "David — a marble figure in dynamic twisting motion, unlike any previous sculpture",
+              "Apollo and Daphne — bark and leaves erupting from marble skin",
+              "The Baldachin — a 29-metre bronze canopy above St. Peter's tomb",
+              "Fountain of the Four Rivers in Piazza Navona",
+              "The Ecstasy of Saint Teresa — divine rapture carved in marble and lit from above",
+              "The Colonnade of St. Peter's Square — completed after 11 years of construction"
+            ],
+            "fact": "Bernini dominated Roman art for six decades, serving under eight popes. Unlike most artists, he died wealthy, celebrated, and with his genius universally acknowledged in his own lifetime. When Louis XIV invited him to Paris to redesign the Louvre, the King of France came personally to see the great man off."
+          }
+        },
+        {
+          "type": "narration",
+          "text": "The great colonnade of St. Peter's Square: two arms of columns wrapping the faithful in an embrace. Bernini says they represent the Church reaching out to the world."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "museum",
+            "configId": "louvre-arrangement",
+            "instruction": "Louis XIV summoned Bernini to Paris to redesign the Louvre — the greatest commission in Europe. Arrange the gallery to reveal the Baroque at its most commanding.",
+            "fact": "Bernini's 1665 Paris visit was a diplomatic triumph and an artistic failure. His plans for the Louvre were ultimately rejected in favour of a French classical design. But his reception was extraordinary: the King walked his horse beside Bernini's carriage, the streets were lined with spectators, and the court treated him as the greatest living artist in the world."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Bernini outlives his rivals and his patrons. He works into his 80s and dies in 1680 — the man who made Rome Baroque, who turned marble into belief."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "jigsaw",
+            "configId": "venetian-master",
+            "instruction": "Bernini painted as well as he sculpted — studying Titian's color to understand how light reveals form. Reassemble the Baroque canvas, restoring its luminous depth.",
+            "fact": "Bernini credited painting, not sculpture, as his primary creative exercise. He claimed that painting allowed him to study light and color, which he then translated into marble. The Ecstasy of Saint Teresa uses hidden windows to cast a single shaft of light onto the sculpture — painting with architecture."
+          }
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "colormix",
+            "configId": "ultramarine-lapis",
+            "instruction": "Bernini's Rome blazed with color — gilded ceilings, lapis lazuli altars, porphyry columns. Mix the pigments that transformed a city into an act of worship.",
+            "fact": "The ultramarine pigment used in Rome's greatest Baroque decorations was made from lapis lazuli ground to powder — worth more than gold by weight. A single altarpiece might consume the annual output of Afghan mines. The Church's lavish use of precious pigment was itself a theological statement: nothing is too costly to offer God."
+          }
+        }
+      ]
+    }
+  ]
+}

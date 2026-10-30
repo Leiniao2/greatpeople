@@ -1,0 +1,116 @@
+{
+  "slug": "wings-over-the-atlantic",
+  "era": "Electricity",
+  "order": 6,
+  "title": "Wings Over the Atlantic",
+  "figure": "Amelia Earhart",
+  "portraitKey": "amelia_earhart",
+  "tagline": "The skies were closed to women — until she flew through them.",
+  "locationImage": "information_sanjose",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Newfoundland, May 20, 1932. A red Lockheed Vega sits on Harbour Grace airfield. The pilot climbs in alone — no navigator, minimal radio. Amelia Earhart intends to fly solo across the Atlantic Ocean. No woman has done it before. Tonight she follows Lindbergh's path — alone."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Amelia Earhart",
+          "portraitKey": "amelia_earhart",
+          "text": "Women must try to do things as men have tried. When they fail, their failure must be but a challenge to others. The most difficult thing is the decision to act. The rest is merely tenacity."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "Amelia Earhart disappeared near which island during her 1937 round-the-world attempt?",
+            "options": [
+              "Hawaii",
+              "Wake Island",
+              "Howland Island",
+              "Midway"
+            ],
+            "answer": 2,
+            "fact": "Earhart and navigator Fred Noonan disappeared on July 2, 1937, near tiny Howland Island in the Central Pacific — one of the most remote spots on Earth. They were never found. Her disappearance remains one of aviation's great mysteries.",
+            "countdown": 10
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "The flight was harrowing. Ice formed on the wings and caused a spin. Her altimeter broke. Fire broke out near the exhaust manifold. She flew through storms for 14 hours and 56 minutes — and landed in a field in Northern Ireland."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Amelia Earhart",
+          "portraitKey": "amelia_earhart",
+          "text": "A farmer walked up to my plane. He said, 'Have you come far?' I said, 'From America.' The look on his face was worth everything."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "maze",
+            "configId": "atlantic-sky",
+            "instruction": "Chart Earhart's course through the storm corridors over the Atlantic.",
+            "fact": "In 1932, Earhart flew solo from Newfoundland to Northern Ireland in 14 hours 56 minutes — battling icing, storm turbulence, and a leaking fuel tank."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "geometry",
+            "configId": "ellipse-area",
+            "instruction": "Earth's orbit is an ellipse. Earhart circled the globe — calculate the area of the elliptical flight path around the equator.",
+            "fact": "Earhart flew her Lockheed Electra around the world's equator — the longest possible circumnavigation route. She completed 22,000 miles before disappearing with only 7,000 miles remaining."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "Amelia Earhart was the first person to fly solo across the Atlantic Ocean.",
+            "correct": false,
+            "fact": "Charles Lindbergh made the first solo transatlantic flight in 1927. Earhart was the first WOMAN to do so — in 1932, flying from Newfoundland to Northern Ireland in 14 hours 56 minutes. She also set the record for fastest transatlantic solo flight at that time."
+          }
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "wordle",
+            "configId": "aviate",
+            "instruction": "Earhart communicated with ground crew using radio codes. Guess the 6-letter word that describes her mission across the Atlantic.",
+            "fact": "Amelia Earhart flew solo across the Atlantic on 20 May 1932 in 14 h 56 min — fighting ice on her wings, a broken altimeter, and a flame leaking from her exhaust manifold."
+          }
+        }
+      ]
+    }
+  ]
+}

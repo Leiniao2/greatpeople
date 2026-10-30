@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import type { MinigameProps } from '@/games/types'
 
 interface AuctionItem {
   id: string
@@ -65,13 +66,7 @@ const CONFIGS: Record<string, Config> = {
 
 type Phase = 'rules' | 'reveal' | 'bidding' | 'ai-thinking' | 'item-done' | 'finished'
 
-export default function AuctionGame({
-  configId,
-  onWin,
-}: {
-  configId: string
-  onWin: () => void
-}) {
+export default function AuctionGame({ configId, onWin, onLose }: MinigameProps) {
   const cfg = CONFIGS[configId] ?? CONFIGS['venetian-auction']
 
   const [itemIdx,    setItemIdx]    = useState(0)
@@ -162,36 +157,36 @@ export default function AuctionGame({
   // ── Rules screen ──────────────────────────────────────────────────────────
   if (phase === 'rules') {
     return (
-      <div className="flex flex-col gap-4 bg-[#0a0a18] text-white p-5 rounded-xl select-none">
+      <div className="flex flex-col gap-4 bg-panel text-ink p-5 rounded-xl select-none">
         <div>
-          <p className="text-amber-400 text-[10px] font-bold uppercase tracking-widest mb-1">{cfg.title}</p>
-          <p className="text-white font-bold text-base">How the Auction Works</p>
+          <p className="text-accent text-[10px] font-bold uppercase tracking-widest mb-1">{cfg.title}</p>
+          <p className="text-ink font-bold text-base">How the Auction Works</p>
         </div>
-        <div className="flex flex-col gap-2 text-sm text-slate-300">
+        <div className="flex flex-col gap-2 text-sm text-ink-2">
           <div className="flex gap-2 items-start">
-            <span className="text-amber-400 font-bold mt-0.5">💰</span>
-            <span>You have <span className="text-amber-300 font-bold">{cfg.budget} coins</span> to bid with. Don't spend it all on decoys.</span>
+            <span className="text-accent font-bold mt-0.5">💰</span>
+            <span>You have <span className="text-accent font-bold">{cfg.budget} coins</span> to bid with. Don't spend it all on decoys.</span>
           </div>
           <div className="flex gap-2 items-start">
-            <span className="text-amber-400 font-bold mt-0.5">★</span>
-            <span>Items marked <span className="text-amber-300 font-bold">★ Target</span> are what you need. Win <span className="text-amber-300 font-bold">{cfg.targetWins}</span> of them to succeed.</span>
+            <span className="text-accent font-bold mt-0.5">★</span>
+            <span>Items marked <span className="text-accent font-bold">★ Target</span> are what you need. Win <span className="text-accent font-bold">{cfg.targetWins}</span> of them to succeed.</span>
           </div>
           <div className="flex gap-2 items-start">
             <span className="text-emerald-400 font-bold mt-0.5">↑</span>
             <span><span className="text-emerald-300 font-bold">Bid</span> — raise the current bid by {BID_STEP} coins. The rival will respond.</span>
           </div>
           <div className="flex gap-2 items-start">
-            <span className="text-slate-400 font-bold mt-0.5">→</span>
-            <span><span className="text-slate-300 font-bold">Pass</span> — if you're the highest bidder, you <span className="text-emerald-300">win</span> the item at your price. If the rival is higher, you <span className="text-red-300">let it go</span>.</span>
+            <span className="text-muted font-bold mt-0.5">→</span>
+            <span><span className="text-ink-2 font-bold">Pass</span> — if you're the highest bidder, you <span className="text-emerald-300">win</span> the item at your price. If the rival is higher, you <span className="text-red-300">let it go</span>.</span>
           </div>
           <div className="flex gap-2 items-start">
-            <span className="text-slate-500 font-bold mt-0.5">⚠</span>
-            <span className="text-slate-400 text-xs">The rival will bid up to a hidden limit. Outbid that limit and they'll fold.</span>
+            <span className="text-muted font-bold mt-0.5">⚠</span>
+            <span className="text-muted text-xs">The rival will bid up to a hidden limit. Outbid that limit and they'll fold.</span>
           </div>
         </div>
         <button
           onClick={() => setPhase('reveal')}
-          className="mt-1 py-3 rounded-xl bg-amber-500 text-slate-950 font-bold text-sm hover:bg-amber-400 active:scale-95 transition-all"
+          className="mt-1 py-3 rounded-xl bg-accent text-accent-fg font-bold text-sm hover:bg-accent-hover active:scale-95 transition-all"
         >
           Start Auction →
         </button>
@@ -200,19 +195,19 @@ export default function AuctionGame({
   }
 
   return (
-    <div className="relative flex flex-col bg-[#0a0a18] text-white select-none rounded-xl overflow-hidden" style={{ minHeight: 400 }}>
+    <div className="relative flex flex-col bg-panel text-ink select-none rounded-xl overflow-hidden" style={{ minHeight: 400 }}>
 
       {/* Header */}
-      <div className="flex items-center justify-between px-4 py-3 border-b border-slate-800">
+      <div className="flex items-center justify-between px-4 py-3 border-b border-line">
         <div>
-          <p className="text-xs text-amber-400 font-semibold tracking-wide uppercase">{cfg.title}</p>
-          <p className="text-[11px] text-slate-500 mt-0.5">
+          <p className="text-xs text-accent font-semibold tracking-wide uppercase">{cfg.title}</p>
+          <p className="text-[11px] text-muted mt-0.5">
             Targets: {wonTargetCnt} / {cfg.targetWins} won
           </p>
         </div>
         <div className="text-right">
-          <p className="text-amber-300 font-bold text-xl">{budget}</p>
-          <p className="text-[10px] text-slate-600">coins remaining</p>
+          <p className="text-accent font-bold text-xl">{budget}</p>
+          <p className="text-[10px] text-muted/80">coins remaining</p>
         </div>
       </div>
 
@@ -221,8 +216,8 @@ export default function AuctionGame({
         {cfg.items.map((it, i) => (
           <div key={it.id} className={`h-1 flex-1 rounded-full transition-colors ${
             wonIds.includes(it.id)               ? 'bg-emerald-500' :
-            i < itemIdx && !wonIds.includes(it.id) ? 'bg-slate-700'  :
-            i === itemIdx                         ? 'bg-amber-500'   : 'bg-slate-800'
+            i < itemIdx && !wonIds.includes(it.id) ? 'bg-line'  :
+            i === itemIdx                         ? 'bg-accent'   : 'bg-panel-2'
           }`} />
         ))}
       </div>
@@ -231,7 +226,7 @@ export default function AuctionGame({
       <div className="flex-1 flex flex-col items-center justify-center px-5 py-4">
 
         {item.isTarget && (
-          <div className="mb-3 px-3 py-0.5 rounded-full border border-amber-500/50 bg-amber-500/15 text-amber-400 text-[10px] font-bold tracking-widest uppercase">
+          <div className="mb-3 px-3 py-0.5 rounded-full border border-accent/50 bg-accent/15 text-accent text-[10px] font-bold tracking-widest uppercase">
             ★ Target Item
           </div>
         )}
@@ -239,17 +234,17 @@ export default function AuctionGame({
         <h2 className={`text-xl font-bold text-center mb-1 transition-opacity duration-500 ${phase === 'reveal' ? 'opacity-0' : 'opacity-100'}`}>
           {item.name}
         </h2>
-        <p className="text-slate-400 text-sm text-center italic mb-6">"{item.hint}"</p>
+        <p className="text-muted text-sm text-center italic mb-6">"{item.hint}"</p>
 
         {/* Bid display */}
         <div className={`rounded-2xl border-2 px-10 py-5 text-center mb-4 transition-all duration-300 ${
           flash === 'win'  ? 'border-emerald-500 bg-emerald-500/10'  :
           flash === 'lose' ? 'border-red-500/50 bg-red-500/10'       :
-          playerHigh       ? 'border-amber-500/60 bg-amber-500/10'   :
-                             'border-slate-700 bg-slate-900/50'
+          playerHigh       ? 'border-accent/60 bg-accent/10'   :
+                             'border-line bg-paper-2'
         }`}>
-          <p className="text-3xl font-black text-amber-300">{currentBid}</p>
-          <p className="text-[10px] text-slate-500 mt-1">current bid (coins)</p>
+          <p className="text-3xl font-black text-accent">{currentBid}</p>
+          <p className="text-[10px] text-muted mt-1">current bid (coins)</p>
           {phase === 'bidding' && playerHigh && (
             <p className="text-emerald-400 text-xs mt-1 font-semibold">You are highest bidder</p>
           )}
@@ -260,12 +255,12 @@ export default function AuctionGame({
 
         {/* AI message / thinking */}
         {aiMsg && (
-          <p className="text-slate-300 text-sm text-center italic mb-3">{aiMsg}</p>
+          <p className="text-ink-2 text-sm text-center italic mb-3">{aiMsg}</p>
         )}
         {phase === 'ai-thinking' && !aiMsg && (
           <div className="flex gap-1.5 mb-3">
             {[0, 1, 2].map(i => (
-              <div key={i} className="w-2 h-2 rounded-full bg-slate-600 animate-bounce"
+              <div key={i} className="w-2 h-2 rounded-full bg-line-2 animate-bounce"
                 style={{ animationDelay: `${i * 0.14}s` }} />
             ))}
           </div>
@@ -277,7 +272,7 @@ export default function AuctionGame({
         <div className="px-4 pb-5 grid grid-cols-2 gap-3">
           <button
             onClick={handlePass}
-            className="py-4 rounded-xl font-bold text-sm border border-slate-700 text-slate-400 hover:border-slate-500 active:scale-95 transition-all"
+            className="py-4 rounded-xl font-bold text-sm border border-line text-muted hover:border-line-2 active:scale-95 transition-all"
           >
             {playerHigh ? 'Accept & Win' : 'Pass'}
           </button>
@@ -286,8 +281,8 @@ export default function AuctionGame({
             disabled={!canBid}
             className={`py-4 rounded-xl font-bold text-sm transition-all active:scale-95 ${
               canBid
-                ? 'bg-amber-500 text-black hover:bg-amber-400'
-                : 'bg-slate-800 text-slate-600 cursor-not-allowed'
+                ? 'bg-accent text-black hover:bg-accent-hover'
+                : 'bg-panel-2 text-muted/80 cursor-not-allowed'
             }`}
           >
             Bid {currentBid + BID_STEP}
@@ -301,8 +296,8 @@ export default function AuctionGame({
           {cfg.items.filter(i => wonIds.includes(i.id)).map(it => (
             <span key={it.id} className={`text-[10px] px-2 py-0.5 rounded-full border ${
               it.isTarget
-                ? 'border-amber-500/50 text-amber-400 bg-amber-500/10'
-                : 'border-slate-700 text-slate-500'
+                ? 'border-accent/50 text-accent bg-accent/10'
+                : 'border-line text-muted'
             }`}>
               {it.isTarget ? '★ ' : ''}{it.name}
             </span>
@@ -314,21 +309,21 @@ export default function AuctionGame({
       {phase === 'finished' && (
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#0a0a18]/95 px-8">
           <div className={`w-16 h-16 rounded-full flex items-center justify-center mb-5 text-2xl font-black ${
-            result === 'won' ? 'bg-amber-500/20 border-2 border-amber-500 text-amber-400' : 'bg-slate-800 border-2 border-slate-600 text-slate-400'
+            result === 'won' ? 'bg-accent/20 border-2 border-accent text-accent' : 'bg-panel-2 border-2 border-line text-muted'
           }`}>
             {result === 'won' ? '★' : '—'}
           </div>
           <h3 className="text-xl font-bold mb-2">
             {result === 'won' ? 'Auction Won!' : 'Auction Closed'}
           </h3>
-          <p className="text-slate-400 text-sm text-center">
+          <p className="text-muted text-sm text-center">
             {result === 'won'
               ? `You secured ${wonTargetCnt} target items.`
               : `Only ${wonTargetCnt} of ${cfg.targetWins} targets acquired.`}
           </p>
           <button
-            onClick={onWin}
-            className="mt-6 px-8 py-3 rounded-xl font-bold text-sm bg-slate-700 text-slate-200 hover:bg-slate-600 active:scale-95 transition-all"
+            onClick={result === 'won' ? onWin : () => onLose('too few targets won')}
+            className="mt-6 px-8 py-3 rounded-xl font-bold text-sm bg-line text-ink-2 hover:bg-line-2 active:scale-95 transition-all"
           >
             Continue →
           </button>
@@ -337,3 +332,6 @@ export default function AuctionGame({
     </div>
   )
 }
+
+// Every hand-authored config id; the registry test renders each one.
+export const CONFIG_IDS = Object.keys(CONFIGS)

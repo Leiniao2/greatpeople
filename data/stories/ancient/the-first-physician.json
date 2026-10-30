@@ -1,0 +1,137 @@
+{
+  "slug": "the-first-physician",
+  "era": "Ancient",
+  "order": 5,
+  "title": "The First Physician",
+  "figure": "Hesy-Ra",
+  "portraitKey": "hesy_ra",
+  "tagline": "More than four thousand years ago, one man received the world's first doctor's title.",
+  "locationImage": "ancient_memphis",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Memphis, Egypt, c. 2700 BCE. The court of Pharaoh Djoser — the same pharaoh who employs Imhotep. Among the officials and scribes, one man holds titles more unusual than any other: Chief of Dentists. Chief of Physicians. His name is carved into the history of medicine forever."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Hesy-Ra",
+          "portraitKey": "hesy_ra",
+          "text": "The body is a system. Every part connected to every other part. A man comes to me with pain in his jaw — but I must also look at his eyes, his color, his breath. The mouth speaks illness before the patient knows they are ill."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "Hesy-Ra is considered the first person in history to hold what title?",
+            "options": [
+              "Pharaoh",
+              "Physician",
+              "Architect",
+              "Astronomer"
+            ],
+            "answer": 1,
+            "fact": "Hesy-Ra (c. 2700–2600 BCE) is the earliest known physician in recorded history. He held the title 'Chief of Dentists and Physicians' — inscribed on a wooden panel in his tomb at Saqqara, making him the first named doctor in history.",
+            "countdown": 10
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Hesy-Ra is the first physician in recorded history whose name we know. His mastaba tomb at Saqqara contains eleven carved wooden panels — among the greatest artworks of the Old Kingdom. He is depicted carrying scribal tools and physician's instruments, a man whose identity fused art and healing."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Royal Patient",
+          "text": "Hesy-Ra, the Pharaoh asks — can you ease the toothache that plagues him? He has been awake three nights.",
+          "portraitKey": "follower:sovereign"
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "Hesy-Ra served under Pharaoh Djoser, who built Egypt's first pyramid at Saqqara.",
+            "correct": true,
+            "countdown": 10,
+            "fact": "Hesy-Ra was Chief of Dentists and Physicians under Pharaoh Djoser (c. 2650 BCE). The Step Pyramid at Saqqara, designed by Imhotep, was built during the same reign — making Hesy-Ra and Imhotep contemporaries at the world's most ambitious construction project."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "dialog",
+          "speaker": "Hesy-Ra",
+          "portraitKey": "hesy_ra",
+          "text": "Bring me oil of juniper, fresh honey, and ground malachite. We will pack the cavity and seal it. But tell the Pharaoh — a tooth this far gone will not last the year. The body forgives much, but it does not forgive being ignored."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "sort",
+            "question": "Arrange these milestones of ancient medicine in chronological order:",
+            "items": [
+              "Hesy-Ra becomes the world's first known named physician (c. 2650 BCE)",
+              "The Edwin Smith Papyrus records surgical techniques for treating wounds and broken bones (c. 1600 BCE)",
+              "The Ebers Papyrus compiles over 700 medical remedies, from herbs to surgery (c. 1550 BCE)",
+              "Hippocrates of Cos founds rational medicine, separating it from religious practice (c. 460 BCE)"
+            ],
+            "fact": "Ancient Egyptian medical knowledge was remarkably advanced. The Edwin Smith Papyrus describes 48 surgical cases with diagnoses, treatments, and prognoses — a clinical approach that would not be surpassed in Europe for thousands of years."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Ancient Egyptian medicine was a sophisticated blend of practical observation and ritual protection. Physicians like Hesy-Ra used herbal compounds, surgical instruments, and anatomical knowledge that would not be surpassed in Europe for two thousand years. The Edwin Smith Papyrus — written centuries later — preserves the tradition he helped establish."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "crossword",
+            "configId": "imhotep",
+            "instruction": "Hesy-Ra and Imhotep were contemporaries under Pharaoh Djoser. Fill in the crossword of their shared world — pyramids, medicine, and ancient Egypt.",
+            "fact": "Hesy-Ra and Imhotep both served under Djoser at Saqqara around 2650 BCE — one built the world's first pyramid, the other held the world's first physician title. They may have walked the same palace corridors."
+          }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Hesy-Ra",
+          "portraitKey": "hesy_ra",
+          "text": "Carve my name here on this panel. Not as a boast — as a record. Future healers must know this art was practiced. Every physician who comes after me stands on the work of someone who came before. Let them know we were here."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "maze",
+            "configId": "pyramid-deep",
+            "instruction": "Egyptian doctors worked beside priests in the labyrinthine temples of Memphis. Navigate the inner passages — every turn holds a medical secret.",
+            "fact": "Egyptian medicine was practised in temple 'Houses of Life' — scriptorium-hospitals where physicians copied medical papyri alongside religious texts. Hesy-Ra's work as both scribe and physician reflects this union of healing and sacred knowledge."
+          }
+        }
+      ]
+    }
+  ]
+}

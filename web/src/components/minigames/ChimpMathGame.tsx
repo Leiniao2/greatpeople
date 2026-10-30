@@ -116,16 +116,16 @@ export default function ChimpMathGame({ configId, onWin }: { configId: string; o
     return (
       <div className="flex flex-col items-center gap-4 p-6 text-center">
         <div className="text-5xl">{pass ? `${cfg.chimpEmoji}🎉` : `${cfg.chimpEmoji}😔`}</div>
-        <div className={`text-xl font-bold ${pass ? 'text-amber-400' : 'text-slate-400'}`}>
+        <div className={`text-xl font-bold ${pass ? 'text-accent' : 'text-muted'}`}>
           {pass ? `${cfg.chimpName} learned it!` : 'Keep practicing!'}
         </div>
-        <div className="text-sm text-slate-400">{score}/{cfg.questions.length} correct</div>
+        <div className="text-sm text-muted">{score}/{cfg.questions.length} correct</div>
         {pass
           ? <>
-              <p className="text-sm text-slate-300 max-w-xs leading-relaxed">{cfg.fact}</p>
-              <button onClick={onWin} className="px-6 py-2 bg-amber-500 hover:bg-amber-400 rounded-lg font-semibold text-slate-900">Complete</button>
+              <p className="text-sm text-ink-2 max-w-xs leading-relaxed">{cfg.fact}</p>
+              <button onClick={onWin} className="px-6 py-2 bg-accent hover:bg-accent-hover rounded-lg font-semibold text-accent-fg">Complete</button>
             </>
-          : <button onClick={restart} className="px-6 py-2 bg-slate-600 hover:bg-slate-500 rounded-lg font-semibold text-white">Try Again</button>
+          : <button onClick={restart} className="px-6 py-2 bg-line-2 hover:bg-line-2 rounded-lg font-semibold text-ink">Try Again</button>
         }
       </div>
     )
@@ -137,7 +137,7 @@ export default function ChimpMathGame({ configId, onWin }: { configId: string; o
       <div className="flex gap-1.5">
         {cfg.questions.map((_, i) => (
           <div key={i} className={`w-6 h-1.5 rounded-full transition-all ${
-            i < qi ? 'bg-green-500' : i === qi ? 'bg-amber-400' : 'bg-slate-600'
+            i < qi ? 'bg-green-500' : i === qi ? 'bg-accent' : 'bg-line-2'
           }`} />
         ))}
       </div>
@@ -145,9 +145,9 @@ export default function ChimpMathGame({ configId, onWin }: { configId: string; o
       {/* Chimp + speech bubble */}
       <div className="flex items-end gap-3 mt-2">
         <div className="text-7xl select-none">{cfg.chimpEmoji}</div>
-        <div className="relative bg-slate-700 border border-slate-500 rounded-2xl rounded-bl-none px-5 py-3 text-center">
-          <div className="text-xs text-slate-400 mb-1">Feed {cfg.chimpName} the right number of bananas!</div>
-          <div className="text-2xl font-mono font-bold text-white tracking-widest">
+        <div className="relative bg-line border border-line-2 rounded-2xl rounded-bl-none px-5 py-3 text-center">
+          <div className="text-xs text-muted mb-1">Feed {cfg.chimpName} the right number of bananas!</div>
+          <div className="text-2xl font-mono font-bold text-ink tracking-widest">
             {q.a} {q.op === '+' ? '➕' : '➖'} {q.b} ＝ ?
           </div>
         </div>
@@ -172,11 +172,11 @@ export default function ChimpMathGame({ configId, onWin }: { configId: string; o
               disabled={chosen}
               className={`flex flex-col items-center gap-1.5 py-3 rounded-xl border transition-all active:scale-95 ${
                 chosen && isCorrect  ? 'border-green-500 bg-green-900/30' :
-                chosen && !isCorrect ? 'border-slate-700 opacity-40' :
-                'border-slate-600 bg-slate-700 hover:bg-slate-600 hover:border-amber-400'
+                chosen && !isCorrect ? 'border-line opacity-40' :
+                'border-line bg-line hover:bg-line-2 hover:border-accent'
               }`}
             >
-              <div className="text-2xl font-bold font-mono text-white">{c}</div>
+              <div className="text-2xl font-bold font-mono text-ink">{c}</div>
               <div className="text-base leading-none">
                 {'🍌'.repeat(Math.min(c, 9))}{c > 9 ? '+' : ''}
               </div>
@@ -187,3 +187,6 @@ export default function ChimpMathGame({ configId, onWin }: { configId: string; o
     </div>
   )
 }
+
+// Every hand-authored config id; the registry test renders each one.
+export const CONFIG_IDS = Object.keys(CONFIGS)

@@ -1,0 +1,132 @@
+{
+  "slug": "pyramid-builders",
+  "era": "Ancient",
+  "order": 0,
+  "title": "Pyramid Builders",
+  "figure": "Imhotep",
+  "portraitKey": "imhotep",
+  "tagline": "Stone by stone, an immortal legacy rises from the desert.",
+  "locationImage": "ancient_memphis",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Egypt, 2650 BCE. The sun hammers the desert like a bronze fist. Thousands of skilled craftsmen haul limestone blocks across the scorching sand — not as slaves, but as workers of the crown, fed and honored for their labor."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Pharaoh Djoser",
+          "text": "Imhotep. I want a monument that touches the sky itself. Something the world has never seen.",
+          "portraitKey": "follower:sovereign"
+        },
+        {
+          "type": "dialog",
+          "speaker": "Imhotep",
+          "portraitKey": "imhotep",
+          "text": "Great Pharaoh, I have dreamed of it. A stairway of stone, six steps reaching to the heavens. Your name will outlast every dynasty that follows."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "Imhotep is best described as:",
+            "options": [
+              "A pharaoh of Egypt",
+              "The architect of the first pyramid",
+              "A military general",
+              "A high priest of Ra"
+            ],
+            "answer": 1,
+            "fact": "Imhotep designed the Step Pyramid of Djoser around 2650 BCE — the world's first large stone structure. He was later deified as a god of medicine."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "The truth about the pyramid builders has long been buried under legend. They were citizens of Egypt — craftsmen, physicians, engineers — who took pride in their craft and left their names carved into the stone."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "crossword",
+            "configId": "imhotep",
+            "instruction": "Solve the ancient Egypt crossword — fill in words about Imhotep's world across and down.",
+            "fact": "PHARAOH, PYRAMID, DUNE — the vocabulary of a civilisation that Imhotep helped build, raising stone mountains from the desert floor."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "dialog",
+          "speaker": "Imhotep",
+          "portraitKey": "imhotep",
+          "text": "See how the outer casing catches the sun? White Tura limestone, polished to a mirror's sheen. From the desert, it will blaze like a second sun. That is how the gods will find us."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "maze",
+            "configId": "pyramid-deep",
+            "instruction": "Navigate the treacherous passages deep inside the Great Pyramid",
+            "fact": "The Step Pyramid of Djoser has six tiers and a subterranean maze of corridors. Imhotep designed every one."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "dialog",
+          "speaker": "Master Builder",
+          "text": "Apprentice! Pharaoh demands a new pyramid: 500 paces long, 500 paces wide, 500 paces tall. Each brick is one pace by one pace by two paces. You must calculate the number of bricks before sunset — or face his wrath.",
+          "portraitKey": "follower:architect"
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "klotski",
+            "configId": "pyramid-capstone",
+            "instruction": "Slide the golden capstone block to the marked position at the base.",
+            "fact": "The pyramids were built with a workforce of skilled, paid laborers — not slaves — who received food, medical care, and honored burial near the site."
+          }
+        },
+        {
+          "type": "narration",
+          "text": "Deep in the sacred chambers, the air is still and ancient. Three levels of corridors wind into darkness — each guarded by the sacred geometry of Imhotep himself. Descend through all three chambers to reach the pharaoh's eternal resting place..."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "colormix",
+            "configId": "egyptian-blue",
+            "instruction": "Mix the royal Egyptian blue that adorned the tombs of pharaohs — the world's first synthetic pigment, made from copper, sand, and limestone.",
+            "fact": "Egyptian blue (cuprorivaite) was manufactured from around 3200 BCE by heating quartz, copper minerals, and limestone to 900°C. It was traded across the ancient world and when exposed to infrared light it glows so brightly it can be detected from orbit."
+          }
+        }
+      ]
+    }
+  ]
+}

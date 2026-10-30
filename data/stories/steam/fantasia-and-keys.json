@@ -1,0 +1,206 @@
+{
+  "slug": "fantasia-and-keys",
+  "era": "Steam",
+  "order": 0,
+  "title": "Fantasia and Keys",
+  "figure": "Clara Schumann",
+  "portraitKey": "clara_schumann",
+  "tagline": "Two voices, one music — they lived what they composed, and composed what they lived.",
+  "locationImage": "steam_london",
+  "bonusCard": {
+    "figureName": "Robert Schumann",
+    "portraitKey": "robert_schumann"
+  },
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Leipzig, 1830. Robert Schumann has two dreams: to be the greatest pianist of his generation, or the greatest composer. He pursues both with the ferocity of someone who has heard music that no one else can yet hear — a music that lives just behind ordinary sound."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Robert Schumann",
+          "portraitKey": "robert_schumann",
+          "text": "Florestan says play faster, louder, with fire. Eusebius says slower — with longing, with restraint. I cannot silence either of them. They are both me. Perhaps a composer must be two people at once."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "What did Robert Schumann name the two contrasting personas he used to sign his music reviews?",
+            "options": [
+              "Apollo and Dionysus",
+              "Florestan and Eusebius",
+              "Maestro and Shadow",
+              "Major and Minor"
+            ],
+            "answer": 1,
+            "countdown": 10,
+            "fact": "Schumann's Florestan (passionate extrovert) and Eusebius (dreaming introvert) represented the two sides of Romantic temperament. He used both names in his music journal Neue Zeitschrift für Musik, which he founded in 1834."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Two years later, Robert sees nine-year-old Clara Wieck perform at her father's concert. He is astonished. By the time she is thirteen, he has moved into the Wieck household as a student. He watches her practise six hours a day — and compose."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Clara Schumann",
+          "portraitKey": "clara_schumann",
+          "text": "Father has trained me since I could walk. But there is music inside me that no teacher gave me. The Piano Concerto — I hear it all at once when I sit still and close my eyes. It is mine."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Robert Schumann",
+          "portraitKey": "robert_schumann",
+          "text": "She plays as if the piano is part of her. And she composes — at thirteen, she composes things I could not have written at twenty. I am in love with her music before I am in love with her."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "music",
+            "configId": "clara-schumann",
+            "instruction": "Clara Schumann performed this phrase publicly for sixty years. Play the ascending melody — the voice of history's greatest concert pianist.",
+            "fact": "Clara Schumann (1819–1896) gave her first public performance at age nine and her last at seventy-one. She performed across Europe for over sixty years, premiering works by her husband Robert and her closest friend Johannes Brahms. Brahms said: 'Clara is the most gifted artist and personality I have ever known.'"
+          }
+        },
+        {
+          "type": "narration",
+          "text": "Clara's father, Friedrich Wieck, forbade the match absolutely. He despised Robert as unstable and improvident. He took them to court. The legal battle lasted years."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Clara Schumann",
+          "portraitKey": "clara_schumann",
+          "text": "Father calls you unstable. He says you have no prospects, no discipline. But I have heard your music, Robert. A man who hears the world that way cannot bring ruin — he can only bring more of that."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Robert Schumann",
+          "portraitKey": "robert_schumann",
+          "text": "They can try to keep us apart in law. But what Clara plays when she sits at the piano — I hear my own heart made sound. No court in Europe can silence that."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "sort",
+            "question": "Arrange these milestones of Clara Schumann's life in chronological order:",
+            "items": [
+              "First public concert at age 9 in Leipzig",
+              "Composes her Piano Concerto in A minor, Op. 7",
+              "Marries Robert Schumann against her father's fierce opposition",
+              "Performs her final public concert at age 72"
+            ],
+            "fact": "Clara Schumann's performing career spanned over 60 years. After Robert's death in 1856, she became the family's sole breadwinner, supporting seven children through concerts across Europe and championing Brahms's music."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "They won. Robert and Clara married in September 1840, the day before her 21st birthday. In that single year, Robert composed over 100 songs — the great 'song year' — a creative torrent released by love and relief."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Robert Schumann",
+          "portraitKey": "robert_schumann",
+          "text": "This year — it all pours from me. The Dichterliebe. The Frauenliebe. I hear the next song before the last one is finished. I think this is what happiness sounds like from the inside."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Clara Schumann",
+          "portraitKey": "clara_schumann",
+          "text": "And I carry them out into the world on my fingers. That is the bargain we made — unspoken, but real. He hears it. I play it. Between us, the music finds its audience."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "wordle",
+            "configId": "piano",
+            "instruction": "Solve the Romantic music crossword — notes, composers, and the language of the soul.",
+            "fact": "Schumann championed young talent — he was one of the first critics to recognise Chopin and Brahms publicly. His review of Brahms' debut announced: 'a young eagle has arrived.' Brahms was twenty, Schumann forty-three."
+          }
+        },
+        {
+          "type": "narration",
+          "text": "But Robert's inner voices grew darker through the 1840s. He heard phantom music at night — an A that would not stop. In February 1854, he threw himself from a bridge into the Rhine. He was pulled out alive and placed in the Endenich asylum, where he spent his last two years."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Clara Schumann",
+          "portraitKey": "clara_schumann",
+          "text": "I have seven children. Robert is in Endenich. Brahms sits in the corner — young, twenty, watching over us all. And I play. Concert after concert, city after city. For the children. For Robert's name. For the music."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Robert Schumann",
+          "portraitKey": "robert_schumann",
+          "text": "Dearest Clara — I hear music still. It is not always clear, not always kind. But it is still there. Do not let them forget what we made together. The music knows the way home."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "music",
+            "configId": "clara-schumann",
+            "instruction": "Arrange the notes of a Clara Schumann melodic phrase — a rising chord journey in the Romantic style.",
+            "fact": "Clara Schumann's Piano Concerto in A minor (Op. 7) was composed when she was 14 — the same age Mendelssohn was when he wrote his Octet. She revised it at 16 and performed it before royalty."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Robert died in July 1856, at forty-six. Clara outlived him by forty years. She gave over 1,300 concerts, refused to lower her fees because men did not lower theirs, and premiered Brahms's greatest works. She composed until her hands gave out. She never stopped."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "Robert Schumann permanently damaged his right hand by using a mechanical device he invented to strengthen his fingers faster.",
+            "correct": true,
+            "fact": "Schumann's finger-strengthening apparatus held some fingers stationary while exercising others. It permanently injured his right hand, ending his piano career and redirecting him entirely to composition and music criticism."
+          }
+        },
+        {
+          "type": "narration",
+          "text": "She performed her final public concert at age 72. The programme included Robert's music."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "compose",
+            "configId": "brahms-lullaby-compose",
+            "instruction": "Brahms — Clara's closest companion after Robert's death — wrote his German Requiem during these years. Arrange its movements in the correct order.",
+            "fact": "Brahms was devoted to Clara for the rest of her life. She championed his music from his first compositions, and he dedicated works to her memory. Their 40-year friendship was the great sustaining relationship of both their lives."
+          }
+        }
+      ]
+    }
+  ]
+}

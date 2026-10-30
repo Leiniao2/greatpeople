@@ -1,0 +1,106 @@
+{
+  "slug": "tea-ceremony",
+  "era": "Medieval",
+  "order": 2,
+  "title": "Tea Ceremony",
+  "figure": "Lu Yu",
+  "portraitKey": "lu_yu",
+  "tagline": "A humble beverage becomes a philosophy of the mind.",
+  "locationImage": "medieval_changan",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Tang Dynasty China, 760 CE. A former orphan and court jester turned scholar sits alone in a bamboo pavilion. He lifts a bowl of green tea to his lips — and begins to write the work that will change how a civilization drinks."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Lu Yu",
+          "portraitKey": "lu_yu",
+          "text": "Tea is not merely a drink. The water must be spring water. The flame must be charcoal, not wood. The bowl matters. The moment of silence before drinking matters. Attention transforms the ordinary into the sacred."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "Lu Yu's 'Classic of Tea' classified tea in how many chapters?",
+            "options": [
+              "3",
+              "5",
+              "10",
+              "25"
+            ],
+            "answer": 2,
+            "fact": "Lu Yu's Cha Jing (Classic of Tea, c. 760 CE) has 10 chapters covering tea's origins, tools for processing, making, drinking, and the history of tea. It transformed tea from a medicinal herb into a cultural art form."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Lu Yu's 'Classic of Tea' — the Chá Jīng — is the world's first monograph on tea. Written around 760 CE, it describes the plant's biology, cultivation, processing, and the philosophy of drinking. It created the aesthetic tradition of the tea ceremony."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "cooking",
+            "configId": "lu-yu-tea",
+            "instruction": "Follow Lu Yu's precise method from the Chajing — every step matters.",
+            "fact": "Lu Yu insisted on spring water collected before sunrise. He could allegedly identify which mountain spring water came from purely by taste."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "dialog",
+          "speaker": "Lu Yu",
+          "portraitKey": "lu_yu",
+          "text": "The Tang poets write of wine and longing. I write of tea and presence. To truly taste a cup of tea, you must be nowhere else. That is harder than most men imagine."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "chemistry",
+            "configId": "tea-blend",
+            "instruction": "Combine the ingredients in the proportions Lu Yu prescribed in the Classic of Tea.",
+            "fact": "Lu Yu's Classic of Tea (茶經) specified precise proportions for water, tea leaves, and salt — the world's first systematic sensory science, written around 760 CE."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "porcelain",
+            "configId": "iron-teapot",
+            "instruction": "Apply the correct metal oxides to each section of the teapot, then fire the kiln.",
+            "fact": "Tenmoku (天目) glazes — prized in Japanese tea ceremony — used iron oxide to create the signature oil-spot and hare's fur patterns in Song Dynasty kilns."
+          }
+        }
+      ]
+    }
+  ]
+}

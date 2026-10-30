@@ -1,0 +1,127 @@
+{
+  "slug": "soul-force",
+  "era": "Electricity",
+  "order": 0,
+  "title": "Soul Force",
+  "figure": "Mohandas Gandhi",
+  "portraitKey": "gandhi",
+  "tagline": "Against the greatest empire in history, one man chooses a different kind of weapon.",
+  "locationImage": "electricity_delhi",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "India, 1930. The British Empire controls the subcontinent of 300 million people with an army of 150,000. A 61-year-old lawyer in a loincloth is about to shake that empire to its foundations — not with weapons, but with a walk to the sea."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Mahatma Gandhi",
+          "portraitKey": "gandhi",
+          "text": "They have the guns. We have something they cannot answer: our willingness to suffer without striking back. Every blow they land on us is a blow against their own claim to civilized rule."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "What term did Gandhi coin for his philosophy of nonviolent resistance?",
+            "options": [
+              "Satyagraha",
+              "Swaraj",
+              "Ahimsa",
+              "Hartal"
+            ],
+            "answer": 0,
+            "countdown": 10,
+            "fact": "Gandhi coined 'Satyagraha' — from Sanskrit satya (truth) and agraha (holding firmly) — in South Africa in 1906. It means 'truth-force' or 'soul-force,' and distinguished his method from passive resistance: Satyagraha was an active, courageous confrontation with injustice using love rather than violence."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "The Salt March: 240 miles on foot, 24 days, starting with 78 followers and ending with tens of thousands. Gandhi and his followers made salt from seawater in defiance of British law. 60,000 people were arrested. The world watched."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "sort",
+            "question": "Arrange these milestones of Gandhi's life in chronological order:",
+            "items": [
+              "Travels to South Africa and experiences racial discrimination",
+              "Leads the Champaran Satyagraha — first mass civil disobedience in India",
+              "Leads the 240-mile Salt March to Dandi, defying British salt monopoly",
+              "Negotiates with Viceroy Irwin — the Gandhi-Irwin Pact",
+              "India achieves independence — and partition",
+              "Assassinated by Nathuram Godse in New Delhi"
+            ],
+            "fact": "The Salt March of 1930 transformed Gandhi from a respected Indian leader into a global symbol. When he picked up a pinch of salt on the Dandi beach, he broke British law — and the world was watching. Within weeks, 60,000 Indians had been arrested for the same act of defiance."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "dialog",
+          "speaker": "Mahatma Gandhi",
+          "portraitKey": "gandhi",
+          "text": "Satyagraha — soul force. Truth force. It is not passive. It requires more courage than fighting. You must look your oppressor in the eye without hatred, accept his violence, and refuse to become like him."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "Gandhi opposed Indian independence from Britain, believing the British Empire could be reformed from within.",
+            "correct": false,
+            "countdown": 10,
+            "fact": "Gandhi devoted his life to Indian independence (swaraj). However, he insisted the path must be nonviolent. His Quit India speech of 1942 demanded immediate British withdrawal — 'Do or Die' — and triggered mass arrests. Gandhi saw independence not merely as political freedom but as moral regeneration."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Gandhi's path through British India required navigating complex colonial obstacles — reaching the people, the press, and the sea. Navigate his march toward the coast..."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "crossword",
+            "configId": "gandhi",
+            "instruction": "Complete the crossword of Gandhi's India — the people, places, and principles that shaped a revolution without rifles.",
+            "fact": "Gandhi's methods were studied and adopted by civil rights leaders around the world. Martin Luther King Jr. called Gandhi's philosophy 'the guiding light of our technique of nonviolent social change.' Nelson Mandela, Cesar Chavez, and Aung San Suu Kyi all cited Gandhi's example."
+          }
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "maze",
+            "configId": "long-march",
+            "instruction": "Walk Gandhi's Salt March — 240 miles in 24 days. Navigate the coastal road to Dandi, where a handful of salt will shake an empire.",
+            "fact": "The 1930 Salt March began with 78 hand-picked followers and ended with tens of thousands. When Gandhi arrived at the sea after 24 days, he said: 'With this, I am shaking the foundations of the British Empire.' The American press called it 'the most spectacular individual act of defiance in modern history.'"
+          }
+        }
+      ]
+    }
+  ]
+}

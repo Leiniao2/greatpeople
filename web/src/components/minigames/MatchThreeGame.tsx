@@ -1,4 +1,6 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useRef } from 'react'
+import type { MinigameProps } from '@/games/types'
+import { hashString, resolveConfig, scale, useGameOutcome, OutcomeBanner } from './_shared'
 
 interface TileType { label: string; bg: string; border: string; text?: string }
 
@@ -23,7 +25,7 @@ const CONFIGS: Record<string, MatchThreeConfig> = {
   'lisbon-spices': {
     title: "Spice Market, Lisbon 1502",
     tiles: [
-      { label: 'C', bg: 'bg-amber-600',  border: 'border-amber-400' },
+      { label: 'C', bg: 'bg-accent',  border: 'border-accent' },
       { label: 'P', bg: 'bg-red-700',    border: 'border-red-500' },
       { label: 'S', bg: 'bg-yellow-500', border: 'border-yellow-300' },
       { label: 'G', bg: 'bg-orange-700', border: 'border-orange-500' },
@@ -51,10 +53,10 @@ const CONFIGS: Record<string, MatchThreeConfig> = {
   'cairo-alchemy': {
     title: "House of Wisdom, Baghdad 830 CE",
     tiles: [
-      { label: '☿', bg: 'bg-slate-600',   border: 'border-slate-400',  text: 'text-slate-100' },
+      { label: '☿', bg: 'bg-line-2',   border: 'border-line-2',  text: 'text-ink-2' },
       { label: '♀', bg: 'bg-teal-700',    border: 'border-teal-400',   text: 'text-teal-100'  },
       { label: '♂', bg: 'bg-red-800',     border: 'border-red-500',    text: 'text-red-100'   },
-      { label: '♃', bg: 'bg-amber-700',   border: 'border-amber-400',  text: 'text-amber-100' },
+      { label: '♃', bg: 'bg-accent',   border: 'border-accent',  text: 'text-ink-2' },
       { label: '♄', bg: 'bg-indigo-800',  border: 'border-indigo-500', text: 'text-indigo-100'},
       { label: '♅', bg: 'bg-cyan-800',    border: 'border-cyan-500',   text: 'text-cyan-100'  },
     ],
@@ -72,7 +74,7 @@ const CONFIGS: Record<string, MatchThreeConfig> = {
       { label: '▽', bg: 'bg-blue-700',   border: 'border-blue-400',   text: 'text-blue-100'   },
       { label: '◇', bg: 'bg-violet-700', border: 'border-violet-400', text: 'text-violet-100' },
       { label: '□', bg: 'bg-rose-800',   border: 'border-rose-500',   text: 'text-rose-100'   },
-      { label: '○', bg: 'bg-amber-700',  border: 'border-amber-400',  text: 'text-amber-100'  },
+      { label: '○', bg: 'bg-accent',  border: 'border-accent',  text: 'text-ink-2'  },
     ],
     gridSize: 7, target: 40,
     rules: { diagonal: true },
@@ -84,7 +86,7 @@ const CONFIGS: Record<string, MatchThreeConfig> = {
   'babylon-tablets': {
     title: "Babylonian Grain Market, 600 BCE",
     tiles: [
-      { label: '⊕', bg: 'bg-amber-700',  border: 'border-amber-500',  text: 'text-amber-100'  },
+      { label: '⊕', bg: 'bg-accent',  border: 'border-accent',  text: 'text-ink-2'  },
       { label: '⊗', bg: 'bg-red-800',    border: 'border-red-500',    text: 'text-red-100'    },
       { label: '⊘', bg: 'bg-teal-700',   border: 'border-teal-400',   text: 'text-teal-100'   },
       { label: '⊙', bg: 'bg-purple-800', border: 'border-purple-500', text: 'text-purple-100' },
@@ -118,7 +120,7 @@ const CONFIGS: Record<string, MatchThreeConfig> = {
     tiles: [
       { label: 'ᚠ', bg: 'bg-stone-700',  border: 'border-stone-500',  text: 'text-stone-100'  },
       { label: 'ᚢ', bg: 'bg-zinc-700',   border: 'border-zinc-400',   text: 'text-zinc-100'   },
-      { label: 'ᚦ', bg: 'bg-slate-600',  border: 'border-slate-400',  text: 'text-slate-200'  },
+      { label: 'ᚦ', bg: 'bg-line-2',  border: 'border-line-2',  text: 'text-ink-2'  },
       { label: 'ᚨ', bg: 'bg-neutral-700',border: 'border-neutral-500',text: 'text-neutral-100'},
       { label: 'ᚱ', bg: 'bg-gray-700',   border: 'border-gray-500',   text: 'text-gray-100'   },
       { label: 'ᚲ', bg: 'bg-stone-800',  border: 'border-stone-500',  text: 'text-stone-200'  },
@@ -134,7 +136,7 @@ const CONFIGS: Record<string, MatchThreeConfig> = {
     tiles: [
       { label: '♦', bg: 'bg-rose-700',    border: 'border-rose-400',    text: 'text-rose-100'    },
       { label: '◆', bg: 'bg-violet-700',  border: 'border-violet-400',  text: 'text-violet-100'  },
-      { label: '⬧', bg: 'bg-amber-700',   border: 'border-amber-400',   text: 'text-amber-100'   },
+      { label: '⬧', bg: 'bg-accent',   border: 'border-accent',   text: 'text-ink-2'   },
       { label: '◉', bg: 'bg-cyan-700',    border: 'border-cyan-400',    text: 'text-cyan-100'    },
       { label: '⬡', bg: 'bg-emerald-700', border: 'border-emerald-400', text: 'text-emerald-100' },
     ],
@@ -241,11 +243,14 @@ function isAdjacent(a: [number, number], b: [number, number]) {
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
-export default function MatchThreeGame({ configId, onWin }: { configId: string; onWin: () => void }) {
-  const config = CONFIGS[configId] ?? CONFIGS['lisbon-spices']
+export default function MatchThreeGame({ configId, difficulty, seed: attemptSeed, params, onWin, onLose }: MinigameProps) {
+  const config = resolveConfig(CONFIGS, configId, params, 'lisbon-spices')
   const { gridSize: N, tiles, rules = {} } = config
+  // Moves allowed before the target must be met: none at difficulty 1, then tighter.
+  const moveLimit = scale(difficulty, [0, Math.ceil(config.target / 2), Math.ceil(config.target / 2.6), Math.ceil(config.target / 3.2)])
+  const { outcome, settled, win, lose } = useGameOutcome({ onWin, onLose, delayMs: 600 })
 
-  const seed = configId.split('').reduce((a, c) => a + c.charCodeAt(0), 0)
+  const seed = (hashString(configId) ^ attemptSeed) >>> 0
   const [randState] = useState(() => ({ val: seed }))
   const rand = useCallback(() => {
     randState.val = (randState.val * 1664525 + 1013904223) & 0xffffffff
@@ -256,7 +261,8 @@ export default function MatchThreeGame({ configId, onWin }: { configId: string; 
   const [selected, setSelected] = useState<[number, number] | null>(null)
   const [cleared, setCleared] = useState(0)
   const [animating, setAnimating] = useState(false)
-  const [won, setWon] = useState(false)
+  const [moves, setMoves] = useState(0)
+  const live = useRef({ cleared: 0, moves: 0 })
 
   const processMatches = useCallback((g: number[][]): { next: number[][]; count: number } => {
     const matched = findMatches(g, N, rules)
@@ -267,32 +273,29 @@ export default function MatchThreeGame({ configId, onWin }: { configId: string; 
     return { next, count: matched.size }
   }, [N, tiles.length, rules, rand])
 
-  const cascade = useCallback((g: number[][], totalCleared: number) => {
+  const cascade = useCallback((g: number[][], _totalCleared: number) => {
     setAnimating(true)
     let cur = g
-    let total = totalCleared
 
     const step = () => {
       const { next, count } = processMatches(cur)
       if (count > 0) {
         cur = next
-        total += count
         setGrid([...cur])
-        setCleared(prev => {
-          const newTotal = prev + count
-          if (newTotal >= config.target && !won) { setWon(true); setTimeout(onWin, 600) }
-          return newTotal
-        })
+        live.current.cleared += count
+        setCleared(live.current.cleared)
+        if (live.current.cleared >= config.target) win()
         setTimeout(step, 350)
       } else {
         setAnimating(false)
+        if (moveLimit && live.current.moves >= moveLimit && live.current.cleared < config.target) lose('out of moves')
       }
     }
     setTimeout(step, 100)
-  }, [processMatches, config.target, won, onWin])
+  }, [processMatches, config.target, win, lose, moveLimit])
 
   const handleCell = (r: number, c: number) => {
-    if (animating || won) return
+    if (animating || settled) return
     if (!selected) { setSelected([r, c]); return }
     const [sr, sc] = selected
     if (sr === r && sc === c) { setSelected(null); return }
@@ -306,12 +309,12 @@ export default function MatchThreeGame({ configId, onWin }: { configId: string; 
     if (count === 0) return // invalid swap — do nothing
 
     setGrid(afterMatch)
-    setCleared(prev => {
-      const newTotal = prev + count
-      if (newTotal >= config.target && !won) { setWon(true); setTimeout(onWin, 600) }
-      return newTotal
-    })
-    cascade(afterMatch, cleared + count)
+    live.current.moves += 1
+    live.current.cleared += count
+    setMoves(live.current.moves)
+    setCleared(live.current.cleared)
+    if (live.current.cleared >= config.target) win()
+    cascade(afterMatch, live.current.cleared)
   }
 
   const progress = Math.min(cleared / config.target, 1)
@@ -320,25 +323,28 @@ export default function MatchThreeGame({ configId, onWin }: { configId: string; 
   const cellSize = N >= 8 ? 'w-8 h-8 text-base' : N >= 7 ? 'w-9 h-9 text-base' : 'w-10 h-10 text-sm'
 
   return (
-    <div className="flex flex-col gap-3 bg-slate-950 rounded-xl p-4">
+    <div className="flex flex-col gap-3 bg-paper-2 rounded-xl p-4">
       <div className="flex items-center justify-between">
-        <p className="text-amber-400/80 text-[10px] font-bold uppercase tracking-widest">{config.title}</p>
-        <p className="text-slate-500 text-[10px]">{cleared} / {config.target}</p>
+        <p className="text-accent/80 text-[10px] font-bold uppercase tracking-widest">{config.title}</p>
+        <p className="text-muted text-[10px]">
+          {cleared} / {config.target}
+          {moveLimit > 0 && <span className={moveLimit - moves <= 3 ? 'text-red-600 font-bold ml-2' : 'ml-2'}>· {Math.max(0, moveLimit - moves)} moves left</span>}
+        </p>
       </div>
 
       {/* Progress */}
-      <div className="h-1.5 bg-white/[0.06] rounded-full overflow-hidden">
-        <div className="h-full bg-amber-500 rounded-full transition-all duration-300" style={{ width: `${progress * 100}%` }} />
+      <div className="h-1.5 bg-panel rounded-full overflow-hidden">
+        <div className="h-full bg-accent rounded-full transition-all duration-300" style={{ width: `${progress * 100}%` }} />
       </div>
 
       {/* Legend */}
       <div className="flex gap-2 flex-wrap items-center">
         {tiles.map((t, i) => (
-          <span key={i} className={`text-xs font-bold px-2 py-0.5 rounded ${t.bg} ${t.text ?? 'text-white'} opacity-80`}>
+          <span key={i} className={`text-xs font-bold px-2 py-0.5 rounded ${t.bg} ${t.text ?? 'text-ink'} opacity-80`}>
             {t.label}
           </span>
         ))}
-        <span className="text-[10px] text-slate-600 ml-1">— {config.ruleDesc}</span>
+        <span className="text-[10px] text-muted/80 ml-1">— {config.ruleDesc}</span>
       </div>
 
       {/* Grid */}
@@ -352,7 +358,7 @@ export default function MatchThreeGame({ configId, onWin }: { configId: string; 
                 <button
                   key={`${r},${c}`}
                   onClick={() => handleCell(r, c)}
-                  className={`${cellSize} rounded-lg font-bold text-white transition-all border-2
+                  className={`${cellSize} rounded-lg font-bold text-ink transition-all border-2
                     ${tile.bg} ${tile.border} ${tile.text ?? ''}
                     ${isSel ? 'scale-110 brightness-125 shadow-lg shadow-white/20' : 'opacity-80 hover:opacity-100 hover:scale-105'}
                     ${animating ? 'pointer-events-none' : ''}
@@ -366,20 +372,18 @@ export default function MatchThreeGame({ configId, onWin }: { configId: string; 
         </div>
       </div>
 
-      <p className="text-slate-600 text-[10px] text-center">
-        {won
-          ? <span className="text-emerald-400 font-bold">✓ Challenge complete!</span>
+      <p className="text-muted/80 text-[10px] text-center">
+        {settled
+          ? ''
           : selected
           ? 'Tap an adjacent tile to swap'
           : 'Tap a tile to select'}
       </p>
 
-      {won && (
-        <div className="p-3 rounded-xl border bg-emerald-500/10 border-emerald-500/30 text-xs leading-relaxed">
-          <span className="font-bold text-emerald-300">✓ Trade complete! </span>
-          <span className="text-slate-400">{config.fact}</span>
-        </div>
-      )}
+      <OutcomeBanner outcome={outcome} detail={config.fact} winTitle="Trade complete!" loseTitle="Out of moves" />
     </div>
   )
 }
+
+// Every hand-authored config id; the registry test renders each one.
+export const CONFIG_IDS = Object.keys(CONFIGS)

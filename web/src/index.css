@@ -3,37 +3,37 @@
 @tailwind utilities;
 
 @layer base {
+  :root { color-scheme: light; }
   body {
-    @apply bg-[#080812] text-white;
+    @apply bg-paper text-ink;
     -webkit-font-smoothing: antialiased;
   }
 }
 
 @layer components {
-  /* Glassmorphism panel */
+  /* Raised paper panel (was a dark glass panel) */
   .glass {
-    background: rgba(255, 255, 255, 0.04);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: #fbf6ea;
+    border: 1px solid #cdbd9a;
+    box-shadow: 0 10px 30px rgba(60, 40, 10, 0.12);
   }
 
   /* Decorative collectible card shape */
   .deco-card {
     @apply absolute w-36 h-52 rounded-2xl;
-    border: 1px solid rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(42, 33, 23, 0.10);
   }
 
   /* Shared input style */
   .auth-input {
-    @apply w-full rounded-xl px-4 py-3 text-sm text-white placeholder-slate-600
+    @apply w-full rounded-xl px-4 py-3 text-sm text-ink placeholder-muted
            transition-all duration-200 outline-none;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #fbf6ea;
+    border: 1px solid #cdbd9a;
   }
   .auth-input:focus {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(245, 158, 11, 0.6);
-    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.12);
+    background: #ffffff;
+    border-color: rgba(155, 44, 35, 0.7);
+    box-shadow: 0 0 0 3px rgba(155, 44, 35, 0.12);
   }
 }

@@ -313,30 +313,30 @@ export default function PipelineGame({ configId, onWin }: { configId: string; on
     <div className="flex flex-col gap-4">
       {/* Header */}
       <div className="text-center">
-        <p className="text-amber-400 font-bold text-sm">{cfg.title}</p>
-        <p className="text-slate-400 text-xs">{cfg.subtitle}</p>
-        <p className="text-slate-500 text-xs mt-1">Tap a pipe to rotate it — connect source to reservoir</p>
+        <p className="text-accent font-bold text-sm">{cfg.title}</p>
+        <p className="text-muted text-xs">{cfg.subtitle}</p>
+        <p className="text-muted text-xs mt-1">Tap a pipe to rotate it — connect source to reservoir</p>
       </div>
 
       {/* Legend */}
       <div className="flex items-center justify-center gap-4 text-[10px]">
         <span className="flex items-center gap-1">
           <span className="w-3 h-3 rounded-full bg-emerald-400 inline-block" />
-          <span className="text-slate-400">Source</span>
+          <span className="text-muted">Source</span>
         </span>
         <span className="flex items-center gap-1">
           <span className="w-3 h-3 rounded-full bg-violet-400 inline-block" />
-          <span className="text-slate-400">Reservoir</span>
+          <span className="text-muted">Reservoir</span>
         </span>
         <span className="flex items-center gap-1">
-          <span className="w-3 h-3 rounded-full bg-amber-400 inline-block" />
-          <span className="text-slate-400">Flowing</span>
+          <span className="w-3 h-3 rounded-full bg-accent inline-block" />
+          <span className="text-muted">Flowing</span>
         </span>
       </div>
 
       {/* Grid */}
       <div
-        className="mx-auto rounded-xl overflow-hidden border border-white/[0.06] bg-[#0d0d1e]"
+        className="mx-auto rounded-xl overflow-hidden border border-line bg-[#0d0d1e]"
         style={{
           display: 'grid',
           gridTemplateColumns: `repeat(${cfg.cols}, 1fr)`,
@@ -359,10 +359,10 @@ export default function PipelineGame({ configId, onWin }: { configId: string; on
                 'aspect-square rounded transition-all duration-150',
                 tile.fixed
                   ? 'cursor-default'
-                  : 'hover:bg-white/[0.06] active:scale-95 cursor-pointer',
+                  : 'hover:bg-panel-2 active:scale-95 cursor-pointer',
                 isLit
-                  ? 'bg-amber-500/[0.07]'
-                  : 'bg-slate-900/60',
+                  ? 'bg-accent/[0.07]'
+                  : 'bg-paper-2',
                 won && isLit ? 'bg-emerald-500/[0.10]' : '',
               ].join(' ')}
               style={{ padding: 2 }}
@@ -381,8 +381,8 @@ export default function PipelineGame({ configId, onWin }: { configId: string; on
       </div>
 
       {/* Status */}
-      <div className="flex items-center justify-center gap-2 text-xs text-slate-500">
-        <div className={`w-2 h-2 rounded-full transition-all ${connected ? 'bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.6)]' : 'bg-slate-700'}`} />
+      <div className="flex items-center justify-center gap-2 text-xs text-muted">
+        <div className={`w-2 h-2 rounded-full transition-all ${connected ? 'bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.6)]' : 'bg-line'}`} />
         <span>{connected ? 'Water flows!' : `${lit.size} / ${cfg.cols * cfg.rows} cells reached`}</span>
       </div>
 
@@ -390,7 +390,7 @@ export default function PipelineGame({ configId, onWin }: { configId: string; on
       {!won && (
         <button
           onClick={reset}
-          className="w-full py-2 rounded-xl border border-white/10 text-slate-400 text-xs hover:border-white/20 transition-all"
+          className="w-full py-2 rounded-xl border border-line text-muted text-xs hover:border-line-2 transition-all"
         >
           Shuffle & Reset
         </button>
@@ -400,9 +400,12 @@ export default function PipelineGame({ configId, onWin }: { configId: string; on
       {won && (
         <div className="p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-xl">
           <p className="text-emerald-400 font-bold text-sm text-center">Aqueduct Complete!</p>
-          <p className="text-slate-400 text-xs mt-1.5 leading-relaxed">{cfg.fact}</p>
+          <p className="text-muted text-xs mt-1.5 leading-relaxed">{cfg.fact}</p>
         </div>
       )}
     </div>
   )
 }
+
+// Every hand-authored config id; the registry test renders each one.
+export const CONFIG_IDS = Object.keys(CONFIGS)

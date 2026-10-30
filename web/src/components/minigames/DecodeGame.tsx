@@ -142,14 +142,14 @@ export default function DecodeGame({ configId, onWin }: { configId: string; onWi
 
   function cipherLetterBorder(cipherLetter: string): string {
     if (selected === cipherLetter) return 'border-2 border-violet-400'
-    return 'border border-slate-600'
+    return 'border border-line'
   }
 
   function guessColor(cipherLetter: string): string {
     const state = getTileState(cipherLetter)
     if (state === 'correct') return 'text-emerald-400'
     if (state === 'wrong')   return 'text-red-400'
-    return 'text-slate-300'
+    return 'text-ink-2'
   }
 
   function alphaBtnStyle(letter: string): string {
@@ -161,7 +161,7 @@ export default function DecodeGame({ configId, onWin }: { configId: string; onWi
       if (letter === correct) return 'bg-emerald-700/60 text-emerald-200 border-emerald-600'
       return 'bg-red-900/50 text-red-300 border-red-700/50'
     }
-    return 'bg-slate-700 text-slate-200 border-slate-600 hover:bg-slate-600 hover:border-amber-500/50'
+    return 'bg-line text-ink-2 border-line hover:bg-line-2 hover:border-accent/50'
   }
 
   // Progress: how many cipher letters are correctly assigned
@@ -172,19 +172,19 @@ export default function DecodeGame({ configId, onWin }: { configId: string; onWi
     <div className="flex flex-col items-center gap-3 select-none">
       {/* Header */}
       <div className="text-center px-2">
-        <p className="text-amber-400 font-bold text-sm tracking-wide">{config.title}</p>
-        <p className="text-slate-400 text-xs mt-0.5 max-w-[300px] leading-snug italic">{config.hint}</p>
+        <p className="text-accent font-bold text-sm tracking-wide">{config.title}</p>
+        <p className="text-muted text-xs mt-0.5 max-w-[300px] leading-snug italic">{config.hint}</p>
       </div>
 
       {/* Progress bar */}
       <div className="w-full max-w-[320px]">
-        <div className="flex justify-between text-[10px] text-slate-500 mb-1">
+        <div className="flex justify-between text-[10px] text-muted mb-1">
           <span>Decoded</span>
-          <span className="text-amber-400/80">{correctCount}/{totalUnique} letters</span>
+          <span className="text-accent/80">{correctCount}/{totalUnique} letters</span>
         </div>
-        <div className="h-1 bg-slate-800 rounded-full overflow-hidden">
+        <div className="h-1 bg-panel-2 rounded-full overflow-hidden">
           <div
-            className="h-full bg-amber-500 rounded-full transition-all duration-300"
+            className="h-full bg-accent rounded-full transition-all duration-300"
             style={{ width: totalUnique ? `${(correctCount / totalUnique) * 100}%` : '0%' }}
           />
         </div>
@@ -211,10 +211,10 @@ export default function DecodeGame({ configId, onWin }: { configId: string; onWi
                       font-mono text-xs font-bold
                       transition-colors duration-150
                       ${isSelected
-                        ? 'bg-violet-900/70 text-amber-300 border-t-2 border-l-2 border-r-2 border-violet-400'
+                        ? 'bg-violet-900/70 text-accent border-t-2 border-l-2 border-r-2 border-violet-400'
                         : state === 'correct'
-                        ? 'bg-emerald-900/40 text-amber-400/80 border-t border-l border-r border-emerald-700/40'
-                        : 'bg-slate-800/60 text-amber-500/70 border-t border-l border-r border-slate-600/60'
+                        ? 'bg-emerald-900/40 text-accent/80 border-t border-l border-r border-emerald-700/40'
+                        : 'bg-panel-2 text-accent/70 border-t border-l border-r border-line'
                       }
                     `}
                   >
@@ -229,7 +229,7 @@ export default function DecodeGame({ configId, onWin }: { configId: string; onWi
                       transition-colors duration-150
                       ${isSelected ? 'border-violet-400' : cipherLetterBorder(cipherLetter)}
                       ${guessColor(cipherLetter)}
-                      ${isSelected ? 'bg-violet-900/40' : 'bg-slate-900/60'}
+                      ${isSelected ? 'bg-violet-900/40' : 'bg-paper-2'}
                     `}
                   >
                     {guess}
@@ -243,7 +243,7 @@ export default function DecodeGame({ configId, onWin }: { configId: string; onWi
 
       {/* Instruction hint */}
       {!won && (
-        <p className="text-slate-500 text-[10px] text-center">
+        <p className="text-muted text-[10px] text-center">
           {selected
             ? <span>Press a key or tap a letter to assign <span className="text-violet-300 font-bold">{selected}</span></span>
             : 'Tap a cipher letter to select it, then type or tap to decode'
@@ -291,8 +291,8 @@ export default function DecodeGame({ configId, onWin }: { configId: string; onWi
                 }
               }}
               className="px-4 h-7 rounded text-[11px] font-bold border
-                bg-slate-700 text-slate-300 border-slate-600
-                hover:bg-slate-600 active:scale-95 transition-colors"
+                bg-line text-ink-2 border-line
+                hover:bg-line-2 active:scale-95 transition-colors"
             >
               ⌫ Clear
             </button>
@@ -313,3 +313,6 @@ export default function DecodeGame({ configId, onWin }: { configId: string; onWi
     </div>
   )
 }
+
+// Every hand-authored config id; the registry test renders each one.
+export const CONFIG_IDS = Object.keys(CONFIGS)

@@ -238,9 +238,9 @@ export default function BridgeGame({ configId, onWin }: { configId: string; onWi
   }
 
   return (
-    <div className="flex flex-col gap-3 bg-slate-950 rounded-xl p-3">
-      <p className="text-amber-400/80 text-[10px] font-bold uppercase tracking-widest">{cfg.title}</p>
-      <p className="text-white text-sm font-medium leading-snug">{cfg.question}</p>
+    <div className="flex flex-col gap-3 bg-paper-2 rounded-xl p-3">
+      <p className="text-accent/80 text-[10px] font-bold uppercase tracking-widest">{cfg.title}</p>
+      <p className="text-ink text-sm font-medium leading-snug">{cfg.question}</p>
 
       <div className="flex justify-center">
         <div className="relative" style={{ width: W, height: H }}>
@@ -272,10 +272,10 @@ export default function BridgeGame({ configId, onWin }: { configId: string; onWi
                   width: 36, height: 36,
                 }}
                 className={`rounded-full flex items-center justify-center text-sm font-bold border-2 transition-all
-                  ${isSel ? 'border-amber-400 bg-amber-500/30 scale-110' :
+                  ${isSel ? 'border-accent bg-accent/30 scale-110' :
                     over ? 'border-red-400 bg-red-500/20 text-red-300' :
                     done ? 'border-emerald-400 bg-emerald-500/20 text-emerald-300' :
-                           'border-slate-400 bg-slate-800 text-white hover:border-amber-400/60'}`}
+                           'border-line-2 bg-panel-2 text-ink hover:border-accent/60'}`}
               >
                 {island.n}
               </button>
@@ -284,11 +284,11 @@ export default function BridgeGame({ configId, onWin }: { configId: string; onWi
         </div>
       </div>
 
-      <p className="text-slate-500 text-[10px] text-center">
+      <p className="text-muted text-[10px] text-center">
         {won
           ? <span className="text-emerald-400 font-bold">All islands connected!</span>
           : selected !== null
-            ? <span className="text-amber-400">Tap another island to bridge — tap again to add 2nd bridge</span>
+            ? <span className="text-accent">Tap another island to bridge — tap again to add 2nd bridge</span>
             : 'Tap an island to select, then tap another to connect'}
       </p>
 
@@ -300,3 +300,6 @@ export default function BridgeGame({ configId, onWin }: { configId: string; onWi
     </div>
   )
 }
+
+// Every hand-authored config id; the registry test renders each one.
+export const CONFIG_IDS = Object.keys(CONFIGS)

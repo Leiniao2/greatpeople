@@ -1,0 +1,138 @@
+{
+  "slug": "the-chef-of-the-century",
+  "era": "Information",
+  "order": 6,
+  "title": "The Chef of the Century",
+  "figure": "Joël Robuchon",
+  "portraitKey": "joel_robuchon",
+  "tagline": "He earned more Michelin stars than any chef in history — through obsession and perfection.",
+  "locationImage": "information_sanjose",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Paris, 1981. The restaurant Jamin has been open for three years, and critics are already using words they reserve for once-in-a-generation events. The chef is 35 years old. He will go on to earn 32 Michelin stars — more than any human being in history."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Joël Robuchon",
+          "portraitKey": "joel_robuchon",
+          "text": "I make the best mashed potato in the world. People laugh when I say this. But equal weight of butter to potato, passed through a fine sieve, seasoned with precision — there is nothing more technically demanding in cooking. Perfecting the simple is harder than anything complex."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "How many Michelin stars did Joël Robuchon hold at the peak of his career?",
+            "options": [
+              "12",
+              "18",
+              "28",
+              "32"
+            ],
+            "answer": 2,
+            "fact": "At his peak, Joël Robuchon held 32 Michelin stars across his restaurants worldwide — more than any chef in history. His empire spanned Paris, Monte Carlo, Las Vegas, Tokyo, Hong Kong, and beyond, each kitchen reflecting his obsessive pursuit of perfection.",
+            "countdown": 10
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "The Gault Millau guide named Robuchon 'Chef of the Century' in 1989. At 51, exhausted, he retired — an almost unheard-of act in the world of grand cuisine. He gave up everything, vanished from the kitchen. Then, years later, he came back with an entirely new concept."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Food Critic",
+          "text": "Monsieur Robuchon — why did you retire at the height of your powers? And why come back with these small counter-seats, this informal style? It is so different from your three-star formality.",
+          "portraitKey": "follower:actor"
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "sort",
+            "question": "Arrange these milestones of Joël Robuchon's extraordinary career in order:",
+            "items": [
+              "Robuchon wins his first Michelin star for Jamin restaurant in Paris (1982)",
+              "Gault Millau names Robuchon 'Chef of the Century' (1990)",
+              "Robuchon shocks the culinary world by retiring at age 50 at the peak of his fame (1996)",
+              "Robuchon opens the first L'Atelier restaurants in Tokyo and Paris, returning to cooking (2003)",
+              "Robuchon holds a world-record 32 Michelin stars across his global restaurant empire (2018)"
+            ],
+            "fact": "Robuchon's retirement in 1996 was unprecedented in fine dining. He said he was exhausted and wanted to explore life beyond the kitchen. Seven years later, his return with the L'Atelier concept — casual counter seating around an open kitchen — reinvented fine dining for a new generation."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "dialog",
+          "speaker": "Joël Robuchon",
+          "portraitKey": "joel_robuchon",
+          "text": "I retired because I was dying inside. Haute cuisine had become theater — elaborate, cold, and distant. I came back with L'Atelier because I wanted to cook at a counter where I could see the guest's face. The best meal is the one you share close enough to talk."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "cooking",
+            "configId": "japanese-tea",
+            "instruction": "Robuchon's perfectionism matched the Japanese tea ceremony — every gesture deliberate, every ingredient chosen with absolute care. Prepare the tea with the same precision he brought to mashed potatoes.",
+            "fact": "Robuchon spent years studying Japanese culinary philosophy — the concept of shokunin kishitsu (craftsman's spirit) deeply influenced his cooking. His L'Atelier restaurants, modelled on Japanese counter dining, blended French technique with Japanese minimalism and obsessive attention to the guest experience."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Robuchon opened L'Atelier restaurants in Paris, Tokyo, Las Vegas, London, and Hong Kong. Every one earned Michelin stars. He trained a generation of chefs — including Gordon Ramsay — and changed the vocabulary of fine dining from performance to intimacy."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "matchthree",
+            "configId": "venice-glass",
+            "instruction": "Robuchon's plating was art — each element placed with the precision of a Renaissance craftsman. Match the Venetian glass pieces into a perfect arrangement.",
+            "fact": "Robuchon's approach to plating transformed fine dining aesthetics. He said: 'The most important ingredient in a recipe is love for the work.' His kitchens were run with military discipline — every plate identical, every temperature precise. He earned more Michelin stars than any chef in history because perfection, for him, was the minimum standard."
+          }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Joël Robuchon",
+          "portraitKey": "joel_robuchon",
+          "text": "A recipe is only a beginning. The real ingredient is attention — attention to the product, attention to the fire, attention to the person who will eat what you have made. Every plate is a letter. Make sure it says something true."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "When Robuchon retired and closed his Paris restaurant, he lost all his Michelin stars — because stars are awarded to restaurants, not to chefs.",
+            "correct": true,
+            "countdown": 10,
+            "fact": "This is one of the most misunderstood facts about the Michelin system. Stars belong to the restaurant address and experience, not the individual chef. When Robuchon retired and closed his restaurants, their stars vanished. When he returned with L'Atelier, he earned new stars from scratch — accumulating more than any chef in history."
+          }
+        }
+      ]
+    }
+  ]
+}

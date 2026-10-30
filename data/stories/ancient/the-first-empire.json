@@ -1,0 +1,114 @@
+{
+  "slug": "the-first-empire",
+  "era": "Ancient",
+  "order": 1,
+  "title": "The First Empire",
+  "figure": "Sargon I",
+  "portraitKey": "sargon_i",
+  "tagline": "The world's first conqueror builds an empire from nothing but will.",
+  "locationImage": "ancient_uruk",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Mesopotamia, 2334 BCE. The river cities of Sumer have warred for centuries — Ur, Uruk, Lagash, Kish. Until one man, born in obscurity, forges them into something the world has never seen: an empire."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Sargon of Akkad",
+          "portraitKey": "sargon_i",
+          "text": "I was a cup-bearer once. Men laughed at the peasant who dared dream of kingship. Now those cities bow to Akkad. Power is not inherited — it is seized by those bold enough to reach for it."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "Sargon of Akkad created the world's first:",
+            "options": [
+              "Democracy",
+              "Multi-ethnic empire",
+              "Writing system",
+              "Standing army"
+            ],
+            "answer": 1,
+            "fact": "The Akkadian Empire (c. 2334–2154 BCE) unified diverse Sumerian city-states under a single ruler for the first time in recorded history — a template copied by every empire since."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Legend says Sargon's mother set him adrift in a basket on the Euphrates — an origin story echoed centuries later in tales of Moses. He rose from servant to conqueror through nothing but will and cunning."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "geometry",
+            "configId": "volume-pyramid",
+            "instruction": "Sargon's engineers built massive ziggurats. Calculate the volume of the great pyramid — a feat of the same era.",
+            "fact": "Akkadian engineers built on Sumerian foundations — their ziggurats required the same mathematical knowledge that moved millions of tonnes of stone."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "dialog",
+          "speaker": "Sargon of Akkad",
+          "portraitKey": "sargon_i",
+          "text": "Write everything. Every grain of barley taxed. Every soldier mustered. Every law decreed. The empire lives and dies by its records — cuneiform pressed into clay, outlasting the men who made it."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "voting",
+            "configId": "akkadian-council",
+            "instruction": "Sargon has conquered the city-states. Win the loyalty of the Sumerian governors to hold the world's first empire together.",
+            "fact": "Sargon of Akkad (c. 2334–2279 BCE) built the world's first empire by combining military conquest with cultural assimilation. His daughter Enheduanna, High Priestess of Ur, is history's first named author."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Three thousand years of Mesopotamian civilization would rise and fall in succession. Each empire learned from the last — a chain of innovation in law, astronomy, and mathematics that underpins our world today. Place them in order..."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "sort",
+            "question": "Order these events in the rise of Sargon of Akkad's empire:",
+            "items": [
+              "Sargon serves as cup-bearer to the king of Kish",
+              "Sargon defeats Lugal-zage-si of Uruk in battle",
+              "Sargon establishes Akkad as the new capital",
+              "Sargon's empire stretches from the Persian Gulf to the Mediterranean"
+            ],
+            "fact": "Sargon of Akkad (c. 2334–2279 BCE) created history's first empire, uniting dozens of city-states under one ruler for the first time. His daughter Enheduanna became history's first named author."
+          }
+        }
+      ]
+    }
+  ]
+}

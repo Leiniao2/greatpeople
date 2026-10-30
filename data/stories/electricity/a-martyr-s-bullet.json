@@ -1,0 +1,111 @@
+{
+  "slug": "a-martyr-s-bullet",
+  "era": "Electricity",
+  "order": 9,
+  "title": "A Martyr's Bullet",
+  "figure": "An Jung-geun",
+  "portraitKey": "an_jung_geun",
+  "tagline": "One shot. One act of defiance. An entire nation's will made visible.",
+  "locationImage": "information_seoul",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Harbin railway station, Manchuria, October 26, 1909. Korean independence activist Ahn Jung-geun waits on the platform. Japan's most powerful statesman — Itō Hirobumi, the architect of Korea's annexation — is about to step from the train."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Itō Hirobumi",
+          "portraitKey": "ito_hirobumi",
+          "text": "Japan brings civilization to Korea — modern law, railways, schools. History will judge this as progress. The old feudal order could not last. Someone would come. We came first."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Ahn Jung-geun",
+          "portraitKey": "an_jung_geun",
+          "text": "I am not a criminal. I am a soldier of the Korean resistance. I have listed fifteen crimes against Itō before God and history. He knows what he has done. So do I."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "An Jung-geun assassinated Itō Hirobumi in which year?",
+            "options": [
+              "1895",
+              "1905",
+              "1909",
+              "1919"
+            ],
+            "answer": 2,
+            "fact": "On October 26, 1909, An Jung-geun shot Itō Hirobumi — Japan's first Prime Minister and the architect of Korean colonisation — at Harbin railway station. An was captured, tried, and executed in 1910, the same year Japan formally annexed Korea."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Ahn Jung-geun spent his final weeks writing treatises on Asian peace and human dignity. He was executed in 1910 — the same year Japan formally annexed Korea. He is still regarded as a national hero in Korea and China."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "wargame",
+            "configId": "an-jung-geun",
+            "instruction": "Lead the resistance on the board. Capture the enemy pieces to honor the cause.",
+            "fact": "An Jung-geun saw himself not as an assassin but as a soldier of justice — his act of resistance at Harbin Station became a symbol of Korean defiance against colonization."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "dialog",
+          "speaker": "Ahn Jung-geun",
+          "portraitKey": "an_jung_geun",
+          "text": "I dream not of revenge, but of East Asia standing together: Korea, China, Japan — in true partnership. The bullets of empire produce only more empire. But I had no other weapon left."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "crossword",
+            "configId": "ito",
+            "instruction": "Test your knowledge of the Meiji era — the vocabulary of Japan's great modernisation under Itō Hirobumi.",
+            "fact": "An Jung-geun wrote a treatise on peace in East Asia while awaiting execution, calling for cooperation between China, Japan, and Korea against Western colonialism. He was a complex figure — a Catholic, a scholar, and a revolutionary."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "Ahn Jung-geun, who assassinated Japanese Resident-General Itō Hirobumi, was celebrated in Japan as well as Korea after his death.",
+            "correct": false,
+            "fact": "Ahn Jung-geun was executed by Japan in 1910. In Korea he is a national hero; in China, a statue stands at Harbin station where the assassination occurred. In Japan he is officially considered a criminal. The same act reads entirely differently across national histories."
+          }
+        }
+      ]
+    }
+  ]
+}

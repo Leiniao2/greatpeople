@@ -1,0 +1,173 @@
+{
+  "slug": "top-of-the-world",
+  "era": "Information",
+  "order": 1,
+  "title": "Top of the World",
+  "figure": "Edmund Hillary",
+  "portraitKey": "edmund_hillary",
+  "tagline": "Two climbers from opposite ends of the Earth reach the same impossible peak together.",
+  "locationImage": "electricity_mt_everest",
+  "bonusCard": {
+    "figureName": "Tenzing Norgay",
+    "portraitKey": "tenzing_norgay"
+  },
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Nepal, May 1953. For Tenzing Norgay, this is the seventh attempt on Everest. He has spent more time on this mountain than almost any living person — he knows its ice, its sudden storms, its moods. He calls it Chomolungma: the goddess mother of the world."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Tenzing Norgay",
+          "portraitKey": "tenzing_norgay",
+          "text": "I have been to this mountain before. Six times I have tried. Six times the mountain sent me back. This time — this time I believe she will allow it. I do not know why. I only know I feel it."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "When did Edmund Hillary and Tenzing Norgay first reach the summit of Mount Everest?",
+            "options": [
+              "29 May 1953",
+              "12 April 1950",
+              "3 June 1955",
+              "29 May 1956"
+            ],
+            "answer": 0,
+            "countdown": 10,
+            "fact": "Hillary and Tenzing summited at 11:30 AM on 29 May 1953, spending only 15 minutes on top before descending — long enough for photographs and to bury a small cross and some sweets as offerings. The news reached London in time to appear on the morning of Queen Elizabeth II's coronation."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Edmund Hillary is a New Zealand beekeeper who learned mountaineering in the Alps and the Southern Alps of New Zealand. He is not a professional climber — he is simply someone for whom the impossible is interesting. He and Tenzing have been roped together for weeks."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Edmund Hillary",
+          "portraitKey": "edmund_hillary",
+          "text": "The summit ridge is narrow as a knife. Ice on the left, a 10,000-foot drop to Tibet on the right. Tenzing is behind me. Every step burns. I swing the ice-axe and cut a step. Another. Another. Another."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Tenzing Norgay",
+          "portraitKey": "tenzing_norgay",
+          "text": "Chomolungma is our mountain — the goddess mother of the world. I am the ninth of thirteen children from a Sherpa family. To stand here is not just my ambition. It is an answer to something the mountain has been asking of my people for a long time."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "Hillary claimed to the press that he reached the summit alone, ahead of Tenzing Norgay.",
+            "correct": false,
+            "countdown": 10,
+            "fact": "Hillary always insisted that he and Tenzing summited together as a team, refusing to say who stepped onto the peak first. He later wrote: 'We didn't talk about it much — it didn't seem important.' For the rest of his life, Hillary devoted enormous energy to building schools, hospitals, and water pipelines for the Sherpa communities of Nepal."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "They reach the Hillary Step — a 40-foot rock wall at 28,710 feet, just below the summit. No one has climbed it before. On one side: Tibet. On the other: Nepal. Hillary wedges himself into a crack in the ice and chimney-climbs upward."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Edmund Hillary",
+          "portraitKey": "edmund_hillary",
+          "text": "We go for the top at first light. Together. Neither of us could do this alone — and neither of us should have to."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Tenzing Norgay",
+          "portraitKey": "tenzing_norgay",
+          "text": "Together. The mountain asks everything of a man. But two men together — perhaps that is something even the mountain must answer."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "sort",
+            "question": "Arrange the key events of the 1953 Everest expedition in order:",
+            "items": [
+              "The expedition team of 400 assembles in Kathmandu under Colonel John Hunt",
+              "Climbers establish a series of high camps up the South Col route",
+              "Tom Bourdillon and Charles Evans reach the South Summit — a first — but must turn back",
+              "Hillary and Tenzing move into position at Camp IX, 27,900 ft",
+              "They summit Everest at 11:30 AM on 29 May",
+              "News reaches London on the morning of Queen Elizabeth II's coronation"
+            ],
+            "fact": "The 1953 expedition was a meticulous logistical operation: 400 porters, 362 loads of equipment, months of acclimatization. John Hunt's planning was military in precision. But in the end, it came down to two men in the predawn cold, kicking steps into ice above the Hillary Step."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "They reached the summit at 11:30 AM on May 29, 1953. Hillary photographed Tenzing holding four flags — Nepal, Britain, the United Nations, and India. Tenzing pressed chocolate and biscuits into the snow as an offering to the Buddhist gods. They spent fifteen minutes on the roof of the world."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Edmund Hillary",
+          "portraitKey": "edmund_hillary",
+          "text": "Well, we knocked the bastard off."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Tenzing Norgay",
+          "portraitKey": "tenzing_norgay",
+          "text": "Chomolungma has been kind to us today. I do not feel we have conquered her. She has allowed us to touch her crown — and that is a very different thing."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "maze",
+            "configId": "everest-peak",
+            "instruction": "Navigate the South Col route to the summit — through the Khumbu Icefall, up the Lhotse Face, past the South Summit. Every step at 29,000 feet costs twice the oxygen it would at sea level.",
+            "fact": "Above 8,000 metres, the human body cannot acclimatize — it only deteriorates. In the 'Death Zone,' each breath delivers half the oxygen of sea level. Hillary later described the final ridge as 'a knife-edge of ice, with a drop of eight thousand feet on each side.' The Hillary Step — a 12-metre rock wall near the summit — remained the crux of every Everest ascent until 2017, when it collapsed in an earthquake."
+          }
+        },
+        {
+          "type": "narration",
+          "text": "Back in the world below, the question immediately arose: who stepped on top first? They had agreed, on the mountain, to say nothing. The summit belonged to both of them equally — and that was the only answer they would give."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "geometry",
+            "configId": "sphere-surface",
+            "instruction": "Surveyors had to calculate Everest's true height from miles away, correcting for Earth's curvature. Calculate the surface area of the Earth's sphere at Everest's latitude.",
+            "fact": "Everest's height of 8,849 metres (as of 2023 measurements) was first calculated mathematically in 1856 by the Survey of India, who observed the peak from over 160 km away. They named it after Sir George Everest, the Surveyor General — though locals had always called it Chomolungma (Tibetan) or Sagarmatha (Nepali), meaning 'Goddess of the Sky' and 'Forehead of the Sky.'"
+          }
+        },
+        {
+          "type": "narration",
+          "text": "Hillary was knighted. Tenzing received the George Medal. Both returned to Nepal and devoted decades to the Himalayan people — Hillary through the Himalayan Trust, which built over 30 schools. Their partnership outlasted the summit."
+        }
+      ]
+    }
+  ]
+}

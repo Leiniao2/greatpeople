@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import type { MinigameProps } from '@/games/types'
 
 interface GeometryConfig {
   title: string
@@ -251,7 +252,7 @@ const CONFIGS: Record<string, GeometryConfig> = {
   },
 }
 
-export default function GeometryGame({ configId, onWin }: { configId: string; onWin: () => void }) {
+export default function GeometryGame({ configId, onWin, onLose }: MinigameProps) {
   const config = CONFIGS[configId] ?? CONFIGS['triangle-sum']
   const [selected, setSelected] = useState<number | null>(null)
   const answered = selected !== null
@@ -260,29 +261,30 @@ export default function GeometryGame({ configId, onWin }: { configId: string; on
     if (answered) return
     setSelected(i)
     if (i === config.answer) setTimeout(onWin, 800)
+    else setTimeout(() => onLose(), 800)
   }
 
   return (
-    <div className="flex flex-col gap-3 bg-slate-950 rounded-xl p-3">
-      <p className="text-amber-400/80 text-[10px] font-bold uppercase tracking-widest">{config.title}</p>
+    <div className="flex flex-col gap-3 bg-paper-2 rounded-xl p-3">
+      <p className="text-accent/80 text-[10px] font-bold uppercase tracking-widest">{config.title}</p>
 
       {/* SVG figure */}
       <div
-        className="rounded-xl bg-slate-900 border border-white/[0.06] overflow-hidden flex items-center justify-center py-2"
+        className="rounded-xl bg-paper-2 border border-line overflow-hidden flex items-center justify-center py-2"
         dangerouslySetInnerHTML={{ __html: config.svg.replace('<svg', '<svg width="100%" height="180"') }}
       />
 
-      <p className="text-white text-sm font-medium leading-snug">{config.question}</p>
+      <p className="text-ink text-sm font-medium leading-snug">{config.question}</p>
 
       <div className="flex flex-col gap-2">
         {config.options.map((opt, i) => {
           const isCorrect = i === config.answer
           const isSelected = i === selected
-          let cls = 'bg-white/5 border-white/10 text-slate-300 hover:border-amber-500/40 hover:text-amber-300'
+          let cls = 'bg-panel border-line text-ink-2 hover:border-accent/40 hover:text-accent'
           if (answered) {
             if (isCorrect) cls = 'bg-emerald-500/20 border-emerald-500/50 text-emerald-300'
             else if (isSelected) cls = 'bg-red-500/20 border-red-500/40 text-red-300'
-            else cls = 'bg-white/[0.03] border-white/[0.06] text-slate-500'
+            else cls = 'bg-panel border-line text-muted'
           }
           return (
             <button
@@ -312,3 +314,6 @@ export default function GeometryGame({ configId, onWin }: { configId: string; on
     </div>
   )
 }
+
+// Every hand-authored config id; the registry test renders each one.
+export const CONFIG_IDS = Object.keys(CONFIGS)

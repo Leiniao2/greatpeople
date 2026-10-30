@@ -1,0 +1,109 @@
+{
+  "slug": "moonwalk",
+  "era": "Information",
+  "order": 3,
+  "title": "Moonwalk",
+  "figure": "Michael Jackson",
+  "portraitKey": "michael_jackson",
+  "tagline": "The King of Pop changes the world one performance at a time.",
+  "locationImage": "information_sanjose",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Gary, Indiana, 1969. A ten-year-old boy steps on stage with four older brothers. He stops the show. In the audience, Motown founder Berry Gordy watches in silence. Then: 'That kid is going to be a star.'"
+        },
+        {
+          "type": "dialog",
+          "speaker": "Michael Jackson",
+          "portraitKey": "michael_jackson",
+          "text": "I watched James Brown's feet. The way they moved — it was like electricity from the earth was going through him. I practiced until my feet could do what his did. And then I made them do something else."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "Michael Jackson's 'Thriller' is the best-selling album of all time. Approximately how many copies has it sold?",
+            "options": [
+              "20 million",
+              "50 million",
+              "66 million",
+              "100 million"
+            ],
+            "answer": 2,
+            "fact": "Thriller (1982) has sold an estimated 66–70 million copies worldwide — the best-selling album in history. It produced seven Top 10 singles and won a record eight Grammy Awards in one night."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Thriller — released in 1982 — became the best-selling album of all time. Its 14-minute title-track music video was the first video to transform MTV. The moonwalk, performed live on television in 1983, instantly became the most iconic dance move in history."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Michael Jackson",
+          "portraitKey": "michael_jackson",
+          "text": "I just wanted to give the audience something they had never seen before. I didn't think about whether it was possible. I thought about what it would look like when I got it right."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "music",
+            "configId": "moonwalk-rhythm",
+            "instruction": "Arrange notes of Michael Jackson's iconic melodic phrase — the King of Pop's signature sound.",
+            "fact": "Jackson's falsetto vocal style, rhythmic precision, and melodic invention were unprecedented in pop music. His vocal range spanned 4 octaves — from bass to soprano — and he used his voice as a percussive instrument as much as a melodic one."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "sort",
+            "question": "Arrange these milestones of Michael Jackson's career in chronological order:",
+            "items": [
+              "Off the Wall establishes him as a solo superstar",
+              "Thriller becomes the best-selling album in history",
+              "Moonwalk debut on the Motown 25 television special",
+              "Earth Song released — his most overtly political statement"
+            ],
+            "fact": "Jackson's arc — from Off the Wall's sophistication (1979) to Thriller's global domination (1982) to the moonwalk's cultural moment (1983) to Earth Song's social conscience (1995) — spanned every register of popular music. He is the only artist to have debuted a dance move that became a permanent part of world culture."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "Michael Jackson invented the moonwalk dance move.",
+            "correct": false,
+            "fact": "The sliding step had existed in various forms since the 1930s and was used by artists including Cab Calloway, Marcel Marceau, and Jeffrey Daniel. Jackson perfected and popularised it on Motown 25 (March 1983), but he credited James Brown and Fred Astaire as his inspirations — not himself as an inventor."
+          }
+        }
+      ]
+    }
+  ]
+}

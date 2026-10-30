@@ -161,9 +161,9 @@ export default function ReporterFleeGame({ configId, onWin }: { configId: string
   if (state.phase === 'won') return (
     <div className="flex flex-col items-center gap-4 p-6 text-center">
       <div className="text-5xl">📷✅</div>
-      <div className="text-xl font-bold text-amber-400">You made it out!</div>
-      <p className="text-sm text-slate-300 max-w-xs leading-relaxed">{cfg.fact}</p>
-      <button onClick={onWin} className="px-6 py-2 bg-amber-500 hover:bg-amber-400 rounded-lg font-semibold text-slate-900">Complete</button>
+      <div className="text-xl font-bold text-accent">You made it out!</div>
+      <p className="text-sm text-ink-2 max-w-xs leading-relaxed">{cfg.fact}</p>
+      <button onClick={onWin} className="px-6 py-2 bg-accent hover:bg-accent-hover rounded-lg font-semibold text-accent-fg">Complete</button>
     </div>
   )
 
@@ -171,7 +171,7 @@ export default function ReporterFleeGame({ configId, onWin }: { configId: string
     <div className="flex flex-col items-center gap-4 p-6 text-center">
       <div className="text-5xl">💀</div>
       <div className="text-xl font-bold text-red-400">Captured!</div>
-      <p className="text-sm text-slate-400 max-w-xs">Dodge 🪖 soldiers and 💣 mines. Reach 🚪 in the top-right corner.</p>
+      <p className="text-sm text-muted max-w-xs">Dodge 🪖 soldiers and 💣 mines. Reach 🚪 in the top-right corner.</p>
       <button onClick={() => dispatch({ type: 'RESET', cfg })} className="px-6 py-2 bg-red-600 hover:bg-red-500 rounded-lg font-semibold text-white">Try Again</button>
     </div>
   )
@@ -180,7 +180,7 @@ export default function ReporterFleeGame({ configId, onWin }: { configId: string
 
   return (
     <div className="flex flex-col items-center gap-3 p-3 select-none">
-      <div className="font-semibold text-amber-400 text-sm">{cfg.title}</div>
+      <div className="font-semibold text-accent text-sm">{cfg.title}</div>
 
       {/* Status bar */}
       <div className="flex items-center gap-4 text-sm">
@@ -189,13 +189,13 @@ export default function ReporterFleeGame({ configId, onWin }: { configId: string
             <span key={i} className={i < lives ? 'text-base' : 'text-base opacity-30'}>❤️</span>
           ))}
         </div>
-        <span className="text-slate-500 text-xs">Turn {turns}</span>
+        <span className="text-muted text-xs">Turn {turns}</span>
         {phase === 'hit' && <span className="text-red-400 text-xs animate-pulse font-semibold">Hit!</span>}
       </div>
 
       {/* Grid */}
       <div
-        className="border border-slate-700 rounded bg-slate-900/60"
+        className="border border-line rounded bg-paper-2"
         style={{ display: 'grid', gridTemplateColumns: `repeat(${COLS}, 1fr)`, gap: '2px', padding: '4px' }}
       >
         {Array.from({ length: ROWS * COLS }).map((_, i) => {
@@ -211,9 +211,9 @@ export default function ReporterFleeGame({ configId, onWin }: { configId: string
             <div
               key={i}
               className={`w-8 h-8 flex items-center justify-center rounded text-base border ${
-                isExit   ? 'border-amber-500/60 bg-amber-900/20' :
+                isExit   ? 'border-accent/60 bg-accent/20' :
                 isPlayer ? 'border-cyan-500/60  bg-cyan-900/20'  :
-                           'border-slate-700/40 bg-slate-800/40'
+                           'border-line bg-panel-2'
               }`}
             >
               {isPlayer  ? '📷' :
@@ -228,17 +228,20 @@ export default function ReporterFleeGame({ configId, onWin }: { configId: string
       {/* D-pad */}
       <div className="grid grid-cols-3 gap-1.5 mt-1">
         <div />
-        <button onClick={() => move( 0, -1)} className="w-11 h-11 bg-slate-700 hover:bg-slate-600 rounded-lg text-lg active:scale-90 transition-all flex items-center justify-center">↑</button>
+        <button onClick={() => move( 0, -1)} className="w-11 h-11 bg-line hover:bg-line-2 rounded-lg text-lg active:scale-90 transition-all flex items-center justify-center">↑</button>
         <div />
-        <button onClick={() => move(-1,  0)} className="w-11 h-11 bg-slate-700 hover:bg-slate-600 rounded-lg text-lg active:scale-90 transition-all flex items-center justify-center">←</button>
-        <div className="w-11 h-11 flex items-center justify-center text-slate-500 text-base">📷</div>
-        <button onClick={() => move( 1,  0)} className="w-11 h-11 bg-slate-700 hover:bg-slate-600 rounded-lg text-lg active:scale-90 transition-all flex items-center justify-center">→</button>
+        <button onClick={() => move(-1,  0)} className="w-11 h-11 bg-line hover:bg-line-2 rounded-lg text-lg active:scale-90 transition-all flex items-center justify-center">←</button>
+        <div className="w-11 h-11 flex items-center justify-center text-muted text-base">📷</div>
+        <button onClick={() => move( 1,  0)} className="w-11 h-11 bg-line hover:bg-line-2 rounded-lg text-lg active:scale-90 transition-all flex items-center justify-center">→</button>
         <div />
-        <button onClick={() => move( 0,  1)} className="w-11 h-11 bg-slate-700 hover:bg-slate-600 rounded-lg text-lg active:scale-90 transition-all flex items-center justify-center">↓</button>
+        <button onClick={() => move( 0,  1)} className="w-11 h-11 bg-line hover:bg-line-2 rounded-lg text-lg active:scale-90 transition-all flex items-center justify-center">↓</button>
         <div />
       </div>
 
-      <div className="text-xs text-slate-500 text-center">Move 📷 to reach 🚪 · Dodge 🪖 soldiers and 💣 mines</div>
+      <div className="text-xs text-muted text-center">Move 📷 to reach 🚪 · Dodge 🪖 soldiers and 💣 mines</div>
     </div>
   )
 }
+
+// Every hand-authored config id; the registry test renders each one.
+export const CONFIG_IDS = Object.keys(CONFIGS)

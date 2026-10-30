@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import type { MinigameProps } from '@/games/types'
+import { resolveConfig, scale, useGameOutcome, OutcomeBanner } from './_shared'
 
 type Piece = 'WK' | 'WQ' | 'WR' | 'WB' | 'BK' | 'BP' | null
 
@@ -201,12 +203,43 @@ const PIECE_GLYPHS: Record<NonNullable<Piece>, string> = {
 }
 
 const PIECE_COLOR: Record<NonNullable<Piece>, string> = {
-  WK: 'text-amber-200', WQ: 'text-amber-200', WR: 'text-amber-200', WB: 'text-amber-200',
-  BK: 'text-slate-800', BP: 'text-slate-800',
+  WK: 'text-ink-2', WQ: 'text-ink-2', WR: 'text-ink-2', WB: 'text-ink-2',
+  BK: 'text-ink', BP: 'text-ink',
 }
 
-export default function TacticsGame({ configId, onWin }: { configId: string; onWin: () => void }) {
-  const config = CONFIGS[configId] ?? CONFIGS['senate']
+// ── Move validation ───────────────────────────────────────────────────────────
+// Enough chess to tell an impossible move from a legal one: sliders stop at
+// the first piece, kings step one square, captures only take black pieces.
+
+function isLegalMove(grid: Piece[][], from: [number, number], to: [number, number]): boolean {
+  const piece = grid[from[0]][from[1]]
+  if (!piece || !piece.startsWith('W')) return false
+  const target = grid[to[0]][to[1]]
+  if (target && target.startsWith('W')) return false
+  const dr = to[0] - from[0], dc = to[1] - from[1]
+  if (dr === 0 && dc === 0) return false
+  const straight = dr === 0 || dc === 0
+  const diagonal = Math.abs(dr) === Math.abs(dc)
+  switch (piece) {
+    case 'WK': return Math.abs(dr) <= 1 && Math.abs(dc) <= 1
+    case 'WR': if (!straight) return false; break
+    case 'WB': if (!diagonal) return false; break
+    case 'WQ': if (!straight && !diagonal) return false; break
+    default: return false
+  }
+  const sr = Math.sign(dr), sc = Math.sign(dc)
+  for (let r = from[0] + sr, c = from[1] + sc; r !== to[0] || c !== to[1]; r += sr, c += sc) {
+    if (grid[r][c]) return false
+  }
+  return true
+}
+
+export default function TacticsGame({ configId, difficulty, params, onWin, onLose }: MinigameProps) {
+  const config = resolveConfig(CONFIGS, configId, params, 'senate')
+  // Legal moves that are not the winning one, before the position is lost.
+  const maxAttempts = scale(difficulty, [3, 2, 2, 1])
+  const [attempts, setAttempts] = useState(0)
+  const { outcome, settled, win, lose } = useGameOutcome({ onWin, onLose, delayMs: 800 })
 
   const buildGrid = (): Piece[][] => {
     const g: Piece[][] = Array.from({ length: config.rows }, () => Array(config.cols).fill(null))
@@ -216,11 +249,11 @@ export default function TacticsGame({ configId, onWin }: { configId: string; onW
 
   const [grid, setGrid] = useState<Piece[][]>(buildGrid)
   const [selected, setSelected] = useState<[number, number] | null>(null)
-  const [status, setStatus] = useState<'idle' | 'wrong' | 'won'>('idle')
+  const [status, setStatus] = useState<'idle' | 'illegal' | 'wrong' | 'won'>('idle')
   const [wrongCell, setWrongCell] = useState<[number, number] | null>(null)
 
   const handleCell = (r: number, c: number) => {
-    if (status === 'won') return
+    if (settled) return
     const piece = grid[r][c]
 
     if (!selected) {
@@ -242,12 +275,20 @@ export default function TacticsGame({ configId, onWin }: { configId: string; onW
       setGrid(next)
       setSelected(null)
       setStatus('won')
-      setTimeout(onWin, 800)
+      win()
     } else if (piece?.startsWith('W')) {
       setSelected([r, c])
+    } else if (!isLegalMove(grid, selected, [r, c])) {
+      // Not a move that piece can make; doesn't count against the player.
+      setWrongCell([r, c])
+      setStatus('illegal')
+      setTimeout(() => { setStatus('idle'); setWrongCell(null) }, 600)
     } else {
+      const n = attempts + 1
+      setAttempts(n)
       setWrongCell([r, c])
       setStatus('wrong')
+      if (n >= maxAttempts) { lose('no winning move found'); return }
       setTimeout(() => { setStatus('idle'); setWrongCell(null); setSelected(null) }, 900)
     }
   }
@@ -255,13 +296,16 @@ export default function TacticsGame({ configId, onWin }: { configId: string; onW
   const cellSize = config.cols <= 5 ? 'w-14 h-14' : 'w-11 h-11'
 
   return (
-    <div className="flex flex-col gap-4 bg-slate-950 rounded-xl p-3">
-      <p className="text-amber-400/80 text-[10px] font-bold uppercase tracking-widest">{config.title}</p>
-      <p className="text-white text-sm font-medium leading-snug">{config.question}</p>
+    <div className="flex flex-col gap-4 bg-paper-2 rounded-xl p-3">
+      <div className="flex items-center justify-between">
+        <p className="text-accent/80 text-[10px] font-bold uppercase tracking-widest">{config.title}</p>
+        <p className={`text-[10px] ${attempts > 0 ? 'text-red-600 font-bold' : 'text-muted'}`}>✗ {attempts} / {maxAttempts}</p>
+      </div>
+      <p className="text-ink text-sm font-medium leading-snug">{config.question}</p>
 
       <div className="flex justify-center">
         <div
-          className="grid border border-white/10 rounded-xl overflow-hidden"
+          className="grid border border-line rounded-xl overflow-hidden"
           style={{ gridTemplateColumns: `repeat(${config.cols}, 1fr)` }}
         >
           {Array.from({ length: config.rows }, (_, r) =>
@@ -272,8 +316,8 @@ export default function TacticsGame({ configId, onWin }: { configId: string; onW
               const isWrong = wrongCell?.[0] === r && wrongCell?.[1] === c
               const isWinTarget = status === 'won' && r === config.winTo[0] && c === config.winTo[1]
 
-              let bg = isLight ? 'bg-slate-700' : 'bg-slate-900'
-              if (isSelected) bg = 'bg-amber-500/50'
+              let bg = isLight ? 'bg-line' : 'bg-paper-2'
+              if (isSelected) bg = 'bg-accent/50'
               if (isWrong) bg = 'bg-red-500/40'
               if (isWinTarget) bg = 'bg-emerald-500/40'
 
@@ -295,17 +339,17 @@ export default function TacticsGame({ configId, onWin }: { configId: string; onW
         </div>
       </div>
 
-      <p className="text-slate-500 text-[10px] text-center">
+      <p className="text-muted text-[10px] text-center">
         {status === 'idle' && (selected ? 'Tap a destination square' : 'Tap a white piece to select')}
-        {status === 'wrong' && <span className="text-red-400">Not the winning move — try again</span>}
-        {status === 'won' && <span className="text-emerald-400 font-bold">Checkmate! Brilliant.</span>}
+        {status === 'illegal' && <span className="text-amber-700">That piece can't move there</span>}
+        {status === 'wrong' && outcome !== 'lost' && <span className="text-red-600">Legal, but not the winning move</span>}
+        {status === 'won' && <span className="text-emerald-700 font-bold">Checkmate! Brilliant.</span>}
       </p>
 
-      {status === 'won' && (
-        <div className="p-3 rounded-xl border bg-emerald-500/10 border-emerald-500/30 text-emerald-300 text-xs leading-relaxed">
-          <span className="font-bold mr-1">✓ Checkmate!</span>{config.fact}
-        </div>
-      )}
+      <OutcomeBanner outcome={outcome} detail={config.fact} winTitle="Checkmate!" loseTitle="The position slipped away" />
     </div>
   )
 }
+
+// Every hand-authored config id; the registry test renders each one.
+export const CONFIG_IDS = Object.keys(CONFIGS)

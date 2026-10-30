@@ -31,7 +31,7 @@ function GoogleButton({ onToken, disabled }: { onToken: (t: string) => void; dis
       disabled={disabled}
       className="relative flex items-center w-full py-3.5 rounded-xl font-semibold text-sm
                  bg-white hover:bg-slate-50 active:bg-slate-100 text-[#1a1a2e]
-                 border border-slate-200 hover:border-slate-300
+                 border border-slate-200 hover:border-line-2
                  transition-all duration-200 shadow-sm hover:shadow
                  disabled:opacity-50 disabled:cursor-not-allowed"
     >
@@ -92,15 +92,15 @@ export default function LoginPage() {
   }
 
   const showSso = googleConfigured
-  const inputClass = 'w-full rounded-xl px-4 py-3 text-sm text-white placeholder-slate-600 transition-all duration-200 outline-none auth-input'
+  const inputClass = 'w-full rounded-xl px-4 py-3 text-sm text-ink placeholder-muted transition-all duration-200 outline-none auth-input'
 
   return (
-    <div className="relative min-h-screen bg-[#080812] flex items-center justify-center overflow-hidden p-4">
+    <div className="relative min-h-screen bg-paper flex items-center justify-center overflow-hidden p-4">
 
       {/* Ambient glow */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute top-1/3 left-1/3 w-[500px] h-[500px] rounded-full bg-amber-600/10 blur-[140px]" />
-        <div className="absolute bottom-1/3 right-1/3 w-[500px] h-[500px] rounded-full bg-indigo-700/10 blur-[140px]" />
+        <div className="absolute top-1/3 left-1/3 w-[500px] h-[500px] rounded-full bg-accent/10 blur-[140px]" />
+        <div className="absolute bottom-1/3 right-1/3 w-[500px] h-[500px] rounded-full bg-line/40 blur-[140px]" />
       </div>
 
       {/* Floating decorative cards */}
@@ -114,15 +114,15 @@ export default function LoginPage() {
         <div className="glass rounded-3xl shadow-[0_32px_64px_rgba(0,0,0,0.5)] overflow-hidden">
 
           {/* Header */}
-          <div className="px-8 pt-9 pb-7 text-center border-b border-white/[0.06]">
+          <div className="px-8 pt-9 pb-7 text-center border-b border-line">
             <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-4"
-              style={{ background: 'rgba(245,158,11,0.15)', border: '1px solid rgba(245,158,11,0.25)' }}>
-              <span className="text-amber-400 text-4xl leading-none select-none">♛</span>
+              style={{ background: 'rgba(155,44,35,0.15)', border: '1px solid rgba(155,44,35,0.25)' }}>
+              <span className="text-accent text-4xl leading-none select-none">♛</span>
             </div>
-            <h1 className="font-display text-3xl font-bold tracking-[0.12em] text-white uppercase mb-1.5">
+            <h1 className="font-display text-3xl font-bold tracking-[0.12em] text-ink uppercase mb-1.5">
               Great People
             </h1>
-            <p className="text-slate-500 text-[11px] tracking-[0.28em] uppercase">
+            <p className="text-muted text-[11px] tracking-[0.28em] uppercase">
               Collect · Battle · Conquer
             </p>
           </div>
@@ -138,9 +138,9 @@ export default function LoginPage() {
 
                 {/* Divider */}
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="flex-1 h-px bg-white/10" />
-                  <span className="text-slate-600 text-xs uppercase tracking-widest">or</span>
-                  <div className="flex-1 h-px bg-white/10" />
+                  <div className="flex-1 h-px bg-panel" />
+                  <span className="text-muted/80 text-xs uppercase tracking-widest">or</span>
+                  <div className="flex-1 h-px bg-panel" />
                 </div>
               </>
             )}
@@ -152,8 +152,8 @@ export default function LoginPage() {
                 <button key={t} type="button" onClick={() => switchTab(t)}
                   className={`flex-1 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 ${
                     tab === t
-                      ? 'bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/30'
-                      : 'text-slate-400 hover:text-slate-200'
+                      ? 'bg-accent text-accent-fg shadow-lg shadow-accent/30'
+                      : 'text-muted hover:text-ink-2'
                   }`}>
                   {t === 'login' ? 'Sign In' : 'Register'}
                 </button>
@@ -192,19 +192,19 @@ export default function LoginPage() {
               )}
 
               <button type="submit" disabled={loading}
-                className="w-full mt-1 py-3.5 rounded-xl font-bold text-sm tracking-wide text-slate-950
-                           bg-amber-500 hover:bg-amber-400 active:bg-amber-600
+                className="w-full mt-1 py-3.5 rounded-xl font-bold text-sm tracking-wide text-ink
+                           bg-accent hover:bg-accent-hover active:bg-accent-hover
                            disabled:opacity-50 disabled:cursor-not-allowed
-                           shadow-lg shadow-amber-500/25 hover:shadow-amber-400/40
+                           shadow-lg shadow-accent/25 hover:shadow-accent/40
                            transition-all duration-200">
                 {loading ? <LoadingRow /> : tab === 'login' ? 'Sign In  →' : 'Create Account  →'}
               </button>
             </form>
 
-            <p className="mt-6 text-center text-slate-600 text-xs">
+            <p className="mt-6 text-center text-muted/80 text-xs">
               {tab === 'login' ? "Don't have an account? " : 'Already have an account? '}
               <button type="button" onClick={() => switchTab(tab === 'login' ? 'register' : 'login')}
-                className="text-amber-500 hover:text-amber-400 transition-colors font-semibold">
+                className="text-accent hover:text-accent transition-colors font-semibold">
                 {tab === 'login' ? 'Register' : 'Sign in'}
               </button>
             </p>
@@ -215,7 +215,7 @@ export default function LoginPage() {
         <div className="mt-5 text-center">
           <button type="button"
             onClick={() => { enterGuestMode(); navigate('/home') }}
-            className="text-slate-500 hover:text-slate-300 text-sm transition-colors">
+            className="text-muted hover:text-ink-2 text-sm transition-colors">
             Explore as Guest →
           </button>
         </div>
@@ -227,7 +227,7 @@ export default function LoginPage() {
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div className="space-y-1.5">
-      <label className="text-[11px] font-semibold text-slate-400 uppercase tracking-widest">{label}</label>
+      <label className="text-[11px] font-semibold text-muted uppercase tracking-widest">{label}</label>
       {children}
     </div>
   )

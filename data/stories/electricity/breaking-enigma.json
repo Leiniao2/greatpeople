@@ -1,0 +1,121 @@
+{
+  "slug": "breaking-enigma",
+  "era": "Electricity",
+  "order": 3,
+  "title": "Breaking Enigma",
+  "figure": "Alan Turing",
+  "portraitKey": "alan_turing",
+  "tagline": "The mathematician who cracked the uncrackable code and saved millions of lives.",
+  "locationImage": "electricity_london",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Bletchley Park, 1940. The German Enigma machine produces 158 quintillion possible settings. The Nazis change the settings every 24 hours. Every day, the Allied cryptanalysts must break the code fresh. Thousands of ships and lives depend on it."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Alan Turing",
+          "portraitKey": "alan_turing",
+          "text": "The human mind searches randomly. That won't work — there are too many possibilities. We need a machine that reasons systematically. A machine that can ask: what must be true, given what we know? A machine that thinks."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "How many possible settings did Turing's Bombe machine have to test for each Enigma message?",
+            "options": [
+              "1,000",
+              "17,576",
+              "158 quintillion",
+              "1 trillion"
+            ],
+            "answer": 1,
+            "fact": "The Enigma machine had 17,576 possible rotor starting positions (26×26×26). But with plugboard settings, the actual number of configurations was 158 quintillion — the Bombe exploited cribs (known plaintext) to narrow the search.",
+            "countdown": 10
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Turing's Bombe machine could test thousands of Enigma settings per minute, narrowing the search to a manageable number. Combined with cribs — known phrases the Germans always used — it broke Enigma reliably by 1941."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "wordle",
+            "configId": "enigma",
+            "instruction": "Crack the code — guess the 5-letter word hidden in the Bombe's output.",
+            "fact": "Turing's Bombe worked through every possible rotor setting until the ciphertext collapsed into readable English — just as each Wordle guess collapses possibility."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "dialog",
+          "speaker": "Alan Turing",
+          "portraitKey": "alan_turing",
+          "text": "Can a machine think? Everyone says obviously not. But why not? Define thinking. If a machine can answer any question indistinguishably from a human, what exactly is missing? The question matters more than they know."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "circuit",
+            "configId": "enigma",
+            "instruction": "Complete the Bombe circuit — the electrical circuit that cracked Enigma.",
+            "fact": "Turing's Bombe was based on a Polish machine called the Bomba, which Turing and Gordon Welchman dramatically improved. At peak operation, 211 Bombe machines ran simultaneously at Bletchley Park."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "The Enigma encoding required precise electrical circuit paths. Reconstruct the switch configuration that would allow the correct signal to pass through to decode the message..."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "klotski",
+            "configId": "enigma-rotors",
+            "instruction": "Rearrange the rotor blocks to bring the cipher module to its target position.",
+            "fact": "Alan Turing's bombe machine exploited a flaw in Enigma — no letter ever encrypted to itself — to narrow down rotor positions and crack the daily key."
+          }
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "pseudocode",
+            "configId": "turing-machine",
+            "instruction": "Arrange the pseudo-code lines in the correct logical order to build working algorithms — just as Turing formalized computation.",
+            "fact": "Turing's 1936 paper introduced the concept of a universal machine: a theoretical device that could simulate any algorithm by reading and writing symbols on a tape."
+          }
+        }
+      ]
+    }
+  ]
+}

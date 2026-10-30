@@ -1,0 +1,137 @@
+{
+  "slug": "the-longest-text",
+  "era": "Ancient",
+  "order": 9,
+  "title": "The Longest Text",
+  "figure": "Pediamenopet",
+  "portraitKey": "pediamenopet",
+  "tagline": "His tomb holds the longest funerary inscription in ancient Egypt — a library in stone.",
+  "locationImage": "ancient_memphis",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Thebes, c. 670 BCE. The Assyrian Empire has just invaded Egypt. In the Valley of the Nobles, a High Priest of Amun commissions a tomb unlike any other. Its walls will hold more written text than any tomb in the ancient world — a desperate act of preservation when the old order is crumbling."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Pediamenopet",
+          "portraitKey": "pediamenopet",
+          "text": "Write it all. Every spell from the Book of the Dead. Every chapter of the Amduat. The Litany of Ra. The Book of Caverns. If the temples fall, if the priests are scattered, this tomb must be a library that the earth itself will keep safe."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "Pediamenopet's tomb contains the longest known ancient Egyptian funerary text. Approximately how many lines does it contain?",
+            "options": [
+              "100 lines",
+              "500 lines",
+              "Over 2,000 lines",
+              "Over 10,000 lines"
+            ],
+            "answer": 2,
+            "fact": "The tomb of Pediamenopet at Luxor (Tomb TT27) contains over 2,000 lines of religious and funerary text — the longest such compilation in ancient Egypt. It drew from the Book of the Dead, Pyramid Texts, Coffin Texts, and other ritual collections.",
+            "countdown": 10
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "The tomb of Pediamenopet at Luxor is the largest private tomb in Egypt. Its walls are covered in religious texts written in carefully carved hieroglyphs — compilations from dozens of sacred books. Scholars still have not fully cataloged everything inscribed within it."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Head Scribe",
+          "text": "High Priest, the Assyrian soldiers have been seen near the temple precinct. Should we stop the work and conceal the tomb entrance?",
+          "portraitKey": "follower:philosopher"
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "sort",
+            "question": "Arrange these great periods of ancient Egyptian history from earliest to most recent:",
+            "items": [
+              "Old Kingdom — pyramids built at Giza, height of royal power (c. 2700–2200 BCE)",
+              "Middle Kingdom — reunification after collapse, classical literature flourishes (c. 2055–1650 BCE)",
+              "New Kingdom — empire expands into Nubia and the Levant; Ramesses II reigns (c. 1550–1070 BCE)",
+              "Late Period — Egypt ruled in succession by Nubians, Assyrians, then Persians (c. 664–332 BCE)"
+            ],
+            "fact": "Pediamenopet lived during the Late Period, a turbulent age of foreign invasions. His vast tomb was a monument so packed with sacred texts that no conqueror's curse could erase all of them. Scholars are still copying and translating them today."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "dialog",
+          "speaker": "Pediamenopet",
+          "portraitKey": "pediamenopet",
+          "text": "Do not stop. Assyrians occupy the land — they cannot occupy the afterlife. These texts have guided the souls of Egyptians through death for a thousand years. As long as they survive, Egypt survives. The pen does not stop for the sword."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "The Book of the Dead contained spells to help the deceased navigate the underworld and pass the final judgement before Osiris.",
+            "correct": true,
+            "countdown": 10,
+            "fact": "The Book of the Dead (more accurately 'Book of Coming Forth by Day') was a personal funerary guide. Spell 125, the Weighing of the Heart, was the most critical: the deceased's heart was weighed against the feather of Ma'at. A heart heavier than the feather — burdened by sins — was devoured by the monster Ammit."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Pediamenopet served as High Priest during one of Egypt's most vulnerable periods. Yet his instinct — to preserve knowledge in stone when institutions fail — proved exactly right. His tomb texts survived the Assyrian occupation, the Greek conquest, the Roman Empire, and twenty-six centuries of burial."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "sudoku",
+            "configId": "al-khwarizmi-grid",
+            "instruction": "Pediamenopet's tomb was a grid of ordered knowledge — every text in its place. Fill the grid so that logic, not chaos, governs every cell.",
+            "fact": "The High Priests of Amun were administrators as much as theologians — they managed vast temple estates, supervised scribes, and maintained archives. The same orderly thinking that filled a grid filled Pediamenopet's tomb with the world's largest collection of funerary knowledge."
+          }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Pediamenopet",
+          "portraitKey": "pediamenopet",
+          "text": "They say the Assyrians are invincible. Perhaps. But every empire ends. What I carve into this limestone will still be here when their empire is a memory. Knowledge is the only thing that outlasts conquest. Remember that, and nothing essential is ever truly lost."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "matchthree",
+            "configId": "babylon-tablets",
+            "instruction": "The ancient world recorded its wisdom in columns on clay and papyrus. Match the scribal symbols — the same act Pediamenopet's scribes performed copying 3,000 years of Egyptian sacred text.",
+            "fact": "Pediamenopet's tomb contains texts copied from sources spanning 2,000 years — from Old Kingdom pyramid texts to New Kingdom funerary literature. His scribes were the original archivists, assembling a complete library of the afterlife's instruction manual in one underground room."
+          }
+        }
+      ]
+    }
+  ]
+}

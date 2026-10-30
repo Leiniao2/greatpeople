@@ -1,0 +1,138 @@
+{
+  "slug": "the-hand-of-god",
+  "era": "Information",
+  "order": 4,
+  "title": "The Hand of God",
+  "figure": "Diego Maradona",
+  "portraitKey": "diego_maradona",
+  "tagline": "One goal illegal, one goal divine — the most famous 10 minutes in football history.",
+  "locationImage": "information_sanjose",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Villa Fiorito, Buenos Aires, 1960s. The slum children play football in the dirt with balls of rags. One boy never wants to stop — not when it gets dark, not when it rains. His name is Diego. The ball moves at his feet like it is alive."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Diego Maradona",
+          "portraitKey": "diego_maradona",
+          "text": "When I had the ball, I felt free. In Villa Fiorito there was nothing — no money, no safety, no future. But with a football at my feet, I was the most powerful person on earth."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "In which 1986 World Cup quarterfinal match did Maradona score both the 'Hand of God' and 'Goal of the Century'?",
+            "options": [
+              "Argentina vs Brazil",
+              "Argentina vs England",
+              "Argentina vs Germany",
+              "Argentina vs Italy"
+            ],
+            "answer": 1,
+            "fact": "In the 1986 World Cup quarterfinal, Maradona scored twice against England — first with a handball he called 'the Hand of God,' then with a dribble past five players that was later voted the Goal of the Century. Argentina won 2–1.",
+            "countdown": 10
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Mexico City, June 22, 1986. Argentina vs. England. Four years after the Falklands War — two nations whose blood is still up. Fifty-one minutes into the game, Maradona punches the ball into the net with his left hand. The referee does not see it."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Diego Maradona",
+          "portraitKey": "diego_maradona",
+          "text": "A little with the head of Maradona and a little with the hand of God. That is what I said — and I believed it. The English were angry. But the whole of Argentina wept with joy."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "sort",
+            "question": "Arrange the key moments of Diego Maradona's life in chronological order:",
+            "items": [
+              "Maradona makes his professional debut for Argentinos Juniors at age 15 (1976)",
+              "Maradona is controversially omitted from Argentina's World Cup squad — the team wins without him (1978)",
+              "Maradona leads Argentina to the World Cup, scoring both the 'Hand of God' and the 'Goal of the Century' (1986)",
+              "Maradona leads Napoli to their first-ever Serie A title (1987)",
+              "Maradona receives a 15-month ban from football after testing positive for cocaine (1991)"
+            ],
+            "fact": "Maradona's career compressed triumph and tragedy into a single volcanic life. He carried Argentina and Napoli to heights neither had reached before — and his personal demons brought him just as low. The 1978 World Cup, won without him, haunted him; 1986, with him at the centre, is the defining image of his legacy."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Four minutes later, Maradona receives the ball in his own half and runs. He beats one defender, then another, then another, then another, then another. Sixty meters. Six Englishmen. It was called the Goal of the Century — scored in the same match, four minutes after the most controversial goal in history."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "klotski",
+            "configId": "sword-formation",
+            "instruction": "Maradona's Goal of the Century — dribbling past five defenders in 10 seconds — was a formation broken by individual genius. Slide through the defence.",
+            "fact": "Maradona received the ball in his own half and dribbled 60 metres, evading five English players and the goalkeeper before scoring. Peter Reid, one of the defenders he beat, said: 'I just kept thinking — this can't be happening.' It happened. FIFA fans voted it the Goal of the Century in 2002."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "dialog",
+          "speaker": "Journalist",
+          "text": "Diego — two goals in the same match. One by your hand, one by your feet. How do you explain it?",
+          "portraitKey": "follower:explorer"
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "tactics",
+            "configId": "musashi-duel",
+            "instruction": "One player against the world. Maradona's genius was being unpredictable. Find the decisive move in the one-on-one duel — just like the Goal of the Century.",
+            "fact": "Maradona's duel with England in 1986 was personal as well as sporting — four years after the Falklands War, England and Argentina met in a World Cup quarter-final. Maradona scored both goals: one with his hand, one with his feet. He later said both were scored 'with the hand of God and the head of Maradona.'"
+          }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Diego Maradona",
+          "portraitKey": "diego_maradona",
+          "text": "Football is the most beautiful injustice in the world. The ball does not care who you are or where you are from. I was a boy from the slums. And on that day, I was better than anyone on the planet. That is enough."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "Diego Maradona was excluded from Argentina's 1978 World Cup squad — which Argentina went on to win — because the coach considered him too young at 17.",
+            "correct": true,
+            "countdown": 10,
+            "fact": "Argentina coach César Luis Menotti left Maradona out of the 1978 squad, saying he was too young to carry the pressure. Argentina won the tournament on home soil. Maradona said the exclusion 'broke my heart' — and that winning the 1986 World Cup finally healed the wound. In 1978, a 17-year-old sat out history; in 1986, a 25-year-old made it."
+          }
+        }
+      ]
+    }
+  ]
+}

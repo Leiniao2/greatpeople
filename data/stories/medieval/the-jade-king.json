@@ -1,0 +1,136 @@
+{
+  "slug": "the-jade-king",
+  "era": "Medieval",
+  "order": 8,
+  "title": "The Jade King",
+  "figure": "Pakal the Great",
+  "portraitKey": "pakal",
+  "tagline": "He ruled Palenque 68 years and inscribed eternity in stone.",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Palenque, 615 CE. K'inich Janaab' Pakal I ascends to the throne at age 12. He will reign for 68 years — longer than any other documented ruler in the Americas."
+        },
+        {
+          "type": "narration",
+          "text": "He begins rebuilding a kingdom that has suffered military defeats. His mother served as regent for years; he inherits instability and turns it into a golden age."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "How long did Pakal the Great rule the Maya city of Palenque?",
+            "options": [
+              "68 years — the longest reign in recorded Maya history",
+              "32 years",
+              "44 years",
+              "55 years"
+            ],
+            "answer": 0,
+            "countdown": 10,
+            "fact": "Pakal became king of Palenque at age 12 in 615 CE and ruled until his death in 683 CE — 68 years on the throne, the longest reign in all of pre-Columbian history. Under his rule, Palenque transformed from a minor city into one of the most powerful and artistically sophisticated kingdoms of the Classic Maya world."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "The Temple of the Inscriptions: a nine-level pyramid encoding his life, his lineage, and the Maya concept of cyclical time. It will serve as his tomb — discovered sealed for 1,300 years."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "Pakal's tomb was discovered by archaeologists long before his Temple of the Inscriptions was excavated.",
+            "correct": false,
+            "countdown": 10,
+            "fact": "The Temple of the Inscriptions stood in plain sight for centuries — one of Palenque's most prominent structures. But its tomb was not discovered until 1952, when Mexican archaeologist Alberto Ruz Lhuillier noticed a stone floor with plugged holes and spent four years clearing a rubble-filled staircase before reaching Pakal's burial chamber 25 metres below."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "The Palenque Palace — a vast complex with a four-story tower unique in Classic Maya architecture. Astronomers used it to track Venus, eclipses, and the movement of the sun."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "sort",
+            "question": "Arrange the key events of Pakal's reign at Palenque in order:",
+            "items": [
+              "Pakal ascends to the throne of Palenque at age 12, guided by his mother Lady Sak K'uk'",
+              "He defeats rivals and expands Palenque's military power after years of weakness",
+              "Pakal commissions the Palace complex — a sprawling administrative and ceremonial center",
+              "He begins constructing the Temple of the Inscriptions — designed as his eternal tomb",
+              "The Temple's interior walls are carved with 617 glyphs recording Pakal's genealogy",
+              "Pakal dies at 80 and is sealed in his jade-masked sarcophagus beneath the pyramid"
+            ],
+            "fact": "The sarcophagus lid of Pakal's tomb shows him at the moment of death, descending into the Maya underworld (Xibalba) on the World Tree. For decades Western scholars misread the image as an astronaut in a spacecraft — a famous case of wishful thinking overriding careful analysis. Maya specialists recognized it as a standard resurrection narrative immediately."
+          }
+        },
+        {
+          "type": "narration",
+          "text": "The Maya Long Count calendar inscribed at Palenque reaches back 4 billion years — evidence of cosmological thinking that dwarfs contemporary European astronomy."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "maze",
+            "configId": "pyramid-deep",
+            "instruction": "Navigate the hidden staircase beneath the Temple of the Inscriptions — sealed for 1,300 years. Descend through the rubble to the jade king's chamber at the pyramid's heart.",
+            "fact": "The staircase descending to Pakal's tomb is 25 metres long and was completely filled with rubble when Alberto Ruz first entered. His team spent four excavation seasons (1949–1952) removing it stone by stone. When they finally broke through the sealed chamber door, they found a jade-encrusted sarcophagus surrounded by six sacrificed retainers and walls painted with the nine lords of the Maya underworld."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "When Alberto Ruz Lhuillier unsealed Pakal's tomb in 1952, he found jade mosaic mask, jade jewelry, red cinnabar — a king preserved in jade for eternity. History confirmed mythology."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "klotski",
+            "configId": "pyramid-capstone",
+            "instruction": "Place the final stone — the capstone of Pakal's pyramid. Each block must slide into position without disturbing the others. The king's tomb must be sealed perfectly.",
+            "fact": "Maya pyramids were not simply stacked stones — they were precisely calculated structures with internal staircases, chambers, and drainage systems built to last millennia. The Temple of the Inscriptions has survived 1,300 years of tropical storms, earthquakes, and vegetation. Its interior staircase is still structurally sound."
+          }
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "geometry",
+            "configId": "volume-pyramid",
+            "instruction": "Calculate the volume of Pakal's stepped pyramid — built without metal tools, wheels, or draft animals. Every stone was cut with obsidian, moved on wooden rollers, and lifted by human hands.",
+            "fact": "Maya builders achieved extraordinary geometric precision without metal tools or wheeled vehicles. They used astronomical alignments, knotted ropes, and water levels to plan their monuments. The Temple of the Inscriptions aligns so that at the winter solstice sunset, the sun appears to descend into the pyramid along the same axis as the internal staircase to Pakal's tomb."
+          }
+        }
+      ]
+    }
+  ]
+}

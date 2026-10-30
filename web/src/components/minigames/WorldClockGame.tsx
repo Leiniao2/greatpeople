@@ -136,16 +136,16 @@ export default function WorldClockGame({ configId, onWin }: { configId: string; 
     return (
       <div className="flex flex-col items-center gap-4 p-6 text-center">
         <div className="text-5xl">{pass ? '🌍✈️' : '🕐😕'}</div>
-        <div className={`text-xl font-bold ${pass ? 'text-amber-400' : 'text-slate-400'}`}>
+        <div className={`text-xl font-bold ${pass ? 'text-accent' : 'text-muted'}`}>
           {pass ? 'World Traveler!' : 'Keep practicing!'}
         </div>
-        <div className="text-sm text-slate-400">{score}/{questions.length} correct</div>
+        <div className="text-sm text-muted">{score}/{questions.length} correct</div>
         {pass
           ? <>
-              <p className="text-sm text-slate-300 max-w-xs leading-relaxed">{cfg.fact}</p>
-              <button onClick={onWin} className="px-6 py-2 bg-amber-500 hover:bg-amber-400 rounded-lg font-semibold text-slate-900">Complete</button>
+              <p className="text-sm text-ink-2 max-w-xs leading-relaxed">{cfg.fact}</p>
+              <button onClick={onWin} className="px-6 py-2 bg-accent hover:bg-accent-hover rounded-lg font-semibold text-accent-fg">Complete</button>
             </>
-          : <button onClick={restart} className="px-6 py-2 bg-slate-600 hover:bg-slate-500 rounded-lg font-semibold text-white">Try Again</button>
+          : <button onClick={restart} className="px-6 py-2 bg-line-2 hover:bg-line-2 rounded-lg font-semibold text-ink">Try Again</button>
         }
       </div>
     )
@@ -159,24 +159,24 @@ export default function WorldClockGame({ configId, onWin }: { configId: string; 
       <div className="flex gap-1.5">
         {questions.map((_, i) => (
           <div key={i} className={`w-6 h-1.5 rounded-full transition-all ${
-            i < qi ? 'bg-green-500' : i === qi ? 'bg-amber-400' : 'bg-slate-600'
+            i < qi ? 'bg-green-500' : i === qi ? 'bg-accent' : 'bg-line-2'
           }`} />
         ))}
       </div>
 
       {/* Source city clock */}
-      <div className="w-full bg-slate-800 rounded-2xl p-4 text-center border border-slate-600">
+      <div className="w-full bg-panel-2 rounded-2xl p-4 text-center border border-line">
         <div className="text-2xl mb-1">{q.from.emoji}</div>
-        <div className="text-xs text-slate-400 uppercase tracking-widest mb-2">{q.from.name}</div>
-        <div className="font-mono text-4xl font-bold text-amber-400 tracking-wider">
+        <div className="text-xs text-muted uppercase tracking-widest mb-2">{q.from.name}</div>
+        <div className="font-mono text-4xl font-bold text-accent tracking-wider">
           {formatHour(q.fromHour)}
         </div>
       </div>
 
       {/* Question */}
-      <div className="flex items-center gap-2 text-sm text-slate-300">
+      <div className="flex items-center gap-2 text-sm text-ink-2">
         <span className="text-xl">{q.to.emoji}</span>
-        <span>What time is it in <span className="font-semibold text-white">{q.to.name}</span>?</span>
+        <span>What time is it in <span className="font-semibold text-ink">{q.to.name}</span>?</span>
       </div>
 
       {/* Feedback */}
@@ -198,8 +198,8 @@ export default function WorldClockGame({ configId, onWin }: { configId: string; 
               disabled={chosen}
               className={`py-3 rounded-xl border font-mono text-lg font-semibold transition-all active:scale-95 ${
                 chosen && isCorrect  ? 'border-green-500 bg-green-900/30 text-green-300' :
-                chosen && !isCorrect ? 'border-slate-700 opacity-40 text-slate-400' :
-                'border-slate-600 bg-slate-700 hover:bg-slate-600 hover:border-amber-400 text-white'
+                chosen && !isCorrect ? 'border-line opacity-40 text-muted' :
+                'border-line bg-line hover:bg-line-2 hover:border-accent text-ink'
               }`}
             >
               {formatHour(h)}
@@ -208,7 +208,10 @@ export default function WorldClockGame({ configId, onWin }: { configId: string; 
         })}
       </div>
 
-      <div className="text-xs text-slate-500">Question {qi + 1} of {questions.length}</div>
+      <div className="text-xs text-muted">Question {qi + 1} of {questions.length}</div>
     </div>
   )
 }
+
+// Every hand-authored config id; the registry test renders each one.
+export const CONFIG_IDS = Object.keys(CONFIGS)

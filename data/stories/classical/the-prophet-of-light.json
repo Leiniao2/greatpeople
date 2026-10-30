@@ -1,0 +1,127 @@
+{
+  "slug": "the-prophet-of-light",
+  "era": "Classical",
+  "order": 4,
+  "title": "The Prophet of Light",
+  "figure": "Mani",
+  "portraitKey": "mani",
+  "tagline": "A visionary paints his gospel across three continents in color and light.",
+  "locationImage": "medieval_damascus",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Persia, 240 CE. A young man has a vision: an angel commands him to announce a new religion — one that will combine the teachings of Zoroaster, Buddha, and Jesus into one universal truth. Mani obeys."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Mani",
+          "portraitKey": "mani",
+          "text": "God of Light did not create darkness. Evil is not God's failure — it is a separate, opposing force. The universe is a battlefield between light and darkness, and every human soul is the ground on which that battle is fought."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "What religion did Mani found in the 3rd century CE?",
+            "options": [
+              "Manichaeism",
+              "Zoroastrianism",
+              "Nestorian Christianity",
+              "Mithraism"
+            ],
+            "answer": 0,
+            "countdown": 10,
+            "fact": "Mani (216–274 CE) founded Manichaeism, a dualistic religion blending Zoroastrian light-and-darkness cosmology, Christian ethics, and Buddhist concepts of spiritual purification. At its height, Manichaeism spread from the Roman Empire to Tang Dynasty China — one of history's most geographically expansive faiths."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Mani traveled from Persia to India to Central Asia, winning converts among merchants, princes, and scholars. His church spread across the known world within his own lifetime — from Rome to China."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Mani",
+          "portraitKey": "mani",
+          "text": "I am not founding a new religion separate from the others. I am giving the world the complete scripture — the final synthesis. After me, no new prophet is needed. I bring what the others began."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "Mani was only a preacher — he had no talent for visual art.",
+            "correct": false,
+            "countdown": 10,
+            "fact": "Mani was a gifted painter who created the Ardahang, an illustrated holy book of extraordinary beauty. He used visual art as a missionary tool, believing images could convey divine truth across language barriers. His followers called him 'the Apostle of Light' and celebrated his paintings as sacred revelation."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "The Zoroastrian high priest Kartir convinced the Persian king to turn against Mani. Imprisoned and executed in 274 CE, Mani died in chains. His followers called it 'The Crucifixion.' His church survived for a thousand years after him."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "sort",
+            "question": "Arrange the key events of Mani's life in order:",
+            "items": [
+              "Mani receives his first divine revelation at age twelve",
+              "Mani studies with a Jewish-Christian baptismal sect in Mesopotamia",
+              "Mani embarks on missions to the Kushan Empire and India",
+              "Mani gains the patronage of the Sassanid emperor Shapur I",
+              "Bahram I imprisons Mani under pressure from Zoroastrian clergy",
+              "Mani dies in prison — his followers call it his crucifixion"
+            ],
+            "fact": "Mani's death in 274 CE echoed the martyrdom narratives of the very religions he synthesized. His followers spread his teachings across the Silk Road for centuries — Manichaean texts were still being copied in China in the 13th century."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fiction",
+            "configId": "mani-parable",
+            "instruction": "Mani taught through parables — stories of light trapped in darkness. Complete his parable of the soul's journey from matter back to the realm of pure light.",
+            "fact": "Mani believed the material world was a prison of darkness and that human souls were fragments of divine light awaiting liberation. His parables, hymns, and paintings were all instruments of the same message: light will eventually triumph over darkness."
+          }
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "music",
+            "configId": "mani-hymn",
+            "instruction": "Mani composed hymns for every corner of his cosmic map. Arrange the descending phrases of a Manichaean hymn — light descending into the world, note by note.",
+            "fact": "Mani composed hymnbooks in multiple languages, including Middle Persian, Parthian, and Syriac. The Coptic Manichaean Psalm-Book, discovered in Egypt in 1930, preserves hundreds of hymns that reveal a sophisticated musical tradition within his church."
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "slug": "the-potter-s-empire",
+  "era": "Steam",
+  "order": 4,
+  "title": "The Potter's Empire",
+  "figure": "Josiah Wedgwood",
+  "portraitKey": "josiah_wedgwood",
+  "tagline": "He made china fashionable, pottery industrial, and beauty accessible to all.",
+  "locationImage": "steam_manchester",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Staffordshire, England, 1760s. Josiah Wedgwood hobbles through his pottery on a peg leg — a childhood illness cost him his right knee — testing glaze after glaze. He has conducted ten thousand experiments. He is building something the world has never seen: an industrial pottery empire."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Josiah Wedgwood",
+          "portraitKey": "josiah_wedgwood",
+          "text": "If Queen Charlotte uses our cream-colored earthenware, every household in England will want a set. I will call it Queen's Ware. We do not merely make pots — we manufacture desire."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "sort",
+            "question": "Arrange these milestones of the Industrial Revolution in which Wedgwood played a part:",
+            "items": [
+              "Wedgwood opens the Etruria Works — one of England's first purpose-built industrial potteries (1769)",
+              "The Grand Trunk Canal opens, connecting the Potteries to the ports — Wedgwood was a key investor (1777)",
+              "Wedgwood introduces transfer-printing techniques enabling mass production of decorated pottery (1780s)",
+              "Wedgwood's abolitionist cameo 'Am I Not a Man and a Brother?' becomes a mass-produced political icon (1787)"
+            ],
+            "fact": "Josiah Wedgwood didn't just make pottery — he invented modern manufacturing. He introduced quality control, a money-back guarantee, free delivery, and celebrity endorsements. His factory pioneered the division of labour decades before Adam Smith wrote about it."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Wedgwood invented modern marketing: he opened the first showroom in London, sent catalogs to customers across Europe, offered free returns, and used celebrity endorsements from royalty. He was also an obsessive experimentalist — his laboratory notebooks record thousands of chemical trials in the search for the perfect Jasperware blue."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Business Partner",
+          "text": "Josiah, why do you work so hard on this anti-slavery medallion? It will not sell like tableware. You could spend that energy on more profitable things.",
+          "portraitKey": "follower:merchant"
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "porcelain",
+            "configId": "cobalt-bowl",
+            "instruction": "Wedgwood's breakthrough was Jasperware — a matte stoneware that could hold fine detail. Craft the cobalt bowl with the precision of his Etruria Works.",
+            "fact": "Wedgwood spent years and thousands of experiments to develop Jasperware — a ceramic so consistent that every piece looked identical. He believed in what today we call quality control: testing every batch, recording every failure. His laboratory notebooks survive, filled with meticulous records of clay, glaze, and kiln temperature."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "dialog",
+          "speaker": "Josiah Wedgwood",
+          "portraitKey": "josiah_wedgwood",
+          "text": "Some things are more important than profit. 'Am I Not a Man and a Brother?' — these words, around an image of a kneeling slave, will be worn as a brooch, carried as a token, shown to members of Parliament. Art can be an argument. Beauty can carry a demand for justice."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "Josiah Wedgwood was the grandfather of which famous scientist?",
+            "options": [
+              "Isaac Newton",
+              "Michael Faraday",
+              "Charles Darwin",
+              "James Watt"
+            ],
+            "answer": 2,
+            "fact": "Charles Darwin was Josiah Wedgwood's grandson — his mother Susannah was Wedgwood's daughter, and his wife Emma was Wedgwood's granddaughter. Darwin married his own cousin from the Wedgwood family, a common practice in Victorian upper-class families."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Wedgwood's anti-slavery medallion became one of the first great pieces of political merchandise — mass-produced, distributed widely, worn by abolitionists from London to Philadelphia. His grandson Charles Darwin would inherit his moral seriousness along with his scientific curiosity."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "trade",
+            "configId": "steel-stocks",
+            "instruction": "The Industrial Revolution ran on raw materials and capital. Bid on commodities to supply Wedgwood's Etruria factory — clay, coal, and canal shares.",
+            "fact": "Wedgwood was a major investor in the Grand Trunk Canal, which connected his Staffordshire potteries to the ports at Liverpool and Hull. He understood that transport was as important as manufacturing — cheap bulk movement of clay in and finished goods out made his mass-production model possible."
+          }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Josiah Wedgwood",
+          "portraitKey": "josiah_wedgwood",
+          "text": "A craftsman makes one pot. A merchant sells one pot. But I have built a system — design, manufacturing, distribution, marketing — that will make ten million pots, each one beautiful, each one reaching a home that would never have afforded beauty before. That is what industry can be, at its best."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "Wedgwood sold only to the wealthy — his pottery was exclusively a luxury product for aristocrats and royalty.",
+            "correct": false,
+            "countdown": 10,
+            "fact": "Wedgwood brilliantly marketed at both ends of the market. He sold exclusive pieces to royalty and aristocracy — then used their endorsements to sell affordable versions to the growing middle class. His catalogue, free delivery, and money-back guarantee made quality ceramics accessible to ordinary households, pioneering the modern retail model."
+          }
+        }
+      ]
+    }
+  ]
+}

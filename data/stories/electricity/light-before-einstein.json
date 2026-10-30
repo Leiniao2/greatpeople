@@ -1,0 +1,110 @@
+{
+  "slug": "light-before-einstein",
+  "era": "Electricity",
+  "order": 4,
+  "title": "Light Before Einstein",
+  "figure": "Hendrik Lorentz",
+  "portraitKey": "hendrik_lorentz",
+  "tagline": "He builds the mathematics of relativity — and gives Einstein the tools to prove it.",
+  "locationImage": "steam_amsterdam",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Leiden, Netherlands, 1895. The most fundamental mystery in physics has just deepened. The Michelson-Morley experiment has proven light travels at the same speed regardless of direction — even as Earth moves through space. This should be impossible. Hendrik Lorentz is about to try to save the old theory — and accidentally lay the foundation for the new one."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Hendrik Lorentz",
+          "portraitKey": "hendrik_lorentz",
+          "text": "If Maxwell's equations describe light correctly — and they do — then moving objects must contract in the direction of motion. Time itself must stretch. These are not metaphors. They are mathematical necessities."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "Lorentz predicted time dilation — that time moves slower for moving objects — before Einstein published his theory of relativity.",
+            "correct": true,
+            "fact": "Hendrik Lorentz derived the 'Lorentz transformation' equations in 1895–1904, which showed that time, length, and mass change with velocity. Einstein took these equations and provided the physical interpretation: special relativity (1905)."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Lorentz derived the equations — now called the Lorentz transformations — describing how time and space change for objects moving near light speed. He won the Nobel Prize in 1902. Eleven years later, a young patent clerk named Einstein used those same equations — but gave them a wholly different meaning."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Hendrik Lorentz",
+          "portraitKey": "hendrik_lorentz",
+          "text": "Einstein says there is no ether. No absolute space. The transformations I derived as corrections to the old theory — he derives from first principles as the very nature of reality. He has seen further than I could. And he is right."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "geometry",
+            "configId": "cylinder-volume",
+            "instruction": "Lorentz's equations describe how a moving cylinder appears to shrink. Calculate the volume of this relativistic cylinder.",
+            "fact": "Lorentz contraction predicts that a moving object appears shorter in the direction of motion. A cylinder moving at 87% of light speed would appear halved in length — its volume halved — to a stationary observer."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "sudoku",
+            "configId": "lorentz-grid",
+            "instruction": "Lorentz's transformation equations describe a universe where time, space, and mass change with velocity — yet follow exact constraints. Fill the grid so each row, column, and 2×2 box contains 1–4 exactly once.",
+            "fact": "Hendrik Lorentz derived his transformation equations in 1895–1904, showing mathematically that length, time, and mass change with velocity. Einstein took these equations and provided the physical interpretation: special relativity. Lorentz considered Einstein's insight the greater achievement."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "lorentz",
+            "configId": "lorentz-basic",
+            "instruction": "Control the magnetic field strength to guide the charged particle to the target.",
+            "fact": "The Lorentz force (F = qv × B) causes charged particles to curve in a magnetic field — the foundation of cathode ray tubes, particle accelerators, and mass spectrometers."
+          }
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "mirror",
+            "configId": "foucault",
+            "instruction": "Léon Foucault measured the speed of light by bouncing a beam off a spinning mirror. You have one mirror — route the beam through four fixed reflectors to reach the exit.",
+            "fact": "Foucault measured the speed of light at 298,000 km/s in 1850 — within 0.6% of the true value — using a rotating mirror that shifted while light was in transit. Lorentz's equations later explained why light's speed is constant for all observers."
+          }
+        }
+      ]
+    }
+  ]
+}

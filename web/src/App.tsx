@@ -1,14 +1,19 @@
+import { Suspense, lazy } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { useAuth } from '@/hooks/useAuth'
+import LoadingScreen from '@/components/LoadingScreen'
 import LoginPage from '@/pages/LoginPage'
-import HomePage from '@/pages/HomePage'
-import CollectionPage from '@/pages/CollectionPage'
-import CardDetailPage from '@/pages/CardDetailPage'
-import BattlePage from '@/pages/BattlePage'
-import EpicPage from '@/pages/EpicPage'
-import ProfilePage from '@/pages/ProfilePage'
-import MiniChallengePage from '@/pages/MiniChallengePage'
-import MainLayout from '@/pages/MainLayout'
+
+// Every page except Login is its own chunk, so the first paint only ships the
+// code for the route being opened.
+const HomePage          = lazy(() => import('@/pages/HomePage'))
+const CollectionPage    = lazy(() => import('@/pages/CollectionPage'))
+const CardDetailPage    = lazy(() => import('@/pages/CardDetailPage'))
+const BattlePage        = lazy(() => import('@/pages/BattlePage'))
+const EpicPage          = lazy(() => import('@/pages/EpicPage'))
+const ProfilePage       = lazy(() => import('@/pages/ProfilePage'))
+const MiniChallengePage = lazy(() => import('@/pages/MiniChallengePage'))
+const MainLayout        = lazy(() => import('@/pages/MainLayout'))
 
 function PrivateRoute({ children }: { children: React.ReactNode }) {
   const { isLoggedIn, isGuest } = useAuth()
@@ -17,31 +22,33 @@ function PrivateRoute({ children }: { children: React.ReactNode }) {
 
 export default function App() {
   return (
-    <Routes>
-      {/* Public routes — no tab bar */}
-      <Route path="/login" element={<LoginPage />} />
+    <Suspense fallback={<LoadingScreen />}>
+      <Routes>
+        {/* Public routes — no tab bar */}
+        <Route path="/login" element={<LoginPage />} />
 
-      {/* Home — private, full-screen landing, no tab bar */}
-      <Route path="/home" element={<PrivateRoute><HomePage /></PrivateRoute>} />
+        {/* Home — private, full-screen landing, no tab bar */}
+        <Route path="/home" element={<PrivateRoute><HomePage /></PrivateRoute>} />
 
-      {/* Full-screen detail — private, no tab bar */}
-      <Route path="/card/:id" element={<PrivateRoute><CardDetailPage /></PrivateRoute>} />
+        {/* Full-screen detail — private, no tab bar */}
+        <Route path="/card/:id" element={<PrivateRoute><CardDetailPage /></PrivateRoute>} />
 
-      {/* Tab-bar layout — all protected */}
-      <Route
-        element={
-          <PrivateRoute>
-            <MainLayout />
-          </PrivateRoute>
-        }>
-        <Route index element={<Navigate to="/home" replace />} />
-        <Route path="/epic"       element={<EpicPage />} />
-        <Route path="/collection" element={<CollectionPage />} />
-        <Route path="/battle"     element={<BattlePage />} />
-        <Route path="/arcade"     element={<MiniChallengePage />} />
-        <Route path="/profile"    element={<ProfilePage />} />
-        <Route path="*"           element={<Navigate to="/home" replace />} />
-      </Route>
-    </Routes>
+        {/* Tab-bar layout — all protected */}
+        <Route
+          element={
+            <PrivateRoute>
+              <MainLayout />
+            </PrivateRoute>
+          }>
+          <Route index element={<Navigate to="/home" replace />} />
+          <Route path="/epic"       element={<EpicPage />} />
+          <Route path="/collection" element={<CollectionPage />} />
+          <Route path="/battle"     element={<BattlePage />} />
+          <Route path="/arcade"     element={<MiniChallengePage />} />
+          <Route path="/profile"    element={<ProfilePage />} />
+          <Route path="*"           element={<Navigate to="/home" replace />} />
+        </Route>
+      </Routes>
+    </Suspense>
   )
 }

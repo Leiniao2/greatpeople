@@ -11,13 +11,15 @@ import cardsJson from '@/data/cards.json'
 import locationsJson from '@/data/locations.json'
 import locationCardsJson from '@/data/location_cards.json'
 import followersJson from '@/data/followers.json'
-import { locationImageUrl } from '@/data/location_images'
+import { cardBackUrl, followerUrl, locationImageUrl, portraitUrl } from '@/data/images'
+import PageLoader from '@/components/PageLoader'
+import EraIcon from '@/components/EraIcon'
 
 // ─── Static Card Data ─────────────────────────────────────────────────────────
 
-const ALL_GP_CARDS: Card[] = (cardsJson as Card[]).map(c => ({
+const ALL_GP_CARDS: Card[] = cardsJson.map(c => ({
   ...c,
-  portraitUrl: `/portraits/portrait_${c.portraitKey}.jpeg`,
+  portraitUrl: portraitUrl(c.portraitKey),
 }))
 
 const FOLLOWER_TEMPLATES: Omit<FollowerCard, 'id'>[] = followersJson as Omit<FollowerCard, 'id'>[]
@@ -132,23 +134,23 @@ const LOCATION_POOL: LocationTemplate[] = locationsJson.locations
 const ERAS: string[] = locationsJson.eras
 
 const ERA_COLORS: Record<string, string> = {
-  Ancient:     'bg-yellow-900/60 border-yellow-700/40',
-  Medieval:    'bg-orange-900/60 border-orange-700/40',
-  Renaissance: 'bg-purple-900/60 border-purple-700/40',
-  Steam:       'bg-slate-800/60 border-slate-600/40',
-  Electricity: 'bg-blue-900/60 border-blue-700/40',
-  Information: 'bg-cyan-900/60 border-cyan-700/40',
-  Classical:   'bg-amber-900/60 border-amber-700/40',
+  Ancient:     'bg-yellow-200/70 border-yellow-600/50',
+  Medieval:    'bg-orange-200/70 border-orange-600/50',
+  Renaissance: 'bg-purple-200/70 border-purple-600/50',
+  Steam:       'bg-panel-2 border-line-2',
+  Electricity: 'bg-blue-200/70 border-blue-600/50',
+  Information: 'bg-cyan-200/70 border-cyan-600/50',
+  Classical:   'bg-accent/15 border-accent/50',
 }
 
 const ERA_TEXT: Record<string, string> = {
-  Ancient:     'text-yellow-400',
-  Medieval:    'text-orange-400',
-  Renaissance: 'text-purple-400',
-  Steam:       'text-slate-300',
-  Electricity: 'text-blue-400',
-  Information: 'text-cyan-400',
-  Classical:   'text-amber-400',
+  Ancient:     'text-yellow-800',
+  Medieval:    'text-orange-800',
+  Renaissance: 'text-purple-800',
+  Steam:       'text-ink-2',
+  Electricity: 'text-blue-800',
+  Information: 'text-cyan-800',
+  Classical:   'text-accent',
 }
 
 // ─── Utilities ────────────────────────────────────────────────────────────────
@@ -1279,26 +1281,26 @@ function CompactCard({ card, isCurrentPlayer, isSelected, onClick, onInfo, gpMap
   const eraColor = ERA_COLORS[era] ?? ERA_COLORS.Electricity
 
   const borderCls = isSelected
-    ? 'border-2 border-amber-400 shadow-lg shadow-amber-400/30'
+    ? 'border-2 border-accent shadow-lg shadow-accent/30'
     : isCurrentPlayer
-    ? 'border border-amber-500/40'
+    ? 'border border-accent/40'
     : 'border border-indigo-500/30'
 
   return (
     <button
       onClick={onClick}
       className={`relative flex flex-col rounded-lg overflow-hidden w-14 h-20 transition-all duration-150
-        ${isPrivate ? 'bg-slate-900 border-slate-700/50' : eraColor} ${borderCls}
+        ${isPrivate ? 'bg-paper-2 border-line' : eraColor} ${borderCls}
         ${isSelected ? 'scale-105' : 'hover:scale-[1.03]'}`}
     >
       {card.justDeployed && (
-        <span className="absolute top-0.5 right-0.5 z-10 w-2 h-2 rounded-full bg-amber-400 border border-black" />
+        <span className="absolute top-0.5 right-0.5 z-10 w-2 h-2 rounded-full bg-accent border border-black" />
       )}
       {card.achievementTicks > 0 && (() => {
         const threshold = gp ? getAchievementThreshold(gp.figureName) : 3
         const ready = card.achievementTicks >= threshold
         return (
-          <span className={`absolute top-0.5 left-0.5 z-10 text-[7px] font-bold rounded px-0.5 ${ready ? 'bg-amber-400 text-slate-950' : 'bg-black/60 text-amber-300'}`}>
+          <span className={`absolute top-0.5 left-0.5 z-10 text-[7px] font-bold rounded px-0.5 ${ready ? 'bg-accent text-accent-fg' : 'bg-ink/50 text-accent'}`}>
             {card.achievementTicks}/{threshold}
           </span>
         )
@@ -1307,7 +1309,7 @@ function CompactCard({ card, isCurrentPlayer, isSelected, onClick, onInfo, gpMap
       {isPrivate ? (
         <div className="flex-1 w-full relative overflow-hidden">
           <img
-            src={card.type === 'follower' ? '/card-backs/follower.jpeg' : '/card-backs/gp.jpeg'}
+            src={cardBackUrl(card.type === 'follower' ? 'follower' : 'gp')}
             alt="face down"
             className="w-full h-full object-cover object-center"
           />
@@ -1325,12 +1327,12 @@ function CompactCard({ card, isCurrentPlayer, isSelected, onClick, onInfo, gpMap
               <div
                 role="button"
                 onClick={e => { e.stopPropagation(); onInfo(gp, card.achievementTicks) }}
-                className="absolute top-0.5 right-0.5 w-4 h-4 rounded-full bg-black/70 flex items-center justify-center text-[8px] text-white/80 cursor-pointer z-10 hover:bg-black/90"
+                className="absolute top-0.5 right-0.5 w-4 h-4 rounded-full bg-ink/70 flex items-center justify-center text-[8px] text-paper/90 cursor-pointer z-10 hover:bg-ink/70"
               >i</div>
             )}
           </div>
           <div className="w-full bg-black/75 px-0.5 py-0.5 shrink-0">
-            <span className="text-[7px] text-white leading-none truncate block">{gp.figureName.split(' ').pop()}</span>
+            <span className="text-[7px] text-ink leading-none truncate block">{gp.figureName.split(' ').pop()}</span>
             {gp.countries && gp.countries.length > 0 && (
               <span className="text-[6px] text-cyan-400/70 leading-none truncate block">{gp.countries[0]}</span>
             )}
@@ -1340,13 +1342,13 @@ function CompactCard({ card, isCurrentPlayer, isSelected, onClick, onInfo, gpMap
         <>
           <div className="flex-1 w-full relative overflow-hidden bg-indigo-950">
             <img
-              src={`/followers/${follower.imageKey}.jpeg`}
+              src={followerUrl(follower.imageKey)}
               alt={follower.name}
               className="w-full h-full object-cover object-center"
               onError={e => { (e.target as HTMLImageElement).style.display = 'none' }}
             />
           </div>
-          <div className="w-full bg-black/80 px-0.5 py-0.5 shrink-0">
+          <div className="w-full bg-ink/70 px-0.5 py-0.5 shrink-0">
             <span className="text-[7px] text-indigo-200 leading-none truncate block">{follower.name}</span>
             <span className="text-[6px] text-indigo-400">+3 {STAT_LABELS[follower.stat].slice(0, 3)}</span>
           </div>
@@ -1354,7 +1356,7 @@ function CompactCard({ card, isCurrentPlayer, isSelected, onClick, onInfo, gpMap
       ) : null}
 
       {!isPrivate && !card.isPublic && gp && (
-        <span className="absolute bottom-4 left-0.5 text-[6px] text-slate-400 bg-black/50 rounded px-0.5">priv</span>
+        <span className="absolute bottom-4 left-0.5 text-[6px] text-paper/80 bg-ink/50 rounded px-0.5">priv</span>
       )}
     </button>
   )
@@ -1375,7 +1377,7 @@ function HandCard({ cardId, type, isSelected, onClick, onInfo, gpMap, eventCard,
   const gp = type === 'gp' ? gpMap[cardId] : null
   const era = gp?.era ?? 'Steam'
   const eraColor = ERA_COLORS[era] ?? ERA_COLORS.Steam
-  const borderCls = isSelected ? 'border-2 border-amber-400 ring-2 ring-amber-400/30' : 'border border-white/10'
+  const borderCls = isSelected ? 'border-2 border-accent ring-2 ring-accent/30' : 'border border-line'
 
   return (
     <button
@@ -1397,15 +1399,15 @@ function HandCard({ cardId, type, isSelected, onClick, onInfo, gpMap, eventCard,
               <div
                 role="button"
                 onClick={e => { e.stopPropagation(); onInfo(gp) }}
-                className="absolute top-0.5 right-0.5 w-4 h-4 rounded-full bg-black/70 flex items-center justify-center text-[8px] text-white/80 cursor-pointer z-10 hover:bg-black/90"
+                className="absolute top-0.5 right-0.5 w-4 h-4 rounded-full bg-ink/70 flex items-center justify-center text-[8px] text-paper/90 cursor-pointer z-10 hover:bg-ink/70"
               >i</div>
             )}
             <div className="absolute inset-x-0 bottom-0 h-5 bg-gradient-to-t from-black/60 to-transparent" />
           </div>
-          <div className="w-full bg-black/80 px-1 py-0.5 shrink-0">
-            <div className="text-[8px] text-white font-semibold leading-tight truncate">{gp.figureName}</div>
-            <div className="text-[8px] text-slate-500 truncate">
-              {gp.countries && gp.countries.length > 0 ? gp.countries[0] : gp.era}
+          <div className="w-full bg-ink/70 px-1 py-0.5 shrink-0">
+            <div className="text-[8px] text-ink font-semibold leading-tight truncate">{gp.figureName}</div>
+            <div className="text-[8px] text-muted truncate flex items-center">
+              {gp.countries && gp.countries.length > 0 ? gp.countries[0] : <EraIcon era={gp.era} className="w-2.5 h-2.5" />}
             </div>
           </div>
         </>
@@ -1413,7 +1415,7 @@ function HandCard({ cardId, type, isSelected, onClick, onInfo, gpMap, eventCard,
       {type === 'event' && eventCard && (
         <div className="flex flex-col items-center justify-between h-full p-1.5">
           <span className="text-[8px] text-purple-300 uppercase tracking-wide">Event</span>
-          <span className="text-[9px] text-white font-medium leading-tight text-center">{eventCard.name}</span>
+          <span className="text-[9px] text-ink font-medium leading-tight text-center">{eventCard.name}</span>
           <span className="text-[8px] text-purple-400 text-center">{eventCard.stat ? STAT_LABELS[eventCard.stat].slice(0, 3) : 'Hazard'}</span>
         </div>
       )}
@@ -1421,14 +1423,14 @@ function HandCard({ cardId, type, isSelected, onClick, onInfo, gpMap, eventCard,
         <>
           <div className="flex-1 w-full relative overflow-hidden bg-indigo-950">
             <img
-              src={`/followers/${followerCard.imageKey}.jpeg`}
+              src={followerUrl(followerCard.imageKey)}
               alt={followerCard.name}
               className="w-full h-full object-cover object-center"
               onError={e => { (e.target as HTMLImageElement).style.display = 'none' }}
             />
             <div className="absolute inset-x-0 bottom-0 h-5 bg-gradient-to-t from-black/60 to-transparent" />
           </div>
-          <div className="w-full bg-black/80 px-1 py-0.5 shrink-0">
+          <div className="w-full bg-ink/70 px-1 py-0.5 shrink-0">
             <div className="text-[8px] text-indigo-200 font-semibold leading-tight truncate">{followerCard.name}</div>
             <div className="text-[8px] text-indigo-400">+3 {STAT_LABELS[followerCard.stat].slice(0, 3)}</div>
           </div>
@@ -1447,15 +1449,15 @@ function CardDetailModal({ card, achievementTicks, onClose }: { card: Card; achi
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-4"
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-ink/70 p-4"
       onClick={onClose}
     >
       <div
-        className="relative bg-[#0e0e1a] border border-white/10 rounded-2xl overflow-hidden w-full max-w-xs shadow-2xl"
+        className="relative bg-panel border border-line rounded-2xl overflow-hidden w-full max-w-xs shadow-2xl"
         onClick={e => e.stopPropagation()}
       >
         {/* Portrait with name overlay */}
-        <div className="relative w-full h-48 bg-slate-900">
+        <div className="relative w-full h-48 bg-paper-2">
           <img
             src={card.portraitUrl}
             alt={card.figureName}
@@ -1465,11 +1467,11 @@ function CardDetailModal({ card, achievementTicks, onClose }: { card: Card; achi
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
           <button
             onClick={onClose}
-            className="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/60 border border-white/10 flex items-center justify-center text-white/70 hover:text-white text-sm transition-colors"
+            className="absolute top-3 right-3 w-8 h-8 rounded-full bg-ink/50 border border-line flex items-center justify-center text-paper/80 hover:text-paper text-sm transition-colors"
           >✕</button>
           <div className="absolute bottom-0 left-0 right-0 px-4 pb-3">
-            <h2 className="text-white text-lg font-bold leading-tight">{card.figureName}</h2>
-            <p className={`text-sm font-medium ${ERA_TEXT[card.era] ?? 'text-slate-400'}`}>{card.era}</p>
+            <h2 className="text-paper text-lg font-bold leading-tight">{card.figureName}</h2>
+            <p className={`text-sm font-medium ${ERA_TEXT[card.era] ?? 'text-muted'}`}>{card.era}</p>
           </div>
         </div>
 
@@ -1479,10 +1481,10 @@ function CardDetailModal({ card, achievementTicks, onClose }: { card: Card; achi
           <div className="grid grid-cols-2 gap-1.5">
             {STATS.map(stat => {
               const val = card[stat]
-              const highlight = val >= 80 ? 'text-amber-400' : val >= 60 ? 'text-slate-200' : 'text-slate-500'
+              const highlight = val >= 80 ? 'text-accent' : val >= 60 ? 'text-ink-2' : 'text-muted'
               return (
-                <div key={stat} className="flex items-center justify-between bg-white/[0.04] rounded-lg px-2.5 py-1.5">
-                  <span className="text-slate-400 text-[11px]">{STAT_LABELS[stat]}</span>
+                <div key={stat} className="flex items-center justify-between bg-panel rounded-lg px-2.5 py-1.5">
+                  <span className="text-muted text-[11px]">{STAT_LABELS[stat]}</span>
                   <span className={`text-sm font-bold ${highlight}`}>{val}</span>
                 </div>
               )
@@ -1491,9 +1493,9 @@ function CardDetailModal({ card, achievementTicks, onClose }: { card: Card; achi
 
           {/* Trait */}
           {card.trait && (
-            <div className="bg-amber-500/[0.07] border border-amber-500/20 rounded-xl px-3 py-2.5">
-              <p className="text-[10px] text-amber-400/70 uppercase tracking-widest font-semibold mb-1">Trait</p>
-              <p className="text-amber-200/90 text-xs leading-relaxed">{card.trait}</p>
+            <div className="bg-accent/[0.07] border border-accent/20 rounded-xl px-3 py-2.5">
+              <p className="text-[10px] text-accent/70 uppercase tracking-widest font-semibold mb-1">Trait</p>
+              <p className="text-ink-2 text-xs leading-relaxed">{card.trait}</p>
             </div>
           )}
 
@@ -1503,14 +1505,14 @@ function CardDetailModal({ card, achievementTicks, onClose }: { card: Card; achi
               <div className="flex items-center justify-between mb-1">
                 <p className="text-[10px] text-violet-400/70 uppercase tracking-widest font-semibold">Achievement</p>
                 {achievementTicks !== undefined && (
-                  <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${ticks >= threshold ? 'bg-amber-500 text-slate-950' : 'bg-white/10 text-slate-400'}`}>
+                  <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${ticks >= threshold ? 'bg-accent text-accent-fg' : 'bg-panel text-muted'}`}>
                     {ticks} / {threshold}
                   </span>
                 )}
               </div>
               <p className="text-violet-200/90 text-xs leading-relaxed">{card.achievement}</p>
               {achievementTicks !== undefined && ticks >= threshold && (
-                <p className="text-amber-400 text-[10px] font-bold mt-1.5">★ Ready to claim!</p>
+                <p className="text-accent text-[10px] font-bold mt-1.5">★ Ready to claim!</p>
               )}
             </div>
           )}
@@ -1568,17 +1570,17 @@ function BattleLobby({ matchType, onStart, onBack }: LobbyProps) {
   const label = MATCH_TYPE_LABELS[matchType]
 
   return (
-    <div className="relative min-h-screen bg-[#080812] overflow-auto flex flex-col">
+    <div className="relative min-h-screen bg-paper overflow-auto flex flex-col">
       <div className="pointer-events-none fixed inset-0">
-        <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] rounded-full bg-indigo-700/10 blur-[140px]" />
-        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full bg-amber-600/8 blur-[140px]" />
+        <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] rounded-full bg-line/40 blur-[140px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full bg-accent/8 blur-[140px]" />
       </div>
 
-      <div className="relative z-10 px-5 py-5 flex items-center gap-3 border-b border-white/[0.06]">
-        <button onClick={onBack} className="text-slate-500 hover:text-slate-300 text-sm transition-colors">← Back</button>
+      <div className="relative z-10 px-5 py-5 flex items-center gap-3 border-b border-line">
+        <button onClick={onBack} className="text-muted hover:text-ink-2 text-sm transition-colors">← Back</button>
         <div>
-          <h1 className="font-display text-xl font-bold tracking-[0.1em] text-white uppercase">{label.title}</h1>
-          <p className="text-[11px] text-slate-500">{label.sub}</p>
+          <h1 className="font-display text-xl font-bold tracking-[0.1em] text-ink uppercase">{label.title}</h1>
+          <p className="text-[11px] text-muted">{label.sub}</p>
         </div>
       </div>
 
@@ -1588,26 +1590,26 @@ function BattleLobby({ matchType, onStart, onBack }: LobbyProps) {
           /* PvC: fixed 1 human, variable CPUs */
           <>
             <div>
-              <p className="text-xs text-slate-500 uppercase tracking-widest mb-2">Your Name</p>
+              <p className="text-xs text-muted uppercase tracking-widest mb-2">Your Name</p>
               <input
                 value={playerNames[0] ?? ''}
                 onChange={e => updatePlayerName(0, e.target.value)}
                 placeholder="Your name"
-                className="w-full bg-slate-900 border border-white/10 rounded-lg px-3 py-2 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-amber-500/50"
+                className="w-full bg-paper-2 border border-line rounded-lg px-3 py-2 text-sm text-ink placeholder-muted focus:outline-none focus:border-accent/50"
               />
             </div>
             <div>
               <div className="flex items-center justify-between mb-1">
-                <p className="text-xs text-slate-500 uppercase tracking-widest">Computer Opponents</p>
+                <p className="text-xs text-muted uppercase tracking-widest">Computer Opponents</p>
                 <div className="flex items-center gap-2">
                   <button onClick={() => adjustComputers(numComputers - 1)}
-                    className="w-7 h-7 rounded-lg bg-slate-800 border border-white/10 text-white text-sm hover:bg-slate-700 transition-colors">−</button>
-                  <span className="text-white text-sm w-5 text-center font-semibold">{numComputers}</span>
+                    className="w-7 h-7 rounded-lg bg-panel-2 border border-line text-ink text-sm hover:bg-line transition-colors">−</button>
+                  <span className="text-ink text-sm w-5 text-center font-semibold">{numComputers}</span>
                   <button onClick={() => adjustComputers(numComputers + 1)}
-                    className="w-7 h-7 rounded-lg bg-slate-800 border border-white/10 text-white text-sm hover:bg-slate-700 transition-colors">+</button>
+                    className="w-7 h-7 rounded-lg bg-panel-2 border border-line text-ink text-sm hover:bg-line transition-colors">+</button>
                 </div>
               </div>
-              <p className="text-[11px] text-slate-600">
+              <p className="text-[11px] text-muted/80">
                 {numComputers === 1 ? '1 CPU opponent' : `${numComputers} CPU opponents`} · {totalPlayers} players total
               </p>
             </div>
@@ -1616,22 +1618,22 @@ function BattleLobby({ matchType, onStart, onBack }: LobbyProps) {
           /* PvP: 2–5 human players */
           <div>
             <div className="flex items-center justify-between mb-3">
-              <p className="text-xs text-slate-500 uppercase tracking-widest">Players</p>
+              <p className="text-xs text-muted uppercase tracking-widest">Players</p>
               <div className="flex items-center gap-2">
                 <button onClick={() => adjustHumans(numHumans - 1)}
                   disabled={numHumans <= 2}
-                  className="w-7 h-7 rounded-lg bg-slate-800 border border-white/10 text-white text-sm hover:bg-slate-700 transition-colors disabled:opacity-30">−</button>
-                <span className="text-white text-sm w-5 text-center font-semibold">{numHumans}</span>
+                  className="w-7 h-7 rounded-lg bg-panel-2 border border-line text-ink text-sm hover:bg-line transition-colors disabled:opacity-30">−</button>
+                <span className="text-ink text-sm w-5 text-center font-semibold">{numHumans}</span>
                 <button onClick={() => adjustHumans(numHumans + 1)}
                   disabled={numHumans >= 5}
-                  className="w-7 h-7 rounded-lg bg-slate-800 border border-white/10 text-white text-sm hover:bg-slate-700 transition-colors disabled:opacity-30">+</button>
+                  className="w-7 h-7 rounded-lg bg-panel-2 border border-line text-ink text-sm hover:bg-line transition-colors disabled:opacity-30">+</button>
               </div>
             </div>
             <div className="space-y-2">
               {Array.from({ length: numHumans }, (_, i) => (
                 <input key={i} value={playerNames[i] ?? ''} onChange={e => updatePlayerName(i, e.target.value)}
                   placeholder={`Player ${i + 1}`}
-                  className="w-full bg-slate-900 border border-white/10 rounded-lg px-3 py-2 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-amber-500/50" />
+                  className="w-full bg-paper-2 border border-line rounded-lg px-3 py-2 text-sm text-ink placeholder-muted focus:outline-none focus:border-accent/50" />
               ))}
             </div>
           </div>
@@ -1639,27 +1641,27 @@ function BattleLobby({ matchType, onStart, onBack }: LobbyProps) {
 
         {/* Era Mode */}
         <div>
-          <p className="text-xs text-slate-500 uppercase tracking-widest mb-3">Era</p>
+          <p className="text-xs text-muted uppercase tracking-widest mb-3">Era</p>
           <div className="grid grid-cols-2 gap-2 mb-3">
             {(['all', 'single'] as const).map(m => (
               <button key={m} onClick={() => setEraMode(m)}
                 className={`py-3 rounded-xl text-sm font-semibold transition-all border
                   ${eraMode === m
-                    ? 'bg-amber-500/15 border-amber-500/50 text-amber-400'
-                    : 'border-white/10 text-slate-400 hover:border-white/20'}`}>
+                    ? 'bg-accent/15 border-accent/50 text-accent'
+                    : 'border-line text-muted hover:border-line-2'}`}>
                 {m === 'all' ? 'All Eras' : 'Single Era'}
               </button>
             ))}
           </div>
           {eraMode === 'single' && (
-            <div className="grid grid-cols-3 gap-1.5">
+            <div className="grid grid-cols-7 gap-1.5">
               {ERAS.map(era => (
-                <button key={era} onClick={() => setSingleEra(era)}
-                  className={`py-1.5 rounded-lg text-xs font-medium transition-all border
+                <button key={era} onClick={() => setSingleEra(era)} title={era}
+                  className={`py-1.5 rounded-lg text-xs font-medium transition-all border flex items-center justify-center
                     ${singleEra === era
-                      ? 'bg-amber-500/15 border-amber-500/50 text-amber-400'
-                      : 'border-white/10 text-slate-500 hover:border-white/20'}`}>
-                  {era}
+                      ? 'bg-accent/15 border-accent/50 text-accent'
+                      : 'border-line text-muted hover:border-line-2'}`}>
+                  <EraIcon era={era} className="w-5 h-5" />
                 </button>
               ))}
             </div>
@@ -1680,9 +1682,9 @@ function BattleLobby({ matchType, onStart, onBack }: LobbyProps) {
             })
           }}
           disabled={!canStart}
-          className="w-full py-3.5 rounded-xl font-bold text-sm tracking-wide text-slate-950
-            bg-amber-500 hover:bg-amber-400 active:bg-amber-600 disabled:opacity-40 disabled:cursor-not-allowed
-            shadow-lg shadow-amber-500/25 transition-all duration-200">
+          className="w-full py-3.5 rounded-xl font-bold text-sm tracking-wide text-ink
+            bg-accent hover:bg-accent-hover active:bg-accent-hover disabled:opacity-40 disabled:cursor-not-allowed
+            shadow-lg shadow-accent/25 transition-all duration-200">
           Start Game
         </button>
       </div>
@@ -1693,7 +1695,7 @@ function BattleLobby({ matchType, onStart, onBack }: LobbyProps) {
 // ─── Player Colors ────────────────────────────────────────────────────────────
 
 const PLAYER_COLORS = [
-  { text: 'text-amber-400',   bg: 'bg-amber-500/15',   border: 'border-amber-500/40',   ring: 'border-amber-500/40',   dot: 'bg-amber-400'   },
+  { text: 'text-accent',   bg: 'bg-accent/15',   border: 'border-accent/40',   ring: 'border-accent/40',   dot: 'bg-accent'   },
   { text: 'text-indigo-400',  bg: 'bg-indigo-500/15',  border: 'border-indigo-500/40',  ring: 'border-indigo-500/40',  dot: 'bg-indigo-400'  },
   { text: 'text-emerald-400', bg: 'bg-emerald-500/15', border: 'border-emerald-500/40', ring: 'border-emerald-500/40', dot: 'bg-emerald-400' },
   { text: 'text-violet-400',  bg: 'bg-violet-500/15',  border: 'border-violet-500/40',  ring: 'border-violet-500/40',  dot: 'bg-violet-400'  },
@@ -1755,25 +1757,25 @@ interface Selection {
 
 function ContribRow({ c }: { c: CardContrib }) {
   const hasBonus = c.traitBonus !== 0 || c.followerBonus !== 0 || c.locationBonus !== 0
-  const portrait = c.portraitUrl ?? (c.imageKey ? `/followers/${c.imageKey}.jpeg` : null)
+  const portrait = c.portraitUrl ?? (c.imageKey ? followerUrl(c.imageKey) : null)
   return (
-    <div className="flex items-center gap-2 py-1 border-b border-white/5 last:border-0">
+    <div className="flex items-center gap-2 py-1 border-b border-line last:border-0">
       {portrait ? (
-        <img src={portrait} alt={c.name} className="w-7 h-7 rounded-full object-cover shrink-0 border border-white/10" />
+        <img src={portrait} alt={c.name} className="w-7 h-7 rounded-full object-cover shrink-0 border border-line" />
       ) : (
-        <div className="w-7 h-7 rounded-full bg-slate-800 shrink-0 flex items-center justify-center text-xs">
+        <div className="w-7 h-7 rounded-full bg-panel-2 shrink-0 flex items-center justify-center text-xs">
           {c.type === 'follower' ? '👥' : '👤'}
         </div>
       )}
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-1 flex-wrap">
-          <span className="text-xs text-slate-300 font-medium truncate">{c.name}</span>
+          <span className="text-xs text-ink-2 font-medium truncate">{c.name}</span>
           {c.type === 'follower' && <span className="text-[9px] text-indigo-400 bg-indigo-900/40 px-1 rounded">follower</span>}
         </div>
         {hasBonus && (
           <div className="flex gap-2 mt-0.5">
             {c.traitBonus !== 0 && (
-              <span className="text-[9px] text-amber-400">trait {c.traitBonus > 0 ? '+' : ''}{c.traitBonus}</span>
+              <span className="text-[9px] text-accent">trait {c.traitBonus > 0 ? '+' : ''}{c.traitBonus}</span>
             )}
             {c.followerBonus !== 0 && (
               <span className="text-[9px] text-indigo-400">follower +{c.followerBonus}</span>
@@ -1784,7 +1786,7 @@ function ContribRow({ c }: { c: CardContrib }) {
           </div>
         )}
       </div>
-      <span className="text-sm font-bold text-white shrink-0">
+      <span className="text-sm font-bold text-ink shrink-0">
         {c.baseStat + c.traitBonus + c.followerBonus + c.locationBonus}
       </span>
     </div>
@@ -1794,16 +1796,16 @@ function ContribRow({ c }: { c: CardContrib }) {
 function SummaryModal({ summary, onDismiss }: { summary: GameSummary; onDismiss: () => void }) {
   if (summary.kind === 'combat') {
     const s = summary
-    const resultColor = s.result === 'attacker' ? 'text-emerald-400' : s.result === 'defender' ? 'text-red-400' : 'text-slate-400'
+    const resultColor = s.result === 'attacker' ? 'text-emerald-400' : s.result === 'defender' ? 'text-red-400' : 'text-muted'
     const resultLabel = s.result === 'attacker' ? 'Attacker wins!' : s.result === 'defender' ? 'Defender holds!' : 'Draw'
     return (
-      <div className="fixed inset-0 z-[150] flex items-center justify-center bg-black/80 p-4">
-        <div className="bg-[#0e1020] border border-white/10 rounded-2xl w-full max-w-sm shadow-2xl overflow-hidden">
+      <div className="fixed inset-0 z-[150] flex items-center justify-center bg-ink/70 p-4">
+        <div className="bg-panel border border-line rounded-2xl w-full max-w-sm shadow-2xl overflow-hidden">
           {/* Header */}
-          <div className="bg-red-900/20 border-b border-white/10 px-4 py-3 text-center">
+          <div className="bg-red-900/20 border-b border-line px-4 py-3 text-center">
             <div className="text-lg">⚔️</div>
-            <h3 className="font-bold text-white text-sm uppercase tracking-wide">Battle Report</h3>
-            <p className="text-slate-400 text-xs mt-0.5">{s.locationName} · {STAT_LABELS[s.stat]}</p>
+            <h3 className="font-bold text-ink text-sm uppercase tracking-wide">Battle Report</h3>
+            <p className="text-muted text-xs mt-0.5">{s.locationName} · {STAT_LABELS[s.stat]}</p>
             {s.locationAbility && (
               <p className="text-yellow-300/80 text-[10px] mt-1 italic">{s.locationAbility}</p>
             )}
@@ -1813,18 +1815,18 @@ function SummaryModal({ summary, onDismiss }: { summary: GameSummary; onDismiss:
             {/* Attacker side */}
             <div>
               <div className="flex justify-between items-center mb-1">
-                <span className="text-[10px] uppercase tracking-widest text-slate-500">Attacker — {s.attacker.playerName}</span>
+                <span className="text-[10px] uppercase tracking-widest text-muted">Attacker — {s.attacker.playerName}</span>
                 <span className="text-sm font-bold text-emerald-400">{s.attacker.total}</span>
               </div>
               {s.attacker.cards.map((c, i) => <ContribRow key={i} c={c} />)}
             </div>
 
-            <div className="border-t border-white/10" />
+            <div className="border-t border-line" />
 
             {/* Defender side */}
             <div>
               <div className="flex justify-between items-center mb-1">
-                <span className="text-[10px] uppercase tracking-widest text-slate-500">Defender — {s.defender.playerName}</span>
+                <span className="text-[10px] uppercase tracking-widest text-muted">Defender — {s.defender.playerName}</span>
                 <span className="text-sm font-bold text-indigo-400">{s.defender.total}</span>
               </div>
               {s.defender.cards.map((c, i) => <ContribRow key={i} c={c} />)}
@@ -1832,14 +1834,14 @@ function SummaryModal({ summary, onDismiss }: { summary: GameSummary; onDismiss:
           </div>
 
           {/* Outcome */}
-          <div className="border-t border-white/10 px-4 py-3 text-center space-y-1">
+          <div className="border-t border-line px-4 py-3 text-center space-y-1">
             <p className={`font-bold text-sm ${resultColor}`}>{resultLabel}</p>
             {s.kill && <p className="text-xs text-red-400">Defender's card eliminated!</p>}
           </div>
 
           <div className="px-4 pb-4">
             <button onClick={onDismiss}
-              className="w-full py-2.5 rounded-xl text-sm font-bold bg-slate-800 hover:bg-slate-700 text-white transition-all">
+              className="w-full py-2.5 rounded-xl text-sm font-bold bg-panel-2 hover:bg-line text-ink transition-all">
               Continue
             </button>
           </div>
@@ -1855,12 +1857,12 @@ function SummaryModal({ summary, onDismiss }: { summary: GameSummary; onDismiss:
   const icon = isGlobal ? '🌍' : s.eventType === 'local_survival' ? '☠️' : '⚡'
 
   return (
-    <div className="fixed inset-0 z-[150] flex items-center justify-center bg-black/80 p-4">
-      <div className="bg-[#0e1020] border border-white/10 rounded-2xl w-full max-w-sm shadow-2xl overflow-hidden">
-        <div className={`${headerColor} border-b border-white/10 px-4 py-3 text-center`}>
+    <div className="fixed inset-0 z-[150] flex items-center justify-center bg-ink/70 p-4">
+      <div className="bg-panel border border-line rounded-2xl w-full max-w-sm shadow-2xl overflow-hidden">
+        <div className={`${headerColor} border-b border-line px-4 py-3 text-center`}>
           <div className="text-lg">{icon}</div>
-          <h3 className="font-bold text-white text-sm uppercase tracking-wide">{s.eventName}</h3>
-          <p className="text-slate-400 text-xs mt-0.5">
+          <h3 className="font-bold text-ink text-sm uppercase tracking-wide">{s.eventName}</h3>
+          <p className="text-muted text-xs mt-0.5">
             {s.locationName}{s.stat ? ` · ${STAT_LABELS[s.stat]}` : ''}
             {s.threshold > 0 ? ` · threshold ${s.threshold}` : ''}
           </p>
@@ -1871,7 +1873,7 @@ function SummaryModal({ summary, onDismiss }: { summary: GameSummary; onDismiss:
             <div key={ri}>
               <div className="flex justify-between items-center mb-1">
                 <div className="flex items-center gap-1.5">
-                  <span className="text-[10px] uppercase tracking-widest text-slate-500">{r.playerName}</span>
+                  <span className="text-[10px] uppercase tracking-widest text-muted">{r.playerName}</span>
                   {!isGlobal && (
                     <span className={`text-[9px] font-bold px-1.5 rounded ${r.survived ? 'bg-emerald-900/50 text-emerald-400' : 'bg-red-900/50 text-red-400'}`}>
                       {r.survived ? 'Survived' : 'Eliminated'}
@@ -1881,17 +1883,17 @@ function SummaryModal({ summary, onDismiss }: { summary: GameSummary; onDismiss:
                     <span className="text-[9px] font-bold px-1.5 rounded bg-purple-900/50 text-purple-300">Winner</span>
                   )}
                 </div>
-                <span className="text-sm font-bold text-white">{r.total}</span>
+                <span className="text-sm font-bold text-ink">{r.total}</span>
               </div>
               {r.cards.map((c, i) => <ContribRow key={i} c={c} />)}
-              {ri < s.results.length - 1 && <div className="mt-3 border-t border-white/10" />}
+              {ri < s.results.length - 1 && <div className="mt-3 border-t border-line" />}
             </div>
           ))}
         </div>
 
         <div className="px-4 pb-4 pt-2">
           <button onClick={onDismiss}
-            className="w-full py-2.5 rounded-xl text-sm font-bold bg-slate-800 hover:bg-slate-700 text-white transition-all">
+            className="w-full py-2.5 rounded-xl text-sm font-bold bg-panel-2 hover:bg-line text-ink transition-all">
             Continue
           </button>
         </div>
@@ -1908,45 +1910,45 @@ interface BattleGameProps {
 
 function RulesModal({ onClose }: { onClose: () => void }) {
   return (
-    <div className="fixed inset-0 z-[200] flex items-end sm:items-center justify-center bg-black/70 p-4" onClick={onClose}>
-      <div className="bg-[#0e1020] border border-white/10 rounded-2xl w-full max-w-sm shadow-2xl overflow-hidden" onClick={e => e.stopPropagation()}>
-        <div className="flex items-center justify-between px-4 py-3 border-b border-white/10">
-          <span className="text-sm font-bold text-white tracking-wide">📖 How to Play</span>
-          <button onClick={onClose} className="text-slate-500 hover:text-white text-lg leading-none transition-colors">✕</button>
+    <div className="fixed inset-0 z-[200] flex items-end sm:items-center justify-center bg-ink/70 p-4" onClick={onClose}>
+      <div className="bg-panel border border-line rounded-2xl w-full max-w-sm shadow-2xl overflow-hidden" onClick={e => e.stopPropagation()}>
+        <div className="flex items-center justify-between px-4 py-3 border-b border-line">
+          <span className="text-sm font-bold text-ink tracking-wide">📖 How to Play</span>
+          <button onClick={onClose} className="text-muted hover:text-ink text-lg leading-none transition-colors">✕</button>
         </div>
         <div className="p-4 space-y-4 max-h-[70vh] overflow-y-auto text-sm">
           <section>
-            <p className="text-[10px] font-bold text-amber-400 uppercase tracking-widest mb-1.5">Objective</p>
-            <p className="text-slate-300 leading-relaxed">First player to earn <span className="text-amber-400 font-bold">5 Victory Points</span> wins the game.</p>
+            <p className="text-[10px] font-bold text-accent uppercase tracking-widest mb-1.5">Objective</p>
+            <p className="text-ink-2 leading-relaxed">First player to earn <span className="text-accent font-bold">5 Victory Points</span> wins the game.</p>
           </section>
           <section>
-            <p className="text-[10px] font-bold text-amber-400 uppercase tracking-widest mb-1.5">On Your Turn</p>
-            <ul className="space-y-1.5 text-slate-300 leading-relaxed">
-              <li><span className="text-white font-semibold">Deploy</span> — Play one Great Person from your hand to any location.</li>
-              <li><span className="text-white font-semibold">Add Follower</span> — Place a follower at a location where you have a Great Person.</li>
-              <li><span className="text-white font-semibold">Move</span> — Relocate one of your cards to a different location.</li>
-              <li><span className="text-white font-semibold">Trigger Event</span> — Activate the event card at a location where you have a Great Person.</li>
-              <li><span className="text-white font-semibold">Attack</span> — During a Local Event, challenge a rival's card.</li>
-              <li><span className="text-white font-semibold">Retrieve</span> — Return one of your cards from the board to your hand.</li>
+            <p className="text-[10px] font-bold text-accent uppercase tracking-widest mb-1.5">On Your Turn</p>
+            <ul className="space-y-1.5 text-ink-2 leading-relaxed">
+              <li><span className="text-ink font-semibold">Deploy</span> — Play one Great Person from your hand to any location.</li>
+              <li><span className="text-ink font-semibold">Add Follower</span> — Place a follower at a location where you have a Great Person.</li>
+              <li><span className="text-ink font-semibold">Move</span> — Relocate one of your cards to a different location.</li>
+              <li><span className="text-ink font-semibold">Trigger Event</span> — Activate the event card at a location where you have a Great Person.</li>
+              <li><span className="text-ink font-semibold">Attack</span> — During a Local Event, challenge a rival's card.</li>
+              <li><span className="text-ink font-semibold">Retrieve</span> — Return one of your cards from the board to your hand.</li>
             </ul>
           </section>
           <section>
-            <p className="text-[10px] font-bold text-amber-400 uppercase tracking-widest mb-1.5">Events</p>
-            <ul className="space-y-1.5 text-slate-300 leading-relaxed">
-              <li><span className="text-white font-semibold">⚔ Local Event</span> — Compare your total stat vs. rivals. Winner may attack the loser's card.</li>
-              <li><span className="text-white font-semibold">☠ Local Survival</span> — Any card at this location with that stat below 10 is discarded.</li>
-              <li><span className="text-white font-semibold">🏆 Global Competition</span> — Player with the highest total stat across all public cards earns a prize bundle.</li>
-              <li><span className="text-white font-semibold">🌊 Natural Hazard</span> — Cards with total stats below 100 are discarded.</li>
+            <p className="text-[10px] font-bold text-accent uppercase tracking-widest mb-1.5">Events</p>
+            <ul className="space-y-1.5 text-ink-2 leading-relaxed">
+              <li><span className="text-ink font-semibold">⚔ Local Event</span> — Compare your total stat vs. rivals. Winner may attack the loser's card.</li>
+              <li><span className="text-ink font-semibold">☠ Local Survival</span> — Any card at this location with that stat below 10 is discarded.</li>
+              <li><span className="text-ink font-semibold">🏆 Global Competition</span> — Player with the highest total stat across all public cards earns a prize bundle.</li>
+              <li><span className="text-ink font-semibold">🌊 Natural Hazard</span> — Cards with total stats below 100 are discarded.</li>
             </ul>
           </section>
           <section>
-            <p className="text-[10px] font-bold text-amber-400 uppercase tracking-widest mb-1.5">Victory Points</p>
-            <p className="text-slate-300 leading-relaxed">Win events and complete card achievements to earn points. Each card's achievement is shown on its detail view.</p>
+            <p className="text-[10px] font-bold text-accent uppercase tracking-widest mb-1.5">Victory Points</p>
+            <p className="text-ink-2 leading-relaxed">Win events and complete card achievements to earn points. Each card's achievement is shown on its detail view.</p>
           </section>
         </div>
         <div className="px-4 pb-4 pt-1">
           <button onClick={onClose}
-            className="w-full py-2.5 rounded-xl text-sm font-bold bg-slate-800 hover:bg-slate-700 text-white transition-all">
+            className="w-full py-2.5 rounded-xl text-sm font-bold bg-panel-2 hover:bg-line text-ink transition-all">
             Got it
           </button>
         </div>
@@ -2237,26 +2239,26 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
   if (gameState.phase === 'ended' && gameState.winner) {
     const winner = gameState.players.find(p => p.id === gameState.winner)
     return (
-      <div className="relative min-h-screen bg-[#080812] flex flex-col items-center justify-center p-6">
+      <div className="relative min-h-screen bg-paper flex flex-col items-center justify-center p-6">
         <div className="pointer-events-none fixed inset-0">
-          <div className="absolute inset-0 bg-amber-600/5 blur-[160px]" />
+          <div className="absolute inset-0 bg-accent/5 blur-[160px]" />
         </div>
         <div className="relative z-10 text-center max-w-sm">
           <div className="text-6xl mb-4">🏆</div>
-          <h2 className="font-display text-3xl font-bold tracking-wide text-white uppercase mb-2">Game Over!</h2>
-          <p className="text-amber-400 text-xl font-bold mb-6">{winner?.name} wins!</p>
-          <div className="bg-slate-900/80 border border-white/10 rounded-2xl p-4 mb-6">
+          <h2 className="font-display text-3xl font-bold tracking-wide text-ink uppercase mb-2">Game Over!</h2>
+          <p className="text-accent text-xl font-bold mb-6">{winner?.name} wins!</p>
+          <div className="bg-paper-2 border border-line rounded-2xl p-4 mb-6">
             {gameState.players.sort((a, b) => b.winningPoints - a.winningPoints).map(p => (
-              <div key={p.id} className="flex items-center justify-between py-1.5 border-b border-white/5 last:border-0">
-                <span className="text-slate-300 text-sm">{p.name}</span>
-                <span className={`font-bold text-sm ${p.id === gameState.winner ? 'text-amber-400' : 'text-slate-500'}`}>
+              <div key={p.id} className="flex items-center justify-between py-1.5 border-b border-line last:border-0">
+                <span className="text-ink-2 text-sm">{p.name}</span>
+                <span className={`font-bold text-sm ${p.id === gameState.winner ? 'text-accent' : 'text-muted'}`}>
                   {p.winningPoints} pts
                 </span>
               </div>
             ))}
           </div>
           <button onClick={onExit}
-            className="w-full py-3.5 rounded-xl font-bold text-sm text-slate-950 bg-amber-500 hover:bg-amber-400 transition-all shadow-lg shadow-amber-500/25">
+            className="w-full py-3.5 rounded-xl font-bold text-sm text-accent-fg bg-accent hover:bg-accent-hover transition-all shadow-lg shadow-accent/25">
             Play Again
           </button>
         </div>
@@ -2265,18 +2267,18 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
   }
 
   return (
-    <div className="relative min-h-screen bg-[#080812] flex flex-col overflow-hidden select-none">
+    <div className="relative min-h-screen bg-paper flex flex-col overflow-hidden select-none">
       <div className="pointer-events-none fixed inset-0">
-        <div className="absolute top-1/3 left-1/4 w-96 h-96 rounded-full bg-indigo-700/8 blur-[120px]" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-amber-600/6 blur-[120px]" />
+        <div className="absolute top-1/3 left-1/4 w-96 h-96 rounded-full bg-line/40 blur-[120px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-accent/6 blur-[120px]" />
       </div>
 
       {/* Header */}
-      <div className="relative z-10 px-4 py-2 flex items-center gap-3 border-b border-white/[0.06] bg-black/20 shrink-0">
+      <div className="relative z-10 px-4 py-2 flex items-center gap-3 border-b border-line bg-black/20 shrink-0">
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-1">
-            <span className="text-[10px] text-slate-500 uppercase tracking-widest shrink-0">Round {gameState.round}</span>
-            <span className="text-white/20">·</span>
+            <span className="text-[10px] text-muted uppercase tracking-widest shrink-0">Round {gameState.round}</span>
+            <span className="text-ink/20">·</span>
             <span className={`text-xs font-bold truncate ${PLAYER_COLORS[gameState.currentPlayerIdx % 5].text}`}>
               {currentPlayer.name}{currentPlayer.isComputer ? ' (CPU)' : "'s Turn"}
             </span>
@@ -2298,14 +2300,14 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
           </div>
         </div>
         <div className="flex items-center gap-1 shrink-0">
-          <button onClick={() => setShowRules(true)} className="text-slate-500 hover:text-amber-400 text-base transition-colors px-2" title="Rules">📖</button>
-          <button onClick={onExit} className="text-slate-600 hover:text-slate-400 text-xs transition-colors px-2">Exit</button>
+          <button onClick={() => setShowRules(true)} className="text-muted hover:text-accent text-base transition-colors px-2" title="Rules">📖</button>
+          <button onClick={onExit} className="text-muted/80 hover:text-muted text-xs transition-colors px-2">Exit</button>
         </div>
       </div>
       {showRules && <RulesModal onClose={() => setShowRules(false)} />}
 
       {/* Board: Locations */}
-      <div className="relative z-10 flex-shrink-0 overflow-x-auto py-2 px-3 border-b border-white/[0.06]">
+      <div className="relative z-10 flex-shrink-0 overflow-x-auto py-2 px-3 border-b border-line">
         <div className="flex gap-2 justify-center min-w-full w-max mx-auto">
           {gameState.locations.map(loc => {
             const isLocationTarget = selection.mode === 'move-target' || selection.mode === 'deploy-gp' || selection.mode === 'add-follower' || selection.mode === 'start-event'
@@ -2315,8 +2317,8 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
                 key={loc.id}
                 onClick={() => handleLocationTap(loc.id)}
                 className={`relative rounded-xl border p-2 w-40 cursor-pointer transition-all duration-150 overflow-hidden
-                  ${ERA_COLORS[loc.era] ?? 'bg-slate-900/60 border-slate-700/40'}
-                  ${isLocationTarget ? 'border-amber-400/60 ring-1 ring-amber-400/30' : ''}`}
+                  ${ERA_COLORS[loc.era] ?? 'bg-paper-2 border-line'}
+                  ${isLocationTarget ? 'border-accent/60 ring-1 ring-accent/30' : ''}`}
               >
                 {/* Location background image */}
                 {loc.imageKey && (
@@ -2326,23 +2328,23 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
                       alt=""
                       className="w-full h-full object-cover opacity-25"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-paper-2/40 via-transparent to-paper-2/70" />
                   </div>
                 )}
                 {/* Location name */}
                 <div className="relative mb-1">
-                  <p className={`text-[10px] font-bold truncate ${ERA_TEXT[loc.era] ?? 'text-slate-300'}`}>{loc.name}</p>
+                  <p className={`text-[10px] font-bold truncate ${ERA_TEXT[loc.era] ?? 'text-ink-2'}`}>{loc.name}</p>
                   <div className="flex items-center gap-1 flex-wrap">
-                    <p className="text-[9px] text-slate-600">{loc.era}</p>
+                    <EraIcon era={loc.era} className="w-3 h-3 text-muted/80" />
                     {loc.countries && loc.countries.length > 0 && (
-                      <p className="text-[9px] text-slate-500">{loc.countries.join(', ')}</p>
+                      <p className="text-[9px] text-muted">{loc.countries.join(', ')}</p>
                     )}
                   </div>
                 </div>
 
                 {/* Active event badge */}
                 {loc.activeEvent && (
-                  <div className={`relative text-[8px] text-white px-1 py-0.5 rounded mb-1 truncate ${getEventBadgeColor(loc.activeEvent.type)}`}>
+                  <div className={`relative text-[8px] text-ink px-1 py-0.5 rounded mb-1 truncate ${getEventBadgeColor(loc.activeEvent.type)}`}>
                     {loc.activeEvent.name}
                   </div>
                 )}
@@ -2354,7 +2356,7 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
                   if (playerCards.length === 0) return (
                     <div key={p.id} className="relative mb-1 h-4 flex items-center gap-1">
                       <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${pColor.dot} opacity-30`} />
-                      <span className="text-[9px] text-slate-700 italic">{p.name.split(' ')[0]}</span>
+                      <span className="text-[9px] text-muted/60 italic">{p.name.split(' ')[0]}</span>
                     </div>
                   )
                   return (
@@ -2388,8 +2390,8 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
 
       {/* Selection hint */}
       {selection.mode !== 'none' && (
-        <div className="relative z-10 px-4 py-1.5 bg-amber-500/10 border-b border-amber-500/20 shrink-0">
-          <p className="text-amber-400 text-xs text-center">
+        <div className="relative z-10 px-4 py-1.5 bg-accent/10 border-b border-accent/20 shrink-0">
+          <p className="text-accent text-xs text-center">
             {selection.mode === 'deploy-gp' && 'Tap a location to deploy this Great Person'}
             {selection.mode === 'add-follower' && 'Tap a location (where you have a GP) to add follower'}
             {selection.mode === 'start-event' && 'Tap a location to start this event'}
@@ -2401,10 +2403,10 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
       )}
 
       {/* Event Log */}
-      <div ref={logRef} className="relative z-10 px-4 py-1.5 border-b border-white/[0.06] shrink-0 bg-black/10">
+      <div ref={logRef} className="relative z-10 px-4 py-1.5 border-b border-line shrink-0 bg-black/10">
         <div className="space-y-0.5 max-h-10 overflow-hidden">
           {gameState.log.slice(0, 2).map((entry, i) => (
-            <p key={i} className={`text-[10px] leading-tight text-center ${i === 0 ? 'text-slate-400' : 'text-slate-600'}`}>
+            <p key={i} className={`text-[10px] leading-tight text-center ${i === 0 ? 'text-muted' : 'text-muted/80'}`}>
               {entry}
             </p>
           ))}
@@ -2413,8 +2415,8 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
 
       {/* Your Hand */}
       {isMyTurn && (
-        <div className="relative z-10 px-3 py-2 border-b border-white/[0.06] shrink-0">
-          <p className="text-[10px] text-slate-600 uppercase tracking-widest mb-1.5 text-center">Your Hand</p>
+        <div className="relative z-10 px-3 py-2 border-b border-line shrink-0">
+          <p className="text-[10px] text-muted/80 uppercase tracking-widest mb-1.5 text-center">Your Hand</p>
           <div className="flex gap-1.5 overflow-x-auto pb-1 justify-center">
             {currentPlayer.gpHand.map((id, i) => (
               <HandCard
@@ -2450,7 +2452,7 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
               />
             ))}
             {currentPlayer.gpHand.length === 0 && currentPlayer.eventHand.length === 0 && currentPlayer.followerHand.length === 0 && (
-              <p className="text-slate-700 text-xs italic py-6 px-2">No cards in hand</p>
+              <p className="text-muted/60 text-xs italic py-6 px-2">No cards in hand</p>
             )}
           </div>
         </div>
@@ -2462,10 +2464,10 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
         {selection.mode === 'select-onboard' && selectedOnboard?.playerId === currentPlayer.id && (
           <div className="flex items-center gap-2 mb-1">
             <button onClick={() => setAttackKill(k => !k)}
-              className={`text-xs px-3 py-1 rounded-lg border transition-all ${attackKill ? 'bg-red-900/30 border-red-700/50 text-red-400' : 'border-white/10 text-slate-500'}`}>
+              className={`text-xs px-3 py-1 rounded-lg border transition-all ${attackKill ? 'bg-red-900/30 border-red-700/50 text-red-400' : 'border-line text-muted'}`}>
               {attackKill ? 'Kill mode ON' : 'Kill mode OFF'}
             </button>
-            <span className="text-[10px] text-slate-600">Toggle to kill vs retrieve on win</span>
+            <span className="text-[10px] text-muted/80">Toggle to kill vs retrieve on win</span>
           </div>
         )}
 
@@ -2481,9 +2483,9 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
               }
             }}
             className="py-2.5 rounded-xl text-xs font-semibold border transition-all
-              bg-slate-900 border-amber-500/30 text-amber-400
+              bg-paper-2 border-accent/30 text-accent
               disabled:opacity-30 disabled:cursor-not-allowed
-              hover:bg-amber-500/10">
+              hover:bg-accent/10">
             Deploy GP {gameState.turnActions.deployedGP ? '✓' : ''}
           </button>
 
@@ -2498,7 +2500,7 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
               }
             }}
             className="py-2.5 rounded-xl text-xs font-semibold border transition-all
-              bg-slate-900 border-indigo-500/30 text-indigo-400
+              bg-paper-2 border-indigo-500/30 text-indigo-400
               disabled:opacity-30 disabled:cursor-not-allowed
               hover:bg-indigo-500/10">
             Add Follower {gameState.turnActions.addedFollower ? '✓' : ''}
@@ -2511,9 +2513,9 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
               setSelection({ mode: 'move-target', onboardInstanceId: selection.onboardInstanceId })
             }}
             className="py-2.5 rounded-xl text-xs font-semibold border transition-all
-              bg-slate-900 border-white/10 text-slate-300
+              bg-paper-2 border-line text-ink-2
               disabled:opacity-30 disabled:cursor-not-allowed
-              hover:border-white/20">
+              hover:border-line-2">
             Move Card
           </button>
 
@@ -2526,9 +2528,9 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
               }
             }}
             className="py-2.5 rounded-xl text-xs font-semibold border transition-all
-              bg-slate-900 border-white/10 text-slate-300
+              bg-paper-2 border-line text-ink-2
               disabled:opacity-30 disabled:cursor-not-allowed
-              hover:border-white/20">
+              hover:border-line-2">
             Retrieve
           </button>
 
@@ -2541,9 +2543,9 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
               }
             }}
             className="py-2.5 rounded-xl text-xs font-semibold border transition-all
-              bg-slate-900 border-amber-600/40 text-amber-500
+              bg-paper-2 border-accent/40 text-accent
               disabled:opacity-30 disabled:cursor-not-allowed
-              hover:bg-amber-500/10">
+              hover:bg-accent/10">
             Claim Achievement
           </button>
 
@@ -2555,9 +2557,9 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
               }
             }}
             className="py-2.5 rounded-xl text-xs font-semibold border transition-all
-              bg-slate-900 border-white/10 text-slate-300
+              bg-paper-2 border-line text-ink-2
               disabled:opacity-30 disabled:cursor-not-allowed
-              hover:border-white/20">
+              hover:border-line-2">
             Toggle Public
           </button>
 
@@ -2572,7 +2574,7 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
                 disabled={alreadyDone}
                 onClick={() => dispatch({ type: 'END_SCENARIO', locationId: loc.id })}
                 className="col-span-2 py-2.5 rounded-xl text-xs font-semibold border transition-all
-                  bg-slate-900 border-red-700/40 text-red-400
+                  bg-paper-2 border-red-700/40 text-red-400
                   disabled:opacity-30 disabled:cursor-not-allowed
                   hover:bg-red-900/20">
                 End Scenario: {loc.activeEvent.name}
@@ -2595,20 +2597,20 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
                 setAwaitingHandoff(true)
               }
             }}
-            className="w-full py-3 rounded-xl font-bold text-sm tracking-wide text-slate-950
-              bg-amber-500 hover:bg-amber-400 active:bg-amber-600
+            className="w-full py-3 rounded-xl font-bold text-sm tracking-wide text-ink
+              bg-accent hover:bg-accent-hover active:bg-accent-hover
               disabled:opacity-30 disabled:cursor-not-allowed
-              shadow-lg shadow-amber-500/25 transition-all duration-200">
+              shadow-lg shadow-accent/25 transition-all duration-200">
             End Turn →
           </button>
         </div>
 
         {/* Global competition reward dialog */}
         {showRewardDialog && globalCompWinner && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-6">
-            <div className="bg-slate-900 border border-white/10 rounded-2xl p-6 max-w-xs w-full shadow-2xl">
-              <h3 className="font-display text-lg font-bold text-white uppercase mb-2 text-center">Global Competition!</h3>
-              <p className="text-slate-400 text-sm text-center mb-4">
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-ink/70 p-6">
+            <div className="bg-paper-2 border border-line rounded-2xl p-6 max-w-xs w-full shadow-2xl">
+              <h3 className="font-display text-lg font-bold text-ink uppercase mb-2 text-center">Global Competition!</h3>
+              <p className="text-muted text-sm text-center mb-4">
                 {gameState.players.find(p => p.id === globalCompWinner)?.name} wins! Choose a reward:
               </p>
               <div className="space-y-2">
@@ -2621,7 +2623,7 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
                   4 Follower Cards
                 </button>
                 <button onClick={() => { dispatch({ type: 'GLOBAL_COMP_REWARD', playerId: globalCompWinner, rewardType: 'gp' }); setShowRewardDialog(false) }}
-                  className="w-full py-2.5 rounded-xl text-sm font-semibold border border-amber-500/40 text-amber-300 hover:bg-amber-500/10 transition-all">
+                  className="w-full py-2.5 rounded-xl text-sm font-semibold border border-accent/40 text-accent hover:bg-accent/10 transition-all">
                   1 Great Person Card
                 </button>
               </div>
@@ -2647,18 +2649,18 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
         const color = PLAYER_COLORS[pidx % 5]
         const player = gameState.players[pidx]
         return (
-          <div className="fixed inset-0 z-[200] bg-[#080812] flex flex-col items-center justify-center p-8">
+          <div className="fixed inset-0 z-[200] bg-paper flex flex-col items-center justify-center p-8">
             <div className="text-center max-w-xs w-full">
               <div className={`w-20 h-20 rounded-3xl mx-auto mb-6 flex items-center justify-center text-4xl ${color.bg} border ${color.border}`}>
                 ⚔
               </div>
-              <p className="text-slate-500 text-xs uppercase tracking-widest mb-2">Next up</p>
+              <p className="text-muted text-xs uppercase tracking-widest mb-2">Next up</p>
               <h2 className={`text-3xl font-bold mb-1 ${color.text}`}>{player.name}</h2>
               <div className="flex items-center justify-center gap-1 mb-8">
                 <span className={`w-2 h-2 rounded-full ${color.dot}`} />
-                <span className="text-slate-500 text-sm">{player.winningPoints} winning point{player.winningPoints !== 1 ? 's' : ''}</span>
+                <span className="text-muted text-sm">{player.winningPoints} winning point{player.winningPoints !== 1 ? 's' : ''}</span>
               </div>
-              <p className="text-slate-600 text-xs mb-6 leading-relaxed">
+              <p className="text-muted/80 text-xs mb-6 leading-relaxed">
                 Hand the device to this player.<br />Others look away.
               </p>
               <button
@@ -2693,8 +2695,8 @@ const MATCH_MODES: { type: MatchType; icon: string; title: string; desc: string;
     icon:   '🏆',
     title:  'Ranked',
     desc:   'Play vs Human — competitive, climb the ladder',
-    accent: 'text-amber-400',
-    border: 'border-amber-700/40 hover:border-amber-500/60',
+    accent: 'text-accent',
+    border: 'border-accent/40 hover:border-accent/60',
   },
   {
     type:   'pvc',
@@ -2706,7 +2708,22 @@ const MATCH_MODES: { type: MatchType; icon: string; title: string; desc: string;
   },
 ]
 
+// Card backs and follower art appear as soon as a match starts; portraits
+// are drawn one card at a time and are usually cached from Collection.
+const BATTLE_ASSETS = [
+  cardBackUrl('gp'), cardBackUrl('follower'), cardBackUrl('location'), cardBackUrl('event'),
+  ...FOLLOWER_TEMPLATES.map(f => followerUrl(f.imageKey)),
+]
+
 export default function BattlePage() {
+  return (
+    <PageLoader assets={BATTLE_ASSETS} label="Preparing the arena">
+      <BattleContent />
+    </PageLoader>
+  )
+}
+
+function BattleContent() {
   const navigate = useNavigate()
   const { isGuest, exitGuestMode } = useAuth()
   const [pagePhase, setPagePhase] = useState<PagePhase>('home')
@@ -2732,18 +2749,18 @@ export default function BattlePage() {
 
   if (pagePhase === 'home') {
     return (
-      <div className="relative min-h-screen bg-[#080812] overflow-hidden flex flex-col">
+      <div className="relative min-h-screen bg-paper overflow-hidden flex flex-col">
         <div className="pointer-events-none fixed inset-0">
-          <div className="absolute top-1/3 left-1/3 w-[500px] h-[500px] rounded-full bg-indigo-700/10 blur-[140px]" />
-          <div className="absolute bottom-1/3 right-1/3 w-[500px] h-[500px] rounded-full bg-amber-600/8 blur-[140px]" />
+          <div className="absolute top-1/3 left-1/3 w-[500px] h-[500px] rounded-full bg-line/40 blur-[140px]" />
+          <div className="absolute bottom-1/3 right-1/3 w-[500px] h-[500px] rounded-full bg-accent/8 blur-[140px]" />
         </div>
 
-        <div className="relative z-10 px-6 py-6 flex items-center gap-4 border-b border-white/[0.06]">
+        <div className="relative z-10 px-6 py-6 flex items-center gap-4 border-b border-line">
           <button onClick={() => navigate('/home')}
-            className="text-slate-500 hover:text-slate-300 transition-colors text-sm">
+            className="text-muted hover:text-ink-2 transition-colors text-sm">
             ← Home
           </button>
-          <h1 className="font-display text-xl font-bold tracking-[0.1em] text-white uppercase">Fight Arena</h1>
+          <h1 className="font-display text-xl font-bold tracking-[0.1em] text-ink uppercase">Fight Arena</h1>
         </div>
 
         <div className="relative z-10 flex-1 flex flex-col items-center justify-center p-6 gap-8">
@@ -2752,8 +2769,8 @@ export default function BattlePage() {
               style={{ background: 'rgba(99,102,241,0.12)', border: '1px solid rgba(99,102,241,0.25)' }}>
               <span className="text-4xl select-none">⚔</span>
             </div>
-            <h2 className="font-display text-2xl font-bold tracking-wide text-white uppercase mb-1">Choose your Battle</h2>
-            <p className="text-slate-600 text-sm">Deploy Great People across history's greatest cities</p>
+            <h2 className="font-display text-2xl font-bold tracking-wide text-ink uppercase mb-1">Choose your Battle</h2>
+            <p className="text-muted/80 text-sm">Deploy Great People across history's greatest cities</p>
           </div>
 
           <div className="w-full max-w-sm space-y-3">
@@ -2766,16 +2783,16 @@ export default function BattlePage() {
                     if (locked) { setShowGuestPrompt(true); return }
                     setSelectedMatchType(m.type); setPagePhase('lobby')
                   }}
-                  className={`w-full flex items-center gap-4 px-5 py-4 rounded-2xl border bg-white/[0.03] transition-all duration-200 text-left
-                    ${locked ? 'border-white/[0.06] opacity-50' : m.border}`}>
+                  className={`w-full flex items-center gap-4 px-5 py-4 rounded-2xl border bg-panel transition-all duration-200 text-left
+                    ${locked ? 'border-line opacity-50' : m.border}`}>
                   <span className="text-3xl shrink-0">{m.icon}</span>
                   <div className="flex-1">
-                    <p className={`text-base font-bold tracking-wide ${locked ? 'text-slate-500' : m.accent}`}>{m.title}</p>
-                    <p className="text-xs text-slate-500 mt-0.5">{m.desc}</p>
+                    <p className={`text-base font-bold tracking-wide ${locked ? 'text-muted' : m.accent}`}>{m.title}</p>
+                    <p className="text-xs text-muted mt-0.5">{m.desc}</p>
                   </div>
                   {locked
-                    ? <span className="text-slate-600 text-sm">🔒</span>
-                    : <span className="ml-auto text-slate-600 text-sm">›</span>
+                    ? <span className="text-muted/80 text-sm">🔒</span>
+                    : <span className="ml-auto text-muted/80 text-sm">›</span>
                   }
                 </button>
               )
@@ -2783,7 +2800,7 @@ export default function BattlePage() {
           </div>
 
           {isGuest && (
-            <p className="text-xs text-slate-600 text-center max-w-xs">
+            <p className="text-xs text-muted/80 text-center max-w-xs">
               Sign in to unlock Casual & Ranked matches
             </p>
           )}
@@ -2791,16 +2808,16 @@ export default function BattlePage() {
           {/* Guest sign-in prompt overlay */}
           {showGuestPrompt && (
             <div
-              className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-6"
+              className="fixed inset-0 z-50 flex items-center justify-center bg-ink/70 p-6"
               onClick={() => setShowGuestPrompt(false)}
             >
               <div
-                className="bg-[#0e0e1a] border border-white/10 rounded-2xl p-6 max-w-xs w-full space-y-4 text-center"
+                className="bg-panel border border-line rounded-2xl p-6 max-w-xs w-full space-y-4 text-center"
                 onClick={e => e.stopPropagation()}
               >
                 <div className="text-4xl">🔒</div>
-                <h3 className="text-white font-bold text-lg">Sign In Required</h3>
-                <p className="text-slate-400 text-sm">Create a free account to play Casual and Ranked matches against other players.</p>
+                <h3 className="text-ink font-bold text-lg">Sign In Required</h3>
+                <p className="text-muted text-sm">Create a free account to play Casual and Ranked matches against other players.</p>
                 <button
                   onClick={() => { setShowGuestPrompt(false); exitGuestMode() }}
                   className="w-full py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm transition-colors"
@@ -2809,7 +2826,7 @@ export default function BattlePage() {
                 </button>
                 <button
                   onClick={() => setShowGuestPrompt(false)}
-                  className="w-full py-2 text-slate-500 text-sm hover:text-slate-400 transition-colors"
+                  className="w-full py-2 text-muted text-sm hover:text-muted transition-colors"
                 >
                   Maybe later
                 </button>

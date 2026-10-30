@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
+import type { MinigameProps } from '@/games/types'
 
 // ── Config ─────────────────────────────────────────────────────────────────────
 
@@ -27,6 +28,7 @@ const CONFIGS: Record<string, WordleConfig> = {
   brush:          { word: 'BRUSH', title: "Titian's Tool",       hint: 'Legend says Titian finished paintings with his fingers — but it started with this' },
   zeros:          { word: 'ZEROS', title: 'The Nothing Number',  hint: "Al-Khwarizmi helped transmit the concept of zero to Western mathematics" },
   flood:          { word: 'FLOOD', title: 'The Great Deluge',    hint: "The catastrophe that tests the hero in the world's oldest epic" },
+  aviate:         { word: 'PILOT', title: 'Lady Lindy',          hint: 'What Amelia Earhart was — the first woman to fly the Atlantic alone' },
 }
 
 // ── Constants ──────────────────────────────────────────────────────────────────
@@ -86,12 +88,12 @@ function evaluateGuess(guess: string, word: string): TileResult[] {
 }
 
 function tileBg(state: TileState, revealed: boolean): string {
-  if (!revealed) return 'bg-slate-800 border border-slate-600'
+  if (!revealed) return 'bg-panel-2 border border-line'
   switch (state) {
     case 'correct': return 'bg-emerald-600 border-emerald-600'
-    case 'present': return 'bg-amber-600 border-amber-600'
-    case 'absent':  return 'bg-slate-700 border-slate-700'
-    default:        return 'bg-slate-800 border border-slate-600'
+    case 'present': return 'bg-accent border-accent'
+    case 'absent':  return 'bg-line border-line'
+    default:        return 'bg-panel-2 border border-line'
   }
 }
 
@@ -108,15 +110,15 @@ function bestKeyState(
 function keyBg(state: TileState | undefined): string {
   switch (state) {
     case 'correct': return 'bg-emerald-600 text-white border-emerald-600'
-    case 'present': return 'bg-amber-600 text-white border-amber-600'
-    case 'absent':  return 'bg-slate-700 text-slate-400 border-slate-700'
-    default:        return 'bg-slate-700 text-slate-200 border-slate-600 hover:bg-slate-600'
+    case 'present': return 'bg-accent text-accent-fg border-accent'
+    case 'absent':  return 'bg-line text-muted border-line'
+    default:        return 'bg-line text-ink-2 border-line hover:bg-line-2'
   }
 }
 
 // ── Component ──────────────────────────────────────────────────────────────────
 
-export default function WordleGame({ configId, onWin }: { configId: string; onWin: () => void }) {
+export default function WordleGame({ configId, onWin, onLose }: MinigameProps) {
   const config = CONFIGS[configId] ?? Object.values(CONFIGS)[0]
   const word = config.word
 
@@ -214,8 +216,8 @@ export default function WordleGame({ configId, onWin }: { configId: string; onWi
     <div className="flex flex-col items-center gap-3 select-none">
       {/* Header */}
       <div className="text-center px-2">
-        <p className="text-amber-400 font-bold text-sm tracking-wide">{config.title}</p>
-        <p className="text-slate-400 text-xs mt-0.5 max-w-[280px] leading-snug">{config.hint}</p>
+        <p className="text-accent font-bold text-sm tracking-wide">{config.title}</p>
+        <p className="text-muted text-xs mt-0.5 max-w-[280px] leading-snug">{config.hint}</p>
       </div>
 
       {/* Tile grid */}
@@ -233,8 +235,8 @@ export default function WordleGame({ configId, onWin }: { configId: string; onWi
                 const { revealed } = row
                 const pendingFilled = !revealed && tile.letter !== ''
                 const borderCls = pendingFilled
-                  ? 'border-2 border-slate-400'
-                  : 'border-2 border-slate-700'
+                  ? 'border-2 border-line-2'
+                  : 'border-2 border-line'
 
                 if (revealed) {
                   // Flip animation: use inline style animation with per-column delay
@@ -257,14 +259,14 @@ export default function WordleGame({ configId, onWin }: { configId: string; onWi
                       >
                         {/* Front face (empty/pre-reveal) */}
                         <div
-                          className="absolute inset-0 flex items-center justify-center bg-slate-800 border-2 border-slate-600 font-bold text-lg text-white"
+                          className="absolute inset-0 flex items-center justify-center bg-panel-2 border-2 border-line font-bold text-lg text-ink"
                           style={{ backfaceVisibility: 'hidden' }}
                         >
                           {tile.letter}
                         </div>
                         {/* Back face (colored result) */}
                         <div
-                          className={`absolute inset-0 flex items-center justify-center font-bold text-lg text-white ${tileBg(tile.state, true)}`}
+                          className={`absolute inset-0 flex items-center justify-center font-bold text-lg text-ink ${tileBg(tile.state, true)}`}
                           style={{ backfaceVisibility: 'hidden', transform: 'rotateX(180deg)' }}
                         >
                           {tile.letter}
@@ -279,7 +281,7 @@ export default function WordleGame({ configId, onWin }: { configId: string; onWi
                     key={c}
                     className={`
                       w-11 h-11 flex items-center justify-center
-                      font-bold text-lg text-white bg-slate-800
+                      font-bold text-lg text-ink bg-panel-2
                       transition-transform duration-100
                       ${borderCls}
                       ${pendingFilled ? 'scale-105' : 'scale-100'}
@@ -306,8 +308,8 @@ export default function WordleGame({ configId, onWin }: { configId: string; onWi
             Answer: <span className="tracking-widest">{word}</span>
           </p>
           <button
-            onClick={onWin}
-            className="px-6 py-2.5 rounded-xl bg-slate-700 text-slate-200 font-bold text-sm hover:bg-slate-600 active:scale-95 transition-all"
+            onClick={() => onLose('out of guesses')}
+            className="px-6 py-2.5 rounded-xl bg-line text-ink-2 font-bold text-sm hover:bg-line-2 active:scale-95 transition-all"
           >
             Continue →
           </button>
@@ -330,7 +332,7 @@ export default function WordleGame({ configId, onWin }: { configId: string; onWi
                       h-10 rounded font-bold text-xs border transition-colors active:scale-95
                       ${isSpecial ? 'px-2 min-w-[48px]' : 'w-8'}
                       ${isSpecial
-                        ? 'bg-slate-600 text-slate-200 border-slate-500 hover:bg-slate-500'
+                        ? 'bg-line-2 text-ink-2 border-line-2 hover:bg-line-2'
                         : keyBg(kState)
                       }
                     `}
@@ -362,3 +364,6 @@ export default function WordleGame({ configId, onWin }: { configId: string; onWi
     </div>
   )
 }
+
+// Every hand-authored config id; the registry test renders each one.
+export const CONFIG_IDS = Object.keys(CONFIGS)

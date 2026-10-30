@@ -280,12 +280,12 @@ export default function CircuitGame({ configId, onWin }: CircuitGameProps) {
     <div className="flex flex-col items-center gap-3">
       {/* Title */}
       <div className="text-center">
-        <p className="text-amber-400 font-bold text-sm">{config.title}</p>
-        <p className="text-slate-400 text-xs">Toggle switches to complete the circuit</p>
+        <p className="text-accent font-bold text-sm">{config.title}</p>
+        <p className="text-muted text-xs">Toggle switches to complete the circuit</p>
       </div>
 
       {/* SVG Circuit */}
-      <div className="rounded-xl border border-slate-700/60 bg-[#0f0f1e] p-2 overflow-hidden">
+      <div className="rounded-xl border border-line bg-panel p-2 overflow-hidden">
         <svg
           viewBox={config.viewBox}
           width={Math.min(vbW, 320)}
@@ -377,8 +377,8 @@ export default function CircuitGame({ configId, onWin }: CircuitGameProps) {
             onClick={() => toggleSwitch(sw.id)}
             className={`w-14 h-10 rounded-lg border font-bold text-sm transition-all duration-200
               ${switches[sw.id]
-                ? 'bg-amber-500/20 border-amber-500/50 text-amber-300 shadow-[0_0_8px_rgba(251,191,36,0.3)]'
-                : 'bg-slate-800/60 border-slate-700/50 text-slate-400 hover:border-slate-500/60'
+                ? 'bg-accent/20 border-accent/50 text-accent shadow-[0_0_8px_rgba(251,191,36,0.3)]'
+                : 'bg-panel-2 border-line text-muted hover:border-line-2'
               }`}>
             {sw.label}
           </button>
@@ -386,9 +386,9 @@ export default function CircuitGame({ configId, onWin }: CircuitGameProps) {
       </div>
 
       {/* Status */}
-      <div className="flex items-center gap-2 text-xs text-slate-500">
+      <div className="flex items-center gap-2 text-xs text-muted">
         <div className={`w-2 h-2 rounded-full transition-all duration-300
-          ${circuitOn ? 'bg-amber-400 shadow-[0_0_6px_rgba(251,191,36,0.6)]' : 'bg-slate-700'}`} />
+          ${circuitOn ? 'bg-accent shadow-[0_0_6px_rgba(251,191,36,0.6)]' : 'bg-line'}`} />
         <span>{circuitOn ? 'Circuit complete!' : 'Circuit open'}</span>
       </div>
 
@@ -400,3 +400,6 @@ export default function CircuitGame({ configId, onWin }: CircuitGameProps) {
     </div>
   )
 }
+
+// Every hand-authored config id; the registry test renders each one.
+export const CONFIG_IDS = Object.keys(CONFIGS)

@@ -1,0 +1,191 @@
+{
+  "slug": "the-king-and-the-wild-man",
+  "era": "Ancient",
+  "order": 2,
+  "title": "The King and the Wild Man",
+  "figure": "Gilgamesh",
+  "portraitKey": "gilgamesh",
+  "tagline": "Two forces of nature meet — and become brothers.",
+  "locationImage": "ancient_uruk",
+  "bonusCard": {
+    "figureName": "Enkidu",
+    "portraitKey": "enkidu"
+  },
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "The gods heard the cries of Uruk. Gilgamesh was mighty — two-thirds god, one-third man — but he crushed his own people with the weight of his restless energy. They prayed for relief. The gods heard them. The goddess Aruru listened, and from the clay of the earth she shaped an answer."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Aruru",
+          "portraitKey": "follower:sovereign",
+          "text": "He shall be Enkidu — born of wildness and clay. A wild man, ignorant of people and land, covered in hair like the god of animals. He will match Gilgamesh strength for strength. Let the king find his equal."
+        },
+        {
+          "type": "narration",
+          "text": "Enkidu roamed the steppes beyond Uruk, running with the gazelles, drinking at watering holes with lions. He was not man, not beast — something between. He freed animals from hunters' traps. He was nature made flesh."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Enkidu",
+          "portraitKey": "enkidu",
+          "text": "The gazelles were my brothers. The lions did not fear me. I did not know what a city was. I did not know what a king was. Then someone told me: there is a man in Uruk who calls himself the greatest. I laughed. Let us see."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "The Epic of Gilgamesh is considered:",
+            "options": [
+              "The world's oldest surviving piece of literature",
+              "The world's oldest legal code",
+              "The world's oldest mathematical text",
+              "The world's oldest map"
+            ],
+            "answer": 0,
+            "countdown": 10,
+            "fact": "The Epic of Gilgamesh, preserved on twelve clay tablets, predates Homer's Iliad by at least 1,500 years. It contains a great flood story remarkably similar to Noah's in the Bible."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "In Uruk, the great king sat on his throne — and felt alone. No man was his equal. No friend stood beside him. Then came the news: a wild giant was living on the steppe, freeing animals from traps."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Gilgamesh",
+          "portraitKey": "gilgamesh",
+          "text": "I have built the walls of Uruk that will stand for eternity. I have defeated every man in battle. And yet — I am alone. No man is my equal. No friend stands beside me."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "geometry",
+            "configId": "pythagorean",
+            "instruction": "Enkidu's fortress has a 3-4 right triangle in its wall. Find the hypotenuse — the length of the diagonal beam.",
+            "fact": "Babylonian mathematicians knew the Pythagorean theorem over a thousand years before Pythagoras. Plimpton 322, a clay tablet from 1800 BCE, lists Pythagorean triples."
+          }
+        },
+        {
+          "type": "narration",
+          "text": "A priestess was sent to bring Enkidu to civilisation — to teach him language, bread, clothing, the ways of men. Enkidu learned. And then he walked to Uruk to find the king who was said to be the greatest in the world."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "sort",
+            "question": "Arrange the key events of Enkidu's life in order:",
+            "items": [
+              "Enkidu roams the steppe as a wild man, companion to animals",
+              "A temple priestess teaches Enkidu language and the ways of civilisation",
+              "Enkidu and Gilgamesh clash at the gates of Uruk",
+              "The two become inseparable brothers in arms",
+              "Enkidu falls ill, cursed by the gods after slaying Humbaba",
+              "Enkidu dies — and Gilgamesh confronts human mortality for the first time"
+            ],
+            "fact": "Enkidu's journey from wilderness to brotherhood mirrors humanity's own emergence — his taming by a priestess represents the Mesopotamian belief that civilisation elevated human beings above the animals they had once lived among."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "They grappled at the city gate. The earth shook. The doorposts trembled. And when it was over, something had changed in both of them. For the first time in their lives, each had met his equal."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Enkidu",
+          "portraitKey": "enkidu",
+          "text": "They say you are two-thirds god. I say: let us see what that is worth. I have lived in the wild places. I have wrestled lions. Come then — let us find out which of us is great."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Gilgamesh",
+          "portraitKey": "gilgamesh",
+          "text": "He is as strong as I am. In battle we are matched — perfectly matched. But in friendship, he is everything I lacked. He is my brother. My equal. At last, my equal."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "Enkidu became Gilgamesh's enemy and they fought to the death at the end of the epic.",
+            "correct": false,
+            "countdown": 10,
+            "fact": "Enkidu and Gilgamesh fought briefly at the city gate, but quickly became the closest of friends. Enkidu's death from divine punishment drives the epic's second half and Gilgamesh's desperate quest for immortality."
+          }
+        },
+        {
+          "type": "narration",
+          "text": "Together they journeyed to the Cedar Forest to slay the monster Humbaba. Together they angered the gods. And then the unthinkable happened — Enkidu fell ill. He died."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Gilgamesh",
+          "portraitKey": "gilgamesh",
+          "text": "Enkidu is dead. My friend. My brother. I touched his face and I wept for six days. On the seventh he did not rise. If he is gone — what is left? I will not accept this. I will find the secret of immortality."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "maze",
+            "configId": "cedar-forest",
+            "instruction": "Guide Gilgamesh through the Cedar Forest in search of glory — and Enkidu at his side.",
+            "fact": "Uruk was one of the world's earliest cities — home to 50,000–80,000 people in 3000 BCE. Gilgamesh was its legendary king and the builder of its great walls."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Gilgamesh's quest for immortality ends in failure — a plant of eternal youth stolen by a serpent while he slept. But in failure he finds something deeper: acceptance. He returns to Uruk and sees its walls with new eyes."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "matchthree",
+            "configId": "babylon-tablets",
+            "instruction": "Babylonian scribes recorded grain trades in vertical cuneiform columns. Only vertical matches score — clear 52 symbols on the 8×8 tablet.",
+            "fact": "Babylonian clay tablets recorded grain prices, interest rates and commodity contracts — the world's first commodity futures market. Cuneiform records from 600 BCE show silver-denominated wheat prices responding to floods and harvests."
+          }
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "pipeline",
+            "configId": "mesopotamia-canal",
+            "instruction": "Route Sennacherib's canal to bring water to Nineveh — the world's first long-distance water supply, built 500 years before the Roman aqueducts.",
+            "fact": "King Sennacherib of Assyria built an 80 km canal system supplying Nineveh around 700 BCE, complete with a proto-aqueduct bridge over a valley. It was the world's first known long-distance water supply."
+          }
+        }
+      ]
+    }
+  ]
+}

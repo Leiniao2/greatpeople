@@ -1,0 +1,148 @@
+{
+  "slug": "the-discovery-of-silk",
+  "era": "Ancient",
+  "order": 4,
+  "title": "The Discovery of Silk",
+  "figure": "Lei Zu",
+  "portraitKey": "lei_zu",
+  "tagline": "A cocoon falls into tea — and civilization is changed forever.",
+  "locationImage": "ancient_memphis",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "China, c. 2700 BCE. The Yellow Emperor's court sits beneath ancient mulberry trees. The Empress Lei Zu is pouring tea in the imperial garden when something extraordinary happens — a small cocoon drops from a mulberry branch into her steaming cup."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Lei Zu",
+          "portraitKey": "lei_zu",
+          "text": "Look — the hot water has loosened something. A thread. A single unbroken thread, fine as breath, strong as fiber. It unwinds and unwinds... How long is this thread? How can it be so long from such a small cocoon?"
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "According to Chinese legend, who discovered silk?",
+            "options": [
+              "The Yellow Emperor",
+              "Lei Zu, wife of the Yellow Emperor",
+              "Confucius",
+              "The Jade Emperor"
+            ],
+            "answer": 1,
+            "fact": "Chinese tradition credits Lei Zu (also written Leizu or Si Ling-chi), wife of the Yellow Emperor Huangdi, with discovering silk around 2700 BCE when a silkworm cocoon fell into her tea and she unravelled its thread.",
+            "countdown": 10
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Lei Zu did not just discover silk — she mastered it. She studied the silkworm's life cycle, cultivated mulberry trees to feed them, and invented the silk loom to weave the gossamer threads into fabric. She is venerated in China as the Silkworm Mother."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Court Official",
+          "text": "Empress, this fabric is like nothing we have ever worn. Lighter than linen, stronger than hemp, and it catches the light like water. The Emperor will want to know its secret kept within the kingdom.",
+          "portraitKey": "follower:merchant"
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "The term 'Silk Road' was coined by ancient Chinese merchants who dominated the trade route.",
+            "correct": false,
+            "countdown": 10,
+            "fact": "The term 'Silk Road' (Seidenstraße) was coined by German geographer Ferdinand von Richthofen in 1877. Ancient traders called it by regional names — the unified concept of a single route is a modern invention."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "dialog",
+          "speaker": "Lei Zu",
+          "portraitKey": "lei_zu",
+          "text": "The silk road will one day carry this fabric to the ends of the world. But the secret of how to make it — the worm, the leaf, the loom — that knowledge belongs to China. Guard it carefully. An empire built on silk is an empire built on threads no army can cut."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "sort",
+            "question": "Arrange the steps of silk production in the correct order:",
+            "items": [
+              "Female Bombyx mori moths lay hundreds of tiny eggs",
+              "Caterpillars hatch and feed exclusively on fresh mulberry leaves",
+              "Each caterpillar spins a single continuous thread up to 900 metres long to form its cocoon",
+              "Cocoons are plunged into boiling water to kill the pupa and loosen the silk thread",
+              "Threads from several cocoons are reeled together to form a single silk thread"
+            ],
+            "fact": "A single silkworm cocoon is made from one continuous thread up to 900 metres long. It takes about 2,500 cocoons to make one pound of raw silk — explaining why silk was worth its weight in gold."
+          }
+        },
+        {
+          "type": "narration",
+          "text": "For three thousand years, China kept the secret of silk-making on pain of death. Roman senators wore silk robes and had no idea where the fabric came from, calling China 'the land of Seres' — the silk people. The Silk Road that Lei Zu's discovery made possible connected every major civilization on earth."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "matchthree",
+            "configId": "babylon-tablets",
+            "instruction": "Silk merchants logged every shipment in clay. Match the trade symbols vertically — only column matches score on the ancient tablet.",
+            "fact": "Along the Silk Road, merchants kept meticulous records of goods in transit. Babylonian clay tablet accounting spread westward just as Chinese silk spread east — commerce and literacy moved together."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "dialog",
+          "speaker": "Lei Zu",
+          "portraitKey": "lei_zu",
+          "text": "A single silkworm produces up to 900 meters of thread in its short life. I spent my life learning to listen to small things. A cocoon in a teacup. A thread too fine to see. The greatest discoveries do not announce themselves — they wait for someone patient enough to notice."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "geometry",
+            "configId": "pythagorean",
+            "instruction": "Chinese mathematicians solved right-triangle problems in the Nine Chapters on the Mathematical Art — centuries before Pythagoras. Solve this ancient construction problem.",
+            "fact": "The Zhoubi Suanjing (c. 1000 BCE) proves the Pythagorean theorem using a visual 'proof without words.' China's mathematical tradition was as rigorous as Greece's — and developed independently, along the same trade routes that carried silk westward."
+          }
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "pipeline",
+            "configId": "silk-road-caravan",
+            "instruction": "Connect the Silk Road caravan route from Chang'an westward — rotate pipe tiles to find the path through the Taklamakan Desert.",
+            "fact": "Zhang Qian's westward mission in 130 BCE established the first official Silk Road routes. The trade network eventually stretched 7,000 km from China to Rome, carrying silk, spices, glassware, and ideas."
+          }
+        }
+      ]
+    }
+  ]
+}

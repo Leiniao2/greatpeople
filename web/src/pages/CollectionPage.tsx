@@ -5,13 +5,15 @@ import { useUnlockedCards } from '@/hooks/useUnlockedCards'
 import type { Card, StatKey } from '@/types'
 import cardsJson from '@/data/cards.json'
 import locationCardsJson from '@/data/location_cards.json'
-import { locationImageUrl } from '@/data/location_images'
+import { locationImageUrl, portraitUrl } from '@/data/images'
+import PageLoader from '@/components/PageLoader'
+import EraIcon from '@/components/EraIcon'
 
 // ── GP cards ─────────────────────────────────────────────────────────────────
 
 const ALL_CARDS: Card[] = cardsJson.map(c => ({
   ...c,
-  portraitUrl: `/portraits/portrait_${c.portraitKey}.jpeg`,
+  portraitUrl: portraitUrl(c.portraitKey),
 }))
 
 // ── Location cards ────────────────────────────────────────────────────────────
@@ -38,24 +40,24 @@ function parseTraitText(trait: string | undefined): { name: string; description:
 }
 
 const ERA_COLORS: Record<string, string> = {
-  Ancient:     'bg-yellow-900/50 text-yellow-400 border-yellow-700/30',
-  Classical:   'bg-amber-900/50 text-amber-400 border-amber-700/30',
-  Medieval:    'bg-orange-900/50 text-orange-400 border-orange-700/30',
-  Renaissance: 'bg-purple-900/50 text-purple-400 border-purple-700/30',
-  Steam:       'bg-slate-700/50 text-slate-300 border-slate-500/30',
-  Electricity: 'bg-blue-900/50 text-blue-400 border-blue-700/30',
-  Information: 'bg-cyan-900/50 text-cyan-400 border-cyan-700/30',
+  Ancient:     'bg-yellow-100 text-yellow-800 border-yellow-400/60',
+  Classical:   'bg-accent/10 text-accent border-accent/40',
+  Medieval:    'bg-orange-100 text-orange-800 border-orange-400/60',
+  Renaissance: 'bg-purple-100 text-purple-800 border-purple-400/60',
+  Steam:       'bg-line text-ink-2 border-line-2',
+  Electricity: 'bg-blue-100 text-blue-800 border-blue-400/60',
+  Information: 'bg-cyan-100 text-cyan-800 border-cyan-400/60',
 }
 
 const STAT_COLORS: Record<StatKey, string> = {
-  politics:      'bg-red-900/40 text-red-300 border-red-700/30',
-  strength:      'bg-orange-900/40 text-orange-300 border-orange-700/30',
-  culture:       'bg-purple-900/40 text-purple-300 border-purple-700/30',
-  wealth:        'bg-yellow-900/40 text-yellow-300 border-yellow-700/30',
-  intelligence:  'bg-cyan-900/40 text-cyan-300 border-cyan-700/30',
-  technique:     'bg-blue-900/40 text-blue-300 border-blue-700/30',
-  belief:        'bg-indigo-900/40 text-indigo-300 border-indigo-700/30',
-  reputation:    'bg-pink-900/40 text-pink-300 border-pink-700/30',
+  politics:      'bg-red-100 text-red-800 border-red-400/60',
+  strength:      'bg-orange-100 text-orange-800 border-orange-400/60',
+  culture:       'bg-purple-100 text-purple-800 border-purple-400/60',
+  wealth:        'bg-yellow-100 text-yellow-800 border-yellow-400/60',
+  intelligence:  'bg-cyan-100 text-cyan-800 border-cyan-400/60',
+  technique:     'bg-blue-100 text-blue-800 border-blue-400/60',
+  belief:        'bg-indigo-100 text-indigo-800 border-indigo-400/60',
+  reputation:    'bg-pink-100 text-pink-800 border-pink-400/60',
 }
 
 const BUILDING_ICONS: Record<string, string> = {
@@ -69,7 +71,19 @@ const BUILDING_ICONS: Record<string, string> = {
 
 // ── Main page ─────────────────────────────────────────────────────────────────
 
+// The grid shows every portrait at once, so decode them all before revealing
+// the page rather than letting 80 cards pop in one by one.
+const COLLECTION_ASSETS = ALL_CARDS.map(c => c.portraitUrl!)
+
 export default function CollectionPage() {
+  return (
+    <PageLoader assets={COLLECTION_ASSETS} label="Opening collection">
+      <CollectionContent />
+    </PageLoader>
+  )
+}
+
+function CollectionContent() {
   const navigate = useNavigate()
   const { isGuest, isAdmin, exitGuestMode } = useAuth()
   const { unlocked } = useUnlockedCards()
@@ -91,24 +105,24 @@ export default function CollectionPage() {
   const ownedCount = isAdmin ? ALL_CARDS.length : unlocked.length
 
   return (
-    <div className="relative min-h-screen bg-[#080812] overflow-hidden">
+    <div className="relative min-h-screen bg-paper overflow-hidden">
 
       {/* Ambient glow */}
       <div className="pointer-events-none fixed inset-0">
-        <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] rounded-full bg-amber-600/8 blur-[160px]" />
-        <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] rounded-full bg-indigo-700/8 blur-[160px]" />
+        <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] rounded-full bg-accent/8 blur-[160px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] rounded-full bg-line/40 blur-[160px]" />
       </div>
 
       {/* Guest banner */}
       {isGuest && (
         <div className="relative z-20 flex items-center justify-between px-6 py-2.5
-                        bg-amber-500/10 border-b border-amber-500/20">
-          <p className="text-amber-400/80 text-xs">
+                        bg-accent/10 border-b border-accent/20">
+          <p className="text-accent/80 text-xs">
             Complete stories in Epic mode to unlock cards
           </p>
           <button
             onClick={() => { exitGuestMode(); navigate('/login') }}
-            className="text-amber-400 text-xs font-semibold hover:text-amber-300 transition-colors ml-4 shrink-0">
+            className="text-accent text-xs font-semibold hover:text-accent transition-colors ml-4 shrink-0">
             Sign In →
           </button>
         </div>
@@ -119,10 +133,10 @@ export default function CollectionPage() {
         {/* Header */}
         <div className="flex items-center justify-between mb-5">
           <div>
-            <h1 className="font-display text-2xl font-bold tracking-[0.1em] text-white uppercase">
+            <h1 className="font-display text-2xl font-bold tracking-[0.1em] text-ink uppercase">
               Collection
             </h1>
-            <p className="text-slate-500 text-xs tracking-widest mt-1">
+            <p className="text-muted text-xs tracking-widest mt-1">
               {tab === 'gp'
                 ? `${ownedCount} / ${ALL_CARDS.length} unlocked`
                 : `${ALL_LOCATIONS.length} locations`}
@@ -130,9 +144,9 @@ export default function CollectionPage() {
           </div>
           <button
             onClick={() => navigate('/battle')}
-            className="px-5 py-2.5 rounded-xl font-bold text-sm tracking-wide text-slate-950
-                       bg-amber-500 hover:bg-amber-400 active:bg-amber-600
-                       shadow-lg shadow-amber-500/25 transition-all duration-200">
+            className="px-5 py-2.5 rounded-xl font-bold text-sm tracking-wide text-ink
+                       bg-accent hover:bg-accent-hover active:bg-accent-hover
+                       shadow-lg shadow-accent/25 transition-all duration-200">
             Battle →
           </button>
         </div>
@@ -143,8 +157,8 @@ export default function CollectionPage() {
             onClick={() => setTab('gp')}
             className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all duration-200
               ${tab === 'gp'
-                ? 'bg-amber-500 text-slate-950 shadow shadow-amber-500/30'
-                : 'bg-white/[0.05] text-slate-400 border border-white/10 hover:border-amber-500/30 hover:text-amber-400'
+                ? 'bg-accent text-accent-fg shadow shadow-accent/30'
+                : 'bg-panel text-muted border border-line hover:border-accent/30 hover:text-accent'
               }`}>
             Great People
           </button>
@@ -152,8 +166,8 @@ export default function CollectionPage() {
             onClick={() => setTab('location')}
             className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all duration-200
               ${tab === 'location'
-                ? 'bg-amber-500 text-slate-950 shadow shadow-amber-500/30'
-                : 'bg-white/[0.05] text-slate-400 border border-white/10 hover:border-amber-500/30 hover:text-amber-400'
+                ? 'bg-accent text-accent-fg shadow shadow-accent/30'
+                : 'bg-panel text-muted border border-line hover:border-accent/30 hover:text-accent'
               }`}>
             Locations
           </button>
@@ -170,8 +184,8 @@ export default function CollectionPage() {
                   onClick={() => setFilter(f)}
                   className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all duration-200
                     ${filter === f
-                      ? 'bg-white/10 text-white border border-white/20'
-                      : 'bg-white/[0.03] text-slate-500 border border-white/[0.06] hover:border-white/20 hover:text-slate-300'
+                      ? 'bg-panel text-ink border border-line-2'
+                      : 'bg-panel text-muted border border-line hover:border-line-2 hover:text-ink-2'
                     }`}>
                   {f === 'all' ? 'All' : f === 'owned' ? `Owned (${ownedCount})` : `Locked (${ALL_CARDS.length - ownedCount})`}
                 </button>
@@ -191,12 +205,12 @@ export default function CollectionPage() {
 
             {filteredGP.length === 0 && (
               <div className="flex flex-col items-center justify-center h-48 gap-3">
-                <p className="text-slate-500 text-sm">
+                <p className="text-muted text-sm">
                   {filter === 'owned' ? 'No cards unlocked yet.' : 'All cards are unlocked!'}
                 </p>
                 {filter === 'owned' && (
                   <button onClick={() => navigate('/epic')}
-                    className="px-5 py-2 rounded-xl bg-amber-500 text-slate-950 font-bold text-sm hover:bg-amber-400 transition-all">
+                    className="px-5 py-2 rounded-xl bg-accent text-accent-fg font-bold text-sm hover:bg-accent-hover transition-all">
                     Play Epic Stories →
                   </button>
                 )}
@@ -230,11 +244,11 @@ function CardItem({ card, owned, onClick }: { card: Card; owned: boolean; onClic
     <div
       onClick={onClick}
       className={`relative rounded-2xl overflow-hidden flex flex-col
-                   bg-white/[0.03] border border-white/[0.08] backdrop-blur-sm
+                   bg-panel border border-line backdrop-blur-sm
                    transition-all duration-200
                    ${owned ? 'hover:scale-[1.03] cursor-pointer' : 'cursor-default'}`}>
 
-      <div className="relative h-40 bg-slate-900/40">
+      <div className="relative h-40 bg-paper-2">
         {card.portraitUrl ? (
           <img
             src={card.portraitUrl}
@@ -249,7 +263,7 @@ function CardItem({ card, owned, onClick }: { card: Card; owned: boolean; onClic
         {!owned && (
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-1">
             <span className="text-2xl">🔒</span>
-            <p className="text-slate-400 text-[9px] text-center px-2 leading-tight">
+            <p className="text-paper/85 text-[9px] text-center px-2 leading-tight">
               Complete the story in Epic mode
             </p>
           </div>
@@ -257,16 +271,14 @@ function CardItem({ card, owned, onClick }: { card: Card; owned: boolean; onClic
       </div>
 
       <div className="p-3 flex flex-col gap-1.5">
-        <p className={`text-sm font-semibold leading-tight line-clamp-2 ${owned ? 'text-white' : 'text-slate-600'}`}>
+        <p className={`text-sm font-semibold leading-tight line-clamp-2 ${owned ? 'text-ink' : 'text-muted/80'}`}>
           {card.figureName}
         </p>
-        <p className={`text-[10px] uppercase tracking-wider ${owned ? 'text-slate-500' : 'text-slate-700'}`}>
-          {card.era}
-        </p>
+        <EraIcon era={card.era} className={`w-3.5 h-3.5 ${owned ? 'text-muted' : 'text-muted/60'}`} />
         {owned && card.identities.length > 0 && (
           <div className="flex flex-wrap gap-1 mt-1">
             {card.identities.slice(0, 2).map(id => (
-              <span key={id} className="text-[9px] px-1.5 py-0.5 rounded-full border border-amber-500/30 text-amber-400/70">
+              <span key={id} className="text-[9px] px-1.5 py-0.5 rounded-full border border-accent/30 text-accent/70">
                 {id}
               </span>
             ))}
@@ -277,7 +289,7 @@ function CardItem({ card, owned, onClick }: { card: Card; owned: boolean; onClic
             {card.countries.map(c => (
               <span key={c}
                 className={`text-[9px] px-1.5 py-0.5 rounded-full border
-                  ${owned ? 'border-cyan-500/30 text-cyan-400/80' : 'border-slate-700/40 text-slate-700'}`}>
+                  ${owned ? 'border-cyan-500/30 text-cyan-400/80' : 'border-line text-muted/60'}`}>
                 {c}
               </span>
             ))}
@@ -291,19 +303,19 @@ function CardItem({ card, owned, onClick }: { card: Card; owned: boolean; onClic
 // ── Location grid item ────────────────────────────────────────────────────────
 
 function LocationItem({ loc, onClick }: { loc: LocationCard; onClick: () => void }) {
-  const eraStyle = ERA_COLORS[loc.era] ?? 'bg-slate-800/50 text-slate-400 border-slate-600/30'
+  const eraStyle = ERA_COLORS[loc.era] ?? 'bg-panel-2 text-muted border-line'
   const imageUrl = locationImageUrl(loc.imageKey)
 
   return (
     <div
       onClick={onClick}
       className="relative rounded-2xl overflow-hidden flex flex-col
-                 bg-white/[0.03] border border-white/[0.08] backdrop-blur-sm
+                 bg-panel border border-line backdrop-blur-sm
                  hover:scale-[1.03] cursor-pointer transition-all duration-200
-                 hover:border-amber-500/20">
+                 hover:border-accent/20">
 
       {/* Image */}
-      <div className="relative h-40 bg-slate-900/40 overflow-hidden">
+      <div className="relative h-40 bg-paper-2 overflow-hidden">
         {imageUrl ? (
           <img src={imageUrl} alt={loc.name} className="w-full h-full object-cover" />
         ) : (
@@ -313,14 +325,14 @@ function LocationItem({ loc, onClick }: { loc: LocationCard; onClick: () => void
         )}
         <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/60 to-transparent" />
         {/* Era badge */}
-        <span className={`absolute top-2 right-2 text-[9px] px-1.5 py-0.5 rounded-full border font-semibold ${eraStyle}`}>
-          {loc.era}
+        <span className={`absolute top-2 right-2 p-1 rounded-full border ${eraStyle}`} title={loc.era}>
+          <EraIcon era={loc.era} className="w-3 h-3" />
         </span>
       </div>
 
       {/* Info */}
       <div className="p-3 flex flex-col gap-1.5">
-        <p className="text-sm font-semibold text-white leading-tight">{loc.name}</p>
+        <p className="text-sm font-semibold text-ink leading-tight">{loc.name}</p>
         {loc.countries && loc.countries.length > 0 && (
           <div className="flex flex-wrap gap-1">
             {loc.countries.slice(0, 2).map(c => (
@@ -331,7 +343,7 @@ function LocationItem({ loc, onClick }: { loc: LocationCard; onClick: () => void
           </div>
         )}
         {loc.buildings.length > 0 && (
-          <p className="text-[9px] text-slate-600 truncate">
+          <p className="text-[9px] text-muted/80 truncate">
             {loc.buildings.slice(0, 2).map(b => BUILDING_ICONS[b] ?? '🏗️').join(' ')}
             {loc.buildings.length > 2 && <span className="ml-1">+{loc.buildings.length - 2}</span>}
           </p>
@@ -345,16 +357,16 @@ function LocationItem({ loc, onClick }: { loc: LocationCard; onClick: () => void
 
 function LocationDetailModal({ loc, onClose }: { loc: LocationCard; onClose: () => void }) {
   const imageUrl = locationImageUrl(loc.imageKey)
-  const eraStyle = ERA_COLORS[loc.era] ?? 'bg-slate-800/50 text-slate-400 border-slate-600/30'
+  const eraStyle = ERA_COLORS[loc.era] ?? 'bg-panel-2 text-muted border-line'
   const ability = parseTraitText(loc.trait)
   const bonusEntries = Object.entries(loc.bonuses ?? {}) as [StatKey, number][]
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/70 backdrop-blur-sm p-4"
+      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-ink/70 backdrop-blur-sm p-4"
       onClick={onClose}>
       <div
-        className="bg-[#0e1020] border border-white/10 rounded-2xl w-full max-w-sm overflow-hidden shadow-2xl"
+        className="bg-panel border border-line rounded-2xl w-full max-w-sm overflow-hidden shadow-2xl"
         onClick={e => e.stopPropagation()}>
 
         {/* Image */}
@@ -362,28 +374,28 @@ function LocationDetailModal({ loc, onClose }: { loc: LocationCard; onClose: () 
           {imageUrl ? (
             <img src={imageUrl} alt={loc.name} className="w-full h-full object-cover" />
           ) : (
-            <div className="w-full h-full bg-slate-900 flex items-center justify-center">
+            <div className="w-full h-full bg-paper-2 flex items-center justify-center">
               <span className="text-5xl opacity-20">🗺</span>
             </div>
           )}
           <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-[#0e1020] to-transparent" />
 
           {/* Era badge */}
-          <span className={`absolute top-3 left-3 text-[10px] px-2 py-0.5 rounded-full border font-semibold ${eraStyle}`}>
-            {loc.era}
+          <span className={`absolute top-3 left-3 p-1.5 rounded-full border ${eraStyle}`} title={loc.era}>
+            <EraIcon era={loc.era} className="w-3.5 h-3.5" />
           </span>
 
           {/* Close button */}
           <button
             onClick={onClose}
-            className="absolute top-3 right-3 w-7 h-7 rounded-full bg-black/50 border border-white/10
-                       flex items-center justify-center text-slate-400 hover:text-white transition-colors text-xs">
+            className="absolute top-3 right-3 w-7 h-7 rounded-full bg-ink/60 border border-line
+                       flex items-center justify-center text-paper/80 hover:text-paper transition-colors text-xs">
             ✕
           </button>
 
           {/* Name overlaid on image bottom */}
           <div className="absolute bottom-3 left-4 right-4">
-            <h2 className="text-xl font-bold text-white leading-tight">{loc.name}</h2>
+            <h2 className="text-xl font-bold text-ink leading-tight">{loc.name}</h2>
             {loc.countries && loc.countries.length > 0 && (
               <div className="flex gap-1 mt-1 flex-wrap">
                 {loc.countries.map(c => (
@@ -400,22 +412,22 @@ function LocationDetailModal({ loc, onClose }: { loc: LocationCard; onClose: () 
 
           {/* Special ability */}
           {ability && (
-            <div className="rounded-xl bg-amber-900/15 border border-amber-600/20 p-3 space-y-1">
+            <div className="rounded-xl bg-accent/15 border border-accent/20 p-3 space-y-1">
               <div className="flex items-center gap-1.5 mb-1">
-                <span className="text-amber-400 text-xs">★</span>
-                <span className="text-[10px] uppercase tracking-widest text-amber-500/80 font-semibold">Special Ability</span>
+                <span className="text-accent text-xs">★</span>
+                <span className="text-[10px] uppercase tracking-widest text-accent/80 font-semibold">Special Ability</span>
               </div>
               {ability.name && (
-                <p className="text-amber-300 text-sm font-semibold">{ability.name}</p>
+                <p className="text-accent text-sm font-semibold">{ability.name}</p>
               )}
-              <p className="text-slate-300 text-xs leading-relaxed">{ability.description}</p>
+              <p className="text-ink-2 text-xs leading-relaxed">{ability.description}</p>
             </div>
           )}
 
           {/* Stat bonuses */}
           {bonusEntries.length > 0 && (
             <div>
-              <p className="text-[10px] uppercase tracking-widest text-slate-500 mb-2">Stat Bonuses</p>
+              <p className="text-[10px] uppercase tracking-widest text-muted mb-2">Stat Bonuses</p>
               <div className="flex flex-wrap gap-1.5">
                 {bonusEntries.map(([stat, amount]) => (
                   <span key={stat}
@@ -430,11 +442,11 @@ function LocationDetailModal({ loc, onClose }: { loc: LocationCard; onClose: () 
           {/* Buildings */}
           {loc.buildings.length > 0 && (
             <div>
-              <p className="text-[10px] uppercase tracking-widest text-slate-500 mb-2">Buildings</p>
+              <p className="text-[10px] uppercase tracking-widest text-muted mb-2">Buildings</p>
               <div className="flex flex-wrap gap-1.5">
                 {loc.buildings.map(b => (
                   <span key={b}
-                    className="text-xs px-2.5 py-1 rounded-full bg-white/[0.05] border border-white/10 text-slate-300">
+                    className="text-xs px-2.5 py-1 rounded-full bg-panel border border-line text-ink-2">
                     {BUILDING_ICONS[b] ?? '🏗️'} {b}
                   </span>
                 ))}
@@ -444,13 +456,13 @@ function LocationDetailModal({ loc, onClose }: { loc: LocationCard; onClose: () 
 
           {/* Capacity */}
           <div className="flex items-center gap-2 pt-1">
-            <span className="text-[10px] uppercase tracking-widest text-slate-500">Capacity</span>
+            <span className="text-[10px] uppercase tracking-widest text-muted">Capacity</span>
             <div className="flex gap-1">
               {Array.from({ length: loc.capacity }).map((_, i) => (
-                <span key={i} className="w-2 h-2 rounded-full bg-amber-500/60" />
+                <span key={i} className="w-2 h-2 rounded-full bg-accent/60" />
               ))}
             </div>
-            <span className="text-slate-500 text-xs">{loc.capacity} slots</span>
+            <span className="text-muted text-xs">{loc.capacity} slots</span>
           </div>
         </div>
       </div>

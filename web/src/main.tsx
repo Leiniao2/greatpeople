@@ -7,6 +7,14 @@ import App from './App'
 
 const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID as string | undefined
 
+// Pages are code-split with hashed filenames.  A tab left open across a deploy
+// asks for chunks that no longer exist; reload so it picks up the new build
+// instead of showing a blank page.
+window.addEventListener('vite:preloadError', (event) => {
+  event.preventDefault()
+  window.location.reload()
+})
+
 // GoogleOAuthProvider crashes when clientId is empty — only mount it when configured.
 function Providers({ children }: { children: React.ReactNode }) {
   if (googleClientId) {

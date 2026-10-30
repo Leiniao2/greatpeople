@@ -1,0 +1,130 @@
+{
+  "slug": "the-language-of-algebra",
+  "era": "Medieval",
+  "order": 1,
+  "title": "The Language of Algebra",
+  "figure": "Al-Khwarizmi",
+  "portraitKey": "al_khwarizmi",
+  "tagline": "A mathematician in Baghdad creates the tool that will run every computer.",
+  "locationImage": "renaissance_baghdad",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Baghdad, 820 CE. The House of Wisdom stands at the center of the world's largest city — a library and research institute where scholars from every civilization translate and synthesize knowledge from Greece, India, Persia, and China."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Al-Khwarizmi",
+          "portraitKey": "al_khwarizmi",
+          "text": "The Indians have given us something extraordinary — a symbol for nothing. Zero. With zero, our numeral system becomes complete. Any number can now be expressed with just ten symbols. This will change everything."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "The word 'algebra' comes from Al-Khwarizmi's book title, which contains the Arabic word:",
+            "options": [
+              "Al-jabr (reunion of broken parts)",
+              "Al-raqm (the number)",
+              "Al-hisab (the calculation)",
+              "Al-maqala (the treatise)"
+            ],
+            "answer": 0,
+            "fact": "Al-Khwarizmi's 'Kitab al-mukhtasar fi hisab al-jabr wal-muqabala' (c. 820 CE) — 'The Compendious Book on Calculation by Completion and Balancing' — gave us the word algebra from al-jabr."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Al-Khwarizmi's treatise — 'Al-Kitāb al-mukhtaṣar fī ḥisāb al-jabr waʾl-muqābala' — was so influential that the word 'al-jabr' became the modern word for the discipline he founded. His very name gave us another word."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "decode",
+            "configId": "cipher-al",
+            "instruction": "A coded message has arrived from Al-Khwarizmi's House of Wisdom. Decode it letter by letter.",
+            "fact": "Al-Khwarizmi's mathematical texts were written in a kind of symbolic code that unlocked the logic of the universe — algebra as a language of hidden structure."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "dialog",
+          "speaker": "Al-Khwarizmi",
+          "portraitKey": "al_khwarizmi",
+          "text": "My method allows any problem involving an unknown quantity to be solved step by step. I call the unknown 'shay' — the thing. What matters is not what we call it, but that any such problem can be reduced to six basic forms and solved."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "sudoku",
+            "configId": "al-khwarizmi-grid",
+            "instruction": "Al-Khwārizmī's algebra reduces every problem to a balanced equation — no term appears without its counterpart. Fill the grid so each row, column, and 2×2 box contains 1–4 exactly once.",
+            "fact": "Al-Khwārizmī's Kitāb al-jabr (c. 820 CE) gave us the word 'algebra.' He illustrated algebraic equations with geometric diagrams, proving solutions by drawing and rearranging squares — the origin of 'completing the square.'"
+          }
+        },
+        {
+          "type": "narration",
+          "text": "Al-Khwarizmi's name itself became a word: the Latin translation used 'algoritmi' for his name — which became 'algorithm.' His ideas live in the language of mathematics and computing to this day."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "matchthree",
+            "configId": "cairo-alchemy",
+            "instruction": "In the House of Wisdom, scholars matched planetary symbols to decode alchemical texts. Clear 44 tiles — but only chains of 4 or more count.",
+            "fact": "The House of Wisdom in Abbasid Baghdad synthesised Greek, Indian, and Persian knowledge. Al-Kindi, al-Farabi and al-Razi worked there — translating Aristotle, developing algebra, and mapping the stars with planetary symbols inherited from Hellenistic alchemy."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "mirror",
+            "configId": "archimedes-mirror",
+            "instruction": "The House of Wisdom translated Archimedes — including his mirror theories. Thread the beam through the array using two mirrors across an 8×8 grid.",
+            "fact": "Ibn al-Haytham, working a century after Al-Khwarizmi, built on the House of Wisdom's translations to write 'Kitab al-Manazir' (Book of Optics) — the first correct account of how vision works. Light enters the eye; the eye does not emit rays."
+          }
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "storysort",
+            "configId": "arabian-nights-opening",
+            "instruction": "Arrange the opening of One Thousand and One Nights in the correct order — the frame story that gave Scheherazade her voice.",
+            "fact": "One Thousand and One Nights was compiled during the Islamic Golden Age (8th–13th centuries) from Persian, Indian, and Arab sources. It reached Europe in Antoine Galland's 1704 French translation, which added stories like Aladdin and Ali Baba that don't appear in the original Arabic manuscripts."
+          }
+        }
+      ]
+    }
+  ]
+}

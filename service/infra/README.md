@@ -4,12 +4,17 @@
 
 | GCP Service | Purpose |
 |---|---|
-| **App Engine Flexible** | Hosts the Flask service (WebSocket support via threading mode) |
+| **Cloud Run** | Hosts the Flask service and the built frontend (WebSocket support, scales to zero) |
+| **Artifact Registry** | Stores the service container image |
 | **Cloud Datastore (NDB)** | Persistent store for users, cards, matches |
 | **Cloud Storage** | Card portrait artwork assets |
 | **Secret Manager** | JWT secret key |
-| **Cloud Build** | CI/CD — deploys to App Engine on push |
+| **Cloud Build** | CI/CD — builds the image and deploys to Cloud Run |
 | **Cloud Logging / Monitoring** | Observability |
+
+The service previously ran on App Engine Flexible (`../app.yaml`). That kept a
+VM running around the clock; Cloud Run bills only while requests are being
+served.
 
 ## First-Time Setup
 
@@ -24,20 +29,22 @@ gcloud config set project YOUR_PROJECT_ID
 
 ```bash
 gcloud services enable \
-  appengine.googleapis.com \
+  run.googleapis.com \
+  artifactregistry.googleapis.com \
   datastore.googleapis.com \
   storage.googleapis.com \
   secretmanager.googleapis.com \
   cloudbuild.googleapis.com
 ```
 
-### 3. Create App Engine app (once per project)
+### 3. Create the Datastore database (once per project)
+
+Projects that already had App Engine have this. Otherwise create it in
+Datastore mode:
 
 ```bash
-gcloud app create --region=us-central
+gcloud firestore databases create --location=us-central1 --type=datastore-mode
 ```
-
-This also initializes Cloud Datastore in Datastore mode for the project.
 
 ### 4. Store the JWT secret in Secret Manager
 
@@ -51,11 +58,20 @@ openssl rand -hex 32 | gcloud secrets create jwt-secret --data-file=-
 gcloud storage buckets create gs://YOUR_PROJECT_ID-card-assets --location=us-central1
 ```
 
-### 6. Grant App Engine service account access to Secret Manager
+### 6. Create the image repository
 
 ```bash
-PROJECT_NUMBER=$(gcloud projects describe YOUR_PROJECT_ID --format='value(projectNumber)')
-SA="${PROJECT_NUMBER}@appspot.gserviceaccount.com"
+gcloud artifacts repositories create greatpeople \
+  --repository-format=docker --location=us-central1
+```
+
+### 7. Create the runtime service account
+
+Cloud Run runs the service as this account.
+
+```bash
+SA="greatpeople-run@YOUR_PROJECT_ID.iam.gserviceaccount.com"
+gcloud iam service-accounts create greatpeople-run --display-name="Great People Cloud Run"
 
 gcloud projects add-iam-policy-binding YOUR_PROJECT_ID \
   --member="serviceAccount:$SA" \
@@ -66,18 +82,49 @@ gcloud projects add-iam-policy-binding YOUR_PROJECT_ID \
   --role="roles/datastore.user"
 ```
 
-### 7. Update app.yaml
-
-Replace `YOUR_GCP_PROJECT_ID` in `app.yaml` with your actual project ID.
-
-### 8. Deploy
+### 8. Let Cloud Build deploy
 
 ```bash
-cd service
-gcloud app deploy
+PROJECT_NUMBER=$(gcloud projects describe YOUR_PROJECT_ID --format='value(projectNumber)')
+BUILD_SA="${PROJECT_NUMBER}-compute@developer.gserviceaccount.com"
+
+gcloud projects add-iam-policy-binding YOUR_PROJECT_ID \
+  --member="serviceAccount:$BUILD_SA" \
+  --role="roles/run.admin"
+
+gcloud iam service-accounts add-iam-policy-binding \
+  greatpeople-run@YOUR_PROJECT_ID.iam.gserviceaccount.com \
+  --member="serviceAccount:$BUILD_SA" \
+  --role="roles/iam.serviceAccountUser"
 ```
 
-First deploy takes ~10 minutes. Subsequent deploys ~5 minutes.
+`BUILD_SA` is the account Cloud Build runs as; check
+`gcloud builds get-default-service-account` if your project uses a different one.
+
+### 9. Deploy
+
+From the repository root:
+
+```bash
+gcloud builds submit --config service/cloudbuild.yaml .
+```
+
+This builds the frontend, runs the backend tests, builds the image and deploys
+it. The service URL is printed at the end (also
+`gcloud run services describe greatpeople --region=us-central1 --format='value(status.url)'`).
+
+### 10. Allow the new origin for Google sign-in
+
+Add the Cloud Run URL to **Authorized JavaScript origins** on the web OAuth
+client (APIs & Services → Credentials).
+
+### Scaling notes
+
+The service deploys with `--min-instances=0 --max-instances=1`. Idle periods
+cost nothing, but the first request afterwards waits a few seconds for a cold
+start; set `--min-instances=1` to avoid that. Socket.IO rooms live in process
+memory, so `--max-instances` must stay at 1 until battles share a message
+queue (e.g. Redis via `SocketIO(message_queue=...)`).
 
 ## Local Development
 
@@ -118,4 +165,4 @@ Service runs on `http://localhost:8080`. The Vite dev server at `localhost:3001`
 
 ## Environment Variables
 
-Real secrets are **never** stored in `app.yaml`. They are fetched at runtime from Secret Manager via `config.py`. Only the non-secret `SECRET_MANAGER_PROJECT` env var is set in `app.yaml`.
+Real secrets are **never** stored in the image or deploy config. They are fetched at runtime from Secret Manager via `config.py`. Only the non-secret `FLASK_ENV` and `SECRET_MANAGER_PROJECT` env vars are set, by the deploy step in `cloudbuild.yaml`.

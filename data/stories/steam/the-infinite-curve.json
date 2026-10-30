@@ -1,0 +1,126 @@
+{
+  "slug": "the-infinite-curve",
+  "era": "Steam",
+  "order": 8,
+  "title": "The Infinite Curve",
+  "figure": "Francesco Borromini",
+  "portraitKey": "borromini",
+  "tagline": "His spirals and concave facades bent the rules of space itself.",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Rome, 1630s. Francesco Borromini works in the shadow of Bernini — despised by the establishment, yet obsessed with a different kind of beauty."
+        },
+        {
+          "type": "narration",
+          "text": "Where Bernini uses grand columns and classical order, Borromini bends walls into concave curves. His church of San Carlo alle Quattro Fontane fits inside one pillar of St. Peter's — but feels infinite."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "Francesco Borromini is best known for which type of architectural innovation?",
+            "options": [
+              "Concave and convex facades that made walls appear to breathe",
+              "Classical Roman domes scaled to an unprecedented size",
+              "Pointed Gothic arches adapted for Baroque interiors",
+              "Flat, rational facades inspired by ancient Greek temples"
+            ],
+            "answer": 0,
+            "countdown": 10,
+            "fact": "Borromini (1599–1667) invented a new architectural language: walls that curved inward and outward, spaces that expanded and contracted as you moved through them, and geometry derived from interlocking triangles rather than squares. His buildings feel alive — as if the stone itself is breathing."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "He uses geometry — triangles, ovals, hexagons — as the hidden skeleton of his buildings. Nothing is arbitrary. Every curve obeys a mathematical relationship."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "Borromini and his rival Bernini collaborated closely and admired each other's work throughout their careers.",
+            "correct": false,
+            "countdown": 10,
+            "fact": "Borromini and Bernini were bitter rivals who despised each other. Bernini — charming, wealthy, papal favourite — represented everything Borromini was not. Borromini was ascetic, difficult, and constantly overshadowed. He believed Bernini stole his ideas and received undeserved credit. The rivalry drove both to their greatest achievements — and contributed to Borromini's deepening depression."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "His patrons appreciate him grudgingly. He works for the Oratorians, the Sapienza University — commissions he can keep, commissions Bernini disdained."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "sort",
+            "question": "Arrange the key works of Borromini's career in chronological order:",
+            "items": [
+              "Works under Bernini on St. Peter's Basilica — already showing signs of rivalry",
+              "Designs San Carlo alle Quattro Fontane — his first independent commission",
+              "Creates the Oratorio dei Filippini for the Congregation of the Oratory",
+              "Redesigns Sant'Ivo alla Sapienza — a spiral lantern atop a star-shaped plan",
+              "Works on San Giovanni in Laterano — his most prestigious commission",
+              "Dies by self-inflicted wound — his last act is to dictate his life story"
+            ],
+            "fact": "San Carlo alle Quattro Fontane is perhaps the most astonishing building in Rome: its interior could fit inside one of the columns of St. Peter's Basilica, yet it is more architecturally complex than the entire basilica. Borromini spent his career making small spaces feel infinite."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "He clashes bitterly with Bernini throughout his life. Their rivalry becomes legendary — the classical versus the radical, the celebrated versus the misunderstood."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "geometry",
+            "configId": "ellipse-area",
+            "instruction": "Borromini derived his curved facades from interlocking ellipses and equilateral triangles. Calculate the ellipse that governs the rhythm of San Carlo's undulating wall.",
+            "fact": "Borromini's geometry was rooted in medieval sacred mathematics — he derived church plans from the proportions of the equilateral triangle, believing divine truth was encoded in geometric relationships. His buildings are not just beautiful; they are arguments about the nature of space and the presence of God within it."
+          }
+        },
+        {
+          "type": "narration",
+          "text": "Borromini died by suicide in 1667. But his spiraling lantern on Sant'Ivo della Sapienza, his concave-convex facades, his impossible interiors — they outlived every critic."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "museum",
+            "configId": "uffizi-gallery",
+            "instruction": "Rome in Borromini's day was an open-air gallery of competing architectural ambitions. Arrange the Baroque masters' works in the order that best reveals the evolution of the style.",
+            "fact": "The Baroque was born in Rome as the Catholic Church's answer to Protestant austerity. Where Protestantism stripped churches bare, the Counter-Reformation filled them with overwhelming beauty. Borromini's contribution was to make that beauty geometrically impossible — a space that could not exist by the rules of classical architecture yet stood before you undeniably real."
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "slug": "pygmalion",
+  "era": "Electricity",
+  "order": 12,
+  "title": "Pygmalion",
+  "figure": "George Bernard Shaw",
+  "portraitKey": "george_bernard_shaw",
+  "tagline": "Language is the sharpest tool of power — and the hardest to unlearn.",
+  "locationImage": "electricity_london",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "London, 1912. George Bernard Shaw — playwright, critic, socialist, controversialist — prepares to write a play about the most powerful weapon in English society: the English language itself. It is impossible, he believes, for an Englishman to open his mouth without making some other Englishman hate or despise him."
+        },
+        {
+          "type": "dialog",
+          "speaker": "George Bernard Shaw",
+          "text": "The class system is written into the vowels. Change the accent and you change the person — or do you? That is the question.",
+          "portraitKey": "george_bernard_shaw"
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "Shaw's 1913 play 'Pygmalion' was later adapted into which enormously successful musical?",
+            "options": [
+              "South Pacific",
+              "My Fair Lady",
+              "Cabaret",
+              "Annie Get Your Gun"
+            ],
+            "answer": 1,
+            "fact": "My Fair Lady (1956) ran for 2,717 performances on Broadway. Shaw famously wrote his own stage directions to prevent producers from adding a romantic happy ending."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Pygmalion was based on the myth of the sculptor who fell in love with his creation — reimagined as Professor Higgins transforming Cockney flower seller Eliza Doolittle into a duchess through elocution lessons."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Henry Higgins",
+          "text": "In six months I can pass this guttersnipe off as a duchess at an ambassador's garden party.",
+          "portraitKey": "follower:philosopher"
+        },
+        {
+          "type": "dialog",
+          "speaker": "George Bernard Shaw",
+          "text": "And the audience will laugh. And then go home and speak with the very accent that signals their breeding — and think nothing of it.",
+          "portraitKey": "george_bernard_shaw"
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "classify",
+            "configId": "darwin-beaks",
+            "instruction": "Shaw was fascinated by Darwin and evolution. Classify these beaks as Darwin would — each adapted to a different food source.",
+            "fact": "Shaw wrote 'Back to Methuselah' (1921), a five-play epic spanning from Adam and Eve to 31,920 AD. He was the only person to win both a Nobel Prize (1925) and an Academy Award (1938)."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Shaw fought constantly with directors who wanted a happy ending — Higgins and Eliza united in romance. Shaw refused. The ending he wrote is deliberately ambiguous. Eliza walks away. She is not the professor's creation: she is her own."
+        },
+        {
+          "type": "dialog",
+          "speaker": "George Bernard Shaw",
+          "text": "A life spent making mistakes is not only more honourable but more useful than a life spent doing nothing.",
+          "portraitKey": "george_bernard_shaw"
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fiction",
+            "configId": "pygmalion-ending",
+            "instruction": "A Hungarian phonetics expert approaches Eliza Doolittle at the ambassador's party. What does he conclude?",
+            "fact": "Shaw's irony: Eliza succeeds so perfectly that the expert concludes she must be foreign nobility — her English is too refined for a native. Class is performance, not origin."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "George Bernard Shaw intended Eliza Doolittle and Professor Higgins to end up romantically together.",
+            "correct": false,
+            "fact": "Shaw explicitly wrote that Eliza marries Freddy Eynsford-Hill, not Higgins. He was furious when stage productions implied a romance. His epilogue spells out that Higgins is too self-absorbed for love. The musical My Fair Lady contradicts Shaw's own ending."
+          }
+        }
+      ]
+    }
+  ]
+}

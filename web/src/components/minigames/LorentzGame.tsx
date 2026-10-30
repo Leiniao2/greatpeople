@@ -194,7 +194,7 @@ export default function LorentzGame({ configId, onWin }: { configId: string; onW
       // B-field indicator
       const bVal = bRef.current
       if (Math.abs(bVal) > 0.01) {
-        ctx.fillStyle = bVal > 0 ? 'rgba(245,158,11,0.7)' : 'rgba(96,165,250,0.7)'
+        ctx.fillStyle = bVal > 0 ? 'rgba(155,44,35,0.7)' : 'rgba(96,165,250,0.7)'
         ctx.font = 'bold 11px sans-serif'
         ctx.textAlign = 'left'
         ctx.textBaseline = 'top'
@@ -259,14 +259,14 @@ export default function LorentzGame({ configId, onWin }: { configId: string; onW
   }, [running, cfg, onWin])
 
   return (
-    <div className="flex flex-col items-center gap-3 p-4 bg-slate-950 rounded-xl select-none">
+    <div className="flex flex-col items-center gap-3 p-4 bg-paper-2 rounded-xl select-none">
       <div className="flex items-center justify-between w-full">
         <span className="text-indigo-400 font-bold text-sm tracking-wide">{cfg.title}</span>
         {won && <span className="text-emerald-400 text-xs font-bold">✓ Target reached!</span>}
         {dead && <span className="text-red-400 text-xs font-bold">✕ Out of bounds</span>}
       </div>
 
-      <p className="text-slate-400 text-xs text-center">
+      <p className="text-muted text-xs text-center">
         Guide the <span className="text-indigo-400">particle ●</span> to the <span className="text-emerald-400">target ✦</span> — avoid red obstacles
       </p>
 
@@ -279,8 +279,8 @@ export default function LorentzGame({ configId, onWin }: { configId: string; onW
       <div className="w-full flex flex-col gap-2">
         <div className="flex items-center justify-between text-xs">
           <span className="text-blue-400">← B out of screen</span>
-          <span className="text-slate-500">B = {(bField * B_STEP).toFixed(2)}</span>
-          <span className="text-amber-400">B into screen →</span>
+          <span className="text-muted">B = {(bField * B_STEP).toFixed(2)}</span>
+          <span className="text-accent">B into screen →</span>
         </div>
         <input
           type="range"
@@ -302,12 +302,12 @@ export default function LorentzGame({ configId, onWin }: { configId: string; onW
         )}
         {running && (
           <button onClick={() => setRunning(false)}
-            className="flex-1 py-2.5 rounded-xl bg-white/[0.08] border border-white/10 text-slate-300 hover:bg-white/[0.12] font-bold text-sm transition-all">
+            className="flex-1 py-2.5 rounded-xl bg-panel border border-line text-ink-2 hover:bg-panel-2 font-bold text-sm transition-all">
             Pause ⏸
           </button>
         )}
         <button onClick={reset}
-          className="px-4 py-2.5 rounded-xl bg-white/[0.06] border border-white/10 text-slate-400 hover:text-white text-sm transition-all">
+          className="px-4 py-2.5 rounded-xl bg-panel border border-line text-muted hover:text-ink text-sm transition-all">
           ↺
         </button>
       </div>
@@ -318,9 +318,12 @@ export default function LorentzGame({ configId, onWin }: { configId: string; onW
 
       {won && (
         <div className="w-full p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30">
-          <p className="text-slate-400 text-xs leading-relaxed">{cfg.fact}</p>
+          <p className="text-muted text-xs leading-relaxed">{cfg.fact}</p>
         </div>
       )}
     </div>
   )
 }
+
+// Every hand-authored config id; the registry test renders each one.
+export const CONFIG_IDS = Object.keys(CONFIGS)

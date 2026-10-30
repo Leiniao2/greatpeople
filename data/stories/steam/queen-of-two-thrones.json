@@ -1,0 +1,136 @@
+{
+  "slug": "queen-of-two-thrones",
+  "era": "Steam",
+  "order": 7,
+  "title": "Queen of Two Thrones",
+  "figure": "Anna Nzinga",
+  "portraitKey": "anna_nzinga",
+  "tagline": "She led armies, negotiated empires, and never surrendered Angola.",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Angola, 1622. Portuguese colonizers hold Luanda and push inland, enslaving thousands. The Kingdom of Ndongo needs a negotiator — and Queen Anna Nzinga will not kneel."
+        },
+        {
+          "type": "narration",
+          "text": "At the peace talks, the Portuguese offer no chair for her. Nzinga signals to one of her attendants, who kneels — and she sits on the attendant's back. She will not be lesser."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "Which two kingdoms did Queen Anna Nzinga rule over her lifetime?",
+            "options": [
+              "Ndongo and Matamba",
+              "Kongo and Loango",
+              "Benin and Dahomey",
+              "Oyo and Ashanti"
+            ],
+            "answer": 0,
+            "countdown": 10,
+            "fact": "Nzinga was born into the royal family of Ndongo (in modern Angola) and became its ruler in the 1620s. When Portuguese pressure forced her from Ndongo, she conquered the neighboring kingdom of Matamba and turned it into a military powerhouse — ruling both territories into her eighties."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "The Portuguese break the treaty. Nzinga retreats east, conquers Matamba, and builds a new base of power — welcoming escaped slaves and Imbangala warriors."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "Anna Nzinga ultimately surrendered her kingdom to the Portuguese in exchange for peace.",
+            "correct": false,
+            "countdown": 10,
+            "fact": "Nzinga never surrendered. She fought the Portuguese for over thirty years, forging alliances with the Dutch, leading guerrilla campaigns from the jungle, and negotiating with extraordinary skill. At age 80, she signed a peace treaty on her own terms. She died in her eighties, having protected Matamba's independence to the end."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "For decades she fights on — allying with the Dutch, leading armies personally, and negotiating across three colonial powers. She rules until her 80s, never truly conquered."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "sort",
+            "question": "Arrange the key events of Anna Nzinga's life in order:",
+            "items": [
+              "Nzinga negotiates with the Portuguese governor in Luanda — famously sitting on an attendant's back when denied a chair",
+              "She is baptized as a Christian, taking the name Anna, as a diplomatic strategy",
+              "Portuguese forces drive her from Ndongo — she retreats and reorganizes",
+              "Nzinga conquers Matamba and builds a powerful military state",
+              "She allies with the Dutch and launches campaigns against Portuguese slave traders",
+              "At nearly eighty, she signs a peace treaty and rules Matamba until her death"
+            ],
+            "fact": "The story of Nzinga refusing a chair during negotiations — and instead using one of her attendants as a throne — became one of history's most celebrated acts of diplomatic defiance. Whether literally true or legendary, it perfectly captures her method: she refused the terms of any encounter she had not defined herself."
+          }
+        },
+        {
+          "type": "narration",
+          "text": "She even negotiates the release of Portuguese prisoners, turning each crisis into leverage. Her diplomacy is as deadly as her sword."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "hunting",
+            "configId": "african-safari",
+            "instruction": "Nzinga trained as a warrior and led her troops personally. Navigate the Central African terrain, reading the land as both hunter and commander.",
+            "fact": "Nzinga commanded a military force that included a women's regiment, former Portuguese-allied soldiers who defected to her cause, and a network of Imbangala warriors. She was known to fight in the front lines herself and trained her soldiers in guerrilla tactics that kept the Portuguese at bay for decades."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Anna Nzinga dies in 1663, still queen, still free. Her name becomes a symbol of African resistance against colonialism for centuries to come."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "tactics",
+            "configId": "general",
+            "instruction": "Lead Nzinga's forces in a flanking raid against a Portuguese supply column. Speed and terrain are your weapons — European cannon cannot aim at what it cannot see.",
+            "fact": "Portuguese military reports describe Nzinga's forces as extraordinarily mobile and difficult to engage in pitched battle. She understood that her army could not match European firepower in open confrontation, so she avoided it — choosing ambushes, river crossings, and night raids that neutralized the Portuguese advantage."
+          }
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "voting",
+            "configId": "spanish-court",
+            "instruction": "Nzinga understood European courts as well as she understood the African bush. Navigate the Portuguese diplomatic chamber — every word a move, every concession a feint.",
+            "fact": "Nzinga was multilingual and converted to Christianity strategically, understanding that the Portuguese were far more willing to negotiate with a Christian queen than a 'pagan' ruler. She later renounced Christianity when the political winds shifted, then accepted it again — always on her own terms. European diplomats found her simultaneously charming, erudite, and utterly undefeatable."
+          }
+        }
+      ]
+    }
+  ]
+}

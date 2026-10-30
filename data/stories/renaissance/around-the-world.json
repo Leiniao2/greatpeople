@@ -1,0 +1,114 @@
+{
+  "slug": "around-the-world",
+  "era": "Renaissance",
+  "order": 2,
+  "title": "Around the World",
+  "figure": "Magellan",
+  "portraitKey": "magellan",
+  "tagline": "He bet his life — and lost it — on the shape of the Earth.",
+  "locationImage": "renaissance_lisbon",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Seville, September 20, 1519. Five ships and 270 men set sail westward under a Portuguese captain sailing for Spain. Ferdinand Magellan's goal is the Spice Islands. His route: westward around South America, across an unknown ocean."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Magellan",
+          "portraitKey": "magellan",
+          "text": "They say the Pacific is weeks wide. I believe it may be months. I will not share that belief with the crew. Mutiny begins in the mind before it reaches the hands."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "Of Magellan's 270-man crew that left Spain in 1519, how many completed the circumnavigation?",
+            "options": [
+              "18",
+              "45",
+              "90",
+              "130"
+            ],
+            "answer": 0,
+            "fact": "Only 18 men completed the first circumnavigation, arriving back in Spain in September 1522 — three years after departing. Magellan himself was killed in the Philippines in April 1521, so he never finished the journey."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "The Pacific crossing nearly destroyed them. 98 days without land. The crew ate leather from the rigging. Rats sold for half a gold ducat each. Twenty-nine men died of scurvy before they reached the Philippines."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Magellan",
+          "portraitKey": "magellan",
+          "text": "I did not come this far to turn back. Whatever lies ahead — it lies ahead. We sail."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "classify",
+            "configId": "magellan-seas",
+            "instruction": "Sort each port or landmark into the ocean Magellan's fleet crossed to reach it.",
+            "fact": "Magellan named the Pacific Ocean 'Mar Pacífico' — the peaceful sea — after the violent storms of the strait that now bears his name. The irony was that the Pacific crossing nearly killed his crew from starvation."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "On April 27, 1521, Magellan was killed in the Philippines — caught in a local dispute he chose to fight. He never finished his own circumnavigation. His one remaining ship did, arriving home with 18 survivors of the original 270."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "sort",
+            "question": "Arrange the key milestones of Magellan's circumnavigation in order:",
+            "items": [
+              "Fleet of five ships departs Seville with 270 men",
+              "Discovery and navigation of the Strait of Magellan",
+              "Magellan killed in the Philippines — he never completes the journey",
+              "One surviving ship returns to Spain with 18 men"
+            ],
+            "fact": "Magellan's voyage proved the Earth is a sphere and that the Pacific is far larger than anyone imagined. He left in 1519 with five ships and 270 men; one ship, the Victoria, returned in 1522 with 18 skeletal survivors. The Strait of Magellan — 570 kilometres of treacherous winding channels — took 38 days to navigate."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "matchthree",
+            "configId": "aztec-market",
+            "instruction": "Tlatelolco's market rows stretched horizon to horizon — only horizontal matches count. Clear 46 glyphs across the 7×7 trading floor.",
+            "fact": "Hernán Cortés wrote to Charles V that Tlatelolco was larger than any market in Spain. It drew 60,000 traders daily — cacao, jade, feathers, obsidian blades, and human beings. Dedicated judges walked the aisles enforcing weights and punishing fraud on the spot."
+          }
+        }
+      ]
+    }
+  ]
+}

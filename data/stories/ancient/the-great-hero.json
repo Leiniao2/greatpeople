@@ -1,0 +1,147 @@
+{
+  "slug": "the-great-hero",
+  "era": "Ancient",
+  "order": 7,
+  "title": "The Great Hero",
+  "figure": "Mahavira",
+  "portraitKey": "mahavira",
+  "tagline": "He gave up wealth, family, and comfort — and found something no empire could match.",
+  "locationImage": "ancient_memphis",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Vaishali, northeastern India, 599 BCE. A prince of the Kshatriya warrior caste turns 30 and makes a decision that shocks his court: he will give away his possessions, renounce his title, and walk into the forest with nothing but the clothes on his body. Then he gives those away too."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Mahavira",
+          "portraitKey": "mahavira",
+          "text": "I have wealth. I have status. I have a family. And I am not free. Every attachment is a chain. I will wander until I understand what it means to be truly free — free from desire, free from fear, free even from the violence we do to other creatures by simply living."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "sort",
+            "question": "Arrange the five major vows of Jain monks, as established by Mahavira, in the order traditionally taught:",
+            "items": [
+              "Ahimsa — non-violence towards all living beings",
+              "Satya — truthfulness in all speech",
+              "Asteya — non-stealing, taking nothing not freely given",
+              "Brahmacharya — celibacy and restraint of the senses",
+              "Aparigraha — non-possessiveness, owning nothing"
+            ],
+            "fact": "Mahavira added the fifth vow — Brahmacharya — to the four already taught by the previous Tirthankara. Together, these five vows form the ethical core of Jain monasticism, practised by Jain monks today with the same rigour as in Mahavira's time, over 2,500 years ago."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "For twelve years, Mahavira wandered naked through India, enduring heat, cold, and hostile villagers. He was a contemporary of the Buddha, living and teaching within 100 kilometers of him. Both men independently reached the same conclusion: the root of suffering is attachment."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Disciple",
+          "text": "Teacher, you teach us not to harm any living creature — not even insects. But we must eat. We must walk. How can a person live without causing any harm at all?",
+          "portraitKey": "follower:philosopher"
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "geometry",
+            "configId": "sphere-surface",
+            "instruction": "Indian mathematicians of Mahavira's era calculated the surface of the earth and the motion of heavenly spheres — a tradition as rigorous as any in Greece. Solve the spherical surface problem.",
+            "fact": "Indian mathematics in the 5th century BCE was extraordinarily advanced. The Sulbasutras gave precise geometric rules for constructing altars — the same geometric thinking that produced Mahavira's systematic cosmology, mapping the universe into precise spherical layers."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "dialog",
+          "speaker": "Mahavira",
+          "portraitKey": "mahavira",
+          "text": "You cannot achieve perfect non-violence. But the effort to cause the least possible harm — that effort shapes your soul. Ahimsa is not a rule. It is a direction. Walk toward it your entire life."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "Mahavira's central ethical principle was Ahimsa. What does this mean?",
+            "options": [
+              "Non-attachment",
+              "Non-violence toward all living beings",
+              "Truth-telling",
+              "Renunciation of wealth"
+            ],
+            "answer": 1,
+            "fact": "Ahimsa (non-violence) is the supreme ethical principle of Jainism, elevated by Mahavira. It extends to all living beings — including insects. Jain monks carry brooms to sweep the path before them so they do not accidentally step on any creature."
+          }
+        },
+        {
+          "type": "narration",
+          "text": "Mahavira's principle of ahimsa — non-violence toward all living beings — would echo through Indian civilization for 2,500 years. It shaped vegetarianism, medicine, law, and eventually found its most powerful modern expression in the life and campaigns of Mahatma Gandhi."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "sudoku",
+            "configId": "anaxagoras-grid",
+            "instruction": "Jain philosophy holds that the universe operates by perfect logical laws — karma as mathematics, action and consequence as a grid with no exceptions. Fill every cell.",
+            "fact": "Mahavira's contemporary Anaxagoras (in Greece) also sought to explain the universe through rational principle rather than divine whim — one called it Nous (Mind), the other called it karma. The Axial Age produced parallel leaps of rational thought across three continents simultaneously."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "dialog",
+          "speaker": "Mahavira",
+          "portraitKey": "mahavira",
+          "text": "There is no enemy outside. Anger, greed, pride, and deceit — these are the enemies. Conquer them, and there is nothing left to fear. That is what it means to be a Mahavira — a Great Hero. Not the man who kills the most. The man who needs to kill nothing."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "Jainism believes the universe was created and is governed by a supreme divine being.",
+            "correct": false,
+            "countdown": 10,
+            "fact": "Jainism is unique among major world religions in completely rejecting the concept of a creator god. The universe, in Jain philosophy, is eternal and uncreated. Karma operates as an impersonal natural law — not divine judgment — and liberated souls reach a state of perfect knowledge but do not intervene in worldly affairs."
+          }
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "storysort",
+            "configId": "odyssey-return",
+            "instruction": "Put Homer's account of Odysseus' return to Ithaca back in order — the scene where he wakes on his homeland shore for the first time in twenty years.",
+            "fact": "Homer's Odyssey is one of the foundational texts of Western literature. The hero Odysseus spent ten years at war in Troy and another ten trying to reach home — opposed by Poseidon but guided by Athena's favour."
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "slug": "cinema-s-architect",
+  "era": "Electricity",
+  "order": 7,
+  "title": "Cinema's Architect",
+  "figure": "Sergei Eisenstein",
+  "portraitKey": "sergei_eisenstein",
+  "tagline": "He invents the grammar of film — a language that changes how the world sees itself.",
+  "locationImage": "electricity_moscow",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Petrograd, 1921. The Russian Revolution is two years old. The Bolsheviks urgently need an art form that speaks to the illiterate masses. A 23-year-old theatre director named Sergei Eisenstein quits the stage and picks up a camera."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Sergei Eisenstein",
+          "portraitKey": "sergei_eisenstein",
+          "text": "Cinema is not photography in motion. A film is not a play recorded. Cinema is editing — the collision of images. Two images placed side by side create a third meaning that neither contains alone. The cut is everything."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "Eisenstein pioneered 'intellectual montage' — using the collision of images to create:",
+            "options": [
+              "Longer scenes with more action",
+              "Abstract ideas that neither shot contains alone",
+              "Smoother scene transitions",
+              "More realistic dialogue"
+            ],
+            "answer": 1,
+            "fact": "Eisenstein believed that two images in sequence create a third meaning absent from either — as in the Kuleshov effect. A shot of a man's neutral face followed by soup suggests hunger; followed by a coffin suggests grief. Same face, different meanings."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "His 1925 film Battleship Potemkin — especially its 11-minute Odessa Steps sequence — invented visual storytelling language that every filmmaker since has borrowed. Hitchcock, Spielberg, Coppola all learned from Eisenstein."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Sergei Eisenstein",
+          "portraitKey": "sergei_eisenstein",
+          "text": "I show a grieving mother. Then I cut to soldiers firing. Then to a baby carriage rolling down the steps. The audience screams. None of those shots alone contains what they feel — only the sequence creates it."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fiction",
+            "configId": "eisenstein-ending",
+            "instruction": "Eisenstein's Odessa Steps sequence builds to a critical cut. Choose how he resolved it.",
+            "fact": "Eisenstein's montage theory holds that meaning is created between shots, not within them. The Battleship Potemkin (1925) remains the most studied example of this principle."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "sudoku",
+            "configId": "eisenstein-grid",
+            "instruction": "Eisenstein's montage: juxtapose shots so no image repeats the same idea in the same context — meaning emerges between them. Fill the grid so each row, column, and 2×2 box contains 1–4 exactly once.",
+            "fact": "Eisenstein's montage theory holds that meaning is created between shots, not within them. The Kuleshov effect proves it: the same neutral face, cut to food, reads as hunger; cut to a coffin, reads as grief. The Odessa Steps sequence in Battleship Potemkin (1925) remains the most studied example of this principle."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "Eisenstein's film Battleship Potemkin was banned in several countries including the United Kingdom upon its 1925 release for its revolutionary political content.",
+            "correct": true,
+            "countdown": 10,
+            "fact": "Battleship Potemkin (1925) was banned in the UK until 1954, in Nazi Germany, and across much of Europe for portraying mutiny as heroic. In the UK, the censor wrote it presented 'Bolshevik propaganda' too powerfully. The bans made the film legendary — its Odessa Steps sequence is still cited as one of the greatest in film history."
+          }
+        }
+      ]
+    }
+  ]
+}

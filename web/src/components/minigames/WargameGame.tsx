@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
+import type { MinigameProps } from '@/games/types'
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
@@ -193,7 +194,7 @@ function cpuPickMove(board: Board): Move | null {
 
 // ── Component ──────────────────────────────────────────────────────────────────
 
-export default function WargameGame({ configId, onWin }: { configId: string; onWin: () => void }) {
+export default function WargameGame({ configId, onWin, onLose }: MinigameProps) {
   const config = CONFIGS[configId] ?? CONFIGS['belisarius-battle']
 
   const [board, setBoard] = useState<Board>(makeInitialBoard)
@@ -292,23 +293,23 @@ export default function WargameGame({ configId, onWin }: { configId: string; onW
   const hasMandatoryCapture = captureSources.size > 0
 
   return (
-    <div className="flex flex-col items-center gap-3 text-white select-none">
+    <div className="flex flex-col items-center gap-3 text-ink select-none">
 
       {/* Header */}
       <div className="text-center">
-        <p className="text-amber-400 font-bold text-sm tracking-wide">{config.title}</p>
+        <p className="text-accent font-bold text-sm tracking-wide">{config.title}</p>
       </div>
 
       {/* Piece counts */}
       <div className="flex items-center gap-6 text-xs">
         <div className="flex items-center gap-1.5">
-          <div className="w-4 h-4 rounded-full bg-amber-500 shadow-[0_0_5px_rgba(245,158,11,0.5)]" />
-          <span className="text-slate-300">{config.playerLabel}</span>
-          <span className="text-amber-400 font-bold">{lightCount}</span>
+          <div className="w-4 h-4 rounded-full bg-accent shadow-[0_0_5px_rgba(155,44,35,0.5)]" />
+          <span className="text-ink-2">{config.playerLabel}</span>
+          <span className="text-accent font-bold">{lightCount}</span>
         </div>
         <div className="flex items-center gap-1.5">
           <div className="w-4 h-4 rounded-full bg-red-700" />
-          <span className="text-slate-300">{config.cpuLabel}</span>
+          <span className="text-ink-2">{config.cpuLabel}</span>
           <span className="text-red-400 font-bold">{darkCount}</span>
         </div>
       </div>
@@ -316,18 +317,18 @@ export default function WargameGame({ configId, onWin }: { configId: string; onW
       {/* Status bar */}
       <div className="text-xs font-semibold">
         {phase === 'playing' && (
-          <span className="text-amber-300">
+          <span className="text-accent">
             {hasMandatoryCapture ? '⚔ Capture required — Your Turn' : 'Your Turn'}
           </span>
         )}
-        {phase === 'cpu-thinking' && <span className="text-slate-400 animate-pulse">Enemy thinking…</span>}
+        {phase === 'cpu-thinking' && <span className="text-muted animate-pulse">Enemy thinking…</span>}
         {phase === 'player-won' && <span className="text-emerald-400">Victory!</span>}
         {phase === 'cpu-won' && <span className="text-red-400">Defeated!</span>}
       </div>
 
       {/* Board */}
-      <div className="relative rounded-xl overflow-hidden border border-slate-600/40"
-           style={{ background: '#080812' }}>
+      <div className="relative rounded-xl overflow-hidden border border-line"
+           style={{ background: '#eadfc8' }}>
         <div className="grid" style={{ gridTemplateColumns: 'repeat(8, 36px)', gridTemplateRows: 'repeat(8, 36px)' }}>
           {Array.from({ length: 8 }, (_, r) =>
             Array.from({ length: 8 }, (_, c) => {
@@ -343,20 +344,20 @@ export default function WargameGame({ configId, onWin }: { configId: string; onW
                   onClick={() => isDark ? handleCellClick(r, c) : undefined}
                   className={[
                     'relative flex items-center justify-center transition-colors duration-100',
-                    isDark ? 'bg-slate-700 cursor-pointer' : 'bg-slate-800/50',
-                    isSelected ? 'ring-2 ring-inset ring-amber-400' : '',
-                    isCaptureSource ? 'ring-1 ring-inset ring-amber-500/60' : '',
+                    isDark ? 'bg-line cursor-pointer' : 'bg-panel-2',
+                    isSelected ? 'ring-2 ring-inset ring-accent' : '',
+                    isCaptureSource ? 'ring-1 ring-inset ring-accent/60' : '',
                   ].join(' ')}
                   style={{ width: 36, height: 36 }}
                 >
                   {/* Valid move dot */}
                   {isTarget && !piece && (
-                    <div className="w-2.5 h-2.5 rounded-full bg-amber-400/70 pointer-events-none" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-accent/70 pointer-events-none" />
                   )}
 
                   {/* Capture target highlight */}
                   {isTarget && piece && (
-                    <div className="absolute inset-0.5 rounded border border-amber-400/60 pointer-events-none" />
+                    <div className="absolute inset-0.5 rounded border border-accent/60 pointer-events-none" />
                   )}
 
                   {/* Piece */}
@@ -365,7 +366,7 @@ export default function WargameGame({ configId, onWin }: { configId: string; onW
                       className={[
                         'relative flex items-center justify-center rounded-full transition-transform duration-100',
                         piece.color === 'light'
-                          ? 'bg-amber-500 shadow-[0_0_6px_rgba(245,158,11,0.5)]'
+                          ? 'bg-accent shadow-[0_0_6px_rgba(155,44,35,0.5)]'
                           : 'bg-red-700 shadow-[0_0_4px_rgba(185,28,28,0.4)]',
                         isSelected ? 'scale-110' : '',
                       ].join(' ')}
@@ -388,31 +389,31 @@ export default function WargameGame({ configId, onWin }: { configId: string; onW
 
       {/* Instructions */}
       {phase === 'playing' && (
-        <p className="text-slate-500 text-[10px] text-center">
+        <p className="text-muted text-[10px] text-center">
           {selected ? 'Tap a highlighted square to move' : 'Tap your piece ⚔ to select'}
         </p>
       )}
 
       {/* Result overlay */}
       {(phase === 'player-won' || phase === 'cpu-won') && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
-          <div className="bg-slate-900 border border-slate-700 rounded-2xl p-8 flex flex-col items-center gap-4 max-w-xs w-full mx-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-ink/70 backdrop-blur-sm">
+          <div className="bg-paper-2 border border-line rounded-2xl p-8 flex flex-col items-center gap-4 max-w-xs w-full mx-4">
             {phase === 'player-won' ? (
               <>
                 <div className="text-5xl">🏆</div>
-                <p className="text-amber-400 font-bold text-xl">Victory!</p>
-                <p className="text-slate-300 text-sm text-center">
+                <p className="text-accent font-bold text-xl">Victory!</p>
+                <p className="text-ink-2 text-sm text-center">
                   {config.playerLabel} has prevailed over {config.cpuLabel}.
                 </p>
                 <button
                   onClick={onWin}
-                  className="w-full py-2.5 rounded-xl bg-amber-500 text-slate-900 font-bold text-sm hover:bg-amber-400 active:bg-amber-600 transition-colors"
+                  className="w-full py-2.5 rounded-xl bg-accent text-accent-fg font-bold text-sm hover:bg-accent-hover active:bg-accent-hover transition-colors"
                 >
                   Continue →
                 </button>
                 <button
                   onClick={reset}
-                  className="w-full py-2 rounded-xl bg-slate-700 text-slate-300 text-sm hover:bg-slate-600 transition-colors"
+                  className="w-full py-2 rounded-xl bg-line text-ink-2 text-sm hover:bg-line-2 transition-colors"
                 >
                   Play Again
                 </button>
@@ -421,18 +422,18 @@ export default function WargameGame({ configId, onWin }: { configId: string; onW
               <>
                 <div className="text-5xl">⚔</div>
                 <p className="text-red-400 font-bold text-xl">Defeated</p>
-                <p className="text-slate-300 text-sm text-center">
+                <p className="text-ink-2 text-sm text-center">
                   {config.cpuLabel} has overpowered your forces.
                 </p>
                 <button
                   onClick={reset}
-                  className="w-full py-2.5 rounded-xl bg-amber-500 text-slate-900 font-bold text-sm hover:bg-amber-400 active:bg-amber-600 transition-colors"
+                  className="w-full py-2.5 rounded-xl bg-accent text-accent-fg font-bold text-sm hover:bg-accent-hover active:bg-accent-hover transition-colors"
                 >
                   Try Again
                 </button>
                 <button
-                  onClick={onWin}
-                  className="w-full py-2 rounded-xl bg-slate-700 text-slate-300 text-sm hover:bg-slate-600 transition-colors"
+                  onClick={() => onLose('defeated')}
+                  className="w-full py-2 rounded-xl bg-line text-ink-2 text-sm hover:bg-line-2 transition-colors"
                 >
                   Continue →
                 </button>
@@ -444,3 +445,6 @@ export default function WargameGame({ configId, onWin }: { configId: string; onW
     </div>
   )
 }
+
+// Every hand-authored config id; the registry test renders each one.
+export const CONFIG_IDS = Object.keys(CONFIGS)

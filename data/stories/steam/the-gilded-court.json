@@ -1,0 +1,116 @@
+{
+  "slug": "the-gilded-court",
+  "era": "Steam",
+  "order": 2,
+  "title": "The Gilded Court",
+  "figure": "Louis XVI",
+  "portraitKey": "louis_xvi",
+  "tagline": "A king inherits a revolution he is not equipped to survive.",
+  "locationImage": "electricity_paris",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Versailles, 1789. The most magnificent palace in the world sits fifteen miles from Paris, where the city's poor are paying half their income for bread. King Louis XVI is not cruel — he is weak. And in a revolution, weakness is fatal."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Louis XVI",
+          "portraitKey": "louis_xvi",
+          "text": "The treasury is empty. Three wars have bankrupted us. The nobles refuse to be taxed. The people are starving. I don't know what to do. I have never known what to do."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Marie Antoinette",
+          "portraitKey": "marie_antoinette",
+          "text": "They hate me. They call me Madame Deficit, as if I emptied the treasury alone. Louis, you must be strong. You must do something. Anything."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "Louis XVI was how old when he was crowned King of France?",
+            "options": [
+              "15",
+              "17",
+              "20",
+              "25"
+            ],
+            "answer": 2,
+            "fact": "Louis XVI became king at age 20 in 1774, inheriting a state near bankruptcy from his grandfather Louis XV. He was a skilled locksmith and passionate map-maker — a careful craftsman in a role that demanded bold political vision."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "The French Revolution began not with violence but with fiscal crisis. France was bankrupt from supporting the American Revolution. When Louis XVI called the Estates-General — the first time in 175 years — he unleashed forces he could not control."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "geometry",
+            "configId": "sphere-surface",
+            "instruction": "Versailles aspired to govern the entire globe. Calculate the surface area of the sphere of French ambition.",
+            "fact": "The Palace of Versailles was a machine of political spectacle — every corridor, mirror, and gilded surface designed to awe visitors into submission. Louis XVI inherited this stage but never fully commanded it."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "dialog",
+          "speaker": "Louis XVI",
+          "portraitKey": "louis_xvi",
+          "text": "They have voted to become a National Assembly. I told the court it meant nothing. But it means everything. The old world is ending. I can feel it but I cannot stop it."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "voting",
+            "configId": "versailles-crisis",
+            "instruction": "It is July 1789. The Bastille has fallen. Louis XVI must navigate three decisions that will determine whether France has a revolution — or a king.",
+            "fact": "Louis XVI was guillotined on 21 January 1793, convicted of treason. His fatal error — the Flight to Varennes in June 1791 — proved to the Revolutionary government that he was conspiring against France with foreign powers."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "The circuits of power in Versailles were elaborate — every decision requiring careful switching of alliances and factions. Navigate the political connections that led to the Revolution..."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "When the Bastille was stormed on July 14, 1789, it held only seven prisoners — but as a symbol of royal tyranny, its fall ignited the French Revolution.",
+            "correct": true,
+            "countdown": 10,
+            "fact": "The Bastille held just 7 prisoners on July 14, 1789: four forgers, two men committed at their families' request, and one nobleman. But as a symbol of royal arbitrary power, its fall electrified France. The governor's head was paraded through Paris on a pike. Today Bastille Day is France's national holiday."
+          }
+        }
+      ]
+    }
+  ]
+}

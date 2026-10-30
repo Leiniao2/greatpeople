@@ -143,9 +143,9 @@ export default function ComposeMusicGame({ configId, onWin }: { configId: string
   return (
     <div className="flex flex-col gap-3">
       <div className="text-center">
-        <p className="text-amber-400 font-bold text-sm">{config.title}</p>
-        <p className="text-slate-400 text-xs">{config.composer} · {config.year}</p>
-        <p className="text-slate-500 text-xs mt-1">Arrange the movements in the correct order ↕</p>
+        <p className="text-accent font-bold text-sm">{config.title}</p>
+        <p className="text-muted text-xs">{config.composer} · {config.year}</p>
+        <p className="text-muted text-xs mt-1">Arrange the movements in the correct order ↕</p>
       </div>
 
       <div className="flex flex-col gap-2">
@@ -161,22 +161,22 @@ export default function ComposeMusicGame({ configId, onWin }: { configId: string
                 `bg-gradient-to-r ${p.color}`,
                 isWrong    ? 'border-red-500/70'     :
                 isCorrect  ? 'border-emerald-500/50'  :
-                             'border-white/10',
+                             'border-line',
               ].join(' ')}
             >
               <span className="text-2xl leading-none flex-shrink-0 mt-0.5 select-none">{p.emoji}</span>
               <div className="flex-1 min-w-0">
-                <p className="text-amber-200 text-xs font-bold leading-tight">{p.title}</p>
-                <p className="text-slate-300 text-[11px] leading-snug mt-0.5">{p.description}</p>
+                <p className="text-ink-2 text-xs font-bold leading-tight">{p.title}</p>
+                <p className="text-ink-2 text-[11px] leading-snug mt-0.5">{p.description}</p>
               </div>
               <div className="flex flex-col gap-0.5 flex-shrink-0 pt-0.5">
                 <button onClick={() => swap(-1, idx)} disabled={idx === 0 || !!flash || won}
-                  className="w-6 h-6 flex items-center justify-center rounded text-slate-400 hover:text-white hover:bg-white/10 disabled:opacity-20 text-xs transition-all">
+                  className="w-6 h-6 flex items-center justify-center rounded text-muted hover:text-ink hover:bg-panel-2 disabled:opacity-20 text-xs transition-all">
                   ▲
                 </button>
-                <span className="text-[10px] text-slate-600 text-center tabular-nums">{idx + 1}</span>
+                <span className="text-[10px] text-muted/80 text-center tabular-nums">{idx + 1}</span>
                 <button onClick={() => swap(1, idx)} disabled={idx === order.length - 1 || !!flash || won}
-                  className="w-6 h-6 flex items-center justify-center rounded text-slate-400 hover:text-white hover:bg-white/10 disabled:opacity-20 text-xs transition-all">
+                  className="w-6 h-6 flex items-center justify-center rounded text-muted hover:text-ink hover:bg-panel-2 disabled:opacity-20 text-xs transition-all">
                   ▼
                 </button>
               </div>
@@ -187,7 +187,7 @@ export default function ComposeMusicGame({ configId, onWin }: { configId: string
 
       {!won && (
         <button onClick={check} disabled={!!flash}
-          className="w-full py-2.5 bg-amber-500/20 border border-amber-500/40 text-amber-300 text-sm font-bold rounded-xl hover:bg-amber-500/30 transition-all disabled:opacity-50">
+          className="w-full py-2.5 bg-accent/20 border border-accent/40 text-accent text-sm font-bold rounded-xl hover:bg-accent/30 transition-all disabled:opacity-50">
           Check Order
         </button>
       )}
@@ -195,9 +195,12 @@ export default function ComposeMusicGame({ configId, onWin }: { configId: string
       {won && (
         <div className="p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-xl">
           <p className="text-emerald-400 font-bold text-sm text-center">Composition Complete!</p>
-          <p className="text-slate-400 text-xs mt-1.5 leading-relaxed">{config.fact}</p>
+          <p className="text-muted text-xs mt-1.5 leading-relaxed">{config.fact}</p>
         </div>
       )}
     </div>
   )
 }
+
+// Every hand-authored config id; the registry test renders each one.
+export const CONFIG_IDS = Object.keys(CONFIGS)

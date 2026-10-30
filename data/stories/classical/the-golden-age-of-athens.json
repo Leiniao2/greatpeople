@@ -1,0 +1,193 @@
+{
+  "slug": "the-golden-age-of-athens",
+  "era": "Classical",
+  "order": 1,
+  "title": "The Golden Age of Athens",
+  "figure": "Pericles",
+  "portraitKey": "pericles",
+  "tagline": "A statesman, a philosopher, and a king debate the soul of democracy.",
+  "locationImage": "ancient_athens",
+  "bonusCard": {
+    "figureName": "Aspasia",
+    "portraitKey": "aspasia"
+  },
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Athens, 450 BCE. The city shimmers at the height of its glory. The Parthenon rises on the Acropolis. Sophocles writes his tragedies. Democracy shapes every argument in the agora. And the man steering this golden age has at his side the most remarkable woman in Greece."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Pericles",
+          "portraitKey": "pericles",
+          "text": "Our constitution is called democracy because power is in the hands of the many, not the few. We do not imitate our neighbours — we are a pattern to others. Athens is the school of all Greece."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Aspasia",
+          "portraitKey": "aspasia",
+          "text": "And yet, Pericles, women may not vote, may not speak in the Assembly, may not be citizens. How free is a democracy that silences half its people? Tell me — does truth only count when a man speaks it?"
+        },
+        {
+          "type": "dialog",
+          "speaker": "Pericles",
+          "portraitKey": "pericles",
+          "text": "You argue like a philosopher and counsel like a strategos. It is why I love you — and why Athens both admires and despises us for it."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "Pericles' greatest architectural achievement was:",
+            "options": [
+              "The Colosseum",
+              "The Parthenon",
+              "The Library of Alexandria",
+              "Hadrian's Wall"
+            ],
+            "answer": 1,
+            "countdown": 10,
+            "fact": "The Parthenon, completed in 438 BCE, was a temple to Athena. Its proportions use the golden ratio and its 'straight' columns are actually slightly curved to correct optical illusions — mathematical perfection in marble."
+          }
+        },
+        {
+          "type": "narration",
+          "text": "Aspasia of Miletus ran a salon in Athens where the greatest minds of the age gathered. Socrates came. Alcibiades came. She discussed rhetoric, politics, and philosophy with them as an equal. Her foreign birth placed her outside Athenian law — and ironically, gave her freedoms Athenian women did not have."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Aspasia",
+          "portraitKey": "aspasia",
+          "text": "A city that silences half its people silences half its wisdom. Tell me, Socrates — is it Athens that is great, or the minds Athens has not yet learned to silence?"
+        },
+        {
+          "type": "dialog",
+          "speaker": "Pericles",
+          "portraitKey": "pericles",
+          "text": "They say I speak well. They are wrong. I speak what she has taught me. Aspasia sees through to the heart of every argument. My Funeral Oration — the words that will outlast stone — I did not write alone."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "Aspasia was born in Athens and was a full citizen of the city.",
+            "correct": false,
+            "countdown": 10,
+            "fact": "Aspasia was from Miletus — a Greek city in modern Turkey. Her foreign birth placed her outside Athenian citizenship, but also freed her from the strict domestic confinement imposed on Athenian women."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Across the Aegean, Sparta watches Athens grow with suspicion and dread. Pleistoanax, king of Sparta, warns his council of what Athens' power will mean for Greece."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Pleistoanax",
+          "portraitKey": "pleistoanax",
+          "text": "Athens calls her empire an alliance. She takes tribute from her allies and spends it on her own temples. If we do not act, all of Greece will be Athenian before we draw breath to protest."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "tactics",
+            "configId": "senate",
+            "instruction": "Pericles outmanoeuvres rivals in the Athenian assembly — can you find the winning move?",
+            "fact": "Pericles dominated Athenian politics for three decades through strategic alliances and oratorical power — power that his enemies claimed was shaped by Aspasia."
+          }
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "voting",
+            "configId": "athenian-assembly",
+            "instruction": "Pericles must win a majority in the Athenian Assembly to fund the Parthenon using Delian League tribute.",
+            "fact": "The Parthenon (447–432 BCE) was built under Pericles' direction. It took fifteen years, 20,000 workers and 13,400 blocks of Pentelic marble cut to tolerances of 0.2 mm."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Aspasia's enemies, unable to attack Pericles directly, dragged her before the courts on charges of impiety. It was an assault on him through her. She faced Athenian justice as a foreigner, a woman, and a partner of the most powerful man in the city."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Aspasia",
+          "portraitKey": "aspasia",
+          "text": "They cannot touch Pericles directly — so they strike at me. I will not dignify their cowardice with silence. Let them carve their accusations in stone. Every word only proves they listened."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "voting",
+            "configId": "aspasia-trial",
+            "instruction": "Aspasia is on trial in Athens. Defend her reputation with the right arguments before the jury.",
+            "fact": "Pericles wept openly before the jury defending Aspasia — an extraordinary breach of Athenian decorum. She was acquitted. His tears won more votes than the logic."
+          }
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "crossword",
+            "configId": "pericles",
+            "instruction": "Fill in the crossword with words from Aspasia's world — philosophy, rhetoric, and Athenian society.",
+            "fact": "The philosopher Socrates visited Aspasia's school. Plato has Socrates claim he learned the art of persuasion from Aspasia — whether seriously or satirically, it shows her intellectual reputation."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "The Peloponnesian War lasted 27 years and ended in Athens' defeat. But the ideas born in this golden age — democracy, philosophy, tragedy — outlasted every army and empire that followed. And later writers credited Aspasia with some of Pericles' most famous words."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "sudoku",
+            "configId": "anaxagoras-grid",
+            "instruction": "Socrates, Aspasia's student, held that the unexamined life is not worth living. An ordered mind finds logic where others see chaos — fill the grid.",
+            "fact": "Aspasia ran an intellectual salon in Athens that attracted Socrates, Anaxagoras, and other leading thinkers of the age. Socrates is said to have learned rhetoric from her — and Plato later has Socrates recite one of her speeches from memory in the Menexenus dialogue."
+          }
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "geometry",
+            "configId": "circle-circumference",
+            "instruction": "The Parthenon's architects used advanced geometry to create optical illusions — its columns bulge slightly, its steps curve upward. Calculate the perfect classical circle.",
+            "fact": "The Parthenon (447–432 BCE) was built with astonishing precision: its columns taper, its platform curves, and its lines are never quite straight — all deliberate optical corrections to make the building appear perfect to the human eye. Greek architecture and geometry were inseparable."
+          }
+        }
+      ]
+    }
+  ]
+}

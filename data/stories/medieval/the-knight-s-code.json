@@ -1,0 +1,128 @@
+{
+  "slug": "the-knight-s-code",
+  "era": "Medieval",
+  "order": 3,
+  "title": "The Knight's Code",
+  "figure": "Lancelot",
+  "portraitKey": "lancelot",
+  "tagline": "The greatest knight who ever lived is undone by the greatest love.",
+  "locationImage": "medieval_krakow",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Camelot, the age of chivalry. The Knights of the Round Table represent an ideal — not just military skill, but a code of conduct binding warriors to honor, mercy, and service. Lancelot du Lac is the greatest of them — and its most tragic figure."
+        },
+        {
+          "type": "dialog",
+          "speaker": "King Arthur",
+          "text": "Lancelot, you are the finest knight who ever drew breath. In battle, no man is your equal. In honor — what say you?",
+          "portraitKey": "follower:sovereign"
+        },
+        {
+          "type": "dialog",
+          "speaker": "Lancelot",
+          "portraitKey": "lancelot",
+          "text": "I serve the code above all men — including kings. And yet... even the finest code meets its limits when the heart is tested. God forgive me."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "The chivalric code obligated knights to protect the weak, honour women, and serve God — but said nothing about loyalty to their king.",
+            "correct": false,
+            "fact": "Chivalry combined three loyalties: to God (religious duty), to the lord (feudal duty), and to women and the weak (courtly duty). Loyalty to the king was central — a knight who broke this oath was stripped of knighthood."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "The medieval chivalric code was not just a literary ideal. Knights were legally bound by oaths of fealty, honor, and protection of the weak. Violation could mean excommunication, exile, or death."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "sort",
+            "question": "Arrange the stages of a medieval knight's training in the correct order:",
+            "items": [
+              "Page (ages 7–14): enters a lord's household to learn courtly manners and service",
+              "Squire (ages 14–21): trains under a knight, cares for arms and horse",
+              "Knighting ceremony: dubbed by sword, swears the chivalric oath",
+              "First tournament: proves skill, honour, and the code in open combat"
+            ],
+            "fact": "A knight's training took fourteen years. The progression from page to squire to knight was as formalised as any modern profession. The Round Table's innovation — every seat equal, no place more honoured than another — was a radical reimagining of hierarchy in a world of strict rank."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "dialog",
+          "speaker": "Lancelot",
+          "portraitKey": "lancelot",
+          "text": "They say the Grail awaits the pure of heart. I have sought it my whole life. But a man cannot unsee what he has done. The quest is not for the Grail — it is for redemption."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "music",
+            "configId": "c-major-scale",
+            "instruction": "Medieval troubadours sang of chivalry and courtly love. Arrange the ascending notes of a knightly melody.",
+            "fact": "Medieval troubadours spread the code of chivalry through song — their poems and music were the social media of the 12th century, spreading from Provence across all of Europe."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "The corridors of Camelot are long and labyrinthine. The true knight who knows the code may navigate them without error..."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "sort",
+            "question": "Arrange these virtues of the chivalric code in the order they appear in the Song of Roland (oldest to newest emphasis):",
+            "items": [
+              "Courage in battle (prouesse)",
+              "Loyalty to lord and faith (loyauté)",
+              "Courtesy toward ladies (courtoisie)",
+              "Protection of the weak (largesse)"
+            ],
+            "fact": "Chivalry evolved over three centuries. Early codes (c.1000 CE) emphasised martial courage; by 1200 CE, troubadour poetry had added courtesy and romantic love. By 1300 CE, protection of the poor and weak entered as the Church sought to direct knightly violence toward Christian purposes."
+          }
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "colormix",
+            "configId": "woad-blue",
+            "instruction": "Mix the woad blue worn by Frankish knights and medieval dyers — a plant-based indigo that tinted cloth from Celtic Britain to Charlemagne's court.",
+            "fact": "Woad (Isatis tinctoria) was Europe's primary source of blue dye for millennia. In the 13th century the woad trade was so valuable it funded Gothic cathedrals in France. It was eventually displaced by imported indigo from India, devastating the European woad industry."
+          }
+        }
+      ]
+    }
+  ]
+}

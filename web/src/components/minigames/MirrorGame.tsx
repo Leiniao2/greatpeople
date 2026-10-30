@@ -394,15 +394,15 @@ export default function MirrorGame({ configId, onWin }: MirrorGameProps) {
     <div className="flex flex-col items-center gap-3">
       {/* Header */}
       <div className="text-center px-2">
-        <p className="text-amber-400 font-bold text-sm">{config.title}</p>
-        <p className="text-slate-400 text-xs leading-relaxed">{config.instruction}</p>
+        <p className="text-accent font-bold text-sm">{config.title}</p>
+        <p className="text-muted text-xs leading-relaxed">{config.instruction}</p>
       </div>
 
       {/* Mirror counter */}
-      <div className="flex items-center gap-3 text-xs text-slate-400">
-        <span>Mirrors placed: <span className="text-amber-300 font-bold">{playerMirrorCount} / {maxMirrors}</span></span>
-        <span className="text-slate-600">|</span>
-        <span className="text-slate-500">Click cell to cycle / → \ → empty</span>
+      <div className="flex items-center gap-3 text-xs text-muted">
+        <span>Mirrors placed: <span className="text-accent font-bold">{playerMirrorCount} / {maxMirrors}</span></span>
+        <span className="text-muted/80">|</span>
+        <span className="text-muted">Click cell to cycle / → \ → empty</span>
       </div>
 
       {/* Grid with edge indicators */}
@@ -414,7 +414,7 @@ export default function MirrorGame({ configId, onWin }: MirrorGameProps) {
         }}>
         {/* Grid area offset by 1 cell for edge indicators */}
         <div
-          className="absolute rounded-xl overflow-hidden border border-slate-700/60"
+          className="absolute rounded-xl overflow-hidden border border-line"
           style={{
             left: CELL,
             top: CELL,
@@ -438,15 +438,15 @@ export default function MirrorGame({ configId, onWin }: MirrorGameProps) {
                   key={key}
                   onClick={() => handleCellClick(r, c)}
                   style={{ width: CELL, height: CELL }}
-                  className={`relative flex items-center justify-center border border-slate-800/60
+                  className={`relative flex items-center justify-center border border-line
                     transition-all duration-200 cursor-pointer
                     ${isFixed
-                      ? 'bg-amber-900/30 cursor-default'
+                      ? 'bg-accent/30 cursor-default'
                       : isPlayer
-                      ? 'bg-slate-800/60 hover:bg-slate-700/60'
-                      : 'bg-slate-900/50 hover:bg-slate-800/40'
+                      ? 'bg-panel-2 hover:bg-line'
+                      : 'bg-paper-2 hover:bg-panel-2'
                     }
-                    ${isLit && !won ? 'bg-amber-500/20 border-amber-500/30' : ''}
+                    ${isLit && !won ? 'bg-accent/20 border-accent/30' : ''}
                     ${isLit && won ? 'bg-emerald-400/30 border-emerald-400/40' : ''}
                   `}>
                   {/* Light beam overlay */}
@@ -454,15 +454,15 @@ export default function MirrorGame({ configId, onWin }: MirrorGameProps) {
                     <div className={`absolute inset-0 transition-all duration-300
                       ${won
                         ? 'bg-emerald-400/20 animate-pulse'
-                        : 'bg-amber-400/15'
+                        : 'bg-accent/15'
                       }`} />
                   )}
 
                   {/* Mirror glyph */}
                   {mirror && (
                     <span className={`relative z-10 text-xl font-bold select-none
-                      ${isFixed ? 'text-amber-400' : 'text-slate-200'}
-                      ${isLit ? (won ? 'text-emerald-300' : 'text-amber-200') : ''}
+                      ${isFixed ? 'text-accent' : 'text-ink-2'}
+                      ${isLit ? (won ? 'text-emerald-300' : 'text-ink-2') : ''}
                     `}>
                       {mirror}
                     </span>
@@ -470,7 +470,7 @@ export default function MirrorGame({ configId, onWin }: MirrorGameProps) {
 
                   {/* Fixed indicator dot */}
                   {isFixed && !mirror && (
-                    <div className="w-2 h-2 rounded-full bg-amber-500/40" />
+                    <div className="w-2 h-2 rounded-full bg-accent/40" />
                   )}
                 </div>
               )
@@ -488,8 +488,8 @@ export default function MirrorGame({ configId, onWin }: MirrorGameProps) {
               width: CELL,
               height: CELL,
             }}>
-            <div className="w-8 h-8 rounded-full bg-amber-500/20 border border-amber-500/50
-                            flex items-center justify-center text-amber-400 text-lg font-bold">
+            <div className="w-8 h-8 rounded-full bg-accent/20 border border-accent/50
+                            flex items-center justify-center text-accent text-lg font-bold">
               {sourceArrow}
             </div>
           </div>
@@ -509,7 +509,7 @@ export default function MirrorGame({ configId, onWin }: MirrorGameProps) {
                             transition-all duration-300
               ${hits
                 ? 'bg-emerald-400/30 border-emerald-400 shadow-[0_0_12px_rgba(52,211,153,0.6)] animate-pulse'
-                : 'bg-slate-800/60 border-slate-500/50 text-slate-400'
+                : 'bg-panel-2 border-line-2 text-muted'
               }`}>
               ★
             </div>
@@ -518,16 +518,16 @@ export default function MirrorGame({ configId, onWin }: MirrorGameProps) {
       </div>
 
       {/* Legend */}
-      <div className="flex gap-4 text-[10px] text-slate-500">
+      <div className="flex gap-4 text-[10px] text-muted">
         <span className="flex items-center gap-1">
-          <span className="text-amber-400 font-bold text-xs">/\</span> your mirrors
+          <span className="text-accent font-bold text-xs">/\</span> your mirrors
         </span>
         <span className="flex items-center gap-1">
-          <span className="text-amber-500 font-bold text-xs">/</span>
+          <span className="text-accent font-bold text-xs">/</span>
           <span className="text-amber-900 text-xs">▪</span> fixed
         </span>
         <span className="flex items-center gap-1">
-          <span className="bg-amber-400/30 w-3 h-3 rounded-sm inline-block" /> lit beam
+          <span className="bg-accent/30 w-3 h-3 rounded-sm inline-block" /> lit beam
         </span>
       </div>
 
@@ -539,3 +539,6 @@ export default function MirrorGame({ configId, onWin }: MirrorGameProps) {
     </div>
   )
 }
+
+// Every hand-authored config id; the registry test renders each one.
+export const CONFIG_IDS = Object.keys(CONFIGS)

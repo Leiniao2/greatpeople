@@ -1,0 +1,140 @@
+{
+  "slug": "before-socrates",
+  "era": "Classical",
+  "order": 3,
+  "title": "Before Socrates",
+  "figure": "Anaxagoras",
+  "portraitKey": "anaxagoras",
+  "tagline": "The philosopher who dared say the sun is a rock, not a god.",
+  "locationImage": "ancient_athens",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "The Greek world, 5th century BCE. Before Socrates asked 'How should we live?', other thinkers had already asked harder questions: What is the universe made of? Can motion truly exist? Are our senses trustworthy? Two thinkers push these questions to their breaking point."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Anaxagoras",
+          "portraitKey": "anaxagoras",
+          "text": "The sun is not a god. It is a burning rock, perhaps the size of the Peloponnese. The moon reflects light it borrows from the sun. Look up and you will see not divinity — but matter, in motion, following laws."
+        },
+        {
+          "type": "narration",
+          "text": "This statement nearly got Anaxagoras executed in Athens. The friend and teacher of Pericles, he was tried for impiety and exiled — a reminder that even then, new ideas were dangerous."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "Anaxagoras was put on trial in Athens for claiming the sun was a fiery rock, not a divine being.",
+            "correct": true,
+            "fact": "Around 450 BCE, Anaxagoras was charged with impiety for saying the sun was a fiery rock larger than the Peloponnese. He was saved from execution by his friend Pericles but exiled from Athens."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "dialog",
+          "speaker": "Zeno of Elea",
+          "portraitKey": "zeno_of_elea",
+          "text": "Consider Achilles racing a tortoise. Give the tortoise a head start. Achilles must first reach where the tortoise was. But by then the tortoise has moved. Achilles must reach that new point. But the tortoise has moved again. Logically — he can never catch it."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Anaxagoras",
+          "portraitKey": "anaxagoras",
+          "text": "And yet we observe that he does catch it. So where is the error in your reasoning?"
+        },
+        {
+          "type": "dialog",
+          "speaker": "Zeno of Elea",
+          "portraitKey": "zeno_of_elea",
+          "text": "That is precisely my point. Our reasoning contradicts our senses, or our senses contradict our reason. One of them is lying. I trust reason."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "geometry",
+            "configId": "anaxagoras-shadow",
+            "instruction": "Anaxagoras estimated the sun's size using shadows and geometry. Calculate the sun's angle from shadow measurements.",
+            "fact": "Anaxagoras correctly deduced that the moon shines with reflected sunlight, that eclipses occur when the moon covers the sun, and that the sun is a glowing rock. All this 2,500 years before telescopes."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Zeno's paradoxes tormented philosophers for two thousand years. They were only resolved when Newton and Leibniz invented calculus — the mathematics of infinite sums — in the 17th century."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "sudoku",
+            "configId": "anaxagoras-grid",
+            "instruction": "Anaxagoras held that Nous (Mind) imposes order on chaos — each element in its proper place. Fill the grid so each row, column, and 2×2 box contains 1–4 exactly once.",
+            "fact": "Anaxagoras (c. 500–428 BCE) was the first to introduce Nous — cosmic Mind — as the ordering principle of the universe. He correctly deduced that the moon shines with reflected sunlight and that eclipses are caused by the moon blocking the sun."
+          }
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "sort",
+            "question": "Match these pre-Socratic philosophers to their central idea — arrange them oldest to most recent:",
+            "items": [
+              "Thales: water is the fundamental substance (c. 624 BCE)",
+              "Heraclitus: everything is in constant flux (c. 535 BCE)",
+              "Parmenides: change is an illusion; only being is real (c. 515 BCE)",
+              "Democritus: reality consists of invisible atoms (c. 460 BCE)"
+            ],
+            "fact": "The pre-Socratics were the first to explain nature without myth. Their debate between flux (Heraclitus) and permanence (Parmenides) set up every major argument in Western philosophy that followed."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "mirror",
+            "configId": "huygens",
+            "instruction": "Anaxagoras said the sun is a fiery rock that lights the moon. Prove it — use one mirror to route sunlight across three reflections and illuminate the far corner.",
+            "fact": "Anaxagoras was the first to correctly explain lunar phases and eclipses: the moon reflects the sun's light and the earth's shadow causes eclipses. He deduced this by reasoning about light and geometry, 2,500 years before anyone could test it directly."
+          }
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "storysort",
+            "configId": "iliad-achilles",
+            "instruction": "Restore Homer's opening to the Iliad — the invocation of the Muse and the quarrel that sets ten years of war in motion.",
+            "fact": "Homer's Iliad, composed around 750 BCE, was the closest thing ancient Greeks had to a sacred text. Alexander the Great slept with an annotated copy under his pillow, alongside a dagger. The poem covers only 51 days of the decade-long Trojan War, yet captures the whole arc of human conflict."
+          }
+        }
+      ]
+    }
+  ]
+}
