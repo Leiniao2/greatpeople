@@ -82,3 +82,22 @@ export interface FileContents {
 }
 
 export interface FileMeta { key: FileKey; path: string; kind: 'json' | 'md' }
+
+// ─── Engine jobs (headless Claude Code runs started by a save) ───────────────
+
+export interface JobLogEntry { t: number; kind: 'text' | 'tool' | 'result' | 'error' | 'info'; text: string }
+export interface JobTouched { path: string; status: string; dirtyBefore: boolean; existedBefore: boolean }
+export interface EngineJob {
+  id: string
+  startedAt: number
+  finishedAt?: number
+  status: 'running' | 'done' | 'failed' | 'reverted'
+  report: string
+  instruction: string
+  log: JobLogEntry[]
+  result?: string
+  costUsd?: number
+  touched: JobTouched[]
+  diff: string
+  typecheck?: { web?: string; studio?: string }
+}

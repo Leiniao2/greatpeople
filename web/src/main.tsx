@@ -4,6 +4,11 @@ import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import { GoogleOAuthProvider } from '@react-oauth/google'
 import App from './App'
+import { adoptTokenFromFragment } from './bridge/native'
+
+// A native app opening /play/… passes its session as #token=…; it must be in
+// storage before the auth store reads it.
+adoptTokenFromFragment()
 
 const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID as string | undefined
 

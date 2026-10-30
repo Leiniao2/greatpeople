@@ -54,15 +54,16 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "sort",
-            "question": "Arrange the events of the Assyrian Empire's fall in order:",
-            "items": [
-              "Ashurbanipal dies, triggering succession struggles that weaken the empire (c. 627 BCE)",
-              "A coalition of Babylonians and Medes attacks the Assyrian heartland (c. 615 BCE)",
-              "The capital Nineveh falls and is burned — including Ashurbanipal's great library (c. 612 BCE)",
-              "The last Assyrian army is defeated at the Battle of Harran, ending the empire (609 BCE)"
-            ],
-            "fact": "The burning of Nineveh paradoxically preserved Ashurbanipal's library. The fire baked the clay tablets hard, protecting them. The library lay buried until Austen Henry Layard rediscovered it in 1849, bringing the Epic of Gilgamesh back to the world."
+            "type": "minigame",
+            "game": "matchthree",
+            "seed": 1005,
+            "fact": "The burning of Nineveh paradoxically preserved Ashurbanipal's library. The fire baked the clay tablets hard, protecting them. The library lay buried until Austen Henry Layard rediscovered it in 1849, bringing the Epic of Gilgamesh back to the world.",
+            "autogen": true,
+            "configId": "babylon-tablets",
+            "params": {
+              "title": "Arrange the events of the Assyrian"
+            },
+            "instruction": "Arrange the events of the Assyrian Empire's fall in order: Gather what the story needs: match the goods until the tally is met."
           }
         }
       ]
@@ -81,17 +82,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "Ashurbanipal is notable for being literate at a time when:",
-            "options": [
-              "Writing had not yet been invented",
-              "Literacy was rare even among royalty",
-              "Only women were allowed to read",
-              "Reading was punishable by death"
-            ],
-            "answer": 1,
+            "type": "minigame",
+            "game": "rhythm",
+            "seed": 1006,
             "fact": "Ashurbanipal could read and write in multiple languages — an extraordinary feat for a king. He boasted of this in inscriptions, proud of mastering both the scribal arts and the military campaigns typical of Assyrian rulers.",
-            "countdown": 10
+            "autogen": true,
+            "configId": "court-drums",
+            "params": {
+              "title": "Ashurbanipal is notable for being literate",
+              "intro": "Ashurbanipal is notable for being literate at a time when:"
+            },
+            "instruction": "Ashurbanipal is notable for being literate at a time when: Learn the phrase and play it back, note for note."
           }
         },
         {
@@ -101,11 +102,19 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "truefalse",
-            "statement": "Ashurbanipal's library at Nineveh, containing over 30,000 tablets, was the world's first known systematically organised collection of texts.",
-            "correct": true,
-            "countdown": 10,
-            "fact": "Ashurbanipal sent scribes across his empire to copy every text they could find — myths, astronomy, medicine, and administration. Catalogue tablets listing the library's contents show it was deliberately organised by subject — the world's first planned library. The Epic of Gilgamesh was found among its holdings."
+            "type": "minigame",
+            "game": "cipher",
+            "seed": 1007,
+            "fact": "Ashurbanipal sent scribes across his empire to copy every text they could find — myths, astronomy, medicine, and administration. Catalogue tablets listing the library's contents show it was deliberately organised by subject — the world's first planned library. The Epic of Gilgamesh was found among its holdings.",
+            "autogen": true,
+            "configId": "caesar-gaul",
+            "params": {
+              "title": "Ashurbanipal's library at Nineveh, containing over",
+              "intro": "Ashurbanipal's library at Nineveh, containing over 30,000 tablets, was the world's first known systematically organised collection of texts.",
+              "mode": "caesar",
+              "plaintext": "ASHURBANIPAL S LIBRARY AT"
+            },
+            "instruction": "Ashurbanipal's library at Nineveh, containing over 30,000 tablets, was the world's first known systematically organised collection of texts. The answer travels in cipher — turn the wheel until it reads."
           }
         }
       ]

@@ -27,16 +27,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "Why was Pleistoanax exiled from Sparta?",
-            "options": [
-              "He fled a battle",
-              "He was accused of accepting bribes and withdrawing the army",
-              "He converted to Athenian democracy",
-              "He refused to lead the Olympic games"
-            ],
-            "answer": 1,
-            "fact": "Pleistoanax was exiled in 445 BCE after being accused of accepting bribes from Pericles to withdraw the Spartan army from Attica. He spent nineteen years in exile near Mount Lycaeum before being recalled."
+            "type": "minigame",
+            "game": "rhythm",
+            "seed": 1018,
+            "fact": "Pleistoanax was exiled in 445 BCE after being accused of accepting bribes from Pericles to withdraw the Spartan army from Attica. He spent nineteen years in exile near Mount Lycaeum before being recalled.",
+            "autogen": true,
+            "configId": "hildegard-chant",
+            "params": {
+              "title": "Why was Pleistoanax exiled from Sparta",
+              "intro": "Why was Pleistoanax exiled from Sparta?"
+            },
+            "instruction": "Why was Pleistoanax exiled from Sparta? Learn the phrase and play it back, note for note."
           }
         }
       ]
@@ -103,10 +104,19 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "truefalse",
-            "statement": "The Thirty Years' Peace between Athens and Sparta lasted for its full thirty-year term.",
-            "correct": false,
-            "fact": "The Thirty Years' Peace (446 BCE) lasted only fourteen years before the Peloponnesian War broke out in 431 BCE. Thucydides blamed Spartan fear of Athenian power growth — not any specific provocation — as the true cause of the war."
+            "type": "minigame",
+            "game": "cipher",
+            "seed": 1019,
+            "fact": "The Thirty Years' Peace (446 BCE) lasted only fourteen years before the Peloponnesian War broke out in 431 BCE. Thucydides blamed Spartan fear of Athenian power growth — not any specific provocation — as the true cause of the war.",
+            "autogen": true,
+            "configId": "caesar-gaul",
+            "params": {
+              "title": "The Thirty Years' Peace between Athens",
+              "intro": "The Thirty Years' Peace between Athens and Sparta lasted for its full thirty-year term.",
+              "mode": "caesar",
+              "plaintext": "THE THIRTY YEARS PEACE BCE"
+            },
+            "instruction": "The Thirty Years' Peace between Athens and Sparta lasted for its full thirty-year term. The answer travels in cipher — turn the wheel until it reads."
           }
         }
       ]

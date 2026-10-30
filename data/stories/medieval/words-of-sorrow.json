@@ -27,16 +27,16 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "Li Qingzhao is regarded as:",
-            "options": [
-              "China's first female philosopher",
-              "The greatest female poet in Chinese literary history",
-              "The founder of the ci poetry form",
-              "China's first female general"
-            ],
-            "answer": 1,
-            "fact": "Li Qingzhao (1084–c.1155) is considered the greatest female poet in Chinese history and one of the greatest poets of all. She transformed the ci form — originally sung verses for entertainment — into a vehicle for profound personal expression."
+            "type": "minigame",
+            "game": "matchthree",
+            "seed": 1004,
+            "fact": "Li Qingzhao (1084–c.1155) is considered the greatest female poet in Chinese history and one of the greatest poets of all. She transformed the ci form — originally sung verses for entertainment — into a vehicle for profound personal expression.",
+            "autogen": true,
+            "configId": "changan-silks",
+            "params": {
+              "title": "Li Qingzhao is regarded as"
+            },
+            "instruction": "Li Qingzhao is regarded as: Gather what the story needs: match the goods until the tally is met."
           }
         }
       ]
@@ -76,15 +76,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "sort",
-            "question": "Arrange these events of Li Qingzhao's life in chronological order:",
-            "items": [
-              "Marries Zhao Mingcheng; together they collect bronzes, books, and paintings",
-              "Jin dynasty invades northern China; they flee south with what they can carry",
-              "Zhao Mingcheng dies; she loses most of her prized collection",
-              "Writes her most celebrated late poems — elegies of exile, loss, and autumn"
-            ],
-            "fact": "Li Qingzhao's life split sharply in two: the happy early years in Jinan collecting and writing beside her husband, and the desolate later years as a refugee. Her poem 'Sheng Sheng Man' opens with eighteen consecutive monosyllables evoking emptiness and longing — one of the most technically daring openings in all of Chinese poetry."
+            "type": "minigame",
+            "game": "rhythm",
+            "seed": 1005,
+            "fact": "Li Qingzhao's life split sharply in two: the happy early years in Jinan collecting and writing beside her husband, and the desolate later years as a refugee. Her poem 'Sheng Sheng Man' opens with eighteen consecutive monosyllables evoking emptiness and longing — one of the most technically daring openings in all of Chinese poetry.",
+            "autogen": true,
+            "configId": "hildegard-chant",
+            "params": {
+              "title": "Arrange these events of Li Qingzhao's",
+              "intro": "Arrange these events of Li Qingzhao's life in chronological order:"
+            },
+            "instruction": "Arrange these events of Li Qingzhao's life in chronological order: Learn the phrase and play it back, note for note."
           }
         }
       ]
@@ -97,11 +99,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "truefalse",
-            "statement": "After the death of her husband Zhao Mingcheng, Li Qingzhao continued to write — producing some of her most profound poems, marked by deep grief and longing.",
-            "correct": true,
-            "countdown": 10,
-            "fact": "Li Qingzhao lost her husband, her home, and her famous art collection when the Jin dynasty invaded northern China in 1127. Her later ci poems are hauntingly different from her earlier joyful verses. She wrote: 'Who is left to share the fragrance of the wine?' — a line that still resonates 900 years later."
+            "type": "minigame",
+            "game": "sudoku",
+            "seed": 1006,
+            "fact": "Li Qingzhao lost her husband, her home, and her famous art collection when the Jin dynasty invaded northern China in 1127. Her later ci poems are hauntingly different from her earlier joyful verses. She wrote: 'Who is left to share the fragrance of the wine?' — a line that still resonates 900 years later.",
+            "autogen": true,
+            "configId": "al-khwarizmi-grid",
+            "params": {
+              "title": "After the death of her husband",
+              "intro": "After the death of her husband Zhao Mingcheng, Li Qingzhao continued to write — producing some of her most profound poems, marked by deep grief and longing."
+            },
+            "instruction": "After the death of her husband Zhao Mingcheng, Li Qingzhao continued to write — producing some of her most profound poems, marked by deep grief and longing. Order the grid as the record was ordered — every row, column and box complete."
           }
         },
         {

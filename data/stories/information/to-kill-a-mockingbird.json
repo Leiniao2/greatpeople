@@ -27,16 +27,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "Gregory Peck won the 1963 Best Actor Oscar for his portrayal of Atticus Finch. What was Atticus defending Tom Robinson against?",
-            "options": [
-              "Tax fraud",
-              "A wrongful murder accusation",
-              "Treason",
-              "Land theft"
-            ],
-            "answer": 1,
-            "fact": "Harper Lee based Atticus partly on her own father, a lawyer who defended two Black men in Alabama. Peck and Harper Lee became lifelong friends after the 1962 film."
+            "type": "minigame",
+            "game": "logicgate",
+            "seed": 1025,
+            "fact": "Harper Lee based Atticus partly on her own father, a lawyer who defended two Black men in Alabama. Peck and Harper Lee became lifelong friends after the 1962 film.",
+            "autogen": true,
+            "configId": "turing-tape",
+            "params": {
+              "title": "Gregory Peck won the 1963 Best",
+              "intro": "Gregory Peck won the 1963 Best Actor Oscar for his portrayal of Atticus Finch. What was Atticus defending Tom Robinson against?"
+            },
+            "instruction": "Gregory Peck won the 1963 Best Actor Oscar for his portrayal of Atticus Finch. What was Atticus defending Tom Robinson against? Wire the gates until the circuit agrees with the table on every row."
           }
         }
       ]
@@ -103,11 +104,19 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "truefalse",
-            "statement": "Harper Lee's To Kill a Mockingbird won the Pulitzer Prize for Fiction in 1961, just one year after its publication.",
-            "correct": true,
-            "countdown": 10,
-            "fact": "To Kill a Mockingbird (1960) won the Pulitzer Prize in 1961 and became an immediate bestseller. It has sold more than 40 million copies and remains widely taught in schools. Harper Lee published almost nothing for 55 years afterward, until Go Set a Watchman appeared in 2015, shortly before her death in 2016."
+            "type": "minigame",
+            "game": "cipher",
+            "seed": 1026,
+            "fact": "To Kill a Mockingbird (1960) won the Pulitzer Prize in 1961 and became an immediate bestseller. It has sold more than 40 million copies and remains widely taught in schools. Harper Lee published almost nothing for 55 years afterward, until Go Set a Watchman appeared in 2015, shortly before her death in 2016.",
+            "autogen": true,
+            "configId": "al-kindi-frequency",
+            "params": {
+              "title": "Harper Lee's To Kill a Mockingbird",
+              "intro": "Harper Lee's To Kill a Mockingbird won the Pulitzer Prize for Fiction in 1961, just one year after its publication.",
+              "mode": "caesar",
+              "plaintext": "HARPER LEE S TO KILL A"
+            },
+            "instruction": "Harper Lee's To Kill a Mockingbird won the Pulitzer Prize for Fiction in 1961, just one year after its publication. The answer travels in cipher — turn the wheel until it reads."
           }
         }
       ]

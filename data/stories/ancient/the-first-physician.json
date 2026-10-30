@@ -27,17 +27,16 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "Hesy-Ra is considered the first person in history to hold what title?",
-            "options": [
-              "Pharaoh",
-              "Physician",
-              "Architect",
-              "Astronomer"
-            ],
-            "answer": 1,
+            "type": "minigame",
+            "game": "matchthree",
+            "seed": 1011,
             "fact": "Hesy-Ra (c. 2700–2600 BCE) is the earliest known physician in recorded history. He held the title 'Chief of Dentists and Physicians' — inscribed on a wooden panel in his tomb at Saqqara, making him the first named doctor in history.",
-            "countdown": 10
+            "autogen": true,
+            "configId": "babylon-tablets",
+            "params": {
+              "title": "Hesy-Ra is considered the first person"
+            },
+            "instruction": "Hesy-Ra is considered the first person in history to hold what title? Gather what the story needs: match the goods until the tally is met."
           }
         }
       ]
@@ -60,11 +59,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "truefalse",
-            "statement": "Hesy-Ra served under Pharaoh Djoser, who built Egypt's first pyramid at Saqqara.",
-            "correct": true,
-            "countdown": 10,
-            "fact": "Hesy-Ra was Chief of Dentists and Physicians under Pharaoh Djoser (c. 2650 BCE). The Step Pyramid at Saqqara, designed by Imhotep, was built during the same reign — making Hesy-Ra and Imhotep contemporaries at the world's most ambitious construction project."
+            "type": "minigame",
+            "game": "rhythm",
+            "seed": 1012,
+            "fact": "Hesy-Ra was Chief of Dentists and Physicians under Pharaoh Djoser (c. 2650 BCE). The Step Pyramid at Saqqara, designed by Imhotep, was built during the same reign — making Hesy-Ra and Imhotep contemporaries at the world's most ambitious construction project.",
+            "autogen": true,
+            "configId": "court-drums",
+            "params": {
+              "title": "Hesy-Ra served under Pharaoh Djoser, who",
+              "intro": "Hesy-Ra served under Pharaoh Djoser, who built Egypt's first pyramid at Saqqara."
+            },
+            "instruction": "Hesy-Ra served under Pharaoh Djoser, who built Egypt's first pyramid at Saqqara. Learn the phrase and play it back, note for note."
           }
         }
       ]
@@ -83,15 +88,19 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "sort",
-            "question": "Arrange these milestones of ancient medicine in chronological order:",
-            "items": [
-              "Hesy-Ra becomes the world's first known named physician (c. 2650 BCE)",
-              "The Edwin Smith Papyrus records surgical techniques for treating wounds and broken bones (c. 1600 BCE)",
-              "The Ebers Papyrus compiles over 700 medical remedies, from herbs to surgery (c. 1550 BCE)",
-              "Hippocrates of Cos founds rational medicine, separating it from religious practice (c. 460 BCE)"
-            ],
-            "fact": "Ancient Egyptian medical knowledge was remarkably advanced. The Edwin Smith Papyrus describes 48 surgical cases with diagnoses, treatments, and prognoses — a clinical approach that would not be surpassed in Europe for thousands of years."
+            "type": "minigame",
+            "game": "cipher",
+            "seed": 1013,
+            "fact": "Ancient Egyptian medical knowledge was remarkably advanced. The Edwin Smith Papyrus describes 48 surgical cases with diagnoses, treatments, and prognoses — a clinical approach that would not be surpassed in Europe for thousands of years.",
+            "autogen": true,
+            "configId": "caesar-gaul",
+            "params": {
+              "title": "Arrange these milestones of ancient medicine",
+              "intro": "Arrange these milestones of ancient medicine in chronological order:",
+              "mode": "caesar",
+              "plaintext": "HESY RA BECOMES THE WORLD S"
+            },
+            "instruction": "Arrange these milestones of ancient medicine in chronological order: The answer travels in cipher — turn the wheel until it reads."
           }
         }
       ]

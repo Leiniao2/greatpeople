@@ -1,24 +1,9 @@
-import { useState } from 'react'
+import { useStoryProgress } from './useStoryProgress'
 
-const KEY = 'gp_unlocked_cards'
-
-function readStored(): string[] {
-  try { return JSON.parse(localStorage.getItem(KEY) ?? '[]') } catch { return [] }
-}
-
+/** Cards the player has unlocked; backed by the shared story-progress store. */
 export function useUnlockedCards() {
-  const [unlocked, setUnlocked] = useState<string[]>(readStored)
-
-  const unlock = (portraitKey: string) => {
-    setUnlocked(prev => {
-      if (prev.includes(portraitKey)) return prev
-      const next = [...prev, portraitKey]
-      localStorage.setItem(KEY, JSON.stringify(next))
-      return next
-    })
-  }
-
+  const unlocked = useStoryProgress(s => s.doc.unlockedCards)
+  const unlock = useStoryProgress(s => s.unlock)
   const isUnlocked = (portraitKey: string) => unlocked.includes(portraitKey)
-
   return { unlocked, unlock, isUnlocked }
 }

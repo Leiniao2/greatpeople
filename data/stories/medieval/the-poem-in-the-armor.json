@@ -24,17 +24,23 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "What is Taira no Tadanori best remembered for, beyond his role as a Taira clan general?",
-            "options": [
-              "His poetry — he was included in the imperial Senzai Wakashū anthology after his death",
-              "His invention of a new sword technique adopted across Japan",
-              "His diplomatic mission to the Song Dynasty court in China",
-              "His construction of Kyoto's most famous temple"
-            ],
-            "answer": 0,
-            "countdown": 10,
-            "fact": "Tadanori was one of the leading waka poets of his generation, a student of the master Fujiwara no Shunzei. On the eve of the Taira clan's final flight from Kyoto, he rode back alone through the night to deliver a scroll of his poems to Shunzei — asking only that one be included in the imperial anthology. One was: it appears in the Senzai Wakashū without his name, since he died a rebel."
+            "type": "minigame",
+            "game": "typeset",
+            "seed": 1019,
+            "fact": "Tadanori was one of the leading waka poets of his generation, a student of the master Fujiwara no Shunzei. On the eve of the Taira clan's final flight from Kyoto, he rode back alone through the night to deliver a scroll of his poems to Shunzei — asking only that one be included in the imperial anthology. One was: it appears in the Senzai Wakashū without his name, since he died a rebel.",
+            "autogen": true,
+            "configId": "bi-sheng-clay",
+            "params": {
+              "title": "What is Taira no Tadanori best",
+              "intro": "What is Taira no Tadanori best remembered for, beyond his role as a Taira clan general?",
+              "lines": [
+                "HIS POETRY",
+                "HIS POETRY HE",
+                "HIS POETRY HE WAS",
+                "HIS POETRY HE WAS"
+              ]
+            },
+            "instruction": "What is Taira no Tadanori best remembered for, beyond his role as a Taira clan general? Set the answer in movable type — mirrored, right to left."
           }
         }
       ]
@@ -51,11 +57,19 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "truefalse",
-            "statement": "Tadanori's poem was attributed to him by name in the imperial anthology after his death.",
-            "correct": false,
-            "countdown": 10,
-            "fact": "Because Tadanori died on the losing side of the Genpei War, his poem was included in the Senzai Wakashū as 'anonymous' — it would have been politically unacceptable to honor a Taira rebel by name. Yet the poem's inclusion was itself an act of aesthetic respect. Everyone knew whose poem it was, and that silent knowledge became part of the poem's beauty."
+            "type": "minigame",
+            "game": "cipher",
+            "seed": 1020,
+            "fact": "Because Tadanori died on the losing side of the Genpei War, his poem was included in the Senzai Wakashū as 'anonymous' — it would have been politically unacceptable to honor a Taira rebel by name. Yet the poem's inclusion was itself an act of aesthetic respect. Everyone knew whose poem it was, and that silent knowledge became part of the poem's beauty.",
+            "autogen": true,
+            "configId": "al-kindi-frequency",
+            "params": {
+              "title": "Tadanori's poem was attributed to him",
+              "intro": "Tadanori's poem was attributed to him by name in the imperial anthology after his death.",
+              "mode": "caesar",
+              "plaintext": "BECAUSE TADANORI DIED ON THE"
+            },
+            "instruction": "Tadanori's poem was attributed to him by name in the imperial anthology after his death. The answer travels in cipher — turn the wheel until it reads."
           }
         }
       ]
@@ -72,17 +86,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "sort",
-            "question": "Arrange the key events of Taira no Tadanori's life in order:",
-            "items": [
-              "Tadanori studies waka poetry under the master Fujiwara no Shunzei",
-              "The Genpei War begins — Taira and Minamoto clans fight for control of Japan",
-              "The Taira clan loses Kyoto to Minamoto forces and flees west",
-              "Tadanori rides back alone through the night to deliver his poem scroll to Shunzei",
-              "The final battle at Ichi-no-Tani — Tadanori falls in combat",
-              "Shunzei includes Tadanori's poem anonymously in the imperial anthology"
-            ],
-            "fact": "The tale of Tadanori riding back to his poetry master on the night of defeat became one of the most celebrated stories in Japanese literary history. It appears in the Heike Monogatari — the great narrative of the Genpei War — as the moment when a warrior reveals that poetry, not victory, is what he cannot bear to leave behind."
+            "type": "minigame",
+            "game": "maze",
+            "seed": 1021,
+            "fact": "The tale of Tadanori riding back to his poetry master on the night of defeat became one of the most celebrated stories in Japanese literary history. It appears in the Heike Monogatari — the great narrative of the Genpei War — as the moment when a warrior reveals that poetry, not victory, is what he cannot bear to leave behind.",
+            "autogen": true,
+            "configId": "cedar-forest",
+            "params": {
+              "title": "Arrange the key events of Taira",
+              "subtitle": "Arrange the key events of Taira no Tadanori's life in order:"
+            },
+            "instruction": "Arrange the key events of Taira no Tadanori's life in order: The way to the answer runs through these passages — find the exit."
           }
         },
         {

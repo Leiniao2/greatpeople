@@ -135,12 +135,12 @@
     "id": "turn-event",
     "category": "Turn actions",
     "title": "D. Start an event",
-    "docText": "Start an event on the location the player is on; most events are local.",
+    "docText": "A player may start an event only at a location where they have a Great Person that was not deployed this turn; most events are local.",
     "docSource": "docs/fight.md §3 D",
-    "codeBehaviour": "START_EVENT places any event card from hand on any location, once per location per turn. No check that the player has a card there.",
+    "codeBehaviour": "START_EVENT places an event card from hand on a location, once per location per turn, and only if the player has a GP there with justDeployed === false (same presence check as END_SCENARIO). Global competitions use the same gate.",
     "codeSource": "web/src/pages/BattlePage.tsx START_EVENT",
-    "status": "conflict",
-    "notes": "Mobile rules text says 'at a location where you have a Great Person'. Engine does not enforce it."
+    "status": "implemented",
+    "notes": "In-game rules panel and selection hint say 'where you have a Great Person that was not deployed this turn'. The CPU AI never starts events, so it is unaffected."
   },
   {
     "id": "turn-retrieve",

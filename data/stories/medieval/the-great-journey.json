@@ -24,17 +24,23 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "How far did Ibn Battuta travel over the course of his 29-year journey?",
-            "options": [
-              "Approximately 75,000 miles",
-              "Approximately 25,000 miles",
-              "Approximately 40,000 miles",
-              "Approximately 10,000 miles"
-            ],
-            "answer": 0,
-            "countdown": 10,
-            "fact": "Ibn Battuta (1304–1368) traveled an estimated 75,000 miles — three times the distance of Marco Polo's journey — visiting the equivalent of 44 modern countries. He crossed the Sahara, sailed the Indian Ocean, traversed the steppes of Central Asia, visited China, and explored the Kingdom of Mali, all within a single lifetime of restless curiosity."
+            "type": "minigame",
+            "game": "typeset",
+            "seed": 1013,
+            "fact": "Ibn Battuta (1304–1368) traveled an estimated 75,000 miles — three times the distance of Marco Polo's journey — visiting the equivalent of 44 modern countries. He crossed the Sahara, sailed the Indian Ocean, traversed the steppes of Central Asia, visited China, and explored the Kingdom of Mali, all within a single lifetime of restless curiosity.",
+            "autogen": true,
+            "configId": "bi-sheng-clay",
+            "params": {
+              "title": "How far did Ibn Battuta travel",
+              "intro": "How far did Ibn Battuta travel over the course of his 29-year journey?",
+              "lines": [
+                "APPROXIMATEL",
+                "APPROXIMATELY",
+                "APPROXIMATELY MILES",
+                "APPROXIMATELY MILES"
+              ]
+            },
+            "instruction": "How far did Ibn Battuta travel over the course of his 29-year journey? Set the answer in movable type — mirrored, right to left."
           }
         }
       ]
@@ -51,11 +57,19 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "truefalse",
-            "statement": "Ibn Battuta set out from Morocco with a clear plan to circumnavigate the known world.",
-            "correct": false,
-            "countdown": 10,
-            "fact": "Ibn Battuta left Tangier in 1325 intending only to make the hajj to Mecca. He was 21 years old. The journey expanded as his curiosity grew — he kept finding reasons not to return home, following trade routes, accepting appointments, and exploring rumors of distant courts. He finally returned to Morocco 29 years later and immediately began planning further travels."
+            "type": "minigame",
+            "game": "cipher",
+            "seed": 1014,
+            "fact": "Ibn Battuta left Tangier in 1325 intending only to make the hajj to Mecca. He was 21 years old. The journey expanded as his curiosity grew — he kept finding reasons not to return home, following trade routes, accepting appointments, and exploring rumors of distant courts. He finally returned to Morocco 29 years later and immediately began planning further travels.",
+            "autogen": true,
+            "configId": "al-kindi-frequency",
+            "params": {
+              "title": "Ibn Battuta set out from Morocco",
+              "intro": "Ibn Battuta set out from Morocco with a clear plan to circumnavigate the known world.",
+              "mode": "caesar",
+              "plaintext": "IBN BATTUTA LEFT TANGIER IN"
+            },
+            "instruction": "Ibn Battuta set out from Morocco with a clear plan to circumnavigate the known world. The answer travels in cipher — turn the wheel until it reads."
           }
         }
       ]
@@ -72,17 +86,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "sort",
-            "question": "Arrange the major regions Ibn Battuta visited in the order of his travels:",
-            "items": [
-              "North Africa and Egypt — his first journey, heading to Mecca",
-              "The Arabian Peninsula — making the hajj to Mecca for the first time",
-              "Persia and Iraq — visiting the ruins of ancient Mesopotamia",
-              "The Black Sea coast and Constantinople",
-              "India — serving as a judge in the Sultan of Delhi's court",
-              "China — reaching the terminus of the Silk Road at Quanzhou"
-            ],
-            "fact": "Ibn Battuta's Rihla (A Gift to Those Who Contemplate the Wonders of Cities) was dictated to a court secretary, Ibn Juzayy, on his return. Some scholars have questioned whether he visited every place he describes — the China account in particular is suspiciously vague — but his eyewitness descriptions of Mali, India, and Constantinople remain invaluable historical documents."
+            "type": "minigame",
+            "game": "maze",
+            "seed": 1015,
+            "fact": "Ibn Battuta's Rihla (A Gift to Those Who Contemplate the Wonders of Cities) was dictated to a court secretary, Ibn Juzayy, on his return. Some scholars have questioned whether he visited every place he describes — the China account in particular is suspiciously vague — but his eyewitness descriptions of Mali, India, and Constantinople remain invaluable historical documents.",
+            "autogen": true,
+            "configId": "cedar-forest",
+            "params": {
+              "title": "Arrange the major regions Ibn Battuta",
+              "subtitle": "Arrange the major regions Ibn Battuta visited in the order of his travels:"
+            },
+            "instruction": "Arrange the major regions Ibn Battuta visited in the order of his travels: The way to the answer runs through these passages — find the exit."
           }
         },
         {

@@ -54,15 +54,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "sort",
-            "question": "Arrange the agricultural seasons Nakht would have tracked in the Egyptian calendar:",
-            "items": [
-              "Akhet — the Inundation: the Nile floods and deposits rich silt (June to September)",
-              "Peret — the Growing season: crops are planted as floodwaters recede (October to February)",
-              "Shemu — the Harvest: grain is gathered before the next flood (March to May)",
-              "The heliacal rising of Sirius signals the start of a new Egyptian year"
-            ],
-            "fact": "The Egyptian civil calendar was based on the Nile's flooding cycle. As Astronomer of Amun, Nakht would have tracked Sirius (Sopdet) — the star's first appearance above the horizon at dawn — which predicted the flood with remarkable accuracy."
+            "type": "minigame",
+            "game": "maze",
+            "seed": 1020,
+            "fact": "The Egyptian civil calendar was based on the Nile's flooding cycle. As Astronomer of Amun, Nakht would have tracked Sirius (Sopdet) — the star's first appearance above the horizon at dawn — which predicted the flood with remarkable accuracy.",
+            "autogen": true,
+            "configId": "pyramid-deep",
+            "params": {
+              "title": "Arrange the agricultural seasons Nakht would",
+              "subtitle": "Arrange the agricultural seasons Nakht would have tracked in the Egyptian calendar:"
+            },
+            "instruction": "Arrange the agricultural seasons Nakht would have tracked in the Egyptian calendar: The way to the answer runs through these passages — find the exit."
           }
         }
       ]

@@ -24,17 +24,16 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "What material did Bi Sheng use to create the world's first movable type, around 1040 CE?",
-            "options": [
-              "Baked clay",
-              "Carved wood",
-              "Cast bronze",
-              "Carved stone"
-            ],
-            "answer": 0,
-            "countdown": 10,
-            "fact": "Bi Sheng invented movable type during the Song Dynasty (c.1040 CE) using baked clay — the same material Chinese potters had mastered for thousands of years. Each character was carved in clay, hardened by fire, then set in an iron frame with pine resin. After printing, the resin was heated and the characters removed for reuse."
+            "type": "minigame",
+            "game": "matchthree",
+            "seed": 1010,
+            "fact": "Bi Sheng invented movable type during the Song Dynasty (c.1040 CE) using baked clay — the same material Chinese potters had mastered for thousands of years. Each character was carved in clay, hardened by fire, then set in an iron frame with pine resin. After printing, the resin was heated and the characters removed for reuse.",
+            "autogen": true,
+            "configId": "changan-silks",
+            "params": {
+              "title": "What material did Bi Sheng use"
+            },
+            "instruction": "What material did Bi Sheng use to create the world's first movable type, around 1040 CE? Gather what the story needs: match the goods until the tally is met."
           }
         }
       ]
@@ -51,11 +50,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "truefalse",
-            "statement": "Bi Sheng's movable type immediately replaced traditional woodblock printing across China.",
-            "correct": false,
-            "countdown": 10,
-            "fact": "Despite its ingenuity, Bi Sheng's clay type did not replace woodblock printing, which remained dominant in China for centuries. Chinese has tens of thousands of characters, making movable type logistically complex — a single print job might require thousands of individual pieces. Woodblock printing remained faster for short texts. Movable type proved more revolutionary in alphabetic languages like Korean and later European languages."
+            "type": "minigame",
+            "game": "rhythm",
+            "seed": 1011,
+            "fact": "Despite its ingenuity, Bi Sheng's clay type did not replace woodblock printing, which remained dominant in China for centuries. Chinese has tens of thousands of characters, making movable type logistically complex — a single print job might require thousands of individual pieces. Woodblock printing remained faster for short texts. Movable type proved more revolutionary in alphabetic languages like Korean and later European languages.",
+            "autogen": true,
+            "configId": "hildegard-chant",
+            "params": {
+              "title": "Bi Sheng's movable type immediately replaced",
+              "intro": "Bi Sheng's movable type immediately replaced traditional woodblock printing across China."
+            },
+            "instruction": "Bi Sheng's movable type immediately replaced traditional woodblock printing across China. Learn the phrase and play it back, note for note."
           }
         }
       ]
@@ -72,17 +77,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "sort",
-            "question": "Arrange the steps of Bi Sheng's printing process in order:",
-            "items": [
-              "Carve each character into soft clay — one per piece",
-              "Harden the clay characters in fire to create durable type",
-              "Arrange characters in an iron frame using pine resin to hold them flat",
-              "Ink the assembled type and press paper firmly against it",
-              "Heat the frame to soften the resin and remove the characters",
-              "Sort the characters back into their cases for the next print run"
-            ],
-            "fact": "Bi Sheng's system was described in detail by the statesman Shen Kuo in his 'Dream Pool Essays' (1088 CE) — one of the great scientific documents of the medieval world. Without Shen Kuo's account, we might never have known of Bi Sheng's invention, since none of his actual type survives."
+            "type": "minigame",
+            "game": "sudoku",
+            "seed": 1012,
+            "fact": "Bi Sheng's system was described in detail by the statesman Shen Kuo in his 'Dream Pool Essays' (1088 CE) — one of the great scientific documents of the medieval world. Without Shen Kuo's account, we might never have known of Bi Sheng's invention, since none of his actual type survives.",
+            "autogen": true,
+            "configId": "al-khwarizmi-grid",
+            "params": {
+              "title": "Arrange the steps of Bi Sheng's",
+              "intro": "Arrange the steps of Bi Sheng's printing process in order:"
+            },
+            "instruction": "Arrange the steps of Bi Sheng's printing process in order: Order the grid as the record was ordered — every row, column and box complete."
           }
         }
       ]

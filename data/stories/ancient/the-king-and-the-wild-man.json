@@ -41,17 +41,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "The Epic of Gilgamesh is considered:",
-            "options": [
-              "The world's oldest surviving piece of literature",
-              "The world's oldest legal code",
-              "The world's oldest mathematical text",
-              "The world's oldest map"
-            ],
-            "answer": 0,
-            "countdown": 10,
-            "fact": "The Epic of Gilgamesh, preserved on twelve clay tablets, predates Homer's Iliad by at least 1,500 years. It contains a great flood story remarkably similar to Noah's in the Bible."
+            "type": "minigame",
+            "game": "maze",
+            "seed": 1002,
+            "fact": "The Epic of Gilgamesh, preserved on twelve clay tablets, predates Homer's Iliad by at least 1,500 years. It contains a great flood story remarkably similar to Noah's in the Bible.",
+            "autogen": true,
+            "configId": "pyramid-deep",
+            "params": {
+              "title": "The Epic of Gilgamesh is considered",
+              "subtitle": "The Epic of Gilgamesh is considered:"
+            },
+            "instruction": "The Epic of Gilgamesh is considered: The way to the answer runs through these passages — find the exit."
           }
         }
       ]
@@ -88,17 +88,23 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "sort",
-            "question": "Arrange the key events of Enkidu's life in order:",
-            "items": [
-              "Enkidu roams the steppe as a wild man, companion to animals",
-              "A temple priestess teaches Enkidu language and the ways of civilisation",
-              "Enkidu and Gilgamesh clash at the gates of Uruk",
-              "The two become inseparable brothers in arms",
-              "Enkidu falls ill, cursed by the gods after slaying Humbaba",
-              "Enkidu dies — and Gilgamesh confronts human mortality for the first time"
-            ],
-            "fact": "Enkidu's journey from wilderness to brotherhood mirrors humanity's own emergence — his taming by a priestess represents the Mesopotamian belief that civilisation elevated human beings above the animals they had once lived among."
+            "type": "minigame",
+            "game": "typeset",
+            "seed": 1003,
+            "fact": "Enkidu's journey from wilderness to brotherhood mirrors humanity's own emergence — his taming by a priestess represents the Mesopotamian belief that civilisation elevated human beings above the animals they had once lived among.",
+            "autogen": true,
+            "configId": "bi-sheng-clay",
+            "params": {
+              "title": "Arrange the key events of Enkidu's",
+              "intro": "Arrange the key events of Enkidu's life in order:",
+              "lines": [
+                "ENKIDU ROAMS",
+                "ENKIDU ROAMS THE",
+                "ENKIDU ROAMS THE",
+                "ENKIDU ROAMS THE STEPPE"
+              ]
+            },
+            "instruction": "Arrange the key events of Enkidu's life in order: Set the answer in movable type — mirrored, right to left."
           }
         }
       ]
@@ -127,11 +133,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "truefalse",
-            "statement": "Enkidu became Gilgamesh's enemy and they fought to the death at the end of the epic.",
-            "correct": false,
-            "countdown": 10,
-            "fact": "Enkidu and Gilgamesh fought briefly at the city gate, but quickly became the closest of friends. Enkidu's death from divine punishment drives the epic's second half and Gilgamesh's desperate quest for immortality."
+            "type": "minigame",
+            "game": "sudoku",
+            "seed": 1004,
+            "fact": "Enkidu and Gilgamesh fought briefly at the city gate, but quickly became the closest of friends. Enkidu's death from divine punishment drives the epic's second half and Gilgamesh's desperate quest for immortality.",
+            "autogen": true,
+            "configId": "euclid-grid",
+            "params": {
+              "title": "Enkidu became Gilgamesh's enemy and they",
+              "intro": "Enkidu became Gilgamesh's enemy and they fought to the death at the end of the epic."
+            },
+            "instruction": "Enkidu became Gilgamesh's enemy and they fought to the death at the end of the epic. Order the grid as the record was ordered — every row, column and box complete."
           }
         },
         {

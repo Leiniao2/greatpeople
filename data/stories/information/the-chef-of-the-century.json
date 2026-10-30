@@ -27,17 +27,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "How many Michelin stars did Joël Robuchon hold at the peak of his career?",
-            "options": [
-              "12",
-              "18",
-              "28",
-              "32"
-            ],
-            "answer": 2,
+            "type": "minigame",
+            "game": "sudoku",
+            "seed": 1016,
             "fact": "At his peak, Joël Robuchon held 32 Michelin stars across his restaurants worldwide — more than any chef in history. His empire spanned Paris, Monte Carlo, Las Vegas, Tokyo, Hong Kong, and beyond, each kitchen reflecting his obsessive pursuit of perfection.",
-            "countdown": 10
+            "autogen": true,
+            "configId": "eisenstein-grid",
+            "params": {
+              "title": "How many Michelin stars did Joël",
+              "intro": "How many Michelin stars did Joël Robuchon hold at the peak of his career?"
+            },
+            "instruction": "How many Michelin stars did Joël Robuchon hold at the peak of his career? Order the grid as the record was ordered — every row, column and box complete."
           }
         }
       ]
@@ -60,16 +60,23 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "sort",
-            "question": "Arrange these milestones of Joël Robuchon's extraordinary career in order:",
-            "items": [
-              "Robuchon wins his first Michelin star for Jamin restaurant in Paris (1982)",
-              "Gault Millau names Robuchon 'Chef of the Century' (1990)",
-              "Robuchon shocks the culinary world by retiring at age 50 at the peak of his fame (1996)",
-              "Robuchon opens the first L'Atelier restaurants in Tokyo and Paris, returning to cooking (2003)",
-              "Robuchon holds a world-record 32 Michelin stars across his global restaurant empire (2018)"
-            ],
-            "fact": "Robuchon's retirement in 1996 was unprecedented in fine dining. He said he was exhausted and wanted to explore life beyond the kitchen. Seven years later, his return with the L'Atelier concept — casual counter seating around an open kitchen — reinvented fine dining for a new generation."
+            "type": "minigame",
+            "game": "typeset",
+            "seed": 1017,
+            "fact": "Robuchon's retirement in 1996 was unprecedented in fine dining. He said he was exhausted and wanted to explore life beyond the kitchen. Seven years later, his return with the L'Atelier concept — casual counter seating around an open kitchen — reinvented fine dining for a new generation.",
+            "autogen": true,
+            "configId": "franklin-gazette",
+            "params": {
+              "title": "Arrange these milestones of Joël Robuchon's",
+              "intro": "Arrange these milestones of Joël Robuchon's extraordinary career in order:",
+              "lines": [
+                "ROBUCHON",
+                "ROBUCHON WINS",
+                "ROBUCHON WINS HIS",
+                "ROBUCHON WINS HIS FIRST"
+              ]
+            },
+            "instruction": "Arrange these milestones of Joël Robuchon's extraordinary career in order: Set the answer in movable type — mirrored, right to left."
           }
         }
       ]
@@ -125,11 +132,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "truefalse",
-            "statement": "When Robuchon retired and closed his Paris restaurant, he lost all his Michelin stars — because stars are awarded to restaurants, not to chefs.",
-            "correct": true,
-            "countdown": 10,
-            "fact": "This is one of the most misunderstood facts about the Michelin system. Stars belong to the restaurant address and experience, not the individual chef. When Robuchon retired and closed his restaurants, their stars vanished. When he returned with L'Atelier, he earned new stars from scratch — accumulating more than any chef in history."
+            "type": "minigame",
+            "game": "rhythm",
+            "seed": 1018,
+            "fact": "This is one of the most misunderstood facts about the Michelin system. Stars belong to the restaurant address and experience, not the individual chef. When Robuchon retired and closed his restaurants, their stars vanished. When he returned with L'Atelier, he earned new stars from scratch — accumulating more than any chef in history.",
+            "autogen": true,
+            "configId": "bach-fugue",
+            "params": {
+              "title": "When Robuchon retired and closed his",
+              "intro": "When Robuchon retired and closed his Paris restaurant, he lost all his Michelin stars — because stars are awarded to restaurants, not to chefs."
+            },
+            "instruction": "When Robuchon retired and closed his Paris restaurant, he lost all his Michelin stars — because stars are awarded to restaurants, not to chefs. Learn the phrase and play it back, note for note."
           }
         }
       ]

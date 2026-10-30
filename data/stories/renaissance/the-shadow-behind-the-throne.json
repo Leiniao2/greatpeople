@@ -24,17 +24,23 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "What was Tlacaelel's title, and what unique power did he hold in the Aztec state?",
-            "options": [
-              "Cihuacoatl — the second-in-command who wielded more real power than three consecutive emperors",
-              "Huey Tlatoani — the supreme ruler of the Triple Alliance",
-              "Quetzalcoatl — the high priest of the feathered serpent cult",
-              "Tlacochcalcatl — the supreme military commander of all Aztec armies"
-            ],
-            "answer": 0,
-            "countdown": 10,
-            "fact": "Tlacaelel (c.1397–1487) held the office of Cihuacoatl — officially the second speaker, the emperor's shadow. In practice, he directed state policy under three emperors (Itzcoatl, Motecuhzoma I, and Axayacatl) for over fifty years. He was offered the supreme throne three times and refused it each time — understanding that the power behind the throne is more durable than the throne itself."
+            "type": "minigame",
+            "game": "typeset",
+            "seed": 1019,
+            "fact": "Tlacaelel (c.1397–1487) held the office of Cihuacoatl — officially the second speaker, the emperor's shadow. In practice, he directed state policy under three emperors (Itzcoatl, Motecuhzoma I, and Axayacatl) for over fifty years. He was offered the supreme throne three times and refused it each time — understanding that the power behind the throne is more durable than the throne itself.",
+            "autogen": true,
+            "configId": "gutenberg-bible",
+            "params": {
+              "title": "What was Tlacaelel's title, and what",
+              "intro": "What was Tlacaelel's title, and what unique power did he hold in the Aztec state?",
+              "lines": [
+                "CIHUACOATL",
+                "CIHUACOATL THE",
+                "CIHUACOATL THE",
+                "CIHUACOATL THE SECOND IN"
+              ]
+            },
+            "instruction": "What was Tlacaelel's title, and what unique power did he hold in the Aztec state? Set the answer in movable type — mirrored, right to left."
           }
         }
       ]
@@ -51,11 +57,19 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "truefalse",
-            "statement": "Tlacaelel preserved the Aztec historical records and expanded their archives during his time in power.",
-            "correct": false,
-            "countdown": 10,
-            "fact": "Tlacaelel ordered the burning of existing historical codices — the painted books that recorded Aztec history before his reforms. He then commissioned new histories that placed the Mexica at the center of a divinely ordained cosmic narrative. The burning was not destruction for its own sake: it was the replacement of one story with a more useful one."
+            "type": "minigame",
+            "game": "cipher",
+            "seed": 1020,
+            "fact": "Tlacaelel ordered the burning of existing historical codices — the painted books that recorded Aztec history before his reforms. He then commissioned new histories that placed the Mexica at the center of a divinely ordained cosmic narrative. The burning was not destruction for its own sake: it was the replacement of one story with a more useful one.",
+            "autogen": true,
+            "configId": "vigenere-cabinet",
+            "params": {
+              "title": "Tlacaelel preserved the Aztec historical records",
+              "intro": "Tlacaelel preserved the Aztec historical records and expanded their archives during his time in power.",
+              "mode": "caesar",
+              "plaintext": "TLACAELEL ORDERED THE BURNING OF"
+            },
+            "instruction": "Tlacaelel preserved the Aztec historical records and expanded their archives during his time in power. The answer travels in cipher — turn the wheel until it reads."
           }
         }
       ]
@@ -72,17 +86,16 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "sort",
-            "question": "Arrange the key reforms and events of Tlacaelel's career in order:",
-            "items": [
-              "Tlacaelel leads the decisive military strategy that defeats the powerful Tepanec Empire",
-              "He refuses the throne after the victory — but becomes Cihuacoatl, the power behind it",
-              "He orders the burning of existing historical codices to enable a new official history",
-              "He expands the cult of Huitzilopochtli, framing the Aztec people as chosen to sustain the sun",
-              "He institutes the Flower Wars — ritualized conflict designed to produce sacrificial captives",
-              "Tlacaelel serves a third emperor while outliving his contemporaries — dying in his nineties"
-            ],
-            "fact": "Tlacaelel's greatest achievement was ideological: he transformed the Mexica from one of many Nahua-speaking peoples into the chosen people of the sun god, with a cosmic obligation to feed Huitzilopochtli through human sacrifice. This narrative made every war a religious act and every conquest a divine duty — creating the psychological engine that drove Aztec expansion for a century."
+            "type": "minigame",
+            "game": "matchthree",
+            "seed": 1021,
+            "fact": "Tlacaelel's greatest achievement was ideological: he transformed the Mexica from one of many Nahua-speaking peoples into the chosen people of the sun god, with a cosmic obligation to feed Huitzilopochtli through human sacrifice. This narrative made every war a religious act and every conquest a divine duty — creating the psychological engine that drove Aztec expansion for a century.",
+            "autogen": true,
+            "configId": "lisbon-spices",
+            "params": {
+              "title": "Arrange the key reforms and events"
+            },
+            "instruction": "Arrange the key reforms and events of Tlacaelel's career in order: Gather what the story needs: match the goods until the tally is met."
           }
         },
         {

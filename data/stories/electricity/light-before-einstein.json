@@ -27,10 +27,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "truefalse",
-            "statement": "Lorentz predicted time dilation — that time moves slower for moving objects — before Einstein published his theory of relativity.",
-            "correct": true,
-            "fact": "Hendrik Lorentz derived the 'Lorentz transformation' equations in 1895–1904, which showed that time, length, and mass change with velocity. Einstein took these equations and provided the physical interpretation: special relativity (1905)."
+            "type": "minigame",
+            "game": "logicgate",
+            "seed": 1008,
+            "fact": "Hendrik Lorentz derived the 'Lorentz transformation' equations in 1895–1904, which showed that time, length, and mass change with velocity. Einstein took these equations and provided the physical interpretation: special relativity (1905).",
+            "autogen": true,
+            "configId": "shannon-relays",
+            "params": {
+              "title": "Lorentz predicted time dilation — that",
+              "intro": "Lorentz predicted time dilation — that time moves slower for moving objects — before Einstein published his theory of relativity."
+            },
+            "instruction": "Lorentz predicted time dilation — that time moves slower for moving objects — before Einstein published his theory of relativity. Wire the gates until the circuit agrees with the table on every row."
           }
         }
       ]

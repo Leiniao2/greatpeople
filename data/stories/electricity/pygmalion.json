@@ -27,16 +27,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "Shaw's 1913 play 'Pygmalion' was later adapted into which enormously successful musical?",
-            "options": [
-              "South Pacific",
-              "My Fair Lady",
-              "Cabaret",
-              "Annie Get Your Gun"
-            ],
-            "answer": 1,
-            "fact": "My Fair Lady (1956) ran for 2,717 performances on Broadway. Shaw famously wrote his own stage directions to prevent producers from adding a romantic happy ending."
+            "type": "minigame",
+            "game": "sudoku",
+            "seed": 1024,
+            "fact": "My Fair Lady (1956) ran for 2,717 performances on Broadway. Shaw famously wrote his own stage directions to prevent producers from adding a romantic happy ending.",
+            "autogen": true,
+            "configId": "lorentz-grid",
+            "params": {
+              "title": "Shaw's 1913 play 'Pygmalion' was later",
+              "intro": "Shaw's 1913 play 'Pygmalion' was later adapted into which enormously successful musical?"
+            },
+            "instruction": "Shaw's 1913 play 'Pygmalion' was later adapted into which enormously successful musical? Order the grid as the record was ordered — every row, column and box complete."
           }
         }
       ]
@@ -109,10 +110,19 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "truefalse",
-            "statement": "George Bernard Shaw intended Eliza Doolittle and Professor Higgins to end up romantically together.",
-            "correct": false,
-            "fact": "Shaw explicitly wrote that Eliza marries Freddy Eynsford-Hill, not Higgins. He was furious when stage productions implied a romance. His epilogue spells out that Higgins is too self-absorbed for love. The musical My Fair Lady contradicts Shaw's own ending."
+            "type": "minigame",
+            "game": "cipher",
+            "seed": 1025,
+            "fact": "Shaw explicitly wrote that Eliza marries Freddy Eynsford-Hill, not Higgins. He was furious when stage productions implied a romance. His epilogue spells out that Higgins is too self-absorbed for love. The musical My Fair Lady contradicts Shaw's own ending.",
+            "autogen": true,
+            "configId": "morse-telegraph",
+            "params": {
+              "title": "George Bernard Shaw intended Eliza Doolittle",
+              "intro": "George Bernard Shaw intended Eliza Doolittle and Professor Higgins to end up romantically together.",
+              "mode": "caesar",
+              "plaintext": "SHAW EXPLICITLY WROTE THAT ELIZA"
+            },
+            "instruction": "George Bernard Shaw intended Eliza Doolittle and Professor Higgins to end up romantically together. The answer travels in cipher — turn the wheel until it reads."
           }
         }
       ]

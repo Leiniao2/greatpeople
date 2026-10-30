@@ -80,15 +80,19 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "sort",
-            "question": "Arrange the key milestones of Magellan's circumnavigation in order:",
-            "items": [
-              "Fleet of five ships departs Seville with 270 men",
-              "Discovery and navigation of the Strait of Magellan",
-              "Magellan killed in the Philippines — he never completes the journey",
-              "One surviving ship returns to Spain with 18 men"
-            ],
-            "fact": "Magellan's voyage proved the Earth is a sphere and that the Pacific is far larger than anyone imagined. He left in 1519 with five ships and 270 men; one ship, the Victoria, returned in 1522 with 18 skeletal survivors. The Strait of Magellan — 570 kilometres of treacherous winding channels — took 38 days to navigate."
+            "type": "minigame",
+            "game": "cipher",
+            "seed": 1002,
+            "fact": "Magellan's voyage proved the Earth is a sphere and that the Pacific is far larger than anyone imagined. He left in 1519 with five ships and 270 men; one ship, the Victoria, returned in 1522 with 18 skeletal survivors. The Strait of Magellan — 570 kilometres of treacherous winding channels — took 38 days to navigate.",
+            "autogen": true,
+            "configId": "vigenere-cabinet",
+            "params": {
+              "title": "Arrange the key milestones of Magellan's",
+              "intro": "Arrange the key milestones of Magellan's circumnavigation in order:",
+              "mode": "caesar",
+              "plaintext": "FLEET OF FIVE SHIPS DEPARTS"
+            },
+            "instruction": "Arrange the key milestones of Magellan's circumnavigation in order: The answer travels in cipher — turn the wheel until it reads."
           }
         }
       ]

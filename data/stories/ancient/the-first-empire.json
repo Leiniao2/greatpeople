@@ -27,16 +27,19 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "Sargon of Akkad created the world's first:",
-            "options": [
-              "Democracy",
-              "Multi-ethnic empire",
-              "Writing system",
-              "Standing army"
-            ],
-            "answer": 1,
-            "fact": "The Akkadian Empire (c. 2334–2154 BCE) unified diverse Sumerian city-states under a single ruler for the first time in recorded history — a template copied by every empire since."
+            "type": "minigame",
+            "game": "cipher",
+            "seed": 1001,
+            "fact": "The Akkadian Empire (c. 2334–2154 BCE) unified diverse Sumerian city-states under a single ruler for the first time in recorded history — a template copied by every empire since.",
+            "autogen": true,
+            "configId": "caesar-gaul",
+            "params": {
+              "title": "Sargon of Akkad created the world's",
+              "intro": "Sargon of Akkad created the world's first:",
+              "mode": "caesar",
+              "plaintext": "MULTI ETHNIC EMPIRE"
+            },
+            "instruction": "Sargon of Akkad created the world's first: The answer travels in cipher — turn the wheel until it reads."
           }
         }
       ]
@@ -97,15 +100,19 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "sort",
-            "question": "Order these events in the rise of Sargon of Akkad's empire:",
-            "items": [
-              "Sargon serves as cup-bearer to the king of Kish",
-              "Sargon defeats Lugal-zage-si of Uruk in battle",
-              "Sargon establishes Akkad as the new capital",
-              "Sargon's empire stretches from the Persian Gulf to the Mediterranean"
-            ],
-            "fact": "Sargon of Akkad (c. 2334–2279 BCE) created history's first empire, uniting dozens of city-states under one ruler for the first time. His daughter Enheduanna became history's first named author."
+            "type": "minigame",
+            "game": "cipher",
+            "seed": 1001,
+            "fact": "Sargon of Akkad (c. 2334–2279 BCE) created history's first empire, uniting dozens of city-states under one ruler for the first time. His daughter Enheduanna became history's first named author.",
+            "autogen": true,
+            "configId": "caesar-gaul",
+            "params": {
+              "title": "Order these events in the rise",
+              "intro": "Order these events in the rise of Sargon of Akkad's empire:",
+              "mode": "caesar",
+              "plaintext": "SARGON SERVES AS CUP BEARER TO"
+            },
+            "instruction": "Order these events in the rise of Sargon of Akkad's empire: The answer travels in cipher — turn the wheel until it reads."
           }
         }
       ]

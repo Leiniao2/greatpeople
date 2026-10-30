@@ -66,6 +66,7 @@ Great People tab of the tool.
 
 ## 4. Keeping this current
 
-- Change rules or stats through Fight Studio (`cd tools/fight-studio && npm run dev`, then http://127.0.0.1:3777). It writes `data/*.json` and `docs/*` directly, preserving formatting.
-- When `BattlePage.tsx` changes, update `tools/fight-studio/src/lib/engineTraits.ts` (constants, implemented traits, achievement map) and `engine.ts` (formulas), then revisit the affected rows in `fight_rules.json`.
+- Change rules or stats through Fight Studio (`cd tools/fight-studio && npm run dev`, then http://127.0.0.1:3777). It writes `data/*.json` and `docs/*` directly, preserving formatting, and syncs data files to the platforms on save so the web dev server picks them up.
+- Rule-text, rulebook and trait/achievement edits are handed to Claude Code (headless) on **Save all & update engine**: it edits `BattlePage.tsx`, keeps the tool's engine mirrors (`engineTraits.ts`, `engine.ts`) in step, updates the affected `fight_rules.json` rows and typechecks. Review the diff on the Engine sync tab, test on port 3001, then commit. See `tools/fight-studio/README.md`.
+- When `BattlePage.tsx` is changed by hand, update `tools/fight-studio/src/lib/engineTraits.ts` (constants, implemented traits, achievement map) and `engine.ts` (formulas), then revisit the affected rows in `fight_rules.json`.
 - After editing `data/*.json`, commit normally; the pre-commit hook runs `scripts/sync-assets.sh` to refresh the platform copies.

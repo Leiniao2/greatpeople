@@ -24,17 +24,23 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "Whose grandson was Batu Khan, and what western invasion did he lead?",
-            "options": [
-              "Grandson of Genghis Khan; led the Mongol invasion of Eastern Europe",
-              "Son of Ögedei Khan; led the invasion of China",
-              "Grandson of Kublai Khan; led the invasion of Persia",
-              "Son of Chagatai Khan; led the invasion of India"
-            ],
-            "answer": 0,
-            "countdown": 10,
-            "fact": "Batu Khan (c.1207–1255) was the grandson of Genghis Khan and founder of the Golden Horde. In 1241, he led the most western Mongol campaign in history, crushing Polish and Hungarian armies simultaneously and reaching the gates of Vienna — before news of Ögedei Khan's death caused the army to withdraw."
+            "type": "minigame",
+            "game": "typeset",
+            "seed": 1007,
+            "fact": "Batu Khan (c.1207–1255) was the grandson of Genghis Khan and founder of the Golden Horde. In 1241, he led the most western Mongol campaign in history, crushing Polish and Hungarian armies simultaneously and reaching the gates of Vienna — before news of Ögedei Khan's death caused the army to withdraw.",
+            "autogen": true,
+            "configId": "bi-sheng-clay",
+            "params": {
+              "title": "Whose grandson was Batu Khan, and",
+              "intro": "Whose grandson was Batu Khan, and what western invasion did he lead?",
+              "lines": [
+                "GRANDSON OF",
+                "GRANDSON OF",
+                "GRANDSON OF GENGHIS",
+                "GRANDSON OF GENGHIS KHAN"
+              ]
+            },
+            "instruction": "Whose grandson was Batu Khan, and what western invasion did he lead? Set the answer in movable type — mirrored, right to left."
           }
         }
       ]
@@ -51,11 +57,19 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "truefalse",
-            "statement": "The Mongol army that invaded Europe in 1241 was defeated by the armies of Poland and Hungary.",
-            "correct": false,
-            "countdown": 10,
-            "fact": "At the Battle of Legnica (1241), the Mongols annihilated a combined Polish-German force. At the Battle of Mohi the same month, they destroyed the Hungarian army. Western Europe was essentially undefended. The Mongols withdrew not because of military defeat but because of succession politics — Ögedei Khan's death required the princes to return east."
+            "type": "minigame",
+            "game": "cipher",
+            "seed": 1008,
+            "fact": "At the Battle of Legnica (1241), the Mongols annihilated a combined Polish-German force. At the Battle of Mohi the same month, they destroyed the Hungarian army. Western Europe was essentially undefended. The Mongols withdrew not because of military defeat but because of succession politics — Ögedei Khan's death required the princes to return east.",
+            "autogen": true,
+            "configId": "al-kindi-frequency",
+            "params": {
+              "title": "The Mongol army that invaded Europe",
+              "intro": "The Mongol army that invaded Europe in 1241 was defeated by the armies of Poland and Hungary.",
+              "mode": "caesar",
+              "plaintext": "AT THE BATTLE OF LEGNICA THE"
+            },
+            "instruction": "The Mongol army that invaded Europe in 1241 was defeated by the armies of Poland and Hungary. The answer travels in cipher — turn the wheel until it reads."
           }
         }
       ]
@@ -72,17 +86,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "sort",
-            "question": "Arrange the key events of Batu Khan's western campaign in order:",
-            "items": [
-              "The Mongol army crosses the Volga River and subdues the Cumans",
-              "Mongols sack Kiev, the greatest city of Rus, burning it to the ground",
-              "Battle of Legnica — Polish and German knights are destroyed in Silesia",
-              "Battle of Mohi — the Hungarian army is routed on the River Sajo",
-              "Mongol vanguard reaches the Adriatic coast of Croatia",
-              "Ögedei Khan dies — Batu orders withdrawal to elect a new Great Khan"
-            ],
-            "fact": "The Mongol campaign of 1241 was one of the most devastating military events in medieval European history. Poland, Hungary, and Moravia were devastated. Poland lost an estimated 25% of its population. When the Mongols withdrew, medieval Europe assumed it was a temporary pause — for years, communities lived in terror of their return."
+            "type": "minigame",
+            "game": "maze",
+            "seed": 1009,
+            "fact": "The Mongol campaign of 1241 was one of the most devastating military events in medieval European history. Poland, Hungary, and Moravia were devastated. Poland lost an estimated 25% of its population. When the Mongols withdrew, medieval Europe assumed it was a temporary pause — for years, communities lived in terror of their return.",
+            "autogen": true,
+            "configId": "cedar-forest",
+            "params": {
+              "title": "Arrange the key events of Batu",
+              "subtitle": "Arrange the key events of Batu Khan's western campaign in order:"
+            },
+            "instruction": "Arrange the key events of Batu Khan's western campaign in order: The way to the answer runs through these passages — find the exit."
           }
         },
         {

@@ -67,6 +67,12 @@ export const GAMES = {
   cipher:       def('Cipher',        'Puzzle',   () => import('@/components/minigames/CipherGame'), true),
   debate:       def('Debate',        'Story',    () => import('@/components/minigames/DebateGame'), true),
   siege:        def('Siege',         'Strategy', () => import('@/components/minigames/SiegeGame'), true),
+  typeset:      def('Typeset',       'Creative', () => import('@/components/minigames/TypesetGame'), true),
+  caravan:      def('Caravan',       'Strategy', () => import('@/components/minigames/CaravanGame'), true),
+  starchart:    def('Star Chart',    'Explore',  () => import('@/components/minigames/StarChartGame'), true),
+  logicgate:    def('Logic Gates',   'Puzzle',   () => import('@/components/minigames/LogicGateGame'), true),
+  archbuild:    def('Arch Builder',  'Creative', () => import('@/components/minigames/ArchBuildGame'), true),
+  rhythm:       def('Rhythm',        'Creative', () => import('@/components/minigames/RhythmGame'), true),
 } satisfies Record<string, GameDef>
 
 export type GameKey = keyof typeof GAMES

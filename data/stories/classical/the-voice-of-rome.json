@@ -31,16 +31,19 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "Cicero was executed in 43 BCE on the orders of:",
-            "options": [
-              "Julius Caesar",
-              "Pompey",
-              "Marc Antony",
-              "Augustus"
-            ],
-            "answer": 2,
-            "fact": "After Caesar's assassination, Cicero attacked Marc Antony in speeches called the Philippics. Antony had him killed. His hands — which had written the speeches — were nailed to the Senate doors."
+            "type": "minigame",
+            "game": "cipher",
+            "seed": 1001,
+            "fact": "After Caesar's assassination, Cicero attacked Marc Antony in speeches called the Philippics. Antony had him killed. His hands — which had written the speeches — were nailed to the Senate doors.",
+            "autogen": true,
+            "configId": "caesar-gaul",
+            "params": {
+              "title": "Cicero was executed in 43 BCE",
+              "intro": "Cicero was executed in 43 BCE on the orders of:",
+              "mode": "caesar",
+              "plaintext": "MARC ANTONY"
+            },
+            "instruction": "Cicero was executed in 43 BCE on the orders of: The answer travels in cipher — turn the wheel until it reads."
           }
         }
       ]
@@ -103,10 +106,16 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "truefalse",
-            "statement": "Cicero's Catilinarian orations persuaded the Senate to give Catiline a fair trial before punishment.",
-            "correct": false,
-            "fact": "Cicero convinced the Senate to execute the Catilinarian conspirators without trial — a legally questionable act for which he was later exiled. His famous line \"Quousque tandem abutere, Catilina, patientia nostra?\" (How long, Catiline, will you abuse our patience?) is still quoted today."
+            "type": "minigame",
+            "game": "matchthree",
+            "seed": 1003,
+            "fact": "Cicero convinced the Senate to execute the Catilinarian conspirators without trial — a legally questionable act for which he was later exiled. His famous line \"Quousque tandem abutere, Catilina, patientia nostra?\" (How long, Catiline, will you abuse our patience?) is still quoted today.",
+            "autogen": true,
+            "configId": "venice-glass",
+            "params": {
+              "title": "Cicero's Catilinarian orations persuaded the Senate"
+            },
+            "instruction": "Cicero's Catilinarian orations persuaded the Senate to give Catiline a fair trial before punishment. Gather what the story needs: match the goods until the tally is met."
           }
         },
         {

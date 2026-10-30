@@ -27,17 +27,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "Audrey Hepburn is the only actress to have won which four major entertainment awards (EGOT)?",
-            "options": [
-              "Emmy, Grammy, Oscar, Tony",
-              "BAFTA, Grammy, Oscar, Tony",
-              "Emmy, Grammy, Oscar, Golden Globe",
-              "Oscar, Tony, Cannes Palme d'Or, Grammy"
-            ],
-            "answer": 0,
+            "type": "minigame",
+            "game": "logicgate",
+            "seed": 1001,
             "fact": "Audrey Hepburn won an Oscar (Roman Holiday, 1953), Tony (Ondine, 1954), Emmy (Love Among Thieves, 1993), and Grammy (spoken word album, 1993) — becoming one of very few EGOT winners. She also received the Presidential Medal of Freedom.",
-            "countdown": 10
+            "autogen": true,
+            "configId": "turing-tape",
+            "params": {
+              "title": "Audrey Hepburn is the only actress",
+              "intro": "Audrey Hepburn is the only actress to have won which four major entertainment awards (EGOT)?"
+            },
+            "instruction": "Audrey Hepburn is the only actress to have won which four major entertainment awards (EGOT)? Wire the gates until the circuit agrees with the table on every row."
           }
         }
       ]
@@ -77,15 +77,23 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "sort",
-            "question": "Arrange Audrey Hepburn's career milestones in chronological order:",
-            "items": [
-              "Wins the Academy Award for Best Actress for Roman Holiday",
-              "Stars in Breakfast at Tiffany's — Givenchy's black dress becomes iconic",
-              "Appointed UNICEF Goodwill Ambassador",
-              "Receives Emmy and Grammy Awards — completing the EGOT"
-            ],
-            "fact": "Hepburn won the Oscar, Tony, Emmy, and Grammy — one of very few EGOT recipients. But she considered her UNICEF work her greatest achievement, visiting famine-stricken communities in Ethiopia, Sudan, Bangladesh, and Central America in her final years."
+            "type": "minigame",
+            "game": "typeset",
+            "seed": 1005,
+            "fact": "Hepburn won the Oscar, Tony, Emmy, and Grammy — one of very few EGOT recipients. But she considered her UNICEF work her greatest achievement, visiting famine-stricken communities in Ethiopia, Sudan, Bangladesh, and Central America in her final years.",
+            "autogen": true,
+            "configId": "franklin-gazette",
+            "params": {
+              "title": "Arrange Audrey Hepburn's career milestones in",
+              "intro": "Arrange Audrey Hepburn's career milestones in chronological order:",
+              "lines": [
+                "WINS THE",
+                "WINS THE ACADEMY",
+                "WINS THE ACADEMY",
+                "WINS THE ACADEMY AWARD"
+              ]
+            },
+            "instruction": "Arrange Audrey Hepburn's career milestones in chronological order: Set the answer in movable type — mirrored, right to left."
           }
         },
         {
@@ -95,10 +103,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "truefalse",
-            "statement": "Audrey Hepburn won the Academy Award for Best Actress for her role in Breakfast at Tiffany's.",
-            "correct": false,
-            "fact": "Hepburn won the Oscar for Roman Holiday (1953), her film debut. For Breakfast at Tiffany's (1961), she received a nomination but lost to Sophia Loren. The film's song \"Moon River\" won the Oscar for Best Original Song — Henry Mancini wrote it specifically for Hepburn's vocal range."
+            "type": "minigame",
+            "game": "rhythm",
+            "seed": 1006,
+            "fact": "Hepburn won the Oscar for Roman Holiday (1953), her film debut. For Breakfast at Tiffany's (1961), she received a nomination but lost to Sophia Loren. The film's song \"Moon River\" won the Oscar for Best Original Song — Henry Mancini wrote it specifically for Hepburn's vocal range.",
+            "autogen": true,
+            "configId": "bach-fugue",
+            "params": {
+              "title": "Audrey Hepburn won the Academy Award",
+              "intro": "Audrey Hepburn won the Academy Award for Best Actress for her role in Breakfast at Tiffany's."
+            },
+            "instruction": "Audrey Hepburn won the Academy Award for Best Actress for her role in Breakfast at Tiffany's. Learn the phrase and play it back, note for note."
           }
         }
       ]

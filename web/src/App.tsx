@@ -1,6 +1,7 @@
-import { Suspense, lazy } from 'react'
+import { Suspense, lazy, useEffect } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { useAuth } from '@/hooks/useAuth'
+import { useStoryProgress } from '@/hooks/useStoryProgress'
 import LoadingScreen from '@/components/LoadingScreen'
 import LoginPage from '@/pages/LoginPage'
 
@@ -14,6 +15,8 @@ const EpicPage          = lazy(() => import('@/pages/EpicPage'))
 const ProfilePage       = lazy(() => import('@/pages/ProfilePage'))
 const MiniChallengePage = lazy(() => import('@/pages/MiniChallengePage'))
 const MainLayout        = lazy(() => import('@/pages/MainLayout'))
+const PlayStoryPage     = lazy(() => import('@/pages/PlayPage').then(m => ({ default: m.PlayStoryPage })))
+const PlayChallengePage = lazy(() => import('@/pages/PlayPage').then(m => ({ default: m.PlayChallengePage })))
 
 function PrivateRoute({ children }: { children: React.ReactNode }) {
   const { isLoggedIn, isGuest } = useAuth()
@@ -21,6 +24,11 @@ function PrivateRoute({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
+  const isLoggedIn = useAuth(s => s.isLoggedIn)
+  const pullAndMerge = useStoryProgress(s => s.pullAndMerge)
+  // Merge the server's copy of story progress whenever a session starts.
+  useEffect(() => { if (isLoggedIn) void pullAndMerge() }, [isLoggedIn, pullAndMerge])
+
   return (
     <Suspense fallback={<LoadingScreen />}>
       <Routes>
@@ -32,6 +40,10 @@ export default function App() {
 
         {/* Full-screen detail — private, no tab bar */}
         <Route path="/card/:id" element={<PrivateRoute><CardDetailPage /></PrivateRoute>} />
+
+        {/* Full-screen play routes, also used inside the native apps' WebViews */}
+        <Route path="/play/story/:slug" element={<PrivateRoute><PlayStoryPage /></PrivateRoute>} />
+        <Route path="/play/challenge/:id" element={<PrivateRoute><PlayChallengePage /></PrivateRoute>} />
 
         {/* Tab-bar layout — all protected */}
         <Route

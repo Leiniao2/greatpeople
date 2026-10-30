@@ -24,17 +24,23 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "What key innovation made Gutenberg's printing press transformative, compared to woodblock printing?",
-            "options": [
-              "Individual metal letters that could be rearranged for any text",
-              "The use of oil-based ink that dried permanently on paper",
-              "A mechanical screw press borrowed from winemaking",
-              "Paper made from wood pulp rather than cloth rags"
-            ],
-            "answer": 0,
-            "countdown": 10,
-            "fact": "Gutenberg's breakthrough was casting individual metal letters that could be arranged, printed, and rearranged indefinitely. The same 26 letters (in his case Gothic type) could print any text in any order — unlike woodblocks, which could only print the single text carved into them. His oil-based ink and screw press were important innovations, but the movable metal type was the revolution."
+            "type": "minigame",
+            "game": "typeset",
+            "seed": 1007,
+            "fact": "Gutenberg's breakthrough was casting individual metal letters that could be arranged, printed, and rearranged indefinitely. The same 26 letters (in his case Gothic type) could print any text in any order — unlike woodblocks, which could only print the single text carved into them. His oil-based ink and screw press were important innovations, but the movable metal type was the revolution.",
+            "autogen": true,
+            "configId": "gutenberg-bible",
+            "params": {
+              "title": "What key innovation made Gutenberg's printing",
+              "intro": "What key innovation made Gutenberg's printing press transformative, compared to woodblock printing?",
+              "lines": [
+                "INDIVIDUAL",
+                "INDIVIDUAL METAL",
+                "INDIVIDUAL METAL",
+                "INDIVIDUAL METAL LETTERS"
+              ]
+            },
+            "instruction": "What key innovation made Gutenberg's printing press transformative, compared to woodblock printing? Set the answer in movable type — mirrored, right to left."
           }
         }
       ]
@@ -51,11 +57,19 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "truefalse",
-            "statement": "Gutenberg became enormously wealthy from his printing press invention.",
-            "correct": false,
-            "countdown": 10,
-            "fact": "Gutenberg died nearly broke. His primary financial backer, Johann Fust, sued him over unpaid loans and won — seizing the printing equipment and the first run of Bibles. The press that changed the world made little money for its inventor. Gutenberg was awarded a pension by the Archbishop of Mainz in his final years, dying in 1468 largely unrewarded by the revolution he had started."
+            "type": "minigame",
+            "game": "cipher",
+            "seed": 1008,
+            "fact": "Gutenberg died nearly broke. His primary financial backer, Johann Fust, sued him over unpaid loans and won — seizing the printing equipment and the first run of Bibles. The press that changed the world made little money for its inventor. Gutenberg was awarded a pension by the Archbishop of Mainz in his final years, dying in 1468 largely unrewarded by the revolution he had started.",
+            "autogen": true,
+            "configId": "vigenere-cabinet",
+            "params": {
+              "title": "Gutenberg became enormously wealthy from his",
+              "intro": "Gutenberg became enormously wealthy from his printing press invention.",
+              "mode": "caesar",
+              "plaintext": "GUTENBERG DIED NEARLY BROKE"
+            },
+            "instruction": "Gutenberg became enormously wealthy from his printing press invention. The answer travels in cipher — turn the wheel until it reads."
           }
         }
       ]
@@ -72,17 +86,16 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "sort",
-            "question": "Arrange these consequences of Gutenberg's press in roughly chronological order after 1450:",
-            "items": [
-              "The Gutenberg Bible — 180 copies printed, the first major book from the press (c.1455)",
-              "Printing spreads to every major European city within 50 years of Gutenberg's press",
-              "Martin Luther's 95 Theses are printed and distributed across Germany in weeks (1517)",
-              "The Protestant Reformation fractures European Christianity",
-              "Scientific works by Copernicus and Galileo reach educated readers across Europe",
-              "The Enlightenment — a republic of letters that the press made possible"
-            ],
-            "fact": "It took 50 years for printing to reach every corner of Europe. By 1500, over 20 million books had been printed — more than all the manuscripts produced in the previous thousand years of European history. The printing press did not merely copy existing knowledge; it transformed who could access it, who could challenge it, and who could add to it."
+            "type": "minigame",
+            "game": "matchthree",
+            "seed": 1009,
+            "fact": "It took 50 years for printing to reach every corner of Europe. By 1500, over 20 million books had been printed — more than all the manuscripts produced in the previous thousand years of European history. The printing press did not merely copy existing knowledge; it transformed who could access it, who could challenge it, and who could add to it.",
+            "autogen": true,
+            "configId": "lisbon-spices",
+            "params": {
+              "title": "Arrange these consequences of Gutenberg's press"
+            },
+            "instruction": "Arrange these consequences of Gutenberg's press in roughly chronological order after 1450: Gather what the story needs: match the goods until the tally is met."
           }
         }
       ]

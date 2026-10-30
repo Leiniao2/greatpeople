@@ -24,17 +24,23 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "Which of Bernini's sculptures is considered his greatest early masterpiece?",
-            "options": [
-              "Apollo and Daphne",
-              "The Pietà",
-              "The Ecstasy of Saint Teresa",
-              "The Fountain of the Four Rivers"
-            ],
-            "answer": 0,
-            "countdown": 10,
-            "fact": "Apollo and Daphne (1622–1625) shows the moment Daphne transforms into a laurel tree to escape Apollo — her fingers becoming branches, bark creeping up her legs. Bernini carved this in marble when he was in his mid-twenties. Viewers reported that the finished work looked impossible, as if he had found a way to capture a single instant of motion in stone."
+            "type": "minigame",
+            "game": "typeset",
+            "seed": 1022,
+            "fact": "Apollo and Daphne (1622–1625) shows the moment Daphne transforms into a laurel tree to escape Apollo — her fingers becoming branches, bark creeping up her legs. Bernini carved this in marble when he was in his mid-twenties. Viewers reported that the finished work looked impossible, as if he had found a way to capture a single instant of motion in stone.",
+            "autogen": true,
+            "configId": "franklin-gazette",
+            "params": {
+              "title": "Which of Bernini's sculptures is considered",
+              "intro": "Which of Bernini's sculptures is considered his greatest early masterpiece?",
+              "lines": [
+                "APOLLO AND",
+                "APOLLO AND",
+                "APOLLO AND DAPHNE",
+                "APOLLO AND DAPHNE"
+              ]
+            },
+            "instruction": "Which of Bernini's sculptures is considered his greatest early masterpiece? Set the answer in movable type — mirrored, right to left."
           }
         }
       ]
@@ -51,11 +57,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "truefalse",
-            "statement": "Bernini designed St. Peter's Square's famous colonnade to enclose the piazza completely, blocking the view from the streets of Rome.",
-            "correct": false,
-            "countdown": 10,
-            "fact": "Bernini designed St. Peter's Square's twin colonnades to open at their ends, creating a welcoming gesture toward the city. He described them as 'the motherly arms of the Church' reaching out to embrace the faithful — Catholics to confirm their faith, heretics to reunite with the Church, and unbelievers to discover the light. The design is both engineering and theology."
+            "type": "minigame",
+            "game": "sudoku",
+            "seed": 1023,
+            "fact": "Bernini designed St. Peter's Square's twin colonnades to open at their ends, creating a welcoming gesture toward the city. He described them as 'the motherly arms of the Church' reaching out to embrace the faithful — Catholics to confirm their faith, heretics to reunite with the Church, and unbelievers to discover the light. The design is both engineering and theology.",
+            "autogen": true,
+            "configId": "mendel-grid",
+            "params": {
+              "title": "Bernini designed St. Peter's Square's famous",
+              "intro": "Bernini designed St. Peter's Square's famous colonnade to enclose the piazza completely, blocking the view from the streets of Rome."
+            },
+            "instruction": "Bernini designed St. Peter's Square's famous colonnade to enclose the piazza completely, blocking the view from the streets of Rome. Order the grid as the record was ordered — every row, column and box complete."
           }
         }
       ]
@@ -72,17 +84,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "sort",
-            "question": "Arrange these major works of Bernini's career in the order they were created:",
-            "items": [
-              "David — a marble figure in dynamic twisting motion, unlike any previous sculpture",
-              "Apollo and Daphne — bark and leaves erupting from marble skin",
-              "The Baldachin — a 29-metre bronze canopy above St. Peter's tomb",
-              "Fountain of the Four Rivers in Piazza Navona",
-              "The Ecstasy of Saint Teresa — divine rapture carved in marble and lit from above",
-              "The Colonnade of St. Peter's Square — completed after 11 years of construction"
-            ],
-            "fact": "Bernini dominated Roman art for six decades, serving under eight popes. Unlike most artists, he died wealthy, celebrated, and with his genius universally acknowledged in his own lifetime. When Louis XIV invited him to Paris to redesign the Louvre, the King of France came personally to see the great man off."
+            "type": "minigame",
+            "game": "maze",
+            "seed": 1024,
+            "fact": "Bernini dominated Roman art for six decades, serving under eight popes. Unlike most artists, he died wealthy, celebrated, and with his genius universally acknowledged in his own lifetime. When Louis XIV invited him to Paris to redesign the Louvre, the King of France came personally to see the great man off.",
+            "autogen": true,
+            "configId": "long-march",
+            "params": {
+              "title": "Arrange these major works of Bernini's",
+              "subtitle": "Arrange these major works of Bernini's career in the order they were created:"
+            },
+            "instruction": "Arrange these major works of Bernini's career in the order they were created: The way to the answer runs through these passages — find the exit."
           }
         },
         {

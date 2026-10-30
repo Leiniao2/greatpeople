@@ -96,15 +96,19 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "sort",
-            "question": "Arrange these milestones of Clara Schumann's life in chronological order:",
-            "items": [
-              "First public concert at age 9 in Leipzig",
-              "Composes her Piano Concerto in A minor, Op. 7",
-              "Marries Robert Schumann against her father's fierce opposition",
-              "Performs her final public concert at age 72"
-            ],
-            "fact": "Clara Schumann's performing career spanned over 60 years. After Robert's death in 1856, she became the family's sole breadwinner, supporting seven children through concerts across Europe and championing Brahms's music."
+            "type": "minigame",
+            "game": "cipher",
+            "seed": 1001,
+            "fact": "Clara Schumann's performing career spanned over 60 years. After Robert's death in 1856, she became the family's sole breadwinner, supporting seven children through concerts across Europe and championing Brahms's music.",
+            "autogen": true,
+            "configId": "morse-telegraph",
+            "params": {
+              "title": "Arrange these milestones of Clara Schumann's",
+              "intro": "Arrange these milestones of Clara Schumann's life in chronological order:",
+              "mode": "caesar",
+              "plaintext": "FIRST PUBLIC CONCERT AT AGE IN"
+            },
+            "instruction": "Arrange these milestones of Clara Schumann's life in chronological order: The answer travels in cipher — turn the wheel until it reads."
           }
         }
       ]
@@ -180,10 +184,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "truefalse",
-            "statement": "Robert Schumann permanently damaged his right hand by using a mechanical device he invented to strengthen his fingers faster.",
-            "correct": true,
-            "fact": "Schumann's finger-strengthening apparatus held some fingers stationary while exercising others. It permanently injured his right hand, ending his piano career and redirecting him entirely to composition and music criticism."
+            "type": "minigame",
+            "game": "logicgate",
+            "seed": 1002,
+            "fact": "Schumann's finger-strengthening apparatus held some fingers stationary while exercising others. It permanently injured his right hand, ending his piano career and redirecting him entirely to composition and music criticism.",
+            "autogen": true,
+            "configId": "lovelace-engine",
+            "params": {
+              "title": "Robert Schumann permanently damaged his right",
+              "intro": "Robert Schumann permanently damaged his right hand by using a mechanical device he invented to strengthen his fingers faster."
+            },
+            "instruction": "Robert Schumann permanently damaged his right hand by using a mechanical device he invented to strengthen his fingers faster. Wire the gates until the circuit agrees with the table on every row."
           }
         },
         {

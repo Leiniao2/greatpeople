@@ -54,17 +54,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "What is the significance of Apple's 1984 Macintosh commercial?",
-            "options": [
-              "It was the first TV ad for a computer",
-              "Directed by Ridley Scott, it aired during the Super Bowl and is considered one of the greatest ads ever",
-              "It featured Steve Jobs himself",
-              "It was banned in most countries"
-            ],
-            "answer": 1,
+            "type": "minigame",
+            "game": "sudoku",
+            "seed": 1022,
             "fact": "Directed by Ridley Scott and aired once during Super Bowl XVIII (1984), the '1984' Macintosh commercial depicted Apple as a liberator smashing IBM's Orwellian conformity. It is credited with transforming advertising into a medium for brand mythology.",
-            "countdown": 10
+            "autogen": true,
+            "configId": "eisenstein-grid",
+            "params": {
+              "title": "What is the significance of Apple's",
+              "intro": "What is the significance of Apple's 1984 Macintosh commercial?"
+            },
+            "instruction": "What is the significance of Apple's 1984 Macintosh commercial? Order the grid as the record was ordered — every row, column and box complete."
           }
         },
         {
@@ -76,16 +76,23 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "sort",
-            "question": "Arrange these landmark Apple product launches in chronological order:",
-            "items": [
-              "Apple Macintosh — the first mass-market personal computer with a graphical interface and mouse (1984)",
-              "iMac — Jobs' first major product on returning to Apple, rescuing it from bankruptcy (1998)",
-              "iPod — '1,000 songs in your pocket,' transforming the music industry (2001)",
-              "iPhone — the smartphone that created the mobile internet age (2007)",
-              "iPad — the tablet that defined a new computing category (2010)"
-            ],
-            "fact": "Each Apple product under Jobs didn't just sell — it created or redefined an entire category. The Mac made personal computing accessible; the iPod destroyed the CD model; the iPhone made every previous phone obsolete. Jobs launched five industry-defining products in 26 years."
+            "type": "minigame",
+            "game": "typeset",
+            "seed": 1023,
+            "fact": "Each Apple product under Jobs didn't just sell — it created or redefined an entire category. The Mac made personal computing accessible; the iPod destroyed the CD model; the iPhone made every previous phone obsolete. Jobs launched five industry-defining products in 26 years.",
+            "autogen": true,
+            "configId": "franklin-gazette",
+            "params": {
+              "title": "Arrange these landmark Apple product launches",
+              "intro": "Arrange these landmark Apple product launches in chronological order:",
+              "lines": [
+                "APPLE",
+                "APPLE MACINTOSH",
+                "APPLE MACINTOSH THE",
+                "APPLE MACINTOSH THE"
+              ]
+            },
+            "instruction": "Arrange these landmark Apple product launches in chronological order: Set the answer in movable type — mirrored, right to left."
           }
         }
       ]
@@ -118,11 +125,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "truefalse",
-            "statement": "After being pushed out of Apple in 1985, Jobs founded NeXT Computer and co-acquired Pixar — both of which later transformed their respective industries.",
-            "correct": true,
-            "countdown": 10,
-            "fact": "Jobs' exile produced two revolutions. NeXT's operating system became the foundation of macOS when Apple acquired NeXT in 1997 — bringing Jobs back. Pixar, bought from George Lucas for $10 million in 1986, produced Toy Story (1995), the first fully computer-animated feature film. Disney acquired Pixar for $7.4 billion in 2006, making Jobs Disney's largest individual shareholder."
+            "type": "minigame",
+            "game": "rhythm",
+            "seed": 1024,
+            "fact": "Jobs' exile produced two revolutions. NeXT's operating system became the foundation of macOS when Apple acquired NeXT in 1997 — bringing Jobs back. Pixar, bought from George Lucas for $10 million in 1986, produced Toy Story (1995), the first fully computer-animated feature film. Disney acquired Pixar for $7.4 billion in 2006, making Jobs Disney's largest individual shareholder.",
+            "autogen": true,
+            "configId": "bach-fugue",
+            "params": {
+              "title": "After being pushed out of Apple",
+              "intro": "After being pushed out of Apple in 1985, Jobs founded NeXT Computer and co-acquired Pixar — both of which later transformed their respective industries."
+            },
+            "instruction": "After being pushed out of Apple in 1985, Jobs founded NeXT Computer and co-acquired Pixar — both of which later transformed their respective industries. Learn the phrase and play it back, note for note."
           }
         }
       ]

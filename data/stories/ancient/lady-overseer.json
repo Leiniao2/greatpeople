@@ -27,17 +27,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "Peseshet held the title 'Lady Overseer of Female Physicians.' What was extraordinary about this?",
-            "options": [
-              "She performed surgery without tools",
-              "She was the first woman to hold an administrative medical title in recorded history",
-              "She refused to treat men",
-              "She practiced medicine for free"
-            ],
-            "answer": 1,
+            "type": "minigame",
+            "game": "rhythm",
+            "seed": 1024,
             "fact": "Peseshet (c. 2500–2450 BCE) is the earliest known female medical administrator in history. Her title 'Imy-r swnwt' — 'Lady Overseer of Female Physicians' — indicates she supervised a group of female medical practitioners, making her a pioneering figure in both medicine and women's leadership.",
-            "countdown": 10
+            "autogen": true,
+            "configId": "court-drums",
+            "params": {
+              "title": "Peseshet held the title 'Lady Overseer",
+              "intro": "Peseshet held the title 'Lady Overseer of Female Physicians.' What was extraordinary about this?"
+            },
+            "instruction": "Peseshet held the title 'Lady Overseer of Female Physicians.' What was extraordinary about this? Learn the phrase and play it back, note for note."
           }
         }
       ]
@@ -60,15 +60,19 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "sort",
-            "question": "Arrange these developments in ancient medicine from oldest to most recent:",
-            "items": [
-              "Peseshet serves as Lady Overseer of Female Physicians in Egypt (c. 2400 BCE)",
-              "The Ebers Papyrus compiles 700 medical remedies, including treatments for crocodile bites (c. 1550 BCE)",
-              "Hippocrates founds a school of rational medicine on the island of Cos (c. 460 BCE)",
-              "Galen of Pergamon synthesises ancient medical knowledge into a system used for 1,400 years (c. 160 CE)"
-            ],
-            "fact": "Peseshet predates Hippocrates — the 'Father of Medicine' — by nearly 2,000 years. Her title 'Lady Overseer of Female Physicians' implies there were enough women doctors to require an administrator, suggesting female medical practice was established, not exceptional."
+            "type": "minigame",
+            "game": "cipher",
+            "seed": 1025,
+            "fact": "Peseshet predates Hippocrates — the 'Father of Medicine' — by nearly 2,000 years. Her title 'Lady Overseer of Female Physicians' implies there were enough women doctors to require an administrator, suggesting female medical practice was established, not exceptional.",
+            "autogen": true,
+            "configId": "caesar-gaul",
+            "params": {
+              "title": "Arrange these developments in ancient medicine",
+              "intro": "Arrange these developments in ancient medicine from oldest to most recent:",
+              "mode": "caesar",
+              "plaintext": "PESESHET SERVES AS LADY OVERSEER"
+            },
+            "instruction": "Arrange these developments in ancient medicine from oldest to most recent: The answer travels in cipher — turn the wheel until it reads."
           }
         }
       ]
@@ -87,11 +91,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "truefalse",
-            "statement": "Peseshet's title appears in the tomb of her son Akhethetep at Giza, not in her own tomb.",
-            "correct": true,
-            "countdown": 10,
-            "fact": "We know of Peseshet entirely through a false door stele in her son's tomb at Giza. This was a common way for high-status women to be memorialized. The inscription preserves for 4,500 years the name of the world's first known female physician."
+            "type": "minigame",
+            "game": "maze",
+            "seed": 1026,
+            "fact": "We know of Peseshet entirely through a false door stele in her son's tomb at Giza. This was a common way for high-status women to be memorialized. The inscription preserves for 4,500 years the name of the world's first known female physician.",
+            "autogen": true,
+            "configId": "pyramid-deep",
+            "params": {
+              "title": "Peseshet's title appears in the tomb",
+              "subtitle": "Peseshet's title appears in the tomb of her son Akhethetep at Giza, not in her own tomb."
+            },
+            "instruction": "Peseshet's title appears in the tomb of her son Akhethetep at Giza, not in her own tomb. The way to the answer runs through these passages — find the exit."
           }
         }
       ]

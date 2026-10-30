@@ -33,16 +33,19 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "Louis XVI was how old when he was crowned King of France?",
-            "options": [
-              "15",
-              "17",
-              "20",
-              "25"
-            ],
-            "answer": 2,
-            "fact": "Louis XVI became king at age 20 in 1774, inheriting a state near bankruptcy from his grandfather Louis XV. He was a skilled locksmith and passionate map-maker — a careful craftsman in a role that demanded bold political vision."
+            "type": "minigame",
+            "game": "cipher",
+            "seed": 1001,
+            "fact": "Louis XVI became king at age 20 in 1774, inheriting a state near bankruptcy from his grandfather Louis XV. He was a skilled locksmith and passionate map-maker — a careful craftsman in a role that demanded bold political vision.",
+            "autogen": true,
+            "configId": "morse-telegraph",
+            "params": {
+              "title": "Louis XVI was how old when",
+              "intro": "Louis XVI was how old when he was crowned King of France?",
+              "mode": "caesar",
+              "plaintext": ""
+            },
+            "instruction": "Louis XVI was how old when he was crowned King of France? The answer travels in cipher — turn the wheel until it reads."
           }
         }
       ]
@@ -103,11 +106,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "truefalse",
-            "statement": "When the Bastille was stormed on July 14, 1789, it held only seven prisoners — but as a symbol of royal tyranny, its fall ignited the French Revolution.",
-            "correct": true,
-            "countdown": 10,
-            "fact": "The Bastille held just 7 prisoners on July 14, 1789: four forgers, two men committed at their families' request, and one nobleman. But as a symbol of royal arbitrary power, its fall electrified France. The governor's head was paraded through Paris on a pike. Today Bastille Day is France's national holiday."
+            "type": "minigame",
+            "game": "sudoku",
+            "seed": 1005,
+            "fact": "The Bastille held just 7 prisoners on July 14, 1789: four forgers, two men committed at their families' request, and one nobleman. But as a symbol of royal arbitrary power, its fall electrified France. The governor's head was paraded through Paris on a pike. Today Bastille Day is France's national holiday.",
+            "autogen": true,
+            "configId": "mendel-grid",
+            "params": {
+              "title": "When the Bastille was stormed on",
+              "intro": "When the Bastille was stormed on July 14, 1789, it held only seven prisoners — but as a symbol of royal tyranny, its fall ignited the French Revolution."
+            },
+            "instruction": "When the Bastille was stormed on July 14, 1789, it held only seven prisoners — but as a symbol of royal tyranny, its fall ignited the French Revolution. Order the grid as the record was ordered — every row, column and box complete."
           }
         }
       ]

@@ -27,16 +27,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "sort",
-            "question": "Arrange these milestones of Jane Goodall's career in chronological order:",
-            "items": [
-              "Goodall arrives at Gombe Stream in Tanzania, beginning her chimpanzee research (1960)",
-              "Goodall observes chimpanzees making and using tools — overturning the definition of humanity (1960)",
-              "Goodall earns her PhD from Cambridge University without an undergraduate degree (1965)",
-              "Goodall founds the Jane Goodall Institute to protect chimpanzees and their habitats (1977)",
-              "Goodall launches the Roots & Shoots youth environmental programme (1991)"
-            ],
-            "fact": "Jane Goodall arrived at Gombe with no scientific degree — just a passion for animals and a naturalist's notebook. Her 60+ years of continuous research at Gombe is the longest running wildlife study in history, revealing that chimpanzees have personalities, cultures, and emotions."
+            "type": "minigame",
+            "game": "logicgate",
+            "seed": 1013,
+            "fact": "Jane Goodall arrived at Gombe with no scientific degree — just a passion for animals and a naturalist's notebook. Her 60+ years of continuous research at Gombe is the longest running wildlife study in history, revealing that chimpanzees have personalities, cultures, and emotions.",
+            "autogen": true,
+            "configId": "turing-tape",
+            "params": {
+              "title": "Arrange these milestones of Jane Goodall's",
+              "intro": "Arrange these milestones of Jane Goodall's career in chronological order:"
+            },
+            "instruction": "Arrange these milestones of Jane Goodall's career in chronological order: Wire the gates until the circuit agrees with the table on every row."
           }
         }
       ]
@@ -59,17 +60,19 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "What discovery by Goodall overturned the belief that only humans use tools?",
-            "options": [
-              "Chimps building shelters",
-              "Chimps using sticks to extract termites from mounds",
-              "Chimps painting on trees",
-              "Chimps using stones to crack nuts"
-            ],
-            "answer": 1,
+            "type": "minigame",
+            "game": "cipher",
+            "seed": 1014,
             "fact": "In 1960, Goodall observed chimpanzees stripping leaves from twigs to fish termites from mounds — the first recorded instance of animals making and using tools. When she reported this to Louis Leakey, he replied: 'Now we must redefine tool, redefine man, or accept chimpanzees as humans.'",
-            "countdown": 10
+            "autogen": true,
+            "configId": "al-kindi-frequency",
+            "params": {
+              "title": "What discovery by Goodall overturned the",
+              "intro": "What discovery by Goodall overturned the belief that only humans use tools?",
+              "mode": "caesar",
+              "plaintext": "CHIMPS USING STICKS TO EXTRACT"
+            },
+            "instruction": "What discovery by Goodall overturned the belief that only humans use tools? The answer travels in cipher — turn the wheel until it reads."
           }
         }
       ]
@@ -125,11 +128,16 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "truefalse",
-            "statement": "Jane Goodall's research at Gombe Stream, begun in 1960, is the longest-running continuous wildlife field study in history.",
-            "correct": true,
-            "countdown": 10,
-            "fact": "More than 60 years after Goodall first set up camp at Gombe, researchers continue her work, following multiple generations of chimpanzees. The study has revealed the transmission of cultural practices across generations and the devastating impact of habitat loss — no other wildlife study has tracked a single population for so long."
+            "type": "minigame",
+            "game": "matchthree",
+            "seed": 1015,
+            "fact": "More than 60 years after Goodall first set up camp at Gombe, researchers continue her work, following multiple generations of chimpanzees. The study has revealed the transmission of cultural practices across generations and the devastating impact of habitat loss — no other wildlife study has tracked a single population for so long.",
+            "autogen": true,
+            "configId": "mughal-gems",
+            "params": {
+              "title": "Jane Goodall's research at Gombe Stream,"
+            },
+            "instruction": "Jane Goodall's research at Gombe Stream, begun in 1960, is the longest-running continuous wildlife field study in history. Gather what the story needs: match the goods until the tally is met."
           }
         },
         {

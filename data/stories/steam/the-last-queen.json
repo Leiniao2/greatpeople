@@ -27,10 +27,16 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "truefalse",
-            "statement": "Marie Antoinette famously said 'Let them eat cake' when told the French people had no bread.",
-            "correct": false,
-            "fact": "There is no historical evidence Marie Antoinette said this. The phrase appears in Rousseau's Confessions before she arrived in France, attributed anonymously. It was likely propaganda — useful for portraying her as callously out of touch with the poor."
+            "type": "minigame",
+            "game": "matchthree",
+            "seed": 1015,
+            "fact": "There is no historical evidence Marie Antoinette said this. The phrase appears in Rousseau's Confessions before she arrived in France, attributed anonymously. It was likely propaganda — useful for portraying her as callously out of touch with the poor.",
+            "autogen": true,
+            "configId": "hanseatic-runes",
+            "params": {
+              "title": "Marie Antoinette famously said 'Let them"
+            },
+            "instruction": "Marie Antoinette famously said 'Let them eat cake' when told the French people had no bread. Gather what the story needs: match the goods until the tally is met."
           }
         }
       ]
