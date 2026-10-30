@@ -27,17 +27,19 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "Which composer served as Brahms' most important early mentor and champion?",
-            "options": [
-              "Robert Schumann",
-              "Franz Liszt",
-              "Richard Wagner",
-              "Felix Mendelssohn"
-            ],
-            "answer": 0,
-            "countdown": 10,
-            "fact": "Robert Schumann heard the 20-year-old Brahms play in 1853 and immediately published an article declaring him 'the one called to give ideal expression to the times.' It was an extraordinary endorsement that launched Brahms' career — and also set impossible expectations that would haunt him for decades."
+            "type": "minigame",
+            "game": "cipher",
+            "seed": 1001,
+            "fact": "Robert Schumann heard the 20-year-old Brahms play in 1853 and immediately published an article declaring him 'the one called to give ideal expression to the times.' It was an extraordinary endorsement that launched Brahms' career — and also set impossible expectations that would haunt him for decades.",
+            "autogen": true,
+            "configId": "morse-telegraph",
+            "params": {
+              "title": "Which composer served as Brahms' most",
+              "intro": "Which composer served as Brahms' most important early mentor and champion?",
+              "mode": "caesar",
+              "plaintext": "ROBERT SCHUMANN"
+            },
+            "instruction": "Which composer served as Brahms' most important early mentor and champion? The answer travels in cipher — turn the wheel until it reads."
           }
         }
       ]
@@ -54,11 +56,23 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "truefalse",
-            "statement": "Brahms completed his First Symphony quickly, finishing it within a year of beginning it.",
-            "correct": false,
-            "countdown": 10,
-            "fact": "Brahms labored over his First Symphony for 21 years, from 1854 to 1876. He was paralyzed by the shadow of Beethoven — convinced that any symphony he wrote would be compared unfavorably to Beethoven's nine. When it finally premiered, the conductor Hans von Bülow called it 'Beethoven's Tenth' — the highest compliment and a backhanded burden."
+            "type": "minigame",
+            "game": "typeset",
+            "seed": 1005,
+            "fact": "Brahms labored over his First Symphony for 21 years, from 1854 to 1876. He was paralyzed by the shadow of Beethoven — convinced that any symphony he wrote would be compared unfavorably to Beethoven's nine. When it finally premiered, the conductor Hans von Bülow called it 'Beethoven's Tenth' — the highest compliment and a backhanded burden.",
+            "autogen": true,
+            "configId": "franklin-gazette",
+            "params": {
+              "title": "Brahms completed his First Symphony quickly,",
+              "intro": "Brahms completed his First Symphony quickly, finishing it within a year of beginning it.",
+              "lines": [
+                "BRAHMS",
+                "BRAHMS LABORED",
+                "BRAHMS LABORED OVER",
+                "BRAHMS LABORED OVER HIS"
+              ]
+            },
+            "instruction": "Brahms completed his First Symphony quickly, finishing it within a year of beginning it. Set the answer in movable type — mirrored, right to left."
           }
         }
       ]
@@ -77,17 +91,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "sort",
-            "question": "Arrange these milestones of Brahms' life in chronological order:",
-            "items": [
-              "Brahms meets Robert Schumann, who immediately champions him publicly",
-              "Robert Schumann is committed to a sanatorium — Brahms supports Clara",
-              "Brahms moves to Vienna, his permanent home for the rest of his life",
-              "His German Requiem premieres to international acclaim",
-              "Brahms finally completes and premieres his First Symphony",
-              "He destroys manuscripts he deems unworthy and retires from composition"
-            ],
-            "fact": "Brahms was his own harshest critic. He destroyed dozens of works he judged inferior, including a complete string quintet and multiple early symphonies. What survives — four symphonies, two piano concertos, the German Requiem, the Lullaby — represents only what passed his merciless standard."
+            "type": "minigame",
+            "game": "sudoku",
+            "seed": 1006,
+            "fact": "Brahms was his own harshest critic. He destroyed dozens of works he judged inferior, including a complete string quintet and multiple early symphonies. What survives — four symphonies, two piano concertos, the German Requiem, the Lullaby — represents only what passed his merciless standard.",
+            "autogen": true,
+            "configId": "lorentz-grid",
+            "params": {
+              "title": "Arrange these milestones of Brahms' life",
+              "intro": "Arrange these milestones of Brahms' life in chronological order:"
+            },
+            "instruction": "Arrange these milestones of Brahms' life in chronological order: Order the grid as the record was ordered — every row, column and box complete."
           }
         }
       ]

@@ -98,10 +98,16 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "truefalse",
-            "statement": "Ferdinand and Isabella funded Columbus' 1492 voyage primarily because they believed the Earth was flat.",
-            "correct": false,
-            "fact": "Educated Europeans had known the Earth was spherical since ancient Greece. The debate was about the Earth's SIZE — Columbus's critics correctly argued the ocean was too wide. He survived only because the Americas existed where he wrongly placed Asia."
+            "type": "minigame",
+            "game": "matchthree",
+            "seed": 1003,
+            "fact": "Educated Europeans had known the Earth was spherical since ancient Greece. The debate was about the Earth's SIZE — Columbus's critics correctly argued the ocean was too wide. He survived only because the Americas existed where he wrongly placed Asia.",
+            "autogen": true,
+            "configId": "lisbon-spices",
+            "params": {
+              "title": "Ferdinand and Isabella funded Columbus' 1492"
+            },
+            "instruction": "Ferdinand and Isabella funded Columbus' 1492 voyage primarily because they believed the Earth was flat. Gather what the story needs: match the goods until the tally is met."
           }
         },
         {

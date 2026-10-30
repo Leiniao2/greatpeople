@@ -105,7 +105,7 @@ describe('story data — challenges', () => {
   it('reports the quiz-style share (target ≤ 5% once all eras are authored)', () => {
     const quiz = all.filter(({ ch }) => QUIZ_TYPES.has(ch.type)).length
     const share = quiz / all.length
-    // Tightened era by era by scripts/validate-stories.mjs; here only sanity.
-    expect(share).toBeLessThanOrEqual(0.5)
+    // scripts/validate-stories.mjs enforces this per era as well.
+    expect(share).toBeLessThanOrEqual(0.05)
   })
 })

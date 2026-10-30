@@ -24,17 +24,23 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "Which two kingdoms did Queen Anna Nzinga rule over her lifetime?",
-            "options": [
-              "Ndongo and Matamba",
-              "Kongo and Loango",
-              "Benin and Dahomey",
-              "Oyo and Ashanti"
-            ],
-            "answer": 0,
-            "countdown": 10,
-            "fact": "Nzinga was born into the royal family of Ndongo (in modern Angola) and became its ruler in the 1620s. When Portuguese pressure forced her from Ndongo, she conquered the neighboring kingdom of Matamba and turned it into a military powerhouse — ruling both territories into her eighties."
+            "type": "minigame",
+            "game": "typeset",
+            "seed": 1016,
+            "fact": "Nzinga was born into the royal family of Ndongo (in modern Angola) and became its ruler in the 1620s. When Portuguese pressure forced her from Ndongo, she conquered the neighboring kingdom of Matamba and turned it into a military powerhouse — ruling both territories into her eighties.",
+            "autogen": true,
+            "configId": "franklin-gazette",
+            "params": {
+              "title": "Which two kingdoms did Queen Anna",
+              "intro": "Which two kingdoms did Queen Anna Nzinga rule over her lifetime?",
+              "lines": [
+                "NDONGO AND",
+                "NDONGO AND",
+                "NDONGO AND MATAMBA",
+                "NDONGO AND MATAMBA"
+              ]
+            },
+            "instruction": "Which two kingdoms did Queen Anna Nzinga rule over her lifetime? Set the answer in movable type — mirrored, right to left."
           }
         }
       ]
@@ -51,11 +57,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "truefalse",
-            "statement": "Anna Nzinga ultimately surrendered her kingdom to the Portuguese in exchange for peace.",
-            "correct": false,
-            "countdown": 10,
-            "fact": "Nzinga never surrendered. She fought the Portuguese for over thirty years, forging alliances with the Dutch, leading guerrilla campaigns from the jungle, and negotiating with extraordinary skill. At age 80, she signed a peace treaty on her own terms. She died in her eighties, having protected Matamba's independence to the end."
+            "type": "minigame",
+            "game": "sudoku",
+            "seed": 1017,
+            "fact": "Nzinga never surrendered. She fought the Portuguese for over thirty years, forging alliances with the Dutch, leading guerrilla campaigns from the jungle, and negotiating with extraordinary skill. At age 80, she signed a peace treaty on her own terms. She died in her eighties, having protected Matamba's independence to the end.",
+            "autogen": true,
+            "configId": "mendel-grid",
+            "params": {
+              "title": "Anna Nzinga ultimately surrendered her kingdom",
+              "intro": "Anna Nzinga ultimately surrendered her kingdom to the Portuguese in exchange for peace."
+            },
+            "instruction": "Anna Nzinga ultimately surrendered her kingdom to the Portuguese in exchange for peace. Order the grid as the record was ordered — every row, column and box complete."
           }
         }
       ]
@@ -72,17 +84,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "sort",
-            "question": "Arrange the key events of Anna Nzinga's life in order:",
-            "items": [
-              "Nzinga negotiates with the Portuguese governor in Luanda — famously sitting on an attendant's back when denied a chair",
-              "She is baptized as a Christian, taking the name Anna, as a diplomatic strategy",
-              "Portuguese forces drive her from Ndongo — she retreats and reorganizes",
-              "Nzinga conquers Matamba and builds a powerful military state",
-              "She allies with the Dutch and launches campaigns against Portuguese slave traders",
-              "At nearly eighty, she signs a peace treaty and rules Matamba until her death"
-            ],
-            "fact": "The story of Nzinga refusing a chair during negotiations — and instead using one of her attendants as a throne — became one of history's most celebrated acts of diplomatic defiance. Whether literally true or legendary, it perfectly captures her method: she refused the terms of any encounter she had not defined herself."
+            "type": "minigame",
+            "game": "maze",
+            "seed": 1018,
+            "fact": "The story of Nzinga refusing a chair during negotiations — and instead using one of her attendants as a throne — became one of history's most celebrated acts of diplomatic defiance. Whether literally true or legendary, it perfectly captures her method: she refused the terms of any encounter she had not defined herself.",
+            "autogen": true,
+            "configId": "long-march",
+            "params": {
+              "title": "Arrange the key events of Anna",
+              "subtitle": "Arrange the key events of Anna Nzinga's life in order:"
+            },
+            "instruction": "Arrange the key events of Anna Nzinga's life in order: The way to the answer runs through these passages — find the exit."
           }
         },
         {

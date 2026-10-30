@@ -27,10 +27,23 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "truefalse",
-            "statement": "Titian continued painting actively until his death at approximately 90 years of age — still accepting royal commissions.",
-            "correct": true,
-            "fact": "Titian (c. 1488–1576) worked for nearly 70 years, painting for Holy Roman Emperor Charles V, Philip II of Spain, and Pope Paul III. His late style — loose, almost abstract brushwork — was centuries ahead of its time."
+            "type": "minigame",
+            "game": "typeset",
+            "seed": 1001,
+            "fact": "Titian (c. 1488–1576) worked for nearly 70 years, painting for Holy Roman Emperor Charles V, Philip II of Spain, and Pope Paul III. His late style — loose, almost abstract brushwork — was centuries ahead of its time.",
+            "autogen": true,
+            "configId": "gutenberg-bible",
+            "params": {
+              "title": "Titian continued painting actively until his",
+              "intro": "Titian continued painting actively until his death at approximately 90 years of age — still accepting royal commissions.",
+              "lines": [
+                "TITIAN",
+                "TITIAN CONTINUED",
+                "TITIAN CONTINUED",
+                "TITIAN CONTINUED"
+              ]
+            },
+            "instruction": "Titian continued painting actively until his death at approximately 90 years of age — still accepting royal commissions. Set the answer in movable type — mirrored, right to left."
           }
         },
         {

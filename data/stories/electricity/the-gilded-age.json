@@ -27,10 +27,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "truefalse",
-            "statement": "Andrew Mellon served as US Treasury Secretary under three consecutive presidents.",
-            "correct": true,
-            "fact": "Andrew Mellon served as Treasury Secretary under Harding, Coolidge, and Hoover (1921–1932) — the longest tenure since Alexander Hamilton. He oversaw the Roaring Twenties boom and the beginning of the Great Depression, for which he was blamed."
+            "type": "minigame",
+            "game": "logicgate",
+            "seed": 1020,
+            "fact": "Andrew Mellon served as Treasury Secretary under Harding, Coolidge, and Hoover (1921–1932) — the longest tenure since Alexander Hamilton. He oversaw the Roaring Twenties boom and the beginning of the Great Depression, for which he was blamed.",
+            "autogen": true,
+            "configId": "shannon-relays",
+            "params": {
+              "title": "Andrew Mellon served as US Treasury",
+              "intro": "Andrew Mellon served as US Treasury Secretary under three consecutive presidents."
+            },
+            "instruction": "Andrew Mellon served as US Treasury Secretary under three consecutive presidents. Wire the gates until the circuit agrees with the table on every row."
           }
         }
       ]

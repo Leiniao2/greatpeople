@@ -27,17 +27,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "In which 1986 World Cup quarterfinal match did Maradona score both the 'Hand of God' and 'Goal of the Century'?",
-            "options": [
-              "Argentina vs Brazil",
-              "Argentina vs England",
-              "Argentina vs Germany",
-              "Argentina vs Italy"
-            ],
-            "answer": 1,
+            "type": "minigame",
+            "game": "sudoku",
+            "seed": 1010,
             "fact": "In the 1986 World Cup quarterfinal, Maradona scored twice against England — first with a handball he called 'the Hand of God,' then with a dribble past five players that was later voted the Goal of the Century. Argentina won 2–1.",
-            "countdown": 10
+            "autogen": true,
+            "configId": "eisenstein-grid",
+            "params": {
+              "title": "In which 1986 World Cup quarterfinal",
+              "intro": "In which 1986 World Cup quarterfinal match did Maradona score both the 'Hand of God' and 'Goal of the Century'?"
+            },
+            "instruction": "In which 1986 World Cup quarterfinal match did Maradona score both the 'Hand of God' and 'Goal of the Century'? Order the grid as the record was ordered — every row, column and box complete."
           }
         }
       ]
@@ -60,16 +60,23 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "sort",
-            "question": "Arrange the key moments of Diego Maradona's life in chronological order:",
-            "items": [
-              "Maradona makes his professional debut for Argentinos Juniors at age 15 (1976)",
-              "Maradona is controversially omitted from Argentina's World Cup squad — the team wins without him (1978)",
-              "Maradona leads Argentina to the World Cup, scoring both the 'Hand of God' and the 'Goal of the Century' (1986)",
-              "Maradona leads Napoli to their first-ever Serie A title (1987)",
-              "Maradona receives a 15-month ban from football after testing positive for cocaine (1991)"
-            ],
-            "fact": "Maradona's career compressed triumph and tragedy into a single volcanic life. He carried Argentina and Napoli to heights neither had reached before — and his personal demons brought him just as low. The 1978 World Cup, won without him, haunted him; 1986, with him at the centre, is the defining image of his legacy."
+            "type": "minigame",
+            "game": "typeset",
+            "seed": 1011,
+            "fact": "Maradona's career compressed triumph and tragedy into a single volcanic life. He carried Argentina and Napoli to heights neither had reached before — and his personal demons brought him just as low. The 1978 World Cup, won without him, haunted him; 1986, with him at the centre, is the defining image of his legacy.",
+            "autogen": true,
+            "configId": "franklin-gazette",
+            "params": {
+              "title": "Arrange the key moments of Diego",
+              "intro": "Arrange the key moments of Diego Maradona's life in chronological order:",
+              "lines": [
+                "MARADONA",
+                "MARADONA MAKES",
+                "MARADONA MAKES HIS",
+                "MARADONA MAKES HIS"
+              ]
+            },
+            "instruction": "Arrange the key moments of Diego Maradona's life in chronological order: Set the answer in movable type — mirrored, right to left."
           }
         }
       ]
@@ -125,11 +132,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "truefalse",
-            "statement": "Diego Maradona was excluded from Argentina's 1978 World Cup squad — which Argentina went on to win — because the coach considered him too young at 17.",
-            "correct": true,
-            "countdown": 10,
-            "fact": "Argentina coach César Luis Menotti left Maradona out of the 1978 squad, saying he was too young to carry the pressure. Argentina won the tournament on home soil. Maradona said the exclusion 'broke my heart' — and that winning the 1986 World Cup finally healed the wound. In 1978, a 17-year-old sat out history; in 1986, a 25-year-old made it."
+            "type": "minigame",
+            "game": "rhythm",
+            "seed": 1012,
+            "fact": "Argentina coach César Luis Menotti left Maradona out of the 1978 squad, saying he was too young to carry the pressure. Argentina won the tournament on home soil. Maradona said the exclusion 'broke my heart' — and that winning the 1986 World Cup finally healed the wound. In 1978, a 17-year-old sat out history; in 1986, a 25-year-old made it.",
+            "autogen": true,
+            "configId": "bach-fugue",
+            "params": {
+              "title": "Diego Maradona was excluded from Argentina's",
+              "intro": "Diego Maradona was excluded from Argentina's 1978 World Cup squad — which Argentina went on to win — because the coach considered him too young at 17."
+            },
+            "instruction": "Diego Maradona was excluded from Argentina's 1978 World Cup squad — which Argentina went on to win — because the coach considered him too young at 17. Learn the phrase and play it back, note for note."
           }
         }
       ]

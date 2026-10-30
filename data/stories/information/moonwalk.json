@@ -27,16 +27,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "Michael Jackson's 'Thriller' is the best-selling album of all time. Approximately how many copies has it sold?",
-            "options": [
-              "20 million",
-              "50 million",
-              "66 million",
-              "100 million"
-            ],
-            "answer": 2,
-            "fact": "Thriller (1982) has sold an estimated 66–70 million copies worldwide — the best-selling album in history. It produced seven Top 10 singles and won a record eight Grammy Awards in one night."
+            "type": "minigame",
+            "game": "logicgate",
+            "seed": 1007,
+            "fact": "Thriller (1982) has sold an estimated 66–70 million copies worldwide — the best-selling album in history. It produced seven Top 10 singles and won a record eight Grammy Awards in one night.",
+            "autogen": true,
+            "configId": "turing-tape",
+            "params": {
+              "title": "Michael Jackson's 'Thriller' is the best-selling",
+              "intro": "Michael Jackson's 'Thriller' is the best-selling album of all time. Approximately how many copies has it sold?"
+            },
+            "instruction": "Michael Jackson's 'Thriller' is the best-selling album of all time. Approximately how many copies has it sold? Wire the gates until the circuit agrees with the table on every row."
           }
         }
       ]
@@ -76,15 +77,19 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "sort",
-            "question": "Arrange these milestones of Michael Jackson's career in chronological order:",
-            "items": [
-              "Off the Wall establishes him as a solo superstar",
-              "Thriller becomes the best-selling album in history",
-              "Moonwalk debut on the Motown 25 television special",
-              "Earth Song released — his most overtly political statement"
-            ],
-            "fact": "Jackson's arc — from Off the Wall's sophistication (1979) to Thriller's global domination (1982) to the moonwalk's cultural moment (1983) to Earth Song's social conscience (1995) — spanned every register of popular music. He is the only artist to have debuted a dance move that became a permanent part of world culture."
+            "type": "minigame",
+            "game": "cipher",
+            "seed": 1008,
+            "fact": "Jackson's arc — from Off the Wall's sophistication (1979) to Thriller's global domination (1982) to the moonwalk's cultural moment (1983) to Earth Song's social conscience (1995) — spanned every register of popular music. He is the only artist to have debuted a dance move that became a permanent part of world culture.",
+            "autogen": true,
+            "configId": "al-kindi-frequency",
+            "params": {
+              "title": "Arrange these milestones of Michael Jackson's",
+              "intro": "Arrange these milestones of Michael Jackson's career in chronological order:",
+              "mode": "caesar",
+              "plaintext": "OFF THE WALL ESTABLISHES HIM AS"
+            },
+            "instruction": "Arrange these milestones of Michael Jackson's career in chronological order: The answer travels in cipher — turn the wheel until it reads."
           }
         }
       ]
@@ -97,10 +102,16 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "truefalse",
-            "statement": "Michael Jackson invented the moonwalk dance move.",
-            "correct": false,
-            "fact": "The sliding step had existed in various forms since the 1930s and was used by artists including Cab Calloway, Marcel Marceau, and Jeffrey Daniel. Jackson perfected and popularised it on Motown 25 (March 1983), but he credited James Brown and Fred Astaire as his inspirations — not himself as an inventor."
+            "type": "minigame",
+            "game": "matchthree",
+            "seed": 1009,
+            "fact": "The sliding step had existed in various forms since the 1930s and was used by artists including Cab Calloway, Marcel Marceau, and Jeffrey Daniel. Jackson perfected and popularised it on Motown 25 (March 1983), but he credited James Brown and Fred Astaire as his inspirations — not himself as an inventor.",
+            "autogen": true,
+            "configId": "mughal-gems",
+            "params": {
+              "title": "Michael Jackson invented the moonwalk dance"
+            },
+            "instruction": "Michael Jackson invented the moonwalk dance move. Gather what the story needs: match the goods until the tally is met."
           }
         }
       ]

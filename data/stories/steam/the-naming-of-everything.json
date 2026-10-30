@@ -82,15 +82,16 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "sort",
-            "question": "Arrange these milestones in Linnaeus's development of biological classification:",
-            "items": [
-              "Publishes Systema Naturae — the first systematic classification of nature",
-              "Invents binomial nomenclature: every species gets a two-word Latin name",
-              "Names Homo sapiens — placing humans formally in the animal kingdom",
-              "Sends 'apostles' worldwide on voyages with Cook and Banks to collect specimens"
-            ],
-            "fact": "Linnaeus classified 7,700 plant species and 4,400 animal species. His binomial system — genus plus species — replaced unwieldy Latin phrases with clean two-word names still used by every scientist on Earth. Naming Homo sapiens was audacious: placing humanity inside the animal kingdom challenged centuries of theological certainty."
+            "type": "minigame",
+            "game": "matchthree",
+            "seed": 1003,
+            "fact": "Linnaeus classified 7,700 plant species and 4,400 animal species. His binomial system — genus plus species — replaced unwieldy Latin phrases with clean two-word names still used by every scientist on Earth. Naming Homo sapiens was audacious: placing humanity inside the animal kingdom challenged centuries of theological certainty.",
+            "autogen": true,
+            "configId": "hanseatic-runes",
+            "params": {
+              "title": "Arrange these milestones in Linnaeus's development"
+            },
+            "instruction": "Arrange these milestones in Linnaeus's development of biological classification: Gather what the story needs: match the goods until the tally is met."
           }
         }
       ]
@@ -103,11 +104,23 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "truefalse",
-            "statement": "Linnaeus classified humans as Homo sapiens within the order Primates alongside apes and monkeys — which caused considerable controversy in his era.",
-            "correct": true,
-            "countdown": 10,
-            "fact": "When Linnaeus placed humans among the primates in Systema Naturae (1758), critics were outraged. A bishop wrote demanding he separate humans from animals. Linnaeus replied: 'I ask you and the whole world for a generic difference between man and simian that follows from the principles of natural history. I absolutely do not know of one.' Darwin would agree a century later."
+            "type": "minigame",
+            "game": "typeset",
+            "seed": 1004,
+            "fact": "When Linnaeus placed humans among the primates in Systema Naturae (1758), critics were outraged. A bishop wrote demanding he separate humans from animals. Linnaeus replied: 'I ask you and the whole world for a generic difference between man and simian that follows from the principles of natural history. I absolutely do not know of one.' Darwin would agree a century later.",
+            "autogen": true,
+            "configId": "franklin-gazette",
+            "params": {
+              "title": "Linnaeus classified humans as Homo sapiens",
+              "intro": "Linnaeus classified humans as Homo sapiens within the order Primates alongside apes and monkeys — which caused considerable controversy in his era.",
+              "lines": [
+                "LINNAEUS",
+                "LINNAEUS",
+                "LINNAEUS CLASSIFIED",
+                "LINNAEUS CLASSIFIED"
+              ]
+            },
+            "instruction": "Linnaeus classified humans as Homo sapiens within the order Primates alongside apes and monkeys — which caused considerable controversy in his era. Set the answer in movable type — mirrored, right to left."
           }
         },
         {

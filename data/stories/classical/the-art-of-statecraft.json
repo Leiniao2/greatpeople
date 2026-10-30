@@ -27,17 +27,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "Chanakya is also known by which other name?",
-            "options": [
-              "Arjuna",
-              "Kautilya",
-              "Ashoka",
-              "Bhishma"
-            ],
-            "answer": 1,
+            "type": "minigame",
+            "game": "rhythm",
+            "seed": 1012,
             "fact": "Chanakya is also called Kautilya or Vishnugupta. He served as advisor to Chandragupta Maurya, the founder of the Maurya Empire, and authored the Arthashastra — an ancient Indian treatise on statecraft and political economy.",
-            "countdown": 10
+            "autogen": true,
+            "configId": "hildegard-chant",
+            "params": {
+              "title": "Chanakya is also known by which",
+              "intro": "Chanakya is also known by which other name?"
+            },
+            "instruction": "Chanakya is also known by which other name? Learn the phrase and play it back, note for note."
           }
         }
       ]
@@ -60,15 +60,19 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "sort",
-            "question": "Arrange these priorities from Chanakya's Arthashastra for a new king establishing power:",
-            "items": [
-              "Establish a treasury — without wealth, no kingdom can function or defend itself",
-              "Build a reliable and loyal army, well-paid and disciplined",
-              "Form strategic alliances — befriend distant powers against common enemies",
-              "Maintain an intelligence network to detect internal dissent before it grows"
-            ],
-            "fact": "The Arthashastra (c. 300 BCE) is remarkably pragmatic — Chanakya advises a king to plant spies even in his own court, test ministers with temptations, and treat foreign relations as perpetual competition. Its realpolitik predates Machiavelli's The Prince by nearly 1,800 years."
+            "type": "minigame",
+            "game": "cipher",
+            "seed": 1013,
+            "fact": "The Arthashastra (c. 300 BCE) is remarkably pragmatic — Chanakya advises a king to plant spies even in his own court, test ministers with temptations, and treat foreign relations as perpetual competition. Its realpolitik predates Machiavelli's The Prince by nearly 1,800 years.",
+            "autogen": true,
+            "configId": "caesar-gaul",
+            "params": {
+              "title": "Arrange these priorities from Chanakya's Arthashastra",
+              "intro": "Arrange these priorities from Chanakya's Arthashastra for a new king establishing power:",
+              "mode": "caesar",
+              "plaintext": "ESTABLISH A TREASURY WITHOUT"
+            },
+            "instruction": "Arrange these priorities from Chanakya's Arthashastra for a new king establishing power: The answer travels in cipher — turn the wheel until it reads."
           }
         }
       ]
@@ -124,11 +128,23 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "truefalse",
-            "statement": "The Maurya Empire established by Chanakya and Chandragupta eventually controlled nearly the entire Indian subcontinent.",
-            "correct": true,
-            "countdown": 10,
-            "fact": "Under Chandragupta Maurya and his grandson Ashoka, the Maurya Empire became one of the largest empires of the ancient world, spanning from modern Afghanistan across the entire subcontinent to Bengal. At its peak under Ashoka (c. 268–232 BCE), it covered about 5 million square kilometres — the first political unification of India."
+            "type": "minigame",
+            "game": "typeset",
+            "seed": 1014,
+            "fact": "Under Chandragupta Maurya and his grandson Ashoka, the Maurya Empire became one of the largest empires of the ancient world, spanning from modern Afghanistan across the entire subcontinent to Bengal. At its peak under Ashoka (c. 268–232 BCE), it covered about 5 million square kilometres — the first political unification of India.",
+            "autogen": true,
+            "configId": "bi-sheng-clay",
+            "params": {
+              "title": "The Maurya Empire established by Chanakya",
+              "intro": "The Maurya Empire established by Chanakya and Chandragupta eventually controlled nearly the entire Indian subcontinent.",
+              "lines": [
+                "THE MAURYA",
+                "THE MAURYA",
+                "THE MAURYA EMPIRE",
+                "THE MAURYA EMPIRE"
+              ]
+            },
+            "instruction": "The Maurya Empire established by Chanakya and Chandragupta eventually controlled nearly the entire Indian subcontinent. Set the answer in movable type — mirrored, right to left."
           }
         },
         {

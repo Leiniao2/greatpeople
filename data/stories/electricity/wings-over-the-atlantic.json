@@ -27,17 +27,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "Amelia Earhart disappeared near which island during her 1937 round-the-world attempt?",
-            "options": [
-              "Hawaii",
-              "Wake Island",
-              "Howland Island",
-              "Midway"
-            ],
-            "answer": 2,
+            "type": "minigame",
+            "game": "sudoku",
+            "seed": 1012,
             "fact": "Earhart and navigator Fred Noonan disappeared on July 2, 1937, near tiny Howland Island in the Central Pacific — one of the most remote spots on Earth. They were never found. Her disappearance remains one of aviation's great mysteries.",
-            "countdown": 10
+            "autogen": true,
+            "configId": "lorentz-grid",
+            "params": {
+              "title": "Amelia Earhart disappeared near which island",
+              "intro": "Amelia Earhart disappeared near which island during her 1937 round-the-world attempt?"
+            },
+            "instruction": "Amelia Earhart disappeared near which island during her 1937 round-the-world attempt? Order the grid as the record was ordered — every row, column and box complete."
           }
         }
       ]
@@ -94,10 +94,19 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "truefalse",
-            "statement": "Amelia Earhart was the first person to fly solo across the Atlantic Ocean.",
-            "correct": false,
-            "fact": "Charles Lindbergh made the first solo transatlantic flight in 1927. Earhart was the first WOMAN to do so — in 1932, flying from Newfoundland to Northern Ireland in 14 hours 56 minutes. She also set the record for fastest transatlantic solo flight at that time."
+            "type": "minigame",
+            "game": "cipher",
+            "seed": 1013,
+            "fact": "Charles Lindbergh made the first solo transatlantic flight in 1927. Earhart was the first WOMAN to do so — in 1932, flying from Newfoundland to Northern Ireland in 14 hours 56 minutes. She also set the record for fastest transatlantic solo flight at that time.",
+            "autogen": true,
+            "configId": "morse-telegraph",
+            "params": {
+              "title": "Amelia Earhart was the first person",
+              "intro": "Amelia Earhart was the first person to fly solo across the Atlantic Ocean.",
+              "mode": "caesar",
+              "plaintext": "CHARLES LINDBERGH MADE THE FIRST"
+            },
+            "instruction": "Amelia Earhart was the first person to fly solo across the Atlantic Ocean. The answer travels in cipher — turn the wheel until it reads."
           }
         },
         {

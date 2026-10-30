@@ -27,16 +27,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "What was Itō Hirobumi's greatest constitutional achievement for Japan?",
-            "options": [
-              "Signing the treaty that ended the Russo-Japanese War",
-              "Drafting the Meiji Constitution of 1889",
-              "Abolishing the samurai class",
-              "Creating Japan's first railway system"
-            ],
-            "answer": 1,
-            "fact": "The Meiji Constitution of 1889 was drafted under Itō's leadership after he studied European constitutional models — particularly Prussia's. It established Japan as a constitutional monarchy and remained in force until 1947."
+            "type": "minigame",
+            "game": "rhythm",
+            "seed": 1021,
+            "fact": "The Meiji Constitution of 1889 was drafted under Itō's leadership after he studied European constitutional models — particularly Prussia's. It established Japan as a constitutional monarchy and remained in force until 1947.",
+            "autogen": true,
+            "configId": "beethoven-motif",
+            "params": {
+              "title": "What was Itō Hirobumi's greatest constitutional",
+              "intro": "What was Itō Hirobumi's greatest constitutional achievement for Japan?"
+            },
+            "instruction": "What was Itō Hirobumi's greatest constitutional achievement for Japan? Learn the phrase and play it back, note for note."
           }
         }
       ]
@@ -65,16 +66,16 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "sort",
-            "question": "Arrange the key events of Itō Hirobumi's career in chronological order:",
-            "items": [
-              "Secretly studies in Britain",
-              "Helps overthrow the Tokugawa shogunate",
-              "Drafts the Meiji Constitution",
-              "Serves as first Prime Minister",
-              "Assassinated in Harbin"
-            ],
-            "fact": "Itō served as Japan's Prime Minister four separate times between 1885 and 1901. His assassination by An Jung-geun in 1909 made him a martyr in Japan and a symbol of imperialism in Korea — two truths that coexist uncomfortably."
+            "type": "minigame",
+            "game": "matchthree",
+            "seed": 1022,
+            "fact": "Itō served as Japan's Prime Minister four separate times between 1885 and 1901. His assassination by An Jung-geun in 1909 made him a martyr in Japan and a symbol of imperialism in Korea — two truths that coexist uncomfortably.",
+            "autogen": true,
+            "configId": "cairo-alchemy",
+            "params": {
+              "title": "Arrange the key events of Itō"
+            },
+            "instruction": "Arrange the key events of Itō Hirobumi's career in chronological order: Gather what the story needs: match the goods until the tally is met."
           }
         }
       ]
@@ -108,15 +109,23 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "sort",
-            "question": "Arrange these Meiji Restoration reforms in the order they were introduced:",
-            "items": [
-              "Feudal domains (han) abolished, replaced by prefectures (1871)",
-              "Compulsory national education introduced (1872)",
-              "National military conscription replacing samurai class (1873)",
-              "Constitution modelled on Prussia's promulgated (1889)"
-            ],
-            "fact": "Japan transformed from a feudal samurai society to a modern industrial nation in a single generation — faster than any other country in history. By 1905, Japan had defeated Russia in war, astonishing the world and inspiring anti-colonial movements across Asia."
+            "type": "minigame",
+            "game": "typeset",
+            "seed": 1023,
+            "fact": "Japan transformed from a feudal samurai society to a modern industrial nation in a single generation — faster than any other country in history. By 1905, Japan had defeated Russia in war, astonishing the world and inspiring anti-colonial movements across Asia.",
+            "autogen": true,
+            "configId": "franklin-gazette",
+            "params": {
+              "title": "Arrange these Meiji Restoration reforms in",
+              "intro": "Arrange these Meiji Restoration reforms in the order they were introduced:",
+              "lines": [
+                "FEUDAL",
+                "FEUDAL DOMAINS",
+                "FEUDAL DOMAINS HAN",
+                "FEUDAL DOMAINS HAN"
+              ]
+            },
+            "instruction": "Arrange these Meiji Restoration reforms in the order they were introduced: Set the answer in movable type — mirrored, right to left."
           }
         }
       ]

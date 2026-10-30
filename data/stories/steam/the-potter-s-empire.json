@@ -27,15 +27,16 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "sort",
-            "question": "Arrange these milestones of the Industrial Revolution in which Wedgwood played a part:",
-            "items": [
-              "Wedgwood opens the Etruria Works — one of England's first purpose-built industrial potteries (1769)",
-              "The Grand Trunk Canal opens, connecting the Potteries to the ports — Wedgwood was a key investor (1777)",
-              "Wedgwood introduces transfer-printing techniques enabling mass production of decorated pottery (1780s)",
-              "Wedgwood's abolitionist cameo 'Am I Not a Man and a Brother?' becomes a mass-produced political icon (1787)"
-            ],
-            "fact": "Josiah Wedgwood didn't just make pottery — he invented modern manufacturing. He introduced quality control, a money-back guarantee, free delivery, and celebrity endorsements. His factory pioneered the division of labour decades before Adam Smith wrote about it."
+            "type": "minigame",
+            "game": "matchthree",
+            "seed": 1009,
+            "fact": "Josiah Wedgwood didn't just make pottery — he invented modern manufacturing. He introduced quality control, a money-back guarantee, free delivery, and celebrity endorsements. His factory pioneered the division of labour decades before Adam Smith wrote about it.",
+            "autogen": true,
+            "configId": "hanseatic-runes",
+            "params": {
+              "title": "Arrange these milestones of the Industrial"
+            },
+            "instruction": "Arrange these milestones of the Industrial Revolution in which Wedgwood played a part: Gather what the story needs: match the goods until the tally is met."
           }
         }
       ]
@@ -81,16 +82,23 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "Josiah Wedgwood was the grandfather of which famous scientist?",
-            "options": [
-              "Isaac Newton",
-              "Michael Faraday",
-              "Charles Darwin",
-              "James Watt"
-            ],
-            "answer": 2,
-            "fact": "Charles Darwin was Josiah Wedgwood's grandson — his mother Susannah was Wedgwood's daughter, and his wife Emma was Wedgwood's granddaughter. Darwin married his own cousin from the Wedgwood family, a common practice in Victorian upper-class families."
+            "type": "minigame",
+            "game": "typeset",
+            "seed": 1010,
+            "fact": "Charles Darwin was Josiah Wedgwood's grandson — his mother Susannah was Wedgwood's daughter, and his wife Emma was Wedgwood's granddaughter. Darwin married his own cousin from the Wedgwood family, a common practice in Victorian upper-class families.",
+            "autogen": true,
+            "configId": "franklin-gazette",
+            "params": {
+              "title": "Josiah Wedgwood was the grandfather of",
+              "intro": "Josiah Wedgwood was the grandfather of which famous scientist?",
+              "lines": [
+                "CHARLES",
+                "CHARLES DARWIN",
+                "CHARLES DARWIN",
+                "CHARLES DARWIN"
+              ]
+            },
+            "instruction": "Josiah Wedgwood was the grandfather of which famous scientist? Set the answer in movable type — mirrored, right to left."
           }
         }
       ]
@@ -123,11 +131,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "truefalse",
-            "statement": "Wedgwood sold only to the wealthy — his pottery was exclusively a luxury product for aristocrats and royalty.",
-            "correct": false,
-            "countdown": 10,
-            "fact": "Wedgwood brilliantly marketed at both ends of the market. He sold exclusive pieces to royalty and aristocracy — then used their endorsements to sell affordable versions to the growing middle class. His catalogue, free delivery, and money-back guarantee made quality ceramics accessible to ordinary households, pioneering the modern retail model."
+            "type": "minigame",
+            "game": "sudoku",
+            "seed": 1011,
+            "fact": "Wedgwood brilliantly marketed at both ends of the market. He sold exclusive pieces to royalty and aristocracy — then used their endorsements to sell affordable versions to the growing middle class. His catalogue, free delivery, and money-back guarantee made quality ceramics accessible to ordinary households, pioneering the modern retail model.",
+            "autogen": true,
+            "configId": "mendel-grid",
+            "params": {
+              "title": "Wedgwood sold only to the wealthy",
+              "intro": "Wedgwood sold only to the wealthy — his pottery was exclusively a luxury product for aristocrats and royalty."
+            },
+            "instruction": "Wedgwood sold only to the wealthy — his pottery was exclusively a luxury product for aristocrats and royalty. Order the grid as the record was ordered — every row, column and box complete."
           }
         }
       ]

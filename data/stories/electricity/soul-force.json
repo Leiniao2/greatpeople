@@ -54,17 +54,19 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "sort",
-            "question": "Arrange these milestones of Gandhi's life in chronological order:",
-            "items": [
-              "Travels to South Africa and experiences racial discrimination",
-              "Leads the Champaran Satyagraha — first mass civil disobedience in India",
-              "Leads the 240-mile Salt March to Dandi, defying British salt monopoly",
-              "Negotiates with Viceroy Irwin — the Gandhi-Irwin Pact",
-              "India achieves independence — and partition",
-              "Assassinated by Nathuram Godse in New Delhi"
-            ],
-            "fact": "The Salt March of 1930 transformed Gandhi from a respected Indian leader into a global symbol. When he picked up a pinch of salt on the Dandi beach, he broke British law — and the world was watching. Within weeks, 60,000 Indians had been arrested for the same act of defiance."
+            "type": "minigame",
+            "game": "cipher",
+            "seed": 1001,
+            "fact": "The Salt March of 1930 transformed Gandhi from a respected Indian leader into a global symbol. When he picked up a pinch of salt on the Dandi beach, he broke British law — and the world was watching. Within weeks, 60,000 Indians had been arrested for the same act of defiance.",
+            "autogen": true,
+            "configId": "morse-telegraph",
+            "params": {
+              "title": "Arrange these milestones of Gandhi's life",
+              "intro": "Arrange these milestones of Gandhi's life in chronological order:",
+              "mode": "caesar",
+              "plaintext": "TRAVELS TO SOUTH AFRICA AND"
+            },
+            "instruction": "Arrange these milestones of Gandhi's life in chronological order: The answer travels in cipher — turn the wheel until it reads."
           }
         }
       ]
@@ -83,11 +85,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "truefalse",
-            "statement": "Gandhi opposed Indian independence from Britain, believing the British Empire could be reformed from within.",
-            "correct": false,
-            "countdown": 10,
-            "fact": "Gandhi devoted his life to Indian independence (swaraj). However, he insisted the path must be nonviolent. His Quit India speech of 1942 demanded immediate British withdrawal — 'Do or Die' — and triggered mass arrests. Gandhi saw independence not merely as political freedom but as moral regeneration."
+            "type": "minigame",
+            "game": "logicgate",
+            "seed": 1002,
+            "fact": "Gandhi devoted his life to Indian independence (swaraj). However, he insisted the path must be nonviolent. His Quit India speech of 1942 demanded immediate British withdrawal — 'Do or Die' — and triggered mass arrests. Gandhi saw independence not merely as political freedom but as moral regeneration.",
+            "autogen": true,
+            "configId": "shannon-relays",
+            "params": {
+              "title": "Gandhi opposed Indian independence from Britain,",
+              "intro": "Gandhi opposed Indian independence from Britain, believing the British Empire could be reformed from within."
+            },
+            "instruction": "Gandhi opposed Indian independence from Britain, believing the British Empire could be reformed from within. Wire the gates until the circuit agrees with the table on every row."
           }
         }
       ]

@@ -33,10 +33,23 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "truefalse",
-            "statement": "The chivalric code obligated knights to protect the weak, honour women, and serve God — but said nothing about loyalty to their king.",
-            "correct": false,
-            "fact": "Chivalry combined three loyalties: to God (religious duty), to the lord (feudal duty), and to women and the weak (courtly duty). Loyalty to the king was central — a knight who broke this oath was stripped of knighthood."
+            "type": "minigame",
+            "game": "typeset",
+            "seed": 1001,
+            "fact": "Chivalry combined three loyalties: to God (religious duty), to the lord (feudal duty), and to women and the weak (courtly duty). Loyalty to the king was central — a knight who broke this oath was stripped of knighthood.",
+            "autogen": true,
+            "configId": "bi-sheng-clay",
+            "params": {
+              "title": "The chivalric code obligated knights to",
+              "intro": "The chivalric code obligated knights to protect the weak, honour women, and serve God — but said nothing about loyalty to their king.",
+              "lines": [
+                "CHIVALRY",
+                "CHIVALRY",
+                "CHIVALRY COMBINED",
+                "CHIVALRY COMBINED THREE"
+              ]
+            },
+            "instruction": "The chivalric code obligated knights to protect the weak, honour women, and serve God — but said nothing about loyalty to their king. Set the answer in movable type — mirrored, right to left."
           }
         }
       ]
@@ -53,15 +66,19 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "sort",
-            "question": "Arrange the stages of a medieval knight's training in the correct order:",
-            "items": [
-              "Page (ages 7–14): enters a lord's household to learn courtly manners and service",
-              "Squire (ages 14–21): trains under a knight, cares for arms and horse",
-              "Knighting ceremony: dubbed by sword, swears the chivalric oath",
-              "First tournament: proves skill, honour, and the code in open combat"
-            ],
-            "fact": "A knight's training took fourteen years. The progression from page to squire to knight was as formalised as any modern profession. The Round Table's innovation — every seat equal, no place more honoured than another — was a radical reimagining of hierarchy in a world of strict rank."
+            "type": "minigame",
+            "game": "cipher",
+            "seed": 1002,
+            "fact": "A knight's training took fourteen years. The progression from page to squire to knight was as formalised as any modern profession. The Round Table's innovation — every seat equal, no place more honoured than another — was a radical reimagining of hierarchy in a world of strict rank.",
+            "autogen": true,
+            "configId": "al-kindi-frequency",
+            "params": {
+              "title": "Arrange the stages of a medieval",
+              "intro": "Arrange the stages of a medieval knight's training in the correct order:",
+              "mode": "caesar",
+              "plaintext": "PAGE AGES ENTERS A LORD S"
+            },
+            "instruction": "Arrange the stages of a medieval knight's training in the correct order: The answer travels in cipher — turn the wheel until it reads."
           }
         }
       ]
@@ -101,15 +118,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "sort",
-            "question": "Arrange these virtues of the chivalric code in the order they appear in the Song of Roland (oldest to newest emphasis):",
-            "items": [
-              "Courage in battle (prouesse)",
-              "Loyalty to lord and faith (loyauté)",
-              "Courtesy toward ladies (courtoisie)",
-              "Protection of the weak (largesse)"
-            ],
-            "fact": "Chivalry evolved over three centuries. Early codes (c.1000 CE) emphasised martial courage; by 1200 CE, troubadour poetry had added courtesy and romantic love. By 1300 CE, protection of the poor and weak entered as the Church sought to direct knightly violence toward Christian purposes."
+            "type": "minigame",
+            "game": "maze",
+            "seed": 1003,
+            "fact": "Chivalry evolved over three centuries. Early codes (c.1000 CE) emphasised martial courage; by 1200 CE, troubadour poetry had added courtesy and romantic love. By 1300 CE, protection of the poor and weak entered as the Church sought to direct knightly violence toward Christian purposes.",
+            "autogen": true,
+            "configId": "cedar-forest",
+            "params": {
+              "title": "Arrange these virtues of the chivalric",
+              "subtitle": "Arrange these virtues of the chivalric code in the order they appear in the Song of Roland (oldest to newest emphasis):"
+            },
+            "instruction": "Arrange these virtues of the chivalric code in the order they appear in the Song of Roland (oldest to newest emphasis): The way to the answer runs through these passages — find the exit."
           }
         },
         {

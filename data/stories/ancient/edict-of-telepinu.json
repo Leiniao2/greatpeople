@@ -27,17 +27,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "What problem was the Edict of Telepinu designed to solve?",
-            "options": [
-              "Tax collection across the empire",
-              "Bloody succession disputes in the Hittite royal family",
-              "The treatment of conquered peoples",
-              "Trade disputes with Babylon"
-            ],
-            "answer": 1,
+            "type": "minigame",
+            "game": "maze",
+            "seed": 1014,
             "fact": "The Hittite royal family had suffered generations of murder, coup, and revenge killings over succession. Telepinu's Edict (c. 1600 BCE) established a clear line of succession and banned the killing of royal family members — replacing blood with law.",
-            "countdown": 10
+            "autogen": true,
+            "configId": "pyramid-deep",
+            "params": {
+              "title": "What problem was the Edict of",
+              "subtitle": "What problem was the Edict of Telepinu designed to solve?"
+            },
+            "instruction": "What problem was the Edict of Telepinu designed to solve? The way to the answer runs through these passages — find the exit."
           }
         }
       ]
@@ -60,11 +60,23 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "truefalse",
-            "statement": "The Hittite Empire was centred in modern-day Turkey, making it one of the great powers of the ancient Near East alongside Egypt and Babylon.",
-            "correct": true,
-            "countdown": 10,
-            "fact": "The Hittite Empire (c. 1700–1200 BCE) was based in Hattusa, near modern Boğazkale in Turkey. At its peak it rivalled Egypt — and the Hittite-Egyptian clash at Kadesh (c. 1274 BCE) is the first well-documented pitched battle in recorded history."
+            "type": "minigame",
+            "game": "typeset",
+            "seed": 1015,
+            "fact": "The Hittite Empire (c. 1700–1200 BCE) was based in Hattusa, near modern Boğazkale in Turkey. At its peak it rivalled Egypt — and the Hittite-Egyptian clash at Kadesh (c. 1274 BCE) is the first well-documented pitched battle in recorded history.",
+            "autogen": true,
+            "configId": "bi-sheng-clay",
+            "params": {
+              "title": "The Hittite Empire was centred in",
+              "intro": "The Hittite Empire was centred in modern-day Turkey, making it one of the great powers of the ancient Near East alongside Egypt and Babylon.",
+              "lines": [
+                "THE HITTITE",
+                "THE HITTITE",
+                "THE HITTITE EMPIRE",
+                "THE HITTITE EMPIRE WAS"
+              ]
+            },
+            "instruction": "The Hittite Empire was centred in modern-day Turkey, making it one of the great powers of the ancient Near East alongside Egypt and Babylon. Set the answer in movable type — mirrored, right to left."
           }
         }
       ]
@@ -83,15 +95,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "sort",
-            "question": "Arrange these landmarks in the history of written law from oldest to most recent:",
-            "items": [
-              "Code of Ur-Nammu — the oldest surviving law code (c. 2100 BCE)",
-              "Hittite king Telepinu issues his succession edict, an early constitutional document (c. 1525 BCE)",
-              "Athenian lawgiver Solon creates the first democratic legal code (c. 594 BCE)",
-              "Rome's Twelve Tables become the first codified Roman law (c. 450 BCE)"
-            ],
-            "fact": "Telepinu's Edict predates Greek democratic codes by centuries. Its core principle — that even kings must follow established succession rules — represented a revolutionary idea: that the most powerful rulers were subject to written law."
+            "type": "minigame",
+            "game": "sudoku",
+            "seed": 1016,
+            "fact": "Telepinu's Edict predates Greek democratic codes by centuries. Its core principle — that even kings must follow established succession rules — represented a revolutionary idea: that the most powerful rulers were subject to written law.",
+            "autogen": true,
+            "configId": "euclid-grid",
+            "params": {
+              "title": "Arrange these landmarks in the history",
+              "intro": "Arrange these landmarks in the history of written law from oldest to most recent:"
+            },
+            "instruction": "Arrange these landmarks in the history of written law from oldest to most recent: Order the grid as the record was ordered — every row, column and box complete."
           }
         }
       ]

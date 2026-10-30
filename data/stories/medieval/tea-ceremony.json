@@ -27,16 +27,23 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "Lu Yu's 'Classic of Tea' classified tea in how many chapters?",
-            "options": [
-              "3",
-              "5",
-              "10",
-              "25"
-            ],
-            "answer": 2,
-            "fact": "Lu Yu's Cha Jing (Classic of Tea, c. 760 CE) has 10 chapters covering tea's origins, tools for processing, making, drinking, and the history of tea. It transformed tea from a medicinal herb into a cultural art form."
+            "type": "minigame",
+            "game": "typeset",
+            "seed": 1001,
+            "fact": "Lu Yu's Cha Jing (Classic of Tea, c. 760 CE) has 10 chapters covering tea's origins, tools for processing, making, drinking, and the history of tea. It transformed tea from a medicinal herb into a cultural art form.",
+            "autogen": true,
+            "configId": "bi-sheng-clay",
+            "params": {
+              "title": "Lu Yu's 'Classic of Tea' classified",
+              "intro": "Lu Yu's 'Classic of Tea' classified tea in how many chapters?",
+              "lines": [
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            "instruction": "Lu Yu's 'Classic of Tea' classified tea in how many chapters? Set the answer in movable type — mirrored, right to left."
           }
         }
       ]

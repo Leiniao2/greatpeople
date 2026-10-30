@@ -27,17 +27,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "What religion did Mani found in the 3rd century CE?",
-            "options": [
-              "Manichaeism",
-              "Zoroastrianism",
-              "Nestorian Christianity",
-              "Mithraism"
-            ],
-            "answer": 0,
-            "countdown": 10,
-            "fact": "Mani (216–274 CE) founded Manichaeism, a dualistic religion blending Zoroastrian light-and-darkness cosmology, Christian ethics, and Buddhist concepts of spiritual purification. At its height, Manichaeism spread from the Roman Empire to Tang Dynasty China — one of history's most geographically expansive faiths."
+            "type": "minigame",
+            "game": "rhythm",
+            "seed": 1006,
+            "fact": "Mani (216–274 CE) founded Manichaeism, a dualistic religion blending Zoroastrian light-and-darkness cosmology, Christian ethics, and Buddhist concepts of spiritual purification. At its height, Manichaeism spread from the Roman Empire to Tang Dynasty China — one of history's most geographically expansive faiths.",
+            "autogen": true,
+            "configId": "hildegard-chant",
+            "params": {
+              "title": "What religion did Mani found in",
+              "intro": "What religion did Mani found in the 3rd century CE?"
+            },
+            "instruction": "What religion did Mani found in the 3rd century CE? Learn the phrase and play it back, note for note."
           }
         }
       ]
@@ -60,11 +60,19 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "truefalse",
-            "statement": "Mani was only a preacher — he had no talent for visual art.",
-            "correct": false,
-            "countdown": 10,
-            "fact": "Mani was a gifted painter who created the Ardahang, an illustrated holy book of extraordinary beauty. He used visual art as a missionary tool, believing images could convey divine truth across language barriers. His followers called him 'the Apostle of Light' and celebrated his paintings as sacred revelation."
+            "type": "minigame",
+            "game": "cipher",
+            "seed": 1007,
+            "fact": "Mani was a gifted painter who created the Ardahang, an illustrated holy book of extraordinary beauty. He used visual art as a missionary tool, believing images could convey divine truth across language barriers. His followers called him 'the Apostle of Light' and celebrated his paintings as sacred revelation.",
+            "autogen": true,
+            "configId": "caesar-gaul",
+            "params": {
+              "title": "Mani was only a preacher —",
+              "intro": "Mani was only a preacher — he had no talent for visual art.",
+              "mode": "caesar",
+              "plaintext": "MANI WAS A GIFTED PAINTER WHO"
+            },
+            "instruction": "Mani was only a preacher — he had no talent for visual art. The answer travels in cipher — turn the wheel until it reads."
           }
         }
       ]
@@ -81,17 +89,23 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "sort",
-            "question": "Arrange the key events of Mani's life in order:",
-            "items": [
-              "Mani receives his first divine revelation at age twelve",
-              "Mani studies with a Jewish-Christian baptismal sect in Mesopotamia",
-              "Mani embarks on missions to the Kushan Empire and India",
-              "Mani gains the patronage of the Sassanid emperor Shapur I",
-              "Bahram I imprisons Mani under pressure from Zoroastrian clergy",
-              "Mani dies in prison — his followers call it his crucifixion"
-            ],
-            "fact": "Mani's death in 274 CE echoed the martyrdom narratives of the very religions he synthesized. His followers spread his teachings across the Silk Road for centuries — Manichaean texts were still being copied in China in the 13th century."
+            "type": "minigame",
+            "game": "typeset",
+            "seed": 1008,
+            "fact": "Mani's death in 274 CE echoed the martyrdom narratives of the very religions he synthesized. His followers spread his teachings across the Silk Road for centuries — Manichaean texts were still being copied in China in the 13th century.",
+            "autogen": true,
+            "configId": "bi-sheng-clay",
+            "params": {
+              "title": "Arrange the key events of Mani's",
+              "intro": "Arrange the key events of Mani's life in order:",
+              "lines": [
+                "MANI",
+                "MANI RECEIVES",
+                "MANI RECEIVES HIS",
+                "MANI RECEIVES HIS FIRST"
+              ]
+            },
+            "instruction": "Arrange the key events of Mani's life in order: Set the answer in movable type — mirrored, right to left."
           }
         }
       ]

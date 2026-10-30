@@ -24,17 +24,23 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "What was the Aztec capital city that Montezuma II ruled, which amazed the Spanish conquistadors?",
-            "options": [
-              "Tenochtitlan",
-              "Texcoco",
-              "Teotihuacan",
-              "Tlatelolco"
-            ],
-            "answer": 0,
-            "countdown": 10,
-            "fact": "Tenochtitlan, built on an island in Lake Texcoco, was one of the largest cities in the world in 1500 — home to 200,000–300,000 people, larger than London, Paris, or any city in Spain. When Hernán Cortés' soldiers first saw it, they wrote that they thought they were dreaming. Its causeways, aqueducts, and floating gardens had no parallel in European experience."
+            "type": "minigame",
+            "game": "typeset",
+            "seed": 1013,
+            "fact": "Tenochtitlan, built on an island in Lake Texcoco, was one of the largest cities in the world in 1500 — home to 200,000–300,000 people, larger than London, Paris, or any city in Spain. When Hernán Cortés' soldiers first saw it, they wrote that they thought they were dreaming. Its causeways, aqueducts, and floating gardens had no parallel in European experience.",
+            "autogen": true,
+            "configId": "gutenberg-bible",
+            "params": {
+              "title": "What was the Aztec capital city",
+              "intro": "What was the Aztec capital city that Montezuma II ruled, which amazed the Spanish conquistadors?",
+              "lines": [
+                "TENOCHTITLAN",
+                "TENOCHTITLAN",
+                "TENOCHTITLAN",
+                "TENOCHTITLAN"
+              ]
+            },
+            "instruction": "What was the Aztec capital city that Montezuma II ruled, which amazed the Spanish conquistadors? Set the answer in movable type — mirrored, right to left."
           }
         }
       ]
@@ -51,11 +57,19 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "truefalse",
-            "statement": "Montezuma II believed Hernán Cortés was the god Quetzalcoatl returning as prophesied.",
-            "correct": false,
-            "countdown": 10,
-            "fact": "The story that Montezuma mistook Cortés for Quetzalcoatl appears in later accounts heavily influenced by Spanish interpreters and indigenous collaborators with reasons to justify the conquest. Modern historians believe Montezuma was an experienced and politically sophisticated ruler who recognized the Spanish as dangerous strangers — not gods. He attempted to manage the threat diplomatically before it overwhelmed him."
+            "type": "minigame",
+            "game": "cipher",
+            "seed": 1014,
+            "fact": "The story that Montezuma mistook Cortés for Quetzalcoatl appears in later accounts heavily influenced by Spanish interpreters and indigenous collaborators with reasons to justify the conquest. Modern historians believe Montezuma was an experienced and politically sophisticated ruler who recognized the Spanish as dangerous strangers — not gods. He attempted to manage the threat diplomatically before it overwhelmed him.",
+            "autogen": true,
+            "configId": "vigenere-cabinet",
+            "params": {
+              "title": "Montezuma II believed Hernán Cortés was",
+              "intro": "Montezuma II believed Hernán Cortés was the god Quetzalcoatl returning as prophesied.",
+              "mode": "caesar",
+              "plaintext": "THE STORY THAT MONTEZUMA MISTOOK"
+            },
+            "instruction": "Montezuma II believed Hernán Cortés was the god Quetzalcoatl returning as prophesied. The answer travels in cipher — turn the wheel until it reads."
           }
         }
       ]
@@ -72,17 +86,16 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "sort",
-            "question": "Arrange these events of Montezuma II's reign and the Spanish conquest in order:",
-            "items": [
-              "Montezuma II takes the throne of the Aztec Triple Alliance and expands its territory",
-              "Hernán Cortés lands in Mexico with 500 soldiers and makes alliances with Aztec enemies",
-              "Cortés arrives in Tenochtitlan — Montezuma receives him with extraordinary ceremony",
-              "Cortés takes Montezuma hostage within the city, ruling through him",
-              "The Noche Triste — Aztecs drive the Spanish out of Tenochtitlan, Montezuma dies",
-              "Cortés returns with tens of thousands of indigenous allies and besieges Tenochtitlan"
-            ],
-            "fact": "The conquest of the Aztec Empire was not a European conquest of indigenous people — it was a coalition war. Cortés' key allies, the Tlaxcalans, had been enemies of the Aztec Triple Alliance for generations and contributed far more warriors to the siege of Tenochtitlan than the Spanish did. The Aztec empire fell to its own enemies as much as to European weapons."
+            "type": "minigame",
+            "game": "matchthree",
+            "seed": 1015,
+            "fact": "The conquest of the Aztec Empire was not a European conquest of indigenous people — it was a coalition war. Cortés' key allies, the Tlaxcalans, had been enemies of the Aztec Triple Alliance for generations and contributed far more warriors to the siege of Tenochtitlan than the Spanish did. The Aztec empire fell to its own enemies as much as to European weapons.",
+            "autogen": true,
+            "configId": "lisbon-spices",
+            "params": {
+              "title": "Arrange these events of Montezuma II's"
+            },
+            "instruction": "Arrange these events of Montezuma II's reign and the Spanish conquest in order: Gather what the story needs: match the goods until the tally is met."
           }
         },
         {

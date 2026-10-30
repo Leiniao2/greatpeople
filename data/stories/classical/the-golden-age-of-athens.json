@@ -75,11 +75,23 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "truefalse",
-            "statement": "Aspasia was born in Athens and was a full citizen of the city.",
-            "correct": false,
-            "countdown": 10,
-            "fact": "Aspasia was from Miletus — a Greek city in modern Turkey. Her foreign birth placed her outside Athenian citizenship, but also freed her from the strict domestic confinement imposed on Athenian women."
+            "type": "minigame",
+            "game": "typeset",
+            "seed": 1002,
+            "fact": "Aspasia was from Miletus — a Greek city in modern Turkey. Her foreign birth placed her outside Athenian citizenship, but also freed her from the strict domestic confinement imposed on Athenian women.",
+            "autogen": true,
+            "configId": "bi-sheng-clay",
+            "params": {
+              "title": "Aspasia was born in Athens and",
+              "intro": "Aspasia was born in Athens and was a full citizen of the city.",
+              "lines": [
+                "ASPASIA WAS",
+                "ASPASIA WAS FROM",
+                "ASPASIA WAS FROM",
+                "ASPASIA WAS FROM MILETUS"
+              ]
+            },
+            "instruction": "Aspasia was born in Athens and was a full citizen of the city. Set the answer in movable type — mirrored, right to left."
           }
         }
       ]

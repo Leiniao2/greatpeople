@@ -27,17 +27,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "According to Chinese legend, who discovered silk?",
-            "options": [
-              "The Yellow Emperor",
-              "Lei Zu, wife of the Yellow Emperor",
-              "Confucius",
-              "The Jade Emperor"
-            ],
-            "answer": 1,
+            "type": "minigame",
+            "game": "maze",
+            "seed": 1008,
             "fact": "Chinese tradition credits Lei Zu (also written Leizu or Si Ling-chi), wife of the Yellow Emperor Huangdi, with discovering silk around 2700 BCE when a silkworm cocoon fell into her tea and she unravelled its thread.",
-            "countdown": 10
+            "autogen": true,
+            "configId": "pyramid-deep",
+            "params": {
+              "title": "According to Chinese legend, who discovered",
+              "subtitle": "According to Chinese legend, who discovered silk?"
+            },
+            "instruction": "According to Chinese legend, who discovered silk? The way to the answer runs through these passages — find the exit."
           }
         }
       ]
@@ -60,11 +60,23 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "truefalse",
-            "statement": "The term 'Silk Road' was coined by ancient Chinese merchants who dominated the trade route.",
-            "correct": false,
-            "countdown": 10,
-            "fact": "The term 'Silk Road' (Seidenstraße) was coined by German geographer Ferdinand von Richthofen in 1877. Ancient traders called it by regional names — the unified concept of a single route is a modern invention."
+            "type": "minigame",
+            "game": "typeset",
+            "seed": 1009,
+            "fact": "The term 'Silk Road' (Seidenstraße) was coined by German geographer Ferdinand von Richthofen in 1877. Ancient traders called it by regional names — the unified concept of a single route is a modern invention.",
+            "autogen": true,
+            "configId": "bi-sheng-clay",
+            "params": {
+              "title": "The term 'Silk Road' was coined",
+              "intro": "The term 'Silk Road' was coined by ancient Chinese merchants who dominated the trade route.",
+              "lines": [
+                "THE TERM",
+                "THE TERM SILK",
+                "THE TERM SILK ROAD",
+                "THE TERM SILK ROAD"
+              ]
+            },
+            "instruction": "The term 'Silk Road' was coined by ancient Chinese merchants who dominated the trade route. Set the answer in movable type — mirrored, right to left."
           }
         }
       ]
@@ -83,16 +95,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "sort",
-            "question": "Arrange the steps of silk production in the correct order:",
-            "items": [
-              "Female Bombyx mori moths lay hundreds of tiny eggs",
-              "Caterpillars hatch and feed exclusively on fresh mulberry leaves",
-              "Each caterpillar spins a single continuous thread up to 900 metres long to form its cocoon",
-              "Cocoons are plunged into boiling water to kill the pupa and loosen the silk thread",
-              "Threads from several cocoons are reeled together to form a single silk thread"
-            ],
-            "fact": "A single silkworm cocoon is made from one continuous thread up to 900 metres long. It takes about 2,500 cocoons to make one pound of raw silk — explaining why silk was worth its weight in gold."
+            "type": "minigame",
+            "game": "sudoku",
+            "seed": 1010,
+            "fact": "A single silkworm cocoon is made from one continuous thread up to 900 metres long. It takes about 2,500 cocoons to make one pound of raw silk — explaining why silk was worth its weight in gold.",
+            "autogen": true,
+            "configId": "euclid-grid",
+            "params": {
+              "title": "Arrange the steps of silk production",
+              "intro": "Arrange the steps of silk production in the correct order:"
+            },
+            "instruction": "Arrange the steps of silk production in the correct order: Order the grid as the record was ordered — every row, column and box complete."
           }
         },
         {

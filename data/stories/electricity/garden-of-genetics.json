@@ -54,11 +54,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "truefalse",
-            "statement": "Mendel's discovery of the laws of heredity was immediately celebrated by the scientific community.",
-            "correct": false,
-            "countdown": 10,
-            "fact": "When Mendel published his results in 1866, the scientific world largely ignored them. His paper was cited only a handful of times in the next 35 years. It was not until 1900 — 16 years after Mendel's death — that three botanists independently rediscovered his laws and finally found his original paper, launching the science of genetics."
+            "type": "minigame",
+            "game": "rhythm",
+            "seed": 1003,
+            "fact": "When Mendel published his results in 1866, the scientific world largely ignored them. His paper was cited only a handful of times in the next 35 years. It was not until 1900 — 16 years after Mendel's death — that three botanists independently rediscovered his laws and finally found his original paper, launching the science of genetics.",
+            "autogen": true,
+            "configId": "beethoven-motif",
+            "params": {
+              "title": "Mendel's discovery of the laws of",
+              "intro": "Mendel's discovery of the laws of heredity was immediately celebrated by the scientific community."
+            },
+            "instruction": "Mendel's discovery of the laws of heredity was immediately celebrated by the scientific community. Learn the phrase and play it back, note for note."
           }
         }
       ]
@@ -77,17 +83,16 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "sort",
-            "question": "Arrange the key steps of Mendel's pea experiment in order:",
-            "items": [
-              "Mendel selects pure-breeding parent plants with contrasting traits",
-              "He cross-pollinates parents by hand to produce first-generation hybrids (F1)",
-              "F1 plants all show the dominant trait — the recessive trait vanishes",
-              "He allows F1 plants to self-pollinate, producing second-generation seeds (F2)",
-              "The recessive trait reappears in F2 in a 3:1 ratio",
-              "Mendel concludes that inheritance is governed by discrete, paired units"
-            ],
-            "fact": "The 3:1 ratio Mendel observed — three dominant to one recessive — was not a coincidence or approximation. It was a mathematical law. Mendel was the first scientist to apply statistical analysis to biology, and his insight that inheritance comes in discrete packets (what we now call genes) was centuries ahead of its time."
+            "type": "minigame",
+            "game": "matchthree",
+            "seed": 1004,
+            "fact": "The 3:1 ratio Mendel observed — three dominant to one recessive — was not a coincidence or approximation. It was a mathematical law. Mendel was the first scientist to apply statistical analysis to biology, and his insight that inheritance comes in discrete packets (what we now call genes) was centuries ahead of its time.",
+            "autogen": true,
+            "configId": "cairo-alchemy",
+            "params": {
+              "title": "Arrange the key steps of Mendel's"
+            },
+            "instruction": "Arrange the key steps of Mendel's pea experiment in order: Gather what the story needs: match the goods until the tally is met."
           }
         },
         {

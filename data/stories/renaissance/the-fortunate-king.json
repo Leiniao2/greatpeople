@@ -27,16 +27,23 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "Manuel I of Portugal was known by what nickname, reflecting the extraordinary wealth of his reign?",
-            "options": [
-              "The Great",
-              "The Fortunate",
-              "The Navigator",
-              "The Bold"
-            ],
-            "answer": 1,
-            "fact": "'Manuel, o Venturoso' — The Fortunate. Under his reign, Vasco da Gama reached India (1498), Pedro Cabral reached Brazil (1500), and Portugal controlled the world's spice trade. Lisbon became the richest city in Europe."
+            "type": "minigame",
+            "game": "typeset",
+            "seed": 1001,
+            "fact": "'Manuel, o Venturoso' — The Fortunate. Under his reign, Vasco da Gama reached India (1498), Pedro Cabral reached Brazil (1500), and Portugal controlled the world's spice trade. Lisbon became the richest city in Europe.",
+            "autogen": true,
+            "configId": "gutenberg-bible",
+            "params": {
+              "title": "Manuel I of Portugal was known",
+              "intro": "Manuel I of Portugal was known by what nickname, reflecting the extraordinary wealth of his reign?",
+              "lines": [
+                "THE",
+                "THE FORTUNATE",
+                "THE FORTUNATE",
+                "THE FORTUNATE"
+              ]
+            },
+            "instruction": "Manuel I of Portugal was known by what nickname, reflecting the extraordinary wealth of his reign? Set the answer in movable type — mirrored, right to left."
           }
         }
       ]

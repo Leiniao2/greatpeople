@@ -33,16 +33,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "An Jung-geun assassinated Itō Hirobumi in which year?",
-            "options": [
-              "1895",
-              "1905",
-              "1909",
-              "1919"
-            ],
-            "answer": 2,
-            "fact": "On October 26, 1909, An Jung-geun shot Itō Hirobumi — Japan's first Prime Minister and the architect of Korean colonisation — at Harbin railway station. An was captured, tried, and executed in 1910, the same year Japan formally annexed Korea."
+            "type": "minigame",
+            "game": "sudoku",
+            "seed": 1018,
+            "fact": "On October 26, 1909, An Jung-geun shot Itō Hirobumi — Japan's first Prime Minister and the architect of Korean colonisation — at Harbin railway station. An was captured, tried, and executed in 1910, the same year Japan formally annexed Korea.",
+            "autogen": true,
+            "configId": "lorentz-grid",
+            "params": {
+              "title": "An Jung-geun assassinated Itō Hirobumi in",
+              "intro": "An Jung-geun assassinated Itō Hirobumi in which year?"
+            },
+            "instruction": "An Jung-geun assassinated Itō Hirobumi in which year? Order the grid as the record was ordered — every row, column and box complete."
           }
         }
       ]
@@ -99,10 +100,19 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "truefalse",
-            "statement": "Ahn Jung-geun, who assassinated Japanese Resident-General Itō Hirobumi, was celebrated in Japan as well as Korea after his death.",
-            "correct": false,
-            "fact": "Ahn Jung-geun was executed by Japan in 1910. In Korea he is a national hero; in China, a statue stands at Harbin station where the assassination occurred. In Japan he is officially considered a criminal. The same act reads entirely differently across national histories."
+            "type": "minigame",
+            "game": "cipher",
+            "seed": 1019,
+            "fact": "Ahn Jung-geun was executed by Japan in 1910. In Korea he is a national hero; in China, a statue stands at Harbin station where the assassination occurred. In Japan he is officially considered a criminal. The same act reads entirely differently across national histories.",
+            "autogen": true,
+            "configId": "morse-telegraph",
+            "params": {
+              "title": "Ahn Jung-geun, who assassinated Japanese Resident-General",
+              "intro": "Ahn Jung-geun, who assassinated Japanese Resident-General Itō Hirobumi, was celebrated in Japan as well as Korea after his death.",
+              "mode": "caesar",
+              "plaintext": "AHN JUNG GEUN WAS EXECUTED BY"
+            },
+            "instruction": "Ahn Jung-geun, who assassinated Japanese Resident-General Itō Hirobumi, was celebrated in Japan as well as Korea after his death. The answer travels in cipher — turn the wheel until it reads."
           }
         }
       ]

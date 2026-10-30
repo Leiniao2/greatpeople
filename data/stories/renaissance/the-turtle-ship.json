@@ -24,17 +24,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "What was the decisive ratio of ships at the Battle of Myeongnyang (1597), which Admiral Yi Sun-sin won?",
-            "options": [
-              "13 Korean ships against approximately 333 Japanese warships",
-              "50 Korean ships against 200 Japanese warships",
-              "30 Korean ships against 100 Japanese ships",
-              "13 Korean ships against 50 Japanese warships"
-            ],
-            "answer": 0,
-            "countdown": 10,
-            "fact": "At Myeongnyang in 1597, Admiral Yi commanded just 13 remaining warships against a Japanese fleet of over 300. He positioned his ships in the narrow strait where the current reversed twice daily, luring the Japanese into a bottleneck where numbers meant nothing. He sank or damaged 31 enemy ships without losing a single one of his own."
+            "type": "minigame",
+            "game": "rhythm",
+            "seed": 1010,
+            "fact": "At Myeongnyang in 1597, Admiral Yi commanded just 13 remaining warships against a Japanese fleet of over 300. He positioned his ships in the narrow strait where the current reversed twice daily, luring the Japanese into a bottleneck where numbers meant nothing. He sank or damaged 31 enemy ships without losing a single one of his own.",
+            "autogen": true,
+            "configId": "bach-fugue",
+            "params": {
+              "title": "What was the decisive ratio of",
+              "intro": "What was the decisive ratio of ships at the Battle of Myeongnyang (1597), which Admiral Yi Sun-sin won?"
+            },
+            "instruction": "What was the decisive ratio of ships at the Battle of Myeongnyang (1597), which Admiral Yi Sun-sin won? Learn the phrase and play it back, note for note."
           }
         }
       ]
@@ -51,11 +51,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "truefalse",
-            "statement": "Admiral Yi Sun-sin was never removed from command during the Japanese invasions.",
-            "correct": false,
-            "countdown": 10,
-            "fact": "Yi was arrested, tortured, and demoted twice — the victim of court intrigue and a Japanese deception operation that planted false intelligence to undermine him. He served as a common soldier before being hastily reinstated when the navy collapsed without him. Myeongnyang was fought with the 13 ships that remained after his absence."
+            "type": "minigame",
+            "game": "sudoku",
+            "seed": 1011,
+            "fact": "Yi was arrested, tortured, and demoted twice — the victim of court intrigue and a Japanese deception operation that planted false intelligence to undermine him. He served as a common soldier before being hastily reinstated when the navy collapsed without him. Myeongnyang was fought with the 13 ships that remained after his absence.",
+            "autogen": true,
+            "configId": "euclid-grid",
+            "params": {
+              "title": "Admiral Yi Sun-sin was never removed",
+              "intro": "Admiral Yi Sun-sin was never removed from command during the Japanese invasions."
+            },
+            "instruction": "Admiral Yi Sun-sin was never removed from command during the Japanese invasions. Order the grid as the record was ordered — every row, column and box complete."
           }
         }
       ]
@@ -72,17 +78,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "sort",
-            "question": "Arrange the key events of the Imjin War and Yi Sun-sin's role in order:",
-            "items": [
-              "Japan invades Korea with 150,000 troops — the army sweeps north in weeks",
-              "Yi wins the Battle of Okpo — the first Korean naval victory of the war",
-              "The turtle ship is deployed at Sacheon — its iron-clad deck deflects Japanese muskets",
-              "Yi is arrested on false charges and demoted — the Korean navy is destroyed without him",
-              "Yi is reinstated with 13 ships and wins the Battle of Myeongnyang",
-              "Yi is killed by a stray bullet at the Battle of Noryang — his last victory, his last breath"
-            ],
-            "fact": "Yi Sun-sin died at Noryang in 1598 — struck by a bullet during the battle that would finally expel Japanese forces from Korea. His last words, reportedly, were: 'The battle is at its height — do not announce my death.' He won the battle from his deathbed, concealing his death until the Japanese had fled."
+            "type": "minigame",
+            "game": "maze",
+            "seed": 1012,
+            "fact": "Yi Sun-sin died at Noryang in 1598 — struck by a bullet during the battle that would finally expel Japanese forces from Korea. His last words, reportedly, were: 'The battle is at its height — do not announce my death.' He won the battle from his deathbed, concealing his death until the Japanese had fled.",
+            "autogen": true,
+            "configId": "pacific-strait",
+            "params": {
+              "title": "Arrange the key events of the",
+              "subtitle": "Arrange the key events of the Imjin War and Yi Sun-sin's role in order:"
+            },
+            "instruction": "Arrange the key events of the Imjin War and Yi Sun-sin's role in order: The way to the answer runs through these passages — find the exit."
           }
         },
         {

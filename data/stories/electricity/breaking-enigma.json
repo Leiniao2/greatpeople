@@ -27,17 +27,19 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "How many possible settings did Turing's Bombe machine have to test for each Enigma message?",
-            "options": [
-              "1,000",
-              "17,576",
-              "158 quintillion",
-              "1 trillion"
-            ],
-            "answer": 1,
+            "type": "minigame",
+            "game": "cipher",
+            "seed": 1007,
             "fact": "The Enigma machine had 17,576 possible rotor starting positions (26×26×26). But with plugboard settings, the actual number of configurations was 158 quintillion — the Bombe exploited cribs (known plaintext) to narrow the search.",
-            "countdown": 10
+            "autogen": true,
+            "configId": "morse-telegraph",
+            "params": {
+              "title": "How many possible settings did Turing's",
+              "intro": "How many possible settings did Turing's Bombe machine have to test for each Enigma message?",
+              "mode": "caesar",
+              "plaintext": ""
+            },
+            "instruction": "How many possible settings did Turing's Bombe machine have to test for each Enigma message? The answer travels in cipher — turn the wheel until it reads."
           }
         }
       ]

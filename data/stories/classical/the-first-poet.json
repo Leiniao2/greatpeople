@@ -54,17 +54,16 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "The Ramayana tells the story of which prince?",
-            "options": [
-              "Arjuna",
-              "Rama",
-              "Bhima",
-              "Yudhishthira"
-            ],
-            "answer": 1,
+            "type": "minigame",
+            "game": "matchthree",
+            "seed": 1015,
             "fact": "The Ramayana centers on Prince Rama of Ayodhya — his exile with his wife Sita and brother Lakshmana, Sita's abduction by the demon king Ravana, and Rama's journey to rescue her with the help of Hanuman and an army of monkeys. It remains one of Asia's most beloved epics.",
-            "countdown": 10
+            "autogen": true,
+            "configId": "venice-glass",
+            "params": {
+              "title": "The Ramayana tells the story of"
+            },
+            "instruction": "The Ramayana tells the story of which prince? Gather what the story needs: match the goods until the tally is met."
           }
         }
       ]
@@ -83,16 +82,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "sort",
-            "question": "Arrange these key events of the Ramayana in their correct narrative order:",
-            "items": [
-              "Prince Rama is exiled to the forest for fourteen years by his father King Dasharatha",
-              "The demon king Ravana abducts Sita and takes her to his island kingdom of Lanka",
-              "Hanuman, the monkey warrior, leaps across the ocean to find Sita in Lanka",
-              "Rama leads an army of allies across a stone bridge to Lanka",
-              "Rama defeats Ravana in battle and rescues Sita"
-            ],
-            "fact": "The Ramayana's themes — the duty of a prince, the devotion of a wife, the loyalty of a friend — have resonated across Asia for 2,500 years. The epic has more than 300 known versions across South and Southeast Asia, each reflecting the values of its culture."
+            "type": "minigame",
+            "game": "maze",
+            "seed": 1016,
+            "fact": "The Ramayana's themes — the duty of a prince, the devotion of a wife, the loyalty of a friend — have resonated across Asia for 2,500 years. The epic has more than 300 known versions across South and Southeast Asia, each reflecting the values of its culture.",
+            "autogen": true,
+            "configId": "pleistoanax-mountain",
+            "params": {
+              "title": "Arrange these key events of the",
+              "subtitle": "Arrange these key events of the Ramayana in their correct narrative order:"
+            },
+            "instruction": "Arrange these key events of the Ramayana in their correct narrative order: The way to the answer runs through these passages — find the exit."
           }
         }
       ]
@@ -125,11 +125,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "truefalse",
-            "statement": "The Ramayana is unique to India and has not spread significantly to other Asian cultures.",
-            "correct": false,
-            "countdown": 10,
-            "fact": "The Ramayana has influenced cultures across Southeast Asia for over a thousand years. Thailand has the Ramakien, Indonesia has the Kakawin Ramayana, and Cambodia's Reamker is performed at the royal court. Puppetry and dance forms based on the Ramayana are UNESCO-listed cultural traditions in Malaysia, Thailand, and Myanmar."
+            "type": "minigame",
+            "game": "sudoku",
+            "seed": 1017,
+            "fact": "The Ramayana has influenced cultures across Southeast Asia for over a thousand years. Thailand has the Ramakien, Indonesia has the Kakawin Ramayana, and Cambodia's Reamker is performed at the royal court. Puppetry and dance forms based on the Ramayana are UNESCO-listed cultural traditions in Malaysia, Thailand, and Myanmar.",
+            "autogen": true,
+            "configId": "anaxagoras-grid",
+            "params": {
+              "title": "The Ramayana is unique to India",
+              "intro": "The Ramayana is unique to India and has not spread significantly to other Asian cultures."
+            },
+            "instruction": "The Ramayana is unique to India and has not spread significantly to other Asian cultures. Order the grid as the record was ordered — every row, column and box complete."
           }
         }
       ]

@@ -24,17 +24,16 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "How long did Pakal the Great rule the Maya city of Palenque?",
-            "options": [
-              "68 years — the longest reign in recorded Maya history",
-              "32 years",
-              "44 years",
-              "55 years"
-            ],
-            "answer": 0,
-            "countdown": 10,
-            "fact": "Pakal became king of Palenque at age 12 in 615 CE and ruled until his death in 683 CE — 68 years on the throne, the longest reign in all of pre-Columbian history. Under his rule, Palenque transformed from a minor city into one of the most powerful and artistically sophisticated kingdoms of the Classic Maya world."
+            "type": "minigame",
+            "game": "matchthree",
+            "seed": 1016,
+            "fact": "Pakal became king of Palenque at age 12 in 615 CE and ruled until his death in 683 CE — 68 years on the throne, the longest reign in all of pre-Columbian history. Under his rule, Palenque transformed from a minor city into one of the most powerful and artistically sophisticated kingdoms of the Classic Maya world.",
+            "autogen": true,
+            "configId": "changan-silks",
+            "params": {
+              "title": "How long did Pakal the Great"
+            },
+            "instruction": "How long did Pakal the Great rule the Maya city of Palenque? Gather what the story needs: match the goods until the tally is met."
           }
         }
       ]
@@ -51,11 +50,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "truefalse",
-            "statement": "Pakal's tomb was discovered by archaeologists long before his Temple of the Inscriptions was excavated.",
-            "correct": false,
-            "countdown": 10,
-            "fact": "The Temple of the Inscriptions stood in plain sight for centuries — one of Palenque's most prominent structures. But its tomb was not discovered until 1952, when Mexican archaeologist Alberto Ruz Lhuillier noticed a stone floor with plugged holes and spent four years clearing a rubble-filled staircase before reaching Pakal's burial chamber 25 metres below."
+            "type": "minigame",
+            "game": "rhythm",
+            "seed": 1017,
+            "fact": "The Temple of the Inscriptions stood in plain sight for centuries — one of Palenque's most prominent structures. But its tomb was not discovered until 1952, when Mexican archaeologist Alberto Ruz Lhuillier noticed a stone floor with plugged holes and spent four years clearing a rubble-filled staircase before reaching Pakal's burial chamber 25 metres below.",
+            "autogen": true,
+            "configId": "hildegard-chant",
+            "params": {
+              "title": "Pakal's tomb was discovered by archaeologists",
+              "intro": "Pakal's tomb was discovered by archaeologists long before his Temple of the Inscriptions was excavated."
+            },
+            "instruction": "Pakal's tomb was discovered by archaeologists long before his Temple of the Inscriptions was excavated. Learn the phrase and play it back, note for note."
           }
         }
       ]
@@ -72,17 +77,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "sort",
-            "question": "Arrange the key events of Pakal's reign at Palenque in order:",
-            "items": [
-              "Pakal ascends to the throne of Palenque at age 12, guided by his mother Lady Sak K'uk'",
-              "He defeats rivals and expands Palenque's military power after years of weakness",
-              "Pakal commissions the Palace complex — a sprawling administrative and ceremonial center",
-              "He begins constructing the Temple of the Inscriptions — designed as his eternal tomb",
-              "The Temple's interior walls are carved with 617 glyphs recording Pakal's genealogy",
-              "Pakal dies at 80 and is sealed in his jade-masked sarcophagus beneath the pyramid"
-            ],
-            "fact": "The sarcophagus lid of Pakal's tomb shows him at the moment of death, descending into the Maya underworld (Xibalba) on the World Tree. For decades Western scholars misread the image as an astronaut in a spacecraft — a famous case of wishful thinking overriding careful analysis. Maya specialists recognized it as a standard resurrection narrative immediately."
+            "type": "minigame",
+            "game": "sudoku",
+            "seed": 1018,
+            "fact": "The sarcophagus lid of Pakal's tomb shows him at the moment of death, descending into the Maya underworld (Xibalba) on the World Tree. For decades Western scholars misread the image as an astronaut in a spacecraft — a famous case of wishful thinking overriding careful analysis. Maya specialists recognized it as a standard resurrection narrative immediately.",
+            "autogen": true,
+            "configId": "al-khwarizmi-grid",
+            "params": {
+              "title": "Arrange the key events of Pakal's",
+              "intro": "Arrange the key events of Pakal's reign at Palenque in order:"
+            },
+            "instruction": "Arrange the key events of Pakal's reign at Palenque in order: Order the grid as the record was ordered — every row, column and box complete."
           }
         },
         {

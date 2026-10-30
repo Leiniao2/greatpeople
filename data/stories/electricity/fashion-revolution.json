@@ -27,16 +27,17 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "Coco Chanel popularised which garment in 1926 that became a symbol of modern fashion?",
-            "options": [
-              "The trouser suit",
-              "The little black dress",
-              "The trench coat",
-              "The wrap dress"
-            ],
-            "answer": 1,
-            "fact": "Chanel's 'little black dress' (1926) appeared in Vogue, which compared it to Ford's Model T — a fashion so universal and timeless it was available to everyone. Black had previously been reserved for mourning."
+            "type": "minigame",
+            "game": "rhythm",
+            "seed": 1009,
+            "fact": "Chanel's 'little black dress' (1926) appeared in Vogue, which compared it to Ford's Model T — a fashion so universal and timeless it was available to everyone. Black had previously been reserved for mourning.",
+            "autogen": true,
+            "configId": "beethoven-motif",
+            "params": {
+              "title": "Coco Chanel popularised which garment in",
+              "intro": "Coco Chanel popularised which garment in 1926 that became a symbol of modern fashion?"
+            },
+            "instruction": "Coco Chanel popularised which garment in 1926 that became a symbol of modern fashion? Learn the phrase and play it back, note for note."
           }
         }
       ]
@@ -53,15 +54,16 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "sort",
-            "question": "Arrange these milestones of Chanel's fashion revolution in chronological order:",
-            "items": [
-              "Opens her first millinery shop in Paris — hats only, no corsets",
-              "Introduces jersey fabric into women's fashion, replacing stiff silk",
-              "Chanel No. 5 becomes the world's best-selling perfume",
-              "Launches the little black dress in Vogue — 'the Ford of fashion'"
-            ],
-            "fact": "Each of Chanel's innovations stripped away constraint. Jersey replaced stiff silk; cardigan suits replaced corsets; black replaced colour as the dominant fashion statement. She built freedom into fashion at a time when clothing was still architecture built to restrict women's bodies."
+            "type": "minigame",
+            "game": "matchthree",
+            "seed": 1010,
+            "fact": "Each of Chanel's innovations stripped away constraint. Jersey replaced stiff silk; cardigan suits replaced corsets; black replaced colour as the dominant fashion statement. She built freedom into fashion at a time when clothing was still architecture built to restrict women's bodies.",
+            "autogen": true,
+            "configId": "cairo-alchemy",
+            "params": {
+              "title": "Arrange these milestones of Chanel's fashion"
+            },
+            "instruction": "Arrange these milestones of Chanel's fashion revolution in chronological order: Gather what the story needs: match the goods until the tally is met."
           }
         }
       ]
@@ -97,11 +99,23 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "truefalse",
-            "statement": "Before Chanel, fashionable women's clothing required tight corsets — Chanel was among the first designers to make comfortable, unstructured clothes stylish.",
-            "correct": true,
-            "countdown": 10,
-            "fact": "Victorian corsets could pull a waist to 45 cm (18 inches), causing fainting, rib deformities, and displaced organs. Chanel borrowed fabrics from men's sportswear — jersey, tweed — and designed for movement. 'I gave women a sense of freedom,' she said. 'I gave them back their bodies.' It was a cultural revolution sewn into cloth."
+            "type": "minigame",
+            "game": "typeset",
+            "seed": 1011,
+            "fact": "Victorian corsets could pull a waist to 45 cm (18 inches), causing fainting, rib deformities, and displaced organs. Chanel borrowed fabrics from men's sportswear — jersey, tweed — and designed for movement. 'I gave women a sense of freedom,' she said. 'I gave them back their bodies.' It was a cultural revolution sewn into cloth.",
+            "autogen": true,
+            "configId": "franklin-gazette",
+            "params": {
+              "title": "Before Chanel, fashionable women's clothing required",
+              "intro": "Before Chanel, fashionable women's clothing required tight corsets — Chanel was among the first designers to make comfortable, unstructured clothes stylish.",
+              "lines": [
+                "BEFORE",
+                "BEFORE CHANEL",
+                "BEFORE CHANEL",
+                "BEFORE CHANEL"
+              ]
+            },
+            "instruction": "Before Chanel, fashionable women's clothing required tight corsets — Chanel was among the first designers to make comfortable, unstructured clothes stylish. Set the answer in movable type — mirrored, right to left."
           }
         }
       ]

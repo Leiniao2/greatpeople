@@ -27,16 +27,23 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "Which of Zeno's paradoxes argues that the fastest runner can never overtake the slowest?",
-            "options": [
-              "The Arrow Paradox",
-              "The Dichotomy",
-              "Achilles and the Tortoise",
-              "The Stadium"
-            ],
-            "answer": 2,
-            "fact": "Achilles and the Tortoise argues that before catching the tortoise, Achilles must reach its starting point — by which time it has moved. This repeats infinitely, seemingly making overtaking impossible. Calculus resolved it 2,000 years later."
+            "type": "minigame",
+            "game": "typeset",
+            "seed": 1020,
+            "fact": "Achilles and the Tortoise argues that before catching the tortoise, Achilles must reach its starting point — by which time it has moved. This repeats infinitely, seemingly making overtaking impossible. Calculus resolved it 2,000 years later.",
+            "autogen": true,
+            "configId": "bi-sheng-clay",
+            "params": {
+              "title": "Which of Zeno's paradoxes argues that",
+              "intro": "Which of Zeno's paradoxes argues that the fastest runner can never overtake the slowest?",
+              "lines": [
+                "ACHILLES AND",
+                "ACHILLES AND THE",
+                "ACHILLES AND THE",
+                "ACHILLES AND THE"
+              ]
+            },
+            "instruction": "Which of Zeno's paradoxes argues that the fastest runner can never overtake the slowest? Set the answer in movable type — mirrored, right to left."
           }
         }
       ]
@@ -65,10 +72,16 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "truefalse",
-            "statement": "Zeno of Elea personally believed that motion was impossible and that nothing in the universe actually moves.",
-            "correct": false,
-            "fact": "Zeno's paradoxes were a rhetorical defense of his teacher Parmenides, not his personal beliefs. He used them as reductio ad absurdum — if you accept common sense, you get contradictions. It was a philosophical weapon, not a physics claim."
+            "type": "minigame",
+            "game": "matchthree",
+            "seed": 1021,
+            "fact": "Zeno's paradoxes were a rhetorical defense of his teacher Parmenides, not his personal beliefs. He used them as reductio ad absurdum — if you accept common sense, you get contradictions. It was a philosophical weapon, not a physics claim.",
+            "autogen": true,
+            "configId": "venice-glass",
+            "params": {
+              "title": "Zeno of Elea personally believed that"
+            },
+            "instruction": "Zeno of Elea personally believed that motion was impossible and that nothing in the universe actually moves. Gather what the story needs: match the goods until the tally is met."
           }
         }
       ]
