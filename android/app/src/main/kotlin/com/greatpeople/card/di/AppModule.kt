@@ -1,6 +1,7 @@
 package com.greatpeople.card.di
 
 import android.content.Context
+import com.greatpeople.card.BuildConfig
 import androidx.room.Room
 import com.greatpeople.card.data.local.AppDatabase
 import com.greatpeople.card.data.remote.ApiService
@@ -43,7 +44,7 @@ object AppModule {
     @Singleton
     fun provideRetrofit(client: OkHttpClient): Retrofit =
         Retrofit.Builder()
-            .baseUrl("http://10.0.2.2:8080/")
+            .baseUrl(BuildConfig.API_BASE_URL)
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()

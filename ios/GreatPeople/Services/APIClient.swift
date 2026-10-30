@@ -3,7 +3,7 @@ import Foundation
 final class APIClient {
     static let shared = APIClient()
 
-    private let baseURL = URL(string: "http://localhost:8080")!
+    private let baseURL = AppConfig.apiBaseURL
     private let session = URLSession.shared
     private var accessToken: String?
 

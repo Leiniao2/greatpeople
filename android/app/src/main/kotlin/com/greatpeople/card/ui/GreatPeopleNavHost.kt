@@ -12,6 +12,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.platform.LocalContext
+import com.greatpeople.card.ui.screens.GamePlayerScreen
+import com.greatpeople.card.ui.screens.PlayUrls
 import com.greatpeople.card.ui.screens.ArcadeScreen
 import com.greatpeople.card.ui.screens.BattleScreen
 import com.greatpeople.card.ui.screens.CardDetailScreen
@@ -32,7 +36,16 @@ sealed class Screen(val route: String) {
     object CardDetail : Screen("card/{cardId}") {
         fun route(cardId: String) = "card/$cardId"
     }
+    object PlayStory : Screen("play/story/{slug}") {
+        fun route(slug: String) = "play/story/$slug"
+    }
+    object PlayChallenge : Screen("play/challenge/{id}") {
+        fun route(id: String) = "play/challenge/$id"
+    }
 }
+
+private fun android.content.Context.accessToken(): String? =
+    getSharedPreferences("auth", android.content.Context.MODE_PRIVATE).getString("access_token", null)
 
 @Composable
 fun GreatPeopleNavHost() {
@@ -80,14 +93,18 @@ fun GreatPeopleNavHost() {
                 )
             }
 
-            composable(Screen.Epic.route) {
+            composable(Screen.Epic.route) { entry ->
+                val completedSlug by entry.savedStateHandle.getStateFlow<String?>("storyCompleted", null).collectAsState()
                 EpicScreen(
+                    onPlayStory = { slug -> navController.navigate(Screen.PlayStory.route(slug)) },
+                    completedSlug = completedSlug,
                     onBack = { navController.popBackStack() },
                 )
             }
 
             composable(Screen.Arcade.route) {
                 ArcadeScreen(
+                    onPlayChallenge = { id -> navController.navigate(Screen.PlayChallenge.route(id)) },
                     onBack = { navController.popBackStack() },
                 )
             }
@@ -106,6 +123,31 @@ fun GreatPeopleNavHost() {
                             popUpTo(0) { inclusive = true }
                         }
                     },
+                )
+            }
+
+            composable(Screen.PlayStory.route) { entry ->
+                val context = LocalContext.current
+                val slug = entry.arguments?.getString("slug") ?: return@composable
+                GamePlayerScreen(
+                    url = PlayUrls.story(slug, context.accessToken()),
+                    onMessage = { msg ->
+                        when (msg.type) {
+                            "storyComplete" -> navController.previousBackStackEntry?.savedStateHandle?.set("storyCompleted", msg.slug ?: slug)
+                            "close" -> navController.popBackStack()
+                        }
+                    },
+                    onClose = { navController.popBackStack() },
+                )
+            }
+
+            composable(Screen.PlayChallenge.route) { entry ->
+                val context = LocalContext.current
+                val id = entry.arguments?.getString("id") ?: return@composable
+                GamePlayerScreen(
+                    url = PlayUrls.challenge(id, context.accessToken()),
+                    onMessage = { msg -> if (msg.type == "close" || msg.type == "challengeComplete") navController.popBackStack() },
+                    onClose = { navController.popBackStack() },
                 )
             }
 

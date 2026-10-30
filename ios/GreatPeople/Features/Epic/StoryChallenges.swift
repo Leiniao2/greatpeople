@@ -26,6 +26,7 @@ struct SortChallenge: Decodable {
 }
 
 struct ChallengeDTO: Decodable {
+    let id: String?
     let type: ChallengeType
     // quiz
     let question: String?

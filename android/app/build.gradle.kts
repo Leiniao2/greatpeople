@@ -20,9 +20,16 @@ android {
     }
 
     buildTypes {
+        // The web app whose play routes the app embeds, and the API it calls.
+        debug {
+            buildConfigField("String", "WEB_BASE_URL", "\"http://10.0.2.2:3001\"")
+            buildConfigField("String", "API_BASE_URL", "\"http://10.0.2.2:8080/\"")
+        }
         release {
             isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            buildConfigField("String", "WEB_BASE_URL", "\"https://great-people-495704.uc.r.appspot.com\"")
+            buildConfigField("String", "API_BASE_URL", "\"https://great-people-495704.uc.r.appspot.com/\"")
         }
     }
 

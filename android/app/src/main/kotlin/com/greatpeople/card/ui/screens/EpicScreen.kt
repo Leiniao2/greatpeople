@@ -28,6 +28,7 @@ import org.json.JSONArray
 
 private data class Story(
     val title: String,
+    val slug: String,
     val figure: String?,
     val tagline: String,
     val challengeCount: Int,
@@ -49,6 +50,7 @@ private fun loadEras(context: Context): List<EraData> {
         val era = obj.getString("era")
         val story = Story(
             title   = obj.getString("title"),
+            slug    = obj.getString("slug"),
             figure  = if (obj.isNull("figure")) null else obj.getString("figure"),
             tagline = obj.getString("tagline"),
             challengeCount = obj.getInt("challengeCount"),
@@ -70,6 +72,8 @@ private val Slate700 = Color(0xFF334155)
 @Composable
 fun EpicScreen(
     onBack: () -> Unit = {},
+    onPlayStory: (slug: String) -> Unit = {},
+    completedSlug: String? = null,
 ) {
     val context = LocalContext.current
     val ERAS = remember { loadEras(context) }
@@ -153,17 +157,24 @@ fun EpicScreen(
         }
     }
 
-    // Story challenge sheet
-    activeStory?.let { (eraIdx, storyIdx) ->
-        StorySheet(
-            eraName = ERAS[eraIdx].name,
-            storyTitle = ERAS[eraIdx].stories[storyIdx].title,
-            onComplete = {
-                completed[storyKey(eraIdx, storyIdx)] = true
-                showToast("Story completed! Next story unlocked.")
-            },
-            onDismiss = { activeStory = null },
-        )
+    // Stories play in the web app (GamePlayerScreen); the host reports the
+    // completed slug back through `completedSlug`.
+    LaunchedEffect(activeStory) {
+        activeStory?.let { (eraIdx, storyIdx) ->
+            activeStory = null
+            onPlayStory(ERAS[eraIdx].stories[storyIdx].slug)
+        }
+    }
+    LaunchedEffect(completedSlug) {
+        val slug = completedSlug ?: return@LaunchedEffect
+        ERAS.forEachIndexed { eraIdx, era ->
+            era.stories.forEachIndexed { storyIdx, story ->
+                if (story.slug == slug && completed[storyKey(eraIdx, storyIdx)] != true) {
+                    completed[storyKey(eraIdx, storyIdx)] = true
+                    showToast("Story completed! Next story unlocked.")
+                }
+            }
+        }
     }
 }
 

@@ -5,6 +5,7 @@ import SwiftUI
 private struct StoryConfig: Decodable {
     let era: String
     let title: String
+    let slug: String
     let figure: String?
     let tagline: String
     let challengeCount: Int
@@ -12,6 +13,7 @@ private struct StoryConfig: Decodable {
 
 private struct Story {
     let title: String
+    let slug: String
     let figure: String?
     let tagline: String
     let challengeCount: Int
@@ -31,7 +33,7 @@ private func loadEras() -> [EraData] {
     else { return [] }
     var byEra: [String: [Story]] = [:]
     for c in configs {
-        let story = Story(title: c.title, figure: c.figure, tagline: c.tagline, challengeCount: c.challengeCount)
+        let story = Story(title: c.title, slug: c.slug, figure: c.figure, tagline: c.tagline, challengeCount: c.challengeCount)
         byEra[c.era, default: []].append(story)
     }
     return ERA_ORDER.compactMap { era in byEra[era].map { EraData(name: era, stories: $0) } }
@@ -117,17 +119,27 @@ struct EpicView: View {
             .navigationTitle("Epic")
             .navigationBarTitleDisplayMode(.inline)
             .toolbarColorScheme(.dark, for: .navigationBar)
-            .sheet(item: Binding(
+            // Stories play in the web app, embedded full screen; it reports back
+            // through the bridge when the story is finished or closed.
+            .fullScreenCover(item: Binding(
                 get: { activeStory.map { ActiveStory(eraIdx: $0.eraIdx, storyIdx: $0.storyIdx) } },
                 set: { activeStory = $0.map { ($0.eraIdx, $0.storyIdx) } }
             )) { active in
-                StorySheetView(
-                    eraName: ERAS[active.eraIdx].name,
-                    storyTitle: ERAS[active.eraIdx].stories[active.storyIdx].title,
-                    onComplete: {
-                        completedStories.insert(storyKey(active.eraIdx, active.storyIdx))
-                        showToast("Story completed! Next story unlocked.")
-                    }
+                let story = ERAS[active.eraIdx].stories[active.storyIdx]
+                PlayScreen(
+                    url: AppConfig.playStoryURL(slug: story.slug, token: UserDefaults.standard.string(forKey: "access_token")),
+                    onMessage: { msg in
+                        switch msg.type {
+                        case "storyComplete":
+                            completedStories.insert(storyKey(active.eraIdx, active.storyIdx))
+                            showToast("Story completed! Next story unlocked.")
+                        case "close":
+                            activeStory = nil
+                        default:
+                            break
+                        }
+                    },
+                    onClose: { activeStory = nil }
                 )
             }
         }
