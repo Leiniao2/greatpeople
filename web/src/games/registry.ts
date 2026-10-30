@@ -55,7 +55,6 @@ export const GAMES = {
   jigsaw:       def('Jigsaw',        'Puzzle',   () => import('@/components/minigames/JigsawGame'), true),
   pipeline:     def('Pipeline',      'Puzzle',   () => import('@/components/minigames/PipelineGame'), true),
   colormix:     def('Color Mix',     'Creative', () => import('@/components/minigames/ColorMixGame'), true),
-  hunting:      def('Hunting',       'Explore',  () => import('@/components/minigames/HuntingGame'), true),
   storysort:    def('Story Sort',    'Story',    () => import('@/components/minigames/StorySortGame'), true),
   battlearena:  def('Battle Arena',  'Strategy', () => import('@/components/minigames/BattleArenaGame'), true),
   soccer:       def('Soccer',        'Explore',  () => import('@/components/minigames/SoccerGame'), true),
@@ -73,6 +72,14 @@ export const GAMES = {
   logicgate:    def('Logic Gates',   'Puzzle',   () => import('@/components/minigames/LogicGateGame'), true),
   archbuild:    def('Arch Builder',  'Creative', () => import('@/components/minigames/ArchBuildGame'), true),
   rhythm:       def('Rhythm',        'Creative', () => import('@/components/minigames/RhythmGame'), true),
+  // ── Outdoor games
+  roundup:      def('Round-Up',      'Strategy', () => import('@/components/minigames/RoundUpGame'), true),
+  fieldsurvey:  def('Field Survey',  'Explore',  () => import('@/components/minigames/FieldSurveyGame'), true),
+  riverrun:     def('River Run',     'Explore',  () => import('@/components/minigames/RiverRunGame'), true),
+  // ── Vote games
+  rollcall:     def('Roll Call',     'Strategy', () => import('@/components/minigames/RollCallGame'), true),
+  coalition:    def('Coalition',     'Strategy', () => import('@/components/minigames/CoalitionGame'), true),
+  campaign:     def('Campaign Trail','Strategy', () => import('@/components/minigames/CampaignGame'), true),
 } satisfies Record<string, GameDef>
 
 export type GameKey = keyof typeof GAMES

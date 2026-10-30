@@ -99,10 +99,10 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "hunting",
-            "configId": "mongol-hunt",
-            "instruction": "Mongol warriors trained for war through the nerge — a great coordinated hunt. Encircle the game across the steppe, tightening the ring until nothing escapes. The same maneuver will encircle armies.",
-            "fact": "The Mongol nerge (battue hunt) was simultaneously sport and military training. Thousands of horsemen would spread across hundreds of miles, drive game into an ever-tightening circle, then slaughter it. Generals studied the hunt's coordination problems — timing, communication over distance, simultaneous flanking — and applied the same solutions in battle."
+            "game": "roundup",
+            "configId": "mongol-nerge",
+            "instruction": "Mongol warriors trained for war through the nerge — a great ring drawn across the steppe. Post your riders to close every gap before the wild horses break out. The same maneuver will encircle armies.",
+            "fact": "The nerge was sport and military training at once. Thousands of horsemen spread across the steppe and slowly tightened the ring, and generals studied its coordination problems — timing, signalling over distance, closing both flanks together — then used the same solutions in battle."
           }
         }
       ]

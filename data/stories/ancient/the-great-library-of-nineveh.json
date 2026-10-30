@@ -135,10 +135,10 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "hunting",
-            "configId": "roman-venatio",
-            "instruction": "Assurbanipal was as famous for his lion hunts as his library — the palace reliefs at Nineveh show him alone in a chariot, shooting lions with a bow. Prove your skill before the hunt closes.",
-            "fact": "The Nineveh lion hunt reliefs (c. 640 BCE) are among the greatest achievements of ancient sculpture. Assurbanipal's hunt was ceremonial — royal power displayed through mastery over dangerous animals. The Assyrian lion population was hunted to extinction within centuries."
+            "game": "fieldsurvey",
+            "configId": "kuyunjik-dig",
+            "instruction": "Ashurbanipal's library lay buried for 2,500 years under the mound of Kuyunjik. Dig where the shards point and recover the tablet caches before the season ends.",
+            "fact": "When Nineveh fell in 612 BCE the palace burned — and the fire baked Ashurbanipal's clay tablets hard, preserving them. Excavated in the 1850s, they gave the world back the Epic of Gilgamesh, the Babylonian flood story and much of what is known of Mesopotamian medicine, omens and law."
           }
         }
       ]

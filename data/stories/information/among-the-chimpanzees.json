@@ -135,10 +135,10 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "hunting",
-            "configId": "african-safari",
-            "instruction": "Before Goodall arrived in Gombe, European trophy hunters had devastated African wildlife for generations. Step into the 1880s and see what they hunted — then consider what was nearly lost.",
-            "fact": "Theodore Roosevelt's 1909 African safari killed over 11,000 animals for the Smithsonian. The backlash helped spark the modern conservation movement. Jane Goodall's 1960 arrival in Gombe coincided with a global shift: from exploitation to study and protection."
+            "game": "fieldsurvey",
+            "configId": "gombe-chimps",
+            "instruction": "Goodall's science began with patient fieldwork. Read the signs in the Gombe forest — nests, dropped fruit — and locate every chimpanzee group before the light goes.",
+            "fact": "Goodall gave the Gombe chimpanzees names instead of numbers, which shocked the scientists of the day. Her study, begun in 1960, is now the longest-running field study of any wild animal, and her Roots & Shoots programme runs in more than 60 countries."
           }
         }
       ]

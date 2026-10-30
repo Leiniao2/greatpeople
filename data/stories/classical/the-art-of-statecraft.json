@@ -143,10 +143,10 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "hunting",
-            "configId": "mongol-hunt",
-            "instruction": "Kautilya's Arthashastra prescribed hunting as essential training for kings. The great nerge (encircling hunt) honed logistics and discipline — the same skills that built empires. Use your arrows wisely.",
-            "fact": "The Mongol nerge involved thousands of soldiers forming a vast encircling ring over weeks, slowly contracting until animals were packed together. It was a strategic training exercise as much as a hunt — teaching the same coordinated envelopment tactics used at Mohi and Legnica."
+            "game": "roundup",
+            "configId": "elephant-keddah",
+            "instruction": "The Arthashastra counts war elephants as a kingdom's greatest strength. Guide a wild herd into the stockade — post beaters to close every path out of the forest.",
+            "fact": "Seleucus I ceded the Maurya Empire's western provinces to Chandragupta around 303 BCE in return for 500 war elephants. Those elephants helped Seleucus win the Battle of Ipsus two years later — the deal Kautilya's statecraft made possible reshaped the Hellenistic world."
           }
         }
       ]

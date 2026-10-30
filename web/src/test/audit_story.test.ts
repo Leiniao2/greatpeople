@@ -14,7 +14,9 @@ import MuseumGame, { CONFIGS as MUSEUM } from '@/components/minigames/MuseumGame
 import StorySortGame, { CONFIGS as STORYSORT, scrambled } from '@/components/minigames/StorySortGame'
 import DebateGame, { CONFIGS as DEBATE, debateTargets } from '@/components/minigames/DebateGame'
 import StarChartGame, { CONFIGS as STARCHART, latitudeFrom } from '@/components/minigames/StarChartGame'
-import HuntingGame, { CONFIGS as HUNTING } from '@/components/minigames/HuntingGame'
+import RoundUpGame, { CONFIGS as ROUNDUP, makeBoard, greedySolve, ridersFor, isEdge } from '@/components/minigames/RoundUpGame'
+import FieldSurveyGame, { CONFIGS as SURVEY, makeFinds, solve, tierFor as surveyTier, SLACK } from '@/components/minigames/FieldSurveyGame'
+import RiverRunGame, { CONFIGS as RIVER, makeRiver, tierFor as riverTier, LANES } from '@/components/minigames/RiverRunGame'
 import SoccerGame, { CONFIGS as SOCCER } from '@/components/minigames/SoccerGame'
 import ReporterFleeGame, { CONFIGS as REPORTER, initState, reducer, EX, EY, SOLDIER_EVERY, type GameState } from '@/components/minigames/ReporterFleeGame'
 import MatchThreeGame, {
@@ -27,7 +29,7 @@ afterEach(() => { cleanup(); vi.useRealTimers(); vi.restoreAllMocks() })
 const DIFFS: Difficulty[] = [1, 2, 3, 4]
 const noop = () => {}
 
-// jsdom has no canvas; Hunting draws on one.
+// jsdom has no canvas; keep any game that draws on one quiet.
 const inertContext = new Proxy({}, { get: () => () => undefined })
 HTMLCanvasElement.prototype.getContext = (() => inertContext) as unknown as HTMLCanvasElement['getContext']
 
@@ -52,7 +54,9 @@ const GAMES: [string, MinigameComponent, Record<string, unknown>][] = [
   ['storysort', StorySortGame, STORYSORT],
   ['debate', DebateGame, DEBATE],
   ['starchart', StarChartGame, STARCHART],
-  ['hunting', HuntingGame, HUNTING],
+  ['roundup', RoundUpGame, ROUNDUP],
+  ['fieldsurvey', FieldSurveyGame, SURVEY],
+  ['riverrun', RiverRunGame, RIVER],
   ['soccer', SoccerGame, SOCCER],
   ['reporterflee', ReporterFleeGame, REPORTER],
   ['matchthree', MatchThreeGame, MATCH3],
@@ -382,17 +386,98 @@ describe('audit — Star Chart', () => {
   })
 })
 
-// ── Hunting ────────────────────────────────────────────────────────────────────
+// ── Round-Up ───────────────────────────────────────────────────────────────────
 
-describe('audit — Hunting', () => {
-  it('the arrows can score the target even with only one hit per shot', () => {
-    for (const [id, cfg] of Object.entries(HUNTING)) {
-      const pool = cfg.animals.flatMap(a => Array.from({ length: a.count }, () => a.points)).sort((a, b) => b - a)
-      const best = pool.slice(0, cfg.bullets).reduce((s, p) => s + p, 0)
-      expect(best, `${id} best ${best} vs target ${cfg.targetScore}`).toBeGreaterThanOrEqual(cfg.targetScore)
-      // and it should not demand near-perfect aim: three misses must still leave a win
-      const slack = pool.slice(0, cfg.bullets - 3).reduce((s, p) => s + p, 0)
-      expect(slack, `${id} with three misses`).toBeGreaterThanOrEqual(cfg.targetScore)
+describe('audit — Round-Up', () => {
+  it('the greedy rider wins every generated board', () => {
+    for (const difficulty of DIFFS) {
+      for (let seed = 1; seed <= 15; seed++) {
+        const { blocked, animal } = makeBoard(seed, difficulty)
+        expect(greedySolve(blocked, animal, ridersFor(difficulty)), `seed ${seed}@${difficulty}`).not.toBeNull()
+      }
+    }
+  })
+
+  it('playing the greedy line wins once through the component', () => {
+    for (const difficulty of DIFFS) {
+      const { blocked, animal } = makeBoard(3, difficulty)
+      const placed = greedySolve(blocked, animal, ridersFor(difficulty))!
+      vi.useFakeTimers()
+      const onWin = vi.fn(), onLose = vi.fn()
+      render(createElement(RoundUpGame, { configId: 'mongol-nerge', difficulty, seed: 3, onWin, onLose }))
+      for (const i of placed) fireEvent.click(screen.getByLabelText(`square ${i % 9 + 1},${Math.floor(i / 9) + 1}`))
+      act(() => { vi.advanceTimersByTime(1500) })
+      expect(onWin, `@${difficulty}`).toHaveBeenCalledTimes(1)
+      expect(onLose).not.toHaveBeenCalled()
+      cleanup(); vi.useRealTimers()
+    }
+  })
+
+  it('the herd starts away from the edge', () => {
+    expect(isEdge(makeBoard(1, 1).animal)).toBe(false)
+  })
+})
+
+// ── Field Survey ───────────────────────────────────────────────────────────────
+
+describe('audit — Field Survey', () => {
+  it('the reference searcher finds everything with searches to spare', () => {
+    for (const difficulty of DIFFS) {
+      const tier = surveyTier(difficulty)
+      for (let seed = 1; seed <= 10; seed++) {
+        const used = solve(tier, makeFinds(seed, difficulty)).length
+        expect(used, `seed ${seed}@${difficulty}`).toBeLessThanOrEqual(tier.searches - SLACK)
+      }
+    }
+  })
+
+  it('searching every find wins once', () => {
+    for (const difficulty of DIFFS) {
+      const tier = surveyTier(difficulty)
+      vi.useFakeTimers()
+      const onWin = vi.fn(), onLose = vi.fn()
+      render(createElement(FieldSurveyGame, { configId: 'gombe-chimps', difficulty, seed: 5, onWin, onLose }))
+      for (const i of makeFinds(5, difficulty)) {
+        fireEvent.click(screen.getByLabelText(`search ${i % tier.size + 1},${Math.floor(i / tier.size) + 1}`))
+      }
+      act(() => { vi.advanceTimersByTime(1500) })
+      expect(onWin, `@${difficulty}`).toHaveBeenCalledTimes(1)
+      expect(onLose).not.toHaveBeenCalled()
+      cleanup(); vi.useRealTimers()
+    }
+  })
+})
+
+// ── River Run ──────────────────────────────────────────────────────────────────
+
+describe('audit — River Run', () => {
+  it('a clear channel runs the whole river, one lane change per stretch at most', () => {
+    for (const difficulty of DIFFS) {
+      const tier = riverTier(difficulty)
+      for (let seed = 1; seed <= 20; seed++) {
+        const { rows, channel } = makeRiver(seed, tier, 3)
+        expect(rows.length).toBe(tier.length)
+        channel.forEach((lane, r) => {
+          expect(lane >= 0 && lane < LANES).toBe(true)
+          expect(rows[r][lane], `seed ${seed}@${difficulty} row ${r}`).toBe(-1)
+          if (r) expect(Math.abs(lane - channel[r - 1])).toBeLessThanOrEqual(1)
+        })
+      }
+    }
+  })
+
+  it('following the channel wins once, and the current does not fire after the landing', () => {
+    for (const difficulty of DIFFS) {
+      vi.useFakeTimers()
+      const onWin = vi.fn(), onLose = vi.fn()
+      render(createElement(RiverRunGame, { configId: 'kwanza-river', difficulty, seed: 9, onWin, onLose }))
+      const { channel } = makeRiver(9, riverTier(difficulty), RIVER['kwanza-river'].hazards.length)
+      const label = { [-1]: '↖ Left', 0: '↑ Straight', 1: 'Right ↗' } as Record<number, string>
+      for (let r = 1; r < channel.length; r++) fireEvent.click(screen.getByText(label[channel[r] - channel[r - 1]]))
+      act(() => { vi.advanceTimersByTime(5000) })
+      expect(onWin, `@${difficulty}`).toHaveBeenCalledTimes(1)
+      expect(onLose).not.toHaveBeenCalled()
+      cleanup(); vi.useRealTimers()
     }
   })
 })
