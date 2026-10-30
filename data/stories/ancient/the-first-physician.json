@@ -33,9 +33,6 @@
             "fact": "Hesy-Ra (c. 2700–2600 BCE) is the earliest known physician in recorded history. He held the title 'Chief of Dentists and Physicians' — inscribed on a wooden panel in his tomb at Saqqara, making him the first named doctor in history.",
             "autogen": true,
             "configId": "babylon-tablets",
-            "params": {
-              "title": "Hesy-Ra is considered the first person"
-            },
             "instruction": "Hesy-Ra is considered the first person in history to hold what title? Gather what the story needs: match the goods until the tally is met."
           }
         }
@@ -65,10 +62,6 @@
             "fact": "Hesy-Ra was Chief of Dentists and Physicians under Pharaoh Djoser (c. 2650 BCE). The Step Pyramid at Saqqara, designed by Imhotep, was built during the same reign — making Hesy-Ra and Imhotep contemporaries at the world's most ambitious construction project.",
             "autogen": true,
             "configId": "court-drums",
-            "params": {
-              "title": "Hesy-Ra served under Pharaoh Djoser, who",
-              "intro": "Hesy-Ra served under Pharaoh Djoser, who built Egypt's first pyramid at Saqqara."
-            },
             "instruction": "Hesy-Ra served under Pharaoh Djoser, who built Egypt's first pyramid at Saqqara. Learn the phrase and play it back, note for note."
           }
         }
@@ -95,8 +88,6 @@
             "autogen": true,
             "configId": "caesar-gaul",
             "params": {
-              "title": "Arrange these milestones of ancient medicine",
-              "intro": "Arrange these milestones of ancient medicine in chronological order:",
               "mode": "caesar",
               "plaintext": "HESY RA BECOMES THE WORLD S"
             },

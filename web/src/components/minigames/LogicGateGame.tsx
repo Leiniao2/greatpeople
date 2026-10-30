@@ -11,9 +11,9 @@ import { mulberry32, resolveConfig, scale, useGameOutcome, OutcomeBanner, useGam
 // Difficulty: more rows must match, fewer wrong checks allowed, and a clock.
 
 type Gate = 'AND' | 'OR' | 'XOR' | 'NAND' | 'NOR' | 'NOT'
-const GATES: Gate[] = ['AND', 'OR', 'XOR', 'NAND', 'NOR', 'NOT']
+export const GATES: Gate[] = ['AND', 'OR', 'XOR', 'NAND', 'NOR', 'NOT']
 
-const apply = (g: Gate, a: number, b: number) => {
+export const apply = (g: Gate, a: number, b: number) => {
   switch (g) {
     case 'AND': return a & b
     case 'OR': return a | b
@@ -25,7 +25,7 @@ const apply = (g: Gate, a: number, b: number) => {
 }
 
 interface TapeRule { name: string; run: (tape: number[]) => number[] }
-const TAPE_RULES: TapeRule[] = [
+export const TAPE_RULES: TapeRule[] = [
   { name: 'Flip every cell',          run: t => t.map(v => 1 - v) },
   { name: 'Shift right, pad with 0',  run: t => [0, ...t.slice(0, -1)] },
   { name: 'Keep only the first 1',    run: t => { let seen = false; return t.map(v => { if (v && !seen) { seen = true; return 1 } return 0 }) } },
@@ -43,7 +43,7 @@ interface LogicConfig {
   fact: string
 }
 
-const CONFIGS: Record<string, LogicConfig> = {
+export const CONFIGS: Record<string, LogicConfig> = {
   'boole-laws': {
     title: 'The Laws of Thought',
     intro: 'George Boole reduced reasoning to algebra on 0 and 1. Choose gates so the circuit agrees with the table on every row.',
@@ -68,13 +68,30 @@ const CONFIGS: Record<string, LogicConfig> = {
   'lovelace-engine': {
     title: 'Notes on the Analytical Engine',
     intro: 'Ada Lovelace saw that Babbage\'s engine could weave patterns of logic as the Jacquard loom wove flowers. Wire the gates to match.',
-    target: (a, b, c) => (a | b) & (1 - c),
-    description: 'Output is 1 when A or B is on, but only while C is off.',
+    target: (a, b, c) => (a | b) ^ c,
+    description: 'Output is 1 when A or B is on while C is off — or when C is on while both A and B are off.',
     fact: 'Ada Lovelace\'s 1843 notes include a method for computing Bernoulli numbers on the Analytical Engine, often called the first computer program, and the observation that the machine might one day compose music.',
   },
 }
 
-const ROWS: [number, number, number][] = [[0,0,0],[0,0,1],[0,1,0],[0,1,1],[1,0,0],[1,0,1],[1,1,0],[1,1,1]]
+export const ROWS: [number, number, number][] = [[0,0,0],[0,0,1],[0,1,0],[0,1,1],[1,0,0],[1,0,1],[1,1,0],[1,1,1]]
+
+/** Circuit output for a gate pair: g1(A, B) → g2(g1, C). */
+export const circuitOut = (g1: Gate, g2: Gate, a: number, b: number, c: number) => apply(g2, apply(g1, a, b), c)
+
+/** Rows of the truth table a gate pair gets right against the target. */
+export function matchingRows(target: LogicConfig['target'], g1: Gate, g2: Gate): number {
+  return ROWS.filter(([a, b, c]) => circuitOut(g1, g2, a, b, c) === target(a, b, c)).length
+}
+
+/** A seeded starting pair that does NOT already solve the table, so the player has to do something. */
+export function initialGates(target: LogicConfig['target'], seed: number): [Gate, Gate] {
+  const rng = mulberry32(seed)
+  const pairs: [Gate, Gate][] = []
+  for (const g1 of GATES) for (const g2 of GATES) pairs.push([g1, g2])
+  const unsolved = pairs.filter(([g1, g2]) => matchingRows(target, g1, g2) < ROWS.length)
+  return unsolved[Math.floor(rng() * unsolved.length)] ?? ['AND', 'OR']
+}
 
 export default function LogicGateGame({ configId, difficulty, seed, params, onWin, onLose }: MinigameProps) {
   const cfg = resolveConfig(CONFIGS, configId, params, 'boole-laws')
@@ -103,7 +120,7 @@ export default function LogicGateGame({ configId, difficulty, seed, params, onWi
 
       {difficulty >= 4
         ? <TapeMachine seed={seed} disabled={settled} onDone={win} onFail={fail} />
-        : <Circuit target={cfg.target} description={cfg.description} difficulty={difficulty} disabled={settled} onDone={win} onFail={fail} />}
+        : <Circuit target={cfg.target} description={cfg.description} difficulty={difficulty} seed={seed} disabled={settled} onDone={win} onFail={fail} />}
 
       <OutcomeBanner outcome={outcome} detail={cfg.fact} winTitle="The circuit agrees on every row!" loseTitle="The logic does not hold" />
     </div>
@@ -112,15 +129,16 @@ export default function LogicGateGame({ configId, difficulty, seed, params, onWi
 
 // ── Gate circuit ───────────────────────────────────────────────────────────────
 
-function Circuit({ target, description, difficulty, disabled, onDone, onFail }: {
-  target: LogicConfig['target']; description: string; difficulty: number; disabled: boolean; onDone: () => void; onFail: () => void
+function Circuit({ target, description, difficulty, seed, disabled, onDone, onFail }: {
+  target: LogicConfig['target']; description: string; difficulty: number; seed: number; disabled: boolean; onDone: () => void; onFail: () => void
 }) {
   // Network: g1(A, B) → g2(g1, C) → output.  Tier 1 shows the description; tier 2+ only the table.
-  const [g1, setG1] = useState<Gate>('AND')
-  const [g2, setG2] = useState<Gate>('OR')
+  const [start] = useState(() => initialGates(target, seed))
+  const [g1, setG1] = useState<Gate>(start[0])
+  const [g2, setG2] = useState<Gate>(start[1])
   const showDescription = difficulty <= 1
-  const out = (a: number, b: number, c: number) => apply(g2, apply(g1, a, b), c)
-  const matches = ROWS.filter(([a, b, c]) => out(a, b, c) === target(a, b, c)).length
+  const out = (a: number, b: number, c: number) => circuitOut(g1, g2, a, b, c)
+  const matches = matchingRows(target, g1, g2)
 
   const check = () => {
     if (disabled) return
@@ -188,7 +206,8 @@ function TapeMachine({ seed, disabled, onDone, onFail }: { seed: number; disable
 
   const check = () => {
     if (disabled || picked === null) return
-    if (options[picked].name === rule.name) onDone(); else onFail()
+    // Judge by what the rule does, not its name: several rules can agree on one tape.
+    if (options[picked].run(tape).join() === targetTape.join()) onDone(); else onFail()
   }
   const Tape = ({ cells, label, tone }: { cells: number[]; label: string; tone: string }) => (
     <div className="flex items-center gap-2">

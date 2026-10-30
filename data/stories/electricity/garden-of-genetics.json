@@ -60,10 +60,6 @@
             "fact": "When Mendel published his results in 1866, the scientific world largely ignored them. His paper was cited only a handful of times in the next 35 years. It was not until 1900 — 16 years after Mendel's death — that three botanists independently rediscovered his laws and finally found his original paper, launching the science of genetics.",
             "autogen": true,
             "configId": "beethoven-motif",
-            "params": {
-              "title": "Mendel's discovery of the laws of",
-              "intro": "Mendel's discovery of the laws of heredity was immediately celebrated by the scientific community."
-            },
             "instruction": "Mendel's discovery of the laws of heredity was immediately celebrated by the scientific community. Learn the phrase and play it back, note for note."
           }
         }
@@ -89,9 +85,6 @@
             "fact": "The 3:1 ratio Mendel observed — three dominant to one recessive — was not a coincidence or approximation. It was a mathematical law. Mendel was the first scientist to apply statistical analysis to biology, and his insight that inheritance comes in discrete packets (what we now call genes) was centuries ahead of its time.",
             "autogen": true,
             "configId": "cairo-alchemy",
-            "params": {
-              "title": "Arrange the key steps of Mendel's"
-            },
             "instruction": "Arrange the key steps of Mendel's pea experiment in order: Gather what the story needs: match the goods until the tally is met."
           }
         },

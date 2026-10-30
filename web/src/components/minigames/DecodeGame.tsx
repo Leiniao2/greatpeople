@@ -10,7 +10,7 @@ interface DecodeConfig {
   plaintext: string
 }
 
-const CONFIGS: Record<string, DecodeConfig> = {
+export const CONFIGS: Record<string, DecodeConfig> = {
   'enigma-msg':     { title: 'Encrypted Dispatch',   hint: 'Intercept decoded at Bletchley Park, November 1942',             plaintext: 'BREAK THE CODE WIN THE WAR' },
   'cipher-al':      { title: 'The Hidden Formula',   hint: 'A message encoded by the House of Wisdom scholars',              plaintext: 'ALGEBRA FREES THE MIND' },
   'cicero-code':    { title: 'Secret Missive',        hint: "A Roman senator's encrypted letter, circa 50 BCE",               plaintext: 'WORDS MOVE ROME TO ACTION' },
@@ -29,7 +29,7 @@ function hashCode(s: string): number {
   return Math.abs(h)
 }
 
-function makeCipher(configId: string): Record<string, string> {
+export function makeCipher(configId: string): Record<string, string> {
   const alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
   const shuffled = [...alpha]
   let rng = hashCode(configId)
@@ -44,7 +44,7 @@ function makeCipher(configId: string): Record<string, string> {
 }
 
 // reverse map: cipher -> plaintext
-function makeDecipherMap(cipher: Record<string, string>): Record<string, string> {
+export function makeDecipherMap(cipher: Record<string, string>): Record<string, string> {
   const rev: Record<string, string> = {}
   for (const [plain, enc] of Object.entries(cipher)) rev[enc] = plain
   return rev
@@ -59,10 +59,11 @@ const ALPHA_ROWS = [
 
 // ── Component ──────────────────────────────────────────────────────────────────
 
+export const DECODE_TIME_LIMITS = [0, 0, 180, 150] as const
+
 export default function DecodeGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
   // Higher difficulties put the puzzle on a clock.
-  const timeLimit = scale(difficulty, [0, 0, 120, 90])
-  const timer = useGameTimer({ seconds: timeLimit, running: true, onExpire: () => onLose('out of time') })
+  const timeLimit = scale(difficulty, DECODE_TIME_LIMITS)
 
   const config = CONFIGS[configId] ?? Object.values(CONFIGS)[0]
   const usedConfigId = CONFIGS[configId] ? configId : Object.keys(CONFIGS)[0]
@@ -89,6 +90,8 @@ export default function DecodeGame({ configId, difficulty, onWin, onLose }: Mini
   // which cipher letter is currently selected
   const [selected, setSelected] = useState<string | null>(null)
   const [won, setWon] = useState(false)
+  // The clock stops once the message is read, so a late expiry cannot undo a win.
+  const timer = useGameTimer({ seconds: timeLimit, running: !won, onExpire: () => onLose('out of time') })
 
   // Check win condition
   const checkWin = useCallback((asgn: Record<string, string>) => {

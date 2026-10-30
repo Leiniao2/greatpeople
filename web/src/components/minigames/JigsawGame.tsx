@@ -13,7 +13,7 @@ interface JigsawConfig {
   fact: string
 }
 
-const CONFIGS: Record<string, JigsawConfig> = {
+export const CONFIGS: Record<string, JigsawConfig> = {
   'venetian-master': {
     title: 'Assumption of the Virgin',
     artist: 'Titian',
@@ -117,9 +117,16 @@ export default function JigsawGame({ configId, difficulty, onWin, onLose }: Mini
   const timeLimit = scale(difficulty, [0, 0, 120, 90])
   const timer = useGameTimer({ seconds: timeLimit, running: true, onExpire: () => onLose('out of time') })
 
-  const config = CONFIGS[configId]
+  const config = CONFIGS[configId] ?? CONFIGS['venetian-master']
   const correctOrder = useMemo(() => config.pieces.map(p => p.id), [config])
-  const [board, setBoard] = useState<string[]>(() => shuffle(correctOrder))
+  const [board, setBoard] = useState<string[]>(() => {
+    // The win is only checked on a swap, so never start already solved.
+    for (let attempt = 0; attempt < 20; attempt++) {
+      const b = shuffle(correctOrder)
+      if (b.some((id, i) => id !== correctOrder[i])) return b
+    }
+    return [...correctOrder.slice(1), correctOrder[0]]
+  })
   const [selected, setSelected] = useState<number | null>(null)
   const [won, setWon] = useState(false)
 

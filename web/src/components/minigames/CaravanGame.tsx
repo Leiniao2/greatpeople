@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import type { MinigameProps } from '@/games/types'
+import type { Difficulty, MinigameProps } from '@/games/types'
 import { mulberry32, resolveConfig, scale, useGameOutcome, OutcomeBanner } from './_shared'
 
 // Caravan: a trading ledger across a chain of cities.  Each city buys and
@@ -25,7 +25,7 @@ interface CaravanConfig {
   fact: string
 }
 
-const CONFIGS: Record<string, CaravanConfig> = {
+export const CONFIGS: Record<string, CaravanConfig> = {
   'silk-road': {
     title: 'The Silk Road',
     intro: "Lead a caravan from Chang'an to Constantinople. Silk is cheap in the east, glass and silver in the west — carry what each city wants.",
@@ -58,7 +58,7 @@ const CONFIGS: Record<string, CaravanConfig> = {
       { name: 'Sijilmasa', prices: { Gold: 42, Salt: 22, Copper: 20, Cloth: 30 } },
       { name: 'Cairo',    prices: { Gold: 55, Salt: 30, Copper: 16, Cloth: 18 } },
     ],
-    startGold: 240, targetMul: 1.8,
+    startGold: 240, targetMul: 1.6,
     events: [
       { text: 'Your own gold floods the market — gold sells for half here.', effect: { good: 'Gold', priceMul: 0.5 } },
       { text: 'A sandstorm costs a tenth of your gold in lost camels.', effect: { goldDelta: -0.1 } },
@@ -89,17 +89,22 @@ const CONFIGS: Record<string, CaravanConfig> = {
   },
 }
 
-export default function CaravanGame({ configId, difficulty, seed, params, onWin, onLose }: MinigameProps) {
-  const cfg = resolveConfig(CONFIGS, configId, params, 'silk-road')
+/** The per-difficulty shape of a run: profit target, which cities are visited, event odds. */
+export function caravanPlan(cfg: CaravanConfig, difficulty: Difficulty) {
   const target = Math.round(cfg.startGold * cfg.targetMul * scale(difficulty, [1, 1.15, 1.3, 1.5]))
-  const stops = useMemo(() => {
-    // Fewer stops at higher difficulty: drop middle cities, keep the ends.
-    const drop = scale(difficulty, [0, 0, 1, 2])
-    const middle = cfg.cities.slice(1, -1)
-    return [cfg.cities[0], ...middle.slice(0, Math.max(1, middle.length - drop)), cfg.cities[cfg.cities.length - 1]]
-  }, [cfg, difficulty])
+  // Fewer stops at higher difficulty: skip the early middle cities, keep the
+  // ends (the later legs are where each route's best trades are).
+  const drop = scale(difficulty, [0, 0, 1, 2])
+  const middle = cfg.cities.slice(1, -1)
+  const stops = [cfg.cities[0], ...middle.slice(Math.min(drop, middle.length - 1)), cfg.cities[cfg.cities.length - 1]]
   const hideNext = difficulty >= 3
   const eventChance = scale(difficulty, [0.3, 0.5, 0.6, 0.75])
+  return { target, stops, hideNext, eventChance }
+}
+
+export default function CaravanGame({ configId, difficulty, seed, params, onWin, onLose }: MinigameProps) {
+  const cfg = resolveConfig(CONFIGS, configId, params, 'silk-road')
+  const { target, stops, hideNext, eventChance } = useMemo(() => caravanPlan(cfg, difficulty), [cfg, difficulty])
 
   const rng = useMemo(() => mulberry32(seed), [seed])
   const { outcome, settled, win, lose } = useGameOutcome({ onWin, onLose, delayMs: 1000 })

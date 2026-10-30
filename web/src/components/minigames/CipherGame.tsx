@@ -21,7 +21,7 @@ interface CipherConfig {
   fact: string
 }
 
-const CONFIGS: Record<string, CipherConfig> = {
+export const CONFIGS: Record<string, CipherConfig> = {
   'caesar-gaul': {
     title: "Caesar's Dispatch",
     intro: 'A courier from Gaul carries a message shifted down the alphabet. Turn the wheel until it reads as Latin-tinged sense.',
@@ -54,7 +54,7 @@ const CONFIGS: Record<string, CipherConfig> = {
 }
 
 const A = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-const MORSE: Record<string, string> = {
+export const MORSE: Record<string, string> = {
   A: '.-', B: '-...', C: '-.-.', D: '-..', E: '.', F: '..-.', G: '--.', H: '....', I: '..', J: '.---',
   K: '-.-', L: '.-..', M: '--', N: '-.', O: '---', P: '.--.', Q: '--.-', R: '.-.', S: '...', T: '-',
   U: '..-', V: '...-', W: '.--', X: '-..-', Y: '-.--', Z: '--..',
@@ -65,8 +65,8 @@ const shiftChar = (ch: string, k: number) => {
   return i < 0 ? ch : A[(i + k + 26 * 10) % 26]
 }
 
-function encodeCaesar(text: string, k: number) { return [...text].map(c => shiftChar(c, k)).join('') }
-function encodeVigenere(text: string, keyword: string) {
+export function encodeCaesar(text: string, k: number) { return [...text].map(c => shiftChar(c, k)).join('') }
+export function encodeVigenere(text: string, keyword: string) {
   let j = 0
   return [...text].map(c => {
     if (A.indexOf(c) < 0) return c
@@ -75,8 +75,21 @@ function encodeVigenere(text: string, keyword: string) {
   }).join('')
 }
 
-export default function CipherGame({ configId, difficulty, seed, params, onWin, onLose }: MinigameProps) {
+/**
+ * Story params may override the plaintext; an empty override would leave
+ * nothing to decode, so fall back to the base config's message.
+ */
+export function resolveCipherConfig(configId: string | undefined, params?: Record<string, unknown>): CipherConfig {
   const cfg = resolveConfig(CONFIGS, configId, params, 'caesar-gaul')
+  if (typeof cfg.plaintext !== 'string' || !/[A-Za-z]/.test(cfg.plaintext)) {
+    const base = (configId && CONFIGS[configId]) || CONFIGS['caesar-gaul']
+    return { ...cfg, plaintext: base.plaintext }
+  }
+  return cfg
+}
+
+export default function CipherGame({ configId, difficulty, seed, params, onWin, onLose }: MinigameProps) {
+  const cfg = resolveCipherConfig(configId, params)
   const maxAttempts = scale(difficulty, [4, 3, 2, 2])
   const showHints = difficulty < 3
   const timeLimit = scale(difficulty, [0, 0, 150, 100])

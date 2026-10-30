@@ -31,8 +31,6 @@
             "autogen": true,
             "configId": "gutenberg-bible",
             "params": {
-              "title": "What key innovation made Gutenberg's printing",
-              "intro": "What key innovation made Gutenberg's printing press transformative, compared to woodblock printing?",
               "lines": [
                 "INDIVIDUAL",
                 "INDIVIDUAL METAL",
@@ -64,8 +62,6 @@
             "autogen": true,
             "configId": "vigenere-cabinet",
             "params": {
-              "title": "Gutenberg became enormously wealthy from his",
-              "intro": "Gutenberg became enormously wealthy from his printing press invention.",
               "mode": "caesar",
               "plaintext": "GUTENBERG DIED NEARLY BROKE"
             },
@@ -92,9 +88,6 @@
             "fact": "It took 50 years for printing to reach every corner of Europe. By 1500, over 20 million books had been printed — more than all the manuscripts produced in the previous thousand years of European history. The printing press did not merely copy existing knowledge; it transformed who could access it, who could challenge it, and who could add to it.",
             "autogen": true,
             "configId": "lisbon-spices",
-            "params": {
-              "title": "Arrange these consequences of Gutenberg's press"
-            },
             "instruction": "Arrange these consequences of Gutenberg's press in roughly chronological order after 1450: Gather what the story needs: match the goods until the tally is met."
           }
         }

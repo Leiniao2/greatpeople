@@ -87,8 +87,6 @@
             "autogen": true,
             "configId": "vigenere-cabinet",
             "params": {
-              "title": "Arrange the key milestones of Magellan's",
-              "intro": "Arrange the key milestones of Magellan's circumnavigation in order:",
               "mode": "caesar",
               "plaintext": "FLEET OF FIVE SHIPS DEPARTS"
             },

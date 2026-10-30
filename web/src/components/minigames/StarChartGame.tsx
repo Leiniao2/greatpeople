@@ -11,7 +11,7 @@ import { mulberry32, shuffle, resolveConfig, scale, useGameOutcome, OutcomeBanne
 // and at tier 4 the constellation outlines are hidden.
 
 interface Constellation { name: string; stars: [number, number][]; lines?: [number, number][] }
-interface Sighting { star: string; declination: number; /** true altitude at the ship's latitude */ altitude: number; south: boolean }
+export interface Sighting { star: string; declination: number; /** true altitude at the ship's latitude */ altitude: number; south: boolean }
 
 interface StarChartConfig {
   title: string
@@ -22,7 +22,7 @@ interface StarChartConfig {
   fact: string
 }
 
-const CONFIGS: Record<string, StarChartConfig> = {
+export const CONFIGS: Record<string, StarChartConfig> = {
   'hipparchus-catalogue': {
     title: 'The First Catalogue',
     intro: 'Hipparchus fixed the positions of some 850 stars. Find each constellation named below among the stars.',
@@ -74,7 +74,7 @@ const CONFIGS: Record<string, StarChartConfig> = {
   },
 }
 
-const latitudeFrom = (s: Sighting) => s.declination === 90 ? s.altitude : 90 - s.altitude + s.declination
+export const latitudeFrom = (s: Sighting) => s.declination === 90 ? s.altitude : 90 - s.altitude + s.declination
 
 export default function StarChartGame({ configId, difficulty, seed, params, onWin, onLose }: MinigameProps) {
   const cfg = resolveConfig(CONFIGS, configId, params, 'hipparchus-catalogue')

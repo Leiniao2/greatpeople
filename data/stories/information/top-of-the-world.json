@@ -76,9 +76,6 @@
             "fact": "Hillary always insisted that he and Tenzing summited together as a team, refusing to say who stepped onto the peak first. He later wrote: 'We didn't talk about it much — it didn't seem important.' For the rest of his life, Hillary devoted enormous energy to building schools, hospitals, and water pipelines for the Sherpa communities of Nepal.",
             "autogen": true,
             "configId": "mughal-gems",
-            "params": {
-              "title": "Hillary claimed to the press that"
-            },
             "instruction": "Hillary claimed to the press that he reached the summit alone, ahead of Tenzing Norgay. Gather what the story needs: match the goods until the tally is met."
           }
         }
@@ -114,10 +111,6 @@
             "fact": "The 1953 expedition was a meticulous logistical operation: 400 porters, 362 loads of equipment, months of acclimatization. John Hunt's planning was military in precision. But in the end, it came down to two men in the predawn cold, kicking steps into ice above the Hillary Step.",
             "autogen": true,
             "configId": "eisenstein-grid",
-            "params": {
-              "title": "Arrange the key events of the",
-              "intro": "Arrange the key events of the 1953 Everest expedition in order:"
-            },
             "instruction": "Arrange the key events of the 1953 Everest expedition in order: Order the grid as the record was ordered — every row, column and box complete."
           }
         }

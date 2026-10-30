@@ -40,8 +40,6 @@
             "autogen": true,
             "configId": "morse-telegraph",
             "params": {
-              "title": "Louis XVI was how old when",
-              "intro": "Louis XVI was how old when he was crowned King of France?",
               "mode": "caesar",
               "plaintext": ""
             },
@@ -112,10 +110,6 @@
             "fact": "The Bastille held just 7 prisoners on July 14, 1789: four forgers, two men committed at their families' request, and one nobleman. But as a symbol of royal arbitrary power, its fall electrified France. The governor's head was paraded through Paris on a pike. Today Bastille Day is France's national holiday.",
             "autogen": true,
             "configId": "mendel-grid",
-            "params": {
-              "title": "When the Bastille was stormed on",
-              "intro": "When the Bastille was stormed on July 14, 1789, it held only seven prisoners — but as a symbol of royal tyranny, its fall ignited the French Revolution."
-            },
             "instruction": "When the Bastille was stormed on July 14, 1789, it held only seven prisoners — but as a symbol of royal tyranny, its fall ignited the French Revolution. Order the grid as the record was ordered — every row, column and box complete."
           }
         }

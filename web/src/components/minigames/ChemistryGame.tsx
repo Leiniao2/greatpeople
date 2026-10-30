@@ -14,7 +14,7 @@ interface ChemistryConfig {
   fact: string
 }
 
-const CONFIGS: Record<string, ChemistryConfig> = {
+export const CONFIGS: Record<string, ChemistryConfig> = {
   'tea-blend': {
     title: "Lu Yu's Perfect Cup",
     question: "Combine the ingredients in the proportions Lu Yu prescribed in the Classic of Tea.",
@@ -65,7 +65,6 @@ const CONFIGS: Record<string, ChemistryConfig> = {
 export default function ChemistryGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
   // Higher difficulties put the puzzle on a clock.
   const timeLimit = scale(difficulty, [0, 0, 120, 90])
-  const timer = useGameTimer({ seconds: timeLimit, running: true, onExpire: () => onLose('out of time') })
 
   const config = CONFIGS[configId] ?? CONFIGS['tea-blend']
   const [counts, setCounts] = useState<Record<string, number>>(
@@ -73,6 +72,7 @@ export default function ChemistryGame({ configId, difficulty, onWin, onLose }: M
   )
   const [reacted, setReacted] = useState(false)
   const [failed, setFailed] = useState(false)
+  const timer = useGameTimer({ seconds: timeLimit, running: !reacted, onExpire: () => onLose('out of time') })
 
   const adjust = (sym: string, delta: number) => {
     if (reacted) return

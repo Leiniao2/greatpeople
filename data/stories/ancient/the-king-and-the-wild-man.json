@@ -47,10 +47,6 @@
             "fact": "The Epic of Gilgamesh, preserved on twelve clay tablets, predates Homer's Iliad by at least 1,500 years. It contains a great flood story remarkably similar to Noah's in the Bible.",
             "autogen": true,
             "configId": "pyramid-deep",
-            "params": {
-              "title": "The Epic of Gilgamesh is considered",
-              "subtitle": "The Epic of Gilgamesh is considered:"
-            },
             "instruction": "The Epic of Gilgamesh is considered: The way to the answer runs through these passages — find the exit."
           }
         }
@@ -95,8 +91,6 @@
             "autogen": true,
             "configId": "bi-sheng-clay",
             "params": {
-              "title": "Arrange the key events of Enkidu's",
-              "intro": "Arrange the key events of Enkidu's life in order:",
               "lines": [
                 "ENKIDU ROAMS",
                 "ENKIDU ROAMS THE",
@@ -139,10 +133,6 @@
             "fact": "Enkidu and Gilgamesh fought briefly at the city gate, but quickly became the closest of friends. Enkidu's death from divine punishment drives the epic's second half and Gilgamesh's desperate quest for immortality.",
             "autogen": true,
             "configId": "euclid-grid",
-            "params": {
-              "title": "Enkidu became Gilgamesh's enemy and they",
-              "intro": "Enkidu became Gilgamesh's enemy and they fought to the death at the end of the epic."
-            },
             "instruction": "Enkidu became Gilgamesh's enemy and they fought to the death at the end of the epic. Order the grid as the record was ordered — every row, column and box complete."
           }
         },

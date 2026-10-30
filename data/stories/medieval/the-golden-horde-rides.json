@@ -31,8 +31,6 @@
             "autogen": true,
             "configId": "bi-sheng-clay",
             "params": {
-              "title": "Whose grandson was Batu Khan, and",
-              "intro": "Whose grandson was Batu Khan, and what western invasion did he lead?",
               "lines": [
                 "GRANDSON OF",
                 "GRANDSON OF",
@@ -64,8 +62,6 @@
             "autogen": true,
             "configId": "al-kindi-frequency",
             "params": {
-              "title": "The Mongol army that invaded Europe",
-              "intro": "The Mongol army that invaded Europe in 1241 was defeated by the armies of Poland and Hungary.",
               "mode": "caesar",
               "plaintext": "AT THE BATTLE OF LEGNICA THE"
             },
@@ -92,10 +88,6 @@
             "fact": "The Mongol campaign of 1241 was one of the most devastating military events in medieval European history. Poland, Hungary, and Moravia were devastated. Poland lost an estimated 25% of its population. When the Mongols withdrew, medieval Europe assumed it was a temporary pause — for years, communities lived in terror of their return.",
             "autogen": true,
             "configId": "cedar-forest",
-            "params": {
-              "title": "Arrange the key events of Batu",
-              "subtitle": "Arrange the key events of Batu Khan's western campaign in order:"
-            },
             "instruction": "Arrange the key events of Batu Khan's western campaign in order: The way to the answer runs through these passages — find the exit."
           }
         },

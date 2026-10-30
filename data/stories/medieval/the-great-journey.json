@@ -31,8 +31,6 @@
             "autogen": true,
             "configId": "bi-sheng-clay",
             "params": {
-              "title": "How far did Ibn Battuta travel",
-              "intro": "How far did Ibn Battuta travel over the course of his 29-year journey?",
               "lines": [
                 "APPROXIMATEL",
                 "APPROXIMATELY",
@@ -64,8 +62,6 @@
             "autogen": true,
             "configId": "al-kindi-frequency",
             "params": {
-              "title": "Ibn Battuta set out from Morocco",
-              "intro": "Ibn Battuta set out from Morocco with a clear plan to circumnavigate the known world.",
               "mode": "caesar",
               "plaintext": "IBN BATTUTA LEFT TANGIER IN"
             },
@@ -92,10 +88,6 @@
             "fact": "Ibn Battuta's Rihla (A Gift to Those Who Contemplate the Wonders of Cities) was dictated to a court secretary, Ibn Juzayy, on his return. Some scholars have questioned whether he visited every place he describes — the China account in particular is suspiciously vague — but his eyewitness descriptions of Mali, India, and Constantinople remain invaluable historical documents.",
             "autogen": true,
             "configId": "cedar-forest",
-            "params": {
-              "title": "Arrange the major regions Ibn Battuta",
-              "subtitle": "Arrange the major regions Ibn Battuta visited in the order of his travels:"
-            },
             "instruction": "Arrange the major regions Ibn Battuta visited in the order of his travels: The way to the answer runs through these passages — find the exit."
           }
         },

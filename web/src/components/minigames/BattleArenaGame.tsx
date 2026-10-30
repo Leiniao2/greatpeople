@@ -28,7 +28,7 @@ const WEAPONS: Weapon[] = [
 ]
 
 // 0 = weak (1 dmg), 1 = normal (3 dmg), 2 = strong (6 dmg)
-const EFF: Record<WeaponKey, Record<EnemyType, 0 | 1 | 2>> = {
+export const EFF: Record<WeaponKey, Record<EnemyType, 0 | 1 | 2>> = {
   sword: { beast: 2, knight: 1, archer: 1, mage: 0, giant: 1 },
   lance: { knight: 2, beast: 0, archer: 1, mage: 1, giant: 1 },
   bow:   { archer: 2, mage: 2,  beast: 1,  knight: 0, giant: 0 },
@@ -36,11 +36,11 @@ const EFF: Record<WeaponKey, Record<EnemyType, 0 | 1 | 2>> = {
   fire:  { mage: 2,   giant: 2, beast: 0,  archer: 1, knight: 1 },
 }
 
-const DMG_TABLE: Record<0 | 1 | 2, number> = { 0: 1, 1: 3, 2: 6 }
+export const DMG_TABLE: Record<0 | 1 | 2, number> = { 0: 1, 1: 3, 2: 6 }
 
 // ── Configs ────────────────────────────────────────────────────────────────────
 
-const CONFIGS: Record<string, BattleConfig> = {
+export const CONFIGS: Record<string, BattleConfig> = {
   'roman-gladiator': {
     title: 'Arena of Rome',
     playerHp: 15,
@@ -63,7 +63,7 @@ const CONFIGS: Record<string, BattleConfig> = {
   },
   'medieval-siege': {
     title: 'The Castle Gates',
-    playerHp: 15,
+    playerHp: 21,
     enemies: [
       { type: 'archer', emoji: '🏹', name: 'Castle Archer',   hp:  7, attack: 2 },
       { type: 'giant',  emoji: '👹', name: 'Siege Troll',     hp: 10, attack: 3 },
@@ -74,7 +74,7 @@ const CONFIGS: Record<string, BattleConfig> = {
   },
   'mongol-conquest': {
     title: 'Mongol Conquest',
-    playerHp: 15,
+    playerHp: 21,
     enemies: [
       { type: 'knight', emoji: '⚔️', name: 'Jin Dynasty Guard',    hp:  8, attack: 2 },
       { type: 'mage',   emoji: '🏮', name: 'Song Alchemist',       hp:  7, attack: 2 },

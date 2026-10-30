@@ -18,7 +18,7 @@ interface PuzzleConfig {
 }
 
 // Solvable scrambles (odd number of inversions relative to blank position achieves solvability)
-const CONFIGS: Record<PuzzleKey, PuzzleConfig> = {
+export const CONFIGS: Record<PuzzleKey, PuzzleConfig> = {
   renaissance: {
     title: 'Renaissance Masterpiece',
     subtitle: 'Restore the painting to its original glory',

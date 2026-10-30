@@ -33,10 +33,6 @@
             "fact": "Peseshet (c. 2500–2450 BCE) is the earliest known female medical administrator in history. Her title 'Imy-r swnwt' — 'Lady Overseer of Female Physicians' — indicates she supervised a group of female medical practitioners, making her a pioneering figure in both medicine and women's leadership.",
             "autogen": true,
             "configId": "court-drums",
-            "params": {
-              "title": "Peseshet held the title 'Lady Overseer",
-              "intro": "Peseshet held the title 'Lady Overseer of Female Physicians.' What was extraordinary about this?"
-            },
             "instruction": "Peseshet held the title 'Lady Overseer of Female Physicians.' What was extraordinary about this? Learn the phrase and play it back, note for note."
           }
         }
@@ -67,8 +63,6 @@
             "autogen": true,
             "configId": "caesar-gaul",
             "params": {
-              "title": "Arrange these developments in ancient medicine",
-              "intro": "Arrange these developments in ancient medicine from oldest to most recent:",
               "mode": "caesar",
               "plaintext": "PESESHET SERVES AS LADY OVERSEER"
             },
@@ -97,10 +91,6 @@
             "fact": "We know of Peseshet entirely through a false door stele in her son's tomb at Giza. This was a common way for high-status women to be memorialized. The inscription preserves for 4,500 years the name of the world's first known female physician.",
             "autogen": true,
             "configId": "pyramid-deep",
-            "params": {
-              "title": "Peseshet's title appears in the tomb",
-              "subtitle": "Peseshet's title appears in the tomb of her son Akhethetep at Giza, not in her own tomb."
-            },
             "instruction": "Peseshet's title appears in the tomb of her son Akhethetep at Giza, not in her own tomb. The way to the answer runs through these passages — find the exit."
           }
         }

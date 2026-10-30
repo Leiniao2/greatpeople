@@ -47,7 +47,7 @@ function getFreq(note: string, label: string): number {
   return freq
 }
 
-const CONFIGS: Record<string, MusicConfig> = {
+export const CONFIGS: Record<string, MusicConfig> = {
   'c-major-scale': {
     title: 'C Major Scale',
     question: 'Arrange these notes in ascending pitch to play the C major scale:',
@@ -247,15 +247,20 @@ export default function MusicGame({ configId, difficulty, onWin, onLose }: Minig
 
   const audioCtxRef = useRef<AudioContext | null>(null)
 
-  const getAudioCtx = useCallback(() => {
+  // Null where Web Audio is unavailable; the game stays playable, just silent.
+  const getAudioCtx = useCallback((): AudioContext | null => {
     if (!audioCtxRef.current) {
-      audioCtxRef.current = new AudioContext()
+      try {
+        const Ctor = window.AudioContext || (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext
+        audioCtxRef.current = Ctor ? new Ctor() : null
+      } catch { audioCtxRef.current = null }
     }
     return audioCtxRef.current
   }, [])
 
   const playTone = useCallback((freq: number, startTime: number, duration = 0.4) => {
     const ctx = getAudioCtx()
+    if (!ctx) return
 
     // Primary sine oscillator
     const osc = ctx.createOscillator()
@@ -290,7 +295,7 @@ export default function MusicGame({ configId, difficulty, onWin, onLose }: Minig
   const playNote = useCallback((note: string, label: string) => {
     const freq = getFreq(note, label)
     const ctx = getAudioCtx()
-    playTone(freq, ctx.currentTime)
+    if (ctx) playTone(freq, ctx.currentTime)
   }, [playTone, getAudioCtx])
 
   const playSequence = useCallback((
@@ -300,9 +305,9 @@ export default function MusicGame({ configId, difficulty, onWin, onLose }: Minig
     const ctx = getAudioCtx()
     const spacing = 0.45
     const duration = 0.4
-    const start = ctx.currentTime + 0.05
+    const start = (ctx?.currentTime ?? 0) + 0.05
 
-    items.forEach((item, i) => {
+    if (ctx) items.forEach((item, i) => {
       const freq = getFreq(item.note, item.label)
       playTone(freq, start + i * spacing, duration)
     })

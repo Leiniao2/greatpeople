@@ -17,6 +17,7 @@ const MiniChallengePage = lazy(() => import('@/pages/MiniChallengePage'))
 const MainLayout        = lazy(() => import('@/pages/MainLayout'))
 const PlayStoryPage     = lazy(() => import('@/pages/PlayPage').then(m => ({ default: m.PlayStoryPage })))
 const PlayChallengePage = lazy(() => import('@/pages/PlayPage').then(m => ({ default: m.PlayChallengePage })))
+const GameLabPage       = import.meta.env.DEV ? lazy(() => import('@/pages/GameLabPage')) : null
 
 function PrivateRoute({ children }: { children: React.ReactNode }) {
   const { isLoggedIn, isGuest } = useAuth()
@@ -44,6 +45,9 @@ export default function App() {
         {/* Full-screen play routes, also used inside the native apps' WebViews */}
         <Route path="/play/story/:slug" element={<PrivateRoute><PlayStoryPage /></PrivateRoute>} />
         <Route path="/play/challenge/:id" element={<PrivateRoute><PlayChallengePage /></PrivateRoute>} />
+
+        {/* Dev-only harness for playing any minigame engine directly */}
+        {GameLabPage && <Route path="/lab/:game?/:configId?" element={<GameLabPage />} />}
 
         {/* Tab-bar layout — all protected */}
         <Route

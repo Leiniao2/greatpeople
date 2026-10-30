@@ -18,11 +18,11 @@ interface Config {
   targetWins: number
 }
 
-const BID_STEP = 10
+export const BID_STEP = 10
 // AI will bid up to this fraction of an item's true value
-const AI_MAX_MULT = 0.9
+export const AI_MAX_MULT = 0.9
 
-const CONFIGS: Record<string, Config> = {
+export const CONFIGS: Record<string, Config> = {
   'venetian-auction': {
     title: 'Rialto Auction House',
     description: 'Win the starred target items to complete your collection. Watch your budget.',
@@ -281,7 +281,7 @@ export default function AuctionGame({ configId, onWin, onLose }: MinigameProps) 
             disabled={!canBid}
             className={`py-4 rounded-xl font-bold text-sm transition-all active:scale-95 ${
               canBid
-                ? 'bg-accent text-black hover:bg-accent-hover'
+                ? 'bg-accent text-accent-fg hover:bg-accent-hover'
                 : 'bg-panel-2 text-muted/80 cursor-not-allowed'
             }`}
           >
@@ -307,7 +307,7 @@ export default function AuctionGame({ configId, onWin, onLose }: MinigameProps) 
 
       {/* Finished overlay */}
       {phase === 'finished' && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#0a0a18]/95 px-8">
+        <div className="absolute inset-0 flex flex-col items-center justify-center bg-paper-2/95 px-8">
           <div className={`w-16 h-16 rounded-full flex items-center justify-center mb-5 text-2xl font-black ${
             result === 'won' ? 'bg-accent/20 border-2 border-accent text-accent' : 'bg-panel-2 border-2 border-line text-muted'
           }`}>

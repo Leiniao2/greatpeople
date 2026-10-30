@@ -11,18 +11,21 @@ interface Options {
 /** Counts down once per second and fires `onExpire` at zero. */
 export function useGameTimer({ seconds = 0, running, onExpire }: Options) {
   const [remaining, setRemaining] = useState(seconds)
+  const left = useRef(seconds)
   const expire = useRef(onExpire)
   expire.current = onExpire
 
-  useEffect(() => { setRemaining(seconds) }, [seconds])
+  useEffect(() => { left.current = seconds; setRemaining(seconds) }, [seconds])
 
+  // The countdown lives in a ref and onExpire fires from the tick itself:
+  // state updaters may run more than once (StrictMode, batched ticks after a
+  // throttled background tab), which used to call onExpire repeatedly.
   useEffect(() => {
     if (!seconds || !running) return
     const iv = setInterval(() => {
-      setRemaining(prev => {
-        if (prev <= 1) { clearInterval(iv); expire.current(); return 0 }
-        return prev - 1
-      })
+      left.current = Math.max(0, left.current - 1)
+      setRemaining(left.current)
+      if (left.current === 0) { clearInterval(iv); expire.current() }
     }, 1000)
     return () => clearInterval(iv)
   }, [seconds, running])

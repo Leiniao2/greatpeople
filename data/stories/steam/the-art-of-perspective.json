@@ -31,8 +31,6 @@
             "autogen": true,
             "configId": "morse-telegraph",
             "params": {
-              "title": "What was Nian Xiyao's most significant",
-              "intro": "What was Nian Xiyao's most significant scholarly contribution to Chinese art?",
               "mode": "caesar",
               "plaintext": "WRITING SHIXUE THE FIRST CHINESE"
             },
@@ -59,10 +57,6 @@
             "fact": "Traditional Chinese painting used 'axonometric' perspective — objects remained the same size regardless of distance, and there was no single vanishing point. This was a deliberate artistic choice, not a technical limitation: it allowed the eye to travel through a landscape rather than fix on one point. Nian Xiyao presented Western perspective as a complementary system, not a replacement.",
             "autogen": true,
             "configId": "lovelace-engine",
-            "params": {
-              "title": "Chinese painting traditions had long used",
-              "intro": "Chinese painting traditions had long used the same perspective system as European art before Nian Xiyao's book."
-            },
             "instruction": "Chinese painting traditions had long used the same perspective system as European art before Nian Xiyao's book. Wire the gates until the circuit agrees with the table on every row."
           }
         }
@@ -86,9 +80,6 @@
             "fact": "Nian Xiyao's imperial kilns at Jingdezhen produced some of the most technically spectacular porcelain in Chinese history: new enamel colors mixed from European pigments, copper-red glazes that had been lost for centuries, and forms that reflected Western shapes while remaining distinctly Chinese. His career embodied the Yongzheng court's sophisticated engagement with global culture.",
             "autogen": true,
             "configId": "hanseatic-runes",
-            "params": {
-              "title": "Arrange these key contributions of Nian"
-            },
             "instruction": "Arrange these key contributions of Nian Xiyao's career in order: Gather what the story needs: match the goods until the tally is met."
           }
         },

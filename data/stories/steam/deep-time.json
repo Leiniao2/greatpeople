@@ -33,10 +33,6 @@
             "fact": "James Hutton (1726–1797) is called the 'Father of Modern Geology' for his Theory of the Earth (1788), which proposed that the Earth's features were shaped by slow, ongoing natural processes — not a single catastrophic event.",
             "autogen": true,
             "configId": "long-march",
-            "params": {
-              "title": "James Hutton is known as the",
-              "subtitle": "James Hutton is known as the 'Father of' which science?"
-            },
             "instruction": "James Hutton is known as the 'Father of' which science? The way to the answer runs through these passages — find the exit."
           }
         }
@@ -67,8 +63,6 @@
             "autogen": true,
             "configId": "morse-telegraph",
             "params": {
-              "title": "Arrange these eras of Earth's geological",
-              "intro": "Arrange these eras of Earth's geological history from oldest to most recent:",
               "mode": "caesar",
               "plaintext": "PRECAMBRIAN FORMATION OF EARTH"
             },
@@ -134,10 +128,6 @@
             "fact": "Darwin read Lyell's Principles of Geology on the HMS Beagle and was transformed by it. The logic — that gradual, uniform processes over immense time can produce dramatic change — applies equally to geology and to evolution. Darwin acknowledged: 'The idea that geology had done for rocks, I wished to do for species.' Hutton's deep time was the foundation Darwin needed.",
             "autogen": true,
             "configId": "lovelace-engine",
-            "params": {
-              "title": "Charles Lyell built on Hutton's uniformitarianism",
-              "intro": "Charles Lyell built on Hutton's uniformitarianism in Principles of Geology (1830) — a book Darwin took on the Beagle voyage and which directly shaped the theory of evolution."
-            },
             "instruction": "Charles Lyell built on Hutton's uniformitarianism in Principles of Geology (1830) — a book Darwin took on the Beagle voyage and which directly shaped the theory of evolution. Wire the gates until the circuit agrees with the table on every row."
           }
         }

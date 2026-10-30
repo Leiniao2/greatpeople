@@ -33,10 +33,6 @@
             "fact": "In July 1762, Catherine organized a coup against her husband Tsar Peter III — who was widely seen as weak and pro-Prussian. The Imperial Guard supported her; Peter was arrested and died days later (likely murdered). Catherine ruled Russia for 34 years as Catherine II.",
             "autogen": true,
             "configId": "long-march",
-            "params": {
-              "title": "How did Catherine the Great come",
-              "subtitle": "How did Catherine the Great come to power in Russia?"
-            },
             "instruction": "How did Catherine the Great come to power in Russia? The way to the answer runs through these passages — find the exit."
           }
         }
@@ -67,8 +63,6 @@
             "autogen": true,
             "configId": "morse-telegraph",
             "params": {
-              "title": "Arrange these key events of Catherine",
-              "intro": "Arrange these key events of Catherine the Great's reign in chronological order:",
               "mode": "caesar",
               "plaintext": "CATHERINE S COUP DEPOSES HER"
             },
@@ -134,10 +128,6 @@
             "fact": "Catherine collected art obsessively — she bought entire collections from European aristocrats, sometimes acquiring over 2,000 paintings at once. Her private 'hermitage' adjacent to the Winter Palace held works by Rembrandt, Raphael, and Titian. It opened to the public in 1852 and today holds over 3 million objects, making it one of the world's largest museums.",
             "autogen": true,
             "configId": "lovelace-engine",
-            "params": {
-              "title": "The Hermitage Museum began as Catherine's",
-              "intro": "The Hermitage Museum began as Catherine's private art collection — she called it her 'hermitage' because she could retreat there alone with her paintings."
-            },
             "instruction": "The Hermitage Museum began as Catherine's private art collection — she called it her 'hermitage' because she could retreat there alone with her paintings. Wire the gates until the circuit agrees with the table on every row."
           }
         }

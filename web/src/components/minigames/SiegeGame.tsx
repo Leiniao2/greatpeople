@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import type { MinigameProps } from '@/games/types'
+import type { Difficulty, MinigameProps } from '@/games/types'
 import { mulberry32, resolveConfig, scale, useGameOutcome, OutcomeBanner } from './_shared'
 
 // Siege: defend the keep.  Spend a budget on walls (block a cell) and towers
@@ -9,7 +9,7 @@ import { mulberry32, resolveConfig, scale, useGameOutcome, OutcomeBanner } from 
 //
 // Difficulty scales the number of waves, attacker toughness and the budget.
 
-type Cell = 'floor' | 'wall' | 'tower' | 'keep' | 'spawn'
+export type Cell = 'floor' | 'wall' | 'tower' | 'keep' | 'spawn'
 
 interface SiegeConfig {
   title: string
@@ -24,7 +24,7 @@ interface SiegeConfig {
   fact: string
 }
 
-const CONFIGS: Record<string, SiegeConfig> = {
+export const CONFIGS: Record<string, SiegeConfig> = {
   'great-wall': {
     title: 'The Northern Frontier',
     intro: 'Qin Shi Huang joins the old border walls into one. Raise walls and watchtowers so the raiders never reach the garrison.',
@@ -48,11 +48,11 @@ const CONFIGS: Record<string, SiegeConfig> = {
   },
 }
 
-const WALL_COST = 1, TOWER_COST = 3, TOWER_RANGE = 2
+export const WALL_COST = 1, TOWER_COST = 3, TOWER_RANGE = 2
 
-interface Attacker { id: number; r: number; c: number; hp: number }
+export interface Attacker { id: number; r: number; c: number; hp: number }
 
-function bfsPath(grid: Cell[][], from: [number, number], to: [number, number]): [number, number][] | null {
+export function bfsPath(grid: Cell[][], from: [number, number], to: [number, number]): [number, number][] | null {
   const rows = grid.length, cols = grid[0].length
   const prev = new Map<string, string | null>()
   const k = (r: number, c: number) => `${r},${c}`
@@ -77,12 +77,54 @@ function bfsPath(grid: Cell[][], from: [number, number], to: [number, number]): 
   return null
 }
 
+/** Per-difficulty wave shape: how many waves, how tough, how many per wave, and the budget each wave. */
+export function siegeTiers(cfg: SiegeConfig, difficulty: Difficulty) {
+  return {
+    waves: scale(difficulty, [2, 3, 4, 5]),
+    attackerHp: scale(difficulty, [2, 2, 3, 3]),
+    perWave: scale(difficulty, [4, 5, 6, 6]),
+    budgetPerWave: Math.round(cfg.budget * scale(difficulty, [1, 0.9, 0.8, 0.8])),
+  }
+}
+
+/** Spawn a wave: attackers appear at random spawns, alternating base and base+1 hit points. */
+export function spawnWave(cfg: SiegeConfig, wave: number, perWave: number, attackerHp: number, rng: () => number): Attacker[] {
+  const spawned: Attacker[] = []
+  for (let i = 0; i < perWave; i++) {
+    const s = cfg.spawns[Math.floor(rng() * cfg.spawns.length)]
+    spawned.push({ id: wave * 100 + i, r: s[0], c: s[1], hp: attackerHp + (i % 2 === 0 ? 0 : 1) })
+  }
+  return spawned
+}
+
+/** One battle tick: towers shoot, then survivors advance one step; returns survivors and keep damage. */
+export function siegeTick(grid: Cell[][], attackers: Attacker[], keep: [number, number]): { remaining: Attacker[]; damage: number } {
+  const towers: [number, number][] = []
+  grid.forEach((row, r) => row.forEach((cell, c) => { if (cell === 'tower') towers.push([r, c]) }))
+
+  let remaining = attackers.map(a => ({ ...a }))
+  for (const [tr, tc] of towers) {
+    // Each tower hits the closest attacker in range once per tick.
+    const target = remaining.filter(a => a.hp > 0 && Math.abs(a.r - tr) + Math.abs(a.c - tc) <= TOWER_RANGE)
+      .sort((a, b) => (Math.abs(a.r - tr) + Math.abs(a.c - tc)) - (Math.abs(b.r - tr) + Math.abs(b.c - tc)))[0]
+    if (target) target.hp -= 1
+  }
+  remaining = remaining.filter(a => a.hp > 0)
+
+  let damage = 0
+  remaining = remaining.flatMap(a => {
+    const path = bfsPath(grid, [a.r, a.c], keep)
+    if (!path || path.length < 2) return [a]
+    const [nr, nc] = path[1]
+    if (nr === keep[0] && nc === keep[1]) { damage++; return [] }
+    return [{ ...a, r: nr, c: nc }]
+  })
+  return { remaining, damage }
+}
+
 export default function SiegeGame({ configId, difficulty, seed, params, onWin, onLose }: MinigameProps) {
   const cfg = resolveConfig(CONFIGS, configId, params, 'great-wall')
-  const waves = scale(difficulty, [2, 3, 4, 5])
-  const attackerHp = scale(difficulty, [2, 2, 3, 3])
-  const perWave = scale(difficulty, [4, 5, 6, 8])
-  const budgetPerWave = Math.round(cfg.budget * scale(difficulty, [1, 0.9, 0.8, 0.7]))
+  const { waves, attackerHp, perWave, budgetPerWave } = siegeTiers(cfg, difficulty)
 
   const { outcome, settled, win, lose } = useGameOutcome({ onWin, onLose, delayMs: 1000 })
   const rng = useRef(mulberry32(seed))
@@ -128,38 +170,14 @@ export default function SiegeGame({ configId, difficulty, seed, params, onWin, o
 
   const launch = () => {
     if (phase !== 'build' || settled) return
-    const spawned: Attacker[] = []
-    for (let i = 0; i < perWave; i++) {
-      const s = cfg.spawns[Math.floor(rng.current() * cfg.spawns.length)]
-      spawned.push({ id: wave * 100 + i, r: s[0], c: s[1], hp: attackerHp + (i % 2 === 0 ? 0 : 1) })
-    }
-    setAttackers(spawned)
+    setAttackers(spawnWave(cfg, wave, perWave, attackerHp, rng.current))
     setPhase('battle')
   }
 
   // Battle tick: towers shoot, then attackers advance one step along their path.
   const tick = useCallback(() => {
     const { attackers: cur, keepHp: hp, grid: g } = live.current
-    const towers: [number, number][] = []
-    g.forEach((row, r) => row.forEach((cell, c) => { if (cell === 'tower') towers.push([r, c]) }))
-
-    let remaining = cur.map(a => ({ ...a }))
-    for (const [tr, tc] of towers) {
-      // Each tower hits the closest attacker in range once per tick.
-      const target = remaining.filter(a => a.hp > 0 && Math.abs(a.r - tr) + Math.abs(a.c - tc) <= TOWER_RANGE)
-        .sort((a, b) => (Math.abs(a.r - tr) + Math.abs(a.c - tc)) - (Math.abs(b.r - tr) + Math.abs(b.c - tc)))[0]
-      if (target) target.hp -= 1
-    }
-    remaining = remaining.filter(a => a.hp > 0)
-
-    let damage = 0
-    remaining = remaining.flatMap(a => {
-      const path = bfsPath(g, [a.r, a.c], cfg.keep)
-      if (!path || path.length < 2) return [a]
-      const [nr, nc] = path[1]
-      if (nr === cfg.keep[0] && nc === cfg.keep[1]) { damage++; return [] }
-      return [{ ...a, r: nr, c: nc }]
-    })
+    const { remaining, damage } = siegeTick(g, cur, cfg.keep)
 
     const nextHp = hp - damage
     setAttackers(remaining)

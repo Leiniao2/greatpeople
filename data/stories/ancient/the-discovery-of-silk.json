@@ -33,10 +33,6 @@
             "fact": "Chinese tradition credits Lei Zu (also written Leizu or Si Ling-chi), wife of the Yellow Emperor Huangdi, with discovering silk around 2700 BCE when a silkworm cocoon fell into her tea and she unravelled its thread.",
             "autogen": true,
             "configId": "pyramid-deep",
-            "params": {
-              "title": "According to Chinese legend, who discovered",
-              "subtitle": "According to Chinese legend, who discovered silk?"
-            },
             "instruction": "According to Chinese legend, who discovered silk? The way to the answer runs through these passages — find the exit."
           }
         }
@@ -67,8 +63,6 @@
             "autogen": true,
             "configId": "bi-sheng-clay",
             "params": {
-              "title": "The term 'Silk Road' was coined",
-              "intro": "The term 'Silk Road' was coined by ancient Chinese merchants who dominated the trade route.",
               "lines": [
                 "THE TERM",
                 "THE TERM SILK",
@@ -101,10 +95,6 @@
             "fact": "A single silkworm cocoon is made from one continuous thread up to 900 metres long. It takes about 2,500 cocoons to make one pound of raw silk — explaining why silk was worth its weight in gold.",
             "autogen": true,
             "configId": "euclid-grid",
-            "params": {
-              "title": "Arrange the steps of silk production",
-              "intro": "Arrange the steps of silk production in the correct order:"
-            },
             "instruction": "Arrange the steps of silk production in the correct order: Order the grid as the record was ordered — every row, column and box complete."
           }
         },

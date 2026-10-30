@@ -17,7 +17,7 @@ interface CrosswordConfig {
   words: WordDef[]
 }
 
-const CONFIGS: Record<string, CrosswordConfig> = {
+export const CONFIGS: Record<string, CrosswordConfig> = {
   imhotep: {
     rows: 7, cols: 7,
     words: [
@@ -72,50 +72,50 @@ const CONFIGS: Record<string, CrosswordConfig> = {
     words: [
       { number: 1, direction: 'across', row: 0, col: 0, word: 'LEGION', clue: 'Roman military unit Belisarius commanded' },
       { number: 1, direction: 'down',   row: 0, col: 0, word: 'LANCE',  clue: 'Cavalry weapon of the Byzantine horseman' },
-      { number: 2, direction: 'across', row: 3, col: 1, word: 'ITALY',  clue: 'Territory Belisarius reconquered for Justinian' },
+      { number: 2, direction: 'down',   row: 0, col: 3, word: 'ITALY',  clue: 'Territory Belisarius reconquered for Justinian' },
     ],
   },
   gutenberg: {
-    rows: 5, cols: 5,
+    rows: 8, cols: 7,
     words: [
-      { number: 1, direction: 'across', row: 0, col: 0, word: 'PRESS', clue: "Gutenberg's revolutionary printing machine" },
-      { number: 1, direction: 'down',   row: 0, col: 1, word: 'PROOF', clue: 'Printer\'s test impression before final run' },
-      { number: 2, direction: 'across', row: 2, col: 1, word: 'OTYPE', clue: 'Moveable ___ — the individual letter blocks' },
-      { number: 3, direction: 'across', row: 4, col: 0, word: 'BIBLE', clue: "Gutenberg's first major printed work" },
+      { number: 1, direction: 'down',   row: 0, col: 2, word: 'TYPE',  clue: 'Moveable ___ — the individual letter blocks' },
+      { number: 2, direction: 'across', row: 3, col: 0, word: 'PRESS', clue: "Gutenberg's revolutionary printing machine" },
+      { number: 2, direction: 'down',   row: 3, col: 0, word: 'PROOF', clue: 'Printer\'s test impression before final run' },
+      { number: 3, direction: 'across', row: 5, col: 2, word: 'BIBLE', clue: "Gutenberg's first major printed work" },
     ],
   },
   ito: {
-    rows: 5, cols: 5,
+    rows: 5, cols: 6,
     words: [
-      { number: 1, direction: 'across', row: 0, col: 0, word: 'MEIJI', clue: 'The great Japanese restoration Itō shaped' },
-      { number: 1, direction: 'down',   row: 0, col: 3, word: 'JAPAN', clue: 'The empire Itō modernised as first PM' },
-      { number: 2, direction: 'across', row: 3, col: 0, word: 'KOREA', clue: 'The peninsula at the heart of the dispute' },
+      { number: 1, direction: 'across', row: 0, col: 1, word: 'MEIJI', clue: 'The great Japanese restoration Itō shaped' },
+      { number: 2, direction: 'down',   row: 0, col: 4, word: 'JAPAN', clue: 'The empire Itō modernised as first PM' },
+      { number: 3, direction: 'across', row: 3, col: 0, word: 'KOREA', clue: 'The peninsula at the heart of the dispute' },
     ],
   },
   'digital-cw': {
-    rows: 6, cols: 7,
+    rows: 9, cols: 7,
     words: [
-      { number: 1, direction: 'across', row: 0, col: 0, word: 'SILICON', clue: 'The material that made the microchip possible' },
-      { number: 1, direction: 'down',   row: 0, col: 3, word: 'SCREEN', clue: 'Interface through which the digital world appears' },
-      { number: 2, direction: 'across', row: 3, col: 1, word: 'PIXEL',  clue: 'Smallest unit of a digital image' },
-      { number: 3, direction: 'across', row: 5, col: 0, word: 'BYTE',   clue: '8 bits — basic unit of digital information' },
+      { number: 1, direction: 'down',   row: 0, col: 6, word: 'SCREEN', clue: 'Interface through which the digital world appears' },
+      { number: 2, direction: 'across', row: 3, col: 3, word: 'BYTE',   clue: '8 bits — basic unit of digital information' },
+      { number: 3, direction: 'down',   row: 4, col: 1, word: 'PIXEL',  clue: 'Smallest unit of a digital image' },
+      { number: 4, direction: 'across', row: 5, col: 0, word: 'SILICON', clue: 'The material that made the microchip possible' },
     ],
   },
   mcluhan: {
-    rows: 5, cols: 6,
+    rows: 7, cols: 6,
     words: [
-      { number: 1, direction: 'across', row: 0, col: 0, word: 'GLOBAL', clue: 'McLuhan\'s "_____ village" — the connected world' },
-      { number: 1, direction: 'down',   row: 0, col: 2, word: 'MEDIA', clue: 'McLuhan\'s famous subject: "The ____ is the message"' },
-      { number: 2, direction: 'across', row: 3, col: 1, word: 'PRINT', clue: 'The medium Gutenberg created that McLuhan studied' },
+      { number: 1, direction: 'down',   row: 0, col: 4, word: 'MEDIA', clue: 'McLuhan\'s famous subject: "The ____ is the message"' },
+      { number: 2, direction: 'across', row: 4, col: 0, word: 'GLOBAL', clue: 'McLuhan\'s "_____ village" — the connected world' },
+      { number: 3, direction: 'across', row: 6, col: 0, word: 'PRINT', clue: 'The medium Gutenberg created that McLuhan studied' },
     ],
   },
   climate: {
-    rows: 6, cols: 6,
+    rows: 6, cols: 8,
     words: [
-      { number: 1, direction: 'across', row: 0, col: 0, word: 'CARBON', clue: 'The greenhouse gas driving climate change' },
-      { number: 1, direction: 'down',   row: 0, col: 2, word: 'CORAL',  clue: 'Ocean reef bleached by warming seas' },
-      { number: 2, direction: 'across', row: 3, col: 0, word: 'POLAR',  clue: 'Arctic and Antarctic regions warming fastest' },
-      { number: 3, direction: 'across', row: 5, col: 1, word: 'SOLAR',  clue: 'Renewable energy from the sun' },
+      { number: 1, direction: 'down',   row: 0, col: 4, word: 'POLAR',  clue: 'Arctic and Antarctic regions warming fastest' },
+      { number: 2, direction: 'down',   row: 0, col: 6, word: 'CARBON', clue: 'The greenhouse gas driving climate change' },
+      { number: 3, direction: 'across', row: 1, col: 3, word: 'CORAL',  clue: 'Ocean reef bleached by warming seas' },
+      { number: 4, direction: 'across', row: 4, col: 0, word: 'SOLAR',  clue: 'Renewable energy from the sun' },
     ],
   },
   armstrong: {
@@ -123,8 +123,8 @@ const CONFIGS: Record<string, CrosswordConfig> = {
     words: [
       { number: 1, direction: 'across', row: 0, col: 0, word: 'APOLLO', clue: 'NASA programme that landed humans on the Moon' },
       { number: 1, direction: 'down',   row: 0, col: 0, word: 'AIRMAN', clue: 'Armstrong began his career as one of these' },
-      { number: 2, direction: 'across', row: 3, col: 1, word: 'LUNAR', clue: 'Relating to the Moon' },
-      { number: 3, direction: 'across', row: 5, col: 0, word: 'ORBIT',  clue: 'Curved path around a celestial body' },
+      { number: 2, direction: 'down',   row: 0, col: 2, word: 'ORBIT',  clue: 'Curved path around a celestial body' },
+      { number: 3, direction: 'down',   row: 0, col: 4, word: 'LUNAR', clue: 'Relating to the Moon' },
     ],
   },
 }

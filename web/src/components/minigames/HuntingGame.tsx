@@ -41,7 +41,7 @@ interface ShotEffect {
 
 // ── Configs ────────────────────────────────────────────────────────────────────
 
-const CONFIGS: Record<string, HuntingConfig> = {
+export const CONFIGS: Record<string, HuntingConfig> = {
   'mongol-hunt': {
     title: 'The Great Nerge',
     instruction: "Genghis Khan's grand hunt trained the army. Use your limited arrows wisely.",

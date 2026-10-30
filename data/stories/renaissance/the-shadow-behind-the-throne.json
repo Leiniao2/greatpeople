@@ -31,8 +31,6 @@
             "autogen": true,
             "configId": "gutenberg-bible",
             "params": {
-              "title": "What was Tlacaelel's title, and what",
-              "intro": "What was Tlacaelel's title, and what unique power did he hold in the Aztec state?",
               "lines": [
                 "CIHUACOATL",
                 "CIHUACOATL THE",
@@ -64,8 +62,6 @@
             "autogen": true,
             "configId": "vigenere-cabinet",
             "params": {
-              "title": "Tlacaelel preserved the Aztec historical records",
-              "intro": "Tlacaelel preserved the Aztec historical records and expanded their archives during his time in power.",
               "mode": "caesar",
               "plaintext": "TLACAELEL ORDERED THE BURNING OF"
             },
@@ -92,9 +88,6 @@
             "fact": "Tlacaelel's greatest achievement was ideological: he transformed the Mexica from one of many Nahua-speaking peoples into the chosen people of the sun god, with a cosmic obligation to feed Huitzilopochtli through human sacrifice. This narrative made every war a religious act and every conquest a divine duty — creating the psychological engine that drove Aztec expansion for a century.",
             "autogen": true,
             "configId": "lisbon-spices",
-            "params": {
-              "title": "Arrange the key reforms and events"
-            },
             "instruction": "Arrange the key reforms and events of Tlacaelel's career in order: Gather what the story needs: match the goods until the tally is met."
           }
         },

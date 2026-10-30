@@ -60,9 +60,6 @@
             "fact": "The burning of Nineveh paradoxically preserved Ashurbanipal's library. The fire baked the clay tablets hard, protecting them. The library lay buried until Austen Henry Layard rediscovered it in 1849, bringing the Epic of Gilgamesh back to the world.",
             "autogen": true,
             "configId": "babylon-tablets",
-            "params": {
-              "title": "Arrange the events of the Assyrian"
-            },
             "instruction": "Arrange the events of the Assyrian Empire's fall in order: Gather what the story needs: match the goods until the tally is met."
           }
         }
@@ -88,10 +85,6 @@
             "fact": "Ashurbanipal could read and write in multiple languages — an extraordinary feat for a king. He boasted of this in inscriptions, proud of mastering both the scribal arts and the military campaigns typical of Assyrian rulers.",
             "autogen": true,
             "configId": "court-drums",
-            "params": {
-              "title": "Ashurbanipal is notable for being literate",
-              "intro": "Ashurbanipal is notable for being literate at a time when:"
-            },
             "instruction": "Ashurbanipal is notable for being literate at a time when: Learn the phrase and play it back, note for note."
           }
         },
@@ -109,8 +102,6 @@
             "autogen": true,
             "configId": "caesar-gaul",
             "params": {
-              "title": "Ashurbanipal's library at Nineveh, containing over",
-              "intro": "Ashurbanipal's library at Nineveh, containing over 30,000 tablets, was the world's first known systematically organised collection of texts.",
               "mode": "caesar",
               "plaintext": "ASHURBANIPAL S LIBRARY AT"
             },

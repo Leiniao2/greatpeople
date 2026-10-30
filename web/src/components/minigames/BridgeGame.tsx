@@ -5,6 +5,7 @@ import { scale, useGameTimer, TimerBar } from './_shared'
 // Islands are nodes with a required bridge count.
 // Bridges connect islands horizontally or vertically (1 or 2 bridges per pair).
 // Tap two islands to cycle bridges: 0 → 1 → 2 → 0
+// Every config is verified solvable by src/test/audit_grid.test.ts.
 // Win when every island's total bridges equals its number and all are connected.
 
 interface Island { id: number; r: number; c: number; n: number }
@@ -17,15 +18,15 @@ interface Config {
   fact: string
 }
 
-const CONFIGS: Record<string, Config> = {
+export const CONFIGS: Record<string, Config> = {
   'roman-bridges': {
     title: 'Roman Aqueducts',
     question: 'Connect the Roman settlements — each number shows how many bridges it needs.',
     rows: 5, cols: 5,
     islands: [
-      { id: 0, r: 0, c: 0, n: 2 }, { id: 1, r: 0, c: 2, n: 3 }, { id: 2, r: 0, c: 4, n: 1 },
-      { id: 3, r: 2, c: 0, n: 3 }, { id: 4, r: 2, c: 2, n: 4 }, { id: 5, r: 2, c: 4, n: 3 },
-      { id: 6, r: 4, c: 0, n: 1 }, { id: 7, r: 4, c: 2, n: 3 }, { id: 8, r: 4, c: 4, n: 2 },
+      { id: 0, r: 0, c: 0, n: 3 }, { id: 1, r: 0, c: 2, n: 3 }, { id: 2, r: 0, c: 4, n: 3 },
+      { id: 3, r: 2, c: 0, n: 4 }, { id: 4, r: 2, c: 2, n: 6 }, { id: 5, r: 2, c: 4, n: 5 },
+      { id: 6, r: 4, c: 0, n: 3 }, { id: 7, r: 4, c: 2, n: 6 }, { id: 8, r: 4, c: 4, n: 3 },
     ],
     fact: "Rome's road and aqueduct networks connected over 400 cities — each node in the empire was reachable from any other, the original 'all roads lead to Rome.'",
   },
@@ -34,9 +35,9 @@ const CONFIGS: Record<string, Config> = {
     question: 'Build bridges to connect the Silk Road trading posts.',
     rows: 5, cols: 7,
     islands: [
-      { id: 0, r: 0, c: 0, n: 1 }, { id: 1, r: 0, c: 3, n: 2 }, { id: 2, r: 0, c: 6, n: 1 },
-      { id: 3, r: 2, c: 1, n: 3 }, { id: 4, r: 2, c: 4, n: 4 }, { id: 5, r: 2, c: 6, n: 2 },
-      { id: 6, r: 4, c: 0, n: 2 }, { id: 7, r: 4, c: 3, n: 3 }, { id: 8, r: 4, c: 5, n: 2 },
+      { id: 0, r: 0, c: 0, n: 2 }, { id: 1, r: 0, c: 3, n: 3 }, { id: 2, r: 0, c: 6, n: 4 },
+      { id: 3, r: 2, c: 1, n: 2 }, { id: 4, r: 2, c: 4, n: 3 }, { id: 5, r: 2, c: 6, n: 3 },
+      { id: 6, r: 4, c: 0, n: 2 }, { id: 7, r: 4, c: 3, n: 2 }, { id: 8, r: 4, c: 5, n: 1 },
     ],
     fact: "Ibn Battuta's travels spanned over 75,000 miles, passing through the key nodes of the medieval Silk Road — connecting Tangier to Timbuktu to Beijing.",
   },
@@ -45,9 +46,9 @@ const CONFIGS: Record<string, Config> = {
     question: 'Bridge the islands of the Nile Delta to complete the trade network.',
     rows: 5, cols: 5,
     islands: [
-      { id: 0, r: 0, c: 1, n: 2 }, { id: 1, r: 0, c: 4, n: 1 },
-      { id: 2, r: 2, c: 0, n: 2 }, { id: 3, r: 2, c: 2, n: 5 }, { id: 4, r: 2, c: 4, n: 2 },
-      { id: 5, r: 4, c: 1, n: 2 }, { id: 6, r: 4, c: 3, n: 2 },
+      { id: 0, r: 0, c: 1, n: 1 }, { id: 1, r: 0, c: 4, n: 2 },
+      { id: 2, r: 2, c: 0, n: 3 }, { id: 3, r: 2, c: 2, n: 3 }, { id: 4, r: 2, c: 4, n: 2 },
+      { id: 5, r: 4, c: 0, n: 3 }, { id: 6, r: 4, c: 3, n: 2 },
     ],
     fact: "The Nile Delta was the ancient world's most fertile and connected region — a network of waterways that made Egypt the breadbasket of the Mediterranean.",
   },
@@ -57,8 +58,8 @@ const CONFIGS: Record<string, Config> = {
     rows: 5, cols: 7,
     islands: [
       { id: 0, r: 0, c: 0, n: 2 }, { id: 1, r: 0, c: 3, n: 3 }, { id: 2, r: 0, c: 6, n: 1 },
-      { id: 3, r: 2, c: 1, n: 2 }, { id: 4, r: 2, c: 4, n: 4 },
-      { id: 5, r: 4, c: 0, n: 1 }, { id: 6, r: 4, c: 2, n: 3 }, { id: 7, r: 4, c: 5, n: 2 },
+      { id: 3, r: 2, c: 0, n: 4 }, { id: 4, r: 2, c: 3, n: 2 },
+      { id: 5, r: 4, c: 0, n: 4 }, { id: 6, r: 4, c: 2, n: 3 }, { id: 7, r: 4, c: 5, n: 1 },
     ],
     fact: "Athens maintained its empire through sea routes — the Delian League was built on naval dominance that connected over 150 city-states across the Aegean.",
   },
@@ -67,9 +68,9 @@ const CONFIGS: Record<string, Config> = {
     question: "Bridge Venice's islands — each district needs exactly as many connections as shown.",
     rows: 5, cols: 6,
     islands: [
-      { id: 0, r: 0, c: 0, n: 1 }, { id: 1, r: 0, c: 2, n: 3 }, { id: 2, r: 0, c: 5, n: 2 },
-      { id: 3, r: 2, c: 1, n: 3 }, { id: 4, r: 2, c: 4, n: 3 },
-      { id: 5, r: 4, c: 0, n: 2 }, { id: 6, r: 4, c: 3, n: 3 }, { id: 7, r: 4, c: 5, n: 1 },
+      { id: 0, r: 0, c: 0, n: 2 }, { id: 1, r: 0, c: 2, n: 4 }, { id: 2, r: 0, c: 5, n: 3 },
+      { id: 3, r: 2, c: 2, n: 2 }, { id: 4, r: 2, c: 3, n: 2 },
+      { id: 5, r: 4, c: 0, n: 2 }, { id: 6, r: 4, c: 3, n: 3 }, { id: 7, r: 4, c: 5, n: 2 },
     ],
     fact: "Venice was built on 118 small islands connected by 400 bridges over 150 canals. Titian painted his masterworks within this unique island city.",
   },
@@ -78,9 +79,9 @@ const CONFIGS: Record<string, Config> = {
     question: 'Connect the Maya cities with sacbés (white stone roads).',
     rows: 5, cols: 5,
     islands: [
-      { id: 0, r: 0, c: 0, n: 2 }, { id: 1, r: 0, c: 4, n: 2 },
-      { id: 2, r: 2, c: 2, n: 4 },
-      { id: 3, r: 4, c: 0, n: 2 }, { id: 4, r: 4, c: 4, n: 2 },
+      { id: 0, r: 0, c: 0, n: 2 }, { id: 1, r: 0, c: 2, n: 4 }, { id: 2, r: 0, c: 4, n: 3 },
+      { id: 3, r: 2, c: 2, n: 3 },
+      { id: 4, r: 4, c: 0, n: 2 }, { id: 5, r: 4, c: 2, n: 4 }, { id: 6, r: 4, c: 4, n: 2 },
     ],
     fact: "The Maya built a network of raised stone roads called sacbés connecting cities across the Yucatán Peninsula — Pakal's Palenque sat at one end of this ancient highway system.",
   },
@@ -89,9 +90,9 @@ const CONFIGS: Record<string, Config> = {
     question: 'Connect the Mongol yam (postal relay) stations to complete the network.',
     rows: 5, cols: 7,
     islands: [
-      { id: 0, r: 0, c: 0, n: 1 }, { id: 1, r: 0, c: 4, n: 2 },
-      { id: 2, r: 2, c: 1, n: 3 }, { id: 3, r: 2, c: 3, n: 4 }, { id: 4, r: 2, c: 6, n: 2 },
-      { id: 5, r: 4, c: 0, n: 2 }, { id: 6, r: 4, c: 2, n: 3 }, { id: 7, r: 4, c: 5, n: 1 },
+      { id: 0, r: 0, c: 0, n: 2 }, { id: 1, r: 0, c: 4, n: 2 },
+      { id: 2, r: 2, c: 2, n: 2 }, { id: 3, r: 2, c: 4, n: 4 }, { id: 4, r: 2, c: 6, n: 2 },
+      { id: 5, r: 4, c: 0, n: 3 }, { id: 6, r: 4, c: 2, n: 4 }, { id: 7, r: 4, c: 5, n: 1 },
     ],
     fact: "Batu Khan's Golden Horde maintained the yam — a relay postal system with stations every 25 miles. A message could travel from Karakorum to Europe in two weeks.",
   },
@@ -100,9 +101,9 @@ const CONFIGS: Record<string, Config> = {
     question: 'Build the causeways connecting Tenochtitlan to the mainland.',
     rows: 5, cols: 5,
     islands: [
-      { id: 0, r: 0, c: 2, n: 2 },
-      { id: 1, r: 2, c: 0, n: 2 }, { id: 2, r: 2, c: 2, n: 6 }, { id: 3, r: 2, c: 4, n: 2 },
-      { id: 4, r: 4, c: 1, n: 2 }, { id: 5, r: 4, c: 3, n: 2 },
+      { id: 0, r: 0, c: 2, n: 1 },
+      { id: 1, r: 2, c: 0, n: 2 }, { id: 2, r: 2, c: 2, n: 5 }, { id: 3, r: 2, c: 4, n: 2 },
+      { id: 4, r: 4, c: 2, n: 2 }, { id: 5, r: 4, c: 4, n: 2 },
     ],
     fact: "Tenochtitlan was connected to the mainland by three great causeways, each wide enough for ten horsemen to ride abreast — Cortés described them as the most magnificent roads he had ever seen.",
   },
@@ -114,7 +115,7 @@ function bridgeKey(a: number, b: number) {
   return a < b ? `${a}-${b}` : `${b}-${a}`
 }
 
-function isBlocked(islands: Island[], bridges: BridgeMap, a: Island, b: Island): boolean {
+export function isBlocked(islands: Island[], bridges: BridgeMap, a: Island, b: Island): boolean {
   // Check if a bridge between a and b would cross any existing bridge
   const isHoriz = a.r === b.r
   for (const [key, count] of bridges.entries()) {
@@ -134,11 +135,17 @@ function isBlocked(islands: Island[], bridges: BridgeMap, a: Island, b: Island):
   return false
 }
 
-function canConnect(a: Island, b: Island): boolean {
-  return (a.r === b.r || a.c === b.c) && a.id !== b.id
+function canConnect(a: Island, b: Island, islands: Island[]): boolean {
+  if (a.id === b.id || (a.r !== b.r && a.c !== b.c)) return false
+  // No island may sit between the two.
+  return !islands.some(o =>
+    o.id !== a.id && o.id !== b.id &&
+    (a.r === b.r
+      ? o.r === a.r && o.c > Math.min(a.c, b.c) && o.c < Math.max(a.c, b.c)
+      : o.c === a.c && o.r > Math.min(a.r, b.r) && o.r < Math.max(a.r, b.r)))
 }
 
-function checkWin(islands: Island[], bridges: BridgeMap): boolean {
+export function checkWin(islands: Island[], bridges: BridgeMap): boolean {
   // Each island sum matches n
   for (const island of islands) {
     let total = 0
@@ -194,7 +201,7 @@ export default function BridgeGame({ configId, difficulty, onWin, onLose }: Mini
     if (selected === null) { setSelected(id); return }
     if (selected === id) { setSelected(null); return }
     const a = islands[selected], b = islands.find(i => i.id === id)!
-    if (!canConnect(a, b)) { setSelected(id); return }
+    if (!canConnect(a, b, islands)) { setSelected(id); return }
 
     const key = bridgeKey(selected, id)
     const cur = bridges.get(key) ?? 0

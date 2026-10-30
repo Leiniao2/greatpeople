@@ -17,7 +17,7 @@ interface TypesetConfig {
   fact: string
 }
 
-const CONFIGS: Record<string, TypesetConfig> = {
+export const CONFIGS: Record<string, TypesetConfig> = {
   'gutenberg-bible': {
     title: 'The 42-Line Bible',
     intro: "Set a line of Gutenberg's Bible. Remember: the sorts are mirrored, and the stick fills from the right.",
@@ -38,11 +38,29 @@ const CONFIGS: Record<string, TypesetConfig> = {
   },
 }
 
-const MIRROR: Record<string, string> = { A: 'A', B: 'ᗺ', C: 'Ɔ', D: 'ᗡ', E: 'Ǝ', F: 'ꟻ', G: 'Ꭾ', H: 'H', I: 'I', J: 'Ⴑ', K: 'ꓘ', L: '⅃', M: 'M', N: 'И', O: 'O', P: 'ᑫ', Q: 'Ϙ', R: 'ᴙ', S: 'Ƨ', T: 'T', U: 'U', V: 'V', W: 'W', X: 'X', Y: 'Y', Z: 'Z' }
+export const MIRROR: Record<string, string> = { A: 'A', B: 'ᗺ', C: 'Ɔ', D: 'ᗡ', E: 'Ǝ', F: 'ꟻ', G: 'Ꭾ', H: 'H', I: 'I', J: 'Ⴑ', K: 'ꓘ', L: '⅃', M: 'M', N: 'И', O: 'O', P: 'ᑫ', Q: 'Ϙ', R: 'ᴙ', S: 'Ƨ', T: 'T', U: 'U', V: 'V', W: 'W', X: 'X', Y: 'Y', Z: 'Z' }
+
+/** Keep only sorts the case holds (A–Z and spaces); anything else cannot be set. */
+export function settableLine(raw: string): string {
+  return raw.toUpperCase().replace(/[^A-Z ]/g, ' ').replace(/\s+/g, ' ').trim()
+}
+
+/**
+ * The line for a tier: the tier's entry when it is settable, else the longest
+ * settable line in the config, else the base config's line.  Story params may
+ * override `lines` with empty or truncated entries.
+ */
+export function pickLine(cfg: TypesetConfig, difficulty: number, fallback: TypesetConfig): string {
+  const idx = Math.min(cfg.lines.length - 1, difficulty - 1)
+  const own = settableLine(cfg.lines[idx] ?? '')
+  if (own) return own
+  const any = cfg.lines.map(settableLine).filter(Boolean).sort((a, b) => b.length - a.length)[0]
+  return any ?? settableLine(fallback.lines[Math.min(fallback.lines.length - 1, difficulty - 1)])
+}
 
 export default function TypesetGame({ configId, difficulty, seed, params, onWin, onLose }: MinigameProps) {
   const cfg = resolveConfig(CONFIGS, configId, params, 'gutenberg-bible')
-  const line = cfg.lines[Math.min(cfg.lines.length - 1, difficulty - 1)].toUpperCase()
+  const line = pickLine(cfg, difficulty, CONFIGS[configId] ?? CONFIGS['gutenberg-bible'])
   const ink = scale(difficulty, [5, 4, 3, 2])
   const timeLimit = scale(difficulty, [0, 90, 75, 60])
   const spare = scale(difficulty, [6, 5, 4, 3])

@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import type { MinigameProps } from '@/games/types'
+import type { Difficulty, MinigameProps } from '@/games/types'
 import { mulberry32, shuffle, resolveConfig, scale, useGameOutcome, OutcomeBanner, useGameTimer, TimerBar } from './_shared'
 
 // Debate: an opponent makes a claim each round; answer with the evidence
@@ -21,7 +21,7 @@ interface DebateConfig {
   fact: string
 }
 
-const CONFIGS: Record<string, DebateConfig> = {
+export const CONFIGS: Record<string, DebateConfig> = {
   'socrates-apology': {
     title: 'The Apology',
     intro: 'Athens, 399 BCE. Meletus accuses Socrates before 501 jurors. Answer each charge as Socrates did — with questions that turn the charge on itself.',
@@ -108,12 +108,20 @@ const CONFIGS: Record<string, DebateConfig> = {
   },
 }
 
+/** Rounds played and the persuasion needed at a difficulty, bounded by what the best replies can score. */
+export function debateTargets(cfg: Pick<DebateConfig, 'rounds'>, difficulty: Difficulty) {
+  const roundsToPlay = Math.min(cfg.rounds.length, scale(difficulty, [2, 3, cfg.rounds.length, cfg.rounds.length]))
+  const best = cfg.rounds.slice(0, roundsToPlay).reduce((sum, r) => sum + Math.max(0, ...r.cards.map(c => c.effect)), 0)
+  // A short debate (3 rounds × +3) can never reach the flat 10 of tier 4; allow one slip at most.
+  const winAt = Math.min(scale(difficulty, [5, 7, 9, 10]), Math.ceil(best * 0.85))
+  return { roundsToPlay, winAt, best }
+}
+
 export default function DebateGame({ configId, difficulty, seed, params, onWin, onLose }: MinigameProps) {
   const cfg = resolveConfig(CONFIGS, configId, params, 'socrates-apology')
-  const roundsToPlay = Math.min(cfg.rounds.length, scale(difficulty, [2, 3, cfg.rounds.length, cfg.rounds.length]))
+  const { roundsToPlay, winAt } = debateTargets(cfg, difficulty)
   const penaltyScale = scale(difficulty, [1, 1.5, 2, 2])
   const showEffects = difficulty < 3
-  const winAt = scale(difficulty, [5, 7, 9, 10])
   const timeLimit = scale(difficulty, [0, 0, 150, 100])
 
   const { outcome, settled, win, lose } = useGameOutcome({ onWin, onLose, delayMs: 1000 })

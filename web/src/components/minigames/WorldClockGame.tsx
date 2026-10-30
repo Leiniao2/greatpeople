@@ -15,7 +15,7 @@ interface ClockConfig {
 
 // ── City data (fixed UTC offsets, no DST) ──────────────────────────────────────
 
-const CITIES: Record<string, CityDef> = {
+export const CITIES: Record<string, CityDef> = {
   'los-angeles': { name: 'Los Angeles', emoji: '🎬', offset: -8 },
   'new-york':    { name: 'New York',    emoji: '🗽', offset: -5 },
   'sao-paulo':   { name: 'São Paulo',   emoji: '🌴', offset: -3 },
@@ -32,7 +32,7 @@ const CITIES: Record<string, CityDef> = {
 
 // ── Configs ────────────────────────────────────────────────────────────────────
 
-const CONFIGS: Record<string, ClockConfig> = {
+export const CONFIGS: Record<string, ClockConfig> = {
   'magellan-voyage': {
     title: "Magellan's World Tour",
     questions: [
@@ -70,7 +70,7 @@ const CONFIGS: Record<string, ClockConfig> = {
 
 // ── Helpers ────────────────────────────────────────────────────────────────────
 
-function convert(fromHour: number, fromOffset: number, toOffset: number): number {
+export function convert(fromHour: number, fromOffset: number, toOffset: number): number {
   return ((fromHour - fromOffset + toOffset) % 24 + 24) % 24
 }
 
@@ -80,7 +80,7 @@ function formatHour(h: number): string {
   return `${h12}:00 ${ampm}`
 }
 
-function genChoices(correct: number, count = 4): number[] {
+export function genChoices(correct: number, count = 4): number[] {
   const pool = new Set<number>([correct])
   const diffs = [2, 4, 6, 3, 1, 5, 7, 8]
   for (const d of diffs) {
@@ -103,7 +103,6 @@ function genChoices(correct: number, count = 4): number[] {
 export default function WorldClockGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
   // Higher difficulties put the puzzle on a clock.
   const timeLimit = scale(difficulty, [0, 0, 120, 90])
-  const timer = useGameTimer({ seconds: timeLimit, running: true, onExpire: () => onLose('out of time') })
 
   const cfg = CONFIGS[configId] ?? CONFIGS['magellan-voyage']
 
@@ -119,6 +118,8 @@ export default function WorldClockGame({ configId, difficulty, onWin, onLose }: 
   const [score, setScore] = useState(0)
   const [feedback, setFeedback] = useState<'correct' | 'wrong' | null>(null)
   const [phase, setPhase] = useState<'quiz' | 'done'>('quiz')
+  // Only the quiz is timed; the result screen waits for the player.
+  const timer = useGameTimer({ seconds: timeLimit, running: phase === 'quiz', onExpire: () => onLose('out of time') })
 
   const q = questions[qi]
 

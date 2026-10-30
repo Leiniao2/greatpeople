@@ -27,7 +27,7 @@ interface KlotskiConfig {
 
 // pyramid-capstone: Ancient Egypt, 5×4 board
 // Goal piece G (2×2) starts at (0,0), must reach (3,0)
-// Verified ~12 move solution
+// Optimal solution 16 moves (see audit_grid.test.ts)
 const PYRAMID: KlotskiConfig = {
   title: 'The Capstone',
   rows: 5,
@@ -48,7 +48,7 @@ const PYRAMID: KlotskiConfig = {
 }
 
 // enigma-rotors: Electricity era, L-shaped pieces
-// 5×4 board, goal (1×2 horiz) at top, must reach (4,1)
+// 5×4 board, goal (1×2 horiz) at top, must reach (3,1)
 const ENIGMA: KlotskiConfig = {
   title: 'The Enigma Rotors',
   rows: 5,
@@ -57,12 +57,9 @@ const ENIGMA: KlotskiConfig = {
     { id: 1, cells: [[0,1],[0,2]], color: '#f59e0b', label: '⚡', isGoal: true },      // 1×2 horiz goal
     { id: 2, cells: [[0,0],[1,0],[2,0]], color: '#818cf8', label: 'L' },               // 3×1 vertical
     { id: 3, cells: [[0,3],[1,3],[2,3]], color: '#818cf8', label: 'L' },               // 3×1 vertical
-    { id: 4, cells: [[1,1],[1,2],[2,1]], color: '#34d399', label: '⌐' },              // L-shape
-    { id: 5, cells: [[2,2],[3,2],[3,3]], color: '#60a5fa', label: '⌐' },              // L-shape mirror
-    { id: 6, cells: [[3,0],[3,1]], color: '#f87171', label: '—' },                     // 1×2 horiz
-    { id: 7, cells: [[4,0]], color: '#a78bfa', label: '□' },                            // 1×1
-    { id: 8, cells: [[4,1],[4,2]], color: '#a78bfa', label: '—' },                     // 1×2 horiz
-    { id: 9, cells: [[4,3]], color: '#a78bfa', label: '□' },                            // 1×1
+    { id: 4, cells: [[2,1],[2,2],[3,2]], color: '#34d399', label: '⌐' },              // L-shape
+    { id: 5, cells: [[3,1]], color: '#a78bfa', label: '□' },                            // 1×1
+    // (1,1) (1,2) (3,0) (3,3) and row 4 empty — optimal solution 21 moves
   ],
   targetRow: 3,
   targetCol: 1,
@@ -70,7 +67,7 @@ const ENIGMA: KlotskiConfig = {
 }
 
 // last-general: Medieval, HuaRong Road variant
-// Classic 5×4: one 2×2, two 1×2 vert, three 1×2 horiz, four 1×1
+// 5×4: the general flanked by two verticals, four soldiers in a row below, two verticals at the bottom
 const LAST_GENERAL: KlotskiConfig = {
   title: 'Last General',
   rows: 5,
@@ -79,21 +76,20 @@ const LAST_GENERAL: KlotskiConfig = {
     { id: 1, cells: [[0,1],[0,2],[1,1],[1,2]], color: '#f59e0b', label: '将', isGoal: true },   // 2×2 Cao Cao
     { id: 2, cells: [[0,0],[1,0]], color: '#818cf8', label: '|' },   // vertical left
     { id: 3, cells: [[0,3],[1,3]], color: '#818cf8', label: '|' },   // vertical right
-    { id: 4, cells: [[2,0],[2,1]], color: '#34d399', label: '—' },   // horiz
-    { id: 5, cells: [[2,2],[2,3]], color: '#34d399', label: '—' },   // horiz
-    { id: 6, cells: [[3,1],[4,1]], color: '#60a5fa', label: '|' },   // vertical mid-left
-    { id: 7, cells: [[3,2],[4,2]], color: '#60a5fa', label: '|' },   // vertical mid-right
-    { id: 8, cells: [[3,0]], color: '#f87171', label: '□' },
-    { id: 9, cells: [[3,3]], color: '#f87171', label: '□' },
-    { id: 10, cells: [[4,0]], color: '#f87171', label: '□' },
-    { id: 11, cells: [[4,3]], color: '#f87171', label: '□' },
+    { id: 4, cells: [[2,0]], color: '#f87171', label: '□' },          // four soldiers in a row
+    { id: 5, cells: [[2,1]], color: '#f87171', label: '□' },
+    { id: 6, cells: [[2,2]], color: '#f87171', label: '□' },
+    { id: 7, cells: [[2,3]], color: '#f87171', label: '□' },
+    { id: 8, cells: [[3,0],[4,0]], color: '#60a5fa', label: '|' },   // vertical bottom-left
+    { id: 9, cells: [[3,3],[4,3]], color: '#60a5fa', label: '|' },   // vertical bottom-right
+    // (3,1) (3,2) (4,1) (4,2) empty — optimal solution 15 moves
   ],
   targetRow: 3,
   targetCol: 1,
   fact: 'HuaRong Road (华容道) is a classic Chinese sliding puzzle based on the story of Cao Cao\'s escape after the Battle of Red Cliffs (208 AD) — one of the most studied puzzles in combinatorics.',
 }
 
-// sword-formation: Renaissance, T-shaped pieces
+// sword-formation: Renaissance, an L-shaped piece under the goal
 // 5×4 board
 const SWORD_FORMATION: KlotskiConfig = {
   title: 'The Sword Formation',
@@ -101,13 +97,12 @@ const SWORD_FORMATION: KlotskiConfig = {
   cols: 4,
   pieces: [
     { id: 1, cells: [[0,1],[0,2],[1,1],[1,2]], color: '#f59e0b', label: '⚔', isGoal: true },   // 2×2 goal
-    { id: 2, cells: [[0,0],[1,0],[2,0],[2,1]], color: '#818cf8', label: '⌐' },   // L-shape
-    { id: 3, cells: [[0,3],[1,3],[2,3],[2,2]], color: '#818cf8', label: '¬' },   // mirror-L
-    { id: 4, cells: [[2,1],[2,2],[3,2]], color: '#34d399', label: 'T' },          // T-shape (partial)
-    { id: 5, cells: [[3,0],[3,1],[4,0]], color: '#60a5fa', label: '⌐' },         // small L
-    { id: 6, cells: [[3,3],[4,3]], color: '#a78bfa', label: '|' },                // vertical
-    { id: 7, cells: [[4,1]], color: '#f87171', label: '□' },
-    { id: 8, cells: [[4,2]], color: '#f87171', label: '□' },
+    { id: 2, cells: [[1,0],[2,0]], color: '#818cf8', label: '|' },                // vertical left
+    { id: 3, cells: [[1,3],[2,3]], color: '#818cf8', label: '|' },                // vertical right
+    { id: 4, cells: [[2,1],[2,2],[3,1]], color: '#34d399', label: '⌐' },          // L-shape under the goal
+    { id: 5, cells: [[4,0]], color: '#f87171', label: '□' },
+    { id: 6, cells: [[4,3]], color: '#f87171', label: '□' },
+    // (0,0) (0,3) (3,0) (3,2) (3,3) (4,1) (4,2) empty — optimal solution 17 moves
   ],
   targetRow: 3,
   targetCol: 1,
@@ -116,7 +111,7 @@ const SWORD_FORMATION: KlotskiConfig = {
 
 // ── Harder configs ────────────────────────────────────────────────────────────
 
-// 'great-wall': 5×4 – goal top-center, row-4 blocked by two horizontal pieces
+// 'great-wall': 5×4 – goal top-center, row 3 walled off by two horizontal pieces
 const GREAT_WALL: KlotskiConfig = {
   title: 'The Great Wall',
   rows: 5, cols: 4,
@@ -124,12 +119,9 @@ const GREAT_WALL: KlotskiConfig = {
     { id: 1,  cells: [[0,1],[0,2],[1,1],[1,2]], color: '#f59e0b', label: '长', isGoal: true },
     { id: 2,  cells: [[0,0],[1,0]],             color: '#818cf8', label: '|' },
     { id: 3,  cells: [[0,3],[1,3]],             color: '#818cf8', label: '|' },
-    { id: 4,  cells: [[2,0],[3,0]],             color: '#34d399', label: '|' },
-    { id: 5,  cells: [[2,1]],                   color: '#f87171', label: '□' },
-    { id: 6,  cells: [[2,2]],                   color: '#f87171', label: '□' },
-    { id: 7,  cells: [[2,3],[3,3]],             color: '#34d399', label: '|' },
-    { id: 8,  cells: [[4,0],[4,1]],             color: '#60a5fa', label: '—' },
-    { id: 9,  cells: [[4,2],[4,3]],             color: '#60a5fa', label: '—' },
+    { id: 4,  cells: [[3,0],[3,1]],             color: '#60a5fa', label: '—' },   // the wall
+    { id: 5,  cells: [[3,2],[3,3]],             color: '#60a5fa', label: '—' },
+    // rows 2 and 4 empty — optimal solution 15 moves
   ],
   targetRow: 3, targetCol: 1,
   fact: 'The Great Wall was not a single structure but a series of walls built over centuries. The most famous sections were built during the Ming Dynasty — requiring over a million workers and 100 years of labour.',
@@ -145,9 +137,9 @@ const SILK_ROAD: KlotskiConfig = {
     { id: 3,  cells: [[0,3],[1,3]],             color: '#818cf8', label: '|' },
     { id: 4,  cells: [[2,0],[2,1]],             color: '#34d399', label: '—' },
     { id: 5,  cells: [[2,2],[3,2]],             color: '#60a5fa', label: '|' },
-    { id: 6,  cells: [[2,3],[3,3]],             color: '#60a5fa', label: '|' },
-    { id: 7,  cells: [[3,0],[4,0]],             color: '#a78bfa', label: '|' },
-    { id: 8,  cells: [[4,2],[4,3]],             color: '#34d399', label: '—' },
+    { id: 6,  cells: [[3,3],[4,3]],             color: '#60a5fa', label: '|' },
+    { id: 7,  cells: [[4,0]],                   color: '#f87171', label: '□' },
+    // (2,3) (3,0) (3,1) (4,1) (4,2) empty — optimal solution 22 moves
   ],
   targetRow: 3, targetCol: 1,
   fact: 'Ibn Battuta travelled the Silk Road extensively, covering over 75,000 miles across 40+ countries. The road was less a single route than a web of shifting passages — each requiring careful navigation around obstacles.',
@@ -162,12 +154,12 @@ const FORBIDDEN_MAZE: KlotskiConfig = {
     { id: 2,  cells: [[0,0],[1,0]],             color: '#818cf8', label: '|' },
     { id: 3,  cells: [[0,3],[1,3]],             color: '#818cf8', label: '|' },
     { id: 4,  cells: [[2,0],[3,0]],             color: '#34d399', label: '|' },
-    { id: 5,  cells: [[2,1],[2,2]],             color: '#60a5fa', label: '—' },
-    { id: 6,  cells: [[2,3],[3,3]],             color: '#34d399', label: '|' },
-    { id: 7,  cells: [[3,1]],                   color: '#f87171', label: '□' },
-    { id: 8,  cells: [[3,2]],                   color: '#f87171', label: '□' },
-    { id: 9,  cells: [[4,0],[4,1]],             color: '#a78bfa', label: '—' },
-    { id: 10, cells: [[4,2],[4,3]],             color: '#a78bfa', label: '—' },
+    { id: 5,  cells: [[2,1]],                   color: '#f87171', label: '□' },
+    { id: 6,  cells: [[2,2]],                   color: '#f87171', label: '□' },
+    { id: 7,  cells: [[2,3],[3,3]],             color: '#34d399', label: '|' },
+    { id: 8,  cells: [[3,1]],                   color: '#f87171', label: '□' },
+    { id: 9,  cells: [[3,2]],                   color: '#f87171', label: '□' },
+    // row 4 empty — optimal solution 17 moves
   ],
   targetRow: 3, targetCol: 1,
   fact: 'The Forbidden City contains 980 buildings with 8,700 rooms. Its layout is a labyrinth of courtyards and gates deliberately designed to disorient enemies and impress visitors with the emperor\'s power.',
@@ -191,7 +183,7 @@ const MING_GATE: KlotskiConfig = {
   fact: 'The Yongle Emperor moved China\'s capital to Beijing in 1421 and built the Forbidden City\'s main gate — the Meridian Gate — as the symbolic threshold of imperial power. Only the emperor could use the central passage.',
 }
 
-const CONFIGS: Record<string, KlotskiConfig> = {
+export const CONFIGS: Record<string, KlotskiConfig> = {
   'pyramid-capstone': PYRAMID,
   'enigma-rotors': ENIGMA,
   'last-general': LAST_GENERAL,
@@ -204,7 +196,7 @@ const CONFIGS: Record<string, KlotskiConfig> = {
 
 // ── Board helpers ─────────────────────────────────────────────────────────────
 
-function buildBoard(rows: number, cols: number, pieces: Piece[]): number[][] {
+export function buildBoard(rows: number, cols: number, pieces: Piece[]): number[][] {
   const board = Array.from({ length: rows }, () => Array(cols).fill(0))
   for (const p of pieces) {
     for (const [r, c] of p.cells) {
@@ -219,7 +211,7 @@ const DELTAS: Record<Dir, [number, number]> = {
   up: [-1, 0], down: [1, 0], left: [0, -1], right: [0, 1],
 }
 
-function canMove(piece: Piece, dir: Dir, board: number[][], rows: number, cols: number): boolean {
+export function canMove(piece: Piece, dir: Dir, board: number[][], rows: number, cols: number): boolean {
   const [dr, dc] = DELTAS[dir]
   const myIds = new Set(piece.cells.map(([r, c]) => r * cols + c))
   for (const [r, c] of piece.cells) {
@@ -231,7 +223,7 @@ function canMove(piece: Piece, dir: Dir, board: number[][], rows: number, cols: 
   return true
 }
 
-function movePiece(piece: Piece, dir: Dir): Piece {
+export function movePiece(piece: Piece, dir: Dir): Piece {
   const [dr, dc] = DELTAS[dir]
   return { ...piece, cells: piece.cells.map(([r, c]) => [r + dr, c + dc] as [number, number]) }
 }
@@ -239,8 +231,9 @@ function movePiece(piece: Piece, dir: Dir): Piece {
 // ── Component ─────────────────────────────────────────────────────────────────
 
 export default function KlotskiGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
-  // Higher difficulties put the puzzle on a clock.
-  const timeLimit = scale(difficulty, [0, 0, 120, 90])
+  // Higher difficulties put the puzzle on a clock. Optimal solutions run 8–22
+  // single-step moves, so leave time to think.
+  const timeLimit = scale(difficulty, [0, 0, 240, 180])
   const timer = useGameTimer({ seconds: timeLimit, running: true, onExpire: () => onLose('out of time') })
 
   const cfg = CONFIGS[configId] ?? PYRAMID

@@ -8,13 +8,15 @@ type Pref = 'economic' | 'military' | 'cultural' | 'religious' | 'political' | '
 type Allegiance = 'player' | 'ai' | 'neutral'
 type Phase = 'select' | 'thinking' | 'reveal' | 'resolving' | 'stageclear' | 'won' | 'lost'
 
-interface Voter { id: number; x: number; y: number; pref: Pref; allegiance: Allegiance }
-interface Policy { id: string; name: string; desc: string; pref: Pref; strength: number }
+export interface Voter { id: number; x: number; y: number; pref: Pref; allegiance: Allegiance }
+export interface Policy { id: string; name: string; desc: string; pref: Pref; strength: number }
 
 // ── Constants ──────────────────────────────────────────────────────────────────
 
-const TOTAL = 80
-const STAGE_TARGETS = [28, 40, 52] // 35%, 50%, 65% of 80
+export const TOTAL = 80
+export const STAGE_TARGETS = [28, 40, 52] // 35%, 50%, 65% of 80
+/** Rounds a stage may run before the ballot closes and the leader takes it (a tie plays on). */
+export const MAX_ROUNDS_PER_STAGE = 8
 const STAGE_LABELS = ['Primary', 'Regional Vote', 'National Election']
 const PREFS: Pref[] = ['economic', 'military', 'cultural', 'religious', 'political', 'scientific']
 
@@ -37,7 +39,7 @@ const PREF_ICON: Record<Pref, string> = {
 
 // ── Era policy pools ───────────────────────────────────────────────────────────
 
-const ERA_POLICIES: Record<string, Policy[]> = {
+export const ERA_POLICIES: Record<string, Policy[]> = {
   ancient: [
     { id:'a1', name:'Build a Temple',     desc:'Consecrate a new temple to unite the people under the gods.',    pref:'religious', strength:7 },
     { id:'a2', name:'Conscript Warriors', desc:'Expand the army with new recruits and better weapons.',           pref:'military',  strength:6 },
@@ -112,7 +114,7 @@ const ERA_POLICIES: Record<string, Policy[]> = {
 
 // ── Config → era mapping ───────────────────────────────────────────────────────
 
-const CONFIG_ERA: Record<string, string> = {
+export const CONFIG_ERA: Record<string, string> = {
   'aspasia-trial': 'classical',
   'roman-senate': 'classical', 'athenian-assembly': 'classical',
   'spanish-court': 'renaissance',
@@ -123,11 +125,11 @@ const CONFIG_ERA: Record<string, string> = {
 
 // ── Helpers ────────────────────────────────────────────────────────────────────
 
-function resolveEra(configId: string): string {
+export function resolveEra(configId: string): string {
   return CONFIG_ERA[configId] ?? (ERA_POLICIES[configId] ? configId : 'classical')
 }
 
-function initVoters(politics: number): Voter[] {
+export function initVoters(politics: number): Voter[] {
   const voters: Voter[] = []
   for (let i = 0; i < TOTAL; i++) {
     voters.push({ id: i, x: 3 + Math.random() * 94, y: 3 + Math.random() * 94, pref: PREFS[i % 6], allegiance: 'neutral' })
@@ -139,12 +141,12 @@ function initVoters(politics: number): Voter[] {
   return voters
 }
 
-function drawPolicies(era: string): Policy[] {
+export function drawPolicies(era: string): Policy[] {
   const pool = ERA_POLICIES[era] ?? ERA_POLICIES['classical']
   return [...pool].sort(() => Math.random() - 0.5).slice(0, 4)
 }
 
-function pickAiPolicy(voters: Voter[], policies: Policy[]): Policy {
+export function pickAiPolicy(voters: Voter[], policies: Policy[]): Policy {
   const available: Partial<Record<Pref, number>> = {}
   voters.filter(v => v.allegiance !== 'ai').forEach(v => {
     available[v.pref] = (available[v.pref] ?? 0) + 1
@@ -152,21 +154,23 @@ function pickAiPolicy(voters: Voter[], policies: Policy[]): Policy {
   return policies.reduce((best, p) => (available[p.pref] ?? 0) > (available[best.pref] ?? 0) ? p : best)
 }
 
-function applyPolicies(voters: Voter[], pp: Policy, ap: Policy, politics: number): Voter[] {
+export function applyPolicies(voters: Voter[], pp: Policy, ap: Policy, politics: number): Voter[] {
   const next = voters.map(v => ({ ...v }))
   const pEff = pp.strength + Math.floor(politics / 6)
   const aEff = ap.strength
 
+  const neutralsFirst = (a: Voter, b: Voter) => (a.allegiance === 'neutral' ? 0 : 1) - (b.allegiance === 'neutral' ? 0 : 1)
+
   // Player: convert neutral first, then AI voters
   let n = 0
-  for (const v of next.filter(v => v.pref === pp.pref).sort(a => a.allegiance === 'neutral' ? -1 : 1)) {
+  for (const v of next.filter(v => v.pref === pp.pref).sort(neutralsFirst)) {
     if (n >= pEff || v.allegiance === 'player') continue
     v.allegiance = 'player'; n++
   }
 
   // AI: convert neutral first, then player voters
   n = 0
-  for (const v of next.filter(v => v.pref === ap.pref).sort(a => a.allegiance === 'neutral' ? -1 : 1)) {
+  for (const v of next.filter(v => v.pref === ap.pref).sort(neutralsFirst)) {
     if (n >= aEff || v.allegiance === 'ai') continue
     v.allegiance = 'ai'; n++
   }
@@ -174,12 +178,26 @@ function applyPolicies(voters: Voter[], pp: Policy, ap: Policy, politics: number
   return next
 }
 
-function tally(voters: Voter[]) {
+export function tally(voters: Voter[]) {
   return {
     player: voters.filter(v => v.allegiance === 'player').length,
     ai:     voters.filter(v => v.allegiance === 'ai').length,
     neutral:voters.filter(v => v.allegiance === 'neutral').length,
   }
+}
+
+/**
+ * Outcome of a stage after a round: whoever reaches the target takes it (the
+ * player first); once the round cap is hit, the leader takes it instead.
+ */
+export function stageOutcome(votes: { player: number; ai: number }, target: number, roundsPlayed: number): 'won' | 'lost' | 'open' {
+  if (votes.player >= target) return 'won'
+  if (votes.ai >= target) return 'lost'
+  if (roundsPlayed >= MAX_ROUNDS_PER_STAGE) {
+    if (votes.player > votes.ai) return 'won'
+    if (votes.ai > votes.player) return 'lost'
+  }
+  return 'open'
 }
 
 // ── Component ──────────────────────────────────────────────────────────────────
@@ -197,6 +215,7 @@ export default function VotingGame({ configId, difficulty, onWin, onLose }: Mini
   const [aiPick,      setAiPick]      = useState<Policy | null>(null)
   const [hovered,     setHovered]     = useState<Pref | null>(null)
   const [gainMsg,     setGainMsg]     = useState('')
+  const [roundsInStage, setRoundsInStage] = useState(0)
 
   const votes  = useMemo(() => tally(voters), [voters])
   const target = STAGE_TARGETS[stage]
@@ -231,6 +250,7 @@ export default function VotingGame({ configId, difficulty, onWin, onLose }: Mini
         setGainMsg(gain > 0 ? `+${gain} voters joined you` : gain < 0 ? `${gain} voters defected` : 'No votes changed')
         return next
       })
+      setRoundsInStage(r => r + 1)
       setPhase('resolving')
     }, 1400)
     return () => clearTimeout(t)
@@ -240,11 +260,11 @@ export default function VotingGame({ configId, difficulty, onWin, onLose }: Mini
   useEffect(() => {
     if (phase !== 'resolving') return
     const t = setTimeout(() => {
-      const v = tally(voters)
-      if (v.player >= target) {
+      const result = stageOutcome(tally(voters), target, roundsInStage)
+      if (result === 'won') {
         setPhase(stage === 2 ? 'won' : 'stageclear')
         if (stage === 2) setTimeout(onWin, 900)
-      } else if (v.ai >= target) {
+      } else if (result === 'lost') {
         setPhase('lost')
       } else {
         setPlayerPick(null); setAiPick(null)
@@ -253,10 +273,11 @@ export default function VotingGame({ configId, difficulty, onWin, onLose }: Mini
       }
     }, 1800)
     return () => clearTimeout(t)
-  }, [phase, voters, target, stage, era, onWin])
+  }, [phase, voters, target, stage, era, onWin, roundsInStage])
 
   const advanceStage = () => {
     setStage(s => s + 1)
+    setRoundsInStage(0)
     setPlayerPick(null); setAiPick(null)
     setPolicies(drawPolicies(era))
     setPhase('select')
@@ -276,7 +297,7 @@ export default function VotingGame({ configId, difficulty, onWin, onLose }: Mini
         <span className="text-accent/80 text-[10px] font-bold uppercase tracking-widest">
           Stage {stage + 1} — {STAGE_LABELS[stage]}
         </span>
-        <span className="text-muted text-[10px]">First to {target} votes advances</span>
+        <span className="text-muted text-[10px]">First to {target} votes advances · round {Math.min(roundsInStage + 1, MAX_ROUNDS_PER_STAGE)}/{MAX_ROUNDS_PER_STAGE}</span>
       </div>
 
       {/* Vote bars */}
@@ -452,7 +473,9 @@ export default function VotingGame({ configId, difficulty, onWin, onLose }: Mini
           <span className="text-2xl">🗳️</span>
           <p className="font-bold text-red-300">Election lost</p>
           <p className="text-muted text-xs text-center">
-            Your opponent reached {target} votes before you — they won {STAGE_LABELS[stage]}.
+            {votes.ai >= target
+              ? `Your opponent reached ${target} votes before you — they won ${STAGE_LABELS[stage]}.`
+              : `The ballot closed with your opponent ahead, ${votes.ai} to ${votes.player} — they won ${STAGE_LABELS[stage]}.`}
           </p>
           <button onClick={() => onLose('election lost')} className="mt-1 px-5 py-2 bg-line text-ink-2 text-xs rounded-lg hover:bg-line-2 transition-all">
             Continue →

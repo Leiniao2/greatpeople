@@ -65,10 +65,6 @@
             "fact": "When Mother Teresa received the Nobel Peace Prize in 1979, she asked that the $192,000 Nobel banquet fund be donated directly to the poor of Calcutta. She described the prize as recognition of 'the poorest of the poor.'",
             "autogen": true,
             "configId": "turing-tape",
-            "params": {
-              "title": "Mother Teresa asked that the traditional",
-              "intro": "Mother Teresa asked that the traditional Nobel banquet be cancelled and the money given to the poor."
-            },
             "instruction": "Mother Teresa asked that the traditional Nobel banquet be cancelled and the money given to the poor. Wire the gates until the circuit agrees with the table on every row."
           }
         }
@@ -99,8 +95,6 @@
             "autogen": true,
             "configId": "al-kindi-frequency",
             "params": {
-              "title": "Arrange these milestones of Mother Teresa's",
-              "intro": "Arrange these milestones of Mother Teresa's life in chronological order:",
               "mode": "caesar",
               "plaintext": "LEAVES THE LORETO CONVENT FOR"
             },

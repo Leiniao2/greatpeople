@@ -3,13 +3,13 @@ import type { MinigameProps } from '@/games/types'
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
-type Color = 'light' | 'dark'
+export type Color = 'light' | 'dark'
 type PieceType = 'man' | 'king'
 
 interface Piece { color: Color; type: PieceType }
-type Board = (Piece | null)[][]
+export type Board = (Piece | null)[][]
 
-interface Move {
+export interface Move {
   from: [number, number]
   to: [number, number]
   captures: [number, number][]
@@ -36,7 +36,7 @@ const CONFIGS: Record<string, WargameConfig> = {
 
 // ── Initial board ──────────────────────────────────────────────────────────────
 
-function makeInitialBoard(): Board {
+export function makeInitialBoard(): Board {
   const board: Board = Array.from({ length: 8 }, () => Array(8).fill(null))
   for (let r = 0; r < 3; r++) {
     for (let c = 0; c < 8; c++) {
@@ -53,7 +53,7 @@ function makeInitialBoard(): Board {
 
 // ── Move generation ────────────────────────────────────────────────────────────
 
-function getValidMoves(board: Board, color: Color): Move[] {
+export function getValidMoves(board: Board, color: Color): Move[] {
   const moves: Move[] = []
 
   const forwardDir = color === 'light' ? -1 : 1
@@ -145,7 +145,7 @@ function inBounds(r: number, c: number): boolean {
   return r >= 0 && r < 8 && c >= 0 && c < 8
 }
 
-function applyMove(board: Board, move: Move): Board {
+export function applyMove(board: Board, move: Move): Board {
   const next = board.map(row => [...row])
   const piece = next[move.from[0]][move.from[1]]!
   next[move.from[0]][move.from[1]] = null
@@ -162,7 +162,7 @@ function applyMove(board: Board, move: Move): Board {
   return next
 }
 
-function countPieces(board: Board, color: Color): number {
+export function countPieces(board: Board, color: Color): number {
   let n = 0
   for (const row of board) for (const p of row) if (p?.color === color) n++
   return n
@@ -170,7 +170,7 @@ function countPieces(board: Board, color: Color): number {
 
 // ── CPU AI ─────────────────────────────────────────────────────────────────────
 
-function cpuPickMove(board: Board): Move | null {
+export function cpuPickMove(board: Board): Move | null {
   const moves = getValidMoves(board, 'dark')
   if (moves.length === 0) return null
 

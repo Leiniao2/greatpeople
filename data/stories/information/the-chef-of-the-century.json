@@ -33,10 +33,6 @@
             "fact": "At his peak, Joël Robuchon held 32 Michelin stars across his restaurants worldwide — more than any chef in history. His empire spanned Paris, Monte Carlo, Las Vegas, Tokyo, Hong Kong, and beyond, each kitchen reflecting his obsessive pursuit of perfection.",
             "autogen": true,
             "configId": "eisenstein-grid",
-            "params": {
-              "title": "How many Michelin stars did Joël",
-              "intro": "How many Michelin stars did Joël Robuchon hold at the peak of his career?"
-            },
             "instruction": "How many Michelin stars did Joël Robuchon hold at the peak of his career? Order the grid as the record was ordered — every row, column and box complete."
           }
         }
@@ -67,8 +63,6 @@
             "autogen": true,
             "configId": "franklin-gazette",
             "params": {
-              "title": "Arrange these milestones of Joël Robuchon's",
-              "intro": "Arrange these milestones of Joël Robuchon's extraordinary career in order:",
               "lines": [
                 "ROBUCHON",
                 "ROBUCHON WINS",
@@ -138,10 +132,6 @@
             "fact": "This is one of the most misunderstood facts about the Michelin system. Stars belong to the restaurant address and experience, not the individual chef. When Robuchon retired and closed his restaurants, their stars vanished. When he returned with L'Atelier, he earned new stars from scratch — accumulating more than any chef in history.",
             "autogen": true,
             "configId": "bach-fugue",
-            "params": {
-              "title": "When Robuchon retired and closed his",
-              "intro": "When Robuchon retired and closed his Paris restaurant, he lost all his Michelin stars — because stars are awarded to restaurants, not to chefs."
-            },
             "instruction": "When Robuchon retired and closed his Paris restaurant, he lost all his Michelin stars — because stars are awarded to restaurants, not to chefs. Learn the phrase and play it back, note for note."
           }
         }

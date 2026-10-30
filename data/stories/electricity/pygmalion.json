@@ -33,10 +33,6 @@
             "fact": "My Fair Lady (1956) ran for 2,717 performances on Broadway. Shaw famously wrote his own stage directions to prevent producers from adding a romantic happy ending.",
             "autogen": true,
             "configId": "lorentz-grid",
-            "params": {
-              "title": "Shaw's 1913 play 'Pygmalion' was later",
-              "intro": "Shaw's 1913 play 'Pygmalion' was later adapted into which enormously successful musical?"
-            },
             "instruction": "Shaw's 1913 play 'Pygmalion' was later adapted into which enormously successful musical? Order the grid as the record was ordered — every row, column and box complete."
           }
         }
@@ -117,8 +113,6 @@
             "autogen": true,
             "configId": "morse-telegraph",
             "params": {
-              "title": "George Bernard Shaw intended Eliza Doolittle",
-              "intro": "George Bernard Shaw intended Eliza Doolittle and Professor Higgins to end up romantically together.",
               "mode": "caesar",
               "plaintext": "SHAW EXPLICITLY WROTE THAT ELIZA"
             },

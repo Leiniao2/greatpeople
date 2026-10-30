@@ -31,8 +31,6 @@
             "autogen": true,
             "configId": "bi-sheng-clay",
             "params": {
-              "title": "What is Taira no Tadanori best",
-              "intro": "What is Taira no Tadanori best remembered for, beyond his role as a Taira clan general?",
               "lines": [
                 "HIS POETRY",
                 "HIS POETRY HE",
@@ -64,8 +62,6 @@
             "autogen": true,
             "configId": "al-kindi-frequency",
             "params": {
-              "title": "Tadanori's poem was attributed to him",
-              "intro": "Tadanori's poem was attributed to him by name in the imperial anthology after his death.",
               "mode": "caesar",
               "plaintext": "BECAUSE TADANORI DIED ON THE"
             },
@@ -92,10 +88,6 @@
             "fact": "The tale of Tadanori riding back to his poetry master on the night of defeat became one of the most celebrated stories in Japanese literary history. It appears in the Heike Monogatari — the great narrative of the Genpei War — as the moment when a warrior reveals that poetry, not victory, is what he cannot bear to leave behind.",
             "autogen": true,
             "configId": "cedar-forest",
-            "params": {
-              "title": "Arrange the key events of Taira",
-              "subtitle": "Arrange the key events of Taira no Tadanori's life in order:"
-            },
             "instruction": "Arrange the key events of Taira no Tadanori's life in order: The way to the answer runs through these passages — find the exit."
           }
         },

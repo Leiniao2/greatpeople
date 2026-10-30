@@ -30,9 +30,6 @@
             "fact": "Pakal became king of Palenque at age 12 in 615 CE and ruled until his death in 683 CE — 68 years on the throne, the longest reign in all of pre-Columbian history. Under his rule, Palenque transformed from a minor city into one of the most powerful and artistically sophisticated kingdoms of the Classic Maya world.",
             "autogen": true,
             "configId": "changan-silks",
-            "params": {
-              "title": "How long did Pakal the Great"
-            },
             "instruction": "How long did Pakal the Great rule the Maya city of Palenque? Gather what the story needs: match the goods until the tally is met."
           }
         }
@@ -56,10 +53,6 @@
             "fact": "The Temple of the Inscriptions stood in plain sight for centuries — one of Palenque's most prominent structures. But its tomb was not discovered until 1952, when Mexican archaeologist Alberto Ruz Lhuillier noticed a stone floor with plugged holes and spent four years clearing a rubble-filled staircase before reaching Pakal's burial chamber 25 metres below.",
             "autogen": true,
             "configId": "hildegard-chant",
-            "params": {
-              "title": "Pakal's tomb was discovered by archaeologists",
-              "intro": "Pakal's tomb was discovered by archaeologists long before his Temple of the Inscriptions was excavated."
-            },
             "instruction": "Pakal's tomb was discovered by archaeologists long before his Temple of the Inscriptions was excavated. Learn the phrase and play it back, note for note."
           }
         }
@@ -83,10 +76,6 @@
             "fact": "The sarcophagus lid of Pakal's tomb shows him at the moment of death, descending into the Maya underworld (Xibalba) on the World Tree. For decades Western scholars misread the image as an astronaut in a spacecraft — a famous case of wishful thinking overriding careful analysis. Maya specialists recognized it as a standard resurrection narrative immediately.",
             "autogen": true,
             "configId": "al-khwarizmi-grid",
-            "params": {
-              "title": "Arrange the key events of Pakal's",
-              "intro": "Arrange the key events of Pakal's reign at Palenque in order:"
-            },
             "instruction": "Arrange the key events of Pakal's reign at Palenque in order: Order the grid as the record was ordered — every row, column and box complete."
           }
         },

@@ -31,8 +31,6 @@
             "autogen": true,
             "configId": "gutenberg-bible",
             "params": {
-              "title": "What was the Aztec capital city",
-              "intro": "What was the Aztec capital city that Montezuma II ruled, which amazed the Spanish conquistadors?",
               "lines": [
                 "TENOCHTITLAN",
                 "TENOCHTITLAN",
@@ -64,8 +62,6 @@
             "autogen": true,
             "configId": "vigenere-cabinet",
             "params": {
-              "title": "Montezuma II believed Hernán Cortés was",
-              "intro": "Montezuma II believed Hernán Cortés was the god Quetzalcoatl returning as prophesied.",
               "mode": "caesar",
               "plaintext": "THE STORY THAT MONTEZUMA MISTOOK"
             },
@@ -92,9 +88,6 @@
             "fact": "The conquest of the Aztec Empire was not a European conquest of indigenous people — it was a coalition war. Cortés' key allies, the Tlaxcalans, had been enemies of the Aztec Triple Alliance for generations and contributed far more warriors to the siege of Tenochtitlan than the Spanish did. The Aztec empire fell to its own enemies as much as to European weapons.",
             "autogen": true,
             "configId": "lisbon-spices",
-            "params": {
-              "title": "Arrange these events of Montezuma II's"
-            },
             "instruction": "Arrange these events of Montezuma II's reign and the Spanish conquest in order: Gather what the story needs: match the goods until the tally is met."
           }
         },

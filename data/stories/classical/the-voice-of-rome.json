@@ -38,8 +38,6 @@
             "autogen": true,
             "configId": "caesar-gaul",
             "params": {
-              "title": "Cicero was executed in 43 BCE",
-              "intro": "Cicero was executed in 43 BCE on the orders of:",
               "mode": "caesar",
               "plaintext": "MARC ANTONY"
             },
@@ -112,9 +110,6 @@
             "fact": "Cicero convinced the Senate to execute the Catilinarian conspirators without trial — a legally questionable act for which he was later exiled. His famous line \"Quousque tandem abutere, Catilina, patientia nostra?\" (How long, Catiline, will you abuse our patience?) is still quoted today.",
             "autogen": true,
             "configId": "venice-glass",
-            "params": {
-              "title": "Cicero's Catilinarian orations persuaded the Senate"
-            },
             "instruction": "Cicero's Catilinarian orations persuaded the Senate to give Catiline a fair trial before punishment. Gather what the story needs: match the goods until the tally is met."
           }
         },

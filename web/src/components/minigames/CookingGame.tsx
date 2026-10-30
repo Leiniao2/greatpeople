@@ -18,7 +18,7 @@ function shuffle<T>(arr: T[]): T[] {
   return a
 }
 
-const CONFIGS: Record<string, CookingConfig> = {
+export const CONFIGS: Record<string, CookingConfig> = {
   'lu-yu-tea': {
     title: 'The Classic of Tea',
     question: 'Lu Yu wrote the first treatise on tea. Arrange the steps to brew tea in the Tang Dynasty style:',
