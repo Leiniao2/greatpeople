@@ -361,7 +361,7 @@ export default function TradeGame({ configId, onWin, onLose }: MinigameProps) {
         {[
           { label: 'Cash', value: formatNum(cash) + 'g', color: 'text-ink-2' },
           { label: cfg.unit + 's held', value: holdings.toString(), color: 'text-indigo-300' },
-          { label: 'Price', value: formatNum(price) + 'g', color: price > cfg.startPrice ? 'text-emerald-400' : 'text-red-400' },
+          { label: 'Price', value: formatNum(price) + 'g', color: price > cfg.startPrice ? 'text-emerald-700' : 'text-red-700' },
         ].map(s => (
           <div key={s.label} className="p-2 rounded-xl bg-panel border border-line">
             <div className={`font-bold text-sm ${s.color}`}>{s.value}</div>
@@ -399,20 +399,20 @@ export default function TradeGame({ configId, onWin, onLose }: MinigameProps) {
           </div>
           <div className="flex gap-2">
             <button onClick={() => applyAction('buy')} disabled={qty > maxBuy || maxBuy === 0}
-              className="flex-1 py-2.5 rounded-xl font-bold text-sm border transition-all
-                         bg-emerald-500/15 border-emerald-500/40 text-emerald-300
-                         hover:bg-emerald-500/25 disabled:opacity-30 disabled:cursor-not-allowed">
+              className="flex-1 py-2.5 rounded-xl font-extrabold text-base tracking-wider border-2 shadow-sm transition-all
+                         bg-emerald-700 border-emerald-800 text-white
+                         hover:bg-emerald-800 active:scale-95 disabled:opacity-30 disabled:cursor-not-allowed">
               BUY {qty}
             </button>
             <button onClick={() => applyAction('hold')}
-              className="px-4 py-2.5 rounded-xl font-bold text-sm border transition-all
-                         bg-panel border-line text-muted hover:bg-panel-2">
+              className="px-4 py-2.5 rounded-xl font-extrabold text-base tracking-wider border-2 transition-all
+                         bg-panel border-line-2 text-ink-2 hover:bg-panel-2 active:scale-95">
               HOLD
             </button>
             <button onClick={() => applyAction('sell')} disabled={qty > maxSell || maxSell === 0}
-              className="flex-1 py-2.5 rounded-xl font-bold text-sm border transition-all
-                         bg-red-500/15 border-red-500/40 text-red-300
-                         hover:bg-red-500/25 disabled:opacity-30 disabled:cursor-not-allowed">
+              className="flex-1 py-2.5 rounded-xl font-extrabold text-base tracking-wider border-2 shadow-sm transition-all
+                         bg-red-700 border-red-800 text-white
+                         hover:bg-red-800 active:scale-95 disabled:opacity-30 disabled:cursor-not-allowed">
               SELL {qty}
             </button>
           </div>
@@ -422,8 +422,8 @@ export default function TradeGame({ configId, onWin, onLose }: MinigameProps) {
         <div className="flex flex-col gap-2">
           <div className={`p-3 rounded-xl border text-center text-sm font-bold ${
             lastChange !== null && lastChange > 0
-              ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300'
-              : 'bg-red-500/10 border-red-500/30 text-red-300'
+              ? 'bg-emerald-600/15 border-emerald-700/40 text-emerald-800'
+              : 'bg-red-600/15 border-red-700/40 text-red-800'
           }`}>
             Price {lastChange !== null && lastChange > 0 ? '↑' : '↓'} to {formatNum(price)}g
             {lastChange !== null && (

@@ -278,10 +278,10 @@
       },
       {
         "type": "minigame",
-        "game": "hunting",
-        "configId": "roman-venatio",
-        "instruction": "Assurbanipal was as famous for his lion hunts as his library — the palace reliefs at Nineveh show him alone in a chariot, shooting lions with a bow. Prove your skill before the hunt closes.",
-        "fact": "The Nineveh lion hunt reliefs (c. 640 BCE) are among the greatest achievements of ancient sculpture. Assurbanipal's hunt was ceremonial — royal power displayed through mastery over dangerous animals. The Assyrian lion population was hunted to extinction within centuries.",
+        "game": "fieldsurvey",
+        "configId": "kuyunjik-dig",
+        "instruction": "Ashurbanipal's library lay buried for 2,500 years under the mound of Kuyunjik. Dig where the shards point and recover the tablet caches before the season ends.",
+        "fact": "When Nineveh fell in 612 BCE the palace burned — and the fire baked Ashurbanipal's clay tablets hard, preserving them. Excavated in the 1850s, they gave the world back the Epic of Gilgamesh, the Babylonian flood story and much of what is known of Mesopotamian medicine, omens and law.",
         "id": "the-great-library-of-nineveh:5",
         "stage": "legacy",
         "difficulty": 4
@@ -1306,10 +1306,10 @@
       },
       {
         "type": "minigame",
-        "game": "hunting",
-        "configId": "mongol-hunt",
-        "instruction": "Kautilya's Arthashastra prescribed hunting as essential training for kings. The great nerge (encircling hunt) honed logistics and discipline — the same skills that built empires. Use your arrows wisely.",
-        "fact": "The Mongol nerge involved thousands of soldiers forming a vast encircling ring over weeks, slowly contracting until animals were packed together. It was a strategic training exercise as much as a hunt — teaching the same coordinated envelopment tactics used at Mohi and Legnica.",
+        "game": "roundup",
+        "configId": "elephant-keddah",
+        "instruction": "The Arthashastra counts war elephants as a kingdom's greatest strength. Guide a wild herd into the stockade — post beaters to close every path out of the forest.",
+        "fact": "Seleucus I ceded the Maurya Empire's western provinces to Chandragupta around 303 BCE in return for 500 war elephants. Those elephants helped Seleucus win the Battle of Ipsus two years later — the deal Kautilya's statecraft made possible reshaped the Hellenistic world.",
         "id": "the-art-of-statecraft:5",
         "stage": "legacy",
         "difficulty": 4
@@ -1877,10 +1877,10 @@
       },
       {
         "type": "minigame",
-        "game": "hunting",
-        "configId": "mongol-hunt",
-        "instruction": "Mongol warriors trained for war through the nerge — a great coordinated hunt. Encircle the game across the steppe, tightening the ring until nothing escapes. The same maneuver will encircle armies.",
-        "fact": "The Mongol nerge (battue hunt) was simultaneously sport and military training. Thousands of horsemen would spread across hundreds of miles, drive game into an ever-tightening circle, then slaughter it. Generals studied the hunt's coordination problems — timing, communication over distance, simultaneous flanking — and applied the same solutions in battle.",
+        "game": "roundup",
+        "configId": "mongol-nerge",
+        "instruction": "Mongol warriors trained for war through the nerge — a great ring drawn across the steppe. Post your riders to close every gap before the wild horses break out. The same maneuver will encircle armies.",
+        "fact": "The nerge was sport and military training at once. Thousands of horsemen spread across the steppe and slowly tightened the ring, and generals studied its coordination problems — timing, signalling over distance, closing both flanks together — then used the same solutions in battle.",
         "id": "the-golden-horde-rides:3",
         "stage": "mastery",
         "difficulty": 3
@@ -3545,10 +3545,10 @@
       },
       {
         "type": "minigame",
-        "game": "hunting",
-        "configId": "african-safari",
-        "instruction": "Nzinga trained as a warrior and led her troops personally. Navigate the Central African terrain, reading the land as both hunter and commander.",
-        "fact": "Nzinga commanded a military force that included a women's regiment, former Portuguese-allied soldiers who defected to her cause, and a network of Imbangala warriors. She was known to fight in the front lines herself and trained her soldiers in guerrilla tactics that kept the Portuguese at bay for decades.",
+        "game": "riverrun",
+        "configId": "kwanza-river",
+        "instruction": "Nzinga knew the rivers of Ndongo better than any Portuguese captain. Run the war canoe down the Kwanza to the island stronghold, steering clear of rocks, hippos and crocodiles.",
+        "fact": "Nzinga's forces moved by river and forest, striking Portuguese supply lines and vanishing before columns could react. The guerrilla war she waged kept the Portuguese out of her kingdom of Matamba for decades, until a 1656 treaty finally recognised her as its queen.",
         "id": "queen-of-two-thrones:3",
         "stage": "mastery",
         "difficulty": 3
@@ -5014,10 +5014,10 @@
       },
       {
         "type": "minigame",
-        "game": "hunting",
-        "configId": "african-safari",
-        "instruction": "Before Goodall arrived in Gombe, European trophy hunters had devastated African wildlife for generations. Step into the 1880s and see what they hunted — then consider what was nearly lost.",
-        "fact": "Theodore Roosevelt's 1909 African safari killed over 11,000 animals for the Smithsonian. The backlash helped spark the modern conservation movement. Jane Goodall's 1960 arrival in Gombe coincided with a global shift: from exploitation to study and protection.",
+        "game": "fieldsurvey",
+        "configId": "gombe-chimps",
+        "instruction": "Goodall's science began with patient fieldwork. Read the signs in the Gombe forest — nests, dropped fruit — and locate every chimpanzee group before the light goes.",
+        "fact": "Goodall gave the Gombe chimpanzees names instead of numbers, which shocked the scientists of the day. Her study, begun in 1960, is now the longest-running field study of any wild animal, and her Roots & Shoots programme runs in more than 60 countries.",
         "id": "among-the-chimpanzees:5",
         "stage": "legacy",
         "difficulty": 4
