@@ -13,6 +13,7 @@ import locationCardsJson from '@/data/location_cards.json'
 import followersJson from '@/data/followers.json'
 import { cardBackUrl, followerUrl, locationImageUrl, portraitUrl } from '@/data/images'
 import PageLoader from '@/components/PageLoader'
+import EraIcon from '@/components/EraIcon'
 
 // ─── Static Card Data ─────────────────────────────────────────────────────────
 
@@ -1405,8 +1406,8 @@ function HandCard({ cardId, type, isSelected, onClick, onInfo, gpMap, eventCard,
           </div>
           <div className="w-full bg-ink/70 px-1 py-0.5 shrink-0">
             <div className="text-[8px] text-ink font-semibold leading-tight truncate">{gp.figureName}</div>
-            <div className="text-[8px] text-muted truncate">
-              {gp.countries && gp.countries.length > 0 ? gp.countries[0] : gp.era}
+            <div className="text-[8px] text-muted truncate flex items-center">
+              {gp.countries && gp.countries.length > 0 ? gp.countries[0] : <EraIcon era={gp.era} className="w-2.5 h-2.5" />}
             </div>
           </div>
         </>
@@ -1653,14 +1654,14 @@ function BattleLobby({ matchType, onStart, onBack }: LobbyProps) {
             ))}
           </div>
           {eraMode === 'single' && (
-            <div className="grid grid-cols-3 gap-1.5">
+            <div className="grid grid-cols-7 gap-1.5">
               {ERAS.map(era => (
-                <button key={era} onClick={() => setSingleEra(era)}
-                  className={`py-1.5 rounded-lg text-xs font-medium transition-all border
+                <button key={era} onClick={() => setSingleEra(era)} title={era}
+                  className={`py-1.5 rounded-lg text-xs font-medium transition-all border flex items-center justify-center
                     ${singleEra === era
                       ? 'bg-accent/15 border-accent/50 text-accent'
                       : 'border-line text-muted hover:border-line-2'}`}>
-                  {era}
+                  <EraIcon era={era} className="w-5 h-5" />
                 </button>
               ))}
             </div>
@@ -2334,7 +2335,7 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
                 <div className="relative mb-1">
                   <p className={`text-[10px] font-bold truncate ${ERA_TEXT[loc.era] ?? 'text-ink-2'}`}>{loc.name}</p>
                   <div className="flex items-center gap-1 flex-wrap">
-                    <p className="text-[9px] text-muted/80">{loc.era}</p>
+                    <EraIcon era={loc.era} className="w-3 h-3 text-muted/80" />
                     {loc.countries && loc.countries.length > 0 && (
                       <p className="text-[9px] text-muted">{loc.countries.join(', ')}</p>
                     )}

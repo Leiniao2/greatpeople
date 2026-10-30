@@ -7,6 +7,7 @@ import cardsJson from '@/data/cards.json'
 import locationCardsJson from '@/data/location_cards.json'
 import { locationImageUrl, portraitUrl } from '@/data/images'
 import PageLoader from '@/components/PageLoader'
+import EraIcon from '@/components/EraIcon'
 
 // ── GP cards ─────────────────────────────────────────────────────────────────
 
@@ -273,9 +274,7 @@ function CardItem({ card, owned, onClick }: { card: Card; owned: boolean; onClic
         <p className={`text-sm font-semibold leading-tight line-clamp-2 ${owned ? 'text-ink' : 'text-muted/80'}`}>
           {card.figureName}
         </p>
-        <p className={`text-[10px] uppercase tracking-wider ${owned ? 'text-muted' : 'text-muted/60'}`}>
-          {card.era}
-        </p>
+        <EraIcon era={card.era} className={`w-3.5 h-3.5 ${owned ? 'text-muted' : 'text-muted/60'}`} />
         {owned && card.identities.length > 0 && (
           <div className="flex flex-wrap gap-1 mt-1">
             {card.identities.slice(0, 2).map(id => (
@@ -326,8 +325,8 @@ function LocationItem({ loc, onClick }: { loc: LocationCard; onClick: () => void
         )}
         <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/60 to-transparent" />
         {/* Era badge */}
-        <span className={`absolute top-2 right-2 text-[9px] px-1.5 py-0.5 rounded-full border font-semibold ${eraStyle}`}>
-          {loc.era}
+        <span className={`absolute top-2 right-2 p-1 rounded-full border ${eraStyle}`} title={loc.era}>
+          <EraIcon era={loc.era} className="w-3 h-3" />
         </span>
       </div>
 
@@ -382,8 +381,8 @@ function LocationDetailModal({ loc, onClose }: { loc: LocationCard; onClose: () 
           <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-[#0e1020] to-transparent" />
 
           {/* Era badge */}
-          <span className={`absolute top-3 left-3 text-[10px] px-2 py-0.5 rounded-full border font-semibold ${eraStyle}`}>
-            {loc.era}
+          <span className={`absolute top-3 left-3 p-1.5 rounded-full border ${eraStyle}`} title={loc.era}>
+            <EraIcon era={loc.era} className="w-3.5 h-3.5" />
           </span>
 
           {/* Close button */}

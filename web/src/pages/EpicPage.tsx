@@ -8,6 +8,7 @@ import storyConfigsData from '@/data/story_configs.json'
 import { eraBackdropUrl, locationImageUrl, portraitUrl } from '@/data/images'
 import PageLoader from '@/components/PageLoader'
 import { useAssetPreload } from '@/hooks/useAssetPreload'
+import EraIcon from '@/components/EraIcon'
 
 function portraitKeyForFigure(name: string | null): string | null {
   if (!name) return null
@@ -205,14 +206,15 @@ function EpicContent() {
               <button
                 key={e.name}
                 onClick={() => handleEraClick(idx)}
-                className={`flex-shrink-0 px-4 py-1.5 rounded-full text-xs font-semibold transition-all duration-200
+                title={e.name}
+                className={`flex-shrink-0 px-4 py-2 rounded-full text-xs font-semibold transition-all duration-200
                   ${active
                     ? 'bg-accent text-accent-fg shadow-lg shadow-accent/30'
                     : selectable
                       ? 'bg-panel text-ink-2 border border-line hover:border-accent/30 hover:text-accent'
                       : 'bg-panel text-muted/80 border border-line cursor-not-allowed'
                   }`}>
-                {e.name}
+                <EraIcon era={e.name} className="w-5 h-5" />
               </button>
             )
           })}
@@ -229,7 +231,7 @@ function EpicContent() {
         <div className={eraReady ? 'animate-fade-in' : 'opacity-0'}>
           {/* Era header + progress */}
           <div className="mb-5">
-            <h2 className="text-ink text-2xl font-bold tracking-wide mb-2">{era.name}</h2>
+            <h2 className="mb-2 flex items-center gap-2 text-ink" title={era.name}><EraIcon era={era.name} className="w-8 h-8 text-accent" /></h2>
             {eraComplete ? (
               <p className="text-accent text-sm font-semibold">Era Complete ✓</p>
             ) : (
@@ -347,7 +349,7 @@ function EpicContent() {
                 className="px-8 py-3 rounded-xl font-bold text-sm tracking-wide text-ink
                            bg-accent hover:bg-accent-hover active:bg-accent-hover
                            shadow-lg shadow-accent/30 transition-all duration-200">
-                Next Era: {ERAS[activeEra + 1].name} →
+                <span className="inline-flex items-center gap-2">Next Era <EraIcon era={ERAS[activeEra + 1].name} className="w-4 h-4" /> →</span>
               </button>
             </div>
           )}

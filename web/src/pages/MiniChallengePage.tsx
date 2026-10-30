@@ -38,6 +38,7 @@ import SoccerGame from '@/components/minigames/SoccerGame'
 import ReporterFleeGame from '@/components/minigames/ReporterFleeGame'
 import ChimpMathGame from '@/components/minigames/ChimpMathGame'
 import WorldClockGame from '@/components/minigames/WorldClockGame'
+import EraIcon from '@/components/EraIcon'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -432,7 +433,7 @@ function ChallengeCard({ ch, onClick }: { ch: FlatChallenge; onClick: () => void
         <span className={`text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full border ${cat.bg} ${cat.color} ${cat.border}`}>
           {GAME_LABEL[ch.game] ?? ch.game}
         </span>
-        <span className="text-muted/80 text-[9px] uppercase tracking-wider shrink-0">{ch.era}</span>
+        <EraIcon era={ch.era} className="w-3.5 h-3.5 text-muted/80" />
       </div>
 
       {/* Instruction */}

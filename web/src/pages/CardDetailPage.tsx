@@ -1,5 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom'
 import type { Card } from '@/types'
+import EraIcon from '@/components/EraIcon'
 
 const ACCENT = '#9b2c23'
 const GLOW = 'from-paper-2'
@@ -116,7 +117,7 @@ export default function CardDetailPage() {
 
           {/* Era / Gender / Identities / Countries */}
           <div className="flex items-center gap-2 text-xs text-muted flex-wrap">
-            <span className="uppercase tracking-wider">{card.era}</span>
+            <EraIcon era={card.era} className="w-4 h-4" />
             <span className="w-1 h-1 rounded-full bg-line" />
             <span className="capitalize">{card.gender}</span>
             {card.identities?.length > 0 && (

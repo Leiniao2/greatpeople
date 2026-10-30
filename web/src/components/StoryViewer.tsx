@@ -45,6 +45,7 @@ import { useAuth } from '@/hooks/useAuth'
 import { eraBackdropUrl, speakerImageUrl } from '@/data/images'
 import { useAssetPreload } from '@/hooks/useAssetPreload'
 import LoadingScreen from '@/components/LoadingScreen'
+import EraIcon from '@/components/EraIcon'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -434,7 +435,7 @@ function CardUnlock({ portraitKey, figureName, era, onCollect }: {
             )}
             <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 to-transparent p-3">
               <p className="text-paper font-bold text-sm">{figureName}</p>
-              <p className="text-accent/80 text-[10px]">{era}</p>
+              <EraIcon era={era} className="w-3.5 h-3.5 text-accent/80" />
             </div>
           </div>
         </div>
@@ -695,7 +696,7 @@ export default function StoryViewer({ eraName, storyTitle, figureName, portraitK
       {/* Top bar */}
       <div className="relative z-10 flex items-center justify-between px-4 pt-safe-top pt-4 pb-3 border-b border-line">
         <div>
-          <p className="text-accent/70 text-[10px] uppercase tracking-widest font-semibold">{eraName}</p>
+          <EraIcon era={eraName} className="w-4 h-4 text-accent/70 mb-0.5" />
           <p className="text-ink font-bold text-sm leading-tight">{storyTitle}</p>
         </div>
         <button onClick={onClose}
