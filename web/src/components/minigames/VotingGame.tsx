@@ -1,4 +1,6 @@
 import { useState, useEffect, useCallback, useMemo } from 'react'
+import type { MinigameProps } from '@/games/types'
+import { scale } from './_shared'
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
@@ -182,9 +184,9 @@ function tally(voters: Voter[]) {
 
 // ── Component ──────────────────────────────────────────────────────────────────
 
-interface Props { configId: string; onWin: () => void; politics?: number }
-
-export default function VotingGame({ configId, onWin, politics = 10 }: Props) {
+export default function VotingGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
+  // Persuasion points per round; tighter at higher difficulty.
+  const politics = scale(difficulty, [12, 10, 8, 7])
   const era = useMemo(() => resolveEra(configId), [configId])
 
   const [voters,      setVoters]      = useState<Voter[]>(() => initVoters(politics))
@@ -452,7 +454,7 @@ export default function VotingGame({ configId, onWin, politics = 10 }: Props) {
           <p className="text-muted text-xs text-center">
             Your opponent reached {target} votes before you — they won {STAGE_LABELS[stage]}.
           </p>
-          <button onClick={onWin} className="mt-1 px-5 py-2 bg-line text-ink-2 text-xs rounded-lg hover:bg-line-2 transition-all">
+          <button onClick={() => onLose('election lost')} className="mt-1 px-5 py-2 bg-line text-ink-2 text-xs rounded-lg hover:bg-line-2 transition-all">
             Continue →
           </button>
         </div>

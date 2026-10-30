@@ -1,4 +1,6 @@
 import { useState, useCallback } from 'react'
+import type { MinigameProps } from '@/games/types'
+import { scale, useGameTimer, TimerBar } from './_shared'
 
 // A piece is defined by its cells (row, col offsets from a reference point)
 // The board is a 2D grid where each cell holds a pieceId (0 = empty)
@@ -236,7 +238,11 @@ function movePiece(piece: Piece, dir: Dir): Piece {
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
-export default function KlotskiGame({ configId, onWin }: { configId: string; onWin: () => void }) {
+export default function KlotskiGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
+  // Higher difficulties put the puzzle on a clock.
+  const timeLimit = scale(difficulty, [0, 0, 120, 90])
+  const timer = useGameTimer({ seconds: timeLimit, running: true, onExpire: () => onLose('out of time') })
+
   const cfg = CONFIGS[configId] ?? PYRAMID
   const [pieces, setPieces] = useState<Piece[]>(() => cfg.pieces.map(p => ({ ...p, cells: [...p.cells] })))
   const [selected, setSelected] = useState<number | null>(null)
@@ -278,6 +284,7 @@ export default function KlotskiGame({ configId, onWin }: { configId: string; onW
 
   return (
     <div className="flex flex-col items-center gap-4 p-4 bg-paper-2 rounded-xl select-none">
+      {timer.active && <div className="w-full"><TimerBar remaining={timer.remaining} total={timer.total} /></div>}
       {/* Title + moves */}
       <div className="flex items-center justify-between w-full">
         <span className="text-accent font-bold text-sm tracking-wide">{cfg.title}</span>

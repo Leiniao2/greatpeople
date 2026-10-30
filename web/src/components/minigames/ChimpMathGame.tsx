@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import type { MinigameProps } from '@/games/types'
+import { scale, useGameTimer, TimerBar } from './_shared'
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
@@ -81,7 +83,11 @@ function makeChoices(correct: number): number[] {
 
 // ── Component ──────────────────────────────────────────────────────────────────
 
-export default function ChimpMathGame({ configId, onWin }: { configId: string; onWin: () => void }) {
+export default function ChimpMathGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
+  // Higher difficulties put the puzzle on a clock.
+  const timeLimit = scale(difficulty, [0, 0, 120, 90])
+  const timer = useGameTimer({ seconds: timeLimit, running: true, onExpire: () => onLose('out of time') })
+
   const cfg = CONFIGS[configId] ?? CONFIGS['jane-goodall-chimps']
 
   const [qi, setQi] = useState(0)
@@ -133,6 +139,7 @@ export default function ChimpMathGame({ configId, onWin }: { configId: string; o
 
   return (
     <div className="flex flex-col items-center gap-4 p-4 max-w-xs mx-auto">
+      {timer.active && <div className="w-full"><TimerBar remaining={timer.remaining} total={timer.total} /></div>}
       {/* Progress dots */}
       <div className="flex gap-1.5">
         {cfg.questions.map((_, i) => (

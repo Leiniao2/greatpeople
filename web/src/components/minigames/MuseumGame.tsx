@@ -1,4 +1,6 @@
 import { useState, useMemo, useCallback } from 'react'
+import type { MinigameProps } from '@/games/types'
+import { scale } from './_shared'
 
 type ArtType = 'portrait' | 'landscape' | 'sculpture' | 'ancient' | 'modern' | 'abstract'
 
@@ -69,7 +71,10 @@ const CONFIGS: Record<string, MuseumConfig> = {
   },
 }
 
-export default function MuseumGame({ configId, onWin }: { configId: string; onWin: () => void }) {
+export default function MuseumGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
+  const maxAttempts = scale(difficulty, [3, 2, 2, 1])
+  const [attempts, setAttempts] = useState(0)
+
   const cfg = CONFIGS[configId]
 
   const [assignments, setAssignments] = useState<Record<string, string | null>>(
@@ -112,6 +117,11 @@ export default function MuseumGame({ configId, onWin }: { configId: string; onWi
     if (!allFilled) return
     setSubmitted(true)
     if (score >= cfg.winScore) { setWon(true); setTimeout(onWin, 800) }
+    else {
+      const n = attempts + 1
+      setAttempts(n)
+      if (n >= maxAttempts) setTimeout(() => onLose('score too low'), 800)
+    }
   }
 
   const reset = () => {

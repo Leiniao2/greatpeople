@@ -1,4 +1,6 @@
 import { useState, useMemo } from 'react'
+import type { MinigameProps } from '@/games/types'
+import { scale } from './_shared'
 
 interface CodeLine {
   id: string
@@ -88,13 +90,10 @@ function shuffle<T>(arr: T[]): T[] {
   return a
 }
 
-export default function PseudoCodeGame({
-  configId,
-  onWin,
-}: {
-  configId: string
-  onWin: () => void
-}) {
+export default function PseudoCodeGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
+  const maxAttempts = scale(difficulty, [3, 2, 2, 1])
+  const [attempts, setAttempts] = useState(0)
+
   const cfg = CONFIGS[configId] ?? CONFIGS['turing-machine']
 
   const [challengeIdx, setChallengeIdx] = useState(0)
@@ -161,6 +160,9 @@ export default function PseudoCodeGame({
       }
     } else {
       setFlash('wrong')
+      const n = attempts + 1
+      setAttempts(n)
+      if (n >= maxAttempts) setTimeout(() => onLose('wrong logic'), 800)
     }
   }
 

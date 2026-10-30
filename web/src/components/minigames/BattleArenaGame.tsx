@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import type { MinigameProps } from '@/games/types'
+import { scale, useGameTimer, TimerBar } from './_shared'
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
@@ -86,7 +88,11 @@ const CONFIGS: Record<string, BattleConfig> = {
 
 interface LastResult { effLevel: 0|1|2; playerDmg: number; enemyDmg: number }
 
-export default function BattleArenaGame({ configId, onWin }: { configId: string; onWin: () => void }) {
+export default function BattleArenaGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
+  // Higher difficulties put the puzzle on a clock.
+  const timeLimit = scale(difficulty, [0, 0, 120, 90])
+  const timer = useGameTimer({ seconds: timeLimit, running: true, onExpire: () => onLose('out of time') })
+
   const cfg = CONFIGS[configId] ?? CONFIGS['roman-gladiator']
 
   const [playerHp, setPlayerHp] = useState(cfg.playerHp)
@@ -159,6 +165,7 @@ export default function BattleArenaGame({ configId, onWin }: { configId: string;
 
   return (
     <div className="flex flex-col gap-3 p-4 max-w-xs mx-auto select-none">
+      {timer.active && <div className="w-full"><TimerBar remaining={timer.remaining} total={timer.total} /></div>}
       <div className="text-center font-semibold text-accent text-sm">{cfg.title}</div>
 
       {/* Enemy */}

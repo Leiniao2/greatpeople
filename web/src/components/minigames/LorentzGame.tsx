@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
+import type { MinigameProps } from '@/games/types'
+import { scale, useGameTimer, TimerBar } from './_shared'
 
 interface Vec2 { x: number; y: number }
 
@@ -84,7 +86,11 @@ function circlesOverlap(p: Vec2, r1: number, c: { x: number; y: number; r: numbe
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
-export default function LorentzGame({ configId, onWin }: { configId: string; onWin: () => void }) {
+export default function LorentzGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
+  // Higher difficulties put the puzzle on a clock.
+  const timeLimit = scale(difficulty, [0, 0, 120, 90])
+  const timer = useGameTimer({ seconds: timeLimit, running: true, onExpire: () => onLose('out of time') })
+
   const cfg = CONFIGS[configId] ?? CONFIGS['lorentz-basic']
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
@@ -260,6 +266,7 @@ export default function LorentzGame({ configId, onWin }: { configId: string; onW
 
   return (
     <div className="flex flex-col items-center gap-3 p-4 bg-paper-2 rounded-xl select-none">
+      {timer.active && <div className="w-full"><TimerBar remaining={timer.remaining} total={timer.total} /></div>}
       <div className="flex items-center justify-between w-full">
         <span className="text-indigo-400 font-bold text-sm tracking-wide">{cfg.title}</span>
         {won && <span className="text-emerald-400 text-xs font-bold">✓ Target reached!</span>}

@@ -1,4 +1,6 @@
 import { useState, useMemo, useRef, useCallback } from 'react'
+import type { MinigameProps } from '@/games/types'
+import { scale } from './_shared'
 
 interface MusicConfig {
   title: string
@@ -226,7 +228,9 @@ function shuffle<T>(arr: T[]): T[] {
   return a
 }
 
-export default function MusicGame({ configId, onWin }: { configId: string; onWin: () => void }) {
+export default function MusicGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
+  const maxAttempts = scale(difficulty, [3, 3, 2, 2])
+  const [attempts, setAttempts] = useState(0)
   const config = CONFIGS[configId] ?? CONFIGS['c-major-scale']
   const labels = config.noteLabels ?? config.notes
 
@@ -334,6 +338,11 @@ export default function MusicGame({ configId, onWin }: { configId: string; onWin
       setSubmitted(true)
       setIsPlaying(false)
       if (correct) setTimeout(onWin, 800)
+      else {
+        const n = attempts + 1
+        setAttempts(n)
+        if (n >= maxAttempts) setTimeout(() => onLose('wrong tune'), 800)
+      }
     })
   }
 
@@ -438,10 +447,10 @@ export default function MusicGame({ configId, onWin }: { configId: string; onWin
           </button>
           <button
             onClick={() => { setChosen([]); setSubmitted(false) }}
-            disabled={isPlaying}
+            disabled={isPlaying || attempts >= maxAttempts}
             className="flex-1 py-2 rounded-xl border border-line text-muted text-xs hover:border-line-2 transition-all disabled:opacity-50"
           >
-            Try again
+            Try again{maxAttempts - attempts > 0 ? ` (${maxAttempts - attempts} left)` : ''}
           </button>
         </div>
       )}

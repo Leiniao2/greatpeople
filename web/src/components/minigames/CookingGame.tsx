@@ -1,4 +1,6 @@
 import { useState, useMemo } from 'react'
+import type { MinigameProps } from '@/games/types'
+import { scale } from './_shared'
 
 interface CookingConfig {
   title: string
@@ -90,7 +92,10 @@ const CONFIGS: Record<string, CookingConfig> = {
   },
 }
 
-export default function CookingGame({ configId, onWin }: { configId: string; onWin: () => void }) {
+export default function CookingGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
+  const maxAttempts = scale(difficulty, [3, 2, 2, 1])
+  const [attempts, setAttempts] = useState(0)
+
   const config = CONFIGS[configId] ?? CONFIGS['lu-yu-tea']
   const shuffled = useMemo(() => shuffle(config.steps), [config.steps])
 
@@ -114,6 +119,11 @@ export default function CookingGame({ configId, onWin }: { configId: string; onW
     const correct = chosen.every((s, i) => s === config.steps[i])
     setSubmitted(true)
     if (correct) setTimeout(onWin, 700)
+    else {
+      const n = attempts + 1
+      setAttempts(n)
+      if (n >= maxAttempts) setTimeout(() => onLose('wrong order'), 700)
+    }
   }
 
   const isCorrect = submitted && chosen.every((s, i) => s === config.steps[i])
@@ -182,7 +192,7 @@ export default function CookingGame({ configId, onWin }: { configId: string; onW
         </div>
       )}
 
-      {submitted && !isCorrect && (
+      {submitted && !isCorrect && attempts < maxAttempts && (
         <button
           onClick={() => { setChosen([]); setSubmitted(false) }}
           className="py-2 rounded-xl border border-line text-muted text-xs hover:border-line-2 transition-all"

@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import type { MinigameProps } from '@/games/types'
+import { scale, useGameTimer, TimerBar } from './_shared'
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
@@ -63,7 +65,11 @@ const CELL_ARROW = ['↖','↑','↗','↙','↓','↘']
 
 interface KickRecord { shotCell: number; keeperCol: number; scored: boolean }
 
-export default function SoccerGame({ configId, onWin }: { configId: string; onWin: () => void }) {
+export default function SoccerGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
+  // Higher difficulties put the puzzle on a clock.
+  const timeLimit = scale(difficulty, [0, 0, 120, 90])
+  const timer = useGameTimer({ seconds: timeLimit, running: true, onExpire: () => onLose('out of time') })
+
   const cfg = CONFIGS[configId] ?? CONFIGS['pele-final']
 
   const [kick, setKick] = useState(0)
@@ -134,6 +140,7 @@ export default function SoccerGame({ configId, onWin }: { configId: string; onWi
 
   return (
     <div className="flex flex-col items-center gap-4 p-4 max-w-xs mx-auto select-none">
+      {timer.active && <div className="w-full"><TimerBar remaining={timer.remaining} total={timer.total} /></div>}
       <div className="font-semibold text-accent text-sm">{cfg.title}</div>
 
       {/* Scoreboard */}

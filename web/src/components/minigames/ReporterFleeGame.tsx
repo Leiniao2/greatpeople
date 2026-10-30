@@ -1,4 +1,6 @@
 import { useReducer, useEffect, useCallback } from 'react'
+import type { MinigameProps } from '@/games/types'
+import { scale, useGameTimer, TimerBar } from './_shared'
 
 // ── Constants ──────────────────────────────────────────────────────────────────
 
@@ -126,7 +128,11 @@ function reducer(state: GameState, action: Action): GameState {
 
 // ── Component ──────────────────────────────────────────────────────────────────
 
-export default function ReporterFleeGame({ configId, onWin }: { configId: string; onWin: () => void }) {
+export default function ReporterFleeGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
+  // Higher difficulties put the puzzle on a clock.
+  const timeLimit = scale(difficulty, [0, 0, 120, 90])
+  const timer = useGameTimer({ seconds: timeLimit, running: true, onExpire: () => onLose('out of time') })
+
   const cfg = CONFIGS[configId] ?? CONFIGS['vietnam-press']
 
   const [state, dispatch] = useReducer(
@@ -180,6 +186,7 @@ export default function ReporterFleeGame({ configId, onWin }: { configId: string
 
   return (
     <div className="flex flex-col items-center gap-3 p-3 select-none">
+      {timer.active && <div className="w-full"><TimerBar remaining={timer.remaining} total={timer.total} /></div>}
       <div className="font-semibold text-accent text-sm">{cfg.title}</div>
 
       {/* Status bar */}

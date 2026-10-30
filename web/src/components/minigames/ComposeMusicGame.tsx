@@ -1,4 +1,6 @@
 import { useState, useMemo } from 'react'
+import type { MinigameProps } from '@/games/types'
+import { scale } from './_shared'
 
 interface Passage {
   id: string
@@ -107,7 +109,10 @@ function shuffle<T>(arr: T[]): T[] {
   return a
 }
 
-export default function ComposeMusicGame({ configId, onWin }: { configId: string; onWin: () => void }) {
+export default function ComposeMusicGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
+  const maxAttempts = scale(difficulty, [3, 2, 2, 1])
+  const [attempts, setAttempts] = useState(0)
+
   const config = CONFIGS[configId]
   const correctIds = useMemo(() => config.passages.map(p => p.id), [config])
   const [order, setOrder] = useState<string[]>(() => shuffle(correctIds))
@@ -136,6 +141,9 @@ export default function ComposeMusicGame({ configId, onWin }: { configId: string
     } else {
       setWrongIdxs(wrong)
       setFlash('wrong')
+      const n = attempts + 1
+      setAttempts(n)
+      if (n >= maxAttempts) setTimeout(() => onLose('wrong arrangement'), 1400)
       setTimeout(() => { setFlash(null); setWrongIdxs(new Set()) }, 1400)
     }
   }

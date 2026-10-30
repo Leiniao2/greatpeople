@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import type { MinigameProps } from '@/games/types'
+import { scale, useGameTimer, TimerBar } from './_shared'
 
 interface PunnettCross {
   parent1: [string, string]   // top margin alleles, e.g. ['T','t']
@@ -94,7 +96,11 @@ function phenotypeRatio(cross: PunnettCross): { dominant: number; recessive: num
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
-export default function PunnettGame({ configId, onWin }: { configId: string; onWin: () => void }) {
+export default function PunnettGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
+  // Higher difficulties put the puzzle on a clock.
+  const timeLimit = scale(difficulty, [0, 0, 120, 90])
+  const timer = useGameTimer({ seconds: timeLimit, running: true, onExpire: () => onLose('out of time') })
+
   const cfg = CONFIGS[configId] ?? CONFIGS['mendel-peas']
   const [crossIdx, setCrossIdx] = useState(0)
   const [cells, setCells] = useState<(string | null)[]>([null, null, null, null])
@@ -147,6 +153,7 @@ export default function PunnettGame({ configId, onWin }: { configId: string; onW
 
   return (
     <div className="flex flex-col gap-4 p-4 bg-paper-2 rounded-xl select-none">
+      {timer.active && <div className="w-full"><TimerBar remaining={timer.remaining} total={timer.total} /></div>}
       {/* Header */}
       <div className="flex items-center justify-between">
         <span className="text-emerald-400 font-bold text-sm tracking-wide">{cfg.title}</span>
