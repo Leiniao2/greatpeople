@@ -2,6 +2,7 @@ import { useState, useMemo, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import allStories from '@/data/story_challenges.json'
 import ChallengeRenderer from '@/games/ChallengeRenderer'
+import ResultPanel from '@/games/ResultPanel'
 import { gameCategory, gameLabel, type Category } from '@/games/registry'
 import type { Challenge } from '@/games/types'
 import { hashString } from '@/components/minigames/_shared'
@@ -65,7 +66,7 @@ function catFor(game: string) {
 
 // ── Play overlay ──────────────────────────────────────────────────────────────
 
-function ChallengeOverlay({ ch, onClose }: { ch: FlatChallenge; onClose: () => void }) {
+function ChallengeOverlay({ ch, onClose, onNext }: { ch: FlatChallenge; onClose: () => void; onNext?: () => void }) {
   const [outcome, setOutcome] = useState<'won' | 'lost' | null>(null)
   const [attempt, setAttempt] = useState(0)
   const seed = useMemo(() => hashString(`${ch.id}:${attempt}`), [ch.id, attempt])
@@ -76,7 +77,7 @@ function ChallengeOverlay({ ch, onClose }: { ch: FlatChallenge; onClose: () => v
   const retry = () => { setOutcome(null); setAttempt(a => a + 1) }
 
   return (
-    <div className="fixed inset-0 z-50 flex flex-col bg-paper">
+    <div className="fixed inset-0 z-50 flex flex-col bg-paper relative">
       {/* Header */}
       <div className="flex items-center gap-3 px-4 pt-safe pb-3 pt-4 border-b border-line shrink-0">
         <div className={`text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full ${cat.bg} ${cat.color} border ${cat.border}`}>
@@ -98,38 +99,8 @@ function ChallengeOverlay({ ch, onClose }: { ch: FlatChallenge; onClose: () => v
         </div>
       </div>
 
-      {/* Result strip */}
-      {outcome === 'won' && (
-        <div className="shrink-0 px-4 pb-safe pb-6 pt-3 border-t border-emerald-500/20 bg-emerald-500/[0.07]">
-          <div className="flex items-center gap-3">
-            <span className="text-2xl">✓</span>
-            <div className="flex-1">
-              <p className="text-emerald-800 font-bold text-sm">Challenge Complete!</p>
-              {ch.challenge.fact && (
-                <p className="text-muted text-[11px] leading-relaxed mt-0.5 line-clamp-3">{ch.challenge.fact}</p>
-              )}
-            </div>
-          </div>
-          <button onClick={onClose}
-            className="mt-3 w-full py-2.5 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-800 font-bold text-sm hover:bg-emerald-500/30 transition-all">
-            Back to Arcade
-          </button>
-        </div>
-      )}
-      {outcome === 'lost' && (
-        <div className="shrink-0 px-4 pb-safe pb-6 pt-3 border-t border-red-500/20 bg-red-500/[0.07]">
-          <p className="text-red-800 font-bold text-sm">Not this time.</p>
-          <div className="mt-3 flex gap-2">
-            <button onClick={retry}
-              className="flex-1 py-2.5 rounded-xl bg-accent text-accent-fg font-bold text-sm hover:bg-accent-hover transition-all">
-              Try again
-            </button>
-            <button onClick={onClose}
-              className="flex-1 py-2.5 rounded-xl border border-line text-muted text-sm hover:border-line-2 transition-all">
-              Back to Arcade
-            </button>
-          </div>
-        </div>
+      {outcome && (
+        <ResultPanel outcome={outcome} fact={ch.challenge.fact} onReplay={retry} onNext={onNext} onBack={onClose} />
       )}
     </div>
   )
@@ -242,7 +213,17 @@ export default function MiniChallengePage() {
 
       {/* Play overlay */}
       {playing && (
-        <ChallengeOverlay key={playing.id} ch={playing} onClose={() => setPlaying(null)} />
+        <ChallengeOverlay
+          key={playing.id}
+          ch={playing}
+          onClose={() => setPlaying(null)}
+          onNext={(() => {
+            // The next card in the list as currently filtered.
+            const idx = filtered.findIndex(c => c.id === playing.id)
+            const next = idx >= 0 ? filtered[idx + 1] : undefined
+            return next ? () => setPlaying(next) : undefined
+          })()}
+        />
       )}
     </div>
   )

@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import StoryViewer from '@/components/StoryViewer'
 import ChallengeRenderer from '@/games/ChallengeRenderer'
+import ResultPanel from '@/games/ResultPanel'
 import { gameLabel } from '@/games/registry'
 import type { Challenge } from '@/games/types'
 import storyConfigs from '@/data/story_configs.json'
@@ -25,6 +26,8 @@ interface Config {
 
 const CONFIGS = storyConfigs as Config[]
 const CHALLENGES = (storyChallenges as { era: string; story: string; slug: string; challenges: Challenge[] }[])
+// Every challenge in play order, for "next challenge" on the stand-alone route.
+const ALL_IDS = CHALLENGES.flatMap(e => e.challenges.map(c => c.id!))
 
 // The token must be stored before any API call or auth check renders.
 adoptTokenFromFragment()
@@ -84,6 +87,8 @@ export function PlayChallengePage() {
   if (!found) return <Missing what="challenge" onBack={() => leave(navigate, embedded)} />
   const { entry, ch } = found
   const game = ch.type === 'minigame' ? ch.game : ch.type
+  const nextId = ALL_IDS[ALL_IDS.indexOf(ch.id!) + 1]
+  const goNext = nextId ? () => { setOutcome(null); setAttempt(0); navigate(`/play/challenge/${nextId}${window.location.search}`) } : undefined
 
   return (
     <div className="fixed inset-0 z-[60] flex flex-col bg-paper">
@@ -98,17 +103,14 @@ export function PlayChallengePage() {
         </div>
       </div>
       {outcome && (
-        <div className={`shrink-0 px-4 pb-safe pb-6 pt-3 border-t ${outcome === 'won' ? 'border-emerald-500/20 bg-emerald-500/[0.07]' : 'border-red-500/20 bg-red-500/[0.07]'}`}>
-          <p className={`font-bold text-sm ${outcome === 'won' ? 'text-emerald-800' : 'text-red-800'}`}>{outcome === 'won' ? 'Challenge complete!' : 'Not this time.'}</p>
-          {outcome === 'won' && ch.fact && <p className="text-muted text-[11px] leading-relaxed mt-0.5 line-clamp-3">{ch.fact}</p>}
-          <div className="mt-3 flex gap-2">
-            {outcome === 'lost' && (
-              <button onClick={() => { setOutcome(null); setAttempt(a => a + 1) }} className="flex-1 py-2.5 rounded-xl bg-accent text-accent-fg font-bold text-sm">Try again</button>
-            )}
-            <button onClick={() => { if (outcome === 'won') postToNative({ type: 'challengeComplete', id: ch.id! }); leave(navigate, embedded) }}
-              className="flex-1 py-2.5 rounded-xl border border-line text-ink-2 text-sm">Done</button>
-          </div>
-        </div>
+        <ResultPanel
+          outcome={outcome}
+          fact={ch.fact}
+          onReplay={() => { setOutcome(null); setAttempt(a => a + 1) }}
+          onNext={goNext}
+          onBack={() => { if (outcome === 'won') postToNative({ type: 'challengeComplete', id: ch.id! }); leave(navigate, embedded) }}
+          backLabel={embedded ? 'Back to Arcade' : 'Back'}
+        />
       )}
     </div>
   )
