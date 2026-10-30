@@ -186,13 +186,13 @@ export default function SudokuGame({ configId, onWin }: { configId: string; onWi
   }, [selected, grid, won])
 
   return (
-    <div className="flex flex-col gap-4 bg-slate-950 rounded-xl p-4">
-      <p className="text-amber-400/80 text-[10px] font-bold uppercase tracking-widest">{config.title}</p>
-      <p className="text-slate-400 text-xs leading-relaxed">{config.intro}</p>
+    <div className="flex flex-col gap-4 bg-paper-2 rounded-xl p-4">
+      <p className="text-accent/80 text-[10px] font-bold uppercase tracking-widest">{config.title}</p>
+      <p className="text-muted text-xs leading-relaxed">{config.intro}</p>
 
       {/* Grid */}
       <div className="flex justify-center">
-        <div className="grid grid-cols-4 gap-0 border-2 border-white/20 rounded-lg overflow-hidden">
+        <div className="grid grid-cols-4 gap-0 border-2 border-line-2 rounded-lg overflow-hidden">
           {grid.map((row, r) =>
             row.map((cell, c) => {
               const pre = isPrefilled(r, c)
@@ -202,7 +202,7 @@ export default function SudokuGame({ configId, onWin }: { configId: string; onWi
               const borderR = c === 1 ? 'border-r-2 border-r-white/30' : c < 3 ? 'border-r border-r-white/10' : ''
               const borderB = r === 1 ? 'border-b-2 border-b-white/30' : r < 3 ? 'border-b border-b-white/10' : ''
 
-              let bg = sel ? 'bg-amber-500/20' : 'bg-slate-900'
+              let bg = sel ? 'bg-accent/20' : 'bg-paper-2'
               if (conflict) bg = 'bg-red-500/20'
               if (correct && !sel) bg = 'bg-emerald-500/10'
 
@@ -210,9 +210,9 @@ export default function SudokuGame({ configId, onWin }: { configId: string; onWi
                 <button
                   key={`${r},${c}`}
                   onClick={() => !pre && setSelected([r, c])}
-                  className={`w-14 h-14 flex items-center justify-center text-lg font-bold transition-colors ${bg} ${borderR} ${borderB} ${pre ? 'cursor-default' : 'cursor-pointer hover:bg-amber-500/10'}`}
+                  className={`w-14 h-14 flex items-center justify-center text-lg font-bold transition-colors ${bg} ${borderR} ${borderB} ${pre ? 'cursor-default' : 'cursor-pointer hover:bg-accent/10'}`}
                 >
-                  <span className={pre ? 'text-white' : conflict ? 'text-red-400' : correct ? 'text-emerald-400' : cell !== 0 ? 'text-amber-300' : 'text-transparent'}>
+                  <span className={pre ? 'text-ink' : conflict ? 'text-red-400' : correct ? 'text-emerald-400' : cell !== 0 ? 'text-accent' : 'text-transparent'}>
                     {cell !== 0 ? cell : '.'}
                   </span>
                 </button>
@@ -229,21 +229,21 @@ export default function SudokuGame({ configId, onWin }: { configId: string; onWi
             <button
               key={n}
               onClick={() => fill(n)}
-              className="w-12 h-12 rounded-xl bg-white/[0.06] border border-white/10 text-white font-bold text-lg hover:bg-amber-500/20 hover:border-amber-500/40 transition-all"
+              className="w-12 h-12 rounded-xl bg-panel border border-line text-ink font-bold text-lg hover:bg-accent/20 hover:border-accent/40 transition-all"
             >
               {n}
             </button>
           ))}
           <button
             onClick={clear}
-            className="w-12 h-12 rounded-xl bg-white/[0.04] border border-white/10 text-slate-500 text-lg hover:border-red-500/30 hover:text-red-400 transition-all"
+            className="w-12 h-12 rounded-xl bg-panel border border-line text-muted text-lg hover:border-red-500/30 hover:text-red-400 transition-all"
           >
             ✕
           </button>
         </div>
       )}
 
-      <p className="text-slate-600 text-[10px] text-center">
+      <p className="text-muted/80 text-[10px] text-center">
         {won
           ? <span className="text-emerald-400 font-bold">✓ Grid solved!</span>
           : selected
@@ -254,7 +254,7 @@ export default function SudokuGame({ configId, onWin }: { configId: string; onWi
       {won && (
         <div className="p-3 rounded-xl border bg-emerald-500/10 border-emerald-500/30 text-xs leading-relaxed">
           <span className="font-bold text-emerald-300">✓ Complete! </span>
-          <span className="text-slate-400">{config.fact}</span>
+          <span className="text-muted">{config.fact}</span>
         </div>
       )}
     </div>

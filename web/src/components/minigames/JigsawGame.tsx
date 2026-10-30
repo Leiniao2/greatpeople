@@ -138,9 +138,9 @@ export default function JigsawGame({ configId, onWin }: { configId: string; onWi
   return (
     <div className="flex flex-col gap-4">
       <div className="text-center">
-        <p className="text-amber-400 font-bold text-sm">{config.title}</p>
-        <p className="text-slate-400 text-xs">{config.artist} · {config.era}</p>
-        <p className="text-slate-500 text-xs mt-1">Tap two pieces to swap them · {wrongCount} piece{wrongCount !== 1 ? 's' : ''} out of place</p>
+        <p className="text-accent font-bold text-sm">{config.title}</p>
+        <p className="text-muted text-xs">{config.artist} · {config.era}</p>
+        <p className="text-muted text-xs mt-1">Tap two pieces to swap them · {wrongCount} piece{wrongCount !== 1 ? 's' : ''} out of place</p>
       </div>
 
       <div className="grid gap-1.5" style={{ gridTemplateColumns: `repeat(${config.cols}, 1fr)` }}>
@@ -157,17 +157,17 @@ export default function JigsawGame({ configId, onWin }: { configId: string; onWi
                 `bg-gradient-to-br ${piece.color}`,
                 'transition-all duration-200',
                 isSelected
-                  ? 'border-amber-400 scale-105 shadow-lg shadow-amber-500/30'
+                  ? 'border-accent scale-105 shadow-lg shadow-accent/30'
                   : isCorrect && !won
                   ? 'border-emerald-500/50'
                   : won
                   ? 'border-emerald-400/80'
-                  : 'border-white/10 hover:border-white/30',
+                  : 'border-line hover:border-line-2',
               ].join(' ')}
             >
               <span className="text-xl leading-none select-none">{piece.emoji}</span>
-              <span className="text-[8px] text-white/60 text-center leading-tight px-1 select-none">{piece.label}</span>
-              <span className="absolute bottom-0.5 right-1 text-[7px] text-white/25 select-none">{idx + 1}</span>
+              <span className="text-[8px] text-ink/60 text-center leading-tight px-1 select-none">{piece.label}</span>
+              <span className="absolute bottom-0.5 right-1 text-[7px] text-ink/25 select-none">{idx + 1}</span>
             </button>
           )
         })}
@@ -176,7 +176,7 @@ export default function JigsawGame({ configId, onWin }: { configId: string; onWi
       {won && (
         <div className="p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-xl text-center">
           <p className="text-emerald-400 font-bold text-sm">Masterpiece Restored!</p>
-          <p className="text-slate-400 text-xs mt-1 leading-relaxed">{config.fact}</p>
+          <p className="text-muted text-xs mt-1 leading-relaxed">{config.fact}</p>
         </div>
       )}
     </div>

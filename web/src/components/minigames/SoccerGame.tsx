@@ -114,10 +114,10 @@ export default function SoccerGame({ configId, onWin }: { configId: string; onWi
   if (phase === 'won') return (
     <div className="flex flex-col items-center gap-4 p-6 text-center">
       <div className="text-5xl">⚽🏆</div>
-      <div className="text-xl font-bold text-amber-400">You Win!</div>
-      <div className="text-sm text-slate-300">{goals}/{cfg.kicks} goals scored</div>
-      <p className="text-sm text-slate-400 max-w-xs leading-relaxed">{cfg.fact}</p>
-      <button onClick={onWin} className="px-6 py-2 bg-amber-500 hover:bg-amber-400 rounded-lg font-semibold text-slate-900">Complete</button>
+      <div className="text-xl font-bold text-accent">You Win!</div>
+      <div className="text-sm text-ink-2">{goals}/{cfg.kicks} goals scored</div>
+      <p className="text-sm text-muted max-w-xs leading-relaxed">{cfg.fact}</p>
+      <button onClick={onWin} className="px-6 py-2 bg-accent hover:bg-accent-hover rounded-lg font-semibold text-accent-fg">Complete</button>
     </div>
   )
 
@@ -125,7 +125,7 @@ export default function SoccerGame({ configId, onWin }: { configId: string; onWi
     <div className="flex flex-col items-center gap-4 p-6 text-center">
       <div className="text-5xl">🥅😞</div>
       <div className="text-xl font-bold text-red-400">Saved! You Lose.</div>
-      <div className="text-sm text-slate-400">{goals}/{cfg.kicks} goals — need {cfg.targetGoals}</div>
+      <div className="text-sm text-muted">{goals}/{cfg.kicks} goals — need {cfg.targetGoals}</div>
       <button onClick={restart} className="px-6 py-2 bg-red-600 hover:bg-red-500 rounded-lg font-semibold text-white">Try Again</button>
     </div>
   )
@@ -134,7 +134,7 @@ export default function SoccerGame({ configId, onWin }: { configId: string; onWi
 
   return (
     <div className="flex flex-col items-center gap-4 p-4 max-w-xs mx-auto select-none">
-      <div className="font-semibold text-amber-400 text-sm">{cfg.title}</div>
+      <div className="font-semibold text-accent text-sm">{cfg.title}</div>
 
       {/* Scoreboard */}
       <div className="flex items-center gap-6 text-sm">
@@ -142,7 +142,7 @@ export default function SoccerGame({ configId, onWin }: { configId: string; onWi
           <span className="text-xl">{cfg.homeEmoji}</span>
           <span className="font-bold text-2xl text-green-400">{goals}</span>
         </div>
-        <div className="text-slate-400 text-xs">Kick {kick + 1} / {cfg.kicks}</div>
+        <div className="text-muted text-xs">Kick {kick + 1} / {cfg.kicks}</div>
         <div className="flex items-center gap-1.5">
           <span className="font-bold text-2xl text-red-400">{kick - goals}</span>
           <span className="text-xl">{cfg.awayEmoji}</span>
@@ -150,11 +150,11 @@ export default function SoccerGame({ configId, onWin }: { configId: string; onWi
       </div>
 
       {/* Goal frame */}
-      <div className="bg-emerald-900/20 border-2 border-white/30 rounded p-1.5 w-full">
+      <div className="bg-emerald-900/20 border-2 border-line-2 rounded p-1.5 w-full">
         {/* Goal posts top bar */}
         <div className="flex justify-between px-1 mb-0.5">
-          <div className="w-2 h-3 bg-white/30 rounded-sm" />
-          <div className="w-2 h-3 bg-white/30 rounded-sm" />
+          <div className="w-2 h-3 bg-line-2 rounded-sm" />
+          <div className="w-2 h-3 bg-line-2 rounded-sm" />
         </div>
         <div className="grid grid-cols-3 gap-1">
           {Array.from({ length: TOTAL_CELLS }).map((_, cell) => {
@@ -171,12 +171,12 @@ export default function SoccerGame({ configId, onWin }: { configId: string; onWi
                 disabled={phase !== 'shoot'}
                 className={`relative h-16 rounded border transition-all ${
                   phase === 'shoot'
-                    ? 'border-white/20 hover:border-amber-400 hover:bg-amber-400/10 active:scale-95 cursor-pointer'
-                    : 'border-white/10 cursor-default'
+                    ? 'border-line-2 hover:border-accent hover:bg-accent/10 active:scale-95 cursor-pointer'
+                    : 'border-line cursor-default'
                 } ${isGoal ? 'bg-green-900/50' : isSaved ? 'bg-red-900/40' : keeperHere && !shotHere ? 'bg-red-900/20' : ''}`}
               >
                 {phase === 'shoot' && (
-                  <span className="text-white/25 text-lg absolute inset-0 flex items-center justify-center">{CELL_ARROW[cell]}</span>
+                  <span className="text-ink/25 text-lg absolute inset-0 flex items-center justify-center">{CELL_ARROW[cell]}</span>
                 )}
                 {keeperHere && !isSaved && !isGoal && (
                   <span className="text-2xl absolute inset-0 flex items-center justify-center">🧤</span>
@@ -201,7 +201,7 @@ export default function SoccerGame({ configId, onWin }: { configId: string; onWi
       )}
 
       {phase === 'shoot' && (
-        <div className="text-xs text-slate-400">Tap a zone to shoot</div>
+        <div className="text-xs text-muted">Tap a zone to shoot</div>
       )}
 
       {/* History dots */}
@@ -210,7 +210,7 @@ export default function SoccerGame({ configId, onWin }: { configId: string; onWi
           const h = history[i]
           return (
             <div key={i} className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold border ${
-              !h ? 'border-slate-600 text-slate-600' :
+              !h ? 'border-line text-muted/80' :
               h.scored ? 'border-green-500 bg-green-900/40 text-green-300' :
               'border-red-700 bg-red-900/40 text-red-400'
             }`}>
@@ -220,7 +220,7 @@ export default function SoccerGame({ configId, onWin }: { configId: string; onWi
         })}
       </div>
 
-      <div className="text-xs text-slate-500">Score {cfg.targetGoals} to win</div>
+      <div className="text-xs text-muted">Score {cfg.targetGoals} to win</div>
     </div>
   )
 }

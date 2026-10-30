@@ -344,18 +344,18 @@ export default function MusicGame({ configId, onWin }: { configId: string; onWin
   }
 
   return (
-    <div className="flex flex-col gap-4 bg-slate-950 rounded-xl p-3">
-      <p className="text-amber-400/80 text-[10px] font-bold uppercase tracking-widest">{config.title}</p>
-      <p className="text-white text-sm font-medium leading-snug">{config.question}</p>
+    <div className="flex flex-col gap-4 bg-paper-2 rounded-xl p-3">
+      <p className="text-accent/80 text-[10px] font-bold uppercase tracking-widest">{config.title}</p>
+      <p className="text-ink text-sm font-medium leading-snug">{config.question}</p>
 
       {/* Mini staff + chosen notes */}
-      <div className="rounded-xl bg-slate-900 border border-white/[0.06] p-3">
-        <p className="text-slate-500 text-[10px] mb-2">Your melody:</p>
+      <div className="rounded-xl bg-paper-2 border border-line p-3">
+        <p className="text-muted text-[10px] mb-2">Your melody:</p>
 
         {/* Staff lines */}
         <div className="relative h-20 mb-3">
           {[0, 1, 2, 3, 4].map(i => (
-            <div key={i} className="absolute w-full h-px bg-slate-700" style={{ top: `${i * 14 + 8}px` }} />
+            <div key={i} className="absolute w-full h-px bg-line" style={{ top: `${i * 14 + 8}px` }} />
           ))}
           {/* Chosen notes on staff */}
           <div className="absolute inset-0 flex items-center gap-3 px-2">
@@ -374,18 +374,18 @@ export default function MusicGame({ configId, onWin }: { configId: string; onWin
                   `}
                   style={{ height: '28px', marginTop: `${h - 14}px`, flexShrink: 0 }}
                 >
-                  <span className="text-white text-[10px] font-bold">{c.label}</span>
+                  <span className="text-ink text-[10px] font-bold">{c.label}</span>
                 </button>
               )
             })}
             {chosen.length === 0 && (
-              <span className="text-slate-600 text-xs italic">tap notes below to arrange…</span>
+              <span className="text-muted/80 text-xs italic">tap notes below to arrange…</span>
             )}
           </div>
         </div>
 
         {/* Note count */}
-        <p className="text-slate-600 text-[10px]">
+        <p className="text-muted/80 text-[10px]">
           {chosen.length} / {indexedCorrect.length} notes placed
         </p>
       </div>
@@ -397,7 +397,7 @@ export default function MusicGame({ configId, onWin }: { configId: string; onWin
             key={item.idx}
             onClick={() => select(item)}
             disabled={submitted || isPlaying}
-            className={`w-12 h-12 rounded-xl bg-gradient-to-b ${getNoteColor(item.note)} text-white font-bold text-sm shadow-md hover:scale-105 active:scale-95 transition-all`}
+            className={`w-12 h-12 rounded-xl bg-gradient-to-b ${getNoteColor(item.note)} text-ink font-bold text-sm shadow-md hover:scale-105 active:scale-95 transition-all`}
           >
             {item.label}
           </button>
@@ -408,7 +408,7 @@ export default function MusicGame({ configId, onWin }: { configId: string; onWin
         <button
           onClick={handlePlayAndCheck}
           disabled={isPlaying}
-          className="py-2.5 rounded-xl bg-amber-500 text-slate-950 font-bold text-sm hover:bg-amber-400 transition-all disabled:opacity-60"
+          className="py-2.5 rounded-xl bg-accent text-accent-fg font-bold text-sm hover:bg-accent-hover transition-all disabled:opacity-60"
         >
           {isPlaying ? '♪ Playing…' : 'Play Melody →'}
         </button>
@@ -432,14 +432,14 @@ export default function MusicGame({ configId, onWin }: { configId: string; onWin
           <button
             onClick={handleHearAnswer}
             disabled={isPlaying}
-            className="flex-1 py-2 rounded-xl border border-amber-700/50 text-amber-400 text-xs hover:border-amber-600 transition-all disabled:opacity-50"
+            className="flex-1 py-2 rounded-xl border border-accent/50 text-accent text-xs hover:border-accent transition-all disabled:opacity-50"
           >
             {isPlaying ? '♪ Playing…' : 'Hear Answer ▶'}
           </button>
           <button
             onClick={() => { setChosen([]); setSubmitted(false) }}
             disabled={isPlaying}
-            className="flex-1 py-2 rounded-xl border border-slate-700 text-slate-400 text-xs hover:border-slate-600 transition-all disabled:opacity-50"
+            className="flex-1 py-2 rounded-xl border border-line text-muted text-xs hover:border-line-2 transition-all disabled:opacity-50"
           >
             Try again
           </button>

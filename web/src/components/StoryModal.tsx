@@ -77,16 +77,16 @@ function QuizView({
 
   return (
     <div className="flex flex-col gap-3">
-      <p className="text-white text-sm font-medium leading-snug">{challenge.question}</p>
+      <p className="text-ink text-sm font-medium leading-snug">{challenge.question}</p>
       <div className="flex flex-col gap-2">
         {challenge.options.map((opt, i) => {
           const isCorrect = i === challenge.answer
           const isSelected = i === selected
-          let bg = 'bg-white/[0.05] border-white/10 text-slate-300'
+          let bg = 'bg-panel border-line text-ink-2'
           if (answered) {
             if (isCorrect) bg = 'bg-emerald-500/20 border-emerald-500/50 text-emerald-300'
             else if (isSelected) bg = 'bg-red-500/20 border-red-500/40 text-red-300'
-            else bg = 'bg-white/[0.03] border-white/[0.06] text-slate-500'
+            else bg = 'bg-panel border-line text-muted'
           }
           return (
             <button
@@ -97,7 +97,7 @@ function QuizView({
                 onResult(i === challenge.answer)
               }}
               className={`text-left px-4 py-2.5 rounded-xl border text-sm transition-all duration-200
-                          ${!answered ? 'hover:border-amber-500/40 hover:text-amber-300' : ''}
+                          ${!answered ? 'hover:border-accent/40 hover:text-accent' : ''}
                           ${bg}`}>
               {opt}
             </button>
@@ -125,17 +125,17 @@ function TrueFalseView({
 
   const btnClass = (choice: boolean) => {
     if (answered === null)
-      return 'bg-white/[0.05] border-white/10 text-slate-300 hover:border-amber-500/40 hover:text-amber-300'
+      return 'bg-panel border-line text-ink-2 hover:border-accent/40 hover:text-accent'
     if (choice === challenge.correct)
       return 'bg-emerald-500/20 border-emerald-500/50 text-emerald-300'
     if (choice === answered)
       return 'bg-red-500/20 border-red-500/40 text-red-300'
-    return 'bg-white/[0.03] border-white/[0.06] text-slate-500'
+    return 'bg-panel border-line text-muted'
   }
 
   return (
     <div className="flex flex-col gap-4">
-      <p className="text-white text-sm font-medium leading-snug">{challenge.statement}</p>
+      <p className="text-ink text-sm font-medium leading-snug">{challenge.statement}</p>
       <div className="flex gap-3">
         {([true, false] as const).map(choice => (
           <button
@@ -183,12 +183,12 @@ function SortView({
 
   return (
     <div className="flex flex-col gap-3">
-      <p className="text-white text-sm font-medium leading-snug">{challenge.question}</p>
+      <p className="text-ink text-sm font-medium leading-snug">{challenge.question}</p>
 
       {/* Answer slots */}
-      <div className="min-h-[44px] flex flex-wrap gap-2 p-3 rounded-xl bg-white/[0.03] border border-white/[0.08]">
+      <div className="min-h-[44px] flex flex-wrap gap-2 p-3 rounded-xl bg-panel border border-line">
         {selected.length === 0 && (
-          <p className="text-slate-600 text-xs self-center">Tap items below in the correct order…</p>
+          <p className="text-muted/80 text-xs self-center">Tap items below in the correct order…</p>
         )}
         {selected.map((item, i) => {
           const isCorrect = submitted && item === challenge.items[i]
@@ -201,7 +201,7 @@ function SortView({
               className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all
                 ${isCorrect ? 'bg-emerald-500/20 border-emerald-500/50 text-emerald-300'
                   : isWrong ? 'bg-red-500/20 border-red-500/40 text-red-300'
-                  : 'bg-amber-500/15 border-amber-500/30 text-amber-300'}`}>
+                  : 'bg-accent/15 border-accent/30 text-accent'}`}>
               {i + 1}. {item}
             </button>
           )
@@ -216,8 +216,8 @@ function SortView({
             onClick={() => toggle(item)}
             disabled={submitted}
             className="px-3 py-1.5 rounded-lg text-xs font-semibold border
-                       bg-white/[0.05] border-white/10 text-slate-300
-                       hover:border-amber-500/40 hover:text-amber-300 transition-all">
+                       bg-panel border-line text-ink-2
+                       hover:border-accent/40 hover:text-accent transition-all">
             {item}
           </button>
         ))}
@@ -226,8 +226,8 @@ function SortView({
       {allPicked && !submitted && (
         <button
           onClick={submit}
-          className="mt-1 py-2.5 rounded-xl bg-amber-500 text-slate-950 font-bold text-sm
-                     hover:bg-amber-400 transition-all">
+          className="mt-1 py-2.5 rounded-xl bg-accent text-accent-fg font-bold text-sm
+                     hover:bg-accent-hover transition-all">
           Check Order
         </button>
       )}
@@ -254,7 +254,7 @@ function MinigameView({
   return (
     <div className="flex flex-col gap-3">
       {/* Instruction */}
-      <p className="text-slate-300 text-xs leading-relaxed italic border-l-2 border-amber-500/40 pl-3">
+      <p className="text-ink-2 text-xs leading-relaxed italic border-l-2 border-accent/40 pl-3">
         {challenge.instruction}
       </p>
 
@@ -317,8 +317,8 @@ export default function StoryModal({ eraName, storyTitle, onComplete, onClose }:
     return (
       <Overlay onClose={onClose}>
         <div className="text-center py-8">
-          <p className="text-slate-400 text-sm">No challenges found for this story.</p>
-          <button onClick={onClose} className="mt-4 px-6 py-2 rounded-xl bg-amber-500 text-slate-950 font-bold text-sm">
+          <p className="text-muted text-sm">No challenges found for this story.</p>
+          <button onClick={onClose} className="mt-4 px-6 py-2 rounded-xl bg-accent text-accent-fg font-bold text-sm">
             Close
           </button>
         </div>
@@ -332,16 +332,16 @@ export default function StoryModal({ eraName, storyTitle, onComplete, onClose }:
       <Overlay onClose={onClose}>
         <div className="flex flex-col items-center gap-4 py-4">
           <span className="text-5xl">{perfect ? '🏆' : score >= total / 2 ? '⭐' : '📖'}</span>
-          <h3 className="text-white font-bold text-lg text-center">{storyTitle}</h3>
-          <p className="text-amber-400 font-semibold text-base">
+          <h3 className="text-ink font-bold text-lg text-center">{storyTitle}</h3>
+          <p className="text-accent font-semibold text-base">
             {score} / {total} correct
           </p>
-          <p className="text-slate-400 text-sm text-center">
+          <p className="text-muted text-sm text-center">
             {perfect ? 'Perfect score! Story complete.' : 'Story complete! Keep exploring.'}
           </p>
           <button
             onClick={() => { onComplete(); onClose() }}
-            className="mt-2 w-full py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm tracking-wide transition-all">
+            className="mt-2 w-full py-3 rounded-xl bg-accent hover:bg-accent-hover text-accent-fg font-bold text-sm tracking-wide transition-all">
             Complete Story →
           </button>
         </div>
@@ -354,19 +354,19 @@ export default function StoryModal({ eraName, storyTitle, onComplete, onClose }:
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <div>
-          <p className="text-amber-400/70 text-[10px] uppercase tracking-widest font-semibold">{eraName}</p>
-          <h3 className="text-white font-bold text-sm leading-tight">{storyTitle}</h3>
+          <p className="text-accent/70 text-[10px] uppercase tracking-widest font-semibold">{eraName}</p>
+          <h3 className="text-ink font-bold text-sm leading-tight">{storyTitle}</h3>
         </div>
         <div className="text-right">
-          <p className="text-slate-500 text-xs">Challenge</p>
-          <p className="text-slate-300 text-sm font-bold">{idx + 1} / {total}</p>
+          <p className="text-muted text-xs">Challenge</p>
+          <p className="text-ink-2 text-sm font-bold">{idx + 1} / {total}</p>
         </div>
       </div>
 
       {/* Progress bar */}
-      <div className="h-1 rounded-full bg-white/[0.06] mb-5 overflow-hidden">
+      <div className="h-1 rounded-full bg-panel mb-5 overflow-hidden">
         <div
-          className="h-full rounded-full bg-amber-500 transition-all duration-500"
+          className="h-full rounded-full bg-accent transition-all duration-500"
           style={{ width: `${((idx) / total) * 100}%` }} />
       </div>
 
@@ -388,8 +388,8 @@ export default function StoryModal({ eraName, storyTitle, onComplete, onClose }:
       {challenge.type === 'minigame' && !showFact && (
         <button
           onClick={() => handleResult(false)}
-          className="mt-2 w-full py-1.5 rounded-xl text-slate-500 text-xs border border-slate-700/40
-                     hover:border-slate-600/50 hover:text-slate-400 transition-all duration-200">
+          className="mt-2 w-full py-1.5 rounded-xl text-muted text-xs border border-line
+                     hover:border-line hover:text-muted transition-all duration-200">
           Skip this puzzle
         </button>
       )}
@@ -399,7 +399,7 @@ export default function StoryModal({ eraName, storyTitle, onComplete, onClose }:
         <div className={`mt-4 p-3 rounded-xl border text-xs leading-relaxed
           ${lastCorrect
             ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300'
-            : 'bg-slate-700/40 border-slate-600/40 text-slate-300'
+            : 'bg-line border-line text-ink-2'
           }`}>
           <span className="font-bold mr-1">{lastCorrect ? '✓ Correct!' : '✗ Not quite.'}</span>
           {challenge.fact}
@@ -409,7 +409,7 @@ export default function StoryModal({ eraName, storyTitle, onComplete, onClose }:
       {showFact && (
         <button
           onClick={advance}
-          className="mt-3 w-full py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm transition-all">
+          className="mt-3 w-full py-2.5 rounded-xl bg-accent hover:bg-accent-hover text-accent-fg font-bold text-sm transition-all">
           {idx + 1 < total ? 'Next Challenge →' : 'See Results →'}
         </button>
       )}
@@ -422,9 +422,9 @@ export default function StoryModal({ eraName, storyTitle, onComplete, onClose }:
 function Overlay({ children, onClose }: { children: React.ReactNode; onClose: () => void }) {
   return (
     <div
-      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-4 bg-ink/70 backdrop-blur-sm"
       onClick={e => { if (e.target === e.currentTarget) onClose() }}>
-      <div className="w-full max-w-md bg-[#0f0f1e] border border-white/10 rounded-2xl p-5 shadow-2xl
+      <div className="w-full max-w-md bg-panel border border-line rounded-2xl p-5 shadow-2xl
                       max-h-[90vh] overflow-y-auto">
         {children}
       </div>

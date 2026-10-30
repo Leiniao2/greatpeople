@@ -275,21 +275,21 @@ export default function TradeGame({ configId, onWin }: { configId: string; onWin
 
   if (round === 0) {
     return (
-      <div className="flex flex-col gap-4 p-4 bg-slate-950 rounded-xl">
+      <div className="flex flex-col gap-4 p-4 bg-paper-2 rounded-xl">
         <div className="flex items-center gap-2">
           <span className="text-2xl">{cfg.symbol}</span>
-          <span className="text-amber-400 font-bold text-sm tracking-wide">{cfg.title}</span>
+          <span className="text-accent font-bold text-sm tracking-wide">{cfg.title}</span>
         </div>
-        <p className="text-slate-400 text-xs leading-relaxed">
-          You have <span className="text-amber-400 font-bold">{formatNum(cfg.startCash)} gold</span> to trade{' '}
-          <span className="text-white font-semibold">{cfg.good}</span> over {cfg.rounds} rounds.
+        <p className="text-muted text-xs leading-relaxed">
+          You have <span className="text-accent font-bold">{formatNum(cfg.startCash)} gold</span> to trade{' '}
+          <span className="text-ink font-semibold">{cfg.good}</span> over {cfg.rounds} rounds.
           Reach <span className="text-emerald-400 font-bold">{formatNum(cfg.targetCash)} gold</span> to win.
         </p>
-        <p className="text-slate-500 text-xs leading-relaxed">
+        <p className="text-muted text-xs leading-relaxed">
           Each round shows a market event. Decide to BUY, SELL, or HOLD — then the new price reveals. Buy low, sell high.
         </p>
         <button onClick={() => { setRound(1); setPhase('event') }}
-          className="w-full py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm tracking-wide transition-all">
+          className="w-full py-3 rounded-xl bg-accent hover:bg-accent-hover text-accent-fg font-bold text-sm tracking-wide transition-all">
           Start Trading
         </button>
       </div>
@@ -301,27 +301,27 @@ export default function TradeGame({ configId, onWin }: { configId: string; onWin
   if (won || lost) {
     const finalVal = cash + holdings * price
     return (
-      <div className="flex flex-col gap-4 p-4 bg-slate-950 rounded-xl">
+      <div className="flex flex-col gap-4 p-4 bg-paper-2 rounded-xl">
         <div className={`p-4 rounded-xl border text-center ${won ? 'bg-emerald-500/10 border-emerald-500/30' : 'bg-red-500/10 border-red-500/30'}`}>
           <p className={`font-bold text-base mb-1 ${won ? 'text-emerald-300' : 'text-red-300'}`}>
             {won ? '✓ Trade Mastered!' : '✕ Short of Target'}
           </p>
-          <p className="text-slate-400 text-sm">
+          <p className="text-muted text-sm">
             Final portfolio: <span className={won ? 'text-emerald-400' : 'text-red-400'}>{formatNum(finalVal)} gold</span>
             {' '}(target: {formatNum(cfg.targetCash)})
           </p>
         </div>
         <SparkLine prices={priceHistory} />
-        <p className="text-slate-400 text-xs leading-relaxed">{cfg.fact}</p>
+        <p className="text-muted text-xs leading-relaxed">{cfg.fact}</p>
         <div className="flex gap-2">
           {lost && (
             <button onClick={reset}
-              className="flex-1 py-2.5 rounded-xl bg-white/[0.07] border border-white/10 text-slate-300 text-sm font-semibold hover:bg-white/10 transition-all">
+              className="flex-1 py-2.5 rounded-xl bg-panel border border-line text-ink-2 text-sm font-semibold hover:bg-panel-2 transition-all">
               Try Again
             </button>
           )}
           <button onClick={onWin}
-            className="flex-1 py-2.5 rounded-xl bg-slate-700 text-slate-200 text-sm font-semibold hover:bg-slate-600 active:scale-95 transition-all">
+            className="flex-1 py-2.5 rounded-xl bg-line text-ink-2 text-sm font-semibold hover:bg-line-2 active:scale-95 transition-all">
             Continue →
           </button>
         </div>
@@ -334,23 +334,23 @@ export default function TradeGame({ configId, onWin }: { configId: string; onWin
   const progress = Math.min((portfolioValue / cfg.targetCash) * 100, 100)
 
   return (
-    <div className="flex flex-col gap-3 p-4 bg-slate-950 rounded-xl select-none">
+    <div className="flex flex-col gap-3 p-4 bg-paper-2 rounded-xl select-none">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <span className="text-amber-400 font-bold text-sm">{cfg.symbol} {cfg.good}</span>
-        <span className="text-slate-500 text-xs">Round {round}/{cfg.rounds}</span>
+        <span className="text-accent font-bold text-sm">{cfg.symbol} {cfg.good}</span>
+        <span className="text-muted text-xs">Round {round}/{cfg.rounds}</span>
       </div>
 
       {/* Portfolio bar */}
       <div className="flex flex-col gap-1">
         <div className="flex justify-between text-xs">
-          <span className="text-slate-500">Portfolio</span>
-          <span className={portfolioValue >= cfg.targetCash ? 'text-emerald-400 font-bold' : 'text-slate-300'}>
+          <span className="text-muted">Portfolio</span>
+          <span className={portfolioValue >= cfg.targetCash ? 'text-emerald-400 font-bold' : 'text-ink-2'}>
             {formatNum(portfolioValue)} / {formatNum(cfg.targetCash)}
           </span>
         </div>
-        <div className="h-1.5 rounded-full bg-white/[0.08] overflow-hidden">
-          <div className="h-full rounded-full bg-amber-500 transition-all duration-500"
+        <div className="h-1.5 rounded-full bg-panel overflow-hidden">
+          <div className="h-full rounded-full bg-accent transition-all duration-500"
             style={{ width: `${progress}%` }} />
         </div>
       </div>
@@ -358,26 +358,26 @@ export default function TradeGame({ configId, onWin }: { configId: string; onWin
       {/* Stats row */}
       <div className="grid grid-cols-3 gap-2 text-center">
         {[
-          { label: 'Cash', value: formatNum(cash) + 'g', color: 'text-slate-200' },
+          { label: 'Cash', value: formatNum(cash) + 'g', color: 'text-ink-2' },
           { label: cfg.unit + 's held', value: holdings.toString(), color: 'text-indigo-300' },
           { label: 'Price', value: formatNum(price) + 'g', color: price > cfg.startPrice ? 'text-emerald-400' : 'text-red-400' },
         ].map(s => (
-          <div key={s.label} className="p-2 rounded-xl bg-white/[0.04] border border-white/[0.07]">
+          <div key={s.label} className="p-2 rounded-xl bg-panel border border-line">
             <div className={`font-bold text-sm ${s.color}`}>{s.value}</div>
-            <div className="text-slate-600 text-[10px] mt-0.5">{s.label}</div>
+            <div className="text-muted/80 text-[10px] mt-0.5">{s.label}</div>
           </div>
         ))}
       </div>
 
       {/* Sparkline */}
-      <div className="rounded-xl bg-white/[0.03] border border-white/[0.06] px-3 py-2">
+      <div className="rounded-xl bg-panel border border-line px-3 py-2">
         <SparkLine prices={priceHistory} />
       </div>
 
       {/* Event */}
       {currentEvent && (
-        <div className="rounded-xl p-3 bg-amber-500/[0.07] border border-amber-500/20">
-          <p className="text-amber-200 text-xs leading-relaxed">{currentEvent.text}</p>
+        <div className="rounded-xl p-3 bg-accent/[0.07] border border-accent/20">
+          <p className="text-ink-2 text-xs leading-relaxed">{currentEvent.text}</p>
         </div>
       )}
 
@@ -387,12 +387,12 @@ export default function TradeGame({ configId, onWin }: { configId: string; onWin
           {/* Qty control */}
           <div className="flex items-center justify-center gap-3">
             <button onClick={() => setQty(q => Math.max(1, q - 1))}
-              className="w-8 h-8 rounded-lg bg-white/[0.07] border border-white/10 text-slate-300 hover:bg-white/10 text-lg transition-all">
+              className="w-8 h-8 rounded-lg bg-panel border border-line text-ink-2 hover:bg-panel-2 text-lg transition-all">
               −
             </button>
-            <span className="text-white font-bold text-lg w-8 text-center">{qty}</span>
+            <span className="text-ink font-bold text-lg w-8 text-center">{qty}</span>
             <button onClick={() => setQty(q => Math.min(Math.max(maxBuy, maxSell, 1), q + 1))}
-              className="w-8 h-8 rounded-lg bg-white/[0.07] border border-white/10 text-slate-300 hover:bg-white/10 text-lg transition-all">
+              className="w-8 h-8 rounded-lg bg-panel border border-line text-ink-2 hover:bg-panel-2 text-lg transition-all">
               +
             </button>
           </div>
@@ -405,7 +405,7 @@ export default function TradeGame({ configId, onWin }: { configId: string; onWin
             </button>
             <button onClick={() => applyAction('hold')}
               className="px-4 py-2.5 rounded-xl font-bold text-sm border transition-all
-                         bg-white/[0.06] border-white/10 text-slate-400 hover:bg-white/10">
+                         bg-panel border-line text-muted hover:bg-panel-2">
               HOLD
             </button>
             <button onClick={() => applyAction('sell')} disabled={qty > maxSell || maxSell === 0}
@@ -433,7 +433,7 @@ export default function TradeGame({ configId, onWin }: { configId: string; onWin
           </div>
           {round < cfg.rounds ? (
             <button onClick={advance}
-              className="w-full py-2.5 rounded-xl bg-amber-500/80 hover:bg-amber-500 text-slate-950 font-bold text-sm transition-all">
+              className="w-full py-2.5 rounded-xl bg-accent/80 hover:bg-accent text-accent-fg font-bold text-sm transition-all">
               Next Round →
             </button>
           ) : (
@@ -442,7 +442,7 @@ export default function TradeGame({ configId, onWin }: { configId: string; onWin
               if (finalVal >= cfg.targetCash) { setWon(true); setTimeout(onWin, 800) }
               else setLost(true)
             }}
-              className="w-full py-2.5 rounded-xl bg-amber-500/80 hover:bg-amber-500 text-slate-950 font-bold text-sm transition-all">
+              className="w-full py-2.5 rounded-xl bg-accent/80 hover:bg-accent text-accent-fg font-bold text-sm transition-all">
               See Results
             </button>
           )}

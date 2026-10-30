@@ -127,9 +127,9 @@ export default function StorySortGame({ configId, onWin }: { configId: string; o
     <div className="flex flex-col gap-3 select-none">
       {/* Header */}
       <div className="text-center px-1">
-        <p className="text-amber-400 font-bold text-sm tracking-wide">{config.title}</p>
-        <p className="text-slate-500 text-[10px] mt-0.5 italic">{config.source}</p>
-        <p className="text-slate-400 text-xs mt-1">Arrange the paragraphs in the correct order.</p>
+        <p className="text-accent font-bold text-sm tracking-wide">{config.title}</p>
+        <p className="text-muted text-[10px] mt-0.5 italic">{config.source}</p>
+        <p className="text-muted text-xs mt-1">Arrange the paragraphs in the correct order.</p>
       </div>
 
       {/* Cards */}
@@ -152,7 +152,7 @@ export default function StorySortGame({ configId, onWin }: { configId: string; o
                 ${isDraggingThis      ? 'opacity-40'
                 : paraCorrect         ? 'bg-emerald-500/10 border-emerald-500/40 text-emerald-200'
                 : paraWrong           ? 'bg-red-500/10 border-red-500/30 text-red-300'
-                : 'bg-white/[0.04] border-white/10 text-slate-200 cursor-grab active:cursor-grabbing hover:border-white/20'}
+                : 'bg-panel border-line text-ink-2 cursor-grab active:cursor-grabbing hover:border-line-2'}
               `}
             >
               {/* Number badge */}
@@ -160,7 +160,7 @@ export default function StorySortGame({ configId, onWin }: { configId: string; o
                 shrink-0 w-5 h-5 flex items-center justify-center rounded-full text-[10px] font-bold mt-0.5
                 ${paraCorrect ? 'bg-emerald-500/30 text-emerald-300'
                 : paraWrong   ? 'bg-red-500/20 text-red-400'
-                : 'bg-white/10 text-slate-400'}
+                : 'bg-panel text-muted'}
               `}>
                 {i + 1}
               </span>
@@ -174,12 +174,12 @@ export default function StorySortGame({ configId, onWin }: { configId: string; o
                   <button
                     onClick={() => move(i, -1)}
                     disabled={i === 0}
-                    className="text-slate-600 hover:text-slate-300 disabled:opacity-20 text-xs leading-none px-1"
+                    className="text-muted/80 hover:text-ink-2 disabled:opacity-20 text-xs leading-none px-1"
                   >▲</button>
                   <button
                     onClick={() => move(i, 1)}
                     disabled={i === order.length - 1}
-                    className="text-slate-600 hover:text-slate-300 disabled:opacity-20 text-xs leading-none px-1"
+                    className="text-muted/80 hover:text-ink-2 disabled:opacity-20 text-xs leading-none px-1"
                   >▼</button>
                 </div>
               )}
@@ -192,7 +192,7 @@ export default function StorySortGame({ configId, onWin }: { configId: string; o
       {!isCorrect && (
         <button
           onClick={handleSubmit}
-          className="py-2.5 rounded-xl bg-amber-500 text-slate-950 font-bold text-sm hover:bg-amber-400 active:scale-95 transition-all"
+          className="py-2.5 rounded-xl bg-accent text-accent-fg font-bold text-sm hover:bg-accent-hover active:scale-95 transition-all"
         >
           Check Order →
         </button>
@@ -201,7 +201,7 @@ export default function StorySortGame({ configId, onWin }: { configId: string; o
       {submitted && !isCorrect && (
         <button
           onClick={() => setSubmitted(false)}
-          className="py-2 rounded-xl border border-slate-700 text-slate-400 text-xs hover:border-slate-600 transition-all"
+          className="py-2 rounded-xl border border-line text-muted text-xs hover:border-line-2 transition-all"
         >
           Try again
         </button>

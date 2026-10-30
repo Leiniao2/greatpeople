@@ -5,6 +5,7 @@ import StoryViewer from '@/components/StoryViewer'
 import { useUnlockedCards } from '@/hooks/useUnlockedCards'
 import cardsData from '@/data/cards.json'
 import storyConfigsData from '@/data/story_configs.json'
+import { eraBackdropUrl, locationImageUrl, portraitUrl } from '@/data/images'
 
 function portraitKeyForFigure(name: string | null): string | null {
   if (!name) return null
@@ -30,16 +31,6 @@ interface Era {
 }
 
 const ERA_ORDER = ['Ancient', 'Classical', 'Medieval', 'Renaissance', 'Steam', 'Electricity', 'Information']
-
-const ERA_LOCATION_IMAGE: Record<string, string> = {
-  Ancient:     '/locations/ancient_stonehenge.jpeg',
-  Classical:   '/locations/classical_sparta.jpeg',
-  Medieval:    '/locations/medieval_changan.jpeg',
-  Renaissance: '/locations/renaissance_venice.jpeg',
-  Steam:       '/locations/steam_london.jpeg',
-  Electricity: '/locations/electricity_berlin.jpeg',
-  Information: '/locations/information_sanjose.jpeg',
-}
 
 const ERAS: Era[] = ERA_ORDER.map(eraName => ({
   name: eraName,
@@ -117,18 +108,18 @@ export default function EpicPage() {
   const eraComplete = isAdmin || done >= STORIES_TO_ADVANCE
 
   return (
-    <div className="relative min-h-screen bg-[#080812] overflow-hidden">
+    <div className="relative min-h-screen bg-paper overflow-hidden">
 
       {/* Ambient glow */}
       <div className="pointer-events-none fixed inset-0">
-        <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] rounded-full bg-amber-600/8 blur-[160px]" />
-        <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] rounded-full bg-violet-700/8 blur-[160px]" />
+        <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] rounded-full bg-accent/8 blur-[160px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] rounded-full bg-line/40 blur-[160px]" />
       </div>
 
       {/* Toast */}
       {toast && (
         <div className="fixed top-4 left-1/2 -translate-x-1/2 z-50 px-5 py-3 rounded-xl
-                        bg-amber-500/20 border border-amber-500/40 text-amber-300 text-sm
+                        bg-accent/20 border border-accent/40 text-accent text-sm
                         backdrop-blur-sm shadow-lg shadow-black/30 transition-all">
           {toast}
         </div>
@@ -146,13 +137,13 @@ export default function EpicPage() {
       {/* Guest banner */}
       {isGuest && (
         <div className="relative z-20 flex items-center justify-between px-6 py-2.5
-                        bg-amber-500/10 border-b border-amber-500/20">
-          <p className="text-amber-400/80 text-xs">
+                        bg-accent/10 border-b border-accent/20">
+          <p className="text-accent/80 text-xs">
             Exploring as guest — sign in to earn real cards
           </p>
           <button
             onClick={() => { exitGuestMode(); navigate('/login') }}
-            className="text-amber-400 text-xs font-semibold hover:text-amber-300 transition-colors ml-4 shrink-0">
+            className="text-accent text-xs font-semibold hover:text-accent transition-colors ml-4 shrink-0">
             Sign In →
           </button>
         </div>
@@ -164,13 +155,13 @@ export default function EpicPage() {
         <div className="flex flex-col items-center text-center mb-6">
           <div
             className="inline-flex items-center justify-center w-14 h-14 rounded-2xl mb-3"
-            style={{ background: 'rgba(245,158,11,0.12)', border: '1px solid rgba(245,158,11,0.25)' }}>
+            style={{ background: 'rgba(155,44,35,0.12)', border: '1px solid rgba(155,44,35,0.25)' }}>
             <span className="text-3xl select-none">⚡</span>
           </div>
-          <h1 className="font-display text-xl font-bold tracking-[0.1em] text-white uppercase mb-1">
+          <h1 className="font-display text-xl font-bold tracking-[0.1em] text-ink uppercase mb-1">
             EPIC
           </h1>
-          <p className="text-slate-500 text-xs tracking-widest uppercase">
+          <p className="text-muted text-xs tracking-widest uppercase">
             Stories · Quizzes · Cards
           </p>
         </div>
@@ -186,10 +177,10 @@ export default function EpicPage() {
                 onClick={() => handleEraClick(idx)}
                 className={`flex-shrink-0 px-4 py-1.5 rounded-full text-xs font-semibold transition-all duration-200
                   ${active
-                    ? 'bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/30'
+                    ? 'bg-accent text-accent-fg shadow-lg shadow-accent/30'
                     : selectable
-                      ? 'bg-white/[0.05] text-slate-300 border border-white/10 hover:border-amber-500/30 hover:text-amber-400'
-                      : 'bg-white/[0.03] text-slate-600 border border-white/[0.05] cursor-not-allowed'
+                      ? 'bg-panel text-ink-2 border border-line hover:border-accent/30 hover:text-accent'
+                      : 'bg-panel text-muted/80 border border-line cursor-not-allowed'
                   }`}>
                 {e.name}
               </button>
@@ -201,17 +192,17 @@ export default function EpicPage() {
         <div>
           {/* Era header + progress */}
           <div className="mb-5">
-            <h2 className="text-white text-2xl font-bold tracking-wide mb-2">{era.name}</h2>
+            <h2 className="text-ink text-2xl font-bold tracking-wide mb-2">{era.name}</h2>
             {eraComplete ? (
-              <p className="text-amber-400 text-sm font-semibold">Era Complete ✓</p>
+              <p className="text-accent text-sm font-semibold">Era Complete ✓</p>
             ) : (
               <div>
-                <p className="text-slate-400 text-xs mb-2">
+                <p className="text-muted text-xs mb-2">
                   {done} / {STORIES_TO_ADVANCE} stories to unlock next era
                 </p>
-                <div className="h-1.5 rounded-full bg-white/[0.06] overflow-hidden">
+                <div className="h-1.5 rounded-full bg-panel overflow-hidden">
                   <div
-                    className="h-full rounded-full bg-amber-500 transition-all duration-500"
+                    className="h-full rounded-full bg-accent transition-all duration-500"
                     style={{ width: `${(done / STORIES_TO_ADVANCE) * 100}%` }}
                   />
                 </div>
@@ -227,20 +218,20 @@ export default function EpicPage() {
 
               const pKey = portraitKeyForFigure(story.figure)
               const cardImg = story.locationImage
-                ? `/locations/${story.locationImage}.jpeg`
-                : ERA_LOCATION_IMAGE[era.name]
+                ? locationImageUrl(story.locationImage)
+                : eraBackdropUrl(era.name)
               return (
                 <div
                   key={storyIdx}
                   className={`relative rounded-2xl overflow-hidden flex items-center gap-4
                     ${unlocked
-                      ? 'border border-amber-500/30'
-                      : 'border border-slate-800/60'
+                      ? 'border border-accent/30'
+                      : 'border border-line'
                     }
                     transition-all duration-200`}>
 
                   {/* Story-specific location background */}
-                  <div className="absolute inset-0 bg-slate-950 pointer-events-none" />
+                  <div className="absolute inset-0 bg-paper-2 pointer-events-none" />
                   {cardImg && (
                     <div className="absolute inset-0 pointer-events-none">
                       <img
@@ -249,7 +240,7 @@ export default function EpicPage() {
                         className="w-full h-full object-cover"
                         style={{ opacity: unlocked ? 0.28 : 0.1 }}
                       />
-                      <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-black/60" />
+                      <div className="absolute inset-0 bg-gradient-to-r from-paper-2/80 via-paper-2/40 to-paper-2/80" />
                     </div>
                   )}
 
@@ -257,38 +248,38 @@ export default function EpicPage() {
                   <div className="relative flex-shrink-0 w-16 h-16 overflow-hidden rounded-l-2xl">
                     {pKey ? (
                       <img
-                        src={`/portraits/portrait_${pKey}.jpeg`}
+                        src={portraitUrl(pKey)}
                         alt=""
                         className={`w-full h-full object-cover object-top ${unlocked ? 'opacity-80' : 'opacity-30 grayscale'}`}
                       />
                     ) : (
                       <div className={`w-full h-full flex items-center justify-center text-2xl
-                        ${unlocked ? 'bg-amber-500/10 text-amber-500/50' : 'bg-slate-800/60 text-slate-600'}`}>
+                        ${unlocked ? 'bg-accent/10 text-accent/50' : 'bg-panel-2 text-muted/80'}`}>
                         {!unlocked ? '🔒' : isDone ? '✓' : '▶'}
                       </div>
                     )}
                     {pKey && !unlocked && (
-                      <div className="absolute inset-0 flex items-center justify-center text-lg bg-black/40">🔒</div>
+                      <div className="absolute inset-0 flex items-center justify-center text-lg bg-ink/50">🔒</div>
                     )}
                     {pKey && unlocked && isDone && (
-                      <div className="absolute bottom-1 right-1 w-4 h-4 rounded-full bg-amber-500 flex items-center justify-center text-[9px] font-bold text-slate-950">✓</div>
+                      <div className="absolute bottom-1 right-1 w-4 h-4 rounded-full bg-accent flex items-center justify-center text-[9px] font-bold text-accent-fg">✓</div>
                     )}
                   </div>
 
                   {/* Text */}
                   <div className="relative flex-1 min-w-0 py-3">
                     <p className={`text-sm font-semibold leading-tight
-                      ${unlocked ? 'text-white' : 'text-slate-600'}`}>
+                      ${unlocked ? 'text-ink' : 'text-muted/80'}`}>
                       {story.title}
                     </p>
                     {story.figure && (
                       <p className={`text-xs italic mt-0.5
-                        ${unlocked ? 'text-slate-400' : 'text-slate-700'}`}>
+                        ${unlocked ? 'text-muted' : 'text-muted/60'}`}>
                         {story.figure}
                       </p>
                     )}
                     <p className={`text-[10px] mt-1
-                      ${unlocked ? 'text-slate-500' : 'text-slate-700'}`}>
+                      ${unlocked ? 'text-muted' : 'text-muted/60'}`}>
                       {story.quizzes} {story.quizzes === 1 ? 'quiz' : 'quizzes'}
                     </p>
                   </div>
@@ -298,10 +289,10 @@ export default function EpicPage() {
                     <button
                       onClick={() => handleBegin(activeEra, storyIdx)}
                       className={`relative flex-shrink-0 mr-4 px-4 py-2 rounded-xl text-xs font-bold tracking-wide
-                                 shadow shadow-amber-500/25 transition-all duration-200
+                                 shadow shadow-accent/25 transition-all duration-200
                                  ${isDone
-                                   ? 'text-amber-400 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30'
-                                   : 'text-slate-950 bg-amber-500 hover:bg-amber-400 active:bg-amber-600'
+                                   ? 'text-accent bg-accent/10 hover:bg-accent/20 border border-accent/30'
+                                   : 'text-accent-fg bg-accent hover:bg-accent-hover active:bg-accent-hover'
                                  }`}>
                       {isDone ? 'Replay' : 'Begin →'}
                     </button>
@@ -316,9 +307,9 @@ export default function EpicPage() {
             <div className="flex justify-center pt-6">
               <button
                 onClick={() => setActiveEra(activeEra + 1)}
-                className="px-8 py-3 rounded-xl font-bold text-sm tracking-wide text-slate-950
-                           bg-amber-500 hover:bg-amber-400 active:bg-amber-600
-                           shadow-lg shadow-amber-500/30 transition-all duration-200">
+                className="px-8 py-3 rounded-xl font-bold text-sm tracking-wide text-ink
+                           bg-accent hover:bg-accent-hover active:bg-accent-hover
+                           shadow-lg shadow-accent/30 transition-all duration-200">
                 Next Era: {ERAS[activeEra + 1].name} →
               </button>
             </div>
@@ -327,7 +318,7 @@ export default function EpicPage() {
           {eraComplete && activeEra === ERAS.length - 1 && (
             <div className="flex flex-col items-center pt-6 gap-2">
               <span className="text-2xl">🏆</span>
-              <p className="text-amber-400 font-bold text-sm tracking-wide">All Eras Complete!</p>
+              <p className="text-accent font-bold text-sm tracking-wide">All Eras Complete!</p>
             </div>
           )}
         </div>
@@ -348,7 +339,7 @@ export default function EpicPage() {
             figureName={story.figure}
             portraitKey={pKey}
             bonusCard={bonusCard}
-            locationImage={story.locationImage ? `/locations/${story.locationImage}.jpeg` : undefined}
+            locationImage={locationImageUrl(story.locationImage) ?? undefined}
             onComplete={(unlockKey) => { handleStoryComplete(modal.eraIdx, modal.storyIdx, unlockKey); setModal(null) }}
             onClose={() => setModal(null)}
           />

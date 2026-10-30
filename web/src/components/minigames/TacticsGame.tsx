@@ -201,8 +201,8 @@ const PIECE_GLYPHS: Record<NonNullable<Piece>, string> = {
 }
 
 const PIECE_COLOR: Record<NonNullable<Piece>, string> = {
-  WK: 'text-amber-200', WQ: 'text-amber-200', WR: 'text-amber-200', WB: 'text-amber-200',
-  BK: 'text-slate-800', BP: 'text-slate-800',
+  WK: 'text-ink-2', WQ: 'text-ink-2', WR: 'text-ink-2', WB: 'text-ink-2',
+  BK: 'text-ink', BP: 'text-ink',
 }
 
 export default function TacticsGame({ configId, onWin }: { configId: string; onWin: () => void }) {
@@ -255,13 +255,13 @@ export default function TacticsGame({ configId, onWin }: { configId: string; onW
   const cellSize = config.cols <= 5 ? 'w-14 h-14' : 'w-11 h-11'
 
   return (
-    <div className="flex flex-col gap-4 bg-slate-950 rounded-xl p-3">
-      <p className="text-amber-400/80 text-[10px] font-bold uppercase tracking-widest">{config.title}</p>
-      <p className="text-white text-sm font-medium leading-snug">{config.question}</p>
+    <div className="flex flex-col gap-4 bg-paper-2 rounded-xl p-3">
+      <p className="text-accent/80 text-[10px] font-bold uppercase tracking-widest">{config.title}</p>
+      <p className="text-ink text-sm font-medium leading-snug">{config.question}</p>
 
       <div className="flex justify-center">
         <div
-          className="grid border border-white/10 rounded-xl overflow-hidden"
+          className="grid border border-line rounded-xl overflow-hidden"
           style={{ gridTemplateColumns: `repeat(${config.cols}, 1fr)` }}
         >
           {Array.from({ length: config.rows }, (_, r) =>
@@ -272,8 +272,8 @@ export default function TacticsGame({ configId, onWin }: { configId: string; onW
               const isWrong = wrongCell?.[0] === r && wrongCell?.[1] === c
               const isWinTarget = status === 'won' && r === config.winTo[0] && c === config.winTo[1]
 
-              let bg = isLight ? 'bg-slate-700' : 'bg-slate-900'
-              if (isSelected) bg = 'bg-amber-500/50'
+              let bg = isLight ? 'bg-line' : 'bg-paper-2'
+              if (isSelected) bg = 'bg-accent/50'
               if (isWrong) bg = 'bg-red-500/40'
               if (isWinTarget) bg = 'bg-emerald-500/40'
 
@@ -295,7 +295,7 @@ export default function TacticsGame({ configId, onWin }: { configId: string; onW
         </div>
       </div>
 
-      <p className="text-slate-500 text-[10px] text-center">
+      <p className="text-muted text-[10px] text-center">
         {status === 'idle' && (selected ? 'Tap a destination square' : 'Tap a white piece to select')}
         {status === 'wrong' && <span className="text-red-400">Not the winning move — try again</span>}
         {status === 'won' && <span className="text-emerald-400 font-bold">Checkmate! Brilliant.</span>}

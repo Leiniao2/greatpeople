@@ -122,15 +122,15 @@ export default function MuseumGame({ configId, onWin }: { configId: string; onWi
   return (
     <div className="flex flex-col gap-3">
       <div className="text-center">
-        <p className="text-amber-400 font-bold text-sm">{cfg.title}</p>
-        <p className="text-slate-400 text-xs">{cfg.museum}</p>
-        <p className="text-slate-500 text-xs mt-0.5">Target: {cfg.winScore} pts — match artworks to rooms for maximum bonus</p>
+        <p className="text-accent font-bold text-sm">{cfg.title}</p>
+        <p className="text-muted text-xs">{cfg.museum}</p>
+        <p className="text-muted text-xs mt-0.5">Target: {cfg.winScore} pts — match artworks to rooms for maximum bonus</p>
       </div>
 
       {/* Score bar */}
       <div className="flex items-center gap-2 text-xs">
-        <span className="text-slate-400">Score:</span>
-        <div className="flex-1 h-1.5 bg-white/[0.06] rounded-full overflow-hidden">
+        <span className="text-muted">Score:</span>
+        <div className="flex-1 h-1.5 bg-panel rounded-full overflow-hidden">
           <div
             className="h-full rounded-full transition-all"
             style={{
@@ -139,7 +139,7 @@ export default function MuseumGame({ configId, onWin }: { configId: string; onWi
             }}
           />
         </div>
-        <span className={`font-bold font-mono ${score >= cfg.winScore ? 'text-emerald-400' : 'text-amber-300'}`}>{score}</span>
+        <span className={`font-bold font-mono ${score >= cfg.winScore ? 'text-emerald-400' : 'text-accent'}`}>{score}</span>
       </div>
 
       {/* Rooms */}
@@ -156,26 +156,26 @@ export default function MuseumGame({ configId, onWin }: { configId: string; onWi
                 'flex flex-col gap-1.5 p-3 rounded-xl border text-left transition-all',
                 `bg-gradient-to-br ${room.color} to-slate-950`,
                 art
-                  ? bonus ? 'border-emerald-500/50' : 'border-white/20'
-                  : canDrop ? 'border-amber-400/60 bg-amber-500/5' : 'border-white/10 hover:border-white/25',
+                  ? bonus ? 'border-emerald-500/50' : 'border-line-2'
+                  : canDrop ? 'border-accent/60 bg-accent/5' : 'border-line hover:border-line-2',
               ].join(' ')}
             >
               <div className="flex items-center gap-1.5">
                 <span className="text-base">{room.emoji}</span>
-                <span className="text-white text-xs font-bold leading-tight">{room.name}</span>
+                <span className="text-ink text-xs font-bold leading-tight">{room.name}</span>
               </div>
-              <p className="text-slate-400 text-[10px] leading-tight">{room.hint}</p>
+              <p className="text-muted text-[10px] leading-tight">{room.hint}</p>
               {art ? (
-                <div className={`flex items-center gap-1.5 px-2 py-1 rounded-lg ${bonus ? 'bg-emerald-500/20' : 'bg-white/[0.08]'}`}>
+                <div className={`flex items-center gap-1.5 px-2 py-1 rounded-lg ${bonus ? 'bg-emerald-500/20' : 'bg-panel'}`}>
                   <span className="text-base">{art.emoji}</span>
                   <div className="flex-1 min-w-0">
-                    <p className="text-[11px] font-bold text-white truncate">{art.title}</p>
-                    <p className="text-[10px] text-slate-400">{bonus ? `✓ bonus: ${roomScore} pts` : `${roomScore} pts`}</p>
+                    <p className="text-[11px] font-bold text-ink truncate">{art.title}</p>
+                    <p className="text-[10px] text-muted">{bonus ? `✓ bonus: ${roomScore} pts` : `${roomScore} pts`}</p>
                   </div>
                 </div>
               ) : (
-                <div className={`h-8 flex items-center justify-center rounded-lg border border-dashed ${canDrop ? 'border-amber-400/50 bg-amber-500/10' : 'border-white/10'}`}>
-                  <span className={`text-[10px] ${canDrop ? 'text-amber-400' : 'text-slate-600'}`}>
+                <div className={`h-8 flex items-center justify-center rounded-lg border border-dashed ${canDrop ? 'border-accent/50 bg-accent/10' : 'border-line'}`}>
+                  <span className={`text-[10px] ${canDrop ? 'text-accent' : 'text-muted/80'}`}>
                     {canDrop ? 'tap to place' : 'empty'}
                   </span>
                 </div>
@@ -187,7 +187,7 @@ export default function MuseumGame({ configId, onWin }: { configId: string; onWi
 
       {/* Artwork pool */}
       <div>
-        <p className="text-slate-500 text-[10px] mb-1.5">
+        <p className="text-muted text-[10px] mb-1.5">
           {selected ? `Selected: ${artMap[selected]?.title} — tap a room to place it` : 'Tap an artwork to select it, then tap a room:'}
         </p>
         <div className="flex flex-wrap gap-1.5">
@@ -202,15 +202,15 @@ export default function MuseumGame({ configId, onWin }: { configId: string; onWi
                 disabled={isAssigned}
                 className={[
                   'flex items-center gap-1.5 px-2 py-1.5 rounded-xl border text-xs transition-all',
-                  isAssigned ? 'opacity-30 cursor-default border-white/[0.05] bg-white/[0.02]' :
-                  isSel      ? 'border-amber-400 bg-amber-500/20 text-amber-200 shadow-md shadow-amber-500/20' :
-                               'border-white/10 bg-white/[0.04] text-slate-300 hover:border-white/25',
+                  isAssigned ? 'opacity-30 cursor-default border-line bg-panel' :
+                  isSel      ? 'border-accent bg-accent/20 text-ink-2 shadow-md shadow-accent/20' :
+                               'border-line bg-panel text-ink-2 hover:border-line-2',
                 ].join(' ')}
               >
                 <span className="text-base">{art.emoji}</span>
                 <div>
                   <p className="font-bold leading-tight">{art.title}</p>
-                  <p className="text-slate-500 text-[9px]">{art.baseValue} base · {art.type}</p>
+                  <p className="text-muted text-[9px]">{art.baseValue} base · {art.type}</p>
                 </div>
               </button>
             )
@@ -221,7 +221,7 @@ export default function MuseumGame({ configId, onWin }: { configId: string; onWi
       {/* Submit */}
       {!submitted && (
         <button onClick={submit} disabled={!allFilled}
-          className="w-full py-2.5 bg-amber-500/20 border border-amber-500/40 text-amber-300 text-sm font-bold rounded-xl hover:bg-amber-500/30 transition-all disabled:opacity-40">
+          className="w-full py-2.5 bg-accent/20 border border-accent/40 text-accent text-sm font-bold rounded-xl hover:bg-accent/30 transition-all disabled:opacity-40">
           {allFilled ? 'Open Museum Doors!' : `${cfg.rooms.filter(r => !assignments[r.id]).length} room${cfg.rooms.filter(r => !assignments[r.id]).length !== 1 ? 's' : ''} still empty`}
         </button>
       )}
@@ -229,14 +229,14 @@ export default function MuseumGame({ configId, onWin }: { configId: string; onWi
       {submitted && won && (
         <div className="p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-xl">
           <p className="text-emerald-400 font-bold text-sm text-center">Masterful Curation! Score: {score} pts</p>
-          <p className="text-slate-400 text-xs mt-1.5 leading-relaxed">{cfg.fact}</p>
+          <p className="text-muted text-xs mt-1.5 leading-relaxed">{cfg.fact}</p>
         </div>
       )}
       {submitted && !won && (
         <div className="p-3 bg-red-500/10 border border-red-500/30 rounded-xl text-center">
           <p className="text-red-400 font-bold text-sm">Score: {score} — need {cfg.winScore}</p>
-          <p className="text-slate-500 text-xs mt-0.5">Try matching artwork types to room specialities.</p>
-          <button onClick={reset} className="mt-2 px-4 py-1.5 bg-white/10 text-slate-300 text-xs rounded-lg hover:bg-white/20 transition-all">
+          <p className="text-muted text-xs mt-0.5">Try matching artwork types to room specialities.</p>
+          <button onClick={reset} className="mt-2 px-4 py-1.5 bg-panel text-ink-2 text-xs rounded-lg hover:bg-panel-2 transition-all">
             Rearrange
           </button>
         </div>

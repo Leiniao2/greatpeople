@@ -80,20 +80,20 @@ interface ThemeDef {
 const THEME: Record<Theme, ThemeDef> = {
   dungeon: {
     bg: '#0a0a14',
-    wallCls: 'bg-slate-800',
-    floorCls: 'bg-slate-900/60',
-    playerCls: 'bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.7)]',
-    voidCls: 'bg-slate-950',
+    wallCls: 'bg-panel-2',
+    floorCls: 'bg-paper-2',
+    playerCls: 'bg-accent shadow-[0_0_8px_rgba(251,191,36,0.7)]',
+    voidCls: 'bg-paper-2',
     exitCls: 'bg-emerald-900/60',
     keyCls: 'bg-yellow-900/60',
-    textAccent: 'text-amber-400',
+    textAccent: 'text-accent',
   },
   arctic: {
     bg: '#0d1a2e',
     wallCls: 'bg-slate-300',
-    floorCls: 'bg-slate-700/40',
+    floorCls: 'bg-line',
     playerCls: 'bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.7)]',
-    voidCls: 'bg-slate-950',
+    voidCls: 'bg-paper-2',
     exitCls: 'bg-cyan-800/40',
     keyCls: 'bg-yellow-700/50',
     textAccent: 'text-cyan-400',
@@ -113,7 +113,7 @@ const THEME: Record<Theme, ThemeDef> = {
     wallCls: 'bg-green-900',
     floorCls: 'bg-green-950/50',
     playerCls: 'bg-lime-400 shadow-[0_0_8px_rgba(163,230,53,0.7)]',
-    voidCls: 'bg-slate-950',
+    voidCls: 'bg-paper-2',
     exitCls: 'bg-teal-900/50',
     keyCls: 'bg-yellow-900/60',
     textAccent: 'text-lime-400',
@@ -412,24 +412,24 @@ export default function BigMazeGame({ configId, onWin }: { configId: string; onW
   void exitVisible  // may be used for status hint in future
 
   return (
-    <div className="flex flex-col items-center gap-3 text-white select-none">
+    <div className="flex flex-col items-center gap-3 text-ink select-none">
 
       {/* Header */}
       <div className="text-center">
         <p className={`font-bold text-sm tracking-wide ${th.textAccent}`}>{config.title}</p>
-        <p className="text-slate-400 text-[10px]">{config.subtitle}</p>
+        <p className="text-muted text-[10px]">{config.subtitle}</p>
       </div>
 
       {/* Level & steps bar */}
       <div className="flex items-center gap-5 text-xs">
-        <span className="text-slate-400">
+        <span className="text-muted">
           Level <span className={`font-bold ${th.textAccent}`}>{levelIdx + 1}/{config.levels}</span>
         </span>
-        <span className="text-slate-400">
+        <span className="text-muted">
           Steps <span className={`font-bold ${th.textAccent}`}>{steps}</span>
         </span>
         {config.hasKey && (
-          <span className={hasKey ? 'text-yellow-400 font-bold' : 'text-slate-600'}>
+          <span className={hasKey ? 'text-yellow-400 font-bold' : 'text-muted/80'}>
             {hasKey ? '🔑 Key collected' : '🔑 Find the key'}
           </span>
         )}
@@ -437,7 +437,7 @@ export default function BigMazeGame({ configId, onWin }: { configId: string; onW
 
       {/* Viewport */}
       <div
-        className="relative rounded-xl overflow-hidden border border-slate-600/40"
+        className="relative rounded-xl overflow-hidden border border-line"
         style={{ width: CELL_SIZE * VIEWPORT, height: CELL_SIZE * VIEWPORT, background: th.bg }}
       >
         <div
@@ -452,10 +452,10 @@ export default function BigMazeGame({ configId, onWin }: { configId: string; onW
 
         {/* Level flash overlay */}
         {levelFlash && (
-          <div className="absolute inset-0 bg-white/10 flex items-center justify-center pointer-events-none z-20 rounded-xl">
-            <div className="bg-slate-950/90 border border-slate-600 rounded-xl px-5 py-3 text-center">
+          <div className="absolute inset-0 bg-panel flex items-center justify-center pointer-events-none z-20 rounded-xl">
+            <div className="bg-paper-2 border border-line rounded-xl px-5 py-3 text-center">
               <p className={`font-bold text-sm ${th.textAccent}`}>Level {levelIdx + 1} / {config.levels}</p>
-              <p className="text-slate-400 text-[10px] mt-0.5">{config.title}</p>
+              <p className="text-muted text-[10px] mt-0.5">{config.title}</p>
             </div>
           </div>
         )}
@@ -467,7 +467,7 @@ export default function BigMazeGame({ configId, onWin }: { configId: string; onW
       </div>
 
       {/* Hint */}
-      <p className="text-slate-600 text-[10px]">
+      <p className="text-muted/80 text-[10px]">
         {exitNeedsKey ? 'Find the 🔑 key before the 🚪 exit opens' : 'Reach the 🚪 exit'}
       </p>
 
@@ -477,10 +477,10 @@ export default function BigMazeGame({ configId, onWin }: { configId: string; onW
         <div className="flex items-center gap-1">
           <DPadBtn label="←" onClick={() => move(0, -1)} accent={th.textAccent} />
           <div
-            className="flex items-center justify-center rounded-lg bg-slate-800/30 border border-slate-700/30"
+            className="flex items-center justify-center rounded-lg bg-panel-2 border border-line"
             style={{ width: 44, height: 44 }}
           >
-            <div className="w-2 h-2 rounded-full bg-slate-600/50" />
+            <div className="w-2 h-2 rounded-full bg-line-2" />
           </div>
           <DPadBtn label="→" onClick={() => move(0, 1)} accent={th.textAccent} />
         </div>
@@ -496,8 +496,8 @@ function DPadBtn({ label, onClick, accent }: { label: string; onClick: () => voi
     <button
       onPointerDown={e => { e.preventDefault(); onClick() }}
       className="flex items-center justify-center rounded-lg border text-lg font-bold
-        bg-white/10 border-slate-600/50 text-slate-300
-        hover:bg-white/20 active:bg-amber-500/30 active:border-amber-500/50
+        bg-panel border-line text-ink-2
+        hover:bg-panel-2 active:bg-accent/30 active:border-accent/50
         transition-all duration-100 select-none touch-none"
       style={{ width: 44, height: 44 }}
     >

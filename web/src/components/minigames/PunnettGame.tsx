@@ -146,14 +146,14 @@ export default function PunnettGame({ configId, onWin }: { configId: string; onW
   const CELL = 60
 
   return (
-    <div className="flex flex-col gap-4 p-4 bg-slate-950 rounded-xl select-none">
+    <div className="flex flex-col gap-4 p-4 bg-paper-2 rounded-xl select-none">
       {/* Header */}
       <div className="flex items-center justify-between">
         <span className="text-emerald-400 font-bold text-sm tracking-wide">{cfg.title}</span>
-        <span className="text-slate-500 text-xs">Cross {crossIdx + 1}/{cfg.crosses.length}</span>
+        <span className="text-muted text-xs">Cross {crossIdx + 1}/{cfg.crosses.length}</span>
       </div>
 
-      <p className="text-slate-400 text-xs">{cross.traitLabel}</p>
+      <p className="text-muted text-xs">{cross.traitLabel}</p>
 
       {/* Punnett square */}
       <div className="flex justify-center">
@@ -161,7 +161,7 @@ export default function PunnettGame({ configId, onWin }: { configId: string; onW
           {/* Parent 1 alleles — top */}
           {cross.parent1.map((a, c) => (
             <div key={c}
-              className="absolute flex items-center justify-center font-bold text-sm text-amber-400"
+              className="absolute flex items-center justify-center font-bold text-sm text-accent"
               style={{ left: 48 + c * CELL, top: 0, width: CELL, height: 40 }}>
               {a}
             </div>
@@ -192,14 +192,14 @@ export default function PunnettGame({ configId, onWin }: { configId: string; onW
                   background: val
                     ? (correct ? 'rgba(52,211,153,0.15)' : 'rgba(239,68,68,0.1)')
                     : isPicking
-                    ? 'rgba(245,158,11,0.15)'
+                    ? 'rgba(155,44,35,0.15)'
                     : hasError
                     ? 'rgba(239,68,68,0.12)'
                     : 'rgba(255,255,255,0.04)',
                   border: `1.5px solid ${val
                     ? (correct ? 'rgba(52,211,153,0.5)' : 'rgba(239,68,68,0.4)')
                     : isPicking
-                    ? 'rgba(245,158,11,0.5)'
+                    ? 'rgba(155,44,35,0.5)'
                     : hasError
                     ? 'rgba(239,68,68,0.4)'
                     : 'rgba(255,255,255,0.1)'}`,
@@ -217,15 +217,15 @@ export default function PunnettGame({ configId, onWin }: { configId: string; onW
       {/* Option picker */}
       {picking !== null && !crossDone && (
         <div className="flex flex-col gap-2">
-          <p className="text-slate-500 text-xs text-center">
+          <p className="text-muted text-xs text-center">
             Choose the allele pair for this cell:
           </p>
           <div className="flex gap-2 justify-center flex-wrap">
             {options.map(opt => (
               <button key={opt} onClick={() => handlePick(opt)}
                 className="px-5 py-2.5 rounded-xl font-bold text-sm border transition-all
-                           bg-white/[0.06] border-white/10 text-slate-200
-                           hover:bg-amber-500/15 hover:border-amber-500/40 hover:text-amber-300">
+                           bg-panel border-line text-ink-2
+                           hover:bg-accent/15 hover:border-accent/40 hover:text-accent">
                 {opt}
               </button>
             ))}
@@ -234,7 +234,7 @@ export default function PunnettGame({ configId, onWin }: { configId: string; onW
       )}
 
       {picking === null && !crossDone && (
-        <p className="text-slate-600 text-xs text-center">Tap a cell to fill it in</p>
+        <p className="text-muted/80 text-xs text-center">Tap a cell to fill it in</p>
       )}
 
       {/* Phenotype ratio after cross complete */}
@@ -251,22 +251,22 @@ export default function PunnettGame({ configId, onWin }: { configId: string; onW
                 <div key={'d'+i} className="flex-1 bg-emerald-500/70 rounded-full" />
               ))}
               {Array.from({ length: ratio.recessive }).map((_, i) => (
-                <div key={'r'+i} className="flex-1 bg-slate-600 rounded-full" />
+                <div key={'r'+i} className="flex-1 bg-line-2 rounded-full" />
               ))}
             </div>
             <div className="flex justify-between text-xs mt-1">
               <span className="text-emerald-400">{cross.dominant} ({ratio.dominant})</span>
-              {ratio.recessive > 0 && <span className="text-slate-500">{cross.recessive} ({ratio.recessive})</span>}
+              {ratio.recessive > 0 && <span className="text-muted">{cross.recessive} ({ratio.recessive})</span>}
             </div>
           </div>
 
           {crossIdx + 1 < cfg.crosses.length ? (
             <button onClick={nextCross}
-              className="w-full py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm transition-all">
+              className="w-full py-2.5 rounded-xl bg-accent hover:bg-accent-hover text-accent-fg font-bold text-sm transition-all">
               Next Cross →
             </button>
           ) : (
-            <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/25 text-xs text-slate-400 leading-relaxed">
+            <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/25 text-xs text-muted leading-relaxed">
               {cfg.fact}
             </div>
           )}

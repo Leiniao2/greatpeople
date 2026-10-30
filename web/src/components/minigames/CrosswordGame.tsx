@@ -242,35 +242,35 @@ export default function CrosswordGame({ configId, onWin }: { configId: string; o
   }
 
   const BG: Record<string, string> = {
-    blocked: 'bg-slate-900',
-    empty:   'bg-slate-800 border border-slate-600 cursor-pointer hover:border-amber-500/50',
-    active:  'bg-amber-500/15 border border-amber-500/50 cursor-pointer',
-    cursor:  'bg-amber-500/35 border-2 border-amber-400 cursor-pointer',
+    blocked: 'bg-paper-2',
+    empty:   'bg-panel-2 border border-line cursor-pointer hover:border-accent/50',
+    active:  'bg-accent/15 border border-accent/50 cursor-pointer',
+    cursor:  'bg-accent/35 border-2 border-accent cursor-pointer',
     correct: 'bg-emerald-900/50 border border-emerald-500/50 cursor-pointer',
     wrong:   'bg-red-900/40 border border-red-500/40 cursor-pointer',
   }
   const TEXT: Record<string, string> = {
     blocked: '',
-    empty: 'text-white',
-    active: 'text-amber-100',
-    cursor: 'text-amber-200',
+    empty: 'text-ink',
+    active: 'text-ink-2',
+    cursor: 'text-ink-2',
     correct: 'text-emerald-300',
     wrong: 'text-red-300',
   }
 
   return (
-    <div className="flex flex-col gap-3 bg-slate-950 rounded-xl p-3 select-none">
+    <div className="flex flex-col gap-3 bg-paper-2 rounded-xl p-3 select-none">
       {/* Active clue */}
       <div className="min-h-[36px] flex items-center">
         {activeWord ? (
-          <div className="px-3 py-1.5 rounded-lg bg-amber-500/10 border border-amber-500/20 w-full">
-            <span className="text-amber-400 text-[10px] font-bold uppercase tracking-widest mr-2">
+          <div className="px-3 py-1.5 rounded-lg bg-accent/10 border border-accent/20 w-full">
+            <span className="text-accent text-[10px] font-bold uppercase tracking-widest mr-2">
               {activeWord.number} {activeWord.direction}
             </span>
-            <span className="text-slate-300 text-xs">{activeWord.clue}</span>
+            <span className="text-ink-2 text-xs">{activeWord.clue}</span>
           </div>
         ) : (
-          <p className="text-slate-500 text-xs text-center w-full">Tap a white cell to start</p>
+          <p className="text-muted text-xs text-center w-full">Tap a white cell to start</p>
         )}
       </div>
 
@@ -293,7 +293,7 @@ export default function CrosswordGame({ configId, onWin }: { configId: string; o
                   {state !== 'blocked' && (
                     <>
                       {num !== undefined && (
-                        <span className="absolute top-0 left-0.5 text-[6px] text-slate-400 font-bold leading-none pt-px">
+                        <span className="absolute top-0 left-0.5 text-[6px] text-muted font-bold leading-none pt-px">
                           {num}
                         </span>
                       )}
@@ -318,8 +318,8 @@ export default function CrosswordGame({ configId, onWin }: { configId: string; o
                   onClick={() => handleKey(k)}
                   className={`h-8 rounded text-xs font-bold transition-colors active:scale-95 ${
                     k === '⌫'
-                      ? 'px-3 bg-slate-700 text-slate-300 hover:bg-slate-600 border border-slate-600'
-                      : 'w-7 bg-slate-800 text-slate-200 hover:bg-amber-500/25 hover:text-amber-200 border border-slate-700'
+                      ? 'px-3 bg-line text-ink-2 hover:bg-line-2 border border-line'
+                      : 'w-7 bg-panel-2 text-ink-2 hover:bg-accent/25 hover:text-ink-2 border border-line'
                   }`}
                 >
                   {k}
@@ -333,10 +333,10 @@ export default function CrosswordGame({ configId, onWin }: { configId: string; o
       )}
 
       {/* Clue list */}
-      <div className="grid grid-cols-2 gap-2 pt-1 border-t border-white/[0.06]">
+      <div className="grid grid-cols-2 gap-2 pt-1 border-t border-line">
         {(['across', 'down'] as const).map(dir => (
           <div key={dir}>
-            <p className="text-amber-400/60 font-bold uppercase tracking-widest text-[9px] mb-1 capitalize">{dir}</p>
+            <p className="text-accent/60 font-bold uppercase tracking-widest text-[9px] mb-1 capitalize">{dir}</p>
             {config.words.filter(w => w.direction === dir).map(w => (
               <p
                 key={wKey(w)}
@@ -345,10 +345,10 @@ export default function CrosswordGame({ configId, onWin }: { configId: string; o
                   if (cells) { setActiveKey(wKey(w)); setCursorPos(0) }
                 }}
                 className={`text-[10px] leading-snug mb-0.5 cursor-pointer transition-colors ${
-                  activeKey === wKey(w) ? 'text-amber-300' : 'text-slate-500 hover:text-slate-400'
+                  activeKey === wKey(w) ? 'text-accent' : 'text-muted hover:text-muted'
                 }`}
               >
-                <span className="font-bold text-slate-400 mr-1">{w.number}.</span>
+                <span className="font-bold text-muted mr-1">{w.number}.</span>
                 {w.clue}
               </p>
             ))}

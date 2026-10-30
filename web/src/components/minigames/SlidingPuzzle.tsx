@@ -35,9 +35,9 @@ const CONFIGS: Record<PuzzleKey, PuzzleConfig> = {
     tileTextColors: {
       1: 'text-blue-200',
       2: 'text-sky-200',
-      3: 'text-slate-700',
+      3: 'text-muted/60',
       4: 'text-green-200',
-      5: 'text-amber-100',
+      5: 'text-ink-2',
       6: 'text-red-200',
       7: 'text-orange-200',
       8: 'text-stone-200',
@@ -61,8 +61,8 @@ const CONFIGS: Record<PuzzleKey, PuzzleConfig> = {
     tileTextColors: {
       1: 'text-yellow-900',
       2: 'text-yellow-100',
-      3: 'text-amber-100',
-      4: 'text-amber-100',
+      3: 'text-ink-2',
+      4: 'text-ink-2',
       5: 'text-stone-100',
       6: 'text-stone-100',
       7: 'text-stone-200',
@@ -136,28 +136,28 @@ export default function SlidingPuzzle({ configId, onWin }: SlidingPuzzleProps) {
     <div className="flex flex-col items-center gap-4">
       {/* Header */}
       <div className="text-center">
-        <p className="text-amber-400 font-bold text-sm">{config.title}</p>
-        <p className="text-slate-400 text-xs">{config.subtitle}</p>
+        <p className="text-accent font-bold text-sm">{config.title}</p>
+        <p className="text-muted text-xs">{config.subtitle}</p>
       </div>
 
       {/* Move counter */}
-      <div className="flex items-center gap-2 text-xs text-slate-400">
+      <div className="flex items-center gap-2 text-xs text-muted">
         <span>Moves:</span>
-        <span className="text-amber-300 font-bold">{moves}</span>
-        <span className="text-slate-600 mx-1">|</span>
-        <span className="text-slate-500">Tap tiles adjacent to the blank space</span>
+        <span className="text-accent font-bold">{moves}</span>
+        <span className="text-muted/80 mx-1">|</span>
+        <span className="text-muted">Tap tiles adjacent to the blank space</span>
       </div>
 
       {/* Goal reminder */}
-      <div className="flex gap-1 items-center text-xs text-slate-500">
+      <div className="flex gap-1 items-center text-xs text-muted">
         <span>Goal:</span>
         {[1,2,3,4,5,6,7,8].map(n => (
           <span key={n} className="w-5 h-5 flex items-center justify-center rounded text-[10px]
-                                   bg-slate-800 border border-slate-700 text-slate-300 font-bold">
+                                   bg-panel-2 border border-line text-ink-2 font-bold">
             {n}
           </span>
         ))}
-        <span className="w-5 h-5 rounded bg-slate-900 border border-slate-700" />
+        <span className="w-5 h-5 rounded bg-paper-2 border border-line" />
       </div>
 
       {/* Puzzle grid */}
@@ -165,7 +165,7 @@ export default function SlidingPuzzle({ configId, onWin }: SlidingPuzzleProps) {
         className={`grid grid-cols-3 gap-1.5 p-2 rounded-2xl border transition-all duration-500
           ${won
             ? 'border-emerald-500/50 bg-emerald-900/10 shadow-[0_0_20px_rgba(52,211,153,0.15)]'
-            : 'border-slate-700/60 bg-slate-900/60'
+            : 'border-line bg-paper-2'
           }`}
         style={{ width: TILE * 3 + 20, height: TILE * 3 + 20 }}>
         {board.map((tileNum, idx) => {
@@ -174,14 +174,14 @@ export default function SlidingPuzzle({ configId, onWin }: SlidingPuzzleProps) {
           const isBlank = tileNum === 0
           const isJustMoved = lastMoved === idx
           const colorFrom = config.tileColors[tileNum] ?? 'from-slate-700 to-slate-600'
-          const textColor = config.tileTextColors[tileNum] ?? 'text-slate-200'
+          const textColor = config.tileTextColors[tileNum] ?? 'text-ink-2'
 
           if (isBlank) {
             return (
               <div
                 key={`blank-${idx}`}
                 style={{ width: TILE, height: TILE }}
-                className="rounded-xl bg-slate-900/30 border border-dashed border-slate-700/40"
+                className="rounded-xl bg-paper-2 border border-dashed border-line"
               />
             )
           }
@@ -195,8 +195,8 @@ export default function SlidingPuzzle({ configId, onWin }: SlidingPuzzleProps) {
                 bg-gradient-to-br ${colorFrom} ${textColor}
                 border shadow-md
                 ${isAdjacent && !won
-                  ? 'border-amber-500/40 hover:border-amber-400/60 hover:scale-105 cursor-pointer shadow-amber-900/30'
-                  : 'border-white/10 cursor-default'
+                  ? 'border-accent/40 hover:border-accent/60 hover:scale-105 cursor-pointer shadow-amber-900/30'
+                  : 'border-line cursor-default'
                 }
                 ${isJustMoved ? 'scale-95 shadow-inner' : ''}
                 ${won ? 'border-emerald-500/30 shadow-emerald-900/20' : ''}

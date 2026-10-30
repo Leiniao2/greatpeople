@@ -1,8 +1,8 @@
 import { useLocation, useNavigate } from 'react-router-dom'
 import type { Card } from '@/types'
 
-const ACCENT = '#f59e0b'
-const GLOW = 'from-amber-950/80'
+const ACCENT = '#9b2c23'
+const GLOW = 'from-paper-2'
 
 export default function CardDetailPage() {
   const { state } = useLocation()
@@ -11,11 +11,11 @@ export default function CardDetailPage() {
 
   if (!card) {
     return (
-      <div className="min-h-screen bg-[#080812] flex items-center justify-center">
+      <div className="min-h-screen bg-paper flex items-center justify-center">
         <div className="text-center space-y-4">
-          <p className="text-slate-400">Card not found.</p>
+          <p className="text-muted">Card not found.</p>
           <button onClick={() => navigate('/collection')}
-            className="text-amber-400 text-sm hover:text-amber-300 transition-colors">
+            className="text-accent text-sm hover:text-accent transition-colors">
             ← Back to Collection
           </button>
         </div>
@@ -24,7 +24,7 @@ export default function CardDetailPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#080812] overflow-x-hidden">
+    <div className="min-h-screen bg-paper overflow-x-hidden">
 
       {/* Ambient glow */}
       <div className="pointer-events-none fixed inset-0">
@@ -41,7 +41,7 @@ export default function CardDetailPage() {
               className="w-full h-full object-cover" />
           ) : (
             <div className="w-full h-full flex items-center justify-center"
-              style={{ background: `linear-gradient(180deg, ${ACCENT}22 0%, #080812 100%)` }}>
+              style={{ background: `linear-gradient(180deg, ${ACCENT}22 0%, #f3ecdc 100%)` }}>
               <span className="text-8xl opacity-20 select-none">♟</span>
             </div>
           )}
@@ -52,18 +52,18 @@ export default function CardDetailPage() {
           {/* Back button */}
           <button onClick={() => navigate('/collection')}
             className="absolute top-4 left-4 flex items-center gap-1.5 px-3 py-1.5
-                       rounded-full text-xs font-semibold text-white/80 hover:text-white
-                       bg-black/40 hover:bg-black/60 backdrop-blur-sm transition-all">
+                       rounded-full text-xs font-semibold text-paper/90 hover:text-paper
+                       bg-ink/60 hover:bg-ink/70 backdrop-blur-sm transition-all">
             ← Collection
           </button>
 
           {/* Name overlay at bottom of image */}
           <div className="absolute bottom-0 inset-x-0 px-5 pb-5">
-            <h1 className="text-white text-2xl font-bold leading-tight drop-shadow-lg">
+            <h1 className="text-ink text-2xl font-bold leading-tight drop-shadow-lg">
               {card.figureName}
             </h1>
             {card.years && (
-              <p className="text-white/60 text-sm mt-0.5 drop-shadow">{card.years}</p>
+              <p className="text-ink/60 text-sm mt-0.5 drop-shadow">{card.years}</p>
             )}
           </div>
         </div>
@@ -109,19 +109,19 @@ export default function CardDetailPage() {
               <div key={short} className="flex flex-col items-center py-3 rounded-xl border"
                 style={{ background: `${ACCENT}08`, borderColor: `${ACCENT}25` }}>
                 <span className="font-bold text-lg" style={{ color: ACCENT }}>{val}</span>
-                <span className="text-slate-500 text-[9px] tracking-widest mt-0.5">{short}</span>
+                <span className="text-muted text-[9px] tracking-widest mt-0.5">{short}</span>
               </div>
             ))}
           </div>
 
           {/* Era / Gender / Identities / Countries */}
-          <div className="flex items-center gap-2 text-xs text-slate-500 flex-wrap">
+          <div className="flex items-center gap-2 text-xs text-muted flex-wrap">
             <span className="uppercase tracking-wider">{card.era}</span>
-            <span className="w-1 h-1 rounded-full bg-slate-700" />
+            <span className="w-1 h-1 rounded-full bg-line" />
             <span className="capitalize">{card.gender}</span>
             {card.identities?.length > 0 && (
               <>
-                <span className="w-1 h-1 rounded-full bg-slate-700" />
+                <span className="w-1 h-1 rounded-full bg-line" />
                 <span>{card.identities.join(', ')}</span>
               </>
             )}
@@ -158,7 +158,7 @@ function InfoSection({
         style={{ color: accent }}>
         {label}
       </p>
-      <p className={`text-slate-300 text-sm leading-relaxed ${italic ? 'italic text-slate-400' : ''}`}>
+      <p className={`text-ink-2 text-sm leading-relaxed ${italic ? 'italic text-muted' : ''}`}>
         {text}
       </p>
     </div>

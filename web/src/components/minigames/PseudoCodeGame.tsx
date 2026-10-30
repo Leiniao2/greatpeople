@@ -165,28 +165,28 @@ export default function PseudoCodeGame({
   }
 
   return (
-    <div className="flex flex-col h-full bg-[#0a0a18] text-white select-none">
+    <div className="flex flex-col h-full bg-panel text-ink select-none">
 
       {/* Header */}
-      <div className="px-4 py-3 border-b border-slate-800">
+      <div className="px-4 py-3 border-b border-line">
         <div className="flex items-center justify-between mb-0.5">
           <p className="text-xs text-cyan-400 font-semibold tracking-wide uppercase">{cfg.name}</p>
           <div className="flex gap-1.5">
             {cfg.challenges.map((_, i) => (
               <div key={i} className={`w-2 h-2 rounded-full transition-colors ${
                 solved[i]          ? 'bg-emerald-500' :
-                i === challengeIdx ? 'bg-cyan-500'    : 'bg-slate-700'
+                i === challengeIdx ? 'bg-cyan-500'    : 'bg-line'
               }`} />
             ))}
           </div>
         </div>
-        <h2 className="text-sm font-bold text-white">{challenge.title}</h2>
-        <p className="text-[11px] text-slate-400 mt-0.5 leading-relaxed">{challenge.description}</p>
+        <h2 className="text-sm font-bold text-ink">{challenge.title}</h2>
+        <p className="text-[11px] text-muted mt-0.5 leading-relaxed">{challenge.description}</p>
       </div>
 
       {/* Sequence area */}
-      <div className="px-4 pt-3 pb-2 border-b border-slate-800">
-        <p className="text-[10px] text-slate-600 uppercase tracking-widest mb-2">Your sequence</p>
+      <div className="px-4 pt-3 pb-2 border-b border-line">
+        <p className="text-[10px] text-muted/80 uppercase tracking-widest mb-2">Your sequence</p>
         <div className="space-y-1.5">
           {selected.map((id, i) => (
             <button
@@ -197,17 +197,17 @@ export default function PseudoCodeGame({
                   ? 'bg-red-500/15 border border-red-500/50 text-red-300'
                   : checked
                   ? 'bg-emerald-500/15 border border-emerald-500/40 text-emerald-300'
-                  : 'bg-slate-800 border border-slate-700 text-slate-200 hover:border-slate-500'
+                  : 'bg-panel-2 border border-line text-ink-2 hover:border-line-2'
               }`}
             >
-              <span className="text-slate-600 mr-2 select-none">{i + 1}.</span>
+              <span className="text-muted/80 mr-2 select-none">{i + 1}.</span>
               {lineById[id]?.text}
             </button>
           ))}
           {Array.from({ length: challenge.lines.length - selected.length }).map((_, i) => (
             <div
               key={`slot-${i}`}
-              className="px-3 py-2 rounded-lg border border-dashed border-slate-800 text-slate-700 text-xs font-mono"
+              className="px-3 py-2 rounded-lg border border-dashed border-line text-muted/60 text-xs font-mono"
             >
               <span className="mr-2">{selected.length + i + 1}.</span>
               tap a line below…
@@ -218,19 +218,19 @@ export default function PseudoCodeGame({
 
       {/* Available pool */}
       <div className="flex-1 overflow-y-auto px-4 py-3">
-        <p className="text-[10px] text-slate-600 uppercase tracking-widest mb-2">Available lines</p>
+        <p className="text-[10px] text-muted/80 uppercase tracking-widest mb-2">Available lines</p>
         <div className="space-y-1.5">
           {pool.map(line => (
             <button
               key={line.id}
               onClick={() => addLine(line.id)}
-              className="w-full text-left px-3 py-2 rounded-lg font-mono text-xs bg-slate-900 border border-slate-700 text-slate-300 hover:border-cyan-500/40 hover:bg-slate-800 active:scale-[0.98] transition-all"
+              className="w-full text-left px-3 py-2 rounded-lg font-mono text-xs bg-paper-2 border border-line text-ink-2 hover:border-cyan-500/40 hover:bg-line active:scale-[0.98] transition-all"
             >
               {line.text}
             </button>
           ))}
           {pool.length === 0 && !allPlaced && (
-            <p className="text-slate-700 text-xs text-center py-2">All lines placed.</p>
+            <p className="text-muted/60 text-xs text-center py-2">All lines placed.</p>
           )}
         </div>
       </div>
@@ -248,7 +248,7 @@ export default function PseudoCodeGame({
       <div className="px-4 pb-5 pt-1 flex gap-3">
         <button
           onClick={reset}
-          className="py-3 px-5 rounded-xl border border-slate-700 text-slate-400 text-sm font-medium hover:border-slate-600 active:scale-95 transition-all"
+          className="py-3 px-5 rounded-xl border border-line text-muted text-sm font-medium hover:border-line-2 active:scale-95 transition-all"
         >
           Reset
         </button>
@@ -258,7 +258,7 @@ export default function PseudoCodeGame({
           className={`flex-1 py-3 rounded-xl font-bold text-sm transition-all active:scale-95 ${
             allPlaced && flash !== 'correct'
               ? 'bg-cyan-600 text-white hover:bg-cyan-500'
-              : 'bg-slate-800 text-slate-600 cursor-not-allowed'
+              : 'bg-panel-2 text-muted/80 cursor-not-allowed'
           }`}
         >
           {flash === 'correct' ? 'Correct!' : 'Check Order'}

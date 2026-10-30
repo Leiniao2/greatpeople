@@ -22,7 +22,7 @@ const CONFIGS: Record<string, ChemistryConfig> = {
       { symbol: '茶', name: 'Tea Leaves', color: 'bg-emerald-700', max: 5 },
       { symbol: '水', name: 'Spring Water', color: 'bg-blue-600', max: 6 },
       { symbol: '塩', name: 'Salt',        color: 'bg-slate-300', max: 4 },
-      { symbol: '炭', name: 'Bamboo Charcoal', color: 'bg-slate-700', max: 3 },
+      { symbol: '炭', name: 'Bamboo Charcoal', color: 'bg-line', max: 3 },
     ],
     solution: { '茶': 2, '水': 3, '塩': 1 },
     hint: 'Bamboo charcoal is used to heat the water — it is not added to the cup.',
@@ -35,8 +35,8 @@ const CONFIGS: Record<string, ChemistryConfig> = {
     targetName: "Spice Manifest (1521)",
     ingredients: [
       { symbol: '⚘', name: 'Cloves',    color: 'bg-rose-800',  max: 6 },
-      { symbol: '🌿', name: 'Cinnamon', color: 'bg-amber-700', max: 4 },
-      { symbol: '●',  name: 'Pepper',   color: 'bg-slate-600', max: 5 },
+      { symbol: '🌿', name: 'Cinnamon', color: 'bg-accent', max: 4 },
+      { symbol: '●',  name: 'Pepper',   color: 'bg-line-2', max: 5 },
       { symbol: '✦',  name: 'Nutmeg',   color: 'bg-orange-700',max: 3 },
     ],
     solution: { '⚘': 3, '🌿': 1, '●': 2 },
@@ -104,44 +104,44 @@ export default function ChemistryGame({ configId, onWin }: { configId: string; o
   const anyAdded = Object.values(counts).some(v => v > 0)
 
   return (
-    <div className="flex flex-col gap-4 bg-slate-950 rounded-xl p-4">
-      <p className="text-amber-400/80 text-[10px] font-bold uppercase tracking-widest">{config.title}</p>
-      <p className="text-white text-sm font-medium leading-snug">{config.question}</p>
+    <div className="flex flex-col gap-4 bg-paper-2 rounded-xl p-4">
+      <p className="text-accent/80 text-[10px] font-bold uppercase tracking-widest">{config.title}</p>
+      <p className="text-ink text-sm font-medium leading-snug">{config.question}</p>
 
       {/* Target */}
-      <div className="flex flex-col gap-1 bg-white/[0.03] border border-amber-500/20 rounded-xl p-3">
-        <p className="text-[10px] text-amber-400/60 uppercase tracking-wider font-semibold">Target</p>
-        <p className="text-amber-300 font-mono text-sm font-bold">{config.targetFormula}</p>
-        <p className="text-slate-500 text-[10px]">{config.targetName}</p>
+      <div className="flex flex-col gap-1 bg-panel border border-accent/20 rounded-xl p-3">
+        <p className="text-[10px] text-accent/60 uppercase tracking-wider font-semibold">Target</p>
+        <p className="text-accent font-mono text-sm font-bold">{config.targetFormula}</p>
+        <p className="text-muted text-[10px]">{config.targetName}</p>
       </div>
 
       {/* Flask / current mix */}
-      <div className="flex flex-col gap-1 bg-white/[0.03] border border-white/10 rounded-xl p-3">
-        <p className="text-[10px] text-slate-500 uppercase tracking-wider font-semibold">Your Mix</p>
+      <div className="flex flex-col gap-1 bg-panel border border-line rounded-xl p-3">
+        <p className="text-[10px] text-muted uppercase tracking-wider font-semibold">Your Mix</p>
         <div className="flex flex-wrap gap-2 min-h-[28px]">
           {config.ingredients.filter(i => counts[i.symbol] > 0).map(i => (
-            <span key={i.symbol} className={`${i.color} text-white text-xs font-bold px-2 py-1 rounded-lg`}>
+            <span key={i.symbol} className={`${i.color} text-ink text-xs font-bold px-2 py-1 rounded-lg`}>
               {counts[i.symbol]}× {i.name}
             </span>
           ))}
-          {!anyAdded && <span className="text-slate-600 text-xs italic">Nothing added yet</span>}
+          {!anyAdded && <span className="text-muted/80 text-xs italic">Nothing added yet</span>}
         </div>
       </div>
 
       {/* Ingredient controls */}
       <div className="grid grid-cols-2 gap-2">
         {config.ingredients.map(ing => (
-          <div key={ing.symbol} className="flex items-center gap-2 bg-white/[0.04] border border-white/10 rounded-xl px-3 py-2">
-            <div className={`${ing.color} w-8 h-8 rounded-lg flex items-center justify-center text-white font-bold text-sm flex-shrink-0`}>
+          <div key={ing.symbol} className="flex items-center gap-2 bg-panel border border-line rounded-xl px-3 py-2">
+            <div className={`${ing.color} w-8 h-8 rounded-lg flex items-center justify-center text-ink font-bold text-sm flex-shrink-0`}>
               {ing.symbol}
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-white text-xs font-medium truncate">{ing.name}</p>
+              <p className="text-ink text-xs font-medium truncate">{ing.name}</p>
             </div>
             <div className="flex items-center gap-1">
-              <button onClick={() => adjust(ing.symbol, -1)} className="w-6 h-6 rounded bg-white/10 text-slate-300 text-sm hover:bg-white/20 transition-colors">−</button>
-              <span className="text-white font-bold text-sm w-5 text-center">{counts[ing.symbol]}</span>
-              <button onClick={() => adjust(ing.symbol, +1)} className="w-6 h-6 rounded bg-white/10 text-slate-300 text-sm hover:bg-white/20 transition-colors">+</button>
+              <button onClick={() => adjust(ing.symbol, -1)} className="w-6 h-6 rounded bg-panel text-ink-2 text-sm hover:bg-panel-2 transition-colors">−</button>
+              <span className="text-ink font-bold text-sm w-5 text-center">{counts[ing.symbol]}</span>
+              <button onClick={() => adjust(ing.symbol, +1)} className="w-6 h-6 rounded bg-panel text-ink-2 text-sm hover:bg-panel-2 transition-colors">+</button>
             </div>
           </div>
         ))}
@@ -154,10 +154,10 @@ export default function ChemistryGame({ configId, onWin }: { configId: string; o
       {/* Action buttons */}
       {!reacted && (
         <div className="flex gap-2">
-          <button onClick={reset} className="flex-1 py-2.5 rounded-xl border border-white/10 text-slate-400 text-sm hover:border-white/20 transition-all">
+          <button onClick={reset} className="flex-1 py-2.5 rounded-xl border border-line text-muted text-sm hover:border-line-2 transition-all">
             Reset
           </button>
-          <button onClick={react} className="flex-1 py-2.5 rounded-xl bg-amber-500 text-slate-950 font-bold text-sm hover:bg-amber-400 transition-all">
+          <button onClick={react} className="flex-1 py-2.5 rounded-xl bg-accent text-accent-fg font-bold text-sm hover:bg-accent-hover transition-all">
             Combine ⚗
           </button>
         </div>
@@ -166,7 +166,7 @@ export default function ChemistryGame({ configId, onWin }: { configId: string; o
       {reacted && (
         <div className="p-3 rounded-xl border bg-emerald-500/10 border-emerald-500/30 text-xs leading-relaxed">
           <span className="font-bold text-emerald-300">✓ Perfect blend! </span>
-          <span className="text-slate-400">{config.fact}</span>
+          <span className="text-muted">{config.fact}</span>
         </div>
       )}
     </div>

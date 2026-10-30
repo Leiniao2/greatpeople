@@ -29,8 +29,8 @@ interface ThemeDef {
 const THEME: Record<Theme, ThemeDef> = {
   dungeon: {
     bg: '#0a0a14',
-    wallCls: 'bg-slate-800', wallExtra: 'border border-slate-700/30', floorCls: 'bg-slate-900/40',
-    playerCls: 'bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.6)]',
+    wallCls: 'bg-panel-2', wallExtra: 'border border-line', floorCls: 'bg-paper-2',
+    playerCls: 'bg-accent shadow-[0_0_8px_rgba(251,191,36,0.6)]',
     exitCls: 'bg-emerald-900/20', exitFlash: 'bg-emerald-400/30', nextCls: 'bg-blue-900/20',
     monsters: ['💀', '🦇', '🐍'], wallContent: null,
   },
@@ -43,7 +43,7 @@ const THEME: Record<Theme, ThemeDef> = {
   },
   sky: {
     bg: '#87ceeb',
-    wallCls: 'bg-white/90', wallExtra: 'rounded-xl', floorCls: 'bg-sky-300/20',
+    wallCls: 'bg-panel', wallExtra: 'rounded-xl', floorCls: 'bg-sky-300/20',
     playerCls: 'bg-blue-600 shadow-[0_0_8px_rgba(37,99,235,0.7)]',
     exitCls: 'bg-yellow-300/50', exitFlash: 'bg-yellow-300/80', nextCls: 'bg-cyan-200/40',
     monsters: ['🦅', '⚡', '🦆'], wallContent: null,
@@ -541,12 +541,12 @@ export default function MazeGame({ configId, onWin }: MazeGameProps) {
   const isSky = config.theme === 'sky'
 
   return (
-    <div className={`flex flex-col items-center gap-3 ${isSky ? 'text-slate-800' : 'text-white'}`}>
+    <div className={`flex flex-col items-center gap-3 ${isSky ? 'text-ink' : 'text-ink'}`}>
 
       {/* Header */}
       <div className="text-center">
-        <p className={`font-bold text-sm tracking-wide ${isSky ? 'text-blue-800' : 'text-amber-400'}`}>{levelTitle}</p>
-        <p className={`text-xs ${isSky ? 'text-blue-700/70' : 'text-slate-400'}`}>{config.subtitle}</p>
+        <p className={`font-bold text-sm tracking-wide ${isSky ? 'text-blue-800' : 'text-accent'}`}>{levelTitle}</p>
+        <p className={`text-xs ${isSky ? 'text-blue-700/70' : 'text-muted'}`}>{config.subtitle}</p>
       </div>
 
       <div className="flex items-center gap-4 text-xs">
@@ -555,15 +555,15 @@ export default function MazeGame({ configId, onWin }: MazeGameProps) {
             Level {currentLevel + 1}/{totalLevels}
           </span>
         )}
-        <span className={isSky ? 'text-blue-700/60' : 'text-slate-500'}>
-          Steps: <span className={`font-bold ${isSky ? 'text-blue-900' : 'text-amber-300'}`}>{steps}</span>
+        <span className={isSky ? 'text-blue-700/60' : 'text-muted'}>
+          Steps: <span className={`font-bold ${isSky ? 'text-blue-900' : 'text-accent'}`}>{steps}</span>
         </span>
       </div>
 
       {/* Maze grid */}
       <div className="relative">
         <div
-          className="relative rounded-xl overflow-hidden border border-slate-500/30"
+          className="relative rounded-xl overflow-hidden border border-line-2"
           style={{
             display: 'grid',
             gridTemplateColumns: `repeat(${COLS}, ${CELL}px)`,
@@ -592,7 +592,7 @@ export default function MazeGame({ configId, onWin }: MazeGameProps) {
                 >
                   {/* Dungeon wall texture */}
                   {isWall && isDungeon && (
-                    <div className="absolute inset-0 bg-slate-700/10 border border-slate-700/20 rounded-sm" />
+                    <div className="absolute inset-0 bg-line border border-line rounded-sm" />
                   )}
 
                   {/* Forest wall — tree icon */}
@@ -648,9 +648,9 @@ export default function MazeGame({ configId, onWin }: MazeGameProps) {
         {/* Level transition overlay */}
         {levelFlash && (
           <div className="absolute inset-0 rounded-xl bg-blue-500/10 border border-blue-400/30 flex items-center justify-center pointer-events-none z-10">
-            <div className="bg-slate-950/90 border border-blue-400/40 rounded-xl px-4 py-2 text-center">
+            <div className="bg-paper-2 border border-blue-400/40 rounded-xl px-4 py-2 text-center">
               <p className="text-blue-300 font-bold text-sm">Level {currentLevel + 1}/{totalLevels}</p>
-              <p className="text-slate-400 text-[10px]">{config.levels?.[currentLevel].title}</p>
+              <p className="text-muted text-[10px]">{config.levels?.[currentLevel].title}</p>
             </div>
           </div>
         )}
@@ -658,7 +658,7 @@ export default function MazeGame({ configId, onWin }: MazeGameProps) {
 
       {/* Legend */}
       {isMultiLevel && (
-        <div className="flex items-center gap-3 text-[10px] text-slate-500">
+        <div className="flex items-center gap-3 text-[10px] text-muted">
           <span className="flex items-center gap-1">
             <span className="w-3 h-3 rounded-full border border-blue-400 bg-blue-900/40 inline-flex items-center justify-center text-[7px] text-blue-300">▲</span>
             Next level
@@ -671,7 +671,7 @@ export default function MazeGame({ configId, onWin }: MazeGameProps) {
       )}
 
       {/* Monster legend */}
-      <div className={`flex items-center gap-1 text-[10px] ${isSky ? 'text-blue-800/60' : 'text-slate-500'}`}>
+      <div className={`flex items-center gap-1 text-[10px] ${isSky ? 'text-blue-800/60' : 'text-muted'}`}>
         <span>Watch out for</span>
         {th.monsters.map((m, i) => <span key={i} className="text-xs">{m}</span>)}
         <span>roaming the wilderness</span>
@@ -685,8 +685,8 @@ export default function MazeGame({ configId, onWin }: MazeGameProps) {
               <>
                 <DPadBtn label="←" onClick={() => move(0, -1)} sky={isSky} />
                 <div className={`w-10 h-10 rounded-lg border flex items-center justify-center
-                  ${isSky ? 'bg-blue-100/40 border-blue-300/30' : 'bg-slate-800/40 border-slate-700/30'}`}>
-                  <div className={`w-2 h-2 rounded-full ${isSky ? 'bg-blue-600/50' : 'bg-amber-400/50'}`} />
+                  ${isSky ? 'bg-blue-100/40 border-blue-300/30' : 'bg-panel-2 border-line'}`}>
+                  <div className={`w-2 h-2 rounded-full ${isSky ? 'bg-blue-600/50' : 'bg-accent/50'}`} />
                 </div>
                 <DPadBtn label="→" onClick={() => move(0, 1)} sky={isSky} />
               </>
@@ -716,7 +716,7 @@ function DPadBtn({ label, onClick, sky }: { label: string; onClick: () => void; 
         transition-all duration-100 select-none touch-none
         ${sky
           ? 'bg-blue-100/60 border-blue-300/50 text-blue-900 hover:bg-blue-200/60 active:bg-blue-400/30'
-          : 'bg-slate-700/60 border-slate-600/50 text-slate-300 hover:bg-slate-600/60 active:bg-amber-500/30 active:border-amber-500/50'
+          : 'bg-line border-line text-ink-2 hover:bg-line-2 active:bg-accent/30 active:border-accent/50'
         }`}
     >
       {label}

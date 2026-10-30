@@ -55,20 +55,20 @@ function AboutSheet({ onClose }: { onClose: () => void }) {
   return (
     <div className="fixed inset-0 z-50 flex flex-col justify-end" onClick={onClose}>
       <div
-        className="relative bg-[#0d0d1a] border-t border-white/[0.08] rounded-t-3xl px-6 pt-5 pb-safe pb-8 max-h-[70vh] overflow-y-auto"
+        className="relative bg-panel border-t border-line rounded-t-3xl px-6 pt-5 pb-safe pb-8 max-h-[70vh] overflow-y-auto"
         onClick={e => e.stopPropagation()}
       >
         {/* Handle */}
-        <div className="w-10 h-1 bg-white/20 rounded-full mx-auto mb-5" />
+        <div className="w-10 h-1 bg-panel rounded-full mx-auto mb-5" />
 
         {/* Header */}
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h2 className="text-white font-bold text-base tracking-wider">GREAT PEOPLE</h2>
-            <p className="text-amber-400/70 text-[10px] uppercase tracking-widest mt-0.5">v{APP_VERSION}</p>
+            <h2 className="text-ink font-bold text-base tracking-wider">GREAT PEOPLE</h2>
+            <p className="text-accent/70 text-[10px] uppercase tracking-widest mt-0.5">v{APP_VERSION}</p>
           </div>
           <button onClick={onClose}
-            className="w-8 h-8 flex items-center justify-center rounded-xl bg-white/[0.05] text-slate-400 hover:text-white transition-all text-lg">
+            className="w-8 h-8 flex items-center justify-center rounded-xl bg-panel text-muted hover:text-ink transition-all text-lg">
             ✕
           </button>
         </div>
@@ -80,26 +80,26 @@ function AboutSheet({ onClose }: { onClose: () => void }) {
             { value: '76', label: 'Stories' },
             { value: String(CHALLENGE_COUNT), label: 'Challenges' },
           ].map(s => (
-            <div key={s.label} className="flex flex-col items-center py-3 rounded-xl bg-white/[0.04] border border-white/[0.07]">
-              <span className="text-amber-400 font-bold text-lg leading-none">{s.value}</span>
-              <span className="text-slate-500 text-[10px] mt-1">{s.label}</span>
+            <div key={s.label} className="flex flex-col items-center py-3 rounded-xl bg-panel border border-line">
+              <span className="text-accent font-bold text-lg leading-none">{s.value}</span>
+              <span className="text-muted text-[10px] mt-1">{s.label}</span>
             </div>
           ))}
         </div>
 
         {/* Changelog */}
-        <p className="text-slate-500 text-[10px] uppercase tracking-widest font-semibold mb-2">Recent Updates</p>
+        <p className="text-muted text-[10px] uppercase tracking-widest font-semibold mb-2">Recent Updates</p>
         <div className="flex flex-col gap-2">
           {CHANGELOG.map((entry, i) => (
             <div key={i} className="flex gap-3 items-start">
-              <span className="text-slate-600 text-[10px] shrink-0 pt-0.5 w-14">{entry.date}</span>
-              <p className="text-slate-300 text-xs leading-snug">{entry.note}</p>
+              <span className="text-muted/80 text-[10px] shrink-0 pt-0.5 w-14">{entry.date}</span>
+              <p className="text-ink-2 text-xs leading-snug">{entry.note}</p>
             </div>
           ))}
         </div>
 
         {/* Footer */}
-        <p className="text-slate-700 text-[10px] text-center mt-5">
+        <p className="text-muted/60 text-[10px] text-center mt-5">
           Collectible Card Game · All eras, all greatness
         </p>
       </div>
@@ -113,24 +113,24 @@ export default function HomePage() {
   const [showAbout, setShowAbout] = useState(false)
 
   return (
-    <div className="relative min-h-screen bg-[#080812] flex flex-col overflow-hidden">
+    <div className="relative min-h-screen bg-paper flex flex-col overflow-hidden">
 
       {/* Ambient glow */}
       <div className="pointer-events-none fixed inset-0">
-        <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] rounded-full bg-amber-600/8 blur-[160px]" />
-        <div className="absolute bottom-1/3 right-1/4 w-[500px] h-[500px] rounded-full bg-indigo-700/6 blur-[140px]" />
+        <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] rounded-full bg-accent/8 blur-[160px]" />
+        <div className="absolute bottom-1/3 right-1/4 w-[500px] h-[500px] rounded-full bg-line/40 blur-[140px]" />
       </div>
 
       {/* Guest banner */}
       {isGuest && (
         <div className="relative z-20 flex items-center justify-between px-6 py-2.5
-                        bg-amber-500/10 border-b border-amber-500/20">
-          <p className="text-amber-400/80 text-xs">
+                        bg-accent/10 border-b border-accent/20">
+          <p className="text-accent/80 text-xs">
             Exploring as guest — sign in to save progress
           </p>
           <button
             onClick={() => { exitGuestMode(); navigate('/login') }}
-            className="text-amber-400 text-xs font-semibold hover:text-amber-300 transition-colors ml-4 shrink-0">
+            className="text-accent text-xs font-semibold hover:text-accent transition-colors ml-4 shrink-0">
             Sign In →
           </button>
         </div>
@@ -143,13 +143,13 @@ export default function HomePage() {
         <div className="flex flex-col items-center mb-12">
           <div
             className="inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-5"
-            style={{ background: 'rgba(245,158,11,0.12)', border: '1px solid rgba(245,158,11,0.25)' }}>
+            style={{ background: 'rgba(155,44,35,0.12)', border: '1px solid rgba(155,44,35,0.25)' }}>
             <span className="text-3xl select-none">⚡</span>
           </div>
-          <h1 className="font-serif text-3xl font-bold tracking-[0.15em] text-white uppercase mb-1">
+          <h1 className="font-display text-3xl font-bold tracking-[0.15em] text-ink uppercase mb-1">
             GREAT PEOPLE
           </h1>
-          <p className="text-slate-400 text-xs tracking-[0.2em] uppercase">
+          <p className="text-muted text-xs tracking-[0.2em] uppercase">
             Collectible Card Game
           </p>
         </div>
@@ -161,31 +161,31 @@ export default function HomePage() {
               key={mode.name}
               onClick={() => navigate(mode.path)}
               className="group relative w-full flex items-center gap-4 px-4 py-4 rounded-2xl
-                         bg-white/[0.03] backdrop-blur-sm
-                         border border-amber-500/25
-                         hover:bg-amber-500/10 hover:border-amber-500/50
-                         active:bg-amber-500/15
+                         bg-panel backdrop-blur-sm
+                         border border-accent/25
+                         hover:bg-accent/10 hover:border-accent/50
+                         active:bg-accent/15
                          transition-all duration-200 text-left">
 
               {/* Icon box */}
               <div
                 className="flex-shrink-0 flex items-center justify-center w-11 h-11 rounded-xl text-xl"
-                style={{ background: 'rgba(245,158,11,0.12)', border: '1px solid rgba(245,158,11,0.2)' }}>
+                style={{ background: 'rgba(155,44,35,0.12)', border: '1px solid rgba(155,44,35,0.2)' }}>
                 {mode.icon}
               </div>
 
               {/* Text */}
               <div className="flex-1 min-w-0">
-                <p className="text-white font-bold text-sm tracking-wider">
+                <p className="text-ink font-bold text-sm tracking-wider">
                   {mode.name}
                 </p>
-                <p className="text-slate-400 text-xs mt-0.5">
+                <p className="text-muted text-xs mt-0.5">
                   {mode.subtitle}
                 </p>
               </div>
 
               {/* Arrow */}
-              <span className="text-amber-500/60 group-hover:text-amber-400 transition-colors text-lg font-light">
+              <span className="text-accent/60 group-hover:text-accent transition-colors text-lg font-light">
                 →
               </span>
             </button>
@@ -195,7 +195,7 @@ export default function HomePage() {
         {/* About button */}
         <button
           onClick={() => setShowAbout(true)}
-          className="mt-8 text-slate-600 text-[11px] hover:text-slate-400 transition-colors tracking-wider">
+          className="mt-8 text-muted/80 text-[11px] hover:text-muted transition-colors tracking-wider">
           ⓘ about · v{APP_VERSION}
         </button>
       </div>

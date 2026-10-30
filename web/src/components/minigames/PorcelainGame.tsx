@@ -164,14 +164,14 @@ export default function PorcelainGame({ configId, onWin }: { configId: string; o
   const allPainted = cfg.sections.every(s => painted[s.id])
 
   return (
-    <div className="flex flex-col gap-4 p-4 bg-slate-950 rounded-xl select-none">
+    <div className="flex flex-col gap-4 p-4 bg-paper-2 rounded-xl select-none">
       <div className="flex items-center justify-between">
-        <span className="text-amber-400 font-bold text-sm tracking-wide">{cfg.title}</span>
+        <span className="text-accent font-bold text-sm tracking-wide">{cfg.title}</span>
         {won && <span className="text-emerald-400 text-xs font-bold">Perfect firing!</span>}
       </div>
 
-      <p className="text-slate-400 text-xs leading-relaxed">
-        Select an element, then tap vessel sections to apply the glaze. <span className="text-amber-400/80">Hint: each section expects a specific metal oxide.</span>
+      <p className="text-muted text-xs leading-relaxed">
+        Select an element, then tap vessel sections to apply the glaze. <span className="text-accent/80">Hint: each section expects a specific metal oxide.</span>
       </p>
 
       {/* Element palette */}
@@ -240,7 +240,7 @@ export default function PorcelainGame({ configId, onWin }: { configId: string; o
                 {/* Color dot */}
                 <div className="w-3 h-3 rounded-full shrink-0"
                   style={{ background: info ? (fired ? info.fired : '#8b8b6b') : 'rgba(255,255,255,0.15)' }} />
-                <span className="text-slate-300 flex-1">{section.label}</span>
+                <span className="text-ink-2 flex-1">{section.label}</span>
                 {elem && (
                   <span className="font-bold" style={{ color: fired ? (info?.fired ?? '#fff') : '#94a3b8' }}>
                     {elem}
@@ -250,7 +250,7 @@ export default function PorcelainGame({ configId, onWin }: { configId: string; o
                   </span>
                 )}
                 {!elem && activeElem && (
-                  <span className="text-slate-600">tap to paint</span>
+                  <span className="text-muted/80">tap to paint</span>
                 )}
               </button>
             )
@@ -265,7 +265,7 @@ export default function PorcelainGame({ configId, onWin }: { configId: string; o
           disabled={!allPainted}
           className="w-full py-3 rounded-xl font-bold text-sm tracking-wide transition-all"
           style={{
-            background: allPainted ? 'rgba(245,158,11,0.9)' : 'rgba(255,255,255,0.05)',
+            background: allPainted ? 'rgba(155,44,35,0.9)' : 'rgba(255,255,255,0.05)',
             color: allPainted ? '#0f172a' : '#475569',
             cursor: allPainted ? 'pointer' : 'not-allowed',
           }}
@@ -289,12 +289,12 @@ export default function PorcelainGame({ configId, onWin }: { configId: string; o
       )}
 
       {won && (
-        <p className="text-slate-500 text-xs text-center leading-relaxed">{cfg.fact}</p>
+        <p className="text-muted text-xs text-center leading-relaxed">{cfg.fact}</p>
       )}
 
       {!fired && (
         <button onClick={reset}
-          className="text-slate-600 text-xs hover:text-slate-400 transition-all underline underline-offset-2 self-center">
+          className="text-muted/80 text-xs hover:text-muted transition-all underline underline-offset-2 self-center">
           Reset
         </button>
       )}

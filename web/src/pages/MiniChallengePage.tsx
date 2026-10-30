@@ -67,8 +67,8 @@ interface FlatChallenge {
 // ── Category config ───────────────────────────────────────────────────────────
 
 const CATEGORIES = [
-  { key: 'All',      label: 'All',      icon: '◈', color: 'text-slate-300',   border: 'border-slate-500',   bg: 'bg-slate-500/20'   },
-  { key: 'Trivia',   label: 'Trivia',   icon: '?', color: 'text-amber-400',   border: 'border-amber-500',   bg: 'bg-amber-500/20'   },
+  { key: 'All',      label: 'All',      icon: '◈', color: 'text-ink-2',   border: 'border-line-2',   bg: 'bg-line-2'   },
+  { key: 'Trivia',   label: 'Trivia',   icon: '?', color: 'text-accent',   border: 'border-accent',   bg: 'bg-accent/20'   },
   { key: 'Puzzle',   label: 'Puzzle',   icon: '◻', color: 'text-cyan-400',    border: 'border-cyan-500',    bg: 'bg-cyan-500/20'    },
   { key: 'Creative', label: 'Creative', icon: '✿', color: 'text-emerald-400', border: 'border-emerald-500', bg: 'bg-emerald-500/20' },
   { key: 'Story',    label: 'Story',    icon: '✦', color: 'text-violet-400',  border: 'border-violet-500',  bg: 'bg-violet-500/20'  },
@@ -157,16 +157,16 @@ function ChallengeOverlay({ ch, onClose }: { ch: FlatChallenge; onClose: () => v
     const r = ch.raw
     return (
       <OverlayShell ch={ch} won={won} onClose={onClose}>
-        <div className="flex flex-col gap-4 bg-slate-950 rounded-xl p-4">
-          <p className="text-white text-sm font-medium leading-snug">{r.question}</p>
+        <div className="flex flex-col gap-4 bg-paper-2 rounded-xl p-4">
+          <p className="text-ink text-sm font-medium leading-snug">{r.question}</p>
           <div className="flex flex-col gap-2">
             {r.options.map((opt: string, i: number) => {
               const picked = answered !== null
               const correct = i === r.answer
               let cls = 'w-full text-left px-4 py-3 rounded-xl text-sm border transition-all '
-              if (!picked) cls += 'bg-white/[0.04] border-white/10 text-slate-200 hover:border-amber-500/40'
+              if (!picked) cls += 'bg-panel border-line text-ink-2 hover:border-accent/40'
               else if (correct) cls += 'bg-emerald-500/10 border-emerald-500/40 text-emerald-200'
-              else cls += 'bg-white/[0.02] border-white/[0.05] text-slate-500'
+              else cls += 'bg-panel border-line text-muted'
               return (
                 <button key={i} className={cls} disabled={picked}
                   onClick={() => {
@@ -194,14 +194,14 @@ function ChallengeOverlay({ ch, onClose }: { ch: FlatChallenge; onClose: () => v
     const r = ch.raw
     return (
       <OverlayShell ch={ch} won={won} onClose={onClose}>
-        <div className="flex flex-col gap-4 bg-slate-950 rounded-xl p-4">
-          <p className="text-white text-sm font-medium leading-snug italic">"{r.statement}"</p>
+        <div className="flex flex-col gap-4 bg-paper-2 rounded-xl p-4">
+          <p className="text-ink text-sm font-medium leading-snug italic">"{r.statement}"</p>
           <div className="flex gap-3">
             {[true, false].map(val => {
               const picked = answered !== null
               const correct = val === r.correct
               let cls = 'flex-1 py-3 rounded-xl font-bold text-sm border transition-all '
-              if (!picked) cls += 'bg-white/[0.04] border-white/10 text-slate-200 hover:border-amber-500/40'
+              if (!picked) cls += 'bg-panel border-line text-ink-2 hover:border-accent/40'
               else if (correct) cls += 'bg-emerald-500/10 border-emerald-500/40 text-emerald-300'
               else cls += 'bg-red-500/10 border-red-500/20 text-red-400'
               return (
@@ -241,7 +241,7 @@ function ChallengeOverlay({ ch, onClose }: { ch: FlatChallenge; onClose: () => v
   return (
     <OverlayShell ch={ch} won={won} onClose={onClose}>
       {ch.instruction && (
-        <p className="text-slate-300 text-xs leading-relaxed italic border-l-2 border-amber-500/40 pl-3 mb-3">
+        <p className="text-ink-2 text-xs leading-relaxed italic border-l-2 border-accent/40 pl-3 mb-3">
           {ch.instruction}
         </p>
       )}
@@ -283,7 +283,7 @@ function ChallengeOverlay({ ch, onClose }: { ch: FlatChallenge; onClose: () => v
       {g === 'chimpmath'    && <ChimpMathGame configId={cId} onWin={handleWin} />}
       {g === 'worldclock'   && <WorldClockGame configId={cId} onWin={handleWin} />}
       {ch.raw.fact && won === false && (
-        <p className="text-slate-600 text-[10px] leading-relaxed mt-1 px-1">{ch.raw.fact}</p>
+        <p className="text-muted/80 text-[10px] leading-relaxed mt-1 px-1">{ch.raw.fact}</p>
       )}
     </OverlayShell>
   )
@@ -297,17 +297,17 @@ function OverlayShell({
 }) {
   const cat = catFor(ch.game)
   return (
-    <div className="fixed inset-0 z-50 flex flex-col bg-[#080812]">
+    <div className="fixed inset-0 z-50 flex flex-col bg-paper">
       {/* Header */}
-      <div className="flex items-center gap-3 px-4 pt-safe pb-3 pt-4 border-b border-white/[0.06] shrink-0">
+      <div className="flex items-center gap-3 px-4 pt-safe pb-3 pt-4 border-b border-line shrink-0">
         <div className={`text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full ${cat.bg} ${cat.color} border ${cat.border}`}>
           {GAME_LABEL[ch.game] ?? ch.game}
         </div>
         <div className="flex-1 min-w-0">
-          <p className="text-slate-400 text-[10px] truncate">{ch.storyName}</p>
+          <p className="text-muted text-[10px] truncate">{ch.storyName}</p>
         </div>
         <button onClick={onClose}
-          className="w-8 h-8 flex items-center justify-center rounded-xl bg-white/[0.05] text-slate-400 hover:text-white hover:bg-white/10 transition-all text-lg">
+          className="w-8 h-8 flex items-center justify-center rounded-xl bg-panel text-muted hover:text-ink hover:bg-panel-2 transition-all text-lg">
           ✕
         </button>
       </div>
@@ -325,7 +325,7 @@ function OverlayShell({
             <div className="flex-1">
               <p className="text-emerald-300 font-bold text-sm">Challenge Complete!</p>
               {ch.raw.fact && (
-                <p className="text-slate-400 text-[11px] leading-relaxed mt-0.5 line-clamp-3">{ch.raw.fact}</p>
+                <p className="text-muted text-[11px] leading-relaxed mt-0.5 line-clamp-3">{ch.raw.fact}</p>
               )}
             </div>
           </div>
@@ -364,8 +364,8 @@ function SortPlayer({ raw, onWin }: { raw: any; onWin: () => void }) {
   }
 
   return (
-    <div className="flex flex-col gap-4 bg-slate-950 rounded-xl p-4">
-      <p className="text-white text-sm font-medium leading-snug">{raw.question}</p>
+    <div className="flex flex-col gap-4 bg-paper-2 rounded-xl p-4">
+      <p className="text-ink text-sm font-medium leading-snug">{raw.question}</p>
       <div className="flex flex-col gap-2">
         {order.map((item, i) => {
           const isCorrect = submitted && item === original[i]
@@ -375,7 +375,7 @@ function SortPlayer({ raw, onWin }: { raw: any; onWin: () => void }) {
               className={`flex items-center gap-2 p-3 rounded-xl border text-sm transition-all
                 ${isCorrect ? 'bg-emerald-500/10 border-emerald-500/40 text-emerald-200'
                 : isWrong   ? 'bg-red-500/10 border-red-500/30 text-red-300'
-                            : 'bg-white/[0.04] border-white/10 text-slate-200'}`}
+                            : 'bg-panel border-line text-ink-2'}`}
               draggable={!submitted}
               onDragStart={() => setDragging(i)}
               onDragOver={e => e.preventDefault()}
@@ -387,14 +387,14 @@ function SortPlayer({ raw, onWin }: { raw: any; onWin: () => void }) {
                 setOrder(next)
                 setDragging(null)
               }}>
-              <span className="text-slate-600 text-xs font-bold w-4 shrink-0">{i + 1}</span>
+              <span className="text-muted/80 text-xs font-bold w-4 shrink-0">{i + 1}</span>
               <span className="flex-1 leading-snug">{item}</span>
               {!submitted && (
                 <div className="flex flex-col gap-0.5 shrink-0">
                   <button onClick={() => move(i, -1)} disabled={i === 0}
-                    className="text-slate-600 hover:text-slate-300 disabled:opacity-20 text-xs leading-none px-1">▲</button>
+                    className="text-muted/80 hover:text-ink-2 disabled:opacity-20 text-xs leading-none px-1">▲</button>
                   <button onClick={() => move(i, 1)} disabled={i === order.length - 1}
-                    className="text-slate-600 hover:text-slate-300 disabled:opacity-20 text-xs leading-none px-1">▼</button>
+                    className="text-muted/80 hover:text-ink-2 disabled:opacity-20 text-xs leading-none px-1">▼</button>
                 </div>
               )}
             </div>
@@ -403,13 +403,13 @@ function SortPlayer({ raw, onWin }: { raw: any; onWin: () => void }) {
       </div>
       {!submitted && (
         <button onClick={handleSubmit}
-          className="py-2.5 rounded-xl bg-amber-500 text-slate-950 font-bold text-sm hover:bg-amber-400 transition-all">
+          className="py-2.5 rounded-xl bg-accent text-accent-fg font-bold text-sm hover:bg-accent-hover transition-all">
           Check Order →
         </button>
       )}
       {submitted && !correct && (
         <button onClick={() => { setSubmitted(false); setOrder([...original].sort(() => Math.random() - 0.5)) }}
-          className="py-2 rounded-xl border border-slate-700 text-slate-400 text-xs hover:border-slate-600 transition-all">
+          className="py-2 rounded-xl border border-line text-muted text-xs hover:border-line-2 transition-all">
           Try again
         </button>
       )}
@@ -424,25 +424,25 @@ function ChallengeCard({ ch, onClick }: { ch: FlatChallenge; onClick: () => void
   return (
     <button onClick={onClick}
       className="group w-full text-left flex flex-col gap-2.5 p-3.5 rounded-2xl
-                 bg-white/[0.03] border border-white/[0.07]
-                 hover:bg-white/[0.06] hover:border-white/[0.14]
+                 bg-panel border border-line
+                 hover:bg-panel-2 hover:border-line-2
                  active:scale-[0.98] transition-all duration-150">
       {/* Top row: type badge + era */}
       <div className="flex items-center justify-between gap-2">
         <span className={`text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full border ${cat.bg} ${cat.color} ${cat.border}`}>
           {GAME_LABEL[ch.game] ?? ch.game}
         </span>
-        <span className="text-slate-600 text-[9px] uppercase tracking-wider shrink-0">{ch.era}</span>
+        <span className="text-muted/80 text-[9px] uppercase tracking-wider shrink-0">{ch.era}</span>
       </div>
 
       {/* Instruction */}
-      <p className="text-white/85 text-xs leading-snug line-clamp-2 font-medium">
+      <p className="text-ink/85 text-xs leading-snug line-clamp-2 font-medium">
         {ch.instruction}
       </p>
 
       {/* Story name + arrow */}
       <div className="flex items-center justify-between gap-1">
-        <p className="text-slate-600 text-[10px] truncate">{ch.storyName}</p>
+        <p className="text-muted/80 text-[10px] truncate">{ch.storyName}</p>
         <span className={`${cat.color} opacity-0 group-hover:opacity-100 transition-opacity text-xs`}>→</span>
       </div>
     </button>
@@ -473,17 +473,17 @@ export default function MiniChallengePage() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-[#080812] flex flex-col">
+    <div className="min-h-screen bg-paper flex flex-col">
       {/* Header */}
-      <div className="sticky top-0 z-30 bg-[#080812]/95 backdrop-blur-md border-b border-white/[0.06]">
+      <div className="sticky top-0 z-30 bg-paper/95 backdrop-blur-md border-b border-line">
         <div className="flex items-center gap-3 px-4 py-3">
           <button onClick={() => navigate('/home')}
-            className="w-9 h-9 flex items-center justify-center rounded-xl bg-white/[0.05] text-slate-400 hover:text-white hover:bg-white/10 transition-all">
+            className="w-9 h-9 flex items-center justify-center rounded-xl bg-panel text-muted hover:text-ink hover:bg-panel-2 transition-all">
             ←
           </button>
           <div className="flex-1">
-            <h1 className="text-white font-bold text-base tracking-wide">ARCADE</h1>
-            <p className="text-slate-500 text-[10px]">{ALL_CHALLENGES.length} mini challenges · play any, anytime</p>
+            <h1 className="text-ink font-bold text-base tracking-wide">ARCADE</h1>
+            <p className="text-muted text-[10px]">{ALL_CHALLENGES.length} mini challenges · play any, anytime</p>
           </div>
         </div>
 
@@ -497,7 +497,7 @@ export default function MiniChallengePage() {
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap border transition-all shrink-0
                   ${active
                     ? `${cat.bg} ${cat.color} ${cat.border}`
-                    : 'bg-white/[0.04] border-white/10 text-slate-500 hover:border-white/20 hover:text-slate-300'}`}>
+                    : 'bg-panel border-line text-muted hover:border-line-2 hover:text-ink-2'}`}>
                 <span>{cat.icon}</span>
                 <span>{cat.label}</span>
                 <span className={`text-[9px] ${active ? 'opacity-70' : 'opacity-40'}`}>{count}</span>
@@ -518,7 +518,7 @@ export default function MiniChallengePage() {
         {filtered.length === 0 && (
           <div className="flex flex-col items-center justify-center py-24 gap-3">
             <span className="text-4xl opacity-20">◈</span>
-            <p className="text-slate-600 text-sm">No challenges in this category</p>
+            <p className="text-muted/80 text-sm">No challenges in this category</p>
           </div>
         )}
       </div>

@@ -237,12 +237,12 @@ export default function IceSlideGame({ configId, onWin }: { configId: string; on
   const cellPx = Math.min(38, Math.floor(320 / cols))
 
   return (
-    <div className="flex flex-col gap-3 bg-slate-950 rounded-xl p-3">
+    <div className="flex flex-col gap-3 bg-paper-2 rounded-xl p-3">
       <p className="text-cyan-400/80 text-[10px] font-bold uppercase tracking-widest">{cfg.title}</p>
-      <p className="text-white text-sm font-medium leading-snug">{cfg.question}</p>
+      <p className="text-ink text-sm font-medium leading-snug">{cfg.question}</p>
 
       <div className="flex justify-center">
-        <div className="inline-grid border border-white/10 rounded-lg overflow-hidden"
+        <div className="inline-grid border border-line rounded-lg overflow-hidden"
           style={{ gridTemplateColumns: `repeat(${cols}, ${cellPx}px)` }}>
           {grid.map((rowArr, r) => rowArr.map((cell, c) => {
             const isPlayer = r === row && c === col
@@ -252,8 +252,8 @@ export default function IceSlideGame({ configId, onWin }: { configId: string; on
             const isTrail = trail.has(`${r},${c}`) && !isPlayer && !isWall
 
             let bg = 'bg-sky-950/60'
-            if (isWall) bg = 'bg-slate-700'
-            if (isBlock) bg = 'bg-slate-600'
+            if (isWall) bg = 'bg-line'
+            if (isBlock) bg = 'bg-line-2'
             if (isExit) bg = won ? 'bg-emerald-500/50' : 'bg-emerald-900/30'
             if (isTrail) bg = 'bg-cyan-900/40'
 
@@ -265,7 +265,7 @@ export default function IceSlideGame({ configId, onWin }: { configId: string; on
                 {isExit && <div className={`text-[9px] font-bold ${won ? 'text-emerald-300' : 'text-emerald-600'}`}>▣</div>}
                 {isTrail && <div className="w-1 h-1 rounded-full bg-cyan-500/50" />}
                 {isPlayer && (
-                  <div className={`w-3/5 h-3/5 rounded-full shadow-[0_0_6px_rgba(251,191,36,0.9)] ${won ? 'bg-emerald-400' : 'bg-amber-400'}`} />
+                  <div className={`w-3/5 h-3/5 rounded-full shadow-[0_0_6px_rgba(251,191,36,0.9)] ${won ? 'bg-emerald-400' : 'bg-accent'}`} />
                 )}
               </div>
             )
@@ -275,16 +275,16 @@ export default function IceSlideGame({ configId, onWin }: { configId: string; on
 
       {/* D-pad */}
       <div className="flex flex-col items-center gap-1">
-        <button onClick={() => move('up')} className="w-10 h-10 rounded-lg bg-white/10 active:bg-cyan-500/30 flex items-center justify-center text-white">▲</button>
+        <button onClick={() => move('up')} className="w-10 h-10 rounded-lg bg-panel active:bg-cyan-500/30 flex items-center justify-center text-ink">▲</button>
         <div className="flex gap-1">
-          <button onClick={() => move('left')} className="w-10 h-10 rounded-lg bg-white/10 active:bg-cyan-500/30 flex items-center justify-center text-white">◀</button>
-          <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-slate-600 text-[9px]">❄</div>
-          <button onClick={() => move('right')} className="w-10 h-10 rounded-lg bg-white/10 active:bg-cyan-500/30 flex items-center justify-center text-white">▶</button>
+          <button onClick={() => move('left')} className="w-10 h-10 rounded-lg bg-panel active:bg-cyan-500/30 flex items-center justify-center text-ink">◀</button>
+          <div className="w-10 h-10 rounded-lg bg-panel flex items-center justify-center text-muted/80 text-[9px]">❄</div>
+          <button onClick={() => move('right')} className="w-10 h-10 rounded-lg bg-panel active:bg-cyan-500/30 flex items-center justify-center text-ink">▶</button>
         </div>
-        <button onClick={() => move('down')} className="w-10 h-10 rounded-lg bg-white/10 active:bg-cyan-500/30 flex items-center justify-center text-white">▼</button>
+        <button onClick={() => move('down')} className="w-10 h-10 rounded-lg bg-panel active:bg-cyan-500/30 flex items-center justify-center text-ink">▼</button>
       </div>
 
-      <p className="text-slate-500 text-[10px] text-center">
+      <p className="text-muted text-[10px] text-center">
         {won
           ? <span className="text-emerald-400 font-bold">Exit reached!</span>
           : 'Slide — you move until hitting a wall ■ or stone ▪'}

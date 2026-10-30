@@ -171,9 +171,9 @@ export default function ClassifyGame({ configId, onWin }: { configId: string; on
   }
 
   return (
-    <div className="flex flex-col gap-3 bg-slate-950 rounded-xl p-3">
-      <p className="text-amber-400/80 text-[10px] font-bold uppercase tracking-widest">{config.title}</p>
-      <p className="text-white text-sm font-medium leading-snug">{config.question}</p>
+    <div className="flex flex-col gap-3 bg-paper-2 rounded-xl p-3">
+      <p className="text-accent/80 text-[10px] font-bold uppercase tracking-widest">{config.title}</p>
+      <p className="text-ink text-sm font-medium leading-snug">{config.question}</p>
 
       {/* Category buckets */}
       <div className="flex gap-2">
@@ -185,11 +185,11 @@ export default function ClassifyGame({ configId, onWin }: { configId: string; on
               onClick={() => placeInCategory(cat.id)}
               disabled={!selectedItem || won}
               className={`flex-1 min-h-[80px] rounded-xl border p-2 text-center transition-all
-                ${selectedItem ? 'border-amber-500/50 bg-amber-500/5 hover:bg-amber-500/15' : 'border-white/10 bg-white/[0.03]'}
+                ${selectedItem ? 'border-accent/50 bg-accent/5 hover:bg-accent/15' : 'border-line bg-panel'}
               `}
             >
               <div className="text-lg mb-1">{cat.emoji}</div>
-              <div className="text-[10px] font-bold text-slate-300 mb-1">{cat.label}</div>
+              <div className="text-[10px] font-bold text-ink-2 mb-1">{cat.label}</div>
               <div className="flex flex-wrap gap-1 justify-center">
                 {placedHere.map(it => (
                   <span key={it.label} className="text-xs bg-emerald-500/20 text-emerald-300 rounded px-1">
@@ -214,19 +214,19 @@ export default function ClassifyGame({ configId, onWin }: { configId: string; on
               disabled={won}
               className={`px-3 py-1.5 rounded-xl border text-xs font-semibold transition-all
                 ${isWrong ? 'border-red-500/60 bg-red-500/20 text-red-300'
-                  : isSelected ? 'border-amber-400 bg-amber-500/20 text-amber-200 scale-105'
-                  : 'border-white/10 bg-white/5 text-slate-300 hover:border-amber-500/30'}`}
+                  : isSelected ? 'border-accent bg-accent/20 text-ink-2 scale-105'
+                  : 'border-line bg-panel text-ink-2 hover:border-accent/30'}`}
             >
               {item.emoji} {item.label}
             </button>
           )
         })}
         {unplaced.length === 0 && !won && (
-          <p className="text-slate-500 text-xs self-center italic">All items placed!</p>
+          <p className="text-muted text-xs self-center italic">All items placed!</p>
         )}
       </div>
 
-      <p className="text-slate-500 text-[10px] text-center">
+      <p className="text-muted text-[10px] text-center">
         {won ? '' : selectedItem ? `Tap a category to place "${selectedItem}"` : 'Tap an item, then tap its category'}
       </p>
 

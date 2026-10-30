@@ -277,16 +277,16 @@ export default function KlotskiGame({ configId, onWin }: { configId: string; onW
   const CELL = 56  // px per cell
 
   return (
-    <div className="flex flex-col items-center gap-4 p-4 bg-slate-950 rounded-xl select-none">
+    <div className="flex flex-col items-center gap-4 p-4 bg-paper-2 rounded-xl select-none">
       {/* Title + moves */}
       <div className="flex items-center justify-between w-full">
-        <span className="text-amber-400 font-bold text-sm tracking-wide">{cfg.title}</span>
-        <span className="text-slate-500 text-xs">{moves} moves</span>
+        <span className="text-accent font-bold text-sm tracking-wide">{cfg.title}</span>
+        <span className="text-muted text-xs">{moves} moves</span>
       </div>
 
       {/* Target hint */}
-      <p className="text-slate-400 text-xs text-center leading-relaxed">
-        Slide the <span className="text-amber-400 font-bold">gold piece</span> to the marked target ✦
+      <p className="text-muted text-xs text-center leading-relaxed">
+        Slide the <span className="text-accent font-bold">gold piece</span> to the marked target ✦
       </p>
 
       {/* Board */}
@@ -315,13 +315,13 @@ export default function KlotskiGame({ configId, onWin }: { configId: string; onW
 
         {/* Target marker */}
         <div
-          className="absolute flex items-center justify-center text-amber-500/40 text-xl font-bold"
+          className="absolute flex items-center justify-center text-accent/40 text-xl font-bold"
           style={{
             left: cfg.targetCol * CELL,
             top: cfg.targetRow * CELL,
             width: CELL * 2,
             height: CELL * 2,
-            border: '2px dashed rgba(245,158,11,0.35)',
+            border: '2px dashed rgba(155,44,35,0.35)',
             borderRadius: 8,
           }}
         >
@@ -393,24 +393,24 @@ export default function KlotskiGame({ configId, onWin }: { configId: string; onW
       {/* Direction controls */}
       <div className="flex flex-col items-center gap-1">
         <button onClick={() => handleMove('up')} disabled={selected === null || won}
-          className="w-12 h-10 rounded-xl bg-white/[0.06] border border-white/10 text-slate-300 hover:bg-white/[0.12] hover:text-white disabled:opacity-30 transition-all text-lg">
+          className="w-12 h-10 rounded-xl bg-panel border border-line text-ink-2 hover:bg-panel-2 hover:text-ink disabled:opacity-30 transition-all text-lg">
           ▲
         </button>
         <div className="flex gap-1">
           <button onClick={() => handleMove('left')} disabled={selected === null || won}
-            className="w-12 h-10 rounded-xl bg-white/[0.06] border border-white/10 text-slate-300 hover:bg-white/[0.12] hover:text-white disabled:opacity-30 transition-all text-lg">
+            className="w-12 h-10 rounded-xl bg-panel border border-line text-ink-2 hover:bg-panel-2 hover:text-ink disabled:opacity-30 transition-all text-lg">
             ◀
           </button>
-          <div className="w-12 h-10 flex items-center justify-center text-slate-600 text-xs">
+          <div className="w-12 h-10 flex items-center justify-center text-muted/80 text-xs">
             {selected ? '✦' : '—'}
           </div>
           <button onClick={() => handleMove('right')} disabled={selected === null || won}
-            className="w-12 h-10 rounded-xl bg-white/[0.06] border border-white/10 text-slate-300 hover:bg-white/[0.12] hover:text-white disabled:opacity-30 transition-all text-lg">
+            className="w-12 h-10 rounded-xl bg-panel border border-line text-ink-2 hover:bg-panel-2 hover:text-ink disabled:opacity-30 transition-all text-lg">
             ▶
           </button>
         </div>
         <button onClick={() => handleMove('down')} disabled={selected === null || won}
-          className="w-12 h-10 rounded-xl bg-white/[0.06] border border-white/10 text-slate-300 hover:bg-white/[0.12] hover:text-white disabled:opacity-30 transition-all text-lg">
+          className="w-12 h-10 rounded-xl bg-panel border border-line text-ink-2 hover:bg-panel-2 hover:text-ink disabled:opacity-30 transition-all text-lg">
           ▼
         </button>
       </div>
@@ -419,13 +419,13 @@ export default function KlotskiGame({ configId, onWin }: { configId: string; onW
       {won && (
         <div className="w-full p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-center">
           <p className="text-emerald-300 font-bold mb-1">Solved in {moves} moves!</p>
-          <p className="text-slate-400 text-xs leading-relaxed">{cfg.fact}</p>
+          <p className="text-muted text-xs leading-relaxed">{cfg.fact}</p>
         </div>
       )}
 
       {/* Reset */}
       <button onClick={reset}
-        className="text-slate-600 text-xs hover:text-slate-400 transition-all underline underline-offset-2">
+        className="text-muted/80 text-xs hover:text-muted transition-all underline underline-offset-2">
         Reset
       </button>
     </div>

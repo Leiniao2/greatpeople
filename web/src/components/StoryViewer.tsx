@@ -42,6 +42,7 @@ import ReporterFleeGame from '@/components/minigames/ReporterFleeGame'
 import ChimpMathGame from '@/components/minigames/ChimpMathGame'
 import WorldClockGame from '@/components/minigames/WorldClockGame'
 import { useAuth } from '@/hooks/useAuth'
+import { eraBackdropUrl, speakerImageUrl } from '@/data/images'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -60,18 +61,6 @@ interface StoryScript {
   era: string; story: string; portraitKey: string | null; scenes: Scene[]
 }
 interface StoryChallengeData { era: string; story: string; challenges: Challenge[] }
-
-// ── Era location images ───────────────────────────────────────────────────────
-
-const ERA_LOCATION_IMAGE: Record<string, string> = {
-  Ancient:     '/locations/ancient_stonehenge.jpeg',
-  Classical:   '/locations/classical_sparta.jpeg',
-  Medieval:    '/locations/medieval_changan.jpeg',
-  Renaissance: '/locations/renaissance_venice.jpeg',
-  Steam:       '/locations/steam_london.jpeg',
-  Electricity: '/locations/electricity_berlin.jpeg',
-  Information: '/locations/information_sanjose.jpeg',
-}
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -94,9 +83,7 @@ function shuffle<T>(arr: T[]): T[] {
 }
 
 function portraitUrl(key: string | null | undefined) {
-  if (!key) return null
-  if (key.startsWith('follower:')) return `/followers/${key.slice(9)}.jpeg`
-  return `/portraits/portrait_${key}.jpeg`
+  return key ? speakerImageUrl(key) : null
 }
 
 // ── Typewriter ─────────────────────────────────────────────────────────────────
@@ -159,28 +146,28 @@ function QuizView({ challenge, onResult }: { challenge: QuizChallenge; onResult:
     <div className="flex flex-col gap-3">
       {challenge.countdown != null && timeLeft !== null && !answered && (
         <div className="flex items-center gap-2">
-          <div className="flex-1 h-1.5 bg-white/[0.06] rounded-full overflow-hidden">
+          <div className="flex-1 h-1.5 bg-panel rounded-full overflow-hidden">
             <div
-              className={`h-full rounded-full transition-all duration-1000 ${timeLeft <= 3 ? 'bg-red-500' : 'bg-amber-500'}`}
+              className={`h-full rounded-full transition-all duration-1000 ${timeLeft <= 3 ? 'bg-red-500' : 'bg-accent'}`}
               style={{ width: `${(timeLeft / challenge.countdown) * 100}%` }}
             />
           </div>
-          <span className={`text-xs font-bold tabular-nums w-6 text-right ${timeLeft <= 3 ? 'text-red-400' : 'text-amber-400'}`}>{timeLeft}s</span>
+          <span className={`text-xs font-bold tabular-nums w-6 text-right ${timeLeft <= 3 ? 'text-red-400' : 'text-accent'}`}>{timeLeft}s</span>
         </div>
       )}
       {timedOut && (
         <p className="text-red-400 text-xs font-bold">⏱ Time's up!</p>
       )}
-      <p className="text-white text-sm font-medium leading-snug">{challenge.question}</p>
+      <p className="text-ink text-sm font-medium leading-snug">{challenge.question}</p>
       <div className="flex flex-col gap-2">
         {challenge.options.map((opt, i) => {
           const isCorrect = i === challenge.answer
           const isSelected = i === selected
-          let bg = 'bg-white/5 border-white/10 text-slate-300 hover:border-amber-500/40 hover:text-amber-300'
+          let bg = 'bg-panel border-line text-ink-2 hover:border-accent/40 hover:text-accent'
           if (answered) {
             if (isCorrect) bg = 'bg-emerald-500/20 border-emerald-500/50 text-emerald-300'
             else if (isSelected) bg = 'bg-red-500/20 border-red-500/40 text-red-300'
-            else bg = 'bg-white/[0.03] border-white/[0.06] text-slate-500'
+            else bg = 'bg-panel border-line text-muted'
           }
           return (
             <button key={i} disabled={answered}
@@ -203,14 +190,14 @@ function TrueFalseView({ challenge, onResult }: { challenge: TrueFalseChallenge;
     onResult(choice === challenge.correct)
   }
   const btnClass = (choice: boolean) => {
-    if (answered === null) return 'bg-white/5 border-white/10 text-slate-300 hover:border-amber-500/40 hover:text-amber-300'
+    if (answered === null) return 'bg-panel border-line text-ink-2 hover:border-accent/40 hover:text-accent'
     if (choice === challenge.correct) return 'bg-emerald-500/20 border-emerald-500/50 text-emerald-300'
     if (choice === answered) return 'bg-red-500/20 border-red-500/40 text-red-300'
-    return 'bg-white/[0.03] border-white/[0.06] text-slate-500'
+    return 'bg-panel border-line text-muted'
   }
   return (
     <div className="flex flex-col gap-4">
-      <p className="text-white text-sm font-medium leading-snug">{challenge.statement}</p>
+      <p className="text-ink text-sm font-medium leading-snug">{challenge.statement}</p>
       <div className="flex gap-3">
         {([true, false] as const).map(choice => (
           <button key={String(choice)} disabled={answered !== null} onClick={() => handle(choice)}
@@ -240,9 +227,9 @@ function SortView({ challenge, onResult }: { challenge: SortChallenge; onResult:
   }
   return (
     <div className="flex flex-col gap-3">
-      <p className="text-white text-sm font-medium leading-snug">{challenge.question}</p>
-      <div className="min-h-[44px] flex flex-wrap gap-2 p-3 rounded-xl bg-white/[0.03] border border-white/[0.08]">
-        {selected.length === 0 && <p className="text-slate-600 text-xs self-center">Tap items below in order…</p>}
+      <p className="text-ink text-sm font-medium leading-snug">{challenge.question}</p>
+      <div className="min-h-[44px] flex flex-wrap gap-2 p-3 rounded-xl bg-panel border border-line">
+        {selected.length === 0 && <p className="text-muted/80 text-xs self-center">Tap items below in order…</p>}
         {selected.map((item, i) => {
           const isCorrect = submitted && item === challenge.items[i]
           const isWrong = submitted && item !== challenge.items[i]
@@ -251,7 +238,7 @@ function SortView({ challenge, onResult }: { challenge: SortChallenge; onResult:
               className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all
                 ${isCorrect ? 'bg-emerald-500/20 border-emerald-500/50 text-emerald-300'
                   : isWrong ? 'bg-red-500/20 border-red-500/40 text-red-300'
-                  : 'bg-amber-500/15 border-amber-500/30 text-amber-300'}`}>
+                  : 'bg-accent/15 border-accent/30 text-accent'}`}>
               {i + 1}. {item}
             </button>
           )
@@ -260,13 +247,13 @@ function SortView({ challenge, onResult }: { challenge: SortChallenge; onResult:
       <div className="flex flex-wrap gap-2">
         {remaining.map(item => (
           <button key={item} onClick={() => toggle(item)} disabled={submitted}
-            className="px-3 py-1.5 rounded-lg text-xs font-semibold border bg-white/5 border-white/10 text-slate-300 hover:border-amber-500/40 hover:text-amber-300 transition-all">
+            className="px-3 py-1.5 rounded-lg text-xs font-semibold border bg-panel border-line text-ink-2 hover:border-accent/40 hover:text-accent transition-all">
             {item}
           </button>
         ))}
       </div>
       {allPicked && !submitted && (
-        <button onClick={submit} className="mt-1 py-2.5 rounded-xl bg-amber-500 text-slate-950 font-bold text-sm hover:bg-amber-400 transition-all">
+        <button onClick={submit} className="mt-1 py-2.5 rounded-xl bg-accent text-accent-fg font-bold text-sm hover:bg-accent-hover transition-all">
           Check Order
         </button>
       )}
@@ -279,7 +266,7 @@ function MinigameView({ challenge, onResult }: { challenge: MinigameChallenge; o
   const handleWin = () => { if (!won) { setWon(true); onResult(true) } }
   return (
     <div className="flex flex-col gap-3">
-      <p className="text-slate-300 text-xs leading-relaxed italic border-l-2 border-amber-500/40 pl-3">{challenge.instruction}</p>
+      <p className="text-ink-2 text-xs leading-relaxed italic border-l-2 border-accent/40 pl-3">{challenge.instruction}</p>
       <div className="rounded-xl overflow-hidden">
         {challenge.game === 'maze' && <MazeGame configId={challenge.configId} onWin={handleWin} />}
         {challenge.game === 'mirror' && <MirrorGame configId={challenge.configId} onWin={handleWin} />}
@@ -361,7 +348,7 @@ function ChallengeWrapper({
 
       {challenge.type === 'minigame' && !fact && skipAllowed && (
         <button onClick={onSkip}
-          className="py-1.5 rounded-xl text-slate-500 text-xs border border-slate-700/40 hover:border-slate-600/50 hover:text-slate-400 transition-all">
+          className="py-1.5 rounded-xl text-muted text-xs border border-line hover:border-line hover:text-muted transition-all">
           Skip puzzle
         </button>
       )}
@@ -376,7 +363,7 @@ function ChallengeWrapper({
 
       {fact && result && (
         <button onClick={onPass}
-          className="py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm transition-all">
+          className="py-2.5 rounded-xl bg-accent hover:bg-accent-hover text-accent-fg font-bold text-sm transition-all">
           Continue →
         </button>
       )}
@@ -395,23 +382,23 @@ function StoryCompleteScreen({ storyTitle, challengeCount, hasCard, onContinue }
   const [visible, setVisible] = useState(false)
   useEffect(() => { setTimeout(() => setVisible(true), 50) }, [])
   return (
-    <div className="fixed inset-0 z-[60] flex flex-col items-center justify-center bg-black/90 backdrop-blur-md">
+    <div className="fixed inset-0 z-[60] flex flex-col items-center justify-center bg-ink/70 backdrop-blur-md">
       <div className={`flex flex-col items-center gap-6 text-center px-8 transition-all duration-700
         ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         <div className="text-5xl select-none">🏆</div>
         <div>
-          <p className="text-amber-400/70 text-xs uppercase tracking-widest font-semibold mb-2">Story Complete!</p>
-          <h2 className="text-white font-bold text-xl leading-tight">{storyTitle}</h2>
+          <p className="text-accent/70 text-xs uppercase tracking-widest font-semibold mb-2">Story Complete!</p>
+          <h2 className="text-ink font-bold text-xl leading-tight">{storyTitle}</h2>
         </div>
-        <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/[0.05] border border-white/10">
+        <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-panel border border-line">
           <span className="text-emerald-400 font-bold">{challengeCount}</span>
-          <span className="text-slate-400 text-sm">challenge{challengeCount !== 1 ? 's' : ''} conquered</span>
+          <span className="text-muted text-sm">challenge{challengeCount !== 1 ? 's' : ''} conquered</span>
         </div>
         {hasCard && (
-          <p className="text-amber-300/80 text-sm">A new card has been added to your collection!</p>
+          <p className="text-accent/80 text-sm">A new card has been added to your collection!</p>
         )}
         <button onClick={onContinue}
-          className="px-8 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm tracking-wide transition-all shadow-lg shadow-amber-500/30">
+          className="px-8 py-3 rounded-xl bg-accent hover:bg-accent-hover text-accent-fg font-bold text-sm tracking-wide transition-all shadow-lg shadow-accent/30">
           {hasCard ? 'Collect Card →' : 'Back to Stories →'}
         </button>
       </div>
@@ -429,31 +416,31 @@ function CardUnlock({ portraitKey, figureName, era, onCollect }: {
   const url = portraitUrl(portraitKey)
 
   return (
-    <div className="fixed inset-0 z-[60] flex flex-col items-center justify-center bg-black/90 backdrop-blur-md">
+    <div className="fixed inset-0 z-[60] flex flex-col items-center justify-center bg-ink/70 backdrop-blur-md">
       <div className={`flex flex-col items-center gap-6 transition-all duration-700
         ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-        <p className="text-amber-400/70 text-xs uppercase tracking-widest font-semibold">Card Unlocked!</p>
+        <p className="text-accent/70 text-xs uppercase tracking-widest font-semibold">Card Unlocked!</p>
         <div className="relative">
-          <div className="absolute inset-0 rounded-2xl bg-amber-400/20 blur-2xl scale-110 animate-pulse" />
-          <div className="relative w-40 h-52 rounded-2xl overflow-hidden border-2 border-amber-400/60 shadow-2xl shadow-amber-500/30">
+          <div className="absolute inset-0 rounded-2xl bg-accent/20 blur-2xl scale-110 animate-pulse" />
+          <div className="relative w-40 h-52 rounded-2xl overflow-hidden border-2 border-accent/60 shadow-2xl shadow-accent/30">
             {url ? (
               <img src={url} alt={figureName} className="w-full h-full object-cover object-top" />
             ) : (
-              <div className="w-full h-full bg-gradient-to-br from-amber-900/60 to-slate-900 flex items-center justify-center">
-                <span className="text-amber-400 text-5xl">★</span>
+              <div className="w-full h-full bg-gradient-to-br from-paper-2 to-line flex items-center justify-center">
+                <span className="text-accent text-5xl">★</span>
               </div>
             )}
             <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 to-transparent p-3">
-              <p className="text-white font-bold text-sm">{figureName}</p>
-              <p className="text-amber-400/80 text-[10px]">{era}</p>
+              <p className="text-paper font-bold text-sm">{figureName}</p>
+              <p className="text-accent/80 text-[10px]">{era}</p>
             </div>
           </div>
         </div>
-        <p className="text-slate-400 text-sm text-center max-w-xs">
+        <p className="text-muted text-sm text-center max-w-xs">
           {figureName} has been added to your collection.
         </p>
         <button onClick={onCollect}
-          className="px-8 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm tracking-wide transition-all shadow-lg shadow-amber-500/30">
+          className="px-8 py-3 rounded-xl bg-accent hover:bg-accent-hover text-accent-fg font-bold text-sm tracking-wide transition-all shadow-lg shadow-accent/30">
           Add to Collection →
         </button>
       </div>
@@ -467,19 +454,19 @@ function NarrationScene({ scene, onNext }: { scene: NarrationScene; onNext: () =
   const { displayed, done, skip } = useTypewriter(scene.text)
   return (
     <div className="py-4 flex flex-col gap-4">
-      <div className="bg-black/40 rounded-2xl p-5 border border-white/5 backdrop-blur-sm cursor-pointer"
+      <div className="bg-panel/90 rounded-2xl p-5 border border-line backdrop-blur-sm cursor-pointer"
         onClick={!done ? skip : undefined}>
-        <p className="text-slate-200 text-sm leading-relaxed min-h-[4rem]">
+        <p className="text-ink-2 text-sm leading-relaxed min-h-[4rem]">
           {displayed}
-          {!done && <span className="animate-pulse text-amber-400">|</span>}
+          {!done && <span className="animate-pulse text-accent">|</span>}
         </p>
         {!done && (
-          <p className="text-slate-500 text-[10px] mt-2 text-right">Tap to skip</p>
+          <p className="text-muted text-[10px] mt-2 text-right">Tap to skip</p>
         )}
       </div>
       {done && (
         <button onClick={onNext}
-          className="self-end px-6 py-2.5 rounded-xl bg-amber-500/90 hover:bg-amber-400 text-slate-950 font-bold text-sm transition-all">
+          className="self-end px-6 py-2.5 rounded-xl bg-accent/90 hover:bg-accent-hover text-accent-fg font-bold text-sm transition-all">
           Continue →
         </button>
       )}
@@ -493,30 +480,30 @@ function DialogScene({ scene, onNext }: { scene: DialogScene; onNext: () => void
   return (
     <div className="py-4 flex flex-col gap-4">
       <div className="flex items-end gap-3">
-        <div className="flex-shrink-0 w-12 h-12 rounded-full overflow-hidden border-2 border-amber-400/60 shadow-lg shadow-amber-500/20">
+        <div className="flex-shrink-0 w-12 h-12 rounded-full overflow-hidden border-2 border-accent/60 shadow-lg shadow-accent/20">
           {url ? (
             <img src={url} alt={scene.speaker} className="w-full h-full object-cover object-top" />
           ) : (
-            <div className="w-full h-full bg-amber-900/60 flex items-center justify-center">
-              <span className="text-amber-300 text-lg font-bold">{scene.speaker[0]}</span>
+            <div className="w-full h-full bg-accent/60 flex items-center justify-center">
+              <span className="text-accent text-lg font-bold">{scene.speaker[0]}</span>
             </div>
           )}
         </div>
-        <div className="flex-1 bg-black/50 rounded-2xl rounded-bl-sm p-4 border border-white/10 backdrop-blur-sm cursor-pointer"
+        <div className="flex-1 bg-panel/90 rounded-2xl rounded-bl-sm p-4 border border-line backdrop-blur-sm cursor-pointer"
           onClick={!done ? skip : undefined}>
-          <p className="text-amber-400 text-[10px] font-bold uppercase tracking-widest mb-1">{scene.speaker}</p>
-          <p className="text-slate-200 text-sm leading-relaxed">
+          <p className="text-accent text-[10px] font-bold uppercase tracking-widest mb-1">{scene.speaker}</p>
+          <p className="text-ink-2 text-sm leading-relaxed">
             {displayed}
-            {!done && <span className="animate-pulse text-amber-400">|</span>}
+            {!done && <span className="animate-pulse text-accent">|</span>}
           </p>
           {!done && (
-            <p className="text-slate-500 text-[10px] mt-2 text-right">Tap to skip</p>
+            <p className="text-muted text-[10px] mt-2 text-right">Tap to skip</p>
           )}
         </div>
       </div>
       {done && (
         <button onClick={onNext}
-          className="self-end px-6 py-2.5 rounded-xl bg-amber-500/90 hover:bg-amber-400 text-slate-950 font-bold text-sm transition-all">
+          className="self-end px-6 py-2.5 rounded-xl bg-accent/90 hover:bg-accent-hover text-accent-fg font-bold text-sm transition-all">
           Continue →
         </button>
       )}
@@ -641,10 +628,10 @@ export default function StoryViewer({ eraName, storyTitle, figureName, portraitK
   // No script fallback — show simple message
   if (scenes.length === 0) {
     return (
-      <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/90 backdrop-blur-sm">
+      <div className="fixed inset-0 z-[60] flex items-center justify-center bg-ink/70 backdrop-blur-sm">
         <div className="text-center">
-          <p className="text-slate-400 text-sm mb-4">No story content found.</p>
-          <button onClick={onClose} className="px-6 py-2 rounded-xl bg-amber-500 text-slate-950 font-bold text-sm">Close</button>
+          <p className="text-muted text-sm mb-4">No story content found.</p>
+          <button onClick={onClose} className="px-6 py-2 rounded-xl bg-accent text-accent-fg font-bold text-sm">Close</button>
         </div>
       </div>
     )
@@ -652,12 +639,12 @@ export default function StoryViewer({ eraName, storyTitle, figureName, portraitK
 
   const progressPct = scenes.length > 0 ? (sceneIdx / scenes.length) * 100 : 0
 
-  const locationImg = locationImage ?? ERA_LOCATION_IMAGE[eraName]
+  const locationImg = locationImage ?? eraBackdropUrl(eraName)
 
   return (
     <div className="fixed inset-0 z-[60] flex flex-col overflow-hidden">
       {/* ── Background stack ─────────────────────────────────────────────────── */}
-      <div className="absolute inset-0 bg-[#080812]" />
+      <div className="absolute inset-0 bg-paper" />
 
       {/* Location image — story-specific city, clearly visible */}
       {locationImg && (
@@ -669,7 +656,7 @@ export default function StoryViewer({ eraName, storyTitle, figureName, portraitK
             style={{ opacity: 0.38 }}
           />
           {/* Top fade so header stays readable; bottom fade for text area */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/75" />
+          <div className="absolute inset-0 bg-gradient-to-b from-paper/70 via-paper/30 to-paper/85" />
         </div>
       )}
 
@@ -686,24 +673,24 @@ export default function StoryViewer({ eraName, storyTitle, figureName, portraitK
       )}
 
       {!locationImg && (
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-amber-600/8 blur-[120px] pointer-events-none" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-accent/8 blur-[120px] pointer-events-none" />
       )}
 
       {/* Top bar */}
-      <div className="relative z-10 flex items-center justify-between px-4 pt-safe-top pt-4 pb-3 border-b border-white/[0.06]">
+      <div className="relative z-10 flex items-center justify-between px-4 pt-safe-top pt-4 pb-3 border-b border-line">
         <div>
-          <p className="text-amber-400/70 text-[10px] uppercase tracking-widest font-semibold">{eraName}</p>
-          <p className="text-white font-bold text-sm leading-tight">{storyTitle}</p>
+          <p className="text-accent/70 text-[10px] uppercase tracking-widest font-semibold">{eraName}</p>
+          <p className="text-ink font-bold text-sm leading-tight">{storyTitle}</p>
         </div>
         <button onClick={onClose}
-          className="w-8 h-8 rounded-full bg-white/10 border border-white/10 text-slate-400 hover:text-white hover:bg-white/15 flex items-center justify-center text-sm transition-all">
+          className="w-8 h-8 rounded-full bg-panel border border-line text-muted hover:text-ink hover:bg-panel-2 flex items-center justify-center text-sm transition-all">
           ✕
         </button>
       </div>
 
       {/* Progress bar */}
-      <div className="relative z-10 h-0.5 bg-white/[0.06]">
-        <div className="h-full bg-amber-500 transition-all duration-500" style={{ width: `${progressPct}%` }} />
+      <div className="relative z-10 h-0.5 bg-panel">
+        <div className="h-full bg-accent transition-all duration-500" style={{ width: `${progressPct}%` }} />
       </div>
 
       {/* Scene content */}
@@ -723,8 +710,8 @@ export default function StoryViewer({ eraName, storyTitle, figureName, portraitK
           }
           return (
             <div className="flex flex-col gap-4">
-              <div className="bg-amber-500/10 border border-amber-500/20 rounded-xl px-4 py-2">
-                <p className="text-amber-400 text-[10px] font-bold uppercase tracking-widest">
+              <div className="bg-accent/10 border border-accent/20 rounded-xl px-4 py-2">
+                <p className="text-accent text-[10px] font-bold uppercase tracking-widest">
                   Challenge {passedChallenges.size + 1} of {totalChallenges}
                 </p>
               </div>
@@ -778,7 +765,7 @@ export default function StoryViewer({ eraName, storyTitle, figureName, portraitK
       {isAdmin && (
         <div className="fixed bottom-4 right-4 z-[70] bg-violet-950/95 border border-violet-700/50 rounded-xl p-3 text-xs max-w-[220px] backdrop-blur-sm shadow-xl">
           <p className="text-violet-400 font-bold uppercase tracking-wider text-[10px] mb-2">★ Dev Panel</p>
-          <p className="text-slate-400 mb-1">Scene {sceneIdx + 1} / {scenes.length}</p>
+          <p className="text-muted mb-1">Scene {sceneIdx + 1} / {scenes.length}</p>
           {currentScene?.type === 'challenge' && (() => {
             const ch = challenges[currentScene.index]
             if (!ch) return null
@@ -789,7 +776,7 @@ export default function StoryViewer({ eraName, storyTitle, figureName, portraitK
             else answer = 'Complete the minigame'
             return (
               <div className="mb-2">
-                <p className="text-slate-500 text-[10px]">Answer:</p>
+                <p className="text-muted text-[10px]">Answer:</p>
                 <p className="text-emerald-400 text-[10px] leading-tight break-words">{answer}</p>
               </div>
             )

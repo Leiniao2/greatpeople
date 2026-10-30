@@ -90,26 +90,26 @@ export default function FictionGame({ configId, onWin }: { configId: string; onW
   }
 
   return (
-    <div className="flex flex-col gap-4 bg-slate-950 rounded-xl p-4">
-      <p className="text-amber-400/80 text-[10px] font-bold uppercase tracking-widest">{config.title}</p>
+    <div className="flex flex-col gap-4 bg-paper-2 rounded-xl p-4">
+      <p className="text-accent/80 text-[10px] font-bold uppercase tracking-widest">{config.title}</p>
 
-      <div className="bg-white/[0.03] border border-white/10 rounded-xl p-4">
-        <p className="text-slate-300 text-sm leading-relaxed">{config.passage}</p>
+      <div className="bg-panel border border-line rounded-xl p-4">
+        <p className="text-ink-2 text-sm leading-relaxed">{config.passage}</p>
       </div>
 
-      <p className="text-white text-sm font-semibold">{config.prompt}</p>
+      <p className="text-ink text-sm font-semibold">{config.prompt}</p>
 
       <div className="flex flex-col gap-2">
         {config.options.map((opt, i) => {
           let cls = 'w-full text-left px-4 py-3 rounded-xl text-sm transition-all border '
           if (!revealed) {
-            cls += 'bg-white/[0.04] border-white/10 text-slate-200 hover:border-amber-500/40 hover:text-white cursor-pointer'
+            cls += 'bg-panel border-line text-ink-2 hover:border-accent/40 hover:text-ink cursor-pointer'
           } else if (i === config.answer) {
             cls += 'bg-emerald-500/10 border-emerald-500/40 text-emerald-300 font-medium'
           } else if (i === selected) {
             cls += 'bg-red-500/10 border-red-500/30 text-red-300'
           } else {
-            cls += 'bg-white/[0.02] border-white/[0.05] text-slate-500'
+            cls += 'bg-panel border-line text-muted'
           }
           return (
             <button key={i} onClick={() => pick(i)} className={cls}>
@@ -121,11 +121,11 @@ export default function FictionGame({ configId, onWin }: { configId: string; onW
       </div>
 
       {revealed && (
-        <div className={`p-3 rounded-xl border text-xs leading-relaxed ${correct ? 'bg-emerald-500/10 border-emerald-500/30' : 'bg-amber-500/10 border-amber-500/30'}`}>
-          <span className={`font-bold ${correct ? 'text-emerald-300' : 'text-amber-300'}`}>
+        <div className={`p-3 rounded-xl border text-xs leading-relaxed ${correct ? 'bg-emerald-500/10 border-emerald-500/30' : 'bg-accent/10 border-accent/30'}`}>
+          <span className={`font-bold ${correct ? 'text-emerald-300' : 'text-accent'}`}>
             {correct ? '✓ Correct! ' : '✗ Not quite — '}
           </span>
-          <span className="text-slate-400">{config.fact}</span>
+          <span className="text-muted">{config.fact}</span>
         </div>
       )}
     </div>

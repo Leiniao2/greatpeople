@@ -13,7 +13,7 @@ export default function MainLayout() {
   const { pathname } = useLocation()
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#080812]">
+    <div className="flex flex-col min-h-screen bg-paper">
       {/* Page content */}
       <div className="flex-1 pb-20">
         <Outlet />
@@ -22,7 +22,7 @@ export default function MainLayout() {
       {/* Bottom tab bar */}
       <nav
         className="fixed bottom-0 left-0 right-0 z-50
-                   bg-[#0d0d1a] border-t border-white/[0.06]"
+                   bg-panel border-t border-line"
         style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}>
         <div className="grid grid-cols-5">
           {TABS.map((tab) => {
@@ -33,7 +33,7 @@ export default function MainLayout() {
                 onClick={() => navigate(tab.path)}
                 title={tab.title}
                 className={`flex flex-col items-center justify-center gap-1 py-3 transition-colors duration-200
-                            ${isActive ? 'text-amber-400' : 'text-slate-600 hover:text-slate-400'}`}>
+                            ${isActive ? 'text-accent' : 'text-muted/80 hover:text-muted'}`}>
                 <span className="text-xl leading-none select-none">{tab.icon}</span>
                 <span className="text-[10px] uppercase tracking-widest font-semibold">
                   {tab.label}

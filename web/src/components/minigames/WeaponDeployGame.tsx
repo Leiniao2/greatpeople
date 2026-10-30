@@ -18,7 +18,7 @@ interface DeployConfig {
 
 const SPECS: Record<WeaponType, WeaponSpec> = {
   archer:   { emoji: '🏹', label: 'Archer',   range: 2, damage: 18, fireRate: 3,  cost: 20, color: 'text-green-400'  },
-  catapult: { emoji: '⚙️', label: 'Catapult', range: 3, damage: 45, fireRate: 6,  cost: 35, color: 'text-amber-400'  },
+  catapult: { emoji: '⚙️', label: 'Catapult', range: 3, damage: 45, fireRate: 6,  cost: 35, color: 'text-accent'  },
   cannon:   { emoji: '💣', label: 'Cannon',   range: 4, damage: 85, fireRate: 10, cost: 60, color: 'text-red-400'    },
 }
 
@@ -169,8 +169,8 @@ export default function WeaponDeployGame({ configId, onWin }: { configId: string
   return (
     <div className="flex flex-col gap-3">
       <div className="text-center">
-        <p className="text-amber-400 font-bold text-sm">{cfg.title}</p>
-        <p className="text-slate-500 text-xs">{phase === 'deploy' ? 'Place weapons, then launch the battle!' : phase === 'battle' ? 'Battle in progress…' : phase === 'won' ? '⚔️ Victory!' : '💀 Defeated'}</p>
+        <p className="text-accent font-bold text-sm">{cfg.title}</p>
+        <p className="text-muted text-xs">{phase === 'deploy' ? 'Place weapons, then launch the battle!' : phase === 'battle' ? 'Battle in progress…' : phase === 'won' ? '⚔️ Victory!' : '💀 Defeated'}</p>
       </div>
 
       {/* Weapon selector */}
@@ -182,11 +182,11 @@ export default function WeaponDeployGame({ configId, onWin }: { configId: string
               <button key={wt} onClick={() => setSel(wt)}
                 className={[
                   'flex-1 flex flex-col items-center gap-0.5 py-2 rounded-xl border text-xs transition-all',
-                  sel === wt ? 'border-amber-400 bg-amber-500/10' : 'border-white/10 bg-white/[0.03] hover:border-white/20',
+                  sel === wt ? 'border-accent bg-accent/10' : 'border-line bg-panel hover:border-line-2',
                 ].join(' ')}>
                 <span className="text-lg">{s.emoji}</span>
                 <span className={s.color + ' font-bold text-[11px]'}>{s.label}</span>
-                <span className="text-slate-500 text-[10px]">{s.cost}G · Rng {s.range}</span>
+                <span className="text-muted text-[10px]">{s.cost}G · Rng {s.range}</span>
               </button>
             )
           })}
@@ -195,11 +195,11 @@ export default function WeaponDeployGame({ configId, onWin }: { configId: string
 
       {/* Budget */}
       <div className="flex items-center gap-2 text-xs">
-        <span className="text-slate-400">Budget:</span>
-        <div className="flex-1 h-1.5 bg-white/[0.06] rounded-full overflow-hidden">
-          <div className="h-full bg-amber-500 rounded-full transition-all" style={{ width: `${(budget / cfg.budget) * 100}%` }} />
+        <span className="text-muted">Budget:</span>
+        <div className="flex-1 h-1.5 bg-panel rounded-full overflow-hidden">
+          <div className="h-full bg-accent rounded-full transition-all" style={{ width: `${(budget / cfg.budget) * 100}%` }} />
         </div>
-        <span className="text-amber-300 font-mono font-bold">{budget}G</span>
+        <span className="text-accent font-mono font-bold">{budget}G</span>
       </div>
 
       {/* Grid */}
@@ -216,17 +216,17 @@ export default function WeaponDeployGame({ configId, onWin }: { configId: string
                 isPath
                   ? 'bg-stone-800/50 border border-stone-600/30 cursor-default'
                   : wt
-                  ? 'bg-slate-700/70 border border-white/20'
+                  ? 'bg-line border border-line-2'
                   : phase === 'deploy'
-                  ? 'bg-slate-800/40 border border-white/[0.06] hover:border-amber-500/30'
-                  : 'bg-slate-800/40 border border-white/[0.04] cursor-default',
-                isFlash ? 'border-amber-400 bg-amber-500/25' : '',
+                  ? 'bg-panel-2 border border-line hover:border-accent/30'
+                  : 'bg-panel-2 border border-line cursor-default',
+                isFlash ? 'border-accent bg-accent/25' : '',
               ].join(' ')}
             >
               {eHere ? (
                 <div className="w-full h-full flex flex-col items-center justify-center gap-0.5 p-0.5">
                   <span className="text-[11px]">⚔️</span>
-                  <div className="w-full h-0.5 bg-white/10 rounded-full">
+                  <div className="w-full h-0.5 bg-panel rounded-full">
                     <div className="h-full bg-red-400 rounded-full" style={{ width: `${(eHere.hp / eHere.maxHp) * 100}%` }} />
                   </div>
                 </div>
@@ -251,17 +251,17 @@ export default function WeaponDeployGame({ configId, onWin }: { configId: string
       {phase === 'won' && (
         <div className="p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-xl text-center">
           <p className="text-emerald-400 font-bold text-sm">All enemies defeated — Victory!</p>
-          <p className="text-slate-400 text-xs mt-1.5 leading-relaxed">{cfg.fact}</p>
+          <p className="text-muted text-xs mt-1.5 leading-relaxed">{cfg.fact}</p>
         </div>
       )}
       {phase === 'lost' && (
         <div className="p-3 bg-red-500/10 border border-red-500/30 rounded-xl text-center">
           <p className="text-red-400 font-bold text-sm">Some enemies broke through the line!</p>
           <div className="flex gap-2 mt-2 justify-center">
-            <button onClick={reset} className="px-4 py-1.5 bg-white/10 text-slate-300 text-xs rounded-lg hover:bg-white/20 transition-all">
+            <button onClick={reset} className="px-4 py-1.5 bg-panel text-ink-2 text-xs rounded-lg hover:bg-panel-2 transition-all">
               Redeploy
             </button>
-            <button onClick={onWin} className="px-4 py-1.5 bg-slate-700 text-slate-200 text-xs rounded-lg hover:bg-slate-600 transition-all">
+            <button onClick={onWin} className="px-4 py-1.5 bg-line text-ink-2 text-xs rounded-lg hover:bg-line-2 transition-all">
               Continue →
             </button>
           </div>

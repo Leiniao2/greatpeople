@@ -3,8 +3,18 @@ export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      // "Parchment & Ink" palette — aged paper, dark ink, oxblood seal.
+      colors: {
+        paper:    { DEFAULT: '#f3ecdc', 2: '#eadfc8' },
+        panel:    { DEFAULT: '#fbf6ea', 2: '#f0e7d2' },
+        line:     { DEFAULT: '#cdbd9a', 2: '#b89f6e' },
+        ink:      { DEFAULT: '#2a2117', 2: '#5a4b36' },
+        muted:    '#8a7a5e',
+        accent:   { DEFAULT: '#9b2c23', hover: '#7f221b', fg: '#fff6ea' },
+      },
       fontFamily: {
-        display: ['Cinzel', 'Georgia', 'serif'],
+        display: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+        sans:    ['Lora', 'Georgia', 'serif'],
       },
       keyframes: {
         float: {

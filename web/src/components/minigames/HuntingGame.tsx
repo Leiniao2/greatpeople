@@ -283,23 +283,23 @@ export default function HuntingGame({ configId, onWin }: { configId: string; onW
     <div className="flex flex-col items-center gap-3 select-none">
       {/* Header */}
       <div className="text-center px-2">
-        <p className="text-amber-400 font-bold text-sm tracking-wide">{config.title}</p>
-        <p className="text-slate-400 text-xs mt-0.5 max-w-[320px] leading-snug">{config.instruction}</p>
+        <p className="text-accent font-bold text-sm tracking-wide">{config.title}</p>
+        <p className="text-muted text-xs mt-0.5 max-w-[320px] leading-snug">{config.instruction}</p>
       </div>
 
       {/* HUD */}
       <div className="flex items-center gap-5 text-sm font-bold">
-        <span className="text-amber-400">
-          🎯 {display.bullets} <span className="font-normal text-xs text-slate-500">arrows</span>
+        <span className="text-accent">
+          🎯 {display.bullets} <span className="font-normal text-xs text-muted">arrows</span>
         </span>
         <span className="text-emerald-400">
-          ⬤ {display.score}<span className="text-slate-600">/{config.targetScore}</span>
-          <span className="font-normal text-xs text-slate-500 ml-1">pts</span>
+          ⬤ {display.score}<span className="text-muted/80">/{config.targetScore}</span>
+          <span className="font-normal text-xs text-muted ml-1">pts</span>
         </span>
       </div>
 
       {/* Canvas */}
-      <div className="rounded-xl overflow-hidden border border-white/10 shadow-lg w-full max-w-[360px]">
+      <div className="rounded-xl overflow-hidden border border-line shadow-lg w-full max-w-[360px]">
         <canvas
           ref={canvasRef}
           width={W}
@@ -313,7 +313,7 @@ export default function HuntingGame({ configId, onWin }: { configId: string; onW
       {display.lost && !display.won && (
         <button
           onClick={onWin}
-          className="mt-1 px-6 py-2.5 rounded-xl bg-slate-700 text-slate-200 font-bold text-sm hover:bg-slate-600 active:scale-95 transition-all"
+          className="mt-1 px-6 py-2.5 rounded-xl bg-line text-ink-2 font-bold text-sm hover:bg-line-2 active:scale-95 transition-all"
         >
           Continue →
         </button>

@@ -139,10 +139,10 @@ function Swatch({ hex, label, size = 'md' }: { hex: string; label?: string; size
   return (
     <div className="flex flex-col items-center gap-1">
       <div
-        className={`${dim} rounded-xl border-2 border-white/10 shadow-md`}
+        className={`${dim} rounded-xl border-2 border-line shadow-md`}
         style={{ backgroundColor: hex }}
       />
-      {label && <span className="text-[9px] text-slate-400 text-center leading-tight">{label}</span>}
+      {label && <span className="text-[9px] text-muted text-center leading-tight">{label}</span>}
     </div>
   )
 }
@@ -173,7 +173,7 @@ function MatchMeter({ pct }: { pct: number }) {
           </text>
         </svg>
       </div>
-      <span className="text-[9px] text-slate-500 uppercase tracking-wider">Match</span>
+      <span className="text-[9px] text-muted uppercase tracking-wider">Match</span>
     </div>
   )
 }
@@ -223,19 +223,19 @@ export default function ColorMixGame({ configId, onWin }: { configId: string; on
   }
 
   return (
-    <div className="flex flex-col gap-4 bg-slate-950 rounded-xl p-4">
+    <div className="flex flex-col gap-4 bg-paper-2 rounded-xl p-4">
       {/* Title */}
       <div>
-        <p className="text-amber-400/80 text-[10px] font-bold uppercase tracking-widest">{cfg.title}</p>
-        <p className="text-slate-500 text-[10px]">{cfg.subtitle}</p>
+        <p className="text-accent/80 text-[10px] font-bold uppercase tracking-widest">{cfg.title}</p>
+        <p className="text-muted text-[10px]">{cfg.subtitle}</p>
       </div>
 
       {/* Target + current mix comparison */}
-      <div className="flex items-center gap-4 bg-white/[0.03] border border-white/10 rounded-xl p-3">
+      <div className="flex items-center gap-4 bg-panel border border-line rounded-xl p-3">
         <Swatch hex={cfg.target.hex} label="Target" size="lg" />
         <div className="flex-1 flex flex-col gap-1">
-          <p className="text-white font-bold text-xs">{cfg.target.name}</p>
-          <p className="text-slate-500 text-[10px] font-mono">{cfg.target.hex}</p>
+          <p className="text-ink font-bold text-xs">{cfg.target.name}</p>
+          <p className="text-muted text-[10px] font-mono">{cfg.target.hex}</p>
         </div>
         {totalAdded > 0 && (
           <>
@@ -245,41 +245,41 @@ export default function ColorMixGame({ configId, onWin }: { configId: string; on
         )}
         {totalAdded === 0 && (
           <div className="flex flex-col items-center gap-1">
-            <div className="w-16 h-16 rounded-xl border-2 border-dashed border-white/10 flex items-center justify-center">
-              <span className="text-slate-600 text-[10px]">mix</span>
+            <div className="w-16 h-16 rounded-xl border-2 border-dashed border-line flex items-center justify-center">
+              <span className="text-muted/80 text-[10px]">mix</span>
             </div>
-            <span className="text-[9px] text-slate-500">Your mix</span>
+            <span className="text-[9px] text-muted">Your mix</span>
           </div>
         )}
       </div>
 
       {/* Pigment controls */}
       <div className="flex flex-col gap-2">
-        <p className="text-[10px] text-slate-500 uppercase tracking-wider font-semibold">Pigments</p>
+        <p className="text-[10px] text-muted uppercase tracking-wider font-semibold">Pigments</p>
         {cfg.pigments.map(p => (
-          <div key={p.id} className="flex items-center gap-3 bg-white/[0.03] border border-white/[0.07] rounded-xl px-3 py-2">
+          <div key={p.id} className="flex items-center gap-3 bg-panel border border-line rounded-xl px-3 py-2">
             {/* Colour chip */}
             <div
-              className="w-7 h-7 rounded-lg flex-shrink-0 border border-white/10"
+              className="w-7 h-7 rounded-lg flex-shrink-0 border border-line"
               style={{ backgroundColor: p.hex }}
             />
             {/* Name + source */}
             <div className="flex-1 min-w-0">
-              <p className="text-white text-xs font-semibold truncate">{p.name}</p>
-              <p className="text-slate-600 text-[9px] truncate">{p.source}</p>
+              <p className="text-ink text-xs font-semibold truncate">{p.name}</p>
+              <p className="text-muted/80 text-[9px] truncate">{p.source}</p>
             </div>
             {/* Amount stepper */}
             <div className="flex items-center gap-1.5 flex-shrink-0">
               <button
                 onClick={() => adjust(p.id, -1)}
                 disabled={mixed || amounts[p.id] === 0}
-                className="w-6 h-6 rounded bg-white/10 text-slate-300 text-sm hover:bg-white/20 transition-colors disabled:opacity-30"
+                className="w-6 h-6 rounded bg-panel text-ink-2 text-sm hover:bg-panel-2 transition-colors disabled:opacity-30"
               >−</button>
-              <span className="text-white font-bold text-sm font-mono w-4 text-center">{amounts[p.id]}</span>
+              <span className="text-ink font-bold text-sm font-mono w-4 text-center">{amounts[p.id]}</span>
               <button
                 onClick={() => adjust(p.id, +1)}
                 disabled={mixed || amounts[p.id] >= 6}
-                className="w-6 h-6 rounded bg-white/10 text-slate-300 text-sm hover:bg-white/20 transition-colors disabled:opacity-30"
+                className="w-6 h-6 rounded bg-panel text-ink-2 text-sm hover:bg-panel-2 transition-colors disabled:opacity-30"
               >+</button>
             </div>
           </div>
@@ -294,12 +294,12 @@ export default function ColorMixGame({ configId, onWin }: { configId: string; on
           </p>
           <button
             onClick={() => setShowHint(true)}
-            className="text-slate-500 text-[10px] underline text-center hover:text-slate-400 transition-colors"
+            className="text-muted text-[10px] underline text-center hover:text-muted transition-colors"
           >
             {showHint ? cfg.target.hint : 'Show hint'}
           </button>
           {showHint && (
-            <p className="text-amber-400/70 text-[10px] leading-relaxed italic text-center px-2">{cfg.target.hint}</p>
+            <p className="text-accent/70 text-[10px] leading-relaxed italic text-center px-2">{cfg.target.hint}</p>
           )}
         </div>
       )}
@@ -309,14 +309,14 @@ export default function ColorMixGame({ configId, onWin }: { configId: string; on
         <div className="flex gap-2">
           <button
             onClick={reset}
-            className="flex-1 py-2.5 rounded-xl border border-white/10 text-slate-400 text-sm hover:border-white/20 transition-all"
+            className="flex-1 py-2.5 rounded-xl border border-line text-muted text-sm hover:border-line-2 transition-all"
           >
             Clear
           </button>
           <button
             onClick={handleMix}
             disabled={totalAdded === 0}
-            className="flex-1 py-2.5 rounded-xl bg-amber-500 text-slate-950 font-bold text-sm hover:bg-amber-400 transition-all disabled:opacity-40"
+            className="flex-1 py-2.5 rounded-xl bg-accent text-accent-fg font-bold text-sm hover:bg-accent-hover transition-all disabled:opacity-40"
           >
             Mix Pigments 🎨
           </button>
@@ -324,7 +324,7 @@ export default function ColorMixGame({ configId, onWin }: { configId: string; on
       ) : !won ? (
         <button
           onClick={reset}
-          className="w-full py-2.5 rounded-xl border border-white/10 text-slate-400 text-sm hover:border-white/20 transition-all"
+          className="w-full py-2.5 rounded-xl border border-line text-muted text-sm hover:border-line-2 transition-all"
         >
           Try Again
         </button>
@@ -334,7 +334,7 @@ export default function ColorMixGame({ configId, onWin }: { configId: string; on
       {won && (
         <div className="p-3 rounded-xl border bg-emerald-500/10 border-emerald-500/30 text-xs leading-relaxed">
           <span className="font-bold text-emerald-300">Perfect match! </span>
-          <span className="text-slate-400">{cfg.fact}</span>
+          <span className="text-muted">{cfg.fact}</span>
         </div>
       )}
     </div>
