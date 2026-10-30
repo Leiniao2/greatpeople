@@ -49,6 +49,7 @@ a { color: var(--accent); }
 .row > * { min-width: 0; }
 .card {
   background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px;
+  min-width: 0;
 }
 .card h4 { margin: 0 0 8px; font-size: 13px; color: var(--ink-2); text-transform: uppercase; letter-spacing: .06em; }
 .kpis { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
@@ -90,7 +91,8 @@ td.changed, tr.changed td:first-child { box-shadow: inset 3px 0 0 var(--warn); }
 .status.missing { background: #fbd9d9; color: var(--critical); }
 .status.unspecified { background: var(--surface-2); color: var(--ink-2); }
 .small { font-size: 12px; color: var(--ink-2); }
-.mono { font-family: ui-monospace, Menlo, monospace; font-size: 12px; }
+.mono { font-family: ui-monospace, Menlo, monospace; font-size: 12px; overflow-wrap: anywhere; }
+table.grid td { overflow-wrap: anywhere; }
 .bar { height: 8px; background: var(--seq-100); border-radius: 4px; overflow: hidden; display: inline-block; width: 90px; vertical-align: middle; }
 .bar > i { display: block; height: 100%; background: var(--seq-450, #2a78d6); }
 .detail { position: sticky; top: 70px; width: 420px; flex: 0 0 420px; max-height: calc(100vh - 90px); overflow: auto; }
