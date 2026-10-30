@@ -15,6 +15,8 @@ const EpicPage          = lazy(() => import('@/pages/EpicPage'))
 const ProfilePage       = lazy(() => import('@/pages/ProfilePage'))
 const MiniChallengePage = lazy(() => import('@/pages/MiniChallengePage'))
 const MainLayout        = lazy(() => import('@/pages/MainLayout'))
+const PlayStoryPage     = lazy(() => import('@/pages/PlayPage').then(m => ({ default: m.PlayStoryPage })))
+const PlayChallengePage = lazy(() => import('@/pages/PlayPage').then(m => ({ default: m.PlayChallengePage })))
 
 function PrivateRoute({ children }: { children: React.ReactNode }) {
   const { isLoggedIn, isGuest } = useAuth()
@@ -38,6 +40,10 @@ export default function App() {
 
         {/* Full-screen detail — private, no tab bar */}
         <Route path="/card/:id" element={<PrivateRoute><CardDetailPage /></PrivateRoute>} />
+
+        {/* Full-screen play routes, also used inside the native apps' WebViews */}
+        <Route path="/play/story/:slug" element={<PrivateRoute><PlayStoryPage /></PrivateRoute>} />
+        <Route path="/play/challenge/:id" element={<PrivateRoute><PlayChallengePage /></PrivateRoute>} />
 
         {/* Tab-bar layout — all protected */}
         <Route
