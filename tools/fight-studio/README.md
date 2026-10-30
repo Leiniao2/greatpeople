@@ -32,19 +32,53 @@ Desktop browsers only; there is no mobile layout. `npm run typecheck` runs
 | Locations | Edit per-stat bonuses, capacity and trait text; bonus heatmap by era; flags cards not in `locations.json` | `data/location_cards.json`, `data/locations.json` | `location_cards.json` |
 | Balance | Stat histograms, power ranking, top-10 concentration, era / gender / identity heatmaps, survival and hazard risk with adjustable thresholds, achievement reachability, trait impact, and an "effect of unsaved edits" table | current in-memory data | – |
 | Simulator | Two sides (GPs + followers) at one location; per-stat conflict totals with trait / location / follower breakdown, survival and hazard outcomes | current in-memory data | – |
+| Engine sync | Jobs that hand rule/trait changes to Claude Code to update the engine; live log, summary, diff, typecheck, revert; ad-hoc instructions | `/api/jobs` | engine files (via the agent) |
 
 Edits are held in memory until you press **Save** on the tab or **Save all
 changes** in the top bar; **Revert** discards them. Unsaved tabs show a dot.
 Balance and Simulator always use the unsaved state, so you can test a change
 before writing it.
 
-## Saving and syncing
+## Saving, syncing and engine sync
 
 Saves rewrite the file exactly as the repo stores it (2-space JSON, the
 file's own trailing-newline convention), so a save never produces a
-formatting-only diff. After saving `data/*.json`, either run
-`scripts/sync-assets.sh` or just commit: the pre-commit hook copies the
-platform versions.
+formatting-only diff.
+
+**Data edits reach the game immediately.** Saving any `data/*.json` file
+runs `scripts/sync-assets.sh`, so `web/src/data/*.json` (and the iOS/Android
+copies) update and the web dev server on port 3001 hot-reloads. Production
+still needs a deploy.
+
+**Rule and text edits reach the engine through Claude Code.** The engine is
+code (`web/src/pages/BattlePage.tsx`), so a change to a rules-registry row,
+to `docs/fight.md`, or to a card's trait/achievement text cannot be applied
+by copying a file. When **Save all & update engine** is pressed with *engine
+sync* on (top bar, default on), the tool:
+
+1. saves every dirty file;
+2. builds a change report from the before/after contents
+   (`src/lib/changes.ts`): rule rows field by field, a line diff of the docs,
+   trait/achievement text old → new, plus a data-only section for reference;
+3. starts `claude -p` headless in the repo root (`server/api.ts`, `startJob`)
+   with that report and a fixed guide. The agent may Read/Edit/Write, run
+   `npx tsc`, `npx vitest` and read-only git commands, nothing else
+   (`--allowedTools`, `--permission-mode acceptEdits`). It is told to update
+   `BattlePage.tsx`, keep `src/lib/engineTraits.ts` / `engine.ts` in step,
+   update the affected `fight_rules.json` rows, typecheck, and never commit;
+4. streams the agent's log to the **Engine sync** tab, then lists the files
+   the agent wrote (only those: files another session changes meanwhile are
+   never counted), shows the diff and typecheck results, and offers
+   **Revert**, which restores the agent-written files (and leaves any file
+   that already carried other uncommitted edits alone).
+
+The agent runs with the user's own Claude Code login; each job costs a few
+tens of cents to a few dollars depending on the change. Jobs live in server
+memory until the dev server restarts. Review the diff, run the game on
+port 3001, then commit as usual.
+
+The **Engine sync** tab can also run an ad-hoc instruction ("implement
+Gandhi's Mahatma trait…") with or without the pending change report.
 
 ## How it works
 
@@ -89,4 +123,7 @@ can be read or written.
   returns 403 otherwise; Vite is also told to bind only to 127.0.0.1.
 - There is no authentication because there is no network exposure. Do not
   add `--host` or a reverse proxy in front of it.
-- It can run `scripts/sync-assets.sh` (POST /api/sync) and nothing else.
+- It can run `scripts/sync-assets.sh` (POST /api/sync) and start headless
+  Claude Code jobs (POST /api/apply) with a restricted tool allow-list; the
+  jobs run as the local user in the repo root. Nothing is reachable from
+  other machines.

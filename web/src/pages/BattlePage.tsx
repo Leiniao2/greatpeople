@@ -725,6 +725,12 @@ function gameReducer(state: GameState, action: GameAction): GameState {
       const eventCard = player.eventHand[action.eventCardIdx]
       if (!eventCard) return state
 
+      // Player must have a GP at the location that was not deployed this turn
+      const targetLoc = state.locations.find(l => l.id === action.locationId)
+      if (!targetLoc) return state
+      const hasGPHere = targetLoc.cards.some(c => c.type === 'gp' && c.playerId === player.id && !c.justDeployed)
+      if (!hasGPHere) return state
+
       const newPlayers = state.players.map((p, i) =>
         i === playerIdx ? { ...p, eventHand: p.eventHand.filter((_, idx) => idx !== action.eventCardIdx) } : p
       )
@@ -1927,7 +1933,7 @@ function RulesModal({ onClose }: { onClose: () => void }) {
               <li><span className="text-ink font-semibold">Deploy</span> — Play one Great Person from your hand to any location.</li>
               <li><span className="text-ink font-semibold">Add Follower</span> — Place a follower at a location where you have a Great Person.</li>
               <li><span className="text-ink font-semibold">Move</span> — Relocate one of your cards to a different location.</li>
-              <li><span className="text-ink font-semibold">Trigger Event</span> — Activate the event card at a location where you have a Great Person.</li>
+              <li><span className="text-ink font-semibold">Trigger Event</span> — Start an event at a location where you have a Great Person that was not deployed this turn.</li>
               <li><span className="text-ink font-semibold">Attack</span> — During a Local Event, challenge a rival's card.</li>
               <li><span className="text-ink font-semibold">Retrieve</span> — Return one of your cards from the board to your hand.</li>
             </ul>
@@ -2394,7 +2400,7 @@ function BattleGame({ gameState, dispatch, onExit }: BattleGameProps) {
           <p className="text-accent text-xs text-center">
             {selection.mode === 'deploy-gp' && 'Tap a location to deploy this Great Person'}
             {selection.mode === 'add-follower' && 'Tap a location (where you have a GP) to add follower'}
-            {selection.mode === 'start-event' && 'Tap a location to start this event'}
+            {selection.mode === 'start-event' && 'Tap a location where you have a GP (not deployed this turn) to start this event'}
             {selection.mode === 'select-onboard' && 'Card selected — use action buttons below or tap opponent card to attack'}
             {selection.mode === 'move-target' && 'Tap a location to move card there'}
             {selection.mode === 'attack-select-target' && 'Tap an opponent card to attack'}

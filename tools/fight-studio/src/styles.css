@@ -120,3 +120,15 @@ table.grid td { overflow-wrap: anywhere; }
 .pos { color: var(--good); } .neg { color: var(--critical); }
 pre.out { background: var(--surface-2); padding: 8px; border-radius: 6px; white-space: pre-wrap; font-size: 12px; }
 details summary { cursor: pointer; }
+.joblog { background: var(--surface-2); border-radius: 6px; padding: 8px 10px; max-height: 320px; overflow: auto; font-size: 12px; line-height: 1.45; }
+.jl { white-space: pre-wrap; }
+.jl .jt { color: var(--muted); margin-right: 8px; font-variant-numeric: tabular-nums; }
+.jl.tool { color: var(--ink-2); }
+.jl.error { color: var(--critical); }
+.jl.info { color: var(--muted); }
+.jl.text { color: var(--ink); margin: 4px 0; }
+.diffview { max-height: 480px; overflow: auto; }
+.topbar label.small { white-space: nowrap; }
+.topbar { flex-wrap: nowrap; }
+.topbar h1, .tabs button, .topbar .btn { white-space: nowrap; }
+.topbar .busy { max-width: 360px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }

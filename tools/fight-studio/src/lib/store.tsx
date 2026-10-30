@@ -1,5 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
-import type { FileContents, FileKey, FileMeta } from '../types'
+import type { EngineJob, FileContents, FileKey, FileMeta } from '../types'
+import { buildChangeReport } from './changes'
 
 interface ServerFile { key: FileKey; path: string; kind: 'json' | 'md'; content: unknown }
 
@@ -15,10 +16,19 @@ interface StoreValue {
   update: <K extends FileKey>(key: K, next: FileContents[K]) => void
   revert: (key: FileKey) => void
   save: (key: FileKey) => Promise<void>
+  /** Save every dirty file, then (if enabled) hand the behavioural diff to the engine agent. */
   saveAll: () => Promise<void>
   reload: () => Promise<void>
   sync: () => Promise<string>
   busy: string | null
+  notice: string | null
+  applyToEngine: boolean
+  setApplyToEngine: (v: boolean) => void
+  /** Preview of the report that saveAll would send right now. */
+  pendingReport: { report: string; behavioural: boolean }
+  jobs: EngineJob[]
+  runJob: (report: string, instruction: string) => Promise<EngineJob>
+  revertJob: (id: string) => Promise<void>
 }
 
 const Ctx = createContext<StoreValue | null>(null)
@@ -29,6 +39,12 @@ function stable(v: unknown): string {
   return typeof v === 'string' ? v : JSON.stringify(v)
 }
 
+async function api<T>(url: string, init?: RequestInit): Promise<T> {
+  const res = await fetch(url, init)
+  if (!res.ok) throw new Error(`${res.status} ${await res.text()}`)
+  return res.json() as Promise<T>
+}
+
 export function StoreProvider({ children }: { children: ReactNode }) {
   const [data, setData] = useState<FileContents | null>(null)
   const [saved, setSaved] = useState<FileContents | null>(null)
@@ -37,14 +53,19 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const [gitStatus, setGitStatus] = useState('')
   const [error, setError] = useState<string | null>(null)
   const [busy, setBusy] = useState<string | null>(null)
+  const [notice, setNotice] = useState<string | null>(null)
+  const [applyToEngine, setApplyToEngine] = useState<boolean>(() => {
+    try { return localStorage.getItem('fs.applyToEngine') !== 'off' } catch { return true }
+  })
+  const [jobs, setJobs] = useState<EngineJob[]>([])
   const dataRef = useRef<FileContents | null>(null)
+  const savedRef = useRef<FileContents | null>(null)
   dataRef.current = data
+  savedRef.current = saved
 
   const reload = useCallback(async () => {
     try {
-      const res = await fetch('/api/files')
-      if (!res.ok) throw new Error(`${res.status} ${await res.text()}`)
-      const json = await res.json() as { root: string; files: Record<FileKey, ServerFile>; gitStatus: string }
+      const json = await api<{ root: string; files: Record<FileKey, ServerFile>; gitStatus: string }>('/api/files')
       const contents = {} as FileContents
       const m = {} as Record<FileKey, FileMeta>
       for (const k of KEYS) {
@@ -63,6 +84,30 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   }, [])
 
   useEffect(() => { void reload() }, [reload])
+  useEffect(() => { try { localStorage.setItem('fs.applyToEngine', applyToEngine ? 'on' : 'off') } catch { /* ignore */ } }, [applyToEngine])
+
+  // Poll jobs while any is running (and once on load).
+  const refreshJobs = useCallback(async () => {
+    try { setJobs(await api<EngineJob[]>('/api/jobs')) } catch { /* server gone */ }
+  }, [])
+  useEffect(() => { void refreshJobs() }, [refreshJobs])
+  const anyRunning = jobs.some(j => j.status === 'running')
+  useEffect(() => {
+    // Fast while a job streams; slow otherwise so jobs started from the API (or another tab) still appear.
+    const t = setInterval(() => void refreshJobs(), anyRunning ? 1500 : 10000)
+    return () => clearInterval(t)
+  }, [anyRunning, refreshJobs])
+  // When a job finishes, the agent may have rewritten fight_rules.json: reload unless the user has unsaved edits.
+  const prevRunning = useRef(false)
+  useEffect(() => {
+    if (prevRunning.current && !anyRunning) {
+      const d = dataRef.current, s = savedRef.current
+      const clean = !!d && !!s && KEYS.every(k => stable(d[k]) === stable(s[k]))
+      if (clean) void reload()
+      setNotice('Engine job finished — see the Engine tab.')
+    }
+    prevRunning.current = anyRunning
+  }, [anyRunning, reload])
 
   const update = useCallback(<K extends FileKey>(key: K, next: FileContents[K]) => {
     setData(d => (d ? { ...d, [key]: next } : d))
@@ -77,13 +122,14 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     if (!d) return
     setBusy(`Saving ${key}…`)
     try {
-      const res = await fetch(`/api/file/${key}`, {
+      const r = await api<{ ok: boolean; path: string; sync: { ok: boolean; output: string } | null }>(`/api/file/${key}`, {
         method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ content: d[key] }),
       })
-      if (!res.ok) throw new Error(`${res.status} ${await res.text()}`)
       setSaved(s => (s ? { ...s, [key]: structuredClone(d[key]) } : s))
-      const gs = await fetch('/api/git-status').then(r => r.json()) as { gitStatus: string }
+      const gs = await api<{ gitStatus: string }>('/api/git-status')
       setGitStatus(gs.gitStatus)
+      if (r.sync) setNotice(r.sync.ok ? `Saved ${r.path} and synced platform copies (web dev server reloads).` : `Saved ${r.path}; sync failed: ${r.sync.output}`)
+      else setNotice(`Saved ${r.path}.`)
     } finally {
       setBusy(null)
     }
@@ -95,16 +141,36 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     return out
   }, [data, saved])
 
+  const pendingReport = useMemo(() => (data && saved ? buildChangeReport(saved, data) : { report: '', behavioural: false }), [data, saved])
+
+  const runJob = useCallback(async (report: string, instruction: string) => {
+    const job = await api<EngineJob>('/api/apply', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ report, instruction }) })
+    setJobs(js => [job, ...js])
+    setNotice('Engine job started — Claude Code is updating the engine. Follow it on the Engine tab.')
+    return job
+  }, [])
+
   const saveAll = useCallback(async () => {
-    for (const k of KEYS) if (dirty[k]) await save(k)
-  }, [dirty, save])
+    const d = dataRef.current, s = savedRef.current
+    if (!d || !s) return
+    const { report, behavioural } = buildChangeReport(s, d)
+    for (const k of KEYS) if (stable(d[k]) !== stable(s[k])) await save(k)
+    if (applyToEngine && behavioural) await runJob(report, '')
+    else if (behavioural) setNotice('Saved. Engine sync is off, so the rule changes were not sent to the engine agent.')
+  }, [save, applyToEngine, runJob])
+
+  const revertJob = useCallback(async (id: string) => {
+    const r = await api<{ reverted: string[]; kept: string[] }>(`/api/jobs/${id}/revert`, { method: 'POST' })
+    setNotice(`Reverted ${r.reverted.length} file(s)${r.kept.length ? `; kept ${r.kept.join(', ')} (had other edits)` : ''}.`)
+    await refreshJobs()
+    await reload()
+  }, [refreshJobs, reload])
 
   const sync = useCallback(async () => {
     setBusy('Running scripts/sync-assets.sh…')
     try {
-      const res = await fetch('/api/sync', { method: 'POST' })
-      const json = await res.json() as { ok: boolean; output: string }
-      const gs = await fetch('/api/git-status').then(r => r.json()) as { gitStatus: string }
+      const json = await api<{ ok: boolean; output: string }>('/api/sync', { method: 'POST' })
+      const gs = await api<{ gitStatus: string }>('/api/git-status')
       setGitStatus(gs.gitStatus)
       return (json.ok ? '' : 'FAILED\n') + json.output
     } finally {
@@ -113,7 +179,8 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   }, [])
 
   const value: StoreValue | null = data && saved && meta ? {
-    loaded: true, error, root, data, saved, meta, gitStatus, dirty, update, revert, save, saveAll, reload, sync, busy,
+    loaded: true, error, root, data, saved, meta, gitStatus, dirty, update, revert, save, saveAll, reload, sync, busy, notice,
+    applyToEngine, setApplyToEngine, pendingReport, jobs, runJob, revertJob,
   } : null
 
   if (!value) {
