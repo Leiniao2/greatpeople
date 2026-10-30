@@ -1,4 +1,6 @@
 import { useState, useMemo } from 'react'
+import type { MinigameProps } from '@/games/types'
+import { scale, useGameTimer, TimerBar } from './_shared'
 
 interface Piece { id: string; emoji: string; label: string; color: string }
 
@@ -110,7 +112,11 @@ function shuffle<T>(arr: T[]): T[] {
   return a
 }
 
-export default function JigsawGame({ configId, onWin }: { configId: string; onWin: () => void }) {
+export default function JigsawGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
+  // Higher difficulties put the puzzle on a clock.
+  const timeLimit = scale(difficulty, [0, 0, 120, 90])
+  const timer = useGameTimer({ seconds: timeLimit, running: true, onExpire: () => onLose('out of time') })
+
   const config = CONFIGS[configId]
   const correctOrder = useMemo(() => config.pieces.map(p => p.id), [config])
   const [board, setBoard] = useState<string[]>(() => shuffle(correctOrder))
@@ -137,6 +143,7 @@ export default function JigsawGame({ configId, onWin }: { configId: string; onWi
 
   return (
     <div className="flex flex-col gap-4">
+      {timer.active && <div className="w-full"><TimerBar remaining={timer.remaining} total={timer.total} /></div>}
       <div className="text-center">
         <p className="text-accent font-bold text-sm">{config.title}</p>
         <p className="text-muted text-xs">{config.artist} · {config.era}</p>

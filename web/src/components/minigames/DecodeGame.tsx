@@ -1,4 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
+import type { MinigameProps } from '@/games/types'
+import { scale, useGameTimer, TimerBar } from './_shared'
 
 // ── Config ─────────────────────────────────────────────────────────────────────
 
@@ -57,7 +59,11 @@ const ALPHA_ROWS = [
 
 // ── Component ──────────────────────────────────────────────────────────────────
 
-export default function DecodeGame({ configId, onWin }: { configId: string; onWin: () => void }) {
+export default function DecodeGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
+  // Higher difficulties put the puzzle on a clock.
+  const timeLimit = scale(difficulty, [0, 0, 120, 90])
+  const timer = useGameTimer({ seconds: timeLimit, running: true, onExpire: () => onLose('out of time') })
+
   const config = CONFIGS[configId] ?? Object.values(CONFIGS)[0]
   const usedConfigId = CONFIGS[configId] ? configId : Object.keys(CONFIGS)[0]
 
@@ -170,6 +176,7 @@ export default function DecodeGame({ configId, onWin }: { configId: string; onWi
 
   return (
     <div className="flex flex-col items-center gap-3 select-none">
+      {timer.active && <div className="w-full"><TimerBar remaining={timer.remaining} total={timer.total} /></div>}
       {/* Header */}
       <div className="text-center px-2">
         <p className="text-accent font-bold text-sm tracking-wide">{config.title}</p>

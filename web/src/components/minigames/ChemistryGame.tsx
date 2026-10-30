@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import type { MinigameProps } from '@/games/types'
+import { scale, useGameTimer, TimerBar } from './_shared'
 
 interface Ingredient { symbol: string; name: string; color: string; max: number }
 interface ChemistryConfig {
@@ -60,7 +62,11 @@ const CONFIGS: Record<string, ChemistryConfig> = {
   },
 }
 
-export default function ChemistryGame({ configId, onWin }: { configId: string; onWin: () => void }) {
+export default function ChemistryGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
+  // Higher difficulties put the puzzle on a clock.
+  const timeLimit = scale(difficulty, [0, 0, 120, 90])
+  const timer = useGameTimer({ seconds: timeLimit, running: true, onExpire: () => onLose('out of time') })
+
   const config = CONFIGS[configId] ?? CONFIGS['tea-blend']
   const [counts, setCounts] = useState<Record<string, number>>(
     () => Object.fromEntries(config.ingredients.map(i => [i.symbol, 0]))
@@ -105,6 +111,7 @@ export default function ChemistryGame({ configId, onWin }: { configId: string; o
 
   return (
     <div className="flex flex-col gap-4 bg-paper-2 rounded-xl p-4">
+      {timer.active && <div className="w-full"><TimerBar remaining={timer.remaining} total={timer.total} /></div>}
       <p className="text-accent/80 text-[10px] font-bold uppercase tracking-widest">{config.title}</p>
       <p className="text-ink text-sm font-medium leading-snug">{config.question}</p>
 

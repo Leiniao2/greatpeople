@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import type { MinigameProps } from '@/games/types'
+import { scale, useGameTimer, TimerBar } from './_shared'
 
 interface Region {
   id: string
@@ -478,7 +480,11 @@ const CONFIGS: Record<string, PaintingConfig> = {
   },
 }
 
-export default function PaintingGame({ configId, onWin }: { configId: string; onWin: () => void }) {
+export default function PaintingGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
+  // Higher difficulties put the puzzle on a clock.
+  const timeLimit = scale(difficulty, [0, 0, 120, 90])
+  const timer = useGameTimer({ seconds: timeLimit, running: true, onExpire: () => onLose('out of time') })
+
   const config = CONFIGS[configId] ?? CONFIGS['spring-garden']
   const [filled, setFilled] = useState<Record<string, string>>({})
   const [selectedColor, setSelectedColor] = useState<string>(config.palette[0].color)
@@ -517,6 +523,7 @@ export default function PaintingGame({ configId, onWin }: { configId: string; on
 
   return (
     <div className="flex flex-col gap-3 bg-paper-2 rounded-xl p-3">
+      {timer.active && <div className="w-full"><TimerBar remaining={timer.remaining} total={timer.total} /></div>}
       <p className="text-accent/80 text-[10px] font-bold uppercase tracking-widest">{config.title}</p>
       <p className="text-muted text-xs">{config.instruction}</p>
 

@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import type { MinigameProps } from '@/games/types'
+import { scale } from './_shared'
 
 // Metal oxides → fired colors in porcelain/glaze
 const ELEMENT_COLORS: Record<string, { fired: string; firedLabel: string; element: string; symbol: string }> = {
@@ -127,7 +129,10 @@ function VesselSVG({
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
-export default function PorcelainGame({ configId, onWin }: { configId: string; onWin: () => void }) {
+export default function PorcelainGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
+  const maxAttempts = scale(difficulty, [3, 2, 2, 1])
+  const [attempts, setAttempts] = useState(0)
+
   const cfg = CONFIGS[configId] ?? CONFIGS['copper-vase']
   const [painted, setPainted] = useState<Record<string, string>>({})
   const [activeElem, setActiveElem] = useState<string | null>(null)
@@ -150,6 +155,10 @@ export default function PorcelainGame({ configId, onWin }: { configId: string; o
     if (allCorrect) {
       setWon(true)
       setTimeout(onWin, 1000)
+    } else {
+      const n = attempts + 1
+      setAttempts(n)
+      if (n >= maxAttempts) setTimeout(() => onLose('wrong glaze'), 1000)
     }
   }
 

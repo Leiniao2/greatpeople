@@ -1,4 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
+import type { MinigameProps } from '@/games/types'
+import { scale, useGameTimer, TimerBar } from './_shared'
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
@@ -322,12 +324,12 @@ function traceLight(
 
 // ── Component ──────────────────────────────────────────────────────────────────
 
-interface MirrorGameProps {
-  configId: string
-  onWin: () => void
-}
 
-export default function MirrorGame({ configId, onWin }: MirrorGameProps) {
+export default function MirrorGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
+  // Higher difficulties put the puzzle on a clock.
+  const timeLimit = scale(difficulty, [0, 0, 120, 90])
+  const timer = useGameTimer({ seconds: timeLimit, running: true, onExpire: () => onLose('out of time') })
+
   const config = CONFIGS[configId as MirrorKey] ?? CONFIGS['mendel']
   const { gridSize, source, target, fixed, maxMirrors } = config
 
@@ -392,6 +394,7 @@ export default function MirrorGame({ configId, onWin }: MirrorGameProps) {
 
   return (
     <div className="flex flex-col items-center gap-3">
+      {timer.active && <div className="w-full"><TimerBar remaining={timer.remaining} total={timer.total} /></div>}
       {/* Header */}
       <div className="text-center px-2">
         <p className="text-accent font-bold text-sm">{config.title}</p>

@@ -1,4 +1,6 @@
 import { useState, useMemo } from 'react'
+import type { MinigameProps } from '@/games/types'
+import { scale } from './_shared'
 
 interface ClassifyConfig {
   title: string
@@ -135,7 +137,9 @@ const CONFIGS: Record<string, ClassifyConfig> = {
   },
 }
 
-export default function ClassifyGame({ configId, onWin }: { configId: string; onWin: () => void }) {
+export default function ClassifyGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
+  const maxMistakes = scale(difficulty, [3, 3, 2, 2])
+  const [mistakes, setMistakes] = useState(0)
   const config = CONFIGS[configId] ?? CONFIGS['linnaeus-kingdom']
   const items = useMemo(() => shuffle(config.items), [config.items])
 
@@ -166,6 +170,9 @@ export default function ClassifyGame({ configId, onWin }: { configId: string; on
       }
     } else {
       setWrongItem(selectedItem)
+      const n = mistakes + 1
+      setMistakes(n)
+      if (n >= maxMistakes) { setTimeout(() => onLose('too many misplacements'), 800); return }
       setTimeout(() => { setWrongItem(null); setSelectedItem(null) }, 800)
     }
   }

@@ -1,4 +1,6 @@
 import { useState, useMemo } from 'react'
+import type { MinigameProps } from '@/games/types'
+import { scale, useGameTimer, TimerBar } from './_shared'
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
@@ -98,7 +100,11 @@ function genChoices(correct: number, count = 4): number[] {
 
 // ── Component ──────────────────────────────────────────────────────────────────
 
-export default function WorldClockGame({ configId, onWin }: { configId: string; onWin: () => void }) {
+export default function WorldClockGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
+  // Higher difficulties put the puzzle on a clock.
+  const timeLimit = scale(difficulty, [0, 0, 120, 90])
+  const timer = useGameTimer({ seconds: timeLimit, running: true, onExpire: () => onLose('out of time') })
+
   const cfg = CONFIGS[configId] ?? CONFIGS['magellan-voyage']
 
   const questions = useMemo(() => cfg.questions.map(spec => {
@@ -155,6 +161,7 @@ export default function WorldClockGame({ configId, onWin }: { configId: string; 
 
   return (
     <div className="flex flex-col items-center gap-4 p-4 max-w-xs mx-auto">
+      {timer.active && <div className="w-full"><TimerBar remaining={timer.remaining} total={timer.total} /></div>}
       {/* Progress */}
       <div className="flex gap-1.5">
         {questions.map((_, i) => (

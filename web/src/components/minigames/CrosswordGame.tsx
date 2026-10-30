@@ -1,4 +1,6 @@
 import { useState, useMemo, useCallback } from 'react'
+import type { MinigameProps } from '@/games/types'
+import { scale } from './_shared'
 
 interface WordDef {
   number: number
@@ -137,7 +139,10 @@ function wKey(w: WordDef) {
   return `${w.number}${w.direction === 'across' ? 'A' : 'D'}`
 }
 
-export default function CrosswordGame({ configId, onWin }: { configId: string; onWin: () => void }) {
+export default function CrosswordGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
+  // Wrong letters allowed before the puzzle is lost; 0 = unlimited.
+  const maxWrong = scale(difficulty, [0, 8, 5, 3])
+  const [wrongCount, setWrongCount] = useState(0)
   const config = CONFIGS[configId] ?? CONFIGS.magellan
 
   const { answerGrid, wordCellsMap, cellWordsMap, cellNumberMap } = useMemo(() => {
@@ -216,6 +221,11 @@ export default function CrosswordGame({ configId, onWin }: { configId: string; o
     } else {
       if (cursorPos >= cells.length) return
       const [r, c] = cells[cursorPos]
+      if (key !== answerGrid[r][c]) {
+        const n = wrongCount + 1
+        setWrongCount(n)
+        if (maxWrong && n >= maxWrong) { setTimeout(() => onLose('too many wrong letters'), 400) }
+      }
       setPlayerGrid(prev => {
         const next = prev.map(row => [...row])
         next[r][c] = key
@@ -224,7 +234,7 @@ export default function CrosswordGame({ configId, onWin }: { configId: string; o
       })
       setCursorPos(Math.min(cursorPos + 1, cells.length - 1))
     }
-  }, [activeKey, cursorPos, wordCellsMap, won, checkWin, onWin])
+  }, [activeKey, cursorPos, wordCellsMap, won, checkWin, onWin, onLose, answerGrid, wrongCount, maxWrong])
 
   const cellSize = Math.min(40, Math.floor(300 / config.cols))
 

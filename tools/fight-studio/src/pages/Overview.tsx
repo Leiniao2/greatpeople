@@ -43,9 +43,10 @@ export default function Overview() {
       </div>
 
       <div className="row">
-        <div className="card" style={{ flex: '1 1 640px' }}>
+        <div className="card" style={{ flex: '2 1 560px' }}>
           <h4>Where fight knowledge lives</h4>
-          <table className="grid">
+          <table className="grid" style={{ tableLayout: 'fixed' }}>
+            <colgroup><col style={{ width: 72 }} /><col style={{ width: '38%' }} /><col /></colgroup>
             <thead><tr><th>Kind</th><th>File</th><th>Role</th></tr></thead>
             <tbody>
               {SOURCE_INVENTORY.map(s => (
@@ -54,7 +55,7 @@ export default function Overview() {
             </tbody>
           </table>
         </div>
-        <div className="card" style={{ flex: '1 1 380px' }}>
+        <div className="card" style={{ flex: '1 1 360px', maxWidth: 560 }}>
           <h4>Headline findings</h4>
           <ul className="small" style={{ paddingLeft: 18, lineHeight: 1.5 }}>
             <li><b>Three survival rules exist.</b> fight.md says a stat total below 10 dies; the web engine uses 5; iOS/Android dialogs say 10. For hazards: doc says all-stat total below 100, engine says minimum per-stat total below 5, mobile says 100.</li>

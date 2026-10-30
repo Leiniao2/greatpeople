@@ -1,4 +1,6 @@
 import { useState, useMemo } from 'react'
+import type { MinigameProps } from '@/games/types'
+import { scale, useGameTimer, TimerBar } from './_shared'
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
@@ -180,7 +182,11 @@ function MatchMeter({ pct }: { pct: number }) {
 
 // ── Main component ─────────────────────────────────────────────────────────────
 
-export default function ColorMixGame({ configId, onWin }: { configId: string; onWin: () => void }) {
+export default function ColorMixGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
+  // Higher difficulties put the puzzle on a clock.
+  const timeLimit = scale(difficulty, [0, 0, 120, 90])
+  const timer = useGameTimer({ seconds: timeLimit, running: true, onExpire: () => onLose('out of time') })
+
   const cfg = CONFIGS[configId] ?? CONFIGS['titian-red']
   const [amounts, setAmounts] = useState<Record<string, number>>(
     () => Object.fromEntries(cfg.pigments.map(p => [p.id, 0]))
@@ -224,6 +230,7 @@ export default function ColorMixGame({ configId, onWin }: { configId: string; on
 
   return (
     <div className="flex flex-col gap-4 bg-paper-2 rounded-xl p-4">
+      {timer.active && <div className="w-full"><TimerBar remaining={timer.remaining} total={timer.total} /></div>}
       {/* Title */}
       <div>
         <p className="text-accent/80 text-[10px] font-bold uppercase tracking-widest">{cfg.title}</p>

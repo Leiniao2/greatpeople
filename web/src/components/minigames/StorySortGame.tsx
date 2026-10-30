@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import type { MinigameProps } from '@/games/types'
+import { scale } from './_shared'
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
@@ -82,7 +84,9 @@ function shuffle<T>(arr: T[]): T[] {
 
 // ── Component ──────────────────────────────────────────────────────────────────
 
-export default function StorySortGame({ configId, onWin }: { configId: string; onWin: () => void }) {
+export default function StorySortGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
+  const maxAttempts = scale(difficulty, [3, 2, 2, 1])
+  const [attempts, setAttempts] = useState(0)
   const config = CONFIGS[configId] ?? CONFIGS['odyssey-return']
   const correct = config.paragraphs
 
@@ -100,6 +104,9 @@ export default function StorySortGame({ configId, onWin }: { configId: string; o
     } else {
       setShaking(true)
       setTimeout(() => setShaking(false), 500)
+      const n = attempts + 1
+      setAttempts(n)
+      if (n >= maxAttempts) setTimeout(() => onLose('wrong order'), 700)
     }
   }
 
@@ -198,7 +205,7 @@ export default function StorySortGame({ configId, onWin }: { configId: string; o
         </button>
       )}
 
-      {submitted && !isCorrect && (
+      {submitted && !isCorrect && attempts < maxAttempts && (
         <button
           onClick={() => setSubmitted(false)}
           className="py-2 rounded-xl border border-line text-muted text-xs hover:border-line-2 transition-all"

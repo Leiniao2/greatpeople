@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react'
+import type { MinigameProps } from '@/games/types'
+import { scale, useGameTimer, TimerBar } from './_shared'
 
 // ── Types & config ─────────────────────────────────────────────────────────────
 
@@ -101,12 +103,12 @@ function slideTile(board: TileBoard, tileIdx: number): TileBoard | null {
 
 // ── Component ──────────────────────────────────────────────────────────────────
 
-interface SlidingPuzzleProps {
-  configId: string
-  onWin: () => void
-}
 
-export default function SlidingPuzzle({ configId, onWin }: SlidingPuzzleProps) {
+export default function SlidingPuzzle({ configId, difficulty, onWin, onLose }: MinigameProps) {
+  // Higher difficulties put the puzzle on a clock.
+  const timeLimit = scale(difficulty, [0, 0, 120, 90])
+  const timer = useGameTimer({ seconds: timeLimit, running: true, onExpire: () => onLose('out of time') })
+
   const config = CONFIGS[configId as PuzzleKey] ?? CONFIGS['renaissance']
   const [board, setBoard] = useState<TileBoard>([...config.initial])
   const [moves, setMoves] = useState(0)
@@ -134,6 +136,7 @@ export default function SlidingPuzzle({ configId, onWin }: SlidingPuzzleProps) {
 
   return (
     <div className="flex flex-col items-center gap-4">
+      {timer.active && <div className="w-full"><TimerBar remaining={timer.remaining} total={timer.total} /></div>}
       {/* Header */}
       <div className="text-center">
         <p className="text-accent font-bold text-sm">{config.title}</p>

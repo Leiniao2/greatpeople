@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import type { MinigameProps } from '@/games/types'
+import { scale, useGameTimer, TimerBar } from './_shared'
 
 // Islands are nodes with a required bridge count.
 // Bridges connect islands horizontally or vertically (1 or 2 bridges per pair).
@@ -166,7 +168,11 @@ function checkWin(islands: Island[], bridges: BridgeMap): boolean {
   return visited.size === islands.length
 }
 
-export default function BridgeGame({ configId, onWin }: { configId: string; onWin: () => void }) {
+export default function BridgeGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
+  // Higher difficulties put the puzzle on a clock.
+  const timeLimit = scale(difficulty, [0, 0, 120, 90])
+  const timer = useGameTimer({ seconds: timeLimit, running: true, onExpire: () => onLose('out of time') })
+
   const cfg = CONFIGS[configId] ?? CONFIGS['roman-bridges']
   const { islands, rows, cols } = cfg
 
@@ -239,6 +245,7 @@ export default function BridgeGame({ configId, onWin }: { configId: string; onWi
 
   return (
     <div className="flex flex-col gap-3 bg-paper-2 rounded-xl p-3">
+      {timer.active && <div className="w-full"><TimerBar remaining={timer.remaining} total={timer.total} /></div>}
       <p className="text-accent/80 text-[10px] font-bold uppercase tracking-widest">{cfg.title}</p>
       <p className="text-ink text-sm font-medium leading-snug">{cfg.question}</p>
 
