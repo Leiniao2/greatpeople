@@ -1,0 +1,755 @@
+[
+  {
+    "folder": "paintings",
+    "key": "bernini_apollo_and_daphne",
+    "title": "Apollo and Daphne",
+    "subtitle": "Gian Lorenzo Bernini, 1625",
+    "cards": [
+      "bernini"
+    ]
+  },
+  {
+    "folder": "paintings",
+    "key": "borromini_san_carlo_alle_quattro_fontane",
+    "title": "San Carlo alle Quattro Fontane",
+    "subtitle": "Francesco Borromini, 1646",
+    "cards": [
+      "borromini"
+    ]
+  },
+  {
+    "folder": "paintings",
+    "key": "botticelli_the_birth_of_venus",
+    "title": "The Birth of Venus",
+    "subtitle": "Sandro Botticelli, 1485"
+  },
+  {
+    "folder": "paintings",
+    "key": "hokusai_the_great_wave_off_kanagawa",
+    "title": "The Great Wave off Kanagawa",
+    "subtitle": "Katsushika Hokusai, 1831"
+  },
+  {
+    "folder": "paintings",
+    "key": "leonardo_mona_lisa",
+    "title": "Mona Lisa",
+    "subtitle": "Leonardo da Vinci, 1503"
+  },
+  {
+    "folder": "paintings",
+    "key": "michelangelo_the_creation_of_adam",
+    "title": "The Creation of Adam",
+    "subtitle": "Michelangelo, 1512"
+  },
+  {
+    "folder": "paintings",
+    "key": "nian_xiyao_palace_garden_perspective",
+    "title": "Palace Garden in Perspective",
+    "subtitle": "Nian Xiyao, Qing dynasty",
+    "cards": [
+      "nian_xiyao"
+    ]
+  },
+  {
+    "folder": "paintings",
+    "key": "raphael_the_school_of_athens",
+    "title": "The School of Athens",
+    "subtitle": "Raphael, 1511",
+    "cards": [
+      "euclid",
+      "zeno_of_elea",
+      "anaxagoras"
+    ]
+  },
+  {
+    "folder": "paintings",
+    "key": "titian_assumption_of_the_virgin",
+    "title": "Assumption of the Virgin",
+    "subtitle": "Titian, 1518",
+    "cards": [
+      "titian"
+    ]
+  },
+  {
+    "folder": "paintings",
+    "key": "titian_venus_of_urbino",
+    "title": "Venus of Urbino",
+    "subtitle": "Titian, 1538",
+    "cards": [
+      "titian"
+    ]
+  },
+  {
+    "folder": "paintings",
+    "key": "van_gogh_the_starry_night",
+    "title": "The Starry Night",
+    "subtitle": "Vincent van Gogh, 1889"
+  },
+  {
+    "folder": "paintings",
+    "key": "vermeer_girl_with_a_pearl_earring",
+    "title": "Girl with a Pearl Earring",
+    "subtitle": "Johannes Vermeer, 1665"
+  },
+  {
+    "folder": "paintings",
+    "key": "zhang_zeduan_along_the_river_qingming",
+    "title": "Along the River During the Qingming Festival",
+    "subtitle": "Zhang Zeduan, Song dynasty"
+  },
+  {
+    "folder": "battles",
+    "key": "battle_of_dara_530_belisarius",
+    "title": "Battle of Dara",
+    "subtitle": "530 AD",
+    "cards": [
+      "belisarius"
+    ]
+  },
+  {
+    "folder": "battles",
+    "key": "battle_of_hansan_island_1592_lee_sun_sin",
+    "title": "Battle of Hansan Island",
+    "subtitle": "1592",
+    "cards": [
+      "lee_sun_sin"
+    ]
+  },
+  {
+    "folder": "battles",
+    "key": "battle_of_ichi_no_tani_1184_taira_no_tadanori",
+    "title": "Battle of Ichi-no-Tani",
+    "subtitle": "1184",
+    "cards": [
+      "taira_no_tadanori"
+    ]
+  },
+  {
+    "folder": "battles",
+    "key": "battle_of_kalka_river_1223_batu_khan",
+    "title": "Battle of the Kalka River",
+    "subtitle": "1223",
+    "cards": [
+      "batu_khan"
+    ]
+  },
+  {
+    "folder": "battles",
+    "key": "hua_mulan_vs_rouran_cavalry",
+    "title": "Mulan against the Rouran",
+    "subtitle": "Northern Wei",
+    "cards": [
+      "hua_mulan"
+    ]
+  },
+  {
+    "folder": "battles",
+    "key": "luding_bridge_1935_long_march",
+    "title": "Crossing the Luding Bridge",
+    "subtitle": "Long March, 1935",
+    "cards": [
+      "mao_zedong"
+    ]
+  },
+  {
+    "folder": "battles",
+    "key": "nzinga_vs_portuguese_angola_1640s",
+    "title": "Nzinga against the Portuguese",
+    "subtitle": "Ndongo, 1640s",
+    "cards": [
+      "anna_nzinga"
+    ]
+  },
+  {
+    "folder": "battles",
+    "key": "peloponnesian_war_spartan_vs_athenian_hoplites",
+    "title": "Peloponnesian War",
+    "subtitle": "431–404 BC",
+    "cards": [
+      "pleistoanax",
+      "pericles"
+    ]
+  },
+  {
+    "folder": "battles",
+    "key": "ruminahui_defends_quito_1534",
+    "title": "Defence of Quito",
+    "subtitle": "1534",
+    "cards": [
+      "ruminahui"
+    ]
+  },
+  {
+    "folder": "battles",
+    "key": "sargon_of_akkad_storms_sumerian_city",
+    "title": "Sargon Storms Sumer",
+    "subtitle": "c. 2300 BC",
+    "cards": [
+      "sargon_i"
+    ]
+  },
+  {
+    "folder": "battles",
+    "key": "siege_of_ayutthaya_1569_bayinnaung",
+    "title": "Siege of Ayutthaya",
+    "subtitle": "1569",
+    "cards": [
+      "bayinnaung"
+    ]
+  },
+  {
+    "folder": "battles",
+    "key": "siege_of_tenochtitlan_1521",
+    "title": "Siege of Tenochtitlan",
+    "subtitle": "1521",
+    "cards": [
+      "montezuma_ii",
+      "tlacaelel"
+    ]
+  },
+  {
+    "folder": "items",
+    "key": "batu_khan_mongol_bow_and_sabre",
+    "title": "Mongol Bow and Sabre",
+    "cards": [
+      "batu_khan"
+    ]
+  },
+  {
+    "folder": "items",
+    "key": "bi_sheng_clay_movable_type",
+    "title": "Clay Movable Type",
+    "cards": [
+      "bi_sheng"
+    ]
+  },
+  {
+    "folder": "items",
+    "key": "brahms_schumann_grand_piano",
+    "title": "Grand Piano",
+    "cards": [
+      "johannes_brahms",
+      "robert_schumann",
+      "clara_schumann"
+    ]
+  },
+  {
+    "folder": "items",
+    "key": "earhart_aviator_helmet_and_map",
+    "title": "Aviator Helmet and Map",
+    "cards": [
+      "amelia_earhart"
+    ]
+  },
+  {
+    "folder": "items",
+    "key": "euclid_al_khwarizmi_astrolabe_and_geometry",
+    "title": "Astrolabe and Geometry",
+    "cards": [
+      "euclid",
+      "al_khwarizmi"
+    ]
+  },
+  {
+    "folder": "items",
+    "key": "gandhi_charkha_spinning_wheel",
+    "title": "Charkha Spinning Wheel",
+    "cards": [
+      "gandhi"
+    ]
+  },
+  {
+    "folder": "items",
+    "key": "gutenberg_printing_press",
+    "title": "Printing Press",
+    "cards": [
+      "gutenberg"
+    ]
+  },
+  {
+    "folder": "items",
+    "key": "hillary_tenzing_mountaineering_gear",
+    "title": "Mountaineering Gear",
+    "cards": [
+      "edmund_hillary",
+      "tenzing_norgay"
+    ]
+  },
+  {
+    "folder": "items",
+    "key": "lei_zu_silk_cocoons_and_silk",
+    "title": "Silkworm Cocoons and Silk",
+    "cards": [
+      "lei_zu"
+    ]
+  },
+  {
+    "folder": "items",
+    "key": "linnaeus_herbarium_and_microscope",
+    "title": "Herbarium and Microscope",
+    "cards": [
+      "carl_linnaeus",
+      "gregor_mendel",
+      "jane_goodall"
+    ]
+  },
+  {
+    "folder": "items",
+    "key": "lu_yu_tang_tea_set",
+    "title": "Tang Tea Ceremony Set",
+    "cards": [
+      "lu_yu"
+    ]
+  },
+  {
+    "folder": "items",
+    "key": "marie_antoinette_diamond_necklace_and_crown",
+    "title": "Diamond Necklace and Crown",
+    "cards": [
+      "marie_antoinette",
+      "louis_xvi"
+    ]
+  },
+  {
+    "folder": "items",
+    "key": "musashi_katana_and_wakizashi",
+    "title": "Katana and Wakizashi",
+    "cards": [
+      "miyamoto_musashi"
+    ]
+  },
+  {
+    "folder": "items",
+    "key": "renaissance_banquet_fruit_and_food",
+    "title": "Renaissance Banquet",
+    "cards": [
+      "joel_robuchon",
+      "lu_yu"
+    ]
+  },
+  {
+    "folder": "items",
+    "key": "turing_codebreaking_machine",
+    "title": "Codebreaking Machine",
+    "cards": [
+      "alan_turing"
+    ]
+  },
+  {
+    "folder": "items",
+    "key": "wedgwood_jasperware_vase",
+    "title": "Jasperware Vase",
+    "cards": [
+      "josiah_wedgwood"
+    ]
+  },
+  {
+    "folder": "maps",
+    "key": "achaemenid_persian_empire_500_bc",
+    "title": "Achaemenid Persian Empire",
+    "subtitle": "500 BC"
+  },
+  {
+    "folder": "maps",
+    "key": "ancient_egypt_and_mesopotamia",
+    "title": "Egypt and Mesopotamia",
+    "subtitle": "Bronze Age",
+    "cards": [
+      "imhotep",
+      "sargon_i",
+      "gilgamesh",
+      "hesy_ra"
+    ]
+  },
+  {
+    "folder": "maps",
+    "key": "aztec_and_inca_empires_1500",
+    "title": "Aztec and Inca Empires",
+    "subtitle": "c. 1500",
+    "cards": [
+      "montezuma_ii",
+      "pakal",
+      "ruminahui"
+    ]
+  },
+  {
+    "folder": "maps",
+    "key": "byzantine_empire_550_ad",
+    "title": "Byzantine Empire",
+    "subtitle": "550 AD",
+    "cards": [
+      "belisarius"
+    ]
+  },
+  {
+    "folder": "maps",
+    "key": "magellan_circumnavigation_route_1519_1522",
+    "title": "Magellan's Circumnavigation",
+    "subtitle": "1519–1522",
+    "cards": [
+      "magellan",
+      "manuel_i"
+    ]
+  },
+  {
+    "folder": "maps",
+    "key": "maurya_empire_india_3rd_century_bc",
+    "title": "Maurya Empire",
+    "subtitle": "3rd century BC",
+    "cards": [
+      "chanakya",
+      "mahavira"
+    ]
+  },
+  {
+    "folder": "maps",
+    "key": "ming_china_joseon_korea_japan_16th_century",
+    "title": "Ming China, Joseon and Japan",
+    "subtitle": "16th century",
+    "cards": [
+      "lee_sun_sin",
+      "miyamoto_musashi"
+    ]
+  },
+  {
+    "folder": "maps",
+    "key": "mongol_empire_13th_century",
+    "title": "Mongol Empire",
+    "subtitle": "13th century",
+    "cards": [
+      "batu_khan"
+    ]
+  },
+  {
+    "folder": "maps",
+    "key": "mughal_empire_1600",
+    "title": "Mughal Empire",
+    "subtitle": "1600"
+  },
+  {
+    "folder": "maps",
+    "key": "ottoman_empire_1600",
+    "title": "Ottoman Empire",
+    "subtitle": "1600"
+  },
+  {
+    "folder": "maps",
+    "key": "roman_empire_117_ad",
+    "title": "Roman Empire",
+    "subtitle": "117 AD",
+    "cards": [
+      "cicero"
+    ]
+  },
+  {
+    "folder": "maps",
+    "key": "world_map_antique",
+    "title": "World Map",
+    "subtitle": "Antique"
+  },
+  {
+    "folder": "scenarios",
+    "key": "belief_inquisition",
+    "title": "Inquisition",
+    "subtitle": "Belief"
+  },
+  {
+    "folder": "scenarios",
+    "key": "belief_miracle",
+    "title": "Miracle",
+    "subtitle": "Belief"
+  },
+  {
+    "folder": "scenarios",
+    "key": "belief_pilgrimage",
+    "title": "Pilgrimage",
+    "subtitle": "Belief"
+  },
+  {
+    "folder": "scenarios",
+    "key": "culture_art_critique",
+    "title": "Art Critique",
+    "subtitle": "Culture"
+  },
+  {
+    "folder": "scenarios",
+    "key": "culture_censorship",
+    "title": "Censorship",
+    "subtitle": "Culture"
+  },
+  {
+    "folder": "scenarios",
+    "key": "culture_roadshow",
+    "title": "Roadshow",
+    "subtitle": "Culture"
+  },
+  {
+    "folder": "scenarios",
+    "key": "hazard_blizzard",
+    "title": "Blizzard",
+    "subtitle": "Natural Hazard"
+  },
+  {
+    "folder": "scenarios",
+    "key": "hazard_drought",
+    "title": "Drought",
+    "subtitle": "Natural Hazard"
+  },
+  {
+    "folder": "scenarios",
+    "key": "hazard_earthquake",
+    "title": "Earthquake",
+    "subtitle": "Natural Hazard"
+  },
+  {
+    "folder": "scenarios",
+    "key": "hazard_fire",
+    "title": "Fire",
+    "subtitle": "Natural Hazard"
+  },
+  {
+    "folder": "scenarios",
+    "key": "hazard_flood",
+    "title": "Flood",
+    "subtitle": "Natural Hazard"
+  },
+  {
+    "folder": "scenarios",
+    "key": "hazard_pandemic",
+    "title": "Pandemic",
+    "subtitle": "Natural Hazard"
+  },
+  {
+    "folder": "scenarios",
+    "key": "hazard_storm",
+    "title": "Storm",
+    "subtitle": "Natural Hazard"
+  },
+  {
+    "folder": "scenarios",
+    "key": "hazard_tsunami",
+    "title": "Tsunami",
+    "subtitle": "Natural Hazard"
+  },
+  {
+    "folder": "scenarios",
+    "key": "intelligence_argument",
+    "title": "Argument",
+    "subtitle": "Intelligence"
+  },
+  {
+    "folder": "scenarios",
+    "key": "intelligence_expedition",
+    "title": "Expedition",
+    "subtitle": "Intelligence"
+  },
+  {
+    "folder": "scenarios",
+    "key": "intelligence_puzzle",
+    "title": "Puzzle",
+    "subtitle": "Intelligence"
+  },
+  {
+    "folder": "scenarios",
+    "key": "politics_coup",
+    "title": "Coup",
+    "subtitle": "Politics"
+  },
+  {
+    "folder": "scenarios",
+    "key": "politics_international_conference",
+    "title": "International Conference",
+    "subtitle": "Politics"
+  },
+  {
+    "folder": "scenarios",
+    "key": "politics_terrorist_attack",
+    "title": "Terrorist Attack",
+    "subtitle": "Politics"
+  },
+  {
+    "folder": "scenarios",
+    "key": "reputation_celebration",
+    "title": "Celebration",
+    "subtitle": "Reputation"
+  },
+  {
+    "folder": "scenarios",
+    "key": "reputation_lawsuit",
+    "title": "Lawsuit",
+    "subtitle": "Reputation"
+  },
+  {
+    "folder": "scenarios",
+    "key": "reputation_scandal",
+    "title": "Scandal",
+    "subtitle": "Reputation"
+  },
+  {
+    "folder": "scenarios",
+    "key": "strength_battlefield",
+    "title": "Battlefield",
+    "subtitle": "Strength"
+  },
+  {
+    "folder": "scenarios",
+    "key": "strength_olympics",
+    "title": "Olympics",
+    "subtitle": "Strength"
+  },
+  {
+    "folder": "scenarios",
+    "key": "strength_riot",
+    "title": "Riot",
+    "subtitle": "Strength"
+  },
+  {
+    "folder": "scenarios",
+    "key": "technique_sanctions",
+    "title": "Sanctions",
+    "subtitle": "Technique"
+  },
+  {
+    "folder": "scenarios",
+    "key": "technique_tech_race",
+    "title": "Tech Race",
+    "subtitle": "Technique"
+  },
+  {
+    "folder": "scenarios",
+    "key": "technique_world_fair",
+    "title": "World Fair",
+    "subtitle": "Technique"
+  },
+  {
+    "folder": "scenarios",
+    "key": "wealth_auction",
+    "title": "Auction",
+    "subtitle": "Wealth"
+  },
+  {
+    "folder": "scenarios",
+    "key": "wealth_business_war",
+    "title": "Business War",
+    "subtitle": "Wealth"
+  },
+  {
+    "folder": "scenarios",
+    "key": "wealth_depression",
+    "title": "Depression",
+    "subtitle": "Wealth"
+  },
+  {
+    "folder": "symbols",
+    "key": "aztec_sun_stone",
+    "title": "Sun Stone",
+    "subtitle": "Aztec",
+    "cards": [
+      "montezuma_ii"
+    ]
+  },
+  {
+    "folder": "symbols",
+    "key": "buddhism_dharma_wheel",
+    "title": "Dharma Wheel",
+    "subtitle": "Buddhism"
+  },
+  {
+    "folder": "symbols",
+    "key": "christianity_cross",
+    "title": "Cross",
+    "subtitle": "Christianity"
+  },
+  {
+    "folder": "symbols",
+    "key": "egyptian_ankh_eye_of_horus",
+    "title": "Ankh and Eye of Horus",
+    "subtitle": "Ancient Egypt",
+    "cards": [
+      "imhotep",
+      "pediamenopet"
+    ]
+  },
+  {
+    "folder": "symbols",
+    "key": "greek_laurel_thunderbolt",
+    "title": "Laurel and Thunderbolt",
+    "subtitle": "Ancient Greece"
+  },
+  {
+    "folder": "symbols",
+    "key": "hinduism_om",
+    "title": "Om",
+    "subtitle": "Hinduism"
+  },
+  {
+    "folder": "symbols",
+    "key": "islam_crescent_and_star",
+    "title": "Crescent and Star",
+    "subtitle": "Islam"
+  },
+  {
+    "folder": "symbols",
+    "key": "jainism_ahimsa_hand",
+    "title": "Ahimsa Hand",
+    "subtitle": "Jainism",
+    "cards": [
+      "mahavira"
+    ]
+  },
+  {
+    "folder": "symbols",
+    "key": "judaism_star_of_david",
+    "title": "Star of David",
+    "subtitle": "Judaism"
+  },
+  {
+    "folder": "symbols",
+    "key": "manichaeism_sun_moon_tree",
+    "title": "Sun, Moon and Tree of Light",
+    "subtitle": "Manichaeism",
+    "cards": [
+      "mani"
+    ]
+  },
+  {
+    "folder": "symbols",
+    "key": "mesopotamian_winged_sun_ishtar_star",
+    "title": "Winged Sun and Star of Ishtar",
+    "subtitle": "Mesopotamia",
+    "cards": [
+      "sargon_i",
+      "ashurbanipal"
+    ]
+  },
+  {
+    "folder": "symbols",
+    "key": "norse_mjolnir",
+    "title": "Mjölnir",
+    "subtitle": "Norse"
+  },
+  {
+    "folder": "symbols",
+    "key": "shinto_torii",
+    "title": "Torii",
+    "subtitle": "Shinto"
+  },
+  {
+    "folder": "symbols",
+    "key": "sikhism_khanda",
+    "title": "Khanda",
+    "subtitle": "Sikhism"
+  },
+  {
+    "folder": "symbols",
+    "key": "taoism_yin_yang",
+    "title": "Yin and Yang",
+    "subtitle": "Taoism"
+  },
+  {
+    "folder": "symbols",
+    "key": "zoroastrianism_faravahar",
+    "title": "Faravahar",
+    "subtitle": "Zoroastrianism"
+  }
+]

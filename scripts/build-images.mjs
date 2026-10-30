@@ -3,6 +3,8 @@
 //
 // data/images/{portraits,locations,followers,card-backs}/*.jpeg are the
 // canonical 1376×768 originals (same bytes as resources/, renamed by key).
+// data/images/{scenarios,battles,paintings,maps,items,symbols}/ hold the
+// gallery and event-card art catalogued in data/artworks.json.
 // Shipping them as-is costs ~1 MB per image, which is why every page that
 // shows artwork loads slowly.  This script resizes and re-encodes them as
 // WebP and writes the results where each platform expects them:
@@ -42,6 +44,13 @@ const FOLDERS = {
   locations:    { width: 960, mobile: false },
   followers:    { width: 600, mobile: false },
   'card-backs': { width: 600, mobile: false },
+  // Gallery and event art listed in data/artworks.json; web only.
+  scenarios:    { width: 960, mobile: false },
+  battles:      { width: 960, mobile: false },
+  paintings:    { width: 960, mobile: false },
+  maps:         { width: 960, mobile: false },
+  items:        { width: 800, mobile: false },
+  symbols:      { width: 600, mobile: false },
 }
 const QUALITY = 80
 
