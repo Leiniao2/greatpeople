@@ -25,7 +25,7 @@ export function resolveLocationImageKey(imageKey: string): string {
 /** Public URL for a location card's artwork, or null when it has no imageKey. */
 export function locationImageUrl(imageKey?: string): string | null {
   if (!imageKey) return null
-  return `/locations/${resolveLocationImageKey(imageKey)}.jpeg`
+  return `/locations/${resolveLocationImageKey(imageKey)}.webp`
 }
 
 export const LOCATION_IMAGE_FALLBACKS = FALLBACKS

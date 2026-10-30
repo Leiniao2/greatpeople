@@ -9,7 +9,8 @@
     "lint": "eslint src --ext .ts,.tsx",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "images": "node ../scripts/build-images.mjs"
   },
   "dependencies": {
     "@react-oauth/google": "^0.12.1",
@@ -32,6 +33,7 @@
     "eslint": "^8.57.0",
     "jsdom": "^29.1.1",
     "postcss": "^8.4.39",
+    "sharp": "^0.33.5",
     "tailwindcss": "^3.4.4",
     "typescript": "^5.4.5",
     "vite": "^5.3.1",

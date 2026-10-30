@@ -25,6 +25,12 @@ Edit shared JSON in [`data/`](data/) only. The pre-commit hook copies it into
 `web/`, `ios/` and `android/` via [`scripts/sync-assets.sh`](scripts/sync-assets.sh)
 and stages the copies; run that script directly to sync without committing.
 
+Artwork originals live in [`data/images/`](data/images/) as full-size JPEGs.
+The platforms ship WebP copies produced by
+[`scripts/build-images.mjs`](scripts/build-images.mjs); after adding or
+replacing an original, run `npm run images` in `web/` (add `-- --clean` to
+drop stale files) and commit the generated `.webp` files alongside it.
+
 ## Documentation
 
 - [Great People Card — Game Design & System Overview](docs/great-people-card.md)

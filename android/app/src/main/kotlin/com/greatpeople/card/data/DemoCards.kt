@@ -20,7 +20,7 @@ fun loadDemoCards(context: Context): List<Card> {
             identities = (0 until identitiesArr.length()).map { identitiesArr.getString(it) },
             countries = countriesArr?.let { (0 until it.length()).map { j -> it.getString(j) } } ?: emptyList(),
             lore = obj.getString("lore"),
-            portraitUrl = "file:///android_asset/portraits/portrait_$key.jpeg",
+            portraitUrl = "file:///android_asset/portraits/portrait_$key.webp",
             years = obj.getString("years"),
             trait = obj.getString("trait"),
             achievement = obj.getString("achievement"),
