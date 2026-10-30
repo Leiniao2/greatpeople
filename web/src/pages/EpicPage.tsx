@@ -6,6 +6,8 @@ import { useUnlockedCards } from '@/hooks/useUnlockedCards'
 import cardsData from '@/data/cards.json'
 import storyConfigsData from '@/data/story_configs.json'
 import { eraBackdropUrl, locationImageUrl, portraitUrl } from '@/data/images'
+import PageLoader from '@/components/PageLoader'
+import { useAssetPreload } from '@/hooks/useAssetPreload'
 
 function portraitKeyForFigure(name: string | null): string | null {
   if (!name) return null
@@ -39,9 +41,34 @@ const ERAS: Era[] = ERA_ORDER.map(eraName => ({
 
 const STORIES_TO_ADVANCE = 4
 
+// Artwork an era's story list draws: each story's location card and portrait.
+function eraAssets(eraIdx: number): string[] {
+  const era = ERAS[eraIdx]
+  const urls: string[] = []
+  for (const story of era.stories) {
+    urls.push(locationImageUrl(story.locationImage) ?? eraBackdropUrl(era.name))
+    const pKey = portraitKeyForFigure(story.figure)
+    if (pKey) urls.push(portraitUrl(pKey))
+  }
+  return [...new Set(urls)]
+}
+
+const FIRST_VISIT_ASSETS = [
+  ...ERA_ORDER.map(eraBackdropUrl),
+  ...eraAssets(0),
+]
+
 // ── Component ─────────────────────────────────────────────────────────────────
 
 export default function EpicPage() {
+  return (
+    <PageLoader assets={FIRST_VISIT_ASSETS} label="Opening the epic">
+      <EpicContent />
+    </PageLoader>
+  )
+}
+
+function EpicContent() {
   const navigate = useNavigate()
   const { isGuest, exitGuestMode, isAdmin } = useAuth()
   const { unlock } = useUnlockedCards()
@@ -50,6 +77,9 @@ export default function EpicPage() {
   const [toast, setToast] = useState<string | null>(null)
   const [modal, setModal] = useState<{ eraIdx: number; storyIdx: number } | null>(null)
   const tabsRef = useRef<HTMLDivElement>(null)
+  // Switching era fetches that era's artwork; show a slim bar rather than the
+  // full loading screen so the tabs stay put.
+  const { ready: eraReady, progress: eraProgress } = useAssetPreload(eraAssets(activeEra), { minMs: 0 })
 
   const key = (eraIdx: number, storyIdx: number) => `${eraIdx}-${storyIdx}`
 
@@ -188,8 +218,15 @@ export default function EpicPage() {
           })}
         </div>
 
+        {/* Era artwork loading bar */}
+        {!eraReady && (
+          <div className="h-0.5 -mt-4 mb-4 rounded-full bg-line/40 overflow-hidden">
+            <div className="h-full bg-accent transition-[width] duration-200" style={{ width: `${eraProgress * 100}%` }} />
+          </div>
+        )}
+
         {/* Era content */}
-        <div>
+        <div className={eraReady ? 'animate-fade-in' : 'opacity-0'}>
           {/* Era header + progress */}
           <div className="mb-5">
             <h2 className="text-ink text-2xl font-bold tracking-wide mb-2">{era.name}</h2>

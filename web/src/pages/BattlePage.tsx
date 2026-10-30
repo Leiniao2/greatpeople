@@ -12,6 +12,7 @@ import locationsJson from '@/data/locations.json'
 import locationCardsJson from '@/data/location_cards.json'
 import followersJson from '@/data/followers.json'
 import { cardBackUrl, followerUrl, locationImageUrl, portraitUrl } from '@/data/images'
+import PageLoader from '@/components/PageLoader'
 
 // ─── Static Card Data ─────────────────────────────────────────────────────────
 
@@ -2706,7 +2707,22 @@ const MATCH_MODES: { type: MatchType; icon: string; title: string; desc: string;
   },
 ]
 
+// Card backs and follower art appear as soon as a match starts; portraits
+// are drawn one card at a time and are usually cached from Collection.
+const BATTLE_ASSETS = [
+  cardBackUrl('gp'), cardBackUrl('follower'), cardBackUrl('location'), cardBackUrl('event'),
+  ...FOLLOWER_TEMPLATES.map(f => followerUrl(f.imageKey)),
+]
+
 export default function BattlePage() {
+  return (
+    <PageLoader assets={BATTLE_ASSETS} label="Preparing the arena">
+      <BattleContent />
+    </PageLoader>
+  )
+}
+
+function BattleContent() {
   const navigate = useNavigate()
   const { isGuest, exitGuestMode } = useAuth()
   const [pagePhase, setPagePhase] = useState<PagePhase>('home')

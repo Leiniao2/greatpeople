@@ -1,4 +1,6 @@
+import { Suspense } from 'react'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
+import LoadingScreen from '@/components/LoadingScreen'
 
 const TABS = [
   { path: '/epic',       label: 'Epic',       icon: '⚡', title: 'Epic — Read stories and unlock Great People cards through quizzes and mini-challenges' },
@@ -16,7 +18,10 @@ export default function MainLayout() {
     <div className="flex flex-col min-h-screen bg-paper">
       {/* Page content */}
       <div className="flex-1 pb-20">
-        <Outlet />
+        {/* Tab switches load the page chunk on demand; keep the tab bar in place meanwhile. */}
+        <Suspense fallback={<LoadingScreen />}>
+          <Outlet />
+        </Suspense>
       </div>
 
       {/* Bottom tab bar */}

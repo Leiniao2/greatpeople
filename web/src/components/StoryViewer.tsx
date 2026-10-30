@@ -43,6 +43,8 @@ import ChimpMathGame from '@/components/minigames/ChimpMathGame'
 import WorldClockGame from '@/components/minigames/WorldClockGame'
 import { useAuth } from '@/hooks/useAuth'
 import { eraBackdropUrl, speakerImageUrl } from '@/data/images'
+import { useAssetPreload } from '@/hooks/useAssetPreload'
+import LoadingScreen from '@/components/LoadingScreen'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -550,6 +552,20 @@ export default function StoryViewer({ eraName, storyTitle, figureName, portraitK
   const scenes = script?.scenes ?? []
   const bgPortrait = script?.portraitKey ?? portraitKey
   const bgUrl = portraitUrl(bgPortrait)
+  const locationImg = locationImage ?? eraBackdropUrl(eraName)
+
+  // Decode the backdrop and every speaker's portrait before the first scene,
+  // so dialog avatars don't pop in mid-story.
+  const storyAssets = useMemo(() => {
+    const urls = new Set<string>()
+    if (bgUrl) urls.add(bgUrl)
+    if (locationImg) urls.add(locationImg)
+    for (const s of scenes) {
+      if (s.type === 'dialog' && s.portraitKey) urls.add(speakerImageUrl(s.portraitKey))
+    }
+    return [...urls]
+  }, [bgUrl, locationImg, scenes])
+  const { ready: assetsReady, progress: assetsProgress } = useAssetPreload(storyAssets)
 
   const [sceneIdx, setSceneIdx] = useState(0)
   const [failing, setFailing] = useState(false)
@@ -639,10 +655,10 @@ export default function StoryViewer({ eraName, storyTitle, figureName, portraitK
 
   const progressPct = scenes.length > 0 ? (sceneIdx / scenes.length) * 100 : 0
 
-  const locationImg = locationImage ?? eraBackdropUrl(eraName)
+  if (!assetsReady) return <LoadingScreen progress={assetsProgress} label="Preparing story" />
 
   return (
-    <div className="fixed inset-0 z-[60] flex flex-col overflow-hidden">
+    <div className="fixed inset-0 z-[60] flex flex-col overflow-hidden animate-fade-in">
       {/* ── Background stack ─────────────────────────────────────────────────── */}
       <div className="absolute inset-0 bg-paper" />
 

@@ -6,6 +6,7 @@ import type { Card, StatKey } from '@/types'
 import cardsJson from '@/data/cards.json'
 import locationCardsJson from '@/data/location_cards.json'
 import { locationImageUrl, portraitUrl } from '@/data/images'
+import PageLoader from '@/components/PageLoader'
 
 // ── GP cards ─────────────────────────────────────────────────────────────────
 
@@ -69,7 +70,19 @@ const BUILDING_ICONS: Record<string, string> = {
 
 // ── Main page ─────────────────────────────────────────────────────────────────
 
+// The grid shows every portrait at once, so decode them all before revealing
+// the page rather than letting 80 cards pop in one by one.
+const COLLECTION_ASSETS = ALL_CARDS.map(c => c.portraitUrl!)
+
 export default function CollectionPage() {
+  return (
+    <PageLoader assets={COLLECTION_ASSETS} label="Opening collection">
+      <CollectionContent />
+    </PageLoader>
+  )
+}
+
+function CollectionContent() {
   const navigate = useNavigate()
   const { isGuest, isAdmin, exitGuestMode } = useAuth()
   const { unlocked } = useUnlockedCards()
