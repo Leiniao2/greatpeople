@@ -25,7 +25,47 @@ steps:
     args:
       - -c
       - |
-        pip install -r requirements.txt
+        pip install -r requirements.txt -r requirements-test.txt
         python -m pytest tests/ -v
+
+  # ── 4. Build and push the service image ──────────────────────────────────────
+  - name: gcr.io/cloud-builders/docker
+    args: ['build', '-t', '${_IMAGE}:$BUILD_ID', 'service']
+
+  - name: gcr.io/cloud-builders/docker
+    args: ['push', '${_IMAGE}:$BUILD_ID']
+
+  # ── 5. Deploy to Cloud Run ───────────────────────────────────────────────────
+  # Scales to zero when idle.  max-instances stays at 1 because Socket.IO rooms
+  # are held in process memory; raise it only after adding a shared message
+  # queue.  Each open WebSocket counts toward concurrency, hence the high limit,
+  # and the 60-minute timeout keeps battle connections from being cut.
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk:slim
+    entrypoint: gcloud
+    args:
+      - run
+      - deploy
+      - ${_SERVICE}
+      - --image=${_IMAGE}:$BUILD_ID
+      - --region=${_REGION}
+      - --service-account=${_RUNTIME_SA}
+      - --allow-unauthenticated
+      - --min-instances=0
+      - --max-instances=1
+      - --concurrency=1000
+      - --timeout=3600
+      - --session-affinity
+      - --cpu=1
+      - --memory=1Gi
+      - --set-env-vars=FLASK_ENV=production,SECRET_MANAGER_PROJECT=$PROJECT_ID
+
+substitutions:
+  _REGION: us-central1
+  _SERVICE: greatpeople
+  _IMAGE: us-central1-docker.pkg.dev/${PROJECT_ID}/greatpeople/service
+  _RUNTIME_SA: greatpeople-run@${PROJECT_ID}.iam.gserviceaccount.com
+
+options:
+  dynamic_substitutions: true
 
 timeout: 1200s

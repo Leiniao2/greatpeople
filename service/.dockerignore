@@ -1,0 +1,14 @@
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.env
+*.db
+tests/
+infra/
+Dockerfile
+.dockerignore
+app.yaml
+cloudbuild.yaml
