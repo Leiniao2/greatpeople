@@ -7,6 +7,7 @@ import org.json.JSONObject
 enum class ChallengeType { quiz, truefalse, sort, minigame }
 
 data class ChallengeDTO(
+    val id: String?,
     val type: ChallengeType,
     val question: String?,
     val options: List<String>?,
@@ -51,6 +52,7 @@ object StoryChallengesLoader {
         val type = ChallengeType.entries.find { it.name == typeStr } ?: ChallengeType.minigame
         val optionsArr = if (obj.has("options")) obj.getJSONArray("options") else null
         return ChallengeDTO(
+            id = if (obj.has("id")) obj.getString("id") else null,
             type = type,
             question = if (obj.has("question")) obj.getString("question") else null,
             options = optionsArr?.let { arr -> (0 until arr.length()).map { arr.getString(it) } },

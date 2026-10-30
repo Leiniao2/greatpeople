@@ -31,6 +31,24 @@ The platforms ship WebP copies produced by
 replacing an original, run `npm run images` in `web/` (add `-- --clean` to
 drop stale files) and commit the generated `.webp` files alongside it.
 
+## Native apps and the web play routes
+
+The iOS and Android apps keep their own Epic list, Collection, Fight and
+Profile screens, but every story and Arcade challenge is played in the web
+app, opened full screen in a WebView at `/play/story/<slug>` or
+`/play/challenge/<id>` with `?embed=1` and the session token in the URL
+fragment. The page reports `storyComplete`, `challengeComplete` and `close`
+through the `gp` bridge (`web/src/bridge/native.ts`).
+
+Both apps default to the production host. For local development:
+
+- iOS: set the `GP_WEB_BASE_URL` / `GP_API_BASE_URL` environment variables on
+  the Debug scheme (e.g. `http://localhost:3001` and `http://localhost:8080`),
+  or edit `GPWebBaseURL` / `GPAPIBaseURL` in `Info.plist`.
+- Android: debug builds already point at `http://10.0.2.2:3001` and
+  `http://10.0.2.2:8080` (the emulator's view of the host); see
+  `buildTypes` in `android/app/build.gradle.kts`.
+
 ## Documentation
 
 - [Great People Card — Game Design & System Overview](docs/great-people-card.md)
