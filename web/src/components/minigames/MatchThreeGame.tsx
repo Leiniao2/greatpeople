@@ -1,4 +1,6 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useRef } from 'react'
+import type { MinigameProps } from '@/games/types'
+import { hashString, resolveConfig, scale, useGameOutcome, OutcomeBanner } from './_shared'
 
 interface TileType { label: string; bg: string; border: string; text?: string }
 
@@ -241,11 +243,14 @@ function isAdjacent(a: [number, number], b: [number, number]) {
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
-export default function MatchThreeGame({ configId, onWin }: { configId: string; onWin: () => void }) {
-  const config = CONFIGS[configId] ?? CONFIGS['lisbon-spices']
+export default function MatchThreeGame({ configId, difficulty, seed: attemptSeed, params, onWin, onLose }: MinigameProps) {
+  const config = resolveConfig(CONFIGS, configId, params, 'lisbon-spices')
   const { gridSize: N, tiles, rules = {} } = config
+  // Moves allowed before the target must be met: none at difficulty 1, then tighter.
+  const moveLimit = scale(difficulty, [0, Math.ceil(config.target / 2), Math.ceil(config.target / 2.6), Math.ceil(config.target / 3.2)])
+  const { outcome, settled, win, lose } = useGameOutcome({ onWin, onLose, delayMs: 600 })
 
-  const seed = configId.split('').reduce((a, c) => a + c.charCodeAt(0), 0)
+  const seed = (hashString(configId) ^ attemptSeed) >>> 0
   const [randState] = useState(() => ({ val: seed }))
   const rand = useCallback(() => {
     randState.val = (randState.val * 1664525 + 1013904223) & 0xffffffff
@@ -256,7 +261,8 @@ export default function MatchThreeGame({ configId, onWin }: { configId: string; 
   const [selected, setSelected] = useState<[number, number] | null>(null)
   const [cleared, setCleared] = useState(0)
   const [animating, setAnimating] = useState(false)
-  const [won, setWon] = useState(false)
+  const [moves, setMoves] = useState(0)
+  const live = useRef({ cleared: 0, moves: 0 })
 
   const processMatches = useCallback((g: number[][]): { next: number[][]; count: number } => {
     const matched = findMatches(g, N, rules)
@@ -267,32 +273,29 @@ export default function MatchThreeGame({ configId, onWin }: { configId: string; 
     return { next, count: matched.size }
   }, [N, tiles.length, rules, rand])
 
-  const cascade = useCallback((g: number[][], totalCleared: number) => {
+  const cascade = useCallback((g: number[][], _totalCleared: number) => {
     setAnimating(true)
     let cur = g
-    let total = totalCleared
 
     const step = () => {
       const { next, count } = processMatches(cur)
       if (count > 0) {
         cur = next
-        total += count
         setGrid([...cur])
-        setCleared(prev => {
-          const newTotal = prev + count
-          if (newTotal >= config.target && !won) { setWon(true); setTimeout(onWin, 600) }
-          return newTotal
-        })
+        live.current.cleared += count
+        setCleared(live.current.cleared)
+        if (live.current.cleared >= config.target) win()
         setTimeout(step, 350)
       } else {
         setAnimating(false)
+        if (moveLimit && live.current.moves >= moveLimit && live.current.cleared < config.target) lose('out of moves')
       }
     }
     setTimeout(step, 100)
-  }, [processMatches, config.target, won, onWin])
+  }, [processMatches, config.target, win, lose, moveLimit])
 
   const handleCell = (r: number, c: number) => {
-    if (animating || won) return
+    if (animating || settled) return
     if (!selected) { setSelected([r, c]); return }
     const [sr, sc] = selected
     if (sr === r && sc === c) { setSelected(null); return }
@@ -306,12 +309,12 @@ export default function MatchThreeGame({ configId, onWin }: { configId: string; 
     if (count === 0) return // invalid swap — do nothing
 
     setGrid(afterMatch)
-    setCleared(prev => {
-      const newTotal = prev + count
-      if (newTotal >= config.target && !won) { setWon(true); setTimeout(onWin, 600) }
-      return newTotal
-    })
-    cascade(afterMatch, cleared + count)
+    live.current.moves += 1
+    live.current.cleared += count
+    setMoves(live.current.moves)
+    setCleared(live.current.cleared)
+    if (live.current.cleared >= config.target) win()
+    cascade(afterMatch, live.current.cleared)
   }
 
   const progress = Math.min(cleared / config.target, 1)
@@ -323,7 +326,10 @@ export default function MatchThreeGame({ configId, onWin }: { configId: string; 
     <div className="flex flex-col gap-3 bg-paper-2 rounded-xl p-4">
       <div className="flex items-center justify-between">
         <p className="text-accent/80 text-[10px] font-bold uppercase tracking-widest">{config.title}</p>
-        <p className="text-muted text-[10px]">{cleared} / {config.target}</p>
+        <p className="text-muted text-[10px]">
+          {cleared} / {config.target}
+          {moveLimit > 0 && <span className={moveLimit - moves <= 3 ? 'text-red-600 font-bold ml-2' : 'ml-2'}>· {Math.max(0, moveLimit - moves)} moves left</span>}
+        </p>
       </div>
 
       {/* Progress */}
@@ -367,19 +373,14 @@ export default function MatchThreeGame({ configId, onWin }: { configId: string; 
       </div>
 
       <p className="text-muted/80 text-[10px] text-center">
-        {won
-          ? <span className="text-emerald-400 font-bold">✓ Challenge complete!</span>
+        {settled
+          ? ''
           : selected
           ? 'Tap an adjacent tile to swap'
           : 'Tap a tile to select'}
       </p>
 
-      {won && (
-        <div className="p-3 rounded-xl border bg-emerald-500/10 border-emerald-500/30 text-xs leading-relaxed">
-          <span className="font-bold text-emerald-300">✓ Trade complete! </span>
-          <span className="text-muted">{config.fact}</span>
-        </div>
-      )}
+      <OutcomeBanner outcome={outcome} detail={config.fact} winTitle="Trade complete!" loseTitle="Out of moves" />
     </div>
   )
 }

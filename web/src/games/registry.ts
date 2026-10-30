@@ -21,7 +21,7 @@ const def = (label: string, category: Category, load: GameDef['load'], canLose =
   ({ label, category, canLose, load })
 
 export const GAMES = {
-  maze:         def('Maze',          'Explore',  () => import('@/components/minigames/MazeGame')),
+  maze:         def('Maze',          'Explore',  () => import('@/components/minigames/BigMazeGame'), true),
   mirror:       def('Mirror',        'Puzzle',   () => import('@/components/minigames/MirrorGame')),
   circuit:      def('Circuit',       'Puzzle',   () => import('@/components/minigames/CircuitGame')),
   sliding:      def('Sliding Tiles', 'Puzzle',   () => import('@/components/minigames/SlidingPuzzle')),
