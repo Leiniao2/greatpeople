@@ -33,10 +33,6 @@
             "fact": "Peter Arnett broadcast live from Baghdad for CNN during the Gulf War air campaign on January 17, 1991 — the first time a war had been broadcast live on television. His reports from inside the enemy capital were watched by hundreds of millions worldwide.",
             "autogen": true,
             "configId": "turing-tape",
-            "params": {
-              "title": "Peter Arnett became internationally famous for",
-              "intro": "Peter Arnett became internationally famous for his live TV coverage of which war?"
-            },
             "instruction": "Peter Arnett became internationally famous for his live TV coverage of which war? Wire the gates until the circuit agrees with the table on every row."
           }
         }
@@ -67,8 +63,6 @@
             "autogen": true,
             "configId": "al-kindi-frequency",
             "params": {
-              "title": "Arrange these landmark moments in the",
-              "intro": "Arrange these landmark moments in the history of war journalism in order:",
               "mode": "caesar",
               "plaintext": "WILLIAM HOWARD RUSSELL S"
             },
@@ -134,9 +128,6 @@
             "fact": "In March 1997, Arnett (then at CNN) conducted a rare interview with Osama bin Laden in Afghanistan. Bin Laden declared war on the United States and said he would bring Americans to justice. The interview was largely ignored by media and public. Four years and five months later, the September 11 attacks occurred.",
             "autogen": true,
             "configId": "mughal-gems",
-            "params": {
-              "title": "Peter Arnett conducted the first major"
-            },
             "instruction": "Peter Arnett conducted the first major television interview with Osama bin Laden in 1997 — four years before the September 11 attacks. Gather what the story needs: match the goods until the tally is met."
           }
         }

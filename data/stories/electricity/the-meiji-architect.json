@@ -33,10 +33,6 @@
             "fact": "The Meiji Constitution of 1889 was drafted under Itō's leadership after he studied European constitutional models — particularly Prussia's. It established Japan as a constitutional monarchy and remained in force until 1947.",
             "autogen": true,
             "configId": "beethoven-motif",
-            "params": {
-              "title": "What was Itō Hirobumi's greatest constitutional",
-              "intro": "What was Itō Hirobumi's greatest constitutional achievement for Japan?"
-            },
             "instruction": "What was Itō Hirobumi's greatest constitutional achievement for Japan? Learn the phrase and play it back, note for note."
           }
         }
@@ -72,9 +68,6 @@
             "fact": "Itō served as Japan's Prime Minister four separate times between 1885 and 1901. His assassination by An Jung-geun in 1909 made him a martyr in Japan and a symbol of imperialism in Korea — two truths that coexist uncomfortably.",
             "autogen": true,
             "configId": "cairo-alchemy",
-            "params": {
-              "title": "Arrange the key events of Itō"
-            },
             "instruction": "Arrange the key events of Itō Hirobumi's career in chronological order: Gather what the story needs: match the goods until the tally is met."
           }
         }
@@ -116,8 +109,6 @@
             "autogen": true,
             "configId": "franklin-gazette",
             "params": {
-              "title": "Arrange these Meiji Restoration reforms in",
-              "intro": "Arrange these Meiji Restoration reforms in the order they were introduced:",
               "lines": [
                 "FEUDAL",
                 "FEUDAL DOMAINS",

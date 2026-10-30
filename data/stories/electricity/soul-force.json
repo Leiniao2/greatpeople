@@ -61,8 +61,6 @@
             "autogen": true,
             "configId": "morse-telegraph",
             "params": {
-              "title": "Arrange these milestones of Gandhi's life",
-              "intro": "Arrange these milestones of Gandhi's life in chronological order:",
               "mode": "caesar",
               "plaintext": "TRAVELS TO SOUTH AFRICA AND"
             },
@@ -91,10 +89,6 @@
             "fact": "Gandhi devoted his life to Indian independence (swaraj). However, he insisted the path must be nonviolent. His Quit India speech of 1942 demanded immediate British withdrawal — 'Do or Die' — and triggered mass arrests. Gandhi saw independence not merely as political freedom but as moral regeneration.",
             "autogen": true,
             "configId": "shannon-relays",
-            "params": {
-              "title": "Gandhi opposed Indian independence from Britain,",
-              "intro": "Gandhi opposed Indian independence from Britain, believing the British Empire could be reformed from within."
-            },
             "instruction": "Gandhi opposed Indian independence from Britain, believing the British Empire could be reformed from within. Wire the gates until the circuit agrees with the table on every row."
           }
         }

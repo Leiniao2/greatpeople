@@ -33,10 +33,6 @@
             "fact": "Harper Lee based Atticus partly on her own father, a lawyer who defended two Black men in Alabama. Peck and Harper Lee became lifelong friends after the 1962 film.",
             "autogen": true,
             "configId": "turing-tape",
-            "params": {
-              "title": "Gregory Peck won the 1963 Best",
-              "intro": "Gregory Peck won the 1963 Best Actor Oscar for his portrayal of Atticus Finch. What was Atticus defending Tom Robinson against?"
-            },
             "instruction": "Gregory Peck won the 1963 Best Actor Oscar for his portrayal of Atticus Finch. What was Atticus defending Tom Robinson against? Wire the gates until the circuit agrees with the table on every row."
           }
         }
@@ -111,8 +107,6 @@
             "autogen": true,
             "configId": "al-kindi-frequency",
             "params": {
-              "title": "Harper Lee's To Kill a Mockingbird",
-              "intro": "Harper Lee's To Kill a Mockingbird won the Pulitzer Prize for Fiction in 1961, just one year after its publication.",
               "mode": "caesar",
               "plaintext": "HARPER LEE S TO KILL A"
             },

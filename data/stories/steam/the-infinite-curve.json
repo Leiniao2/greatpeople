@@ -31,8 +31,6 @@
             "autogen": true,
             "configId": "morse-telegraph",
             "params": {
-              "title": "Francesco Borromini is best known for",
-              "intro": "Francesco Borromini is best known for which type of architectural innovation?",
               "mode": "caesar",
               "plaintext": "CONCAVE AND CONVEX FACADES THAT"
             },
@@ -59,10 +57,6 @@
             "fact": "Borromini and Bernini were bitter rivals who despised each other. Bernini — charming, wealthy, papal favourite — represented everything Borromini was not. Borromini was ascetic, difficult, and constantly overshadowed. He believed Bernini stole his ideas and received undeserved credit. The rivalry drove both to their greatest achievements — and contributed to Borromini's deepening depression.",
             "autogen": true,
             "configId": "lovelace-engine",
-            "params": {
-              "title": "Borromini and his rival Bernini collaborated",
-              "intro": "Borromini and his rival Bernini collaborated closely and admired each other's work throughout their careers."
-            },
             "instruction": "Borromini and his rival Bernini collaborated closely and admired each other's work throughout their careers. Wire the gates until the circuit agrees with the table on every row."
           }
         }
@@ -86,9 +80,6 @@
             "fact": "San Carlo alle Quattro Fontane is perhaps the most astonishing building in Rome: its interior could fit inside one of the columns of St. Peter's Basilica, yet it is more architecturally complex than the entire basilica. Borromini spent his career making small spaces feel infinite.",
             "autogen": true,
             "configId": "hanseatic-runes",
-            "params": {
-              "title": "Arrange the key works of Borromini's"
-            },
             "instruction": "Arrange the key works of Borromini's career in chronological order: Gather what the story needs: match the goods until the tally is met."
           }
         }

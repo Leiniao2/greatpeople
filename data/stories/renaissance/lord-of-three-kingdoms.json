@@ -30,10 +30,6 @@
             "fact": "Bayinnaung (1516–1581) built the largest empire in Southeast Asian history, conquering the Shan States, the Lan Na kingdom (Chiang Mai), and twice capturing Ayutthaya (the Siamese capital). His Toungoo Empire briefly unified Burma, Thailand, Laos, and portions of Yunnan under one administration.",
             "autogen": true,
             "configId": "bach-fugue",
-            "params": {
-              "title": "Bayinnaung unified most of mainland Southeast",
-              "intro": "Bayinnaung unified most of mainland Southeast Asia under his rule. Which kingdoms did he conquer?"
-            },
             "instruction": "Bayinnaung unified most of mainland Southeast Asia under his rule. Which kingdoms did he conquer? Learn the phrase and play it back, note for note."
           }
         }
@@ -57,10 +53,6 @@
             "fact": "Bayinnaung was known for remarkable religious tolerance. He allowed conquered rulers to keep their thrones as vassals, permitted local customs to continue, and interfered with Portuguese missionaries in Pegu only when they destroyed Buddhist temples. He sought legitimacy through ceremony and generosity as much as through force.",
             "autogen": true,
             "configId": "euclid-grid",
-            "params": {
-              "title": "Bayinnaung imposed Burmese Buddhism on conquered",
-              "intro": "Bayinnaung imposed Burmese Buddhism on conquered peoples and suppressed their local religions."
-            },
             "instruction": "Bayinnaung imposed Burmese Buddhism on conquered peoples and suppressed their local religions. Order the grid as the record was ordered — every row, column and box complete."
           }
         }
@@ -84,10 +76,6 @@
             "fact": "The white elephant was the ultimate symbol of royal legitimacy in Southeast Asia. When Bayinnaung captured Ayutthaya's white elephants, he was claiming the spiritual mandate of regional kingship. His Pegu capital became one of the most cosmopolitan cities in Asia, hosting Portuguese traders, Siamese princes, and Chinese merchants simultaneously.",
             "autogen": true,
             "configId": "pacific-strait",
-            "params": {
-              "title": "Arrange the key events of Bayinnaung's",
-              "subtitle": "Arrange the key events of Bayinnaung's conquests in order:"
-            },
             "instruction": "Arrange the key events of Bayinnaung's conquests in order: The way to the answer runs through these passages — find the exit."
           }
         },

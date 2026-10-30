@@ -33,10 +33,6 @@
             "fact": "Chanel's 'little black dress' (1926) appeared in Vogue, which compared it to Ford's Model T — a fashion so universal and timeless it was available to everyone. Black had previously been reserved for mourning.",
             "autogen": true,
             "configId": "beethoven-motif",
-            "params": {
-              "title": "Coco Chanel popularised which garment in",
-              "intro": "Coco Chanel popularised which garment in 1926 that became a symbol of modern fashion?"
-            },
             "instruction": "Coco Chanel popularised which garment in 1926 that became a symbol of modern fashion? Learn the phrase and play it back, note for note."
           }
         }
@@ -60,9 +56,6 @@
             "fact": "Each of Chanel's innovations stripped away constraint. Jersey replaced stiff silk; cardigan suits replaced corsets; black replaced colour as the dominant fashion statement. She built freedom into fashion at a time when clothing was still architecture built to restrict women's bodies.",
             "autogen": true,
             "configId": "cairo-alchemy",
-            "params": {
-              "title": "Arrange these milestones of Chanel's fashion"
-            },
             "instruction": "Arrange these milestones of Chanel's fashion revolution in chronological order: Gather what the story needs: match the goods until the tally is met."
           }
         }
@@ -106,8 +99,6 @@
             "autogen": true,
             "configId": "franklin-gazette",
             "params": {
-              "title": "Before Chanel, fashionable women's clothing required",
-              "intro": "Before Chanel, fashionable women's clothing required tight corsets — Chanel was among the first designers to make comfortable, unstructured clothes stylish.",
               "lines": [
                 "BEFORE",
                 "BEFORE CHANEL",

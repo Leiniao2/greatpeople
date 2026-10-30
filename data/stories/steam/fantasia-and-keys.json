@@ -103,8 +103,6 @@
             "autogen": true,
             "configId": "morse-telegraph",
             "params": {
-              "title": "Arrange these milestones of Clara Schumann's",
-              "intro": "Arrange these milestones of Clara Schumann's life in chronological order:",
               "mode": "caesar",
               "plaintext": "FIRST PUBLIC CONCERT AT AGE IN"
             },
@@ -190,10 +188,6 @@
             "fact": "Schumann's finger-strengthening apparatus held some fingers stationary while exercising others. It permanently injured his right hand, ending his piano career and redirecting him entirely to composition and music criticism.",
             "autogen": true,
             "configId": "lovelace-engine",
-            "params": {
-              "title": "Robert Schumann permanently damaged his right",
-              "intro": "Robert Schumann permanently damaged his right hand by using a mechanical device he invented to strengthen his fingers faster."
-            },
             "instruction": "Robert Schumann permanently damaged his right hand by using a mechanical device he invented to strengthen his fingers faster. Wire the gates until the circuit agrees with the table on every row."
           }
         },

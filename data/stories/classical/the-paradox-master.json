@@ -34,8 +34,6 @@
             "autogen": true,
             "configId": "bi-sheng-clay",
             "params": {
-              "title": "Which of Zeno's paradoxes argues that",
-              "intro": "Which of Zeno's paradoxes argues that the fastest runner can never overtake the slowest?",
               "lines": [
                 "ACHILLES AND",
                 "ACHILLES AND THE",
@@ -78,9 +76,6 @@
             "fact": "Zeno's paradoxes were a rhetorical defense of his teacher Parmenides, not his personal beliefs. He used them as reductio ad absurdum — if you accept common sense, you get contradictions. It was a philosophical weapon, not a physics claim.",
             "autogen": true,
             "configId": "venice-glass",
-            "params": {
-              "title": "Zeno of Elea personally believed that"
-            },
             "instruction": "Zeno of Elea personally believed that motion was impossible and that nothing in the universe actually moves. Gather what the story needs: match the goods until the tally is met."
           }
         }

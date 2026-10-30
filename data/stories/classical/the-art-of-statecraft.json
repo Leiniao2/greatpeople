@@ -33,10 +33,6 @@
             "fact": "Chanakya is also called Kautilya or Vishnugupta. He served as advisor to Chandragupta Maurya, the founder of the Maurya Empire, and authored the Arthashastra — an ancient Indian treatise on statecraft and political economy.",
             "autogen": true,
             "configId": "hildegard-chant",
-            "params": {
-              "title": "Chanakya is also known by which",
-              "intro": "Chanakya is also known by which other name?"
-            },
             "instruction": "Chanakya is also known by which other name? Learn the phrase and play it back, note for note."
           }
         }
@@ -67,8 +63,6 @@
             "autogen": true,
             "configId": "caesar-gaul",
             "params": {
-              "title": "Arrange these priorities from Chanakya's Arthashastra",
-              "intro": "Arrange these priorities from Chanakya's Arthashastra for a new king establishing power:",
               "mode": "caesar",
               "plaintext": "ESTABLISH A TREASURY WITHOUT"
             },
@@ -135,8 +129,6 @@
             "autogen": true,
             "configId": "bi-sheng-clay",
             "params": {
-              "title": "The Maurya Empire established by Chanakya",
-              "intro": "The Maurya Empire established by Chanakya and Chandragupta eventually controlled nearly the entire Indian subcontinent.",
               "lines": [
                 "THE MAURYA",
                 "THE MAURYA",

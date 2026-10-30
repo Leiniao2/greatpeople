@@ -34,8 +34,6 @@
             "autogen": true,
             "configId": "morse-telegraph",
             "params": {
-              "title": "How many possible settings did Turing's",
-              "intro": "How many possible settings did Turing's Bombe machine have to test for each Enigma message?",
               "mode": "caesar",
               "plaintext": ""
             },

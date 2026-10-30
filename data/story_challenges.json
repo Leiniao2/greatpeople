@@ -74,8 +74,6 @@
         "autogen": true,
         "configId": "caesar-gaul",
         "params": {
-          "title": "Sargon of Akkad created the world's",
-          "intro": "Sargon of Akkad created the world's first:",
           "mode": "caesar",
           "plaintext": "MULTI ETHNIC EMPIRE"
         },
@@ -112,8 +110,6 @@
         "autogen": true,
         "configId": "caesar-gaul",
         "params": {
-          "title": "Order these events in the rise",
-          "intro": "Order these events in the rise of Sargon of Akkad's empire:",
           "mode": "caesar",
           "plaintext": "SARGON SERVES AS CUP BEARER TO"
         },
@@ -136,10 +132,6 @@
         "fact": "The Epic of Gilgamesh, preserved on twelve clay tablets, predates Homer's Iliad by at least 1,500 years. It contains a great flood story remarkably similar to Noah's in the Bible.",
         "autogen": true,
         "configId": "pyramid-deep",
-        "params": {
-          "title": "The Epic of Gilgamesh is considered",
-          "subtitle": "The Epic of Gilgamesh is considered:"
-        },
         "instruction": "The Epic of Gilgamesh is considered: The way to the answer runs through these passages — find the exit.",
         "id": "the-king-and-the-wild-man:0",
         "stage": "origins",
@@ -163,8 +155,6 @@
         "autogen": true,
         "configId": "bi-sheng-clay",
         "params": {
-          "title": "Arrange the key events of Enkidu's",
-          "intro": "Arrange the key events of Enkidu's life in order:",
           "lines": [
             "ENKIDU ROAMS",
             "ENKIDU ROAMS THE",
@@ -184,10 +174,6 @@
         "fact": "Enkidu and Gilgamesh fought briefly at the city gate, but quickly became the closest of friends. Enkidu's death from divine punishment drives the epic's second half and Gilgamesh's desperate quest for immortality.",
         "autogen": true,
         "configId": "euclid-grid",
-        "params": {
-          "title": "Enkidu became Gilgamesh's enemy and they",
-          "intro": "Enkidu became Gilgamesh's enemy and they fought to the death at the end of the epic."
-        },
         "instruction": "Enkidu became Gilgamesh's enemy and they fought to the death at the end of the epic. Order the grid as the record was ordered — every row, column and box complete.",
         "id": "the-king-and-the-wild-man:3",
         "stage": "mastery",
@@ -247,9 +233,6 @@
         "fact": "The burning of Nineveh paradoxically preserved Ashurbanipal's library. The fire baked the clay tablets hard, protecting them. The library lay buried until Austen Henry Layard rediscovered it in 1849, bringing the Epic of Gilgamesh back to the world.",
         "autogen": true,
         "configId": "babylon-tablets",
-        "params": {
-          "title": "Arrange the events of the Assyrian"
-        },
         "instruction": "Arrange the events of the Assyrian Empire's fall in order: Gather what the story needs: match the goods until the tally is met.",
         "id": "the-great-library-of-nineveh:1",
         "stage": "trial",
@@ -262,10 +245,6 @@
         "fact": "Ashurbanipal could read and write in multiple languages — an extraordinary feat for a king. He boasted of this in inscriptions, proud of mastering both the scribal arts and the military campaigns typical of Assyrian rulers.",
         "autogen": true,
         "configId": "court-drums",
-        "params": {
-          "title": "Ashurbanipal is notable for being literate",
-          "intro": "Ashurbanipal is notable for being literate at a time when:"
-        },
         "instruction": "Ashurbanipal is notable for being literate at a time when: Learn the phrase and play it back, note for note.",
         "id": "the-great-library-of-nineveh:2",
         "stage": "mastery",
@@ -279,8 +258,6 @@
         "autogen": true,
         "configId": "caesar-gaul",
         "params": {
-          "title": "Ashurbanipal's library at Nineveh, containing over",
-          "intro": "Ashurbanipal's library at Nineveh, containing over 30,000 tablets, was the world's first known systematically organised collection of texts.",
           "mode": "caesar",
           "plaintext": "ASHURBANIPAL S LIBRARY AT"
         },
@@ -323,10 +300,6 @@
         "fact": "Chinese tradition credits Lei Zu (also written Leizu or Si Ling-chi), wife of the Yellow Emperor Huangdi, with discovering silk around 2700 BCE when a silkworm cocoon fell into her tea and she unravelled its thread.",
         "autogen": true,
         "configId": "pyramid-deep",
-        "params": {
-          "title": "According to Chinese legend, who discovered",
-          "subtitle": "According to Chinese legend, who discovered silk?"
-        },
         "instruction": "According to Chinese legend, who discovered silk? The way to the answer runs through these passages — find the exit.",
         "id": "the-discovery-of-silk:0",
         "stage": "origins",
@@ -340,8 +313,6 @@
         "autogen": true,
         "configId": "bi-sheng-clay",
         "params": {
-          "title": "The term 'Silk Road' was coined",
-          "intro": "The term 'Silk Road' was coined by ancient Chinese merchants who dominated the trade route.",
           "lines": [
             "THE TERM",
             "THE TERM SILK",
@@ -361,10 +332,6 @@
         "fact": "A single silkworm cocoon is made from one continuous thread up to 900 metres long. It takes about 2,500 cocoons to make one pound of raw silk — explaining why silk was worth its weight in gold.",
         "autogen": true,
         "configId": "euclid-grid",
-        "params": {
-          "title": "Arrange the steps of silk production",
-          "intro": "Arrange the steps of silk production in the correct order:"
-        },
         "instruction": "Arrange the steps of silk production in the correct order: Order the grid as the record was ordered — every row, column and box complete.",
         "id": "the-discovery-of-silk:2",
         "stage": "mastery",
@@ -414,9 +381,6 @@
         "fact": "Hesy-Ra (c. 2700–2600 BCE) is the earliest known physician in recorded history. He held the title 'Chief of Dentists and Physicians' — inscribed on a wooden panel in his tomb at Saqqara, making him the first named doctor in history.",
         "autogen": true,
         "configId": "babylon-tablets",
-        "params": {
-          "title": "Hesy-Ra is considered the first person"
-        },
         "instruction": "Hesy-Ra is considered the first person in history to hold what title? Gather what the story needs: match the goods until the tally is met.",
         "id": "the-first-physician:0",
         "stage": "origins",
@@ -429,10 +393,6 @@
         "fact": "Hesy-Ra was Chief of Dentists and Physicians under Pharaoh Djoser (c. 2650 BCE). The Step Pyramid at Saqqara, designed by Imhotep, was built during the same reign — making Hesy-Ra and Imhotep contemporaries at the world's most ambitious construction project.",
         "autogen": true,
         "configId": "court-drums",
-        "params": {
-          "title": "Hesy-Ra served under Pharaoh Djoser, who",
-          "intro": "Hesy-Ra served under Pharaoh Djoser, who built Egypt's first pyramid at Saqqara."
-        },
         "instruction": "Hesy-Ra served under Pharaoh Djoser, who built Egypt's first pyramid at Saqqara. Learn the phrase and play it back, note for note.",
         "id": "the-first-physician:1",
         "stage": "trial",
@@ -446,8 +406,6 @@
         "autogen": true,
         "configId": "caesar-gaul",
         "params": {
-          "title": "Arrange these milestones of ancient medicine",
-          "intro": "Arrange these milestones of ancient medicine in chronological order:",
           "mode": "caesar",
           "plaintext": "HESY RA BECOMES THE WORLD S"
         },
@@ -490,10 +448,6 @@
         "fact": "The Hittite royal family had suffered generations of murder, coup, and revenge killings over succession. Telepinu's Edict (c. 1600 BCE) established a clear line of succession and banned the killing of royal family members — replacing blood with law.",
         "autogen": true,
         "configId": "pyramid-deep",
-        "params": {
-          "title": "What problem was the Edict of",
-          "subtitle": "What problem was the Edict of Telepinu designed to solve?"
-        },
         "instruction": "What problem was the Edict of Telepinu designed to solve? The way to the answer runs through these passages — find the exit.",
         "id": "edict-of-telepinu:0",
         "stage": "origins",
@@ -507,8 +461,6 @@
         "autogen": true,
         "configId": "bi-sheng-clay",
         "params": {
-          "title": "The Hittite Empire was centred in",
-          "intro": "The Hittite Empire was centred in modern-day Turkey, making it one of the great powers of the ancient Near East alongside Egypt and Babylon.",
           "lines": [
             "THE HITTITE",
             "THE HITTITE",
@@ -528,10 +480,6 @@
         "fact": "Telepinu's Edict predates Greek democratic codes by centuries. Its core principle — that even kings must follow established succession rules — represented a revolutionary idea: that the most powerful rulers were subject to written law.",
         "autogen": true,
         "configId": "euclid-grid",
-        "params": {
-          "title": "Arrange these landmarks in the history",
-          "intro": "Arrange these landmarks in the history of written law from oldest to most recent:"
-        },
         "instruction": "Arrange these landmarks in the history of written law from oldest to most recent: Order the grid as the record was ordered — every row, column and box complete.",
         "id": "edict-of-telepinu:2",
         "stage": "mastery",
@@ -571,9 +519,6 @@
         "fact": "Mahavira added the fifth vow — Brahmacharya — to the four already taught by the previous Tirthankara. Together, these five vows form the ethical core of Jain monasticism, practised by Jain monks today with the same rigour as in Mahavira's time, over 2,500 years ago.",
         "autogen": true,
         "configId": "babylon-tablets",
-        "params": {
-          "title": "Arrange the five major vows of"
-        },
         "instruction": "Arrange the five major vows of Jain monks, as established by Mahavira, in the order traditionally taught: Gather what the story needs: match the goods until the tally is met.",
         "id": "the-great-hero:0",
         "stage": "origins",
@@ -596,10 +541,6 @@
         "fact": "Ahimsa (non-violence) is the supreme ethical principle of Jainism, elevated by Mahavira. It extends to all living beings — including insects. Jain monks carry brooms to sweep the path before them so they do not accidentally step on any creature.",
         "autogen": true,
         "configId": "court-drums",
-        "params": {
-          "title": "Mahavira's central ethical principle was Ahimsa.",
-          "intro": "Mahavira's central ethical principle was Ahimsa. What does this mean?"
-        },
         "instruction": "Mahavira's central ethical principle was Ahimsa. What does this mean? Learn the phrase and play it back, note for note.",
         "id": "the-great-hero:2",
         "stage": "mastery",
@@ -623,8 +564,6 @@
         "autogen": true,
         "configId": "caesar-gaul",
         "params": {
-          "title": "Jainism believes the universe was created",
-          "intro": "Jainism believes the universe was created and is governed by a supreme divine being.",
           "mode": "caesar",
           "plaintext": "JAINISM IS UNIQUE AMONG MAJOR"
         },
@@ -667,10 +606,6 @@
         "fact": "The Egyptian civil calendar was based on the Nile's flooding cycle. As Astronomer of Amun, Nakht would have tracked Sirius (Sopdet) — the star's first appearance above the horizon at dawn — which predicted the flood with remarkable accuracy.",
         "autogen": true,
         "configId": "pyramid-deep",
-        "params": {
-          "title": "Arrange the agricultural seasons Nakht would",
-          "subtitle": "Arrange the agricultural seasons Nakht would have tracked in the Egyptian calendar:"
-        },
         "instruction": "Arrange the agricultural seasons Nakht would have tracked in the Egyptian calendar: The way to the answer runs through these passages — find the exit.",
         "id": "the-scribe-of-seasons:1",
         "stage": "trial",
@@ -726,8 +661,6 @@
         "autogen": true,
         "configId": "bi-sheng-clay",
         "params": {
-          "title": "Pediamenopet's tomb contains the longest known",
-          "intro": "Pediamenopet's tomb contains the longest known ancient Egyptian funerary text. Approximately how many lines does it contain?",
           "lines": [
             "OVER LINES",
             "OVER LINES",
@@ -747,10 +680,6 @@
         "fact": "Pediamenopet lived during the Late Period, a turbulent age of foreign invasions. His vast tomb was a monument so packed with sacred texts that no conqueror's curse could erase all of them. Scholars are still copying and translating them today.",
         "autogen": true,
         "configId": "euclid-grid",
-        "params": {
-          "title": "Arrange these great periods of ancient",
-          "intro": "Arrange these great periods of ancient Egyptian history from earliest to most recent:"
-        },
         "instruction": "Arrange these great periods of ancient Egyptian history from earliest to most recent: Order the grid as the record was ordered — every row, column and box complete.",
         "id": "the-longest-text:1",
         "stage": "trial",
@@ -763,9 +692,6 @@
         "fact": "The Book of the Dead (more accurately 'Book of Coming Forth by Day') was a personal funerary guide. Spell 125, the Weighing of the Heart, was the most critical: the deceased's heart was weighed against the feather of Ma'at. A heart heavier than the feather — burdened by sins — was devoured by the monster Ammit.",
         "autogen": true,
         "configId": "babylon-tablets",
-        "params": {
-          "title": "The Book of the Dead contained"
-        },
         "instruction": "The Book of the Dead contained spells to help the deceased navigate the underworld and pass the final judgement before Osiris. Gather what the story needs: match the goods until the tally is met.",
         "id": "the-longest-text:2",
         "stage": "mastery",
@@ -805,10 +731,6 @@
         "fact": "Peseshet (c. 2500–2450 BCE) is the earliest known female medical administrator in history. Her title 'Imy-r swnwt' — 'Lady Overseer of Female Physicians' — indicates she supervised a group of female medical practitioners, making her a pioneering figure in both medicine and women's leadership.",
         "autogen": true,
         "configId": "court-drums",
-        "params": {
-          "title": "Peseshet held the title 'Lady Overseer",
-          "intro": "Peseshet held the title 'Lady Overseer of Female Physicians.' What was extraordinary about this?"
-        },
         "instruction": "Peseshet held the title 'Lady Overseer of Female Physicians.' What was extraordinary about this? Learn the phrase and play it back, note for note.",
         "id": "lady-overseer:0",
         "stage": "origins",
@@ -822,8 +744,6 @@
         "autogen": true,
         "configId": "caesar-gaul",
         "params": {
-          "title": "Arrange these developments in ancient medicine",
-          "intro": "Arrange these developments in ancient medicine from oldest to most recent:",
           "mode": "caesar",
           "plaintext": "PESESHET SERVES AS LADY OVERSEER"
         },
@@ -839,10 +759,6 @@
         "fact": "We know of Peseshet entirely through a false door stele in her son's tomb at Giza. This was a common way for high-status women to be memorialized. The inscription preserves for 4,500 years the name of the world's first known female physician.",
         "autogen": true,
         "configId": "pyramid-deep",
-        "params": {
-          "title": "Peseshet's title appears in the tomb",
-          "subtitle": "Peseshet's title appears in the tomb of her son Akhethetep at Giza, not in her own tomb."
-        },
         "instruction": "Peseshet's title appears in the tomb of her son Akhethetep at Giza, not in her own tomb. The way to the answer runs through these passages — find the exit.",
         "id": "lady-overseer:2",
         "stage": "mastery",
@@ -898,8 +814,6 @@
         "autogen": true,
         "configId": "caesar-gaul",
         "params": {
-          "title": "Euclid's 'Elements' has been in continuous",
-          "intro": "Euclid's 'Elements' has been in continuous use since it was written, making it the world's most reprinted textbook after the Bible.",
           "mode": "caesar",
           "plaintext": "EUCLID S ELEMENTS HAS BEEN IN"
         },
@@ -969,8 +883,6 @@
         "autogen": true,
         "configId": "bi-sheng-clay",
         "params": {
-          "title": "Aspasia was born in Athens and",
-          "intro": "Aspasia was born in Athens and was a full citizen of the city.",
           "lines": [
             "ASPASIA WAS",
             "ASPASIA WAS FROM",
@@ -1058,8 +970,6 @@
         "autogen": true,
         "configId": "caesar-gaul",
         "params": {
-          "title": "Cicero was executed in 43 BCE",
-          "intro": "Cicero was executed in 43 BCE on the orders of:",
           "mode": "caesar",
           "plaintext": "MARC ANTONY"
         },
@@ -1095,9 +1005,6 @@
         "fact": "Cicero convinced the Senate to execute the Catilinarian conspirators without trial — a legally questionable act for which he was later exiled. His famous line \"Quousque tandem abutere, Catilina, patientia nostra?\" (How long, Catiline, will you abuse our patience?) is still quoted today.",
         "autogen": true,
         "configId": "venice-glass",
-        "params": {
-          "title": "Cicero's Catilinarian orations persuaded the Senate"
-        },
         "instruction": "Cicero's Catilinarian orations persuaded the Senate to give Catiline a fair trial before punishment. Gather what the story needs: match the goods until the tally is met.",
         "id": "the-voice-of-rome:3",
         "stage": "legacy",
@@ -1127,10 +1034,6 @@
         "fact": "Around 450 BCE, Anaxagoras was charged with impiety for saying the sun was a fiery rock larger than the Peloponnese. He was saved from execution by his friend Pericles but exiled from Athens.",
         "autogen": true,
         "configId": "pleistoanax-mountain",
-        "params": {
-          "title": "Anaxagoras was put on trial in",
-          "subtitle": "Anaxagoras was put on trial in Athens for claiming the sun was a fiery rock, not a divine being."
-        },
         "instruction": "Anaxagoras was put on trial in Athens for claiming the sun was a fiery rock, not a divine being. The way to the answer runs through these passages — find the exit.",
         "id": "before-socrates:0",
         "stage": "origins",
@@ -1163,10 +1066,6 @@
         "fact": "The pre-Socratics were the first to explain nature without myth. Their debate between flux (Heraclitus) and permanence (Parmenides) set up every major argument in Western philosophy that followed.",
         "autogen": true,
         "configId": "anaxagoras-grid",
-        "params": {
-          "title": "Match these pre-Socratic philosophers to their",
-          "intro": "Match these pre-Socratic philosophers to their central idea — arrange them oldest to most recent:"
-        },
         "instruction": "Match these pre-Socratic philosophers to their central idea — arrange them oldest to most recent: Order the grid as the record was ordered — every row, column and box complete.",
         "id": "before-socrates:3",
         "stage": "mastery",
@@ -1206,10 +1105,6 @@
         "fact": "Mani (216–274 CE) founded Manichaeism, a dualistic religion blending Zoroastrian light-and-darkness cosmology, Christian ethics, and Buddhist concepts of spiritual purification. At its height, Manichaeism spread from the Roman Empire to Tang Dynasty China — one of history's most geographically expansive faiths.",
         "autogen": true,
         "configId": "hildegard-chant",
-        "params": {
-          "title": "What religion did Mani found in",
-          "intro": "What religion did Mani found in the 3rd century CE?"
-        },
         "instruction": "What religion did Mani found in the 3rd century CE? Learn the phrase and play it back, note for note.",
         "id": "the-prophet-of-light:0",
         "stage": "origins",
@@ -1223,8 +1118,6 @@
         "autogen": true,
         "configId": "caesar-gaul",
         "params": {
-          "title": "Mani was only a preacher —",
-          "intro": "Mani was only a preacher — he had no talent for visual art.",
           "mode": "caesar",
           "plaintext": "MANI WAS A GIFTED PAINTER WHO"
         },
@@ -1241,8 +1134,6 @@
         "autogen": true,
         "configId": "bi-sheng-clay",
         "params": {
-          "title": "Arrange the key events of Mani's",
-          "intro": "Arrange the key events of Mani's life in order:",
           "lines": [
             "MANI",
             "MANI RECEIVES",
@@ -1289,9 +1180,6 @@
         "fact": "The Ballad of Mulan, a poem dating to the Northern Wei dynasty (386–534 CE), tells of a daughter who disguises herself as a man to spare her aged, ailing father from conscription. She fights for twelve years, earns high honours, and then reveals her identity — astonishing her comrades.",
         "autogen": true,
         "configId": "venice-glass",
-        "params": {
-          "title": "Why does Hua Mulan disguise herself"
-        },
         "instruction": "Why does Hua Mulan disguise herself as a man in the Ballad of Mulan? Gather what the story needs: match the goods until the tally is met.",
         "id": "the-disguised-warrior:0",
         "stage": "origins",
@@ -1304,10 +1192,6 @@
         "fact": "The ballad's ending is deliberately understated: Mulan's comrades, who fought beside her for a decade, are stunned to discover she is a woman. The poem asks no moral question — it simply presents her choice as natural and her courage as obvious.",
         "autogen": true,
         "configId": "pleistoanax-mountain",
-        "params": {
-          "title": "Arrange the key events of Mulan's",
-          "subtitle": "Arrange the key events of Mulan's story in narrative order:"
-        },
         "instruction": "Arrange the key events of Mulan's story in narrative order: The way to the answer runs through these passages — find the exit.",
         "id": "the-disguised-warrior:1",
         "stage": "trial",
@@ -1320,10 +1204,6 @@
         "fact": "Mulan refused the emperor's offer of office and asked only for a fast horse to carry her home. The original ballad ends with her reunited family and Mulan in her women's clothes again — her identity secure, her duty complete, her reward the return of ordinary life.",
         "autogen": true,
         "configId": "anaxagoras-grid",
-        "params": {
-          "title": "After revealing her identity, Mulan accepted",
-          "intro": "After revealing her identity, Mulan accepted the emperor's offer of a high imperial post."
-        },
         "instruction": "After revealing her identity, Mulan accepted the emperor's offer of a high imperial post. Order the grid as the record was ordered — every row, column and box complete.",
         "id": "the-disguised-warrior:2",
         "stage": "mastery",
@@ -1363,10 +1243,6 @@
         "fact": "Chanakya is also called Kautilya or Vishnugupta. He served as advisor to Chandragupta Maurya, the founder of the Maurya Empire, and authored the Arthashastra — an ancient Indian treatise on statecraft and political economy.",
         "autogen": true,
         "configId": "hildegard-chant",
-        "params": {
-          "title": "Chanakya is also known by which",
-          "intro": "Chanakya is also known by which other name?"
-        },
         "instruction": "Chanakya is also known by which other name? Learn the phrase and play it back, note for note.",
         "id": "the-art-of-statecraft:0",
         "stage": "origins",
@@ -1380,8 +1256,6 @@
         "autogen": true,
         "configId": "caesar-gaul",
         "params": {
-          "title": "Arrange these priorities from Chanakya's Arthashastra",
-          "intro": "Arrange these priorities from Chanakya's Arthashastra for a new king establishing power:",
           "mode": "caesar",
           "plaintext": "ESTABLISH A TREASURY WITHOUT"
         },
@@ -1418,8 +1292,6 @@
         "autogen": true,
         "configId": "bi-sheng-clay",
         "params": {
-          "title": "The Maurya Empire established by Chanakya",
-          "intro": "The Maurya Empire established by Chanakya and Chandragupta eventually controlled nearly the entire Indian subcontinent.",
           "lines": [
             "THE MAURYA",
             "THE MAURYA",
@@ -1466,9 +1338,6 @@
         "fact": "The Ramayana centers on Prince Rama of Ayodhya — his exile with his wife Sita and brother Lakshmana, Sita's abduction by the demon king Ravana, and Rama's journey to rescue her with the help of Hanuman and an army of monkeys. It remains one of Asia's most beloved epics.",
         "autogen": true,
         "configId": "venice-glass",
-        "params": {
-          "title": "The Ramayana tells the story of"
-        },
         "instruction": "The Ramayana tells the story of which prince? Gather what the story needs: match the goods until the tally is met.",
         "id": "the-first-poet:1",
         "stage": "trial",
@@ -1481,10 +1350,6 @@
         "fact": "The Ramayana's themes — the duty of a prince, the devotion of a wife, the loyalty of a friend — have resonated across Asia for 2,500 years. The epic has more than 300 known versions across South and Southeast Asia, each reflecting the values of its culture.",
         "autogen": true,
         "configId": "pleistoanax-mountain",
-        "params": {
-          "title": "Arrange these key events of the",
-          "subtitle": "Arrange these key events of the Ramayana in their correct narrative order:"
-        },
         "instruction": "Arrange these key events of the Ramayana in their correct narrative order: The way to the answer runs through these passages — find the exit.",
         "id": "the-first-poet:2",
         "stage": "mastery",
@@ -1507,10 +1372,6 @@
         "fact": "The Ramayana has influenced cultures across Southeast Asia for over a thousand years. Thailand has the Ramakien, Indonesia has the Kakawin Ramayana, and Cambodia's Reamker is performed at the royal court. Puppetry and dance forms based on the Ramayana are UNESCO-listed cultural traditions in Malaysia, Thailand, and Myanmar.",
         "autogen": true,
         "configId": "anaxagoras-grid",
-        "params": {
-          "title": "The Ramayana is unique to India",
-          "intro": "The Ramayana is unique to India and has not spread significantly to other Asian cultures."
-        },
         "instruction": "The Ramayana is unique to India and has not spread significantly to other Asian cultures. Order the grid as the record was ordered — every row, column and box complete.",
         "id": "the-first-poet:4",
         "stage": "legacy",
@@ -1530,10 +1391,6 @@
         "fact": "Pleistoanax was exiled in 445 BCE after being accused of accepting bribes from Pericles to withdraw the Spartan army from Attica. He spent nineteen years in exile near Mount Lycaeum before being recalled.",
         "autogen": true,
         "configId": "hildegard-chant",
-        "params": {
-          "title": "Why was Pleistoanax exiled from Sparta",
-          "intro": "Why was Pleistoanax exiled from Sparta?"
-        },
         "instruction": "Why was Pleistoanax exiled from Sparta? Learn the phrase and play it back, note for note.",
         "id": "the-recalled-king:0",
         "stage": "origins",
@@ -1567,8 +1424,6 @@
         "autogen": true,
         "configId": "caesar-gaul",
         "params": {
-          "title": "The Thirty Years' Peace between Athens",
-          "intro": "The Thirty Years' Peace between Athens and Sparta lasted for its full thirty-year term.",
           "mode": "caesar",
           "plaintext": "THE THIRTY YEARS PEACE BCE"
         },
@@ -1592,8 +1447,6 @@
         "autogen": true,
         "configId": "bi-sheng-clay",
         "params": {
-          "title": "Which of Zeno's paradoxes argues that",
-          "intro": "Which of Zeno's paradoxes argues that the fastest runner can never overtake the slowest?",
           "lines": [
             "ACHILLES AND",
             "ACHILLES AND THE",
@@ -1613,9 +1466,6 @@
         "fact": "Zeno's paradoxes were a rhetorical defense of his teacher Parmenides, not his personal beliefs. He used them as reductio ad absurdum — if you accept common sense, you get contradictions. It was a philosophical weapon, not a physics claim.",
         "autogen": true,
         "configId": "venice-glass",
-        "params": {
-          "title": "Zeno of Elea personally believed that"
-        },
         "instruction": "Zeno of Elea personally believed that motion was impossible and that nothing in the universe actually moves. Gather what the story needs: match the goods until the tally is met.",
         "id": "the-paradox-master:1",
         "stage": "trial",
@@ -1790,8 +1640,6 @@
         "autogen": true,
         "configId": "bi-sheng-clay",
         "params": {
-          "title": "Lu Yu's 'Classic of Tea' classified",
-          "intro": "Lu Yu's 'Classic of Tea' classified tea in how many chapters?",
           "lines": [
             "",
             "",
@@ -1849,8 +1697,6 @@
         "autogen": true,
         "configId": "bi-sheng-clay",
         "params": {
-          "title": "The chivalric code obligated knights to",
-          "intro": "The chivalric code obligated knights to protect the weak, honour women, and serve God — but said nothing about loyalty to their king.",
           "lines": [
             "CHIVALRY",
             "CHIVALRY",
@@ -1871,8 +1717,6 @@
         "autogen": true,
         "configId": "al-kindi-frequency",
         "params": {
-          "title": "Arrange the stages of a medieval",
-          "intro": "Arrange the stages of a medieval knight's training in the correct order:",
           "mode": "caesar",
           "plaintext": "PAGE AGES ENTERS A LORD S"
         },
@@ -1898,10 +1742,6 @@
         "fact": "Chivalry evolved over three centuries. Early codes (c.1000 CE) emphasised martial courage; by 1200 CE, troubadour poetry had added courtesy and romantic love. By 1300 CE, protection of the poor and weak entered as the Church sought to direct knightly violence toward Christian purposes.",
         "autogen": true,
         "configId": "cedar-forest",
-        "params": {
-          "title": "Arrange these virtues of the chivalric",
-          "subtitle": "Arrange these virtues of the chivalric code in the order they appear in the Song of Roland (oldest to newest emphasis):"
-        },
         "instruction": "Arrange these virtues of the chivalric code in the order they appear in the Song of Roland (oldest to newest emphasis): The way to the answer runs through these passages — find the exit.",
         "id": "the-knight-s-code:3",
         "stage": "legacy",
@@ -1931,9 +1771,6 @@
         "fact": "Li Qingzhao (1084–c.1155) is considered the greatest female poet in Chinese history and one of the greatest poets of all. She transformed the ci form — originally sung verses for entertainment — into a vehicle for profound personal expression.",
         "autogen": true,
         "configId": "changan-silks",
-        "params": {
-          "title": "Li Qingzhao is regarded as"
-        },
         "instruction": "Li Qingzhao is regarded as: Gather what the story needs: match the goods until the tally is met.",
         "id": "words-of-sorrow:0",
         "stage": "origins",
@@ -1956,10 +1793,6 @@
         "fact": "Li Qingzhao's life split sharply in two: the happy early years in Jinan collecting and writing beside her husband, and the desolate later years as a refugee. Her poem 'Sheng Sheng Man' opens with eighteen consecutive monosyllables evoking emptiness and longing — one of the most technically daring openings in all of Chinese poetry.",
         "autogen": true,
         "configId": "hildegard-chant",
-        "params": {
-          "title": "Arrange these events of Li Qingzhao's",
-          "intro": "Arrange these events of Li Qingzhao's life in chronological order:"
-        },
         "instruction": "Arrange these events of Li Qingzhao's life in chronological order: Learn the phrase and play it back, note for note.",
         "id": "words-of-sorrow:2",
         "stage": "mastery",
@@ -1972,10 +1805,6 @@
         "fact": "Li Qingzhao lost her husband, her home, and her famous art collection when the Jin dynasty invaded northern China in 1127. Her later ci poems are hauntingly different from her earlier joyful verses. She wrote: 'Who is left to share the fragrance of the wine?' — a line that still resonates 900 years later.",
         "autogen": true,
         "configId": "al-khwarizmi-grid",
-        "params": {
-          "title": "After the death of her husband",
-          "intro": "After the death of her husband Zhao Mingcheng, Li Qingzhao continued to write — producing some of her most profound poems, marked by deep grief and longing."
-        },
         "instruction": "After the death of her husband Zhao Mingcheng, Li Qingzhao continued to write — producing some of her most profound poems, marked by deep grief and longing. Order the grid as the record was ordered — every row, column and box complete.",
         "id": "words-of-sorrow:3",
         "stage": "legacy",
@@ -2006,8 +1835,6 @@
         "autogen": true,
         "configId": "bi-sheng-clay",
         "params": {
-          "title": "Whose grandson was Batu Khan, and",
-          "intro": "Whose grandson was Batu Khan, and what western invasion did he lead?",
           "lines": [
             "GRANDSON OF",
             "GRANDSON OF",
@@ -2028,8 +1855,6 @@
         "autogen": true,
         "configId": "al-kindi-frequency",
         "params": {
-          "title": "The Mongol army that invaded Europe",
-          "intro": "The Mongol army that invaded Europe in 1241 was defeated by the armies of Poland and Hungary.",
           "mode": "caesar",
           "plaintext": "AT THE BATTLE OF LEGNICA THE"
         },
@@ -2045,10 +1870,6 @@
         "fact": "The Mongol campaign of 1241 was one of the most devastating military events in medieval European history. Poland, Hungary, and Moravia were devastated. Poland lost an estimated 25% of its population. When the Mongols withdrew, medieval Europe assumed it was a temporary pause — for years, communities lived in terror of their return.",
         "autogen": true,
         "configId": "cedar-forest",
-        "params": {
-          "title": "Arrange the key events of Batu",
-          "subtitle": "Arrange the key events of Batu Khan's western campaign in order:"
-        },
         "instruction": "Arrange the key events of Batu Khan's western campaign in order: The way to the answer runs through these passages — find the exit.",
         "id": "the-golden-horde-rides:2",
         "stage": "mastery",
@@ -2098,9 +1919,6 @@
         "fact": "Bi Sheng invented movable type during the Song Dynasty (c.1040 CE) using baked clay — the same material Chinese potters had mastered for thousands of years. Each character was carved in clay, hardened by fire, then set in an iron frame with pine resin. After printing, the resin was heated and the characters removed for reuse.",
         "autogen": true,
         "configId": "changan-silks",
-        "params": {
-          "title": "What material did Bi Sheng use"
-        },
         "instruction": "What material did Bi Sheng use to create the world's first movable type, around 1040 CE? Gather what the story needs: match the goods until the tally is met.",
         "id": "characters-of-clay:0",
         "stage": "origins",
@@ -2113,10 +1931,6 @@
         "fact": "Despite its ingenuity, Bi Sheng's clay type did not replace woodblock printing, which remained dominant in China for centuries. Chinese has tens of thousands of characters, making movable type logistically complex — a single print job might require thousands of individual pieces. Woodblock printing remained faster for short texts. Movable type proved more revolutionary in alphabetic languages like Korean and later European languages.",
         "autogen": true,
         "configId": "hildegard-chant",
-        "params": {
-          "title": "Bi Sheng's movable type immediately replaced",
-          "intro": "Bi Sheng's movable type immediately replaced traditional woodblock printing across China."
-        },
         "instruction": "Bi Sheng's movable type immediately replaced traditional woodblock printing across China. Learn the phrase and play it back, note for note.",
         "id": "characters-of-clay:1",
         "stage": "trial",
@@ -2129,10 +1943,6 @@
         "fact": "Bi Sheng's system was described in detail by the statesman Shen Kuo in his 'Dream Pool Essays' (1088 CE) — one of the great scientific documents of the medieval world. Without Shen Kuo's account, we might never have known of Bi Sheng's invention, since none of his actual type survives.",
         "autogen": true,
         "configId": "al-khwarizmi-grid",
-        "params": {
-          "title": "Arrange the steps of Bi Sheng's",
-          "intro": "Arrange the steps of Bi Sheng's printing process in order:"
-        },
         "instruction": "Arrange the steps of Bi Sheng's printing process in order: Order the grid as the record was ordered — every row, column and box complete.",
         "id": "characters-of-clay:2",
         "stage": "mastery",
@@ -2173,8 +1983,6 @@
         "autogen": true,
         "configId": "bi-sheng-clay",
         "params": {
-          "title": "How far did Ibn Battuta travel",
-          "intro": "How far did Ibn Battuta travel over the course of his 29-year journey?",
           "lines": [
             "APPROXIMATEL",
             "APPROXIMATELY",
@@ -2195,8 +2003,6 @@
         "autogen": true,
         "configId": "al-kindi-frequency",
         "params": {
-          "title": "Ibn Battuta set out from Morocco",
-          "intro": "Ibn Battuta set out from Morocco with a clear plan to circumnavigate the known world.",
           "mode": "caesar",
           "plaintext": "IBN BATTUTA LEFT TANGIER IN"
         },
@@ -2212,10 +2018,6 @@
         "fact": "Ibn Battuta's Rihla (A Gift to Those Who Contemplate the Wonders of Cities) was dictated to a court secretary, Ibn Juzayy, on his return. Some scholars have questioned whether he visited every place he describes — the China account in particular is suspiciously vague — but his eyewitness descriptions of Mali, India, and Constantinople remain invaluable historical documents.",
         "autogen": true,
         "configId": "cedar-forest",
-        "params": {
-          "title": "Arrange the major regions Ibn Battuta",
-          "subtitle": "Arrange the major regions Ibn Battuta visited in the order of his travels:"
-        },
         "instruction": "Arrange the major regions Ibn Battuta visited in the order of his travels: The way to the answer runs through these passages — find the exit.",
         "id": "the-great-journey:2",
         "stage": "mastery",
@@ -2265,9 +2067,6 @@
         "fact": "Pakal became king of Palenque at age 12 in 615 CE and ruled until his death in 683 CE — 68 years on the throne, the longest reign in all of pre-Columbian history. Under his rule, Palenque transformed from a minor city into one of the most powerful and artistically sophisticated kingdoms of the Classic Maya world.",
         "autogen": true,
         "configId": "changan-silks",
-        "params": {
-          "title": "How long did Pakal the Great"
-        },
         "instruction": "How long did Pakal the Great rule the Maya city of Palenque? Gather what the story needs: match the goods until the tally is met.",
         "id": "the-jade-king:0",
         "stage": "origins",
@@ -2280,10 +2079,6 @@
         "fact": "The Temple of the Inscriptions stood in plain sight for centuries — one of Palenque's most prominent structures. But its tomb was not discovered until 1952, when Mexican archaeologist Alberto Ruz Lhuillier noticed a stone floor with plugged holes and spent four years clearing a rubble-filled staircase before reaching Pakal's burial chamber 25 metres below.",
         "autogen": true,
         "configId": "hildegard-chant",
-        "params": {
-          "title": "Pakal's tomb was discovered by archaeologists",
-          "intro": "Pakal's tomb was discovered by archaeologists long before his Temple of the Inscriptions was excavated."
-        },
         "instruction": "Pakal's tomb was discovered by archaeologists long before his Temple of the Inscriptions was excavated. Learn the phrase and play it back, note for note.",
         "id": "the-jade-king:1",
         "stage": "trial",
@@ -2296,10 +2091,6 @@
         "fact": "The sarcophagus lid of Pakal's tomb shows him at the moment of death, descending into the Maya underworld (Xibalba) on the World Tree. For decades Western scholars misread the image as an astronaut in a spacecraft — a famous case of wishful thinking overriding careful analysis. Maya specialists recognized it as a standard resurrection narrative immediately.",
         "autogen": true,
         "configId": "al-khwarizmi-grid",
-        "params": {
-          "title": "Arrange the key events of Pakal's",
-          "intro": "Arrange the key events of Pakal's reign at Palenque in order:"
-        },
         "instruction": "Arrange the key events of Pakal's reign at Palenque in order: Order the grid as the record was ordered — every row, column and box complete.",
         "id": "the-jade-king:2",
         "stage": "mastery",
@@ -2350,8 +2141,6 @@
         "autogen": true,
         "configId": "bi-sheng-clay",
         "params": {
-          "title": "What is Taira no Tadanori best",
-          "intro": "What is Taira no Tadanori best remembered for, beyond his role as a Taira clan general?",
           "lines": [
             "HIS POETRY",
             "HIS POETRY HE",
@@ -2372,8 +2161,6 @@
         "autogen": true,
         "configId": "al-kindi-frequency",
         "params": {
-          "title": "Tadanori's poem was attributed to him",
-          "intro": "Tadanori's poem was attributed to him by name in the imperial anthology after his death.",
           "mode": "caesar",
           "plaintext": "BECAUSE TADANORI DIED ON THE"
         },
@@ -2389,10 +2176,6 @@
         "fact": "The tale of Tadanori riding back to his poetry master on the night of defeat became one of the most celebrated stories in Japanese literary history. It appears in the Heike Monogatari — the great narrative of the Genpei War — as the moment when a warrior reveals that poetry, not victory, is what he cannot bear to leave behind.",
         "autogen": true,
         "configId": "cedar-forest",
-        "params": {
-          "title": "Arrange the key events of Taira",
-          "subtitle": "Arrange the key events of Taira no Tadanori's life in order:"
-        },
         "instruction": "Arrange the key events of Taira no Tadanori's life in order: The way to the answer runs through these passages — find the exit.",
         "id": "the-poem-in-the-armor:2",
         "stage": "mastery",
@@ -2495,8 +2278,6 @@
         "autogen": true,
         "configId": "gutenberg-bible",
         "params": {
-          "title": "Titian continued painting actively until his",
-          "intro": "Titian continued painting actively until his death at approximately 90 years of age — still accepting royal commissions.",
           "lines": [
             "TITIAN",
             "TITIAN CONTINUED",
@@ -2629,8 +2410,6 @@
         "autogen": true,
         "configId": "vigenere-cabinet",
         "params": {
-          "title": "Arrange the key milestones of Magellan's",
-          "intro": "Arrange the key milestones of Magellan's circumnavigation in order:",
           "mode": "caesar",
           "plaintext": "FLEET OF FIVE SHIPS DEPARTS"
         },
@@ -2693,9 +2472,6 @@
         "fact": "Educated Europeans had known the Earth was spherical since ancient Greece. The debate was about the Earth's SIZE — Columbus's critics correctly argued the ocean was too wide. He survived only because the Americas existed where he wrongly placed Asia.",
         "autogen": true,
         "configId": "lisbon-spices",
-        "params": {
-          "title": "Ferdinand and Isabella funded Columbus' 1492"
-        },
         "instruction": "Ferdinand and Isabella funded Columbus' 1492 voyage primarily because they believed the Earth was flat. Gather what the story needs: match the goods until the tally is met.",
         "id": "the-catholic-monarchs:3",
         "stage": "legacy",
@@ -2726,8 +2502,6 @@
         "autogen": true,
         "configId": "gutenberg-bible",
         "params": {
-          "title": "Manuel I of Portugal was known",
-          "intro": "Manuel I of Portugal was known by what nickname, reflecting the extraordinary wealth of his reign?",
           "lines": [
             "THE",
             "THE FORTUNATE",
@@ -2794,10 +2568,6 @@
         "fact": "Bayinnaung (1516–1581) built the largest empire in Southeast Asian history, conquering the Shan States, the Lan Na kingdom (Chiang Mai), and twice capturing Ayutthaya (the Siamese capital). His Toungoo Empire briefly unified Burma, Thailand, Laos, and portions of Yunnan under one administration.",
         "autogen": true,
         "configId": "bach-fugue",
-        "params": {
-          "title": "Bayinnaung unified most of mainland Southeast",
-          "intro": "Bayinnaung unified most of mainland Southeast Asia under his rule. Which kingdoms did he conquer?"
-        },
         "instruction": "Bayinnaung unified most of mainland Southeast Asia under his rule. Which kingdoms did he conquer? Learn the phrase and play it back, note for note.",
         "id": "lord-of-three-kingdoms:0",
         "stage": "origins",
@@ -2810,10 +2580,6 @@
         "fact": "Bayinnaung was known for remarkable religious tolerance. He allowed conquered rulers to keep their thrones as vassals, permitted local customs to continue, and interfered with Portuguese missionaries in Pegu only when they destroyed Buddhist temples. He sought legitimacy through ceremony and generosity as much as through force.",
         "autogen": true,
         "configId": "euclid-grid",
-        "params": {
-          "title": "Bayinnaung imposed Burmese Buddhism on conquered",
-          "intro": "Bayinnaung imposed Burmese Buddhism on conquered peoples and suppressed their local religions."
-        },
         "instruction": "Bayinnaung imposed Burmese Buddhism on conquered peoples and suppressed their local religions. Order the grid as the record was ordered — every row, column and box complete.",
         "id": "lord-of-three-kingdoms:1",
         "stage": "trial",
@@ -2826,10 +2592,6 @@
         "fact": "The white elephant was the ultimate symbol of royal legitimacy in Southeast Asia. When Bayinnaung captured Ayutthaya's white elephants, he was claiming the spiritual mandate of regional kingship. His Pegu capital became one of the most cosmopolitan cities in Asia, hosting Portuguese traders, Siamese princes, and Chinese merchants simultaneously.",
         "autogen": true,
         "configId": "pacific-strait",
-        "params": {
-          "title": "Arrange the key events of Bayinnaung's",
-          "subtitle": "Arrange the key events of Bayinnaung's conquests in order:"
-        },
         "instruction": "Arrange the key events of Bayinnaung's conquests in order: The way to the answer runs through these passages — find the exit.",
         "id": "lord-of-three-kingdoms:2",
         "stage": "mastery",
@@ -2880,8 +2642,6 @@
         "autogen": true,
         "configId": "gutenberg-bible",
         "params": {
-          "title": "What key innovation made Gutenberg's printing",
-          "intro": "What key innovation made Gutenberg's printing press transformative, compared to woodblock printing?",
           "lines": [
             "INDIVIDUAL",
             "INDIVIDUAL METAL",
@@ -2902,8 +2662,6 @@
         "autogen": true,
         "configId": "vigenere-cabinet",
         "params": {
-          "title": "Gutenberg became enormously wealthy from his",
-          "intro": "Gutenberg became enormously wealthy from his printing press invention.",
           "mode": "caesar",
           "plaintext": "GUTENBERG DIED NEARLY BROKE"
         },
@@ -2919,9 +2677,6 @@
         "fact": "It took 50 years for printing to reach every corner of Europe. By 1500, over 20 million books had been printed — more than all the manuscripts produced in the previous thousand years of European history. The printing press did not merely copy existing knowledge; it transformed who could access it, who could challenge it, and who could add to it.",
         "autogen": true,
         "configId": "lisbon-spices",
-        "params": {
-          "title": "Arrange these consequences of Gutenberg's press"
-        },
         "instruction": "Arrange these consequences of Gutenberg's press in roughly chronological order after 1450: Gather what the story needs: match the goods until the tally is met.",
         "id": "words-for-the-world:2",
         "stage": "mastery",
@@ -2961,10 +2716,6 @@
         "fact": "At Myeongnyang in 1597, Admiral Yi commanded just 13 remaining warships against a Japanese fleet of over 300. He positioned his ships in the narrow strait where the current reversed twice daily, luring the Japanese into a bottleneck where numbers meant nothing. He sank or damaged 31 enemy ships without losing a single one of his own.",
         "autogen": true,
         "configId": "bach-fugue",
-        "params": {
-          "title": "What was the decisive ratio of",
-          "intro": "What was the decisive ratio of ships at the Battle of Myeongnyang (1597), which Admiral Yi Sun-sin won?"
-        },
         "instruction": "What was the decisive ratio of ships at the Battle of Myeongnyang (1597), which Admiral Yi Sun-sin won? Learn the phrase and play it back, note for note.",
         "id": "the-turtle-ship:0",
         "stage": "origins",
@@ -2977,10 +2728,6 @@
         "fact": "Yi was arrested, tortured, and demoted twice — the victim of court intrigue and a Japanese deception operation that planted false intelligence to undermine him. He served as a common soldier before being hastily reinstated when the navy collapsed without him. Myeongnyang was fought with the 13 ships that remained after his absence.",
         "autogen": true,
         "configId": "euclid-grid",
-        "params": {
-          "title": "Admiral Yi Sun-sin was never removed",
-          "intro": "Admiral Yi Sun-sin was never removed from command during the Japanese invasions."
-        },
         "instruction": "Admiral Yi Sun-sin was never removed from command during the Japanese invasions. Order the grid as the record was ordered — every row, column and box complete.",
         "id": "the-turtle-ship:1",
         "stage": "trial",
@@ -2993,10 +2740,6 @@
         "fact": "Yi Sun-sin died at Noryang in 1598 — struck by a bullet during the battle that would finally expel Japanese forces from Korea. His last words, reportedly, were: 'The battle is at its height — do not announce my death.' He won the battle from his deathbed, concealing his death until the Japanese had fled.",
         "autogen": true,
         "configId": "pacific-strait",
-        "params": {
-          "title": "Arrange the key events of the",
-          "subtitle": "Arrange the key events of the Imjin War and Yi Sun-sin's role in order:"
-        },
         "instruction": "Arrange the key events of the Imjin War and Yi Sun-sin's role in order: The way to the answer runs through these passages — find the exit.",
         "id": "the-turtle-ship:2",
         "stage": "mastery",
@@ -3047,8 +2790,6 @@
         "autogen": true,
         "configId": "gutenberg-bible",
         "params": {
-          "title": "What was the Aztec capital city",
-          "intro": "What was the Aztec capital city that Montezuma II ruled, which amazed the Spanish conquistadors?",
           "lines": [
             "TENOCHTITLAN",
             "TENOCHTITLAN",
@@ -3069,8 +2810,6 @@
         "autogen": true,
         "configId": "vigenere-cabinet",
         "params": {
-          "title": "Montezuma II believed Hernán Cortés was",
-          "intro": "Montezuma II believed Hernán Cortés was the god Quetzalcoatl returning as prophesied.",
           "mode": "caesar",
           "plaintext": "THE STORY THAT MONTEZUMA MISTOOK"
         },
@@ -3086,9 +2825,6 @@
         "fact": "The conquest of the Aztec Empire was not a European conquest of indigenous people — it was a coalition war. Cortés' key allies, the Tlaxcalans, had been enemies of the Aztec Triple Alliance for generations and contributed far more warriors to the siege of Tenochtitlan than the Spanish did. The Aztec empire fell to its own enemies as much as to European weapons.",
         "autogen": true,
         "configId": "lisbon-spices",
-        "params": {
-          "title": "Arrange these events of Montezuma II's"
-        },
         "instruction": "Arrange these events of Montezuma II's reign and the Spanish conquest in order: Gather what the story needs: match the goods until the tally is met.",
         "id": "the-sun-emperor:2",
         "stage": "mastery",
@@ -3138,10 +2874,6 @@
         "fact": "Rumiñahui ('Stone Eye') was Atahualpa's most capable general. When Pizarro captured and executed the Inca emperor in 1533, Rumiñahui gathered the northern army and led resistance from Quito. Rather than let Pizarro's forces loot the city's treasures, he burned Quito and hid its gold — a legendary hoard that has never been found.",
         "autogen": true,
         "configId": "bach-fugue",
-        "params": {
-          "title": "Why is Rumiñahui remembered as one",
-          "intro": "Why is Rumiñahui remembered as one of the great symbols of Inca resistance?"
-        },
         "instruction": "Why is Rumiñahui remembered as one of the great symbols of Inca resistance? Learn the phrase and play it back, note for note.",
         "id": "the-last-fire:0",
         "stage": "origins",
@@ -3154,10 +2886,6 @@
         "fact": "After months of guerrilla resistance, Rumiñahui was captured in early 1535. He was tortured by the Spanish, who demanded to know where he had hidden Quito's treasure. He revealed nothing. He was publicly executed in Quito in early 1535 — an act the Spanish intended as a demonstration of power, which instead made him an immortal symbol of defiance.",
         "autogen": true,
         "configId": "euclid-grid",
-        "params": {
-          "title": "Rumiñahui was treated as a prisoner",
-          "intro": "Rumiñahui was treated as a prisoner of war and eventually released after the conquest of Quito."
-        },
         "instruction": "Rumiñahui was treated as a prisoner of war and eventually released after the conquest of Quito. Order the grid as the record was ordered — every row, column and box complete.",
         "id": "the-last-fire:1",
         "stage": "trial",
@@ -3170,10 +2898,6 @@
         "fact": "The lost treasure of Quito became one of the great legends of the Americas. Expeditions searched for it for centuries, and legends of El Dorado were partly inspired by the belief that Rumiñahui had hidden an incomprehensible fortune somewhere in the Andes. No credible discovery has ever been made.",
         "autogen": true,
         "configId": "pacific-strait",
-        "params": {
-          "title": "Arrange the key events of Rumiñahui's",
-          "subtitle": "Arrange the key events of Rumiñahui's resistance in order:"
-        },
         "instruction": "Arrange the key events of Rumiñahui's resistance in order: The way to the answer runs through these passages — find the exit.",
         "id": "the-last-fire:2",
         "stage": "mastery",
@@ -3224,8 +2948,6 @@
         "autogen": true,
         "configId": "gutenberg-bible",
         "params": {
-          "title": "What was Tlacaelel's title, and what",
-          "intro": "What was Tlacaelel's title, and what unique power did he hold in the Aztec state?",
           "lines": [
             "CIHUACOATL",
             "CIHUACOATL THE",
@@ -3246,8 +2968,6 @@
         "autogen": true,
         "configId": "vigenere-cabinet",
         "params": {
-          "title": "Tlacaelel preserved the Aztec historical records",
-          "intro": "Tlacaelel preserved the Aztec historical records and expanded their archives during his time in power.",
           "mode": "caesar",
           "plaintext": "TLACAELEL ORDERED THE BURNING OF"
         },
@@ -3263,9 +2983,6 @@
         "fact": "Tlacaelel's greatest achievement was ideological: he transformed the Mexica from one of many Nahua-speaking peoples into the chosen people of the sun god, with a cosmic obligation to feed Huitzilopochtli through human sacrifice. This narrative made every war a religious act and every conquest a divine duty — creating the psychological engine that drove Aztec expansion for a century.",
         "autogen": true,
         "configId": "lisbon-spices",
-        "params": {
-          "title": "Arrange the key reforms and events"
-        },
         "instruction": "Arrange the key reforms and events of Tlacaelel's career in order: Gather what the story needs: match the goods until the tally is met.",
         "id": "the-shadow-behind-the-throne:2",
         "stage": "mastery",
@@ -3342,8 +3059,6 @@
         "autogen": true,
         "configId": "morse-telegraph",
         "params": {
-          "title": "Arrange these milestones of Clara Schumann's",
-          "intro": "Arrange these milestones of Clara Schumann's life in chronological order:",
           "mode": "caesar",
           "plaintext": "FIRST PUBLIC CONCERT AT AGE IN"
         },
@@ -3379,10 +3094,6 @@
         "fact": "Schumann's finger-strengthening apparatus held some fingers stationary while exercising others. It permanently injured his right hand, ending his piano career and redirecting him entirely to composition and music criticism.",
         "autogen": true,
         "configId": "lovelace-engine",
-        "params": {
-          "title": "Robert Schumann permanently damaged his right",
-          "intro": "Robert Schumann permanently damaged his right hand by using a mechanical device he invented to strengthen his fingers faster."
-        },
         "instruction": "Robert Schumann permanently damaged his right hand by using a mechanical device he invented to strengthen his fingers faster. Wire the gates until the circuit agrees with the table on every row.",
         "id": "fantasia-and-keys:5",
         "stage": "legacy",
@@ -3437,9 +3148,6 @@
         "fact": "Linnaeus classified 7,700 plant species and 4,400 animal species. His binomial system — genus plus species — replaced unwieldy Latin phrases with clean two-word names still used by every scientist on Earth. Naming Homo sapiens was audacious: placing humanity inside the animal kingdom challenged centuries of theological certainty.",
         "autogen": true,
         "configId": "hanseatic-runes",
-        "params": {
-          "title": "Arrange these milestones in Linnaeus's development"
-        },
         "instruction": "Arrange these milestones in Linnaeus's development of biological classification: Gather what the story needs: match the goods until the tally is met.",
         "id": "the-naming-of-everything:2",
         "stage": "mastery",
@@ -3453,8 +3161,6 @@
         "autogen": true,
         "configId": "franklin-gazette",
         "params": {
-          "title": "Linnaeus classified humans as Homo sapiens",
-          "intro": "Linnaeus classified humans as Homo sapiens within the order Primates alongside apes and monkeys — which caused considerable controversy in his era.",
           "lines": [
             "LINNAEUS",
             "LINNAEUS",
@@ -3492,8 +3198,6 @@
         "autogen": true,
         "configId": "morse-telegraph",
         "params": {
-          "title": "Louis XVI was how old when",
-          "intro": "Louis XVI was how old when he was crowned King of France?",
           "mode": "caesar",
           "plaintext": ""
         },
@@ -3529,10 +3233,6 @@
         "fact": "The Bastille held just 7 prisoners on July 14, 1789: four forgers, two men committed at their families' request, and one nobleman. But as a symbol of royal arbitrary power, its fall electrified France. The governor's head was paraded through Paris on a pike. Today Bastille Day is France's national holiday.",
         "autogen": true,
         "configId": "mendel-grid",
-        "params": {
-          "title": "When the Bastille was stormed on",
-          "intro": "When the Bastille was stormed on July 14, 1789, it held only seven prisoners — but as a symbol of royal tyranny, its fall ignited the French Revolution."
-        },
         "instruction": "When the Bastille was stormed on July 14, 1789, it held only seven prisoners — but as a symbol of royal tyranny, its fall ignited the French Revolution. Order the grid as the record was ordered — every row, column and box complete.",
         "id": "the-gilded-court:3",
         "stage": "legacy",
@@ -3552,10 +3252,6 @@
         "fact": "James Hutton (1726–1797) is called the 'Father of Modern Geology' for his Theory of the Earth (1788), which proposed that the Earth's features were shaped by slow, ongoing natural processes — not a single catastrophic event.",
         "autogen": true,
         "configId": "long-march",
-        "params": {
-          "title": "James Hutton is known as the",
-          "subtitle": "James Hutton is known as the 'Father of' which science?"
-        },
         "instruction": "James Hutton is known as the 'Father of' which science? The way to the answer runs through these passages — find the exit.",
         "id": "deep-time:0",
         "stage": "origins",
@@ -3569,8 +3265,6 @@
         "autogen": true,
         "configId": "morse-telegraph",
         "params": {
-          "title": "Arrange these eras of Earth's geological",
-          "intro": "Arrange these eras of Earth's geological history from oldest to most recent:",
           "mode": "caesar",
           "plaintext": "PRECAMBRIAN FORMATION OF EARTH"
         },
@@ -3606,10 +3300,6 @@
         "fact": "Darwin read Lyell's Principles of Geology on the HMS Beagle and was transformed by it. The logic — that gradual, uniform processes over immense time can produce dramatic change — applies equally to geology and to evolution. Darwin acknowledged: 'The idea that geology had done for rocks, I wished to do for species.' Hutton's deep time was the foundation Darwin needed.",
         "autogen": true,
         "configId": "lovelace-engine",
-        "params": {
-          "title": "Charles Lyell built on Hutton's uniformitarianism",
-          "intro": "Charles Lyell built on Hutton's uniformitarianism in Principles of Geology (1830) — a book Darwin took on the Beagle voyage and which directly shaped the theory of evolution."
-        },
         "instruction": "Charles Lyell built on Hutton's uniformitarianism in Principles of Geology (1830) — a book Darwin took on the Beagle voyage and which directly shaped the theory of evolution. Wire the gates until the circuit agrees with the table on every row.",
         "id": "deep-time:4",
         "stage": "legacy",
@@ -3629,9 +3319,6 @@
         "fact": "Josiah Wedgwood didn't just make pottery — he invented modern manufacturing. He introduced quality control, a money-back guarantee, free delivery, and celebrity endorsements. His factory pioneered the division of labour decades before Adam Smith wrote about it.",
         "autogen": true,
         "configId": "hanseatic-runes",
-        "params": {
-          "title": "Arrange these milestones of the Industrial"
-        },
         "instruction": "Arrange these milestones of the Industrial Revolution in which Wedgwood played a part: Gather what the story needs: match the goods until the tally is met.",
         "id": "the-potter-s-empire:0",
         "stage": "origins",
@@ -3655,8 +3342,6 @@
         "autogen": true,
         "configId": "franklin-gazette",
         "params": {
-          "title": "Josiah Wedgwood was the grandfather of",
-          "intro": "Josiah Wedgwood was the grandfather of which famous scientist?",
           "lines": [
             "CHARLES",
             "CHARLES DARWIN",
@@ -3686,10 +3371,6 @@
         "fact": "Wedgwood brilliantly marketed at both ends of the market. He sold exclusive pieces to royalty and aristocracy — then used their endorsements to sell affordable versions to the growing middle class. His catalogue, free delivery, and money-back guarantee made quality ceramics accessible to ordinary households, pioneering the modern retail model.",
         "autogen": true,
         "configId": "mendel-grid",
-        "params": {
-          "title": "Wedgwood sold only to the wealthy",
-          "intro": "Wedgwood sold only to the wealthy — his pottery was exclusively a luxury product for aristocrats and royalty."
-        },
         "instruction": "Wedgwood sold only to the wealthy — his pottery was exclusively a luxury product for aristocrats and royalty. Order the grid as the record was ordered — every row, column and box complete.",
         "id": "the-potter-s-empire:4",
         "stage": "legacy",
@@ -3709,10 +3390,6 @@
         "fact": "In July 1762, Catherine organized a coup against her husband Tsar Peter III — who was widely seen as weak and pro-Prussian. The Imperial Guard supported her; Peter was arrested and died days later (likely murdered). Catherine ruled Russia for 34 years as Catherine II.",
         "autogen": true,
         "configId": "long-march",
-        "params": {
-          "title": "How did Catherine the Great come",
-          "subtitle": "How did Catherine the Great come to power in Russia?"
-        },
         "instruction": "How did Catherine the Great come to power in Russia? The way to the answer runs through these passages — find the exit.",
         "id": "the-empress-seizes-power:0",
         "stage": "origins",
@@ -3726,8 +3403,6 @@
         "autogen": true,
         "configId": "morse-telegraph",
         "params": {
-          "title": "Arrange these key events of Catherine",
-          "intro": "Arrange these key events of Catherine the Great's reign in chronological order:",
           "mode": "caesar",
           "plaintext": "CATHERINE S COUP DEPOSES HER"
         },
@@ -3763,10 +3438,6 @@
         "fact": "Catherine collected art obsessively — she bought entire collections from European aristocrats, sometimes acquiring over 2,000 paintings at once. Her private 'hermitage' adjacent to the Winter Palace held works by Rembrandt, Raphael, and Titian. It opened to the public in 1852 and today holds over 3 million objects, making it one of the world's largest museums.",
         "autogen": true,
         "configId": "lovelace-engine",
-        "params": {
-          "title": "The Hermitage Museum began as Catherine's",
-          "intro": "The Hermitage Museum began as Catherine's private art collection — she called it her 'hermitage' because she could retreat there alone with her paintings."
-        },
         "instruction": "The Hermitage Museum began as Catherine's private art collection — she called it her 'hermitage' because she could retreat there alone with her paintings. Wire the gates until the circuit agrees with the table on every row.",
         "id": "the-empress-seizes-power:4",
         "stage": "legacy",
@@ -3786,9 +3457,6 @@
         "fact": "There is no historical evidence Marie Antoinette said this. The phrase appears in Rousseau's Confessions before she arrived in France, attributed anonymously. It was likely propaganda — useful for portraying her as callously out of touch with the poor.",
         "autogen": true,
         "configId": "hanseatic-runes",
-        "params": {
-          "title": "Marie Antoinette famously said 'Let them"
-        },
         "instruction": "Marie Antoinette famously said 'Let them eat cake' when told the French people had no bread. Gather what the story needs: match the goods until the tally is met.",
         "id": "the-last-queen:0",
         "stage": "origins",
@@ -3839,8 +3507,6 @@
         "autogen": true,
         "configId": "franklin-gazette",
         "params": {
-          "title": "Which two kingdoms did Queen Anna",
-          "intro": "Which two kingdoms did Queen Anna Nzinga rule over her lifetime?",
           "lines": [
             "NDONGO AND",
             "NDONGO AND",
@@ -3860,10 +3526,6 @@
         "fact": "Nzinga never surrendered. She fought the Portuguese for over thirty years, forging alliances with the Dutch, leading guerrilla campaigns from the jungle, and negotiating with extraordinary skill. At age 80, she signed a peace treaty on her own terms. She died in her eighties, having protected Matamba's independence to the end.",
         "autogen": true,
         "configId": "mendel-grid",
-        "params": {
-          "title": "Anna Nzinga ultimately surrendered her kingdom",
-          "intro": "Anna Nzinga ultimately surrendered her kingdom to the Portuguese in exchange for peace."
-        },
         "instruction": "Anna Nzinga ultimately surrendered her kingdom to the Portuguese in exchange for peace. Order the grid as the record was ordered — every row, column and box complete.",
         "id": "queen-of-two-thrones:1",
         "stage": "trial",
@@ -3876,10 +3538,6 @@
         "fact": "The story of Nzinga refusing a chair during negotiations — and instead using one of her attendants as a throne — became one of history's most celebrated acts of diplomatic defiance. Whether literally true or legendary, it perfectly captures her method: she refused the terms of any encounter she had not defined herself.",
         "autogen": true,
         "configId": "long-march",
-        "params": {
-          "title": "Arrange the key events of Anna",
-          "subtitle": "Arrange the key events of Anna Nzinga's life in order:"
-        },
         "instruction": "Arrange the key events of Anna Nzinga's life in order: The way to the answer runs through these passages — find the exit.",
         "id": "queen-of-two-thrones:2",
         "stage": "mastery",
@@ -3930,8 +3588,6 @@
         "autogen": true,
         "configId": "morse-telegraph",
         "params": {
-          "title": "Francesco Borromini is best known for",
-          "intro": "Francesco Borromini is best known for which type of architectural innovation?",
           "mode": "caesar",
           "plaintext": "CONCAVE AND CONVEX FACADES THAT"
         },
@@ -3947,10 +3603,6 @@
         "fact": "Borromini and Bernini were bitter rivals who despised each other. Bernini — charming, wealthy, papal favourite — represented everything Borromini was not. Borromini was ascetic, difficult, and constantly overshadowed. He believed Bernini stole his ideas and received undeserved credit. The rivalry drove both to their greatest achievements — and contributed to Borromini's deepening depression.",
         "autogen": true,
         "configId": "lovelace-engine",
-        "params": {
-          "title": "Borromini and his rival Bernini collaborated",
-          "intro": "Borromini and his rival Bernini collaborated closely and admired each other's work throughout their careers."
-        },
         "instruction": "Borromini and his rival Bernini collaborated closely and admired each other's work throughout their careers. Wire the gates until the circuit agrees with the table on every row.",
         "id": "the-infinite-curve:1",
         "stage": "trial",
@@ -3963,9 +3615,6 @@
         "fact": "San Carlo alle Quattro Fontane is perhaps the most astonishing building in Rome: its interior could fit inside one of the columns of St. Peter's Basilica, yet it is more architecturally complex than the entire basilica. Borromini spent his career making small spaces feel infinite.",
         "autogen": true,
         "configId": "hanseatic-runes",
-        "params": {
-          "title": "Arrange the key works of Borromini's"
-        },
         "instruction": "Arrange the key works of Borromini's career in chronological order: Gather what the story needs: match the goods until the tally is met.",
         "id": "the-infinite-curve:2",
         "stage": "mastery",
@@ -4006,8 +3655,6 @@
         "autogen": true,
         "configId": "franklin-gazette",
         "params": {
-          "title": "Which of Bernini's sculptures is considered",
-          "intro": "Which of Bernini's sculptures is considered his greatest early masterpiece?",
           "lines": [
             "APOLLO AND",
             "APOLLO AND",
@@ -4027,10 +3674,6 @@
         "fact": "Bernini designed St. Peter's Square's twin colonnades to open at their ends, creating a welcoming gesture toward the city. He described them as 'the motherly arms of the Church' reaching out to embrace the faithful — Catholics to confirm their faith, heretics to reunite with the Church, and unbelievers to discover the light. The design is both engineering and theology.",
         "autogen": true,
         "configId": "mendel-grid",
-        "params": {
-          "title": "Bernini designed St. Peter's Square's famous",
-          "intro": "Bernini designed St. Peter's Square's famous colonnade to enclose the piazza completely, blocking the view from the streets of Rome."
-        },
         "instruction": "Bernini designed St. Peter's Square's famous colonnade to enclose the piazza completely, blocking the view from the streets of Rome. Order the grid as the record was ordered — every row, column and box complete.",
         "id": "marble-into-breath:1",
         "stage": "trial",
@@ -4043,10 +3686,6 @@
         "fact": "Bernini dominated Roman art for six decades, serving under eight popes. Unlike most artists, he died wealthy, celebrated, and with his genius universally acknowledged in his own lifetime. When Louis XIV invited him to Paris to redesign the Louvre, the King of France came personally to see the great man off.",
         "autogen": true,
         "configId": "long-march",
-        "params": {
-          "title": "Arrange these major works of Bernini's",
-          "subtitle": "Arrange these major works of Bernini's career in the order they were created:"
-        },
         "instruction": "Arrange these major works of Bernini's career in the order they were created: The way to the answer runs through these passages — find the exit.",
         "id": "marble-into-breath:2",
         "stage": "mastery",
@@ -4097,8 +3736,6 @@
         "autogen": true,
         "configId": "morse-telegraph",
         "params": {
-          "title": "What was Nian Xiyao's most significant",
-          "intro": "What was Nian Xiyao's most significant scholarly contribution to Chinese art?",
           "mode": "caesar",
           "plaintext": "WRITING SHIXUE THE FIRST CHINESE"
         },
@@ -4114,10 +3751,6 @@
         "fact": "Traditional Chinese painting used 'axonometric' perspective — objects remained the same size regardless of distance, and there was no single vanishing point. This was a deliberate artistic choice, not a technical limitation: it allowed the eye to travel through a landscape rather than fix on one point. Nian Xiyao presented Western perspective as a complementary system, not a replacement.",
         "autogen": true,
         "configId": "lovelace-engine",
-        "params": {
-          "title": "Chinese painting traditions had long used",
-          "intro": "Chinese painting traditions had long used the same perspective system as European art before Nian Xiyao's book."
-        },
         "instruction": "Chinese painting traditions had long used the same perspective system as European art before Nian Xiyao's book. Wire the gates until the circuit agrees with the table on every row.",
         "id": "the-art-of-perspective:1",
         "stage": "trial",
@@ -4130,9 +3763,6 @@
         "fact": "Nian Xiyao's imperial kilns at Jingdezhen produced some of the most technically spectacular porcelain in Chinese history: new enamel colors mixed from European pigments, copper-red glazes that had been lost for centuries, and forms that reflected Western shapes while remaining distinctly Chinese. His career embodied the Yongzheng court's sophisticated engagement with global culture.",
         "autogen": true,
         "configId": "hanseatic-runes",
-        "params": {
-          "title": "Arrange these key contributions of Nian"
-        },
         "instruction": "Arrange these key contributions of Nian Xiyao's career in order: Gather what the story needs: match the goods until the tally is met.",
         "id": "the-art-of-perspective:2",
         "stage": "mastery",
@@ -4199,8 +3829,6 @@
         "autogen": true,
         "configId": "morse-telegraph",
         "params": {
-          "title": "Arrange these milestones of Gandhi's life",
-          "intro": "Arrange these milestones of Gandhi's life in chronological order:",
           "mode": "caesar",
           "plaintext": "TRAVELS TO SOUTH AFRICA AND"
         },
@@ -4216,10 +3844,6 @@
         "fact": "Gandhi devoted his life to Indian independence (swaraj). However, he insisted the path must be nonviolent. His Quit India speech of 1942 demanded immediate British withdrawal — 'Do or Die' — and triggered mass arrests. Gandhi saw independence not merely as political freedom but as moral regeneration.",
         "autogen": true,
         "configId": "shannon-relays",
-        "params": {
-          "title": "Gandhi opposed Indian independence from Britain,",
-          "intro": "Gandhi opposed Indian independence from Britain, believing the British Empire could be reformed from within."
-        },
         "instruction": "Gandhi opposed Indian independence from Britain, believing the British Empire could be reformed from within. Wire the gates until the circuit agrees with the table on every row.",
         "id": "soul-force:2",
         "stage": "mastery",
@@ -4275,10 +3899,6 @@
         "fact": "When Mendel published his results in 1866, the scientific world largely ignored them. His paper was cited only a handful of times in the next 35 years. It was not until 1900 — 16 years after Mendel's death — that three botanists independently rediscovered his laws and finally found his original paper, launching the science of genetics.",
         "autogen": true,
         "configId": "beethoven-motif",
-        "params": {
-          "title": "Mendel's discovery of the laws of",
-          "intro": "Mendel's discovery of the laws of heredity was immediately celebrated by the scientific community."
-        },
         "instruction": "Mendel's discovery of the laws of heredity was immediately celebrated by the scientific community. Learn the phrase and play it back, note for note.",
         "id": "garden-of-genetics:1",
         "stage": "trial",
@@ -4291,9 +3911,6 @@
         "fact": "The 3:1 ratio Mendel observed — three dominant to one recessive — was not a coincidence or approximation. It was a mathematical law. Mendel was the first scientist to apply statistical analysis to biology, and his insight that inheritance comes in discrete packets (what we now call genes) was centuries ahead of its time.",
         "autogen": true,
         "configId": "cairo-alchemy",
-        "params": {
-          "title": "Arrange the key steps of Mendel's"
-        },
         "instruction": "Arrange the key steps of Mendel's pea experiment in order: Gather what the story needs: match the goods until the tally is met.",
         "id": "garden-of-genetics:2",
         "stage": "mastery",
@@ -4344,8 +3961,6 @@
         "autogen": true,
         "configId": "morse-telegraph",
         "params": {
-          "title": "Which composer served as Brahms' most",
-          "intro": "Which composer served as Brahms' most important early mentor and champion?",
           "mode": "caesar",
           "plaintext": "ROBERT SCHUMANN"
         },
@@ -4362,8 +3977,6 @@
         "autogen": true,
         "configId": "franklin-gazette",
         "params": {
-          "title": "Brahms completed his First Symphony quickly,",
-          "intro": "Brahms completed his First Symphony quickly, finishing it within a year of beginning it.",
           "lines": [
             "BRAHMS",
             "BRAHMS LABORED",
@@ -4383,10 +3996,6 @@
         "fact": "Brahms was his own harshest critic. He destroyed dozens of works he judged inferior, including a complete string quintet and multiple early symphonies. What survives — four symphonies, two piano concertos, the German Requiem, the Lullaby — represents only what passed his merciless standard.",
         "autogen": true,
         "configId": "lorentz-grid",
-        "params": {
-          "title": "Arrange these milestones of Brahms' life",
-          "intro": "Arrange these milestones of Brahms' life in chronological order:"
-        },
         "instruction": "Arrange these milestones of Brahms' life in chronological order: Order the grid as the record was ordered — every row, column and box complete.",
         "id": "symphony-of-shadows:2",
         "stage": "mastery",
@@ -4427,8 +4036,6 @@
         "autogen": true,
         "configId": "morse-telegraph",
         "params": {
-          "title": "How many possible settings did Turing's",
-          "intro": "How many possible settings did Turing's Bombe machine have to test for each Enigma message?",
           "mode": "caesar",
           "plaintext": ""
         },
@@ -4491,10 +4098,6 @@
         "fact": "Hendrik Lorentz derived the 'Lorentz transformation' equations in 1895–1904, which showed that time, length, and mass change with velocity. Einstein took these equations and provided the physical interpretation: special relativity (1905).",
         "autogen": true,
         "configId": "shannon-relays",
-        "params": {
-          "title": "Lorentz predicted time dilation — that",
-          "intro": "Lorentz predicted time dilation — that time moves slower for moving objects — before Einstein published his theory of relativity."
-        },
         "instruction": "Lorentz predicted time dilation — that time moves slower for moving objects — before Einstein published his theory of relativity. Wire the gates until the circuit agrees with the table on every row.",
         "id": "light-before-einstein:0",
         "stage": "origins",
@@ -4554,10 +4157,6 @@
         "fact": "Chanel's 'little black dress' (1926) appeared in Vogue, which compared it to Ford's Model T — a fashion so universal and timeless it was available to everyone. Black had previously been reserved for mourning.",
         "autogen": true,
         "configId": "beethoven-motif",
-        "params": {
-          "title": "Coco Chanel popularised which garment in",
-          "intro": "Coco Chanel popularised which garment in 1926 that became a symbol of modern fashion?"
-        },
         "instruction": "Coco Chanel popularised which garment in 1926 that became a symbol of modern fashion? Learn the phrase and play it back, note for note.",
         "id": "fashion-revolution:0",
         "stage": "origins",
@@ -4570,9 +4169,6 @@
         "fact": "Each of Chanel's innovations stripped away constraint. Jersey replaced stiff silk; cardigan suits replaced corsets; black replaced colour as the dominant fashion statement. She built freedom into fashion at a time when clothing was still architecture built to restrict women's bodies.",
         "autogen": true,
         "configId": "cairo-alchemy",
-        "params": {
-          "title": "Arrange these milestones of Chanel's fashion"
-        },
         "instruction": "Arrange these milestones of Chanel's fashion revolution in chronological order: Gather what the story needs: match the goods until the tally is met.",
         "id": "fashion-revolution:1",
         "stage": "trial",
@@ -4596,8 +4192,6 @@
         "autogen": true,
         "configId": "franklin-gazette",
         "params": {
-          "title": "Before Chanel, fashionable women's clothing required",
-          "intro": "Before Chanel, fashionable women's clothing required tight corsets — Chanel was among the first designers to make comfortable, unstructured clothes stylish.",
           "lines": [
             "BEFORE",
             "BEFORE CHANEL",
@@ -4624,10 +4218,6 @@
         "fact": "Earhart and navigator Fred Noonan disappeared on July 2, 1937, near tiny Howland Island in the Central Pacific — one of the most remote spots on Earth. They were never found. Her disappearance remains one of aviation's great mysteries.",
         "autogen": true,
         "configId": "lorentz-grid",
-        "params": {
-          "title": "Amelia Earhart disappeared near which island",
-          "intro": "Amelia Earhart disappeared near which island during her 1937 round-the-world attempt?"
-        },
         "instruction": "Amelia Earhart disappeared near which island during her 1937 round-the-world attempt? Order the grid as the record was ordered — every row, column and box complete.",
         "id": "wings-over-the-atlantic:0",
         "stage": "origins",
@@ -4661,8 +4251,6 @@
         "autogen": true,
         "configId": "morse-telegraph",
         "params": {
-          "title": "Amelia Earhart was the first person",
-          "intro": "Amelia Earhart was the first person to fly solo across the Atlantic Ocean.",
           "mode": "caesar",
           "plaintext": "CHARLES LINDBERGH MADE THE FIRST"
         },
@@ -4695,10 +4283,6 @@
         "fact": "Eisenstein believed that two images in sequence create a third meaning absent from either — as in the Kuleshov effect. A shot of a man's neutral face followed by soup suggests hunger; followed by a coffin suggests grief. Same face, different meanings.",
         "autogen": true,
         "configId": "shannon-relays",
-        "params": {
-          "title": "Eisenstein pioneered 'intellectual montage' — using",
-          "intro": "Eisenstein pioneered 'intellectual montage' — using the collision of images to create:"
-        },
         "instruction": "Eisenstein pioneered 'intellectual montage' — using the collision of images to create: Wire the gates until the circuit agrees with the table on every row.",
         "id": "cinema-s-architect:0",
         "stage": "origins",
@@ -4731,10 +4315,6 @@
         "fact": "Battleship Potemkin (1925) was banned in the UK until 1954, in Nazi Germany, and across much of Europe for portraying mutiny as heroic. In the UK, the censor wrote it presented 'Bolshevik propaganda' too powerfully. The bans made the film legendary — its Odessa Steps sequence is still cited as one of the greatest in film history.",
         "autogen": true,
         "configId": "beethoven-motif",
-        "params": {
-          "title": "Eisenstein's film Battleship Potemkin was banned",
-          "intro": "Eisenstein's film Battleship Potemkin was banned in several countries including the United Kingdom upon its 1925 release for its revolutionary political content."
-        },
         "instruction": "Eisenstein's film Battleship Potemkin was banned in several countries including the United Kingdom upon its 1925 release for its revolutionary political content. Learn the phrase and play it back, note for note.",
         "id": "cinema-s-architect:3",
         "stage": "legacy",
@@ -4754,9 +4334,6 @@
         "fact": "The Long March (1934–35) covered about 9,000 km — crossing 18 mountain ranges and 24 rivers. Of the 80,000 who began, fewer than 10,000 completed it. It transformed apparent defeat into the founding myth of Communist China.",
         "autogen": true,
         "configId": "cairo-alchemy",
-        "params": {
-          "title": "The Long March covered approximately how"
-        },
         "instruction": "The Long March covered approximately how many kilometres? Gather what the story needs: match the goods until the tally is met.",
         "id": "the-long-march:0",
         "stage": "origins",
@@ -4790,8 +4367,6 @@
         "autogen": true,
         "configId": "franklin-gazette",
         "params": {
-          "title": "The Long March was portrayed by",
-          "intro": "The Long March was portrayed by the Communist Party as a great victory, though it was actually a desperate military retreat that killed over 90% of those who set out.",
           "lines": [
             "THE LONG",
             "THE LONG MARCH",
@@ -4818,10 +4393,6 @@
         "fact": "On October 26, 1909, An Jung-geun shot Itō Hirobumi — Japan's first Prime Minister and the architect of Korean colonisation — at Harbin railway station. An was captured, tried, and executed in 1910, the same year Japan formally annexed Korea.",
         "autogen": true,
         "configId": "lorentz-grid",
-        "params": {
-          "title": "An Jung-geun assassinated Itō Hirobumi in",
-          "intro": "An Jung-geun assassinated Itō Hirobumi in which year?"
-        },
         "instruction": "An Jung-geun assassinated Itō Hirobumi in which year? Order the grid as the record was ordered — every row, column and box complete.",
         "id": "a-martyr-s-bullet:0",
         "stage": "origins",
@@ -4855,8 +4426,6 @@
         "autogen": true,
         "configId": "morse-telegraph",
         "params": {
-          "title": "Ahn Jung-geun, who assassinated Japanese Resident-General",
-          "intro": "Ahn Jung-geun, who assassinated Japanese Resident-General Itō Hirobumi, was celebrated in Japan as well as Korea after his death.",
           "mode": "caesar",
           "plaintext": "AHN JUNG GEUN WAS EXECUTED BY"
         },
@@ -4879,10 +4448,6 @@
         "fact": "Andrew Mellon served as Treasury Secretary under Harding, Coolidge, and Hoover (1921–1932) — the longest tenure since Alexander Hamilton. He oversaw the Roaring Twenties boom and the beginning of the Great Depression, for which he was blamed.",
         "autogen": true,
         "configId": "shannon-relays",
-        "params": {
-          "title": "Andrew Mellon served as US Treasury",
-          "intro": "Andrew Mellon served as US Treasury Secretary under three consecutive presidents."
-        },
         "instruction": "Andrew Mellon served as US Treasury Secretary under three consecutive presidents. Wire the gates until the circuit agrees with the table on every row.",
         "id": "the-gilded-age:0",
         "stage": "origins",
@@ -4942,10 +4507,6 @@
         "fact": "The Meiji Constitution of 1889 was drafted under Itō's leadership after he studied European constitutional models — particularly Prussia's. It established Japan as a constitutional monarchy and remained in force until 1947.",
         "autogen": true,
         "configId": "beethoven-motif",
-        "params": {
-          "title": "What was Itō Hirobumi's greatest constitutional",
-          "intro": "What was Itō Hirobumi's greatest constitutional achievement for Japan?"
-        },
         "instruction": "What was Itō Hirobumi's greatest constitutional achievement for Japan? Learn the phrase and play it back, note for note.",
         "id": "the-meiji-architect:0",
         "stage": "origins",
@@ -4958,9 +4519,6 @@
         "fact": "Itō served as Japan's Prime Minister four separate times between 1885 and 1901. His assassination by An Jung-geun in 1909 made him a martyr in Japan and a symbol of imperialism in Korea — two truths that coexist uncomfortably.",
         "autogen": true,
         "configId": "cairo-alchemy",
-        "params": {
-          "title": "Arrange the key events of Itō"
-        },
         "instruction": "Arrange the key events of Itō Hirobumi's career in chronological order: Gather what the story needs: match the goods until the tally is met.",
         "id": "the-meiji-architect:1",
         "stage": "trial",
@@ -4984,8 +4542,6 @@
         "autogen": true,
         "configId": "franklin-gazette",
         "params": {
-          "title": "Arrange these Meiji Restoration reforms in",
-          "intro": "Arrange these Meiji Restoration reforms in the order they were introduced:",
           "lines": [
             "FEUDAL",
             "FEUDAL DOMAINS",
@@ -5012,10 +4568,6 @@
         "fact": "My Fair Lady (1956) ran for 2,717 performances on Broadway. Shaw famously wrote his own stage directions to prevent producers from adding a romantic happy ending.",
         "autogen": true,
         "configId": "lorentz-grid",
-        "params": {
-          "title": "Shaw's 1913 play 'Pygmalion' was later",
-          "intro": "Shaw's 1913 play 'Pygmalion' was later adapted into which enormously successful musical?"
-        },
         "instruction": "Shaw's 1913 play 'Pygmalion' was later adapted into which enormously successful musical? Order the grid as the record was ordered — every row, column and box complete.",
         "id": "pygmalion:0",
         "stage": "origins",
@@ -5049,8 +4601,6 @@
         "autogen": true,
         "configId": "morse-telegraph",
         "params": {
-          "title": "George Bernard Shaw intended Eliza Doolittle",
-          "intro": "George Bernard Shaw intended Eliza Doolittle and Professor Higgins to end up romantically together.",
           "mode": "caesar",
           "plaintext": "SHAW EXPLICITLY WROTE THAT ELIZA"
         },
@@ -5088,10 +4638,6 @@
         "fact": "When Mother Teresa received the Nobel Peace Prize in 1979, she asked that the $192,000 Nobel banquet fund be donated directly to the poor of Calcutta. She described the prize as recognition of 'the poorest of the poor.'",
         "autogen": true,
         "configId": "turing-tape",
-        "params": {
-          "title": "Mother Teresa asked that the traditional",
-          "intro": "Mother Teresa asked that the traditional Nobel banquet be cancelled and the money given to the poor."
-        },
         "instruction": "Mother Teresa asked that the traditional Nobel banquet be cancelled and the money given to the poor. Wire the gates until the circuit agrees with the table on every row.",
         "id": "streets-of-calcutta:1",
         "stage": "trial",
@@ -5105,8 +4651,6 @@
         "autogen": true,
         "configId": "al-kindi-frequency",
         "params": {
-          "title": "Arrange these milestones of Mother Teresa's",
-          "intro": "Arrange these milestones of Mother Teresa's life in chronological order:",
           "mode": "caesar",
           "plaintext": "LEAVES THE LORETO CONVENT FOR"
         },
@@ -5155,9 +4699,6 @@
         "fact": "Hillary always insisted that he and Tenzing summited together as a team, refusing to say who stepped onto the peak first. He later wrote: 'We didn't talk about it much — it didn't seem important.' For the rest of his life, Hillary devoted enormous energy to building schools, hospitals, and water pipelines for the Sherpa communities of Nepal.",
         "autogen": true,
         "configId": "mughal-gems",
-        "params": {
-          "title": "Hillary claimed to the press that"
-        },
         "instruction": "Hillary claimed to the press that he reached the summit alone, ahead of Tenzing Norgay. Gather what the story needs: match the goods until the tally is met.",
         "id": "top-of-the-world:1",
         "stage": "trial",
@@ -5170,10 +4711,6 @@
         "fact": "The 1953 expedition was a meticulous logistical operation: 400 porters, 362 loads of equipment, months of acclimatization. John Hunt's planning was military in precision. But in the end, it came down to two men in the predawn cold, kicking steps into ice above the Hillary Step.",
         "autogen": true,
         "configId": "eisenstein-grid",
-        "params": {
-          "title": "Arrange the key events of the",
-          "intro": "Arrange the key events of the 1953 Everest expedition in order:"
-        },
         "instruction": "Arrange the key events of the 1953 Everest expedition in order: Order the grid as the record was ordered — every row, column and box complete.",
         "id": "top-of-the-world:2",
         "stage": "mastery",
@@ -5213,10 +4750,6 @@
         "fact": "Audrey Hepburn won an Oscar (Roman Holiday, 1953), Tony (Ondine, 1954), Emmy (Love Among Thieves, 1993), and Grammy (spoken word album, 1993) — becoming one of very few EGOT winners. She also received the Presidential Medal of Freedom.",
         "autogen": true,
         "configId": "turing-tape",
-        "params": {
-          "title": "Audrey Hepburn is the only actress",
-          "intro": "Audrey Hepburn is the only actress to have won which four major entertainment awards (EGOT)?"
-        },
         "instruction": "Audrey Hepburn is the only actress to have won which four major entertainment awards (EGOT)? Wire the gates until the circuit agrees with the table on every row.",
         "id": "breakfast-at-tiffany-s:0",
         "stage": "origins",
@@ -5240,8 +4773,6 @@
         "autogen": true,
         "configId": "franklin-gazette",
         "params": {
-          "title": "Arrange Audrey Hepburn's career milestones in",
-          "intro": "Arrange Audrey Hepburn's career milestones in chronological order:",
           "lines": [
             "WINS THE",
             "WINS THE ACADEMY",
@@ -5261,10 +4792,6 @@
         "fact": "Hepburn won the Oscar for Roman Holiday (1953), her film debut. For Breakfast at Tiffany's (1961), she received a nomination but lost to Sophia Loren. The film's song \"Moon River\" won the Oscar for Best Original Song — Henry Mancini wrote it specifically for Hepburn's vocal range.",
         "autogen": true,
         "configId": "bach-fugue",
-        "params": {
-          "title": "Audrey Hepburn won the Academy Award",
-          "intro": "Audrey Hepburn won the Academy Award for Best Actress for her role in Breakfast at Tiffany's."
-        },
         "instruction": "Audrey Hepburn won the Academy Award for Best Actress for her role in Breakfast at Tiffany's. Learn the phrase and play it back, note for note.",
         "id": "breakfast-at-tiffany-s:3",
         "stage": "mastery",
@@ -5304,10 +4831,6 @@
         "fact": "Thriller (1982) has sold an estimated 66–70 million copies worldwide — the best-selling album in history. It produced seven Top 10 singles and won a record eight Grammy Awards in one night.",
         "autogen": true,
         "configId": "turing-tape",
-        "params": {
-          "title": "Michael Jackson's 'Thriller' is the best-selling",
-          "intro": "Michael Jackson's 'Thriller' is the best-selling album of all time. Approximately how many copies has it sold?"
-        },
         "instruction": "Michael Jackson's 'Thriller' is the best-selling album of all time. Approximately how many copies has it sold? Wire the gates until the circuit agrees with the table on every row.",
         "id": "moonwalk:0",
         "stage": "origins",
@@ -5331,8 +4854,6 @@
         "autogen": true,
         "configId": "al-kindi-frequency",
         "params": {
-          "title": "Arrange these milestones of Michael Jackson's",
-          "intro": "Arrange these milestones of Michael Jackson's career in chronological order:",
           "mode": "caesar",
           "plaintext": "OFF THE WALL ESTABLISHES HIM AS"
         },
@@ -5348,9 +4869,6 @@
         "fact": "The sliding step had existed in various forms since the 1930s and was used by artists including Cab Calloway, Marcel Marceau, and Jeffrey Daniel. Jackson perfected and popularised it on Motown 25 (March 1983), but he credited James Brown and Fred Astaire as his inspirations — not himself as an inventor.",
         "autogen": true,
         "configId": "mughal-gems",
-        "params": {
-          "title": "Michael Jackson invented the moonwalk dance"
-        },
         "instruction": "Michael Jackson invented the moonwalk dance move. Gather what the story needs: match the goods until the tally is met.",
         "id": "moonwalk:3",
         "stage": "legacy",
@@ -5370,10 +4888,6 @@
         "fact": "In the 1986 World Cup quarterfinal, Maradona scored twice against England — first with a handball he called 'the Hand of God,' then with a dribble past five players that was later voted the Goal of the Century. Argentina won 2–1.",
         "autogen": true,
         "configId": "eisenstein-grid",
-        "params": {
-          "title": "In which 1986 World Cup quarterfinal",
-          "intro": "In which 1986 World Cup quarterfinal match did Maradona score both the 'Hand of God' and 'Goal of the Century'?"
-        },
         "instruction": "In which 1986 World Cup quarterfinal match did Maradona score both the 'Hand of God' and 'Goal of the Century'? Order the grid as the record was ordered — every row, column and box complete.",
         "id": "the-hand-of-god:0",
         "stage": "origins",
@@ -5387,8 +4901,6 @@
         "autogen": true,
         "configId": "franklin-gazette",
         "params": {
-          "title": "Arrange the key moments of Diego",
-          "intro": "Arrange the key moments of Diego Maradona's life in chronological order:",
           "lines": [
             "MARADONA",
             "MARADONA MAKES",
@@ -5428,10 +4940,6 @@
         "fact": "Argentina coach César Luis Menotti left Maradona out of the 1978 squad, saying he was too young to carry the pressure. Argentina won the tournament on home soil. Maradona said the exclusion 'broke my heart' — and that winning the 1986 World Cup finally healed the wound. In 1978, a 17-year-old sat out history; in 1986, a 25-year-old made it.",
         "autogen": true,
         "configId": "bach-fugue",
-        "params": {
-          "title": "Diego Maradona was excluded from Argentina's",
-          "intro": "Diego Maradona was excluded from Argentina's 1978 World Cup squad — which Argentina went on to win — because the coach considered him too young at 17."
-        },
         "instruction": "Diego Maradona was excluded from Argentina's 1978 World Cup squad — which Argentina went on to win — because the coach considered him too young at 17. Learn the phrase and play it back, note for note.",
         "id": "the-hand-of-god:4",
         "stage": "legacy",
@@ -5451,10 +4959,6 @@
         "fact": "Jane Goodall arrived at Gombe with no scientific degree — just a passion for animals and a naturalist's notebook. Her 60+ years of continuous research at Gombe is the longest running wildlife study in history, revealing that chimpanzees have personalities, cultures, and emotions.",
         "autogen": true,
         "configId": "turing-tape",
-        "params": {
-          "title": "Arrange these milestones of Jane Goodall's",
-          "intro": "Arrange these milestones of Jane Goodall's career in chronological order:"
-        },
         "instruction": "Arrange these milestones of Jane Goodall's career in chronological order: Wire the gates until the circuit agrees with the table on every row.",
         "id": "among-the-chimpanzees:0",
         "stage": "origins",
@@ -5468,8 +4972,6 @@
         "autogen": true,
         "configId": "al-kindi-frequency",
         "params": {
-          "title": "What discovery by Goodall overturned the",
-          "intro": "What discovery by Goodall overturned the belief that only humans use tools?",
           "mode": "caesar",
           "plaintext": "CHIMPS USING STICKS TO EXTRACT"
         },
@@ -5505,9 +5007,6 @@
         "fact": "More than 60 years after Goodall first set up camp at Gombe, researchers continue her work, following multiple generations of chimpanzees. The study has revealed the transmission of cultural practices across generations and the devastating impact of habitat loss — no other wildlife study has tracked a single population for so long.",
         "autogen": true,
         "configId": "mughal-gems",
-        "params": {
-          "title": "Jane Goodall's research at Gombe Stream,"
-        },
         "instruction": "Jane Goodall's research at Gombe Stream, begun in 1960, is the longest-running continuous wildlife field study in history. Gather what the story needs: match the goods until the tally is met.",
         "id": "among-the-chimpanzees:4",
         "stage": "legacy",
@@ -5537,10 +5036,6 @@
         "fact": "At his peak, Joël Robuchon held 32 Michelin stars across his restaurants worldwide — more than any chef in history. His empire spanned Paris, Monte Carlo, Las Vegas, Tokyo, Hong Kong, and beyond, each kitchen reflecting his obsessive pursuit of perfection.",
         "autogen": true,
         "configId": "eisenstein-grid",
-        "params": {
-          "title": "How many Michelin stars did Joël",
-          "intro": "How many Michelin stars did Joël Robuchon hold at the peak of his career?"
-        },
         "instruction": "How many Michelin stars did Joël Robuchon hold at the peak of his career? Order the grid as the record was ordered — every row, column and box complete.",
         "id": "the-chef-of-the-century:0",
         "stage": "origins",
@@ -5554,8 +5049,6 @@
         "autogen": true,
         "configId": "franklin-gazette",
         "params": {
-          "title": "Arrange these milestones of Joël Robuchon's",
-          "intro": "Arrange these milestones of Joël Robuchon's extraordinary career in order:",
           "lines": [
             "ROBUCHON",
             "ROBUCHON WINS",
@@ -5595,10 +5088,6 @@
         "fact": "This is one of the most misunderstood facts about the Michelin system. Stars belong to the restaurant address and experience, not the individual chef. When Robuchon retired and closed his restaurants, their stars vanished. When he returned with L'Atelier, he earned new stars from scratch — accumulating more than any chef in history.",
         "autogen": true,
         "configId": "bach-fugue",
-        "params": {
-          "title": "When Robuchon retired and closed his",
-          "intro": "When Robuchon retired and closed his Paris restaurant, he lost all his Michelin stars — because stars are awarded to restaurants, not to chefs."
-        },
         "instruction": "When Robuchon retired and closed his Paris restaurant, he lost all his Michelin stars — because stars are awarded to restaurants, not to chefs. Learn the phrase and play it back, note for note.",
         "id": "the-chef-of-the-century:4",
         "stage": "legacy",
@@ -5618,10 +5107,6 @@
         "fact": "Peter Arnett broadcast live from Baghdad for CNN during the Gulf War air campaign on January 17, 1991 — the first time a war had been broadcast live on television. His reports from inside the enemy capital were watched by hundreds of millions worldwide.",
         "autogen": true,
         "configId": "turing-tape",
-        "params": {
-          "title": "Peter Arnett became internationally famous for",
-          "intro": "Peter Arnett became internationally famous for his live TV coverage of which war?"
-        },
         "instruction": "Peter Arnett became internationally famous for his live TV coverage of which war? Wire the gates until the circuit agrees with the table on every row.",
         "id": "voice-from-baghdad:0",
         "stage": "origins",
@@ -5635,8 +5120,6 @@
         "autogen": true,
         "configId": "al-kindi-frequency",
         "params": {
-          "title": "Arrange these landmark moments in the",
-          "intro": "Arrange these landmark moments in the history of war journalism in order:",
           "mode": "caesar",
           "plaintext": "WILLIAM HOWARD RUSSELL S"
         },
@@ -5672,9 +5155,6 @@
         "fact": "In March 1997, Arnett (then at CNN) conducted a rare interview with Osama bin Laden in Afghanistan. Bin Laden declared war on the United States and said he would bring Americans to justice. The interview was largely ignored by media and public. Four years and five months later, the September 11 attacks occurred.",
         "autogen": true,
         "configId": "mughal-gems",
-        "params": {
-          "title": "Peter Arnett conducted the first major"
-        },
         "instruction": "Peter Arnett conducted the first major television interview with Osama bin Laden in 1997 — four years before the September 11 attacks. Gather what the story needs: match the goods until the tally is met.",
         "id": "voice-from-baghdad:4",
         "stage": "legacy",
@@ -5704,10 +5184,6 @@
         "fact": "Directed by Ridley Scott and aired once during Super Bowl XVIII (1984), the '1984' Macintosh commercial depicted Apple as a liberator smashing IBM's Orwellian conformity. It is credited with transforming advertising into a medium for brand mythology.",
         "autogen": true,
         "configId": "eisenstein-grid",
-        "params": {
-          "title": "What is the significance of Apple's",
-          "intro": "What is the significance of Apple's 1984 Macintosh commercial?"
-        },
         "instruction": "What is the significance of Apple's 1984 Macintosh commercial? Order the grid as the record was ordered — every row, column and box complete.",
         "id": "think-different:1",
         "stage": "trial",
@@ -5721,8 +5197,6 @@
         "autogen": true,
         "configId": "franklin-gazette",
         "params": {
-          "title": "Arrange these landmark Apple product launches",
-          "intro": "Arrange these landmark Apple product launches in chronological order:",
           "lines": [
             "APPLE",
             "APPLE MACINTOSH",
@@ -5752,10 +5226,6 @@
         "fact": "Jobs' exile produced two revolutions. NeXT's operating system became the foundation of macOS when Apple acquired NeXT in 1997 — bringing Jobs back. Pixar, bought from George Lucas for $10 million in 1986, produced Toy Story (1995), the first fully computer-animated feature film. Disney acquired Pixar for $7.4 billion in 2006, making Jobs Disney's largest individual shareholder.",
         "autogen": true,
         "configId": "bach-fugue",
-        "params": {
-          "title": "After being pushed out of Apple",
-          "intro": "After being pushed out of Apple in 1985, Jobs founded NeXT Computer and co-acquired Pixar — both of which later transformed their respective industries."
-        },
         "instruction": "After being pushed out of Apple in 1985, Jobs founded NeXT Computer and co-acquired Pixar — both of which later transformed their respective industries. Learn the phrase and play it back, note for note.",
         "id": "think-different:4",
         "stage": "mastery",
@@ -5795,10 +5265,6 @@
         "fact": "Harper Lee based Atticus partly on her own father, a lawyer who defended two Black men in Alabama. Peck and Harper Lee became lifelong friends after the 1962 film.",
         "autogen": true,
         "configId": "turing-tape",
-        "params": {
-          "title": "Gregory Peck won the 1963 Best",
-          "intro": "Gregory Peck won the 1963 Best Actor Oscar for his portrayal of Atticus Finch. What was Atticus defending Tom Robinson against?"
-        },
         "instruction": "Gregory Peck won the 1963 Best Actor Oscar for his portrayal of Atticus Finch. What was Atticus defending Tom Robinson against? Wire the gates until the circuit agrees with the table on every row.",
         "id": "to-kill-a-mockingbird:0",
         "stage": "origins",
@@ -5832,8 +5298,6 @@
         "autogen": true,
         "configId": "al-kindi-frequency",
         "params": {
-          "title": "Harper Lee's To Kill a Mockingbird",
-          "intro": "Harper Lee's To Kill a Mockingbird won the Pulitzer Prize for Fiction in 1961, just one year after its publication.",
           "mode": "caesar",
           "plaintext": "HARPER LEE S TO KILL A"
         },

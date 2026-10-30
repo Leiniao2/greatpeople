@@ -33,9 +33,6 @@
             "fact": "Mahavira added the fifth vow — Brahmacharya — to the four already taught by the previous Tirthankara. Together, these five vows form the ethical core of Jain monasticism, practised by Jain monks today with the same rigour as in Mahavira's time, over 2,500 years ago.",
             "autogen": true,
             "configId": "babylon-tablets",
-            "params": {
-              "title": "Arrange the five major vows of"
-            },
             "instruction": "Arrange the five major vows of Jain monks, as established by Mahavira, in the order traditionally taught: Gather what the story needs: match the goods until the tally is met."
           }
         }
@@ -88,10 +85,6 @@
             "fact": "Ahimsa (non-violence) is the supreme ethical principle of Jainism, elevated by Mahavira. It extends to all living beings — including insects. Jain monks carry brooms to sweep the path before them so they do not accidentally step on any creature.",
             "autogen": true,
             "configId": "court-drums",
-            "params": {
-              "title": "Mahavira's central ethical principle was Ahimsa.",
-              "intro": "Mahavira's central ethical principle was Ahimsa. What does this mean?"
-            },
             "instruction": "Mahavira's central ethical principle was Ahimsa. What does this mean? Learn the phrase and play it back, note for note."
           }
         },
@@ -132,8 +125,6 @@
             "autogen": true,
             "configId": "caesar-gaul",
             "params": {
-              "title": "Jainism believes the universe was created",
-              "intro": "Jainism believes the universe was created and is governed by a supreme divine being.",
               "mode": "caesar",
               "plaintext": "JAINISM IS UNIQUE AMONG MAJOR"
             },

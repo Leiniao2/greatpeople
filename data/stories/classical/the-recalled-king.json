@@ -33,10 +33,6 @@
             "fact": "Pleistoanax was exiled in 445 BCE after being accused of accepting bribes from Pericles to withdraw the Spartan army from Attica. He spent nineteen years in exile near Mount Lycaeum before being recalled.",
             "autogen": true,
             "configId": "hildegard-chant",
-            "params": {
-              "title": "Why was Pleistoanax exiled from Sparta",
-              "intro": "Why was Pleistoanax exiled from Sparta?"
-            },
             "instruction": "Why was Pleistoanax exiled from Sparta? Learn the phrase and play it back, note for note."
           }
         }
@@ -111,8 +107,6 @@
             "autogen": true,
             "configId": "caesar-gaul",
             "params": {
-              "title": "The Thirty Years' Peace between Athens",
-              "intro": "The Thirty Years' Peace between Athens and Sparta lasted for its full thirty-year term.",
               "mode": "caesar",
               "plaintext": "THE THIRTY YEARS PEACE BCE"
             },

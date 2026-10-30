@@ -88,9 +88,6 @@
             "fact": "Linnaeus classified 7,700 plant species and 4,400 animal species. His binomial system — genus plus species — replaced unwieldy Latin phrases with clean two-word names still used by every scientist on Earth. Naming Homo sapiens was audacious: placing humanity inside the animal kingdom challenged centuries of theological certainty.",
             "autogen": true,
             "configId": "hanseatic-runes",
-            "params": {
-              "title": "Arrange these milestones in Linnaeus's development"
-            },
             "instruction": "Arrange these milestones in Linnaeus's development of biological classification: Gather what the story needs: match the goods until the tally is met."
           }
         }
@@ -111,8 +108,6 @@
             "autogen": true,
             "configId": "franklin-gazette",
             "params": {
-              "title": "Linnaeus classified humans as Homo sapiens",
-              "intro": "Linnaeus classified humans as Homo sapiens within the order Primates alongside apes and monkeys — which caused considerable controversy in his era.",
               "lines": [
                 "LINNAEUS",
                 "LINNAEUS",

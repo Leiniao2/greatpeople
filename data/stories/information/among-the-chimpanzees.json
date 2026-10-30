@@ -33,10 +33,6 @@
             "fact": "Jane Goodall arrived at Gombe with no scientific degree — just a passion for animals and a naturalist's notebook. Her 60+ years of continuous research at Gombe is the longest running wildlife study in history, revealing that chimpanzees have personalities, cultures, and emotions.",
             "autogen": true,
             "configId": "turing-tape",
-            "params": {
-              "title": "Arrange these milestones of Jane Goodall's",
-              "intro": "Arrange these milestones of Jane Goodall's career in chronological order:"
-            },
             "instruction": "Arrange these milestones of Jane Goodall's career in chronological order: Wire the gates until the circuit agrees with the table on every row."
           }
         }
@@ -67,8 +63,6 @@
             "autogen": true,
             "configId": "al-kindi-frequency",
             "params": {
-              "title": "What discovery by Goodall overturned the",
-              "intro": "What discovery by Goodall overturned the belief that only humans use tools?",
               "mode": "caesar",
               "plaintext": "CHIMPS USING STICKS TO EXTRACT"
             },
@@ -134,9 +128,6 @@
             "fact": "More than 60 years after Goodall first set up camp at Gombe, researchers continue her work, following multiple generations of chimpanzees. The study has revealed the transmission of cultural practices across generations and the devastating impact of habitat loss — no other wildlife study has tracked a single population for so long.",
             "autogen": true,
             "configId": "mughal-gems",
-            "params": {
-              "title": "Jane Goodall's research at Gombe Stream,"
-            },
             "instruction": "Jane Goodall's research at Gombe Stream, begun in 1960, is the longest-running continuous wildlife field study in history. Gather what the story needs: match the goods until the tally is met."
           }
         },

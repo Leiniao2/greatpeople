@@ -33,10 +33,6 @@
             "fact": "In the 1986 World Cup quarterfinal, Maradona scored twice against England — first with a handball he called 'the Hand of God,' then with a dribble past five players that was later voted the Goal of the Century. Argentina won 2–1.",
             "autogen": true,
             "configId": "eisenstein-grid",
-            "params": {
-              "title": "In which 1986 World Cup quarterfinal",
-              "intro": "In which 1986 World Cup quarterfinal match did Maradona score both the 'Hand of God' and 'Goal of the Century'?"
-            },
             "instruction": "In which 1986 World Cup quarterfinal match did Maradona score both the 'Hand of God' and 'Goal of the Century'? Order the grid as the record was ordered — every row, column and box complete."
           }
         }
@@ -67,8 +63,6 @@
             "autogen": true,
             "configId": "franklin-gazette",
             "params": {
-              "title": "Arrange the key moments of Diego",
-              "intro": "Arrange the key moments of Diego Maradona's life in chronological order:",
               "lines": [
                 "MARADONA",
                 "MARADONA MAKES",
@@ -138,10 +132,6 @@
             "fact": "Argentina coach César Luis Menotti left Maradona out of the 1978 squad, saying he was too young to carry the pressure. Argentina won the tournament on home soil. Maradona said the exclusion 'broke my heart' — and that winning the 1986 World Cup finally healed the wound. In 1978, a 17-year-old sat out history; in 1986, a 25-year-old made it.",
             "autogen": true,
             "configId": "bach-fugue",
-            "params": {
-              "title": "Diego Maradona was excluded from Argentina's",
-              "intro": "Diego Maradona was excluded from Argentina's 1978 World Cup squad — which Argentina went on to win — because the coach considered him too young at 17."
-            },
             "instruction": "Diego Maradona was excluded from Argentina's 1978 World Cup squad — which Argentina went on to win — because the coach considered him too young at 17. Learn the phrase and play it back, note for note."
           }
         }

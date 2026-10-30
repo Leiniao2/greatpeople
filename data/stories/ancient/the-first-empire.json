@@ -34,8 +34,6 @@
             "autogen": true,
             "configId": "caesar-gaul",
             "params": {
-              "title": "Sargon of Akkad created the world's",
-              "intro": "Sargon of Akkad created the world's first:",
               "mode": "caesar",
               "plaintext": "MULTI ETHNIC EMPIRE"
             },
@@ -107,8 +105,6 @@
             "autogen": true,
             "configId": "caesar-gaul",
             "params": {
-              "title": "Order these events in the rise",
-              "intro": "Order these events in the rise of Sargon of Akkad's empire:",
               "mode": "caesar",
               "plaintext": "SARGON SERVES AS CUP BEARER TO"
             },

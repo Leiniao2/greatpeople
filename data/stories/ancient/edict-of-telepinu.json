@@ -33,10 +33,6 @@
             "fact": "The Hittite royal family had suffered generations of murder, coup, and revenge killings over succession. Telepinu's Edict (c. 1600 BCE) established a clear line of succession and banned the killing of royal family members — replacing blood with law.",
             "autogen": true,
             "configId": "pyramid-deep",
-            "params": {
-              "title": "What problem was the Edict of",
-              "subtitle": "What problem was the Edict of Telepinu designed to solve?"
-            },
             "instruction": "What problem was the Edict of Telepinu designed to solve? The way to the answer runs through these passages — find the exit."
           }
         }
@@ -67,8 +63,6 @@
             "autogen": true,
             "configId": "bi-sheng-clay",
             "params": {
-              "title": "The Hittite Empire was centred in",
-              "intro": "The Hittite Empire was centred in modern-day Turkey, making it one of the great powers of the ancient Near East alongside Egypt and Babylon.",
               "lines": [
                 "THE HITTITE",
                 "THE HITTITE",
@@ -101,10 +95,6 @@
             "fact": "Telepinu's Edict predates Greek democratic codes by centuries. Its core principle — that even kings must follow established succession rules — represented a revolutionary idea: that the most powerful rulers were subject to written law.",
             "autogen": true,
             "configId": "euclid-grid",
-            "params": {
-              "title": "Arrange these landmarks in the history",
-              "intro": "Arrange these landmarks in the history of written law from oldest to most recent:"
-            },
             "instruction": "Arrange these landmarks in the history of written law from oldest to most recent: Order the grid as the record was ordered — every row, column and box complete."
           }
         }

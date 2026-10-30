@@ -82,8 +82,6 @@
             "autogen": true,
             "configId": "bi-sheng-clay",
             "params": {
-              "title": "Aspasia was born in Athens and",
-              "intro": "Aspasia was born in Athens and was a full citizen of the city.",
               "lines": [
                 "ASPASIA WAS",
                 "ASPASIA WAS FROM",

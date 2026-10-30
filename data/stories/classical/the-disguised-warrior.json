@@ -33,9 +33,6 @@
             "fact": "The Ballad of Mulan, a poem dating to the Northern Wei dynasty (386–534 CE), tells of a daughter who disguises herself as a man to spare her aged, ailing father from conscription. She fights for twelve years, earns high honours, and then reveals her identity — astonishing her comrades.",
             "autogen": true,
             "configId": "venice-glass",
-            "params": {
-              "title": "Why does Hua Mulan disguise herself"
-            },
             "instruction": "Why does Hua Mulan disguise herself as a man in the Ballad of Mulan? Gather what the story needs: match the goods until the tally is met."
           }
         }
@@ -59,10 +56,6 @@
             "fact": "The ballad's ending is deliberately understated: Mulan's comrades, who fought beside her for a decade, are stunned to discover she is a woman. The poem asks no moral question — it simply presents her choice as natural and her courage as obvious.",
             "autogen": true,
             "configId": "pleistoanax-mountain",
-            "params": {
-              "title": "Arrange the key events of Mulan's",
-              "subtitle": "Arrange the key events of Mulan's story in narrative order:"
-            },
             "instruction": "Arrange the key events of Mulan's story in narrative order: The way to the answer runs through these passages — find the exit."
           }
         }
@@ -88,10 +81,6 @@
             "fact": "Mulan refused the emperor's offer of office and asked only for a fast horse to carry her home. The original ballad ends with her reunited family and Mulan in her women's clothes again — her identity secure, her duty complete, her reward the return of ordinary life.",
             "autogen": true,
             "configId": "anaxagoras-grid",
-            "params": {
-              "title": "After revealing her identity, Mulan accepted",
-              "intro": "After revealing her identity, Mulan accepted the emperor's offer of a high imperial post."
-            },
             "instruction": "After revealing her identity, Mulan accepted the emperor's offer of a high imperial post. Order the grid as the record was ordered — every row, column and box complete."
           }
         }

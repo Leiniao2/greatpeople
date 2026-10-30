@@ -33,9 +33,6 @@
             "fact": "The Long March (1934–35) covered about 9,000 km — crossing 18 mountain ranges and 24 rivers. Of the 80,000 who began, fewer than 10,000 completed it. It transformed apparent defeat into the founding myth of Communist China.",
             "autogen": true,
             "configId": "cairo-alchemy",
-            "params": {
-              "title": "The Long March covered approximately how"
-            },
             "instruction": "The Long March covered approximately how many kilometres? Gather what the story needs: match the goods until the tally is met."
           }
         }
@@ -104,8 +101,6 @@
             "autogen": true,
             "configId": "franklin-gazette",
             "params": {
-              "title": "The Long March was portrayed by",
-              "intro": "The Long March was portrayed by the Communist Party as a great victory, though it was actually a desperate military retreat that killed over 90% of those who set out.",
               "lines": [
                 "THE LONG",
                 "THE LONG MARCH",

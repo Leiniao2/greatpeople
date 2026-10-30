@@ -30,10 +30,6 @@
             "fact": "Rumiñahui ('Stone Eye') was Atahualpa's most capable general. When Pizarro captured and executed the Inca emperor in 1533, Rumiñahui gathered the northern army and led resistance from Quito. Rather than let Pizarro's forces loot the city's treasures, he burned Quito and hid its gold — a legendary hoard that has never been found.",
             "autogen": true,
             "configId": "bach-fugue",
-            "params": {
-              "title": "Why is Rumiñahui remembered as one",
-              "intro": "Why is Rumiñahui remembered as one of the great symbols of Inca resistance?"
-            },
             "instruction": "Why is Rumiñahui remembered as one of the great symbols of Inca resistance? Learn the phrase and play it back, note for note."
           }
         }
@@ -57,10 +53,6 @@
             "fact": "After months of guerrilla resistance, Rumiñahui was captured in early 1535. He was tortured by the Spanish, who demanded to know where he had hidden Quito's treasure. He revealed nothing. He was publicly executed in Quito in early 1535 — an act the Spanish intended as a demonstration of power, which instead made him an immortal symbol of defiance.",
             "autogen": true,
             "configId": "euclid-grid",
-            "params": {
-              "title": "Rumiñahui was treated as a prisoner",
-              "intro": "Rumiñahui was treated as a prisoner of war and eventually released after the conquest of Quito."
-            },
             "instruction": "Rumiñahui was treated as a prisoner of war and eventually released after the conquest of Quito. Order the grid as the record was ordered — every row, column and box complete."
           }
         }
@@ -84,10 +76,6 @@
             "fact": "The lost treasure of Quito became one of the great legends of the Americas. Expeditions searched for it for centuries, and legends of El Dorado were partly inspired by the belief that Rumiñahui had hidden an incomprehensible fortune somewhere in the Andes. No credible discovery has ever been made.",
             "autogen": true,
             "configId": "pacific-strait",
-            "params": {
-              "title": "Arrange the key events of Rumiñahui's",
-              "subtitle": "Arrange the key events of Rumiñahui's resistance in order:"
-            },
             "instruction": "Arrange the key events of Rumiñahui's resistance in order: The way to the answer runs through these passages — find the exit."
           }
         },

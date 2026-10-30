@@ -34,8 +34,6 @@
             "autogen": true,
             "configId": "morse-telegraph",
             "params": {
-              "title": "Which composer served as Brahms' most",
-              "intro": "Which composer served as Brahms' most important early mentor and champion?",
               "mode": "caesar",
               "plaintext": "ROBERT SCHUMANN"
             },
@@ -63,8 +61,6 @@
             "autogen": true,
             "configId": "franklin-gazette",
             "params": {
-              "title": "Brahms completed his First Symphony quickly,",
-              "intro": "Brahms completed his First Symphony quickly, finishing it within a year of beginning it.",
               "lines": [
                 "BRAHMS",
                 "BRAHMS LABORED",
@@ -97,10 +93,6 @@
             "fact": "Brahms was his own harshest critic. He destroyed dozens of works he judged inferior, including a complete string quintet and multiple early symphonies. What survives — four symphonies, two piano concertos, the German Requiem, the Lullaby — represents only what passed his merciless standard.",
             "autogen": true,
             "configId": "lorentz-grid",
-            "params": {
-              "title": "Arrange these milestones of Brahms' life",
-              "intro": "Arrange these milestones of Brahms' life in chronological order:"
-            },
             "instruction": "Arrange these milestones of Brahms' life in chronological order: Order the grid as the record was ordered — every row, column and box complete."
           }
         }

@@ -60,36 +60,33 @@ function sourceText(ch) {
   return ch.items[0]
 }
 const firstSentence = s => s.split(/(?<=[.!?])\s/)[0]
-const shortTitle = s => s.replace(/[?:.]+$/, '').split(' ').slice(0, 6).join(' ')
-const prompt = ch => ch.type === 'quiz' ? ch.question : ch.type === 'truefalse' ? ch.statement : ch.question
 
 function convert(ch, era, game, seed) {
   const text = sourceText(ch)
-  const title = shortTitle(prompt(ch))
   const base = { type: 'minigame', game, seed, fact: ch.fact, autogen: true }
   switch (game) {
     case 'cipher':
       return { ...base, configId: BASE.cipher[era],
-        params: { title, intro: prompt(ch), mode: 'caesar', plaintext: phrase(text, 32) },
+        params: { mode: 'caesar', plaintext: phrase(text, 32) },
         instruction: `${prompt(ch)} The answer travels in cipher — turn the wheel until it reads.` }
     case 'typeset':
       return { ...base, configId: BASE.typeset[era],
-        params: { title, intro: prompt(ch), lines: [phrase(text, 12), phrase(text, 16), phrase(text, 20), phrase(text, 24)] },
+        params: { lines: [phrase(text, 12), phrase(text, 16), phrase(text, 20), phrase(text, 24)] },
         instruction: `${prompt(ch)} Set the answer in movable type — mirrored, right to left.` }
     case 'maze':
-      return { ...base, configId: BASE.maze[era], params: { title, subtitle: prompt(ch) },
+      return { ...base, configId: BASE.maze[era],
         instruction: `${prompt(ch)} The way to the answer runs through these passages — find the exit.` }
     case 'matchthree':
-      return { ...base, configId: BASE.matchthree[era], params: { title },
+      return { ...base, configId: BASE.matchthree[era],
         instruction: `${prompt(ch)} Gather what the story needs: match the goods until the tally is met.` }
     case 'sudoku':
-      return { ...base, configId: BASE.sudoku[era], params: { title, intro: prompt(ch) },
+      return { ...base, configId: BASE.sudoku[era],
         instruction: `${prompt(ch)} Order the grid as the record was ordered — every row, column and box complete.` }
     case 'rhythm':
-      return { ...base, configId: BASE.rhythm[era], params: { title, intro: prompt(ch) },
+      return { ...base, configId: BASE.rhythm[era],
         instruction: `${prompt(ch)} Learn the phrase and play it back, note for note.` }
     case 'logicgate':
-      return { ...base, configId: BASE.logicgate[era], params: { title, intro: prompt(ch) },
+      return { ...base, configId: BASE.logicgate[era],
         instruction: `${prompt(ch)} Wire the gates until the circuit agrees with the table on every row.` }
     default:
       throw new Error(`no converter for ${game}`)

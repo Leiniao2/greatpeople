@@ -39,10 +39,6 @@
             "fact": "On October 26, 1909, An Jung-geun shot Itō Hirobumi — Japan's first Prime Minister and the architect of Korean colonisation — at Harbin railway station. An was captured, tried, and executed in 1910, the same year Japan formally annexed Korea.",
             "autogen": true,
             "configId": "lorentz-grid",
-            "params": {
-              "title": "An Jung-geun assassinated Itō Hirobumi in",
-              "intro": "An Jung-geun assassinated Itō Hirobumi in which year?"
-            },
             "instruction": "An Jung-geun assassinated Itō Hirobumi in which year? Order the grid as the record was ordered — every row, column and box complete."
           }
         }
@@ -107,8 +103,6 @@
             "autogen": true,
             "configId": "morse-telegraph",
             "params": {
-              "title": "Ahn Jung-geun, who assassinated Japanese Resident-General",
-              "intro": "Ahn Jung-geun, who assassinated Japanese Resident-General Itō Hirobumi, was celebrated in Japan as well as Korea after his death.",
               "mode": "caesar",
               "plaintext": "AHN JUNG GEUN WAS EXECUTED BY"
             },

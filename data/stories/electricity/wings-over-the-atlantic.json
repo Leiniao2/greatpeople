@@ -33,10 +33,6 @@
             "fact": "Earhart and navigator Fred Noonan disappeared on July 2, 1937, near tiny Howland Island in the Central Pacific — one of the most remote spots on Earth. They were never found. Her disappearance remains one of aviation's great mysteries.",
             "autogen": true,
             "configId": "lorentz-grid",
-            "params": {
-              "title": "Amelia Earhart disappeared near which island",
-              "intro": "Amelia Earhart disappeared near which island during her 1937 round-the-world attempt?"
-            },
             "instruction": "Amelia Earhart disappeared near which island during her 1937 round-the-world attempt? Order the grid as the record was ordered — every row, column and box complete."
           }
         }
@@ -101,8 +97,6 @@
             "autogen": true,
             "configId": "morse-telegraph",
             "params": {
-              "title": "Amelia Earhart was the first person",
-              "intro": "Amelia Earhart was the first person to fly solo across the Atlantic Ocean.",
               "mode": "caesar",
               "plaintext": "CHARLES LINDBERGH MADE THE FIRST"
             },

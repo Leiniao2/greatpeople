@@ -31,8 +31,6 @@
             "autogen": true,
             "configId": "franklin-gazette",
             "params": {
-              "title": "Which two kingdoms did Queen Anna",
-              "intro": "Which two kingdoms did Queen Anna Nzinga rule over her lifetime?",
               "lines": [
                 "NDONGO AND",
                 "NDONGO AND",
@@ -63,10 +61,6 @@
             "fact": "Nzinga never surrendered. She fought the Portuguese for over thirty years, forging alliances with the Dutch, leading guerrilla campaigns from the jungle, and negotiating with extraordinary skill. At age 80, she signed a peace treaty on her own terms. She died in her eighties, having protected Matamba's independence to the end.",
             "autogen": true,
             "configId": "mendel-grid",
-            "params": {
-              "title": "Anna Nzinga ultimately surrendered her kingdom",
-              "intro": "Anna Nzinga ultimately surrendered her kingdom to the Portuguese in exchange for peace."
-            },
             "instruction": "Anna Nzinga ultimately surrendered her kingdom to the Portuguese in exchange for peace. Order the grid as the record was ordered — every row, column and box complete."
           }
         }
@@ -90,10 +84,6 @@
             "fact": "The story of Nzinga refusing a chair during negotiations — and instead using one of her attendants as a throne — became one of history's most celebrated acts of diplomatic defiance. Whether literally true or legendary, it perfectly captures her method: she refused the terms of any encounter she had not defined herself.",
             "autogen": true,
             "configId": "long-march",
-            "params": {
-              "title": "Arrange the key events of Anna",
-              "subtitle": "Arrange the key events of Anna Nzinga's life in order:"
-            },
             "instruction": "Arrange the key events of Anna Nzinga's life in order: The way to the answer runs through these passages — find the exit."
           }
         },

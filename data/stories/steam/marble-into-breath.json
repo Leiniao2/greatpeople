@@ -31,8 +31,6 @@
             "autogen": true,
             "configId": "franklin-gazette",
             "params": {
-              "title": "Which of Bernini's sculptures is considered",
-              "intro": "Which of Bernini's sculptures is considered his greatest early masterpiece?",
               "lines": [
                 "APOLLO AND",
                 "APOLLO AND",
@@ -63,10 +61,6 @@
             "fact": "Bernini designed St. Peter's Square's twin colonnades to open at their ends, creating a welcoming gesture toward the city. He described them as 'the motherly arms of the Church' reaching out to embrace the faithful — Catholics to confirm their faith, heretics to reunite with the Church, and unbelievers to discover the light. The design is both engineering and theology.",
             "autogen": true,
             "configId": "mendel-grid",
-            "params": {
-              "title": "Bernini designed St. Peter's Square's famous",
-              "intro": "Bernini designed St. Peter's Square's famous colonnade to enclose the piazza completely, blocking the view from the streets of Rome."
-            },
             "instruction": "Bernini designed St. Peter's Square's famous colonnade to enclose the piazza completely, blocking the view from the streets of Rome. Order the grid as the record was ordered — every row, column and box complete."
           }
         }
@@ -90,10 +84,6 @@
             "fact": "Bernini dominated Roman art for six decades, serving under eight popes. Unlike most artists, he died wealthy, celebrated, and with his genius universally acknowledged in his own lifetime. When Louis XIV invited him to Paris to redesign the Louvre, the King of France came personally to see the great man off.",
             "autogen": true,
             "configId": "long-march",
-            "params": {
-              "title": "Arrange these major works of Bernini's",
-              "subtitle": "Arrange these major works of Bernini's career in the order they were created:"
-            },
             "instruction": "Arrange these major works of Bernini's career in the order they were created: The way to the answer runs through these passages — find the exit."
           }
         },

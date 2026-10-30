@@ -33,10 +33,6 @@
             "fact": "Eisenstein believed that two images in sequence create a third meaning absent from either — as in the Kuleshov effect. A shot of a man's neutral face followed by soup suggests hunger; followed by a coffin suggests grief. Same face, different meanings.",
             "autogen": true,
             "configId": "shannon-relays",
-            "params": {
-              "title": "Eisenstein pioneered 'intellectual montage' — using",
-              "intro": "Eisenstein pioneered 'intellectual montage' — using the collision of images to create:"
-            },
             "instruction": "Eisenstein pioneered 'intellectual montage' — using the collision of images to create: Wire the gates until the circuit agrees with the table on every row."
           }
         }
@@ -100,10 +96,6 @@
             "fact": "Battleship Potemkin (1925) was banned in the UK until 1954, in Nazi Germany, and across much of Europe for portraying mutiny as heroic. In the UK, the censor wrote it presented 'Bolshevik propaganda' too powerfully. The bans made the film legendary — its Odessa Steps sequence is still cited as one of the greatest in film history.",
             "autogen": true,
             "configId": "beethoven-motif",
-            "params": {
-              "title": "Eisenstein's film Battleship Potemkin was banned",
-              "intro": "Eisenstein's film Battleship Potemkin was banned in several countries including the United Kingdom upon its 1925 release for its revolutionary political content."
-            },
             "instruction": "Eisenstein's film Battleship Potemkin was banned in several countries including the United Kingdom upon its 1925 release for its revolutionary political content. Learn the phrase and play it back, note for note."
           }
         }

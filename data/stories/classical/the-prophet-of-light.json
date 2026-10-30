@@ -33,10 +33,6 @@
             "fact": "Mani (216–274 CE) founded Manichaeism, a dualistic religion blending Zoroastrian light-and-darkness cosmology, Christian ethics, and Buddhist concepts of spiritual purification. At its height, Manichaeism spread from the Roman Empire to Tang Dynasty China — one of history's most geographically expansive faiths.",
             "autogen": true,
             "configId": "hildegard-chant",
-            "params": {
-              "title": "What religion did Mani found in",
-              "intro": "What religion did Mani found in the 3rd century CE?"
-            },
             "instruction": "What religion did Mani found in the 3rd century CE? Learn the phrase and play it back, note for note."
           }
         }
@@ -67,8 +63,6 @@
             "autogen": true,
             "configId": "caesar-gaul",
             "params": {
-              "title": "Mani was only a preacher —",
-              "intro": "Mani was only a preacher — he had no talent for visual art.",
               "mode": "caesar",
               "plaintext": "MANI WAS A GIFTED PAINTER WHO"
             },
@@ -96,8 +90,6 @@
             "autogen": true,
             "configId": "bi-sheng-clay",
             "params": {
-              "title": "Arrange the key events of Mani's",
-              "intro": "Arrange the key events of Mani's life in order:",
               "lines": [
                 "MANI",
                 "MANI RECEIVES",

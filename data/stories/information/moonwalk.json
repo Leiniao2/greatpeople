@@ -33,10 +33,6 @@
             "fact": "Thriller (1982) has sold an estimated 66–70 million copies worldwide — the best-selling album in history. It produced seven Top 10 singles and won a record eight Grammy Awards in one night.",
             "autogen": true,
             "configId": "turing-tape",
-            "params": {
-              "title": "Michael Jackson's 'Thriller' is the best-selling",
-              "intro": "Michael Jackson's 'Thriller' is the best-selling album of all time. Approximately how many copies has it sold?"
-            },
             "instruction": "Michael Jackson's 'Thriller' is the best-selling album of all time. Approximately how many copies has it sold? Wire the gates until the circuit agrees with the table on every row."
           }
         }
@@ -84,8 +80,6 @@
             "autogen": true,
             "configId": "al-kindi-frequency",
             "params": {
-              "title": "Arrange these milestones of Michael Jackson's",
-              "intro": "Arrange these milestones of Michael Jackson's career in chronological order:",
               "mode": "caesar",
               "plaintext": "OFF THE WALL ESTABLISHES HIM AS"
             },
@@ -108,9 +102,6 @@
             "fact": "The sliding step had existed in various forms since the 1930s and was used by artists including Cab Calloway, Marcel Marceau, and Jeffrey Daniel. Jackson perfected and popularised it on Motown 25 (March 1983), but he credited James Brown and Fred Astaire as his inspirations — not himself as an inventor.",
             "autogen": true,
             "configId": "mughal-gems",
-            "params": {
-              "title": "Michael Jackson invented the moonwalk dance"
-            },
             "instruction": "Michael Jackson invented the moonwalk dance move. Gather what the story needs: match the goods until the tally is met."
           }
         }

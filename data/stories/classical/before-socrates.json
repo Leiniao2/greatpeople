@@ -37,10 +37,6 @@
             "fact": "Around 450 BCE, Anaxagoras was charged with impiety for saying the sun was a fiery rock larger than the Peloponnese. He was saved from execution by his friend Pericles but exiled from Athens.",
             "autogen": true,
             "configId": "pleistoanax-mountain",
-            "params": {
-              "title": "Anaxagoras was put on trial in",
-              "subtitle": "Anaxagoras was put on trial in Athens for claiming the sun was a fiery rock, not a divine being."
-            },
             "instruction": "Anaxagoras was put on trial in Athens for claiming the sun was a fiery rock, not a divine being. The way to the answer runs through these passages — find the exit."
           }
         }
@@ -109,10 +105,6 @@
             "fact": "The pre-Socratics were the first to explain nature without myth. Their debate between flux (Heraclitus) and permanence (Parmenides) set up every major argument in Western philosophy that followed.",
             "autogen": true,
             "configId": "anaxagoras-grid",
-            "params": {
-              "title": "Match these pre-Socratic philosophers to their",
-              "intro": "Match these pre-Socratic philosophers to their central idea — arrange them oldest to most recent:"
-            },
             "instruction": "Match these pre-Socratic philosophers to their central idea — arrange them oldest to most recent: Order the grid as the record was ordered — every row, column and box complete."
           }
         }

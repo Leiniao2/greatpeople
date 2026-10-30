@@ -60,10 +60,6 @@
             "fact": "Directed by Ridley Scott and aired once during Super Bowl XVIII (1984), the '1984' Macintosh commercial depicted Apple as a liberator smashing IBM's Orwellian conformity. It is credited with transforming advertising into a medium for brand mythology.",
             "autogen": true,
             "configId": "eisenstein-grid",
-            "params": {
-              "title": "What is the significance of Apple's",
-              "intro": "What is the significance of Apple's 1984 Macintosh commercial?"
-            },
             "instruction": "What is the significance of Apple's 1984 Macintosh commercial? Order the grid as the record was ordered — every row, column and box complete."
           }
         },
@@ -83,8 +79,6 @@
             "autogen": true,
             "configId": "franklin-gazette",
             "params": {
-              "title": "Arrange these landmark Apple product launches",
-              "intro": "Arrange these landmark Apple product launches in chronological order:",
               "lines": [
                 "APPLE",
                 "APPLE MACINTOSH",
@@ -131,10 +125,6 @@
             "fact": "Jobs' exile produced two revolutions. NeXT's operating system became the foundation of macOS when Apple acquired NeXT in 1997 — bringing Jobs back. Pixar, bought from George Lucas for $10 million in 1986, produced Toy Story (1995), the first fully computer-animated feature film. Disney acquired Pixar for $7.4 billion in 2006, making Jobs Disney's largest individual shareholder.",
             "autogen": true,
             "configId": "bach-fugue",
-            "params": {
-              "title": "After being pushed out of Apple",
-              "intro": "After being pushed out of Apple in 1985, Jobs founded NeXT Computer and co-acquired Pixar — both of which later transformed their respective industries."
-            },
             "instruction": "After being pushed out of Apple in 1985, Jobs founded NeXT Computer and co-acquired Pixar — both of which later transformed their respective industries. Learn the phrase and play it back, note for note."
           }
         }
