@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useRef } from 'react'
 import type { MinigameProps } from '@/games/types'
 import { scale, useGameTimer, TimerBar } from './_shared'
 
@@ -33,7 +33,7 @@ interface ColorMixConfig {
 
 // ── Color math ─────────────────────────────────────────────────────────────────
 
-function mixRGB(pigments: Pigment[], amounts: Record<string, number>): [number, number, number] {
+export function mixRGB(pigments: Pigment[], amounts: Record<string, number>): [number, number, number] {
   let totalW = 0
   let r = 0, g = 0, b = 0
   for (const p of pigments) {
@@ -53,13 +53,13 @@ function rgbToHex(rgb: [number, number, number]): string {
   return '#' + rgb.map(v => v.toString(16).padStart(2, '0')).join('')
 }
 
-function colourDist(a: [number, number, number], b: [number, number, number]): number {
+export function colourDist(a: [number, number, number], b: [number, number, number]): number {
   return Math.max(Math.abs(a[0] - b[0]), Math.abs(a[1] - b[1]), Math.abs(a[2] - b[2]))
 }
 
 // ── Configs ────────────────────────────────────────────────────────────────────
 
-const CONFIGS: Record<string, ColorMixConfig> = {
+export const CONFIGS: Record<string, ColorMixConfig> = {
   'titian-red': {
     title: "Titian's Crimson — Mix the Venetian Red",
     subtitle: 'Venice, c. 1510',
@@ -91,7 +91,7 @@ const CONFIGS: Record<string, ColorMixConfig> = {
       name: "Egyptian Royal Blue",
       hex: '#2a5f9e',
       rgb: [42, 95, 158],
-      hint: 'Mix mostly azurite with a hint of malachite and just a little chalk white.',
+      hint: 'Mostly azurite, deepened with just a touch of bone black — the other pigments only wash it out.',
     },
     tolerance: 25,
     fact: "Egyptian blue (cuprorivaite) was the world's first synthetic pigment, manufactured in Egypt from around 3200 BCE. Made by heating quartz sand, copper minerals, and limestone to 850–1000°C, it was traded across the ancient world. When illuminated with infrared light, Egyptian blue glows so brightly it can be detected from space.",
@@ -185,14 +185,15 @@ function MatchMeter({ pct }: { pct: number }) {
 export default function ColorMixGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
   // Higher difficulties put the puzzle on a clock.
   const timeLimit = scale(difficulty, [0, 0, 120, 90])
-  const timer = useGameTimer({ seconds: timeLimit, running: true, onExpire: () => onLose('out of time') })
-
   const cfg = CONFIGS[configId] ?? CONFIGS['titian-red']
   const [amounts, setAmounts] = useState<Record<string, number>>(
     () => Object.fromEntries(cfg.pigments.map(p => [p.id, 0]))
   )
   const [mixed, setMixed] = useState(false)
   const [won, setWon] = useState(false)
+  // Batched ticks can expire the clock more than once; report the loss a single time.
+  const lost = useRef(false)
+  const timer = useGameTimer({ seconds: timeLimit, running: !won, onExpire: () => { if (!lost.current) { lost.current = true; onLose('out of time') } } })
   const [showHint, setShowHint] = useState(false)
 
   const totalAdded = Object.values(amounts).reduce((a, b) => a + b, 0)

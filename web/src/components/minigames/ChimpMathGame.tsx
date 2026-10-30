@@ -16,7 +16,7 @@ interface ChimpConfig {
 
 // ── Configs ────────────────────────────────────────────────────────────────────
 
-const CONFIGS: Record<string, ChimpConfig> = {
+export const CONFIGS: Record<string, ChimpConfig> = {
   'nim-learns': {
     title: "Teaching Nim",
     chimpName: 'Nim', chimpEmoji: '🐒',
@@ -57,11 +57,11 @@ const CONFIGS: Record<string, ChimpConfig> = {
 
 // ── Helpers ────────────────────────────────────────────────────────────────────
 
-function getAnswer(q: MathQ): number {
+export function getAnswer(q: MathQ): number {
   return q.op === '+' ? q.a + q.b : q.a - q.b
 }
 
-function makeChoices(correct: number): number[] {
+export function makeChoices(correct: number): number[] {
   const pool = new Set<number>([correct])
   const diffs = [2, 1, 3, 4]
   for (const d of diffs) {
@@ -86,7 +86,6 @@ function makeChoices(correct: number): number[] {
 export default function ChimpMathGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
   // Higher difficulties put the puzzle on a clock.
   const timeLimit = scale(difficulty, [0, 0, 120, 90])
-  const timer = useGameTimer({ seconds: timeLimit, running: true, onExpire: () => onLose('out of time') })
 
   const cfg = CONFIGS[configId] ?? CONFIGS['jane-goodall-chimps']
 
@@ -94,6 +93,8 @@ export default function ChimpMathGame({ configId, difficulty, onWin, onLose }: M
   const [score, setScore] = useState(0)
   const [feedback, setFeedback] = useState<'correct' | 'wrong' | null>(null)
   const [phase, setPhase] = useState<'quiz' | 'done'>('quiz')
+  // Only the quiz is timed; the result screen waits for the player.
+  const timer = useGameTimer({ seconds: timeLimit, running: phase === 'quiz', onExpire: () => onLose('out of time') })
   const [choices] = useState(() => cfg.questions.map(q => makeChoices(getAnswer(q))))
 
   const q = cfg.questions[qi]

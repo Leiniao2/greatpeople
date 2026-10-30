@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import type { MinigameProps } from '@/games/types'
 import { scale, useGameTimer, TimerBar } from './_shared'
 
@@ -18,7 +18,7 @@ interface PaintingConfig {
   palette: { color: string; name: string }[]
 }
 
-const CONFIGS: Record<string, PaintingConfig> = {
+export const CONFIGS: Record<string, PaintingConfig> = {
   'egyptian-sunset': {
     title: 'Desert at Dusk',
     instruction: 'Paint the Egyptian sunset scene with the correct colors.',
@@ -262,8 +262,8 @@ const CONFIGS: Record<string, PaintingConfig> = {
     instruction: "Paint the Gothic chapel of Teresa of Ávila — where faith meets mystical light.",
     viewBox: '0 0 280 200',
     regions: [
-      { id: 'sky',   label: 'Stained Glass', targetColor: '#7c3aed', svgShape: '<ellipse cx="140" cy="40" rx="50" ry="40"/>' },
       { id: 'stone', label: 'Stone Wall',    targetColor: '#78716c', svgShape: '<rect x="0" y="0" width="280" height="200"/>' },
+      { id: 'sky',   label: 'Stained Glass', targetColor: '#7c3aed', svgShape: '<ellipse cx="140" cy="40" rx="50" ry="40"/>' },
       { id: 'glow',  label: 'Candle Glow',  targetColor: '#f59e0b', svgShape: '<circle cx="140" cy="130" r="20"/>' },
       { id: 'floor', label: 'Dark Wood',    targetColor: '#44403c', svgShape: '<rect x="0" y="160" width="280" height="40"/>' },
     ],
@@ -365,8 +365,8 @@ const CONFIGS: Record<string, PaintingConfig> = {
     viewBox: '0 0 280 200',
     regions: [
       { id: 'sky',    label: 'Darkness',     targetColor: '#0f172a', svgShape: '<rect x="0" y="0" width="280" height="200"/>' },
-      { id: 'fire',   label: 'Sacred Fire',  targetColor: '#f59e0b', svgShape: '<ellipse cx="140" cy="100" rx="30" ry="50"/>' },
       { id: 'wall',   label: 'Violet Shrine',targetColor: '#7c3aed', svgShape: '<rect x="40" y="60" width="200" height="100" rx="8"/>' },
+      { id: 'fire',   label: 'Sacred Fire',  targetColor: '#f59e0b', svgShape: '<ellipse cx="140" cy="100" rx="30" ry="50"/>' },
       { id: 'shadow', label: 'Shadow',       targetColor: '#292524', svgShape: '<rect x="0" y="160" width="280" height="40"/>' },
     ],
     palette: [
@@ -483,12 +483,13 @@ const CONFIGS: Record<string, PaintingConfig> = {
 export default function PaintingGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
   // Higher difficulties put the puzzle on a clock.
   const timeLimit = scale(difficulty, [0, 0, 120, 90])
-  const timer = useGameTimer({ seconds: timeLimit, running: true, onExpire: () => onLose('out of time') })
-
   const config = CONFIGS[configId] ?? CONFIGS['spring-garden']
   const [filled, setFilled] = useState<Record<string, string>>({})
   const [selectedColor, setSelectedColor] = useState<string>(config.palette[0].color)
   const [won, setWon] = useState(false)
+  // Batched ticks can expire the clock more than once; report the loss a single time.
+  const lost = useRef(false)
+  const timer = useGameTimer({ seconds: timeLimit, running: !won, onExpire: () => { if (!lost.current) { lost.current = true; onLose('out of time') } } })
 
   const handleRegionClick = (regionId: string) => {
     if (won) return

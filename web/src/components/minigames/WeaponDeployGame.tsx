@@ -7,7 +7,7 @@ type Phase = 'deploy' | 'battle' | 'won' | 'lost'
 interface WeaponSpec {
   emoji: string; label: string; range: number; damage: number; fireRate: number; cost: number; color: string
 }
-interface Enemy {
+export interface Enemy {
   id: number; hp: number; maxHp: number; speed: number; pos: number; alive: boolean; reached: boolean
 }
 interface DeployConfig {
@@ -17,13 +17,18 @@ interface DeployConfig {
   fact: string
 }
 
-const SPECS: Record<WeaponType, WeaponSpec> = {
-  archer:   { emoji: '🏹', label: 'Archer',   range: 2, damage: 18, fireRate: 3,  cost: 20, color: 'text-green-400'  },
-  catapult: { emoji: '⚙️', label: 'Catapult', range: 3, damage: 45, fireRate: 6,  cost: 35, color: 'text-accent'  },
-  cannon:   { emoji: '💣', label: 'Cannon',   range: 4, damage: 85, fireRate: 10, cost: 60, color: 'text-red-400'    },
+export const SPECS: Record<WeaponType, WeaponSpec> = {
+  archer:   { emoji: '🏹', label: 'Archer',   range: 2, damage: 18, fireRate: 2, cost: 20, color: 'text-green-400'  },
+  catapult: { emoji: '⚙️', label: 'Catapult', range: 3, damage: 45, fireRate: 4, cost: 35, color: 'text-accent'  },
+  cannon:   { emoji: '💣', label: 'Cannon',   range: 4, damage: 85, fireRate: 7, cost: 60, color: 'text-red-400'    },
 }
 
-const CONFIGS: Record<string, DeployConfig> = {
+/** Cells an enemy of speed 1 advances per tick; a 7-column path takes ~9 s to cross. */
+export const CELLS_PER_TICK = 0.25
+/** Gap between consecutive enemies on the approach, in cells. */
+const SPACING = 2.5
+
+export const CONFIGS: Record<string, DeployConfig> = {
   'sun-tzu-ambush': {
     title: 'Art of War — Sun Tzu\'s Ambush',
     cols: 7, rows: 4, pathRow: 2, budget: 100,
@@ -54,8 +59,59 @@ const CONFIGS: Record<string, DeployConfig> = {
   },
 }
 
+/** Line up every wave's enemies on the approach, one after another, SPACING cells apart. */
+export function spawnEnemies(cfg: DeployConfig): Enemy[] {
+  let id = 0
+  const all: Enemy[] = []
+  cfg.waves.forEach(w => {
+    for (let i = 0; i < w.count; i++) {
+      all.push({ id, hp: w.hp, maxHp: w.hp, speed: w.speed, pos: -(id * SPACING), alive: true, reached: false })
+      id++
+    }
+  })
+  return all
+}
+
+/** One battle step: enemies advance, each ready weapon hits the first enemy in range, leakers are marked. */
+export function battleStep(cfg: DeployConfig, board: (WeaponType | null)[], enemies: Enemy[], step: number): { next: Enemy[]; flash: Set<number> } {
+  const next = enemies.map(e => ({ ...e }))
+  const flash = new Set<number>()
+  const col = (idx: number) => idx % cfg.cols
+  const row = (idx: number) => Math.floor(idx / cfg.cols)
+
+  // Move enemies
+  next.forEach(e => { if (e.alive && !e.reached) e.pos += e.speed * CELLS_PER_TICK })
+
+  // Weapons fire
+  for (let wi = 0; wi < board.length; wi++) {
+    const wt = board[wi]
+    if (!wt) continue
+    const spec = SPECS[wt]
+    if (step % spec.fireRate !== 0) continue
+    const wCol = col(wi), wRow = row(wi)
+    for (const e of next) {
+      if (!e.alive || e.reached) continue
+      const eCol = Math.floor(e.pos)
+      if (eCol < 0 || eCol >= cfg.cols) continue
+      const dist = Math.abs(wCol - eCol) + Math.abs(wRow - cfg.pathRow)
+      if (dist <= spec.range) {
+        e.hp -= spec.damage
+        flash.add(wi)
+        if (e.hp <= 0) { e.hp = 0; e.alive = false }
+        break
+      }
+    }
+  }
+
+  // Enemies reach end
+  next.forEach(e => {
+    if (e.alive && e.pos >= cfg.cols) { e.reached = true; e.alive = false }
+  })
+  return { next, flash }
+}
+
 export default function WeaponDeployGame({ configId, onWin, onLose }: MinigameProps) {
-  const cfg = CONFIGS[configId]
+  const cfg = CONFIGS[configId] ?? CONFIGS['sun-tzu-ambush']
   const total = cfg.cols * cfg.rows
 
   const [board, setBoard] = useState<(WeaponType | null)[]>(() => Array(total).fill(null))
@@ -90,13 +146,7 @@ export default function WeaponDeployGame({ configId, onWin, onLose }: MinigamePr
   }
 
   const startBattle = useCallback(() => {
-    let id = 0
-    const all: Enemy[] = []
-    cfg.waves.forEach(w => {
-      for (let i = 0; i < w.count; i++) {
-        all.push({ id: id++, hp: w.hp, maxHp: w.hp, speed: w.speed, pos: -(i * 2.5), alive: true, reached: false })
-      }
-    })
+    const all = spawnEnemies(cfg)
     enemiesRef.current = all
     setEnemies([...all])
     stepRef.current = 0
@@ -107,39 +157,7 @@ export default function WeaponDeployGame({ configId, onWin, onLose }: MinigamePr
     if (phase !== 'battle') return
     const interval = setInterval(() => {
       stepRef.current++
-      const step = stepRef.current
-      const next = enemiesRef.current.map(e => ({ ...e }))
-      const newFlash = new Set<number>()
-
-      // Move enemies
-      next.forEach(e => { if (e.alive && !e.reached) e.pos += e.speed })
-
-      // Weapons fire
-      const brd = boardRef.current
-      for (let wi = 0; wi < brd.length; wi++) {
-        const wt = brd[wi]
-        if (!wt) continue
-        const spec = SPECS[wt]
-        if (step % spec.fireRate !== 0) continue
-        const wCol = col(wi), wRow = row(wi)
-        for (const e of next) {
-          if (!e.alive || e.reached) continue
-          const eCol = Math.floor(e.pos)
-          if (eCol < 0 || eCol >= cfg.cols) continue
-          const dist = Math.abs(wCol - eCol) + Math.abs(wRow - cfg.pathRow)
-          if (dist <= spec.range) {
-            e.hp -= spec.damage
-            newFlash.add(wi)
-            if (e.hp <= 0) { e.hp = 0; e.alive = false }
-            break
-          }
-        }
-      }
-
-      // Enemies reach end
-      next.forEach(e => {
-        if (e.alive && e.pos >= cfg.cols) { e.reached = true; e.alive = false }
-      })
+      const { next, flash: newFlash } = battleStep(cfg, boardRef.current, enemiesRef.current, stepRef.current)
 
       enemiesRef.current = next
       setEnemies([...next])

@@ -1,16 +1,16 @@
 import { useState, useCallback, useRef } from 'react'
-import type { MinigameProps } from '@/games/types'
+import type { Difficulty, MinigameProps } from '@/games/types'
 import { hashString, resolveConfig, scale, useGameOutcome, OutcomeBanner } from './_shared'
 
 interface TileType { label: string; bg: string; border: string; text?: string }
 
-interface MatchRules {
+export interface MatchRules {
   minMatch?: number               // minimum consecutive tiles (default 3)
   axis?: 'both' | 'row' | 'col'  // which directions produce matches (default 'both')
   diagonal?: boolean              // also match diagonally (default false)
 }
 
-interface MatchThreeConfig {
+export interface MatchThreeConfig {
   title: string
   tiles: TileType[]
   gridSize: number
@@ -20,7 +20,7 @@ interface MatchThreeConfig {
   ruleDesc: string
 }
 
-const CONFIGS: Record<string, MatchThreeConfig> = {
+export const CONFIGS: Record<string, MatchThreeConfig> = {
   // ── Existing (easy-medium) ──────────────────────────────────────────────────
   'lisbon-spices': {
     title: "Spice Market, Lisbon 1502",
@@ -149,19 +149,22 @@ const CONFIGS: Record<string, MatchThreeConfig> = {
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
-function seededRandom(seed: number) {
+export function seededRandom(seed: number) {
   let s = seed
   return () => { s = (s * 1664525 + 1013904223) & 0xffffffff; return (s >>> 0) / 0xffffffff }
 }
 
-function makeGrid(size: number, numTypes: number, seed: number): number[][] {
-  const rand = seededRandom(seed)
+export function makeGrid(size: number, numTypes: number, seed: number): number[][] {
+  return fillGrid(size, numTypes, seededRandom(seed))
+}
+
+function fillGrid(size: number, numTypes: number, rand: () => number): number[][] {
   return Array.from({ length: size }, () =>
     Array.from({ length: size }, () => Math.floor(rand() * numTypes))
   )
 }
 
-function findMatches(
+export function findMatches(
   grid: number[][], size: number,
   { minMatch = 3, axis = 'both', diagonal = false }: MatchRules = {}
 ): Set<string> {
@@ -227,7 +230,7 @@ function findMatches(
   return matched
 }
 
-function applyGravity(grid: number[][], size: number, numTypes: number, rand: () => number): number[][] {
+export function applyGravity(grid: number[][], size: number, numTypes: number, rand: () => number): number[][] {
   const next = grid.map(r => [...r])
   for (let c = 0; c < size; c++) {
     const col = next.map(r => r[c]).filter(v => v !== -1)
@@ -241,13 +244,62 @@ function isAdjacent(a: [number, number], b: [number, number]) {
   return (Math.abs(a[0] - b[0]) + Math.abs(a[1] - b[1])) === 1
 }
 
+/** Every adjacent swap that would produce a match under the rules. */
+export function validSwaps(grid: number[][], size: number, rules: MatchRules = {}): [number, number, number, number][] {
+  const out: [number, number, number, number][] = []
+  for (let r = 0; r < size; r++) {
+    for (let c = 0; c < size; c++) {
+      for (const [dr, dc] of [[0, 1], [1, 0]] as const) {
+        const r2 = r + dr, c2 = c + dc
+        if (r2 >= size || c2 >= size || grid[r][c] === grid[r2][c2]) continue
+        const g = grid.map(row => [...row])
+        ;[g[r][c], g[r2][c2]] = [g[r2][c2], g[r][c]]
+        if (findMatches(g, size, rules).size > 0) out.push([r, c, r2, c2])
+      }
+    }
+  }
+  return out
+}
+
+export function hasValidMove(grid: number[][], size: number, rules: MatchRules = {}): boolean {
+  return validSwaps(grid, size, rules).length > 0
+}
+
+/** Clear any matches already on the board (without scoring) until it is stable. */
+function settle(grid: number[][], size: number, numTypes: number, rand: () => number, rules: MatchRules): number[][] {
+  let cur = grid
+  for (let tries = 0; tries < 100; tries++) {
+    const matched = findMatches(cur, size, rules)
+    if (matched.size === 0) return cur
+    const copy = cur.map(r => [...r])
+    matched.forEach(k => { const [r, c] = k.split(',').map(Number); copy[r][c] = -1 })
+    cur = applyGravity(copy, size, numTypes, rand)
+  }
+  return cur
+}
+
+/**
+ * Deal a board with no ready-made matches (so the first swap has to earn its
+ * tiles) and at least one legal swap: a board with none would leave the
+ * player stuck forever, as there is no reshuffle button.
+ */
+export function makePlayableGrid(size: number, numTypes: number, rand: () => number, rules: MatchRules = {}): number[][] {
+  let grid = settle(fillGrid(size, numTypes, rand), size, numTypes, rand, rules)
+  for (let tries = 0; tries < 50 && !hasValidMove(grid, size, rules); tries++) grid = settle(fillGrid(size, numTypes, rand), size, numTypes, rand, rules)
+  return grid
+}
+
+/** Moves allowed before the target must be met: unlimited at tier 1, then tighter. */
+export function moveLimitFor(target: number, difficulty: Difficulty): number {
+  return scale(difficulty, [0, Math.ceil(target / 2), Math.ceil(target / 2.6), Math.ceil(target / 3.2)])
+}
+
 // ── Component ─────────────────────────────────────────────────────────────────
 
 export default function MatchThreeGame({ configId, difficulty, seed: attemptSeed, params, onWin, onLose }: MinigameProps) {
   const config = resolveConfig(CONFIGS, configId, params, 'lisbon-spices')
   const { gridSize: N, tiles, rules = {} } = config
-  // Moves allowed before the target must be met: none at difficulty 1, then tighter.
-  const moveLimit = scale(difficulty, [0, Math.ceil(config.target / 2), Math.ceil(config.target / 2.6), Math.ceil(config.target / 3.2)])
+  const moveLimit = moveLimitFor(config.target, difficulty)
   const { outcome, settled, win, lose } = useGameOutcome({ onWin, onLose, delayMs: 600 })
 
   const seed = (hashString(configId) ^ attemptSeed) >>> 0
@@ -257,11 +309,12 @@ export default function MatchThreeGame({ configId, difficulty, seed: attemptSeed
     return (randState.val >>> 0) / 0xffffffff
   }, [randState])
 
-  const [grid, setGrid] = useState<number[][]>(() => makeGrid(N, tiles.length, seed))
+  const [grid, setGrid] = useState<number[][]>(() => makePlayableGrid(N, tiles.length, seededRandom(seed), rules))
   const [selected, setSelected] = useState<[number, number] | null>(null)
   const [cleared, setCleared] = useState(0)
   const [animating, setAnimating] = useState(false)
   const [moves, setMoves] = useState(0)
+  const [notice, setNotice] = useState<string | null>(null)
   const live = useRef({ cleared: 0, moves: 0 })
 
   const processMatches = useCallback((g: number[][]): { next: number[][]; count: number } => {
@@ -287,17 +340,23 @@ export default function MatchThreeGame({ configId, difficulty, seed: attemptSeed
         if (live.current.cleared >= config.target) win()
         setTimeout(step, 350)
       } else {
+        if (!hasValidMove(cur, N, rules)) {
+          cur = makePlayableGrid(N, tiles.length, rand, rules)
+          setGrid(cur)
+          setNotice('No swap left — the stalls restock')
+        }
         setAnimating(false)
         if (moveLimit && live.current.moves >= moveLimit && live.current.cleared < config.target) lose('out of moves')
       }
     }
     setTimeout(step, 100)
-  }, [processMatches, config.target, win, lose, moveLimit])
+  }, [processMatches, config.target, win, lose, moveLimit, N, tiles.length, rules, rand])
 
   const handleCell = (r: number, c: number) => {
     if (animating || settled) return
     if (!selected) { setSelected([r, c]); return }
     const [sr, sc] = selected
+    setNotice(null)
     if (sr === r && sc === c) { setSelected(null); return }
     if (!isAdjacent(selected, [r, c])) { setSelected([r, c]); return }
 
@@ -375,6 +434,8 @@ export default function MatchThreeGame({ configId, difficulty, seed: attemptSeed
       <p className="text-muted/80 text-[10px] text-center">
         {settled
           ? ''
+          : notice
+          ? notice
           : selected
           ? 'Tap an adjacent tile to swap'
           : 'Tap a tile to select'}

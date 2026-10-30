@@ -9,7 +9,7 @@ interface WordleConfig {
   hint: string
 }
 
-const CONFIGS: Record<string, WordleConfig> = {
+export const CONFIGS: Record<string, WordleConfig> = {
   enigma:         { word: 'BOMBE', title: 'Break the Code',      hint: 'The electromechanical machine Turing built to crack Enigma' },
   'turing-rotor': { word: 'ROTOR', title: 'The Enigma Heart',    hint: 'The spinning component at the core of the Enigma machine' },
   cedar:          { word: 'CEDAR', title: 'The Sacred Forest',   hint: 'The legendary wood guarded by Humbaba in the Epic of Gilgamesh' },
@@ -33,8 +33,8 @@ const CONFIGS: Record<string, WordleConfig> = {
 
 // ── Constants ──────────────────────────────────────────────────────────────────
 
-const MAX_GUESSES = 6
-const WORD_LENGTH = 5
+export const MAX_GUESSES = 6
+export const WORD_LENGTH = 5
 
 const KEYBOARD_ROWS = [
   ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],

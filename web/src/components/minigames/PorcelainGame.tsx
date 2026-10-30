@@ -3,7 +3,7 @@ import type { MinigameProps } from '@/games/types'
 import { scale } from './_shared'
 
 // Metal oxides → fired colors in porcelain/glaze
-const ELEMENT_COLORS: Record<string, { fired: string; firedLabel: string; element: string; symbol: string }> = {
+export const ELEMENT_COLORS: Record<string, { fired: string; firedLabel: string; element: string; symbol: string }> = {
   Cu: { element: 'Copper',    symbol: 'Cu', fired: '#4ade80', firedLabel: 'Copper Green'  },
   Co: { element: 'Cobalt',    symbol: 'Co', fired: '#60a5fa', firedLabel: 'Cobalt Blue'   },
   Fe: { element: 'Iron',      symbol: 'Fe', fired: '#f59e0b', firedLabel: 'Iron Amber'    },
@@ -27,7 +27,7 @@ interface PorcelainConfig {
   fact: string
 }
 
-const CONFIGS: Record<string, PorcelainConfig> = {
+export const CONFIGS: Record<string, PorcelainConfig> = {
   'copper-vase': {
     title: 'Copper Green Vase',
     vessel: 'vase',
@@ -66,6 +66,11 @@ const CONFIGS: Record<string, PorcelainConfig> = {
     ],
     fact: 'Iron-rich glazes produce tenmoku (天目) — the distinctive amber-to-black "oil spot" or "hare\'s fur" patterns prized in Song Dynasty tea ceremony ware.',
   },
+}
+
+/** The colour the potter asks for in each section; the player must know which oxide fires to it. */
+export const FIRED_HINT: Record<string, string> = {
+  Cu: 'green', Co: 'blue', Fe: 'amber', Mn: 'purple', Ti: 'white', Cr: 'jade',
 }
 
 // ── SVG Vessel ────────────────────────────────────────────────────────────────
@@ -180,7 +185,7 @@ export default function PorcelainGame({ configId, difficulty, onWin, onLose }: M
       </div>
 
       <p className="text-muted text-xs leading-relaxed">
-        Select an element, then tap vessel sections to apply the glaze. <span className="text-accent/80">Hint: each section expects a specific metal oxide.</span>
+        Select an element, then tap vessel sections to apply the glaze. <span className="text-accent/80">Each section names the fired colour it wants — pick the metal oxide that produces it.</span>
       </p>
 
       {/* Element palette */}
@@ -249,7 +254,7 @@ export default function PorcelainGame({ configId, difficulty, onWin, onLose }: M
                 {/* Color dot */}
                 <div className="w-3 h-3 rounded-full shrink-0"
                   style={{ background: info ? (fired ? info.fired : '#8b8b6b') : 'rgba(255,255,255,0.15)' }} />
-                <span className="text-ink-2 flex-1">{section.label}</span>
+                <span className="text-ink-2 flex-1">{section.label} <span className="text-muted">· wants {FIRED_HINT[section.targetElement]}</span></span>
                 {elem && (
                   <span className="font-bold" style={{ color: fired ? (info?.fired ?? '#fff') : '#94a3b8' }}>
                     {elem}
@@ -292,7 +297,7 @@ export default function PorcelainGame({ configId, difficulty, onWin, onLose }: M
         }`}>
           {won
             ? <>Perfect glaze — all metal oxides in the right sections! {cfg.fact}</>
-            : <>Some sections used the wrong oxide. Check the colors — copper makes green, cobalt makes blue, iron makes amber. <button onClick={reset} className="underline ml-1">Try again</button></>
+            : <>Some sections used the wrong oxide. Copper fires green, cobalt blue, iron amber, manganese purple, titanium white, chromium jade. <button onClick={reset} className="underline ml-1">Try again</button></>
           }
         </div>
       )}

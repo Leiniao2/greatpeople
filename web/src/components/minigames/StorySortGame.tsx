@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import type { MinigameProps } from '@/games/types'
-import { scale } from './_shared'
+import { mulberry32, scale, shuffle } from './_shared'
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
@@ -13,7 +13,7 @@ interface StorySortConfig {
 
 // ── Configs ────────────────────────────────────────────────────────────────────
 
-const CONFIGS: Record<string, StorySortConfig> = {
+export const CONFIGS: Record<string, StorySortConfig> = {
   'odyssey-return': {
     title: 'Odysseus Returns',
     source: "Homer's Odyssey — Book XIII",
@@ -73,24 +73,24 @@ const CONFIGS: Record<string, StorySortConfig> = {
 
 // ── Helpers ────────────────────────────────────────────────────────────────────
 
-function shuffle<T>(arr: T[]): T[] {
-  const a = [...arr]
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[a[i], a[j]] = [a[j], a[i]]
-  }
-  return a
+/** Seeded shuffle that never returns the already-correct order. */
+export function scrambled(correct: readonly string[], seed: number): string[] {
+  const rng = mulberry32(seed)
+  let order = shuffle(correct, rng)
+  for (let tries = 0; tries < 20 && order.every((p, i) => p === correct[i]); tries++) order = shuffle(correct, rng)
+  if (order.every((p, i) => p === correct[i]) && order.length > 1) order = [...order.slice(1), order[0]]
+  return order
 }
 
 // ── Component ──────────────────────────────────────────────────────────────────
 
-export default function StorySortGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
+export default function StorySortGame({ configId, difficulty, seed, onWin, onLose }: MinigameProps) {
   const maxAttempts = scale(difficulty, [3, 2, 2, 1])
   const [attempts, setAttempts] = useState(0)
   const config = CONFIGS[configId] ?? CONFIGS['odyssey-return']
   const correct = config.paragraphs
 
-  const [order, setOrder] = useState<string[]>(() => shuffle([...correct]))
+  const [order, setOrder] = useState<string[]>(() => scrambled(correct, seed))
   const [submitted, setSubmitted] = useState(false)
   const [shaking, setShaking] = useState(false)
   const [dragging, setDragging] = useState<number | null>(null)
@@ -157,16 +157,16 @@ export default function StorySortGame({ configId, difficulty, onWin, onLose }: M
               className={`
                 flex items-start gap-3 p-3 rounded-xl border text-xs leading-relaxed transition-all
                 ${isDraggingThis      ? 'opacity-40'
-                : paraCorrect         ? 'bg-emerald-500/10 border-emerald-500/40 text-emerald-200'
-                : paraWrong           ? 'bg-red-500/10 border-red-500/30 text-red-300'
+                : paraCorrect         ? 'bg-emerald-500/10 border-emerald-500/40 text-emerald-900'
+                : paraWrong           ? 'bg-red-500/10 border-red-500/30 text-red-900'
                 : 'bg-panel border-line text-ink-2 cursor-grab active:cursor-grabbing hover:border-line-2'}
               `}
             >
               {/* Number badge */}
               <span className={`
                 shrink-0 w-5 h-5 flex items-center justify-center rounded-full text-[10px] font-bold mt-0.5
-                ${paraCorrect ? 'bg-emerald-500/30 text-emerald-300'
-                : paraWrong   ? 'bg-red-500/20 text-red-400'
+                ${paraCorrect ? 'bg-emerald-500/30 text-emerald-800'
+                : paraWrong   ? 'bg-red-500/20 text-red-800'
                 : 'bg-panel text-muted'}
               `}>
                 {i + 1}

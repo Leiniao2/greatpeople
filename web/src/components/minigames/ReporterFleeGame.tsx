@@ -4,12 +4,15 @@ import { scale, useGameTimer, TimerBar } from './_shared'
 
 // ── Constants ──────────────────────────────────────────────────────────────────
 
-const COLS = 9
-const ROWS = 6
-const PX0 = 0
-const PY0 = ROWS - 1
-const EX  = COLS - 1
-const EY  = 0
+export const COLS = 9
+export const ROWS = 6
+export const PX0 = 0
+export const PY0 = ROWS - 1
+export const EX  = COLS - 1
+export const EY  = 0
+// Soldiers advance on every second move. At full speed a greedy chaser can
+// never be passed, so no board had a hit-free route to the door.
+export const SOLDIER_EVERY = 2
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
@@ -17,7 +20,7 @@ type DangerType = 'soldier' | 'mine'
 interface Cell { x: number; y: number }
 interface Danger extends Cell { id: number; type: DangerType }
 
-interface ReporterConfig {
+export interface ReporterConfig {
   title: string
   soldiers: Cell[]
   mines: Cell[]
@@ -27,7 +30,7 @@ interface ReporterConfig {
 
 // ── Configs ────────────────────────────────────────────────────────────────────
 
-const CONFIGS: Record<string, ReporterConfig> = {
+export const CONFIGS: Record<string, ReporterConfig> = {
   'vietnam-press': {
     title: 'Vietnam War Correspondent',
     soldiers: [{ x: 4, y: 3 }, { x: 7, y: 5 }, { x: 2, y: 1 }],
@@ -53,7 +56,7 @@ const CONFIGS: Record<string, ReporterConfig> = {
 
 // ── Game state / reducer ───────────────────────────────────────────────────────
 
-interface GameState {
+export interface GameState {
   px: number; py: number
   dangers: Danger[]
   lives: number
@@ -66,7 +69,7 @@ type Action =
   | { type: 'RESUME' }
   | { type: 'RESET'; cfg: ReporterConfig }
 
-function initState(cfg: ReporterConfig): GameState {
+export function initState(cfg: ReporterConfig): GameState {
   return {
     px: PX0, py: PY0,
     dangers: [
@@ -89,7 +92,7 @@ function stepToward(from: Cell, to: Cell): Cell {
   return { x: from.x, y: from.y + Math.sign(dy) }
 }
 
-function reducer(state: GameState, action: Action): GameState {
+export function reducer(state: GameState, action: Action): GameState {
   if (action.type === 'RESET')  return initState(action.cfg)
   if (action.type === 'RESUME') return { ...state, phase: 'playing', px: PX0, py: PY0 }
 
@@ -104,8 +107,9 @@ function reducer(state: GameState, action: Action): GameState {
     const mineThere = state.dangers.find(d => d.type === 'mine' && d.x === nx && d.y === ny)
 
     // Move soldiers toward new player position
+    const soldiersAdvance = (state.turns + 1) % SOLDIER_EVERY === 0
     let newDangers: Danger[] = state.dangers.map(d => {
-      if (d.type === 'mine') return d
+      if (d.type === 'mine' || !soldiersAdvance) return d
       const moved = stepToward(d, { x: nx, y: ny })
       return { ...d, x: moved.x, y: moved.y }
     })
@@ -130,9 +134,6 @@ function reducer(state: GameState, action: Action): GameState {
 
 export default function ReporterFleeGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
   // Higher difficulties put the puzzle on a clock.
-  const timeLimit = scale(difficulty, [0, 0, 120, 90])
-  const timer = useGameTimer({ seconds: timeLimit, running: true, onExpire: () => onLose('out of time') })
-
   const cfg = CONFIGS[configId] ?? CONFIGS['vietnam-press']
 
   const [state, dispatch] = useReducer(
@@ -140,6 +141,10 @@ export default function ReporterFleeGame({ configId, difficulty, onWin, onLose }
     undefined,
     () => initState(cfg),
   )
+
+  const timeLimit = scale(difficulty, [0, 0, 120, 90])
+  // Stop the clock once the exit is reached so the victory screen cannot time out.
+  const timer = useGameTimer({ seconds: timeLimit, running: state.phase !== 'won', onExpire: () => onLose('out of time') })
 
   // Auto-resume after hit
   useEffect(() => {

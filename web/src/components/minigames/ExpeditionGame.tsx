@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import type { MinigameProps } from '@/games/types'
+import type { Difficulty, MinigameProps } from '@/games/types'
 import { resolveConfig, scale, useGameOutcome, OutcomeBanner } from './_shared'
 
 // Expedition: plan a journey across a map of waypoints.  Every leg costs
@@ -28,7 +28,7 @@ interface ExpeditionConfig {
   fact: string
 }
 
-const CONFIGS: Record<string, ExpeditionConfig> = {
+export const CONFIGS: Record<string, ExpeditionConfig> = {
   'zheng-he': {
     title: 'The Treasure Fleet',
     subtitle: "Sail Zheng He's armada from Nanjing to the Swahili coast, calling at every tributary port",
@@ -59,7 +59,7 @@ const CONFIGS: Record<string, ExpeditionConfig> = {
     ],
     start: 'nanjing', goal: 'malindi',
     mustVisit: ['malacca', 'calicut'],
-    supplies: 34, days: 110,
+    supplies: 41, days: 110,
     fact: "Between 1405 and 1433 Zheng He led seven voyages with fleets of up to 300 ships and 28,000 men, reaching Arabia and East Africa. His largest 'treasure ships' may have been four times the length of Columbus's Santa María.",
   },
   'ibn-battuta': {
@@ -92,7 +92,7 @@ const CONFIGS: Record<string, ExpeditionConfig> = {
     ],
     start: 'tangier', goal: 'quanzhou',
     mustVisit: ['mecca', 'delhi'],
-    supplies: 40, days: 200,
+    supplies: 60, days: 255,
     fact: 'Ibn Battuta left Tangier in 1325 for the hajj and did not return for 24 years, covering some 120,000 km across North Africa, Arabia, India, the Maldives and China — three times the distance Marco Polo travelled.',
   },
   'hannibal-alps': {
@@ -119,20 +119,26 @@ const CONFIGS: Record<string, ExpeditionConfig> = {
     ],
     start: 'carthago', goal: 'turin',
     mustVisit: ['rhone'],
-    supplies: 32, days: 70,
+    supplies: 52, days: 100,
     fact: 'In 218 BCE Hannibal crossed the Alps in about fifteen days with some 40,000 men and 37 elephants, losing perhaps a third of his army to cold, falls and attacks — and still won at the Trebia, Trasimene and Cannae.',
   },
 }
 
 function key(a: string, b: string) { return a < b ? `${a}|${b}` : `${b}|${a}` }
 
+/** Budgets shrink with difficulty; hazards hide their cost from tier 3. */
+export function expeditionBudgets(cfg: ExpeditionConfig, difficulty: Difficulty) {
+  const budgetScale = scale(difficulty, [1, 0.85, 0.72, 0.62])
+  return {
+    supplyBudget: Math.round(cfg.supplies * budgetScale),
+    dayBudget: Math.round(cfg.days * budgetScale),
+    hiddenHazards: difficulty >= 3,
+  }
+}
+
 export default function ExpeditionGame({ configId, difficulty, params, onWin, onLose }: MinigameProps) {
   const cfg = resolveConfig(CONFIGS, configId, params, 'zheng-he')
-  // Budgets shrink with difficulty; hazards hide their cost from tier 3.
-  const budgetScale = scale(difficulty, [1, 0.85, 0.72, 0.62])
-  const supplyBudget = Math.round(cfg.supplies * budgetScale)
-  const dayBudget = Math.round(cfg.days * budgetScale)
-  const hiddenHazards = difficulty >= 3
+  const { supplyBudget, dayBudget, hiddenHazards } = expeditionBudgets(cfg, difficulty)
 
   const edgeMap = useMemo(() => {
     const m = new Map<string, MapEdge>()

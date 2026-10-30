@@ -10,7 +10,7 @@ interface FictionConfig {
   fact: string
 }
 
-const CONFIGS: Record<string, FictionConfig> = {
+export const CONFIGS: Record<string, FictionConfig> = {
   'marie-escape': {
     title: 'The Flight to Varennes',
     passage: 'June 1791. The royal family slipped out of the Tuileries at night in a heavy berline coach, disguised as a Russian baroness and her household. Marie Antoinette had insisted the family travel together rather than in fast, separate carriages. By the next evening the great coach was hours behind schedule, and at Sainte-Menehould a postmaster named Drouet looked hard at the "valet" — then reached into his pocket for a banknote.',
@@ -120,9 +120,9 @@ export default function FictionGame({ configId, onWin, onLose }: MinigameProps) 
           if (!revealed) {
             cls += 'bg-panel border-line text-ink-2 hover:border-accent/40 hover:text-ink cursor-pointer'
           } else if (i === config.answer) {
-            cls += 'bg-emerald-500/10 border-emerald-500/40 text-emerald-300 font-medium'
+            cls += 'bg-emerald-500/10 border-emerald-500/40 text-emerald-800 font-medium'
           } else if (i === selected) {
-            cls += 'bg-red-500/10 border-red-500/30 text-red-300'
+            cls += 'bg-red-500/10 border-red-500/30 text-red-800'
           } else {
             cls += 'bg-panel border-line text-muted'
           }
@@ -137,7 +137,7 @@ export default function FictionGame({ configId, onWin, onLose }: MinigameProps) 
 
       {revealed && (
         <div className={`p-3 rounded-xl border text-xs leading-relaxed ${correct ? 'bg-emerald-500/10 border-emerald-500/30' : 'bg-accent/10 border-accent/30'}`}>
-          <span className={`font-bold ${correct ? 'text-emerald-300' : 'text-accent'}`}>
+          <span className={`font-bold ${correct ? 'text-emerald-700' : 'text-accent'}`}>
             {correct ? '✓ Correct! ' : '✗ Not quite — '}
           </span>
           <span className="text-muted">{config.fact}</span>

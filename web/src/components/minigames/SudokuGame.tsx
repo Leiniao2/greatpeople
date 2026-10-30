@@ -12,7 +12,7 @@ interface SudokuConfig {
   fact: string
 }
 
-const CONFIGS: Record<string, SudokuConfig> = {
+export const CONFIGS: Record<string, SudokuConfig> = {
   'brahms-pattern': {
     title: "Brahms' Compositional Grid",
     intro: 'Brahms organised his motifs so no phrase repeated in the same voice within a section. Fill the grid so each row, column and box holds every number exactly once.',

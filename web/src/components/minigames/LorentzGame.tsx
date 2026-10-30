@@ -20,14 +20,14 @@ const H = 280
 const px = (v: number) => v * W
 const py = (v: number) => v * H
 
-const CONFIGS: Record<string, LorentzConfig> = {
+export const CONFIGS: Record<string, LorentzConfig> = {
   'lorentz-basic': {
     title: 'Lorentz Force: Deflect the Beam',
     obstacles: [
-      { x: 0.35, y: 0.5, r: 0.07 },
-      { x: 0.6,  y: 0.3, r: 0.06 },
+      { x: 0.35, y: 0.42, r: 0.07 },
+      { x: 0.6,  y: 0.3,  r: 0.06 },
     ],
-    target: { x: 0.82, y: 0.75, r: 0.06 },
+    target: { x: 0.80, y: 0.80, r: 0.06 },
     startPos: { x: 0.08, y: 0.5 },
     startVel: { x: 0.004, y: 0.0 },
     fact: 'The Lorentz force (F = qv × B) causes charged particles moving through a magnetic field to curve. This is the principle behind particle accelerators and cathode ray tubes.',
@@ -37,9 +37,9 @@ const CONFIGS: Record<string, LorentzConfig> = {
     obstacles: [
       { x: 0.5,  y: 0.25, r: 0.07 },
       { x: 0.25, y: 0.65, r: 0.06 },
-      { x: 0.7,  y: 0.65, r: 0.06 },
+      { x: 0.75, y: 0.8,  r: 0.06 },
     ],
-    target: { x: 0.5, y: 0.85, r: 0.06 },
+    target: { x: 0.38, y: 0.85, r: 0.06 },
     startPos: { x: 0.5, y: 0.08 },
     startVel: { x: 0.003, y: 0.001 },
     fact: 'Cyclotrons accelerate particles in a spiral path using alternating electric fields and a constant magnetic field — the particle gains energy each half-revolution.',
@@ -48,25 +48,27 @@ const CONFIGS: Record<string, LorentzConfig> = {
     title: 'Lorentz Force: Aurora Path',
     obstacles: [
       { x: 0.2, y: 0.4, r: 0.07 },
-      { x: 0.5, y: 0.2, r: 0.06 },
-      { x: 0.75, y: 0.45, r: 0.07 },
+      { x: 0.5, y: 0.17, r: 0.06 },
+      { x: 0.75, y: 0.42, r: 0.07 },
       { x: 0.4, y: 0.7, r: 0.06 },
     ],
     target: { x: 0.8, y: 0.82, r: 0.06 },
     startPos: { x: 0.08, y: 0.08 },
-    startVel: { x: 0.003, y: 0.002 },
+    startVel: { x: 0.0035, y: 0.0007 },
     fact: 'The aurora borealis occurs when solar wind particles are guided by Earth\'s magnetic field into the polar atmosphere, causing atmospheric gases to glow.',
   },
 }
 
 // ── Physics ───────────────────────────────────────────────────────────────────
 
-// B-field strength per "notch"; positive = into screen (curves right), negative = out (curves left)
-const B_STEP = 0.18
-const MAX_B = 3
+// B-field strength per "notch"; positive = into screen (curves up), negative = out (curves down).
+// One notch bends the beam on a radius of roughly the whole field; three notches on a third of it,
+// so each level is solved by one slider setting (see audit_logic.test.ts for the reachability check).
+export const B_STEP = 0.004
+export const MAX_B = 3
 const SPEED_CAP = 0.012
 
-function applyLorentz(vel: Vec2, bStrength: number): Vec2 {
+export function applyLorentz(vel: Vec2, bStrength: number): Vec2 {
   // F = q(v × B): in 2D, B along z: Fx = q*vy*Bz, Fy = -q*vx*Bz
   // We treat q=1, so ax = vy*B, ay = -vx*B
   const ax = vel.y * bStrength
@@ -79,7 +81,7 @@ function applyLorentz(vel: Vec2, bStrength: number): Vec2 {
   return { x: vx, y: vy }
 }
 
-function circlesOverlap(p: Vec2, r1: number, c: { x: number; y: number; r: number }): boolean {
+export function circlesOverlap(p: Vec2, r1: number, c: { x: number; y: number; r: number }): boolean {
   const dx = p.x - c.x, dy = p.y - c.y
   return Math.sqrt(dx * dx + dy * dy) < (r1 + c.r)
 }
@@ -89,7 +91,6 @@ function circlesOverlap(p: Vec2, r1: number, c: { x: number; y: number; r: numbe
 export default function LorentzGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
   // Higher difficulties put the puzzle on a clock.
   const timeLimit = scale(difficulty, [0, 0, 120, 90])
-  const timer = useGameTimer({ seconds: timeLimit, running: true, onExpire: () => onLose('out of time') })
 
   const cfg = CONFIGS[configId] ?? CONFIGS['lorentz-basic']
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -98,6 +99,7 @@ export default function LorentzGame({ configId, difficulty, onWin, onLose }: Min
   const [running, setRunning] = useState(false)
   const [won, setWon] = useState(false)
   const [dead, setDead] = useState(false)
+  const timer = useGameTimer({ seconds: timeLimit, running: !won, onExpire: () => onLose('out of time') })
 
   const posRef = useRef<Vec2>({ ...cfg.startPos })
   const velRef = useRef<Vec2>({ ...cfg.startVel })

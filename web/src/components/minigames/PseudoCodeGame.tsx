@@ -5,6 +5,7 @@ import { scale } from './_shared'
 interface CodeLine {
   id: string
   text: string
+  /** Position in the solution; lines that share an order are interchangeable (e.g. two independent updates). */
   order: number
 }
 
@@ -19,7 +20,7 @@ interface Config {
   challenges: CodeChallenge[]
 }
 
-const CONFIGS: Record<string, Config> = {
+export const CONFIGS: Record<string, Config> = {
   'turing-machine': {
     name: 'Turing Machine',
     challenges: [
@@ -31,8 +32,8 @@ const CONFIGS: Record<string, Config> = {
           { id: 'p2', text: 'while left < right:', order: 1 },
           { id: 'p3', text: '  if tape[left] ≠ tape[right]:  REJECT', order: 2 },
           { id: 'p4', text: '  left ← left + 1', order: 3 },
-          { id: 'p5', text: '  right ← right − 1', order: 4 },
-          { id: 'p6', text: 'ACCEPT', order: 5 },
+          { id: 'p5', text: '  right ← right − 1', order: 3 },
+          { id: 'p6', text: 'ACCEPT', order: 4 },
         ],
       },
       {
@@ -42,10 +43,10 @@ const CONFIGS: Record<string, Config> = {
           { id: 'b1', text: 'counter ← 0', order: 0 },
           { id: 'b2', text: 'for each char in input:', order: 1 },
           { id: 'b3', text: "  if char = '(':  counter ← counter + 1", order: 2 },
-          { id: 'b4', text: "  if char = ')':  counter ← counter − 1", order: 3 },
-          { id: 'b5', text: '  if counter < 0:  REJECT', order: 4 },
-          { id: 'b6', text: 'if counter = 0:  ACCEPT', order: 5 },
-          { id: 'b7', text: 'else:  REJECT', order: 6 },
+          { id: 'b4', text: "  if char = ')':  counter ← counter − 1", order: 2 },
+          { id: 'b5', text: '  if counter < 0:  REJECT', order: 3 },
+          { id: 'b6', text: 'if counter = 0:  ACCEPT', order: 4 },
+          { id: 'b7', text: 'else:  REJECT', order: 5 },
         ],
       },
     ],
@@ -81,6 +82,16 @@ const CONFIGS: Record<string, Config> = {
   },
 }
 
+/** Indices of lines that sit in the wrong place; empty when the sequence is a valid ordering. */
+export function wrongPositions(lines: CodeLine[], selectedIds: string[]): number[] {
+  const orderById = Object.fromEntries(lines.map(l => [l.id, l.order]))
+  const expected = lines.map(l => l.order).sort((a, b) => a - b)
+  return selectedIds.reduce<number[]>((acc, id, i) => {
+    if (orderById[id] !== expected[i]) acc.push(i)
+    return acc
+  }, [])
+}
+
 function shuffle<T>(arr: T[]): T[] {
   const a = [...arr]
   for (let i = a.length - 1; i > 0; i--) {
@@ -110,8 +121,6 @@ export default function PseudoCodeGame({ configId, difficulty, onWin, onLose }: 
   const pool     = shuffled.filter(l => !selected.includes(l.id))
   const allPlaced = selected.length === challenge.lines.length
 
-  const sortedCorrect = [...challenge.lines].sort((a, b) => a.order - b.order).map(l => l.id)
-
   function addLine(id: string) {
     setSelected(prev => [...prev, id])
     setChecked(false)
@@ -135,10 +144,7 @@ export default function PseudoCodeGame({ configId, difficulty, onWin, onLose }: 
 
   function checkSolution() {
     setChecked(true)
-    const wrong = selected.reduce<number[]>((acc, id, i) => {
-      if (id !== sortedCorrect[i]) acc.push(i)
-      return acc
-    }, [])
+    const wrong = wrongPositions(challenge.lines, selected)
     setWrongIdx(wrong)
 
     if (wrong.length === 0) {

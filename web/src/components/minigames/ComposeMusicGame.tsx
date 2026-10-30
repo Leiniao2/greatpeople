@@ -19,7 +19,7 @@ interface ComposeConfig {
   fact: string
 }
 
-const CONFIGS: Record<string, ComposeConfig> = {
+export const CONFIGS: Record<string, ComposeConfig> = {
   'beethoven-fifth': {
     title: "Symphony No. 5 in C Minor",
     composer: "Ludwig van Beethoven",
@@ -113,7 +113,7 @@ export default function ComposeMusicGame({ configId, difficulty, onWin, onLose }
   const maxAttempts = scale(difficulty, [3, 2, 2, 1])
   const [attempts, setAttempts] = useState(0)
 
-  const config = CONFIGS[configId]
+  const config = CONFIGS[configId] ?? CONFIGS['beethoven-fifth']
   const correctIds = useMemo(() => config.passages.map(p => p.id), [config])
   const [order, setOrder] = useState<string[]>(() => shuffle(correctIds))
   const [flash, setFlash] = useState<'correct' | 'wrong' | null>(null)

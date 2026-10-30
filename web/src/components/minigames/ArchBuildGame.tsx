@@ -18,7 +18,7 @@ interface Blueprint {
   fact: string
 }
 
-const CONFIGS: Record<string, Blueprint> = {
+export const CONFIGS: Record<string, Blueprint> = {
   'imhotep-step': {
     title: 'The Step Pyramid',
     intro: 'Imhotep stacks mastaba upon mastaba for Djoser. Build each course on the one below, capstone last.',
@@ -47,8 +47,8 @@ const CONFIGS: Record<string, Blueprint> = {
     plan: [
       '...K...',
       '..#.#..',
-      '.#...#.',
-      '#.....#',
+      '.#.#.#.',
+      '#.#.#.#',
       '#######',
     ],
     fact: "Filippo Brunelleschi won the 1418 competition for the cathedral dome with a design needing no wooden scaffold across the 45-metre span: a double shell, herringbone brickwork and an ox-hoist of his own invention.",
@@ -56,6 +56,28 @@ const CONFIGS: Record<string, Blueprint> = {
 }
 
 type Cell = '.' | '#' | 'K'
+
+/** A block rests on the block beneath it or bridges two diagonal supports; a keystone needs both springers. */
+export function isSupported(built: boolean[][], r: number, c: number, want: Cell): boolean {
+  if (want === 'K') return r > 0 && !!built[r - 1][c - 1] && !!built[r - 1][c + 1]
+  if (r === 0) return true
+  const below = built[r - 1]
+  return !!(below[c] || (below[c - 1] && below[c + 1]))
+}
+
+/** Whether every block of a top-down plan can be placed in some order under the support rules. */
+export function isBuildable(plan: string[]): boolean {
+  const rows = [...plan].reverse().map(r => [...r] as Cell[])
+  const built = rows.map(r => r.map(() => false))
+  let placed = true
+  while (placed) {
+    placed = false
+    rows.forEach((row, r) => row.forEach((want, c) => {
+      if (want !== '.' && !built[r][c] && isSupported(built, r, c, want)) { built[r][c] = true; placed = true }
+    }))
+  }
+  return rows.every((row, r) => row.every((want, c) => want === '.' || built[r][c]))
+}
 
 export default function ArchBuildGame({ configId, difficulty, params, onWin, onLose }: MinigameProps) {
   const cfg = resolveConfig(CONFIGS, configId, params, 'imhotep-step')
@@ -74,13 +96,8 @@ export default function ArchBuildGame({ configId, difficulty, params, onWin, onL
   const [note, setNote] = useState<string | null>(null)
 
   const placedCount = built.flat().filter(Boolean).length
-  const supported = (r: number, c: number) => {
-    if (r === 0) return true
-    const below = built[r - 1]
-    // Rest on the block directly beneath, or bridge two diagonal supports.
-    return below[c] || (below[c - 1] && below[c + 1]) || false
-  }
-  const keystoneReady = (r: number, c: number) => r > 0 && !!built[r - 1][c - 1] && !!built[r - 1][c + 1]
+  const supported = (r: number, c: number) => isSupported(built, r, c, '#')
+  const keystoneReady = (r: number, c: number) => isSupported(built, r, c, 'K')
 
   const place = (r: number, c: number) => {
     if (settled || built[r][c]) return

@@ -21,7 +21,7 @@ interface TradeConfig {
 
 // ── Configs ───────────────────────────────────────────────────────────────────
 
-const CONFIGS: Record<string, TradeConfig> = {
+export const CONFIGS: Record<string, TradeConfig> = {
   'silk-road': {
     title: 'Silk Road Merchant',
     good: 'Silk', symbol: '🧵', unit: 'bolt',

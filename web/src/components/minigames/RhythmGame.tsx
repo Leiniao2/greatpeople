@@ -17,7 +17,7 @@ interface RhythmConfig {
   fact: string
 }
 
-const CONFIGS: Record<string, RhythmConfig> = {
+export const CONFIGS: Record<string, RhythmConfig> = {
   'bach-fugue': {
     title: 'The Well-Tempered Subject',
     intro: 'Bach states a fugue subject; the other voices must answer it exactly. Play back each phrase as it grows.',

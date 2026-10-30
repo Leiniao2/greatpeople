@@ -10,7 +10,7 @@ interface Config {
   fact: string
 }
 
-const CONFIGS: Record<string, Config> = {
+export const CONFIGS: Record<string, Config> = {
   'enkidu-ice': {
     title: 'Cedar Forest Path',
     question: 'Enkidu slides through the frozen cedar forest. Reach the exit.',
@@ -48,11 +48,11 @@ const CONFIGS: Record<string, Config> = {
     question: 'Navigate the reformer\'s path through the maze of old and new Japan.',
     grid: [
       '##########',
-      '#S.......#',
+      '#S...B...#',
       '#.##.###.#',
       '#.B......#',
       '##.#.##.##',
-      '#..B...B.#',
+      '#..B..B..#',
       '#.###.##.#',
       '#........#',
       '#.##.###.#',
@@ -174,7 +174,7 @@ const CONFIGS: Record<string, Config> = {
       '#.##..#',
       '#..B..#',
       '#....B#',
-      '#...#E#',
+      '#....E#',
       '#######',
     ],
     fact: "The Battle of Dan-no-Ura was fought on the sea — the Taira clan's final stand on the waters of the Shimonoseki Strait, where the tide itself turned against them.",
@@ -183,7 +183,7 @@ const CONFIGS: Record<string, Config> = {
 
 type Dir = 'up' | 'down' | 'left' | 'right'
 
-function parseGrid(lines: string[]) {
+export function parseGrid(lines: string[]) {
   const grid = lines.map(l => l.split(''))
   let sr = 0, sc = 0
   for (let r = 0; r < grid.length; r++)
@@ -192,7 +192,7 @@ function parseGrid(lines: string[]) {
   return { grid, sr, sc }
 }
 
-function slidePos(grid: string[][], r: number, c: number, dir: Dir): [number, number] {
+export function slidePos(grid: string[][], r: number, c: number, dir: Dir): [number, number] {
   const dr = dir === 'up' ? -1 : dir === 'down' ? 1 : 0
   const dc = dir === 'left' ? -1 : dir === 'right' ? 1 : 0
   let nr = r + dr, nc = c + dc

@@ -38,7 +38,7 @@ interface MirrorConfig {
   maxMirrors: number
 }
 
-const CONFIGS: Record<MirrorKey, MirrorConfig> = {
+export const CONFIGS: Record<MirrorKey, MirrorConfig> = {
   mendel: {
     title: "Mendel's Pea Garden",
     instruction: "Redirect the light beam to separate Mendel's genetic traits!",
@@ -91,7 +91,7 @@ const CONFIGS: Record<MirrorKey, MirrorConfig> = {
     source: { row: 0, col: -1, dir: 'right' },
     target: { row: 4, col: 5 },
     fixed: [{ row: 0, col: 3, mirror: '\\' }, { row: 2, col: 3, mirror: '/' }],
-    maxMirrors: 1,
+    maxMirrors: 2,  // the beam leaves the grid at (2,-1); it takes two placed mirrors to bring it to (4,5)
   },
   lorentz: {
     title: 'Speed of Light',
@@ -270,7 +270,7 @@ interface TraceResult {
   hits: boolean
 }
 
-function traceLight(
+export function traceLight(
   gridSize: number,
   source: Source,
   mirrors: Record<string, MirrorChar>,

@@ -36,7 +36,7 @@ interface PipelineConfig {
 
 // ── Configs ────────────────────────────────────────────────────────────────────
 
-const CONFIGS: Record<string, PipelineConfig> = {
+export const CONFIGS: Record<string, PipelineConfig> = {
   'roman-aqueduct': {
     title: 'Aqua Claudia — Route the Aqueduct',
     subtitle: 'Rome, 38–52 CE',
@@ -68,7 +68,7 @@ const CONFIGS: Record<string, PipelineConfig> = {
       // row 3
       { shape: 'elbow',    base: [0,1],    rotation: 0              }, // 15 N+E
       { shape: 'straight', base: [1,3],    rotation: 0              }, // 16 horiz
-      { shape: 'straight', base: [1,3],    rotation: 0              }, // 17 horiz
+      { shape: 'elbow',    base: [0,1],    rotation: 0              }, // 17 N+E → turns right
       { shape: 'straight', base: [1,3],    rotation: 0              }, // 18 horiz
       { shape: 'sink',     base: [3,0],    rotation: 0, fixed: true }, // 19 sink, opens W+N
     ],
@@ -81,6 +81,7 @@ const CONFIGS: Record<string, PipelineConfig> = {
     rows: 4,
     sourceIdx: 0,
     sinkIdx: 15,
+    // Solution path: 0→4→8→9→10→14→15
     tiles: [
       // row 0
       { shape: 'source',   base: [1,2],    rotation: 0, fixed: true  }, // 0
@@ -93,14 +94,14 @@ const CONFIGS: Record<string, PipelineConfig> = {
       { shape: 'tee',      base: [1,2,3],  rotation: 0              }, // 6
       { shape: 'straight', base: [0,2],    rotation: 0              }, // 7
       // row 2
-      { shape: 'elbow',    base: [1,2],    rotation: 0              }, // 8
+      { shape: 'elbow',    base: [0,1],    rotation: 0              }, // 8  N+E
       { shape: 'straight', base: [1,3],    rotation: 0              }, // 9
-      { shape: 'elbow',    base: [0,3],    rotation: 0              }, // 10
+      { shape: 'elbow',    base: [2,3],    rotation: 0              }, // 10 S+W
       { shape: 'straight', base: [0,2],    rotation: 0              }, // 11
       // row 3
       { shape: 'elbow',    base: [0,1],    rotation: 0              }, // 12
       { shape: 'straight', base: [1,3],    rotation: 0              }, // 13
-      { shape: 'straight', base: [1,3],    rotation: 0              }, // 14
+      { shape: 'elbow',    base: [0,1],    rotation: 0              }, // 14 N+E
       { shape: 'sink',     base: [0,3],    rotation: 0, fixed: true }, // 15
     ],
     fact: "King Sennacherib of Assyria built the world's first long-distance water supply channel around 700 BCE — an 80 km canal system supplying Nineveh, complete with a proto-aqueduct bridge over a valley. It predates the Roman aqueducts by 500 years.",
@@ -112,6 +113,7 @@ const CONFIGS: Record<string, PipelineConfig> = {
     rows: 5,
     sourceIdx: 0,
     sinkIdx: 24,
+    // Solution path: 0→1→2→7→12→13→18→23→24
     tiles: [
       // row 0
       { shape: 'source',   base: [1,2],    rotation: 0, fixed: true  }, // 0
@@ -128,14 +130,14 @@ const CONFIGS: Record<string, PipelineConfig> = {
       // row 2
       { shape: 'elbow',    base: [0,1],    rotation: 0              }, // 10
       { shape: 'tee',      base: [1,2,3],  rotation: 0              }, // 11
-      { shape: 'straight', base: [1,3],    rotation: 0              }, // 12
+      { shape: 'elbow',    base: [0,1],    rotation: 0              }, // 12 N+E
       { shape: 'elbow',    base: [2,3],    rotation: 0              }, // 13
       { shape: 'elbow',    base: [0,3],    rotation: 0              }, // 14
       // row 3
       { shape: 'straight', base: [0,2],    rotation: 0              }, // 15
       { shape: 'straight', base: [0,2],    rotation: 0              }, // 16
       { shape: 'elbow',    base: [1,2],    rotation: 0              }, // 17
-      { shape: 'straight', base: [1,3],    rotation: 0              }, // 18
+      { shape: 'straight', base: [0,2],    rotation: 0              }, // 18 vert
       { shape: 'straight', base: [0,2],    rotation: 0              }, // 19
       // row 4
       { shape: 'elbow',    base: [0,1],    rotation: 0              }, // 20
@@ -154,7 +156,7 @@ function rotateDir(d: Dir, turns: number): Dir {
   return ((d + turns) % 4) as Dir
 }
 
-function getOpenings(base: Dir[], rotation: number): Dir[] {
+export function getOpenings(base: Dir[], rotation: number): Dir[] {
   return base.map(d => rotateDir(d, rotation))
 }
 
@@ -164,7 +166,7 @@ function hasOpening(openings: Dir[], d: Dir): boolean {
 
 // ── BFS flood fill to find connected cells ────────────────────────────────────
 
-function floodFill(
+export function floodFill(
   tiles: PipeTile[],
   cols: number,
   rows: number,
@@ -206,6 +208,16 @@ function floodFill(
 // ── Shuffle tile rotations for the initial puzzle state ───────────────────────
 
 function buildInitialTiles(config: PipelineConfig): PipeTile[] {
+  // A random shuffle can already connect source to sink; the win is only
+  // checked after a rotation, so reshuffle until the player has work to do.
+  for (let attempt = 0; attempt < 20; attempt++) {
+    const tiles = shuffleTiles(config)
+    if (!floodFill(tiles, config.cols, config.rows, config.sourceIdx).has(config.sinkIdx)) return tiles
+  }
+  return shuffleTiles(config)
+}
+
+function shuffleTiles(config: PipelineConfig): PipeTile[] {
   return config.tiles.map(t => {
     // Randomise rotation for non-fixed tiles
     const rotation = t.fixed

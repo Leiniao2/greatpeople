@@ -18,7 +18,7 @@ interface PunnettConfig {
 
 // ── Configs ───────────────────────────────────────────────────────────────────
 
-const CONFIGS: Record<string, PunnettConfig> = {
+export const CONFIGS: Record<string, PunnettConfig> = {
   'mendel-peas': {
     title: "Mendel's Pea Crosses",
     crosses: [
@@ -60,19 +60,20 @@ const CONFIGS: Record<string, PunnettConfig> = {
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
-function normalize(a: string, b: string): string {
+/** Canonical genotype: dominant allele first; same-case alleles sorted so the cell answer and the option list agree. */
+export function normalize(a: string, b: string): string {
   const aUpper = a === a.toUpperCase()
   const bUpper = b === b.toUpperCase()
   if (aUpper && !bUpper) return a + b
   if (bUpper && !aUpper) return b + a
-  return a + b
+  return a <= b ? a + b : b + a
 }
 
-function cellAnswer(cross: PunnettCross, row: number, col: number): string {
+export function cellAnswer(cross: PunnettCross, row: number, col: number): string {
   return normalize(cross.parent2[row], cross.parent1[col])
 }
 
-function getOptions(cross: PunnettCross): string[] {
+export function getOptions(cross: PunnettCross): string[] {
   const set = new Set<string>()
   for (const a of cross.parent1) {
     for (const b of cross.parent2) {
@@ -82,7 +83,7 @@ function getOptions(cross: PunnettCross): string[] {
   return Array.from(set)
 }
 
-function phenotypeRatio(cross: PunnettCross): { dominant: number; recessive: number } {
+export function phenotypeRatio(cross: PunnettCross): { dominant: number; recessive: number } {
   let dom = 0, rec = 0
   for (let r = 0; r < 2; r++) {
     for (let c = 0; c < 2; c++) {
@@ -99,7 +100,6 @@ function phenotypeRatio(cross: PunnettCross): { dominant: number; recessive: num
 export default function PunnettGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
   // Higher difficulties put the puzzle on a clock.
   const timeLimit = scale(difficulty, [0, 0, 120, 90])
-  const timer = useGameTimer({ seconds: timeLimit, running: true, onExpire: () => onLose('out of time') })
 
   const cfg = CONFIGS[configId] ?? CONFIGS['mendel-peas']
   const [crossIdx, setCrossIdx] = useState(0)
@@ -108,6 +108,7 @@ export default function PunnettGame({ configId, difficulty, onWin, onLose }: Min
   const [picking, setPicking] = useState<number | null>(null)
   const [crossDone, setCrossDone] = useState(false)
   const [allDone, setAllDone] = useState(false)
+  const timer = useGameTimer({ seconds: timeLimit, running: !allDone, onExpire: () => onLose('out of time') })
 
   const cross = cfg.crosses[crossIdx]
   const options = getOptions(cross)

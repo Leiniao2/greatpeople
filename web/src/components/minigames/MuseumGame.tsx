@@ -8,7 +8,7 @@ interface Artwork { id: string; title: string; artist: string; type: ArtType; em
 interface Room { id: string; name: string; emoji: string; bonusTypes: ArtType[]; mult: number; hint: string; color: string }
 interface MuseumConfig { title: string; museum: string; artworks: Artwork[]; rooms: Room[]; winScore: number; fact: string }
 
-const CONFIGS: Record<string, MuseumConfig> = {
+export const CONFIGS: Record<string, MuseumConfig> = {
   'louvre-arrangement': {
     title: 'Curate the Louvre',
     museum: 'Musée du Louvre, Paris',
@@ -75,7 +75,7 @@ export default function MuseumGame({ configId, difficulty, onWin, onLose }: Mini
   const maxAttempts = scale(difficulty, [3, 2, 2, 1])
   const [attempts, setAttempts] = useState(0)
 
-  const cfg = CONFIGS[configId]
+  const cfg = CONFIGS[configId] ?? CONFIGS['louvre-arrangement']
 
   const [assignments, setAssignments] = useState<Record<string, string | null>>(
     () => Object.fromEntries(cfg.rooms.map(r => [r.id, null]))
@@ -149,7 +149,7 @@ export default function MuseumGame({ configId, difficulty, onWin, onLose }: Mini
             }}
           />
         </div>
-        <span className={`font-bold font-mono ${score >= cfg.winScore ? 'text-emerald-400' : 'text-accent'}`}>{score}</span>
+        <span className={`font-bold font-mono ${score >= cfg.winScore ? 'text-emerald-700' : 'text-accent'}`}>{score}</span>
       </div>
 
       {/* Rooms */}
@@ -172,11 +172,11 @@ export default function MuseumGame({ configId, difficulty, onWin, onLose }: Mini
             >
               <div className="flex items-center gap-1.5">
                 <span className="text-base">{room.emoji}</span>
-                <span className="text-ink text-xs font-bold leading-tight">{room.name}</span>
+                <span className="text-white text-xs font-bold leading-tight">{room.name}</span>
               </div>
-              <p className="text-muted text-[10px] leading-tight">{room.hint}</p>
+              <p className="text-white/70 text-[10px] leading-tight">{room.hint}</p>
               {art ? (
-                <div className={`flex items-center gap-1.5 px-2 py-1 rounded-lg ${bonus ? 'bg-emerald-500/20' : 'bg-panel'}`}>
+                <div className={`flex items-center gap-1.5 px-2 py-1 rounded-lg bg-panel ${bonus ? 'ring-1 ring-emerald-500/60' : ''}`}>
                   <span className="text-base">{art.emoji}</span>
                   <div className="flex-1 min-w-0">
                     <p className="text-[11px] font-bold text-ink truncate">{art.title}</p>
@@ -238,13 +238,13 @@ export default function MuseumGame({ configId, difficulty, onWin, onLose }: Mini
 
       {submitted && won && (
         <div className="p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-xl">
-          <p className="text-emerald-400 font-bold text-sm text-center">Masterful Curation! Score: {score} pts</p>
+          <p className="text-emerald-700 font-bold text-sm text-center">Masterful Curation! Score: {score} pts</p>
           <p className="text-muted text-xs mt-1.5 leading-relaxed">{cfg.fact}</p>
         </div>
       )}
       {submitted && !won && (
         <div className="p-3 bg-red-500/10 border border-red-500/30 rounded-xl text-center">
-          <p className="text-red-400 font-bold text-sm">Score: {score} — need {cfg.winScore}</p>
+          <p className="text-red-700 font-bold text-sm">Score: {score} — need {cfg.winScore}</p>
           <p className="text-muted text-xs mt-0.5">Try matching artwork types to room specialities.</p>
           <button onClick={reset} className="mt-2 px-4 py-1.5 bg-panel text-ink-2 text-xs rounded-lg hover:bg-panel-2 transition-all">
             Rearrange

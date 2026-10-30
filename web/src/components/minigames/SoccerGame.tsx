@@ -18,7 +18,7 @@ interface SoccerConfig {
 
 // ── Configs ────────────────────────────────────────────────────────────────────
 
-const CONFIGS: Record<string, SoccerConfig> = {
+export const CONFIGS: Record<string, SoccerConfig> = {
   'pele-final': {
     title: 'World Cup Final 1970',
     homeTeam: 'Brazil', awayTeam: 'Italy',
@@ -67,15 +67,15 @@ interface KickRecord { shotCell: number; keeperCol: number; scored: boolean }
 
 export default function SoccerGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
   // Higher difficulties put the puzzle on a clock.
-  const timeLimit = scale(difficulty, [0, 0, 120, 90])
-  const timer = useGameTimer({ seconds: timeLimit, running: true, onExpire: () => onLose('out of time') })
-
   const cfg = CONFIGS[configId] ?? CONFIGS['pele-final']
 
   const [kick, setKick] = useState(0)
   const [goals, setGoals] = useState(0)
   const [history, setHistory] = useState<KickRecord[]>([])
   const [phase, setPhase] = useState<'shoot' | 'result' | 'won' | 'lost'>('shoot')
+  const timeLimit = scale(difficulty, [0, 0, 120, 90])
+  // Stop the clock once the shootout is won so the victory screen cannot time out.
+  const timer = useGameTimer({ seconds: timeLimit, running: phase !== 'won', onExpire: () => onLose('out of time') })
   const [lastShot, setLastShot] = useState<KickRecord | null>(null)
 
   function shoot(cell: number) {

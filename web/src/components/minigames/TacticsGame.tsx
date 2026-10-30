@@ -2,7 +2,7 @@ import { useState } from 'react'
 import type { MinigameProps } from '@/games/types'
 import { resolveConfig, scale, useGameOutcome, OutcomeBanner } from './_shared'
 
-type Piece = 'WK' | 'WQ' | 'WR' | 'WB' | 'BK' | 'BP' | null
+export type Piece = 'WK' | 'WQ' | 'WR' | 'WB' | 'BK' | 'BP' | null
 
 interface TacticsConfig {
   title: string
@@ -16,7 +16,7 @@ interface TacticsConfig {
   fact: string
 }
 
-const CONFIGS: Record<string, TacticsConfig> = {
+export const CONFIGS: Record<string, TacticsConfig> = {
   'musashi-duel': {
     title: 'Ganryū Island',
     question: "Musashi holds the high ground. One move wins the duel — find it.",
@@ -39,10 +39,10 @@ const CONFIGS: Record<string, TacticsConfig> = {
       { piece: 'BK', row: 0, col: 0 },
       { piece: 'BP', row: 0, col: 1 },
       { piece: 'BP', row: 1, col: 0 },
-      { piece: 'WQ', row: 2, col: 2 },
-      { piece: 'WK', row: 5, col: 5 },
+      { piece: 'WQ', row: 1, col: 4 },
+      { piece: 'WK', row: 2, col: 2 },
     ],
-    winFrom: [2, 2], winTo: [0, 2],
+    winFrom: [1, 4], winTo: [1, 1],
     fact: 'Pericles used strategic positioning — controlling Athens through placement of allies — just as a queen controls the board by commanding lines.',
   },
   general: {
@@ -51,10 +51,10 @@ const CONFIGS: Record<string, TacticsConfig> = {
     rows: 6, cols: 6,
     board: [
       { piece: 'BK', row: 0, col: 5 },
-      { piece: 'WR', row: 0, col: 0 },
+      { piece: 'WR', row: 1, col: 0 },
       { piece: 'WK', row: 2, col: 4 },
     ],
-    winFrom: [0, 0], winTo: [0, 4],
+    winFrom: [1, 0], winTo: [0, 0],
     fact: 'Cicero\'s speeches cornered his opponents as surely as a rook seals off escape squares — leaving no room for evasion.',
   },
   consul: {
@@ -66,9 +66,9 @@ const CONFIGS: Record<string, TacticsConfig> = {
       { piece: 'BP', row: 0, col: 4 },
       { piece: 'BP', row: 1, col: 5 },
       { piece: 'WQ', row: 3, col: 4 },
-      { piece: 'WK', row: 5, col: 0 },
+      { piece: 'WK', row: 2, col: 3 },
     ],
-    winFrom: [3, 4], winTo: [0, 4],  // Qxp+ — BK can't flee, both escape squares covered
+    winFrom: [3, 4], winTo: [1, 4],  // Q to the diagonal, guarded by the king — no flight square
     fact: 'Gandhi\'s Salt March cornered the British Empire like a queen forking king and pawn — forcing a response on unfavorable terms.',
   },
   reform: {
@@ -77,10 +77,10 @@ const CONFIGS: Record<string, TacticsConfig> = {
     rows: 5, cols: 5,
     board: [
       { piece: 'BK', row: 0, col: 0 },
-      { piece: 'WQ', row: 4, col: 0 },
-      { piece: 'WK', row: 2, col: 1 },
+      { piece: 'WQ', row: 4, col: 1 },
+      { piece: 'WK', row: 2, col: 2 },
     ],
-    winFrom: [4, 0], winTo: [1, 0],
+    winFrom: [4, 1], winTo: [1, 1],
     fact: 'Itō Hirobumi\'s Meiji reforms systematically cornered the old feudal order — each reform a move that narrowed the shogunate\'s escape squares.',
   },
   temple: {
@@ -107,12 +107,12 @@ const CONFIGS: Record<string, TacticsConfig> = {
       { piece: 'BK', row: 0, col: 0 },
       { piece: 'BP', row: 0, col: 1 },
       { piece: 'BP', row: 1, col: 0 },
-      { piece: 'WQ', row: 5, col: 5 },
+      { piece: 'WQ', row: 2, col: 0 },
       { piece: 'WR', row: 6, col: 3 },
       { piece: 'WB', row: 4, col: 3 },
-      { piece: 'WK', row: 6, col: 6 },
+      { piece: 'WK', row: 2, col: 2 },
     ],
-    winFrom: [5, 5], winTo: [2, 2],
+    winFrom: [2, 0], winTo: [1, 1],
     fact: "At Gaugamela (331 BCE), Alexander the Great used a diagonal cavalry charge — the oblique advance — that cut through Darius's line at exactly the right angle. It is still studied in military academies as the definitive example of breakthrough tactics.",
   },
   thermopylae: {
@@ -121,7 +121,7 @@ const CONFIGS: Record<string, TacticsConfig> = {
     rows: 7, cols: 7,
     board: [
       { piece: 'BK', row: 0, col: 6 },
-      { piece: 'BP', row: 0, col: 5 },
+      { piece: 'BP', row: 1, col: 5 },
       { piece: 'BP', row: 1, col: 6 },
       { piece: 'WR', row: 6, col: 0 },
       { piece: 'WB', row: 4, col: 4 },
@@ -132,18 +132,17 @@ const CONFIGS: Record<string, TacticsConfig> = {
   },
   actium: {
     title: 'Battle of Actium',
-    question: "Octavian's forces flank from the sea. Move the queen along the open file to deliver the decisive blow.",
+    question: "Octavian's forces flank from the sea. Move the queen onto the open file to deliver the decisive blow.",
     rows: 6, cols: 6,
     board: [
       { piece: 'BK', row: 0, col: 2 },
       { piece: 'BP', row: 0, col: 1 },
       { piece: 'BP', row: 0, col: 3 },
-      { piece: 'BP', row: 1, col: 2 },
-      { piece: 'WQ', row: 5, col: 2 },
+      { piece: 'WQ', row: 5, col: 5 },
       { piece: 'WR', row: 5, col: 0 },
       { piece: 'WK', row: 4, col: 5 },
     ],
-    winFrom: [5, 2], winTo: [2, 2],
+    winFrom: [5, 5], winTo: [2, 2],
     fact: "At Actium (31 BCE), Octavian's fleet outmanoeuvred Mark Antony and Cleopatra by controlling the central channel. The battle ended the Roman Republic and began the Empire — a single engagement that decided a century of civil war.",
   },
   'cannae-trap': {
@@ -152,12 +151,12 @@ const CONFIGS: Record<string, TacticsConfig> = {
     rows: 7, cols: 7,
     board: [
       { piece: 'BK', row: 0, col: 3 },
-      { piece: 'BP', row: 0, col: 2 },
-      { piece: 'BP', row: 0, col: 4 },
+      { piece: 'BP', row: 1, col: 2 },
+      { piece: 'BP', row: 1, col: 4 },
       { piece: 'BP', row: 1, col: 3 },
       { piece: 'WQ', row: 4, col: 6 },
-      { piece: 'WR', row: 6, col: 1 },
-      { piece: 'WB', row: 3, col: 1 },
+      { piece: 'WR', row: 6, col: 3 },
+      { piece: 'WB', row: 2, col: 6 },
       { piece: 'WK', row: 6, col: 6 },
     ],
     winFrom: [4, 6], winTo: [1, 3],
@@ -171,12 +170,12 @@ const CONFIGS: Record<string, TacticsConfig> = {
       { piece: 'BK', row: 0, col: 0 },
       { piece: 'BP', row: 0, col: 1 },
       { piece: 'BP', row: 1, col: 0 },
-      { piece: 'WQ', row: 4, col: 4 },
+      { piece: 'WQ', row: 5, col: 3 },
       { piece: 'WR', row: 5, col: 2 },
-      { piece: 'WB', row: 2, col: 2 },
-      { piece: 'WK', row: 5, col: 5 },
+      { piece: 'WB', row: 2, col: 0 },
+      { piece: 'WK', row: 2, col: 2 },
     ],
-    winFrom: [4, 4], winTo: [1, 1],
+    winFrom: [2, 0], winTo: [1, 1],
     fact: "At Red Cliffs (208 CE), Cao Cao's vast northern fleet was destroyed by fire ships launched by Sun Quan and Liu Bei. The battle prevented the unification of China for four centuries, giving rise to the Three Kingdoms period.",
   },
   'siege-of-troy': {
@@ -187,12 +186,12 @@ const CONFIGS: Record<string, TacticsConfig> = {
       { piece: 'BK', row: 0, col: 6 },
       { piece: 'BP', row: 1, col: 6 },
       { piece: 'BP', row: 0, col: 5 },
-      { piece: 'WQ', row: 6, col: 0 },
+      { piece: 'WQ', row: 1, col: 0 },
       { piece: 'WR', row: 4, col: 5 },
-      { piece: 'WB', row: 2, col: 3 },
+      { piece: 'WB', row: 2, col: 2 },
       { piece: 'WK', row: 6, col: 5 },
     ],
-    winFrom: [6, 0], winTo: [0, 6],
+    winFrom: [1, 0], winTo: [1, 5],
     fact: "The Trojan War, as described in Homer's Iliad, lasted ten years — but was decided in a single day's battle with a wooden horse. Odysseus's stratagem required patience, deception, and a single decisive strike: the model for Greek tactical thinking.",
   },
 }
@@ -211,7 +210,7 @@ const PIECE_COLOR: Record<NonNullable<Piece>, string> = {
 // Enough chess to tell an impossible move from a legal one: sliders stop at
 // the first piece, kings step one square, captures only take black pieces.
 
-function isLegalMove(grid: Piece[][], from: [number, number], to: [number, number]): boolean {
+export function isLegalMove(grid: Piece[][], from: [number, number], to: [number, number]): boolean {
   const piece = grid[from[0]][from[1]]
   if (!piece || !piece.startsWith('W')) return false
   const target = grid[to[0]][to[1]]

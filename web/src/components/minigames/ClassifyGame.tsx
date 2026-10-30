@@ -19,7 +19,7 @@ function shuffle<T>(arr: T[]): T[] {
   return a
 }
 
-const CONFIGS: Record<string, ClassifyConfig> = {
+export const CONFIGS: Record<string, ClassifyConfig> = {
   'linnaeus-kingdom': {
     title: 'Linnaeus\'s Classification',
     question: 'Sort each organism into the correct kingdom.',

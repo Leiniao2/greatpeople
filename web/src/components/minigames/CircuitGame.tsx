@@ -32,7 +32,7 @@ interface CircuitConfig {
   winCondition: (sw: Record<string, boolean>) => boolean
 }
 
-const CONFIGS: Record<CircuitKey, CircuitConfig> = {
+export const CONFIGS: Record<CircuitKey, CircuitConfig> = {
   enigma: {
     title: 'Complete the Bombe Circuit',
     viewBox: '0 0 340 200',
