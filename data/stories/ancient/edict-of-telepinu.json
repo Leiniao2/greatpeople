@@ -1,0 +1,137 @@
+{
+  "slug": "edict-of-telepinu",
+  "era": "Ancient",
+  "order": 6,
+  "title": "Edict of Telepinu",
+  "figure": "King Telepinu",
+  "portraitKey": "king_telepinu",
+  "tagline": "The Hittite king who broke the cycle of royal murder with a single document.",
+  "locationImage": "ancient_uruk",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Hattusa, c. 1525 BCE. The Hittite throne has been soaked in blood for generations. Sons murder fathers. Brothers murder brothers. Queens are executed by their stepsons. Every succession is a civil war. The king who will finally end this has just survived his own near-assassination."
+        },
+        {
+          "type": "dialog",
+          "speaker": "King Telepinu",
+          "portraitKey": "king_telepinu",
+          "text": "I have watched my father's kingdom tear itself to pieces over who sits on this throne. The law must be stronger than any prince's ambition. Write this down — all of it. Who inherits, in what order, and what happens to anyone who tries to change it by force."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "What problem was the Edict of Telepinu designed to solve?",
+            "options": [
+              "Tax collection across the empire",
+              "Bloody succession disputes in the Hittite royal family",
+              "The treatment of conquered peoples",
+              "Trade disputes with Babylon"
+            ],
+            "answer": 1,
+            "fact": "The Hittite royal family had suffered generations of murder, coup, and revenge killings over succession. Telepinu's Edict (c. 1600 BCE) established a clear line of succession and banned the killing of royal family members — replacing blood with law.",
+            "countdown": 10
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "The Edict of Telepinu, written around 1525 BCE, is one of the earliest written succession laws in history. It established that the eldest son of the first wife inherits the throne — and if there is none, the son of the second wife. It forbade the killing of royal family members and specified punishments for violations."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Royal Councilor",
+          "text": "My king, the princes will not like this. It removes their ability to... negotiate a more favorable outcome.",
+          "portraitKey": "follower:philosopher"
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "The Hittite Empire was centred in modern-day Turkey, making it one of the great powers of the ancient Near East alongside Egypt and Babylon.",
+            "correct": true,
+            "countdown": 10,
+            "fact": "The Hittite Empire (c. 1700–1200 BCE) was based in Hattusa, near modern Boğazkale in Turkey. At its peak it rivalled Egypt — and the Hittite-Egyptian clash at Kadesh (c. 1274 BCE) is the first well-documented pitched battle in recorded history."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "dialog",
+          "speaker": "King Telepinu",
+          "portraitKey": "king_telepinu",
+          "text": "Good. A prince who must murder to rule will make a murderer's government. I do not want clever princes who know how to kill. I want a kingdom strong enough that the succession is boring. Boring succession is the greatest luxury a civilization can afford."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "sort",
+            "question": "Arrange these landmarks in the history of written law from oldest to most recent:",
+            "items": [
+              "Code of Ur-Nammu — the oldest surviving law code (c. 2100 BCE)",
+              "Hittite king Telepinu issues his succession edict, an early constitutional document (c. 1525 BCE)",
+              "Athenian lawgiver Solon creates the first democratic legal code (c. 594 BCE)",
+              "Rome's Twelve Tables become the first codified Roman law (c. 450 BCE)"
+            ],
+            "fact": "Telepinu's Edict predates Greek democratic codes by centuries. Its core principle — that even kings must follow established succession rules — represented a revolutionary idea: that the most powerful rulers were subject to written law."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "The Hittites were remarkable in other ways: their mastery of iron smelting made their weapons superior to any bronze-age rival. Their international diplomacy — including history's first known peace treaty, signed after the Battle of Kadesh — established the template for all subsequent international law."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "voting",
+            "configId": "akkadian-council",
+            "instruction": "Telepinu must win the loyalty of the assembled Hittite nobles to pass his succession law. Sway enough governors before the council dissolves.",
+            "fact": "The Hittite pankus — an assembly of nobles — had real power to check the king. Telepinu's Edict was partly designed to give this body constitutional authority, so that future kings could not simply murder their way to the throne. It was one of history's first constitutional checks on royal power."
+          }
+        },
+        {
+          "type": "dialog",
+          "speaker": "King Telepinu",
+          "portraitKey": "king_telepinu",
+          "text": "Empires fall from within before any enemy reaches the gate. A kingdom where the king fears his own children is already half-dead. I am writing this law not for my reign but for every reign that follows. Let this tablet outlast every king whose name is on it."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "klotski",
+            "configId": "last-general",
+            "instruction": "The Hittite Empire's final years required desperate strategic moves. Slide the last general to safety before the Bronze Age Collapse closes every escape.",
+            "fact": "Around 1200 BCE, the Hittite Empire was one of several great powers destroyed by the Bronze Age Collapse. Invaders known as the 'Sea Peoples,' combined with drought and internal revolt, wiped out civilisations across the eastern Mediterranean within decades. The Hittites were so thoroughly destroyed that their very existence was forgotten for 3,000 years."
+          }
+        }
+      ]
+    }
+  ]
+}

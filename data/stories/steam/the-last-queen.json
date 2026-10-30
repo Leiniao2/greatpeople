@@ -1,0 +1,116 @@
+{
+  "slug": "the-last-queen",
+  "era": "Steam",
+  "order": 6,
+  "title": "The Last Queen",
+  "figure": "Marie Antoinette",
+  "portraitKey": "marie_antoinette",
+  "tagline": "Versailles blazed brightest just before the darkness fell.",
+  "locationImage": "steam_st_petersburg",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Versailles, 1770. The fourteen-year-old Archduchess of Austria becomes Dauphine of France. The Palace of Versailles is the most magnificent building on earth — also the most dangerous. Every marble corridor conceals a rumour; every chandelier illuminates an intrigue."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Marie Antoinette",
+          "text": "I am to be a queen, and for this I was born. But I did not expect it to be so — complicated.",
+          "portraitKey": "marie_antoinette"
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "Marie Antoinette famously said 'Let them eat cake' when told the French people had no bread.",
+            "correct": false,
+            "fact": "There is no historical evidence Marie Antoinette said this. The phrase appears in Rousseau's Confessions before she arrived in France, attributed anonymously. It was likely propaganda — useful for portraying her as callously out of touch with the poor."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "She was young, foreign, and thrust into a court where she was expected to produce heirs, perform magnificence, and never show weakness. The fashions she created swept Europe. The parties she threw became legend. The debt she accumulated became a revolution."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Count Axel von Fersen",
+          "text": "Your Majesty, the people grow restless. There is talk in Paris — very dangerous talk.",
+          "portraitKey": "follower:merchant"
+        },
+        {
+          "type": "dialog",
+          "speaker": "Marie Antoinette",
+          "text": "There is always talk in Paris. We are the court of France — we do not explain ourselves to pamphleteers.",
+          "portraitKey": "marie_antoinette"
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "matchthree",
+            "configId": "mughal-gems",
+            "instruction": "Match the treasures of Versailles — candlesticks, mirrors, roses, and gold.",
+            "fact": "Versailles under Marie Antoinette employed over 1,500 servants. The annual cost of running the palace was equivalent to 25% of France's entire royal revenue — a number the revolutionaries never let anyone forget."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "dialog",
+          "speaker": "Marie Antoinette",
+          "text": "I was a queen. I am still a queen. No matter what they do to the crown, they cannot undo what I am.",
+          "portraitKey": "marie_antoinette"
+        },
+        {
+          "type": "narration",
+          "text": "Her final months in the Temple Prison showed a different woman — stripped of every luxury, she became composed, dignified, and calm. At her trial, when accused of crimes against her son, she appealed to every mother in the courtroom. She was thirty-seven when she died."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fiction",
+            "configId": "marie-escape",
+            "instruction": "The royal family's escape plan: help Marie Antoinette navigate the Flight to Varennes.",
+            "fact": "In 1791, the royal family disguised themselves and fled toward Austria. They were recognized and captured at Varennes — the king's profile on French coins had been recognized by a local postmaster. The failed flight sealed the monarchy's fate."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "matchthree",
+            "configId": "hanseatic-runes",
+            "instruction": "Versailles was a world of mirrors and gilded excess. Match the treasures of the palace — the same luxury that the revolutionary crowds outside could not afford.",
+            "fact": "Marie Antoinette's reputation for extravagance was partly real and partly manufactured. Her annual clothing budget was enormous — but Louis XVI actually cut it after they married. Revolutionary pamphlets exaggerated her spending into legend. The 'Madame Deficit' nickname stuck regardless of the facts."
+          }
+        }
+      ]
+    }
+  ]
+}

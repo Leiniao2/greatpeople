@@ -1,0 +1,136 @@
+{
+  "slug": "the-art-of-perspective",
+  "era": "Steam",
+  "order": 10,
+  "title": "The Art of Perspective",
+  "figure": "Nian Xiyao",
+  "portraitKey": "nian_xiyao",
+  "tagline": "He fused Western geometry with Chinese porcelain to create imperial art.",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Beijing, 1720s. Nian Xiyao serves the Yongzheng Emperor as overseer of the imperial kilns at Jingdezhen. He is also a student — of a Jesuit missionary named Castiglione who is teaching Western perspective."
+        },
+        {
+          "type": "narration",
+          "text": "Nian Xiyao becomes fascinated. Western linear perspective — the mathematics of how parallel lines converge — is entirely absent from Chinese painting tradition. He will change that."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "What was Nian Xiyao's most significant scholarly contribution to Chinese art?",
+            "options": [
+              "Writing 'Shixue', the first Chinese treatise on Western linear perspective",
+              "Introducing oil painting techniques from European missionaries",
+              "Designing the Summer Palace gardens for Emperor Qianlong",
+              "Translating Euclid's geometry into Manchu for the imperial court"
+            ],
+            "answer": 0,
+            "countdown": 10,
+            "fact": "Nian Xiyao (1671–1738) published Shixue ('The Science of Vision') in 1729, systematically explaining Western linear perspective — vanishing points, foreshortening, and the geometry of sight — to Chinese readers for the first time. He worked closely with the Jesuit painter Giuseppe Castiglione at the Yongzheng court, blending Eastern aesthetic sensibility with Western mathematical precision."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "He writes Shiyue ('The Study of Vision') — the first Chinese treatise on perspective geometry, with diagrams, proofs, and architectural applications."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "Chinese painting traditions had long used the same perspective system as European art before Nian Xiyao's book.",
+            "correct": false,
+            "countdown": 10,
+            "fact": "Traditional Chinese painting used 'axonometric' perspective — objects remained the same size regardless of distance, and there was no single vanishing point. This was a deliberate artistic choice, not a technical limitation: it allowed the eye to travel through a landscape rather than fix on one point. Nian Xiyao presented Western perspective as a complementary system, not a replacement."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "At Jingdezhen he applies these ideas to porcelain design — European architectural scenes painted with geometrically accurate perspective onto imperial porcelain. An East-West fusion of art and science."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "sort",
+            "question": "Arrange these key contributions of Nian Xiyao's career in order:",
+            "items": [
+              "Appointed superintendent of the imperial kilns at Jingdezhen under Yongzheng",
+              "Studies Western art techniques with Jesuit painter Giuseppe Castiglione at court",
+              "Supervises the production of revolutionary enamel-on-copper wares using European pigments",
+              "Publishes the first edition of Shixue, introducing linear perspective to Chinese readers",
+              "Expands Shixue with additional geometric diagrams and practical painting exercises",
+              "His porcelain innovations — new colors and firing techniques — become imperial standards"
+            ],
+            "fact": "Nian Xiyao's imperial kilns at Jingdezhen produced some of the most technically spectacular porcelain in Chinese history: new enamel colors mixed from European pigments, copper-red glazes that had been lost for centuries, and forms that reflected Western shapes while remaining distinctly Chinese. His career embodied the Yongzheng court's sophisticated engagement with global culture."
+          }
+        },
+        {
+          "type": "narration",
+          "text": "The Qianlong Emperor continues this tradition. Nian Xiyao's contribution is to translate a Western mathematical vision into Chinese aesthetics — not copying, but synthesizing."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "porcelain",
+            "configId": "cobalt-bowl",
+            "instruction": "Nian Xiyao supervised the imperial kilns — where European pigments met Chinese clay. Shape and glaze a bowl that speaks two artistic languages at once.",
+            "fact": "The Jingdezhen kilns employed 100,000 workers at their peak, organized into specialized workshops — some mixed clay, some threw pots, some applied glaze, some painted designs, and some loaded the kilns. Nian Xiyao introduced quality control systems borrowed from the engineering approach of the Jesuit missionaries at court."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Nian Xiyao is a bridge figure — court official, ceramics supervisor, mathematician, art theorist, cross-cultural translator. The perspectival tradition he started echoes in Chinese art for generations."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "geometry",
+            "configId": "anaxagoras-shadow",
+            "instruction": "Western perspective begins with a single point of light casting predictable shadows. Master the geometry of sight that Nian Xiyao translated for the Qing imperial court.",
+            "fact": "Linear perspective was developed by Filippo Brunelleschi in Florence around 1420 and became the dominant visual system of European art. Nian Xiyao's Shixue explained that perspective was not merely an artistic convention but a mathematical truth — that sight itself operates geometrically. This was a revolutionary claim in a culture that viewed painting as an act of imagination rather than observation."
+          }
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "colormix",
+            "configId": "ultramarine-lapis",
+            "instruction": "Nian Xiyao introduced European enamel pigments to the imperial palette — cobalt blues, copper greens, and opaque whites unknown in China. Mix the colors that fused two worlds on a single porcelain surface.",
+            "fact": "The 'famille rose' enamel palette that transformed 18th-century Chinese porcelain — pink, purple, and opaque white — was introduced during Nian Xiyao's tenure as kiln superintendent. The key ingredient was a tin-based opacifier previously unknown in Chinese ceramic chemistry. These colors made Qing porcelain unlike anything before or since."
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "slug": "the-catholic-monarchs",
+  "era": "Renaissance",
+  "order": 3,
+  "title": "The Catholic Monarchs",
+  "figure": "Isabel I of Castile",
+  "portraitKey": "isabel_i",
+  "tagline": "One crown, one faith, one empire stretching beyond the horizon.",
+  "locationImage": "renaissance_tenochtitlan",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Castile, 1474. Isabella inherits a kingdom in chaos — noble factions tearing at each other, Portugal threatening invasion. At twenty-three, she has already arranged her own marriage and declared herself Queen. The battle for Spain has not yet begun."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Isabel I of Castile",
+          "text": "Ferdinand brings Aragon. I bring Castile. Together we bring unity — and unity brings everything else. The lords who resist us do not understand yet what it means to have a single crown.",
+          "portraitKey": "isabel_i"
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "voting",
+            "configId": "spanish-court",
+            "instruction": "Queen Isabel must win court support to fund Columbus's westward voyage. The treasury is empty and the nobles are sceptical — persuade the council.",
+            "fact": "Columbus spent seven years seeking royal patronage before Isabel and Ferdinand agreed to fund his voyage. The myth that Isabel sold her jewels is almost certainly false — the funding came from the royal treasury and private investors. But Isabel's personal intervention was decisive after her council had already rejected the proposal."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "She defeated Portugal at Toro in 1476. She reorganized royal finances. She established the Spanish Inquisition. She completed the Reconquista by taking Granada in 1492. And on that same year, she funded Christopher Columbus."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Christopher Columbus",
+          "text": "Your Majesty, I ask only for ships, crew, and the right to keep one tenth of all riches found. The route to Asia — I am certain of it.",
+          "portraitKey": "follower:explorer"
+        },
+        {
+          "type": "dialog",
+          "speaker": "Isabel I of Castile",
+          "text": "We have just finished one war and I will not be made a fool by a Genoese sailor. But neither will I let Portugal reach the Indies first. You have your ships.",
+          "portraitKey": "isabel_i"
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "cooking",
+            "configId": "aztec-chocolate",
+            "instruction": "Columbus returned to Isabel's court with cacao from the Americas. Prepare the sacred Aztec drink that first reached Spain in her era.",
+            "fact": "Columbus brought cacao beans to Spain on his fourth voyage in 1502. Isabel died in 1504, likely never tasting chocolate. It was her descendants who introduced the sweetened drink to European courts."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "The world Columbus reached was not Asia — but it belonged to Spain anyway, by Isabella's authority, backed by the Treaty of Tordesillas which literally divided the globe. Her gamble reshaped the world. Her will built a church and an empire simultaneously."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "voting",
+            "configId": "spanish-court",
+            "instruction": "Queen Isabel must build court support to fund Columbus's westward voyage. The treasury is drained; sceptics are many.",
+            "fact": "The Capitulations of Santa Fe (1492) gave Columbus the title of Admiral and a share of profits. Isabel's gamble yielded the largest territorial windfall in European history."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "Ferdinand and Isabella funded Columbus' 1492 voyage primarily because they believed the Earth was flat.",
+            "correct": false,
+            "fact": "Educated Europeans had known the Earth was spherical since ancient Greece. The debate was about the Earth's SIZE — Columbus's critics correctly argued the ocean was too wide. He survived only because the Americas existed where he wrongly placed Asia."
+          }
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "storysort",
+            "configId": "don-quixote-windmills",
+            "instruction": "Reassemble the most famous scene in Spanish literature — Don Quixote's charge against the windmills he mistakes for giants.",
+            "fact": "Don Quixote (1605) by Cervantes is considered the first modern novel. The windmill scene became one of literature's greatest metaphors. Cervantes wrote Part I while imprisoned in Seville; the success was so great he wrote Part II a decade later."
+          }
+        }
+      ]
+    }
+  ]
+}

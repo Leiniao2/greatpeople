@@ -3,29 +3,23 @@ import { useNavigate } from 'react-router-dom'
 import { useAuth } from '@/hooks/useAuth'
 import StoryViewer from '@/components/StoryViewer'
 import { useUnlockedCards } from '@/hooks/useUnlockedCards'
-import cardsData from '@/data/cards.json'
 import storyConfigsData from '@/data/story_configs.json'
 import { eraBackdropUrl, locationImageUrl, portraitUrl } from '@/data/images'
 import PageLoader from '@/components/PageLoader'
 import { useAssetPreload } from '@/hooks/useAssetPreload'
 import EraIcon from '@/components/EraIcon'
 
-function portraitKeyForFigure(name: string | null): string | null {
-  if (!name) return null
-  const card = (cardsData as { figureName: string; portraitKey: string }[])
-    .find(c => c.figureName === name)
-  return card?.portraitKey ?? null
-}
-
 // ── Story data ────────────────────────────────────────────────────────────────
 
 interface Story {
+  slug: string
   title: string
   figure: string | null
+  portraitKey: string | null
   tagline: string
-  quizzes: number
+  challengeCount: number
   locationImage?: string
-  bonusCard?: string
+  bonusCard?: { figureName: string; portraitKey: string | null }
 }
 
 interface Era {
@@ -48,7 +42,7 @@ function eraAssets(eraIdx: number): string[] {
   const urls: string[] = []
   for (const story of era.stories) {
     urls.push(locationImageUrl(story.locationImage) ?? eraBackdropUrl(era.name))
-    const pKey = portraitKeyForFigure(story.figure)
+    const pKey = story.portraitKey
     if (pKey) urls.push(portraitUrl(pKey))
   }
   return [...new Set(urls)]
@@ -114,10 +108,7 @@ function EpicContent() {
     const story = ERAS[eraIdx].stories[storyIdx]
     if (unlockKey) {
       unlock(unlockKey)
-      if (story.bonusCard) {
-        const bonusKey = portraitKeyForFigure(story.bonusCard)
-        if (bonusKey) unlock(bonusKey)
-      }
+      if (story.bonusCard?.portraitKey) unlock(story.bonusCard.portraitKey)
       showToast(story.bonusCard ? '2 cards unlocked! Check your Collection.' : 'Card unlocked! Check your Collection.')
     } else {
       showToast('Story completed! Next story unlocked.')
@@ -255,7 +246,7 @@ function EpicContent() {
               const unlocked = isStoryUnlocked(activeEra, storyIdx)
               const isDone = !!completed[key(activeEra, storyIdx)]
 
-              const pKey = portraitKeyForFigure(story.figure)
+              const pKey = story.portraitKey
               const cardImg = story.locationImage
                 ? locationImageUrl(story.locationImage)
                 : eraBackdropUrl(era.name)
@@ -319,7 +310,7 @@ function EpicContent() {
                     )}
                     <p className={`text-[10px] mt-1
                       ${unlocked ? 'text-muted' : 'text-muted/60'}`}>
-                      {story.quizzes} {story.quizzes === 1 ? 'quiz' : 'quizzes'}
+                      {story.challengeCount} {story.challengeCount === 1 ? 'challenge' : 'challenges'}
                     </p>
                   </div>
 
@@ -366,11 +357,8 @@ function EpicContent() {
       {/* Story viewer */}
       {modal && (() => {
         const story = ERAS[modal.eraIdx].stories[modal.storyIdx]
-        const pKey = portraitKeyForFigure(story.figure)
-        const bonusKey = story.bonusCard ? portraitKeyForFigure(story.bonusCard) : null
-        const bonusCard = story.bonusCard && bonusKey
-          ? { figureName: story.bonusCard, portraitKey: bonusKey }
-          : null
+        const pKey = story.portraitKey
+        const bonusCard = story.bonusCard ?? null
         return (
           <StoryViewer
             eraName={ERAS[modal.eraIdx].name}

@@ -1,0 +1,126 @@
+{
+  "slug": "the-naming-of-everything",
+  "era": "Steam",
+  "order": 1,
+  "title": "The Naming of Everything",
+  "figure": "Carl Linnaeus",
+  "portraitKey": "carl_linnaeus",
+  "tagline": "He gives every living creature a name — and creates the language of biology.",
+  "locationImage": "renaissance_genoa",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Uppsala, Sweden, 1735. A 28-year-old physician has just returned from a grueling nine-month journey through Lapland — 4,600 miles on foot and horseback — cataloguing 537 plants, 100 birds, and dozens of insects. He is about to impose order on all of life."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Carl Linnaeus",
+          "portraitKey": "carl_linnaeus",
+          "text": "The chaos of natural history is unbearable. Twelve thousand plants, thousands of animals — each bearing a dozen competing names in different languages. I will end this. I will give every creature one Latin name, shared by all nations, forever."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "Linnaeus classified approximately how many species in his lifetime?",
+            "options": [
+              "~1,200",
+              "~5,000",
+              "~12,000",
+              "~50,000"
+            ],
+            "answer": 2,
+            "fact": "Linnaeus formally described and classified about 12,000 species — roughly 6,000 plants and 6,000 animals. His two-part naming system (genus + species) is still used today for over 1.8 million known species."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Linnaeus's Systema Naturae grew from 11 pages in its first edition to 2,400 pages in its twelfth. By his death he had named and classified 7,700 plants and 4,400 animals. Scientists still publish species descriptions using his system today."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Carl Linnaeus",
+          "portraitKey": "carl_linnaeus",
+          "text": "God created; Linnaeus organized. I say this not from pride but from task. Someone must build the catalog of creation. Every human, every elephant, every moss belongs to genus and species. I am its librarian."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "classify",
+            "configId": "linnaeus-kingdom",
+            "instruction": "Classify each organism into Linnaeus's kingdoms.",
+            "fact": "Linnaeus created the system we still use today. His binomial names — like Homo sapiens — gave every species a unique two-word Latin identity understood by scientists worldwide."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "dialog",
+          "speaker": "Carl Linnaeus",
+          "portraitKey": "carl_linnaeus",
+          "text": "I have placed humans among the primates in my classification. This will anger many. But a system based on anatomy cannot place humans apart from the great apes — the bones tell the same story."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "sort",
+            "question": "Arrange these milestones in Linnaeus's development of biological classification:",
+            "items": [
+              "Publishes Systema Naturae — the first systematic classification of nature",
+              "Invents binomial nomenclature: every species gets a two-word Latin name",
+              "Names Homo sapiens — placing humans formally in the animal kingdom",
+              "Sends 'apostles' worldwide on voyages with Cook and Banks to collect specimens"
+            ],
+            "fact": "Linnaeus classified 7,700 plant species and 4,400 animal species. His binomial system — genus plus species — replaced unwieldy Latin phrases with clean two-word names still used by every scientist on Earth. Naming Homo sapiens was audacious: placing humanity inside the animal kingdom challenged centuries of theological certainty."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "Linnaeus classified humans as Homo sapiens within the order Primates alongside apes and monkeys — which caused considerable controversy in his era.",
+            "correct": true,
+            "countdown": 10,
+            "fact": "When Linnaeus placed humans among the primates in Systema Naturae (1758), critics were outraged. A bishop wrote demanding he separate humans from animals. Linnaeus replied: 'I ask you and the whole world for a generic difference between man and simian that follows from the principles of natural history. I absolutely do not know of one.' Darwin would agree a century later."
+          }
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "mirror",
+            "configId": "snell",
+            "instruction": "Just as Linnaeus gave every species a precise law of naming, Snell gave every ray of light a precise law of bending. One mirror, four bounces — find the path.",
+            "fact": "Willebrord Snell (1580–1626) discovered his law of refraction in 1621 but never published it. René Descartes rediscovered it independently and published it first. The law — n₁ sin θ₁ = n₂ sin θ₂ — predicts exactly how much light bends when crossing between media of different densities."
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -7,14 +7,14 @@ private struct StoryConfig: Decodable {
     let title: String
     let figure: String?
     let tagline: String
-    let quizzes: Int
+    let challengeCount: Int
 }
 
 private struct Story {
     let title: String
     let figure: String?
     let tagline: String
-    let quizzes: Int
+    let challengeCount: Int
 }
 
 private struct EraData {
@@ -31,7 +31,7 @@ private func loadEras() -> [EraData] {
     else { return [] }
     var byEra: [String: [Story]] = [:]
     for c in configs {
-        let story = Story(title: c.title, figure: c.figure, tagline: c.tagline, quizzes: c.quizzes)
+        let story = Story(title: c.title, figure: c.figure, tagline: c.tagline, challengeCount: c.challengeCount)
         byEra[c.era, default: []].append(story)
     }
     return ERA_ORDER.compactMap { era in byEra[era].map { EraData(name: era, stories: $0) } }
@@ -282,7 +282,7 @@ private struct StoryRow: View {
                         .foregroundColor(unlocked ? .gpSlate400 : .gpSlate600.opacity(0.6))
                 }
 
-                Text("\(story.quizzes) \(story.quizzes == 1 ? "quiz" : "quizzes")")
+                Text("\(story.challengeCount) \(story.challengeCount == 1 ? "challenge" : "challenges")")
                     .font(.system(size: 10))
                     .foregroundColor(unlocked ? .gpSlate600 : .gpSlate600.opacity(0.5))
             }

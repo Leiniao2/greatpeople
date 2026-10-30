@@ -1,0 +1,110 @@
+{
+  "slug": "the-gilded-age",
+  "era": "Electricity",
+  "order": 10,
+  "title": "The Gilded Age",
+  "figure": "Andrew Mellon",
+  "portraitKey": "andrew_mellon",
+  "tagline": "A fortune that shaped an era — and the questions it could never answer.",
+  "locationImage": "electricity_london",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Pittsburgh, 1890. Smoke blackens the sky above the steel mills. Carnegie, Rockefeller, Morgan — the titans of American industry are building fortunes that dwarf the GDP of most nations. Andrew Mellon watches, calculates, and invests."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Andrew Mellon",
+          "portraitKey": "andrew_mellon",
+          "text": "Capital is not evil. Capital is energy. Channel it correctly — fund the right industries, back the right men — and it lifts everyone. Channel it wrongly and you get monopoly, exploitation, and revolution."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "Andrew Mellon served as US Treasury Secretary under three consecutive presidents.",
+            "correct": true,
+            "fact": "Andrew Mellon served as Treasury Secretary under Harding, Coolidge, and Hoover (1921–1932) — the longest tenure since Alexander Hamilton. He oversaw the Roaring Twenties boom and the beginning of the Great Depression, for which he was blamed."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Mellon served as Treasury Secretary through three presidencies. His deep tax cuts in the 1920s fueled the economic boom — and critics say contributed to the inequality that preceded the Great Crash of 1929."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "geometry",
+            "configId": "cube-diagonal",
+            "instruction": "Mellon's National Gallery of Art is a masterpiece of architectural geometry. Calculate the space diagonal of this cubic gallery room.",
+            "fact": "Mellon donated his art collection and $15 million to build Washington's National Gallery of Art — one of the greatest acts of private cultural philanthropy in American history. His collection included Raphaels, Rembrandts, and van Eycks bought from the Hermitage."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "dialog",
+          "speaker": "Andrew Mellon",
+          "portraitKey": "andrew_mellon",
+          "text": "I will give the National Gallery to the people of the United States — the most significant collection of art ever assembled, for a country that did not always believe it deserved such things. Wealth must eventually serve beauty."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "voting",
+            "configId": "mellon-treasury",
+            "instruction": "Andrew Mellon faces the Senate with his Revenue Act, proposing to cut the top income tax rate from 73% to 25%. Win enough votes to pass it.",
+            "fact": "Mellon's Revenue Acts of 1921, 1924, and 1926 cut the top marginal rate from 73% to 25%. Tax revenues rose during the 1920s boom, but the same policies concentrated wealth so severely that the Depression proved catastrophic. Mellon advised Hoover to 'liquidate labour, liquidate stocks' in 1929 — advice that deepened the crisis."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "trade",
+            "configId": "steel-stocks",
+            "instruction": "Trade Carnegie Steel shares over 8 rounds of market events. Reach the target portfolio to win.",
+            "fact": "Carnegie Steel's rise mirrored the Gilded Age: astonishing wealth creation alongside brutal labour conditions. The 1892 Homestead Strike left seven dead and fatally damaged Carnegie's public image, despite his later philanthropic legacy."
+          }
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "auction",
+            "configId": "gilded-auction",
+            "instruction": "Bid on industrial-era assets at the Gilded Age estate sale. Secure your target investments wisely.",
+            "fact": "The Gilded Age saw explosive growth in auction houses and financial markets as railroads, steel, and electricity transformed the American economy."
+          }
+        }
+      ]
+    }
+  ]
+}

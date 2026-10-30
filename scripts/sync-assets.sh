@@ -27,9 +27,12 @@ SHARED=(
   story_configs.json
 )
 
-# Web-only: no mobile loader yet.
+# Web-only: no mobile loader yet.  story_scripts.json is generated from
+# data/stories/ by scripts/build-stories.mjs along with story_configs.json and
+# story_challenges.json above.
 WEB_ONLY=(
   location_cards.json
+  story_scripts.json
 )
 
 missing=()

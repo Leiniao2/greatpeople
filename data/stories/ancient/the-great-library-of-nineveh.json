@@ -1,0 +1,147 @@
+{
+  "slug": "the-great-library-of-nineveh",
+  "era": "Ancient",
+  "order": 3,
+  "title": "The Great Library of Nineveh",
+  "figure": "Ashurbanipal",
+  "portraitKey": "ashurbanipal",
+  "tagline": "He gathered the world's knowledge before the world knew it was worth keeping.",
+  "locationImage": "ancient_uruk",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Nineveh, 7th century BCE. The greatest city on earth gleams at the heart of the Assyrian Empire. Its king is feared as a conqueror — but he harbors a secret ambition that no warrior-king before him has dared to claim."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Ashurbanipal",
+          "portraitKey": "ashurbanipal",
+          "text": "My scribes will travel to every city in the empire. Every temple, every palace, every merchant's storehouse — if there is a tablet with writing on it, I want a copy. Babylon, Nippur, Uruk — all of it must come to Nineveh."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "matchthree",
+            "configId": "babylon-tablets",
+            "instruction": "Ashurbanipal's scribes copied tablets column by column across the empire. Match the cuneiform symbols vertically — only column matches score on the ancient clay.",
+            "fact": "Cuneiform tablets were written in vertical columns read top to bottom, right to left. Ashurbanipal's library catalogue tablets — listing every text by first line — are among the oldest library indexes ever found. The Epic of Gilgamesh was filed under its opening words: 'He who saw the deep.'"
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Ashurbanipal could read and write in Sumerian and Akkadian — a rarity so extraordinary among kings that he boasted of it in royal inscriptions. While his predecessors commissioned monuments to their armies, he commissioned monuments to knowledge."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Royal Scribe",
+          "text": "Great King, the tablets arrive by the cartload. Medical texts, omens, hymns, epic poems — thirty thousand tablets now fill the palace storerooms. Where shall we catalog them?",
+          "portraitKey": "follower:philosopher"
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "sort",
+            "question": "Arrange the events of the Assyrian Empire's fall in order:",
+            "items": [
+              "Ashurbanipal dies, triggering succession struggles that weaken the empire (c. 627 BCE)",
+              "A coalition of Babylonians and Medes attacks the Assyrian heartland (c. 615 BCE)",
+              "The capital Nineveh falls and is burned — including Ashurbanipal's great library (c. 612 BCE)",
+              "The last Assyrian army is defeated at the Battle of Harran, ending the empire (609 BCE)"
+            ],
+            "fact": "The burning of Nineveh paradoxically preserved Ashurbanipal's library. The fire baked the clay tablets hard, protecting them. The library lay buried until Austen Henry Layard rediscovered it in 1849, bringing the Epic of Gilgamesh back to the world."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "dialog",
+          "speaker": "Ashurbanipal",
+          "portraitKey": "ashurbanipal",
+          "text": "Organize them by subject. The flood stories on one shelf. The astronomical observations on another. A king who cannot find his knowledge when he needs it has no library — he has a warehouse."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "Ashurbanipal is notable for being literate at a time when:",
+            "options": [
+              "Writing had not yet been invented",
+              "Literacy was rare even among royalty",
+              "Only women were allowed to read",
+              "Reading was punishable by death"
+            ],
+            "answer": 1,
+            "fact": "Ashurbanipal could read and write in multiple languages — an extraordinary feat for a king. He boasted of this in inscriptions, proud of mastering both the scribal arts and the military campaigns typical of Assyrian rulers.",
+            "countdown": 10
+          }
+        },
+        {
+          "type": "narration",
+          "text": "When Nineveh fell to the Babylonians and Medes in 612 BCE, the palace burned. But fire, Ashurbanipal's great enemy, became his greatest ally: the blaze baked the clay tablets hard as stone. Buried under rubble for 2,500 years, they waited."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "Ashurbanipal's library at Nineveh, containing over 30,000 tablets, was the world's first known systematically organised collection of texts.",
+            "correct": true,
+            "countdown": 10,
+            "fact": "Ashurbanipal sent scribes across his empire to copy every text they could find — myths, astronomy, medicine, and administration. Catalogue tablets listing the library's contents show it was deliberately organised by subject — the world's first planned library. The Epic of Gilgamesh was found among its holdings."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "dialog",
+          "speaker": "Ashurbanipal",
+          "portraitKey": "ashurbanipal",
+          "text": "Among these tablets is a tale older than our empire — a king named Gilgamesh, who built the walls of Uruk, who lost his dearest friend, and who searched the ends of the earth for a life that would not end. Copy it carefully. This story must never be lost."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "klotski",
+            "configId": "last-general",
+            "instruction": "The Assyrian Empire is falling. Slide the last general through the collapsing kingdom before Nineveh is surrounded and burned.",
+            "fact": "Nineveh fell in 612 BCE to a coalition of Babylonians, Medes, and Scythians. The city was so thoroughly sacked that the Greek historian Xenophon marched past its ruins 200 years later without knowing what it had been. The library survived only because fire baked the clay tablets into permanence."
+          }
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "hunting",
+            "configId": "roman-venatio",
+            "instruction": "Assurbanipal was as famous for his lion hunts as his library — the palace reliefs at Nineveh show him alone in a chariot, shooting lions with a bow. Prove your skill before the hunt closes.",
+            "fact": "The Nineveh lion hunt reliefs (c. 640 BCE) are among the greatest achievements of ancient sculpture. Assurbanipal's hunt was ceremonial — royal power displayed through mastery over dangerous animals. The Assyrian lion population was hunted to extinction within centuries."
+          }
+        }
+      ]
+    }
+  ]
+}

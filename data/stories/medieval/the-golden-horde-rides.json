@@ -1,0 +1,136 @@
+{
+  "slug": "the-golden-horde-rides",
+  "era": "Medieval",
+  "order": 5,
+  "title": "The Golden Horde Rides",
+  "figure": "Batu Khan",
+  "portraitKey": "batu_khan",
+  "tagline": "From Mongolia to Poland — the unstoppable cavalry of the steppes.",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "1236. Batu Khan, grandson of Genghis, leads the largest mounted army in history westward. The Mongol Empire will touch Europe."
+        },
+        {
+          "type": "narration",
+          "text": "Rus principalities fall one by one — Vladimir, Kiev, Ryazan. The Mongol cavalry moves faster than any army before it."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "Whose grandson was Batu Khan, and what western invasion did he lead?",
+            "options": [
+              "Grandson of Genghis Khan; led the Mongol invasion of Eastern Europe",
+              "Son of Ögedei Khan; led the invasion of China",
+              "Grandson of Kublai Khan; led the invasion of Persia",
+              "Son of Chagatai Khan; led the invasion of India"
+            ],
+            "answer": 0,
+            "countdown": 10,
+            "fact": "Batu Khan (c.1207–1255) was the grandson of Genghis Khan and founder of the Golden Horde. In 1241, he led the most western Mongol campaign in history, crushing Polish and Hungarian armies simultaneously and reaching the gates of Vienna — before news of Ögedei Khan's death caused the army to withdraw."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Poland and Hungary are shattered at the battles of Legnica and Mohi. Western Europe trembles. Then — a miracle for Europe — Ögedei Khan dies. Batu turns back."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "The Mongol army that invaded Europe in 1241 was defeated by the armies of Poland and Hungary.",
+            "correct": false,
+            "countdown": 10,
+            "fact": "At the Battle of Legnica (1241), the Mongols annihilated a combined Polish-German force. At the Battle of Mohi the same month, they destroyed the Hungarian army. Western Europe was essentially undefended. The Mongols withdrew not because of military defeat but because of succession politics — Ögedei Khan's death required the princes to return east."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Batu founds the Golden Horde on the Volga steppes — a Mongol khanate that will rule Russia for 200 years. He rules from his golden tent, dispensing justice and tribute."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "sort",
+            "question": "Arrange the key events of Batu Khan's western campaign in order:",
+            "items": [
+              "The Mongol army crosses the Volga River and subdues the Cumans",
+              "Mongols sack Kiev, the greatest city of Rus, burning it to the ground",
+              "Battle of Legnica — Polish and German knights are destroyed in Silesia",
+              "Battle of Mohi — the Hungarian army is routed on the River Sajo",
+              "Mongol vanguard reaches the Adriatic coast of Croatia",
+              "Ögedei Khan dies — Batu orders withdrawal to elect a new Great Khan"
+            ],
+            "fact": "The Mongol campaign of 1241 was one of the most devastating military events in medieval European history. Poland, Hungary, and Moravia were devastated. Poland lost an estimated 25% of its population. When the Mongols withdrew, medieval Europe assumed it was a temporary pause — for years, communities lived in terror of their return."
+          }
+        },
+        {
+          "type": "narration",
+          "text": "He hosts Persian ambassadors, Chinese envoys, and European monks — a cosmopolitan court on horseback."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "hunting",
+            "configId": "mongol-hunt",
+            "instruction": "Mongol warriors trained for war through the nerge — a great coordinated hunt. Encircle the game across the steppe, tightening the ring until nothing escapes. The same maneuver will encircle armies.",
+            "fact": "The Mongol nerge (battue hunt) was simultaneously sport and military training. Thousands of horsemen would spread across hundreds of miles, drive game into an ever-tightening circle, then slaughter it. Generals studied the hunt's coordination problems — timing, communication over distance, simultaneous flanking — and applied the same solutions in battle."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "The Golden Horde reshapes Eurasian trade and politics for generations. Batu Khan: conqueror, founder, statesman of the steppe."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "tactics",
+            "configId": "general",
+            "instruction": "Batu Khan's commanders used feigned retreats to lure heavy European cavalry out of formation. Spring the trap — draw them forward, then encircle.",
+            "fact": "The feigned retreat was the signature Mongol tactic in Europe. Heavy knights, trained to charge and pursue, could not resist a retreating enemy. The Mongols would fall back for miles, drawing the pursuers into scattered disorder, then wheel and destroy them in detail. European commanders had no answer for an 'enemy' that ran away only to fight on its own terms."
+          }
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "klotski",
+            "configId": "sword-formation",
+            "instruction": "Break the European shield wall — heavy cavalry blocks every direct path. Rearrange the pieces to open a line for the horse archers to exploit.",
+            "fact": "The Golden Horde that Batu established dominated the Russian steppe for 250 years, collecting tribute from every Russian principality. Moscow grew wealthy as a tax collector for the Horde — a relationship that profoundly shaped Russian political culture, centralizing power and accustoming rulers to absolute authority."
+          }
+        }
+      ]
+    }
+  ]
+}

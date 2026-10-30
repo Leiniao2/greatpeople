@@ -2,598 +2,2814 @@
   {
     "era": "Ancient",
     "title": "Pyramid Builders",
+    "slug": "pyramid-builders",
     "figure": "Imhotep",
+    "portraitKey": "imhotep",
     "tagline": "Stone by stone, an immortal legacy rises from the desert.",
-    "quizzes": 5,
-    "locationImage": "ancient_memphis"
+    "locationImage": "ancient_memphis",
+    "lives": 3,
+    "challengeCount": 5,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 1
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
   },
   {
     "era": "Ancient",
     "title": "The First Empire",
+    "slug": "the-first-empire",
     "figure": "Sargon I",
+    "portraitKey": "sargon_i",
     "tagline": "The world's first conqueror builds an empire from nothing but will.",
-    "quizzes": 4,
-    "locationImage": "ancient_uruk"
+    "locationImage": "ancient_uruk",
+    "lives": 3,
+    "challengeCount": 4,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 1
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 1
+      }
+    ]
   },
   {
     "era": "Ancient",
     "title": "The King and the Wild Man",
+    "slug": "the-king-and-the-wild-man",
     "figure": "Gilgamesh",
+    "portraitKey": "gilgamesh",
     "tagline": "Two forces of nature meet — and become brothers.",
-    "quizzes": 4,
     "locationImage": "ancient_uruk",
-    "bonusCard": "Enkidu"
-  },
-  {
-    "era": "Classical",
-    "title": "The Elements",
-    "figure": "Euclid",
-    "tagline": "Thirteen books that defined the shape of reason forever.",
-    "quizzes": 4,
-    "locationImage": "ancient_athens"
-  },
-  {
-    "era": "Classical",
-    "title": "The Golden Age of Athens",
-    "figure": "Pericles",
-    "tagline": "A statesman, a philosopher, and a king debate the soul of democracy.",
-    "quizzes": 4,
-    "locationImage": "ancient_athens",
-    "bonusCard": "Aspasia"
-  },
-  {
-    "era": "Classical",
-    "title": "The Voice of Rome",
-    "figure": "Cicero",
-    "tagline": "The Senate hangs on every word — and words can cut like swords.",
-    "quizzes": 4,
-    "locationImage": "classical_rome"
-  },
-  {
-    "era": "Classical",
-    "title": "Before Socrates",
-    "figure": "Anaxagoras",
-    "tagline": "The philosopher who dared say the sun is a rock, not a god.",
-    "quizzes": 4,
-    "locationImage": "ancient_athens"
-  },
-  {
-    "era": "Medieval",
-    "title": "The Last General",
-    "figure": "Belisarius",
-    "tagline": "Rome's final military genius fought enemies on every front — including his emperor.",
-    "quizzes": 4,
-    "locationImage": "steam_istanbul"
-  },
-  {
-    "era": "Medieval",
-    "title": "The Language of Algebra",
-    "figure": "Al-Khwarizmi",
-    "tagline": "A mathematician in Baghdad creates the tool that will run every computer.",
-    "quizzes": 4,
-    "locationImage": "renaissance_baghdad"
-  },
-  {
-    "era": "Classical",
-    "title": "The Prophet of Light",
-    "figure": "Mani",
-    "tagline": "A visionary paints his gospel across three continents in color and light.",
-    "quizzes": 4,
-    "locationImage": "medieval_damascus"
-  },
-  {
-    "era": "Medieval",
-    "title": "Tea Ceremony",
-    "figure": "Lu Yu",
-    "tagline": "A humble beverage becomes a philosophy of the mind.",
-    "quizzes": 3,
-    "locationImage": "medieval_changan"
-  },
-  {
-    "era": "Classical",
-    "title": "The Disguised Warrior",
-    "figure": "Hua Mulan",
-    "tagline": "She takes her father's armor and rewrites what courage looks like.",
-    "quizzes": 4,
-    "locationImage": "medieval_changan"
-  },
-  {
-    "era": "Medieval",
-    "title": "The Knight's Code",
-    "figure": "Lancelot",
-    "tagline": "The greatest knight who ever lived is undone by the greatest love.",
-    "quizzes": 4,
-    "locationImage": "medieval_krakow"
-  },
-  {
-    "era": "Medieval",
-    "title": "Words of Sorrow",
-    "figure": "Li Qingzhao",
-    "tagline": "A poet transforms grief into the most beautiful verse in Chinese history.",
-    "quizzes": 3,
-    "locationImage": "medieval_changan"
-  },
-  {
-    "era": "Renaissance",
-    "title": "Way of the Sword",
-    "figure": "Miyamoto Musashi",
-    "tagline": "The legendary swordsman who mastered both blade and brush.",
-    "quizzes": 4,
-    "locationImage": "medieval_kyoto"
-  },
-  {
-    "era": "Renaissance",
-    "title": "The Colors of Venice",
-    "figure": "Titian",
-    "tagline": "The last great master sets his canvas ablaze with color and light.",
-    "quizzes": 4,
-    "locationImage": "renaissance_venice"
-  },
-  {
-    "era": "Renaissance",
-    "title": "Around the World",
-    "figure": "Magellan",
-    "tagline": "He bet his life — and lost it — on the shape of the Earth.",
-    "quizzes": 4,
-    "locationImage": "renaissance_lisbon"
-  },
-  {
-    "era": "Information",
-    "title": "Streets of Calcutta",
-    "figure": "Mother Teresa",
-    "tagline": "A nun leaves the convent walls to serve the dying in the gutters of Calcutta.",
-    "quizzes": 3,
-    "locationImage": "electricity_delhi"
-  },
-  {
-    "era": "Electricity",
-    "title": "Soul Force",
-    "figure": "Mohandas Gandhi",
-    "tagline": "Against the greatest empire in history, one man chooses a different kind of weapon.",
-    "quizzes": 4,
-    "locationImage": "electricity_delhi"
-  },
-  {
-    "era": "Steam",
-    "title": "Fantasia and Keys",
-    "figure": "Clara Schumann",
-    "tagline": "Two voices, one music — they lived what they composed, and composed what they lived.",
-    "quizzes": 3,
-    "locationImage": "steam_london",
-    "bonusCard": "Robert Schumann"
-  },
-  {
-    "era": "Steam",
-    "title": "The Naming of Everything",
-    "figure": "Carl Linnaeus",
-    "tagline": "He gives every living creature a name — and creates the language of biology.",
-    "quizzes": 4,
-    "locationImage": "renaissance_genoa"
-  },
-  {
-    "era": "Electricity",
-    "title": "Garden of Genetics",
-    "figure": "Gregor Mendel",
-    "tagline": "A monk in a garden uncovers the hidden code of life.",
-    "quizzes": 4,
-    "locationImage": "steam_manchester"
-  },
-  {
-    "era": "Electricity",
-    "title": "Symphony of Shadows",
-    "figure": "Johannes Brahms",
-    "tagline": "He lives under Beethoven's shadow and finds his own towering voice.",
-    "quizzes": 3,
-    "locationImage": "steam_london"
-  },
-  {
-    "era": "Steam",
-    "title": "The Gilded Court",
-    "figure": "Louis XVI",
-    "tagline": "A king inherits a revolution he is not equipped to survive.",
-    "quizzes": 4,
-    "locationImage": "electricity_paris"
-  },
-  {
-    "era": "Electricity",
-    "title": "Breaking Enigma",
-    "figure": "Alan Turing",
-    "tagline": "The mathematician who cracked the uncrackable code and saved millions of lives.",
-    "quizzes": 4,
-    "locationImage": "electricity_london"
-  },
-  {
-    "era": "Electricity",
-    "title": "Light Before Einstein",
-    "figure": "Hendrik Lorentz",
-    "tagline": "He builds the mathematics of relativity — and gives Einstein the tools to prove it.",
-    "quizzes": 4,
-    "locationImage": "steam_amsterdam"
-  },
-  {
-    "era": "Electricity",
-    "title": "Fashion Revolution",
-    "figure": "Coco Chanel",
-    "tagline": "She strips away the corsets and dresses an entire century in freedom.",
-    "quizzes": 3,
-    "locationImage": "electricity_paris"
-  },
-  {
-    "era": "Electricity",
-    "title": "Wings Over the Atlantic",
-    "figure": "Amelia Earhart",
-    "tagline": "The skies were closed to women — until she flew through them.",
-    "quizzes": 4,
-    "locationImage": "information_sanjose"
-  },
-  {
-    "era": "Electricity",
-    "title": "Cinema's Architect",
-    "figure": "Sergei Eisenstein",
-    "tagline": "He invents the grammar of film — a language that changes how the world sees itself.",
-    "quizzes": 4,
-    "locationImage": "electricity_moscow"
-  },
-  {
-    "era": "Information",
-    "title": "Top of the World",
-    "figure": "Edmund Hillary",
-    "tagline": "Two climbers from opposite ends of the Earth reach the same impossible peak together.",
-    "quizzes": 4,
-    "locationImage": "electricity_mt_everest",
-    "bonusCard": "Tenzing Norgay"
-  },
-  {
-    "era": "Electricity",
-    "title": "The Long March",
-    "figure": "Mao Zedong",
-    "tagline": "A revolution born in starvation, hardened in philosophy, written in history.",
-    "quizzes": 4,
-    "locationImage": "electricity_hongkong"
-  },
-  {
-    "era": "Electricity",
-    "title": "A Martyr's Bullet",
-    "figure": "An Jung-geun",
-    "tagline": "One shot. One act of defiance. An entire nation's will made visible.",
-    "quizzes": 3,
-    "locationImage": "information_seoul"
-  },
-  {
-    "era": "Electricity",
-    "title": "The Gilded Age",
-    "figure": "Andrew Mellon",
-    "tagline": "A fortune that shaped an era — and the questions it could never answer.",
-    "quizzes": 3,
-    "locationImage": "electricity_london"
-  },
-  {
-    "era": "Information",
-    "title": "Breakfast at Tiffany's",
-    "figure": "Audrey Hepburn",
-    "tagline": "Grace in every frame, humanity in every cause.",
-    "quizzes": 4,
-    "locationImage": "information_sanjose"
-  },
-  {
-    "era": "Information",
-    "title": "Moonwalk",
-    "figure": "Michael Jackson",
-    "tagline": "The King of Pop changes the world one performance at a time.",
-    "quizzes": 4,
-    "locationImage": "information_sanjose"
+    "bonusCard": {
+      "figureName": "Enkidu",
+      "portraitKey": "enkidu"
+    },
+    "lives": 3,
+    "challengeCount": 7,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 2
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 2
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
   },
   {
     "era": "Ancient",
     "title": "The Great Library of Nineveh",
+    "slug": "the-great-library-of-nineveh",
     "figure": "Ashurbanipal",
+    "portraitKey": "ashurbanipal",
     "tagline": "He gathered the world's knowledge before the world knew it was worth keeping.",
-    "quizzes": 5,
-    "locationImage": "ancient_uruk"
-  },
-  {
-    "era": "Classical",
-    "title": "The Art of Statecraft",
-    "figure": "Chanakya",
-    "tagline": "Before Machiavelli, there was Chanakya — master of power and strategy.",
-    "quizzes": 5,
-    "locationImage": "classical_rome"
-  },
-  {
-    "era": "Information",
-    "title": "The Hand of God",
-    "figure": "Diego Maradona",
-    "tagline": "One goal illegal, one goal divine — the most famous 10 minutes in football history.",
-    "quizzes": 5,
-    "locationImage": "information_sanjose"
+    "locationImage": "ancient_uruk",
+    "lives": 3,
+    "challengeCount": 6,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 2
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
   },
   {
     "era": "Ancient",
     "title": "The Discovery of Silk",
+    "slug": "the-discovery-of-silk",
     "figure": "Lei Zu",
+    "portraitKey": "lei_zu",
     "tagline": "A cocoon falls into tea — and civilization is changed forever.",
-    "quizzes": 5,
-    "locationImage": "ancient_memphis"
+    "locationImage": "ancient_memphis",
+    "lives": 3,
+    "challengeCount": 6,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 2
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
   },
   {
     "era": "Ancient",
     "title": "The First Physician",
+    "slug": "the-first-physician",
     "figure": "Hesy-Ra",
+    "portraitKey": "hesy_ra",
     "tagline": "More than four thousand years ago, one man received the world's first doctor's title.",
-    "quizzes": 5,
-    "locationImage": "ancient_memphis"
-  },
-  {
-    "era": "Steam",
-    "title": "Deep Time",
-    "figure": "James Hutton",
-    "tagline": "He looked at rock and saw millions of years — when the world thought Earth was 6,000 years old.",
-    "quizzes": 5,
-    "locationImage": "steam_london"
-  },
-  {
-    "era": "Information",
-    "title": "Among the Chimpanzees",
-    "figure": "Jane Goodall",
-    "tagline": "A young woman sat in the forest and changed what it means to be human.",
-    "quizzes": 5,
-    "locationImage": "information_sanjose"
-  },
-  {
-    "era": "Steam",
-    "title": "The Potter's Empire",
-    "figure": "Josiah Wedgwood",
-    "tagline": "He made china fashionable, pottery industrial, and beauty accessible to all.",
-    "quizzes": 5,
-    "locationImage": "steam_manchester"
-  },
-  {
-    "era": "Information",
-    "title": "The Chef of the Century",
-    "figure": "Joël Robuchon",
-    "tagline": "He earned more Michelin stars than any chef in history — through obsession and perfection.",
-    "quizzes": 5,
-    "locationImage": "information_sanjose"
+    "locationImage": "ancient_memphis",
+    "lives": 3,
+    "challengeCount": 5,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 1
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
   },
   {
     "era": "Ancient",
     "title": "Edict of Telepinu",
+    "slug": "edict-of-telepinu",
     "figure": "King Telepinu",
+    "portraitKey": "king_telepinu",
     "tagline": "The Hittite king who broke the cycle of royal murder with a single document.",
-    "quizzes": 5,
-    "locationImage": "ancient_uruk"
+    "locationImage": "ancient_uruk",
+    "lives": 3,
+    "challengeCount": 5,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 1
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
   },
   {
     "era": "Ancient",
     "title": "The Great Hero",
+    "slug": "the-great-hero",
     "figure": "Mahavira",
+    "portraitKey": "mahavira",
     "tagline": "He gave up wealth, family, and comfort — and found something no empire could match.",
-    "quizzes": 5,
-    "locationImage": "ancient_memphis"
+    "locationImage": "ancient_memphis",
+    "lives": 3,
+    "challengeCount": 6,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 2
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
   },
   {
     "era": "Ancient",
     "title": "The Scribe of Seasons",
+    "slug": "the-scribe-of-seasons",
     "figure": "Nakht",
+    "portraitKey": "nakht",
     "tagline": "His tomb holds Egypt's most vivid paintings — a window into everyday ancient life.",
-    "quizzes": 5,
-    "locationImage": "ancient_memphis"
+    "locationImage": "ancient_memphis",
+    "lives": 3,
+    "challengeCount": 5,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 1
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
   },
   {
     "era": "Ancient",
     "title": "The Longest Text",
+    "slug": "the-longest-text",
     "figure": "Pediamenopet",
+    "portraitKey": "pediamenopet",
     "tagline": "His tomb holds the longest funerary inscription in ancient Egypt — a library in stone.",
-    "quizzes": 5,
-    "locationImage": "ancient_memphis"
+    "locationImage": "ancient_memphis",
+    "lives": 3,
+    "challengeCount": 5,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 1
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
   },
   {
     "era": "Ancient",
     "title": "Lady Overseer",
+    "slug": "lady-overseer",
     "figure": "Peseshet",
+    "portraitKey": "peseshet",
     "tagline": "History's first named female doctor supervised physicians when women rarely held titles.",
-    "quizzes": 5,
-    "locationImage": "ancient_memphis"
+    "locationImage": "ancient_memphis",
+    "lives": 3,
+    "challengeCount": 5,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 1
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
   },
   {
-    "era": "Information",
-    "title": "Voice from Baghdad",
-    "figure": "Peter Arnett",
-    "tagline": "He broadcast live as bombs fell — the first reporter to cover a war in real time.",
-    "quizzes": 5,
-    "locationImage": "information_sanjose"
+    "era": "Classical",
+    "title": "The Elements",
+    "slug": "the-elements",
+    "figure": "Euclid",
+    "portraitKey": "euclid",
+    "tagline": "Thirteen books that defined the shape of reason forever.",
+    "locationImage": "ancient_athens",
+    "lives": 3,
+    "challengeCount": 5,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 1
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
   },
   {
-    "era": "Information",
-    "title": "Think Different",
-    "figure": "Steve Jobs",
-    "tagline": "Fired from his own company, he came back and built the most valuable brand in history.",
-    "quizzes": 5,
-    "locationImage": "information_sanjose"
+    "era": "Classical",
+    "title": "The Golden Age of Athens",
+    "slug": "the-golden-age-of-athens",
+    "figure": "Pericles",
+    "portraitKey": "pericles",
+    "tagline": "A statesman, a philosopher, and a king debate the soul of democracy.",
+    "locationImage": "ancient_athens",
+    "bonusCard": {
+      "figureName": "Aspasia",
+      "portraitKey": "aspasia"
+    },
+    "lives": 3,
+    "challengeCount": 8,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 2
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 2
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 2
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
+  },
+  {
+    "era": "Classical",
+    "title": "The Voice of Rome",
+    "slug": "the-voice-of-rome",
+    "figure": "Cicero",
+    "portraitKey": "cicero",
+    "tagline": "The Senate hangs on every word — and words can cut like swords.",
+    "locationImage": "classical_rome",
+    "lives": 3,
+    "challengeCount": 5,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 1
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
+  },
+  {
+    "era": "Classical",
+    "title": "Before Socrates",
+    "slug": "before-socrates",
+    "figure": "Anaxagoras",
+    "portraitKey": "anaxagoras",
+    "tagline": "The philosopher who dared say the sun is a rock, not a god.",
+    "locationImage": "ancient_athens",
+    "lives": 3,
+    "challengeCount": 6,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 2
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
+  },
+  {
+    "era": "Classical",
+    "title": "The Prophet of Light",
+    "slug": "the-prophet-of-light",
+    "figure": "Mani",
+    "portraitKey": "mani",
+    "tagline": "A visionary paints his gospel across three continents in color and light.",
+    "locationImage": "medieval_damascus",
+    "lives": 3,
+    "challengeCount": 5,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 1
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
+  },
+  {
+    "era": "Classical",
+    "title": "The Disguised Warrior",
+    "slug": "the-disguised-warrior",
+    "figure": "Hua Mulan",
+    "portraitKey": "hua_mulan",
+    "tagline": "She takes her father's armor and rewrites what courage looks like.",
+    "locationImage": "medieval_changan",
+    "lives": 3,
+    "challengeCount": 5,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 1
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
+  },
+  {
+    "era": "Classical",
+    "title": "The Art of Statecraft",
+    "slug": "the-art-of-statecraft",
+    "figure": "Chanakya",
+    "portraitKey": "chanakya",
+    "tagline": "Before Machiavelli, there was Chanakya — master of power and strategy.",
+    "locationImage": "classical_rome",
+    "lives": 3,
+    "challengeCount": 6,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 2
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
   },
   {
     "era": "Classical",
     "title": "The First Poet",
+    "slug": "the-first-poet",
     "figure": "Valmiki",
+    "portraitKey": "valmiki",
     "tagline": "He heard a bird cry for its slain mate — and composed the world's first Sanskrit verse.",
-    "quizzes": 5,
-    "locationImage": "classical_rome"
-  },
-  {
-    "era": "Steam",
-    "title": "The Empress Seizes Power",
-    "figure": "Catherine the Great",
-    "tagline": "She overthrew her husband, took the throne, and ruled Russia for 34 years.",
-    "quizzes": 5,
-    "locationImage": "steam_amsterdam"
+    "locationImage": "classical_rome",
+    "lives": 3,
+    "challengeCount": 5,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 1
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
   },
   {
     "era": "Classical",
     "title": "The Recalled King",
+    "slug": "the-recalled-king",
     "figure": "Pleistoanax",
+    "portraitKey": "pleistoanax",
     "tagline": "Exile could not extinguish a king forged by Sparta's unbreakable law.",
-    "quizzes": 3,
-    "locationImage": "classical_sparta"
+    "locationImage": "classical_sparta",
+    "lives": 3,
+    "challengeCount": 4,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 1
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 1
+      }
+    ]
   },
   {
     "era": "Classical",
     "title": "The Paradox Master",
+    "slug": "the-paradox-master",
     "figure": "Zeno of Elea",
+    "portraitKey": "zeno_of_elea",
     "tagline": "Motion is illusion — unless you can prove otherwise.",
-    "quizzes": 3,
-    "locationImage": "classical_carthage"
+    "locationImage": "classical_carthage",
+    "lives": 3,
+    "challengeCount": 4,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 1
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 1
+      }
+    ]
   },
   {
-    "era": "Renaissance",
-    "title": "The Catholic Monarchs",
-    "figure": "Isabel I of Castile",
-    "tagline": "One crown, one faith, one empire stretching beyond the horizon.",
-    "quizzes": 3,
-    "locationImage": "renaissance_tenochtitlan"
+    "era": "Medieval",
+    "title": "The Last General",
+    "slug": "the-last-general",
+    "figure": "Belisarius",
+    "portraitKey": "belisarius",
+    "tagline": "Rome's final military genius fought enemies on every front — including his emperor.",
+    "locationImage": "steam_istanbul",
+    "lives": 3,
+    "challengeCount": 5,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 1
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
   },
   {
-    "era": "Renaissance",
-    "title": "The Fortunate King",
-    "figure": "Manuel I of Portugal",
-    "tagline": "The sea answered his call, and the world opened before him.",
-    "quizzes": 4,
-    "locationImage": "renaissance_qusqu"
+    "era": "Medieval",
+    "title": "The Language of Algebra",
+    "slug": "the-language-of-algebra",
+    "figure": "Al-Khwarizmi",
+    "portraitKey": "al_khwarizmi",
+    "tagline": "A mathematician in Baghdad creates the tool that will run every computer.",
+    "locationImage": "renaissance_baghdad",
+    "lives": 3,
+    "challengeCount": 6,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 2
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
   },
   {
-    "era": "Steam",
-    "title": "The Last Queen",
-    "figure": "Marie Antoinette",
-    "tagline": "Versailles blazed brightest just before the darkness fell.",
-    "quizzes": 3,
-    "locationImage": "steam_st_petersburg"
+    "era": "Medieval",
+    "title": "Tea Ceremony",
+    "slug": "tea-ceremony",
+    "figure": "Lu Yu",
+    "portraitKey": "lu_yu",
+    "tagline": "A humble beverage becomes a philosophy of the mind.",
+    "locationImage": "medieval_changan",
+    "lives": 3,
+    "challengeCount": 4,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 1
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 1
+      }
+    ]
   },
   {
-    "era": "Electricity",
-    "title": "The Meiji Architect",
-    "figure": "Itō Hirobumi",
-    "tagline": "A nation rebuilt itself in a generation, and one man held the blueprint.",
-    "quizzes": 3,
-    "locationImage": "information_tokyo"
+    "era": "Medieval",
+    "title": "The Knight's Code",
+    "slug": "the-knight-s-code",
+    "figure": "Lancelot",
+    "portraitKey": "lancelot",
+    "tagline": "The greatest knight who ever lived is undone by the greatest love.",
+    "locationImage": "medieval_krakow",
+    "lives": 3,
+    "challengeCount": 5,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 1
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
   },
   {
-    "era": "Electricity",
-    "title": "Pygmalion",
-    "figure": "George Bernard Shaw",
-    "tagline": "Language is the sharpest tool of power — and the hardest to unlearn.",
-    "quizzes": 3,
-    "locationImage": "electricity_london"
-  },
-  {
-    "era": "Information",
-    "title": "To Kill a Mockingbird",
-    "figure": "Gregory Peck",
-    "tagline": "Some roles choose you. Some voices can only belong to one man.",
-    "quizzes": 3,
-    "locationImage": "information_sanjose"
-  },
-  {
-    "era": "Steam",
-    "title": "Queen of Two Thrones",
-    "figure": "Anna Nzinga",
-    "tagline": "She led armies, negotiated empires, and never surrendered Angola.",
-    "quizzes": 5
+    "era": "Medieval",
+    "title": "Words of Sorrow",
+    "slug": "words-of-sorrow",
+    "figure": "Li Qingzhao",
+    "portraitKey": "li_qingzhao",
+    "tagline": "A poet transforms grief into the most beautiful verse in Chinese history.",
+    "locationImage": "medieval_changan",
+    "lives": 3,
+    "challengeCount": 5,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 1
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
   },
   {
     "era": "Medieval",
     "title": "The Golden Horde Rides",
+    "slug": "the-golden-horde-rides",
     "figure": "Batu Khan",
+    "portraitKey": "batu_khan",
     "tagline": "From Mongolia to Poland — the unstoppable cavalry of the steppes.",
-    "quizzes": 5
-  },
-  {
-    "era": "Renaissance",
-    "title": "Lord of Three Kingdoms",
-    "figure": "Bayinnaung",
-    "tagline": "He unified Southeast Asia through conquest and ceremony alike.",
-    "quizzes": 5
+    "lives": 3,
+    "challengeCount": 6,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 2
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
   },
   {
     "era": "Medieval",
     "title": "Characters of Clay",
+    "slug": "characters-of-clay",
     "figure": "Bi Sheng",
+    "portraitKey": "bi_sheng",
     "tagline": "He invented movable type four centuries before Gutenberg.",
-    "quizzes": 5
-  },
-  {
-    "era": "Steam",
-    "title": "The Infinite Curve",
-    "figure": "Francesco Borromini",
-    "tagline": "His spirals and concave facades bent the rules of space itself.",
-    "quizzes": 5
-  },
-  {
-    "era": "Steam",
-    "title": "Marble Into Breath",
-    "figure": "Gian Lorenzo Bernini",
-    "tagline": "He sculpted the soul of Baroque Rome into stone and light.",
-    "quizzes": 5
+    "lives": 3,
+    "challengeCount": 5,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 1
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
   },
   {
     "era": "Medieval",
     "title": "The Great Journey",
+    "slug": "the-great-journey",
     "figure": "Ibn Battuta",
+    "portraitKey": "ibn_battuta",
     "tagline": "He traveled 75,000 miles and wrote the medieval world's greatest travelogue.",
-    "quizzes": 5
-  },
-  {
-    "era": "Renaissance",
-    "title": "Words for the World",
-    "figure": "Johannes Gutenberg",
-    "tagline": "His printing press made knowledge cheap and revolutions possible.",
-    "quizzes": 5
-  },
-  {
-    "era": "Renaissance",
-    "title": "The Turtle Ship",
-    "figure": "Lee Sun-sin",
-    "tagline": "With 13 ships he defeated 333 — and saved Korea.",
-    "quizzes": 5
-  },
-  {
-    "era": "Renaissance",
-    "title": "The Sun Emperor",
-    "figure": "Montezuma II",
-    "tagline": "He ruled the height of Aztec glory — until two worlds collided.",
-    "quizzes": 5
-  },
-  {
-    "era": "Steam",
-    "title": "The Art of Perspective",
-    "figure": "Nian Xiyao",
-    "tagline": "He fused Western geometry with Chinese porcelain to create imperial art.",
-    "quizzes": 5
+    "lives": 3,
+    "challengeCount": 6,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 2
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
   },
   {
     "era": "Medieval",
     "title": "The Jade King",
+    "slug": "the-jade-king",
     "figure": "Pakal the Great",
+    "portraitKey": "pakal",
     "tagline": "He ruled Palenque 68 years and inscribed eternity in stone.",
-    "quizzes": 5
-  },
-  {
-    "era": "Renaissance",
-    "title": "The Last Fire",
-    "figure": "Rumiñahui",
-    "tagline": "He burned Quito rather than let it fall — a warrior's final act.",
-    "quizzes": 5
+    "lives": 3,
+    "challengeCount": 6,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 2
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
   },
   {
     "era": "Medieval",
     "title": "The Poem in the Armor",
+    "slug": "the-poem-in-the-armor",
     "figure": "Taira no Tadanori",
+    "portraitKey": "taira_no_tadanori",
     "tagline": "He was the samurai who wrote verses on the night before battle.",
-    "quizzes": 5
+    "lives": 3,
+    "challengeCount": 6,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 2
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
+  },
+  {
+    "era": "Renaissance",
+    "title": "Way of the Sword",
+    "slug": "way-of-the-sword",
+    "figure": "Miyamoto Musashi",
+    "portraitKey": "miyamoto_musashi",
+    "tagline": "The legendary swordsman who mastered both blade and brush.",
+    "locationImage": "medieval_kyoto",
+    "lives": 3,
+    "challengeCount": 4,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 1
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 1
+      }
+    ]
+  },
+  {
+    "era": "Renaissance",
+    "title": "The Colors of Venice",
+    "slug": "the-colors-of-venice",
+    "figure": "Titian",
+    "portraitKey": "titian",
+    "tagline": "The last great master sets his canvas ablaze with color and light.",
+    "locationImage": "renaissance_venice",
+    "lives": 3,
+    "challengeCount": 9,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 2
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 2
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 2
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 3
+      }
+    ]
+  },
+  {
+    "era": "Renaissance",
+    "title": "Around the World",
+    "slug": "around-the-world",
+    "figure": "Magellan",
+    "portraitKey": "magellan",
+    "tagline": "He bet his life — and lost it — on the shape of the Earth.",
+    "locationImage": "renaissance_lisbon",
+    "lives": 3,
+    "challengeCount": 4,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 1
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 1
+      }
+    ]
+  },
+  {
+    "era": "Renaissance",
+    "title": "The Catholic Monarchs",
+    "slug": "the-catholic-monarchs",
+    "figure": "Isabel I of Castile",
+    "portraitKey": "isabel_i",
+    "tagline": "One crown, one faith, one empire stretching beyond the horizon.",
+    "locationImage": "renaissance_tenochtitlan",
+    "lives": 3,
+    "challengeCount": 5,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 1
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
+  },
+  {
+    "era": "Renaissance",
+    "title": "The Fortunate King",
+    "slug": "the-fortunate-king",
+    "figure": "Manuel I of Portugal",
+    "portraitKey": "manuel_i",
+    "tagline": "The sea answered his call, and the world opened before him.",
+    "locationImage": "renaissance_qusqu",
+    "lives": 3,
+    "challengeCount": 5,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 1
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
+  },
+  {
+    "era": "Renaissance",
+    "title": "Lord of Three Kingdoms",
+    "slug": "lord-of-three-kingdoms",
+    "figure": "Bayinnaung",
+    "portraitKey": "bayinnaung",
+    "tagline": "He unified Southeast Asia through conquest and ceremony alike.",
+    "lives": 3,
+    "challengeCount": 6,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 2
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
+  },
+  {
+    "era": "Renaissance",
+    "title": "Words for the World",
+    "slug": "words-for-the-world",
+    "figure": "Johannes Gutenberg",
+    "portraitKey": "gutenberg",
+    "tagline": "His printing press made knowledge cheap and revolutions possible.",
+    "lives": 3,
+    "challengeCount": 5,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 1
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
+  },
+  {
+    "era": "Renaissance",
+    "title": "The Turtle Ship",
+    "slug": "the-turtle-ship",
+    "figure": "Lee Sun-sin",
+    "portraitKey": "lee_sun_sin",
+    "tagline": "With 13 ships he defeated 333 — and saved Korea.",
+    "lives": 3,
+    "challengeCount": 6,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 2
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
+  },
+  {
+    "era": "Renaissance",
+    "title": "The Sun Emperor",
+    "slug": "the-sun-emperor",
+    "figure": "Montezuma II",
+    "portraitKey": "montezuma_ii",
+    "tagline": "He ruled the height of Aztec glory — until two worlds collided.",
+    "lives": 3,
+    "challengeCount": 6,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 2
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
+  },
+  {
+    "era": "Renaissance",
+    "title": "The Last Fire",
+    "slug": "the-last-fire",
+    "figure": "Rumiñahui",
+    "portraitKey": "ruminahui",
+    "tagline": "He burned Quito rather than let it fall — a warrior's final act.",
+    "lives": 3,
+    "challengeCount": 6,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 2
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
   },
   {
     "era": "Renaissance",
     "title": "The Shadow Behind the Throne",
+    "slug": "the-shadow-behind-the-throne",
     "figure": "Tlacaelel",
+    "portraitKey": "tlacaelel",
     "tagline": "He shaped three emperors and rewrote the soul of the Aztec world.",
-    "quizzes": 5
+    "lives": 3,
+    "challengeCount": 6,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 2
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
+  },
+  {
+    "era": "Steam",
+    "title": "Fantasia and Keys",
+    "slug": "fantasia-and-keys",
+    "figure": "Clara Schumann",
+    "portraitKey": "clara_schumann",
+    "tagline": "Two voices, one music — they lived what they composed, and composed what they lived.",
+    "locationImage": "steam_london",
+    "bonusCard": {
+      "figureName": "Robert Schumann",
+      "portraitKey": "robert_schumann"
+    },
+    "lives": 3,
+    "challengeCount": 7,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 2
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 2
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
+  },
+  {
+    "era": "Steam",
+    "title": "The Naming of Everything",
+    "slug": "the-naming-of-everything",
+    "figure": "Carl Linnaeus",
+    "portraitKey": "carl_linnaeus",
+    "tagline": "He gives every living creature a name — and creates the language of biology.",
+    "locationImage": "renaissance_genoa",
+    "lives": 3,
+    "challengeCount": 5,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 1
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
+  },
+  {
+    "era": "Steam",
+    "title": "The Gilded Court",
+    "slug": "the-gilded-court",
+    "figure": "Louis XVI",
+    "portraitKey": "louis_xvi",
+    "tagline": "A king inherits a revolution he is not equipped to survive.",
+    "locationImage": "electricity_paris",
+    "lives": 3,
+    "challengeCount": 4,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 1
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 1
+      }
+    ]
+  },
+  {
+    "era": "Steam",
+    "title": "Deep Time",
+    "slug": "deep-time",
+    "figure": "James Hutton",
+    "portraitKey": "james_hutton",
+    "tagline": "He looked at rock and saw millions of years — when the world thought Earth was 6,000 years old.",
+    "locationImage": "steam_london",
+    "lives": 3,
+    "challengeCount": 5,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 1
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
+  },
+  {
+    "era": "Steam",
+    "title": "The Potter's Empire",
+    "slug": "the-potter-s-empire",
+    "figure": "Josiah Wedgwood",
+    "portraitKey": "josiah_wedgwood",
+    "tagline": "He made china fashionable, pottery industrial, and beauty accessible to all.",
+    "locationImage": "steam_manchester",
+    "lives": 3,
+    "challengeCount": 5,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 1
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
+  },
+  {
+    "era": "Steam",
+    "title": "The Empress Seizes Power",
+    "slug": "the-empress-seizes-power",
+    "figure": "Catherine the Great",
+    "portraitKey": "yekaterina",
+    "tagline": "She overthrew her husband, took the throne, and ruled Russia for 34 years.",
+    "locationImage": "steam_amsterdam",
+    "lives": 3,
+    "challengeCount": 5,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 1
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
+  },
+  {
+    "era": "Steam",
+    "title": "The Last Queen",
+    "slug": "the-last-queen",
+    "figure": "Marie Antoinette",
+    "portraitKey": "marie_antoinette",
+    "tagline": "Versailles blazed brightest just before the darkness fell.",
+    "locationImage": "steam_st_petersburg",
+    "lives": 3,
+    "challengeCount": 4,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 1
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 1
+      }
+    ]
+  },
+  {
+    "era": "Steam",
+    "title": "Queen of Two Thrones",
+    "slug": "queen-of-two-thrones",
+    "figure": "Anna Nzinga",
+    "portraitKey": "anna_nzinga",
+    "tagline": "She led armies, negotiated empires, and never surrendered Angola.",
+    "lives": 3,
+    "challengeCount": 6,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 2
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
+  },
+  {
+    "era": "Steam",
+    "title": "The Infinite Curve",
+    "slug": "the-infinite-curve",
+    "figure": "Francesco Borromini",
+    "portraitKey": "borromini",
+    "tagline": "His spirals and concave facades bent the rules of space itself.",
+    "lives": 3,
+    "challengeCount": 5,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 1
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
+  },
+  {
+    "era": "Steam",
+    "title": "Marble Into Breath",
+    "slug": "marble-into-breath",
+    "figure": "Gian Lorenzo Bernini",
+    "portraitKey": "bernini",
+    "tagline": "He sculpted the soul of Baroque Rome into stone and light.",
+    "lives": 3,
+    "challengeCount": 6,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 2
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
+  },
+  {
+    "era": "Steam",
+    "title": "The Art of Perspective",
+    "slug": "the-art-of-perspective",
+    "figure": "Nian Xiyao",
+    "portraitKey": "nian_xiyao",
+    "tagline": "He fused Western geometry with Chinese porcelain to create imperial art.",
+    "lives": 3,
+    "challengeCount": 6,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 2
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
+  },
+  {
+    "era": "Electricity",
+    "title": "Soul Force",
+    "slug": "soul-force",
+    "figure": "Mohandas Gandhi",
+    "portraitKey": "gandhi",
+    "tagline": "Against the greatest empire in history, one man chooses a different kind of weapon.",
+    "locationImage": "electricity_delhi",
+    "lives": 3,
+    "challengeCount": 5,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 1
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
+  },
+  {
+    "era": "Electricity",
+    "title": "Garden of Genetics",
+    "slug": "garden-of-genetics",
+    "figure": "Gregor Mendel",
+    "portraitKey": "gregor_mendel",
+    "tagline": "A monk in a garden uncovers the hidden code of life.",
+    "locationImage": "steam_manchester",
+    "lives": 3,
+    "challengeCount": 6,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 2
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
+  },
+  {
+    "era": "Electricity",
+    "title": "Symphony of Shadows",
+    "slug": "symphony-of-shadows",
+    "figure": "Johannes Brahms",
+    "portraitKey": "johannes_brahms",
+    "tagline": "He lives under Beethoven's shadow and finds his own towering voice.",
+    "locationImage": "steam_london",
+    "lives": 3,
+    "challengeCount": 5,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 1
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
+  },
+  {
+    "era": "Electricity",
+    "title": "Breaking Enigma",
+    "slug": "breaking-enigma",
+    "figure": "Alan Turing",
+    "portraitKey": "alan_turing",
+    "tagline": "The mathematician who cracked the uncrackable code and saved millions of lives.",
+    "locationImage": "electricity_london",
+    "lives": 3,
+    "challengeCount": 5,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 1
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
+  },
+  {
+    "era": "Electricity",
+    "title": "Light Before Einstein",
+    "slug": "light-before-einstein",
+    "figure": "Hendrik Lorentz",
+    "portraitKey": "hendrik_lorentz",
+    "tagline": "He builds the mathematics of relativity — and gives Einstein the tools to prove it.",
+    "locationImage": "steam_amsterdam",
+    "lives": 3,
+    "challengeCount": 5,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 1
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
+  },
+  {
+    "era": "Electricity",
+    "title": "Fashion Revolution",
+    "slug": "fashion-revolution",
+    "figure": "Coco Chanel",
+    "portraitKey": "coco_chanel",
+    "tagline": "She strips away the corsets and dresses an entire century in freedom.",
+    "locationImage": "electricity_paris",
+    "lives": 3,
+    "challengeCount": 4,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 1
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 1
+      }
+    ]
+  },
+  {
+    "era": "Electricity",
+    "title": "Wings Over the Atlantic",
+    "slug": "wings-over-the-atlantic",
+    "figure": "Amelia Earhart",
+    "portraitKey": "amelia_earhart",
+    "tagline": "The skies were closed to women — until she flew through them.",
+    "locationImage": "information_sanjose",
+    "lives": 3,
+    "challengeCount": 5,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 1
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
+  },
+  {
+    "era": "Electricity",
+    "title": "Cinema's Architect",
+    "slug": "cinema-s-architect",
+    "figure": "Sergei Eisenstein",
+    "portraitKey": "sergei_eisenstein",
+    "tagline": "He invents the grammar of film — a language that changes how the world sees itself.",
+    "locationImage": "electricity_moscow",
+    "lives": 3,
+    "challengeCount": 4,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 1
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 1
+      }
+    ]
+  },
+  {
+    "era": "Electricity",
+    "title": "The Long March",
+    "slug": "the-long-march",
+    "figure": "Mao Zedong",
+    "portraitKey": "mao_zedong",
+    "tagline": "A revolution born in starvation, hardened in philosophy, written in history.",
+    "locationImage": "electricity_hongkong",
+    "lives": 3,
+    "challengeCount": 4,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 1
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 1
+      }
+    ]
+  },
+  {
+    "era": "Electricity",
+    "title": "A Martyr's Bullet",
+    "slug": "a-martyr-s-bullet",
+    "figure": "An Jung-geun",
+    "portraitKey": "an_jung_geun",
+    "tagline": "One shot. One act of defiance. An entire nation's will made visible.",
+    "locationImage": "information_seoul",
+    "lives": 3,
+    "challengeCount": 4,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 1
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 1
+      }
+    ]
+  },
+  {
+    "era": "Electricity",
+    "title": "The Gilded Age",
+    "slug": "the-gilded-age",
+    "figure": "Andrew Mellon",
+    "portraitKey": "andrew_mellon",
+    "tagline": "A fortune that shaped an era — and the questions it could never answer.",
+    "locationImage": "electricity_london",
+    "lives": 3,
+    "challengeCount": 5,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 1
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
+  },
+  {
+    "era": "Electricity",
+    "title": "The Meiji Architect",
+    "slug": "the-meiji-architect",
+    "figure": "Itō Hirobumi",
+    "portraitKey": "ito_hirobumi",
+    "tagline": "A nation rebuilt itself in a generation, and one man held the blueprint.",
+    "locationImage": "information_tokyo",
+    "lives": 3,
+    "challengeCount": 4,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 1
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 1
+      }
+    ]
+  },
+  {
+    "era": "Electricity",
+    "title": "Pygmalion",
+    "slug": "pygmalion",
+    "figure": "George Bernard Shaw",
+    "portraitKey": "george_bernard_shaw",
+    "tagline": "Language is the sharpest tool of power — and the hardest to unlearn.",
+    "locationImage": "electricity_london",
+    "lives": 3,
+    "challengeCount": 4,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 1
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 1
+      }
+    ]
+  },
+  {
+    "era": "Information",
+    "title": "Streets of Calcutta",
+    "slug": "streets-of-calcutta",
+    "figure": "Mother Teresa",
+    "portraitKey": "saint_teresa",
+    "tagline": "A nun leaves the convent walls to serve the dying in the gutters of Calcutta.",
+    "locationImage": "electricity_delhi",
+    "lives": 3,
+    "challengeCount": 4,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 1
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 1
+      }
+    ]
+  },
+  {
+    "era": "Information",
+    "title": "Top of the World",
+    "slug": "top-of-the-world",
+    "figure": "Edmund Hillary",
+    "portraitKey": "edmund_hillary",
+    "tagline": "Two climbers from opposite ends of the Earth reach the same impossible peak together.",
+    "locationImage": "electricity_mt_everest",
+    "bonusCard": {
+      "figureName": "Tenzing Norgay",
+      "portraitKey": "tenzing_norgay"
+    },
+    "lives": 3,
+    "challengeCount": 5,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 1
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
+  },
+  {
+    "era": "Information",
+    "title": "Breakfast at Tiffany's",
+    "slug": "breakfast-at-tiffany-s",
+    "figure": "Audrey Hepburn",
+    "portraitKey": "audrey_hepburn",
+    "tagline": "Grace in every frame, humanity in every cause.",
+    "locationImage": "information_sanjose",
+    "lives": 3,
+    "challengeCount": 6,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 2
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
+  },
+  {
+    "era": "Information",
+    "title": "Moonwalk",
+    "slug": "moonwalk",
+    "figure": "Michael Jackson",
+    "portraitKey": "michael_jackson",
+    "tagline": "The King of Pop changes the world one performance at a time.",
+    "locationImage": "information_sanjose",
+    "lives": 3,
+    "challengeCount": 4,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 1
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 1
+      }
+    ]
+  },
+  {
+    "era": "Information",
+    "title": "The Hand of God",
+    "slug": "the-hand-of-god",
+    "figure": "Diego Maradona",
+    "portraitKey": "diego_maradona",
+    "tagline": "One goal illegal, one goal divine — the most famous 10 minutes in football history.",
+    "locationImage": "information_sanjose",
+    "lives": 3,
+    "challengeCount": 5,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 1
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
+  },
+  {
+    "era": "Information",
+    "title": "Among the Chimpanzees",
+    "slug": "among-the-chimpanzees",
+    "figure": "Jane Goodall",
+    "portraitKey": "jane_goodall",
+    "tagline": "A young woman sat in the forest and changed what it means to be human.",
+    "locationImage": "information_sanjose",
+    "lives": 3,
+    "challengeCount": 6,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 2
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
+  },
+  {
+    "era": "Information",
+    "title": "The Chef of the Century",
+    "slug": "the-chef-of-the-century",
+    "figure": "Joël Robuchon",
+    "portraitKey": "joel_robuchon",
+    "tagline": "He earned more Michelin stars than any chef in history — through obsession and perfection.",
+    "locationImage": "information_sanjose",
+    "lives": 3,
+    "challengeCount": 5,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 1
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
+  },
+  {
+    "era": "Information",
+    "title": "Voice from Baghdad",
+    "slug": "voice-from-baghdad",
+    "figure": "Peter Arnett",
+    "portraitKey": "peter_arnett",
+    "tagline": "He broadcast live as bombs fell — the first reporter to cover a war in real time.",
+    "locationImage": "information_sanjose",
+    "lives": 3,
+    "challengeCount": 5,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 1
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
+  },
+  {
+    "era": "Information",
+    "title": "Think Different",
+    "slug": "think-different",
+    "figure": "Steve Jobs",
+    "portraitKey": "steve_jobs",
+    "tagline": "Fired from his own company, he came back and built the most valuable brand in history.",
+    "locationImage": "information_sanjose",
+    "lives": 3,
+    "challengeCount": 7,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 2
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 2
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 2
+      }
+    ]
+  },
+  {
+    "era": "Information",
+    "title": "To Kill a Mockingbird",
+    "slug": "to-kill-a-mockingbird",
+    "figure": "Gregory Peck",
+    "portraitKey": "gregory_peck",
+    "tagline": "Some roles choose you. Some voices can only belong to one man.",
+    "locationImage": "information_sanjose",
+    "lives": 3,
+    "challengeCount": 4,
+    "stages": [
+      {
+        "key": "origins",
+        "label": "Origins",
+        "difficulty": 1,
+        "challengeCount": 1
+      },
+      {
+        "key": "trial",
+        "label": "Trial",
+        "difficulty": 2,
+        "challengeCount": 1
+      },
+      {
+        "key": "mastery",
+        "label": "Mastery",
+        "difficulty": 3,
+        "challengeCount": 1
+      },
+      {
+        "key": "legacy",
+        "label": "Legacy",
+        "difficulty": 4,
+        "challengeCount": 1
+      }
+    ]
   }
 ]

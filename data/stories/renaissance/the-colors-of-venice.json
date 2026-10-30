@@ -1,0 +1,154 @@
+{
+  "slug": "the-colors-of-venice",
+  "era": "Renaissance",
+  "order": 1,
+  "title": "The Colors of Venice",
+  "figure": "Titian",
+  "portraitKey": "titian",
+  "tagline": "The last great master sets his canvas ablaze with color and light.",
+  "locationImage": "renaissance_venice",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Venice, 1510. The city floats on the lagoon, and its school of painting is about to float above all others. A young student of the aged Bellini is developing a technique so revolutionary it will change painting forever — not what he paints, but how."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Titian",
+          "portraitKey": "titian",
+          "text": "Bellini teaches us to build up the painting layer by layer: first the drawing, then the underpainting, then the color. I say: think in color from the first stroke. Let color carry the emotion, not the line."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "Titian continued painting actively until his death at approximately 90 years of age — still accepting royal commissions.",
+            "correct": true,
+            "fact": "Titian (c. 1488–1576) worked for nearly 70 years, painting for Holy Roman Emperor Charles V, Philip II of Spain, and Pope Paul III. His late style — loose, almost abstract brushwork — was centuries ahead of its time."
+          }
+        },
+        {
+          "type": "narration",
+          "text": "Titian lived nearly a century and painted kings, popes, and emperors. Holy Roman Emperor Charles V reportedly stooped to pick up Titian's fallen brush — an honor no monarch had ever paid an artist."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Titian",
+          "portraitKey": "titian",
+          "text": "I do not paint men. I paint the light that falls on them. And the light that falls on a cardinal's robe is not the same light that falls on a farmer's face — because the light remembers what kind of life it has touched."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "painting",
+            "configId": "titian-canvas",
+            "instruction": "Master Titian's famous Venetian palette — deep indigo backgrounds, crimson robes, and golden skin tones.",
+            "fact": "Venetian painting was distinguished by its rich colour, applied in multiple glazed layers over days or weeks. Titian's reds — sometimes called 'Titian red' — were achieved with expensive vermilion and glazes of lake pigment."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "music",
+            "configId": "venetian-madrigal",
+            "instruction": "Titian's Venice was famous for its madrigals. Arrange notes of a Renaissance vocal phrase — the music Titian heard daily.",
+            "fact": "Venice's Basilica di San Marco had two organ lofts facing each other, inspiring the 'cori spezzati' style — antiphonal music where choirs answer each other across space. Giovanni Gabrieli developed this into orchestral writing."
+          }
+        },
+        {
+          "type": "narration",
+          "text": "Titian's final works — loose brushstrokes, patches of pure color — were centuries ahead of their time. He kept painting until his death at approximately 99, still pushing the boundaries of what paint could do."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "matchthree",
+            "configId": "venice-glass",
+            "instruction": "Murano glassmakers arranged geometric forms to hide their secrets — matches can run in any direction, even diagonally. Clear 40 shapes.",
+            "fact": "Venice ordered all glassmakers to the island of Murano in 1291 — ostensibly to prevent fires, really to contain the secrets of cristallo glass. Murano craftsmen held rare freedom: they could marry nobility and carry swords, but leaving the island was punishable by death."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "porcelain",
+            "configId": "cobalt-bowl",
+            "instruction": "Paint each section of the bowl with the right metal oxide glaze before firing.",
+            "fact": "Venetian glassmakers on Murano pioneered cobalt blue glass using smalt — cobalt oxide imported from Saxony — becoming the dominant blue pigment in Renaissance Europe."
+          }
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "auction",
+            "configId": "venetian-auction",
+            "instruction": "Bid on rare Renaissance goods at the Rialto Auction House. Win the starred items before your budget runs out.",
+            "fact": "Venice's Rialto market was one of Europe's first commodity exchanges, trading silk, spices, and art from across the known world."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "jigsaw",
+            "configId": "venetian-master",
+            "instruction": "Titian painted at breakneck speed. Reassemble the fragments of his Assumption of the Virgin — swap tiles until the composition is whole.",
+            "fact": "Titian's Assumption of the Virgin (1518) shattered every convention of Renaissance altarpiece painting. The Cardinal of Venice initially refused to accept it — then stood speechless before it."
+          }
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "museum",
+            "configId": "uffizi-gallery",
+            "instruction": "You are the new curator of the Uffizi. Assign each Renaissance masterpiece to the room where it earns the greatest bonus and hit the target score.",
+            "fact": "The Uffizi Gallery in Florence holds the finest concentration of Renaissance masterpieces in the world — Botticelli's Venus, da Vinci's Annunciation, and Titian's Venus of Urbino under one roof."
+          }
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "colormix",
+            "configId": "titian-red",
+            "instruction": "Recreate Titian's legendary crimson — a layered blend of vermilion and kermes lake that defined Venetian painting for a century.",
+            "fact": "Titian's reds were so celebrated that 'rosso Tizianesco' became a byword for luminous crimson. He applied multiple thin glazes of kermes lake over a vermilion ground — a method only perfected over decades."
+          }
+        }
+      ]
+    }
+  ]
+}

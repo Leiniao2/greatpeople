@@ -1,0 +1,138 @@
+{
+  "slug": "the-first-poet",
+  "era": "Classical",
+  "order": 7,
+  "title": "The First Poet",
+  "figure": "Valmiki",
+  "portraitKey": "valmiki",
+  "tagline": "He heard a bird cry for its slain mate — and composed the world's first Sanskrit verse.",
+  "locationImage": "classical_rome",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Ancient India, perhaps 500 BCE. A hermit named Valmiki walks in the forest and witnesses something that stops him cold: a hunter's arrow strikes down a male krauncha bird just as it mates with its partner. The surviving bird screams in grief. And from that scream, something new is born."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Valmiki",
+          "portraitKey": "valmiki",
+          "text": "The words came out as a curse against the hunter — but they fell into a rhythm I had never spoken before. Equal syllables, balanced cadence, a pattern that carried emotion like a vessel carries water. I had not composed this. It had composed itself from grief. I called it a shloka."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "tactics",
+            "configId": "general",
+            "instruction": "Rama must lead his army of allies across the ocean to Lanka. Find the decisive tactical move that breaks Ravana's defence.",
+            "fact": "The Ramayana's battle sequences describe military formations, siege tactics, and the strategic use of terrain that reflect real Bronze Age warfare in ancient India. The epic's narrative of a righteous king leading a coalition army against an unjust ruler became a template for political legitimacy across South Asia."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "The god Brahma appeared to Valmiki and commanded him to use this new form to tell the story of Rama — a prince, an exile, a war, a rescue, a homecoming. The result was the Ramayana: 24,000 verses, seven books, and one of the central stories of human civilization."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Brahma",
+          "text": "Valmiki, compose the tale of Rama in the verse form born from your grief. As long as mountains stand and rivers flow, so long will the Ramayana be told.",
+          "portraitKey": "follower:sovereign"
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "The Ramayana tells the story of which prince?",
+            "options": [
+              "Arjuna",
+              "Rama",
+              "Bhima",
+              "Yudhishthira"
+            ],
+            "answer": 1,
+            "fact": "The Ramayana centers on Prince Rama of Ayodhya — his exile with his wife Sita and brother Lakshmana, Sita's abduction by the demon king Ravana, and Rama's journey to rescue her with the help of Hanuman and an army of monkeys. It remains one of Asia's most beloved epics.",
+            "countdown": 10
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "dialog",
+          "speaker": "Valmiki",
+          "portraitKey": "valmiki",
+          "text": "I am called Adi Kavi — the First Poet — not because no one spoke in rhythm before me, but because I was the first to understand what poetry is for. It is not ornament. It is not entertainment. Poetry is how the soul speaks when ordinary language is too small for what must be said."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "sort",
+            "question": "Arrange these key events of the Ramayana in their correct narrative order:",
+            "items": [
+              "Prince Rama is exiled to the forest for fourteen years by his father King Dasharatha",
+              "The demon king Ravana abducts Sita and takes her to his island kingdom of Lanka",
+              "Hanuman, the monkey warrior, leaps across the ocean to find Sita in Lanka",
+              "Rama leads an army of allies across a stone bridge to Lanka",
+              "Rama defeats Ravana in battle and rescues Sita"
+            ],
+            "fact": "The Ramayana's themes — the duty of a prince, the devotion of a wife, the loyalty of a friend — have resonated across Asia for 2,500 years. The epic has more than 300 known versions across South and Southeast Asia, each reflecting the values of its culture."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "The Ramayana has been told, retold, translated, dramatized, and danced in every language and culture of South and Southeast Asia for 2,500 years. Its characters — Rama's righteousness, Sita's faithfulness, Hanuman's devotion, Ravana's pride — became archetypes for human virtue and human failing."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "music",
+            "configId": "pentatonic-descend",
+            "instruction": "Valmiki's first shloka was spontaneous music — grief transformed into metre. Arrange the descending musical phrase as it falls, note by note, like a poet's lament.",
+            "fact": "The shloka metre — the pattern Valmiki invented in that moment of grief — became the dominant verse form of Sanskrit epic poetry. The Mahabharata, the Puranas, and thousands of religious texts all use the same metre that Valmiki created spontaneously, in sorrow, beside a river."
+          }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Valmiki",
+          "portraitKey": "valmiki",
+          "text": "I was a forest hermit. I had no army, no kingdom, no gold. But I had words arranged in a form that could carry a story across centuries. Rama will be remembered long after every king of his era is forgotten. The pen that writes the poem outlasts the sword that builds the empire."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "The Ramayana is unique to India and has not spread significantly to other Asian cultures.",
+            "correct": false,
+            "countdown": 10,
+            "fact": "The Ramayana has influenced cultures across Southeast Asia for over a thousand years. Thailand has the Ramakien, Indonesia has the Kakawin Ramayana, and Cambodia's Reamker is performed at the royal court. Puppetry and dance forms based on the Ramayana are UNESCO-listed cultural traditions in Malaysia, Thailand, and Myanmar."
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -10,6 +10,19 @@ interface FictionConfig {
 }
 
 const CONFIGS: Record<string, FictionConfig> = {
+  'marie-escape': {
+    title: 'The Flight to Varennes',
+    passage: 'June 1791. The royal family slipped out of the Tuileries at night in a heavy berline coach, disguised as a Russian baroness and her household. Marie Antoinette had insisted the family travel together rather than in fast, separate carriages. By the next evening the great coach was hours behind schedule, and at Sainte-Menehould a postmaster named Drouet looked hard at the "valet" — then reached into his pocket for a banknote.',
+    prompt: 'What happened next?',
+    options: [
+      'The postmaster accepted a bribe and the family crossed safely into the Austrian Netherlands.',
+      'Drouet recognised the king from his portrait on the banknote, rode ahead, and the family was stopped at Varennes.',
+      'Royalist troops met the coach at Sainte-Menehould and escorted it to the frontier.',
+      'The family abandoned the coach and continued on foot, reaching Montmédy by dawn.',
+    ],
+    answer: 1,
+    fact: 'The family was arrested at Varennes, fifty kilometres short of the loyal garrison at Montmédy, and brought back to Paris through silent crowds. The failed flight destroyed what remained of trust in the monarchy; fourteen months later the Tuileries was stormed and the king deposed.',
+  },
   'mani-parable': {
     title: "The Prophet's Parable",
     passage: 'Mani told his disciples of two great forces locked in eternal conflict: Light and Darkness. Each soul, he said, was a spark of Light trapped in the material world. A king summoned Mani to his court and demanded: "If Light is always good and Darkness always evil, what is the purpose of this world of suffering?"',
@@ -131,3 +144,6 @@ export default function FictionGame({ configId, onWin }: { configId: string; onW
     </div>
   )
 }
+
+// Every hand-authored config id; the registry test renders each one.
+export const CONFIG_IDS = Object.keys(CONFIGS)

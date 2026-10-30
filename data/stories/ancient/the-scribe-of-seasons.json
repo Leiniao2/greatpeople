@@ -1,0 +1,136 @@
+{
+  "slug": "the-scribe-of-seasons",
+  "era": "Ancient",
+  "order": 8,
+  "title": "The Scribe of Seasons",
+  "figure": "Nakht",
+  "portraitKey": "nakht",
+  "tagline": "His tomb holds Egypt's most vivid paintings — a window into everyday ancient life.",
+  "locationImage": "ancient_memphis",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Thebes, Egypt, c. 1400 BCE. The reign of Thutmose IV. In the necropolis on the west bank of the Nile, workers are painting a tomb with images so vivid they will still glow with color three thousand years from now. The man being buried here tracked the stars by night and the harvests by season."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Nakht",
+          "portraitKey": "nakht",
+          "text": "I have measured the movements of the stars above the temple of Amun for thirty years. I know when Sirius will rise. I know when the Nile will flood. The farmers think this is magic — but it is only patience and records. Look long enough at anything and it reveals its pattern."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "matchthree",
+            "configId": "babylon-tablets",
+            "instruction": "Nakht recorded every flood and harvest on papyrus. Match the scribal symbols vertically — column by column, season by season.",
+            "fact": "Egyptian scribes and Babylonian scribes independently developed similar record-keeping systems. Agricultural data — flood levels, grain yields, star positions — was the first 'big data,' used to predict and plan. Nakht's astronomical records fed the same cycle."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "The Tomb of Nakht at Luxor contains some of the most celebrated agricultural paintings in Egyptian art. Musicians play at a feast. Servants carry wine and geese. Harvesters cut grain under a blazing sun. The images pulse with life — a scribe's love letter to the Egypt he served."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Tomb Painter",
+          "text": "Nakht, you asked me to paint the harvest scenes with the workers' faces showing — their expressions, their effort. Most nobles want idealized figures. Why do you want real ones?",
+          "portraitKey": "follower:actor"
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "sort",
+            "question": "Arrange the agricultural seasons Nakht would have tracked in the Egyptian calendar:",
+            "items": [
+              "Akhet — the Inundation: the Nile floods and deposits rich silt (June to September)",
+              "Peret — the Growing season: crops are planted as floodwaters recede (October to February)",
+              "Shemu — the Harvest: grain is gathered before the next flood (March to May)",
+              "The heliacal rising of Sirius signals the start of a new Egyptian year"
+            ],
+            "fact": "The Egyptian civil calendar was based on the Nile's flooding cycle. As Astronomer of Amun, Nakht would have tracked Sirius (Sopdet) — the star's first appearance above the horizon at dawn — which predicted the flood with remarkable accuracy."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "dialog",
+          "speaker": "Nakht",
+          "portraitKey": "nakht",
+          "text": "Because the harvest is real. The man who bends to cut grain at noon in August feels it in his back for a week. I have watched them work. I have counted their labor in my records. The least I can do is let their faces survive in stone what their names cannot."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "sudoku",
+            "configId": "anaxagoras-grid",
+            "instruction": "An astronomer's mind is a grid of order. Nakht tracked the stars to impose regularity on chaos — fill each row, column, and box with every value exactly once.",
+            "fact": "Egyptian astronomers divided the night into 12 hours using 'decan' stars that rose sequentially. Nakht's role as 'Astronomer of Amun' meant charting these risings with calendar precision — the same logical discipline that fills a grid with no repeats."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "As Astronomer of Amun, Nakht used star observations to set the Egyptian calendar — crucial for predicting the Nile flood and timing planting seasons. Egyptian astronomy was not abstract speculation: it was the operating system of an agricultural civilization that fed millions."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "The heliacal rising of which star signaled the annual Nile flood to Egyptians?",
+            "options": [
+              "Polaris",
+              "Sirius (Sopdet)",
+              "Orion",
+              "Jupiter"
+            ],
+            "answer": 1,
+            "fact": "The heliacal rising of Sirius — called Sopdet by Egyptians — occurred just before the Nile's annual flood. This celestial signal was so important that the Egyptian calendar year began on this day. Astronomer-officials like Nakht were responsible for predicting it."
+          }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Nakht",
+          "portraitKey": "nakht",
+          "text": "The stars are a clock and a calendar and a map. Every farmer in Egypt depends on what I read in the sky. That is a kind of power rarely given to a scribe. Use it faithfully — or everything that depends on it fails. The harvest is not forgiving of careless astronomy."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "geometry",
+            "configId": "circle-circumference",
+            "instruction": "Nakht tracked the sun's arc across the sky. Calculate the circumference of the celestial circle the sun traces — the geometry of Egyptian astronomical thought.",
+            "fact": "Egyptian priests calculated the solar year at 365 days — off by only a quarter-day. They tracked the sun's annual path using shadow clocks and star tables. The geometry of circles, arcs, and angles was essential astronomical knowledge long before Greek mathematicians formalised it."
+          }
+        }
+      ]
+    }
+  ]
+}

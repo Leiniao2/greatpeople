@@ -1,0 +1,137 @@
+{
+  "slug": "deep-time",
+  "era": "Steam",
+  "order": 3,
+  "title": "Deep Time",
+  "figure": "James Hutton",
+  "portraitKey": "james_hutton",
+  "tagline": "He looked at rock and saw millions of years — when the world thought Earth was 6,000 years old.",
+  "locationImage": "steam_london",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Scotland, 1788. A 62-year-old farmer-turned-geologist stands at the base of a sea cliff at Siccar Point and stares at the rock. Something in the layers of stone is about to destroy a six-thousand-year-old idea about the age of the Earth."
+        },
+        {
+          "type": "dialog",
+          "speaker": "James Hutton",
+          "portraitKey": "james_hutton",
+          "text": "Look at these layers — vertical strata underneath, horizontal strata on top. For the lower strata to be tilted upright and then worn flat, and then buried under new sediment... the time required is not thousands of years. It is millions. Perhaps hundreds of millions."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "James Hutton is known as the 'Father of' which science?",
+            "options": [
+              "Chemistry",
+              "Modern geology",
+              "Evolutionary biology",
+              "Astronomy"
+            ],
+            "answer": 1,
+            "fact": "James Hutton (1726–1797) is called the 'Father of Modern Geology' for his Theory of the Earth (1788), which proposed that the Earth's features were shaped by slow, ongoing natural processes — not a single catastrophic event.",
+            "countdown": 10
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "James Hutton proposed uniformitarianism — the idea that the same geological processes we see today, operating over immense timescales, produced all the rock formations we observe. He had no instruments to measure time. He had only logic, observation, and the courage to follow the evidence wherever it led."
+        },
+        {
+          "type": "dialog",
+          "speaker": "John Playfair",
+          "text": "Hutton, what you are saying overturns Genesis. The Church says the Earth is six thousand years old. You are saying it is unimaginably ancient. Are you prepared for what that means?",
+          "portraitKey": "follower:philosopher"
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "sort",
+            "question": "Arrange these eras of Earth's geological history from oldest to most recent:",
+            "items": [
+              "Precambrian — formation of Earth, first single-celled life (4.5 billion to 538 million years ago)",
+              "Palaeozoic — first fish, amphibians, reptiles, and forests (538–252 million years ago)",
+              "Mesozoic — age of dinosaurs, first mammals and flowering plants (252–66 million years ago)",
+              "Cenozoic — mammals dominate, primates evolve, humans appear (66 million years ago to present)"
+            ],
+            "fact": "The geological timescale assembled during and after Hutton's lifetime required his key insight: processes we observe today — erosion, deposition, volcanism — are the same ones that shaped ancient rocks. If the present is the key to the past, the past must be unimaginably long."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "dialog",
+          "speaker": "James Hutton",
+          "portraitKey": "james_hutton",
+          "text": "I find no vestige of a beginning, no prospect of an end. That is what the rocks tell me. I did not choose what the rocks say — I only listened. A geologist who ignores the evidence to comfort the congregation is no geologist at all."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "geometry",
+            "configId": "cylinder-volume",
+            "instruction": "Hutton calculated the volume of rock removed by erosion over millions of years. Work out the geometry of a rock column — the same calculation that proved the Earth was ancient.",
+            "fact": "Hutton realised that the volume of sediment deposited in river deltas must equal the volume of rock eroded from mountains — and that the mountains were still there. The rates of erosion he could observe were so slow that the cycle must have repeated millions of times. Geometry became an argument for deep time."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Hutton's deep time was the essential precondition for Darwin. Without billions of years, there is no room for evolution to operate. When Darwin read Hutton's successor Charles Lyell aboard the Beagle, he understood: the Earth was old enough for life to have transformed itself completely."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "classify",
+            "configId": "ecosystems",
+            "instruction": "Hutton saw Earth as a self-regulating system — soil erodes, rivers carry it to the sea, it becomes new rock, which uplifts into new mountains. Classify each element into the correct part of the natural cycle.",
+            "fact": "Hutton's 1788 paper 'Theory of the Earth' proposed that the planet was a self-maintaining system — soil feeds plants, erosion renews the soil, uplift renews the mountains. This 'steady-state' Earth anticipated modern geology and ecology by two centuries. James Lovelock's Gaia hypothesis of 1972 owes an explicit debt to Hutton."
+          }
+        },
+        {
+          "type": "dialog",
+          "speaker": "James Hutton",
+          "portraitKey": "james_hutton",
+          "text": "Every mountain you see was once sea floor. Every valley was once solid rock. The world is not a static creation — it is a machine, cycling endlessly. And we, who live for seventy years, can barely glimpse one turn of the wheel."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "Charles Lyell built on Hutton's uniformitarianism in Principles of Geology (1830) — a book Darwin took on the Beagle voyage and which directly shaped the theory of evolution.",
+            "correct": true,
+            "countdown": 10,
+            "fact": "Darwin read Lyell's Principles of Geology on the HMS Beagle and was transformed by it. The logic — that gradual, uniform processes over immense time can produce dramatic change — applies equally to geology and to evolution. Darwin acknowledged: 'The idea that geology had done for rocks, I wished to do for species.' Hutton's deep time was the foundation Darwin needed."
+          }
+        }
+      ]
+    }
+  ]
+}

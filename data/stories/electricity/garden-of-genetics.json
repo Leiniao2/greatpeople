@@ -1,0 +1,137 @@
+{
+  "slug": "garden-of-genetics",
+  "era": "Electricity",
+  "order": 1,
+  "title": "Garden of Genetics",
+  "figure": "Gregor Mendel",
+  "portraitKey": "gregor_mendel",
+  "tagline": "A monk in a garden uncovers the hidden code of life.",
+  "locationImage": "steam_manchester",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Brno, Moravia, 1856. A quiet Augustinian friar tends his garden, planting peas in careful rows. He is tracking seven traits — seed color, pod shape, plant height. Over eight years he will grow 29,000 pea plants and discover the laws governing all inheritance."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Gregor Mendel",
+          "portraitKey": "gregor_mendel",
+          "text": "Dominant and recessive. These two words contain the secret of heredity. Cross a tall plant with a short one — all the offspring are tall. But the shortness is hiding, not gone. In the next generation, it returns, one in four."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "What plant did Gregor Mendel use in his heredity experiments?",
+            "options": [
+              "Pea plants",
+              "Apple trees",
+              "Wheat",
+              "Sunflowers"
+            ],
+            "answer": 0,
+            "countdown": 10,
+            "fact": "Mendel chose pea plants (Pisum sativum) with extraordinary care. They had clearly distinguishable traits — smooth or wrinkled seeds, yellow or green pods, tall or short stems — that produced consistent, countable offspring. Over eight years, he tracked 29,000 plants and applied mathematics to biology for the first time."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Mendel presented his findings in 1865. The scientific community ignored them for 35 years. When his work was rediscovered in 1900, it instantly became the foundation of genetics and, eventually, of molecular biology."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "Mendel's discovery of the laws of heredity was immediately celebrated by the scientific community.",
+            "correct": false,
+            "countdown": 10,
+            "fact": "When Mendel published his results in 1866, the scientific world largely ignored them. His paper was cited only a handful of times in the next 35 years. It was not until 1900 — 16 years after Mendel's death — that three botanists independently rediscovered his laws and finally found his original paper, launching the science of genetics."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "dialog",
+          "speaker": "Gregor Mendel",
+          "portraitKey": "gregor_mendel",
+          "text": "The garden is my laboratory. The pea is my instrument. I believe that what I have found in these plants applies to all living things — including the nature that makes humans different from one another. Future scientists will confirm this."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "sort",
+            "question": "Arrange the key steps of Mendel's pea experiment in order:",
+            "items": [
+              "Mendel selects pure-breeding parent plants with contrasting traits",
+              "He cross-pollinates parents by hand to produce first-generation hybrids (F1)",
+              "F1 plants all show the dominant trait — the recessive trait vanishes",
+              "He allows F1 plants to self-pollinate, producing second-generation seeds (F2)",
+              "The recessive trait reappears in F2 in a 3:1 ratio",
+              "Mendel concludes that inheritance is governed by discrete, paired units"
+            ],
+            "fact": "The 3:1 ratio Mendel observed — three dominant to one recessive — was not a coincidence or approximation. It was a mathematical law. Mendel was the first scientist to apply statistical analysis to biology, and his insight that inheritance comes in discrete packets (what we now call genes) was centuries ahead of its time."
+          }
+        },
+        {
+          "type": "narration",
+          "text": "Mendel's pea garden required careful routing of light for photosynthesis experiments. Redirect the light beam to separate the genetic trait columns..."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "punnett",
+            "configId": "mendel-peas",
+            "instruction": "Use Mendel's Punnett square to predict which pea offspring will be smooth and which will be wrinkled. The garden holds its secrets in mathematics.",
+            "fact": "A Punnett square maps out all possible genetic combinations from two parents. When Mendel crossed smooth-seeded (Ss) plants together, the square predicts 25% SS, 50% Ss, and 25% ss offspring — 75% smooth, 25% wrinkled. The 3:1 ratio that baffled naturalists for centuries was hiding in plain arithmetic."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "classify",
+            "configId": "mendel-traits",
+            "instruction": "Classify each pea plant trait as dominant or recessive — just as Mendel did in his monastery garden, sorting thousands of seeds by hand.",
+            "fact": "Mendel identified seven distinct traits in pea plants, each with a dominant and recessive form. Remarkably, the genes controlling these seven traits happen to lie on different chromosomes, which is why Mendel's Law of Independent Assortment holds perfectly for them — a stroke of extraordinary scientific luck."
+          }
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "sudoku",
+            "configId": "mendel-grid",
+            "instruction": "Mendel counted and sorted thousands of seeds using meticulous grid records. Fill the inheritance grid — each row, column, and box must contain every trait combination exactly once.",
+            "fact": "Mendel kept records of extraordinary precision across eight years of experiments. He tracked 29,000 plants through multiple generations, recording results in tables that would not be out of place in a modern biology lab. His data was so clean that statistician R.A. Fisher later controversially suggested it was too perfect."
+          }
+        }
+      ]
+    }
+  ]
+}

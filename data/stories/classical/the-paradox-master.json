@@ -1,0 +1,115 @@
+{
+  "slug": "the-paradox-master",
+  "era": "Classical",
+  "order": 9,
+  "title": "The Paradox Master",
+  "figure": "Zeno of Elea",
+  "portraitKey": "zeno_of_elea",
+  "tagline": "Motion is illusion — unless you can prove otherwise.",
+  "locationImage": "classical_carthage",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Elea, southern Italy, 450 BCE. Zeno is the student of Parmenides, who taught that reality is One, eternal, unchanging — and that the senses lie. Motion, plurality, change: all illusion. But how do you prove the unprovable? You construct a weapon made of logic itself."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Zeno of Elea",
+          "text": "You say Achilles can outrun a tortoise? Let us think carefully. I will show you that motion is impossible — not because I believe it, but because it forces you to examine what you believe.",
+          "portraitKey": "zeno_of_elea"
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "Which of Zeno's paradoxes argues that the fastest runner can never overtake the slowest?",
+            "options": [
+              "The Arrow Paradox",
+              "The Dichotomy",
+              "Achilles and the Tortoise",
+              "The Stadium"
+            ],
+            "answer": 2,
+            "fact": "Achilles and the Tortoise argues that before catching the tortoise, Achilles must reach its starting point — by which time it has moved. This repeats infinitely, seemingly making overtaking impossible. Calculus resolved it 2,000 years later."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Achilles gives the tortoise a head start. But to reach the tortoise's starting point, Achilles must first cover half the distance. Then half of the remaining half. Then half again. The sum of infinite steps — can it ever be finished?"
+        },
+        {
+          "type": "dialog",
+          "speaker": "Philosopher",
+          "text": "But Achilles clearly does catch the tortoise! I can see it with my own eyes!",
+          "portraitKey": "follower:philosopher"
+        },
+        {
+          "type": "dialog",
+          "speaker": "Zeno of Elea",
+          "text": "Your eyes have lied to you before. The question is not what you see — it is whether your logic is consistent. If it cannot handle infinity, then it is your logic, not the tortoise, that needs catching.",
+          "portraitKey": "zeno_of_elea"
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "Zeno of Elea personally believed that motion was impossible and that nothing in the universe actually moves.",
+            "correct": false,
+            "fact": "Zeno's paradoxes were a rhetorical defense of his teacher Parmenides, not his personal beliefs. He used them as reductio ad absurdum — if you accept common sense, you get contradictions. It was a philosophical weapon, not a physics claim."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Zeno's paradoxes were not solved in his lifetime. They weren't truly resolved until the 17th century, when calculus gave mathematics a way to sum infinite series. But Zeno had done something extraordinary — he forced all of Western thought to confront the nature of infinity itself."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "geometry",
+            "configId": "golden-ratio",
+            "instruction": "Solve the infinite division problem — how does space halve endlessly, yet still have an end?",
+            "fact": "Zeno's paradoxes were not resolved until Newton and Leibniz developed calculus in the 17th century. The infinite series 1/2 + 1/4 + 1/8 + ... converges to 1 — Achilles catches the tortoise, and the math finally proved it."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "geometry",
+            "configId": "circle-circumference",
+            "instruction": "Zeno proved — or tried to — that you can never cross a room. Solve the infinite division: how does halving space endlessly still add up to something finite?",
+            "fact": "The mathematical resolution to Zeno's paradoxes came with calculus: an infinite sum of terms can converge to a finite value. The series ½ + ¼ + ⅛ + … = 1. Newton and Leibniz solved in the 1660s what Zeno posed in 450 BCE — it took 2,100 years to find the right mathematical language."
+          }
+        }
+      ]
+    }
+  ]
+}

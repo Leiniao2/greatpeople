@@ -1,0 +1,110 @@
+{
+  "slug": "the-long-march",
+  "era": "Electricity",
+  "order": 8,
+  "title": "The Long March",
+  "figure": "Mao Zedong",
+  "portraitKey": "mao_zedong",
+  "tagline": "A revolution born in starvation, hardened in philosophy, written in history.",
+  "locationImage": "electricity_hongkong",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Jiangxi Province, October 1934. Surrounded by Chiang Kai-shek's nationalist forces, 86,000 Communist soldiers begin an impossible retreat — a march of over 9,000 kilometers through mountains, swamps, and hostile territory. Only 8,000 will complete it."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Mao Zedong",
+          "portraitKey": "mao_zedong",
+          "text": "The revolution has not failed. The revolution is retreating — to regroup, to learn, to grow stronger. From defeat, we draw the lessons that will bring victory. This is not the end. This is the beginning."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "The Long March covered approximately how many kilometres?",
+            "options": [
+              "2,000 km",
+              "5,000 km",
+              "9,000 km",
+              "15,000 km"
+            ],
+            "answer": 2,
+            "fact": "The Long March (1934–35) covered about 9,000 km — crossing 18 mountain ranges and 24 rivers. Of the 80,000 who began, fewer than 10,000 completed it. It transformed apparent defeat into the founding myth of Communist China."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "The Long March became the founding myth of Chinese Communist power. Those who completed it became an elite — the hardened core around which the People's Republic would be built fifteen years later."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "tactics",
+            "configId": "temple",
+            "instruction": "Mao's forces have repositioned. Find the decisive tactical move.",
+            "fact": "The Long March was a 9,000 km strategic retreat that repositioned the Red Army — transforming apparent defeat into the foundation of eventual victory."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "dialog",
+          "speaker": "Mao Zedong",
+          "portraitKey": "mao_zedong",
+          "text": "China is like a blank sheet of paper. It is possible to write the most beautiful characters on blank paper. The old China — feudal, exploited, humiliated — must be swept clean before the new one can be written."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "maze",
+            "configId": "long-march",
+            "instruction": "Lead the column through the mountain passes of the Long March",
+            "fact": "The most decisive battle of the Long March was the crossing of the Luding Bridge — a chain bridge over a gorge, its planks removed, defended by machine guns. Communist soldiers crawled across the chains under fire."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "The Long March route wound through the most treacherous terrain in China. Navigate the mountain passes to reach the safety of Yan'an..."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "The Long March was portrayed by the Communist Party as a great victory, though it was actually a desperate military retreat that killed over 90% of those who set out.",
+            "correct": true,
+            "countdown": 10,
+            "fact": "When the Long March began in October 1934, approximately 86,000 soldiers set out. Fewer than 8,000 reached Yan'an in October 1935 — a loss of over 90%. Mao Zedong transformed this catastrophic retreat into a founding myth of Communist China, portraying it as proof of revolutionary will and endurance."
+          }
+        }
+      ]
+    }
+  ]
+}

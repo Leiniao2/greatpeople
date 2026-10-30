@@ -1,0 +1,125 @@
+{
+  "slug": "the-elements",
+  "era": "Classical",
+  "order": 0,
+  "title": "The Elements",
+  "figure": "Euclid",
+  "portraitKey": "euclid",
+  "tagline": "Thirteen books that defined the shape of reason forever.",
+  "locationImage": "ancient_athens",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Alexandria, 300 BCE. The greatest library the world has ever seen. Euclid of Alexandria is writing — not just recording what he knows, but building a logical architecture that will hold for two thousand years: thirteen books proving everything in geometry from five simple assumptions."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Euclid",
+          "portraitKey": "euclid",
+          "text": "A point has no part. A line has breadth-less length. Begin there. Everything else follows."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "Euclid worked in which great ancient city?",
+            "options": [
+              "Athens",
+              "Rome",
+              "Alexandria",
+              "Babylon"
+            ],
+            "answer": 2,
+            "fact": "Euclid worked at the Library of Alexandria under Ptolemy I around 300 BCE. When Ptolemy asked if there was a shorter way to learn geometry, Euclid reportedly replied: 'There is no royal road to geometry.'"
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Euclid's proof that prime numbers are infinite is one of the first genuine proofs in mathematics — a demonstration so elegant it appears unchanged in textbooks today. His method: assume finitely many primes, multiply them together and add one, then show the contradiction."
+        },
+        {
+          "type": "dialog",
+          "speaker": "King Ptolemy",
+          "text": "Euclid. Is there not a shortcut to geometry?",
+          "portraitKey": "follower:sovereign"
+        },
+        {
+          "type": "dialog",
+          "speaker": "Euclid",
+          "portraitKey": "euclid",
+          "text": "There is no royal road to geometry."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "Euclid's 'Elements' has been in continuous use since it was written, making it the world's most reprinted textbook after the Bible.",
+            "correct": true,
+            "fact": "Euclid's Elements (c. 300 BCE) comprises 13 books and 465 propositions. It was used in university geometry courses until the early 20th century — over 2,000 years of continuous use."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "crossword",
+            "configId": "linnaeus",
+            "instruction": "Euclid classified all geometric knowledge. Test your knowledge with this classification crossword.",
+            "fact": "Euclid's proof of the Pythagorean theorem occupies a full page of the Elements and uses nothing but logic. It remains one of the most beautiful proofs in all of mathematics."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Eratosthenes, who would later calculate the circumference of the Earth with remarkable accuracy, studied in the same tradition as Euclid. Each generation of Alexandrian scholars built on the previous — standing, as Newton would say two thousand years later, on the shoulders of giants."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "mirror",
+            "configId": "euclid",
+            "instruction": "Prove Euclid's law of reflection — redirect the light beam to hit the target using mirrors.",
+            "fact": "Euclid wrote 'Optica', one of the earliest works on optics and perspective, laying the groundwork for understanding how light behaves."
+          }
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "mirror",
+            "configId": "newton-prism",
+            "instruction": "Euclid knew light reflects — but what about refraction? Route the beam through two fixed deflectors using two mirrors of your own.",
+            "fact": "Euclid's 'Catoptrics' studied mirrors and reflection. It took nearly two thousand more years for Newton to explain why white light splits into a spectrum — but the geometry Euclid laid down made that discovery possible."
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "slug": "the-shadow-behind-the-throne",
+  "era": "Renaissance",
+  "order": 10,
+  "title": "The Shadow Behind the Throne",
+  "figure": "Tlacaelel",
+  "portraitKey": "tlacaelel",
+  "tagline": "He shaped three emperors and rewrote the soul of the Aztec world.",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Tenochtitlan, 1427. The Aztec are a minor tributary people under the Tepanec Empire. Tlacaelel, nephew of the tlatoani, sees an opening — and changes everything."
+        },
+        {
+          "type": "narration",
+          "text": "He engineers the Triple Alliance: Tenochtitlan, Texcoco, and Tlacopan unite to overthrow their Tepanec overlords. It works. The Aztec Empire is born, and Tlacaelel is its architect."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "What was Tlacaelel's title, and what unique power did he hold in the Aztec state?",
+            "options": [
+              "Cihuacoatl — the second-in-command who wielded more real power than three consecutive emperors",
+              "Huey Tlatoani — the supreme ruler of the Triple Alliance",
+              "Quetzalcoatl — the high priest of the feathered serpent cult",
+              "Tlacochcalcatl — the supreme military commander of all Aztec armies"
+            ],
+            "answer": 0,
+            "countdown": 10,
+            "fact": "Tlacaelel (c.1397–1487) held the office of Cihuacoatl — officially the second speaker, the emperor's shadow. In practice, he directed state policy under three emperors (Itzcoatl, Motecuhzoma I, and Axayacatl) for over fifty years. He was offered the supreme throne three times and refused it each time — understanding that the power behind the throne is more durable than the throne itself."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Three times he is offered the throne. Three times he refuses. He prefers the role of Cihuacoatl — co-ruler, advisor, the power behind every emperor. Itzcoatl. Motecuhzoma I. Axayacatl."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "Tlacaelel preserved the Aztec historical records and expanded their archives during his time in power.",
+            "correct": false,
+            "countdown": 10,
+            "fact": "Tlacaelel ordered the burning of existing historical codices — the painted books that recorded Aztec history before his reforms. He then commissioned new histories that placed the Mexica at the center of a divinely ordained cosmic narrative. The burning was not destruction for its own sake: it was the replacement of one story with a more useful one."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "He orders the burning of all previous historical records — and rewrites Aztec history, placing their people as the chosen of the sun god, destined to rule. Ideology as political weapon."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "sort",
+            "question": "Arrange the key reforms and events of Tlacaelel's career in order:",
+            "items": [
+              "Tlacaelel leads the decisive military strategy that defeats the powerful Tepanec Empire",
+              "He refuses the throne after the victory — but becomes Cihuacoatl, the power behind it",
+              "He orders the burning of existing historical codices to enable a new official history",
+              "He expands the cult of Huitzilopochtli, framing the Aztec people as chosen to sustain the sun",
+              "He institutes the Flower Wars — ritualized conflict designed to produce sacrificial captives",
+              "Tlacaelel serves a third emperor while outliving his contemporaries — dying in his nineties"
+            ],
+            "fact": "Tlacaelel's greatest achievement was ideological: he transformed the Mexica from one of many Nahua-speaking peoples into the chosen people of the sun god, with a cosmic obligation to feed Huitzilopochtli through human sacrifice. This narrative made every war a religious act and every conquest a divine duty — creating the psychological engine that drove Aztec expansion for a century."
+          }
+        },
+        {
+          "type": "narration",
+          "text": "He expands the institution of 'Flower Wars' — ritualized combat to capture prisoners for sacrifice. It is brutal, efficient, and keeps neighboring states in a permanent state of military tension."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "matchthree",
+            "configId": "aztec-market",
+            "instruction": "The Aztec empire ran on tribute — cloth, cacao, jade, and gold flowing into Tenochtitlan from every conquered province. Clear the tribute board that fed the greatest empire in the Americas.",
+            "fact": "The Aztec tribute system was Tlacaelel's administrative masterpiece. He formalized the list of goods each conquered province owed the empire and created the bureaucratic machinery to collect it. The Mendoza Codex — a post-conquest record of the tribute system — shows 400 towns paying tribute in 42 categories of goods. It was the most elaborate tax system in the pre-Columbian Americas."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Tlacaelel lives to nearly 90 — outliving three emperors, watching the empire he designed conquer much of Mesoamerica. He dies peacefully. Montezuma II will inherit the world he made."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "voting",
+            "configId": "akkadian-council",
+            "instruction": "Tlacaelel governed through persuasion as much as power. Present your policy to the council of lords — frame the war as cosmic necessity, the sacrifice as divine service, the conquest as salvation.",
+            "fact": "The Aztec ruling council (tlatocan) included leaders of the Triple Alliance's three cities and was theoretically a collective body. Tlacaelel's genius was making its decisions feel consensual while ensuring they reflected his vision. He was a master of what modern political scientists call 'agenda control' — determining not just how issues were decided but which issues were ever discussed."
+          }
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "tactics",
+            "configId": "senate",
+            "instruction": "Behind every Aztec emperor stood Tlacaelel — the counselor who turned political advantage into permanent architecture. Navigate the council chamber where empires are made with words.",
+            "fact": "The Flower Wars (Xochiyaoyotl) that Tlacaelel institutionalized were a unique form of ritualized conflict: neighboring states would agree to scheduled battles whose purpose was not territorial conquest but the capture of living warriors for sacrifice. Critics called them morally monstrous; defenders argued they were a more humane alternative to wars of annihilation. The truth is that they also kept potential rivals permanently weak."
+          }
+        }
+      ]
+    }
+  ]
+}

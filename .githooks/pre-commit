@@ -8,4 +8,12 @@
 
 set -euo pipefail
 
-exec "$(git rev-parse --show-toplevel)/scripts/sync-assets.sh" --stage
+root="$(git rev-parse --show-toplevel)"
+
+# Story JSONs are generated from data/stories/; rebuild and check them first so
+# a commit never ships outputs that disagree with their sources.
+node "$root/scripts/build-stories.mjs"
+node "$root/scripts/validate-stories.mjs"
+git -C "$root" add data/story_configs.json data/story_challenges.json data/story_scripts.json
+
+exec "$root/scripts/sync-assets.sh" --stage

@@ -1,0 +1,126 @@
+{
+  "slug": "characters-of-clay",
+  "era": "Medieval",
+  "order": 6,
+  "title": "Characters of Clay",
+  "figure": "Bi Sheng",
+  "portraitKey": "bi_sheng",
+  "tagline": "He invented movable type four centuries before Gutenberg.",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "China, Song Dynasty, ~1040 CE. Bi Sheng, a craftsman, stares at a block of clay. He has an idea that will change the world — though the world won't know his name for centuries."
+        },
+        {
+          "type": "narration",
+          "text": "He carves individual characters into clay tiles, fires them hard, and arranges them in an iron frame. Movable type: each character reusable, reconfigurable — infinite books from finite pieces."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "What material did Bi Sheng use to create the world's first movable type, around 1040 CE?",
+            "options": [
+              "Baked clay",
+              "Carved wood",
+              "Cast bronze",
+              "Carved stone"
+            ],
+            "answer": 0,
+            "countdown": 10,
+            "fact": "Bi Sheng invented movable type during the Song Dynasty (c.1040 CE) using baked clay — the same material Chinese potters had mastered for thousands of years. Each character was carved in clay, hardened by fire, then set in an iron frame with pine resin. After printing, the resin was heated and the characters removed for reuse."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "He tests the process methodically — two frames allow one to print while the other is set. Speed doubles. His innovation is also a system."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "Bi Sheng's movable type immediately replaced traditional woodblock printing across China.",
+            "correct": false,
+            "countdown": 10,
+            "fact": "Despite its ingenuity, Bi Sheng's clay type did not replace woodblock printing, which remained dominant in China for centuries. Chinese has tens of thousands of characters, making movable type logistically complex — a single print job might require thousands of individual pieces. Woodblock printing remained faster for short texts. Movable type proved more revolutionary in alphabetic languages like Korean and later European languages."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "The Chinese writing system's thousands of characters make movable type harder than in alphabetic scripts — but Bi Sheng organizes them by rhyme category for fast retrieval."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "sort",
+            "question": "Arrange the steps of Bi Sheng's printing process in order:",
+            "items": [
+              "Carve each character into soft clay — one per piece",
+              "Harden the clay characters in fire to create durable type",
+              "Arrange characters in an iron frame using pine resin to hold them flat",
+              "Ink the assembled type and press paper firmly against it",
+              "Heat the frame to soften the resin and remove the characters",
+              "Sort the characters back into their cases for the next print run"
+            ],
+            "fact": "Bi Sheng's system was described in detail by the statesman Shen Kuo in his 'Dream Pool Essays' (1088 CE) — one of the great scientific documents of the medieval world. Without Shen Kuo's account, we might never have known of Bi Sheng's invention, since none of his actual type survives."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "We know about Bi Sheng only because the polymath Shen Kuo recorded his invention decades later. Bi Sheng himself left no writings — just the type blocks, and the idea."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "porcelain",
+            "configId": "cobalt-bowl",
+            "instruction": "Bi Sheng's clay type was fired in the same kilns that produced Song Dynasty ceramics. Shape and fire the clay — the same hands that made bowls made the letters that carried the world's knowledge.",
+            "fact": "Song Dynasty China (960–1279 CE) was a civilization of extraordinary technological creativity: compass navigation, gunpowder weapons, paper money, paddlewheel ships, and movable type all emerged in a single century. The Song state funded scientific investigation and published encyclopedias — creating the world's first information economy."
+          }
+        },
+        {
+          "type": "narration",
+          "text": "Gutenberg's press came 400 years later. But the concept — movable, reusable type — was first pressed into clay by an artisan in Song Dynasty China."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "matchthree",
+            "configId": "babylon-tablets",
+            "instruction": "Before Bi Sheng's press, scholars hand-copied every text. Clear the clay tablet — match the ancient records that his invention would eventually make obsolete.",
+            "fact": "Writing had been recorded on clay tablets since Mesopotamia in 3500 BCE. Bi Sheng's great insight was that clay — the oldest writing substrate in human history — could itself become the tool for mass reproduction of text. He connected the ancient world of clay and the modern world of print in a single creative act."
+          }
+        }
+      ]
+    }
+  ]
+}

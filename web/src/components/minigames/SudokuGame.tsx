@@ -260,3 +260,6 @@ export default function SudokuGame({ configId, onWin }: { configId: string; onWi
     </div>
   )
 }
+
+// Every hand-authored config id; the registry test renders each one.
+export const CONFIG_IDS = Object.keys(CONFIGS)

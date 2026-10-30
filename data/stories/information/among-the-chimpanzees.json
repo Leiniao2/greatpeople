@@ -1,0 +1,148 @@
+{
+  "slug": "among-the-chimpanzees",
+  "era": "Information",
+  "order": 5,
+  "title": "Among the Chimpanzees",
+  "figure": "Jane Goodall",
+  "portraitKey": "jane_goodall",
+  "tagline": "A young woman sat in the forest and changed what it means to be human.",
+  "locationImage": "information_sanjose",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Gombe Stream, Tanzania, 1960. A 26-year-old Englishwoman with no university degree sits alone in the forest, waiting. For months, every chimpanzee has fled from her. But she keeps coming back, sitting still, becoming part of the landscape."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Jane Goodall",
+          "portraitKey": "jane_goodall",
+          "text": "I named them. Louis Leakey told me not to — scientists use numbers, he said. But how could I watch David Greybeard and not see a personality? A history? Each face was different. Each one was someone."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "sort",
+            "question": "Arrange these milestones of Jane Goodall's career in chronological order:",
+            "items": [
+              "Goodall arrives at Gombe Stream in Tanzania, beginning her chimpanzee research (1960)",
+              "Goodall observes chimpanzees making and using tools — overturning the definition of humanity (1960)",
+              "Goodall earns her PhD from Cambridge University without an undergraduate degree (1965)",
+              "Goodall founds the Jane Goodall Institute to protect chimpanzees and their habitats (1977)",
+              "Goodall launches the Roots & Shoots youth environmental programme (1991)"
+            ],
+            "fact": "Jane Goodall arrived at Gombe with no scientific degree — just a passion for animals and a naturalist's notebook. Her 60+ years of continuous research at Gombe is the longest running wildlife study in history, revealing that chimpanzees have personalities, cultures, and emotions."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Then, on November 4, 1960, Goodall observed something no scientist had documented: David Greybeard was using a twig to extract termites from a mound. He was using a tool. When she reported this to Louis Leakey, he cabled back: 'Now we must redefine tool, redefine Man, or accept chimpanzees as humans.'"
+        },
+        {
+          "type": "dialog",
+          "speaker": "David Greybeard",
+          "text": "[looks up from the termite mound, holding a stripped twig, and meets Jane's eyes with calm recognition]",
+          "portraitKey": "follower:explorer"
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "What discovery by Goodall overturned the belief that only humans use tools?",
+            "options": [
+              "Chimps building shelters",
+              "Chimps using sticks to extract termites from mounds",
+              "Chimps painting on trees",
+              "Chimps using stones to crack nuts"
+            ],
+            "answer": 1,
+            "fact": "In 1960, Goodall observed chimpanzees stripping leaves from twigs to fish termites from mounds — the first recorded instance of animals making and using tools. When she reported this to Louis Leakey, he replied: 'Now we must redefine tool, redefine man, or accept chimpanzees as humans.'",
+            "countdown": 10
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "dialog",
+          "speaker": "Jane Goodall",
+          "portraitKey": "jane_goodall",
+          "text": "We were not as separate as we thought. They felt joy, they grieved, they formed lasting bonds, they waged war on rival groups. Understanding them did not diminish us — it enlarged us. We are not apart from nature. We are part of nature."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "classify",
+            "configId": "ecosystems",
+            "instruction": "Gombe Stream is a complex ecosystem of rainforest, savannah, and lakeshore. Classify each species into its correct ecological role — as Goodall mapped her chimpanzees' world.",
+            "fact": "Jane Goodall's research at Gombe revealed that chimpanzee communities have distinct cultures — different groups use different tools, have different social customs, and even different vocalizations. Culture, once thought uniquely human, turns out to be a primate invention at least 7 million years old."
+          }
+        },
+        {
+          "type": "narration",
+          "text": "Goodall spent decades in Gombe, producing the most comprehensive study of wild chimpanzee behavior ever recorded. Then, in 1986, she attended a conference and saw the data on chimpanzee habitat destruction. She arrived a scientist. She left an activist."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "classify",
+            "configId": "darwin-beaks",
+            "instruction": "Goodall's chimps used different tools for different tasks — just as Darwin's finches evolved different beaks for different foods. Classify each beak by what it eats.",
+            "fact": "Darwin's finches and Goodall's chimps are linked by the same insight: organisms adapt their behaviour and bodies to their environment. When Goodall observed chimps selecting and modifying specific twigs to fish for termites, she was watching tool-use behaviour — a hallmark of intelligence — arising from the same evolutionary pressures Darwin described."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "dialog",
+          "speaker": "Jane Goodall",
+          "portraitKey": "jane_goodall",
+          "text": "Every day you live, you make some impact on the planet. You get to choose what kind of impact that will be. I went to the forest to study chimpanzees — and the forest taught me that every life is connected, and every connection matters."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "Jane Goodall's research at Gombe Stream, begun in 1960, is the longest-running continuous wildlife field study in history.",
+            "correct": true,
+            "countdown": 10,
+            "fact": "More than 60 years after Goodall first set up camp at Gombe, researchers continue her work, following multiple generations of chimpanzees. The study has revealed the transmission of cultural practices across generations and the devastating impact of habitat loss — no other wildlife study has tracked a single population for so long."
+          }
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "hunting",
+            "configId": "african-safari",
+            "instruction": "Before Goodall arrived in Gombe, European trophy hunters had devastated African wildlife for generations. Step into the 1880s and see what they hunted — then consider what was nearly lost.",
+            "fact": "Theodore Roosevelt's 1909 African safari killed over 11,000 animals for the Smithsonian. The backlash helped spark the modern conservation movement. Jane Goodall's 1960 arrival in Gombe coincided with a global shift: from exploitation to study and protection."
+          }
+        }
+      ]
+    }
+  ]
+}

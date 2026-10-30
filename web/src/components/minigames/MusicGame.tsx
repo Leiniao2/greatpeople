@@ -448,3 +448,6 @@ export default function MusicGame({ configId, onWin }: { configId: string; onWin
     </div>
   )
 }
+
+// Every hand-authored config id; the registry test renders each one.
+export const CONFIG_IDS = Object.keys(CONFIGS)

@@ -1,0 +1,136 @@
+{
+  "slug": "the-poem-in-the-armor",
+  "era": "Medieval",
+  "order": 9,
+  "title": "The Poem in the Armor",
+  "figure": "Taira no Tadanori",
+  "portraitKey": "taira_no_tadanori",
+  "tagline": "He was the samurai who wrote verses on the night before battle.",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Japan, 1183. The Genpei War pits the Taira clan against the Minamoto. Taira no Tadanori — samurai, provincial governor, and devoted poet — rides to the capital as it falls."
+        },
+        {
+          "type": "narration",
+          "text": "The night before the Taira flee Kyoto, Tadanori rides alone to the house of the great poetry master Fujiwara no Shunzei. He leaves a scroll of his poems — asking that even one be remembered."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "What is Taira no Tadanori best remembered for, beyond his role as a Taira clan general?",
+            "options": [
+              "His poetry — he was included in the imperial Senzai Wakashū anthology after his death",
+              "His invention of a new sword technique adopted across Japan",
+              "His diplomatic mission to the Song Dynasty court in China",
+              "His construction of Kyoto's most famous temple"
+            ],
+            "answer": 0,
+            "countdown": 10,
+            "fact": "Tadanori was one of the leading waka poets of his generation, a student of the master Fujiwara no Shunzei. On the eve of the Taira clan's final flight from Kyoto, he rode back alone through the night to deliver a scroll of his poems to Shunzei — asking only that one be included in the imperial anthology. One was: it appears in the Senzai Wakashū without his name, since he died a rebel."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "The Taira retreat south. For two years they fight a losing war — islands, sea battles, the slow narrowing of a doomed world. Tadanori composes poems throughout."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "Tadanori's poem was attributed to him by name in the imperial anthology after his death.",
+            "correct": false,
+            "countdown": 10,
+            "fact": "Because Tadanori died on the losing side of the Genpei War, his poem was included in the Senzai Wakashū as 'anonymous' — it would have been politically unacceptable to honor a Taira rebel by name. Yet the poem's inclusion was itself an act of aesthetic respect. Everyone knew whose poem it was, and that silent knowledge became part of the poem's beauty."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Battle of Ichi-no-Tani, 1184: the Minamoto attack from the cliffs above. In the chaos, Tadanori is unhorsed and falls into single combat. He is killed — a poem on his person reveals his name."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "sort",
+            "question": "Arrange the key events of Taira no Tadanori's life in order:",
+            "items": [
+              "Tadanori studies waka poetry under the master Fujiwara no Shunzei",
+              "The Genpei War begins — Taira and Minamoto clans fight for control of Japan",
+              "The Taira clan loses Kyoto to Minamoto forces and flees west",
+              "Tadanori rides back alone through the night to deliver his poem scroll to Shunzei",
+              "The final battle at Ichi-no-Tani — Tadanori falls in combat",
+              "Shunzei includes Tadanori's poem anonymously in the imperial anthology"
+            ],
+            "fact": "The tale of Tadanori riding back to his poetry master on the night of defeat became one of the most celebrated stories in Japanese literary history. It appears in the Heike Monogatari — the great narrative of the Genpei War — as the moment when a warrior reveals that poetry, not victory, is what he cannot bear to leave behind."
+          }
+        },
+        {
+          "type": "narration",
+          "text": "His killer weeps. Even an enemy honors a warrior who wrote such verse. The poem found in his armor that day: 'As the evening dark descends, I rest beneath this cherry tree — a flower is my inn.'"
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "music",
+            "configId": "pentatonic-descend",
+            "instruction": "The Heike Monogatari was performed by blind biwa monks — its tales chanted in a pentatonic mode that matched the falling cadence of the Taira clan's fall. Arrange the descending phrase that closes Tadanori's story.",
+            "fact": "The Heike Monogatari opens with the most famous line in Japanese literature: 'The sound of the Gion Shoja bells echoes the impermanence of all things.' It was not read but performed — chanted to biwa accompaniment by traveling monks who served as medieval Japan's living archive of history and loss."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Fujiwara no Shunzei includes one of Tadanori's poems in the imperial anthology — anonymously, because Tadanori died as an enemy of the crown. The poem outlives the war and the clan."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "tactics",
+            "configId": "musashi-duel",
+            "instruction": "At Ichi-no-Tani, samurai combat was still partly individual — warrior sought warrior in the chaos. Choose your moment and your ground: skill and honor matter as much as numbers.",
+            "fact": "The Battle of Ichi-no-Tani (1184) was a Minamoto tactical masterpiece: while one force engaged the Taira from the front, Minamoto Yoshitsune led cavalry down a cliff believed to be impassable. The surprise attack from above broke the Taira position. Tadanori died fighting in this rout — killed by a Minamoto warrior who recognized him only by a poem tucked inside his armour."
+          }
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "storysort",
+            "configId": "genji-moonlight",
+            "instruction": "Tadanori lived inside the literary world of the Heian court — where the Tale of Genji set the terms for all beauty. Arrange the moonlit scenes of Japanese court literature that his poems breathed.",
+            "fact": "Waka poetry — 31 syllables in a 5-7-5-7-7 pattern — was the highest art form of Heian Japan. To compose a poem in the moment, on the correct seasonal image, in response to a situation, was the mark of a complete human being. Tadanori carried his poems into battle. When his killer discovered the scroll tucked in his armour, he wept."
+          }
+        }
+      ]
+    }
+  ]
+}

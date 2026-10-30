@@ -723,3 +723,6 @@ function DPadBtn({ label, onClick, sky }: { label: string; onClick: () => void; 
     </button>
   )
 }
+
+// Every hand-authored config id; the registry test renders each one.
+export const CONFIG_IDS = Object.keys(MAZES)

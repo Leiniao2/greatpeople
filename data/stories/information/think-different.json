@@ -1,0 +1,158 @@
+{
+  "slug": "think-different",
+  "era": "Information",
+  "order": 8,
+  "title": "Think Different",
+  "figure": "Steve Jobs",
+  "portraitKey": "steve_jobs",
+  "tagline": "Fired from his own company, he came back and built the most valuable brand in history.",
+  "locationImage": "information_sanjose",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Cupertino, 1997. Apple Computer is 90 days from bankruptcy. Steve Jobs has just returned after twelve years in exile — ousted from the company he founded. He walks back into One Infinite Loop and finds a company making dozens of products, none of them great."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Steve Jobs",
+          "portraitKey": "steve_jobs",
+          "text": "I asked every person here: which products do we love? Nobody could answer. We make a hundred things and none of them are exceptional. We are going to make four: a desktop for consumers, a desktop for professionals, a laptop for consumers, a laptop for professionals. That is it. Everything else dies."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "pseudocode",
+            "configId": "jobs-code",
+            "instruction": "Jobs believed every great product was 10,000 decisions, each one right. Arrange the pseudo-code in the correct order — the logic that made Apple's comeback possible.",
+            "fact": "When Jobs returned to Apple in 1997, the company had 350 products. He cut it to 10 — a 2×2 grid of consumer and professional, desktop and portable. 'Deciding what not to do is as important as deciding what to do,' he said. The focus that followed produced the iMac, iPod, iPhone, and iPad within a decade."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "In the same year, Jobs launched the 'Think Different' campaign — a tribute to the rebels, misfits, and troublemakers who changed the world. It was not just advertising. It was a statement of identity: Apple exists because the people crazy enough to think they can change the world are the ones who do."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Jony Ive",
+          "text": "Steve, I've designed something. A computer that comes in five colors, with a translucent shell so you can see the components inside. It looks like it's from the future.",
+          "portraitKey": "follower:philosopher"
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "What is the significance of Apple's 1984 Macintosh commercial?",
+            "options": [
+              "It was the first TV ad for a computer",
+              "Directed by Ridley Scott, it aired during the Super Bowl and is considered one of the greatest ads ever",
+              "It featured Steve Jobs himself",
+              "It was banned in most countries"
+            ],
+            "answer": 1,
+            "fact": "Directed by Ridley Scott and aired once during Super Bowl XVIII (1984), the '1984' Macintosh commercial depicted Apple as a liberator smashing IBM's Orwellian conformity. It is credited with transforming advertising into a medium for brand mythology.",
+            "countdown": 10
+          }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Steve Jobs",
+          "portraitKey": "steve_jobs",
+          "text": "The iMac. People are going to think we are insane. They expect a beige box. We are shipping a translucent blue teardrop. Good. Insanity is relative. If we are right about the design, it will change what every computer company makes for the next decade."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "sort",
+            "question": "Arrange these landmark Apple product launches in chronological order:",
+            "items": [
+              "Apple Macintosh — the first mass-market personal computer with a graphical interface and mouse (1984)",
+              "iMac — Jobs' first major product on returning to Apple, rescuing it from bankruptcy (1998)",
+              "iPod — '1,000 songs in your pocket,' transforming the music industry (2001)",
+              "iPhone — the smartphone that created the mobile internet age (2007)",
+              "iPad — the tablet that defined a new computing category (2010)"
+            ],
+            "fact": "Each Apple product under Jobs didn't just sell — it created or redefined an entire category. The Mac made personal computing accessible; the iPod destroyed the CD model; the iPhone made every previous phone obsolete. Jobs launched five industry-defining products in 26 years."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "From the iMac to the iPod to the iPhone to the iPad, each product Jobs launched was built on the same conviction: technology and art are not separate things. The device must work perfectly, look perfect, and feel perfect — because the person using it deserves no less. He was right about almost all of it."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "auction",
+            "configId": "tech-auction",
+            "instruction": "Silicon Valley's founding artefacts are up for bid. Compete for the relics of the digital revolution — the same objects Jobs touched, pitched, and obsessed over.",
+            "fact": "Jobs dropped out of Reed College in 1972 but kept auditing classes — including a calligraphy course by Lloyd Reynolds. That course taught him about serif and sans-serif typefaces, proportional spacing, and typographic beauty. Ten years later, the Macintosh became the first computer with multiple typefaces. 'If I had never dropped in on that course, every Mac would have had the same boring font.'"
+          }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Steve Jobs",
+          "portraitKey": "steve_jobs",
+          "text": "I am the most fortunate person I know, because what I loved to do and what the world needed turned out to be the same thing. That almost never happens. If you have that — protect it. Do not let anyone tell you it is not practical. The most practical thing you can do is make something people love."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "After being pushed out of Apple in 1985, Jobs founded NeXT Computer and co-acquired Pixar — both of which later transformed their respective industries.",
+            "correct": true,
+            "countdown": 10,
+            "fact": "Jobs' exile produced two revolutions. NeXT's operating system became the foundation of macOS when Apple acquired NeXT in 1997 — bringing Jobs back. Pixar, bought from George Lucas for $10 million in 1986, produced Toy Story (1995), the first fully computer-animated feature film. Disney acquired Pixar for $7.4 billion in 2006, making Jobs Disney's largest individual shareholder."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "pseudocode",
+            "configId": "jobs-code",
+            "instruction": "Arrange the pseudo-code in the right order. Jobs famously believed every programmer should learn to code — it teaches you how to think.",
+            "fact": "Steve Jobs said: 'Everybody in this country should learn how to program a computer... because it teaches you how to think.'"
+          }
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "auction",
+            "configId": "tech-auction",
+            "instruction": "Bid on landmark Silicon Valley assets. Win the starred computing relics before your rivals claim them.",
+            "fact": "The early Silicon Valley era saw fierce competition over patents and prototypes. Apple's lawsuit against Xerox over the GUI and Jobs' NeXT venture shaped the modern tech landscape."
+          }
+        }
+      ]
+    }
+  ]
+}

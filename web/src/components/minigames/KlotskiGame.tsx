@@ -431,3 +431,6 @@ export default function KlotskiGame({ configId, onWin }: { configId: string; onW
     </div>
   )
 }
+
+// Every hand-authored config id; the registry test renders each one.
+export const CONFIG_IDS = Object.keys(CONFIGS)

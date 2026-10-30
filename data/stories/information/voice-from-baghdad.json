@@ -1,0 +1,137 @@
+{
+  "slug": "voice-from-baghdad",
+  "era": "Information",
+  "order": 7,
+  "title": "Voice from Baghdad",
+  "figure": "Peter Arnett",
+  "portraitKey": "peter_arnett",
+  "tagline": "He broadcast live as bombs fell — the first reporter to cover a war in real time.",
+  "locationImage": "information_sanjose",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Baghdad, January 16, 1991. The Gulf War begins at 2:38 AM. Bombs fall on the city. Every other Western journalist has been evacuated. Three CNN reporters — Peter Arnett, Bernard Shaw, and John Holliman — are live on air from the ninth floor of the Al-Rashid Hotel."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Peter Arnett",
+          "portraitKey": "peter_arnett",
+          "text": "We can hear explosions. We can see tracer fire lighting up the sky. The city is not dark — it is lit from below by burning buildings and from above by anti-aircraft guns. Ladies and gentlemen, the air war over Baghdad has begun. We are watching it happen."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "Peter Arnett became internationally famous for his live TV coverage of which war?",
+            "options": [
+              "The Vietnam War",
+              "The 1991 Gulf War from Baghdad",
+              "The Korean War",
+              "The Falklands War"
+            ],
+            "answer": 1,
+            "fact": "Peter Arnett broadcast live from Baghdad for CNN during the Gulf War air campaign on January 17, 1991 — the first time a war had been broadcast live on television. His reports from inside the enemy capital were watched by hundreds of millions worldwide.",
+            "countdown": 10
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Arnett had already won a Pulitzer Prize for his Vietnam coverage — dispatches that showed American audiences the war their government was not showing them. In Baghdad, he did something even more radical: he stayed. While other reporters ran, he kept broadcasting."
+        },
+        {
+          "type": "dialog",
+          "speaker": "CNN Producer",
+          "text": "Peter, the State Department is pressuring us to pull you out. They say your reports are compromising military operations. What do you want to do?",
+          "portraitKey": "follower:merchant"
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "sort",
+            "question": "Arrange these landmark moments in the history of war journalism in order:",
+            "items": [
+              "William Howard Russell's dispatches from the Crimean War expose the suffering of British soldiers (1854–1856)",
+              "Eddie Adams photographs the Saigon Execution — a Viet Cong prisoner shot in the street (1968)",
+              "Peter Arnett broadcasts live from Baghdad as coalition bombs fall during the Gulf War (1991)",
+              "Journalists are embedded with military units for the first time during the Iraq War invasion (2003)"
+            ],
+            "fact": "War journalism transformed how governments prosecute and justify wars. Russell's dispatches triggered military reforms; Adams' photo changed American public opinion on Vietnam; Arnett's Gulf War broadcasts created the first live war on television — watched simultaneously by world leaders and ordinary viewers."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "dialog",
+          "speaker": "Peter Arnett",
+          "portraitKey": "peter_arnett",
+          "text": "My job is to report what I see. I'm not here to please the Pentagon or Saddam Hussein. I am here because the people watching CNN deserve to know what a war looks like from the city being bombed. Someone has to be here. I will stay."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "decode",
+            "configId": "cipher-al",
+            "instruction": "Arnett's Gulf War dispatches were scrutinised by military censors before broadcast. Decode the message — what gets through when every word is watched?",
+            "fact": "CNN's Baghdad correspondents operated under military press pools and Iraqi government minders simultaneously. Every broadcast was monitored. Arnett later said he chose his words carefully — describing what he could see while knowing the military and the Iraqi government were both watching. Real-time war journalism was born under those constraints."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "The Gulf War was the first war broadcast live on satellite television. CNN's coverage — anchored by Arnett's voice from Baghdad — permanently changed how the world understands war journalism. It created the template for every embedded reporter and every 24-hour news crisis that followed."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "sudoku",
+            "configId": "eisenstein-grid",
+            "instruction": "War correspondents must impose order on chaos — filing accurate reports under fire. The grid has one solution. Find it before the deadline.",
+            "fact": "Live television journalism from a war zone required split-second decisions: what to broadcast, how to frame it, what to leave out. Arnett's reporting from Baghdad was criticised by the US military as too sympathetic to Iraq and praised by journalists as the only independent witness in the city. Both sides were watching the same broadcast."
+          }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Peter Arnett",
+          "portraitKey": "peter_arnett",
+          "text": "In Vietnam I learned that governments tell you what they want you to believe about war. In Baghdad I learned that if you are in the right place with a microphone, the world watches and cannot look away. That is both the power and the weight of being there."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "Peter Arnett conducted the first major television interview with Osama bin Laden in 1997 — four years before the September 11 attacks.",
+            "correct": true,
+            "countdown": 10,
+            "fact": "In March 1997, Arnett (then at CNN) conducted a rare interview with Osama bin Laden in Afghanistan. Bin Laden declared war on the United States and said he would bring Americans to justice. The interview was largely ignored by media and public. Four years and five months later, the September 11 attacks occurred."
+          }
+        }
+      ]
+    }
+  ]
+}

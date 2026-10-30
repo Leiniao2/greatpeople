@@ -1,0 +1,126 @@
+{
+  "slug": "the-last-general",
+  "era": "Medieval",
+  "order": 0,
+  "title": "The Last General",
+  "figure": "Belisarius",
+  "portraitKey": "belisarius",
+  "tagline": "Rome's final military genius fought enemies on every front — including his emperor.",
+  "locationImage": "steam_istanbul",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Constantinople, 527 CE. Emperor Justinian I sits upon the throne of a crumbling empire. The Western Roman Empire has fallen. But Justinian has a dream — reconquest. And he has one general capable of making it real."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Emperor Justinian",
+          "text": "Belisarius. You are my sword. Reconquer Africa. Reconquer Italy. Give me back the Empire of Augustus.",
+          "portraitKey": "follower:sovereign"
+        },
+        {
+          "type": "dialog",
+          "speaker": "Belisarius",
+          "portraitKey": "belisarius",
+          "text": "The Vandals think themselves safe behind the sea. Let them think so a little longer. I will take Carthage before they have time to prepare."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "Belisarius reconquered which three territories for Emperor Justinian?",
+            "options": [
+              "Persia, Egypt, and Britain",
+              "North Africa, Italy, and part of Spain",
+              "Greece, Syria, and Arabia",
+              "France, Germany, and Britain"
+            ],
+            "answer": 1,
+            "fact": "Belisarius retook North Africa (533 CE), Italy (536–540 CE), and part of Spain — temporarily reuniting the old Western Roman Empire under Constantinople. He did it with armies far smaller than his opponents'."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Belisarius defeated armies many times larger than his own through speed, tactics, and the trust he inspired in his soldiers. He conquered North Africa in two years — a campaign that shocked the world."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "wargame",
+            "configId": "belisarius-battle",
+            "instruction": "Command Belisarius's amber forces. Outmaneuver the enemy to victory.",
+            "fact": "Belisarius won battles against overwhelming odds through disciplined positioning, feigned retreats, and flanking strikes — tactics centuries ahead of his time."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "dialog",
+          "speaker": "Belisarius",
+          "portraitKey": "belisarius",
+          "text": "They have accused me of treason three times now. Three times I have served with perfect loyalty. An emperor who doubts his best general is an emperor who has already lost. But I serve. It is what I am."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "geometry",
+            "configId": "circle-circumference",
+            "instruction": "Belisarius's siege engineers needed to calculate the perimeter of fortifications. Solve this circumference problem.",
+            "fact": "Byzantine siege engineers used torsion catapults and trebuchets that required precise angle and distance calculations. A few degrees off meant the difference between destroying a gate or overshooting the wall."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Belisarius's supply lines stretched across the Mediterranean. Master the routing of his forces through the Byzantine corridors to reach the final objective..."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "klotski",
+            "configId": "last-general",
+            "instruction": "Guide the general (gold block) through the formation to the exit at the bottom.",
+            "fact": "HuaRong Road (华容道) is a Chinese sliding puzzle based on Cao Cao's escape after the Battle of Red Cliffs in 208 AD — one of the most analyzed puzzles in combinatorics."
+          }
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "weapondeploy",
+            "configId": "macedonian-phalanx",
+            "instruction": "Belisarius always faced superior numbers. Deploy your archers and catapults before the battle begins — then launch the attack and watch your strategy unfold.",
+            "fact": "Belisarius reconquered North Africa, Italy, and Spain for Emperor Justinian with armies of 10,000–15,000 against forces of 100,000+. He relied on disciplined cavalry and coordinated missile fire — tactics that anticipated modern combined arms."
+          }
+        }
+      ]
+    }
+  ]
+}

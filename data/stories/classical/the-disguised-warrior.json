@@ -1,0 +1,127 @@
+{
+  "slug": "the-disguised-warrior",
+  "era": "Classical",
+  "order": 5,
+  "title": "The Disguised Warrior",
+  "figure": "Hua Mulan",
+  "portraitKey": "hua_mulan",
+  "tagline": "She takes her father's armor and rewrites what courage looks like.",
+  "locationImage": "medieval_changan",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Northern Wei Dynasty, 5th century CE. The imperial summons arrives: one man from every family must serve the Khan's army. Hua Mulan's father is old and ill. Her brother too young. So she makes a choice that will pass into legend."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Hua Mulan",
+          "portraitKey": "hua_mulan",
+          "text": "I will take my father's armor. I will ride his horse. For twelve years the army will know me as a man — and I will fight as well as any of them. Better."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "Why does Hua Mulan disguise herself as a man in the Ballad of Mulan?",
+            "options": [
+              "To take her elderly father's place in the imperial army",
+              "To escape an arranged marriage",
+              "To spy on an enemy kingdom",
+              "To reclaim her family's stolen land"
+            ],
+            "answer": 0,
+            "countdown": 10,
+            "fact": "The Ballad of Mulan, a poem dating to the Northern Wei dynasty (386–534 CE), tells of a daughter who disguises herself as a man to spare her aged, ailing father from conscription. She fights for twelve years, earns high honours, and then reveals her identity — astonishing her comrades."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "The Ballad of Mulan was first recorded in the 6th century — its origins possibly even older. Whether historical or mythological, Mulan represents the idea that courage and skill belong to neither gender alone."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "sort",
+            "question": "Arrange the key events of Mulan's story in narrative order:",
+            "items": [
+              "The imperial decree arrives — one man from each family must serve",
+              "Mulan sees her father's name on the conscription list and resolves to go in his place",
+              "She buys a horse and equipment at the market and rides north disguised as a soldier",
+              "She fights campaigns across the northern frontier for twelve years",
+              "The emperor offers her a high post in recognition of her service",
+              "Mulan declines the honour and asks only to return home to her family"
+            ],
+            "fact": "The ballad's ending is deliberately understated: Mulan's comrades, who fought beside her for a decade, are stunned to discover she is a woman. The poem asks no moral question — it simply presents her choice as natural and her courage as obvious."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "dialog",
+          "speaker": "Hua Mulan",
+          "portraitKey": "hua_mulan",
+          "text": "After twelve years of war, the Emperor offers me a title, a post, wealth. I ask only for a swift horse. I am going home. My family needs me more than the court does."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "After revealing her identity, Mulan accepted the emperor's offer of a high imperial post.",
+            "correct": false,
+            "countdown": 10,
+            "fact": "Mulan refused the emperor's offer of office and asked only for a fast horse to carry her home. The original ballad ends with her reunited family and Mulan in her women's clothes again — her identity secure, her duty complete, her reward the return of ordinary life."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Mulan's journey through the northern campaigns required navigating treacherous mountain passes. Trace her path through the ancient fortifications to reach the final battle..."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "maze",
+            "configId": "mulan",
+            "instruction": "Lead Mulan's cavalry through the northern frontier — avoid ambushes and reach the enemy encampment before dawn.",
+            "fact": "The ballad describes a real frontier: the northern Wei territories were under constant pressure from the Rouran Khaganate. The poem's military details — twelve years of campaigns, the yellow river crossing, the Black Mountain pass — reflect genuine geography and the brutal reality of steppe warfare."
+          }
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "tactics",
+            "configId": "general",
+            "instruction": "As a disguised officer earning trust through merit alone, find the decisive move that breaks the enemy's northern line.",
+            "fact": "The Ballad of Mulan became one of China's most enduring stories because it celebrated filial piety and personal courage simultaneously — two of Confucian culture's highest values. It has been retold in opera, film, and literature across fourteen centuries."
+          }
+        }
+      ]
+    }
+  ]
+}

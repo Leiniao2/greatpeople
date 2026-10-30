@@ -1,0 +1,125 @@
+{
+  "slug": "the-meiji-architect",
+  "era": "Electricity",
+  "order": 11,
+  "title": "The Meiji Architect",
+  "figure": "Itō Hirobumi",
+  "portraitKey": "ito_hirobumi",
+  "tagline": "A nation rebuilt itself in a generation, and one man held the blueprint.",
+  "locationImage": "information_tokyo",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Japan, 1868. The Emperor Meiji is restored to power after two centuries of shogunate rule. The samurai era is ending. The world outside is vast, industrialized, and encroaching. Japan has a choice: modernize or be colonized. A group of young reformers choose to remake their civilization in a single generation."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Itō Hirobumi",
+          "text": "I left Japan as a boy. I saw Europe. I saw what industry and law can do. We must not copy blindly — but we must not pretend the world stands still.",
+          "portraitKey": "ito_hirobumi"
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "What was Itō Hirobumi's greatest constitutional achievement for Japan?",
+            "options": [
+              "Signing the treaty that ended the Russo-Japanese War",
+              "Drafting the Meiji Constitution of 1889",
+              "Abolishing the samurai class",
+              "Creating Japan's first railway system"
+            ],
+            "answer": 1,
+            "fact": "The Meiji Constitution of 1889 was drafted under Itō's leadership after he studied European constitutional models — particularly Prussia's. It established Japan as a constitutional monarchy and remained in force until 1947."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Itō had smuggled himself out of Japan at nineteen to study in Britain — an act punishable by death under the old laws. He returned to become the chief architect of the Meiji Constitution, Japan's first supreme law, modelled on Prussia's constitutional monarchy."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Imperial Advisor",
+          "text": "Some say a constitution weakens the Emperor. That it divides power that should be absolute.",
+          "portraitKey": "follower:philosopher"
+        },
+        {
+          "type": "dialog",
+          "speaker": "Itō Hirobumi",
+          "text": "A constitution does not weaken power — it anchors it. Without law, authority floats free and can be swept away. With law, even a dynasty becomes unassailable.",
+          "portraitKey": "ito_hirobumi"
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "sort",
+            "question": "Arrange the key events of Itō Hirobumi's career in chronological order:",
+            "items": [
+              "Secretly studies in Britain",
+              "Helps overthrow the Tokugawa shogunate",
+              "Drafts the Meiji Constitution",
+              "Serves as first Prime Minister",
+              "Assassinated in Harbin"
+            ],
+            "fact": "Itō served as Japan's Prime Minister four separate times between 1885 and 1901. His assassination by An Jung-geun in 1909 made him a martyr in Japan and a symbol of imperialism in Korea — two truths that coexist uncomfortably."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "The Meiji Constitution of 1889 transformed Japan. Within thirty years, Japan had a modern military, a railroad network, a universal education system, and had defeated both China and Russia in war. Itō served four times as Japan's first Prime Minister — until his assassination in Harbin in 1909."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "crossword",
+            "configId": "ito",
+            "instruction": "Complete the Meiji era crossword — the reforms that transformed Japan in a single generation.",
+            "fact": "Japan went from feudal isolation to modern nation-state between 1868 and 1912: abolishing samurai, building railroads, establishing universal education, and defeating both China and Russia in war. No country modernized so completely so quickly."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "sort",
+            "question": "Arrange these Meiji Restoration reforms in the order they were introduced:",
+            "items": [
+              "Feudal domains (han) abolished, replaced by prefectures (1871)",
+              "Compulsory national education introduced (1872)",
+              "National military conscription replacing samurai class (1873)",
+              "Constitution modelled on Prussia's promulgated (1889)"
+            ],
+            "fact": "Japan transformed from a feudal samurai society to a modern industrial nation in a single generation — faster than any other country in history. By 1905, Japan had defeated Russia in war, astonishing the world and inspiring anti-colonial movements across Asia."
+          }
+        }
+      ]
+    }
+  ]
+}

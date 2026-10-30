@@ -1,0 +1,136 @@
+{
+  "slug": "the-last-fire",
+  "era": "Renaissance",
+  "order": 9,
+  "title": "The Last Fire",
+  "figure": "Rumiñahui",
+  "portraitKey": "ruminahui",
+  "tagline": "He burned Quito rather than let it fall — a warrior's final act.",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "The Inca Empire, 1533. The Spanish have captured Atahualpa, collected his ransom in gold — and strangled him anyway. Rumiñahui, the greatest Inca general, will not wait to be next."
+        },
+        {
+          "type": "narration",
+          "text": "He races south to Quito — the northern capital — arriving before the Spanish. He buries Atahualpa's gold treasure so the conquerers will never find it. Some believe it has never been found."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "Why is Rumiñahui remembered as one of the great symbols of Inca resistance?",
+            "options": [
+              "He burned Quito's treasures rather than let the Spanish capture them",
+              "He defeated a Spanish cavalry force in open battle",
+              "He negotiated a treaty that preserved Inca sovereignty in the highlands",
+              "He organized the Inca army that rescued Atahualpa from Pizarro"
+            ],
+            "answer": 0,
+            "countdown": 10,
+            "fact": "Rumiñahui ('Stone Eye') was Atahualpa's most capable general. When Pizarro captured and executed the Inca emperor in 1533, Rumiñahui gathered the northern army and led resistance from Quito. Rather than let Pizarro's forces loot the city's treasures, he burned Quito and hid its gold — a legendary hoard that has never been found."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "When Sebastián de Belalcázar approaches with a Spanish force and thousands of native allies, Rumiñahui employs Inca guerrilla tactics — ambushes in mountain passes, scorched crops, scattered forces."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "Rumiñahui was treated as a prisoner of war and eventually released after the conquest of Quito.",
+            "correct": false,
+            "countdown": 10,
+            "fact": "After months of guerrilla resistance, Rumiñahui was captured in early 1535. He was tortured by the Spanish, who demanded to know where he had hidden Quito's treasure. He revealed nothing. He was publicly executed in Quito in early 1535 — an act the Spanish intended as a demonstration of power, which instead made him an immortal symbol of defiance."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "He cannot win in open battle — Spanish steel, horses, and guns are decisive. But he refuses to surrender. He burns Quito to the ground rather than let it become a Spanish trophy."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "sort",
+            "question": "Arrange the key events of Rumiñahui's resistance in order:",
+            "items": [
+              "Atahualpa is captured by Pizarro at Cajamarca — the Inca world fractures",
+              "Rumiñahui consolidates the northern Inca army and prepares Quito for defence",
+              "Spanish forces march north toward Quito after executing Atahualpa",
+              "Rumiñahui burns Quito and removes its treasures — denying the Spanish their prize",
+              "Rumiñahui continues guerrilla resistance across the northern highlands for months",
+              "He is captured, tortured, and executed — revealing nothing of the hidden gold"
+            ],
+            "fact": "The lost treasure of Quito became one of the great legends of the Americas. Expeditions searched for it for centuries, and legends of El Dorado were partly inspired by the belief that Rumiñahui had hidden an incomprehensible fortune somewhere in the Andes. No credible discovery has ever been made."
+          }
+        },
+        {
+          "type": "narration",
+          "text": "Captured after a volcanic eruption disrupts his forces, he is tortured to reveal the treasure's location. He says nothing. His silence is the last act of resistance."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "tactics",
+            "configId": "general",
+            "instruction": "Rumiñahui had no answer to Spanish cavalry on flat ground — so he chose mountain passes, river crossings, and jungle ambushes. Position your forces where horsemen cannot charge.",
+            "fact": "The Spanish advantage in the Inca conquest was not just steel and gunpowder — it was horses. The Inca had no large domesticated animals. The sight of mounted soldiers, armored in steel, was psychologically devastating. Rumiñahui understood this and consistently drew Spanish forces into terrain that negated the horse — steep trails, forest, and fast rivers."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Rumiñahui is executed in Quito in 1535. Today he is a national hero of Ecuador — a symbol of indigenous resistance, of a world that burned rather than submitted."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "klotski",
+            "configId": "last-general",
+            "instruction": "Rumiñahui's final campaign was a strategic puzzle — how to keep an army in the field when the enemy controls every city. Rearrange the pieces to find the one path that keeps resistance alive.",
+            "fact": "Rumiñahui's resistance lasted over a year after Atahualpa's execution — longer than most regional Inca leaders managed. He maintained cohesion through personal authority and the loyalty of the Quitan military class. When he was finally taken, it was through betrayal rather than defeat in battle, which the Spanish admitted privately."
+          }
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "voting",
+            "configId": "spanish-court",
+            "instruction": "The Spanish conducted formal legal proceedings to justify the conquest. Navigate the colonial tribunal where Inca resistance was reframed as rebellion against legitimate Spanish authority.",
+            "fact": "The Spanish legal doctrine of the time held that indigenous rulers who resisted after being informed of Spanish sovereignty were rebels, not sovereign enemies — removing any obligation to treat them as prisoners of war. This legal fiction allowed the Spanish to torture and execute leaders like Rumiñahui without violating their own laws. It was the first formal deployment of what modern scholars call the 'lawfare' of conquest."
+          }
+        }
+      ]
+    }
+  ]
+}

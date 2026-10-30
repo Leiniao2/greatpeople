@@ -1,0 +1,110 @@
+{
+  "slug": "way-of-the-sword",
+  "era": "Renaissance",
+  "order": 0,
+  "title": "Way of the Sword",
+  "figure": "Miyamoto Musashi",
+  "portraitKey": "miyamoto_musashi",
+  "tagline": "The legendary swordsman who mastered both blade and brush.",
+  "locationImage": "medieval_kyoto",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Japan, 1604. A wandering swordsman arrives at the Yoshioka school in Kyoto — alone, unkempt, carrying a wooden sword. He has come to challenge the finest school in Japan. The students laugh. They will not laugh for long."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Miyamoto Musashi",
+          "portraitKey": "miyamoto_musashi",
+          "text": "I have fought sixty duels and not once carried a steel blade. The sword is in the mind. The mind that is disturbed, that fears death, has already lost the moment before the fight begins."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "Miyamoto Musashi won his famous duel against Sasaki Kojiro using:",
+            "options": [
+              "A metal sword",
+              "A wooden sword carved from an oar",
+              "A spear",
+              "Twin steel blades"
+            ],
+            "answer": 1,
+            "fact": "Musashi arrived late for his duel with Kojiro on Ganryūjima island (1612), having carved a practice sword from a boat oar on the way. He killed Kojiro with one strike — the psychological warfare of his lateness was as devastating as the blow."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Musashi's philosophy — the Way of the Sword, Niten Ichi-ryū — was not merely about fighting. He believed that mastery in any discipline, from swordsmanship to painting to strategy, required the same fundamental principles."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "maze",
+            "configId": "musashi",
+            "instruction": "Guide Musashi through the mountain paths to his final duel",
+            "fact": "Musashi never lost a duel in 60+ fights. In his later years he renounced killing, became a painter and sculptor, and wrote The Book of Five Rings — still read by business leaders and martial artists worldwide."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "dialog",
+          "speaker": "Miyamoto Musashi",
+          "portraitKey": "miyamoto_musashi",
+          "text": "The Book of Five Rings. Earth, Water, Fire, Wind, Void. Understand these elements in strategy and you will understand how any battle — in war, in business, in the mind — must be fought and won."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "tactics",
+            "configId": "musashi-duel",
+            "instruction": "Musashi holds the high ground on Ganryū Island. Find the one move that wins the duel.",
+            "fact": "Musashi arrived two hours late — deliberately. The waiting destroyed Kojirō's composure. 'You have already lost,' Musashi said, then charged."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Musashi wrote The Book of Five Rings at age 60, retired to a cave. His strategic principles apply to any contest. Prove your understanding of the Way..."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "klotski",
+            "configId": "sword-formation",
+            "instruction": "Break through the formation — slide the sword piece to the marked position.",
+            "fact": "Renaissance swordsmanship manuals (fencing treatises) were among the first printed technical manuals, systematizing combat for the first time in European history."
+          }
+        }
+      ]
+    }
+  ]
+}

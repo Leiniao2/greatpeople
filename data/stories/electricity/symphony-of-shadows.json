@@ -1,0 +1,123 @@
+{
+  "slug": "symphony-of-shadows",
+  "era": "Electricity",
+  "order": 2,
+  "title": "Symphony of Shadows",
+  "figure": "Johannes Brahms",
+  "portraitKey": "johannes_brahms",
+  "tagline": "He lives under Beethoven's shadow and finds his own towering voice.",
+  "locationImage": "steam_london",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Vienna, 1876. Johannes Brahms is 43 years old and has not yet written a symphony. The ghost of Beethoven looms over him — 'the footsteps of a giant,' he calls it. Tonight, after twenty-one years of drafts and doubts, he premieres his First."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Johannes Brahms",
+          "portraitKey": "johannes_brahms",
+          "text": "You cannot hear what I hear before I write it down. The music exists perfectly in my mind — and then degrades as I put it on paper. A composer's tragedy is that the ideal is always just beyond the real."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "Which composer served as Brahms' most important early mentor and champion?",
+            "options": [
+              "Robert Schumann",
+              "Franz Liszt",
+              "Richard Wagner",
+              "Felix Mendelssohn"
+            ],
+            "answer": 0,
+            "countdown": 10,
+            "fact": "Robert Schumann heard the 20-year-old Brahms play in 1853 and immediately published an article declaring him 'the one called to give ideal expression to the times.' It was an extraordinary endorsement that launched Brahms' career — and also set impossible expectations that would haunt him for decades."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Brahms was Clara Schumann's closest friend and champion of her husband Robert's music after Robert's breakdown and death. His relationship with Clara — intense, complex, never consummated — shaped his most personal compositions."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "Brahms completed his First Symphony quickly, finishing it within a year of beginning it.",
+            "correct": false,
+            "countdown": 10,
+            "fact": "Brahms labored over his First Symphony for 21 years, from 1854 to 1876. He was paralyzed by the shadow of Beethoven — convinced that any symphony he wrote would be compared unfavorably to Beethoven's nine. When it finally premiered, the conductor Hans von Bülow called it 'Beethoven's Tenth' — the highest compliment and a backhanded burden."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "dialog",
+          "speaker": "Johannes Brahms",
+          "portraitKey": "johannes_brahms",
+          "text": "They say I am a conservative — a reactionary against the New German School. Wagner and Liszt may have their future. But counterpoint, structure, the sonata form — these are not antique fetters. They are the bones of music."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "sort",
+            "question": "Arrange these milestones of Brahms' life in chronological order:",
+            "items": [
+              "Brahms meets Robert Schumann, who immediately champions him publicly",
+              "Robert Schumann is committed to a sanatorium — Brahms supports Clara",
+              "Brahms moves to Vienna, his permanent home for the rest of his life",
+              "His German Requiem premieres to international acclaim",
+              "Brahms finally completes and premieres his First Symphony",
+              "He destroys manuscripts he deems unworthy and retires from composition"
+            ],
+            "fact": "Brahms was his own harshest critic. He destroyed dozens of works he judged inferior, including a complete string quintet and multiple early symphonies. What survives — four symphonies, two piano concertos, the German Requiem, the Lullaby — represents only what passed his merciless standard."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "music",
+            "configId": "brahms-lullaby",
+            "instruction": "Brahms composed his famous Lullaby in 1868 as a gift for a friend's newborn son. Play the melody that has soothed children to sleep for 150 years.",
+            "fact": "Brahms based the Lullaby (Op. 49, No. 4) on a folk song he heard a childhood sweetheart sing, weaving his memory of her voice into the melody. It became the most hummed tune of the 19th century — and today it plays in hospitals worldwide to announce a birth."
+          }
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "sudoku",
+            "configId": "brahms-pattern",
+            "instruction": "Brahms constructed his symphonies with mathematical precision, layering motifs like a counterpoint puzzle. Solve the harmonic grid that mirrors his structural thinking.",
+            "fact": "Brahms was deeply influenced by Baroque counterpoint, studying Bach's manuscripts obsessively. His technique of 'developing variation' — transforming a small motif through subtle changes across an entire symphony — influenced Schoenberg, Webern, and the entire 20th-century tradition of motivic composition."
+          }
+        }
+      ]
+    }
+  ]
+}

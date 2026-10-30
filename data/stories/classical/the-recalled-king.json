@@ -1,0 +1,115 @@
+{
+  "slug": "the-recalled-king",
+  "era": "Classical",
+  "order": 8,
+  "title": "The Recalled King",
+  "figure": "Pleistoanax",
+  "portraitKey": "pleistoanax",
+  "tagline": "Exile could not extinguish a king forged by Sparta's unbreakable law.",
+  "locationImage": "classical_sparta",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Sparta, 445 BCE. Pleistoanax is condemned. He accepted a bribe from Pericles and withdrew the Spartan army from Attica without a battle. A Spartan king — retreating. He was exiled to Mount Lycaeum, where the shadow of Zeus fell."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Ephors",
+          "text": "You have shamed Sparta. You are no longer a king of this city — you are an outcast of the gods themselves.",
+          "portraitKey": "follower:merchant"
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "Why was Pleistoanax exiled from Sparta?",
+            "options": [
+              "He fled a battle",
+              "He was accused of accepting bribes and withdrawing the army",
+              "He converted to Athenian democracy",
+              "He refused to lead the Olympic games"
+            ],
+            "answer": 1,
+            "fact": "Pleistoanax was exiled in 445 BCE after being accused of accepting bribes from Pericles to withdraw the Spartan army from Attica. He spent nineteen years in exile near Mount Lycaeum before being recalled."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "For nineteen years Pleistoanax lived in exile beside a temple of Zeus. All of Sparta's military disasters were blamed on his absence. The oracle at Delphi spoke again and again: bring home the recalled king, or suffer."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Spartan Elder",
+          "text": "The harvests fail. The Athenians press us. We need Pleistoanax.",
+          "portraitKey": "follower:philosopher"
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "tactics",
+            "configId": "thermopylae",
+            "instruction": "Negotiate the Peace of Nicias — maneuver Sparta and Athens toward a lasting truce.",
+            "fact": "The Peace of Nicias (421 BCE) was negotiated largely by Pleistoanax on the Spartan side. It guaranteed fifty years of peace between Athens and Sparta — though it lasted less than seven before the Sicilian Expedition shattered it."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "dialog",
+          "speaker": "Pleistoanax",
+          "text": "A king exiled is still a king. The years on the mountain taught me what no throne could — that Sparta's strength is not in its walls but in the constancy of its people.",
+          "portraitKey": "pleistoanax"
+        },
+        {
+          "type": "narration",
+          "text": "In 428 BCE, the Spartans recalled their exiled king. Within a decade he would negotiate the Peace of Nicias, ending the first phase of the great war with Athens — a fragile peace that gave both sides a chance to breathe."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "tactics",
+            "configId": "gaugamela",
+            "instruction": "Pleistoanax must outmanoeuvre the Athenian alliance on the Spartan board. Find the decisive move that secures a lasting peace — or at least a temporary one.",
+            "fact": "Pleistoanax negotiated the Thirty Years' Peace in 446 BCE after withdrawing from Attica — a withdrawal his enemies called cowardice or corruption. The peace lasted only fifteen years before the Peloponnesian War erupted, but it gave Greece a generation of relative stability in which philosophy, drama, and architecture flourished."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "The Thirty Years' Peace between Athens and Sparta lasted for its full thirty-year term.",
+            "correct": false,
+            "fact": "The Thirty Years' Peace (446 BCE) lasted only fourteen years before the Peloponnesian War broke out in 431 BCE. Thucydides blamed Spartan fear of Athenian power growth — not any specific provocation — as the true cause of the war."
+          }
+        }
+      ]
+    }
+  ]
+}

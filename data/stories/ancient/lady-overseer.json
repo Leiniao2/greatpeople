@@ -1,0 +1,137 @@
+{
+  "slug": "lady-overseer",
+  "era": "Ancient",
+  "order": 10,
+  "title": "Lady Overseer",
+  "figure": "Peseshet",
+  "portraitKey": "peseshet",
+  "tagline": "History's first named female doctor supervised physicians when women rarely held titles.",
+  "locationImage": "ancient_memphis",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Memphis, Egypt, c. 2500 BCE. The Old Kingdom at its height. The great pyramids are already standing. And in the medical precincts of the city, a woman holds a title that should not exist — not according to anything the ancient world expects of women."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Peseshet",
+          "portraitKey": "peseshet",
+          "text": "I did not seek this title. I earned it. Every woman physician under my supervision was trained here — how to read the body's signs, how to prepare medicines, how to assist in birth. Medicine does not care about the sex of the hands that practice it. Only their skill."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "Peseshet held the title 'Lady Overseer of Female Physicians.' What was extraordinary about this?",
+            "options": [
+              "She performed surgery without tools",
+              "She was the first woman to hold an administrative medical title in recorded history",
+              "She refused to treat men",
+              "She practiced medicine for free"
+            ],
+            "answer": 1,
+            "fact": "Peseshet (c. 2500–2450 BCE) is the earliest known female medical administrator in history. Her title 'Imy-r swnwt' — 'Lady Overseer of Female Physicians' — indicates she supervised a group of female medical practitioners, making her a pioneering figure in both medicine and women's leadership.",
+            "countdown": 10
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Peseshet's title — 'Lady Overseer of Female Physicians' — is unique in the entire corpus of ancient Egyptian texts. It implies an institution: a school or hospital where women trained as physicians under her supervision. We know of her only through an inscription in her son Akhethotep's tomb."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Young Physician",
+          "text": "Lady Peseshet, the older male physicians say women should only attend to women patients — that we should not treat the men or the soldiers. Is that the law?",
+          "portraitKey": "follower:philosopher"
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "sort",
+            "question": "Arrange these developments in ancient medicine from oldest to most recent:",
+            "items": [
+              "Peseshet serves as Lady Overseer of Female Physicians in Egypt (c. 2400 BCE)",
+              "The Ebers Papyrus compiles 700 medical remedies, including treatments for crocodile bites (c. 1550 BCE)",
+              "Hippocrates founds a school of rational medicine on the island of Cos (c. 460 BCE)",
+              "Galen of Pergamon synthesises ancient medical knowledge into a system used for 1,400 years (c. 160 CE)"
+            ],
+            "fact": "Peseshet predates Hippocrates — the 'Father of Medicine' — by nearly 2,000 years. Her title 'Lady Overseer of Female Physicians' implies there were enough women doctors to require an administrator, suggesting female medical practice was established, not exceptional."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "dialog",
+          "speaker": "Peseshet",
+          "portraitKey": "peseshet",
+          "text": "The patient who needs you does not care what the older physicians say. Treat the patient in front of you with every skill you have. The body's suffering is not gendered. Neither is the physician's obligation to relieve it."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "Peseshet's title appears in the tomb of her son Akhethetep at Giza, not in her own tomb.",
+            "correct": true,
+            "countdown": 10,
+            "fact": "We know of Peseshet entirely through a false door stele in her son's tomb at Giza. This was a common way for high-status women to be memorialized. The inscription preserves for 4,500 years the name of the world's first known female physician."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Ancient Egypt was unusually progressive regarding women in medicine. Several female physicians are attested in the historical record. Peseshet stands above them all — not merely as a practitioner, but as an administrator and educator who built an institution, trained successors, and left a legacy her son thought worth recording in stone."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "geometry",
+            "configId": "volume-pyramid",
+            "instruction": "Peseshet's world was defined by monumental mathematics. The engineers who built the pyramids at Giza were her contemporaries — calculate the volume of the great monument.",
+            "fact": "The Great Pyramid of Giza was built within a century of Peseshet's career. The same mathematical precision used to align its base to within 3.7 cm of perfect was applied by Egyptian physicians to their dosage calculations — geometry and medicine shared the same scribal tradition."
+          }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Peseshet",
+          "portraitKey": "peseshet",
+          "text": "My name will be in my son's tomb. Not as his mother — as Lady Overseer of Female Physicians. That title is the record I leave. One day someone will read it and understand: this was a place where women healed, and a woman led them. Let that be enough."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "klotski",
+            "configId": "pyramid-capstone",
+            "instruction": "Slide the golden capstone into its final position — as Egypt's monument-builders did, solving spatial puzzles in stone and copper.",
+            "fact": "Ancient Egyptian construction used a form of modular planning — calculating how blocks must slide and stack to achieve the final form. The same systematic thinking appears in Egyptian medical texts, where treatments are sequenced step by step, building toward a cure."
+          }
+        }
+      ]
+    }
+  ]
+}

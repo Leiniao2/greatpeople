@@ -111,6 +111,7 @@ const ERA_POLICIES: Record<string, Policy[]> = {
 // ── Config → era mapping ───────────────────────────────────────────────────────
 
 const CONFIG_ERA: Record<string, string> = {
+  'aspasia-trial': 'classical',
   'roman-senate': 'classical', 'athenian-assembly': 'classical',
   'spanish-court': 'renaissance',
   'akkadian-council': 'ancient',
@@ -459,3 +460,6 @@ export default function VotingGame({ configId, onWin, politics = 10 }: Props) {
     </div>
   )
 }
+
+// Every hand-authored config id; the registry test renders each one.
+export const CONFIG_IDS = [...Object.keys(CONFIG_ERA), ...Object.keys(ERA_POLICIES)]

@@ -539,3 +539,6 @@ export default function MirrorGame({ configId, onWin }: MirrorGameProps) {
     </div>
   )
 }
+
+// Every hand-authored config id; the registry test renders each one.
+export const CONFIG_IDS = Object.keys(CONFIGS)

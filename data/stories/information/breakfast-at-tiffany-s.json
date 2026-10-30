@@ -1,0 +1,134 @@
+{
+  "slug": "breakfast-at-tiffany-s",
+  "era": "Information",
+  "order": 2,
+  "title": "Breakfast at Tiffany's",
+  "figure": "Audrey Hepburn",
+  "portraitKey": "audrey_hepburn",
+  "tagline": "Grace in every frame, humanity in every cause.",
+  "locationImage": "information_sanjose",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Hollywood, 1953. A twenty-four year old Belgian actress arrives from the London stage. Her face is unlike any Hollywood had seen — all cheekbones and enormous dark eyes. Within a year she will win an Oscar, a Tony, and change what beauty means to an entire generation."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Audrey Hepburn",
+          "portraitKey": "audrey_hepburn",
+          "text": "I was a war child. I was hungry — truly hungry, as a child in occupied Netherlands. That changes you. I cannot look at abundance without thinking of those who have none. Which is why, in the end, UNICEF matters more to me than cinema."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "Audrey Hepburn is the only actress to have won which four major entertainment awards (EGOT)?",
+            "options": [
+              "Emmy, Grammy, Oscar, Tony",
+              "BAFTA, Grammy, Oscar, Tony",
+              "Emmy, Grammy, Oscar, Golden Globe",
+              "Oscar, Tony, Cannes Palme d'Or, Grammy"
+            ],
+            "answer": 0,
+            "fact": "Audrey Hepburn won an Oscar (Roman Holiday, 1953), Tony (Ondine, 1954), Emmy (Love Among Thieves, 1993), and Grammy (spoken word album, 1993) — becoming one of very few EGOT winners. She also received the Presidential Medal of Freedom.",
+            "countdown": 10
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "In her final years, Hepburn served as a UNICEF Goodwill Ambassador, traveling to Somalia, Ethiopia, Sudan, and Bangladesh — places far from Hollywood's lights. She called her humanitarian work her greatest role."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "music",
+            "configId": "moon-river",
+            "instruction": "Arrange the opening notes of 'Moon River' — the song Audrey Hepburn sang in Breakfast at Tiffany's.",
+            "fact": "'Moon River' won the 1962 Academy Award for Best Original Song. When Paramount executives suggested cutting it, Hepburn reportedly said: 'Over my dead body!' Henry Mancini's melody became her signature."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "dialog",
+          "speaker": "Audrey Hepburn",
+          "portraitKey": "audrey_hepburn",
+          "text": "I believe in pink. I believe that laughing is the best calorie burner. I believe in kissing, kissing a lot. I believe in being strong when everything seems to be going wrong. I believe that happy girls are the prettiest girls."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "sort",
+            "question": "Arrange Audrey Hepburn's career milestones in chronological order:",
+            "items": [
+              "Wins the Academy Award for Best Actress for Roman Holiday",
+              "Stars in Breakfast at Tiffany's — Givenchy's black dress becomes iconic",
+              "Appointed UNICEF Goodwill Ambassador",
+              "Receives Emmy and Grammy Awards — completing the EGOT"
+            ],
+            "fact": "Hepburn won the Oscar, Tony, Emmy, and Grammy — one of very few EGOT recipients. But she considered her UNICEF work her greatest achievement, visiting famine-stricken communities in Ethiopia, Sudan, Bangladesh, and Central America in her final years."
+          }
+        },
+        {
+          "type": "narration",
+          "text": "Audrey's path from wartime Netherlands to Hollywood stardom was a journey through chaos and reinvention. Navigate her story to reach the iconic moment..."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "Audrey Hepburn won the Academy Award for Best Actress for her role in Breakfast at Tiffany's.",
+            "correct": false,
+            "fact": "Hepburn won the Oscar for Roman Holiday (1953), her film debut. For Breakfast at Tiffany's (1961), she received a nomination but lost to Sophia Loren. The film's song \"Moon River\" won the Oscar for Best Original Song — Henry Mancini wrote it specifically for Hepburn's vocal range."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "jigsaw",
+            "configId": "mona-lisa",
+            "instruction": "Audrey Hepburn loved the Louvre. Reassemble da Vinci's Mona Lisa — swap tiles until her enigmatic smile is whole again.",
+            "fact": "Da Vinci worked on the Mona Lisa from approximately 1503 to 1517, carrying it with him when he moved to France. X-ray scans reveal three entirely different compositions beneath the final paint."
+          }
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "museum",
+            "configId": "louvre-arrangement",
+            "instruction": "Four wings of the Louvre await your curatorial eye. Place each masterpiece in the room that earns the greatest bonus and open the museum doors.",
+            "fact": "Audrey Hepburn was a devoted visitor of European museums and served as a UNICEF ambassador for the last five years of her life, championing education and the arts for children worldwide."
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "slug": "fashion-revolution",
+  "era": "Electricity",
+  "order": 5,
+  "title": "Fashion Revolution",
+  "figure": "Coco Chanel",
+  "portraitKey": "coco_chanel",
+  "tagline": "She strips away the corsets and dresses an entire century in freedom.",
+  "locationImage": "electricity_paris",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Paris, 1910. Women are still wearing whalebone corsets, suffocating layers of skirts, and hats the size of carriages. A milliner from Aubazine with a sharp eye and sharper tongue is about to liberate the female body — one design at a time."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Coco Chanel",
+          "portraitKey": "coco_chanel",
+          "text": "Fashion is not something that exists only in dresses. Fashion is in the sky, in the street. It has to do with ideas, the way we live, what is happening. The corset was a prison. I opened the door."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "Coco Chanel popularised which garment in 1926 that became a symbol of modern fashion?",
+            "options": [
+              "The trouser suit",
+              "The little black dress",
+              "The trench coat",
+              "The wrap dress"
+            ],
+            "answer": 1,
+            "fact": "Chanel's 'little black dress' (1926) appeared in Vogue, which compared it to Ford's Model T — a fashion so universal and timeless it was available to everyone. Black had previously been reserved for mourning."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Chanel didn't just change clothes — she changed what elegance meant. Before Chanel, simplicity was poverty. After Chanel, simplicity was sophistication. The little black dress, the collarless jacket, jersey fabric — all revolutionary in their time."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "sort",
+            "question": "Arrange these milestones of Chanel's fashion revolution in chronological order:",
+            "items": [
+              "Opens her first millinery shop in Paris — hats only, no corsets",
+              "Introduces jersey fabric into women's fashion, replacing stiff silk",
+              "Chanel No. 5 becomes the world's best-selling perfume",
+              "Launches the little black dress in Vogue — 'the Ford of fashion'"
+            ],
+            "fact": "Each of Chanel's innovations stripped away constraint. Jersey replaced stiff silk; cardigan suits replaced corsets; black replaced colour as the dominant fashion statement. She built freedom into fashion at a time when clothing was still architecture built to restrict women's bodies."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "dialog",
+          "speaker": "Coco Chanel",
+          "portraitKey": "coco_chanel",
+          "text": "I don't do fashion. I am fashion. And Chanel No. 5 — I wanted a woman's perfume that smells like a woman, not like a flower or like a lily of the valley. Something complex. Something that requires thought."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "music",
+            "configId": "jazz-nocturne",
+            "instruction": "The Jazz Age inspired Chanel's Paris salon. Arrange the notes of a 1920s jazz phrase.",
+            "fact": "Chanel thrived in the Jazz Age Paris of the 1920s — a world of Picasso, Stravinsky, Diaghilev, and Hemingway. She dressed the dancers of the Ballets Russes and set the aesthetic for an entire era."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "Before Chanel, fashionable women's clothing required tight corsets — Chanel was among the first designers to make comfortable, unstructured clothes stylish.",
+            "correct": true,
+            "countdown": 10,
+            "fact": "Victorian corsets could pull a waist to 45 cm (18 inches), causing fainting, rib deformities, and displaced organs. Chanel borrowed fabrics from men's sportswear — jersey, tweed — and designed for movement. 'I gave women a sense of freedom,' she said. 'I gave them back their bodies.' It was a cultural revolution sewn into cloth."
+          }
+        }
+      ]
+    }
+  ]
+}

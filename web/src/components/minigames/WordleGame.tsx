@@ -27,6 +27,7 @@ const CONFIGS: Record<string, WordleConfig> = {
   brush:          { word: 'BRUSH', title: "Titian's Tool",       hint: 'Legend says Titian finished paintings with his fingers — but it started with this' },
   zeros:          { word: 'ZEROS', title: 'The Nothing Number',  hint: "Al-Khwarizmi helped transmit the concept of zero to Western mathematics" },
   flood:          { word: 'FLOOD', title: 'The Great Deluge',    hint: "The catastrophe that tests the hero in the world's oldest epic" },
+  aviate:         { word: 'PILOT', title: 'Lady Lindy',          hint: 'What Amelia Earhart was — the first woman to fly the Atlantic alone' },
 }
 
 // ── Constants ──────────────────────────────────────────────────────────────────
@@ -362,3 +363,6 @@ export default function WordleGame({ configId, onWin }: { configId: string; onWi
     </div>
   )
 }
+
+// Every hand-authored config id; the registry test renders each one.
+export const CONFIG_IDS = Object.keys(CONFIGS)

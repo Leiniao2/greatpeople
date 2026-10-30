@@ -505,3 +505,6 @@ function DPadBtn({ label, onClick, accent }: { label: string; onClick: () => voi
     </button>
   )
 }
+
+// Every hand-authored config id; the registry test renders each one.
+export const CONFIG_IDS = Object.keys(CONFIGS)

@@ -1,0 +1,132 @@
+{
+  "slug": "the-fortunate-king",
+  "era": "Renaissance",
+  "order": 4,
+  "title": "The Fortunate King",
+  "figure": "Manuel I of Portugal",
+  "portraitKey": "manuel_i",
+  "tagline": "The sea answered his call, and the world opened before him.",
+  "locationImage": "renaissance_qusqu",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Lisbon, 1495. Manuel inherits the Portuguese crown — and with it, the most advanced maritime programme in the world. Decades of exploration have mapped the coast of Africa. Now the route to India beckons. Manuel sees not just trade routes but destiny."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Manuel I of Portugal",
+          "text": "The wealth of the East passes through Arab and Venetian hands before it reaches us. What if it came directly? What if Lisbon became the hub of the world's trade?",
+          "portraitKey": "manuel_i"
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "Manuel I of Portugal was known by what nickname, reflecting the extraordinary wealth of his reign?",
+            "options": [
+              "The Great",
+              "The Fortunate",
+              "The Navigator",
+              "The Bold"
+            ],
+            "answer": 1,
+            "fact": "'Manuel, o Venturoso' — The Fortunate. Under his reign, Vasco da Gama reached India (1498), Pedro Cabral reached Brazil (1500), and Portugal controlled the world's spice trade. Lisbon became the richest city in Europe."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "He commissioned Vasco da Gama to sail around Africa to India. In 1498, da Gama arrived at Calicut. The spice route was open. Manuel's Portugal was suddenly the richest nation in Europe, with trading posts from Brazil to Japan."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Vasco da Gama",
+          "text": "The Indians have their own merchants, their own navies, their own trade. They did not expect us. Some welcomed us. Others did not.",
+          "portraitKey": "follower:explorer"
+        },
+        {
+          "type": "dialog",
+          "speaker": "Manuel I of Portugal",
+          "text": "Then we must be the ones who make our welcome unavoidable. Build a fortress. Establish trade. The sea route must remain ours.",
+          "portraitKey": "manuel_i"
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "cooking",
+            "configId": "japanese-tea",
+            "instruction": "Portuguese traders were the first Europeans to reach Japan. Arrange the tea ceremony steps they would have witnessed there.",
+            "fact": "Portuguese traders arrived in Japan in 1543. They brought firearms, Catholicism, and tempura cooking — and in return encountered Japanese tea culture and Buddhist art. The cultural exchange flowed both ways."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Under Manuel, Portugal controlled the entire Eastern spice trade. Albuquerque conquered Goa, Malacca, Hormuz. Cabral claimed Brazil. The small nation on Europe's western edge became the first global empire. They called Manuel 'O Venturoso' — the Fortunate."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Manuel I of Portugal",
+          "text": "Some kings are remembered for their battles. I will be remembered for the oceans my people crossed and the worlds they found.",
+          "portraitKey": "manuel_i"
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "matchthree",
+            "configId": "lisbon-spices",
+            "instruction": "Trade the spices in Lisbon's market — match three or more to clear the board.",
+            "fact": "Under Manuel I, Portugal controlled the spice trade from 1498 to the 1580s. A cargo of cloves from Maluku could return 100× its cost in Lisbon — funding the Manueline architecture still standing in Belém."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "matchthree",
+            "configId": "hanseatic-runes",
+            "instruction": "The Hanseatic League traded in six commodities across northern Europe. Six rune-marked goods flood the board — match 3 or more to clear them. 56 tiles to clear on a 7×7 grid.",
+            "fact": "The Hanseatic League at its peak united over 200 Northern European cities in a merchant alliance that bypassed feudal lords entirely. Its Kontors in London, Bergen, Bruges and Novgorod operated as sovereign trading colonies, complete with their own courts, weights, and private armies."
+          }
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "colormix",
+            "configId": "ultramarine-lapis",
+            "instruction": "Mix the ultramarine blue reserved for the Virgin Mary — mined from a single valley in Afghanistan and worth more than gold in the Renaissance.",
+            "fact": "Medieval contracts specified exactly how many grams of lapis lazuli an artist could use. Jan van Eyck and Fra Angelico reserved it solely for the Virgin Mary's robe. Michelangelo reportedly left the Entombment unfinished because his patron refused to supply enough lapis."
+          }
+        }
+      ]
+    }
+  ]
+}

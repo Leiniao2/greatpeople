@@ -1,0 +1,125 @@
+{
+  "slug": "the-voice-of-rome",
+  "era": "Classical",
+  "order": 2,
+  "title": "The Voice of Rome",
+  "figure": "Cicero",
+  "portraitKey": "cicero",
+  "tagline": "The Senate hangs on every word — and words can cut like swords.",
+  "locationImage": "classical_rome",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Rome, 63 BCE. A conspiracy is unfolding. Lucius Sergius Catilina has plotted to seize the Republic by force. The Senate trembles. The consul — a self-made man who rose from the Italian middle class through nothing but eloquence — prepares to speak."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Cicero",
+          "portraitKey": "cicero",
+          "text": "How long, Catiline, will you abuse our patience? How long will your madness mock us? Do you not see that your plot is known? Quousque tandem abutere, Catilina, patientia nostra?"
+        },
+        {
+          "type": "narration",
+          "text": "The hall falls silent. Catiline rises to defend himself — and finds he cannot. Cicero's words have stripped him bare before Rome. The greatest orator of the ancient world has just saved the Republic."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "Cicero was executed in 43 BCE on the orders of:",
+            "options": [
+              "Julius Caesar",
+              "Pompey",
+              "Marc Antony",
+              "Augustus"
+            ],
+            "answer": 2,
+            "fact": "After Caesar's assassination, Cicero attacked Marc Antony in speeches called the Philippics. Antony had him killed. His hands — which had written the speeches — were nailed to the Senate doors."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "dialog",
+          "speaker": "Cicero",
+          "portraitKey": "cicero",
+          "text": "The law is not merely rules. Law is the bond of civil society, the foundation of liberty, the wellspring of justice. A state without law is merely force wearing a mask."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "tactics",
+            "configId": "general",
+            "instruction": "Cicero's logic traps his opponent — find the decisive move.",
+            "fact": "Cicero's Catilinarian Orations cornered the conspirators so completely that even Catiline's allies abandoned him. His rhetoric was his weapon."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Decades later: Caesar is dead. Mark Antony seizes power. And Cicero, old and exhausted, takes up his pen one last time — writing the Philippics against Antony. He knows the cost."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Cicero",
+          "portraitKey": "cicero",
+          "text": "I know what I risk. Antony will not forget these words. But I have defended this Republic all my life. To be silent now — to be silent now would be to die before my death."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "voting",
+            "configId": "roman-senate",
+            "instruction": "Step into Cicero's sandals: win enough senatorial votes to authorise action against Catiline's conspirators.",
+            "fact": "Cicero's four Catilinarian Orations (63 BCE) are among history's most famous speeches. He secured the Senate's emergency vote — and was later exiled for bypassing the right to trial."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "Cicero's Catilinarian orations persuaded the Senate to give Catiline a fair trial before punishment.",
+            "correct": false,
+            "fact": "Cicero convinced the Senate to execute the Catilinarian conspirators without trial — a legally questionable act for which he was later exiled. His famous line \"Quousque tandem abutere, Catilina, patientia nostra?\" (How long, Catiline, will you abuse our patience?) is still quoted today."
+          }
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "pipeline",
+            "configId": "roman-aqueduct",
+            "instruction": "Route Rome's Aqua Claudia from mountain springs to the city — the engineering marvel that gave Rome water for a million people.",
+            "fact": "Rome's eleven major aqueducts delivered over one billion litres of water per day. The Aqua Claudia ran 69 km, mostly underground, with spectacular arched sections up to 28 metres high. No pumps were needed — only gravity and precision."
+          }
+        }
+      ]
+    }
+  ]
+}

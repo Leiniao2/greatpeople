@@ -1,0 +1,136 @@
+{
+  "slug": "the-great-journey",
+  "era": "Medieval",
+  "order": 7,
+  "title": "The Great Journey",
+  "figure": "Ibn Battuta",
+  "portraitKey": "ibn_battuta",
+  "tagline": "He traveled 75,000 miles and wrote the medieval world's greatest travelogue.",
+  "lives": 3,
+  "stages": [
+    {
+      "key": "origins",
+      "label": "Origins",
+      "difficulty": 1,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Tangier, 1325. Ibn Battuta, 21 years old, sets off for Mecca. He will not return home for 29 years — and he will travel 75,000 miles, more than any person before him."
+        },
+        {
+          "type": "narration",
+          "text": "After the Hajj he keeps going — Egypt, Syria, Persia, East Africa. Every city he reaches offers a new sultan, a new language, a new wonder. He is welcomed as a scholar everywhere."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "quiz",
+            "question": "How far did Ibn Battuta travel over the course of his 29-year journey?",
+            "options": [
+              "Approximately 75,000 miles",
+              "Approximately 25,000 miles",
+              "Approximately 40,000 miles",
+              "Approximately 10,000 miles"
+            ],
+            "answer": 0,
+            "countdown": 10,
+            "fact": "Ibn Battuta (1304–1368) traveled an estimated 75,000 miles — three times the distance of Marco Polo's journey — visiting the equivalent of 44 modern countries. He crossed the Sahara, sailed the Indian Ocean, traversed the steppes of Central Asia, visited China, and explored the Kingdom of Mali, all within a single lifetime of restless curiosity."
+          }
+        }
+      ]
+    },
+    {
+      "key": "trial",
+      "label": "Trial",
+      "difficulty": 2,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "He crosses the Black Death in Central Asia, survives storms at sea, and serves as a judge (qadi) in the Maldives and Mali. He collects four wives and countless stories."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "truefalse",
+            "statement": "Ibn Battuta set out from Morocco with a clear plan to circumnavigate the known world.",
+            "correct": false,
+            "countdown": 10,
+            "fact": "Ibn Battuta left Tangier in 1325 intending only to make the hajj to Mecca. He was 21 years old. The journey expanded as his curiosity grew — he kept finding reasons not to return home, following trade routes, accepting appointments, and exploring rumors of distant courts. He finally returned to Morocco 29 years later and immediately began planning further travels."
+          }
+        }
+      ]
+    },
+    {
+      "key": "mastery",
+      "label": "Mastery",
+      "difficulty": 3,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "India: he serves the Sultan of Delhi for 8 years, nearly killed multiple times by politics and disaster. Yet he survives to write about it all."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "sort",
+            "question": "Arrange the major regions Ibn Battuta visited in the order of his travels:",
+            "items": [
+              "North Africa and Egypt — his first journey, heading to Mecca",
+              "The Arabian Peninsula — making the hajj to Mecca for the first time",
+              "Persia and Iraq — visiting the ruins of ancient Mesopotamia",
+              "The Black Sea coast and Constantinople",
+              "India — serving as a judge in the Sultan of Delhi's court",
+              "China — reaching the terminus of the Silk Road at Quanzhou"
+            ],
+            "fact": "Ibn Battuta's Rihla (A Gift to Those Who Contemplate the Wonders of Cities) was dictated to a court secretary, Ibn Juzayy, on his return. Some scholars have questioned whether he visited every place he describes — the China account in particular is suspiciously vague — but his eyewitness descriptions of Mali, India, and Constantinople remain invaluable historical documents."
+          }
+        },
+        {
+          "type": "narration",
+          "text": "China, Southeast Asia, the Golden Horde — he witnesses the Mongol world at its height and its collapse. He meets sultans who remember Genghis's sons."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "pipeline",
+            "configId": "silk-road-caravan",
+            "instruction": "Route Ibn Battuta's caravan across Central Asia — threading through oasis cities and mountain passes, connecting the known world's great trading hubs.",
+            "fact": "The Silk Road was not a single road but a network of shifting routes connecting China to the Mediterranean. Ibn Battuta traveled it in both directions, recording the hospitality of Mongol khans, the luxury of Persian court life, and the stunning efficiency of the Pax Mongolica — the peace imposed by Mongol dominance that made the entire route safe for travelers for the first time."
+          }
+        }
+      ]
+    },
+    {
+      "key": "legacy",
+      "label": "Legacy",
+      "difficulty": 4,
+      "scenes": [
+        {
+          "type": "narration",
+          "text": "Back in Morocco, he dictates the Rihla to a scribe — a book that maps the medieval Islamic world more completely than any other document of its age."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "matchthree",
+            "configId": "cairo-alchemy",
+            "instruction": "Cairo was the greatest city in the Islamic world when Ibn Battuta passed through — a crossroads of African gold, Asian spices, and Mediterranean scholarship. Clear the market board as trade flows through the medieval world's busiest hub.",
+            "fact": "Ibn Battuta described Cairo as 'the mother of cities' — sprawling, noisy, and overwhelming with life. The Mamluk sultan's court received caravans from Sub-Saharan Africa bearing gold, ivory, and enslaved people, while Mediterranean merchants arrived with silver, glass, and cloth. Cairo was the clearing house of the medieval world economy."
+          }
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "decode",
+            "configId": "cipher-al",
+            "instruction": "Arabic script linked the scholars, judges, and merchants that Ibn Battuta encountered across 29 years of travel. Decode the message written in the ink of the medieval Islamic world.",
+            "fact": "The Arabic language was Ibn Battuta's greatest asset. Across the vast arc from Morocco to China, he could walk into any mosque and find educated men who shared his language, his faith, and his legal tradition. The Islamic world of the 14th century was in many ways more unified than any political empire — held together by shared scripture, shared law, and shared script."
+          }
+        }
+      ]
+    }
+  ]
+}
