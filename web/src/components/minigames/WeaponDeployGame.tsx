@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
+import type { MinigameProps } from '@/games/types'
 
 type WeaponType = 'archer' | 'catapult' | 'cannon'
 type Phase = 'deploy' | 'battle' | 'won' | 'lost'
@@ -53,7 +54,7 @@ const CONFIGS: Record<string, DeployConfig> = {
   },
 }
 
-export default function WeaponDeployGame({ configId, onWin }: { configId: string; onWin: () => void }) {
+export default function WeaponDeployGame({ configId, onWin, onLose }: MinigameProps) {
   const cfg = CONFIGS[configId]
   const total = cfg.cols * cfg.rows
 
@@ -261,7 +262,7 @@ export default function WeaponDeployGame({ configId, onWin }: { configId: string
             <button onClick={reset} className="px-4 py-1.5 bg-panel text-ink-2 text-xs rounded-lg hover:bg-panel-2 transition-all">
               Redeploy
             </button>
-            <button onClick={onWin} className="px-4 py-1.5 bg-line text-ink-2 text-xs rounded-lg hover:bg-line-2 transition-all">
+            <button onClick={() => onLose('defeated')} className="px-4 py-1.5 bg-line text-ink-2 text-xs rounded-lg hover:bg-line-2 transition-all">
               Continue →
             </button>
           </div>

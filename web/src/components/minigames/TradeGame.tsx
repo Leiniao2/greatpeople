@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react'
+import type { MinigameProps } from '@/games/types'
 
 interface TradeEvent {
   text: string
@@ -183,7 +184,7 @@ function SparkLine({ prices }: { prices: number[] }) {
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
-export default function TradeGame({ configId, onWin }: { configId: string; onWin: () => void }) {
+export default function TradeGame({ configId, onWin, onLose }: MinigameProps) {
   const cfg = CONFIGS[configId] ?? CONFIGS['silk-road']
 
   // Shuffle events once on mount
@@ -320,7 +321,7 @@ export default function TradeGame({ configId, onWin }: { configId: string; onWin
               Try Again
             </button>
           )}
-          <button onClick={onWin}
+          <button onClick={won ? onWin : () => onLose('short of target')}
             className="flex-1 py-2.5 rounded-xl bg-line text-ink-2 text-sm font-semibold hover:bg-line-2 active:scale-95 transition-all">
             Continue →
           </button>

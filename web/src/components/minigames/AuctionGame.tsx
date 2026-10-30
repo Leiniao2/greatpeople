@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import type { MinigameProps } from '@/games/types'
 
 interface AuctionItem {
   id: string
@@ -65,13 +66,7 @@ const CONFIGS: Record<string, Config> = {
 
 type Phase = 'rules' | 'reveal' | 'bidding' | 'ai-thinking' | 'item-done' | 'finished'
 
-export default function AuctionGame({
-  configId,
-  onWin,
-}: {
-  configId: string
-  onWin: () => void
-}) {
+export default function AuctionGame({ configId, onWin, onLose }: MinigameProps) {
   const cfg = CONFIGS[configId] ?? CONFIGS['venetian-auction']
 
   const [itemIdx,    setItemIdx]    = useState(0)
@@ -327,7 +322,7 @@ export default function AuctionGame({
               : `Only ${wonTargetCnt} of ${cfg.targetWins} targets acquired.`}
           </p>
           <button
-            onClick={onWin}
+            onClick={result === 'won' ? onWin : () => onLose('too few targets won')}
             className="mt-6 px-8 py-3 rounded-xl font-bold text-sm bg-line text-ink-2 hover:bg-line-2 active:scale-95 transition-all"
           >
             Continue →

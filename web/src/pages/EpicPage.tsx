@@ -18,6 +18,7 @@ interface Story {
   portraitKey: string | null
   tagline: string
   challengeCount: number
+  lives: number
   locationImage?: string
   bonusCard?: { figureName: string; portraitKey: string | null }
 }
@@ -366,6 +367,7 @@ function EpicContent() {
             figureName={story.figure}
             portraitKey={pKey}
             bonusCard={bonusCard}
+            lives={story.lives}
             locationImage={locationImageUrl(story.locationImage) ?? undefined}
             onComplete={(unlockKey) => { handleStoryComplete(modal.eraIdx, modal.storyIdx, unlockKey); setModal(null) }}
             onClose={() => setModal(null)}

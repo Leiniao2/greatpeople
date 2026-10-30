@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
+import type { MinigameProps } from '@/games/types'
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
@@ -193,7 +194,7 @@ function cpuPickMove(board: Board): Move | null {
 
 // ── Component ──────────────────────────────────────────────────────────────────
 
-export default function WargameGame({ configId, onWin }: { configId: string; onWin: () => void }) {
+export default function WargameGame({ configId, onWin, onLose }: MinigameProps) {
   const config = CONFIGS[configId] ?? CONFIGS['belisarius-battle']
 
   const [board, setBoard] = useState<Board>(makeInitialBoard)
@@ -431,7 +432,7 @@ export default function WargameGame({ configId, onWin }: { configId: string; onW
                   Try Again
                 </button>
                 <button
-                  onClick={onWin}
+                  onClick={() => onLose('defeated')}
                   className="w-full py-2 rounded-xl bg-line text-ink-2 text-sm hover:bg-line-2 transition-colors"
                 >
                   Continue →

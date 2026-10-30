@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import type { MinigameProps } from '@/games/types'
 
 interface GeometryConfig {
   title: string
@@ -251,7 +252,7 @@ const CONFIGS: Record<string, GeometryConfig> = {
   },
 }
 
-export default function GeometryGame({ configId, onWin }: { configId: string; onWin: () => void }) {
+export default function GeometryGame({ configId, onWin, onLose }: MinigameProps) {
   const config = CONFIGS[configId] ?? CONFIGS['triangle-sum']
   const [selected, setSelected] = useState<number | null>(null)
   const answered = selected !== null
@@ -260,6 +261,7 @@ export default function GeometryGame({ configId, onWin }: { configId: string; on
     if (answered) return
     setSelected(i)
     if (i === config.answer) setTimeout(onWin, 800)
+    else setTimeout(() => onLose(), 800)
   }
 
   return (

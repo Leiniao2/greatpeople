@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
+import type { MinigameProps } from '@/games/types'
 
 // ── Config ─────────────────────────────────────────────────────────────────────
 
@@ -117,7 +118,7 @@ function keyBg(state: TileState | undefined): string {
 
 // ── Component ──────────────────────────────────────────────────────────────────
 
-export default function WordleGame({ configId, onWin }: { configId: string; onWin: () => void }) {
+export default function WordleGame({ configId, onWin, onLose }: MinigameProps) {
   const config = CONFIGS[configId] ?? Object.values(CONFIGS)[0]
   const word = config.word
 
@@ -307,7 +308,7 @@ export default function WordleGame({ configId, onWin }: { configId: string; onWi
             Answer: <span className="tracking-widest">{word}</span>
           </p>
           <button
-            onClick={onWin}
+            onClick={() => onLose('out of guesses')}
             className="px-6 py-2.5 rounded-xl bg-line text-ink-2 font-bold text-sm hover:bg-line-2 active:scale-95 transition-all"
           >
             Continue →

@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
+import type { MinigameProps } from '@/games/types'
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
@@ -122,7 +123,7 @@ function initAnimals(config: HuntingConfig): Animal[] {
 
 // ── Component ──────────────────────────────────────────────────────────────────
 
-export default function HuntingGame({ configId, onWin }: { configId: string; onWin: () => void }) {
+export default function HuntingGame({ configId, onWin, onLose }: MinigameProps) {
   const config = CONFIGS[configId] ?? CONFIGS['mongol-hunt']
 
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -312,7 +313,7 @@ export default function HuntingGame({ configId, onWin }: { configId: string; onW
       {/* Lost state retry */}
       {display.lost && !display.won && (
         <button
-          onClick={onWin}
+          onClick={() => onLose('out of ammunition')}
           className="mt-1 px-6 py-2.5 rounded-xl bg-line text-ink-2 font-bold text-sm hover:bg-line-2 active:scale-95 transition-all"
         >
           Continue →

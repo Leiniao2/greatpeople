@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import type { MinigameProps } from '@/games/types'
 
 interface FictionConfig {
   title: string
@@ -90,7 +91,7 @@ const CONFIGS: Record<string, FictionConfig> = {
   },
 }
 
-export default function FictionGame({ configId, onWin }: { configId: string; onWin: () => void }) {
+export default function FictionGame({ configId, onWin, onLose }: MinigameProps) {
   const config = CONFIGS[configId] ?? CONFIGS['mani-parable']
   const [selected, setSelected] = useState<number | null>(null)
   const revealed = selected !== null
@@ -100,6 +101,7 @@ export default function FictionGame({ configId, onWin }: { configId: string; onW
     if (revealed) return
     setSelected(i)
     if (i === config.answer) setTimeout(onWin, 900)
+    else setTimeout(() => onLose(), 900)
   }
 
   return (

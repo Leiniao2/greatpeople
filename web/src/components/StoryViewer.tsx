@@ -71,28 +71,40 @@ function useTypewriter(text: string, speed = 22) {
 
 // ── Challenge wrapper with fail state ─────────────────────────────────────────
 
-function ChallengeWrapper({ challenge, attempt, onPass, onFail }: {
+function ChallengeWrapper({ challenge, attempt, livesLeft, onPass, onFail }: {
   challenge: Challenge
+  /** Attempts already made at this challenge; a new one reshuffles and shows the hint. */
   attempt: number
+  livesLeft: number
   onPass: () => void
   onFail: () => void
 }) {
   const [result, setResult] = useState<boolean | null>(null)
-  // A new attempt gets a new seed so boards and option order reshuffle.
   const seed = useMemo(() => hashString(`${challenge.id ?? challenge.fact}:${attempt}`), [challenge, attempt])
 
   const handleWin = () => setResult(true)
-  const handleLose = () => { setResult(false); setTimeout(onFail, 1800) }
+  const handleLose = () => { setResult(false); setTimeout(onFail, 1200) }
 
   return (
     <div className="flex flex-col gap-3">
+      {attempt > 0 && challenge.hint && (
+        <p className="text-amber-800 text-xs leading-relaxed bg-amber-500/10 border border-amber-500/30 rounded-xl px-3 py-2">
+          <span className="font-bold mr-1">Hint:</span>{challenge.hint}
+        </p>
+      )}
+
       <ChallengeRenderer challenge={challenge} seed={seed} onWin={handleWin} onLose={handleLose} />
 
-      {result !== null && (
-        <div className={`p-3 rounded-xl border text-xs leading-relaxed
-          ${result ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-800' : 'bg-red-500/10 border-red-500/30 text-red-800'}`}>
-          <span className="font-bold mr-1">{result ? '✓ Correct!' : '✗ Wrong — restarting…'}</span>
+      {result === true && (
+        <div className="p-3 rounded-xl border text-xs leading-relaxed bg-emerald-500/10 border-emerald-500/30 text-emerald-800">
+          <span className="font-bold mr-1">✓ Correct!</span>
           {challenge.fact}
+        </div>
+      )}
+      {result === false && (
+        <div className="p-3 rounded-xl border text-xs leading-relaxed bg-red-500/10 border-red-500/30 text-red-800">
+          <span className="font-bold">✗ Not this time.</span>
+          {livesLeft > 1 ? ' Try again…' : ' That was your last life.'}
         </div>
       )}
 
@@ -271,20 +283,56 @@ function StageIntro({ scene, onNext }: { scene: StageScene; onNext: () => void }
   )
 }
 
-// ── Fail overlay ───────────────────────────────────────────────────────────────
+// ── Lives and stage progress ──────────────────────────────────────────────────
 
-function FailOverlay({ onReset }: { onReset: () => void }) {
-  const [count, setCount] = useState(3)
-  useEffect(() => {
-    const t = setInterval(() => setCount(c => { if (c <= 1) { clearInterval(t); onReset(); return 0 } return c - 1 }), 1000)
-    return () => clearInterval(t)
-  }, [onReset])
+function LivesBar({ left, total }: { left: number; total: number }) {
   return (
-    <div className="fixed inset-0 z-[55] flex flex-col items-center justify-center bg-red-950/80 backdrop-blur-sm">
-      <p className="text-red-300 font-bold text-2xl mb-2">Wrong Answer!</p>
-      <p className="text-red-400/70 text-sm mb-6">Restarting the story in…</p>
-      <div className="w-16 h-16 rounded-full border-4 border-red-400/60 flex items-center justify-center">
-        <span className="text-red-200 font-bold text-3xl">{count}</span>
+    <div className="flex items-center gap-0.5" aria-label={`${left} of ${total} lives`}>
+      {Array.from({ length: total }, (_, i) => (
+        <span key={i} className={`text-sm leading-none transition-colors ${i < left ? 'text-accent' : 'text-line'}`}>♥</span>
+      ))}
+    </div>
+  )
+}
+
+function StageProgress({ stageIdx, stageCount, label }: { stageIdx: number; stageCount: number; label: string }) {
+  return (
+    <div className="flex items-center gap-2">
+      <div className="flex gap-1">
+        {Array.from({ length: stageCount }, (_, i) => (
+          <span key={i}
+            className={`h-1 w-5 rounded-full ${i < stageIdx ? 'bg-accent' : i === stageIdx ? 'bg-accent/60 animate-pulse' : 'bg-line'}`} />
+        ))}
+      </div>
+      <span className="text-muted text-[10px] uppercase tracking-widest">{label}</span>
+    </div>
+  )
+}
+
+function LifeLostOverlay({ left, total }: { left: number; total: number }) {
+  return (
+    <div className="fixed inset-0 z-[55] flex flex-col items-center justify-center bg-red-900/40 backdrop-blur-[2px] animate-fade-in pointer-events-none">
+      <p className="text-paper font-bold text-2xl drop-shadow mb-3">Life lost</p>
+      <div className="scale-150"><LivesBar left={left} total={total} /></div>
+    </div>
+  )
+}
+
+function OutOfLivesOverlay({ stageLabel, onRetry, onQuit }: { stageLabel: string; onRetry: () => void; onQuit: () => void }) {
+  return (
+    <div className="fixed inset-0 z-[55] flex flex-col items-center justify-center bg-ink/80 backdrop-blur-sm animate-fade-in">
+      <div className="bg-paper-2 border border-line rounded-2xl p-8 flex flex-col items-center gap-4 max-w-xs w-full mx-4 text-center">
+        <span className="text-4xl">💔</span>
+        <p className="text-ink font-bold text-xl">Out of lives</p>
+        <p className="text-ink-2 text-sm">Retry the {stageLabel} stage with full lives, or leave the story for now.</p>
+        <button onClick={onRetry}
+          className="w-full py-2.5 rounded-xl bg-accent text-accent-fg font-bold text-sm hover:bg-accent-hover transition-colors">
+          Retry stage
+        </button>
+        <button onClick={onQuit}
+          className="w-full py-2 rounded-xl bg-line text-ink-2 text-sm hover:bg-line-2 transition-colors">
+          Quit
+        </button>
       </div>
     </div>
   )
@@ -299,11 +347,13 @@ interface StoryViewerProps {
   portraitKey: string | null
   bonusCard?: { figureName: string; portraitKey: string | null } | null
   locationImage?: string
+  /** Lives per stage; a lost life retries the challenge, none left retries the stage. */
+  lives?: number
   onComplete: (unlockKey: string | null) => void
   onClose: () => void
 }
 
-export default function StoryViewer({ eraName, storyTitle, figureName, portraitKey, bonusCard, locationImage, onComplete, onClose }: StoryViewerProps) {
+export default function StoryViewer({ eraName, storyTitle, figureName, portraitKey, bonusCard, locationImage, lives = 3, onComplete, onClose }: StoryViewerProps) {
   const { isAdmin } = useAuth()
   const script = useMemo(() => getScript(eraName, storyTitle), [eraName, storyTitle])
   const challenges = useMemo(() => getChallenges(eraName, storyTitle), [eraName, storyTitle])
@@ -326,16 +376,26 @@ export default function StoryViewer({ eraName, storyTitle, figureName, portraitK
   const { ready: assetsReady, progress: assetsProgress } = useAssetPreload(storyAssets)
 
   const [sceneIdx, setSceneIdx] = useState(0)
+  const [livesLeft, setLivesLeft] = useState(lives)
+  const [lifeLost, setLifeLost] = useState(false)
   const [failing, setFailing] = useState(false)
   const [storyComplete, setStoryComplete] = useState(false)
   const [cardUnlock, setCardUnlock] = useState(false)
   const [bonusUnlock, setBonusUnlock] = useState(false)
-  const [challengeKey, setChallengeKey] = useState(0)
+  // Attempts made at each challenge scene; drives the reshuffle seed and the hint.
+  const [attempts, setAttempts] = useState<Record<number, number>>({})
 
   const totalChallenges = scenes.filter(s => s.type === 'challenge').length
-  const [passedChallenges, setPassedChallenges] = useState<Set<number>>(new Set())
-
   const currentScene = scenes[sceneIdx]
+
+  // Stage bookkeeping: stages are marker scenes, so the current stage is the
+  // last marker at or before the current scene.
+  const stageStarts = useMemo(() => scenes.map((s, i) => (s.type === 'stage' ? i : -1)).filter(i => i >= 0), [scenes])
+  const stageIdx = Math.max(0, stageStarts.filter(i => i <= sceneIdx).length - 1)
+  const stageStart = stageStarts[stageIdx] ?? 0
+  const stageScene = scenes[stageStart]
+  const stageLabel = stageScene?.type === 'stage' ? stageScene.label : ''
+  const passedCount = scenes.slice(0, sceneIdx).filter(s => s.type === 'challenge').length
 
   const advanceScene = useCallback(() => {
     setSceneIdx(prev => {
@@ -356,20 +416,29 @@ export default function StoryViewer({ eraName, storyTitle, figureName, portraitK
     }
   }, [sceneIdx, currentScene, challenges, advanceScene])
 
-  const handleChallengePass = (challengeIdx: number) => {
-    setPassedChallenges(prev => new Set([...prev, challengeIdx]))
-    advanceScene()
-  }
+  const handleChallengePass = () => advanceScene()
 
+  // A lost life retries the same challenge with a fresh seed; the last one
+  // sends the player back to the start of the stage.
   const handleChallengeFail = () => {
-    setFailing(true)
+    if (livesLeft > 1) {
+      setLivesLeft(l => l - 1)
+      setLifeLost(true)
+      setTimeout(() => {
+        setLifeLost(false)
+        setAttempts(prev => ({ ...prev, [sceneIdx]: (prev[sceneIdx] ?? 0) + 1 }))
+      }, 1200)
+    } else {
+      setLivesLeft(0)
+      setFailing(true)
+    }
   }
 
-  const handleReset = () => {
+  const handleRetryStage = () => {
     setFailing(false)
-    setSceneIdx(0)
-    setPassedChallenges(new Set())
-    setChallengeKey(k => k + 1)
+    setLivesLeft(lives)
+    setAttempts(prev => ({ ...prev, [sceneIdx]: (prev[sceneIdx] ?? 0) + 1 }))
+    setSceneIdx(stageStart)
   }
 
   const handleStoryCompleteAck = () => {
@@ -458,6 +527,12 @@ export default function StoryViewer({ eraName, storyTitle, figureName, portraitK
         </button>
       </div>
 
+      {/* Stage + lives */}
+      <div className="relative z-10 flex items-center justify-between px-4 py-2 bg-paper/60">
+        <StageProgress stageIdx={stageIdx} stageCount={Math.max(1, stageStarts.length)} label={stageLabel} />
+        <LivesBar left={livesLeft} total={lives} />
+      </div>
+
       {/* Progress bar */}
       <div className="relative z-10 h-0.5 bg-panel">
         <div className="h-full bg-accent transition-all duration-500" style={{ width: `${progressPct}%` }} />
@@ -485,14 +560,15 @@ export default function StoryViewer({ eraName, storyTitle, figureName, portraitK
             <div className="flex flex-col gap-4">
               <div className="bg-accent/10 border border-accent/20 rounded-xl px-4 py-2">
                 <p className="text-accent text-[10px] font-bold uppercase tracking-widest">
-                  Challenge {passedChallenges.size + 1} of {totalChallenges}
+                  Challenge {passedCount + 1} of {totalChallenges}
                 </p>
               </div>
               <ChallengeWrapper
-                key={`${challengeKey}-${sceneIdx}`}
+                key={`${sceneIdx}-${attempts[sceneIdx] ?? 0}`}
                 challenge={challenge}
-                attempt={challengeKey}
-                onPass={() => handleChallengePass(challengeIdx)}
+                attempt={attempts[sceneIdx] ?? 0}
+                livesLeft={livesLeft}
+                onPass={handleChallengePass}
                 onFail={handleChallengeFail}
               />
             </div>
@@ -500,8 +576,9 @@ export default function StoryViewer({ eraName, storyTitle, figureName, portraitK
         })()}
       </div>
 
-      {/* Fail overlay */}
-      {failing && <FailOverlay onReset={handleReset} />}
+      {/* Life lost / out of lives */}
+      {lifeLost && <LifeLostOverlay left={livesLeft} total={lives} />}
+      {failing && <OutOfLivesOverlay stageLabel={stageLabel} onRetry={handleRetryStage} onQuit={onClose} />}
 
       {/* Story complete screen */}
       {storyComplete && (
@@ -562,6 +639,12 @@ export default function StoryViewer({ eraName, storyTitle, figureName, portraitK
               className="py-1 px-2 rounded-lg bg-violet-800/60 text-violet-300 hover:bg-violet-700/60 transition-all text-[10px] text-left">
               Complete story ✓
             </button>
+            {currentScene?.type === 'challenge' && (
+              <button onClick={handleChallengeFail}
+                className="py-1 px-2 rounded-lg bg-violet-800/60 text-violet-300 hover:bg-violet-700/60 transition-all text-[10px] text-left">
+                Lose a life ♥
+              </button>
+            )}
           </div>
         </div>
       )}
