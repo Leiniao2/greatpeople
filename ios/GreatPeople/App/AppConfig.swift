@@ -7,7 +7,7 @@ import Foundation
 /// the `GP_WEB_BASE_URL` / `GP_API_BASE_URL` scheme environment variables
 /// (e.g. `http://localhost:3001` for the Vite dev server).
 enum AppConfig {
-    private static let production = URL(string: "https://great-people-495704.uc.r.appspot.com")!
+    private static let production = URL(string: "https://greatpeople-109767033732.us-central1.run.app")!
 
     static let webBaseURL: URL = resolve(env: "GP_WEB_BASE_URL", plist: "GPWebBaseURL")
     static let apiBaseURL: URL = resolve(env: "GP_API_BASE_URL", plist: "GPAPIBaseURL")

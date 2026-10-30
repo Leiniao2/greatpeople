@@ -28,8 +28,8 @@ android {
         release {
             isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-            buildConfigField("String", "WEB_BASE_URL", "\"https://great-people-495704.uc.r.appspot.com\"")
-            buildConfigField("String", "API_BASE_URL", "\"https://great-people-495704.uc.r.appspot.com/\"")
+            buildConfigField("String", "WEB_BASE_URL", "\"https://greatpeople-109767033732.us-central1.run.app\"")
+            buildConfigField("String", "API_BASE_URL", "\"https://greatpeople-109767033732.us-central1.run.app/\"")
         }
     }
 
