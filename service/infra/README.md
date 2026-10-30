@@ -109,8 +109,9 @@ From the repository root:
 gcloud builds submit --config service/cloudbuild.yaml .
 ```
 
-This builds the frontend, runs the backend tests, builds the image and deploys
-it. The service URL is printed at the end (also
+This builds the frontend (with the web OAuth client id from the
+`_GOOGLE_CLIENT_ID` substitution baked in), runs the backend tests, builds the
+image and deploys it. The service URL is printed at the end (also
 `gcloud run services describe greatpeople --region=us-central1 --format='value(status.url)'`).
 
 ### 10. Allow the new origin for Google sign-in

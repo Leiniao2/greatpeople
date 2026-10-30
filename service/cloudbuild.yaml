@@ -8,7 +8,9 @@ steps:
       - |
         set -e
         npm ci
-        npm run build
+        # Baked into the bundle at build time; without it the Google sign-in
+        # button is not rendered.  The web client id is public, not a secret.
+        VITE_GOOGLE_CLIENT_ID='${_GOOGLE_CLIENT_ID}' npm run build
 
   # ── 2. Copy built assets into service/static/ ────────────────────────────────
   - name: ubuntu
@@ -65,6 +67,8 @@ substitutions:
   _SERVICE: greatpeople
   _IMAGE: us-central1-docker.pkg.dev/${PROJECT_ID}/greatpeople/service
   _RUNTIME_SA: greatpeople-run@${PROJECT_ID}.iam.gserviceaccount.com
+  # "Great People Web" OAuth client (APIs & Services -> Credentials).
+  _GOOGLE_CLIENT_ID: 109767033732-vjr88nj2ca1u9ivh96a9etokaeajud5e.apps.googleusercontent.com
 
 options:
   dynamic_substitutions: true
