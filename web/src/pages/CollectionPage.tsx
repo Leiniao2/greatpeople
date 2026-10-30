@@ -8,6 +8,7 @@ import locationCardsJson from '@/data/location_cards.json'
 import { locationImageUrl, portraitUrl } from '@/data/images'
 import PageLoader from '@/components/PageLoader'
 import EraIcon from '@/components/EraIcon'
+import ArtGallery, { ARTWORKS } from '@/components/ArtGallery'
 
 // ── GP cards ─────────────────────────────────────────────────────────────────
 
@@ -87,7 +88,7 @@ function CollectionContent() {
   const navigate = useNavigate()
   const { isGuest, isAdmin, exitGuestMode } = useAuth()
   const { unlocked } = useUnlockedCards()
-  const [tab, setTab] = useState<'gp' | 'location'>('gp')
+  const [tab, setTab] = useState<'gp' | 'location' | 'gallery'>('gp')
   const [filter, setFilter] = useState<'all' | 'owned' | 'locked'>('all')
   const [selectedLocation, setSelectedLocation] = useState<LocationCard | null>(null)
 
@@ -139,7 +140,9 @@ function CollectionContent() {
             <p className="text-muted text-xs tracking-widest mt-1">
               {tab === 'gp'
                 ? `${ownedCount} / ${ALL_CARDS.length} unlocked`
-                : `${ALL_LOCATIONS.length} locations`}
+                : tab === 'location'
+                  ? `${ALL_LOCATIONS.length} locations`
+                  : `${ARTWORKS.length} artworks`}
             </p>
           </div>
           <button
@@ -170,6 +173,15 @@ function CollectionContent() {
                 : 'bg-panel text-muted border border-line hover:border-accent/30 hover:text-accent'
               }`}>
             Locations
+          </button>
+          <button
+            onClick={() => setTab('gallery')}
+            className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all duration-200
+              ${tab === 'gallery'
+                ? 'bg-accent text-accent-fg shadow shadow-accent/30'
+                : 'bg-panel text-muted border border-line hover:border-accent/30 hover:text-accent'
+              }`}>
+            Gallery
           </button>
         </div>
 
@@ -227,6 +239,9 @@ function CollectionContent() {
             ))}
           </div>
         )}
+
+        {/* Gallery tab */}
+        {tab === 'gallery' && <ArtGallery />}
       </div>
 
       {/* Location detail modal */}

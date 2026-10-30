@@ -31,6 +31,7 @@ SHARED=(
 # data/stories/ by scripts/build-stories.mjs along with story_configs.json and
 # story_challenges.json above.
 WEB_ONLY=(
+  artworks.json
   location_cards.json
   story_scripts.json
 )

@@ -11,7 +11,7 @@ import cardsJson from '@/data/cards.json'
 import locationsJson from '@/data/locations.json'
 import locationCardsJson from '@/data/location_cards.json'
 import followersJson from '@/data/followers.json'
-import { cardBackUrl, followerUrl, locationImageUrl, portraitUrl } from '@/data/images'
+import { cardBackUrl, followerUrl, locationImageUrl, portraitUrl, scenarioImageUrl } from '@/data/images'
 import PageLoader from '@/components/PageLoader'
 import EraIcon from '@/components/EraIcon'
 
@@ -1419,10 +1419,17 @@ function HandCard({ cardId, type, isSelected, onClick, onInfo, gpMap, eventCard,
         </>
       )}
       {type === 'event' && eventCard && (
-        <div className="flex flex-col items-center justify-between h-full p-1.5">
-          <span className="text-[8px] text-purple-300 uppercase tracking-wide">Event</span>
-          <span className="text-[9px] text-ink font-medium leading-tight text-center">{eventCard.name}</span>
-          <span className="text-[8px] text-purple-400 text-center">{eventCard.stat ? STAT_LABELS[eventCard.stat].slice(0, 3) : 'Hazard'}</span>
+        <div className="relative flex flex-col items-center justify-between h-full p-1.5 overflow-hidden">
+          <img
+            src={scenarioImageUrl(eventCard.name, eventCard.stat)}
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover opacity-80"
+            onError={e => { (e.target as HTMLImageElement).style.display = 'none' }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-black/40" />
+          <span className="relative text-[8px] text-purple-200 uppercase tracking-wide">Event</span>
+          <span className="relative text-[9px] text-paper font-semibold leading-tight text-center drop-shadow">{eventCard.name}</span>
+          <span className="relative text-[8px] text-purple-200 text-center">{eventCard.stat ? STAT_LABELS[eventCard.stat].slice(0, 3) : 'Hazard'}</span>
         </div>
       )}
       {type === 'follower' && followerCard && (
