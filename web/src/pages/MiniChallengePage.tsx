@@ -77,7 +77,7 @@ function ChallengeOverlay({ ch, onClose, onNext }: { ch: FlatChallenge; onClose:
   const retry = () => { setOutcome(null); setAttempt(a => a + 1) }
 
   return (
-    <div className="fixed inset-0 z-50 flex flex-col bg-paper relative">
+    <div className="fixed inset-0 z-50 flex flex-col bg-paper">
       {/* Header */}
       <div className="flex items-center gap-3 px-4 pt-safe pb-3 pt-4 border-b border-line shrink-0">
         <div className={`text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full ${cat.bg} ${cat.color} border ${cat.border}`}>
