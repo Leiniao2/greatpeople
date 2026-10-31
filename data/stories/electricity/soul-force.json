@@ -55,16 +55,15 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "cipher",
+            "game": "telegraph",
             "seed": 1001,
             "fact": "The Salt March of 1930 transformed Gandhi from a respected Indian leader into a global symbol. When he picked up a pinch of salt on the Dandi beach, he broke British law — and the world was watching. Within weeks, 60,000 Indians had been arrested for the same act of defiance.",
             "autogen": true,
-            "configId": "morse-telegraph",
+            "configId": "signal-lamp",
             "params": {
-              "mode": "caesar",
-              "plaintext": "TRAVELS TO SOUTH AFRICA AND"
+              "plaintext": "GANDHI PICKS UP THE SALT"
             },
-            "instruction": "Arrange these milestones of Gandhi's life in chronological order: The answer travels in cipher — turn the wheel until it reads."
+            "instruction": "A reporter on Dandi beach wires the news. Read the lamp."
           }
         }
       ]

@@ -25,16 +25,15 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "cipher",
+            "game": "braille",
             "seed": 1025,
             "fact": "Nian Xiyao (1671–1738) published Shixue ('The Science of Vision') in 1729, systematically explaining Western linear perspective — vanishing points, foreshortening, and the geometry of sight — to Chinese readers for the first time. He worked closely with the Jesuit painter Giuseppe Castiglione at the Yongzheng court, blending Eastern aesthetic sensibility with Western mathematical precision.",
             "autogen": true,
-            "configId": "morse-telegraph",
+            "configId": "raised-dots",
             "params": {
-              "mode": "caesar",
-              "plaintext": "WRITING SHIXUE THE FIRST CHINESE"
+              "plaintext": "THE SCIENCE OF VISION"
             },
-            "instruction": "What was Nian Xiyao's most significant scholarly contribution to Chinese art? The answer travels in cipher — turn the wheel until it reads."
+            "instruction": "Nian Xiyao's book title is pressed in raised dots. Read the name of his work."
           }
         }
       ]

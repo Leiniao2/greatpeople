@@ -68,16 +68,15 @@
     "challenges": [
       {
         "type": "minigame",
-        "game": "cipher",
+        "game": "polybius",
         "seed": 1001,
         "fact": "The Akkadian Empire (c. 2334–2154 BCE) unified diverse Sumerian city-states under a single ruler for the first time in recorded history — a template copied by every empire since.",
         "autogen": true,
-        "configId": "caesar-gaul",
+        "configId": "greek-torches",
         "params": {
-          "mode": "caesar",
-          "plaintext": "MULTI ETHNIC EMPIRE"
+          "plaintext": "ONE KING FOR ALL SUMER"
         },
-        "instruction": "Sargon of Akkad created the world's first: The answer travels in cipher — turn the wheel until it reads.",
+        "instruction": "A runner brings Sargon's new title as pairs of numbers. Find each letter on the square.",
         "id": "the-first-empire:0",
         "stage": "origins",
         "difficulty": 1
@@ -104,16 +103,15 @@
       },
       {
         "type": "minigame",
-        "game": "cipher",
+        "game": "scytale",
         "seed": 1001,
         "fact": "Sargon of Akkad (c. 2334–2279 BCE) created history's first empire, uniting dozens of city-states under one ruler for the first time. His daughter Enheduanna became history's first named author.",
         "autogen": true,
-        "configId": "caesar-gaul",
+        "configId": "spartan-rod",
         "params": {
-          "mode": "caesar",
-          "plaintext": "SARGON SERVES AS CUP BEARER TO"
+          "plaintext": "SARGON WAS A CUPBEARER"
         },
-        "instruction": "Order these events in the rise of Sargon of Akkad's empire: The answer travels in cipher — turn the wheel until it reads.",
+        "instruction": "An enemy of the king has written Sargon's humble past on a wound strip. Find the rod that lines it up.",
         "id": "the-first-empire:3",
         "stage": "legacy",
         "difficulty": 4
@@ -252,16 +250,15 @@
       },
       {
         "type": "minigame",
-        "game": "cipher",
+        "game": "polybius",
         "seed": 1007,
         "fact": "Ashurbanipal sent scribes across his empire to copy every text they could find — myths, astronomy, medicine, and administration. Catalogue tablets listing the library's contents show it was deliberately organised by subject — the world's first planned library. The Epic of Gilgamesh was found among its holdings.",
         "autogen": true,
-        "configId": "caesar-gaul",
+        "configId": "greek-torches",
         "params": {
-          "mode": "caesar",
-          "plaintext": "ASHURBANIPAL S LIBRARY AT"
+          "plaintext": "COPY EVERY TABLET"
         },
-        "instruction": "Ashurbanipal's library at Nineveh, containing over 30,000 tablets, was the world's first known systematically organised collection of texts. The answer travels in cipher — turn the wheel until it reads.",
+        "instruction": "Ashurbanipal's order to his scribes arrives as pairs of numbers. Find each letter on the square.",
         "id": "the-great-library-of-nineveh:3",
         "stage": "mastery",
         "difficulty": 3
@@ -400,16 +397,15 @@
       },
       {
         "type": "minigame",
-        "game": "cipher",
+        "game": "atbash",
         "seed": 1013,
         "fact": "Ancient Egyptian medical knowledge was remarkably advanced. The Edwin Smith Papyrus describes 48 surgical cases with diagnoses, treatments, and prognoses — a clinical approach that would not be surpassed in Europe for thousands of years.",
         "autogen": true,
-        "configId": "caesar-gaul",
+        "configId": "mirror-tablet",
         "params": {
-          "mode": "caesar",
-          "plaintext": "HESY RA BECOMES THE WORLD S"
+          "plaintext": "HESY RA CHIEF OF DENTISTS"
         },
-        "instruction": "Arrange these milestones of ancient medicine in chronological order: The answer travels in cipher — turn the wheel until it reads.",
+        "instruction": "The carving on Hesy-Ra's tomb panel has been copied out in mirror letters. Read his title.",
         "id": "the-first-physician:2",
         "stage": "mastery",
         "difficulty": 3
@@ -558,16 +554,15 @@
       },
       {
         "type": "minigame",
-        "game": "cipher",
+        "game": "atbash",
         "seed": 1019,
         "fact": "Jainism is unique among major world religions in completely rejecting the concept of a creator god. The universe, in Jain philosophy, is eternal and uncreated. Karma operates as an impersonal natural law — not divine judgment — and liberated souls reach a state of perfect knowledge but do not intervene in worldly affairs.",
         "autogen": true,
-        "configId": "caesar-gaul",
+        "configId": "mirror-tablet",
         "params": {
-          "mode": "caesar",
-          "plaintext": "JAINISM IS UNIQUE AMONG MAJOR"
+          "plaintext": "NO CREATOR ONLY KARMA"
         },
-        "instruction": "Jainism believes the universe was created and is governed by a supreme divine being. The answer travels in cipher — turn the wheel until it reads.",
+        "instruction": "A disciple has hidden Mahavira's teaching in mirror letters. Read what governs the universe.",
         "id": "the-great-hero:4",
         "stage": "legacy",
         "difficulty": 4
@@ -738,16 +733,15 @@
       },
       {
         "type": "minigame",
-        "game": "cipher",
+        "game": "atbash",
         "seed": 1025,
         "fact": "Peseshet predates Hippocrates — the 'Father of Medicine' — by nearly 2,000 years. Her title 'Lady Overseer of Female Physicians' implies there were enough women doctors to require an administrator, suggesting female medical practice was established, not exceptional.",
         "autogen": true,
-        "configId": "caesar-gaul",
+        "configId": "mirror-tablet",
         "params": {
-          "mode": "caesar",
-          "plaintext": "PESESHET SERVES AS LADY OVERSEER"
+          "plaintext": "PESESHET OVERSEES THE DOCTORS"
         },
-        "instruction": "Arrange these developments in ancient medicine from oldest to most recent: The answer travels in cipher — turn the wheel until it reads.",
+        "instruction": "A temple scribe has written Peseshet's title in mirror letters. Read it with the folded alphabet.",
         "id": "lady-overseer:1",
         "stage": "trial",
         "difficulty": 2
@@ -808,16 +802,15 @@
       },
       {
         "type": "minigame",
-        "game": "cipher",
+        "game": "scytale",
         "seed": 1001,
         "fact": "Euclid's Elements (c. 300 BCE) comprises 13 books and 465 propositions. It was used in university geometry courses until the early 20th century — over 2,000 years of continuous use.",
         "autogen": true,
-        "configId": "caesar-gaul",
+        "configId": "spartan-rod",
         "params": {
-          "mode": "caesar",
-          "plaintext": "EUCLID S ELEMENTS HAS BEEN IN"
+          "plaintext": "THIRTEEN BOOKS OF GEOMETRY"
         },
-        "instruction": "Euclid's 'Elements' has been in continuous use since it was written, making it the world's most reprinted textbook after the Bible. The answer travels in cipher — turn the wheel until it reads.",
+        "instruction": "A student has wound a note about Euclid's work round a rod. Find the rod that lines it up.",
         "id": "the-elements:1",
         "stage": "trial",
         "difficulty": 2
@@ -973,7 +966,7 @@
           "mode": "caesar",
           "plaintext": "MARC ANTONY"
         },
-        "instruction": "Cicero was executed in 43 BCE on the orders of: The answer travels in cipher — turn the wheel until it reads.",
+        "instruction": "A slave brings word in Caesar's own shift cipher: the name of the man who wants Cicero dead. Turn the wheel until it reads.",
         "id": "the-voice-of-rome:0",
         "stage": "origins",
         "difficulty": 1
@@ -1112,16 +1105,15 @@
       },
       {
         "type": "minigame",
-        "game": "cipher",
+        "game": "polybius",
         "seed": 1007,
         "fact": "Mani was a gifted painter who created the Ardahang, an illustrated holy book of extraordinary beauty. He used visual art as a missionary tool, believing images could convey divine truth across language barriers. His followers called him 'the Apostle of Light' and celebrated his paintings as sacred revelation.",
         "autogen": true,
-        "configId": "caesar-gaul",
+        "configId": "greek-torches",
         "params": {
-          "mode": "caesar",
-          "plaintext": "MANI WAS A GIFTED PAINTER WHO"
+          "plaintext": "MANI PAINTED HIS HOLY BOOK"
         },
-        "instruction": "Mani was only a preacher — he had no talent for visual art. The answer travels in cipher — turn the wheel until it reads.",
+        "instruction": "A follower signals a secret about the prophet as pairs of numbers. Find each letter on the square.",
         "id": "the-prophet-of-light:1",
         "stage": "trial",
         "difficulty": 2
@@ -1250,16 +1242,15 @@
       },
       {
         "type": "minigame",
-        "game": "cipher",
+        "game": "polybius",
         "seed": 1013,
         "fact": "The Arthashastra (c. 300 BCE) is remarkably pragmatic — Chanakya advises a king to plant spies even in his own court, test ministers with temptations, and treat foreign relations as perpetual competition. Its realpolitik predates Machiavelli's The Prince by nearly 1,800 years.",
         "autogen": true,
-        "configId": "caesar-gaul",
+        "configId": "greek-torches",
         "params": {
-          "mode": "caesar",
-          "plaintext": "ESTABLISH A TREASURY WITHOUT"
+          "plaintext": "FILL THE TREASURY FIRST"
         },
-        "instruction": "Arrange these priorities from Chanakya's Arthashastra for a new king establishing power: The answer travels in cipher — turn the wheel until it reads.",
+        "instruction": "Chanakya sends his first lesson for the new king as pairs of numbers. Find each letter on the square.",
         "id": "the-art-of-statecraft:1",
         "stage": "trial",
         "difficulty": 2
@@ -1418,16 +1409,15 @@
       },
       {
         "type": "minigame",
-        "game": "cipher",
+        "game": "scytale",
         "seed": 1019,
         "fact": "The Thirty Years' Peace (446 BCE) lasted only fourteen years before the Peloponnesian War broke out in 431 BCE. Thucydides blamed Spartan fear of Athenian power growth — not any specific provocation — as the true cause of the war.",
         "autogen": true,
-        "configId": "caesar-gaul",
+        "configId": "spartan-rod",
         "params": {
-          "mode": "caesar",
-          "plaintext": "THE THIRTY YEARS PEACE BCE"
+          "plaintext": "THE PEACE BREAKS SPARTA MARCHES"
         },
-        "instruction": "The Thirty Years' Peace between Athens and Sparta lasted for its full thirty-year term. The answer travels in cipher — turn the wheel until it reads.",
+        "instruction": "A Spartan dispatch has been captured on its leather strip. Find the rod that lines it up and read the news.",
         "id": "the-recalled-king:3",
         "stage": "legacy",
         "difficulty": 4
@@ -1711,16 +1701,15 @@
       },
       {
         "type": "minigame",
-        "game": "cipher",
+        "game": "pigpen",
         "seed": 1002,
         "fact": "A knight's training took fourteen years. The progression from page to squire to knight was as formalised as any modern profession. The Round Table's innovation — every seat equal, no place more honoured than another — was a radical reimagining of hierarchy in a world of strict rank.",
         "autogen": true,
-        "configId": "al-kindi-frequency",
+        "configId": "masonic-grid",
         "params": {
-          "mode": "caesar",
-          "plaintext": "PAGE AGES ENTERS A LORD S"
+          "plaintext": "PAGE THEN SQUIRE THEN KNIGHT"
         },
-        "instruction": "Arrange the stages of a medieval knight's training in the correct order: The answer travels in cipher — turn the wheel until it reads.",
+        "instruction": "The squires pass notes in a grid code. Read the path every knight must follow.",
         "id": "the-knight-s-code:1",
         "stage": "trial",
         "difficulty": 2
@@ -1849,16 +1838,15 @@
       },
       {
         "type": "minigame",
-        "game": "cipher",
+        "game": "pigpen",
         "seed": 1008,
         "fact": "At the Battle of Legnica (1241), the Mongols annihilated a combined Polish-German force. At the Battle of Mohi the same month, they destroyed the Hungarian army. Western Europe was essentially undefended. The Mongols withdrew not because of military defeat but because of succession politics — Ögedei Khan's death required the princes to return east.",
         "autogen": true,
-        "configId": "al-kindi-frequency",
+        "configId": "masonic-grid",
         "params": {
-          "mode": "caesar",
-          "plaintext": "AT THE BATTLE OF LEGNICA THE"
+          "plaintext": "THE MONGOLS WIN AT LEGNICA"
         },
-        "instruction": "The Mongol army that invaded Europe in 1241 was defeated by the armies of Poland and Hungary. The answer travels in cipher — turn the wheel until it reads.",
+        "instruction": "A scout's report from Poland is drawn in grid shapes. Read what happened at Legnica.",
         "id": "the-golden-horde-rides:1",
         "stage": "trial",
         "difficulty": 2
@@ -1997,16 +1985,15 @@
       },
       {
         "type": "minigame",
-        "game": "cipher",
+        "game": "pigpen",
         "seed": 1014,
         "fact": "Ibn Battuta left Tangier in 1325 intending only to make the hajj to Mecca. He was 21 years old. The journey expanded as his curiosity grew — he kept finding reasons not to return home, following trade routes, accepting appointments, and exploring rumors of distant courts. He finally returned to Morocco 29 years later and immediately began planning further travels.",
         "autogen": true,
-        "configId": "al-kindi-frequency",
+        "configId": "masonic-grid",
         "params": {
-          "mode": "caesar",
-          "plaintext": "IBN BATTUTA LEFT TANGIER IN"
+          "plaintext": "ONLY AS FAR AS MECCA"
         },
-        "instruction": "Ibn Battuta set out from Morocco with a clear plan to circumnavigate the known world. The answer travels in cipher — turn the wheel until it reads.",
+        "instruction": "Ibn Battuta's first plan is sketched in a merchant's grid code. Read where he meant to go.",
         "id": "the-great-journey:1",
         "stage": "trial",
         "difficulty": 2
@@ -2155,16 +2142,15 @@
       },
       {
         "type": "minigame",
-        "game": "cipher",
+        "game": "scytale",
         "seed": 1020,
         "fact": "Because Tadanori died on the losing side of the Genpei War, his poem was included in the Senzai Wakashū as 'anonymous' — it would have been politically unacceptable to honor a Taira rebel by name. Yet the poem's inclusion was itself an act of aesthetic respect. Everyone knew whose poem it was, and that silent knowledge became part of the poem's beauty.",
         "autogen": true,
-        "configId": "al-kindi-frequency",
+        "configId": "spartan-rod",
         "params": {
-          "mode": "caesar",
-          "plaintext": "BECAUSE TADANORI DIED ON THE"
+          "plaintext": "THE POEM IS SIGNED ANONYMOUS"
         },
-        "instruction": "Tadanori's poem was attributed to him by name in the imperial anthology after his death. The answer travels in cipher — turn the wheel until it reads.",
+        "instruction": "A courtier has wound the anthology's verdict round a rod. Find the rod that lines it up.",
         "id": "the-poem-in-the-armor:1",
         "stage": "trial",
         "difficulty": 2
@@ -2404,16 +2390,15 @@
       },
       {
         "type": "minigame",
-        "game": "cipher",
+        "game": "pigpen",
         "seed": 1002,
         "fact": "Magellan's voyage proved the Earth is a sphere and that the Pacific is far larger than anyone imagined. He left in 1519 with five ships and 270 men; one ship, the Victoria, returned in 1522 with 18 skeletal survivors. The Strait of Magellan — 570 kilometres of treacherous winding channels — took 38 days to navigate.",
         "autogen": true,
-        "configId": "vigenere-cabinet",
+        "configId": "masonic-grid",
         "params": {
-          "mode": "caesar",
-          "plaintext": "FLEET OF FIVE SHIPS DEPARTS"
+          "plaintext": "FIVE SHIPS OUT ONE COMES HOME"
         },
-        "instruction": "Arrange the key milestones of Magellan's circumnavigation in order: The answer travels in cipher — turn the wheel until it reads.",
+        "instruction": "The Victoria's log is kept in a grid code. Read the voyage's toll.",
         "id": "around-the-world:2",
         "stage": "mastery",
         "difficulty": 3
@@ -2656,16 +2641,15 @@
       },
       {
         "type": "minigame",
-        "game": "cipher",
+        "game": "pigpen",
         "seed": 1008,
         "fact": "Gutenberg died nearly broke. His primary financial backer, Johann Fust, sued him over unpaid loans and won — seizing the printing equipment and the first run of Bibles. The press that changed the world made little money for its inventor. Gutenberg was awarded a pension by the Archbishop of Mainz in his final years, dying in 1468 largely unrewarded by the revolution he had started.",
         "autogen": true,
-        "configId": "vigenere-cabinet",
+        "configId": "masonic-grid",
         "params": {
-          "mode": "caesar",
           "plaintext": "GUTENBERG DIED NEARLY BROKE"
         },
-        "instruction": "Gutenberg became enormously wealthy from his printing press invention. The answer travels in cipher — turn the wheel until it reads.",
+        "instruction": "A note in a printer's grid code records how the inventor ended his days. Read it.",
         "id": "words-for-the-world:1",
         "stage": "trial",
         "difficulty": 2
@@ -2804,16 +2788,15 @@
       },
       {
         "type": "minigame",
-        "game": "cipher",
+        "game": "scytale",
         "seed": 1014,
         "fact": "The story that Montezuma mistook Cortés for Quetzalcoatl appears in later accounts heavily influenced by Spanish interpreters and indigenous collaborators with reasons to justify the conquest. Modern historians believe Montezuma was an experienced and politically sophisticated ruler who recognized the Spanish as dangerous strangers — not gods. He attempted to manage the threat diplomatically before it overwhelmed him.",
         "autogen": true,
-        "configId": "vigenere-cabinet",
+        "configId": "spartan-rod",
         "params": {
-          "mode": "caesar",
-          "plaintext": "THE STORY THAT MONTEZUMA MISTOOK"
+          "plaintext": "CORTES IS A MAN NOT A GOD"
         },
-        "instruction": "Montezuma II believed Hernán Cortés was the god Quetzalcoatl returning as prophesied. The answer travels in cipher — turn the wheel until it reads.",
+        "instruction": "A message for Montezuma is wound round a rod. Find the rod that lines it up.",
         "id": "the-sun-emperor:1",
         "stage": "trial",
         "difficulty": 2
@@ -2962,16 +2945,15 @@
       },
       {
         "type": "minigame",
-        "game": "cipher",
+        "game": "polybius",
         "seed": 1020,
         "fact": "Tlacaelel ordered the burning of existing historical codices — the painted books that recorded Aztec history before his reforms. He then commissioned new histories that placed the Mexica at the center of a divinely ordained cosmic narrative. The burning was not destruction for its own sake: it was the replacement of one story with a more useful one.",
         "autogen": true,
-        "configId": "vigenere-cabinet",
+        "configId": "greek-torches",
         "params": {
-          "mode": "caesar",
-          "plaintext": "TLACAELEL ORDERED THE BURNING OF"
+          "plaintext": "BURN THE OLD CODICES"
         },
-        "instruction": "Tlacaelel preserved the Aztec historical records and expanded their archives during his time in power. The answer travels in cipher — turn the wheel until it reads.",
+        "instruction": "Tlacaelel's order travels as pairs of numbers. Find each letter on the square.",
         "id": "the-shadow-behind-the-throne:1",
         "stage": "trial",
         "difficulty": 2
@@ -3053,16 +3035,15 @@
       },
       {
         "type": "minigame",
-        "game": "cipher",
+        "game": "braille",
         "seed": 1001,
         "fact": "Clara Schumann's performing career spanned over 60 years. After Robert's death in 1856, she became the family's sole breadwinner, supporting seven children through concerts across Europe and championing Brahms's music.",
         "autogen": true,
-        "configId": "morse-telegraph",
+        "configId": "raised-dots",
         "params": {
-          "mode": "caesar",
-          "plaintext": "FIRST PUBLIC CONCERT AT AGE IN"
+          "plaintext": "CLARA TOURS EUROPE"
         },
-        "instruction": "Arrange these milestones of Clara Schumann's life in chronological order: The answer travels in cipher — turn the wheel until it reads.",
+        "instruction": "A concert notice is printed in raised dots. Read how Clara keeps her family.",
         "id": "fantasia-and-keys:2",
         "stage": "trial",
         "difficulty": 2
@@ -3192,16 +3173,15 @@
     "challenges": [
       {
         "type": "minigame",
-        "game": "cipher",
+        "game": "pigpen",
         "seed": 1001,
         "fact": "Louis XVI became king at age 20 in 1774, inheriting a state near bankruptcy from his grandfather Louis XV. He was a skilled locksmith and passionate map-maker — a careful craftsman in a role that demanded bold political vision.",
         "autogen": true,
-        "configId": "morse-telegraph",
+        "configId": "masonic-grid",
         "params": {
-          "mode": "caesar",
-          "plaintext": ""
+          "plaintext": "CROWNED AT TWENTY"
         },
-        "instruction": "Louis XVI was how old when he was crowned King of France? The answer travels in cipher — turn the wheel until it reads.",
+        "instruction": "A courtier's note about the new king is drawn in a grid code. Read it.",
         "id": "the-gilded-court:0",
         "stage": "origins",
         "difficulty": 1
@@ -3259,16 +3239,15 @@
       },
       {
         "type": "minigame",
-        "game": "cipher",
+        "game": "telegraph",
         "seed": 1007,
         "fact": "The geological timescale assembled during and after Hutton's lifetime required his key insight: processes we observe today — erosion, deposition, volcanism — are the same ones that shaped ancient rocks. If the present is the key to the past, the past must be unimaginably long.",
         "autogen": true,
-        "configId": "morse-telegraph",
+        "configId": "signal-lamp",
         "params": {
-          "mode": "caesar",
-          "plaintext": "PRECAMBRIAN FORMATION OF EARTH"
+          "plaintext": "THE PRESENT IS THE KEY TO THE PAST"
         },
-        "instruction": "Arrange these eras of Earth's geological history from oldest to most recent: The answer travels in cipher — turn the wheel until it reads.",
+        "instruction": "A geologist's maxim comes down the line. Read the lamp.",
         "id": "deep-time:1",
         "stage": "trial",
         "difficulty": 2
@@ -3397,16 +3376,15 @@
       },
       {
         "type": "minigame",
-        "game": "cipher",
+        "game": "pigpen",
         "seed": 1013,
         "fact": "Catherine ruled Russia for 34 years — longer than any other female ruler in Russian history. She expanded Russia's territory by 520,000 square kilometres and corresponded with Voltaire and Diderot while suppressing the very freedoms they championed.",
         "autogen": true,
-        "configId": "morse-telegraph",
+        "configId": "masonic-grid",
         "params": {
-          "mode": "caesar",
-          "plaintext": "CATHERINE S COUP DEPOSES HER"
+          "plaintext": "CATHERINE TAKES THE THRONE"
         },
-        "instruction": "Arrange these key events of Catherine the Great's reign in chronological order: The answer travels in cipher — turn the wheel until it reads.",
+        "instruction": "The guards' signal is drawn in a grid code. Read what happens tonight.",
         "id": "the-empress-seizes-power:1",
         "stage": "trial",
         "difficulty": 2
@@ -3582,16 +3560,15 @@
     "challenges": [
       {
         "type": "minigame",
-        "game": "cipher",
+        "game": "braille",
         "seed": 1019,
         "fact": "Borromini (1599–1667) invented a new architectural language: walls that curved inward and outward, spaces that expanded and contracted as you moved through them, and geometry derived from interlocking triangles rather than squares. His buildings feel alive — as if the stone itself is breathing.",
         "autogen": true,
-        "configId": "morse-telegraph",
+        "configId": "raised-dots",
         "params": {
-          "mode": "caesar",
-          "plaintext": "CONCAVE AND CONVEX FACADES THAT"
+          "plaintext": "WALLS THAT CURVE"
         },
-        "instruction": "Francesco Borromini is best known for which type of architectural innovation? The answer travels in cipher — turn the wheel until it reads.",
+        "instruction": "Borromini's plan is labelled in raised dots. Read what makes his churches new.",
         "id": "the-infinite-curve:0",
         "stage": "origins",
         "difficulty": 1
@@ -3730,16 +3707,15 @@
     "challenges": [
       {
         "type": "minigame",
-        "game": "cipher",
+        "game": "braille",
         "seed": 1025,
         "fact": "Nian Xiyao (1671–1738) published Shixue ('The Science of Vision') in 1729, systematically explaining Western linear perspective — vanishing points, foreshortening, and the geometry of sight — to Chinese readers for the first time. He worked closely with the Jesuit painter Giuseppe Castiglione at the Yongzheng court, blending Eastern aesthetic sensibility with Western mathematical precision.",
         "autogen": true,
-        "configId": "morse-telegraph",
+        "configId": "raised-dots",
         "params": {
-          "mode": "caesar",
-          "plaintext": "WRITING SHIXUE THE FIRST CHINESE"
+          "plaintext": "THE SCIENCE OF VISION"
         },
-        "instruction": "What was Nian Xiyao's most significant scholarly contribution to Chinese art? The answer travels in cipher — turn the wheel until it reads.",
+        "instruction": "Nian Xiyao's book title is pressed in raised dots. Read the name of his work.",
         "id": "the-art-of-perspective:0",
         "stage": "origins",
         "difficulty": 1
@@ -3823,16 +3799,15 @@
       },
       {
         "type": "minigame",
-        "game": "cipher",
+        "game": "telegraph",
         "seed": 1001,
         "fact": "The Salt March of 1930 transformed Gandhi from a respected Indian leader into a global symbol. When he picked up a pinch of salt on the Dandi beach, he broke British law — and the world was watching. Within weeks, 60,000 Indians had been arrested for the same act of defiance.",
         "autogen": true,
-        "configId": "morse-telegraph",
+        "configId": "signal-lamp",
         "params": {
-          "mode": "caesar",
-          "plaintext": "TRAVELS TO SOUTH AFRICA AND"
+          "plaintext": "GANDHI PICKS UP THE SALT"
         },
-        "instruction": "Arrange these milestones of Gandhi's life in chronological order: The answer travels in cipher — turn the wheel until it reads.",
+        "instruction": "A reporter on Dandi beach wires the news. Read the lamp.",
         "id": "soul-force:1",
         "stage": "trial",
         "difficulty": 2
@@ -3955,16 +3930,15 @@
     "challenges": [
       {
         "type": "minigame",
-        "game": "cipher",
+        "game": "braille",
         "seed": 1001,
         "fact": "Robert Schumann heard the 20-year-old Brahms play in 1853 and immediately published an article declaring him 'the one called to give ideal expression to the times.' It was an extraordinary endorsement that launched Brahms' career — and also set impossible expectations that would haunt him for decades.",
         "autogen": true,
-        "configId": "morse-telegraph",
+        "configId": "raised-dots",
         "params": {
-          "mode": "caesar",
           "plaintext": "ROBERT SCHUMANN"
         },
-        "instruction": "Which composer served as Brahms' most important early mentor and champion? The answer travels in cipher — turn the wheel until it reads.",
+        "instruction": "A letter of introduction is signed in raised dots. Read the name of Brahms's champion.",
         "id": "symphony-of-shadows:0",
         "stage": "origins",
         "difficulty": 1
@@ -4034,12 +4008,12 @@
         "seed": 1007,
         "fact": "The Enigma machine had 17,576 possible rotor starting positions (26×26×26). But with plugboard settings, the actual number of configurations was 158 quintillion — the Bombe exploited cribs (known plaintext) to narrow the search.",
         "autogen": true,
-        "configId": "morse-telegraph",
+        "configId": "caesar-gaul",
         "params": {
           "mode": "caesar",
-          "plaintext": ""
+          "plaintext": "WEATHER REPORT"
         },
-        "instruction": "How many possible settings did Turing's Bombe machine have to test for each Enigma message? The answer travels in cipher — turn the wheel until it reads.",
+        "instruction": "Before the Bombe, Turing practises on a simple shift. The message is the crib Bletchley Park hunted for every morning. Turn the wheel until it reads.",
         "id": "breaking-enigma:0",
         "stage": "origins",
         "difficulty": 1
@@ -4245,16 +4219,15 @@
       },
       {
         "type": "minigame",
-        "game": "cipher",
+        "game": "telegraph",
         "seed": 1013,
         "fact": "Charles Lindbergh made the first solo transatlantic flight in 1927. Earhart was the first WOMAN to do so — in 1932, flying from Newfoundland to Northern Ireland in 14 hours 56 minutes. She also set the record for fastest transatlantic solo flight at that time.",
         "autogen": true,
-        "configId": "morse-telegraph",
+        "configId": "signal-lamp",
         "params": {
-          "mode": "caesar",
-          "plaintext": "CHARLES LINDBERGH MADE THE FIRST"
+          "plaintext": "FIRST WOMAN SOLO ACROSS"
         },
-        "instruction": "Amelia Earhart was the first person to fly solo across the Atlantic Ocean. The answer travels in cipher — turn the wheel until it reads.",
+        "instruction": "Word from Northern Ireland comes over the wire. Read the lamp.",
         "id": "wings-over-the-atlantic:3",
         "stage": "legacy",
         "difficulty": 4
@@ -4420,16 +4393,15 @@
       },
       {
         "type": "minigame",
-        "game": "cipher",
+        "game": "telegraph",
         "seed": 1019,
         "fact": "Ahn Jung-geun was executed by Japan in 1910. In Korea he is a national hero; in China, a statue stands at Harbin station where the assassination occurred. In Japan he is officially considered a criminal. The same act reads entirely differently across national histories.",
         "autogen": true,
-        "configId": "morse-telegraph",
+        "configId": "signal-lamp",
         "params": {
-          "mode": "caesar",
-          "plaintext": "AHN JUNG GEUN WAS EXECUTED BY"
+          "plaintext": "HERO IN KOREA CRIMINAL IN JAPAN"
         },
-        "instruction": "Ahn Jung-geun, who assassinated Japanese Resident-General Itō Hirobumi, was celebrated in Japan as well as Korea after his death. The answer travels in cipher — turn the wheel until it reads.",
+        "instruction": "Two newspapers wire their verdicts on Ahn Jung-geun. Read the lamp.",
         "id": "a-martyr-s-bullet:3",
         "stage": "legacy",
         "difficulty": 4
@@ -4595,16 +4567,15 @@
       },
       {
         "type": "minigame",
-        "game": "cipher",
+        "game": "braille",
         "seed": 1025,
         "fact": "Shaw explicitly wrote that Eliza marries Freddy Eynsford-Hill, not Higgins. He was furious when stage productions implied a romance. His epilogue spells out that Higgins is too self-absorbed for love. The musical My Fair Lady contradicts Shaw's own ending.",
         "autogen": true,
-        "configId": "morse-telegraph",
+        "configId": "raised-dots",
         "params": {
-          "mode": "caesar",
-          "plaintext": "SHAW EXPLICITLY WROTE THAT ELIZA"
+          "plaintext": "ELIZA MARRIES FREDDY"
         },
-        "instruction": "George Bernard Shaw intended Eliza Doolittle and Professor Higgins to end up romantically together. The answer travels in cipher — turn the wheel until it reads.",
+        "instruction": "Shaw's epilogue has been printed in raised dots. Read how Eliza's story ends.",
         "id": "pygmalion:3",
         "stage": "legacy",
         "difficulty": 4
@@ -4645,16 +4616,15 @@
       },
       {
         "type": "minigame",
-        "game": "cipher",
+        "game": "binary",
         "seed": 1002,
         "fact": "Each step built on the last: leaving the convent (1948) gave her freedom to serve; the Missionaries (1950) gave her sisters; Nirmal Hriday (1952) gave the dying dignity; and the Nobel Prize (1979) gave her voice to the world.",
         "autogen": true,
-        "configId": "al-kindi-frequency",
+        "configId": "five-lamps",
         "params": {
-          "mode": "caesar",
-          "plaintext": "LEAVES THE LORETO CONVENT FOR"
+          "plaintext": "SERVE THE POOREST"
         },
-        "instruction": "Arrange these milestones of Mother Teresa's life in chronological order: The answer travels in cipher — turn the wheel until it reads.",
+        "instruction": "Mother Teresa's calling is stored as lamps. Add up each row to read it.",
         "id": "streets-of-calcutta:2",
         "stage": "mastery",
         "difficulty": 3
@@ -4848,16 +4818,15 @@
       },
       {
         "type": "minigame",
-        "game": "cipher",
+        "game": "binary",
         "seed": 1008,
         "fact": "Jackson's arc — from Off the Wall's sophistication (1979) to Thriller's global domination (1982) to the moonwalk's cultural moment (1983) to Earth Song's social conscience (1995) — spanned every register of popular music. He is the only artist to have debuted a dance move that became a permanent part of world culture.",
         "autogen": true,
-        "configId": "al-kindi-frequency",
+        "configId": "five-lamps",
         "params": {
-          "mode": "caesar",
-          "plaintext": "OFF THE WALL ESTABLISHES HIM AS"
+          "plaintext": "OFF THE WALL THEN THRILLER"
         },
-        "instruction": "Arrange these milestones of Michael Jackson's career in chronological order: The answer travels in cipher — turn the wheel until it reads.",
+        "instruction": "The record label's files store the album order as lamps. Add up each row to read it.",
         "id": "moonwalk:2",
         "stage": "mastery",
         "difficulty": 3
@@ -4966,16 +4935,15 @@
       },
       {
         "type": "minigame",
-        "game": "cipher",
+        "game": "binary",
         "seed": 1014,
         "fact": "In 1960, Goodall observed chimpanzees stripping leaves from twigs to fish termites from mounds — the first recorded instance of animals making and using tools. When she reported this to Louis Leakey, he replied: 'Now we must redefine tool, redefine man, or accept chimpanzees as humans.'",
         "autogen": true,
-        "configId": "al-kindi-frequency",
+        "configId": "five-lamps",
         "params": {
-          "mode": "caesar",
-          "plaintext": "CHIMPS USING STICKS TO EXTRACT"
+          "plaintext": "CHIMPS MAKE TOOLS"
         },
-        "instruction": "What discovery by Goodall overturned the belief that only humans use tools? The answer travels in cipher — turn the wheel until it reads.",
+        "instruction": "Jane's field note has been stored as lamps. Add up each row to read her discovery.",
         "id": "among-the-chimpanzees:1",
         "stage": "trial",
         "difficulty": 2
@@ -5114,16 +5082,15 @@
       },
       {
         "type": "minigame",
-        "game": "cipher",
+        "game": "telegraph",
         "seed": 1020,
         "fact": "War journalism transformed how governments prosecute and justify wars. Russell's dispatches triggered military reforms; Adams' photo changed American public opinion on Vietnam; Arnett's Gulf War broadcasts created the first live war on television — watched simultaneously by world leaders and ordinary viewers.",
         "autogen": true,
-        "configId": "al-kindi-frequency",
+        "configId": "signal-lamp",
         "params": {
-          "mode": "caesar",
-          "plaintext": "WILLIAM HOWARD RUSSELL S"
+          "plaintext": "DISPATCH FROM CRIMEA"
         },
-        "instruction": "Arrange these landmark moments in the history of war journalism in order: The answer travels in cipher — turn the wheel until it reads.",
+        "instruction": "The first war correspondent's report comes down the line. Read the lamp.",
         "id": "voice-from-baghdad:1",
         "stage": "trial",
         "difficulty": 2
@@ -5292,16 +5259,15 @@
       },
       {
         "type": "minigame",
-        "game": "cipher",
+        "game": "binary",
         "seed": 1026,
         "fact": "To Kill a Mockingbird (1960) won the Pulitzer Prize in 1961 and became an immediate bestseller. It has sold more than 40 million copies and remains widely taught in schools. Harper Lee published almost nothing for 55 years afterward, until Go Set a Watchman appeared in 2015, shortly before her death in 2016.",
         "autogen": true,
-        "configId": "al-kindi-frequency",
+        "configId": "five-lamps",
         "params": {
-          "mode": "caesar",
-          "plaintext": "HARPER LEE S TO KILL A"
+          "plaintext": "PULITZER IN ONE YEAR"
         },
-        "instruction": "Harper Lee's To Kill a Mockingbird won the Pulitzer Prize for Fiction in 1961, just one year after its publication. The answer travels in cipher — turn the wheel until it reads.",
+        "instruction": "The prize committee's record is stored as lamps. Add up each row to read it.",
         "id": "to-kill-a-mockingbird:3",
         "stage": "legacy",
         "difficulty": 4

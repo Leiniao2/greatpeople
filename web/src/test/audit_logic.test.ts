@@ -15,6 +15,7 @@ import { CONFIGS as LORENTZ, applyLorentz, circlesOverlap, B_STEP, MAX_B } from 
 import { CONFIGS as CHIMP, getAnswer, makeChoices } from '@/components/minigames/ChimpMathGame'
 import { CONFIGS as CLOCKS, CITIES, convert, genChoices } from '@/components/minigames/WorldClockGame'
 import { CONFIGS as CLASSIFY } from '@/components/minigames/ClassifyGame'
+import { CODEBOOKS, atbash, polybius, braille, binary, pigpen, scytaleWind, scytaleRead, cleanMessage, resolveCodebookConfig } from '@/components/minigames/CodebookGame'
 
 const storyEntries = (game: string): MinigameChallenge[] =>
   (storyChallenges as { story: string; challenges: Challenge[] }[])
@@ -326,6 +327,46 @@ describe('ClassifyGame configs', () => {
       for (const c of cfg.categories) expect(cfg.items.some(i => i.category === c.id), `${c.id} is empty`).toBe(true)
     })
   }
+})
+
+// ── Codebook (atbash / polybius / pigpen / braille / telegraph / binary / scytale) ──
+
+describe('Codebook systems', () => {
+  const A = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+  const distinct = (f: (c: string) => unknown) => new Set([...A].map(c => JSON.stringify(f(c)))).size
+  it('atbash is its own inverse', () => {
+    for (const c of A) expect(atbash(atbash(c))).toBe(c)
+  })
+  it('every letter has a distinct symbol (polybius merges only I and J)', () => {
+    expect(distinct(braille)).toBe(26)
+    expect(distinct(binary)).toBe(26)
+    expect(distinct(pigpen)).toBe(26)
+    expect(distinct(polybius)).toBe(25)
+    expect(polybius('J')).toBe(polybius('I'))
+  })
+  it('braille follows the a–j / +dot 3 / +dots 3,6 rule shown on the reduced key', () => {
+    expect(braille('K')).toBe(braille('A') + '3')
+    expect(braille('T')).toBe(braille('J') + '3')
+    expect(braille('Z')).toBe(braille('E') + '36')
+    expect(braille('W')).toBe('2456')
+  })
+  it('scytale: the right rod reads the message back', () => {
+    for (const rows of [3, 4, 5, 6]) {
+      const msg = 'COMEBACKWITHYOURSHIELD'
+      expect(scytaleRead(scytaleWind(msg, rows), rows).join('').replace(/·/g, '')).toBe(msg)
+    }
+  })
+  it('story entries resolve to a non-empty message', () => {
+    for (const [game, mod] of Object.entries(CODEBOOKS)) {
+      for (const ch of storyEntries(game)) {
+        expect(mod.CONFIGS[ch.configId ?? ''], `${ch.id}: ${game}/${ch.configId}`).toBeDefined()
+        const cfg = resolveCodebookConfig(mod.CONFIGS, ch.configId, ch.params)
+        expect(cfg.plaintext, ch.id).toMatch(/^[A-Z]+( [A-Z]+)*$/)
+        expect(cfg.plaintext.replace(/ /g, '').length, `${ch.id} is long enough to wind`).toBeGreaterThanOrEqual(9)
+      }
+    }
+    expect(cleanMessage("Hesy-Ra's  tomb!")).toBe('HESY RA S TOMB')
+  })
 })
 
 // ── Story data references ─────────────────────────────────────────────────────

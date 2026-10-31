@@ -91,16 +91,15 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "cipher",
+            "game": "telegraph",
             "seed": 1013,
             "fact": "Charles Lindbergh made the first solo transatlantic flight in 1927. Earhart was the first WOMAN to do so — in 1932, flying from Newfoundland to Northern Ireland in 14 hours 56 minutes. She also set the record for fastest transatlantic solo flight at that time.",
             "autogen": true,
-            "configId": "morse-telegraph",
+            "configId": "signal-lamp",
             "params": {
-              "mode": "caesar",
-              "plaintext": "CHARLES LINDBERGH MADE THE FIRST"
+              "plaintext": "FIRST WOMAN SOLO ACROSS"
             },
-            "instruction": "Amelia Earhart was the first person to fly solo across the Atlantic Ocean. The answer travels in cipher — turn the wheel until it reads."
+            "instruction": "Word from Northern Ireland comes over the wire. Read the lamp."
           }
         },
         {

@@ -32,12 +32,12 @@
             "seed": 1007,
             "fact": "The Enigma machine had 17,576 possible rotor starting positions (26×26×26). But with plugboard settings, the actual number of configurations was 158 quintillion — the Bombe exploited cribs (known plaintext) to narrow the search.",
             "autogen": true,
-            "configId": "morse-telegraph",
+            "configId": "caesar-gaul",
             "params": {
               "mode": "caesar",
-              "plaintext": ""
+              "plaintext": "WEATHER REPORT"
             },
-            "instruction": "How many possible settings did Turing's Bombe machine have to test for each Enigma message? The answer travels in cipher — turn the wheel until it reads."
+            "instruction": "Before the Bombe, Turing practises on a simple shift. The message is the crib Bletchley Park hunted for every morning. Turn the wheel until it reads."
           }
         }
       ]

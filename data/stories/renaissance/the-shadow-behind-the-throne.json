@@ -56,16 +56,15 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "cipher",
+            "game": "polybius",
             "seed": 1020,
             "fact": "Tlacaelel ordered the burning of existing historical codices — the painted books that recorded Aztec history before his reforms. He then commissioned new histories that placed the Mexica at the center of a divinely ordained cosmic narrative. The burning was not destruction for its own sake: it was the replacement of one story with a more useful one.",
             "autogen": true,
-            "configId": "vigenere-cabinet",
+            "configId": "greek-torches",
             "params": {
-              "mode": "caesar",
-              "plaintext": "TLACAELEL ORDERED THE BURNING OF"
+              "plaintext": "BURN THE OLD CODICES"
             },
-            "instruction": "Tlacaelel preserved the Aztec historical records and expanded their archives during his time in power. The answer travels in cipher — turn the wheel until it reads."
+            "instruction": "Tlacaelel's order travels as pairs of numbers. Find each letter on the square."
           }
         }
       ]

@@ -65,16 +65,15 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "cipher",
+            "game": "pigpen",
             "seed": 1002,
             "fact": "A knight's training took fourteen years. The progression from page to squire to knight was as formalised as any modern profession. The Round Table's innovation — every seat equal, no place more honoured than another — was a radical reimagining of hierarchy in a world of strict rank.",
             "autogen": true,
-            "configId": "al-kindi-frequency",
+            "configId": "masonic-grid",
             "params": {
-              "mode": "caesar",
-              "plaintext": "PAGE AGES ENTERS A LORD S"
+              "plaintext": "PAGE THEN SQUIRE THEN KNIGHT"
             },
-            "instruction": "Arrange the stages of a medieval knight's training in the correct order: The answer travels in cipher — turn the wheel until it reads."
+            "instruction": "The squires pass notes in a grid code. Read the path every knight must follow."
           }
         }
       ]

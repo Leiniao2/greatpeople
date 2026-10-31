@@ -28,16 +28,15 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "cipher",
+            "game": "braille",
             "seed": 1001,
             "fact": "Robert Schumann heard the 20-year-old Brahms play in 1853 and immediately published an article declaring him 'the one called to give ideal expression to the times.' It was an extraordinary endorsement that launched Brahms' career — and also set impossible expectations that would haunt him for decades.",
             "autogen": true,
-            "configId": "morse-telegraph",
+            "configId": "raised-dots",
             "params": {
-              "mode": "caesar",
               "plaintext": "ROBERT SCHUMANN"
             },
-            "instruction": "Which composer served as Brahms' most important early mentor and champion? The answer travels in cipher — turn the wheel until it reads."
+            "instruction": "A letter of introduction is signed in raised dots. Read the name of Brahms's champion."
           }
         }
       ]

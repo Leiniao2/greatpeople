@@ -57,16 +57,15 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "cipher",
+            "game": "polybius",
             "seed": 1007,
             "fact": "Mani was a gifted painter who created the Ardahang, an illustrated holy book of extraordinary beauty. He used visual art as a missionary tool, believing images could convey divine truth across language barriers. His followers called him 'the Apostle of Light' and celebrated his paintings as sacred revelation.",
             "autogen": true,
-            "configId": "caesar-gaul",
+            "configId": "greek-torches",
             "params": {
-              "mode": "caesar",
-              "plaintext": "MANI WAS A GIFTED PAINTER WHO"
+              "plaintext": "MANI PAINTED HIS HOLY BOOK"
             },
-            "instruction": "Mani was only a preacher — he had no talent for visual art. The answer travels in cipher — turn the wheel until it reads."
+            "instruction": "A follower signals a secret about the prophet as pairs of numbers. Find each letter on the square."
           }
         }
       ]

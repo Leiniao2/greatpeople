@@ -72,6 +72,14 @@ export const GAMES = {
   logicgate:    def('Logic Gates',   'Puzzle',   () => import('@/components/minigames/LogicGateGame'), true),
   archbuild:    def('Arch Builder',  'Creative', () => import('@/components/minigames/ArchBuildGame'), true),
   rhythm:       def('Rhythm',        'Creative', () => import('@/components/minigames/RhythmGame'), true),
+  // ── Codebook: historical codes, one game per system
+  atbash:       def('Atbash',        'Puzzle',   () => import('@/components/minigames/CodebookGame').then(m => m.CODEBOOKS.atbash), true),
+  polybius:     def('Polybius Square','Puzzle',  () => import('@/components/minigames/CodebookGame').then(m => m.CODEBOOKS.polybius), true),
+  scytale:      def('Scytale',       'Puzzle',   () => import('@/components/minigames/CodebookGame').then(m => m.CODEBOOKS.scytale), true),
+  pigpen:       def('Pigpen',        'Puzzle',   () => import('@/components/minigames/CodebookGame').then(m => m.CODEBOOKS.pigpen), true),
+  braille:      def('Braille',       'Puzzle',   () => import('@/components/minigames/CodebookGame').then(m => m.CODEBOOKS.braille), true),
+  telegraph:    def('Telegraph',     'Puzzle',   () => import('@/components/minigames/CodebookGame').then(m => m.CODEBOOKS.telegraph), true),
+  binary:       def('Binary',        'Puzzle',   () => import('@/components/minigames/CodebookGame').then(m => m.CODEBOOKS.binary), true),
   // ── Outdoor games
   roundup:      def('Round-Up',      'Strategy', () => import('@/components/minigames/RoundUpGame'), true),
   fieldsurvey:  def('Field Survey',  'Explore',  () => import('@/components/minigames/FieldSurveyGame'), true),

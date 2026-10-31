@@ -25,16 +25,15 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "cipher",
+            "game": "braille",
             "seed": 1019,
             "fact": "Borromini (1599–1667) invented a new architectural language: walls that curved inward and outward, spaces that expanded and contracted as you moved through them, and geometry derived from interlocking triangles rather than squares. His buildings feel alive — as if the stone itself is breathing.",
             "autogen": true,
-            "configId": "morse-telegraph",
+            "configId": "raised-dots",
             "params": {
-              "mode": "caesar",
-              "plaintext": "CONCAVE AND CONVEX FACADES THAT"
+              "plaintext": "WALLS THAT CURVE"
             },
-            "instruction": "Francesco Borromini is best known for which type of architectural innovation? The answer travels in cipher — turn the wheel until it reads."
+            "instruction": "Borromini's plan is labelled in raised dots. Read what makes his churches new."
           }
         }
       ]

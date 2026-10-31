@@ -74,16 +74,15 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "cipher",
+            "game": "binary",
             "seed": 1008,
             "fact": "Jackson's arc — from Off the Wall's sophistication (1979) to Thriller's global domination (1982) to the moonwalk's cultural moment (1983) to Earth Song's social conscience (1995) — spanned every register of popular music. He is the only artist to have debuted a dance move that became a permanent part of world culture.",
             "autogen": true,
-            "configId": "al-kindi-frequency",
+            "configId": "five-lamps",
             "params": {
-              "mode": "caesar",
-              "plaintext": "OFF THE WALL ESTABLISHES HIM AS"
+              "plaintext": "OFF THE WALL THEN THRILLER"
             },
-            "instruction": "Arrange these milestones of Michael Jackson's career in chronological order: The answer travels in cipher — turn the wheel until it reads."
+            "instruction": "The record label's files store the album order as lamps. Add up each row to read it."
           }
         }
       ]

@@ -56,16 +56,15 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "cipher",
+            "game": "pigpen",
             "seed": 1008,
             "fact": "Gutenberg died nearly broke. His primary financial backer, Johann Fust, sued him over unpaid loans and won — seizing the printing equipment and the first run of Bibles. The press that changed the world made little money for its inventor. Gutenberg was awarded a pension by the Archbishop of Mainz in his final years, dying in 1468 largely unrewarded by the revolution he had started.",
             "autogen": true,
-            "configId": "vigenere-cabinet",
+            "configId": "masonic-grid",
             "params": {
-              "mode": "caesar",
               "plaintext": "GUTENBERG DIED NEARLY BROKE"
             },
-            "instruction": "Gutenberg became enormously wealthy from his printing press invention. The answer travels in cipher — turn the wheel until it reads."
+            "instruction": "A note in a printer's grid code records how the inventor ended his days. Read it."
           }
         }
       ]

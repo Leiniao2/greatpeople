@@ -101,16 +101,15 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "cipher",
+            "game": "scytale",
             "seed": 1019,
             "fact": "The Thirty Years' Peace (446 BCE) lasted only fourteen years before the Peloponnesian War broke out in 431 BCE. Thucydides blamed Spartan fear of Athenian power growth — not any specific provocation — as the true cause of the war.",
             "autogen": true,
-            "configId": "caesar-gaul",
+            "configId": "spartan-rod",
             "params": {
-              "mode": "caesar",
-              "plaintext": "THE THIRTY YEARS PEACE BCE"
+              "plaintext": "THE PEACE BREAKS SPARTA MARCHES"
             },
-            "instruction": "The Thirty Years' Peace between Athens and Sparta lasted for its full thirty-year term. The answer travels in cipher — turn the wheel until it reads."
+            "instruction": "A Spartan dispatch has been captured on its leather strip. Find the rod that lines it up and read the news."
           }
         }
       ]

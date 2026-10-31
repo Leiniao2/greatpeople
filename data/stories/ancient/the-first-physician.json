@@ -82,16 +82,15 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "cipher",
+            "game": "atbash",
             "seed": 1013,
             "fact": "Ancient Egyptian medical knowledge was remarkably advanced. The Edwin Smith Papyrus describes 48 surgical cases with diagnoses, treatments, and prognoses — a clinical approach that would not be surpassed in Europe for thousands of years.",
             "autogen": true,
-            "configId": "caesar-gaul",
+            "configId": "mirror-tablet",
             "params": {
-              "mode": "caesar",
-              "plaintext": "HESY RA BECOMES THE WORLD S"
+              "plaintext": "HESY RA CHIEF OF DENTISTS"
             },
-            "instruction": "Arrange these milestones of ancient medicine in chronological order: The answer travels in cipher — turn the wheel until it reads."
+            "instruction": "The carving on Hesy-Ra's tomb panel has been copied out in mirror letters. Read his title."
           }
         }
       ]

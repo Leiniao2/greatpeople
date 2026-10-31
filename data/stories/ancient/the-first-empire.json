@@ -28,16 +28,15 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "cipher",
+            "game": "polybius",
             "seed": 1001,
             "fact": "The Akkadian Empire (c. 2334–2154 BCE) unified diverse Sumerian city-states under a single ruler for the first time in recorded history — a template copied by every empire since.",
             "autogen": true,
-            "configId": "caesar-gaul",
+            "configId": "greek-torches",
             "params": {
-              "mode": "caesar",
-              "plaintext": "MULTI ETHNIC EMPIRE"
+              "plaintext": "ONE KING FOR ALL SUMER"
             },
-            "instruction": "Sargon of Akkad created the world's first: The answer travels in cipher — turn the wheel until it reads."
+            "instruction": "A runner brings Sargon's new title as pairs of numbers. Find each letter on the square."
           }
         }
       ]
@@ -99,16 +98,15 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "cipher",
+            "game": "scytale",
             "seed": 1001,
             "fact": "Sargon of Akkad (c. 2334–2279 BCE) created history's first empire, uniting dozens of city-states under one ruler for the first time. His daughter Enheduanna became history's first named author.",
             "autogen": true,
-            "configId": "caesar-gaul",
+            "configId": "spartan-rod",
             "params": {
-              "mode": "caesar",
-              "plaintext": "SARGON SERVES AS CUP BEARER TO"
+              "plaintext": "SARGON WAS A CUPBEARER"
             },
-            "instruction": "Order these events in the rise of Sargon of Akkad's empire: The answer travels in cipher — turn the wheel until it reads."
+            "instruction": "An enemy of the king has written Sargon's humble past on a wound strip. Find the rod that lines it up."
           }
         }
       ]

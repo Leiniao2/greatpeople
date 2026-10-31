@@ -97,16 +97,15 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "cipher",
+            "game": "telegraph",
             "seed": 1019,
             "fact": "Ahn Jung-geun was executed by Japan in 1910. In Korea he is a national hero; in China, a statue stands at Harbin station where the assassination occurred. In Japan he is officially considered a criminal. The same act reads entirely differently across national histories.",
             "autogen": true,
-            "configId": "morse-telegraph",
+            "configId": "signal-lamp",
             "params": {
-              "mode": "caesar",
-              "plaintext": "AHN JUNG GEUN WAS EXECUTED BY"
+              "plaintext": "HERO IN KOREA CRIMINAL IN JAPAN"
             },
-            "instruction": "Ahn Jung-geun, who assassinated Japanese Resident-General Itō Hirobumi, was celebrated in Japan as well as Korea after his death. The answer travels in cipher — turn the wheel until it reads."
+            "instruction": "Two newspapers wire their verdicts on Ahn Jung-geun. Read the lamp."
           }
         }
       ]

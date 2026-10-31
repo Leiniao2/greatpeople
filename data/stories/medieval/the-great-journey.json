@@ -56,16 +56,15 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "cipher",
+            "game": "pigpen",
             "seed": 1014,
             "fact": "Ibn Battuta left Tangier in 1325 intending only to make the hajj to Mecca. He was 21 years old. The journey expanded as his curiosity grew — he kept finding reasons not to return home, following trade routes, accepting appointments, and exploring rumors of distant courts. He finally returned to Morocco 29 years later and immediately began planning further travels.",
             "autogen": true,
-            "configId": "al-kindi-frequency",
+            "configId": "masonic-grid",
             "params": {
-              "mode": "caesar",
-              "plaintext": "IBN BATTUTA LEFT TANGIER IN"
+              "plaintext": "ONLY AS FAR AS MECCA"
             },
-            "instruction": "Ibn Battuta set out from Morocco with a clear plan to circumnavigate the known world. The answer travels in cipher — turn the wheel until it reads."
+            "instruction": "Ibn Battuta's first plan is sketched in a merchant's grid code. Read where he meant to go."
           }
         }
       ]

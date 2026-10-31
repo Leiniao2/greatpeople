@@ -89,16 +89,15 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "cipher",
+            "game": "binary",
             "seed": 1002,
             "fact": "Each step built on the last: leaving the convent (1948) gave her freedom to serve; the Missionaries (1950) gave her sisters; Nirmal Hriday (1952) gave the dying dignity; and the Nobel Prize (1979) gave her voice to the world.",
             "autogen": true,
-            "configId": "al-kindi-frequency",
+            "configId": "five-lamps",
             "params": {
-              "mode": "caesar",
-              "plaintext": "LEAVES THE LORETO CONVENT FOR"
+              "plaintext": "SERVE THE POOREST"
             },
-            "instruction": "Arrange these milestones of Mother Teresa's life in chronological order: The answer travels in cipher — turn the wheel until it reads."
+            "instruction": "Mother Teresa's calling is stored as lamps. Add up each row to read it."
           }
         }
       ]

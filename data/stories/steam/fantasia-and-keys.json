@@ -97,16 +97,15 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "cipher",
+            "game": "braille",
             "seed": 1001,
             "fact": "Clara Schumann's performing career spanned over 60 years. After Robert's death in 1856, she became the family's sole breadwinner, supporting seven children through concerts across Europe and championing Brahms's music.",
             "autogen": true,
-            "configId": "morse-telegraph",
+            "configId": "raised-dots",
             "params": {
-              "mode": "caesar",
-              "plaintext": "FIRST PUBLIC CONCERT AT AGE IN"
+              "plaintext": "CLARA TOURS EUROPE"
             },
-            "instruction": "Arrange these milestones of Clara Schumann's life in chronological order: The answer travels in cipher — turn the wheel until it reads."
+            "instruction": "A concert notice is printed in raised dots. Read how Clara keeps her family."
           }
         }
       ]

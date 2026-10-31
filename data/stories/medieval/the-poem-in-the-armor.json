@@ -56,16 +56,15 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "cipher",
+            "game": "scytale",
             "seed": 1020,
             "fact": "Because Tadanori died on the losing side of the Genpei War, his poem was included in the Senzai Wakashū as 'anonymous' — it would have been politically unacceptable to honor a Taira rebel by name. Yet the poem's inclusion was itself an act of aesthetic respect. Everyone knew whose poem it was, and that silent knowledge became part of the poem's beauty.",
             "autogen": true,
-            "configId": "al-kindi-frequency",
+            "configId": "spartan-rod",
             "params": {
-              "mode": "caesar",
-              "plaintext": "BECAUSE TADANORI DIED ON THE"
+              "plaintext": "THE POEM IS SIGNED ANONYMOUS"
             },
-            "instruction": "Tadanori's poem was attributed to him by name in the imperial anthology after his death. The answer travels in cipher — turn the wheel until it reads."
+            "instruction": "A courtier has wound the anthology's verdict round a rod. Find the rod that lines it up."
           }
         }
       ]

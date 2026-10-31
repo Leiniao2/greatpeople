@@ -56,16 +56,15 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "cipher",
+            "game": "pigpen",
             "seed": 1008,
             "fact": "At the Battle of Legnica (1241), the Mongols annihilated a combined Polish-German force. At the Battle of Mohi the same month, they destroyed the Hungarian army. Western Europe was essentially undefended. The Mongols withdrew not because of military defeat but because of succession politics — Ögedei Khan's death required the princes to return east.",
             "autogen": true,
-            "configId": "al-kindi-frequency",
+            "configId": "masonic-grid",
             "params": {
-              "mode": "caesar",
-              "plaintext": "AT THE BATTLE OF LEGNICA THE"
+              "plaintext": "THE MONGOLS WIN AT LEGNICA"
             },
-            "instruction": "The Mongol army that invaded Europe in 1241 was defeated by the armies of Poland and Hungary. The answer travels in cipher — turn the wheel until it reads."
+            "instruction": "A scout's report from Poland is drawn in grid shapes. Read what happened at Legnica."
           }
         }
       ]

@@ -56,16 +56,15 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "cipher",
+            "game": "scytale",
             "seed": 1014,
             "fact": "The story that Montezuma mistook Cortés for Quetzalcoatl appears in later accounts heavily influenced by Spanish interpreters and indigenous collaborators with reasons to justify the conquest. Modern historians believe Montezuma was an experienced and politically sophisticated ruler who recognized the Spanish as dangerous strangers — not gods. He attempted to manage the threat diplomatically before it overwhelmed him.",
             "autogen": true,
-            "configId": "vigenere-cabinet",
+            "configId": "spartan-rod",
             "params": {
-              "mode": "caesar",
-              "plaintext": "THE STORY THAT MONTEZUMA MISTOOK"
+              "plaintext": "CORTES IS A MAN NOT A GOD"
             },
-            "instruction": "Montezuma II believed Hernán Cortés was the god Quetzalcoatl returning as prophesied. The answer travels in cipher — turn the wheel until it reads."
+            "instruction": "A message for Montezuma is wound round a rod. Find the rod that lines it up."
           }
         }
       ]

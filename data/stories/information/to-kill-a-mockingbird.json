@@ -101,16 +101,15 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "cipher",
+            "game": "binary",
             "seed": 1026,
             "fact": "To Kill a Mockingbird (1960) won the Pulitzer Prize in 1961 and became an immediate bestseller. It has sold more than 40 million copies and remains widely taught in schools. Harper Lee published almost nothing for 55 years afterward, until Go Set a Watchman appeared in 2015, shortly before her death in 2016.",
             "autogen": true,
-            "configId": "al-kindi-frequency",
+            "configId": "five-lamps",
             "params": {
-              "mode": "caesar",
-              "plaintext": "HARPER LEE S TO KILL A"
+              "plaintext": "PULITZER IN ONE YEAR"
             },
-            "instruction": "Harper Lee's To Kill a Mockingbird won the Pulitzer Prize for Fiction in 1961, just one year after its publication. The answer travels in cipher — turn the wheel until it reads."
+            "instruction": "The prize committee's record is stored as lamps. Add up each row to read it."
           }
         }
       ]

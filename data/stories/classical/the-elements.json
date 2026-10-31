@@ -66,16 +66,15 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "cipher",
+            "game": "scytale",
             "seed": 1001,
             "fact": "Euclid's Elements (c. 300 BCE) comprises 13 books and 465 propositions. It was used in university geometry courses until the early 20th century — over 2,000 years of continuous use.",
             "autogen": true,
-            "configId": "caesar-gaul",
+            "configId": "spartan-rod",
             "params": {
-              "mode": "caesar",
-              "plaintext": "EUCLID S ELEMENTS HAS BEEN IN"
+              "plaintext": "THIRTEEN BOOKS OF GEOMETRY"
             },
-            "instruction": "Euclid's 'Elements' has been in continuous use since it was written, making it the world's most reprinted textbook after the Bible. The answer travels in cipher — turn the wheel until it reads."
+            "instruction": "A student has wound a note about Euclid's work round a rod. Find the rod that lines it up."
           }
         }
       ]

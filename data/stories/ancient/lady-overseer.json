@@ -57,16 +57,15 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "cipher",
+            "game": "atbash",
             "seed": 1025,
             "fact": "Peseshet predates Hippocrates — the 'Father of Medicine' — by nearly 2,000 years. Her title 'Lady Overseer of Female Physicians' implies there were enough women doctors to require an administrator, suggesting female medical practice was established, not exceptional.",
             "autogen": true,
-            "configId": "caesar-gaul",
+            "configId": "mirror-tablet",
             "params": {
-              "mode": "caesar",
-              "plaintext": "PESESHET SERVES AS LADY OVERSEER"
+              "plaintext": "PESESHET OVERSEES THE DOCTORS"
             },
-            "instruction": "Arrange these developments in ancient medicine from oldest to most recent: The answer travels in cipher — turn the wheel until it reads."
+            "instruction": "A temple scribe has written Peseshet's title in mirror letters. Read it with the folded alphabet."
           }
         }
       ]

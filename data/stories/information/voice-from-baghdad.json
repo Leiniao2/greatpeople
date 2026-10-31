@@ -57,16 +57,15 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "cipher",
+            "game": "telegraph",
             "seed": 1020,
             "fact": "War journalism transformed how governments prosecute and justify wars. Russell's dispatches triggered military reforms; Adams' photo changed American public opinion on Vietnam; Arnett's Gulf War broadcasts created the first live war on television — watched simultaneously by world leaders and ordinary viewers.",
             "autogen": true,
-            "configId": "al-kindi-frequency",
+            "configId": "signal-lamp",
             "params": {
-              "mode": "caesar",
-              "plaintext": "WILLIAM HOWARD RUSSELL S"
+              "plaintext": "DISPATCH FROM CRIMEA"
             },
-            "instruction": "Arrange these landmark moments in the history of war journalism in order: The answer travels in cipher — turn the wheel until it reads."
+            "instruction": "The first war correspondent's report comes down the line. Read the lamp."
           }
         }
       ]

@@ -96,16 +96,15 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "cipher",
+            "game": "polybius",
             "seed": 1007,
             "fact": "Ashurbanipal sent scribes across his empire to copy every text they could find — myths, astronomy, medicine, and administration. Catalogue tablets listing the library's contents show it was deliberately organised by subject — the world's first planned library. The Epic of Gilgamesh was found among its holdings.",
             "autogen": true,
-            "configId": "caesar-gaul",
+            "configId": "greek-torches",
             "params": {
-              "mode": "caesar",
-              "plaintext": "ASHURBANIPAL S LIBRARY AT"
+              "plaintext": "COPY EVERY TABLET"
             },
-            "instruction": "Ashurbanipal's library at Nineveh, containing over 30,000 tablets, was the world's first known systematically organised collection of texts. The answer travels in cipher — turn the wheel until it reads."
+            "instruction": "Ashurbanipal's order to his scribes arrives as pairs of numbers. Find each letter on the square."
           }
         }
       ]

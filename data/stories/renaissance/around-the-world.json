@@ -81,16 +81,15 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "cipher",
+            "game": "pigpen",
             "seed": 1002,
             "fact": "Magellan's voyage proved the Earth is a sphere and that the Pacific is far larger than anyone imagined. He left in 1519 with five ships and 270 men; one ship, the Victoria, returned in 1522 with 18 skeletal survivors. The Strait of Magellan — 570 kilometres of treacherous winding channels — took 38 days to navigate.",
             "autogen": true,
-            "configId": "vigenere-cabinet",
+            "configId": "masonic-grid",
             "params": {
-              "mode": "caesar",
-              "plaintext": "FLEET OF FIVE SHIPS DEPARTS"
+              "plaintext": "FIVE SHIPS OUT ONE COMES HOME"
             },
-            "instruction": "Arrange the key milestones of Magellan's circumnavigation in order: The answer travels in cipher — turn the wheel until it reads."
+            "instruction": "The Victoria's log is kept in a grid code. Read the voyage's toll."
           }
         }
       ]

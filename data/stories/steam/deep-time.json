@@ -57,16 +57,15 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "cipher",
+            "game": "telegraph",
             "seed": 1007,
             "fact": "The geological timescale assembled during and after Hutton's lifetime required his key insight: processes we observe today — erosion, deposition, volcanism — are the same ones that shaped ancient rocks. If the present is the key to the past, the past must be unimaginably long.",
             "autogen": true,
-            "configId": "morse-telegraph",
+            "configId": "signal-lamp",
             "params": {
-              "mode": "caesar",
-              "plaintext": "PRECAMBRIAN FORMATION OF EARTH"
+              "plaintext": "THE PRESENT IS THE KEY TO THE PAST"
             },
-            "instruction": "Arrange these eras of Earth's geological history from oldest to most recent: The answer travels in cipher — turn the wheel until it reads."
+            "instruction": "A geologist's maxim comes down the line. Read the lamp."
           }
         }
       ]

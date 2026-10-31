@@ -119,16 +119,15 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "cipher",
+            "game": "atbash",
             "seed": 1019,
             "fact": "Jainism is unique among major world religions in completely rejecting the concept of a creator god. The universe, in Jain philosophy, is eternal and uncreated. Karma operates as an impersonal natural law — not divine judgment — and liberated souls reach a state of perfect knowledge but do not intervene in worldly affairs.",
             "autogen": true,
-            "configId": "caesar-gaul",
+            "configId": "mirror-tablet",
             "params": {
-              "mode": "caesar",
-              "plaintext": "JAINISM IS UNIQUE AMONG MAJOR"
+              "plaintext": "NO CREATOR ONLY KARMA"
             },
-            "instruction": "Jainism believes the universe was created and is governed by a supreme divine being. The answer travels in cipher — turn the wheel until it reads."
+            "instruction": "A disciple has hidden Mahavira's teaching in mirror letters. Read what governs the universe."
           }
         },
         {

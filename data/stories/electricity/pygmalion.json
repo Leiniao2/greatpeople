@@ -107,16 +107,15 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "cipher",
+            "game": "braille",
             "seed": 1025,
             "fact": "Shaw explicitly wrote that Eliza marries Freddy Eynsford-Hill, not Higgins. He was furious when stage productions implied a romance. His epilogue spells out that Higgins is too self-absorbed for love. The musical My Fair Lady contradicts Shaw's own ending.",
             "autogen": true,
-            "configId": "morse-telegraph",
+            "configId": "raised-dots",
             "params": {
-              "mode": "caesar",
-              "plaintext": "SHAW EXPLICITLY WROTE THAT ELIZA"
+              "plaintext": "ELIZA MARRIES FREDDY"
             },
-            "instruction": "George Bernard Shaw intended Eliza Doolittle and Professor Higgins to end up romantically together. The answer travels in cipher — turn the wheel until it reads."
+            "instruction": "Shaw's epilogue has been printed in raised dots. Read how Eliza's story ends."
           }
         }
       ]
