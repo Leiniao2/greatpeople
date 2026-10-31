@@ -107,9 +107,9 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "voting",
-            "configId": "versailles-crisis",
-            "instruction": "Catherine's coup is underway. Win the loyalty of the imperial regiments before Peter III realises what is happening — every vote of loyalty counts.",
+            "game": "coalition",
+            "configId": "guards-coup",
+            "instruction": "Catherine's coup is underway. Promise what each Guard regiment and power in Petersburg wants — without driving the others away — before Peter III realises what is happening.",
             "fact": "Catherine's coup on 9 July 1762 succeeded because she personally rode to each Guard regiment and asked for their loyalty. The five regiments that mattered swore allegiance to her within hours. Peter III, who had alienated the military by admiring Prussia, found himself without a single defender. He abdicated by evening."
           }
         },

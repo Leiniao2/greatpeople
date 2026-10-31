@@ -78,9 +78,9 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "voting",
-            "configId": "akkadian-council",
-            "instruction": "Sargon has conquered the city-states. Win the loyalty of the Sumerian governors to hold the world's first empire together.",
+            "game": "campaign",
+            "configId": "akkadian-cities",
+            "instruction": "Sargon has conquered the city-states. Tour Sumer and win the cities over before Lugalzagesi's loyalists turn them back.",
             "fact": "Sargon of Akkad (c. 2334–2279 BCE) built the world's first empire by combining military conquest with cultural assimilation. His daughter Enheduanna, High Priestess of Ur, is history's first named author."
           }
         }

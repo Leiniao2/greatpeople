@@ -113,9 +113,9 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "voting",
-            "configId": "akkadian-council",
-            "instruction": "Telepinu must win the loyalty of the assembled Hittite nobles to pass his succession law. Sway enough governors before the council dissolves.",
+            "game": "rollcall",
+            "configId": "hittite-panku",
+            "instruction": "Telepinu needs the panku, the assembly of Hittite nobles, to back his succession law. Work the nobles one by one before the vote is called.",
             "fact": "The Hittite pankus — an assembly of nobles — had real power to check the king. Telepinu's Edict was partly designed to give this body constitutional authority, so that future kings could not simply murder their way to the throne. It was one of history's first constitutional checks on royal power."
           }
         },

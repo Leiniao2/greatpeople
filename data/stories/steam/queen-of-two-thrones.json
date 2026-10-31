@@ -126,9 +126,9 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "voting",
-            "configId": "spanish-court",
-            "instruction": "Nzinga understood European courts as well as she understood the African bush. Navigate the Portuguese diplomatic chamber — every word a move, every concession a feint.",
+            "game": "coalition",
+            "configId": "ndongo-treaty",
+            "instruction": "Luanda, 1622. Nzinga negotiates with the Portuguese governor. Choose your concessions so that enough parties at the table accept the treaty — every concession is a feint.",
             "fact": "Nzinga was multilingual and converted to Christianity strategically, understanding that the Portuguese were far more willing to negotiate with a Christian queen than a 'pagan' ruler. She later renounced Christianity when the political winds shifted, then accepted it again — always on her own terms. European diplomats found her simultaneously charming, erudite, and utterly undefeatable."
           }
         }

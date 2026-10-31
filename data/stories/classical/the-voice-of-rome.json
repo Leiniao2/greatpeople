@@ -88,9 +88,9 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "voting",
+            "game": "rollcall",
             "configId": "roman-senate",
-            "instruction": "Step into Cicero's sandals: win enough senatorial votes to authorise action against Catiline's conspirators.",
+            "instruction": "Step into Cicero's sandals: count heads and win over the senators one by one, so the vote to act against Catiline's conspirators carries.",
             "fact": "Cicero's four Catilinarian Orations (63 BCE) are among history's most famous speeches. He secured the Senate's emergency vote — and was later exiled for bypassing the right to trial."
           }
         }

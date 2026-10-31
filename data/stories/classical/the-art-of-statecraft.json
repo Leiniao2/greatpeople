@@ -100,9 +100,9 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "voting",
-            "configId": "akkadian-council",
-            "instruction": "Chandragupta must win the loyalty of the Sumerian-descended Mesopotamian governors to consolidate the empire's western border. Sway the council.",
+            "game": "campaign",
+            "configId": "maurya-provinces",
+            "instruction": "Chandragupta and Chanakya must bind the provinces to the new Maurya throne. Travel the empire and out-canvass the Nanda loyalists.",
             "fact": "The Maurya Empire under Chandragupta extended westward to meet the successor kingdoms of Alexander the Great. Chanakya's Arthashastra describes in detail how to manage the governors of conquered territories — through a combination of incentives, surveillance, and the projection of royal legitimacy."
           }
         }

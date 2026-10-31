@@ -123,9 +123,9 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "voting",
+            "game": "rollcall",
             "configId": "athenian-assembly",
-            "instruction": "Pericles must win a majority in the Athenian Assembly to fund the Parthenon using Delian League tribute.",
+            "instruction": "Pericles must win a majority in the Athenian Assembly to fund the Parthenon from Delian League tribute. Lobby the tribes before Thucydides son of Melesias turns them.",
             "fact": "The Parthenon (447–432 BCE) was built under Pericles' direction. It took fifteen years, 20,000 workers and 13,400 blocks of Pentelic marble cut to tolerances of 0.2 mm."
           }
         }

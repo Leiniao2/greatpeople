@@ -74,9 +74,9 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "voting",
-            "configId": "mellon-treasury",
-            "instruction": "Andrew Mellon faces the Senate with his Revenue Act, proposing to cut the top income tax rate from 73% to 25%. Win enough votes to pass it.",
+            "game": "rollcall",
+            "configId": "mellon-senate",
+            "instruction": "Andrew Mellon's Revenue Act would cut the top income tax rate from 73% to 25%. Whip the Senate one vote at a time before the progressives peel them away.",
             "fact": "Mellon's Revenue Acts of 1921, 1924, and 1926 cut the top marginal rate from 73% to 25%. Tax revenues rose during the 1920s boom, but the same policies concentrated wealth so severely that the Depression proved catastrophic. Mellon advised Hoover to 'liquidate labour, liquidate stocks' in 1929 — advice that deepened the crisis."
           }
         }

@@ -84,9 +84,9 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "voting",
-            "configId": "versailles-crisis",
-            "instruction": "It is July 1789. The Bastille has fallen. Louis XVI must navigate three decisions that will determine whether France has a revolution — or a king.",
+            "game": "coalition",
+            "configId": "estates-general",
+            "instruction": "It is July 1789. The Bastille has fallen. Louis XVI needs enough of the Estates behind him to keep his crown — choose the concessions that hold a coalition together.",
             "fact": "Louis XVI was guillotined on 21 January 1793, convicted of treason. His fatal error — the Flight to Varennes in June 1791 — proved to the Revolutionary government that he was conspiring against France with foreign powers."
           }
         }

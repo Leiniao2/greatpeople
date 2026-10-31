@@ -20,6 +20,9 @@ import {
   STAGE_TARGETS, ERA_POLICIES, CONFIG_ERA, resolveEra, initVoters, drawPolicies, pickAiPolicy, applyPolicies, tally, stageOutcome,
   type Policy,
 } from '@/components/minigames/VotingGame'
+import { CONFIGS as ROLLCALL, makeBoard as rollCallBoard, playOut as rollCallPlayOut, needFor as rollCallNeed } from '@/components/minigames/RollCallGame'
+import { CONFIGS as COALITION, coalitionPlan, solutions, greedyCheapest } from '@/components/minigames/CoalitionGame'
+import { CONFIGS as CAMPAIGN, makeBoard as campaignBoard, playOut as campaignPlayOut, scriptedMove as campaignMove, adjacency as campaignAdjacency } from '@/components/minigames/CampaignGame'
 
 const DIFFS: Difficulty[] = [1, 2, 3, 4]
 
@@ -606,6 +609,75 @@ describe('Voting: a shrewd candidate wins the election', () => {
   }
 })
 
+// ── Coalition ─────────────────────────────────────────────────────────────────
+// Exhaustive over concession subsets: some set within budget must carry the
+// vote, and from tier 2 granting the cheapest helpful concession must not.
+
+describe('Coalition: a winning set of concessions exists, and it takes thought', () => {
+  for (const [configId, cfg] of Object.entries(COALITION)) {
+    for (const d of DIFFS) {
+      it(`${configId} d${d}`, () => {
+        const { budget, need } = coalitionPlan(cfg, d)
+        const total = cfg.factions.reduce((a, f) => a + f.seats, 0)
+        const wins = solutions(cfg, budget, need)
+        console.log(`coalition ${configId} d${d}: need ${need}/${total} on ${budget}, ${wins.length} winning sets, greedy ${greedyCheapest(cfg, budget)}`)
+        expect(need, 'the vote needs a majority').toBeGreaterThan(total / 2)
+        expect(wins.length).toBeGreaterThan(0)
+        if (d >= 2) expect(greedyCheapest(cfg, budget)).toBeLessThan(need)
+      })
+    }
+  }
+})
+
+// ── Roll Call ─────────────────────────────────────────────────────────────────
+// The greedy whip (best projected chamber per card) carries the vote; a whip
+// who plays no cards loses it, so the chamber is never won by default.
+
+describe('Roll Call: a greedy whip carries the vote, an idle one loses', () => {
+  for (const configId of Object.keys(ROLLCALL)) {
+    for (const d of DIFFS) {
+      it(`${configId} d${d}`, () => {
+        const cfg = ROLLCALL[configId], need = rollCallNeed(cfg, d)
+        const N = 200
+        let wins = 0, idleWins = 0
+        for (let i = 0; i < N; i++) {
+          const board = rollCallBoard(cfg, 1000 + i * 31, d)
+          if (rollCallPlayOut(cfg, board, d, true) >= need) wins++
+          if (rollCallPlayOut(cfg, board, d, false) >= need) idleWins++
+        }
+        console.log(`rollcall ${configId} d${d}: greedy ${wins}/${N}, idle ${idleWins}/${N}`)
+        expect(wins / N).toBeGreaterThanOrEqual(0.9)
+        expect(idleWins).toBe(0)
+      })
+    }
+  }
+})
+
+// ── Campaign ──────────────────────────────────────────────────────────────────
+// The look-ahead campaigner (which sees the telegraphed rival move, as the
+// player does) must carry the vote; a candidate who never leaves home must not.
+
+describe('Campaign: a travelling candidate carries the vote', () => {
+  for (const configId of Object.keys(CAMPAIGN)) {
+    for (const d of DIFFS) {
+      it(`${configId} d${d}`, () => {
+        const cfg = CAMPAIGN[configId]
+        const adj = campaignAdjacency(cfg), weights = cfg.districts.map(x => x.weight)
+        const N = 60
+        let wins = 0, homeWins = 0
+        for (let seed = 1; seed <= N; seed++) {
+          const board = campaignBoard(cfg, seed * 101, d)
+          if (campaignPlayOut(cfg, board, (s, left) => campaignMove(adj, weights, s, left, board.reach)) >= board.need) wins++
+          if (campaignPlayOut(cfg, board, s => s.you) >= board.need) homeWins++
+        }
+        console.log(`campaign ${configId} d${d}: scripted ${wins}/${N}, stay-home ${homeWins}/${N}`)
+        expect(wins / N).toBeGreaterThanOrEqual(0.9)
+        expect(homeWins).toBe(0)
+      })
+    }
+  }
+})
+
 // ── Story data coverage ───────────────────────────────────────────────────────
 
 describe('story data only references configs this audit covers', () => {
@@ -614,6 +686,9 @@ describe('story data only references configs this audit covers', () => {
     tactics: Object.keys(TACTICS), battlearena: Object.keys(ARENA), weapondeploy: Object.keys(DEPLOY),
     auction: Object.keys(AUCTION), trade: Object.keys(TRADE),
     voting: [...Object.keys(CONFIG_ERA), ...Object.keys(ERA_POLICIES)],
+    campaign: Object.keys(CAMPAIGN),
+    rollcall: Object.keys(ROLLCALL),
+    coalition: Object.keys(COALITION),
   }
   for (const [game, ids] of Object.entries(games)) {
     it(game, () => {

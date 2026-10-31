@@ -82,9 +82,9 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "voting",
+            "game": "coalition",
             "configId": "spanish-court",
-            "instruction": "Queen Isabel must build court support to fund Columbus's westward voyage. The treasury is drained; sceptics are many.",
+            "instruction": "Queen Isabel must build a court coalition to fund Columbus's westward voyage. The treasury is drained — choose which concessions to grant so enough factions back the plan.",
             "fact": "The Capitulations of Santa Fe (1492) gave Columbus the title of Admiral and a share of profits. Isabel's gamble yielded the largest territorial windfall in European history."
           }
         }
