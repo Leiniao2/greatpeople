@@ -103,6 +103,48 @@
             "instruction": "Break through the formation — slide the sword piece to the marked position.",
             "fact": "Renaissance swordsmanship manuals (fencing treatises) were among the first printed technical manuals, systematizing combat for the first time in European history."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Miyamoto Musashi",
+          "portraitKey": "miyamoto_musashi",
+          "text": "Kyoto is under Riot. At the end of every round, any side whose Strength totals under 5 is swept from the board. Francesco Borromini is already there and far too weak to last. Put me there and hold."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "survival",
+            "params": {
+              "hero": "miyamoto_musashi",
+              "stat": "strength",
+              "locations": [
+                "medieval_kyoto",
+                "renaissance_genoa",
+                "renaissance_venice"
+              ],
+              "allies": [
+                "magellan"
+              ],
+              "opponents": [
+                "borromini",
+                "bayinnaung"
+              ],
+              "followers": [
+                "Warrior",
+                "Athlete",
+                "General",
+                "Soldier"
+              ],
+              "cpuFollowers": [
+                "Athlete",
+                "Soldier"
+              ]
+            },
+            "instruction": "Fight lesson 4 · Survival. Deploy Miyamoto Musashi to Kyoto, keep at least 5 Strength there, and End Turn until two round endings have passed.",
+            "fact": "A Local Survival event is a test, not a fight: at the end of each round every side at the location is checked, and a total under 5 loses every card there to the discard pile. Reinforce with followers, or retrieve a weak card before the round ends."
+          }
         }
       ]
     }

@@ -134,6 +134,47 @@
             "instruction": "Arabic script linked the scholars, judges, and merchants that Ibn Battuta encountered across 29 years of travel. Decode the message written in the ink of the medieval Islamic world.",
             "fact": "The Arabic language was Ibn Battuta's greatest asset. Across the vast arc from Morocco to China, he could walk into any mosque and find educated men who shared his language, his faith, and his legal tradition. The Islamic world of the 14th century was in many ways more unified than any political empire — held together by shared scripture, shared law, and shared script."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Ibn Battuta",
+          "portraitKey": "ibn_battuta",
+          "text": "Bi Sheng waits at Changan, but nothing is happening there, and without an event there is no fight. I will go first; the turn after I arrive, play the Art Critique card on Changan and we attack."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "event",
+            "params": {
+              "hero": "ibn_battuta",
+              "stat": "culture",
+              "locations": [
+                "medieval_krakow",
+                "medieval_changan",
+                "medieval_kyoto"
+              ],
+              "allies": [
+                "li_qingzhao"
+              ],
+              "opponents": [
+                "bi_sheng"
+              ],
+              "followers": [
+                "Writer",
+                "Actor",
+                "Artist",
+                "Musician"
+              ],
+              "cpuFollowers": [
+                "Actor",
+                "Artist"
+              ]
+            },
+            "instruction": "Fight lesson 3 · Starting an Event. Deploy Ibn Battuta to Changan and End Turn. Next turn play the Art Critique card there, add your follower and win one attack.",
+            "fact": "Event cards start a scenario at a location where you already have a Great Person, and only one who arrived on an earlier turn can start it. A local event keeps running until a player ends it."
+          }
         }
       ]
     }

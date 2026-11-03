@@ -134,6 +134,47 @@
             "instruction": "Tadanori lived inside the literary world of the Heian court — where the Tale of Genji set the terms for all beauty. Arrange the moonlit scenes of Japanese court literature that his poems breathed.",
             "fact": "Waka poetry — 31 syllables in a 5-7-5-7-7 pattern — was the highest art form of Heian Japan. To compose a poem in the moment, on the correct seasonal image, in response to a situation, was the mark of a complete human being. Tadanori carried his poems into battle. When his killer discovered the scroll tucked in his armour, he wept."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Taira no Tadanori",
+          "portraitKey": "taira_no_tadanori",
+          "text": "Ibn Battuta waits at Changan, but nothing is happening there, and without an event there is no fight. I will go first; the turn after I arrive, play the Art Critique card on Changan and we attack."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "event",
+            "params": {
+              "hero": "taira_no_tadanori",
+              "stat": "culture",
+              "locations": [
+                "medieval_krakow",
+                "medieval_changan",
+                "medieval_kyoto"
+              ],
+              "allies": [
+                "li_qingzhao"
+              ],
+              "opponents": [
+                "ibn_battuta"
+              ],
+              "followers": [
+                "Writer",
+                "Actor",
+                "Artist",
+                "Musician"
+              ],
+              "cpuFollowers": [
+                "Actor",
+                "Artist"
+              ]
+            },
+            "instruction": "Fight lesson 3 · Starting an Event. Deploy Taira no Tadanori to Changan and End Turn. Next turn play the Art Critique card there, add your follower and win one attack.",
+            "fact": "Event cards start a scenario at a location where you already have a Great Person, and only one who arrived on an earlier turn can start it. A local event keeps running until a player ends it."
+          }
         }
       ]
     }

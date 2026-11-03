@@ -116,6 +116,48 @@
             "instruction": "Zeno proved — or tried to — that you can never cross a room. Solve the infinite division: how does halving space endlessly still add up to something finite?",
             "fact": "The mathematical resolution to Zeno's paradoxes came with calculus: an infinite sum of terms can converge to a finite value. The series ½ + ¼ + ⅛ + … = 1. Newton and Leibniz solved in the 1660s what Zeno posed in 450 BCE — it took 2,100 years to find the right mathematical language."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Zeno of Elea",
+          "portraitKey": "zeno_of_elea",
+          "text": "Anaxagoras and Euclid hold Carthage together, and a follower stands with them. One card alone will not move them. Bring Chanakya with me, add both followers, and strike twice."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "reinforce",
+            "params": {
+              "hero": "zeno_of_elea",
+              "stat": "intelligence",
+              "locations": [
+                "classical_carthage",
+                "classical_petra",
+                "classical_sparta"
+              ],
+              "allies": [
+                "chanakya"
+              ],
+              "opponents": [
+                "anaxagoras",
+                "euclid"
+              ],
+              "followers": [
+                "Mathematician",
+                "Astronomer",
+                "Naturalist",
+                "Scientist"
+              ],
+              "cpuFollowers": [
+                "Astronomer",
+                "Naturalist"
+              ]
+            },
+            "instruction": "Fight lesson 2 · Strength in Numbers. Over two turns stack Zeno of Elea, Chanakya and both followers at Carthage, then win two attacks against the rival side.",
+            "fact": "An attack compares whole sides at a location, not single cards. Two Great People and two followers in the same stat outweigh a rival who arrived first, and each win sends one rival card back to its owner's hand."
+          }
         }
       ]
     }

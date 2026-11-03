@@ -131,6 +131,48 @@
             "instruction": "Luanda, 1622. Nzinga negotiates with the Portuguese governor. Choose your concessions so that enough parties at the table accept the treaty — every concession is a feint.",
             "fact": "Nzinga was multilingual and converted to Christianity strategically, understanding that the Portuguese were far more willing to negotiate with a Christian queen than a 'pagan' ruler. She later renounced Christianity when the political winds shifted, then accepted it again — always on her own terms. European diplomats found her simultaneously charming, erudite, and utterly undefeatable."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Anna Nzinga",
+          "portraitKey": "anna_nzinga",
+          "text": "Two face-down cards: one at St Petersburg, one at London. We cannot see who they are until we attack, and an attack reveals every card at the location. The Coup already runs at St Petersburg; you hold a card to start one at London."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "hidden",
+            "params": {
+              "hero": "anna_nzinga",
+              "stat": "politics",
+              "locations": [
+                "steam_st_petersburg",
+                "steam_london",
+                "electricity_paris"
+              ],
+              "allies": [
+                "yekaterina"
+              ],
+              "opponents": [
+                "josiah_wedgwood",
+                "louis_xvi"
+              ],
+              "followers": [
+                "Sovereign",
+                "Official",
+                "Spy",
+                "Statesman"
+              ],
+              "cpuFollowers": [
+                "Official",
+                "Spy"
+              ]
+            },
+            "instruction": "Fight lesson 5 · Face Down. Win two attacks: fight at St Petersburg where the Coup is running, then carry the fight to London by starting your own event there.",
+            "fact": "A card on the board can be public (face up) or private (face down). A private card hides its identity and stats from rivals until an attack reveals every card at that location. Your own cards deploy face down; Toggle Public when being seen helps you."
+          }
         }
       ]
     }

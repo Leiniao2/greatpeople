@@ -127,6 +127,47 @@
             "instruction": "Nakht tracked the sun's arc across the sky. Calculate the circumference of the celestial circle the sun traces — the geometry of Egyptian astronomical thought.",
             "fact": "Egyptian priests calculated the solar year at 365 days — off by only a quarter-day. They tracked the sun's annual path using shadow clocks and star tables. The geometry of circles, arcs, and angles was essential astronomical knowledge long before Greek mathematicians formalised it."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Nakht",
+          "portraitKey": "nakht",
+          "text": "The lesson is simple. Peseshet stands at Memphis and the Coup has begun. Bring me onto the board, put a Official at my side, and let us measure Politics against Politics."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "duel",
+            "params": {
+              "hero": "nakht",
+              "stat": "politics",
+              "locations": [
+                "ancient_memphis",
+                "ancient_stonehenge",
+                "ancient_olmec_sanlorenzo"
+              ],
+              "allies": [
+                "sargon_i"
+              ],
+              "opponents": [
+                "peseshet"
+              ],
+              "followers": [
+                "Official",
+                "Sovereign",
+                "Spy",
+                "Statesman"
+              ],
+              "cpuFollowers": [
+                "Official",
+                "Sovereign"
+              ]
+            },
+            "instruction": "Fight lesson 1 · First Duel. Deploy Nakht to Memphis, add the Official, then tap Nakht and tap Peseshet to attack. Win one attack.",
+            "fact": "In a Local Event every card at the location counts: Nakht brings 7 Politics, the Official adds +2 (or +3 beside a Great Person who shares that identity), and the higher total wins the attack. The loser returns to its owner's hand unless Kill mode is on."
+          }
         }
       ]
     }

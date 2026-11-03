@@ -123,6 +123,47 @@
             "instruction": "Arrange the opening of One Thousand and One Nights in the correct order — the frame story that gave Scheherazade her voice.",
             "fact": "One Thousand and One Nights was compiled during the Islamic Golden Age (8th–13th centuries) from Persian, Indian, and Arab sources. It reached Europe in Antoine Galland's 1704 French translation, which added stories like Aladdin and Ali Baba that don't appear in the original Arabic manuscripts."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Al-Khwarizmi",
+          "portraitKey": "al_khwarizmi",
+          "text": "Bi Sheng waits at Krakow, but nothing is happening there, and without an event there is no fight. I will go first; the turn after I arrive, play the Argument card on Krakow and we attack."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "event",
+            "params": {
+              "hero": "al_khwarizmi",
+              "stat": "intelligence",
+              "locations": [
+                "renaissance_baghdad",
+                "medieval_krakow",
+                "medieval_changan"
+              ],
+              "allies": [
+                "ibn_battuta"
+              ],
+              "opponents": [
+                "bi_sheng"
+              ],
+              "followers": [
+                "Astronomer",
+                "Mathematician",
+                "Naturalist",
+                "Scientist"
+              ],
+              "cpuFollowers": [
+                "Astronomer",
+                "Mathematician"
+              ]
+            },
+            "instruction": "Fight lesson 3 · Starting an Event. Deploy Al-Khwarizmi to Krakow and End Turn. Next turn play the Argument card there, add your follower and win one attack.",
+            "fact": "Event cards start a scenario at a location where you already have a Great Person, and only one who arrived on an earlier turn can start it. A local event keeps running until a player ends it."
+          }
         }
       ]
     }

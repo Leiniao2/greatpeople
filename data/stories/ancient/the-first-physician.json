@@ -129,6 +129,47 @@
             "instruction": "Egyptian doctors worked beside priests in the labyrinthine temples of Memphis. Navigate the inner passages — every turn holds a medical secret.",
             "fact": "Egyptian medicine was practised in temple 'Houses of Life' — scriptorium-hospitals where physicians copied medical papyri alongside religious texts. Hesy-Ra's work as both scribe and physician reflects this union of healing and sacred knowledge."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Hesy-Ra",
+          "portraitKey": "hesy_ra",
+          "text": "The lesson is simple. Lei Zu stands at Memphis and the Tech Race has begun. Bring me onto the board, put a Doctor at my side, and let us measure Technique against Technique."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "duel",
+            "params": {
+              "hero": "hesy_ra",
+              "stat": "technique",
+              "locations": [
+                "ancient_memphis",
+                "ancient_stonehenge",
+                "ancient_olmec_sanlorenzo"
+              ],
+              "allies": [
+                "imhotep"
+              ],
+              "opponents": [
+                "lei_zu"
+              ],
+              "followers": [
+                "Doctor",
+                "Architect",
+                "Engineer",
+                "Explorer"
+              ],
+              "cpuFollowers": [
+                "Architect",
+                "Doctor"
+              ]
+            },
+            "instruction": "Fight lesson 1 · First Duel. Deploy Hesy-Ra to Memphis, add the Doctor, then tap Hesy-Ra and tap Lei Zu to attack. Win one attack.",
+            "fact": "In a Local Event every card at the location counts: Hesy-Ra brings 9 Technique, the Doctor adds +2 (or +3 beside a Great Person who shares that identity), and the higher total wins the attack. The loser returns to its owner's hand unless Kill mode is on."
+          }
         }
       ]
     }

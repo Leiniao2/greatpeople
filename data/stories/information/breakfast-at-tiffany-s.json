@@ -132,6 +132,49 @@
             "instruction": "Four wings of the Louvre await your curatorial eye. Place each masterpiece in the room that earns the greatest bonus and open the museum doors.",
             "fact": "Audrey Hepburn was a devoted visitor of European museums and served as a UNICEF ambassador for the last five years of her life, championing education and the arts for children worldwide."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Audrey Hepburn",
+          "portraitKey": "audrey_hepburn",
+          "text": "Mother Teresa and Joël Robuchon are still in the rival's hand; they will come to the board one by one. Follow them, start the Art Critique where they stand, and fight with Kill mode on. A player with no Great People left is out of the game."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "conquest",
+            "params": {
+              "hero": "audrey_hepburn",
+              "stat": "culture",
+              "locations": [
+                "information_sanjose",
+                "information_singapore",
+                "information_tokyo"
+              ],
+              "allies": [
+                "michael_jackson",
+                "gregory_peck"
+              ],
+              "opponents": [
+                "saint_teresa",
+                "joel_robuchon"
+              ],
+              "followers": [
+                "Actor",
+                "Artist",
+                "Musician",
+                "Writer"
+              ],
+              "cpuFollowers": [
+                "Actor",
+                "Artist"
+              ]
+            },
+            "instruction": "Fight lesson 7 · Conquest. Deploy, move to wherever the rival stands, start the Art Critique there, and attack with Kill mode on until the rival has no Great People left.",
+            "fact": "With Kill mode on, a beaten card is discarded instead of returning to hand. A player with no Great People left, in hand or on the board, is out, and the last player standing wins. A kill won in a Great Person's own stat also counts towards their achievement."
+          }
         }
       ]
     }

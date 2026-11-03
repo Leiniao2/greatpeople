@@ -117,6 +117,49 @@
             },
             "instruction": "Shaw's epilogue has been printed in raised dots. Read how Eliza's story ends."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "George Bernard Shaw",
+          "portraitKey": "george_bernard_shaw",
+          "text": "This time the whole board is judged at once. Deploy Coco Chanel, Sergei Eisenstein and me, turn us public, then declare the Roadshow: the highest public Culture on the board when the round ends takes the prize."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "competition",
+            "params": {
+              "hero": "george_bernard_shaw",
+              "stat": "culture",
+              "locations": [
+                "electricity_london",
+                "electricity_moscow",
+                "electricity_paris"
+              ],
+              "allies": [
+                "coco_chanel",
+                "sergei_eisenstein"
+              ],
+              "opponents": [
+                "clara_schumann",
+                "michael_jackson"
+              ],
+              "followers": [
+                "Writer",
+                "Actor",
+                "Artist",
+                "Musician"
+              ],
+              "cpuFollowers": [
+                "Actor",
+                "Artist"
+              ]
+            },
+            "instruction": "Fight lesson 6 · Global Competition. Deploy your Great People, Toggle Public on each, then start the Roadshow and End Turn to win the round with the highest public Culture on the board.",
+            "fact": "A Global Competition counts every public Great Person on the whole board; followers and face-down cards add nothing. It lasts one round, and the strongest player draws a reward: event cards, followers or a new Great Person."
+          }
         }
       ]
     }

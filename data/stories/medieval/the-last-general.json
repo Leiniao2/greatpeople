@@ -119,6 +119,47 @@
             "instruction": "Belisarius always faced superior numbers. Deploy your archers and catapults before the battle begins — then launch the attack and watch your strategy unfold.",
             "fact": "Belisarius reconquered North Africa, Italy, and Spain for Emperor Justinian with armies of 10,000–15,000 against forces of 100,000+. He relied on disciplined cavalry and coordinated missile fire — tactics that anticipated modern combined arms."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Belisarius",
+          "portraitKey": "belisarius",
+          "text": "Batu Khan waits at Krakow, but nothing is happening there, and without an event there is no fight. I will go first; the turn after I arrive, play the Battlefield card on Krakow and we attack."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "event",
+            "params": {
+              "hero": "belisarius",
+              "stat": "strength",
+              "locations": [
+                "steam_istanbul",
+                "medieval_krakow",
+                "medieval_changan"
+              ],
+              "allies": [
+                "taira_no_tadanori"
+              ],
+              "opponents": [
+                "batu_khan"
+              ],
+              "followers": [
+                "General",
+                "Athlete",
+                "Soldier",
+                "Warrior"
+              ],
+              "cpuFollowers": [
+                "Athlete",
+                "Soldier"
+              ]
+            },
+            "instruction": "Fight lesson 3 · Starting an Event. Deploy Belisarius to Krakow and End Turn. Next turn play the Battlefield card there, add your follower and win one attack.",
+            "fact": "Event cards start a scenario at a location where you already have a Great Person, and only one who arrived on an earlier turn can start it. A local event keeps running until a player ends it."
+          }
         }
       ]
     }

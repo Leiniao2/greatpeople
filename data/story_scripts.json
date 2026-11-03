@@ -84,6 +84,16 @@
       {
         "type": "challenge",
         "index": 4
+      },
+      {
+        "type": "dialog",
+        "speaker": "Imhotep",
+        "portraitKey": "imhotep",
+        "text": "The lesson is simple. Ashurbanipal stands at Memphis and the Argument has begun. Bring me onto the board, put a Astronomer at my side, and let us measure Intelligence against Intelligence."
+      },
+      {
+        "type": "challenge",
+        "index": 5
       }
     ]
   },
@@ -156,6 +166,16 @@
       {
         "type": "challenge",
         "index": 3
+      },
+      {
+        "type": "dialog",
+        "speaker": "Sargon I",
+        "portraitKey": "sargon_i",
+        "text": "The lesson is simple. Ashurbanipal stands at Uruk and the Battlefield has begun. Bring me onto the board, put a General at my side, and let us measure Strength against Strength."
+      },
+      {
+        "type": "challenge",
+        "index": 4
       }
     ]
   },
@@ -280,6 +300,16 @@
       {
         "type": "challenge",
         "index": 6
+      },
+      {
+        "type": "dialog",
+        "speaker": "Gilgamesh",
+        "portraitKey": "gilgamesh",
+        "text": "The lesson is simple. Ashurbanipal stands at Uruk and the Battlefield has begun. Bring me onto the board, put a Warrior at my side, and let us measure Strength against Strength."
+      },
+      {
+        "type": "challenge",
+        "index": 7
       }
     ]
   },
@@ -372,6 +402,16 @@
       {
         "type": "challenge",
         "index": 5
+      },
+      {
+        "type": "dialog",
+        "speaker": "Ashurbanipal",
+        "portraitKey": "ashurbanipal",
+        "text": "The lesson is simple. Nakht stands at Uruk and the Coup has begun. Bring me onto the board, put a Sovereign at my side, and let us measure Politics against Politics."
+      },
+      {
+        "type": "challenge",
+        "index": 6
       }
     ]
   },
@@ -464,6 +504,16 @@
       {
         "type": "challenge",
         "index": 5
+      },
+      {
+        "type": "dialog",
+        "speaker": "Lei Zu",
+        "portraitKey": "lei_zu",
+        "text": "The lesson is simple. Ashurbanipal stands at Memphis and the Business War has begun. Bring me onto the board, put a Noble at my side, and let us measure Wealth against Wealth."
+      },
+      {
+        "type": "challenge",
+        "index": 6
       }
     ]
   },
@@ -552,6 +602,16 @@
       {
         "type": "challenge",
         "index": 4
+      },
+      {
+        "type": "dialog",
+        "speaker": "Hesy-Ra",
+        "portraitKey": "hesy_ra",
+        "text": "The lesson is simple. Lei Zu stands at Memphis and the Tech Race has begun. Bring me onto the board, put a Doctor at my side, and let us measure Technique against Technique."
+      },
+      {
+        "type": "challenge",
+        "index": 5
       }
     ]
   },
@@ -640,6 +700,16 @@
       {
         "type": "challenge",
         "index": 4
+      },
+      {
+        "type": "dialog",
+        "speaker": "King Telepinu",
+        "portraitKey": "king_telepinu",
+        "text": "The lesson is simple. Peseshet stands at Uruk and the Miracle has begun. Bring me onto the board, put a Monastic at my side, and let us measure Belief against Belief."
+      },
+      {
+        "type": "challenge",
+        "index": 5
       }
     ]
   },
@@ -732,6 +802,16 @@
       {
         "type": "challenge",
         "index": 5
+      },
+      {
+        "type": "dialog",
+        "speaker": "Mahavira",
+        "portraitKey": "mahavira",
+        "text": "The lesson is simple. King Telepinu stands at Memphis and the Miracle has begun. Bring me onto the board, put a Prophet at my side, and let us measure Belief against Belief."
+      },
+      {
+        "type": "challenge",
+        "index": 6
       }
     ]
   },
@@ -820,6 +900,16 @@
       {
         "type": "challenge",
         "index": 4
+      },
+      {
+        "type": "dialog",
+        "speaker": "Nakht",
+        "portraitKey": "nakht",
+        "text": "The lesson is simple. Peseshet stands at Memphis and the Coup has begun. Bring me onto the board, put a Official at my side, and let us measure Politics against Politics."
+      },
+      {
+        "type": "challenge",
+        "index": 5
       }
     ]
   },
@@ -908,6 +998,16 @@
       {
         "type": "challenge",
         "index": 4
+      },
+      {
+        "type": "dialog",
+        "speaker": "Pediamenopet",
+        "portraitKey": "pediamenopet",
+        "text": "The lesson is simple. Peseshet stands at Memphis and the Miracle has begun. Bring me onto the board, put a Priest at my side, and let us measure Belief against Belief."
+      },
+      {
+        "type": "challenge",
+        "index": 5
       }
     ]
   },
@@ -996,6 +1096,16 @@
       {
         "type": "challenge",
         "index": 4
+      },
+      {
+        "type": "dialog",
+        "speaker": "Peseshet",
+        "portraitKey": "peseshet",
+        "text": "The lesson is simple. Mahavira stands at Memphis and the Argument has begun. Bring me onto the board, put a Astronomer at my side, and let us measure Intelligence against Intelligence."
+      },
+      {
+        "type": "challenge",
+        "index": 5
       }
     ]
   },
@@ -1078,6 +1188,16 @@
       {
         "type": "challenge",
         "index": 4
+      },
+      {
+        "type": "dialog",
+        "speaker": "Euclid",
+        "portraitKey": "euclid",
+        "text": "Anaxagoras and Zeno of Elea hold Carthage together, and a follower stands with them. One card alone will not move them. Bring Chanakya with me, add both followers, and strike twice."
+      },
+      {
+        "type": "challenge",
+        "index": 5
       }
     ]
   },
@@ -1204,6 +1324,16 @@
       {
         "type": "challenge",
         "index": 7
+      },
+      {
+        "type": "dialog",
+        "speaker": "Pericles",
+        "portraitKey": "pericles",
+        "text": "Cicero and Chanakya hold Carthage together, and a follower stands with them. One card alone will not move them. Bring Aspasia with me, add both followers, and strike twice."
+      },
+      {
+        "type": "challenge",
+        "index": 8
       }
     ]
   },
@@ -1286,6 +1416,16 @@
       {
         "type": "challenge",
         "index": 4
+      },
+      {
+        "type": "dialog",
+        "speaker": "Cicero",
+        "portraitKey": "cicero",
+        "text": "Chanakya and Peseshet hold Rome together, and a follower stands with them. One card alone will not move them. Bring Euclid with me, add both followers, and strike twice."
+      },
+      {
+        "type": "challenge",
+        "index": 5
       }
     ]
   },
@@ -1378,6 +1518,16 @@
       {
         "type": "challenge",
         "index": 5
+      },
+      {
+        "type": "dialog",
+        "speaker": "Anaxagoras",
+        "portraitKey": "anaxagoras",
+        "text": "Li Qingzhao and Taira no Tadanori hold Carthage together, and a follower stands with them. One card alone will not move them. Bring Cicero with me, add both followers, and strike twice."
+      },
+      {
+        "type": "challenge",
+        "index": 6
       }
     ]
   },
@@ -1454,6 +1604,16 @@
       {
         "type": "challenge",
         "index": 4
+      },
+      {
+        "type": "dialog",
+        "speaker": "Mani",
+        "portraitKey": "mani",
+        "text": "Hua Mulan and Mahavira hold Damascus together, and a follower stands with them. One card alone will not move them. Bring Anaxagoras with me, add both followers, and strike twice."
+      },
+      {
+        "type": "challenge",
+        "index": 5
       }
     ]
   },
@@ -1530,6 +1690,16 @@
       {
         "type": "challenge",
         "index": 4
+      },
+      {
+        "type": "dialog",
+        "speaker": "Hua Mulan",
+        "portraitKey": "hua_mulan",
+        "text": "Gilgamesh and Batu Khan hold Changan together, and a follower stands with them. One card alone will not move them. Bring Pleistoanax with me, add both followers, and strike twice."
+      },
+      {
+        "type": "challenge",
+        "index": 5
       }
     ]
   },
@@ -1622,6 +1792,16 @@
       {
         "type": "challenge",
         "index": 5
+      },
+      {
+        "type": "dialog",
+        "speaker": "Chanakya",
+        "portraitKey": "chanakya",
+        "text": "Euclid and Zeno of Elea hold Rome together, and a follower stands with them. One card alone will not move them. Bring Anaxagoras with me, add both followers, and strike twice."
+      },
+      {
+        "type": "challenge",
+        "index": 6
       }
     ]
   },
@@ -1710,6 +1890,16 @@
       {
         "type": "challenge",
         "index": 4
+      },
+      {
+        "type": "dialog",
+        "speaker": "Valmiki",
+        "portraitKey": "valmiki",
+        "text": "Zeno of Elea and Mahavira hold Rome together, and a follower stands with them. One card alone will not move them. Bring Mani with me, add both followers, and strike twice."
+      },
+      {
+        "type": "challenge",
+        "index": 5
       }
     ]
   },
@@ -1788,6 +1978,16 @@
       {
         "type": "challenge",
         "index": 3
+      },
+      {
+        "type": "dialog",
+        "speaker": "Pleistoanax",
+        "portraitKey": "pleistoanax",
+        "text": "Cicero and Ashurbanipal hold Sparta together, and a follower stands with them. One card alone will not move them. Bring Aspasia with me, add both followers, and strike twice."
+      },
+      {
+        "type": "challenge",
+        "index": 4
       }
     ]
   },
@@ -1866,6 +2066,16 @@
       {
         "type": "challenge",
         "index": 3
+      },
+      {
+        "type": "dialog",
+        "speaker": "Zeno of Elea",
+        "portraitKey": "zeno_of_elea",
+        "text": "Anaxagoras and Euclid hold Carthage together, and a follower stands with them. One card alone will not move them. Bring Chanakya with me, add both followers, and strike twice."
+      },
+      {
+        "type": "challenge",
+        "index": 4
       }
     ]
   },
@@ -1948,6 +2158,16 @@
       {
         "type": "challenge",
         "index": 4
+      },
+      {
+        "type": "dialog",
+        "speaker": "Belisarius",
+        "portraitKey": "belisarius",
+        "text": "Batu Khan waits at Krakow, but nothing is happening there, and without an event there is no fight. I will go first; the turn after I arrive, play the Battlefield card on Krakow and we attack."
+      },
+      {
+        "type": "challenge",
+        "index": 5
       }
     ]
   },
@@ -2028,6 +2248,16 @@
       {
         "type": "challenge",
         "index": 5
+      },
+      {
+        "type": "dialog",
+        "speaker": "Al-Khwarizmi",
+        "portraitKey": "al_khwarizmi",
+        "text": "Bi Sheng waits at Krakow, but nothing is happening there, and without an event there is no fight. I will go first; the turn after I arrive, play the Argument card on Krakow and we attack."
+      },
+      {
+        "type": "challenge",
+        "index": 6
       }
     ]
   },
@@ -2096,6 +2326,16 @@
       {
         "type": "challenge",
         "index": 3
+      },
+      {
+        "type": "dialog",
+        "speaker": "Lu Yu",
+        "portraitKey": "lu_yu",
+        "text": "Batu Khan waits at Krakow, but nothing is happening there, and without an event there is no fight. I will go first; the turn after I arrive, play the Miracle card on Krakow and we attack."
+      },
+      {
+        "type": "challenge",
+        "index": 4
       }
     ]
   },
@@ -2178,6 +2418,16 @@
       {
         "type": "challenge",
         "index": 4
+      },
+      {
+        "type": "dialog",
+        "speaker": "Lancelot",
+        "portraitKey": "lancelot",
+        "text": "Batu Khan waits at Changan, but nothing is happening there, and without an event there is no fight. I will go first; the turn after I arrive, play the Battlefield card on Changan and we attack."
+      },
+      {
+        "type": "challenge",
+        "index": 5
       }
     ]
   },
@@ -2250,6 +2500,16 @@
       {
         "type": "challenge",
         "index": 4
+      },
+      {
+        "type": "dialog",
+        "speaker": "Li Qingzhao",
+        "portraitKey": "li_qingzhao",
+        "text": "Ibn Battuta waits at Krakow, but nothing is happening there, and without an event there is no fight. I will go first; the turn after I arrive, play the Art Critique card on Krakow and we attack."
+      },
+      {
+        "type": "challenge",
+        "index": 5
       }
     ]
   },
@@ -2330,6 +2590,16 @@
       {
         "type": "challenge",
         "index": 5
+      },
+      {
+        "type": "dialog",
+        "speaker": "Batu Khan",
+        "portraitKey": "batu_khan",
+        "text": "Taira no Tadanori waits at Changan, but nothing is happening there, and without an event there is no fight. I will go first; the turn after I arrive, play the Battlefield card on Changan and we attack."
+      },
+      {
+        "type": "challenge",
+        "index": 6
       }
     ]
   },
@@ -2406,6 +2676,16 @@
       {
         "type": "challenge",
         "index": 4
+      },
+      {
+        "type": "dialog",
+        "speaker": "Bi Sheng",
+        "portraitKey": "bi_sheng",
+        "text": "Ibn Battuta waits at Changan, but nothing is happening there, and without an event there is no fight. I will go first; the turn after I arrive, play the Argument card on Changan and we attack."
+      },
+      {
+        "type": "challenge",
+        "index": 5
       }
     ]
   },
@@ -2486,6 +2766,16 @@
       {
         "type": "challenge",
         "index": 5
+      },
+      {
+        "type": "dialog",
+        "speaker": "Ibn Battuta",
+        "portraitKey": "ibn_battuta",
+        "text": "Bi Sheng waits at Changan, but nothing is happening there, and without an event there is no fight. I will go first; the turn after I arrive, play the Art Critique card on Changan and we attack."
+      },
+      {
+        "type": "challenge",
+        "index": 6
       }
     ]
   },
@@ -2566,6 +2856,16 @@
       {
         "type": "challenge",
         "index": 5
+      },
+      {
+        "type": "dialog",
+        "speaker": "Pakal the Great",
+        "portraitKey": "pakal",
+        "text": "Taira no Tadanori waits at Changan, but nothing is happening there, and without an event there is no fight. I will go first; the turn after I arrive, play the Coup card on Changan and we attack."
+      },
+      {
+        "type": "challenge",
+        "index": 6
       }
     ]
   },
@@ -2646,6 +2946,16 @@
       {
         "type": "challenge",
         "index": 5
+      },
+      {
+        "type": "dialog",
+        "speaker": "Taira no Tadanori",
+        "portraitKey": "taira_no_tadanori",
+        "text": "Ibn Battuta waits at Changan, but nothing is happening there, and without an event there is no fight. I will go first; the turn after I arrive, play the Art Critique card on Changan and we attack."
+      },
+      {
+        "type": "challenge",
+        "index": 6
       }
     ]
   },
@@ -2718,6 +3028,16 @@
       {
         "type": "challenge",
         "index": 3
+      },
+      {
+        "type": "dialog",
+        "speaker": "Miyamoto Musashi",
+        "portraitKey": "miyamoto_musashi",
+        "text": "Kyoto is under Riot. At the end of every round, any side whose Strength totals under 5 is swept from the board. Francesco Borromini is already there and far too weak to last. Put me there and hold."
+      },
+      {
+        "type": "challenge",
+        "index": 4
       }
     ]
   },
@@ -2810,6 +3130,16 @@
       {
         "type": "challenge",
         "index": 8
+      },
+      {
+        "type": "dialog",
+        "speaker": "Titian",
+        "portraitKey": "titian",
+        "text": "Venice is under Censorship. At the end of every round, any side whose Culture totals under 5 is swept from the board. Alan Turing is already there and far too weak to last. Put me there and hold."
+      },
+      {
+        "type": "challenge",
+        "index": 9
       }
     ]
   },
@@ -2882,6 +3212,16 @@
       {
         "type": "challenge",
         "index": 3
+      },
+      {
+        "type": "dialog",
+        "speaker": "Magellan",
+        "portraitKey": "magellan",
+        "text": "Lisbon is under Riot. At the end of every round, any side whose Strength totals under 5 is swept from the board. Francesco Borromini is already there and far too weak to last. Put me there and hold."
+      },
+      {
+        "type": "challenge",
+        "index": 4
       }
     ]
   },
@@ -2964,6 +3304,16 @@
       {
         "type": "challenge",
         "index": 4
+      },
+      {
+        "type": "dialog",
+        "speaker": "Isabel I of Castile",
+        "portraitKey": "isabel_i",
+        "text": "Tenochtitlan is under Inquisition. At the end of every round, any side whose Belief totals under 5 is swept from the board. Batu Khan is already there and far too weak to last. Put me there and hold."
+      },
+      {
+        "type": "challenge",
+        "index": 5
       }
     ]
   },
@@ -3052,6 +3402,16 @@
       {
         "type": "challenge",
         "index": 4
+      },
+      {
+        "type": "dialog",
+        "speaker": "Manuel I of Portugal",
+        "portraitKey": "manuel_i",
+        "text": "Qusqu is under Depression. At the end of every round, any side whose Wealth totals under 5 is swept from the board. Alan Turing is already there and far too weak to last. Put me there and hold."
+      },
+      {
+        "type": "challenge",
+        "index": 5
       }
     ]
   },
@@ -3132,6 +3492,16 @@
       {
         "type": "challenge",
         "index": 5
+      },
+      {
+        "type": "dialog",
+        "speaker": "Bayinnaung",
+        "portraitKey": "bayinnaung",
+        "text": "Genoa is under Riot. At the end of every round, any side whose Strength totals under 5 is swept from the board. Francesco Borromini is already there and far too weak to last. Put me there and hold."
+      },
+      {
+        "type": "challenge",
+        "index": 6
       }
     ]
   },
@@ -3208,6 +3578,16 @@
       {
         "type": "challenge",
         "index": 4
+      },
+      {
+        "type": "dialog",
+        "speaker": "Johannes Gutenberg",
+        "portraitKey": "gutenberg",
+        "text": "Genoa is under Sanctions. At the end of every round, any side whose Technique totals under 5 is swept from the board. Anna Nzinga is already there and far too weak to last. Put me there and hold."
+      },
+      {
+        "type": "challenge",
+        "index": 5
       }
     ]
   },
@@ -3288,6 +3668,16 @@
       {
         "type": "challenge",
         "index": 5
+      },
+      {
+        "type": "dialog",
+        "speaker": "Lee Sun-sin",
+        "portraitKey": "lee_sun_sin",
+        "text": "Genoa is under Riot. At the end of every round, any side whose Strength totals under 5 is swept from the board. Francesco Borromini is already there and far too weak to last. Put me there and hold."
+      },
+      {
+        "type": "challenge",
+        "index": 6
       }
     ]
   },
@@ -3368,6 +3758,16 @@
       {
         "type": "challenge",
         "index": 5
+      },
+      {
+        "type": "dialog",
+        "speaker": "Montezuma II",
+        "portraitKey": "montezuma_ii",
+        "text": "Genoa is under Terrorist Attack. At the end of every round, any side whose Politics totals under 5 is swept from the board. Bi Sheng is already there and far too weak to last. Put me there and hold."
+      },
+      {
+        "type": "challenge",
+        "index": 6
       }
     ]
   },
@@ -3448,6 +3848,16 @@
       {
         "type": "challenge",
         "index": 5
+      },
+      {
+        "type": "dialog",
+        "speaker": "Rumiñahui",
+        "portraitKey": "ruminahui",
+        "text": "Genoa is under Riot. At the end of every round, any side whose Strength totals under 5 is swept from the board. Francesco Borromini is already there and far too weak to last. Put me there and hold."
+      },
+      {
+        "type": "challenge",
+        "index": 6
       }
     ]
   },
@@ -3528,6 +3938,16 @@
       {
         "type": "challenge",
         "index": 5
+      },
+      {
+        "type": "dialog",
+        "speaker": "Tlacaelel",
+        "portraitKey": "tlacaelel",
+        "text": "Genoa is under Depression. At the end of every round, any side whose Wealth totals under 5 is swept from the board. Alan Turing is already there and far too weak to last. Put me there and hold."
+      },
+      {
+        "type": "challenge",
+        "index": 6
       }
     ]
   },
@@ -3670,6 +4090,16 @@
       {
         "type": "challenge",
         "index": 6
+      },
+      {
+        "type": "dialog",
+        "speaker": "Clara Schumann",
+        "portraitKey": "clara_schumann",
+        "text": "Two face-down cards: one at London, one at Moscow. We cannot see who they are until we attack, and an attack reveals every card at the location. The Art Critique already runs at London; you hold a card to start one at Moscow."
+      },
+      {
+        "type": "challenge",
+        "index": 7
       }
     ]
   },
@@ -3748,6 +4178,16 @@
       {
         "type": "challenge",
         "index": 4
+      },
+      {
+        "type": "dialog",
+        "speaker": "Carl Linnaeus",
+        "portraitKey": "carl_linnaeus",
+        "text": "Two face-down cards: one at Genoa, one at St Petersburg. We cannot see who they are until we attack, and an attack reveals every card at the location. The Argument already runs at Genoa; you hold a card to start one at St Petersburg."
+      },
+      {
+        "type": "challenge",
+        "index": 5
       }
     ]
   },
@@ -3826,6 +4266,16 @@
       {
         "type": "challenge",
         "index": 3
+      },
+      {
+        "type": "dialog",
+        "speaker": "Louis XVI",
+        "portraitKey": "louis_xvi",
+        "text": "Two face-down cards: one at Paris, one at St Petersburg. We cannot see who they are until we attack, and an attack reveals every card at the location. The Business War already runs at Paris; you hold a card to start one at St Petersburg."
+      },
+      {
+        "type": "challenge",
+        "index": 4
       }
     ]
   },
@@ -3914,6 +4364,16 @@
       {
         "type": "challenge",
         "index": 4
+      },
+      {
+        "type": "dialog",
+        "speaker": "James Hutton",
+        "portraitKey": "james_hutton",
+        "text": "Two face-down cards: one at London, one at St Petersburg. We cannot see who they are until we attack, and an attack reveals every card at the location. The Argument already runs at London; you hold a card to start one at St Petersburg."
+      },
+      {
+        "type": "challenge",
+        "index": 5
       }
     ]
   },
@@ -4002,6 +4462,16 @@
       {
         "type": "challenge",
         "index": 4
+      },
+      {
+        "type": "dialog",
+        "speaker": "Josiah Wedgwood",
+        "portraitKey": "josiah_wedgwood",
+        "text": "Two face-down cards: one at Boston, one at St Petersburg. We cannot see who they are until we attack, and an attack reveals every card at the location. The Business War already runs at Boston; you hold a card to start one at St Petersburg."
+      },
+      {
+        "type": "challenge",
+        "index": 5
       }
     ]
   },
@@ -4090,6 +4560,16 @@
       {
         "type": "challenge",
         "index": 4
+      },
+      {
+        "type": "dialog",
+        "speaker": "Catherine the Great",
+        "portraitKey": "yekaterina",
+        "text": "Two face-down cards: one at Amsterdam, one at St Petersburg. We cannot see who they are until we attack, and an attack reveals every card at the location. The Coup already runs at Amsterdam; you hold a card to start one at St Petersburg."
+      },
+      {
+        "type": "challenge",
+        "index": 5
       }
     ]
   },
@@ -4174,6 +4654,16 @@
       {
         "type": "challenge",
         "index": 3
+      },
+      {
+        "type": "dialog",
+        "speaker": "Marie Antoinette",
+        "portraitKey": "marie_antoinette",
+        "text": "Two face-down cards: one at St Petersburg, one at London. We cannot see who they are until we attack, and an attack reveals every card at the location. The Business War already runs at St Petersburg; you hold a card to start one at London."
+      },
+      {
+        "type": "challenge",
+        "index": 4
       }
     ]
   },
@@ -4254,6 +4744,16 @@
       {
         "type": "challenge",
         "index": 5
+      },
+      {
+        "type": "dialog",
+        "speaker": "Anna Nzinga",
+        "portraitKey": "anna_nzinga",
+        "text": "Two face-down cards: one at St Petersburg, one at London. We cannot see who they are until we attack, and an attack reveals every card at the location. The Coup already runs at St Petersburg; you hold a card to start one at London."
+      },
+      {
+        "type": "challenge",
+        "index": 6
       }
     ]
   },
@@ -4330,6 +4830,16 @@
       {
         "type": "challenge",
         "index": 4
+      },
+      {
+        "type": "dialog",
+        "speaker": "Francesco Borromini",
+        "portraitKey": "borromini",
+        "text": "Two face-down cards: one at St Petersburg, one at London. We cannot see who they are until we attack, and an attack reveals every card at the location. The Tech Race already runs at St Petersburg; you hold a card to start one at London."
+      },
+      {
+        "type": "challenge",
+        "index": 5
       }
     ]
   },
@@ -4410,6 +4920,16 @@
       {
         "type": "challenge",
         "index": 5
+      },
+      {
+        "type": "dialog",
+        "speaker": "Gian Lorenzo Bernini",
+        "portraitKey": "bernini",
+        "text": "Two face-down cards: one at St Petersburg, one at London. We cannot see who they are until we attack, and an attack reveals every card at the location. The Art Critique already runs at St Petersburg; you hold a card to start one at London."
+      },
+      {
+        "type": "challenge",
+        "index": 6
       }
     ]
   },
@@ -4490,6 +5010,16 @@
       {
         "type": "challenge",
         "index": 5
+      },
+      {
+        "type": "dialog",
+        "speaker": "Nian Xiyao",
+        "portraitKey": "nian_xiyao",
+        "text": "Two face-down cards: one at St Petersburg, one at London. We cannot see who they are until we attack, and an attack reveals every card at the location. The Tech Race already runs at St Petersburg; you hold a card to start one at London."
+      },
+      {
+        "type": "challenge",
+        "index": 6
       }
     ]
   },
@@ -4566,6 +5096,16 @@
       {
         "type": "challenge",
         "index": 4
+      },
+      {
+        "type": "dialog",
+        "speaker": "Mohandas Gandhi",
+        "portraitKey": "gandhi",
+        "text": "This time the whole board is judged at once. Deploy Gregor Mendel, Tenzing Norgay and me, turn us public, then declare the Pilgrimage: the highest public Belief on the board when the round ends takes the prize."
+      },
+      {
+        "type": "challenge",
+        "index": 5
       }
     ]
   },
@@ -4646,6 +5186,16 @@
       {
         "type": "challenge",
         "index": 5
+      },
+      {
+        "type": "dialog",
+        "speaker": "Gregor Mendel",
+        "portraitKey": "gregor_mendel",
+        "text": "This time the whole board is judged at once. Deploy Alan Turing, Mohandas Gandhi and me, turn us public, then declare the Expedition: the highest public Intelligence on the board when the round ends takes the prize."
+      },
+      {
+        "type": "challenge",
+        "index": 6
       }
     ]
   },
@@ -4718,6 +5268,16 @@
       {
         "type": "challenge",
         "index": 4
+      },
+      {
+        "type": "dialog",
+        "speaker": "Johannes Brahms",
+        "portraitKey": "johannes_brahms",
+        "text": "This time the whole board is judged at once. Deploy George Bernard Shaw, Coco Chanel and me, turn us public, then declare the Roadshow: the highest public Culture on the board when the round ends takes the prize."
+      },
+      {
+        "type": "challenge",
+        "index": 5
       }
     ]
   },
@@ -4794,6 +5354,16 @@
       {
         "type": "challenge",
         "index": 4
+      },
+      {
+        "type": "dialog",
+        "speaker": "Alan Turing",
+        "portraitKey": "alan_turing",
+        "text": "This time the whole board is judged at once. Deploy Itō Hirobumi, Clara Schumann and me, turn us public, then declare the Expedition: the highest public Intelligence on the board when the round ends takes the prize."
+      },
+      {
+        "type": "challenge",
+        "index": 5
       }
     ]
   },
@@ -4866,6 +5436,16 @@
       {
         "type": "challenge",
         "index": 4
+      },
+      {
+        "type": "dialog",
+        "speaker": "Hendrik Lorentz",
+        "portraitKey": "hendrik_lorentz",
+        "text": "This time the whole board is judged at once. Deploy Itō Hirobumi, Clara Schumann and me, turn us public, then declare the Expedition: the highest public Intelligence on the board when the round ends takes the prize."
+      },
+      {
+        "type": "challenge",
+        "index": 5
       }
     ]
   },
@@ -4934,6 +5514,16 @@
       {
         "type": "challenge",
         "index": 3
+      },
+      {
+        "type": "dialog",
+        "speaker": "Coco Chanel",
+        "portraitKey": "coco_chanel",
+        "text": "This time the whole board is judged at once. Deploy Itō Hirobumi, George Bernard Shaw and me, turn us public, then declare the Auction: the highest public Wealth on the board when the round ends takes the prize."
+      },
+      {
+        "type": "challenge",
+        "index": 4
       }
     ]
   },
@@ -5006,6 +5596,16 @@
       {
         "type": "challenge",
         "index": 4
+      },
+      {
+        "type": "dialog",
+        "speaker": "Amelia Earhart",
+        "portraitKey": "amelia_earhart",
+        "text": "This time the whole board is judged at once. Deploy An Jung-geun, George Bernard Shaw and me, turn us public, then declare the Olympics: the highest public Strength on the board when the round ends takes the prize."
+      },
+      {
+        "type": "challenge",
+        "index": 5
       }
     ]
   },
@@ -5074,6 +5674,16 @@
       {
         "type": "challenge",
         "index": 3
+      },
+      {
+        "type": "dialog",
+        "speaker": "Sergei Eisenstein",
+        "portraitKey": "sergei_eisenstein",
+        "text": "This time the whole board is judged at once. Deploy Clara Schumann, Mohandas Gandhi and me, turn us public, then declare the Roadshow: the highest public Culture on the board when the round ends takes the prize."
+      },
+      {
+        "type": "challenge",
+        "index": 4
       }
     ]
   },
@@ -5146,6 +5756,16 @@
       {
         "type": "challenge",
         "index": 3
+      },
+      {
+        "type": "dialog",
+        "speaker": "Mao Zedong",
+        "portraitKey": "mao_zedong",
+        "text": "This time the whole board is judged at once. Deploy Andrew Mellon, Coco Chanel and me, turn us public, then declare the International Conference: the highest public Politics on the board when the round ends takes the prize."
+      },
+      {
+        "type": "challenge",
+        "index": 4
       }
     ]
   },
@@ -5220,6 +5840,16 @@
       {
         "type": "challenge",
         "index": 3
+      },
+      {
+        "type": "dialog",
+        "speaker": "An Jung-geun",
+        "portraitKey": "an_jung_geun",
+        "text": "This time the whole board is judged at once. Deploy Gregor Mendel, Tenzing Norgay and me, turn us public, then declare the Pilgrimage: the highest public Belief on the board when the round ends takes the prize."
+      },
+      {
+        "type": "challenge",
+        "index": 4
       }
     ]
   },
@@ -5292,6 +5922,16 @@
       {
         "type": "challenge",
         "index": 4
+      },
+      {
+        "type": "dialog",
+        "speaker": "Andrew Mellon",
+        "portraitKey": "andrew_mellon",
+        "text": "This time the whole board is judged at once. Deploy Itō Hirobumi, George Bernard Shaw and me, turn us public, then declare the Auction: the highest public Wealth on the board when the round ends takes the prize."
+      },
+      {
+        "type": "challenge",
+        "index": 5
       }
     ]
   },
@@ -5370,6 +6010,16 @@
       {
         "type": "challenge",
         "index": 3
+      },
+      {
+        "type": "dialog",
+        "speaker": "Itō Hirobumi",
+        "portraitKey": "ito_hirobumi",
+        "text": "This time the whole board is judged at once. Deploy Andrew Mellon, Coco Chanel and me, turn us public, then declare the International Conference: the highest public Politics on the board when the round ends takes the prize."
+      },
+      {
+        "type": "challenge",
+        "index": 4
       }
     ]
   },
@@ -5454,6 +6104,16 @@
       {
         "type": "challenge",
         "index": 3
+      },
+      {
+        "type": "dialog",
+        "speaker": "George Bernard Shaw",
+        "portraitKey": "george_bernard_shaw",
+        "text": "This time the whole board is judged at once. Deploy Coco Chanel, Sergei Eisenstein and me, turn us public, then declare the Roadshow: the highest public Culture on the board when the round ends takes the prize."
+      },
+      {
+        "type": "challenge",
+        "index": 4
       }
     ]
   },
@@ -5546,6 +6206,16 @@
       {
         "type": "narration",
         "text": "She dies in 1997 with little to her name. The Missionaries of Charity continue in 133 countries. In 2016 she is canonised — Saint Teresa of Calcutta — patron of the poor and the unwanted."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Mother Teresa",
+        "portraitKey": "saint_teresa",
+        "text": "Jane Goodall and An Jung-geun are still in the rival's hand; they will come to the board one by one. Follow them, start the Miracle where they stand, and fight with Kill mode on. A player with no Great People left is out of the game."
+      },
+      {
+        "type": "challenge",
+        "index": 4
       }
     ]
   },
@@ -5664,6 +6334,16 @@
       {
         "type": "narration",
         "text": "Hillary was knighted. Tenzing received the George Medal. Both returned to Nepal and devoted decades to the Himalayan people — Hillary through the Himalayan Trust, which built over 30 schools. Their partnership outlasted the summit."
+      },
+      {
+        "type": "dialog",
+        "speaker": "Edmund Hillary",
+        "portraitKey": "edmund_hillary",
+        "text": "Diego Maradona and Peter Arnett are still in the rival's hand; they will come to the board one by one. Follow them, start the Battlefield where they stand, and fight with Kill mode on. A player with no Great People left is out of the game."
+      },
+      {
+        "type": "challenge",
+        "index": 5
       }
     ]
   },
@@ -5744,6 +6424,16 @@
       {
         "type": "challenge",
         "index": 5
+      },
+      {
+        "type": "dialog",
+        "speaker": "Audrey Hepburn",
+        "portraitKey": "audrey_hepburn",
+        "text": "Mother Teresa and Joël Robuchon are still in the rival's hand; they will come to the board one by one. Follow them, start the Art Critique where they stand, and fight with Kill mode on. A player with no Great People left is out of the game."
+      },
+      {
+        "type": "challenge",
+        "index": 6
       }
     ]
   },
@@ -5812,6 +6502,16 @@
       {
         "type": "challenge",
         "index": 3
+      },
+      {
+        "type": "dialog",
+        "speaker": "Michael Jackson",
+        "portraitKey": "michael_jackson",
+        "text": "Mother Teresa and Joël Robuchon are still in the rival's hand; they will come to the board one by one. Follow them, start the Art Critique where they stand, and fight with Kill mode on. A player with no Great People left is out of the game."
+      },
+      {
+        "type": "challenge",
+        "index": 4
       }
     ]
   },
@@ -5900,6 +6600,16 @@
       {
         "type": "challenge",
         "index": 4
+      },
+      {
+        "type": "dialog",
+        "speaker": "Diego Maradona",
+        "portraitKey": "diego_maradona",
+        "text": "Jane Goodall and Peter Arnett are still in the rival's hand; they will come to the board one by one. Follow them, start the Lawsuit where they stand, and fight with Kill mode on. A player with no Great People left is out of the game."
+      },
+      {
+        "type": "challenge",
+        "index": 5
       }
     ]
   },
@@ -5992,6 +6702,16 @@
       {
         "type": "challenge",
         "index": 5
+      },
+      {
+        "type": "dialog",
+        "speaker": "Jane Goodall",
+        "portraitKey": "jane_goodall",
+        "text": "Steve Jobs and Joël Robuchon are still in the rival's hand; they will come to the board one by one. Follow them, start the Lawsuit where they stand, and fight with Kill mode on. A player with no Great People left is out of the game."
+      },
+      {
+        "type": "challenge",
+        "index": 6
       }
     ]
   },
@@ -6080,6 +6800,16 @@
       {
         "type": "challenge",
         "index": 4
+      },
+      {
+        "type": "dialog",
+        "speaker": "Joël Robuchon",
+        "portraitKey": "joel_robuchon",
+        "text": "Diego Maradona and Michael Jackson are still in the rival's hand; they will come to the board one by one. Follow them, start the Tech Race where they stand, and fight with Kill mode on. A player with no Great People left is out of the game."
+      },
+      {
+        "type": "challenge",
+        "index": 5
       }
     ]
   },
@@ -6168,6 +6898,16 @@
       {
         "type": "challenge",
         "index": 4
+      },
+      {
+        "type": "dialog",
+        "speaker": "Peter Arnett",
+        "portraitKey": "peter_arnett",
+        "text": "Steve Jobs and Joël Robuchon are still in the rival's hand; they will come to the board one by one. Follow them, start the Lawsuit where they stand, and fight with Kill mode on. A player with no Great People left is out of the game."
+      },
+      {
+        "type": "challenge",
+        "index": 5
       }
     ]
   },
@@ -6264,6 +7004,16 @@
       {
         "type": "challenge",
         "index": 6
+      },
+      {
+        "type": "dialog",
+        "speaker": "Steve Jobs",
+        "portraitKey": "steve_jobs",
+        "text": "Diego Maradona and Peter Arnett are still in the rival's hand; they will come to the board one by one. Follow them, start the Business War where they stand, and fight with Kill mode on. A player with no Great People left is out of the game."
+      },
+      {
+        "type": "challenge",
+        "index": 7
       }
     ]
   },
@@ -6342,6 +7092,16 @@
       {
         "type": "challenge",
         "index": 3
+      },
+      {
+        "type": "dialog",
+        "speaker": "Gregory Peck",
+        "portraitKey": "gregory_peck",
+        "text": "Mother Teresa and Joël Robuchon are still in the rival's hand; they will come to the board one by one. Follow them, start the Art Critique where they stand, and fight with Kill mode on. A player with no Great People left is out of the game."
+      },
+      {
+        "type": "challenge",
+        "index": 4
       }
     ]
   }

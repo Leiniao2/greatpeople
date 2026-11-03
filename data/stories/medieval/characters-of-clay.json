@@ -113,6 +113,47 @@
             "instruction": "Before Bi Sheng's press, scholars hand-copied every text. Clear the clay tablet — match the ancient records that his invention would eventually make obsolete.",
             "fact": "Writing had been recorded on clay tablets since Mesopotamia in 3500 BCE. Bi Sheng's great insight was that clay — the oldest writing substrate in human history — could itself become the tool for mass reproduction of text. He connected the ancient world of clay and the modern world of print in a single creative act."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Bi Sheng",
+          "portraitKey": "bi_sheng",
+          "text": "Ibn Battuta waits at Changan, but nothing is happening there, and without an event there is no fight. I will go first; the turn after I arrive, play the Argument card on Changan and we attack."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "event",
+            "params": {
+              "hero": "bi_sheng",
+              "stat": "intelligence",
+              "locations": [
+                "medieval_krakow",
+                "medieval_changan",
+                "medieval_kyoto"
+              ],
+              "allies": [
+                "al_khwarizmi"
+              ],
+              "opponents": [
+                "ibn_battuta"
+              ],
+              "followers": [
+                "Scientist",
+                "Astronomer",
+                "Mathematician",
+                "Naturalist"
+              ],
+              "cpuFollowers": [
+                "Astronomer",
+                "Mathematician"
+              ]
+            },
+            "instruction": "Fight lesson 3 · Starting an Event. Deploy Bi Sheng to Changan and End Turn. Next turn play the Argument card there, add your follower and win one attack.",
+            "fact": "Event cards start a scenario at a location where you already have a Great Person, and only one who arrived on an earlier turn can start it. A local event keeps running until a player ends it."
+          }
         }
       ]
     }

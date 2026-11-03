@@ -134,6 +134,48 @@
             "configId": "mendel-grid",
             "instruction": "Wedgwood sold only to the wealthy — his pottery was exclusively a luxury product for aristocrats and royalty. Order the grid as the record was ordered — every row, column and box complete."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Josiah Wedgwood",
+          "portraitKey": "josiah_wedgwood",
+          "text": "Two face-down cards: one at Boston, one at St Petersburg. We cannot see who they are until we attack, and an attack reveals every card at the location. The Business War already runs at Boston; you hold a card to start one at St Petersburg."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "hidden",
+            "params": {
+              "hero": "josiah_wedgwood",
+              "stat": "wealth",
+              "locations": [
+                "steam_manchester",
+                "steam_st_petersburg",
+                "steam_london"
+              ],
+              "allies": [
+                "yekaterina"
+              ],
+              "opponents": [
+                "louis_xvi",
+                "nian_xiyao"
+              ],
+              "followers": [
+                "Merchant",
+                "Banker",
+                "Economist",
+                "Noble"
+              ],
+              "cpuFollowers": [
+                "Banker",
+                "Economist"
+              ]
+            },
+            "instruction": "Fight lesson 5 · Face Down. Win two attacks: fight at Boston where the Business War is running, then carry the fight to St Petersburg by starting your own event there.",
+            "fact": "A card on the board can be public (face up) or private (face down). A private card hides its identity and stats from rivals until an attack reveals every card at that location. Your own cards deploy face down; Toggle Public when being seen helps you."
+          }
         }
       ]
     }

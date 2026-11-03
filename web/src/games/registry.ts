@@ -61,6 +61,8 @@ export const GAMES = {
   reporterflee: def('Reporter Flee', 'Explore',  () => import('@/components/minigames/ReporterFleeGame'), true),
   chimpmath:    def('Chimp Math',    'Puzzle',   () => import('@/components/minigames/ChimpMathGame'), true),
   worldclock:   def('World Clock',   'Puzzle',   () => import('@/components/minigames/WorldClockGame'), true),
+  // ── The card game itself: scripted lessons that close every Epic story
+  fight:        def('Fight',         'Strategy', () => import('@/components/minigames/FightGame'), true),
   // ── New engines (growth-arc redesign)
   expedition:   def('Expedition',    'Strategy', () => import('@/components/minigames/ExpeditionGame'), true),
   cipher:       def('Cipher',        'Puzzle',   () => import('@/components/minigames/CipherGame'), true),

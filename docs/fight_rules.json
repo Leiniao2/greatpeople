@@ -17,7 +17,7 @@
     "docText": "All-era games draw locations and GP without era limit; single-era restricts.",
     "docSource": "docs/fight.md §1",
     "codeBehaviour": "eraMode 'all' picks 7 locations across eras; 'single' filters to the chosen era. GP deck is never filtered by era in either mode.",
-    "codeSource": "web/src/pages/BattlePage.tsx pickLocations / initGame",
+    "codeSource": "web/src/battle/engine.ts pickLocations / initGame",
     "status": "partial",
     "notes": "Single-era mode still deals GP from every era."
   },
@@ -28,7 +28,7 @@
     "docText": "4 Great People, 2 Event cards, 8 Follower cards per player, all in hand.",
     "docSource": "docs/fight.md §1",
     "codeBehaviour": "gpHand = 4, eventHand = 2, followerHand = 8.",
-    "codeSource": "web/src/pages/BattlePage.tsx initGame",
+    "codeSource": "web/src/battle/engine.ts initGame",
     "status": "implemented",
     "notes": ""
   },
@@ -39,7 +39,7 @@
     "docText": "All location cards revealed at start, columns = locations, rows = players.",
     "docSource": "docs/fight.md §1",
     "codeBehaviour": "7 locations (NUM_LOCATIONS) chosen at random from data/locations.json; board rendered as a grid.",
-    "codeSource": "web/src/pages/BattlePage.tsx NUM_LOCATIONS",
+    "codeSource": "web/src/battle/engine.ts NUM_LOCATIONS",
     "status": "implemented",
     "notes": "Doc does not state the number of locations; code uses 7."
   },
@@ -50,7 +50,7 @@
     "docText": "Not specified.",
     "docSource": "—",
     "codeBehaviour": "3 copies of each of the 32 follower templates = 96 cards, shuffled.",
-    "codeSource": "web/src/pages/BattlePage.tsx makeFollowerDeck",
+    "codeSource": "web/src/battle/engine.ts makeFollowerDeck",
     "status": "unspecified",
     "notes": "Doc never states follower deck size."
   },
@@ -61,7 +61,7 @@
     "docText": "8 stats × 3 scenario types (24 scenario cards). Hazards are separate.",
     "docSource": "docs/fight.md §5",
     "codeBehaviour": "24 scenario cards (one per stat × type). 8 hazard types in a separate deck used only for random placement.",
-    "codeSource": "web/src/pages/BattlePage.tsx makeEventDeck / makeHazardDeck",
+    "codeSource": "web/src/battle/engine.ts makeEventDeck / makeHazardDeck",
     "status": "implemented",
     "notes": ""
   },
@@ -72,7 +72,7 @@
     "docText": "Not specified.",
     "docSource": "—",
     "codeBehaviour": "One random natural hazard is placed on a random location at game start, lasting 1 round.",
-    "codeSource": "web/src/pages/BattlePage.tsx initGame",
+    "codeSource": "web/src/battle/engine.ts initGame",
     "status": "unspecified",
     "notes": ""
   },
@@ -83,7 +83,7 @@
     "docText": "Each completed GP achievement = 1 winning point. Highest total wins.",
     "docSource": "docs/fight.md §2",
     "codeBehaviour": "CLAIM_ACHIEVEMENT grants +1 winningPoints when achievementTicks ≥ threshold.",
-    "codeSource": "web/src/pages/BattlePage.tsx CLAIM_ACHIEVEMENT",
+    "codeSource": "web/src/battle/engine.ts CLAIM_ACHIEVEMENT",
     "status": "implemented",
     "notes": ""
   },
@@ -94,7 +94,7 @@
     "docText": "Game ends when a player reaches 5 winning points, or only 1 player still has GP cards.",
     "docSource": "docs/fight.md §8",
     "codeBehaviour": "checkWinCondition: winningPoints ≥ 5, or exactly one player with GP in hand or on board.",
-    "codeSource": "web/src/pages/BattlePage.tsx checkWinCondition",
+    "codeSource": "web/src/battle/engine.ts checkWinCondition",
     "status": "implemented",
     "notes": "Server match model also uses _WINS_NEEDED = 5 but for a different game (see server-model)."
   },
@@ -105,7 +105,7 @@
     "docText": "Once per turn, place a GP from hand to a location; choose public or private.",
     "docSource": "docs/fight.md §3 A, §4",
     "codeBehaviour": "DEPLOY_GP: once per turn (turnActions.deployedGP), isPublic chosen, card flagged justDeployed.",
-    "codeSource": "web/src/pages/BattlePage.tsx DEPLOY_GP",
+    "codeSource": "web/src/battle/engine.ts DEPLOY_GP",
     "status": "implemented",
     "notes": ""
   },
@@ -116,7 +116,7 @@
     "docText": "Once per turn, add a follower to a location where you already have a GP.",
     "docSource": "docs/fight.md §3 B",
     "codeBehaviour": "ADD_FOLLOWER: once per turn, requires an allied GP at the location.",
-    "codeSource": "web/src/pages/BattlePage.tsx ADD_FOLLOWER",
+    "codeSource": "web/src/battle/engine.ts ADD_FOLLOWER",
     "status": "implemented",
     "notes": "Li Qingzhao / Michael Jackson traits that lift this limit are not implemented."
   },
@@ -127,7 +127,7 @@
     "docText": "Any number of moves per turn, each card at most once.",
     "docSource": "docs/fight.md §3 C",
     "codeBehaviour": "MOVE_CARD tracked per instance in turnActions.movedCards; justDeployed cards cannot move.",
-    "codeSource": "web/src/pages/BattlePage.tsx MOVE_CARD",
+    "codeSource": "web/src/battle/engine.ts MOVE_CARD",
     "status": "implemented",
     "notes": ""
   },
@@ -138,7 +138,7 @@
     "docText": "A player may start an event only at a location where they have a Great Person that was not deployed this turn; most events are local.",
     "docSource": "docs/fight.md §3 D",
     "codeBehaviour": "START_EVENT places an event card from hand on a location, once per location per turn, and only if the player has a GP there with justDeployed === false (same presence check as END_SCENARIO). Global competitions use the same gate.",
-    "codeSource": "web/src/pages/BattlePage.tsx START_EVENT",
+    "codeSource": "web/src/battle/engine.ts START_EVENT",
     "status": "implemented",
     "notes": "In-game rules panel and selection hint say 'where you have a Great Person that was not deployed this turn'. The CPU AI never starts events, so it is unaffected."
   },
@@ -149,7 +149,7 @@
     "docText": "Retrieve a GP or follower from the board to hand.",
     "docSource": "docs/fight.md §3 E",
     "codeBehaviour": "RETRIEVE_CARD returns GP id to gpHand / follower to followerHand; once per card per turn.",
-    "codeSource": "web/src/pages/BattlePage.tsx RETRIEVE_CARD",
+    "codeSource": "web/src/battle/engine.ts RETRIEVE_CARD",
     "status": "implemented",
     "notes": ""
   },
@@ -160,7 +160,7 @@
     "docText": "Claim that a GP on board completed its achievement → 1 winning point.",
     "docSource": "docs/fight.md §3 F",
     "codeBehaviour": "CLAIM_ACHIEVEMENT requires the card public and ticks ≥ threshold; grants +1 point AND immediately draws a new GP card to hand; ticks reset to 0 and the GP stays on board.",
-    "codeSource": "web/src/pages/BattlePage.tsx CLAIM_ACHIEVEMENT",
+    "codeSource": "web/src/battle/engine.ts CLAIM_ACHIEVEMENT",
     "status": "partial",
     "notes": "Doc: archiving is a separate, optional step that yields the new GP (§6). Code merges both and never archives."
   },
@@ -171,7 +171,7 @@
     "docText": "Attack any number of times per turn when both players have cards at the same location during a local event.",
     "docSource": "docs/fight.md §3 G, §7",
     "codeBehaviour": "ATTACK allowed only when location.activeEvent.type === 'local_event'; no per-turn limit.",
-    "codeSource": "web/src/pages/BattlePage.tsx ATTACK",
+    "codeSource": "web/src/battle/engine.ts ATTACK",
     "status": "implemented",
     "notes": "Attacker's card is not required to be public (doc §7 says it must be)."
   },
@@ -182,7 +182,7 @@
     "docText": "A GP can end a scenario if it has the matching identity (e.g. Artist ends Art Critique).",
     "docSource": "docs/fight.md §3 H, §7",
     "codeBehaviour": "END_SCENARIO: any non-just-deployed allied GP at the location can end any local event or survival, once per location per turn. Identity is not checked.",
-    "codeSource": "web/src/pages/BattlePage.tsx END_SCENARIO",
+    "codeSource": "web/src/battle/engine.ts END_SCENARIO",
     "status": "conflict",
     "notes": ""
   },
@@ -193,7 +193,7 @@
     "docText": "Change a card's status; once per card per turn.",
     "docSource": "docs/fight.md §3 I, §4",
     "codeBehaviour": "TOGGLE_VISIBILITY once per card per turn; justDeployed cards cannot toggle.",
-    "codeSource": "web/src/pages/BattlePage.tsx TOGGLE_VISIBILITY",
+    "codeSource": "web/src/battle/engine.ts TOGGLE_VISIBILITY",
     "status": "implemented",
     "notes": ""
   },
@@ -204,7 +204,7 @@
     "docText": "A GP or Follower that was just put on board cannot do C/D/E/F/I this turn.",
     "docSource": "docs/fight.md §3",
     "codeBehaviour": "justDeployed flag blocks move, retrieve, claim, visibility, end-scenario; cleared at END_TURN.",
-    "codeSource": "web/src/pages/BattlePage.tsx END_TURN",
+    "codeSource": "web/src/battle/engine.ts END_TURN",
     "status": "implemented",
     "notes": "Attack (G) is not blocked for just-deployed cards in either doc or code."
   },
@@ -215,7 +215,7 @@
     "docText": "Deploy GP → Followers → Retrieve → Relocate → Visibility → Attack → Survival → Event → End scenario → New scenario → Achievement → Archive.",
     "docSource": "docs/fight.md §7",
     "codeBehaviour": "Free-form: any action can be taken in any order until END_TURN. Survival/hazard/global resolution happens only when a full round completes.",
-    "codeSource": "web/src/pages/BattlePage.tsx gameReducer",
+    "codeSource": "web/src/battle/engine.ts gameReducer",
     "status": "partial",
     "notes": ""
   },
@@ -226,7 +226,7 @@
     "docText": "After an attack, both players' cards at that location must all be public. Defender's cards auto-join and are revealed.",
     "docSource": "docs/fight.md §4, §7",
     "codeBehaviour": "Only the two cards named in the ATTACK action are flipped public. Other allied/enemy cards at the location keep their status.",
-    "codeSource": "web/src/pages/BattlePage.tsx ATTACK",
+    "codeSource": "web/src/battle/engine.ts ATTACK",
     "status": "conflict",
     "notes": ""
   },
@@ -237,7 +237,7 @@
     "docText": "Face-down cards cannot be identified by other players.",
     "docSource": "docs/fight.md §4",
     "codeBehaviour": "CompactCard renders the card back for private cards of other players. State still contains the card id (client-side game).",
-    "codeSource": "web/src/pages/BattlePage.tsx CompactCard",
+    "codeSource": "web/src/battle/BattleGame.tsx CompactCard",
     "status": "implemented",
     "notes": "Hot-seat PvP: any player at the screen can inspect state via devtools."
   },
@@ -248,7 +248,7 @@
     "docText": "politics: Coup/Terrorist Attack/International Conference; strength: Battlefield/Riot/Olympics; culture: Art Critique/Censorship/Roadshow; wealth: Business War/Depression/Auction; technique: Tech Race/Sanctions/World Fair; intelligence: Argument/Puzzle/Expedition; belief: Miracle/Inquisition/Pilgrimage; reputation: Lawsuit/Scandal/Celebration.",
     "docSource": "docs/fight.md §5",
     "codeBehaviour": "EVENT_NAMES matches the doc exactly.",
-    "codeSource": "web/src/pages/BattlePage.tsx EVENT_NAMES",
+    "codeSource": "web/src/battle/engine.ts EVENT_NAMES",
     "status": "implemented",
     "notes": ""
   },
@@ -259,7 +259,7 @@
     "docText": "Compare the total of the stat over all GP and Followers of each player at the location (follower bonus included). Stronger side may attack.",
     "docSource": "docs/fight.md §5",
     "codeBehaviour": "computeLocationTotal = Σ GP base stat + implemented trait bonus + location bonus per GP, + follower bonus for followers whose stat matches.",
-    "codeSource": "web/src/pages/BattlePage.tsx computeLocationTotal",
+    "codeSource": "web/src/battle/engine.ts computeLocationTotal",
     "status": "implemented",
     "notes": "Doc has no notion of location bonus or trait numbers; engine adds both."
   },
@@ -270,7 +270,7 @@
     "docText": "Winner (sometimes the defender) chooses: kill → discard pile; otherwise loser is force-retrieved to hand. Draw → nothing.",
     "docSource": "docs/fight.md §5",
     "codeBehaviour": "Attacker chooses kill:boolean before attacking. The flag is applied to whichever side loses, so an attacker who loses is killed by its own choice. Draw → nothing. Only the single targeted card is removed, not the whole losing side.",
-    "codeSource": "web/src/pages/BattlePage.tsx ATTACK",
+    "codeSource": "web/src/battle/engine.ts ATTACK",
     "status": "partial",
     "notes": ""
   },
@@ -281,7 +281,7 @@
     "docText": "To attack, the GP must be public; public allied GP/Followers auto-join; defender's cards all revealed.",
     "docSource": "docs/fight.md §7",
     "codeBehaviour": "Not enforced: a private GP can attack. All allied cards (public or private) are summed.",
-    "codeSource": "web/src/pages/BattlePage.tsx ATTACK / computeLocationTotal",
+    "codeSource": "web/src/battle/engine.ts ATTACK / computeLocationTotal",
     "status": "conflict",
     "notes": ""
   },
@@ -292,7 +292,7 @@
     "docText": "'Any follower bonus' is added to the GP total.",
     "docSource": "docs/fight.md §5",
     "codeBehaviour": "Follower adds its bonus (2) if its stat matches the scenario stat; 3 instead if an allied GP at the location has the follower's identity.",
-    "codeSource": "web/src/pages/BattlePage.tsx computeSide",
+    "codeSource": "web/src/battle/engine.ts computeSide",
     "status": "unspecified",
     "notes": "Identity-match bonus (+3) exists only in code."
   },
@@ -303,7 +303,7 @@
     "docText": "Not in fight.md. location_cards.json carries per-stat bonuses and a trait text per location.",
     "docSource": "data/location_cards.json",
     "codeBehaviour": "Each GP at the location gains the location's bonus for the contested stat in conflicts only (not survival/hazard/global). Location trait texts are never executed.",
-    "codeSource": "web/src/pages/BattlePage.tsx locationFightBonus",
+    "codeSource": "web/src/battle/engine.ts locationFightBonus",
     "status": "partial",
     "notes": ""
   },
@@ -314,7 +314,7 @@
     "docText": "Any player at this location whose total for the stat (GP + followers) is below 10 is killed and discarded.",
     "docSource": "docs/fight.md §5",
     "codeBehaviour": "Threshold is 5: a player survives when total ≥ 5. Resolved at the start of each new round while the event stays active.",
-    "codeSource": "web/src/pages/BattlePage.tsx END_TURN local_survival (threshold = 5)",
+    "codeSource": "web/src/battle/engine.ts END_TURN local_survival (threshold = 5)",
     "status": "conflict",
     "notes": "iOS/Android rules dialogs say 10. Card stats range 1–12, so a single GP survives at 5 only with a decent stat."
   },
@@ -325,7 +325,7 @@
     "docText": "The scenario keeps working until replaced by another event or ended by a GP.",
     "docSource": "docs/fight.md §5",
     "codeBehaviour": "eventRoundsLeft = 99 for local events/survival; replaced by START_EVENT or cleared by END_SCENARIO.",
-    "codeSource": "web/src/pages/BattlePage.tsx START_EVENT",
+    "codeSource": "web/src/battle/engine.ts START_EVENT",
     "status": "implemented",
     "notes": ""
   },
@@ -336,7 +336,7 @@
     "docText": "Flood/Blizzard/Storm/Earthquake/Fire/Tsunami/Pandemic/Drought. Any player with total points (all stats, GP + followers) below 100 is killed. Random, lasts 1 round, placed where the drawer has most cards.",
     "docSource": "docs/fight.md §5",
     "codeBehaviour": "Per player: sum each of the 8 stats across their cards at the location; if the MINIMUM stat total < 5 they are discarded. 20% chance per new round, placed on the location with the most cards. Lasts 1 round. Hazard type has no effect.",
-    "codeSource": "web/src/pages/BattlePage.tsx END_TURN natural_hazard (HAZARD_MIN = 5)",
+    "codeSource": "web/src/battle/engine.ts END_TURN natural_hazard (HAZARD_MIN = 5)",
     "status": "conflict",
     "notes": "iOS/Android rules text says 'total stats below 100'. Three different rules exist."
   },
@@ -347,7 +347,7 @@
     "docText": "All players involved; lasts 1 round; highest total of the stat over all PUBLIC cards on the board wins 2 events, 4 followers or 1 GP.",
     "docSource": "docs/fight.md §5",
     "codeBehaviour": "Sums base stat of public GP only (followers, traits and location bonuses ignored). Winner picks reward: 2 events / 4 followers / 1 GP.",
-    "codeSource": "web/src/pages/BattlePage.tsx END_TURN globalCompetition / GLOBAL_COMP_REWARD",
+    "codeSource": "web/src/battle/engine.ts END_TURN globalCompetition / GLOBAL_COMP_REWARD",
     "status": "partial",
     "notes": "Followers excluded in code; doc says all cards."
   },
@@ -358,7 +358,7 @@
     "docText": "A scenario stays until replaced by another event or ended by a GP.",
     "docSource": "docs/fight.md §5",
     "codeBehaviour": "START_EVENT overwrites activeEvent at the location.",
-    "codeSource": "web/src/pages/BattlePage.tsx START_EVENT",
+    "codeSource": "web/src/battle/engine.ts START_EVENT",
     "status": "implemented",
     "notes": ""
   },
@@ -369,7 +369,7 @@
     "docText": "Gandhi negates all Conflict scenarios; Schumann shields from Survival for one round; Mani immune to Survival.",
     "docSource": "data/cards.json traits",
     "codeBehaviour": "No scenario-level trait hooks exist.",
-    "codeSource": "web/src/pages/BattlePage.tsx",
+    "codeSource": "web/src/battle/engine.ts",
     "status": "missing",
     "notes": ""
   },
@@ -380,7 +380,7 @@
     "docText": "A GP that completed its achievement may be archived (while public); owner then draws a new GP.",
     "docSource": "docs/fight.md §6",
     "codeBehaviour": "No ARCHIVE action. PlayerState.archive exists but is never written. New GP is drawn on claim instead.",
-    "codeSource": "web/src/pages/BattlePage.tsx CLAIM_ACHIEVEMENT",
+    "codeSource": "web/src/battle/engine.ts CLAIM_ACHIEVEMENT",
     "status": "partial",
     "notes": "Turing / Bi Sheng / Gutenberg traits that key off 'last archived GP' cannot work without archiving."
   },
@@ -391,7 +391,7 @@
     "docText": "Winner of a global competition gets 2 event cards, 4 follower cards or 1 GP card.",
     "docSource": "docs/fight.md §5, §6",
     "codeBehaviour": "GLOBAL_COMP_REWARD draws exactly those amounts from the respective decks.",
-    "codeSource": "web/src/pages/BattlePage.tsx GLOBAL_COMP_REWARD",
+    "codeSource": "web/src/battle/engine.ts GLOBAL_COMP_REWARD",
     "status": "implemented",
     "notes": ""
   },
@@ -402,7 +402,7 @@
     "docText": "Each GP has a Characteristic (trait) that works while in the game.",
     "docSource": "docs/great-people-card.md, data/cards.json",
     "codeBehaviour": "traitBonusForGP implements numeric bonuses for 13 figures only; the other 67 traits have no effect. Several implemented bonuses differ from the card text (see Great People tab).",
-    "codeSource": "web/src/pages/BattlePage.tsx traitBonusForGP",
+    "codeSource": "web/src/battle/engine.ts traitBonusForGP",
     "status": "partial",
     "notes": ""
   },
@@ -424,7 +424,7 @@
     "docText": "Not specified.",
     "docSource": "—",
     "codeBehaviour": "CPU keeps Belisarius, Musashi, Mao private and reveals Pericles/Aspasia-style cards; references traits that are not implemented (Musashi, Mao).",
-    "codeSource": "web/src/pages/BattlePage.tsx PUBLIC_TRAIT_FIGURES / PRIVATE_TRAIT_FIGURES",
+    "codeSource": "web/src/battle/engine.ts PUBLIC_TRAIT_FIGURES / PRIVATE_TRAIT_FIGURES",
     "status": "unspecified",
     "notes": ""
   },
@@ -435,7 +435,7 @@
     "docText": "Each GP has a named achievement with a specific in-game condition (see card text).",
     "docSource": "data/cards.json",
     "codeBehaviour": "None of the textual conditions are evaluated. Instead: a GP earns 1 'tick' when it attacks and KILLS an enemy GP in a conflict whose stat equals the GP's ACHIEVEMENT_SPECS stat and the victim has ≥ 5 in that stat. Threshold 1 tick for the 47 mapped figures, 3 ticks for the other 33.",
-    "codeSource": "web/src/pages/BattlePage.tsx ACHIEVEMENT_SPECS / ATTACK",
+    "codeSource": "web/src/battle/engine.ts ACHIEVEMENT_SPECS / ATTACK",
     "status": "conflict",
     "notes": "Every achievement is effectively 'kill one worthy GP in your stat'. Defensive, positional and cooperative achievements are impossible."
   },
@@ -446,7 +446,7 @@
     "docText": "Al-Khwarizmi's achievement needs base stats 1–25; Brahms' trait uses a 25 threshold.",
     "docSource": "docs/great-people-trait-idea.md, data/cards.json",
     "codeBehaviour": "cards.json stats range 1–12 (demo_cards.json 1–24). Brahms implemented with a 13 threshold.",
-    "codeSource": "data/cards.json, web/src/pages/BattlePage.tsx (Brahms)",
+    "codeSource": "data/cards.json, web/src/battle/engine.ts (Brahms)",
     "status": "conflict",
     "notes": "Clarify the intended stat scale."
   },

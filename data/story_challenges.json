@@ -58,6 +58,41 @@
         "id": "pyramid-builders:4",
         "stage": "legacy",
         "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "duel",
+        "params": {
+          "hero": "imhotep",
+          "stat": "intelligence",
+          "locations": [
+            "ancient_memphis",
+            "ancient_stonehenge",
+            "ancient_olmec_sanlorenzo"
+          ],
+          "allies": [
+            "hesy_ra"
+          ],
+          "opponents": [
+            "ashurbanipal"
+          ],
+          "followers": [
+            "Astronomer",
+            "Mathematician",
+            "Naturalist",
+            "Scientist"
+          ],
+          "cpuFollowers": [
+            "Astronomer",
+            "Mathematician"
+          ]
+        },
+        "instruction": "Fight lesson 1 · First Duel. Deploy Imhotep to Memphis, add the Astronomer, then tap Imhotep and tap Ashurbanipal to attack. Win one attack.",
+        "fact": "In a Local Event every card at the location counts: Imhotep brings 9 Intelligence, the Astronomer adds +2 (or +3 beside a Great Person who shares that identity), and the higher total wins the attack. The loser returns to its owner's hand unless Kill mode is on.",
+        "id": "pyramid-builders:5",
+        "stage": "legacy",
+        "difficulty": 4
       }
     ]
   },
@@ -113,6 +148,41 @@
         },
         "instruction": "An enemy of the king has written Sargon's humble past on a wound strip. Find the rod that lines it up.",
         "id": "the-first-empire:3",
+        "stage": "legacy",
+        "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "duel",
+        "params": {
+          "hero": "sargon_i",
+          "stat": "strength",
+          "locations": [
+            "ancient_uruk",
+            "ancient_memphis",
+            "ancient_stonehenge"
+          ],
+          "allies": [
+            "enkidu"
+          ],
+          "opponents": [
+            "ashurbanipal"
+          ],
+          "followers": [
+            "General",
+            "Athlete",
+            "Soldier",
+            "Warrior"
+          ],
+          "cpuFollowers": [
+            "Athlete",
+            "General"
+          ]
+        },
+        "instruction": "Fight lesson 1 · First Duel. Deploy Sargon I to Uruk, add the General, then tap Sargon I and tap Ashurbanipal to attack. Win one attack.",
+        "fact": "In a Local Event every card at the location counts: Sargon I brings 10 Strength, the General adds +2 (or +3 beside a Great Person who shares that identity), and the higher total wins the attack. The loser returns to its owner's hand unless Kill mode is on.",
+        "id": "the-first-empire:4",
         "stage": "legacy",
         "difficulty": 4
       }
@@ -206,6 +276,41 @@
         "id": "the-king-and-the-wild-man:6",
         "stage": "legacy",
         "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "duel",
+        "params": {
+          "hero": "gilgamesh",
+          "stat": "strength",
+          "locations": [
+            "ancient_uruk",
+            "ancient_memphis",
+            "ancient_stonehenge"
+          ],
+          "allies": [
+            "enkidu"
+          ],
+          "opponents": [
+            "ashurbanipal"
+          ],
+          "followers": [
+            "Warrior",
+            "Athlete",
+            "General",
+            "Soldier"
+          ],
+          "cpuFollowers": [
+            "Athlete",
+            "General"
+          ]
+        },
+        "instruction": "Fight lesson 1 · First Duel. Deploy Gilgamesh to Uruk, add the Warrior, then tap Gilgamesh and tap Ashurbanipal to attack. Win one attack.",
+        "fact": "In a Local Event every card at the location counts: Gilgamesh brings 10 Strength, the Warrior adds +2 (or +3 beside a Great Person who shares that identity), and the higher total wins the attack. The loser returns to its owner's hand unless Kill mode is on.",
+        "id": "the-king-and-the-wild-man:7",
+        "stage": "legacy",
+        "difficulty": 4
       }
     ]
   },
@@ -280,6 +385,41 @@
         "instruction": "Ashurbanipal's library lay buried for 2,500 years under the mound of Kuyunjik. Dig where the shards point and recover the tablet caches before the season ends.",
         "fact": "When Nineveh fell in 612 BCE the palace burned — and the fire baked Ashurbanipal's clay tablets hard, preserving them. Excavated in the 1850s, they gave the world back the Epic of Gilgamesh, the Babylonian flood story and much of what is known of Mesopotamian medicine, omens and law.",
         "id": "the-great-library-of-nineveh:5",
+        "stage": "legacy",
+        "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "duel",
+        "params": {
+          "hero": "ashurbanipal",
+          "stat": "politics",
+          "locations": [
+            "ancient_uruk",
+            "ancient_memphis",
+            "ancient_stonehenge"
+          ],
+          "allies": [
+            "sargon_i"
+          ],
+          "opponents": [
+            "nakht"
+          ],
+          "followers": [
+            "Sovereign",
+            "Official",
+            "Spy",
+            "Statesman"
+          ],
+          "cpuFollowers": [
+            "Sovereign",
+            "Spy"
+          ]
+        },
+        "instruction": "Fight lesson 1 · First Duel. Deploy Ashurbanipal to Uruk, add the Sovereign, then tap Ashurbanipal and tap Nakht to attack. Win one attack.",
+        "fact": "In a Local Event every card at the location counts: Ashurbanipal brings 8 Politics, the Sovereign adds +2 (or +3 beside a Great Person who shares that identity), and the higher total wins the attack. The loser returns to its owner's hand unless Kill mode is on.",
+        "id": "the-great-library-of-nineveh:6",
         "stage": "legacy",
         "difficulty": 4
       }
@@ -363,6 +503,41 @@
         "id": "the-discovery-of-silk:5",
         "stage": "legacy",
         "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "duel",
+        "params": {
+          "hero": "lei_zu",
+          "stat": "wealth",
+          "locations": [
+            "ancient_memphis",
+            "ancient_stonehenge",
+            "ancient_olmec_sanlorenzo"
+          ],
+          "allies": [
+            "sargon_i"
+          ],
+          "opponents": [
+            "ashurbanipal"
+          ],
+          "followers": [
+            "Noble",
+            "Banker",
+            "Economist",
+            "Merchant"
+          ],
+          "cpuFollowers": [
+            "Banker",
+            "Economist"
+          ]
+        },
+        "instruction": "Fight lesson 1 · First Duel. Deploy Lei Zu to Memphis, add the Noble, then tap Lei Zu and tap Ashurbanipal to attack. Win one attack.",
+        "fact": "In a Local Event every card at the location counts: Lei Zu brings 10 Wealth, the Noble adds +2 (or +3 beside a Great Person who shares that identity), and the higher total wins the attack. The loser returns to its owner's hand unless Kill mode is on.",
+        "id": "the-discovery-of-silk:6",
+        "stage": "legacy",
+        "difficulty": 4
       }
     ]
   },
@@ -427,6 +602,41 @@
         "instruction": "Egyptian doctors worked beside priests in the labyrinthine temples of Memphis. Navigate the inner passages — every turn holds a medical secret.",
         "fact": "Egyptian medicine was practised in temple 'Houses of Life' — scriptorium-hospitals where physicians copied medical papyri alongside religious texts. Hesy-Ra's work as both scribe and physician reflects this union of healing and sacred knowledge.",
         "id": "the-first-physician:4",
+        "stage": "legacy",
+        "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "duel",
+        "params": {
+          "hero": "hesy_ra",
+          "stat": "technique",
+          "locations": [
+            "ancient_memphis",
+            "ancient_stonehenge",
+            "ancient_olmec_sanlorenzo"
+          ],
+          "allies": [
+            "imhotep"
+          ],
+          "opponents": [
+            "lei_zu"
+          ],
+          "followers": [
+            "Doctor",
+            "Architect",
+            "Engineer",
+            "Explorer"
+          ],
+          "cpuFollowers": [
+            "Architect",
+            "Doctor"
+          ]
+        },
+        "instruction": "Fight lesson 1 · First Duel. Deploy Hesy-Ra to Memphis, add the Doctor, then tap Hesy-Ra and tap Lei Zu to attack. Win one attack.",
+        "fact": "In a Local Event every card at the location counts: Hesy-Ra brings 9 Technique, the Doctor adds +2 (or +3 beside a Great Person who shares that identity), and the higher total wins the attack. The loser returns to its owner's hand unless Kill mode is on.",
+        "id": "the-first-physician:5",
         "stage": "legacy",
         "difficulty": 4
       }
@@ -498,6 +708,41 @@
         "instruction": "The Hittite Empire's final years required desperate strategic moves. Slide the last general to safety before the Bronze Age Collapse closes every escape.",
         "fact": "Around 1200 BCE, the Hittite Empire was one of several great powers destroyed by the Bronze Age Collapse. Invaders known as the 'Sea Peoples,' combined with drought and internal revolt, wiped out civilisations across the eastern Mediterranean within decades. The Hittites were so thoroughly destroyed that their very existence was forgotten for 3,000 years.",
         "id": "edict-of-telepinu:4",
+        "stage": "legacy",
+        "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "duel",
+        "params": {
+          "hero": "king_telepinu",
+          "stat": "belief",
+          "locations": [
+            "ancient_uruk",
+            "ancient_memphis",
+            "ancient_stonehenge"
+          ],
+          "allies": [
+            "mahavira"
+          ],
+          "opponents": [
+            "peseshet"
+          ],
+          "followers": [
+            "Monastic",
+            "Philosopher",
+            "Priest",
+            "Prophet"
+          ],
+          "cpuFollowers": [
+            "Monastic",
+            "Philosopher"
+          ]
+        },
+        "instruction": "Fight lesson 1 · First Duel. Deploy King Telepinu to Uruk, add the Monastic, then tap King Telepinu and tap Peseshet to attack. Win one attack.",
+        "fact": "In a Local Event every card at the location counts: King Telepinu brings 9 Belief, the Monastic adds +2 (or +3 beside a Great Person who shares that identity), and the higher total wins the attack. The loser returns to its owner's hand unless Kill mode is on.",
+        "id": "edict-of-telepinu:5",
         "stage": "legacy",
         "difficulty": 4
       }
@@ -576,6 +821,41 @@
         "id": "the-great-hero:5",
         "stage": "legacy",
         "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "duel",
+        "params": {
+          "hero": "mahavira",
+          "stat": "belief",
+          "locations": [
+            "ancient_memphis",
+            "ancient_stonehenge",
+            "ancient_olmec_sanlorenzo"
+          ],
+          "allies": [
+            "enkidu"
+          ],
+          "opponents": [
+            "king_telepinu"
+          ],
+          "followers": [
+            "Prophet",
+            "Monastic",
+            "Philosopher",
+            "Priest"
+          ],
+          "cpuFollowers": [
+            "Monastic",
+            "Philosopher"
+          ]
+        },
+        "instruction": "Fight lesson 1 · First Duel. Deploy Mahavira to Memphis, add the Prophet, then tap Mahavira and tap King Telepinu to attack. Win one attack.",
+        "fact": "In a Local Event every card at the location counts: Mahavira brings 12 Belief, the Prophet adds +2 (or +3 beside a Great Person who shares that identity), and the higher total wins the attack. The loser returns to its owner's hand unless Kill mode is on.",
+        "id": "the-great-hero:6",
+        "stage": "legacy",
+        "difficulty": 4
       }
     ]
   },
@@ -638,6 +918,41 @@
         "instruction": "Nakht tracked the sun's arc across the sky. Calculate the circumference of the celestial circle the sun traces — the geometry of Egyptian astronomical thought.",
         "fact": "Egyptian priests calculated the solar year at 365 days — off by only a quarter-day. They tracked the sun's annual path using shadow clocks and star tables. The geometry of circles, arcs, and angles was essential astronomical knowledge long before Greek mathematicians formalised it.",
         "id": "the-scribe-of-seasons:4",
+        "stage": "legacy",
+        "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "duel",
+        "params": {
+          "hero": "nakht",
+          "stat": "politics",
+          "locations": [
+            "ancient_memphis",
+            "ancient_stonehenge",
+            "ancient_olmec_sanlorenzo"
+          ],
+          "allies": [
+            "sargon_i"
+          ],
+          "opponents": [
+            "peseshet"
+          ],
+          "followers": [
+            "Official",
+            "Sovereign",
+            "Spy",
+            "Statesman"
+          ],
+          "cpuFollowers": [
+            "Official",
+            "Sovereign"
+          ]
+        },
+        "instruction": "Fight lesson 1 · First Duel. Deploy Nakht to Memphis, add the Official, then tap Nakht and tap Peseshet to attack. Win one attack.",
+        "fact": "In a Local Event every card at the location counts: Nakht brings 7 Politics, the Official adds +2 (or +3 beside a Great Person who shares that identity), and the higher total wins the attack. The loser returns to its owner's hand unless Kill mode is on.",
+        "id": "the-scribe-of-seasons:5",
         "stage": "legacy",
         "difficulty": 4
       }
@@ -711,6 +1026,41 @@
         "id": "the-longest-text:4",
         "stage": "legacy",
         "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "duel",
+        "params": {
+          "hero": "pediamenopet",
+          "stat": "belief",
+          "locations": [
+            "ancient_memphis",
+            "ancient_stonehenge",
+            "ancient_olmec_sanlorenzo"
+          ],
+          "allies": [
+            "mahavira"
+          ],
+          "opponents": [
+            "peseshet"
+          ],
+          "followers": [
+            "Priest",
+            "Monastic",
+            "Philosopher",
+            "Prophet"
+          ],
+          "cpuFollowers": [
+            "Monastic",
+            "Philosopher"
+          ]
+        },
+        "instruction": "Fight lesson 1 · First Duel. Deploy Pediamenopet to Memphis, add the Priest, then tap Pediamenopet and tap Peseshet to attack. Win one attack.",
+        "fact": "In a Local Event every card at the location counts: Pediamenopet brings 9 Belief, the Priest adds +2 (or +3 beside a Great Person who shares that identity), and the higher total wins the attack. The loser returns to its owner's hand unless Kill mode is on.",
+        "id": "the-longest-text:5",
+        "stage": "legacy",
+        "difficulty": 4
       }
     ]
   },
@@ -775,6 +1125,41 @@
         "instruction": "Slide the golden capstone into its final position — as Egypt's monument-builders did, solving spatial puzzles in stone and copper.",
         "fact": "Ancient Egyptian construction used a form of modular planning — calculating how blocks must slide and stack to achieve the final form. The same systematic thinking appears in Egyptian medical texts, where treatments are sequenced step by step, building toward a cure.",
         "id": "lady-overseer:4",
+        "stage": "legacy",
+        "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "duel",
+        "params": {
+          "hero": "peseshet",
+          "stat": "intelligence",
+          "locations": [
+            "ancient_memphis",
+            "ancient_stonehenge",
+            "ancient_olmec_sanlorenzo"
+          ],
+          "allies": [
+            "imhotep"
+          ],
+          "opponents": [
+            "mahavira"
+          ],
+          "followers": [
+            "Astronomer",
+            "Mathematician",
+            "Naturalist",
+            "Scientist"
+          ],
+          "cpuFollowers": [
+            "Astronomer",
+            "Mathematician"
+          ]
+        },
+        "instruction": "Fight lesson 1 · First Duel. Deploy Peseshet to Memphis, add the Astronomer, then tap Peseshet and tap Mahavira to attack. Win one attack.",
+        "fact": "In a Local Event every card at the location counts: Peseshet brings 8 Intelligence, the Astronomer adds +2 (or +3 beside a Great Person who shares that identity), and the higher total wins the attack. The loser returns to its owner's hand unless Kill mode is on.",
+        "id": "lady-overseer:5",
         "stage": "legacy",
         "difficulty": 4
       }
@@ -842,6 +1227,42 @@
         "instruction": "Euclid knew light reflects — but what about refraction? Route the beam through two fixed deflectors using two mirrors of your own.",
         "fact": "Euclid's 'Catoptrics' studied mirrors and reflection. It took nearly two thousand more years for Newton to explain why white light splits into a spectrum — but the geometry Euclid laid down made that discovery possible.",
         "id": "the-elements:4",
+        "stage": "legacy",
+        "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "reinforce",
+        "params": {
+          "hero": "euclid",
+          "stat": "intelligence",
+          "locations": [
+            "classical_carthage",
+            "classical_petra",
+            "classical_sparta"
+          ],
+          "allies": [
+            "chanakya"
+          ],
+          "opponents": [
+            "anaxagoras",
+            "zeno_of_elea"
+          ],
+          "followers": [
+            "Mathematician",
+            "Astronomer",
+            "Naturalist",
+            "Scientist"
+          ],
+          "cpuFollowers": [
+            "Astronomer",
+            "Naturalist"
+          ]
+        },
+        "instruction": "Fight lesson 2 · Strength in Numbers. Over two turns stack Euclid, Chanakya and both followers at Carthage, then win two attacks against the rival side.",
+        "fact": "An attack compares whole sides at a location, not single cards. Two Great People and two followers in the same stat outweigh a rival who arrived first, and each win sends one rival card back to its owner's hand.",
+        "id": "the-elements:5",
         "stage": "legacy",
         "difficulty": 4
       }
@@ -947,6 +1368,42 @@
         "id": "the-golden-age-of-athens:7",
         "stage": "legacy",
         "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "reinforce",
+        "params": {
+          "hero": "pericles",
+          "stat": "politics",
+          "locations": [
+            "classical_carthage",
+            "classical_petra",
+            "classical_sparta"
+          ],
+          "allies": [
+            "aspasia"
+          ],
+          "opponents": [
+            "cicero",
+            "chanakya"
+          ],
+          "followers": [
+            "Statesman",
+            "Official",
+            "Sovereign",
+            "Spy"
+          ],
+          "cpuFollowers": [
+            "Sovereign",
+            "Spy"
+          ]
+        },
+        "instruction": "Fight lesson 2 · Strength in Numbers. Over two turns stack Pericles, Aspasia and both followers at Carthage, then win two attacks against the rival side.",
+        "fact": "An attack compares whole sides at a location, not single cards. Two Great People and two followers in the same stat outweigh a rival who arrived first, and each win sends one rival card back to its owner's hand.",
+        "id": "the-golden-age-of-athens:8",
+        "stage": "legacy",
+        "difficulty": 4
       }
     ]
   },
@@ -1010,6 +1467,42 @@
         "instruction": "Route Rome's Aqua Claudia from mountain springs to the city — the engineering marvel that gave Rome water for a million people.",
         "fact": "Rome's eleven major aqueducts delivered over one billion litres of water per day. The Aqua Claudia ran 69 km, mostly underground, with spectacular arched sections up to 28 metres high. No pumps were needed — only gravity and precision.",
         "id": "the-voice-of-rome:4",
+        "stage": "legacy",
+        "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "reinforce",
+        "params": {
+          "hero": "cicero",
+          "stat": "politics",
+          "locations": [
+            "classical_rome",
+            "classical_carthage",
+            "classical_petra"
+          ],
+          "allies": [
+            "euclid"
+          ],
+          "opponents": [
+            "chanakya",
+            "peseshet"
+          ],
+          "followers": [
+            "Statesman",
+            "Official",
+            "Sovereign",
+            "Spy"
+          ],
+          "cpuFollowers": [
+            "Sovereign",
+            "Spy"
+          ]
+        },
+        "instruction": "Fight lesson 2 · Strength in Numbers. Over two turns stack Cicero, Euclid and both followers at Rome, then win two attacks against the rival side.",
+        "fact": "An attack compares whole sides at a location, not single cards. Two Great People and two followers in the same stat outweigh a rival who arrived first, and each win sends one rival card back to its owner's hand.",
+        "id": "the-voice-of-rome:5",
         "stage": "legacy",
         "difficulty": 4
       }
@@ -1081,6 +1574,42 @@
         "instruction": "Restore Homer's opening to the Iliad — the invocation of the Muse and the quarrel that sets ten years of war in motion.",
         "fact": "Homer's Iliad, composed around 750 BCE, was the closest thing ancient Greeks had to a sacred text. Alexander the Great slept with an annotated copy under his pillow, alongside a dagger. The poem covers only 51 days of the decade-long Trojan War, yet captures the whole arc of human conflict.",
         "id": "before-socrates:5",
+        "stage": "legacy",
+        "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "reinforce",
+        "params": {
+          "hero": "anaxagoras",
+          "stat": "culture",
+          "locations": [
+            "classical_carthage",
+            "classical_petra",
+            "classical_sparta"
+          ],
+          "allies": [
+            "cicero"
+          ],
+          "opponents": [
+            "li_qingzhao",
+            "taira_no_tadanori"
+          ],
+          "followers": [
+            "Actor",
+            "Artist",
+            "Musician",
+            "Writer"
+          ],
+          "cpuFollowers": [
+            "Actor",
+            "Artist"
+          ]
+        },
+        "instruction": "Fight lesson 2 · Strength in Numbers. Over two turns stack Anaxagoras, Cicero and both followers at Carthage, then win two attacks against the rival side.",
+        "fact": "An attack compares whole sides at a location, not single cards. Two Great People and two followers in the same stat outweigh a rival who arrived first, and each win sends one rival card back to its owner's hand.",
+        "id": "before-socrates:6",
         "stage": "legacy",
         "difficulty": 4
       }
@@ -1157,6 +1686,42 @@
         "id": "the-prophet-of-light:4",
         "stage": "legacy",
         "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "reinforce",
+        "params": {
+          "hero": "mani",
+          "stat": "belief",
+          "locations": [
+            "medieval_damascus",
+            "classical_carthage",
+            "classical_petra"
+          ],
+          "allies": [
+            "anaxagoras"
+          ],
+          "opponents": [
+            "hua_mulan",
+            "mahavira"
+          ],
+          "followers": [
+            "Prophet",
+            "Monastic",
+            "Philosopher",
+            "Priest"
+          ],
+          "cpuFollowers": [
+            "Monastic",
+            "Philosopher"
+          ]
+        },
+        "instruction": "Fight lesson 2 · Strength in Numbers. Over two turns stack Mani, Anaxagoras and both followers at Damascus, then win two attacks against the rival side.",
+        "fact": "An attack compares whole sides at a location, not single cards. Two Great People and two followers in the same stat outweigh a rival who arrived first, and each win sends one rival card back to its owner's hand.",
+        "id": "the-prophet-of-light:5",
+        "stage": "legacy",
+        "difficulty": 4
       }
     ]
   },
@@ -1218,6 +1783,42 @@
         "instruction": "As a disguised officer earning trust through merit alone, find the decisive move that breaks the enemy's northern line.",
         "fact": "The Ballad of Mulan became one of China's most enduring stories because it celebrated filial piety and personal courage simultaneously — two of Confucian culture's highest values. It has been retold in opera, film, and literature across fourteen centuries.",
         "id": "the-disguised-warrior:4",
+        "stage": "legacy",
+        "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "reinforce",
+        "params": {
+          "hero": "hua_mulan",
+          "stat": "strength",
+          "locations": [
+            "medieval_changan",
+            "classical_carthage",
+            "classical_petra"
+          ],
+          "allies": [
+            "pleistoanax"
+          ],
+          "opponents": [
+            "gilgamesh",
+            "batu_khan"
+          ],
+          "followers": [
+            "Soldier",
+            "Athlete",
+            "General",
+            "Warrior"
+          ],
+          "cpuFollowers": [
+            "Athlete",
+            "Soldier"
+          ]
+        },
+        "instruction": "Fight lesson 2 · Strength in Numbers. Over two turns stack Hua Mulan, Pleistoanax and both followers at Changan, then win two attacks against the rival side.",
+        "fact": "An attack compares whole sides at a location, not single cards. Two Great People and two followers in the same stat outweigh a rival who arrived first, and each win sends one rival card back to its owner's hand.",
+        "id": "the-disguised-warrior:5",
         "stage": "legacy",
         "difficulty": 4
       }
@@ -1304,6 +1905,42 @@
         "id": "the-art-of-statecraft:5",
         "stage": "legacy",
         "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "reinforce",
+        "params": {
+          "hero": "chanakya",
+          "stat": "intelligence",
+          "locations": [
+            "classical_rome",
+            "classical_carthage",
+            "classical_petra"
+          ],
+          "allies": [
+            "anaxagoras"
+          ],
+          "opponents": [
+            "euclid",
+            "zeno_of_elea"
+          ],
+          "followers": [
+            "Astronomer",
+            "Mathematician",
+            "Naturalist",
+            "Scientist"
+          ],
+          "cpuFollowers": [
+            "Astronomer",
+            "Naturalist"
+          ]
+        },
+        "instruction": "Fight lesson 2 · Strength in Numbers. Over two turns stack Chanakya, Anaxagoras and both followers at Rome, then win two attacks against the rival side.",
+        "fact": "An attack compares whole sides at a location, not single cards. Two Great People and two followers in the same stat outweigh a rival who arrived first, and each win sends one rival card back to its owner's hand.",
+        "id": "the-art-of-statecraft:6",
+        "stage": "legacy",
+        "difficulty": 4
       }
     ]
   },
@@ -1367,6 +2004,42 @@
         "id": "the-first-poet:4",
         "stage": "legacy",
         "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "reinforce",
+        "params": {
+          "hero": "valmiki",
+          "stat": "belief",
+          "locations": [
+            "classical_rome",
+            "classical_carthage",
+            "classical_petra"
+          ],
+          "allies": [
+            "mani"
+          ],
+          "opponents": [
+            "zeno_of_elea",
+            "mahavira"
+          ],
+          "followers": [
+            "Monastic",
+            "Philosopher",
+            "Priest",
+            "Prophet"
+          ],
+          "cpuFollowers": [
+            "Monastic",
+            "Priest"
+          ]
+        },
+        "instruction": "Fight lesson 2 · Strength in Numbers. Over two turns stack Valmiki, Mani and both followers at Rome, then win two attacks against the rival side.",
+        "fact": "An attack compares whole sides at a location, not single cards. Two Great People and two followers in the same stat outweigh a rival who arrived first, and each win sends one rival card back to its owner's hand.",
+        "id": "the-first-poet:5",
+        "stage": "legacy",
+        "difficulty": 4
       }
     ]
   },
@@ -1419,6 +2092,42 @@
         },
         "instruction": "A Spartan dispatch has been captured on its leather strip. Find the rod that lines it up and read the news.",
         "id": "the-recalled-king:3",
+        "stage": "legacy",
+        "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "reinforce",
+        "params": {
+          "hero": "pleistoanax",
+          "stat": "politics",
+          "locations": [
+            "classical_sparta",
+            "classical_carthage",
+            "classical_petra"
+          ],
+          "allies": [
+            "aspasia"
+          ],
+          "opponents": [
+            "cicero",
+            "ashurbanipal"
+          ],
+          "followers": [
+            "Sovereign",
+            "Official",
+            "Spy",
+            "Statesman"
+          ],
+          "cpuFollowers": [
+            "Official",
+            "Spy"
+          ]
+        },
+        "instruction": "Fight lesson 2 · Strength in Numbers. Over two turns stack Pleistoanax, Aspasia and both followers at Sparta, then win two attacks against the rival side.",
+        "fact": "An attack compares whole sides at a location, not single cards. Two Great People and two followers in the same stat outweigh a rival who arrived first, and each win sends one rival card back to its owner's hand.",
+        "id": "the-recalled-king:4",
         "stage": "legacy",
         "difficulty": 4
       }
@@ -1478,6 +2187,42 @@
         "instruction": "Zeno proved — or tried to — that you can never cross a room. Solve the infinite division: how does halving space endlessly still add up to something finite?",
         "fact": "The mathematical resolution to Zeno's paradoxes came with calculus: an infinite sum of terms can converge to a finite value. The series ½ + ¼ + ⅛ + … = 1. Newton and Leibniz solved in the 1660s what Zeno posed in 450 BCE — it took 2,100 years to find the right mathematical language.",
         "id": "the-paradox-master:3",
+        "stage": "legacy",
+        "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "reinforce",
+        "params": {
+          "hero": "zeno_of_elea",
+          "stat": "intelligence",
+          "locations": [
+            "classical_carthage",
+            "classical_petra",
+            "classical_sparta"
+          ],
+          "allies": [
+            "chanakya"
+          ],
+          "opponents": [
+            "anaxagoras",
+            "euclid"
+          ],
+          "followers": [
+            "Mathematician",
+            "Astronomer",
+            "Naturalist",
+            "Scientist"
+          ],
+          "cpuFollowers": [
+            "Astronomer",
+            "Naturalist"
+          ]
+        },
+        "instruction": "Fight lesson 2 · Strength in Numbers. Over two turns stack Zeno of Elea, Chanakya and both followers at Carthage, then win two attacks against the rival side.",
+        "fact": "An attack compares whole sides at a location, not single cards. Two Great People and two followers in the same stat outweigh a rival who arrived first, and each win sends one rival card back to its owner's hand.",
+        "id": "the-paradox-master:4",
         "stage": "legacy",
         "difficulty": 4
       }
@@ -1540,6 +2285,41 @@
         "instruction": "Belisarius always faced superior numbers. Deploy your archers and catapults before the battle begins — then launch the attack and watch your strategy unfold.",
         "fact": "Belisarius reconquered North Africa, Italy, and Spain for Emperor Justinian with armies of 10,000–15,000 against forces of 100,000+. He relied on disciplined cavalry and coordinated missile fire — tactics that anticipated modern combined arms.",
         "id": "the-last-general:4",
+        "stage": "legacy",
+        "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "event",
+        "params": {
+          "hero": "belisarius",
+          "stat": "strength",
+          "locations": [
+            "steam_istanbul",
+            "medieval_krakow",
+            "medieval_changan"
+          ],
+          "allies": [
+            "taira_no_tadanori"
+          ],
+          "opponents": [
+            "batu_khan"
+          ],
+          "followers": [
+            "General",
+            "Athlete",
+            "Soldier",
+            "Warrior"
+          ],
+          "cpuFollowers": [
+            "Athlete",
+            "Soldier"
+          ]
+        },
+        "instruction": "Fight lesson 3 · Starting an Event. Deploy Belisarius to Krakow and End Turn. Next turn play the Battlefield card there, add your follower and win one attack.",
+        "fact": "Event cards start a scenario at a location where you already have a Great Person, and only one who arrived on an earlier turn can start it. A local event keeps running until a player ends it.",
+        "id": "the-last-general:5",
         "stage": "legacy",
         "difficulty": 4
       }
@@ -1614,6 +2394,41 @@
         "id": "the-language-of-algebra:5",
         "stage": "legacy",
         "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "event",
+        "params": {
+          "hero": "al_khwarizmi",
+          "stat": "intelligence",
+          "locations": [
+            "renaissance_baghdad",
+            "medieval_krakow",
+            "medieval_changan"
+          ],
+          "allies": [
+            "ibn_battuta"
+          ],
+          "opponents": [
+            "bi_sheng"
+          ],
+          "followers": [
+            "Astronomer",
+            "Mathematician",
+            "Naturalist",
+            "Scientist"
+          ],
+          "cpuFollowers": [
+            "Astronomer",
+            "Mathematician"
+          ]
+        },
+        "instruction": "Fight lesson 3 · Starting an Event. Deploy Al-Khwarizmi to Krakow and End Turn. Next turn play the Argument card there, add your follower and win one attack.",
+        "fact": "Event cards start a scenario at a location where you already have a Great Person, and only one who arrived on an earlier turn can start it. A local event keeps running until a player ends it.",
+        "id": "the-language-of-algebra:6",
+        "stage": "legacy",
+        "difficulty": 4
       }
     ]
   },
@@ -1669,6 +2484,41 @@
         "instruction": "Apply the correct metal oxides to each section of the teapot, then fire the kiln.",
         "fact": "Tenmoku (天目) glazes — prized in Japanese tea ceremony — used iron oxide to create the signature oil-spot and hare's fur patterns in Song Dynasty kilns.",
         "id": "tea-ceremony:3",
+        "stage": "legacy",
+        "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "event",
+        "params": {
+          "hero": "lu_yu",
+          "stat": "belief",
+          "locations": [
+            "medieval_changan",
+            "medieval_krakow",
+            "medieval_kyoto"
+          ],
+          "allies": [
+            "li_qingzhao"
+          ],
+          "opponents": [
+            "batu_khan"
+          ],
+          "followers": [
+            "Monastic",
+            "Philosopher",
+            "Priest",
+            "Prophet"
+          ],
+          "cpuFollowers": [
+            "Monastic",
+            "Philosopher"
+          ]
+        },
+        "instruction": "Fight lesson 3 · Starting an Event. Deploy Lu Yu to Krakow and End Turn. Next turn play the Miracle card there, add your follower and win one attack.",
+        "fact": "Event cards start a scenario at a location where you already have a Great Person, and only one who arrived on an earlier turn can start it. A local event keeps running until a player ends it.",
+        "id": "tea-ceremony:4",
         "stage": "legacy",
         "difficulty": 4
       }
@@ -1745,6 +2595,41 @@
         "id": "the-knight-s-code:4",
         "stage": "legacy",
         "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "event",
+        "params": {
+          "hero": "lancelot",
+          "stat": "strength",
+          "locations": [
+            "medieval_krakow",
+            "medieval_changan",
+            "medieval_kyoto"
+          ],
+          "allies": [
+            "belisarius"
+          ],
+          "opponents": [
+            "batu_khan"
+          ],
+          "followers": [
+            "Warrior",
+            "Athlete",
+            "General",
+            "Soldier"
+          ],
+          "cpuFollowers": [
+            "Athlete",
+            "Soldier"
+          ]
+        },
+        "instruction": "Fight lesson 3 · Starting an Event. Deploy Lancelot to Changan and End Turn. Next turn play the Battlefield card there, add your follower and win one attack.",
+        "fact": "Event cards start a scenario at a location where you already have a Great Person, and only one who arrived on an earlier turn can start it. A local event keeps running until a player ends it.",
+        "id": "the-knight-s-code:5",
+        "stage": "legacy",
+        "difficulty": 4
       }
     ]
   },
@@ -1806,6 +2691,41 @@
         "instruction": "Arrange the opening of Genji's story as Murasaki Shikibu wrote it — the Emperor's doomed love for a lady not of the first rank.",
         "fact": "Written around 1008 CE by a court lady, The Tale of Genji is considered the world's first novel. Its author, known as Murasaki Shikibu, wrote in hiragana (considered 'women's script' then) while men wrote formal documents in Chinese — a subversion that produced one of humanity's great literary works.",
         "id": "words-of-sorrow:4",
+        "stage": "legacy",
+        "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "event",
+        "params": {
+          "hero": "li_qingzhao",
+          "stat": "culture",
+          "locations": [
+            "medieval_changan",
+            "medieval_krakow",
+            "medieval_kyoto"
+          ],
+          "allies": [
+            "taira_no_tadanori"
+          ],
+          "opponents": [
+            "ibn_battuta"
+          ],
+          "followers": [
+            "Writer",
+            "Actor",
+            "Artist",
+            "Musician"
+          ],
+          "cpuFollowers": [
+            "Actor",
+            "Artist"
+          ]
+        },
+        "instruction": "Fight lesson 3 · Starting an Event. Deploy Li Qingzhao to Krakow and End Turn. Next turn play the Art Critique card there, add your follower and win one attack.",
+        "fact": "Event cards start a scenario at a location where you already have a Great Person, and only one who arrived on an earlier turn can start it. A local event keeps running until a player ends it.",
+        "id": "words-of-sorrow:5",
         "stage": "legacy",
         "difficulty": 4
       }
@@ -1892,6 +2812,41 @@
         "id": "the-golden-horde-rides:5",
         "stage": "legacy",
         "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "event",
+        "params": {
+          "hero": "batu_khan",
+          "stat": "strength",
+          "locations": [
+            "medieval_krakow",
+            "medieval_changan",
+            "medieval_kyoto"
+          ],
+          "allies": [
+            "belisarius"
+          ],
+          "opponents": [
+            "taira_no_tadanori"
+          ],
+          "followers": [
+            "General",
+            "Athlete",
+            "Soldier",
+            "Warrior"
+          ],
+          "cpuFollowers": [
+            "Athlete",
+            "General"
+          ]
+        },
+        "instruction": "Fight lesson 3 · Starting an Event. Deploy Batu Khan to Changan and End Turn. Next turn play the Battlefield card there, add your follower and win one attack.",
+        "fact": "Event cards start a scenario at a location where you already have a Great Person, and only one who arrived on an earlier turn can start it. A local event keeps running until a player ends it.",
+        "id": "the-golden-horde-rides:6",
+        "stage": "legacy",
+        "difficulty": 4
       }
     ]
   },
@@ -1953,6 +2908,41 @@
         "instruction": "Before Bi Sheng's press, scholars hand-copied every text. Clear the clay tablet — match the ancient records that his invention would eventually make obsolete.",
         "fact": "Writing had been recorded on clay tablets since Mesopotamia in 3500 BCE. Bi Sheng's great insight was that clay — the oldest writing substrate in human history — could itself become the tool for mass reproduction of text. He connected the ancient world of clay and the modern world of print in a single creative act.",
         "id": "characters-of-clay:4",
+        "stage": "legacy",
+        "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "event",
+        "params": {
+          "hero": "bi_sheng",
+          "stat": "intelligence",
+          "locations": [
+            "medieval_krakow",
+            "medieval_changan",
+            "medieval_kyoto"
+          ],
+          "allies": [
+            "al_khwarizmi"
+          ],
+          "opponents": [
+            "ibn_battuta"
+          ],
+          "followers": [
+            "Scientist",
+            "Astronomer",
+            "Mathematician",
+            "Naturalist"
+          ],
+          "cpuFollowers": [
+            "Astronomer",
+            "Mathematician"
+          ]
+        },
+        "instruction": "Fight lesson 3 · Starting an Event. Deploy Bi Sheng to Changan and End Turn. Next turn play the Argument card there, add your follower and win one attack.",
+        "fact": "Event cards start a scenario at a location where you already have a Great Person, and only one who arrived on an earlier turn can start it. A local event keeps running until a player ends it.",
+        "id": "characters-of-clay:5",
         "stage": "legacy",
         "difficulty": 4
       }
@@ -2039,6 +3029,41 @@
         "id": "the-great-journey:5",
         "stage": "legacy",
         "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "event",
+        "params": {
+          "hero": "ibn_battuta",
+          "stat": "culture",
+          "locations": [
+            "medieval_krakow",
+            "medieval_changan",
+            "medieval_kyoto"
+          ],
+          "allies": [
+            "li_qingzhao"
+          ],
+          "opponents": [
+            "bi_sheng"
+          ],
+          "followers": [
+            "Writer",
+            "Actor",
+            "Artist",
+            "Musician"
+          ],
+          "cpuFollowers": [
+            "Actor",
+            "Artist"
+          ]
+        },
+        "instruction": "Fight lesson 3 · Starting an Event. Deploy Ibn Battuta to Changan and End Turn. Next turn play the Art Critique card there, add your follower and win one attack.",
+        "fact": "Event cards start a scenario at a location where you already have a Great Person, and only one who arrived on an earlier turn can start it. A local event keeps running until a player ends it.",
+        "id": "the-great-journey:6",
+        "stage": "legacy",
+        "difficulty": 4
       }
     ]
   },
@@ -2110,6 +3135,41 @@
         "instruction": "Calculate the volume of Pakal's stepped pyramid — built without metal tools, wheels, or draft animals. Every stone was cut with obsidian, moved on wooden rollers, and lifted by human hands.",
         "fact": "Maya builders achieved extraordinary geometric precision without metal tools or wheeled vehicles. They used astronomical alignments, knotted ropes, and water levels to plan their monuments. The Temple of the Inscriptions aligns so that at the winter solstice sunset, the sun appears to descend into the pyramid along the same axis as the internal staircase to Pakal's tomb.",
         "id": "the-jade-king:5",
+        "stage": "legacy",
+        "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "event",
+        "params": {
+          "hero": "pakal",
+          "stat": "politics",
+          "locations": [
+            "medieval_krakow",
+            "medieval_changan",
+            "medieval_kyoto"
+          ],
+          "allies": [
+            "belisarius"
+          ],
+          "opponents": [
+            "taira_no_tadanori"
+          ],
+          "followers": [
+            "Sovereign",
+            "Official",
+            "Spy",
+            "Statesman"
+          ],
+          "cpuFollowers": [
+            "Official",
+            "Sovereign"
+          ]
+        },
+        "instruction": "Fight lesson 3 · Starting an Event. Deploy Pakal the Great to Changan and End Turn. Next turn play the Coup card there, add your follower and win one attack.",
+        "fact": "Event cards start a scenario at a location where you already have a Great Person, and only one who arrived on an earlier turn can start it. A local event keeps running until a player ends it.",
+        "id": "the-jade-king:6",
         "stage": "legacy",
         "difficulty": 4
       }
@@ -2196,6 +3256,41 @@
         "id": "the-poem-in-the-armor:5",
         "stage": "legacy",
         "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "event",
+        "params": {
+          "hero": "taira_no_tadanori",
+          "stat": "culture",
+          "locations": [
+            "medieval_krakow",
+            "medieval_changan",
+            "medieval_kyoto"
+          ],
+          "allies": [
+            "li_qingzhao"
+          ],
+          "opponents": [
+            "ibn_battuta"
+          ],
+          "followers": [
+            "Writer",
+            "Actor",
+            "Artist",
+            "Musician"
+          ],
+          "cpuFollowers": [
+            "Actor",
+            "Artist"
+          ]
+        },
+        "instruction": "Fight lesson 3 · Starting an Event. Deploy Taira no Tadanori to Changan and End Turn. Next turn play the Art Critique card there, add your follower and win one attack.",
+        "fact": "Event cards start a scenario at a location where you already have a Great Person, and only one who arrived on an earlier turn can start it. A local event keeps running until a player ends it.",
+        "id": "the-poem-in-the-armor:6",
+        "stage": "legacy",
+        "difficulty": 4
       }
     ]
   },
@@ -2246,6 +3341,42 @@
         "instruction": "Break through the formation — slide the sword piece to the marked position.",
         "fact": "Renaissance swordsmanship manuals (fencing treatises) were among the first printed technical manuals, systematizing combat for the first time in European history.",
         "id": "way-of-the-sword:3",
+        "stage": "legacy",
+        "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "survival",
+        "params": {
+          "hero": "miyamoto_musashi",
+          "stat": "strength",
+          "locations": [
+            "medieval_kyoto",
+            "renaissance_genoa",
+            "renaissance_venice"
+          ],
+          "allies": [
+            "magellan"
+          ],
+          "opponents": [
+            "borromini",
+            "bayinnaung"
+          ],
+          "followers": [
+            "Warrior",
+            "Athlete",
+            "General",
+            "Soldier"
+          ],
+          "cpuFollowers": [
+            "Athlete",
+            "Soldier"
+          ]
+        },
+        "instruction": "Fight lesson 4 · Survival. Deploy Miyamoto Musashi to Kyoto, keep at least 5 Strength there, and End Turn until two round endings have passed.",
+        "fact": "A Local Survival event is a test, not a fight: at the end of each round every side at the location is checked, and a total under 5 loses every card there to the discard pile. Reinforce with followers, or retrieve a weak card before the round ends.",
+        "id": "way-of-the-sword:4",
         "stage": "legacy",
         "difficulty": 4
       }
@@ -2355,6 +3486,42 @@
         "id": "the-colors-of-venice:8",
         "stage": "legacy",
         "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "survival",
+        "params": {
+          "hero": "titian",
+          "stat": "culture",
+          "locations": [
+            "renaissance_venice",
+            "renaissance_genoa",
+            "classical_rome"
+          ],
+          "allies": [
+            "gutenberg"
+          ],
+          "opponents": [
+            "alan_turing",
+            "bernini"
+          ],
+          "followers": [
+            "Artist",
+            "Actor",
+            "Musician",
+            "Writer"
+          ],
+          "cpuFollowers": [
+            "Actor",
+            "Musician"
+          ]
+        },
+        "instruction": "Fight lesson 4 · Survival. Deploy Titian to Venice, keep at least 5 Culture there, and End Turn until two round endings have passed.",
+        "fact": "A Local Survival event is a test, not a fight: at the end of each round every side at the location is checked, and a total under 5 loses every card there to the discard pile. Reinforce with followers, or retrieve a weak card before the round ends.",
+        "id": "the-colors-of-venice:9",
+        "stage": "legacy",
+        "difficulty": 4
       }
     ]
   },
@@ -2410,6 +3577,42 @@
         "instruction": "Tlatelolco's market rows stretched horizon to horizon — only horizontal matches count. Clear 46 glyphs across the 7×7 trading floor.",
         "fact": "Hernán Cortés wrote to Charles V that Tlatelolco was larger than any market in Spain. It drew 60,000 traders daily — cacao, jade, feathers, obsidian blades, and human beings. Dedicated judges walked the aisles enforcing weights and punishing fraud on the spot.",
         "id": "around-the-world:3",
+        "stage": "legacy",
+        "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "survival",
+        "params": {
+          "hero": "magellan",
+          "stat": "strength",
+          "locations": [
+            "renaissance_lisbon",
+            "renaissance_genoa",
+            "renaissance_venice"
+          ],
+          "allies": [
+            "miyamoto_musashi"
+          ],
+          "opponents": [
+            "borromini",
+            "isabel_i"
+          ],
+          "followers": [
+            "Athlete",
+            "General",
+            "Soldier",
+            "Warrior"
+          ],
+          "cpuFollowers": [
+            "Athlete",
+            "General"
+          ]
+        },
+        "instruction": "Fight lesson 4 · Survival. Deploy Magellan to Lisbon, keep at least 5 Strength there, and End Turn until two round endings have passed.",
+        "fact": "A Local Survival event is a test, not a fight: at the end of each round every side at the location is checked, and a total under 5 loses every card there to the discard pile. Reinforce with followers, or retrieve a weak card before the round ends.",
+        "id": "around-the-world:4",
         "stage": "legacy",
         "difficulty": 4
       }
@@ -2469,6 +3672,42 @@
         "instruction": "Reassemble the most famous scene in Spanish literature — Don Quixote's charge against the windmills he mistakes for giants.",
         "fact": "Don Quixote (1605) by Cervantes is considered the first modern novel. The windmill scene became one of literature's greatest metaphors. Cervantes wrote Part I while imprisoned in Seville; the success was so great he wrote Part II a decade later.",
         "id": "the-catholic-monarchs:4",
+        "stage": "legacy",
+        "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "survival",
+        "params": {
+          "hero": "isabel_i",
+          "stat": "belief",
+          "locations": [
+            "renaissance_tenochtitlan",
+            "renaissance_genoa",
+            "renaissance_venice"
+          ],
+          "allies": [
+            "ruminahui"
+          ],
+          "opponents": [
+            "batu_khan",
+            "lee_sun_sin"
+          ],
+          "followers": [
+            "Monastic",
+            "Philosopher",
+            "Priest",
+            "Prophet"
+          ],
+          "cpuFollowers": [
+            "Monastic",
+            "Philosopher"
+          ]
+        },
+        "instruction": "Fight lesson 4 · Survival. Deploy Isabel I of Castile to Tenochtitlan, keep at least 5 Belief there, and End Turn until two round endings have passed.",
+        "fact": "A Local Survival event is a test, not a fight: at the end of each round every side at the location is checked, and a total under 5 loses every card there to the discard pile. Reinforce with followers, or retrieve a weak card before the round ends.",
+        "id": "the-catholic-monarchs:5",
         "stage": "legacy",
         "difficulty": 4
       }
@@ -2536,6 +3775,42 @@
         "instruction": "Mix the ultramarine blue reserved for the Virgin Mary — mined from a single valley in Afghanistan and worth more than gold in the Renaissance.",
         "fact": "Medieval contracts specified exactly how many grams of lapis lazuli an artist could use. Jan van Eyck and Fra Angelico reserved it solely for the Virgin Mary's robe. Michelangelo reportedly left the Entombment unfinished because his patron refused to supply enough lapis.",
         "id": "the-fortunate-king:4",
+        "stage": "legacy",
+        "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "survival",
+        "params": {
+          "hero": "manuel_i",
+          "stat": "wealth",
+          "locations": [
+            "renaissance_qusqu",
+            "renaissance_genoa",
+            "renaissance_venice"
+          ],
+          "allies": [
+            "bayinnaung"
+          ],
+          "opponents": [
+            "alan_turing",
+            "isabel_i"
+          ],
+          "followers": [
+            "Merchant",
+            "Banker",
+            "Economist",
+            "Noble"
+          ],
+          "cpuFollowers": [
+            "Banker",
+            "Economist"
+          ]
+        },
+        "instruction": "Fight lesson 4 · Survival. Deploy Manuel I of Portugal to Qusqu, keep at least 5 Wealth there, and End Turn until two round endings have passed.",
+        "fact": "A Local Survival event is a test, not a fight: at the end of each round every side at the location is checked, and a total under 5 loses every card there to the discard pile. Reinforce with followers, or retrieve a weak card before the round ends.",
+        "id": "the-fortunate-king:5",
         "stage": "legacy",
         "difficulty": 4
       }
@@ -2609,6 +3884,42 @@
         "instruction": "Bayinnaung's treasury ran on tribute, trade tolls, and monopolies. Balance the empire's revenues — wars are expensive and white elephants require golden stables.",
         "fact": "Bayinnaung's empire was as much a trade network as a military conquest. Control of the overland route between China and the Indian Ocean gave his treasury a cut of the most profitable commerce in Asia. The Portuguese paid handsomely for port rights in Pegu — and Bayinnaung collected from everyone.",
         "id": "lord-of-three-kingdoms:5",
+        "stage": "legacy",
+        "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "survival",
+        "params": {
+          "hero": "bayinnaung",
+          "stat": "strength",
+          "locations": [
+            "renaissance_genoa",
+            "renaissance_venice",
+            "classical_rome"
+          ],
+          "allies": [
+            "miyamoto_musashi"
+          ],
+          "opponents": [
+            "borromini",
+            "isabel_i"
+          ],
+          "followers": [
+            "General",
+            "Athlete",
+            "Soldier",
+            "Warrior"
+          ],
+          "cpuFollowers": [
+            "Athlete",
+            "General"
+          ]
+        },
+        "instruction": "Fight lesson 4 · Survival. Deploy Bayinnaung to Genoa, keep at least 5 Strength there, and End Turn until two round endings have passed.",
+        "fact": "A Local Survival event is a test, not a fight: at the end of each round every side at the location is checked, and a total under 5 loses every card there to the discard pile. Reinforce with followers, or retrieve a weak card before the round ends.",
+        "id": "lord-of-three-kingdoms:6",
         "stage": "legacy",
         "difficulty": 4
       }
@@ -2685,6 +3996,42 @@
         "id": "words-for-the-world:4",
         "stage": "legacy",
         "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "survival",
+        "params": {
+          "hero": "gutenberg",
+          "stat": "technique",
+          "locations": [
+            "renaissance_genoa",
+            "renaissance_venice",
+            "classical_rome"
+          ],
+          "allies": [
+            "miyamoto_musashi"
+          ],
+          "opponents": [
+            "anna_nzinga",
+            "lee_sun_sin"
+          ],
+          "followers": [
+            "Engineer",
+            "Architect",
+            "Doctor",
+            "Explorer"
+          ],
+          "cpuFollowers": [
+            "Architect",
+            "Doctor"
+          ]
+        },
+        "instruction": "Fight lesson 4 · Survival. Deploy Johannes Gutenberg to Genoa, keep at least 5 Technique there, and End Turn until two round endings have passed.",
+        "fact": "A Local Survival event is a test, not a fight: at the end of each round every side at the location is checked, and a total under 5 loses every card there to the discard pile. Reinforce with followers, or retrieve a weak card before the round ends.",
+        "id": "words-for-the-world:5",
+        "stage": "legacy",
+        "difficulty": 4
       }
     ]
   },
@@ -2756,6 +4103,42 @@
         "instruction": "Yi studied Sun Tzu as carefully as he studied tides. Deploy your forces where terrain, timing, and surprise multiply every ship's effectiveness.",
         "fact": "Yi's battle reports, collected in his Nanjung Ilgi (War Diary), are among the most detailed military documents of the 16th century. He recorded his tactics, his anxieties, his observations of weather and tide, and his grief. The diary survived the war hidden under floorboards. It is now a Korean national treasure.",
         "id": "the-turtle-ship:5",
+        "stage": "legacy",
+        "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "survival",
+        "params": {
+          "hero": "lee_sun_sin",
+          "stat": "strength",
+          "locations": [
+            "renaissance_genoa",
+            "renaissance_venice",
+            "classical_rome"
+          ],
+          "allies": [
+            "miyamoto_musashi"
+          ],
+          "opponents": [
+            "borromini",
+            "montezuma_ii"
+          ],
+          "followers": [
+            "General",
+            "Soldier",
+            "Athlete",
+            "Warrior"
+          ],
+          "cpuFollowers": [
+            "Athlete",
+            "General"
+          ]
+        },
+        "instruction": "Fight lesson 4 · Survival. Deploy Lee Sun-sin to Genoa, keep at least 5 Strength there, and End Turn until two round endings have passed.",
+        "fact": "A Local Survival event is a test, not a fight: at the end of each round every side at the location is checked, and a total under 5 loses every card there to the discard pile. Reinforce with followers, or retrieve a weak card before the round ends.",
+        "id": "the-turtle-ship:6",
         "stage": "legacy",
         "difficulty": 4
       }
@@ -2842,6 +4225,42 @@
         "id": "the-sun-emperor:5",
         "stage": "legacy",
         "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "survival",
+        "params": {
+          "hero": "montezuma_ii",
+          "stat": "politics",
+          "locations": [
+            "renaissance_genoa",
+            "renaissance_venice",
+            "classical_rome"
+          ],
+          "allies": [
+            "isabel_i"
+          ],
+          "opponents": [
+            "bi_sheng",
+            "bayinnaung"
+          ],
+          "followers": [
+            "Sovereign",
+            "Official",
+            "Spy",
+            "Statesman"
+          ],
+          "cpuFollowers": [
+            "Official",
+            "Spy"
+          ]
+        },
+        "instruction": "Fight lesson 4 · Survival. Deploy Montezuma II to Genoa, keep at least 5 Politics there, and End Turn until two round endings have passed.",
+        "fact": "A Local Survival event is a test, not a fight: at the end of each round every side at the location is checked, and a total under 5 loses every card there to the discard pile. Reinforce with followers, or retrieve a weak card before the round ends.",
+        "id": "the-sun-emperor:6",
+        "stage": "legacy",
+        "difficulty": 4
       }
     ]
   },
@@ -2913,6 +4332,42 @@
         "instruction": "The Spanish conducted formal legal proceedings to justify the conquest. Navigate the colonial tribunal where Inca resistance was reframed as rebellion against legitimate Spanish authority.",
         "fact": "The Spanish legal doctrine of the time held that indigenous rulers who resisted after being informed of Spanish sovereignty were rebels, not sovereign enemies — removing any obligation to treat them as prisoners of war. This legal fiction allowed the Spanish to torture and execute leaders like Rumiñahui without violating their own laws. It was the first formal deployment of what modern scholars call the 'lawfare' of conquest.",
         "id": "the-last-fire:5",
+        "stage": "legacy",
+        "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "survival",
+        "params": {
+          "hero": "ruminahui",
+          "stat": "strength",
+          "locations": [
+            "renaissance_genoa",
+            "renaissance_venice",
+            "classical_rome"
+          ],
+          "allies": [
+            "miyamoto_musashi"
+          ],
+          "opponents": [
+            "borromini",
+            "isabel_i"
+          ],
+          "followers": [
+            "General",
+            "Warrior",
+            "Athlete",
+            "Soldier"
+          ],
+          "cpuFollowers": [
+            "Athlete",
+            "General"
+          ]
+        },
+        "instruction": "Fight lesson 4 · Survival. Deploy Rumiñahui to Genoa, keep at least 5 Strength there, and End Turn until two round endings have passed.",
+        "fact": "A Local Survival event is a test, not a fight: at the end of each round every side at the location is checked, and a total under 5 loses every card there to the discard pile. Reinforce with followers, or retrieve a weak card before the round ends.",
+        "id": "the-last-fire:6",
         "stage": "legacy",
         "difficulty": 4
       }
@@ -2997,6 +4452,42 @@
         "instruction": "Behind every Aztec emperor stood Tlacaelel — the counselor who turned political advantage into permanent architecture. Navigate the council chamber where empires are made with words.",
         "fact": "The Flower Wars (Xochiyaoyotl) that Tlacaelel institutionalized were a unique form of ritualized conflict: neighboring states would agree to scheduled battles whose purpose was not territorial conquest but the capture of living warriors for sacrifice. Critics called them morally monstrous; defenders argued they were a more humane alternative to wars of annihilation. The truth is that they also kept potential rivals permanently weak.",
         "id": "the-shadow-behind-the-throne:5",
+        "stage": "legacy",
+        "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "survival",
+        "params": {
+          "hero": "tlacaelel",
+          "stat": "wealth",
+          "locations": [
+            "renaissance_genoa",
+            "renaissance_venice",
+            "classical_rome"
+          ],
+          "allies": [
+            "manuel_i"
+          ],
+          "opponents": [
+            "alan_turing",
+            "gutenberg"
+          ],
+          "followers": [
+            "Banker",
+            "Economist",
+            "Merchant",
+            "Noble"
+          ],
+          "cpuFollowers": [
+            "Banker",
+            "Economist"
+          ]
+        },
+        "instruction": "Fight lesson 4 · Survival. Deploy Tlacaelel to Genoa, keep at least 5 Wealth there, and End Turn until two round endings have passed.",
+        "fact": "A Local Survival event is a test, not a fight: at the end of each round every side at the location is checked, and a total under 5 loses every card there to the discard pile. Reinforce with followers, or retrieve a weak card before the round ends.",
+        "id": "the-shadow-behind-the-throne:6",
         "stage": "legacy",
         "difficulty": 4
       }
@@ -3089,6 +4580,42 @@
         "id": "fantasia-and-keys:6",
         "stage": "legacy",
         "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "hidden",
+        "params": {
+          "hero": "clara_schumann",
+          "stat": "culture",
+          "locations": [
+            "steam_london",
+            "electricity_moscow",
+            "electricity_london"
+          ],
+          "allies": [
+            "george_bernard_shaw"
+          ],
+          "opponents": [
+            "coco_chanel",
+            "borromini"
+          ],
+          "followers": [
+            "Musician",
+            "Actor",
+            "Artist",
+            "Writer"
+          ],
+          "cpuFollowers": [
+            "Actor",
+            "Musician"
+          ]
+        },
+        "instruction": "Fight lesson 5 · Face Down. Win two attacks: fight at London where the Art Critique is running, then carry the fight to Moscow by starting your own event there.",
+        "fact": "A card on the board can be public (face up) or private (face down). A private card hides its identity and stats from rivals until an attack reveals every card at that location. Your own cards deploy face down; Toggle Public when being seen helps you.",
+        "id": "fantasia-and-keys:7",
+        "stage": "legacy",
+        "difficulty": 4
       }
     ]
   },
@@ -3163,6 +4690,42 @@
         "id": "the-naming-of-everything:4",
         "stage": "legacy",
         "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "hidden",
+        "params": {
+          "hero": "carl_linnaeus",
+          "stat": "intelligence",
+          "locations": [
+            "renaissance_genoa",
+            "steam_st_petersburg",
+            "steam_london"
+          ],
+          "allies": [
+            "yekaterina"
+          ],
+          "opponents": [
+            "anna_nzinga",
+            "borromini"
+          ],
+          "followers": [
+            "Naturalist",
+            "Astronomer",
+            "Mathematician",
+            "Scientist"
+          ],
+          "cpuFollowers": [
+            "Astronomer",
+            "Mathematician"
+          ]
+        },
+        "instruction": "Fight lesson 5 · Face Down. Win two attacks: fight at Genoa where the Argument is running, then carry the fight to St Petersburg by starting your own event there.",
+        "fact": "A card on the board can be public (face up) or private (face down). A private card hides its identity and stats from rivals until an attack reveals every card at that location. Your own cards deploy face down; Toggle Public when being seen helps you.",
+        "id": "the-naming-of-everything:5",
+        "stage": "legacy",
+        "difficulty": 4
       }
     ]
   },
@@ -3215,6 +4778,42 @@
         "configId": "mendel-grid",
         "instruction": "When the Bastille was stormed on July 14, 1789, it held only seven prisoners — but as a symbol of royal tyranny, its fall ignited the French Revolution. Order the grid as the record was ordered — every row, column and box complete.",
         "id": "the-gilded-court:3",
+        "stage": "legacy",
+        "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "hidden",
+        "params": {
+          "hero": "louis_xvi",
+          "stat": "wealth",
+          "locations": [
+            "electricity_paris",
+            "steam_st_petersburg",
+            "steam_london"
+          ],
+          "allies": [
+            "josiah_wedgwood"
+          ],
+          "opponents": [
+            "nian_xiyao",
+            "yekaterina"
+          ],
+          "followers": [
+            "Banker",
+            "Economist",
+            "Merchant",
+            "Noble"
+          ],
+          "cpuFollowers": [
+            "Banker",
+            "Economist"
+          ]
+        },
+        "instruction": "Fight lesson 5 · Face Down. Win two attacks: fight at Paris where the Business War is running, then carry the fight to St Petersburg by starting your own event there.",
+        "fact": "A card on the board can be public (face up) or private (face down). A private card hides its identity and stats from rivals until an attack reveals every card at that location. Your own cards deploy face down; Toggle Public when being seen helps you.",
+        "id": "the-gilded-court:4",
         "stage": "legacy",
         "difficulty": 4
       }
@@ -3281,6 +4880,42 @@
         "configId": "lovelace-engine",
         "instruction": "Charles Lyell built on Hutton's uniformitarianism in Principles of Geology (1830) — a book Darwin took on the Beagle voyage and which directly shaped the theory of evolution. Wire the gates until the circuit agrees with the table on every row.",
         "id": "deep-time:4",
+        "stage": "legacy",
+        "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "hidden",
+        "params": {
+          "hero": "james_hutton",
+          "stat": "intelligence",
+          "locations": [
+            "steam_london",
+            "steam_st_petersburg",
+            "electricity_paris"
+          ],
+          "allies": [
+            "carl_linnaeus"
+          ],
+          "opponents": [
+            "bernini",
+            "josiah_wedgwood"
+          ],
+          "followers": [
+            "Scientist",
+            "Astronomer",
+            "Mathematician",
+            "Naturalist"
+          ],
+          "cpuFollowers": [
+            "Astronomer",
+            "Mathematician"
+          ]
+        },
+        "instruction": "Fight lesson 5 · Face Down. Win two attacks: fight at London where the Argument is running, then carry the fight to St Petersburg by starting your own event there.",
+        "fact": "A card on the board can be public (face up) or private (face down). A private card hides its identity and stats from rivals until an attack reveals every card at that location. Your own cards deploy face down; Toggle Public when being seen helps you.",
+        "id": "deep-time:5",
         "stage": "legacy",
         "difficulty": 4
       }
@@ -3354,6 +4989,42 @@
         "id": "the-potter-s-empire:4",
         "stage": "legacy",
         "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "hidden",
+        "params": {
+          "hero": "josiah_wedgwood",
+          "stat": "wealth",
+          "locations": [
+            "steam_manchester",
+            "steam_st_petersburg",
+            "steam_london"
+          ],
+          "allies": [
+            "yekaterina"
+          ],
+          "opponents": [
+            "louis_xvi",
+            "nian_xiyao"
+          ],
+          "followers": [
+            "Merchant",
+            "Banker",
+            "Economist",
+            "Noble"
+          ],
+          "cpuFollowers": [
+            "Banker",
+            "Economist"
+          ]
+        },
+        "instruction": "Fight lesson 5 · Face Down. Win two attacks: fight at Boston where the Business War is running, then carry the fight to St Petersburg by starting your own event there.",
+        "fact": "A card on the board can be public (face up) or private (face down). A private card hides its identity and stats from rivals until an attack reveals every card at that location. Your own cards deploy face down; Toggle Public when being seen helps you.",
+        "id": "the-potter-s-empire:5",
+        "stage": "legacy",
+        "difficulty": 4
       }
     ]
   },
@@ -3420,6 +5091,42 @@
         "id": "the-empress-seizes-power:4",
         "stage": "legacy",
         "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "hidden",
+        "params": {
+          "hero": "yekaterina",
+          "stat": "politics",
+          "locations": [
+            "steam_amsterdam",
+            "steam_st_petersburg",
+            "steam_london"
+          ],
+          "allies": [
+            "anna_nzinga"
+          ],
+          "opponents": [
+            "josiah_wedgwood",
+            "louis_xvi"
+          ],
+          "followers": [
+            "Sovereign",
+            "Official",
+            "Spy",
+            "Statesman"
+          ],
+          "cpuFollowers": [
+            "Official",
+            "Spy"
+          ]
+        },
+        "instruction": "Fight lesson 5 · Face Down. Win two attacks: fight at Amsterdam where the Coup is running, then carry the fight to St Petersburg by starting your own event there.",
+        "fact": "A card on the board can be public (face up) or private (face down). A private card hides its identity and stats from rivals until an attack reveals every card at that location. Your own cards deploy face down; Toggle Public when being seen helps you.",
+        "id": "the-empress-seizes-power:5",
+        "stage": "legacy",
+        "difficulty": 4
       }
     ]
   },
@@ -3467,6 +5174,42 @@
         "instruction": "Versailles was a world of mirrors and gilded excess. Match the treasures of the palace — the same luxury that the revolutionary crowds outside could not afford.",
         "fact": "Marie Antoinette's reputation for extravagance was partly real and partly manufactured. Her annual clothing budget was enormous — but Louis XVI actually cut it after they married. Revolutionary pamphlets exaggerated her spending into legend. The 'Madame Deficit' nickname stuck regardless of the facts.",
         "id": "the-last-queen:3",
+        "stage": "legacy",
+        "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "hidden",
+        "params": {
+          "hero": "marie_antoinette",
+          "stat": "wealth",
+          "locations": [
+            "steam_st_petersburg",
+            "steam_london",
+            "electricity_paris"
+          ],
+          "allies": [
+            "josiah_wedgwood"
+          ],
+          "opponents": [
+            "nian_xiyao",
+            "yekaterina"
+          ],
+          "followers": [
+            "Noble",
+            "Banker",
+            "Economist",
+            "Merchant"
+          ],
+          "cpuFollowers": [
+            "Banker",
+            "Economist"
+          ]
+        },
+        "instruction": "Fight lesson 5 · Face Down. Win two attacks: fight at St Petersburg where the Business War is running, then carry the fight to London by starting your own event there.",
+        "fact": "A card on the board can be public (face up) or private (face down). A private card hides its identity and stats from rivals until an attack reveals every card at that location. Your own cards deploy face down; Toggle Public when being seen helps you.",
+        "id": "the-last-queen:4",
         "stage": "legacy",
         "difficulty": 4
       }
@@ -3550,6 +5293,42 @@
         "id": "queen-of-two-thrones:5",
         "stage": "legacy",
         "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "hidden",
+        "params": {
+          "hero": "anna_nzinga",
+          "stat": "politics",
+          "locations": [
+            "steam_st_petersburg",
+            "steam_london",
+            "electricity_paris"
+          ],
+          "allies": [
+            "yekaterina"
+          ],
+          "opponents": [
+            "josiah_wedgwood",
+            "louis_xvi"
+          ],
+          "followers": [
+            "Sovereign",
+            "Official",
+            "Spy",
+            "Statesman"
+          ],
+          "cpuFollowers": [
+            "Official",
+            "Spy"
+          ]
+        },
+        "instruction": "Fight lesson 5 · Face Down. Win two attacks: fight at St Petersburg where the Coup is running, then carry the fight to London by starting your own event there.",
+        "fact": "A card on the board can be public (face up) or private (face down). A private card hides its identity and stats from rivals until an attack reveals every card at that location. Your own cards deploy face down; Toggle Public when being seen helps you.",
+        "id": "queen-of-two-thrones:6",
+        "stage": "legacy",
+        "difficulty": 4
       }
     ]
   },
@@ -3614,6 +5393,42 @@
         "instruction": "Rome in Borromini's day was an open-air gallery of competing architectural ambitions. Arrange the Baroque masters' works in the order that best reveals the evolution of the style.",
         "fact": "The Baroque was born in Rome as the Catholic Church's answer to Protestant austerity. Where Protestantism stripped churches bare, the Counter-Reformation filled them with overwhelming beauty. Borromini's contribution was to make that beauty geometrically impossible — a space that could not exist by the rules of classical architecture yet stood before you undeniably real.",
         "id": "the-infinite-curve:4",
+        "stage": "legacy",
+        "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "hidden",
+        "params": {
+          "hero": "borromini",
+          "stat": "technique",
+          "locations": [
+            "steam_st_petersburg",
+            "steam_london",
+            "electricity_paris"
+          ],
+          "allies": [
+            "nian_xiyao"
+          ],
+          "opponents": [
+            "bernini",
+            "james_hutton"
+          ],
+          "followers": [
+            "Architect",
+            "Doctor",
+            "Engineer",
+            "Explorer"
+          ],
+          "cpuFollowers": [
+            "Doctor",
+            "Engineer"
+          ]
+        },
+        "instruction": "Fight lesson 5 · Face Down. Win two attacks: fight at St Petersburg where the Tech Race is running, then carry the fight to London by starting your own event there.",
+        "fact": "A card on the board can be public (face up) or private (face down). A private card hides its identity and stats from rivals until an attack reveals every card at that location. Your own cards deploy face down; Toggle Public when being seen helps you.",
+        "id": "the-infinite-curve:5",
         "stage": "legacy",
         "difficulty": 4
       }
@@ -3697,6 +5512,42 @@
         "id": "marble-into-breath:5",
         "stage": "legacy",
         "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "hidden",
+        "params": {
+          "hero": "bernini",
+          "stat": "culture",
+          "locations": [
+            "steam_st_petersburg",
+            "steam_london",
+            "electricity_paris"
+          ],
+          "allies": [
+            "borromini"
+          ],
+          "opponents": [
+            "nian_xiyao",
+            "carl_linnaeus"
+          ],
+          "followers": [
+            "Artist",
+            "Actor",
+            "Musician",
+            "Writer"
+          ],
+          "cpuFollowers": [
+            "Actor",
+            "Musician"
+          ]
+        },
+        "instruction": "Fight lesson 5 · Face Down. Win two attacks: fight at St Petersburg where the Art Critique is running, then carry the fight to London by starting your own event there.",
+        "fact": "A card on the board can be public (face up) or private (face down). A private card hides its identity and stats from rivals until an attack reveals every card at that location. Your own cards deploy face down; Toggle Public when being seen helps you.",
+        "id": "marble-into-breath:6",
+        "stage": "legacy",
+        "difficulty": 4
       }
     ]
   },
@@ -3773,6 +5624,42 @@
         "id": "the-art-of-perspective:5",
         "stage": "legacy",
         "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "hidden",
+        "params": {
+          "hero": "nian_xiyao",
+          "stat": "technique",
+          "locations": [
+            "steam_st_petersburg",
+            "steam_london",
+            "electricity_paris"
+          ],
+          "allies": [
+            "borromini"
+          ],
+          "opponents": [
+            "anna_nzinga",
+            "louis_xvi"
+          ],
+          "followers": [
+            "Architect",
+            "Doctor",
+            "Engineer",
+            "Explorer"
+          ],
+          "cpuFollowers": [
+            "Architect",
+            "Doctor"
+          ]
+        },
+        "instruction": "Fight lesson 5 · Face Down. Win two attacks: fight at St Petersburg where the Tech Race is running, then carry the fight to London by starting your own event there.",
+        "fact": "A card on the board can be public (face up) or private (face down). A private card hides its identity and stats from rivals until an attack reveals every card at that location. Your own cards deploy face down; Toggle Public when being seen helps you.",
+        "id": "the-art-of-perspective:6",
+        "stage": "legacy",
+        "difficulty": 4
       }
     ]
   },
@@ -3841,6 +5728,43 @@
         "instruction": "Walk Gandhi's Salt March — 240 miles in 24 days. Navigate the coastal road to Dandi, where a handful of salt will shake an empire.",
         "fact": "The 1930 Salt March began with 78 hand-picked followers and ended with tens of thousands. When Gandhi arrived at the sea after 24 days, he said: 'With this, I am shaking the foundations of the British Empire.' The American press called it 'the most spectacular individual act of defiance in modern history.'",
         "id": "soul-force:4",
+        "stage": "legacy",
+        "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "competition",
+        "params": {
+          "hero": "gandhi",
+          "stat": "belief",
+          "locations": [
+            "electricity_delhi",
+            "electricity_moscow",
+            "electricity_london"
+          ],
+          "allies": [
+            "gregor_mendel",
+            "tenzing_norgay"
+          ],
+          "opponents": [
+            "an_jung_geun",
+            "saint_teresa"
+          ],
+          "followers": [
+            "Monastic",
+            "Philosopher",
+            "Priest",
+            "Prophet"
+          ],
+          "cpuFollowers": [
+            "Monastic",
+            "Philosopher"
+          ]
+        },
+        "instruction": "Fight lesson 6 · Global Competition. Deploy your Great People, Toggle Public on each, then start the Pilgrimage and End Turn to win the round with the highest public Belief on the board.",
+        "fact": "A Global Competition counts every public Great Person on the whole board; followers and face-down cards add nothing. It lasts one round, and the strongest player draws a reward: event cards, followers or a new Great Person.",
+        "id": "soul-force:5",
         "stage": "legacy",
         "difficulty": 4
       }
@@ -3920,6 +5844,43 @@
         "id": "garden-of-genetics:5",
         "stage": "legacy",
         "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "competition",
+        "params": {
+          "hero": "gregor_mendel",
+          "stat": "intelligence",
+          "locations": [
+            "steam_manchester",
+            "electricity_moscow",
+            "electricity_london"
+          ],
+          "allies": [
+            "alan_turing",
+            "gandhi"
+          ],
+          "opponents": [
+            "hendrik_lorentz",
+            "ito_hirobumi"
+          ],
+          "followers": [
+            "Scientist",
+            "Astronomer",
+            "Mathematician",
+            "Naturalist"
+          ],
+          "cpuFollowers": [
+            "Astronomer",
+            "Mathematician"
+          ]
+        },
+        "instruction": "Fight lesson 6 · Global Competition. Deploy your Great People, Toggle Public on each, then start the Expedition and End Turn to win the round with the highest public Intelligence on the board.",
+        "fact": "A Global Competition counts every public Great Person on the whole board; followers and face-down cards add nothing. It lasts one round, and the strongest player draws a reward: event cards, followers or a new Great Person.",
+        "id": "garden-of-genetics:6",
+        "stage": "legacy",
+        "difficulty": 4
       }
     ]
   },
@@ -3994,6 +5955,43 @@
         "id": "symphony-of-shadows:4",
         "stage": "legacy",
         "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "competition",
+        "params": {
+          "hero": "johannes_brahms",
+          "stat": "culture",
+          "locations": [
+            "steam_london",
+            "electricity_moscow",
+            "electricity_london"
+          ],
+          "allies": [
+            "george_bernard_shaw",
+            "coco_chanel"
+          ],
+          "opponents": [
+            "clara_schumann",
+            "michael_jackson"
+          ],
+          "followers": [
+            "Musician",
+            "Actor",
+            "Artist",
+            "Writer"
+          ],
+          "cpuFollowers": [
+            "Actor",
+            "Artist"
+          ]
+        },
+        "instruction": "Fight lesson 6 · Global Competition. Deploy your Great People, Toggle Public on each, then start the Roadshow and End Turn to win the round with the highest public Culture on the board.",
+        "fact": "A Global Competition counts every public Great Person on the whole board; followers and face-down cards add nothing. It lasts one round, and the strongest player draws a reward: event cards, followers or a new Great Person.",
+        "id": "symphony-of-shadows:5",
+        "stage": "legacy",
+        "difficulty": 4
       }
     ]
   },
@@ -4057,6 +6055,43 @@
         "id": "breaking-enigma:4",
         "stage": "legacy",
         "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "competition",
+        "params": {
+          "hero": "alan_turing",
+          "stat": "intelligence",
+          "locations": [
+            "electricity_london",
+            "electricity_moscow",
+            "electricity_paris"
+          ],
+          "allies": [
+            "ito_hirobumi",
+            "clara_schumann"
+          ],
+          "opponents": [
+            "hendrik_lorentz",
+            "carl_linnaeus"
+          ],
+          "followers": [
+            "Mathematician",
+            "Astronomer",
+            "Naturalist",
+            "Scientist"
+          ],
+          "cpuFollowers": [
+            "Astronomer",
+            "Mathematician"
+          ]
+        },
+        "instruction": "Fight lesson 6 · Global Competition. Deploy your Great People, Toggle Public on each, then start the Expedition and End Turn to win the round with the highest public Intelligence on the board.",
+        "fact": "A Global Competition counts every public Great Person on the whole board; followers and face-down cards add nothing. It lasts one round, and the strongest player draws a reward: event cards, followers or a new Great Person.",
+        "id": "breaking-enigma:5",
+        "stage": "legacy",
+        "difficulty": 4
       }
     ]
   },
@@ -4114,6 +6149,43 @@
         "instruction": "Léon Foucault measured the speed of light by bouncing a beam off a spinning mirror. You have one mirror — route the beam through four fixed reflectors to reach the exit.",
         "fact": "Foucault measured the speed of light at 298,000 km/s in 1850 — within 0.6% of the true value — using a rotating mirror that shifted while light was in transit. Lorentz's equations later explained why light's speed is constant for all observers.",
         "id": "light-before-einstein:4",
+        "stage": "legacy",
+        "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "competition",
+        "params": {
+          "hero": "hendrik_lorentz",
+          "stat": "intelligence",
+          "locations": [
+            "steam_amsterdam",
+            "electricity_moscow",
+            "electricity_london"
+          ],
+          "allies": [
+            "ito_hirobumi",
+            "clara_schumann"
+          ],
+          "opponents": [
+            "alan_turing",
+            "carl_linnaeus"
+          ],
+          "followers": [
+            "Scientist",
+            "Astronomer",
+            "Mathematician",
+            "Naturalist"
+          ],
+          "cpuFollowers": [
+            "Astronomer",
+            "Scientist"
+          ]
+        },
+        "instruction": "Fight lesson 6 · Global Competition. Deploy your Great People, Toggle Public on each, then start the Expedition and End Turn to win the round with the highest public Intelligence on the board.",
+        "fact": "A Global Competition counts every public Great Person on the whole board; followers and face-down cards add nothing. It lasts one round, and the strongest player draws a reward: event cards, followers or a new Great Person.",
+        "id": "light-before-einstein:5",
         "stage": "legacy",
         "difficulty": 4
       }
@@ -4175,6 +6247,43 @@
         },
         "instruction": "Before Chanel, fashionable women's clothing required tight corsets — Chanel was among the first designers to make comfortable, unstructured clothes stylish. Set the answer in movable type — mirrored, right to left.",
         "id": "fashion-revolution:3",
+        "stage": "legacy",
+        "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "competition",
+        "params": {
+          "hero": "coco_chanel",
+          "stat": "wealth",
+          "locations": [
+            "electricity_paris",
+            "electricity_moscow",
+            "electricity_london"
+          ],
+          "allies": [
+            "ito_hirobumi",
+            "george_bernard_shaw"
+          ],
+          "opponents": [
+            "josiah_wedgwood",
+            "joel_robuchon"
+          ],
+          "followers": [
+            "Merchant",
+            "Banker",
+            "Economist",
+            "Noble"
+          ],
+          "cpuFollowers": [
+            "Banker",
+            "Economist"
+          ]
+        },
+        "instruction": "Fight lesson 6 · Global Competition. Deploy your Great People, Toggle Public on each, then start the Auction and End Turn to win the round with the highest public Wealth on the board.",
+        "fact": "A Global Competition counts every public Great Person on the whole board; followers and face-down cards add nothing. It lasts one round, and the strongest player draws a reward: event cards, followers or a new Great Person.",
+        "id": "fashion-revolution:4",
         "stage": "legacy",
         "difficulty": 4
       }
@@ -4241,6 +6350,43 @@
         "id": "wings-over-the-atlantic:4",
         "stage": "legacy",
         "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "competition",
+        "params": {
+          "hero": "amelia_earhart",
+          "stat": "strength",
+          "locations": [
+            "information_sanjose",
+            "electricity_moscow",
+            "electricity_london"
+          ],
+          "allies": [
+            "an_jung_geun",
+            "george_bernard_shaw"
+          ],
+          "opponents": [
+            "tenzing_norgay",
+            "diego_maradona"
+          ],
+          "followers": [
+            "Athlete",
+            "General",
+            "Soldier",
+            "Warrior"
+          ],
+          "cpuFollowers": [
+            "General",
+            "Soldier"
+          ]
+        },
+        "instruction": "Fight lesson 6 · Global Competition. Deploy your Great People, Toggle Public on each, then start the Olympics and End Turn to win the round with the highest public Strength on the board.",
+        "fact": "A Global Competition counts every public Great Person on the whole board; followers and face-down cards add nothing. It lasts one round, and the strongest player draws a reward: event cards, followers or a new Great Person.",
+        "id": "wings-over-the-atlantic:5",
+        "stage": "legacy",
+        "difficulty": 4
       }
     ]
   },
@@ -4290,6 +6436,43 @@
         "configId": "beethoven-motif",
         "instruction": "Eisenstein's film Battleship Potemkin was banned in several countries including the United Kingdom upon its 1925 release for its revolutionary political content. Learn the phrase and play it back, note for note.",
         "id": "cinema-s-architect:3",
+        "stage": "legacy",
+        "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "competition",
+        "params": {
+          "hero": "sergei_eisenstein",
+          "stat": "culture",
+          "locations": [
+            "electricity_moscow",
+            "electricity_london",
+            "electricity_paris"
+          ],
+          "allies": [
+            "clara_schumann",
+            "gandhi"
+          ],
+          "opponents": [
+            "george_bernard_shaw",
+            "michael_jackson"
+          ],
+          "followers": [
+            "Artist",
+            "Actor",
+            "Musician",
+            "Writer"
+          ],
+          "cpuFollowers": [
+            "Actor",
+            "Artist"
+          ]
+        },
+        "instruction": "Fight lesson 6 · Global Competition. Deploy your Great People, Toggle Public on each, then start the Roadshow and End Turn to win the round with the highest public Culture on the board.",
+        "fact": "A Global Competition counts every public Great Person on the whole board; followers and face-down cards add nothing. It lasts one round, and the strongest player draws a reward: event cards, followers or a new Great Person.",
+        "id": "cinema-s-architect:4",
         "stage": "legacy",
         "difficulty": 4
       }
@@ -4351,6 +6534,43 @@
         "id": "the-long-march:3",
         "stage": "legacy",
         "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "competition",
+        "params": {
+          "hero": "mao_zedong",
+          "stat": "politics",
+          "locations": [
+            "electricity_hongkong",
+            "electricity_moscow",
+            "electricity_london"
+          ],
+          "allies": [
+            "andrew_mellon",
+            "coco_chanel"
+          ],
+          "opponents": [
+            "ito_hirobumi",
+            "gandhi"
+          ],
+          "followers": [
+            "Statesman",
+            "Official",
+            "Sovereign",
+            "Spy"
+          ],
+          "cpuFollowers": [
+            "Official",
+            "Sovereign"
+          ]
+        },
+        "instruction": "Fight lesson 6 · Global Competition. Deploy your Great People, Toggle Public on each, then start the International Conference and End Turn to win the round with the highest public Politics on the board.",
+        "fact": "A Global Competition counts every public Great Person on the whole board; followers and face-down cards add nothing. It lasts one round, and the strongest player draws a reward: event cards, followers or a new Great Person.",
+        "id": "the-long-march:4",
+        "stage": "legacy",
+        "difficulty": 4
       }
     ]
   },
@@ -4403,6 +6623,43 @@
         },
         "instruction": "Two newspapers wire their verdicts on Ahn Jung-geun. Read the lamp.",
         "id": "a-martyr-s-bullet:3",
+        "stage": "legacy",
+        "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "competition",
+        "params": {
+          "hero": "an_jung_geun",
+          "stat": "belief",
+          "locations": [
+            "information_seoul",
+            "electricity_moscow",
+            "electricity_london"
+          ],
+          "allies": [
+            "gregor_mendel",
+            "tenzing_norgay"
+          ],
+          "opponents": [
+            "gandhi",
+            "saint_teresa"
+          ],
+          "followers": [
+            "Monastic",
+            "Philosopher",
+            "Priest",
+            "Prophet"
+          ],
+          "cpuFollowers": [
+            "Monastic",
+            "Philosopher"
+          ]
+        },
+        "instruction": "Fight lesson 6 · Global Competition. Deploy your Great People, Toggle Public on each, then start the Pilgrimage and End Turn to win the round with the highest public Belief on the board.",
+        "fact": "A Global Competition counts every public Great Person on the whole board; followers and face-down cards add nothing. It lasts one round, and the strongest player draws a reward: event cards, followers or a new Great Person.",
+        "id": "a-martyr-s-bullet:4",
         "stage": "legacy",
         "difficulty": 4
       }
@@ -4462,6 +6719,43 @@
         "instruction": "Bid on industrial-era assets at the Gilded Age estate sale. Secure your target investments wisely.",
         "fact": "The Gilded Age saw explosive growth in auction houses and financial markets as railroads, steel, and electricity transformed the American economy.",
         "id": "the-gilded-age:4",
+        "stage": "legacy",
+        "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "competition",
+        "params": {
+          "hero": "andrew_mellon",
+          "stat": "wealth",
+          "locations": [
+            "electricity_london",
+            "electricity_moscow",
+            "electricity_paris"
+          ],
+          "allies": [
+            "ito_hirobumi",
+            "george_bernard_shaw"
+          ],
+          "opponents": [
+            "coco_chanel",
+            "josiah_wedgwood"
+          ],
+          "followers": [
+            "Banker",
+            "Economist",
+            "Merchant",
+            "Noble"
+          ],
+          "cpuFollowers": [
+            "Banker",
+            "Economist"
+          ]
+        },
+        "instruction": "Fight lesson 6 · Global Competition. Deploy your Great People, Toggle Public on each, then start the Auction and End Turn to win the round with the highest public Wealth on the board.",
+        "fact": "A Global Competition counts every public Great Person on the whole board; followers and face-down cards add nothing. It lasts one round, and the strongest player draws a reward: event cards, followers or a new Great Person.",
+        "id": "the-gilded-age:5",
         "stage": "legacy",
         "difficulty": 4
       }
@@ -4525,6 +6819,43 @@
         "id": "the-meiji-architect:3",
         "stage": "legacy",
         "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "competition",
+        "params": {
+          "hero": "ito_hirobumi",
+          "stat": "politics",
+          "locations": [
+            "information_tokyo",
+            "electricity_moscow",
+            "electricity_london"
+          ],
+          "allies": [
+            "andrew_mellon",
+            "coco_chanel"
+          ],
+          "opponents": [
+            "gandhi",
+            "yekaterina"
+          ],
+          "followers": [
+            "Statesman",
+            "Official",
+            "Sovereign",
+            "Spy"
+          ],
+          "cpuFollowers": [
+            "Official",
+            "Spy"
+          ]
+        },
+        "instruction": "Fight lesson 6 · Global Competition. Deploy your Great People, Toggle Public on each, then start the International Conference and End Turn to win the round with the highest public Politics on the board.",
+        "fact": "A Global Competition counts every public Great Person on the whole board; followers and face-down cards add nothing. It lasts one round, and the strongest player draws a reward: event cards, followers or a new Great Person.",
+        "id": "the-meiji-architect:4",
+        "stage": "legacy",
+        "difficulty": 4
       }
     ]
   },
@@ -4577,6 +6908,43 @@
         },
         "instruction": "Shaw's epilogue has been printed in raised dots. Read how Eliza's story ends.",
         "id": "pygmalion:3",
+        "stage": "legacy",
+        "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "competition",
+        "params": {
+          "hero": "george_bernard_shaw",
+          "stat": "culture",
+          "locations": [
+            "electricity_london",
+            "electricity_moscow",
+            "electricity_paris"
+          ],
+          "allies": [
+            "coco_chanel",
+            "sergei_eisenstein"
+          ],
+          "opponents": [
+            "clara_schumann",
+            "michael_jackson"
+          ],
+          "followers": [
+            "Writer",
+            "Actor",
+            "Artist",
+            "Musician"
+          ],
+          "cpuFollowers": [
+            "Actor",
+            "Artist"
+          ]
+        },
+        "instruction": "Fight lesson 6 · Global Competition. Deploy your Great People, Toggle Public on each, then start the Roadshow and End Turn to win the round with the highest public Culture on the board.",
+        "fact": "A Global Competition counts every public Great Person on the whole board; followers and face-down cards add nothing. It lasts one round, and the strongest player draws a reward: event cards, followers or a new Great Person.",
+        "id": "pygmalion:4",
         "stage": "legacy",
         "difficulty": 4
       }
@@ -4636,6 +7004,43 @@
         "instruction": "Agra's jewellers demanded perfection — only chains of 4 or more gems matter, and diagonals count. Clear 36 gems from the 7×7 bazaar.",
         "fact": "Akbar's Mughal Empire controlled the world's richest gem pipeline: rubies from Burma, emeralds from Colombia via Portuguese Goa, sapphires from Ceylon, and diamonds from Golconda — the mine that produced the Koh-i-Noor. European merchants called Agra's Jauhari Bazaar the most magnificent market on Earth.",
         "id": "streets-of-calcutta:3",
+        "stage": "legacy",
+        "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "conquest",
+        "params": {
+          "hero": "saint_teresa",
+          "stat": "belief",
+          "locations": [
+            "electricity_delhi",
+            "information_singapore",
+            "information_tokyo"
+          ],
+          "allies": [
+            "gregory_peck",
+            "audrey_hepburn"
+          ],
+          "opponents": [
+            "jane_goodall",
+            "an_jung_geun"
+          ],
+          "followers": [
+            "Priest",
+            "Monastic",
+            "Philosopher",
+            "Prophet"
+          ],
+          "cpuFollowers": [
+            "Monastic",
+            "Philosopher"
+          ]
+        },
+        "instruction": "Fight lesson 7 · Conquest. Deploy, move to wherever the rival stands, start the Miracle there, and attack with Kill mode on until the rival has no Great People left.",
+        "fact": "With Kill mode on, a beaten card is discarded instead of returning to hand. A player with no Great People left, in hand or on the board, is out, and the last player standing wins. A kill won in a Great Person's own stat also counts towards their achievement.",
+        "id": "streets-of-calcutta:4",
         "stage": "legacy",
         "difficulty": 4
       }
@@ -4703,6 +7108,43 @@
         "instruction": "Surveyors had to calculate Everest's true height from miles away, correcting for Earth's curvature. Calculate the surface area of the Earth's sphere at Everest's latitude.",
         "fact": "Everest's height of 8,849 metres (as of 2023 measurements) was first calculated mathematically in 1856 by the Survey of India, who observed the peak from over 160 km away. They named it after Sir George Everest, the Surveyor General — though locals had always called it Chomolungma (Tibetan) or Sagarmatha (Nepali), meaning 'Goddess of the Sky' and 'Forehead of the Sky.'",
         "id": "top-of-the-world:4",
+        "stage": "legacy",
+        "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "conquest",
+        "params": {
+          "hero": "edmund_hillary",
+          "stat": "strength",
+          "locations": [
+            "information_singapore",
+            "information_tokyo",
+            "information_shenzhen"
+          ],
+          "allies": [
+            "jane_goodall",
+            "joel_robuchon"
+          ],
+          "opponents": [
+            "diego_maradona",
+            "peter_arnett"
+          ],
+          "followers": [
+            "Athlete",
+            "General",
+            "Soldier",
+            "Warrior"
+          ],
+          "cpuFollowers": [
+            "General",
+            "Soldier"
+          ]
+        },
+        "instruction": "Fight lesson 7 · Conquest. Deploy, move to wherever the rival stands, start the Battlefield there, and attack with Kill mode on until the rival has no Great People left.",
+        "fact": "With Kill mode on, a beaten card is discarded instead of returning to hand. A player with no Great People left, in hand or on the board, is out, and the last player standing wins. A kill won in a Great Person's own stat also counts towards their achievement.",
+        "id": "top-of-the-world:5",
         "stage": "legacy",
         "difficulty": 4
       }
@@ -4786,6 +7228,43 @@
         "id": "breakfast-at-tiffany-s:5",
         "stage": "legacy",
         "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "conquest",
+        "params": {
+          "hero": "audrey_hepburn",
+          "stat": "culture",
+          "locations": [
+            "information_sanjose",
+            "information_singapore",
+            "information_tokyo"
+          ],
+          "allies": [
+            "michael_jackson",
+            "gregory_peck"
+          ],
+          "opponents": [
+            "saint_teresa",
+            "joel_robuchon"
+          ],
+          "followers": [
+            "Actor",
+            "Artist",
+            "Musician",
+            "Writer"
+          ],
+          "cpuFollowers": [
+            "Actor",
+            "Artist"
+          ]
+        },
+        "instruction": "Fight lesson 7 · Conquest. Deploy, move to wherever the rival stands, start the Art Critique there, and attack with Kill mode on until the rival has no Great People left.",
+        "fact": "With Kill mode on, a beaten card is discarded instead of returning to hand. A player with no Great People left, in hand or on the board, is out, and the last player standing wins. A kill won in a Great Person's own stat also counts towards their achievement.",
+        "id": "breakfast-at-tiffany-s:6",
+        "stage": "legacy",
+        "difficulty": 4
       }
     ]
   },
@@ -4840,6 +7319,43 @@
         "configId": "mughal-gems",
         "instruction": "Michael Jackson invented the moonwalk dance move. Gather what the story needs: match the goods until the tally is met.",
         "id": "moonwalk:3",
+        "stage": "legacy",
+        "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "conquest",
+        "params": {
+          "hero": "michael_jackson",
+          "stat": "culture",
+          "locations": [
+            "information_sanjose",
+            "information_singapore",
+            "information_tokyo"
+          ],
+          "allies": [
+            "gregory_peck",
+            "audrey_hepburn"
+          ],
+          "opponents": [
+            "saint_teresa",
+            "joel_robuchon"
+          ],
+          "followers": [
+            "Musician",
+            "Actor",
+            "Artist",
+            "Writer"
+          ],
+          "cpuFollowers": [
+            "Actor",
+            "Artist"
+          ]
+        },
+        "instruction": "Fight lesson 7 · Conquest. Deploy, move to wherever the rival stands, start the Art Critique there, and attack with Kill mode on until the rival has no Great People left.",
+        "fact": "With Kill mode on, a beaten card is discarded instead of returning to hand. A player with no Great People left, in hand or on the board, is out, and the last player standing wins. A kill won in a Great Person's own stat also counts towards their achievement.",
+        "id": "moonwalk:4",
         "stage": "legacy",
         "difficulty": 4
       }
@@ -4911,6 +7427,43 @@
         "configId": "bach-fugue",
         "instruction": "Diego Maradona was excluded from Argentina's 1978 World Cup squad — which Argentina went on to win — because the coach considered him too young at 17. Learn the phrase and play it back, note for note.",
         "id": "the-hand-of-god:4",
+        "stage": "legacy",
+        "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "conquest",
+        "params": {
+          "hero": "diego_maradona",
+          "stat": "reputation",
+          "locations": [
+            "information_sanjose",
+            "information_singapore",
+            "information_tokyo"
+          ],
+          "allies": [
+            "michael_jackson",
+            "steve_jobs"
+          ],
+          "opponents": [
+            "jane_goodall",
+            "peter_arnett"
+          ],
+          "followers": [
+            "Educator",
+            "Gourmet",
+            "Journalist",
+            "Lawyer"
+          ],
+          "cpuFollowers": [
+            "Educator",
+            "Gourmet"
+          ]
+        },
+        "instruction": "Fight lesson 7 · Conquest. Deploy, move to wherever the rival stands, start the Lawsuit there, and attack with Kill mode on until the rival has no Great People left.",
+        "fact": "With Kill mode on, a beaten card is discarded instead of returning to hand. A player with no Great People left, in hand or on the board, is out, and the last player standing wins. A kill won in a Great Person's own stat also counts towards their achievement.",
+        "id": "the-hand-of-god:5",
         "stage": "legacy",
         "difficulty": 4
       }
@@ -4989,6 +7542,43 @@
         "id": "among-the-chimpanzees:5",
         "stage": "legacy",
         "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "conquest",
+        "params": {
+          "hero": "jane_goodall",
+          "stat": "reputation",
+          "locations": [
+            "information_sanjose",
+            "information_singapore",
+            "information_tokyo"
+          ],
+          "allies": [
+            "diego_maradona",
+            "michael_jackson"
+          ],
+          "opponents": [
+            "steve_jobs",
+            "joel_robuchon"
+          ],
+          "followers": [
+            "Educator",
+            "Gourmet",
+            "Journalist",
+            "Lawyer"
+          ],
+          "cpuFollowers": [
+            "Educator",
+            "Journalist"
+          ]
+        },
+        "instruction": "Fight lesson 7 · Conquest. Deploy, move to wherever the rival stands, start the Lawsuit there, and attack with Kill mode on until the rival has no Great People left.",
+        "fact": "With Kill mode on, a beaten card is discarded instead of returning to hand. A player with no Great People left, in hand or on the board, is out, and the last player standing wins. A kill won in a Great Person's own stat also counts towards their achievement.",
+        "id": "among-the-chimpanzees:6",
+        "stage": "legacy",
+        "difficulty": 4
       }
     ]
   },
@@ -5060,6 +7650,43 @@
         "id": "the-chef-of-the-century:4",
         "stage": "legacy",
         "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "conquest",
+        "params": {
+          "hero": "joel_robuchon",
+          "stat": "technique",
+          "locations": [
+            "information_sanjose",
+            "information_singapore",
+            "information_tokyo"
+          ],
+          "allies": [
+            "steve_jobs",
+            "edmund_hillary"
+          ],
+          "opponents": [
+            "diego_maradona",
+            "michael_jackson"
+          ],
+          "followers": [
+            "Architect",
+            "Doctor",
+            "Engineer",
+            "Explorer"
+          ],
+          "cpuFollowers": [
+            "Architect",
+            "Doctor"
+          ]
+        },
+        "instruction": "Fight lesson 7 · Conquest. Deploy, move to wherever the rival stands, start the Tech Race there, and attack with Kill mode on until the rival has no Great People left.",
+        "fact": "With Kill mode on, a beaten card is discarded instead of returning to hand. A player with no Great People left, in hand or on the board, is out, and the last player standing wins. A kill won in a Great Person's own stat also counts towards their achievement.",
+        "id": "the-chef-of-the-century:5",
+        "stage": "legacy",
+        "difficulty": 4
       }
     ]
   },
@@ -5124,6 +7751,43 @@
         "configId": "mughal-gems",
         "instruction": "Peter Arnett conducted the first major television interview with Osama bin Laden in 1997 — four years before the September 11 attacks. Gather what the story needs: match the goods until the tally is met.",
         "id": "voice-from-baghdad:4",
+        "stage": "legacy",
+        "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "conquest",
+        "params": {
+          "hero": "peter_arnett",
+          "stat": "reputation",
+          "locations": [
+            "information_sanjose",
+            "information_singapore",
+            "information_tokyo"
+          ],
+          "allies": [
+            "diego_maradona",
+            "michael_jackson"
+          ],
+          "opponents": [
+            "steve_jobs",
+            "joel_robuchon"
+          ],
+          "followers": [
+            "Journalist",
+            "Educator",
+            "Gourmet",
+            "Lawyer"
+          ],
+          "cpuFollowers": [
+            "Educator",
+            "Journalist"
+          ]
+        },
+        "instruction": "Fight lesson 7 · Conquest. Deploy, move to wherever the rival stands, start the Lawsuit there, and attack with Kill mode on until the rival has no Great People left.",
+        "fact": "With Kill mode on, a beaten card is discarded instead of returning to hand. A player with no Great People left, in hand or on the board, is out, and the last player standing wins. A kill won in a Great Person's own stat also counts towards their achievement.",
+        "id": "voice-from-baghdad:5",
         "stage": "legacy",
         "difficulty": 4
       }
@@ -5217,6 +7881,43 @@
         "id": "think-different:6",
         "stage": "legacy",
         "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "conquest",
+        "params": {
+          "hero": "steve_jobs",
+          "stat": "wealth",
+          "locations": [
+            "information_sanjose",
+            "information_singapore",
+            "information_tokyo"
+          ],
+          "allies": [
+            "joel_robuchon",
+            "michael_jackson"
+          ],
+          "opponents": [
+            "diego_maradona",
+            "peter_arnett"
+          ],
+          "followers": [
+            "Merchant",
+            "Banker",
+            "Economist",
+            "Noble"
+          ],
+          "cpuFollowers": [
+            "Banker",
+            "Economist"
+          ]
+        },
+        "instruction": "Fight lesson 7 · Conquest. Deploy, move to wherever the rival stands, start the Business War there, and attack with Kill mode on until the rival has no Great People left.",
+        "fact": "With Kill mode on, a beaten card is discarded instead of returning to hand. A player with no Great People left, in hand or on the board, is out, and the last player standing wins. A kill won in a Great Person's own stat also counts towards their achievement.",
+        "id": "think-different:7",
+        "stage": "legacy",
+        "difficulty": 4
       }
     ]
   },
@@ -5269,6 +7970,43 @@
         },
         "instruction": "The prize committee's record is stored as lamps. Add up each row to read it.",
         "id": "to-kill-a-mockingbird:3",
+        "stage": "legacy",
+        "difficulty": 4
+      },
+      {
+        "type": "minigame",
+        "game": "fight",
+        "configId": "conquest",
+        "params": {
+          "hero": "gregory_peck",
+          "stat": "culture",
+          "locations": [
+            "information_sanjose",
+            "information_singapore",
+            "information_tokyo"
+          ],
+          "allies": [
+            "michael_jackson",
+            "audrey_hepburn"
+          ],
+          "opponents": [
+            "saint_teresa",
+            "joel_robuchon"
+          ],
+          "followers": [
+            "Actor",
+            "Artist",
+            "Musician",
+            "Writer"
+          ],
+          "cpuFollowers": [
+            "Actor",
+            "Artist"
+          ]
+        },
+        "instruction": "Fight lesson 7 · Conquest. Deploy, move to wherever the rival stands, start the Art Critique there, and attack with Kill mode on until the rival has no Great People left.",
+        "fact": "With Kill mode on, a beaten card is discarded instead of returning to hand. A player with no Great People left, in hand or on the board, is out, and the last player standing wins. A kill won in a Great Person's own stat also counts towards their achievement.",
+        "id": "to-kill-a-mockingbird:4",
         "stage": "legacy",
         "difficulty": 4
       }

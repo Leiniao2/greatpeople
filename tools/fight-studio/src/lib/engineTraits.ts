@@ -1,11 +1,11 @@
 /**
- * Hand-extracted record of what web/src/pages/BattlePage.tsx actually implements.
+ * Hand-extracted record of what web/src/battle/engine.ts actually implements.
  * Keep this in step with the engine; it is the "code side" of the trait and
  * achievement audit. Every entry cites the function it was read from.
  */
 import type { StatKey } from '../types'
 
-export const ENGINE_SOURCE = 'web/src/pages/BattlePage.tsx'
+export const ENGINE_SOURCE = 'web/src/battle/engine.ts'
 
 export const ENGINE_CONSTANTS = {
   locationsPerGame: 7,
@@ -159,7 +159,9 @@ export const SOURCE_INVENTORY: { path: string; role: string; kind: 'doc' | 'data
   { path: 'data/followers.json', role: '32 follower templates: identity → stat, bonus 2.', kind: 'data' },
   { path: 'data/location_cards.json', role: '142 location cards: buildings, capacity, per-stat bonuses, trait text (web only).', kind: 'data' },
   { path: 'data/locations.json', role: '140 locations (name, era, countries, buildings) used to lay out the board.', kind: 'data' },
-  { path: 'web/src/pages/BattlePage.tsx', role: 'The only battle engine: decks, reducer (deploy/move/attack/events/achievements), trait bonuses, CPU AI, UI.', kind: 'code' },
+  { path: 'web/src/battle/engine.ts', role: 'The only battle engine: decks, reducer (deploy/move/attack/events/achievements), trait bonuses, scripted lesson setup.', kind: 'code' },
+  { path: 'web/src/battle/BattleGame.tsx', role: 'The board UI and the CPU AI, shared by the Battle tab and the Epic fight lessons.', kind: 'code' },
+  { path: 'web/src/battle/lessons.ts', role: 'Fight-lesson curriculum: seven tiers of scripted boards, goals and the coach.', kind: 'code' },
   { path: 'web/src/types/index.ts', role: 'Battle state types (GameState, EventCard, OnboardCard, summaries).', kind: 'code' },
   { path: 'service/api/battle.py', role: 'Server match API: legacy one-stat-per-round comparison, first to 5. Not the board game.', kind: 'code' },
   { path: 'service/models/battle.py', role: 'Match / Round Datastore models for the server game.', kind: 'code' },

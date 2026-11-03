@@ -114,6 +114,48 @@
             "instruction": "As a disguised officer earning trust through merit alone, find the decisive move that breaks the enemy's northern line.",
             "fact": "The Ballad of Mulan became one of China's most enduring stories because it celebrated filial piety and personal courage simultaneously — two of Confucian culture's highest values. It has been retold in opera, film, and literature across fourteen centuries."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Hua Mulan",
+          "portraitKey": "hua_mulan",
+          "text": "Gilgamesh and Batu Khan hold Changan together, and a follower stands with them. One card alone will not move them. Bring Pleistoanax with me, add both followers, and strike twice."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "reinforce",
+            "params": {
+              "hero": "hua_mulan",
+              "stat": "strength",
+              "locations": [
+                "medieval_changan",
+                "classical_carthage",
+                "classical_petra"
+              ],
+              "allies": [
+                "pleistoanax"
+              ],
+              "opponents": [
+                "gilgamesh",
+                "batu_khan"
+              ],
+              "followers": [
+                "Soldier",
+                "Athlete",
+                "General",
+                "Warrior"
+              ],
+              "cpuFollowers": [
+                "Athlete",
+                "Soldier"
+              ]
+            },
+            "instruction": "Fight lesson 2 · Strength in Numbers. Over two turns stack Hua Mulan, Pleistoanax and both followers at Changan, then win two attacks against the rival side.",
+            "fact": "An attack compares whole sides at a location, not single cards. Two Great People and two followers in the same stat outweigh a rival who arrived first, and each win sends one rival card back to its owner's hand."
+          }
         }
       ]
     }

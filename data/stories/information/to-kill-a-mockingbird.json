@@ -111,6 +111,49 @@
             },
             "instruction": "The prize committee's record is stored as lamps. Add up each row to read it."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Gregory Peck",
+          "portraitKey": "gregory_peck",
+          "text": "Mother Teresa and Joël Robuchon are still in the rival's hand; they will come to the board one by one. Follow them, start the Art Critique where they stand, and fight with Kill mode on. A player with no Great People left is out of the game."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "conquest",
+            "params": {
+              "hero": "gregory_peck",
+              "stat": "culture",
+              "locations": [
+                "information_sanjose",
+                "information_singapore",
+                "information_tokyo"
+              ],
+              "allies": [
+                "michael_jackson",
+                "audrey_hepburn"
+              ],
+              "opponents": [
+                "saint_teresa",
+                "joel_robuchon"
+              ],
+              "followers": [
+                "Actor",
+                "Artist",
+                "Musician",
+                "Writer"
+              ],
+              "cpuFollowers": [
+                "Actor",
+                "Artist"
+              ]
+            },
+            "instruction": "Fight lesson 7 · Conquest. Deploy, move to wherever the rival stands, start the Art Critique there, and attack with Kill mode on until the rival has no Great People left.",
+            "fact": "With Kill mode on, a beaten card is discarded instead of returning to hand. A player with no Great People left, in hand or on the board, is out, and the last player standing wins. A kill won in a Great Person's own stat also counts towards their achievement."
+          }
         }
       ]
     }

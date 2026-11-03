@@ -134,6 +134,47 @@
             "instruction": "The ancient world recorded its wisdom in columns on clay and papyrus. Match the scribal symbols — the same act Pediamenopet's scribes performed copying 3,000 years of Egyptian sacred text.",
             "fact": "Pediamenopet's tomb contains texts copied from sources spanning 2,000 years — from Old Kingdom pyramid texts to New Kingdom funerary literature. His scribes were the original archivists, assembling a complete library of the afterlife's instruction manual in one underground room."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Pediamenopet",
+          "portraitKey": "pediamenopet",
+          "text": "The lesson is simple. Peseshet stands at Memphis and the Miracle has begun. Bring me onto the board, put a Priest at my side, and let us measure Belief against Belief."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "duel",
+            "params": {
+              "hero": "pediamenopet",
+              "stat": "belief",
+              "locations": [
+                "ancient_memphis",
+                "ancient_stonehenge",
+                "ancient_olmec_sanlorenzo"
+              ],
+              "allies": [
+                "mahavira"
+              ],
+              "opponents": [
+                "peseshet"
+              ],
+              "followers": [
+                "Priest",
+                "Monastic",
+                "Philosopher",
+                "Prophet"
+              ],
+              "cpuFollowers": [
+                "Monastic",
+                "Philosopher"
+              ]
+            },
+            "instruction": "Fight lesson 1 · First Duel. Deploy Pediamenopet to Memphis, add the Priest, then tap Pediamenopet and tap Peseshet to attack. Win one attack.",
+            "fact": "In a Local Event every card at the location counts: Pediamenopet brings 9 Belief, the Priest adds +2 (or +3 beside a Great Person who shares that identity), and the higher total wins the attack. The loser returns to its owner's hand unless Kill mode is on."
+          }
         }
       ]
     }

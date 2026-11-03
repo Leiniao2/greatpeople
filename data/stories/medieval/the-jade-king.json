@@ -123,6 +123,47 @@
             "instruction": "Calculate the volume of Pakal's stepped pyramid — built without metal tools, wheels, or draft animals. Every stone was cut with obsidian, moved on wooden rollers, and lifted by human hands.",
             "fact": "Maya builders achieved extraordinary geometric precision without metal tools or wheeled vehicles. They used astronomical alignments, knotted ropes, and water levels to plan their monuments. The Temple of the Inscriptions aligns so that at the winter solstice sunset, the sun appears to descend into the pyramid along the same axis as the internal staircase to Pakal's tomb."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Pakal the Great",
+          "portraitKey": "pakal",
+          "text": "Taira no Tadanori waits at Changan, but nothing is happening there, and without an event there is no fight. I will go first; the turn after I arrive, play the Coup card on Changan and we attack."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "event",
+            "params": {
+              "hero": "pakal",
+              "stat": "politics",
+              "locations": [
+                "medieval_krakow",
+                "medieval_changan",
+                "medieval_kyoto"
+              ],
+              "allies": [
+                "belisarius"
+              ],
+              "opponents": [
+                "taira_no_tadanori"
+              ],
+              "followers": [
+                "Sovereign",
+                "Official",
+                "Spy",
+                "Statesman"
+              ],
+              "cpuFollowers": [
+                "Official",
+                "Sovereign"
+              ]
+            },
+            "instruction": "Fight lesson 3 · Starting an Event. Deploy Pakal the Great to Changan and End Turn. Next turn play the Coup card there, add your follower and win one attack.",
+            "fact": "Event cards start a scenario at a location where you already have a Great Person, and only one who arrived on an earlier turn can start it. A local event keeps running until a player ends it."
+          }
         }
       ]
     }

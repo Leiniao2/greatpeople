@@ -139,6 +139,47 @@
             "instruction": "Put Homer's account of Odysseus' return to Ithaca back in order — the scene where he wakes on his homeland shore for the first time in twenty years.",
             "fact": "Homer's Odyssey is one of the foundational texts of Western literature. The hero Odysseus spent ten years at war in Troy and another ten trying to reach home — opposed by Poseidon but guided by Athena's favour."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Mahavira",
+          "portraitKey": "mahavira",
+          "text": "The lesson is simple. King Telepinu stands at Memphis and the Miracle has begun. Bring me onto the board, put a Prophet at my side, and let us measure Belief against Belief."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "duel",
+            "params": {
+              "hero": "mahavira",
+              "stat": "belief",
+              "locations": [
+                "ancient_memphis",
+                "ancient_stonehenge",
+                "ancient_olmec_sanlorenzo"
+              ],
+              "allies": [
+                "enkidu"
+              ],
+              "opponents": [
+                "king_telepinu"
+              ],
+              "followers": [
+                "Prophet",
+                "Monastic",
+                "Philosopher",
+                "Priest"
+              ],
+              "cpuFollowers": [
+                "Monastic",
+                "Philosopher"
+              ]
+            },
+            "instruction": "Fight lesson 1 · First Duel. Deploy Mahavira to Memphis, add the Prophet, then tap Mahavira and tap King Telepinu to attack. Win one attack.",
+            "fact": "In a Local Event every card at the location counts: Mahavira brings 12 Belief, the Prophet adds +2 (or +3 beside a Great Person who shares that identity), and the higher total wins the attack. The loser returns to its owner's hand unless Kill mode is on."
+          }
         }
       ]
     }

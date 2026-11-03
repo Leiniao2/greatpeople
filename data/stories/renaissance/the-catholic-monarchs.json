@@ -116,6 +116,48 @@
             "instruction": "Reassemble the most famous scene in Spanish literature — Don Quixote's charge against the windmills he mistakes for giants.",
             "fact": "Don Quixote (1605) by Cervantes is considered the first modern novel. The windmill scene became one of literature's greatest metaphors. Cervantes wrote Part I while imprisoned in Seville; the success was so great he wrote Part II a decade later."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Isabel I of Castile",
+          "portraitKey": "isabel_i",
+          "text": "Tenochtitlan is under Inquisition. At the end of every round, any side whose Belief totals under 5 is swept from the board. Batu Khan is already there and far too weak to last. Put me there and hold."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "survival",
+            "params": {
+              "hero": "isabel_i",
+              "stat": "belief",
+              "locations": [
+                "renaissance_tenochtitlan",
+                "renaissance_genoa",
+                "renaissance_venice"
+              ],
+              "allies": [
+                "ruminahui"
+              ],
+              "opponents": [
+                "batu_khan",
+                "lee_sun_sin"
+              ],
+              "followers": [
+                "Monastic",
+                "Philosopher",
+                "Priest",
+                "Prophet"
+              ],
+              "cpuFollowers": [
+                "Monastic",
+                "Philosopher"
+              ]
+            },
+            "instruction": "Fight lesson 4 · Survival. Deploy Isabel I of Castile to Tenochtitlan, keep at least 5 Belief there, and End Turn until two round endings have passed.",
+            "fact": "A Local Survival event is a test, not a fight: at the end of each round every side at the location is checked, and a total under 5 loses every card there to the discard pile. Reinforce with followers, or retrieve a weak card before the round ends."
+          }
         }
       ]
     }

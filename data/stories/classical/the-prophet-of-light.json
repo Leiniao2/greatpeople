@@ -125,6 +125,48 @@
             "instruction": "Mani composed hymns for every corner of his cosmic map. Arrange the descending phrases of a Manichaean hymn — light descending into the world, note by note.",
             "fact": "Mani composed hymnbooks in multiple languages, including Middle Persian, Parthian, and Syriac. The Coptic Manichaean Psalm-Book, discovered in Egypt in 1930, preserves hundreds of hymns that reveal a sophisticated musical tradition within his church."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Mani",
+          "portraitKey": "mani",
+          "text": "Hua Mulan and Mahavira hold Damascus together, and a follower stands with them. One card alone will not move them. Bring Anaxagoras with me, add both followers, and strike twice."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "reinforce",
+            "params": {
+              "hero": "mani",
+              "stat": "belief",
+              "locations": [
+                "medieval_damascus",
+                "classical_carthage",
+                "classical_petra"
+              ],
+              "allies": [
+                "anaxagoras"
+              ],
+              "opponents": [
+                "hua_mulan",
+                "mahavira"
+              ],
+              "followers": [
+                "Prophet",
+                "Monastic",
+                "Philosopher",
+                "Priest"
+              ],
+              "cpuFollowers": [
+                "Monastic",
+                "Philosopher"
+              ]
+            },
+            "instruction": "Fight lesson 2 · Strength in Numbers. Over two turns stack Mani, Anaxagoras and both followers at Damascus, then win two attacks against the rival side.",
+            "fact": "An attack compares whole sides at a location, not single cards. Two Great People and two followers in the same stat outweigh a rival who arrived first, and each win sends one rival card back to its owner's hand."
+          }
         }
       ]
     }

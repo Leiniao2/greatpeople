@@ -186,6 +186,47 @@
             "instruction": "Route Sennacherib's canal to bring water to Nineveh — the world's first long-distance water supply, built 500 years before the Roman aqueducts.",
             "fact": "King Sennacherib of Assyria built an 80 km canal system supplying Nineveh around 700 BCE, complete with a proto-aqueduct bridge over a valley. It was the world's first known long-distance water supply."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Gilgamesh",
+          "portraitKey": "gilgamesh",
+          "text": "The lesson is simple. Ashurbanipal stands at Uruk and the Battlefield has begun. Bring me onto the board, put a Warrior at my side, and let us measure Strength against Strength."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "duel",
+            "params": {
+              "hero": "gilgamesh",
+              "stat": "strength",
+              "locations": [
+                "ancient_uruk",
+                "ancient_memphis",
+                "ancient_stonehenge"
+              ],
+              "allies": [
+                "enkidu"
+              ],
+              "opponents": [
+                "ashurbanipal"
+              ],
+              "followers": [
+                "Warrior",
+                "Athlete",
+                "General",
+                "Soldier"
+              ],
+              "cpuFollowers": [
+                "Athlete",
+                "General"
+              ]
+            },
+            "instruction": "Fight lesson 1 · First Duel. Deploy Gilgamesh to Uruk, add the Warrior, then tap Gilgamesh and tap Ashurbanipal to attack. Win one attack.",
+            "fact": "In a Local Event every card at the location counts: Gilgamesh brings 10 Strength, the Warrior adds +2 (or +3 beside a Great Person who shares that identity), and the higher total wins the attack. The loser returns to its owner's hand unless Kill mode is on."
+          }
         }
       ]
     }

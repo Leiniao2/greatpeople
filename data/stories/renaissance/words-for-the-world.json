@@ -124,6 +124,48 @@
             "instruction": "Gutenberg's press made Don Quixote possible — a book about a man who read too many books. Sort the scenes of the windmill chapter: without printing, this story could never have reached you.",
             "fact": "Cervantes' Don Quixote (1605) is sometimes called the first modern novel — and it exists because of Gutenberg. Without mass printing, literary culture remained in monasteries and palaces. With it, a middle-class Spaniard could read romances, go mad imagining himself a knight, and become a character in the world's first self-aware fiction."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Johannes Gutenberg",
+          "portraitKey": "gutenberg",
+          "text": "Genoa is under Sanctions. At the end of every round, any side whose Technique totals under 5 is swept from the board. Anna Nzinga is already there and far too weak to last. Put me there and hold."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "survival",
+            "params": {
+              "hero": "gutenberg",
+              "stat": "technique",
+              "locations": [
+                "renaissance_genoa",
+                "renaissance_venice",
+                "classical_rome"
+              ],
+              "allies": [
+                "miyamoto_musashi"
+              ],
+              "opponents": [
+                "anna_nzinga",
+                "lee_sun_sin"
+              ],
+              "followers": [
+                "Engineer",
+                "Architect",
+                "Doctor",
+                "Explorer"
+              ],
+              "cpuFollowers": [
+                "Architect",
+                "Doctor"
+              ]
+            },
+            "instruction": "Fight lesson 4 · Survival. Deploy Johannes Gutenberg to Genoa, keep at least 5 Technique there, and End Turn until two round endings have passed.",
+            "fact": "A Local Survival event is a test, not a fight: at the end of each round every side at the location is checked, and a total under 5 loses every card there to the discard pile. Reinforce with followers, or retrieve a weak card before the round ends."
+          }
         }
       ]
     }
