@@ -112,6 +112,48 @@
             "instruction": "Versailles was a world of mirrors and gilded excess. Match the treasures of the palace — the same luxury that the revolutionary crowds outside could not afford.",
             "fact": "Marie Antoinette's reputation for extravagance was partly real and partly manufactured. Her annual clothing budget was enormous — but Louis XVI actually cut it after they married. Revolutionary pamphlets exaggerated her spending into legend. The 'Madame Deficit' nickname stuck regardless of the facts."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Marie Antoinette",
+          "portraitKey": "marie_antoinette",
+          "text": "Two face-down cards: one at St Petersburg, one at London. We cannot see who they are until we attack, and an attack reveals every card at the location. The Business War already runs at St Petersburg; you hold a card to start one at London."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "hidden",
+            "params": {
+              "hero": "marie_antoinette",
+              "stat": "wealth",
+              "locations": [
+                "steam_st_petersburg",
+                "steam_london",
+                "electricity_paris"
+              ],
+              "allies": [
+                "josiah_wedgwood"
+              ],
+              "opponents": [
+                "nian_xiyao",
+                "yekaterina"
+              ],
+              "followers": [
+                "Noble",
+                "Banker",
+                "Economist",
+                "Merchant"
+              ],
+              "cpuFollowers": [
+                "Banker",
+                "Economist"
+              ]
+            },
+            "instruction": "Fight lesson 5 · Face Down. Win two attacks: fight at St Petersburg where the Business War is running, then carry the fight to London by starting your own event there.",
+            "fact": "A card on the board can be public (face up) or private (face down). A private card hides its identity and stats from rivals until an attack reveals every card at that location. Your own cards deploy face down; Toggle Public when being seen helps you."
+          }
         }
       ]
     }

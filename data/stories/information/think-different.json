@@ -154,6 +154,49 @@
             "instruction": "Bid on landmark Silicon Valley assets. Win the starred computing relics before your rivals claim them.",
             "fact": "The early Silicon Valley era saw fierce competition over patents and prototypes. Apple's lawsuit against Xerox over the GUI and Jobs' NeXT venture shaped the modern tech landscape."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Steve Jobs",
+          "portraitKey": "steve_jobs",
+          "text": "Diego Maradona and Peter Arnett are still in the rival's hand; they will come to the board one by one. Follow them, start the Business War where they stand, and fight with Kill mode on. A player with no Great People left is out of the game."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "conquest",
+            "params": {
+              "hero": "steve_jobs",
+              "stat": "wealth",
+              "locations": [
+                "information_sanjose",
+                "information_singapore",
+                "information_tokyo"
+              ],
+              "allies": [
+                "joel_robuchon",
+                "michael_jackson"
+              ],
+              "opponents": [
+                "diego_maradona",
+                "peter_arnett"
+              ],
+              "followers": [
+                "Merchant",
+                "Banker",
+                "Economist",
+                "Noble"
+              ],
+              "cpuFollowers": [
+                "Banker",
+                "Economist"
+              ]
+            },
+            "instruction": "Fight lesson 7 · Conquest. Deploy, move to wherever the rival stands, start the Business War there, and attack with Kill mode on until the rival has no Great People left.",
+            "fact": "With Kill mode on, a beaten card is discarded instead of returning to hand. A player with no Great People left, in hand or on the board, is out, and the last player standing wins. A kill won in a Great Person's own stat also counts towards their achievement."
+          }
         }
       ]
     }

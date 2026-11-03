@@ -128,6 +128,49 @@
             "instruction": "Mendel counted and sorted thousands of seeds using meticulous grid records. Fill the inheritance grid — each row, column, and box must contain every trait combination exactly once.",
             "fact": "Mendel kept records of extraordinary precision across eight years of experiments. He tracked 29,000 plants through multiple generations, recording results in tables that would not be out of place in a modern biology lab. His data was so clean that statistician R.A. Fisher later controversially suggested it was too perfect."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Gregor Mendel",
+          "portraitKey": "gregor_mendel",
+          "text": "This time the whole board is judged at once. Deploy Alan Turing, Mohandas Gandhi and me, turn us public, then declare the Expedition: the highest public Intelligence on the board when the round ends takes the prize."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "competition",
+            "params": {
+              "hero": "gregor_mendel",
+              "stat": "intelligence",
+              "locations": [
+                "steam_manchester",
+                "electricity_moscow",
+                "electricity_london"
+              ],
+              "allies": [
+                "alan_turing",
+                "gandhi"
+              ],
+              "opponents": [
+                "hendrik_lorentz",
+                "ito_hirobumi"
+              ],
+              "followers": [
+                "Scientist",
+                "Astronomer",
+                "Mathematician",
+                "Naturalist"
+              ],
+              "cpuFollowers": [
+                "Astronomer",
+                "Mathematician"
+              ]
+            },
+            "instruction": "Fight lesson 6 · Global Competition. Deploy your Great People, Toggle Public on each, then start the Expedition and End Turn to win the round with the highest public Intelligence on the board.",
+            "fact": "A Global Competition counts every public Great Person on the whole board; followers and face-down cards add nothing. It lasts one round, and the strongest player draws a reward: event cards, followers or a new Great Person."
+          }
         }
       ]
     }

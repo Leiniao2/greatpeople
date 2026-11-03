@@ -79,7 +79,7 @@ export default function Engine() {
       <h2>Engine sync</h2>
       <p className="lead">
         Saving rule text, rulebook edits or card trait/achievement text produces a change report. With engine sync on, <b>Save all changes</b> hands that report to
-        Claude Code running headless in the repo: it edits <span className="mono">web/src/pages/BattlePage.tsx</span>, keeps this tool's engine mirrors in step, updates the rules registry rows, and typechecks.
+        Claude Code running headless in the repo: it edits <span className="mono">web/src/battle/engine.ts</span>, keeps this tool's engine mirrors in step, updates the rules registry rows, and typechecks.
         The web dev server (port 3001) hot-reloads the result; production needs a redeploy. Stat and bonus edits go straight into <span className="mono">data/*.json</span> and are synced to the platforms on save, with no agent involved.
       </p>
       <div className="row">

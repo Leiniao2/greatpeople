@@ -164,6 +164,49 @@
         {
           "type": "narration",
           "text": "Hillary was knighted. Tenzing received the George Medal. Both returned to Nepal and devoted decades to the Himalayan people — Hillary through the Himalayan Trust, which built over 30 schools. Their partnership outlasted the summit."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Edmund Hillary",
+          "portraitKey": "edmund_hillary",
+          "text": "Diego Maradona and Peter Arnett are still in the rival's hand; they will come to the board one by one. Follow them, start the Battlefield where they stand, and fight with Kill mode on. A player with no Great People left is out of the game."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "conquest",
+            "params": {
+              "hero": "edmund_hillary",
+              "stat": "strength",
+              "locations": [
+                "information_singapore",
+                "information_tokyo",
+                "information_shenzhen"
+              ],
+              "allies": [
+                "jane_goodall",
+                "joel_robuchon"
+              ],
+              "opponents": [
+                "diego_maradona",
+                "peter_arnett"
+              ],
+              "followers": [
+                "Athlete",
+                "General",
+                "Soldier",
+                "Warrior"
+              ],
+              "cpuFollowers": [
+                "General",
+                "Soldier"
+              ]
+            },
+            "instruction": "Fight lesson 7 · Conquest. Deploy, move to wherever the rival stands, start the Battlefield there, and attack with Kill mode on until the rival has no Great People left.",
+            "fact": "With Kill mode on, a beaten card is discarded instead of returning to hand. A player with no Great People left, in hand or on the board, is out, and the last player standing wins. A kill won in a Great Person's own stat also counts towards their achievement."
+          }
         }
       ]
     }

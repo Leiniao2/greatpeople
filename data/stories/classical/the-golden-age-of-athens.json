@@ -196,6 +196,48 @@
             "instruction": "The Parthenon's architects used advanced geometry to create optical illusions — its columns bulge slightly, its steps curve upward. Calculate the perfect classical circle.",
             "fact": "The Parthenon (447–432 BCE) was built with astonishing precision: its columns taper, its platform curves, and its lines are never quite straight — all deliberate optical corrections to make the building appear perfect to the human eye. Greek architecture and geometry were inseparable."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Pericles",
+          "portraitKey": "pericles",
+          "text": "Cicero and Chanakya hold Carthage together, and a follower stands with them. One card alone will not move them. Bring Aspasia with me, add both followers, and strike twice."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "reinforce",
+            "params": {
+              "hero": "pericles",
+              "stat": "politics",
+              "locations": [
+                "classical_carthage",
+                "classical_petra",
+                "classical_sparta"
+              ],
+              "allies": [
+                "aspasia"
+              ],
+              "opponents": [
+                "cicero",
+                "chanakya"
+              ],
+              "followers": [
+                "Statesman",
+                "Official",
+                "Sovereign",
+                "Spy"
+              ],
+              "cpuFollowers": [
+                "Sovereign",
+                "Spy"
+              ]
+            },
+            "instruction": "Fight lesson 2 · Strength in Numbers. Over two turns stack Pericles, Aspasia and both followers at Carthage, then win two attacks against the rival side.",
+            "fact": "An attack compares whole sides at a location, not single cards. Two Great People and two followers in the same stat outweigh a rival who arrived first, and each win sends one rival card back to its owner's hand."
+          }
         }
       ]
     }

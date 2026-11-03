@@ -106,6 +106,49 @@
             "instruction": "Léon Foucault measured the speed of light by bouncing a beam off a spinning mirror. You have one mirror — route the beam through four fixed reflectors to reach the exit.",
             "fact": "Foucault measured the speed of light at 298,000 km/s in 1850 — within 0.6% of the true value — using a rotating mirror that shifted while light was in transit. Lorentz's equations later explained why light's speed is constant for all observers."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Hendrik Lorentz",
+          "portraitKey": "hendrik_lorentz",
+          "text": "This time the whole board is judged at once. Deploy Itō Hirobumi, Clara Schumann and me, turn us public, then declare the Expedition: the highest public Intelligence on the board when the round ends takes the prize."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "competition",
+            "params": {
+              "hero": "hendrik_lorentz",
+              "stat": "intelligence",
+              "locations": [
+                "steam_amsterdam",
+                "electricity_moscow",
+                "electricity_london"
+              ],
+              "allies": [
+                "ito_hirobumi",
+                "clara_schumann"
+              ],
+              "opponents": [
+                "alan_turing",
+                "carl_linnaeus"
+              ],
+              "followers": [
+                "Scientist",
+                "Astronomer",
+                "Mathematician",
+                "Naturalist"
+              ],
+              "cpuFollowers": [
+                "Astronomer",
+                "Scientist"
+              ]
+            },
+            "instruction": "Fight lesson 6 · Global Competition. Deploy your Great People, Toggle Public on each, then start the Expedition and End Turn to win the round with the highest public Intelligence on the board.",
+            "fact": "A Global Competition counts every public Great Person on the whole board; followers and face-down cards add nothing. It lasts one round, and the strongest player draws a reward: event cards, followers or a new Great Person."
+          }
         }
       ]
     }

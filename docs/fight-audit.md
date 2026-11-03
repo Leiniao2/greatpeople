@@ -6,7 +6,7 @@ Maintained with the internal **Fight Studio** tool in
 [`tools/fight-studio/`](../tools/fight-studio/README.md); the row-level
 record lives in [`fight_rules.json`](fight_rules.json).
 
-Audited 2026-10-29 against `web/src/pages/BattlePage.tsx`.
+Audited 2026-10-29 against `web/src/battle/engine.ts`.
 
 ## 1. Where fight knowledge lives
 
@@ -22,14 +22,16 @@ Audited 2026-10-29 against `web/src/pages/BattlePage.tsx`.
 | data | `data/followers.json` | 32 follower templates: identity → stat, bonus 2. |
 | data | `data/location_cards.json` | 142 location cards: buildings, capacity, per-stat bonuses, trait text (web only). |
 | data | `data/locations.json` | 140 locations drawn for the board. |
-| code | `web/src/pages/BattlePage.tsx` | The only battle engine: decks, reducer (deploy, move, attack, events, achievements), trait bonuses, CPU AI, UI. |
+| code | `web/src/battle/engine.ts` | The only battle engine: decks, reducer (deploy, move, attack, events, achievements), trait bonuses, scripted lesson boards. |
+| code | `web/src/battle/BattleGame.tsx` | The board UI and CPU AI, shared by the Battle tab and the Epic fight lessons. |
+| code | `web/src/battle/lessons.ts` | The fight-lesson curriculum (seven tiers), goals and coach. |
 | code | `web/src/types/index.ts` | Battle state types. |
 | code | `service/api/battle.py`, `service/models/battle.py` | Legacy server match: one stat per round, first to 5. Not the board game. |
 | text | `ios/.../Battle/BattleView.swift`, `android/.../BattleScreen.kt` | Rules summary dialogs only (survival < 10, hazard < 100). No engine. |
 
 ## 2. What the engine implements
 
-Constants (all hard-coded in `BattlePage.tsx`):
+Constants (all hard-coded in `engine.ts`):
 
 | Rule | Engine | `fight.md` |
 |---|---|---|
@@ -67,6 +69,6 @@ Great People tab of the tool.
 ## 4. Keeping this current
 
 - Change rules or stats through Fight Studio (`cd tools/fight-studio && npm run dev`, then http://127.0.0.1:3777). It writes `data/*.json` and `docs/*` directly, preserving formatting, and syncs data files to the platforms on save so the web dev server picks them up.
-- Rule-text, rulebook and trait/achievement edits are handed to Claude Code (headless) on **Save all & update engine**: it edits `BattlePage.tsx`, keeps the tool's engine mirrors (`engineTraits.ts`, `engine.ts`) in step, updates the affected `fight_rules.json` rows and typechecks. Review the diff on the Engine sync tab, test on port 3001, then commit. See `tools/fight-studio/README.md`.
-- When `BattlePage.tsx` is changed by hand, update `tools/fight-studio/src/lib/engineTraits.ts` (constants, implemented traits, achievement map) and `engine.ts` (formulas), then revisit the affected rows in `fight_rules.json`.
+- Rule-text, rulebook and trait/achievement edits are handed to Claude Code (headless) on **Save all & update engine**: it edits `engine.ts`, keeps the tool's engine mirrors (`engineTraits.ts`, `engine.ts`) in step, updates the affected `fight_rules.json` rows and typechecks. Review the diff on the Engine sync tab, test on port 3001, then commit. See `tools/fight-studio/README.md`.
+- When `engine.ts` is changed by hand, update `tools/fight-studio/src/lib/engineTraits.ts` (constants, implemented traits, achievement map) and `engine.ts` (formulas), then revisit the affected rows in `fight_rules.json`.
 - After editing `data/*.json`, commit normally; the pre-commit hook runs `scripts/sync-assets.sh` to refresh the platform copies.

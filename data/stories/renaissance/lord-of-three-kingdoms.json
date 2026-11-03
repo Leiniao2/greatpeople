@@ -123,6 +123,48 @@
             "instruction": "Bayinnaung's treasury ran on tribute, trade tolls, and monopolies. Balance the empire's revenues — wars are expensive and white elephants require golden stables.",
             "fact": "Bayinnaung's empire was as much a trade network as a military conquest. Control of the overland route between China and the Indian Ocean gave his treasury a cut of the most profitable commerce in Asia. The Portuguese paid handsomely for port rights in Pegu — and Bayinnaung collected from everyone."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Bayinnaung",
+          "portraitKey": "bayinnaung",
+          "text": "Genoa is under Riot. At the end of every round, any side whose Strength totals under 5 is swept from the board. Francesco Borromini is already there and far too weak to last. Put me there and hold."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "survival",
+            "params": {
+              "hero": "bayinnaung",
+              "stat": "strength",
+              "locations": [
+                "renaissance_genoa",
+                "renaissance_venice",
+                "classical_rome"
+              ],
+              "allies": [
+                "miyamoto_musashi"
+              ],
+              "opponents": [
+                "borromini",
+                "isabel_i"
+              ],
+              "followers": [
+                "General",
+                "Athlete",
+                "Soldier",
+                "Warrior"
+              ],
+              "cpuFollowers": [
+                "Athlete",
+                "General"
+              ]
+            },
+            "instruction": "Fight lesson 4 · Survival. Deploy Bayinnaung to Genoa, keep at least 5 Strength there, and End Turn until two round endings have passed.",
+            "fact": "A Local Survival event is a test, not a fight: at the end of each round every side at the location is checked, and a total under 5 loses every card there to the discard pile. Reinforce with followers, or retrieve a weak card before the round ends."
+          }
         }
       ]
     }

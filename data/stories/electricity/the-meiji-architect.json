@@ -118,6 +118,49 @@
             },
             "instruction": "Arrange these Meiji Restoration reforms in the order they were introduced: Set the answer in movable type — mirrored, right to left."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Itō Hirobumi",
+          "portraitKey": "ito_hirobumi",
+          "text": "This time the whole board is judged at once. Deploy Andrew Mellon, Coco Chanel and me, turn us public, then declare the International Conference: the highest public Politics on the board when the round ends takes the prize."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "competition",
+            "params": {
+              "hero": "ito_hirobumi",
+              "stat": "politics",
+              "locations": [
+                "information_tokyo",
+                "electricity_moscow",
+                "electricity_london"
+              ],
+              "allies": [
+                "andrew_mellon",
+                "coco_chanel"
+              ],
+              "opponents": [
+                "gandhi",
+                "yekaterina"
+              ],
+              "followers": [
+                "Statesman",
+                "Official",
+                "Sovereign",
+                "Spy"
+              ],
+              "cpuFollowers": [
+                "Official",
+                "Spy"
+              ]
+            },
+            "instruction": "Fight lesson 6 · Global Competition. Deploy your Great People, Toggle Public on each, then start the International Conference and End Turn to win the round with the highest public Politics on the board.",
+            "fact": "A Global Competition counts every public Great Person on the whole board; followers and face-down cards add nothing. It lasts one round, and the strongest player draws a reward: event cards, followers or a new Great Person."
+          }
         }
       ]
     }

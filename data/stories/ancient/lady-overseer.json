@@ -129,6 +129,47 @@
             "instruction": "Slide the golden capstone into its final position — as Egypt's monument-builders did, solving spatial puzzles in stone and copper.",
             "fact": "Ancient Egyptian construction used a form of modular planning — calculating how blocks must slide and stack to achieve the final form. The same systematic thinking appears in Egyptian medical texts, where treatments are sequenced step by step, building toward a cure."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Peseshet",
+          "portraitKey": "peseshet",
+          "text": "The lesson is simple. Mahavira stands at Memphis and the Argument has begun. Bring me onto the board, put a Astronomer at my side, and let us measure Intelligence against Intelligence."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "duel",
+            "params": {
+              "hero": "peseshet",
+              "stat": "intelligence",
+              "locations": [
+                "ancient_memphis",
+                "ancient_stonehenge",
+                "ancient_olmec_sanlorenzo"
+              ],
+              "allies": [
+                "imhotep"
+              ],
+              "opponents": [
+                "mahavira"
+              ],
+              "followers": [
+                "Astronomer",
+                "Mathematician",
+                "Naturalist",
+                "Scientist"
+              ],
+              "cpuFollowers": [
+                "Astronomer",
+                "Mathematician"
+              ]
+            },
+            "instruction": "Fight lesson 1 · First Duel. Deploy Peseshet to Memphis, add the Astronomer, then tap Peseshet and tap Mahavira to attack. Win one attack.",
+            "fact": "In a Local Event every card at the location counts: Peseshet brings 8 Intelligence, the Astronomer adds +2 (or +3 beside a Great Person who shares that identity), and the higher total wins the attack. The loser returns to its owner's hand unless Kill mode is on."
+          }
         }
       ]
     }

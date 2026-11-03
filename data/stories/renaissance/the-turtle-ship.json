@@ -123,6 +123,48 @@
             "instruction": "Yi studied Sun Tzu as carefully as he studied tides. Deploy your forces where terrain, timing, and surprise multiply every ship's effectiveness.",
             "fact": "Yi's battle reports, collected in his Nanjung Ilgi (War Diary), are among the most detailed military documents of the 16th century. He recorded his tactics, his anxieties, his observations of weather and tide, and his grief. The diary survived the war hidden under floorboards. It is now a Korean national treasure."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Lee Sun-sin",
+          "portraitKey": "lee_sun_sin",
+          "text": "Genoa is under Riot. At the end of every round, any side whose Strength totals under 5 is swept from the board. Francesco Borromini is already there and far too weak to last. Put me there and hold."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "survival",
+            "params": {
+              "hero": "lee_sun_sin",
+              "stat": "strength",
+              "locations": [
+                "renaissance_genoa",
+                "renaissance_venice",
+                "classical_rome"
+              ],
+              "allies": [
+                "miyamoto_musashi"
+              ],
+              "opponents": [
+                "borromini",
+                "montezuma_ii"
+              ],
+              "followers": [
+                "General",
+                "Soldier",
+                "Athlete",
+                "Warrior"
+              ],
+              "cpuFollowers": [
+                "Athlete",
+                "General"
+              ]
+            },
+            "instruction": "Fight lesson 4 · Survival. Deploy Lee Sun-sin to Genoa, keep at least 5 Strength there, and End Turn until two round endings have passed.",
+            "fact": "A Local Survival event is a test, not a fight: at the end of each round every side at the location is checked, and a total under 5 loses every card there to the discard pile. Reinforce with followers, or retrieve a weak card before the round ends."
+          }
         }
       ]
     }

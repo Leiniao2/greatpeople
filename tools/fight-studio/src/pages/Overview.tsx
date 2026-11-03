@@ -67,7 +67,7 @@ export default function Overview() {
             <li><b>Two battle designs are documented</b>: the board game (fight.md, web client) and an older 10-card, 3-stat round game (great-people-card.md, server).</li>
             <li><b>Stat scale is ambiguous</b>: cards use 1–12, demo cards 1–24, and some trait/achievement texts assume 25.</li>
           </ul>
-          <h4 style={{ marginTop: 14 }}>Engine constants (BattlePage.tsx)</h4>
+          <h4 style={{ marginTop: 14 }}>Engine constants (engine.ts)</h4>
           <table className="grid small">
             <tbody>
               {Object.entries(ENGINE_CONSTANTS).map(([k, v]) => <tr key={k}><td className="mono">{k}</td><td className="num">{String(v)}</td></tr>)}

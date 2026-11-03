@@ -134,6 +134,48 @@
             "instruction": "Restore Homer's opening to the Iliad — the invocation of the Muse and the quarrel that sets ten years of war in motion.",
             "fact": "Homer's Iliad, composed around 750 BCE, was the closest thing ancient Greeks had to a sacred text. Alexander the Great slept with an annotated copy under his pillow, alongside a dagger. The poem covers only 51 days of the decade-long Trojan War, yet captures the whole arc of human conflict."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Anaxagoras",
+          "portraitKey": "anaxagoras",
+          "text": "Li Qingzhao and Taira no Tadanori hold Carthage together, and a follower stands with them. One card alone will not move them. Bring Cicero with me, add both followers, and strike twice."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "reinforce",
+            "params": {
+              "hero": "anaxagoras",
+              "stat": "culture",
+              "locations": [
+                "classical_carthage",
+                "classical_petra",
+                "classical_sparta"
+              ],
+              "allies": [
+                "cicero"
+              ],
+              "opponents": [
+                "li_qingzhao",
+                "taira_no_tadanori"
+              ],
+              "followers": [
+                "Actor",
+                "Artist",
+                "Musician",
+                "Writer"
+              ],
+              "cpuFollowers": [
+                "Actor",
+                "Artist"
+              ]
+            },
+            "instruction": "Fight lesson 2 · Strength in Numbers. Over two turns stack Anaxagoras, Cicero and both followers at Carthage, then win two attacks against the rival side.",
+            "fact": "An attack compares whole sides at a location, not single cards. Two Great People and two followers in the same stat outweigh a rival who arrived first, and each win sends one rival card back to its owner's hand."
+          }
         }
       ]
     }

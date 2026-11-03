@@ -126,6 +126,48 @@
             "configId": "anaxagoras-grid",
             "instruction": "The Ramayana is unique to India and has not spread significantly to other Asian cultures. Order the grid as the record was ordered — every row, column and box complete."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Valmiki",
+          "portraitKey": "valmiki",
+          "text": "Zeno of Elea and Mahavira hold Rome together, and a follower stands with them. One card alone will not move them. Bring Mani with me, add both followers, and strike twice."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "reinforce",
+            "params": {
+              "hero": "valmiki",
+              "stat": "belief",
+              "locations": [
+                "classical_rome",
+                "classical_carthage",
+                "classical_petra"
+              ],
+              "allies": [
+                "mani"
+              ],
+              "opponents": [
+                "zeno_of_elea",
+                "mahavira"
+              ],
+              "followers": [
+                "Monastic",
+                "Philosopher",
+                "Priest",
+                "Prophet"
+              ],
+              "cpuFollowers": [
+                "Monastic",
+                "Priest"
+              ]
+            },
+            "instruction": "Fight lesson 2 · Strength in Numbers. Over two turns stack Valmiki, Mani and both followers at Rome, then win two attacks against the rival side.",
+            "fact": "An attack compares whole sides at a location, not single cards. Two Great People and two followers in the same stat outweigh a rival who arrived first, and each win sends one rival card back to its owner's hand."
+          }
         }
       ]
     }

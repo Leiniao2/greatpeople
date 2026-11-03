@@ -111,6 +111,48 @@
             },
             "instruction": "A Spartan dispatch has been captured on its leather strip. Find the rod that lines it up and read the news."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Pleistoanax",
+          "portraitKey": "pleistoanax",
+          "text": "Cicero and Ashurbanipal hold Sparta together, and a follower stands with them. One card alone will not move them. Bring Aspasia with me, add both followers, and strike twice."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "reinforce",
+            "params": {
+              "hero": "pleistoanax",
+              "stat": "politics",
+              "locations": [
+                "classical_sparta",
+                "classical_carthage",
+                "classical_petra"
+              ],
+              "allies": [
+                "aspasia"
+              ],
+              "opponents": [
+                "cicero",
+                "ashurbanipal"
+              ],
+              "followers": [
+                "Sovereign",
+                "Official",
+                "Spy",
+                "Statesman"
+              ],
+              "cpuFollowers": [
+                "Official",
+                "Spy"
+              ]
+            },
+            "instruction": "Fight lesson 2 · Strength in Numbers. Over two turns stack Pleistoanax, Aspasia and both followers at Sparta, then win two attacks against the rival side.",
+            "fact": "An attack compares whole sides at a location, not single cards. Two Great People and two followers in the same stat outweigh a rival who arrived first, and each win sends one rival card back to its owner's hand."
+          }
         }
       ]
     }

@@ -134,6 +134,48 @@
             "instruction": "After the conquest, Aztec leaders faced Spanish tribunals that would decide the fate of their civilization. Navigate the court — where every answer is a trap and mercy is always conditional.",
             "fact": "The Spanish justified conquest through legal documents read aloud in Spanish to people who spoke Nahuatl — the Requerimiento, which declared Spanish sovereignty and demanded submission, promising war if refused. It was a legal fiction that satisfied Spanish lawyers while meaning nothing to those who heard it. The document was sometimes read to empty beaches before landing."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Montezuma II",
+          "portraitKey": "montezuma_ii",
+          "text": "Genoa is under Terrorist Attack. At the end of every round, any side whose Politics totals under 5 is swept from the board. Bi Sheng is already there and far too weak to last. Put me there and hold."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "survival",
+            "params": {
+              "hero": "montezuma_ii",
+              "stat": "politics",
+              "locations": [
+                "renaissance_genoa",
+                "renaissance_venice",
+                "classical_rome"
+              ],
+              "allies": [
+                "isabel_i"
+              ],
+              "opponents": [
+                "bi_sheng",
+                "bayinnaung"
+              ],
+              "followers": [
+                "Sovereign",
+                "Official",
+                "Spy",
+                "Statesman"
+              ],
+              "cpuFollowers": [
+                "Official",
+                "Spy"
+              ]
+            },
+            "instruction": "Fight lesson 4 · Survival. Deploy Montezuma II to Genoa, keep at least 5 Politics there, and End Turn until two round endings have passed.",
+            "fact": "A Local Survival event is a test, not a fight: at the end of each round every side at the location is checked, and a total under 5 loses every card there to the discard pile. Reinforce with followers, or retrieve a weak card before the round ends."
+          }
         }
       ]
     }

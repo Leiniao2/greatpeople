@@ -107,6 +107,49 @@
             },
             "instruction": "Two newspapers wire their verdicts on Ahn Jung-geun. Read the lamp."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "An Jung-geun",
+          "portraitKey": "an_jung_geun",
+          "text": "This time the whole board is judged at once. Deploy Gregor Mendel, Tenzing Norgay and me, turn us public, then declare the Pilgrimage: the highest public Belief on the board when the round ends takes the prize."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "competition",
+            "params": {
+              "hero": "an_jung_geun",
+              "stat": "belief",
+              "locations": [
+                "information_seoul",
+                "electricity_moscow",
+                "electricity_london"
+              ],
+              "allies": [
+                "gregor_mendel",
+                "tenzing_norgay"
+              ],
+              "opponents": [
+                "gandhi",
+                "saint_teresa"
+              ],
+              "followers": [
+                "Monastic",
+                "Philosopher",
+                "Priest",
+                "Prophet"
+              ],
+              "cpuFollowers": [
+                "Monastic",
+                "Philosopher"
+              ]
+            },
+            "instruction": "Fight lesson 6 · Global Competition. Deploy your Great People, Toggle Public on each, then start the Pilgrimage and End Turn to win the round with the highest public Belief on the board.",
+            "fact": "A Global Competition counts every public Great Person on the whole board; followers and face-down cards add nothing. It lasts one round, and the strongest player draws a reward: event cards, followers or a new Great Person."
+          }
         }
       ]
     }

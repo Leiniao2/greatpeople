@@ -111,6 +111,48 @@
             "configId": "mendel-grid",
             "instruction": "When the Bastille was stormed on July 14, 1789, it held only seven prisoners — but as a symbol of royal tyranny, its fall ignited the French Revolution. Order the grid as the record was ordered — every row, column and box complete."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Louis XVI",
+          "portraitKey": "louis_xvi",
+          "text": "Two face-down cards: one at Paris, one at St Petersburg. We cannot see who they are until we attack, and an attack reveals every card at the location. The Business War already runs at Paris; you hold a card to start one at St Petersburg."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "hidden",
+            "params": {
+              "hero": "louis_xvi",
+              "stat": "wealth",
+              "locations": [
+                "electricity_paris",
+                "steam_st_petersburg",
+                "steam_london"
+              ],
+              "allies": [
+                "josiah_wedgwood"
+              ],
+              "opponents": [
+                "nian_xiyao",
+                "yekaterina"
+              ],
+              "followers": [
+                "Banker",
+                "Economist",
+                "Merchant",
+                "Noble"
+              ],
+              "cpuFollowers": [
+                "Banker",
+                "Economist"
+              ]
+            },
+            "instruction": "Fight lesson 5 · Face Down. Win two attacks: fight at Paris where the Business War is running, then carry the fight to St Petersburg by starting your own event there.",
+            "fact": "A card on the board can be public (face up) or private (face down). A private card hides its identity and stats from rivals until an attack reveals every card at that location. Your own cards deploy face down; Toggle Public when being seen helps you."
+          }
         }
       ]
     }

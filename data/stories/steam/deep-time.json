@@ -129,6 +129,48 @@
             "configId": "lovelace-engine",
             "instruction": "Charles Lyell built on Hutton's uniformitarianism in Principles of Geology (1830) — a book Darwin took on the Beagle voyage and which directly shaped the theory of evolution. Wire the gates until the circuit agrees with the table on every row."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "James Hutton",
+          "portraitKey": "james_hutton",
+          "text": "Two face-down cards: one at London, one at St Petersburg. We cannot see who they are until we attack, and an attack reveals every card at the location. The Argument already runs at London; you hold a card to start one at St Petersburg."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "hidden",
+            "params": {
+              "hero": "james_hutton",
+              "stat": "intelligence",
+              "locations": [
+                "steam_london",
+                "steam_st_petersburg",
+                "electricity_paris"
+              ],
+              "allies": [
+                "carl_linnaeus"
+              ],
+              "opponents": [
+                "bernini",
+                "josiah_wedgwood"
+              ],
+              "followers": [
+                "Scientist",
+                "Astronomer",
+                "Mathematician",
+                "Naturalist"
+              ],
+              "cpuFollowers": [
+                "Astronomer",
+                "Mathematician"
+              ]
+            },
+            "instruction": "Fight lesson 5 · Face Down. Win two attacks: fight at London where the Argument is running, then carry the fight to St Petersburg by starting your own event there.",
+            "fact": "A card on the board can be public (face up) or private (face down). A private card hides its identity and stats from rivals until an attack reveals every card at that location. Your own cards deploy face down; Toggle Public when being seen helps you."
+          }
         }
       ]
     }

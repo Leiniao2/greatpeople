@@ -108,6 +108,47 @@
             },
             "instruction": "An enemy of the king has written Sargon's humble past on a wound strip. Find the rod that lines it up."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Sargon I",
+          "portraitKey": "sargon_i",
+          "text": "The lesson is simple. Ashurbanipal stands at Uruk and the Battlefield has begun. Bring me onto the board, put a General at my side, and let us measure Strength against Strength."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "duel",
+            "params": {
+              "hero": "sargon_i",
+              "stat": "strength",
+              "locations": [
+                "ancient_uruk",
+                "ancient_memphis",
+                "ancient_stonehenge"
+              ],
+              "allies": [
+                "enkidu"
+              ],
+              "opponents": [
+                "ashurbanipal"
+              ],
+              "followers": [
+                "General",
+                "Athlete",
+                "Soldier",
+                "Warrior"
+              ],
+              "cpuFollowers": [
+                "Athlete",
+                "General"
+              ]
+            },
+            "instruction": "Fight lesson 1 · First Duel. Deploy Sargon I to Uruk, add the General, then tap Sargon I and tap Ashurbanipal to attack. Win one attack.",
+            "fact": "In a Local Event every card at the location counts: Sargon I brings 10 Strength, the General adds +2 (or +3 beside a Great Person who shares that identity), and the higher total wins the attack. The loser returns to its owner's hand unless Kill mode is on."
+          }
         }
       ]
     }

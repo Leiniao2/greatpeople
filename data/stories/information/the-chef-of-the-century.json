@@ -134,6 +134,49 @@
             "configId": "bach-fugue",
             "instruction": "When Robuchon retired and closed his Paris restaurant, he lost all his Michelin stars — because stars are awarded to restaurants, not to chefs. Learn the phrase and play it back, note for note."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Joël Robuchon",
+          "portraitKey": "joel_robuchon",
+          "text": "Diego Maradona and Michael Jackson are still in the rival's hand; they will come to the board one by one. Follow them, start the Tech Race where they stand, and fight with Kill mode on. A player with no Great People left is out of the game."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "conquest",
+            "params": {
+              "hero": "joel_robuchon",
+              "stat": "technique",
+              "locations": [
+                "information_sanjose",
+                "information_singapore",
+                "information_tokyo"
+              ],
+              "allies": [
+                "steve_jobs",
+                "edmund_hillary"
+              ],
+              "opponents": [
+                "diego_maradona",
+                "michael_jackson"
+              ],
+              "followers": [
+                "Architect",
+                "Doctor",
+                "Engineer",
+                "Explorer"
+              ],
+              "cpuFollowers": [
+                "Architect",
+                "Doctor"
+              ]
+            },
+            "instruction": "Fight lesson 7 · Conquest. Deploy, move to wherever the rival stands, start the Tech Race there, and attack with Kill mode on until the rival has no Great People left.",
+            "fact": "With Kill mode on, a beaten card is discarded instead of returning to hand. A player with no Great People left, in hand or on the board, is out, and the last player standing wins. A kill won in a Great Person's own stat also counts towards their achievement."
+          }
         }
       ]
     }

@@ -104,6 +104,47 @@
             "instruction": "Apply the correct metal oxides to each section of the teapot, then fire the kiln.",
             "fact": "Tenmoku (天目) glazes — prized in Japanese tea ceremony — used iron oxide to create the signature oil-spot and hare's fur patterns in Song Dynasty kilns."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Lu Yu",
+          "portraitKey": "lu_yu",
+          "text": "Batu Khan waits at Krakow, but nothing is happening there, and without an event there is no fight. I will go first; the turn after I arrive, play the Miracle card on Krakow and we attack."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "event",
+            "params": {
+              "hero": "lu_yu",
+              "stat": "belief",
+              "locations": [
+                "medieval_changan",
+                "medieval_krakow",
+                "medieval_kyoto"
+              ],
+              "allies": [
+                "li_qingzhao"
+              ],
+              "opponents": [
+                "batu_khan"
+              ],
+              "followers": [
+                "Monastic",
+                "Philosopher",
+                "Priest",
+                "Prophet"
+              ],
+              "cpuFollowers": [
+                "Monastic",
+                "Philosopher"
+              ]
+            },
+            "instruction": "Fight lesson 3 · Starting an Event. Deploy Lu Yu to Krakow and End Turn. Next turn play the Miracle card there, add your follower and win one attack.",
+            "fact": "Event cards start a scenario at a location where you already have a Great Person, and only one who arrived on an earlier turn can start it. A local event keeps running until a player ends it."
+          }
         }
       ]
     }

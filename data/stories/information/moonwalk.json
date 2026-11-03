@@ -103,6 +103,49 @@
             "configId": "mughal-gems",
             "instruction": "Michael Jackson invented the moonwalk dance move. Gather what the story needs: match the goods until the tally is met."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Michael Jackson",
+          "portraitKey": "michael_jackson",
+          "text": "Mother Teresa and Joël Robuchon are still in the rival's hand; they will come to the board one by one. Follow them, start the Art Critique where they stand, and fight with Kill mode on. A player with no Great People left is out of the game."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "conquest",
+            "params": {
+              "hero": "michael_jackson",
+              "stat": "culture",
+              "locations": [
+                "information_sanjose",
+                "information_singapore",
+                "information_tokyo"
+              ],
+              "allies": [
+                "gregory_peck",
+                "audrey_hepburn"
+              ],
+              "opponents": [
+                "saint_teresa",
+                "joel_robuchon"
+              ],
+              "followers": [
+                "Musician",
+                "Actor",
+                "Artist",
+                "Writer"
+              ],
+              "cpuFollowers": [
+                "Actor",
+                "Artist"
+              ]
+            },
+            "instruction": "Fight lesson 7 · Conquest. Deploy, move to wherever the rival stands, start the Art Critique there, and attack with Kill mode on until the rival has no Great People left.",
+            "fact": "With Kill mode on, a beaten card is discarded instead of returning to hand. A player with no Great People left, in hand or on the board, is out, and the last player standing wins. A kill won in a Great Person's own stat also counts towards their achievement."
+          }
         }
       ]
     }

@@ -1,5 +1,5 @@
 /**
- * Port of the scoring formulas in web/src/pages/BattlePage.tsx
+ * Port of the scoring formulas in web/src/battle/engine.ts
  * (traitBonusForGP, computeLocationTotal, survival/hazard checks), plus the
  * balance analytics built on them. Pure functions over the editable data.
  */

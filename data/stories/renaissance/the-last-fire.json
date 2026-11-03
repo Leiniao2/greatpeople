@@ -123,6 +123,48 @@
             "instruction": "The Spanish conducted formal legal proceedings to justify the conquest. Navigate the colonial tribunal where Inca resistance was reframed as rebellion against legitimate Spanish authority.",
             "fact": "The Spanish legal doctrine of the time held that indigenous rulers who resisted after being informed of Spanish sovereignty were rebels, not sovereign enemies — removing any obligation to treat them as prisoners of war. This legal fiction allowed the Spanish to torture and execute leaders like Rumiñahui without violating their own laws. It was the first formal deployment of what modern scholars call the 'lawfare' of conquest."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Rumiñahui",
+          "portraitKey": "ruminahui",
+          "text": "Genoa is under Riot. At the end of every round, any side whose Strength totals under 5 is swept from the board. Francesco Borromini is already there and far too weak to last. Put me there and hold."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "survival",
+            "params": {
+              "hero": "ruminahui",
+              "stat": "strength",
+              "locations": [
+                "renaissance_genoa",
+                "renaissance_venice",
+                "classical_rome"
+              ],
+              "allies": [
+                "miyamoto_musashi"
+              ],
+              "opponents": [
+                "borromini",
+                "isabel_i"
+              ],
+              "followers": [
+                "General",
+                "Warrior",
+                "Athlete",
+                "Soldier"
+              ],
+              "cpuFollowers": [
+                "Athlete",
+                "General"
+              ]
+            },
+            "instruction": "Fight lesson 4 · Survival. Deploy Rumiñahui to Genoa, keep at least 5 Strength there, and End Turn until two round endings have passed.",
+            "fact": "A Local Survival event is a test, not a fight: at the end of each round every side at the location is checked, and a total under 5 loses every card there to the discard pile. Reinforce with followers, or retrieve a weak card before the round ends."
+          }
         }
       ]
     }

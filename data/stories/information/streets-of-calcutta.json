@@ -130,6 +130,49 @@
         {
           "type": "narration",
           "text": "She dies in 1997 with little to her name. The Missionaries of Charity continue in 133 countries. In 2016 she is canonised — Saint Teresa of Calcutta — patron of the poor and the unwanted."
+        },
+        {
+          "type": "dialog",
+          "speaker": "Mother Teresa",
+          "portraitKey": "saint_teresa",
+          "text": "Jane Goodall and An Jung-geun are still in the rival's hand; they will come to the board one by one. Follow them, start the Miracle where they stand, and fight with Kill mode on. A player with no Great People left is out of the game."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "conquest",
+            "params": {
+              "hero": "saint_teresa",
+              "stat": "belief",
+              "locations": [
+                "electricity_delhi",
+                "information_singapore",
+                "information_tokyo"
+              ],
+              "allies": [
+                "gregory_peck",
+                "audrey_hepburn"
+              ],
+              "opponents": [
+                "jane_goodall",
+                "an_jung_geun"
+              ],
+              "followers": [
+                "Priest",
+                "Monastic",
+                "Philosopher",
+                "Prophet"
+              ],
+              "cpuFollowers": [
+                "Monastic",
+                "Philosopher"
+              ]
+            },
+            "instruction": "Fight lesson 7 · Conquest. Deploy, move to wherever the rival stands, start the Miracle there, and attack with Kill mode on until the rival has no Great People left.",
+            "fact": "With Kill mode on, a beaten card is discarded instead of returning to hand. A player with no Great People left, in hand or on the board, is out, and the last player standing wins. A kill won in a Great Person's own stat also counts towards their achievement."
+          }
         }
       ]
     }

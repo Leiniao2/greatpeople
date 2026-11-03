@@ -158,6 +158,48 @@
             "instruction": "Recreate Titian's legendary crimson — a layered blend of vermilion and kermes lake that defined Venetian painting for a century.",
             "fact": "Titian's reds were so celebrated that 'rosso Tizianesco' became a byword for luminous crimson. He applied multiple thin glazes of kermes lake over a vermilion ground — a method only perfected over decades."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Titian",
+          "portraitKey": "titian",
+          "text": "Venice is under Censorship. At the end of every round, any side whose Culture totals under 5 is swept from the board. Alan Turing is already there and far too weak to last. Put me there and hold."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "survival",
+            "params": {
+              "hero": "titian",
+              "stat": "culture",
+              "locations": [
+                "renaissance_venice",
+                "renaissance_genoa",
+                "classical_rome"
+              ],
+              "allies": [
+                "gutenberg"
+              ],
+              "opponents": [
+                "alan_turing",
+                "bernini"
+              ],
+              "followers": [
+                "Artist",
+                "Actor",
+                "Musician",
+                "Writer"
+              ],
+              "cpuFollowers": [
+                "Actor",
+                "Musician"
+              ]
+            },
+            "instruction": "Fight lesson 4 · Survival. Deploy Titian to Venice, keep at least 5 Culture there, and End Turn until two round endings have passed.",
+            "fact": "A Local Survival event is a test, not a fight: at the end of each round every side at the location is checked, and a total under 5 loses every card there to the discard pile. Reinforce with followers, or retrieve a weak card before the round ends."
+          }
         }
       ]
     }

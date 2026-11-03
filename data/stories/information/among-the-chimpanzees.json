@@ -139,6 +139,49 @@
             "instruction": "Goodall's science began with patient fieldwork. Read the signs in the Gombe forest — nests, dropped fruit — and locate every chimpanzee group before the light goes.",
             "fact": "Goodall gave the Gombe chimpanzees names instead of numbers, which shocked the scientists of the day. Her study, begun in 1960, is now the longest-running field study of any wild animal, and her Roots & Shoots programme runs in more than 60 countries."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Jane Goodall",
+          "portraitKey": "jane_goodall",
+          "text": "Steve Jobs and Joël Robuchon are still in the rival's hand; they will come to the board one by one. Follow them, start the Lawsuit where they stand, and fight with Kill mode on. A player with no Great People left is out of the game."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "conquest",
+            "params": {
+              "hero": "jane_goodall",
+              "stat": "reputation",
+              "locations": [
+                "information_sanjose",
+                "information_singapore",
+                "information_tokyo"
+              ],
+              "allies": [
+                "diego_maradona",
+                "michael_jackson"
+              ],
+              "opponents": [
+                "steve_jobs",
+                "joel_robuchon"
+              ],
+              "followers": [
+                "Educator",
+                "Gourmet",
+                "Journalist",
+                "Lawyer"
+              ],
+              "cpuFollowers": [
+                "Educator",
+                "Journalist"
+              ]
+            },
+            "instruction": "Fight lesson 7 · Conquest. Deploy, move to wherever the rival stands, start the Lawsuit there, and attack with Kill mode on until the rival has no Great People left.",
+            "fact": "With Kill mode on, a beaten card is discarded instead of returning to hand. A player with no Great People left, in hand or on the board, is out, and the last player standing wins. A kill won in a Great Person's own stat also counts towards their achievement."
+          }
         }
       ]
     }

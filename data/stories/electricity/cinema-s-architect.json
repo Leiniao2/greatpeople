@@ -98,6 +98,49 @@
             "configId": "beethoven-motif",
             "instruction": "Eisenstein's film Battleship Potemkin was banned in several countries including the United Kingdom upon its 1925 release for its revolutionary political content. Learn the phrase and play it back, note for note."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Sergei Eisenstein",
+          "portraitKey": "sergei_eisenstein",
+          "text": "This time the whole board is judged at once. Deploy Clara Schumann, Mohandas Gandhi and me, turn us public, then declare the Roadshow: the highest public Culture on the board when the round ends takes the prize."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "competition",
+            "params": {
+              "hero": "sergei_eisenstein",
+              "stat": "culture",
+              "locations": [
+                "electricity_moscow",
+                "electricity_london",
+                "electricity_paris"
+              ],
+              "allies": [
+                "clara_schumann",
+                "gandhi"
+              ],
+              "opponents": [
+                "george_bernard_shaw",
+                "michael_jackson"
+              ],
+              "followers": [
+                "Artist",
+                "Actor",
+                "Musician",
+                "Writer"
+              ],
+              "cpuFollowers": [
+                "Actor",
+                "Artist"
+              ]
+            },
+            "instruction": "Fight lesson 6 · Global Competition. Deploy your Great People, Toggle Public on each, then start the Roadshow and End Turn to win the round with the highest public Culture on the board.",
+            "fact": "A Global Competition counts every public Great Person on the whole board; followers and face-down cards add nothing. It lasts one round, and the strongest player draws a reward: event cards, followers or a new Great Person."
+          }
         }
       ]
     }

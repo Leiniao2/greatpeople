@@ -134,6 +134,47 @@
             "instruction": "The Hittite Empire's final years required desperate strategic moves. Slide the last general to safety before the Bronze Age Collapse closes every escape.",
             "fact": "Around 1200 BCE, the Hittite Empire was one of several great powers destroyed by the Bronze Age Collapse. Invaders known as the 'Sea Peoples,' combined with drought and internal revolt, wiped out civilisations across the eastern Mediterranean within decades. The Hittites were so thoroughly destroyed that their very existence was forgotten for 3,000 years."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "King Telepinu",
+          "portraitKey": "king_telepinu",
+          "text": "The lesson is simple. Peseshet stands at Uruk and the Miracle has begun. Bring me onto the board, put a Monastic at my side, and let us measure Belief against Belief."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "duel",
+            "params": {
+              "hero": "king_telepinu",
+              "stat": "belief",
+              "locations": [
+                "ancient_uruk",
+                "ancient_memphis",
+                "ancient_stonehenge"
+              ],
+              "allies": [
+                "mahavira"
+              ],
+              "opponents": [
+                "peseshet"
+              ],
+              "followers": [
+                "Monastic",
+                "Philosopher",
+                "Priest",
+                "Prophet"
+              ],
+              "cpuFollowers": [
+                "Monastic",
+                "Philosopher"
+              ]
+            },
+            "instruction": "Fight lesson 1 · First Duel. Deploy King Telepinu to Uruk, add the Monastic, then tap King Telepinu and tap Peseshet to attack. Win one attack.",
+            "fact": "In a Local Event every card at the location counts: King Telepinu brings 9 Belief, the Monastic adds +2 (or +3 beside a Great Person who shares that identity), and the higher total wins the attack. The loser returns to its owner's hand unless Kill mode is on."
+          }
         }
       ]
     }

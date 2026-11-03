@@ -139,6 +139,47 @@
             "instruction": "Ashurbanipal's library lay buried for 2,500 years under the mound of Kuyunjik. Dig where the shards point and recover the tablet caches before the season ends.",
             "fact": "When Nineveh fell in 612 BCE the palace burned — and the fire baked Ashurbanipal's clay tablets hard, preserving them. Excavated in the 1850s, they gave the world back the Epic of Gilgamesh, the Babylonian flood story and much of what is known of Mesopotamian medicine, omens and law."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Ashurbanipal",
+          "portraitKey": "ashurbanipal",
+          "text": "The lesson is simple. Nakht stands at Uruk and the Coup has begun. Bring me onto the board, put a Sovereign at my side, and let us measure Politics against Politics."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "duel",
+            "params": {
+              "hero": "ashurbanipal",
+              "stat": "politics",
+              "locations": [
+                "ancient_uruk",
+                "ancient_memphis",
+                "ancient_stonehenge"
+              ],
+              "allies": [
+                "sargon_i"
+              ],
+              "opponents": [
+                "nakht"
+              ],
+              "followers": [
+                "Sovereign",
+                "Official",
+                "Spy",
+                "Statesman"
+              ],
+              "cpuFollowers": [
+                "Sovereign",
+                "Spy"
+              ]
+            },
+            "instruction": "Fight lesson 1 · First Duel. Deploy Ashurbanipal to Uruk, add the Sovereign, then tap Ashurbanipal and tap Nakht to attack. Win one attack.",
+            "fact": "In a Local Event every card at the location counts: Ashurbanipal brings 8 Politics, the Sovereign adds +2 (or +3 beside a Great Person who shares that identity), and the higher total wins the attack. The loser returns to its owner's hand unless Kill mode is on."
+          }
         }
       ]
     }

@@ -102,7 +102,7 @@ const ENGINE_GUIDE = `
 You are updating the Great People battle engine so that it matches a change the designer just made in Fight Studio (an internal rules/stats editor).
 
 Repository map (paths relative to the repo root, which is your working directory):
-- web/src/pages/BattlePage.tsx — the ONLY battle engine (decks, reducer, traitBonusForGP, computeLocationTotal, computeEventSide, survival/hazard/global resolution, ACHIEVEMENT_SPECS, CPU AI, UI).
+- web/src/battle/engine.ts — the ONLY battle engine (decks, reducer, traitBonusForGP, computeLocationTotal, computeEventSide, survival/hazard/global resolution, ACHIEVEMENT_SPECS, initScriptedGame for the Epic fight lessons). web/src/battle/BattleGame.tsx — the board UI and CPU AI; web/src/battle/lessons.ts — the fight-lesson curriculum and coach; web/src/pages/BattlePage.tsx — only the Battle tab lobby.
 - web/src/types/index.ts — battle state types.
 - data/cards.json, data/followers.json, data/location_cards.json — card data. Do NOT edit these; the designer edits them in Fight Studio.
 - docs/fight.md — the rulebook (prose). docs/fight_rules.json — the rules registry: one row per rule with docText (what the design says), codeBehaviour (what the engine does), codeSource (function names), status (implemented | partial | conflict | missing | unspecified), notes.
@@ -110,7 +110,7 @@ Repository map (paths relative to the repo root, which is your working directory
 
 Your task:
 1. Read the change report below. For each change decide whether the engine must change. Documentation-only edits (notes, wording, status bookkeeping) need no code change: say so.
-2. Implement the behavioural changes in web/src/pages/BattlePage.tsx (and web/src/types/index.ts if types must change). Keep the existing code style. Prefer small, local edits over rewrites. BattlePage.tsx also contains player-facing rules text (event card descriptions in makeEventDeck/makeHazardDeck and an in-game rules panel); keep that text consistent with the new behaviour.
+2. Implement the behavioural changes in web/src/battle/engine.ts (and web/src/types/index.ts if types must change). Keep the existing code style. Prefer small, local edits over rewrites. engine.ts also contains player-facing rules text (event card descriptions in makeEventDeck/makeHazardDeck) and BattleGame.tsx an in-game rules panel; the lesson texts in web/src/battle/lessons.ts and scripts/add-fight-lessons.mjs describe the same rules; keep that text consistent with the new behaviour.
 3. Keep the mirrors in step: update ENGINE_CONSTANTS / IMPLEMENTED_TRAITS / ACHIEVEMENT_SPECS in tools/fight-studio/src/lib/engineTraits.ts and the formulas in tools/fight-studio/src/lib/engine.ts so Fight Studio's analysis matches the engine.
 4. In docs/fight_rules.json, update the affected rows' codeBehaviour, codeSource and status to describe the new engine behaviour (set status to "implemented" when doc and code now agree). Do not reformat the file; keep 2-space JSON.
 5. Run \`npx tsc --noEmit\` inside web/ and inside tools/fight-studio/, and fix any errors you introduced. Run \`npx vitest run\` inside web/ if you changed anything the tests cover.

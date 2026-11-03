@@ -134,6 +134,49 @@
             "configId": "bach-fugue",
             "instruction": "Diego Maradona was excluded from Argentina's 1978 World Cup squad — which Argentina went on to win — because the coach considered him too young at 17. Learn the phrase and play it back, note for note."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Diego Maradona",
+          "portraitKey": "diego_maradona",
+          "text": "Jane Goodall and Peter Arnett are still in the rival's hand; they will come to the board one by one. Follow them, start the Lawsuit where they stand, and fight with Kill mode on. A player with no Great People left is out of the game."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "conquest",
+            "params": {
+              "hero": "diego_maradona",
+              "stat": "reputation",
+              "locations": [
+                "information_sanjose",
+                "information_singapore",
+                "information_tokyo"
+              ],
+              "allies": [
+                "michael_jackson",
+                "steve_jobs"
+              ],
+              "opponents": [
+                "jane_goodall",
+                "peter_arnett"
+              ],
+              "followers": [
+                "Educator",
+                "Gourmet",
+                "Journalist",
+                "Lawyer"
+              ],
+              "cpuFollowers": [
+                "Educator",
+                "Gourmet"
+              ]
+            },
+            "instruction": "Fight lesson 7 · Conquest. Deploy, move to wherever the rival stands, start the Lawsuit there, and attack with Kill mode on until the rival has no Great People left.",
+            "fact": "With Kill mode on, a beaten card is discarded instead of returning to hand. A player with no Great People left, in hand or on the board, is out, and the last player standing wins. A kill won in a Great Person's own stat also counts towards their achievement."
+          }
         }
       ]
     }

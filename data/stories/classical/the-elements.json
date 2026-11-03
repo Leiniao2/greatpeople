@@ -124,6 +124,48 @@
             "instruction": "Euclid knew light reflects — but what about refraction? Route the beam through two fixed deflectors using two mirrors of your own.",
             "fact": "Euclid's 'Catoptrics' studied mirrors and reflection. It took nearly two thousand more years for Newton to explain why white light splits into a spectrum — but the geometry Euclid laid down made that discovery possible."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Euclid",
+          "portraitKey": "euclid",
+          "text": "Anaxagoras and Zeno of Elea hold Carthage together, and a follower stands with them. One card alone will not move them. Bring Chanakya with me, add both followers, and strike twice."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "reinforce",
+            "params": {
+              "hero": "euclid",
+              "stat": "intelligence",
+              "locations": [
+                "classical_carthage",
+                "classical_petra",
+                "classical_sparta"
+              ],
+              "allies": [
+                "chanakya"
+              ],
+              "opponents": [
+                "anaxagoras",
+                "zeno_of_elea"
+              ],
+              "followers": [
+                "Mathematician",
+                "Astronomer",
+                "Naturalist",
+                "Scientist"
+              ],
+              "cpuFollowers": [
+                "Astronomer",
+                "Naturalist"
+              ]
+            },
+            "instruction": "Fight lesson 2 · Strength in Numbers. Over two turns stack Euclid, Chanakya and both followers at Carthage, then win two attacks against the rival side.",
+            "fact": "An attack compares whole sides at a location, not single cards. Two Great People and two followers in the same stat outweigh a rival who arrived first, and each win sends one rival card back to its owner's hand."
+          }
         }
       ]
     }

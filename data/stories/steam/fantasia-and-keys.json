@@ -203,6 +203,48 @@
             "instruction": "Brahms — Clara's closest companion after Robert's death — wrote his German Requiem during these years. Arrange its movements in the correct order.",
             "fact": "Brahms was devoted to Clara for the rest of her life. She championed his music from his first compositions, and he dedicated works to her memory. Their 40-year friendship was the great sustaining relationship of both their lives."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Clara Schumann",
+          "portraitKey": "clara_schumann",
+          "text": "Two face-down cards: one at London, one at Moscow. We cannot see who they are until we attack, and an attack reveals every card at the location. The Art Critique already runs at London; you hold a card to start one at Moscow."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "hidden",
+            "params": {
+              "hero": "clara_schumann",
+              "stat": "culture",
+              "locations": [
+                "steam_london",
+                "electricity_moscow",
+                "electricity_london"
+              ],
+              "allies": [
+                "george_bernard_shaw"
+              ],
+              "opponents": [
+                "coco_chanel",
+                "borromini"
+              ],
+              "followers": [
+                "Musician",
+                "Actor",
+                "Artist",
+                "Writer"
+              ],
+              "cpuFollowers": [
+                "Actor",
+                "Musician"
+              ]
+            },
+            "instruction": "Fight lesson 5 · Face Down. Win two attacks: fight at London where the Art Critique is running, then carry the fight to Moscow by starting your own event there.",
+            "fact": "A card on the board can be public (face up) or private (face down). A private card hides its identity and stats from rivals until an attack reveals every card at that location. Your own cards deploy face down; Toggle Public when being seen helps you."
+          }
         }
       ]
     }

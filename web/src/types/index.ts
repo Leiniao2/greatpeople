@@ -124,6 +124,8 @@ export interface GameSetup {
   singleEra?: string
   playerNames: string[]
   numComputers: number
+  /** Scripted games (the Epic fight lessons) turn the random hazards off. */
+  noHazards?: boolean
 }
 
 // ── Combat / event summary (shown in modal after resolution) ─────────────────

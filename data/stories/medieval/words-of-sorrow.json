@@ -110,6 +110,47 @@
             "instruction": "Arrange the opening of Genji's story as Murasaki Shikibu wrote it — the Emperor's doomed love for a lady not of the first rank.",
             "fact": "Written around 1008 CE by a court lady, The Tale of Genji is considered the world's first novel. Its author, known as Murasaki Shikibu, wrote in hiragana (considered 'women's script' then) while men wrote formal documents in Chinese — a subversion that produced one of humanity's great literary works."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Li Qingzhao",
+          "portraitKey": "li_qingzhao",
+          "text": "Ibn Battuta waits at Krakow, but nothing is happening there, and without an event there is no fight. I will go first; the turn after I arrive, play the Art Critique card on Krakow and we attack."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "event",
+            "params": {
+              "hero": "li_qingzhao",
+              "stat": "culture",
+              "locations": [
+                "medieval_changan",
+                "medieval_krakow",
+                "medieval_kyoto"
+              ],
+              "allies": [
+                "taira_no_tadanori"
+              ],
+              "opponents": [
+                "ibn_battuta"
+              ],
+              "followers": [
+                "Writer",
+                "Actor",
+                "Artist",
+                "Musician"
+              ],
+              "cpuFollowers": [
+                "Actor",
+                "Artist"
+              ]
+            },
+            "instruction": "Fight lesson 3 · Starting an Event. Deploy Li Qingzhao to Krakow and End Turn. Next turn play the Art Critique card there, add your follower and win one attack.",
+            "fact": "Event cards start a scenario at a location where you already have a Great Person, and only one who arrived on an earlier turn can start it. A local event keeps running until a player ends it."
+          }
         }
       ]
     }

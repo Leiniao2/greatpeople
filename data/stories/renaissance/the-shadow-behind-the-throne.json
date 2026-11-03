@@ -134,6 +134,48 @@
             "instruction": "Behind every Aztec emperor stood Tlacaelel — the counselor who turned political advantage into permanent architecture. Navigate the council chamber where empires are made with words.",
             "fact": "The Flower Wars (Xochiyaoyotl) that Tlacaelel institutionalized were a unique form of ritualized conflict: neighboring states would agree to scheduled battles whose purpose was not territorial conquest but the capture of living warriors for sacrifice. Critics called them morally monstrous; defenders argued they were a more humane alternative to wars of annihilation. The truth is that they also kept potential rivals permanently weak."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Tlacaelel",
+          "portraitKey": "tlacaelel",
+          "text": "Genoa is under Depression. At the end of every round, any side whose Wealth totals under 5 is swept from the board. Alan Turing is already there and far too weak to last. Put me there and hold."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "survival",
+            "params": {
+              "hero": "tlacaelel",
+              "stat": "wealth",
+              "locations": [
+                "renaissance_genoa",
+                "renaissance_venice",
+                "classical_rome"
+              ],
+              "allies": [
+                "manuel_i"
+              ],
+              "opponents": [
+                "alan_turing",
+                "gutenberg"
+              ],
+              "followers": [
+                "Banker",
+                "Economist",
+                "Merchant",
+                "Noble"
+              ],
+              "cpuFollowers": [
+                "Banker",
+                "Economist"
+              ]
+            },
+            "instruction": "Fight lesson 4 · Survival. Deploy Tlacaelel to Genoa, keep at least 5 Wealth there, and End Turn until two round endings have passed.",
+            "fact": "A Local Survival event is a test, not a fight: at the end of each round every side at the location is checked, and a total under 5 loses every card there to the discard pile. Reinforce with followers, or retrieve a weak card before the round ends."
+          }
         }
       ]
     }

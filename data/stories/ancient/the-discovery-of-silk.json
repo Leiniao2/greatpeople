@@ -144,6 +144,47 @@
             "instruction": "Connect the Silk Road caravan route from Chang'an westward — rotate pipe tiles to find the path through the Taklamakan Desert.",
             "fact": "Zhang Qian's westward mission in 130 BCE established the first official Silk Road routes. The trade network eventually stretched 7,000 km from China to Rome, carrying silk, spices, glassware, and ideas."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Lei Zu",
+          "portraitKey": "lei_zu",
+          "text": "The lesson is simple. Ashurbanipal stands at Memphis and the Business War has begun. Bring me onto the board, put a Noble at my side, and let us measure Wealth against Wealth."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "duel",
+            "params": {
+              "hero": "lei_zu",
+              "stat": "wealth",
+              "locations": [
+                "ancient_memphis",
+                "ancient_stonehenge",
+                "ancient_olmec_sanlorenzo"
+              ],
+              "allies": [
+                "sargon_i"
+              ],
+              "opponents": [
+                "ashurbanipal"
+              ],
+              "followers": [
+                "Noble",
+                "Banker",
+                "Economist",
+                "Merchant"
+              ],
+              "cpuFollowers": [
+                "Banker",
+                "Economist"
+              ]
+            },
+            "instruction": "Fight lesson 1 · First Duel. Deploy Lei Zu to Memphis, add the Noble, then tap Lei Zu and tap Ashurbanipal to attack. Win one attack.",
+            "fact": "In a Local Event every card at the location counts: Lei Zu brings 10 Wealth, the Noble adds +2 (or +3 beside a Great Person who shares that identity), and the higher total wins the attack. The loser returns to its owner's hand unless Kill mode is on."
+          }
         }
       ]
     }

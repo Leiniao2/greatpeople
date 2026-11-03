@@ -129,6 +129,48 @@
             "configId": "lovelace-engine",
             "instruction": "The Hermitage Museum began as Catherine's private art collection — she called it her 'hermitage' because she could retreat there alone with her paintings. Wire the gates until the circuit agrees with the table on every row."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Catherine the Great",
+          "portraitKey": "yekaterina",
+          "text": "Two face-down cards: one at Amsterdam, one at St Petersburg. We cannot see who they are until we attack, and an attack reveals every card at the location. The Coup already runs at Amsterdam; you hold a card to start one at St Petersburg."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "hidden",
+            "params": {
+              "hero": "yekaterina",
+              "stat": "politics",
+              "locations": [
+                "steam_amsterdam",
+                "steam_st_petersburg",
+                "steam_london"
+              ],
+              "allies": [
+                "anna_nzinga"
+              ],
+              "opponents": [
+                "josiah_wedgwood",
+                "louis_xvi"
+              ],
+              "followers": [
+                "Sovereign",
+                "Official",
+                "Spy",
+                "Statesman"
+              ],
+              "cpuFollowers": [
+                "Official",
+                "Spy"
+              ]
+            },
+            "instruction": "Fight lesson 5 · Face Down. Win two attacks: fight at Amsterdam where the Coup is running, then carry the fight to St Petersburg by starting your own event there.",
+            "fact": "A card on the board can be public (face up) or private (face down). A private card hides its identity and stats from rivals until an attack reveals every card at that location. Your own cards deploy face down; Toggle Public when being seen helps you."
+          }
         }
       ]
     }

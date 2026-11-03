@@ -127,6 +127,48 @@
             "instruction": "Just as Linnaeus gave every species a precise law of naming, Snell gave every ray of light a precise law of bending. One mirror, four bounces — find the path.",
             "fact": "Willebrord Snell (1580–1626) discovered his law of refraction in 1621 but never published it. René Descartes rediscovered it independently and published it first. The law — n₁ sin θ₁ = n₂ sin θ₂ — predicts exactly how much light bends when crossing between media of different densities."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Carl Linnaeus",
+          "portraitKey": "carl_linnaeus",
+          "text": "Two face-down cards: one at Genoa, one at St Petersburg. We cannot see who they are until we attack, and an attack reveals every card at the location. The Argument already runs at Genoa; you hold a card to start one at St Petersburg."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "hidden",
+            "params": {
+              "hero": "carl_linnaeus",
+              "stat": "intelligence",
+              "locations": [
+                "renaissance_genoa",
+                "steam_st_petersburg",
+                "steam_london"
+              ],
+              "allies": [
+                "yekaterina"
+              ],
+              "opponents": [
+                "anna_nzinga",
+                "borromini"
+              ],
+              "followers": [
+                "Naturalist",
+                "Astronomer",
+                "Mathematician",
+                "Scientist"
+              ],
+              "cpuFollowers": [
+                "Astronomer",
+                "Mathematician"
+              ]
+            },
+            "instruction": "Fight lesson 5 · Face Down. Win two attacks: fight at Genoa where the Argument is running, then carry the fight to St Petersburg by starting your own event there.",
+            "fact": "A card on the board can be public (face up) or private (face down). A private card hides its identity and stats from rivals until an attack reveals every card at that location. Your own cards deploy face down; Toggle Public when being seen helps you."
+          }
         }
       ]
     }

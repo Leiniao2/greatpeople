@@ -130,6 +130,48 @@
             "instruction": "Mix the ultramarine blue reserved for the Virgin Mary — mined from a single valley in Afghanistan and worth more than gold in the Renaissance.",
             "fact": "Medieval contracts specified exactly how many grams of lapis lazuli an artist could use. Jan van Eyck and Fra Angelico reserved it solely for the Virgin Mary's robe. Michelangelo reportedly left the Entombment unfinished because his patron refused to supply enough lapis."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Manuel I of Portugal",
+          "portraitKey": "manuel_i",
+          "text": "Qusqu is under Depression. At the end of every round, any side whose Wealth totals under 5 is swept from the board. Alan Turing is already there and far too weak to last. Put me there and hold."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "survival",
+            "params": {
+              "hero": "manuel_i",
+              "stat": "wealth",
+              "locations": [
+                "renaissance_qusqu",
+                "renaissance_genoa",
+                "renaissance_venice"
+              ],
+              "allies": [
+                "bayinnaung"
+              ],
+              "opponents": [
+                "alan_turing",
+                "isabel_i"
+              ],
+              "followers": [
+                "Merchant",
+                "Banker",
+                "Economist",
+                "Noble"
+              ],
+              "cpuFollowers": [
+                "Banker",
+                "Economist"
+              ]
+            },
+            "instruction": "Fight lesson 4 · Survival. Deploy Manuel I of Portugal to Qusqu, keep at least 5 Wealth there, and End Turn until two round endings have passed.",
+            "fact": "A Local Survival event is a test, not a fight: at the end of each round every side at the location is checked, and a total under 5 loses every card there to the discard pile. Reinforce with followers, or retrieve a weak card before the round ends."
+          }
         }
       ]
     }

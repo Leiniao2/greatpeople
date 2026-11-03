@@ -125,6 +125,47 @@
             "instruction": "Mix the royal Egyptian blue that adorned the tombs of pharaohs — the world's first synthetic pigment, made from copper, sand, and limestone.",
             "fact": "Egyptian blue (cuprorivaite) was manufactured from around 3200 BCE by heating quartz, copper minerals, and limestone to 900°C. It was traded across the ancient world and when exposed to infrared light it glows so brightly it can be detected from orbit."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Imhotep",
+          "portraitKey": "imhotep",
+          "text": "The lesson is simple. Ashurbanipal stands at Memphis and the Argument has begun. Bring me onto the board, put a Astronomer at my side, and let us measure Intelligence against Intelligence."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "duel",
+            "params": {
+              "hero": "imhotep",
+              "stat": "intelligence",
+              "locations": [
+                "ancient_memphis",
+                "ancient_stonehenge",
+                "ancient_olmec_sanlorenzo"
+              ],
+              "allies": [
+                "hesy_ra"
+              ],
+              "opponents": [
+                "ashurbanipal"
+              ],
+              "followers": [
+                "Astronomer",
+                "Mathematician",
+                "Naturalist",
+                "Scientist"
+              ],
+              "cpuFollowers": [
+                "Astronomer",
+                "Mathematician"
+              ]
+            },
+            "instruction": "Fight lesson 1 · First Duel. Deploy Imhotep to Memphis, add the Astronomer, then tap Imhotep and tap Ashurbanipal to attack. Win one attack.",
+            "fact": "In a Local Event every card at the location counts: Imhotep brings 9 Intelligence, the Astronomer adds +2 (or +3 beside a Great Person who shares that identity), and the higher total wins the attack. The loser returns to its owner's hand unless Kill mode is on."
+          }
         }
       ]
     }

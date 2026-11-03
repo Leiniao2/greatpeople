@@ -134,6 +134,47 @@
             "instruction": "Break the European shield wall — heavy cavalry blocks every direct path. Rearrange the pieces to open a line for the horse archers to exploit.",
             "fact": "The Golden Horde that Batu established dominated the Russian steppe for 250 years, collecting tribute from every Russian principality. Moscow grew wealthy as a tax collector for the Horde — a relationship that profoundly shaped Russian political culture, centralizing power and accustoming rulers to absolute authority."
           }
+        },
+        {
+          "type": "dialog",
+          "speaker": "Batu Khan",
+          "portraitKey": "batu_khan",
+          "text": "Taira no Tadanori waits at Changan, but nothing is happening there, and without an event there is no fight. I will go first; the turn after I arrive, play the Battlefield card on Changan and we attack."
+        },
+        {
+          "type": "challenge",
+          "challenge": {
+            "type": "minigame",
+            "game": "fight",
+            "configId": "event",
+            "params": {
+              "hero": "batu_khan",
+              "stat": "strength",
+              "locations": [
+                "medieval_krakow",
+                "medieval_changan",
+                "medieval_kyoto"
+              ],
+              "allies": [
+                "belisarius"
+              ],
+              "opponents": [
+                "taira_no_tadanori"
+              ],
+              "followers": [
+                "General",
+                "Athlete",
+                "Soldier",
+                "Warrior"
+              ],
+              "cpuFollowers": [
+                "Athlete",
+                "General"
+              ]
+            },
+            "instruction": "Fight lesson 3 · Starting an Event. Deploy Batu Khan to Changan and End Turn. Next turn play the Battlefield card there, add your follower and win one attack.",
+            "fact": "Event cards start a scenario at a location where you already have a Great Person, and only one who arrived on an earlier turn can start it. A local event keeps running until a player ends it."
+          }
         }
       ]
     }
