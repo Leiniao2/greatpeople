@@ -91,7 +91,12 @@ export interface EngineJob {
   id: string
   startedAt: number
   finishedAt?: number
-  status: 'running' | 'done' | 'failed' | 'reverted'
+  mode: EngineMode
+  /** running → review (preview only) → applied; or failed / discarded / reverted. */
+  status: 'running' | 'review' | 'applied' | 'failed' | 'discarded' | 'reverted'
+  autoCommit: boolean
+  commit?: CommitResult
+  note?: string
   report: string
   instruction: string
   log: JobLogEntry[]
@@ -101,3 +106,7 @@ export interface EngineJob {
   diff: string
   typecheck?: { web?: string; studio?: string }
 }
+
+/** apply: the agent edits the repo directly. preview: it edits an isolated snapshot and waits for approval. */
+export type EngineMode = 'apply' | 'preview'
+export interface CommitResult { ok: boolean; sha?: string; branch?: string; nothing?: boolean; error?: string; paths: string[] }

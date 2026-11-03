@@ -27,9 +27,12 @@ const TABS: { id: Tab; label: string; files: FileKey[] }[] = [
 
 export default function App() {
   const [tab, setTab] = useState<Tab>((location.hash.slice(1) as Tab) || 'overview')
-  const { dirty, busy, saveAll, notice, jobs, applyToEngine, setApplyToEngine, pendingReport } = useStore()
+  const { dirty, busy, saveAll, notice, jobs, applyToEngine, setApplyToEngine, pendingReport, autoCommit, setAutoCommit, engineMode } = useStore()
   const anyDirty = Object.values(dirty).some(Boolean)
   const running = jobs.filter(j => j.status === 'running').length
+  const reviewing = jobs.filter(j => j.status === 'review').length
+  const engine = pendingReport.behavioural && applyToEngine
+  const saveLabel = `Save all${autoCommit ? ' & commit' : ''}${engine ? (engineMode === 'preview' ? ' · preview engine change' : ' · update engine') : ''}`
 
   const go = (t: Tab) => { setTab(t); location.hash = t }
 
@@ -49,9 +52,11 @@ export default function App() {
         {notice && <span className="busy" title={notice}>{notice.length > 90 ? notice.slice(0, 88) + '…' : notice}</span>}
         {busy && <span className="busy">{busy}</span>}
         {running > 0 && <button className="btn" onClick={() => go('engine')}><span className="dot" /> {running} engine job{running > 1 ? 's' : ''} running</button>}
-        <label className="small" title="When on, Save all changes also sends rule/trait text changes to Claude Code to update the engine."><input type="checkbox" checked={applyToEngine} onChange={e => setApplyToEngine(e.target.checked)} /> engine sync</label>
-        <button className="btn primary" disabled={!anyDirty || !!busy} onClick={() => void saveAll()} title={pendingReport.behavioural && applyToEngine ? 'Saves, then sends the rule changes to the engine agent' : 'Saves to the repo files'}>
-          {pendingReport.behavioural && applyToEngine ? 'Save all & update engine' : 'Save all changes'}
+        {reviewing > 0 && <button className="btn" onClick={() => go('engine')}>{reviewing} engine change{reviewing > 1 ? 's' : ''} to review</button>}
+        <label className="small" title="When on, Save all also sends rule/trait text changes to Claude Code to update the engine (mode set on the Engine sync tab)."><input type="checkbox" checked={applyToEngine} onChange={e => setApplyToEngine(e.target.checked)} /> engine sync</label>
+        <label className="small" title="When on, every save is committed, and engine changes are committed once applied."><input type="checkbox" checked={autoCommit} onChange={e => setAutoCommit(e.target.checked)} /> commit</label>
+        <button className="btn primary" disabled={!anyDirty || !!busy} onClick={() => void saveAll()} title={engine ? (engineMode === 'preview' ? 'Saves, then has the agent prepare an engine diff for your approval' : 'Saves, then has the agent update the engine directly') : 'Saves to the repo files'}>
+          {saveLabel}
         </button>
       </div>
       {tab === 'overview' && <Overview />}
