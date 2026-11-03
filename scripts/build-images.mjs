@@ -51,6 +51,8 @@ const FOLDERS = {
   maps:         { width: 960, mobile: false },
   items:        { width: 800, mobile: false },
   symbols:      { width: 600, mobile: false },
+  // Minigame art (web/src/games/art.ts); web only.
+  games:        { width: 1024, mobile: false },
 }
 const QUALITY = 80
 
@@ -93,11 +95,11 @@ async function main() {
 
   for (const [folder, { width, mobile }] of Object.entries(FOLDERS)) {
     const srcDir = path.join(SRC, folder)
-    const files = (await fs.readdir(srcDir)).filter(f => /\.jpe?g$/i.test(f)).sort()
+    const files = (await fs.readdir(srcDir)).filter(f => /\.(jpe?g|png)$/i.test(f)).sort()
 
     for (const file of files) {
       const src = path.join(srcDir, file)
-      const name = file.replace(/\.jpe?g$/i, '')
+      const name = file.replace(/\.(jpe?g|png)$/i, '')
       const webOut = path.join(WEB, folder, `${name}.webp`)
 
       const targets = [webOut]
