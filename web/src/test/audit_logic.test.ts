@@ -8,7 +8,7 @@ import { CONFIGS as WORDLES, WORD_LENGTH } from '@/components/minigames/WordleGa
 import { CONFIGS as DECODES, makeCipher, makeDecipherMap, DECODE_TIME_LIMITS } from '@/components/minigames/DecodeGame'
 import { CONFIGS as CIPHERS, encodeCaesar, encodeVigenere, MORSE, resolveCipherConfig } from '@/components/minigames/CipherGame'
 import { CONFIGS as PSEUDO, wrongPositions } from '@/components/minigames/PseudoCodeGame'
-import { CONFIGS as LOGIC, GATES, ROWS, TAPE_RULES, matchingRows, initialGates, circuitOut } from '@/components/minigames/LogicGateGame'
+import { CONFIGS as LOGIC, GATES, ROWS, TAPE_RULES, matchingRows, circuitOut, makeStages, solves, solutions as stageSolutions } from '@/components/minigames/LogicGateGame'
 import { CONFIGS as CHEM } from '@/components/minigames/ChemistryGame'
 import { CONFIGS as PUNNETT, cellAnswer, getOptions, phenotypeRatio } from '@/components/minigames/PunnettGame'
 import { CONFIGS as LORENTZ, applyLorentz, circlesOverlap, B_STEP, MAX_B } from '@/components/minigames/LorentzGame'
@@ -161,15 +161,19 @@ describe('PseudoCodeGame configs', () => {
 
 describe('LogicGateGame configs', () => {
   for (const [id, cfg] of Object.entries(LOGIC)) {
-    it(`${id}: some gate pair matches the whole table, and the game never starts solved`, () => {
+    it(`${id}: some gate pair matches the warm-up table, and no stage starts solved or unsolvable`, () => {
       const solutions: string[] = []
       for (const g1 of GATES) for (const g2 of GATES) if (matchingRows(cfg.target, g1, g2) === ROWS.length) solutions.push(`${g1}→${g2}`)
       expect(solutions.length, `${id} has no solution in the g1(A,B)→g2(·,C) network`).toBeGreaterThan(0)
-      for (let seed = 0; seed < 64; seed++) {
-        const [g1, g2] = initialGates(cfg.target, seed)
-        expect(matchingRows(cfg.target, g1, g2), `${id} seed ${seed} starts solved`).toBeLessThan(ROWS.length)
+      // Every stage of every tier (warm-up, adders, mux, comparator…) is solvable and starts unsolved.
+      for (const d of [1, 2, 3, 4] as const) for (let seed = 0; seed < 64; seed++) {
+        for (const st of makeStages(id, cfg, d, seed)) {
+          if (st.kind !== 'circuit') continue
+          expect(solves(st, st.start), `${id} d${d} seed ${seed} ${st.build.key} starts solved`).toBe(false)
+          expect(stageSolutions(st, 1).length, `${id} d${d} seed ${seed} ${st.build.key} has no solution`).toBe(1)
+        }
       }
-    })
+    }, 30_000)   // 4 difficulties × 64 seeds of exhaustive search; slow under a full parallel run
   }
   it('descriptions match their targets', () => {
     const t = LOGIC

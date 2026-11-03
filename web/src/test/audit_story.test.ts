@@ -7,7 +7,6 @@ import { render, cleanup, fireEvent, screen, act } from '@testing-library/react'
 import { describe, it, expect, afterEach, vi } from 'vitest'
 import storyChallenges from '@/data/story_challenges.json'
 import type { Challenge, Difficulty, MinigameComponent } from '@/games/types'
-import { hashString } from '@/components/minigames/_shared/rng'
 
 import FictionGame, { CONFIGS as FICTION } from '@/components/minigames/FictionGame'
 import MuseumGame, { CONFIGS as MUSEUM } from '@/components/minigames/MuseumGame'
@@ -20,9 +19,10 @@ import RiverRunGame, { CONFIGS as RIVER, makeRiver, tierFor as riverTier, LANES 
 import SoccerGame, { CONFIGS as SOCCER } from '@/components/minigames/SoccerGame'
 import ReporterFleeGame, { CONFIGS as REPORTER, initState, reducer, EX, EY, SOLDIER_EVERY, type GameState } from '@/components/minigames/ReporterFleeGame'
 import MatchThreeGame, {
-  CONFIGS as MATCH3, seededRandom, makePlayableGrid, findMatches, applyGravity, validSwaps, hasValidMove, moveLimitFor,
-  type MatchThreeConfig,
+  CONFIGS as MATCH3, simulate as simulateMatchThree, levelFor as matchLevel, startRound, findRuns, hasValidMove, bestSwap, validSwaps, boardSeed, playMove, goalsMet,
+  type Board as MatchBoard,
 } from '@/components/minigames/MatchThreeGame'
+import { mulberry32 } from '@/components/minigames/_shared/rng'
 
 afterEach(() => { cleanup(); vi.useRealTimers(); vi.restoreAllMocks() })
 
@@ -580,68 +580,35 @@ describe('audit — Reporter Flee', () => {
 
 // ── Match Three ────────────────────────────────────────────────────────────────
 
-/**
- * Greedy player mirroring the component's engine: each move takes the legal
- * swap that clears the most tiles right away, then lets cascades run with
- * the same refill RNG the component uses.
- */
-function playMatchThree(configId: string, cfg: MatchThreeConfig, difficulty: Difficulty, attemptSeed: number) {
-  const N = cfg.gridSize, types = cfg.tiles.length, rules = cfg.rules ?? {}
-  const seed = (hashString(configId) ^ attemptSeed) >>> 0
-  const rand = seededRandom(seed)
-  let grid = makePlayableGrid(N, types, seededRandom(seed), rules)
-  const moveLimit = moveLimitFor(cfg.target, difficulty)
-  let cleared = 0, moves = 0, reshuffles = 0
-  const resolve = (g: number[][]) => {
-    let cur = g
-    for (;;) {
-      const m = findMatches(cur, N, rules)
-      if (!m.size) return cur
-      const copy = cur.map(r => [...r])
-      m.forEach(k => { const [r, c] = k.split(',').map(Number); copy[r][c] = -1 })
-      cur = applyGravity(copy, N, types, rand)
-      cleared += m.size
-    }
-  }
-  while (cleared < cfg.target) {
-    if (moveLimit && moves >= moveLimit) return { won: false, moves, cleared, reshuffles }
-    const swaps = validSwaps(grid, N, rules)
-    if (!swaps.length) { grid = makePlayableGrid(N, types, rand, rules); reshuffles++; continue }
-    let best: number[][] | null = null, bestCount = -1
-    for (const [r, c, r2, c2] of swaps) {
-      const g = grid.map(row => [...row])
-      ;[g[r][c], g[r2][c2]] = [g[r2][c2], g[r][c]]
-      const n = findMatches(g, N, rules).size
-      if (n > bestCount) { bestCount = n; best = g }
-    }
-    moves++
-    grid = resolve(best!)
-    if (!hasValidMove(grid, N, rules)) { grid = makePlayableGrid(N, types, rand, rules); reshuffles++ }
-  }
-  return { won: true, moves, cleared, reshuffles }
-}
+// simulate() is a greedy player driving the component's own engine: each move
+// takes the best-rated legal swap, then cascades, reshuffles and later rounds
+// run on the same seeded rng the component uses.
 
 describe('audit — Match Three', () => {
   const SEEDS = Array.from({ length: 24 }, (_, i) => i + 1)
 
-  it('a dealt board has no ready-made matches and always has a legal swap, for every config', () => {
+  it('a dealt board has no ready-made matches and always has a legal swap, for every config and tier', () => {
     for (const [id, cfg] of Object.entries(MATCH3)) {
-      for (const s of SEEDS) {
-        const grid = makePlayableGrid(cfg.gridSize, cfg.tiles.length, seededRandom((hashString(id) ^ s) >>> 0), cfg.rules)
-        expect(findMatches(grid, cfg.gridSize, cfg.rules).size, `${id} seed ${s} dealt with matches`).toBe(0)
-        expect(hasValidMove(grid, cfg.gridSize, cfg.rules), `${id} seed ${s}`).toBe(true)
+      for (const difficulty of DIFFS) {
+        const level = matchLevel(cfg, difficulty)
+        for (const s of SEEDS) {
+          const { board } = startRound(cfg, level, mulberry32(boardSeed(id, s)))
+          expect(board.n, `${id}@${difficulty}`).toBe(level.n)
+          expect(findRuns(board, cfg.rules).length, `${id}@${difficulty} seed ${s} dealt with matches`).toBe(0)
+          expect(hasValidMove(board, cfg.rules), `${id}@${difficulty} seed ${s}`).toBe(true)
+        }
       }
     }
   })
 
-  it('a greedy player reaches the target within the move limit at every difficulty', () => {
-    for (const [id, cfg] of Object.entries(MATCH3)) {
+  it('a greedy player meets every goal within the move budget at every difficulty', () => {
+    for (const id of Object.keys(MATCH3)) {
       for (const difficulty of DIFFS) {
-        const results = SEEDS.map(s => playMatchThree(id, cfg, difficulty, s))
+        const results = SEEDS.map(s => simulateMatchThree(id, difficulty, s))
         const wins = results.filter(r => r.won).length
-        const avgMoves = results.reduce((s, r) => s + r.moves, 0) / results.length
-        const summary = `${id}@${difficulty}: ${wins}/${SEEDS.length} wins, limit ${moveLimitFor(cfg.target, difficulty)}, avg ${avgMoves.toFixed(1)} moves`
-        // Tier 1 is unlimited and must always finish; tighter tiers must be winnable by plain greedy play most of the time.
+        const L = results[0].level
+        const summary = `${id}@${difficulty}: ${wins}/${SEEDS.length} wins, ${L.rounds}×${L.moves} moves, goal ${L.score} pts / ${L.collect} goods / ${L.crates} crates`
+        // Tier 1 must always finish; harder tiers must be winnable by plain greedy play most of the time.
         const need = difficulty === 1 ? SEEDS.length : Math.ceil(SEEDS.length * 0.75)
         expect(wins, summary).toBeGreaterThanOrEqual(need)
       }
@@ -650,35 +617,81 @@ describe('audit — Match Three', () => {
 
   it('every story challenge (config × difficulty) is winnable by the greedy player', () => {
     for (const [configId, use] of storyUses('matchthree')) {
-      const cfg = MATCH3[configId]
       for (const difficulty of use.difficulties) {
-        const wins = SEEDS.filter(s => playMatchThree(configId, cfg, difficulty, s).won).length
+        const wins = SEEDS.filter(s => simulateMatchThree(configId, difficulty, s).won).length
         expect(wins, `${configId}@${difficulty}`).toBeGreaterThanOrEqual(Math.ceil(SEEDS.length * 0.75))
       }
     }
   })
 
-  it('clearing the target in the component wins exactly once; running out of moves loses once', () => {
+  it('playing the greedy swaps in the component wins exactly once, on the move the engine predicts', () => {
     vi.useFakeTimers()
-    const id = 'lisbon-spices', cfg = MATCH3[id]
+    const id = 'lisbon-spices', difficulty = 3 as Difficulty
+    const seed = SEEDS.find(s => simulateMatchThree(id, difficulty, s).won)!
+    const predicted = simulateMatchThree(id, difficulty, seed)
     const onWin = vi.fn(), onLose = vi.fn()
-    const { container } = render(createElement(MatchThreeGame, { configId: id, difficulty: 4, seed: 2, onWin, onLose }))
-    const N = cfg.gridSize
-    // Replay the greedy player's swaps against the live grid read from the DOM labels.
-    const readGrid = () => {
-      const cells = [...container.querySelectorAll('div.grid > button')]
-      return Array.from({ length: N }, (_, r) => Array.from({ length: N }, (_, c) => cfg.tiles.findIndex(t => t.label === cells[r * N + c].textContent)))
+    const { container } = render(createElement(MatchThreeGame, { configId: id, difficulty, seed, onWin, onLose }))
+    const cells = () => [...container.querySelectorAll<HTMLButtonElement>('[data-cell]')]
+    const readBoard = (): MatchBoard => {
+      const els = cells()
+      const n = Math.round(Math.sqrt(els.length))
+      return { n, nextId: 0, cells: els.map(e => ({ id: 0, t: Number(e.dataset.t), sp: (e.dataset.sp || undefined) as never })) }
     }
-    const click = (r: number, c: number) => fireEvent.click(container.querySelectorAll('div.grid > button')[r * N + c])
-    for (let guard = 0; guard < 40 && !onWin.mock.calls.length && !onLose.mock.calls.length; guard++) {
-      const grid = readGrid()
-      const swaps = validSwaps(grid, N, cfg.rules)
-      expect(swaps.length, `move ${guard}: board has a legal swap`).toBeGreaterThan(0)
-      const [r, c, r2, c2] = swaps[0]
-      click(r, c); click(r2, c2)
-      act(() => { vi.advanceTimersByTime(5000) })
+    const collectLabel = () => container.querySelector('[data-testid="m3-board"]')?.getAttribute('data-collect')
+    let moves = 0
+    for (let guard = 0; guard < 200 && !onWin.mock.calls.length && !onLose.mock.calls.length; guard++) {
+      const board = readBoard()
+      const pick = bestSwap(board, MATCH3[id].rules ?? {}, Number(collectLabel()))
+      expect(pick, `move ${guard}: board has a legal swap`).not.toBeNull()
+      const byCell = (i: number) => cells().find(e => Number(e.dataset.cell) === i)!
+      fireEvent.click(byCell(pick![0])); fireEvent.click(byCell(pick![1]))
+      moves++
+      act(() => { vi.advanceTimersByTime(30000) })
+      act(() => { vi.advanceTimersByTime(1000) }) // the outcome hook arms its report timer on the render after win()/lose()
     }
-    expect(onWin.mock.calls.length + onLose.mock.calls.length).toBe(1)
+    expect(onWin).toHaveBeenCalledTimes(1)
+    expect(onLose).not.toHaveBeenCalled()
+    expect(moves).toBe(predicted.moves)
+  })
+
+  it('running out of moves in the component loses exactly once', () => {
+    vi.useFakeTimers()
+    const id = 'lisbon-spices', difficulty = 4 as Difficulty, rules = MATCH3[id].rules ?? {}
+    // A careless player: always the first legal swap in reading order.
+    const careless = (seed: number) => {
+      const cfg = MATCH3[id], level = matchLevel(cfg, difficulty)
+      const rand = mulberry32(boardSeed(id, seed))
+      let nextId = 1
+      for (let round = 0; round < level.rounds; round++) {
+        const st = startRound(cfg, level, rand, nextId)
+        let b = st.board
+        const p = { score: 0, collected: 0, crates: b.cells.filter(c => c?.t === -2).length }
+        for (let moves = 0; !goalsMet(level, p); moves++) {
+          if (moves >= level.moves) return false
+          const [i, j] = validSwaps(b, rules)[0]
+          const r = playMove(b, i, j, rules, cfg.tiles.length, rand)
+          p.score += r.points; p.collected += r.collected[st.collectT]; p.crates -= r.cratesBroken; b = r.board
+        }
+        nextId = b.nextId
+      }
+      return true
+    }
+    const seed = SEEDS.find(s => !careless(s))
+    expect(seed, 'careless play loses on some seed').toBeDefined()
+    const onWin = vi.fn(), onLose = vi.fn()
+    const { container } = render(createElement(MatchThreeGame, { configId: id, difficulty, seed: seed!, onWin, onLose }))
+    for (let guard = 0; guard < 200 && !onWin.mock.calls.length && !onLose.mock.calls.length; guard++) {
+      const els = [...container.querySelectorAll<HTMLButtonElement>('[data-cell]')]
+      const n = Math.round(Math.sqrt(els.length))
+      const board: MatchBoard = { n, nextId: 0, cells: els.map(e => ({ id: 0, t: Number(e.dataset.t), sp: (e.dataset.sp || undefined) as never })) }
+      const [i, j] = validSwaps(board, rules)[0]
+      const byCell = (k: number) => els.find(e => Number(e.dataset.cell) === k)!
+      fireEvent.click(byCell(i)); fireEvent.click(byCell(j))
+      act(() => { vi.advanceTimersByTime(30000) })
+      act(() => { vi.advanceTimersByTime(1000) }) // the outcome hook arms its report timer on the render after win()/lose()
+    }
+    expect(onLose).toHaveBeenCalledTimes(1)
+    expect(onWin).not.toHaveBeenCalled()
   })
 })
 
