@@ -7,11 +7,20 @@ export interface StoryProgress {
   completedAt?: string
 }
 
+export interface ArcadeProgress {
+  /** Number of levels cleared from the bottom of the track. */
+  cleared: number
+  /** Best stars (1–3) per level index; 0 = not cleared. */
+  stars: number[]
+}
+
 export interface ProgressDoc {
   version: 1
   updatedAt: string | null
   stories: Record<string, StoryProgress>
   unlockedCards: string[]
+  /** Arcade ladders: levels cleared per game type and the stars earned on each. */
+  arcade?: Record<string, ArcadeProgress>
 }
 
 export const progressApi = {
