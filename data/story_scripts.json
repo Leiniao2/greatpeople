@@ -1193,7 +1193,7 @@
         "type": "dialog",
         "speaker": "Euclid",
         "portraitKey": "euclid",
-        "text": "Anaxagoras and Zeno of Elea hold Carthage together, and a follower stands with them. One card alone will not move them. Bring Chanakya with me, add both followers, and strike twice."
+        "text": "Anaxagoras and Aspasia hold Carthage together, and a follower stands with them. One card alone will not move them. Bring Chanakya with me, add both followers, and strike twice."
       },
       {
         "type": "challenge",
@@ -1797,7 +1797,7 @@
         "type": "dialog",
         "speaker": "Chanakya",
         "portraitKey": "chanakya",
-        "text": "Euclid and Zeno of Elea hold Rome together, and a follower stands with them. One card alone will not move them. Bring Anaxagoras with me, add both followers, and strike twice."
+        "text": "Euclid and Aspasia hold Rome together, and a follower stands with them. One card alone will not move them. Bring Anaxagoras with me, add both followers, and strike twice."
       },
       {
         "type": "challenge",
