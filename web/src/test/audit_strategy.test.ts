@@ -10,7 +10,7 @@ import storyChallenges from '@/data/story_challenges.json'
 import { CONFIGS as CARAVAN, caravanPlan } from '@/components/minigames/CaravanGame'
 import { CONFIGS as EXPEDITION, expeditionBudgets } from '@/components/minigames/ExpeditionGame'
 import { CONFIGS as SIEGE, siegeTiers, siegeTick, spawnWave, bfsPath, WALL_COST, TOWER_COST, type Cell, type Attacker } from '@/components/minigames/SiegeGame'
-import { CONFIGS as TACTICS, isLegalMove, type Piece } from '@/components/minigames/TacticsGame'
+import { CONFIGS as TACTICS, boardFrom as tacticsBoard, legalMoves as tacticsLegalMoves, makeCampaign as tacticsCampaign, mateMove as tacticsMateMove, judgeMove as tacticsJudge, bestReply as tacticsReply, makeMove as tacticsMakeMove, type Piece } from '@/components/minigames/TacticsGame'
 import { makeInitialBoard, getValidMoves, applyMove, countPieces, cpuPickMove, type Board, type Move } from '@/components/minigames/WargameGame'
 import { CONFIGS as ARENA, EFF, DMG_TABLE } from '@/components/minigames/BattleArenaGame'
 import { CONFIGS as DEPLOY, SPECS, spawnEnemies, battleStep } from '@/components/minigames/WeaponDeployGame'
@@ -248,8 +248,12 @@ describe('Siege: every wave is survivable with the per-wave budget', () => {
 })
 
 // ── Tactics ───────────────────────────────────────────────────────────────────
-// A tiny engine: the designated move must be mate (or capture the king), and
-// no other legal move may be, otherwise a correct player is punished.
+// An independent mini-engine double-checks the historical openers: the book
+// move is legal in the game's own generator and is mate by these rules, and
+// no opener starts with the black king already in check.  The game accepts
+// any mating move (judged by search), so other mates are allowed.  Then every
+// campaign the story data plays is driven to checkmate against Black's most
+// stubborn replies.
 
 type Grid = Piece[][]
 function tacticsGrid(configId: string): Grid {
@@ -318,6 +322,11 @@ function blackGuards(g: Grid, tr: number, tc: number): boolean {
   }
   return false
 }
+function isLegalMove(g: Grid, from: [number, number], to: [number, number]): boolean {
+  const b = tacticsBoard(g.length, g[0].length, g.flatMap((row, r) => row.map((piece, col) => ({ piece, row: r, col }))))
+  const cols = g[0].length
+  return tacticsLegalMoves(b, 'W', from[0] * cols + from[1]).some(m => m.to === to[0] * cols + to[1])
+}
 function classifyWhiteMoves(g: Grid) {
   const mates: string[] = [], kingCaptures: string[] = []
   for (let r = 0; r < g.length; r++) for (let c = 0; c < g[0].length; c++) {
@@ -336,21 +345,42 @@ function classifyWhiteMoves(g: Grid) {
   return { mates, kingCaptures }
 }
 
-describe('Tactics: the designated move is the unique win', () => {
+describe('Tactics: the book move of each opener is a real mate', () => {
   for (const configId of Object.keys(TACTICS)) {
     it(configId, () => {
       const cfg = TACTICS[configId]
       const g = tacticsGrid(configId)
       const want = `${g[cfg.winFrom[0]][cfg.winFrom[1]]} ${cfg.winFrom[0]},${cfg.winFrom[1]}->${cfg.winTo[0]},${cfg.winTo[1]}`
+      const [kr, kc] = findBK(g)
+      expect(whiteAttacks(g, kr, kc), 'the black king must not start in check').toBe(false)
       const { mates, kingCaptures } = classifyWhiteMoves(g)
-      console.log(`tactics ${configId}: want ${want}; mates [${mates}] king-captures [${kingCaptures}]`)
+      console.log(`tactics ${configId}: want ${want}; mates [${mates}]`)
       expect(isLegalMove(g, cfg.winFrom, cfg.winTo), 'designated move must be legal').toBe(true)
-      const winning = [...mates, ...kingCaptures]
-      expect(winning, 'designated move must win').toContain(want)
-      expect(winning, 'no other move may also win').toEqual([want])
-      // A position where the king is already en prise is only fair if taking it IS the puzzle.
-      if (kingCaptures.length) expect(kingCaptures).toEqual([want])
+      expect(mates, 'designated move must mate').toContain(want)
+      expect(kingCaptures).toEqual([])
     })
+  }
+})
+
+describe('Tactics: every campaign the story plays can be won', () => {
+  for (const { configId, difficulty } of new Map(storyUses('tactics').map(u => [`${u.configId}:${u.difficulty}`, u])).values()) {
+    it(`${configId} d${difficulty}`, () => {
+      for (let seed = 0; seed < 8; seed++) {
+        for (const st of tacticsCampaign(configId, TACTICS[configId], difficulty, seed * 104729 + 3)) {
+          let b = st.board, mated = false
+          for (let left = st.depth; left > 0 && !mated; left--) {
+            const m = tacticsMateMove(b, left)
+            expect(m, `${configId} d${difficulty} seed ${seed} ${st.name}`).not.toBeNull()
+            const v = tacticsJudge(b, m!, left)
+            if (v === 'mate') { mated = true; break }
+            expect(v).toBe('good')
+            const nb = tacticsMakeMove(b, m!)
+            b = tacticsMakeMove(nb, tacticsReply(nb, left - 1)!)
+          }
+          expect(mated, `${configId} d${difficulty} seed ${seed} ${st.name}`).toBe(true)
+        }
+      }
+    }, 120_000)
   }
 })
 

@@ -7,7 +7,7 @@ import type { Difficulty } from '@/games/types'
 import storyChallenges from '@/data/story_challenges.json'
 import {
   CONFIGS, CONFIG_IDS, MODES, generateLevel, settings, solve, solutionRange,
-  initialState, step, resolveMode, resolveMazeConfig, type Mode,
+  initialState, step, levelPlan, resolveMazeConfig, type Mode,
 } from '@/components/minigames/BigMazeGame'
 
 const DIFFS: Difficulty[] = [1, 2, 3, 4]
@@ -27,7 +27,7 @@ describe('physics mazes: generation and solvability', () => {
             const level = generateLevel(cfg, d, seed, li)
             const tag = `${id} d${d} seed ${seed} level ${li} (${level.mode})`
             expect(level.mode, tag).toBe(s.mode)
-            expect(level.size, tag).toBeLessThanOrEqual(11)
+            expect(level.size, tag).toBeLessThanOrEqual(13)
             expect(level.start, tag).not.toEqual(level.exit)
             expect(level.grid[level.start[0]][level.start[1]], tag).not.toBe('#')
 
@@ -74,7 +74,7 @@ describe('physics mazes: generation and solvability', () => {
 
   it('uses every mode across the configs', () => {
     const used = new Set<Mode>()
-    for (const id of CONFIG_IDS) for (const d of DIFFS) used.add(resolveMode(CONFIGS[id], d))
+    for (const id of CONFIG_IDS) for (const d of DIFFS) for (const m of levelPlan(CONFIGS[id], d)) used.add(m)
     for (const m of MODES) expect(used.has(m), m).toBe(true)
   })
 

@@ -20,6 +20,9 @@ export default defineConfig({
     environment: 'jsdom',
     globals: true,
     setupFiles: ['./src/test/setup.ts'],
+    // Several minigame audits play whole games for every config, difficulty
+    // and many seeds; under a full parallel run they can pass 5 s.
+    testTimeout: 20_000,
     coverage: { provider: 'v8', reporter: ['text', 'lcov'] },
   },
 })

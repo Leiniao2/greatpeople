@@ -6,7 +6,7 @@ import { render, screen, act, fireEvent, cleanup, within } from '@testing-librar
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import storyChallenges from '@/data/story_challenges.json'
 import type { Challenge, Difficulty, MinigameChallenge, MinigameComponent } from '@/games/types'
-import { mulberry32, resolveConfig } from '@/components/minigames/_shared'
+import { resolveConfig } from '@/components/minigames/_shared'
 
 import ColorMixGame, { CONFIGS as COLORMIX, mixRGB, colourDist } from '@/components/minigames/ColorMixGame'
 import PaintingGame, { CONFIGS as PAINTING } from '@/components/minigames/PaintingGame'
@@ -14,8 +14,8 @@ import PorcelainGame, { CONFIGS as PORCELAIN, ELEMENT_COLORS, FIRED_HINT } from 
 import CookingGame, { CONFIGS as COOKING } from '@/components/minigames/CookingGame'
 import MusicGame, { CONFIGS as MUSIC } from '@/components/minigames/MusicGame'
 import ComposeMusicGame, { CONFIGS as COMPOSE } from '@/components/minigames/ComposeMusicGame'
-import RhythmGame, { CONFIGS as RHYTHM } from '@/components/minigames/RhythmGame'
-import TypesetGame, { CONFIGS as TYPESET, MIRROR, pickLine, settableLine } from '@/components/minigames/TypesetGame'
+import RhythmGame, { CONFIGS as RHYTHM, buildChart, LANE_KEYS, LEAD_IN_MS } from '@/components/minigames/RhythmGame'
+import TypesetGame, { CONFIGS as TYPESET, buildForme, quadSupply, quadUnits, typesetRules, lettersIn, settableLine } from '@/components/minigames/TypesetGame'
 import ArchBuildGame, { CONFIGS as ARCH, isBuildable } from '@/components/minigames/ArchBuildGame'
 
 const DIFFS: Difficulty[] = [1, 2, 3, 4]
@@ -148,14 +148,21 @@ describe('Compose: movements have unique ids', () => {
   })
 })
 
-describe('Rhythm: pads and tones line up', () => {
+describe('Rhythm: every melody charts onto the lanes', () => {
   for (const [id, cfg] of Object.entries(RHYTHM)) {
     it(id, () => {
-      expect(cfg.pads.length).toBeGreaterThanOrEqual(4)
-      if (cfg.tones) expect(cfg.tones.length).toBe(cfg.pads.length)
+      expect(cfg.melody.filter(([f]) => f > 0).length, `${id} notes`).toBeGreaterThanOrEqual(8)
+      expect(cfg.laneNames.length).toBeGreaterThanOrEqual(5)
+      for (const d of DIFFS) {
+        const chart = buildChart(cfg, d, 1)
+        expect(chart.lanes).toBeGreaterThanOrEqual(3)
+        expect(chart.lanes).toBeLessThanOrEqual(5)
+        expect(chart.notes.length, `${id}@${d}`).toBeGreaterThanOrEqual(20)
+        expect(new Set(chart.notes.map(n => n.lane)).size, `${id}@${d} uses every lane`).toBe(chart.lanes)
+      }
     })
   }
-  it('story params only override title/intro, never pads', () => {
+  it('story params only override title/intro, never the melody', () => {
     for (const ch of storyUses('rhythm')) {
       expect(RHYTHM[ch.configId!], ch.id).toBeDefined()
       const keys = Object.keys(ch.params ?? {})
@@ -164,33 +171,47 @@ describe('Rhythm: pads and tones line up', () => {
   })
 })
 
-describe('Typeset: every line the player is asked to set can be set', () => {
+describe('Typeset: every forme the player is asked to compose can be set and justified', () => {
   const base = TYPESET['gutenberg-bible']
+  const checkForme = (label: string, cfg: { lines: string[] }, d: Difficulty, fallback = base) => {
+    const { lines, measure } = buildForme(cfg, d, fallback)
+    expect(lines.length, label).toBeGreaterThan(0)
+    expect(lines.length, label).toBeLessThanOrEqual(typesetRules(d).lines)
+    for (const l of lines) {
+      expect(l, label).toMatch(/^[A-Z][A-Z ]*$/)
+      expect(l.length, `${label} '${l}' overruns the measure`).toBeLessThanOrEqual(measure)
+    }
+    const letters = lines.reduce((n, l) => n + lettersIn(l), 0)
+    expect(letters, `${label} too long for the ink/time budget`).toBeLessThanOrEqual(typesetRules(d).letterCap)
+    // The lower case holds enough quads to justify every line the thrifty way.
+    const supply = quadSupply(lines, measure, d)
+    if (d >= 2) {
+      const units = lines.map(l => quadUnits(l, measure))
+      expect(supply.em, label).toBeGreaterThanOrEqual(units.reduce((n, u) => n + Math.floor(u / 2), 0))
+      expect(supply.en, label).toBeGreaterThanOrEqual(units.filter(u => u % 2).length)
+    }
+    return lines
+  }
   for (const [id, cfg] of Object.entries(TYPESET)) {
     it(`${id} built-in lines`, () => {
       expect(cfg.lines.length).toBe(4)
       for (const d of DIFFS) {
-        const line = pickLine(cfg, d, base)
-        expect(line.length).toBeGreaterThan(0)
-        for (const ch of line) if (ch !== ' ') expect(MIRROR[ch], `${id} '${ch}'`).toBeDefined()
+        const lines = checkForme(`${id}@${d}`, cfg, d)
+        expect(lines.length, `${id}@${d} line count`).toBeGreaterThanOrEqual(Math.min(d, 3))
       }
     })
   }
 
-  it('every story challenge yields a non-empty settable line of ≤ 24 letters', () => {
+  it('every story challenge yields a settable forme at its difficulty and every other', () => {
     for (const ch of storyUses('typeset')) {
       const cfg = resolveConfig(TYPESET, ch.configId, ch.params, 'gutenberg-bible')
-      const line = pickLine(cfg, ch.difficulty ?? 1, TYPESET[ch.configId!] ?? base)
-      expect(line, ch.id).toMatch(/^[A-Z][A-Z ]*$/)
-      const letters = line.replace(/ /g, '').length
-      expect(letters, `${ch.id} letters`).toBeGreaterThan(0)
-      expect(letters, `${ch.id} too long for the ink/time budget`).toBeLessThanOrEqual(24)
+      for (const d of DIFFS) checkForme(`${ch.id}@${d}`, cfg, d, TYPESET[ch.configId!] ?? base)
     }
   })
 
   it('empty or punctuated story lines fall back to something settable', () => {
-    expect(pickLine({ ...base, lines: ['', '', '', ''] }, 1, base)).toBe('IN PRINCIPIO')
-    expect(pickLine({ ...base, lines: ['', 'ONLY THIS', '', ''] }, 4, base)).toBe('ONLY THIS')
+    expect(buildForme({ lines: ['', '', '', ''] }, 1, base).lines).toEqual(['IN PRINCIPIO'])
+    expect(buildForme({ lines: ['', 'ONLY THIS', '', ''] }, 4, base).lines.join(' ')).toBe('ONLY THIS')
     expect(settableLine("Poor Richard's 1733")).toBe('POOR RICHARD S')
   })
 })
@@ -422,88 +443,119 @@ describe('Compose', () => {
 })
 
 describe('Rhythm', () => {
-  const playThrough = (id: string, d: Difficulty, seed: number, wrongAt?: number) => {
-    const cfg = RHYTHM[id]
-    const rounds = [4, 6, 7, 8][d - 1]
-    const padCount = Math.min(cfg.pads.length, [4, 5, 6, 6][d - 1])
-    const rng = mulberry32(seed)
-    const sequence = Array.from({ length: rounds + 2 }, () => Math.floor(rng() * padCount))
+  // Play the chart by keyboard, each note exactly on its time (or skip some).
+  const playThrough = (id: string, d: Difficulty, seed: number, skip: (i: number) => boolean = () => false) => {
+    const chart = buildChart(RHYTHM[id], d, seed)
     const h = mount(RhythmGame, id, d, seed)
-    const pads = () => screen.getAllByRole('button').slice(0, padCount)
-    for (let round = 1; round <= rounds; round++) {
-      tick(400 + round * 600 + 300)       // listen phase at the slowest tempo
-      expect(screen.getByText(/Your turn/)).toBeInTheDocument()
-      for (let i = 0; i < round; i++) {
-        const want = round === wrongAt && i === 0 ? (sequence[i] + 1) % padCount : sequence[i]
-        fireEvent.pointerDown(pads()[want])
-        if (round === wrongAt && i === 0) return h
-      }
-      tick(800)
-    }
+    fireEvent.click(screen.getByRole('button', { name: /Strike up/ }))
+    let elapsed = 0
+    chart.notes.forEach((n, i) => {
+      const at = LEAD_IN_MS + n.t
+      tick(at - elapsed); elapsed = at
+      if (!skip(i)) fireEvent.keyDown(window, { key: LANE_KEYS[n.lane] })
+    })
+    tick(1500)
     return h
   }
   for (const id of Object.keys(RHYTHM)) {
-    it(`${id}@4 is won by echoing the phrase, once`, () => {
+    it(`${id}@4 is won by hitting every note on time, once`, () => {
       const h = playThrough(id, 4, 11)
-      tick(1500)
       expect(h.onWin).toHaveBeenCalledTimes(1)
       expect(h.onLose).not.toHaveBeenCalled()
     })
   }
   it('bach-fugue@1 is won at the easiest tier too', () => {
     const h = playThrough('bach-fugue', 1, 3)
-    tick(1500)
     expect(h.onWin).toHaveBeenCalledTimes(1)
   })
-  it('loses at difficulty 4 on the first miss', () => {
-    const h = playThrough('court-drums', 4, 5, 2)
-    tick(1500)
+  it('loses at difficulty 4 after four dropped notes', () => {
+    const h = playThrough('court-drums', 4, 5, i => i % 3 === 0)
+    expect(h.onLose).toHaveBeenCalledTimes(1)
+    expect(h.onWin).not.toHaveBeenCalled()
+  })
+  it('loses when nobody plays', () => {
+    const h = mount(RhythmGame, 'hildegard-chant', 1, 2)
+    fireEvent.click(screen.getByRole('button', { name: /Strike up/ }))
+    tick(120_000); tick(1500)
     expect(h.onLose).toHaveBeenCalledTimes(1)
     expect(h.onWin).not.toHaveBeenCalled()
   })
 })
 
 describe('Typeset', () => {
-  const setLine = (line: string) => {
-    for (const ch of line) {
-      if (ch === ' ') continue
-      const glyph = MIRROR[ch]
-      const btn = screen.getAllByRole('button').find(b => b.textContent === glyph && !b.hasAttribute('disabled'))!
-      expect(btn, `no free sort for '${ch}'`).toBeDefined()
-      fireEvent.click(btn)
+  // Compose every line from the case, quad it out, ink the forme and pull.
+  const printForme = (lines: string[], measure: number, d: Difficulty) => {
+    for (const line of lines) {
+      for (const ch of line) {
+        if (ch === ' ') continue
+        const btn = screen.getByLabelText(`sort ${ch}`)
+        expect(btn, `no free sort for '${ch}'`).not.toBeDisabled()
+        fireEvent.click(btn)
+      }
+      if (d >= 2) {
+        let u = quadUnits(line, measure)
+        while (u >= 2) { fireEvent.click(screen.getByLabelText('em quad')); u -= 2 }
+        if (u) fireEvent.click(screen.getByLabelText('en quad'))
+      }
     }
+    for (const cell of screen.getAllByTestId('ink-cell')) fireEvent.pointerDown(cell)
+    fireEvent.click(screen.getByRole('button', { name: /Pull the bar/ }))
+    // Platen down, sheet lifted, outcome reported: each step is armed by the last.
+    tick(800); tick(1200); tick(1000)
   }
   for (const id of Object.keys(TYPESET)) {
-    it(`${id}@4 is set from the case, once`, () => {
-      const line = pickLine(TYPESET[id], 4, TYPESET['gutenberg-bible'])
-      const h = mount(TypesetGame, id, 4)
-      setLine(line)
-      tick(1500)
-      expect(h.onWin).toHaveBeenCalledTimes(1)
-      expect(h.onLose).not.toHaveBeenCalled()
-    })
+    for (const d of DIFFS) {
+      it(`${id}@${d} is composed, inked and printed, once`, () => {
+        const { lines, measure } = buildForme(TYPESET[id], d)
+        const h = mount(TypesetGame, id, d)
+        printForme(lines, measure, d)
+        expect(screen.getByLabelText('printed sheet')).toBeInTheDocument()
+        expect(h.onWin).toHaveBeenCalledTimes(1)
+        expect(h.onLose).not.toHaveBeenCalled()
+        tick(300_000)
+        expect(h.onLose).not.toHaveBeenCalled()
+      })
+    }
   }
-  it('story challenge with empty lines (tea-ceremony) still has a line to set', () => {
+  it('story challenge with empty lines (tea-ceremony) still has a forme to set', () => {
     const ch = storyUses('typeset').find(c => c.id === 'tea-ceremony:0')!
+    const { lines, measure } = buildForme(resolveConfig(TYPESET, ch.configId, ch.params, 'gutenberg-bible'), ch.difficulty!, TYPESET[ch.configId!])
+    expect(lines).toEqual(['MOVABLE TYPE'])
     const h = mount(TypesetGame, ch.configId!, ch.difficulty!, 1, ch.params)
-    const line = pickLine(resolveConfig(TYPESET, ch.configId, ch.params, 'gutenberg-bible'), ch.difficulty!, TYPESET[ch.configId!])
-    expect(line).toBe('MOVABLE TYPE')
-    setLine(line)
-    tick(1500)
+    printForme(lines, measure, ch.difficulty!)
     expect(h.onWin).toHaveBeenCalledTimes(1)
   })
+  it('the press will not pull an under-inked forme', () => {
+    const { lines, measure } = buildForme(TYPESET['bi-sheng-clay'], 1)
+    const h = mount(TypesetGame, 'bi-sheng-clay', 1)
+    for (const ch of lines[0]) if (ch !== ' ') fireEvent.click(screen.getByLabelText(`sort ${ch}`))
+    void measure
+    fireEvent.pointerDown(screen.getAllByTestId('ink-cell')[0])
+    expect(screen.getByRole('button', { name: /to pull/ })).toBeDisabled()
+    tick(3000)
+    expect(h.onWin).not.toHaveBeenCalled()
+  })
   it('loses when the ink runs out at difficulty 4', () => {
-    const line = pickLine(TYPESET['franklin-gazette'], 4, TYPESET['gutenberg-bible'])
+    const { lines } = buildForme(TYPESET['franklin-gazette'], 4)
     const h = mount(TypesetGame, 'franklin-gazette', 4)
-    const first = line[0]
-    for (let i = 0; i < 2; i++) {
-      const wrong = screen.getAllByRole('button').find(b => b.textContent && b.textContent !== MIRROR[first] && b.textContent.length === 1 && !b.hasAttribute('disabled'))!
-      fireEvent.click(wrong)
-      tick(500)
-    }
+    const wrong = lines[0][0] === 'Q' ? 'X' : 'Q'
+    for (let i = 0; i < 3; i++) { fireEvent.click(screen.getByLabelText(`sort ${wrong}`)); tick(500) }
     tick(1500)
     expect(h.onLose).toHaveBeenCalledTimes(1)
     expect(h.onWin).not.toHaveBeenCalled()
+  })
+  it('an overflowing quad or a lowercase sort spoils ink', () => {
+    const { lines, measure } = buildForme(TYPESET['gutenberg-bible'], 3)
+    mount(TypesetGame, 'gutenberg-bible', 3)
+    fireEvent.click(screen.getAllByLabelText(/^lowercase sort/)[0])
+    expect(screen.getByLabelText('ink left').textContent).toContain('●●●○')
+    for (const ch of lines[0]) if (ch !== ' ') fireEvent.click(screen.getByLabelText(`sort ${ch}`))
+    let u = quadUnits(lines[0], measure)
+    while (u >= 2) { fireEvent.click(screen.getByLabelText('em quad')); u -= 2 }
+    if (u === 1) {
+      fireEvent.click(screen.getByLabelText('em quad'))      // will not fit in one en
+      expect(screen.getByLabelText('ink left').textContent).toContain('●●○○')
+    }
   })
 })
 
