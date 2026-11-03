@@ -90,6 +90,27 @@ export const GAMES = {
   rollcall:     def('Roll Call',     'Strategy', () => import('@/components/minigames/RollCallGame'), true),
   coalition:    def('Coalition',     'Strategy', () => import('@/components/minigames/CoalitionGame'), true),
   campaign:     def('Campaign Trail','Strategy', () => import('@/components/minigames/CampaignGame'), true),
+  // ── Wave 1 of the new game types (docs/game-catalog.md)
+  sokoban:      def('Stone Haulers',     'Puzzle',   () => import('@/components/minigames/SokobanGame'), true),
+  snake:        def('Caravan Trail',     'Explore',  () => import('@/components/minigames/SnakeGame'), true),
+  tradeboard:   def('Merchant Board',    'Strategy', () => import('@/components/minigames/TradeBoardGame'), true),
+  ferry:        def('River Crossing',    'Puzzle',   () => import('@/components/minigames/FerryGame'), true),
+  hanoi:        def('Temple Disks',      'Puzzle',   () => import('@/components/minigames/HanoiGame'), true),
+  tangram:      def('Tangram',           'Puzzle',   () => import('@/components/minigames/TangramGame'), true),
+  nonogram:     def('Picture Logic',     'Puzzle',   () => import('@/components/minigames/NonogramGame'), true),
+  sapper:       def('Sapper',            'Puzzle',   () => import('@/components/minigames/SapperGame'), true),
+  lamplighter:  def('Lamplighter',       'Puzzle',   () => import('@/components/minigames/LamplighterGame'), true),
+  magicsquare:  def('Lo Shu',            'Puzzle',   () => import('@/components/minigames/MagicSquareGame'), true),
+  pairs:        def('Archive Pairs',     'Puzzle',   () => import('@/components/minigames/PairsGame'), true),
+  mint:         def('Coin Mint',         'Puzzle',   () => import('@/components/minigames/MintGame'), true),
+  knightstour:  def("Knight's Tour",     'Puzzle',   () => import('@/components/minigames/KnightsTourGame'), true),
+  queens:       def('Eight Queens',      'Puzzle',   () => import('@/components/minigames/QueensGame'), true),
+  tafl:         def('Hnefatafl',         'Strategy', () => import('@/components/minigames/TaflGame'), true),
+  morris:       def("Nine Men's Morris", 'Strategy', () => import('@/components/minigames/MorrisGame'), true),
+  mancala:      def('Oware',             'Strategy', () => import('@/components/minigames/MancalaGame'), true),
+  gomoku:       def('Five in a Row',     'Strategy', () => import('@/components/minigames/GomokuGame'), true),
+  senet:        def('Senet',             'Strategy', () => import('@/components/minigames/SenetGame'), true),
+  royalur:      def('Royal Game of Ur',  'Strategy', () => import('@/components/minigames/RoyalUrGame'), true),
 } satisfies Record<string, GameDef>
 
 export type GameKey = keyof typeof GAMES
