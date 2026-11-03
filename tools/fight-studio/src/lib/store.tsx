@@ -1,5 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
-import type { EngineJob, FileContents, FileKey, FileMeta } from '../types'
+import type { CommitResult, EngineJob, EngineMode, FileContents, FileKey, FileMeta } from '../types'
 import { buildChangeReport } from './changes'
 
 interface ServerFile { key: FileKey; path: string; kind: 'json' | 'md'; content: unknown }
@@ -26,14 +26,35 @@ interface StoreValue {
   setApplyToEngine: (v: boolean) => void
   /** Preview of the report that saveAll would send right now. */
   pendingReport: { report: string; behavioural: boolean }
+  /** Commit saved files (and engine jobs) automatically. */
+  autoCommit: boolean
+  setAutoCommit: (v: boolean) => void
+  /** preview: engine changes wait for approval; apply: they land in the repo directly. */
+  engineMode: EngineMode
+  setEngineMode: (v: EngineMode) => void
+  branch: string
   jobs: EngineJob[]
   runJob: (report: string, instruction: string) => Promise<EngineJob>
   revertJob: (id: string) => Promise<void>
+  jobAction: (id: string, action: 'approve' | 'discard' | 'commit') => Promise<void>
 }
 
 const Ctx = createContext<StoreValue | null>(null)
 
 const KEYS: FileKey[] = ['cards', 'followers', 'locationCards', 'locations', 'rules', 'fightMd', 'traitIdeaMd', 'cardMd']
+
+function usePref<T extends string>(key: string, fallback: T, allowed: readonly T[]): [T, (v: T) => void] {
+  const [v, setV] = useState<T>(() => {
+    try { const s = localStorage.getItem(key) as T | null; return s && allowed.includes(s) ? s : fallback } catch { return fallback }
+  })
+  const set = useCallback((next: T) => { setV(next); try { localStorage.setItem(key, next) } catch { /* ignore */ } }, [key])
+  return [v, set]
+}
+
+function commitSubject(keys: FileKey[], meta: Record<FileKey, FileMeta>): string {
+  const names = keys.map(k => meta[k].path.split('/').pop())
+  return `Fight Studio: edit ${names.join(', ')}`
+}
 
 function stable(v: unknown): string {
   return typeof v === 'string' ? v : JSON.stringify(v)
@@ -57,6 +78,11 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const [applyToEngine, setApplyToEngine] = useState<boolean>(() => {
     try { return localStorage.getItem('fs.applyToEngine') !== 'off' } catch { return true }
   })
+  const [commitPref, setCommitPref] = usePref('fs.autoCommit', 'on', ['on', 'off'] as const)
+  const [engineMode, setEngineMode] = usePref<EngineMode>('fs.engineMode', 'preview', ['preview', 'apply'] as const)
+  const autoCommit = commitPref === 'on'
+  const setAutoCommit = useCallback((v: boolean) => setCommitPref(v ? 'on' : 'off'), [setCommitPref])
+  const [branch, setBranch] = useState('')
   const [jobs, setJobs] = useState<EngineJob[]>([])
   const dataRef = useRef<FileContents | null>(null)
   const savedRef = useRef<FileContents | null>(null)
@@ -65,7 +91,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
 
   const reload = useCallback(async () => {
     try {
-      const json = await api<{ root: string; files: Record<FileKey, ServerFile>; gitStatus: string }>('/api/files')
+      const json = await api<{ root: string; files: Record<FileKey, ServerFile>; gitStatus: string; branch: string }>('/api/files')
       const contents = {} as FileContents
       const m = {} as Record<FileKey, FileMeta>
       for (const k of KEYS) {
@@ -77,6 +103,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       setMeta(m)
       setRoot(json.root)
       setGitStatus(json.gitStatus)
+      setBranch(json.branch)
       setError(null)
     } catch (e) {
       setError(e instanceof Error ? e.message : String(e))
@@ -104,7 +131,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       const d = dataRef.current, s = savedRef.current
       const clean = !!d && !!s && KEYS.every(k => stable(d[k]) === stable(s[k]))
       if (clean) void reload()
-      setNotice('Engine job finished — see the Engine tab.')
+      setNotice('Engine job finished — see the Engine sync tab.')
     }
     prevRunning.current = anyRunning
   }, [anyRunning, reload])
@@ -126,8 +153,9 @@ export function StoreProvider({ children }: { children: ReactNode }) {
         method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ content: d[key] }),
       })
       setSaved(s => (s ? { ...s, [key]: structuredClone(d[key]) } : s))
-      const gs = await api<{ gitStatus: string }>('/api/git-status')
+      const gs = await api<{ gitStatus: string; branch: string }>('/api/git-status')
       setGitStatus(gs.gitStatus)
+      setBranch(gs.branch)
       if (r.sync) setNotice(r.sync.ok ? `Saved ${r.path} and synced platform copies (web dev server reloads).` : `Saved ${r.path}; sync failed: ${r.sync.output}`)
       else setNotice(`Saved ${r.path}.`)
     } finally {
@@ -144,33 +172,74 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const pendingReport = useMemo(() => (data && saved ? buildChangeReport(saved, data) : { report: '', behavioural: false }), [data, saved])
 
   const runJob = useCallback(async (report: string, instruction: string) => {
-    const job = await api<EngineJob>('/api/apply', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ report, instruction }) })
+    const job = await api<EngineJob>('/api/apply', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ report, instruction, mode: engineMode, autoCommit }) })
     setJobs(js => [job, ...js])
-    setNotice('Engine job started — Claude Code is updating the engine. Follow it on the Engine tab.')
+    setNotice(engineMode === 'preview'
+      ? 'Engine job started in preview: Claude Code works in a snapshot; approve its diff on the Engine sync tab.'
+      : 'Engine job started — Claude Code is updating the engine. Follow it on the Engine sync tab.')
     return job
-  }, [])
+  }, [engineMode, autoCommit])
 
   const saveAll = useCallback(async () => {
     const d = dataRef.current, s = savedRef.current
     if (!d || !s) return
     const { report, behavioural } = buildChangeReport(s, d)
-    for (const k of KEYS) if (stable(d[k]) !== stable(s[k])) await save(k)
-    if (applyToEngine && behavioural) await runJob(report, '')
-    else if (behavioural) setNotice('Saved. Engine sync is off, so the rule changes were not sent to the engine agent.')
-  }, [save, applyToEngine, runJob])
+    const keys = KEYS.filter(k => stable(d[k]) !== stable(s[k]))
+    for (const k of keys) await save(k)
+    let committed = ''
+    if (autoCommit && keys.length && meta) {
+      const c = await api<CommitResult>('/api/commit', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ keys, message: `${commitSubject(keys, meta)}\n\n${report.split('\n').slice(0, 80).join('\n')}` }),
+      })
+      committed = c.ok ? (c.sha ? ` Committed ${c.sha} on ${c.branch}.` : '') : ` Commit failed: ${c.error}`
+      const gs = await api<{ gitStatus: string; branch: string }>('/api/git-status')
+      setGitStatus(gs.gitStatus)
+    }
+    if (applyToEngine && behavioural) {
+      await runJob(report, '')
+      if (committed) setNotice(`Saved.${committed} Engine job started (${engineMode}).`)
+    } else if (behavioural) setNotice(`Saved.${committed} Engine sync is off, so the rule changes were not sent to the engine agent.`)
+    else if (committed) setNotice(`Saved.${committed}`)
+  }, [save, applyToEngine, runJob, autoCommit, meta, engineMode])
 
   const revertJob = useCallback(async (id: string) => {
-    const r = await api<{ reverted: string[]; kept: string[] }>(`/api/jobs/${id}/revert`, { method: 'POST' })
-    setNotice(`Reverted ${r.reverted.length} file(s)${r.kept.length ? `; kept ${r.kept.join(', ')} (had other edits)` : ''}.`)
+    try {
+      const r = await api<{ reverted: string[]; kept: string[] }>(`/api/jobs/${id}/revert`, { method: 'POST' })
+      setNotice(`Reverted ${r.reverted.length} file(s)${r.kept.length ? `; kept ${r.kept.join(', ')} (had other edits)` : ''}.`)
+    } catch (e) {
+      setNotice(`Revert failed: ${e instanceof Error ? e.message : String(e)}`)
+    }
     await refreshJobs()
     await reload()
   }, [refreshJobs, reload])
+
+  const jobAction = useCallback(async (id: string, action: 'approve' | 'discard' | 'commit') => {
+    setBusy(action === 'approve' ? 'Applying the approved diff…' : action === 'commit' ? 'Committing…' : 'Discarding…')
+    try {
+      const j = await api<EngineJob>(`/api/jobs/${id}/${action}`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ autoCommit }),
+      })
+      const c = j.commit
+      setNotice(action === 'discard' ? 'Discarded: the repo was not changed.'
+        : c?.sha ? `${action === 'approve' ? 'Applied and committed' : 'Committed'} ${c.sha} on ${c.branch}.`
+        : c && !c.ok ? `Applied, but the commit failed: ${c.error}`
+        : 'Applied to the repo (not committed).')
+    } catch (e) {
+      setNotice(`${action} failed: ${e instanceof Error ? e.message : String(e)}`)
+    } finally {
+      setBusy(null)
+    }
+    await refreshJobs()
+    const d = dataRef.current, s = savedRef.current
+    if (d && s && KEYS.every(k => stable(d[k]) === stable(s[k]))) await reload()
+  }, [autoCommit, refreshJobs, reload])
 
   const sync = useCallback(async () => {
     setBusy('Running scripts/sync-assets.sh…')
     try {
       const json = await api<{ ok: boolean; output: string }>('/api/sync', { method: 'POST' })
-      const gs = await api<{ gitStatus: string }>('/api/git-status')
+      const gs = await api<{ gitStatus: string; branch: string }>('/api/git-status')
       setGitStatus(gs.gitStatus)
       return (json.ok ? '' : 'FAILED\n') + json.output
     } finally {
@@ -180,7 +249,8 @@ export function StoreProvider({ children }: { children: ReactNode }) {
 
   const value: StoreValue | null = data && saved && meta ? {
     loaded: true, error, root, data, saved, meta, gitStatus, dirty, update, revert, save, saveAll, reload, sync, busy, notice,
-    applyToEngine, setApplyToEngine, pendingReport, jobs, runJob, revertJob,
+    applyToEngine, setApplyToEngine, pendingReport, autoCommit, setAutoCommit, engineMode, setEngineMode, branch,
+    jobs, runJob, revertJob, jobAction,
   } : null
 
   if (!value) {

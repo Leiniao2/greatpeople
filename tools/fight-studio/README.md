@@ -80,6 +80,19 @@ port 3001, then commit as usual.
 The **Engine sync** tab can also run an ad-hoc instruction ("implement
 Gandhi's Mahatma trait…") with or without the pending change report.
 
+### Commit and preview (Engine sync tab, top bar)
+
+- **commit** (default on): every Save all commits the saved files plus their
+  synced platform copies, and only those paths, on the current branch. Engine
+  changes are committed once applied (apply mode: only when typecheck passes).
+  Files that already carried someone else's edits are never committed. Revert
+  of a committed job makes a `git revert` commit.
+- **preview** (default) vs **apply**: in preview the agent works in an
+  isolated snapshot under `$TMPDIR/fight-studio-preview/<job>` (HEAD plus the
+  current Fight Studio files, about 6 MB, node_modules symlinked). The repo is
+  untouched until you press **Approve & commit**, which applies the patch;
+  **Discard** drops it. In apply mode the agent edits the repo directly.
+
 ## How it works
 
 ```
