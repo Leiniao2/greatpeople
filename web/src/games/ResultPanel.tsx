@@ -11,9 +11,12 @@ interface Props {
   onNext?: () => void
   onBack: () => void
   backLabel?: string
+  nextLabel?: string
+  /** Optional line under the headline, e.g. stars earned. */
+  badge?: string
 }
 
-export default function ResultPanel({ outcome, fact, onReplay, onNext, onBack, backLabel = 'Back to Arcade' }: Props) {
+export default function ResultPanel({ outcome, fact, onReplay, onNext, onBack, backLabel = 'Back to Arcade', nextLabel = 'Next challenge →', badge }: Props) {
   const won = outcome === 'won'
   const primary = 'w-full py-3 rounded-xl bg-accent text-accent-fg font-bold text-sm hover:bg-accent-hover transition-all'
   const secondary = 'w-full py-2.5 rounded-xl bg-panel border border-line text-ink-2 font-semibold text-sm hover:border-accent/40 hover:text-accent transition-all'
@@ -27,20 +30,21 @@ export default function ResultPanel({ outcome, fact, onReplay, onNext, onBack, b
         <p className={`font-display text-xl font-bold ${won ? 'text-emerald-800' : 'text-red-800'}`}>
           {won ? 'Challenge complete!' : 'Not this time'}
         </p>
+        {badge && <p className="text-accent text-lg tracking-widest">{badge}</p>}
         {won && fact && <p className="text-muted text-xs leading-relaxed">{fact}</p>}
         {!won && <p className="text-muted text-xs">Have another go, move on, or head back.</p>}
 
         <div className="flex flex-col gap-2 mt-1">
           {won ? (
             <>
-              {onNext && <button onClick={onNext} className={primary}>Next challenge →</button>}
+              {onNext && <button onClick={onNext} className={primary}>{nextLabel}</button>}
               <button onClick={onBack} className={onNext ? secondary : primary}>{backLabel}</button>
               <button onClick={onReplay} className={tertiary}>Play it again</button>
             </>
           ) : (
             <>
               <button onClick={onReplay} className={primary}>↻ Replay</button>
-              {onNext && <button onClick={onNext} className={secondary}>Next challenge →</button>}
+              {onNext && <button onClick={onNext} className={secondary}>{nextLabel}</button>}
               <button onClick={onBack} className={tertiary}>{backLabel}</button>
             </>
           )}

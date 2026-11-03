@@ -1,140 +1,195 @@
-import { useState, useMemo, useCallback } from 'react'
+import { useState, useMemo, useCallback, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import allStories from '@/data/story_challenges.json'
 import ChallengeRenderer from '@/games/ChallengeRenderer'
 import ResultPanel from '@/games/ResultPanel'
-import { gameCategory, gameLabel, type Category } from '@/games/registry'
-import type { Challenge } from '@/games/types'
-import { hashString } from '@/components/minigames/_shared'
-import EraIcon from '@/components/EraIcon'
+import { GAMES, type Category, type GameKey } from '@/games/registry'
+import { ARCADE_TRACKS, LEVELS_PER_TRACK, buildTrack, levelChallenge, prettyConfig, starsForAttempts, type ArcadeLevel } from '@/games/arcade'
+import { useStoryProgress } from '@/hooks/useStoryProgress'
+import type { ArcadeProgress } from '@/api/progress'
 
-// ── Types ─────────────────────────────────────────────────────────────────────
+// The Arcade is a set of ladders, one per game type, grouped by category.
+// Each ladder is LEVELS_PER_TRACK generated levels of rising difficulty;
+// clearing a level unlocks the next and offers to play it straight away.
 
-interface FlatChallenge {
-  id: string
-  /** Game key, or quiz / truefalse / sort. */
-  game: string
-  storyName: string
-  era: string
-  instruction: string  // shown on card
-  challenge: Challenge
-}
-
-// ── Category config ───────────────────────────────────────────────────────────
-
-type CategoryKey = 'All' | 'Trivia' | Category
+type CategoryKey = 'All' | Category
 
 const CATEGORIES: { key: CategoryKey; label: string; icon: string; color: string; border: string; bg: string }[] = [
-  { key: 'All',      label: 'All',      icon: '◈', color: 'text-ink-2',       border: 'border-line-2',    bg: 'bg-panel-2'        },
-  { key: 'Trivia',   label: 'Trivia',   icon: '?', color: 'text-amber-700',   border: 'border-amber-500', bg: 'bg-amber-500/20'   },
-  { key: 'Puzzle',   label: 'Puzzle',   icon: '◻', color: 'text-cyan-700',    border: 'border-cyan-500',  bg: 'bg-cyan-500/20'    },
-  { key: 'Strategy', label: 'Strategy', icon: '♜', color: 'text-accent',      border: 'border-accent',    bg: 'bg-accent/15'      },
+  { key: 'All',      label: 'All',      icon: '◈', color: 'text-ink-2',       border: 'border-line-2',      bg: 'bg-panel-2'        },
+  { key: 'Puzzle',   label: 'Puzzle',   icon: '◻', color: 'text-cyan-700',    border: 'border-cyan-500',    bg: 'bg-cyan-500/20'    },
+  { key: 'Strategy', label: 'Strategy', icon: '♜', color: 'text-accent',      border: 'border-accent',      bg: 'bg-accent/15'      },
   { key: 'Creative', label: 'Creative', icon: '✿', color: 'text-emerald-700', border: 'border-emerald-500', bg: 'bg-emerald-500/20' },
-  { key: 'Story',    label: 'Story',    icon: '✦', color: 'text-violet-700',  border: 'border-violet-500', bg: 'bg-violet-500/20' },
-  { key: 'Explore',  label: 'Explore',  icon: '◎', color: 'text-red-700',     border: 'border-red-500',   bg: 'bg-red-500/20'     },
+  { key: 'Story',    label: 'Story',    icon: '✦', color: 'text-violet-700',  border: 'border-violet-500',  bg: 'bg-violet-500/20'  },
+  { key: 'Explore',  label: 'Explore',  icon: '◎', color: 'text-red-700',     border: 'border-red-500',     bg: 'bg-red-500/20'     },
 ]
+const SECTIONS = CATEGORIES.filter(c => c.key !== 'All')
+const catFor = (key: GameKey) => CATEGORIES.find(c => c.key === GAMES[key].category) ?? CATEGORIES[0]
+const TIER_NAMES = ['Apprentice', 'Journeyman', 'Master', 'Legend']
 
-// ── Flatten all challenges ────────────────────────────────────────────────────
+const EMPTY: ArcadeProgress = { cleared: 0, stars: [] }
+const totalStars = (p: ArcadeProgress) => p.stars.reduce((a, b) => a + (b ?? 0), 0)
 
-function flattenChallenges(): FlatChallenge[] {
-  const result: FlatChallenge[] = []
-  for (const story of allStories as { era: string; story: string; challenges: Challenge[] }[]) {
-    for (const ch of story.challenges) {
-      const game = ch.type === 'minigame' ? ch.game : ch.type
-      const instruction =
-        ch.type === 'minigame' ? ch.instruction
-        : ch.type === 'truefalse' ? ch.statement
-        : ch.question
-      result.push({
-        id: ch.id ?? `${story.story}-${game}-${result.length}`,
-        game,
-        storyName: story.story,
-        era: story.era,
-        instruction,
-        challenge: ch,
-      })
-    }
-  }
-  return result
-}
-
-const ALL_CHALLENGES = flattenChallenges()
-
-function catFor(game: string) {
-  return CATEGORIES.find(c => c.key === gameCategory(game)) ?? CATEGORIES[0]
+/** Loads a game's config ids and builds its ladder. */
+function useTrack(game: GameKey | null): ArcadeLevel[] | null {
+  const [track, setTrack] = useState<ArcadeLevel[] | null>(null)
+  useEffect(() => {
+    if (!game) { setTrack(null); return }
+    let alive = true
+    setTrack(null)
+    GAMES[game].load().then(mod => { if (alive) setTrack(buildTrack(game, mod.CONFIG_IDS ?? [])) })
+    return () => { alive = false }
+  }, [game])
+  return track
 }
 
 // ── Play overlay ──────────────────────────────────────────────────────────────
 
-function ChallengeOverlay({ ch, onClose, onNext }: { ch: FlatChallenge; onClose: () => void; onNext?: () => void }) {
+function LevelPlayer({ track, index, progress, onLevel, onClose }: {
+  track: ArcadeLevel[]
+  index: number
+  progress: ArcadeProgress
+  onLevel: (index: number) => void
+  onClose: () => void
+}) {
+  const level = track[index]
+  const clearArcadeLevel = useStoryProgress(s => s.clearArcadeLevel)
   const [outcome, setOutcome] = useState<'won' | 'lost' | null>(null)
+  const [fails, setFails] = useState(0)
   const [attempt, setAttempt] = useState(0)
-  const seed = useMemo(() => hashString(`${ch.id}:${attempt}`), [ch.id, attempt])
-  const cat = catFor(ch.game)
+  const [earned, setEarned] = useState(0)
+  const cat = catFor(level.game)
+  // A replay reshuffles; the first attempt plays the level's own seed.
+  const challenge = useMemo(() => {
+    const ch = levelChallenge(level)
+    return attempt === 0 ? ch : { ...ch, seed: (level.seed + attempt * 7919) >>> 0 }
+  }, [level, attempt])
 
-  const handleWin = useCallback(() => setOutcome('won'), [])
-  const handleLose = useCallback(() => setOutcome('lost'), [])
-  const retry = () => { setOutcome(null); setAttempt(a => a + 1) }
+  const handleWin = useCallback(() => {
+    const stars = starsForAttempts(fails)
+    setEarned(stars)
+    clearArcadeLevel(level.game, level.index, stars)
+    setOutcome('won')
+  }, [fails, level, clearArcadeLevel])
+  const handleLose = useCallback(() => { setFails(f => f + 1); setOutcome('lost') }, [])
+  const replay = () => { setOutcome(null); setAttempt(a => a + 1) }
+
+  const hasNext = index + 1 < track.length
+  // After a win the next level is unlocked; after a loss, only if it already was.
+  const nextOpen = hasNext && (outcome === 'won' || progress.cleared >= index + 1)
 
   return (
     <div className="fixed inset-0 z-50 flex flex-col bg-paper">
-      {/* Header */}
       <div className="flex items-center gap-3 px-4 pt-safe pb-3 pt-4 border-b border-line shrink-0">
-        <div className={`text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full ${cat.bg} ${cat.color} border ${cat.border}`}>
-          {gameLabel(ch.game)}
-        </div>
-        <div className="flex-1 min-w-0">
-          <p className="text-muted text-[10px] truncate">{ch.storyName}</p>
-        </div>
+        <span className={`text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full ${cat.bg} ${cat.color} border ${cat.border}`}>
+          {GAMES[level.game].label}
+        </span>
+        <p className="flex-1 min-w-0 text-muted text-[10px] truncate">
+          Level {index + 1} / {track.length} · {TIER_NAMES[level.difficulty - 1]}
+          {level.configId && <> · {prettyConfig(level.configId)}</>}
+        </p>
         <button onClick={onClose}
-          className="w-8 h-8 flex items-center justify-center rounded-xl bg-panel text-muted hover:text-ink hover:bg-panel-2 transition-all text-lg">
+          className="w-8 h-8 flex items-center justify-center rounded-xl bg-panel text-muted hover:text-ink hover:bg-panel-2 transition-all text-lg"
+          aria-label="Back to Arcade">
           ✕
         </button>
       </div>
 
-      {/* Challenge content */}
       <div className="flex-1 overflow-y-auto px-4 py-4">
         <div className="bg-paper-2 rounded-xl p-4">
-          <ChallengeRenderer key={attempt} challenge={ch.challenge} seed={seed} onWin={handleWin} onLose={handleLose} />
+          <ChallengeRenderer key={`${index}:${attempt}`} challenge={challenge} seed={challenge.seed!} onWin={handleWin} onLose={handleLose} />
         </div>
       </div>
 
       {outcome && (
-        <ResultPanel outcome={outcome} fact={ch.challenge.fact} onReplay={retry} onNext={onNext} onBack={onClose} />
+        <ResultPanel
+          outcome={outcome}
+          badge={outcome === 'won' ? '★'.repeat(earned) + '☆'.repeat(3 - earned) : undefined}
+          fact={outcome === 'won' && !hasNext ? `Track complete — all ${track.length} levels cleared.` : undefined}
+          onReplay={replay}
+          onNext={nextOpen ? () => onLevel(index + 1) : undefined}
+          nextLabel={`Level ${index + 2} →`}
+          onBack={onClose}
+        />
       )}
     </div>
   )
 }
 
-// ── Challenge card ────────────────────────────────────────────────────────────
+// ── Track card and level grid ─────────────────────────────────────────────────
 
-function ChallengeCard({ ch, onClick }: { ch: FlatChallenge; onClick: () => void }) {
-  const cat = catFor(ch.game)
+function ProgressDots({ progress }: { progress: ArcadeProgress }) {
   return (
-    <button onClick={onClick}
-      className="group w-full text-left flex flex-col gap-2.5 p-3.5 rounded-2xl
-                 bg-panel border border-line
-                 hover:bg-panel-2 hover:border-line-2
-                 active:scale-[0.98] transition-all duration-150">
-      {/* Top row: type badge + era */}
-      <div className="flex items-center justify-between gap-2">
-        <span className={`text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full border ${cat.bg} ${cat.color} ${cat.border}`}>
-          {gameLabel(ch.game)}
+    <div className="flex flex-wrap gap-[3px]" aria-label={`${progress.cleared} of ${LEVELS_PER_TRACK} levels cleared`}>
+      {Array.from({ length: LEVELS_PER_TRACK }, (_, i) => {
+        const done = (progress.stars[i] ?? 0) > 0
+        const next = i === progress.cleared
+        return (
+          <span key={i}
+            className={`w-2 h-2 rounded-full ${done ? 'bg-accent' : next ? 'bg-accent/40 ring-1 ring-accent' : 'bg-line'}
+              ${i > 0 && i % 6 === 0 ? 'ml-1' : ''}`} />
+        )
+      })}
+    </div>
+  )
+}
+
+function TrackCard({ game, progress, onOpen, onContinue }: {
+  game: GameKey; progress: ArcadeProgress; onOpen: () => void; onContinue: () => void
+}) {
+  const cat = catFor(game)
+  const complete = progress.cleared >= LEVELS_PER_TRACK
+  return (
+    <div className="flex flex-col gap-2 p-3.5 rounded-2xl bg-panel border border-line hover:border-line-2 transition-all">
+      <button onClick={onOpen} className="flex items-center justify-between gap-2 text-left">
+        <span className="flex items-center gap-2 min-w-0">
+          <span className={`${cat.color} text-sm`}>{cat.icon}</span>
+          <span className="text-ink font-semibold text-sm truncate">{GAMES[game].label}</span>
         </span>
-        <EraIcon era={ch.era} className="w-3.5 h-3.5 text-muted/80" />
+        <span className="text-[10px] text-muted shrink-0">
+          {progress.cleared} / {LEVELS_PER_TRACK} · <span className="text-accent">★ {totalStars(progress)}</span>
+        </span>
+      </button>
+      <ProgressDots progress={progress} />
+      <div className="flex items-center justify-between gap-2">
+        <button onClick={onOpen} className="text-muted text-[10px] hover:text-ink">All levels</button>
+        <button onClick={onContinue}
+          className="px-3 py-1.5 rounded-xl bg-accent text-accent-fg text-xs font-bold hover:bg-accent-hover transition-all">
+          {complete ? 'Replay ▶' : progress.cleared === 0 ? 'Start ▶' : `Level ${progress.cleared + 1} ▶`}
+        </button>
       </div>
+    </div>
+  )
+}
 
-      {/* Instruction */}
-      <p className="text-ink/85 text-xs leading-snug line-clamp-2 font-medium">
-        {ch.instruction}
-      </p>
-
-      {/* Story name + arrow */}
-      <div className="flex items-center justify-between gap-1">
-        <p className="text-muted/80 text-[10px] truncate">{ch.storyName}</p>
-        <span className={`${cat.color} opacity-0 group-hover:opacity-100 transition-opacity text-xs`}>→</span>
-      </div>
-    </button>
+function LevelGrid({ game, track, progress, onPlay, onBack }: {
+  game: GameKey; track: ArcadeLevel[] | null; progress: ArcadeProgress; onPlay: (i: number) => void; onBack: () => void
+}) {
+  return (
+    <div className="flex-1 px-4 py-4 max-w-2xl w-full mx-auto">
+      <button onClick={onBack} className="text-muted text-xs mb-3 hover:text-ink">← All tracks</button>
+      <h2 className="font-display text-2xl font-bold text-ink">{GAMES[game].label}</h2>
+      <p className="text-muted text-xs mb-4">{progress.cleared} / {LEVELS_PER_TRACK} cleared · ★ {totalStars(progress)} / {LEVELS_PER_TRACK * 3}</p>
+      {!track ? <p className="text-muted text-xs">Loading levels…</p> : TIER_NAMES.map((tier, t) => (
+        <div key={tier} className="mb-4">
+          <p className="text-[10px] uppercase tracking-widest text-muted mb-2">{tier} · difficulty {t + 1}</p>
+          <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
+            {track.slice(t * 6, t * 6 + 6).map(level => {
+              const stars = progress.stars[level.index] ?? 0
+              const unlocked = level.index <= progress.cleared
+              return (
+                <button key={level.index} disabled={!unlocked} onClick={() => onPlay(level.index)}
+                  className={`flex flex-col items-center gap-0.5 py-2 rounded-xl border text-xs transition-all
+                    ${unlocked ? 'bg-panel border-line hover:border-accent/50' : 'bg-paper-2 border-line/50 opacity-50 cursor-not-allowed'}
+                    ${level.index === progress.cleared ? 'ring-2 ring-accent/50' : ''}`}>
+                  <span className="font-bold text-ink">{unlocked ? level.index + 1 : '🔒'}</span>
+                  <span className="text-[9px] text-muted truncate max-w-full px-1">{prettyConfig(level.configId) || '—'}</span>
+                  <span className="text-[10px] text-accent leading-none">{stars ? '★'.repeat(stars) : ' '}</span>
+                </button>
+              )
+            })}
+          </div>
+        </div>
+      ))}
+    </div>
   )
 }
 
@@ -142,87 +197,91 @@ function ChallengeCard({ ch, onClick }: { ch: FlatChallenge; onClick: () => void
 
 export default function MiniChallengePage() {
   const navigate = useNavigate()
+  const arcade = useStoryProgress(s => s.doc.arcade) ?? {}
   const [activeCategory, setActiveCategory] = useState<CategoryKey>('All')
-  const [playing, setPlaying] = useState<FlatChallenge | null>(null)
+  const [openGame, setOpenGame] = useState<GameKey | null>(null)
+  const [playing, setPlaying] = useState<{ game: GameKey; index: number } | null>(null)
+  const track = useTrack(playing?.game ?? openGame)
+  const progressOf = (g: GameKey) => arcade[g] ?? EMPTY
 
-  const filtered = useMemo(() => {
-    if (activeCategory === 'All') return ALL_CHALLENGES
-    return ALL_CHALLENGES.filter(ch => gameCategory(ch.game) === activeCategory)
-  }, [activeCategory])
+  const sections = useMemo(() => SECTIONS
+    .filter(s => activeCategory === 'All' || s.key === activeCategory)
+    .map(s => ({ ...s, games: ARCADE_TRACKS.filter(g => GAMES[g].category === s.key) }))
+    .filter(s => s.games.length > 0), [activeCategory])
 
-  // Count per category
-  const counts = useMemo(() => {
-    const m: Partial<Record<CategoryKey, number>> = { All: ALL_CHALLENGES.length }
-    for (const ch of ALL_CHALLENGES) {
-      const cat = gameCategory(ch.game)
-      m[cat] = (m[cat] ?? 0) + 1
-    }
-    return m
-  }, [])
+  const totals = useMemo(() => {
+    const cleared = ARCADE_TRACKS.reduce((a, g) => a + (arcade[g]?.cleared ?? 0), 0)
+    return { cleared, levels: ARCADE_TRACKS.length * LEVELS_PER_TRACK }
+  }, [arcade])
+
+  const continueTrack = (g: GameKey) =>
+    setPlaying({ game: g, index: Math.min(progressOf(g).cleared, LEVELS_PER_TRACK - 1) })
 
   return (
     <div className="min-h-screen bg-paper flex flex-col">
-      {/* Header */}
       <div className="sticky top-0 z-30 bg-paper/95 backdrop-blur-md border-b border-line">
         <div className="flex items-center gap-3 px-4 py-3">
-          <button onClick={() => navigate('/home')}
+          <button onClick={() => (openGame ? setOpenGame(null) : navigate('/home'))}
             className="w-9 h-9 flex items-center justify-center rounded-xl bg-panel text-muted hover:text-ink hover:bg-panel-2 transition-all">
             ←
           </button>
           <div className="flex-1">
             <h1 className="text-ink font-bold text-base tracking-wide">ARCADE</h1>
-            <p className="text-muted text-[10px]">{ALL_CHALLENGES.length} mini challenges · play any, anytime</p>
+            <p className="text-muted text-[10px]">
+              {ARCADE_TRACKS.length} game tracks · {totals.cleared} / {totals.levels} levels cleared
+            </p>
           </div>
         </div>
 
-        {/* Category tabs */}
-        <div className="flex gap-2 px-4 pb-3 overflow-x-auto scrollbar-hide">
-          {CATEGORIES.map(cat => {
-            const active = activeCategory === cat.key
-            const count = counts[cat.key] ?? 0
-            return (
-              <button key={cat.key} onClick={() => setActiveCategory(cat.key)}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap border transition-all shrink-0
-                  ${active
-                    ? `${cat.bg} ${cat.color} ${cat.border}`
-                    : 'bg-panel border-line text-muted hover:border-line-2 hover:text-ink-2'}`}>
-                <span>{cat.icon}</span>
-                <span>{cat.label}</span>
-                <span className={`text-[9px] ${active ? 'opacity-70' : 'opacity-40'}`}>{count}</span>
-              </button>
-            )
-          })}
-        </div>
-      </div>
-
-      {/* Challenge grid */}
-      <div className="flex-1 px-3 py-3">
-        <div className="grid grid-cols-2 gap-2.5 max-w-2xl mx-auto">
-          {filtered.map(ch => (
-            <ChallengeCard key={ch.id} ch={ch} onClick={() => setPlaying(ch)} />
-          ))}
-        </div>
-
-        {filtered.length === 0 && (
-          <div className="flex flex-col items-center justify-center py-24 gap-3">
-            <span className="text-4xl opacity-20">◈</span>
-            <p className="text-muted/80 text-sm">No challenges in this category</p>
+        {!openGame && (
+          <div className="flex gap-2 px-4 pb-3 overflow-x-auto scrollbar-hide">
+            {CATEGORIES.map(cat => {
+              const active = activeCategory === cat.key
+              const count = cat.key === 'All' ? ARCADE_TRACKS.length : ARCADE_TRACKS.filter(g => GAMES[g].category === cat.key).length
+              return (
+                <button key={cat.key} onClick={() => setActiveCategory(cat.key)}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap border transition-all shrink-0
+                    ${active ? `${cat.bg} ${cat.color} ${cat.border}` : 'bg-panel border-line text-muted hover:border-line-2 hover:text-ink-2'}`}>
+                  <span>{cat.icon}</span>
+                  <span>{cat.label}</span>
+                  <span className={`text-[9px] ${active ? 'opacity-70' : 'opacity-40'}`}>{count}</span>
+                </button>
+              )
+            })}
           </div>
         )}
       </div>
 
-      {/* Play overlay */}
-      {playing && (
-        <ChallengeOverlay
-          key={playing.id}
-          ch={playing}
+      {openGame ? (
+        <LevelGrid game={openGame} track={track} progress={progressOf(openGame)}
+          onPlay={i => setPlaying({ game: openGame, index: i })} onBack={() => setOpenGame(null)} />
+      ) : (
+        <div className="flex-1 px-3 py-3 max-w-2xl w-full mx-auto">
+          {sections.map(section => (
+            <section key={section.key} className="mb-5">
+              <h2 className={`flex items-center gap-2 px-1 mb-2 text-xs font-bold uppercase tracking-widest ${section.color}`}>
+                <span>{section.icon}</span>{section.label}
+                <span className="text-muted/70 font-normal normal-case tracking-normal">· {section.games.length} tracks</span>
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                {section.games.map(g => (
+                  <TrackCard key={g} game={g} progress={progressOf(g)}
+                    onOpen={() => setOpenGame(g)} onContinue={() => continueTrack(g)} />
+                ))}
+              </div>
+            </section>
+          ))}
+        </div>
+      )}
+
+      {playing && track && track[0]?.game === playing.game && (
+        <LevelPlayer
+          key={`${playing.game}:${playing.index}`}
+          track={track}
+          index={playing.index}
+          progress={progressOf(playing.game)}
+          onLevel={i => setPlaying({ game: playing.game, index: i })}
           onClose={() => setPlaying(null)}
-          onNext={(() => {
-            // The next card in the list as currently filtered.
-            const idx = filtered.findIndex(c => c.id === playing.id)
-            const next = idx >= 0 ? filtered[idx + 1] : undefined
-            return next ? () => setPlaying(next) : undefined
-          })()}
         />
       )}
     </div>

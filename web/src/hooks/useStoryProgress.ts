@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { progressApi, type ProgressDoc, type StoryProgress } from '@/api/progress'
+import { progressApi, type ArcadeProgress, type ProgressDoc, type StoryProgress } from '@/api/progress'
 
 // Story completion, stage checkpoints and unlocked cards.
 //
@@ -22,12 +22,24 @@ export function mergeProgress(a: ProgressDoc, b: ProgressDoc): ProgressDoc {
       ? { completed: cur.completed || p.completed, stage: Math.max(cur.stage, p.stage), completedAt: cur.completedAt ?? p.completedAt }
       : p
   }
+  // Arcade: furthest cleared and best stars per level win.
+  const arcade: Record<string, ArcadeProgress> = { ...(a.arcade ?? {}) }
+  for (const [game, p] of Object.entries(b.arcade ?? {})) {
+    const cur = arcade[game]
+    if (!cur) { arcade[game] = p; continue }
+    const n = Math.max(cur.stars.length, p.stars.length)
+    arcade[game] = {
+      cleared: Math.max(cur.cleared, p.cleared),
+      stars: Array.from({ length: n }, (_, i) => Math.max(cur.stars[i] ?? 0, p.stars[i] ?? 0)),
+    }
+  }
   const times = [a.updatedAt, b.updatedAt].filter((t): t is string => !!t).sort()
   return {
     version: 1,
     updatedAt: times[times.length - 1] ?? null,
     stories,
     unlockedCards: [...new Set([...a.unlockedCards, ...b.unlockedCards])],
+    ...(Object.keys(arcade).length ? { arcade } : {}),
   }
 }
 
@@ -60,6 +72,8 @@ interface ProgressState {
   markStage: (slug: string, stage: number) => void
   markComplete: (slug: string) => void
   unlock: (portraitKey: string) => void
+  /** Record a cleared arcade level, keeping the best stars. */
+  clearArcadeLevel: (game: string, index: number, stars: number) => void
   /** Fetch the server copy, merge it in, and push the result. Safe to call when signed out. */
   pullAndMerge: () => Promise<void>
 }
@@ -99,6 +113,18 @@ export const useStoryProgress = create<ProgressState>((set, get) => {
     unlock: key => {
       if (get().doc.unlockedCards.includes(key)) return
       update(doc => ({ ...doc, unlockedCards: [...doc.unlockedCards, key] }))
+    },
+
+    clearArcadeLevel: (game, index, stars) => {
+      const cur = get().doc.arcade?.[game] ?? { cleared: 0, stars: [] }
+      if ((cur.stars[index] ?? 0) >= stars && cur.cleared > index) return
+      const nextStars = [...cur.stars]
+      nextStars[index] = Math.max(nextStars[index] ?? 0, stars)
+      for (let i = 0; i < nextStars.length; i++) nextStars[i] ??= 0
+      update(doc => ({
+        ...doc,
+        arcade: { ...(doc.arcade ?? {}), [game]: { cleared: Math.max(cur.cleared, index + 1), stars: nextStars } },
+      }))
     },
 
     pullAndMerge: async () => {
