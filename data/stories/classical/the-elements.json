@@ -129,7 +129,7 @@
           "type": "dialog",
           "speaker": "Euclid",
           "portraitKey": "euclid",
-          "text": "Anaxagoras and Zeno of Elea hold Carthage together, and a follower stands with them. One card alone will not move them. Bring Chanakya with me, add both followers, and strike twice."
+          "text": "Anaxagoras and Aspasia hold Carthage together, and a follower stands with them. One card alone will not move them. Bring Chanakya with me, add both followers, and strike twice."
         },
         {
           "type": "challenge",
@@ -150,7 +150,7 @@
               ],
               "opponents": [
                 "anaxagoras",
-                "zeno_of_elea"
+                "aspasia"
               ],
               "followers": [
                 "Mathematician",
