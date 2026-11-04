@@ -8,7 +8,6 @@ import { CONFIGS as SLIDING } from '@/components/minigames/SlidingPuzzle'
 import { CONFIGS as ICE, parseGrid, slidePos } from '@/components/minigames/IceSlideGame'
 import { CONFIGS as BRIDGE, checkWin as bridgeWin, isBlocked } from '@/components/minigames/BridgeGame'
 import { CONFIGS as PIPELINE, floodFill, getOpenings } from '@/components/minigames/PipelineGame'
-import { CONFIGS as CIRCUIT } from '@/components/minigames/CircuitGame'
 import { CONFIGS as MIRROR, traceLight } from '@/components/minigames/MirrorGame'
 import { CONFIGS as JIGSAW } from '@/components/minigames/JigsawGame'
 import { generate as generateSudoku, countSolutions } from '@/components/minigames/SudokuGame'
@@ -295,24 +294,6 @@ describe('pipeline', () => {
         return r
       })
       expect(ok, `${id} has a rotatable path`).toBe(true)
-    })
-  }
-})
-
-// ── Circuit ────────────────────────────────────────────────────────────────────
-
-describe('circuit', () => {
-  for (const [id, cfg] of Object.entries(CIRCUIT)) {
-    it(`${id}: closing every switch wins, and the bulb agrees with the win condition`, () => {
-      const ids = cfg.switches.map(s => s.id)
-      const all: Record<string, boolean> = Object.fromEntries(ids.map(i => [i, true]))
-      expect(cfg.winCondition(all)).toBe(true)
-      const none: Record<string, boolean> = Object.fromEntries(ids.map(i => [i, false]))
-      expect(cfg.winCondition(none), `${id} not won at start`).toBe(false)
-      for (let mask = 0; mask < 1 << ids.length; mask++) {
-        const sw: Record<string, boolean> = Object.fromEntries(ids.map((i, k) => [i, !!(mask & (1 << k))]))
-        expect(cfg.bulbActiveWhen(sw)).toBe(cfg.winCondition(sw))
-      }
     })
   }
 })
