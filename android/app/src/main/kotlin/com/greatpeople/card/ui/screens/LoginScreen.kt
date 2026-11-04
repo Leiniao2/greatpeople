@@ -1,6 +1,6 @@
 package com.greatpeople.card.ui.screens
 
-import android.app.Activity
+import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.*
@@ -17,12 +17,16 @@ import com.greatpeople.card.R
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.auth.api.signin.GoogleSignInStatusCodes
 import com.google.android.gms.common.api.ApiException
 import com.greatpeople.card.ui.viewmodel.AuthUiState
 import com.greatpeople.card.ui.viewmodel.AuthViewModel
 
-private const val GOOGLE_CLIENT_ID =
-    "109767033732-nnlj70jqivv608tkihkjhdiomu53bn6j.apps.googleusercontent.com"
+// The ID token's audience must be the *Web* client (the one the backend and
+// the web app share). The Android clients in the Cloud console only vouch for
+// this app's package + signing key; they are never passed here.
+private const val GOOGLE_WEB_CLIENT_ID =
+    "109767033732-vjr88nj2ca1u9ivh96a9etokaeajud5e.apps.googleusercontent.com"
 
 @Composable
 fun LoginScreen(
@@ -42,7 +46,7 @@ fun LoginScreen(
     // Google Sign-In client
     val googleSignInClient = remember {
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(GOOGLE_CLIENT_ID)
+            .requestIdToken(GOOGLE_WEB_CLIENT_ID)
             .requestEmail()
             .build()
         GoogleSignIn.getClient(context, gso)
@@ -52,15 +56,19 @@ fun LoginScreen(
     val googleLauncher = rememberLauncherForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
-        if (result.resultCode == Activity.RESULT_OK) {
-            try {
-                val account = GoogleSignIn
-                    .getSignedInAccountFromIntent(result.data)
-                    .getResult(ApiException::class.java)
-                account.idToken?.let { viewModel.googleLogin(it, account.email) }
-            } catch (_: ApiException) {
-                // sign-in cancelled or failed — state stays Idle
-            }
+        // Errors come back as RESULT_CANCELED too, so always read the status.
+        try {
+            val account = GoogleSignIn
+                .getSignedInAccountFromIntent(result.data)
+                .getResult(ApiException::class.java)
+            val token = account.idToken
+            if (token != null) viewModel.googleLogin(token, account.email)
+            else viewModel.googleFailed("Google returned no ID token.")
+        } catch (e: ApiException) {
+            Log.w("LoginScreen", "Google sign-in failed: status ${e.statusCode}", e)
+            // 12501 = the user closed the picker; anything else is worth showing.
+            if (e.statusCode != GoogleSignInStatusCodes.SIGN_IN_CANCELLED)
+                viewModel.googleFailed("Google sign-in failed (code ${e.statusCode}).")
         }
     }
 
