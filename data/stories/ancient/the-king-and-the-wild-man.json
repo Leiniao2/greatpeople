@@ -42,12 +42,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "maze",
-            "seed": 1002,
+            "game": "abacus",
+            "configId": "ming-shop",
+            "seed": 66515,
+            "instruction": "Gilgamesh: reckon it on the abacus.",
             "fact": "The Epic of Gilgamesh, preserved on twelve clay tablets, predates Homer's Iliad by at least 1,500 years. It contains a great flood story remarkably similar to Noah's in the Bible.",
-            "autogen": true,
-            "configId": "pyramid-deep",
-            "instruction": "The Epic of Gilgamesh is considered: The way to the answer runs through these passages — find the exit."
+            "rebalanced": true
           }
         }
       ]
@@ -71,10 +71,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "geometry",
-            "configId": "pythagorean",
-            "instruction": "Enkidu's fortress has a 3-4 right triangle in its wall. Find the hypotenuse — the length of the diagonal beam.",
-            "fact": "Babylonian mathematicians knew the Pythagorean theorem over a thousand years before Pythagoras. Plimpton 322, a clay tablet from 1800 BCE, lists Pythagorean triples."
+            "game": "nonogram",
+            "configId": "british-museum",
+            "seed": 69345,
+            "instruction": "Gilgamesh: reveal the picture from its clues.",
+            "fact": "Babylonian mathematicians knew the Pythagorean theorem over a thousand years before Pythagoras. Plimpton 322, a clay tablet from 1800 BCE, lists Pythagorean triples.",
+            "rebalanced": true
           }
         },
         {
@@ -85,20 +87,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "typeset",
-            "seed": 1003,
+            "game": "caravan",
+            "configId": "mansa-musa",
+            "seed": 46094,
+            "instruction": "Gilgamesh: turn a profit along the route.",
             "fact": "Enkidu's journey from wilderness to brotherhood mirrors humanity's own emergence — his taming by a priestess represents the Mesopotamian belief that civilisation elevated human beings above the animals they had once lived among.",
-            "autogen": true,
-            "configId": "bi-sheng-clay",
-            "params": {
-              "lines": [
-                "ENKIDU ROAMS",
-                "ENKIDU ROAMS THE",
-                "ENKIDU ROAMS THE",
-                "ENKIDU ROAMS THE STEPPE"
-              ]
-            },
-            "instruction": "Arrange the key events of Enkidu's life in order: Set the answer in movable type — mirrored, right to left."
+            "rebalanced": true
           }
         }
       ]
@@ -128,12 +122,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "sudoku",
-            "seed": 1004,
+            "game": "fieldsurvey",
+            "configId": "fossil-cliffs",
+            "seed": 8015,
+            "instruction": "Gilgamesh: survey the field.",
             "fact": "Enkidu and Gilgamesh fought briefly at the city gate, but quickly became the closest of friends. Enkidu's death from divine punishment drives the epic's second half and Gilgamesh's desperate quest for immortality.",
-            "autogen": true,
-            "configId": "euclid-grid",
-            "instruction": "Enkidu became Gilgamesh's enemy and they fought to the death at the end of the epic. Order the grid as the record was ordered — every row, column and box complete."
+            "rebalanced": true
           }
         },
         {
@@ -150,10 +144,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "maze",
-            "configId": "cedar-forest",
-            "instruction": "Guide Gilgamesh through the Cedar Forest in search of glory — and Enkidu at his side.",
-            "fact": "Uruk was one of the world's earliest cities — home to 50,000–80,000 people in 3000 BCE. Gilgamesh was its legendary king and the builder of its great walls."
+            "game": "hanoi",
+            "configId": "benares",
+            "seed": 17021,
+            "instruction": "Gilgamesh: move the stack of disks.",
+            "fact": "Uruk was one of the world's earliest cities — home to 50,000–80,000 people in 3000 BCE. Gilgamesh was its legendary king and the builder of its great walls.",
+            "rebalanced": true
           }
         }
       ]
@@ -171,10 +167,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "matchthree",
-            "configId": "babylon-tablets",
-            "instruction": "Babylonian scribes recorded grain trades in vertical cuneiform columns. Only vertical matches score — clear 52 symbols on the 8×8 tablet.",
-            "fact": "Babylonian clay tablets recorded grain prices, interest rates and commodity contracts — the world's first commodity futures market. Cuneiform records from 600 BCE show silver-denominated wheat prices responding to floods and harvests."
+            "game": "magicsquare",
+            "configId": "jaina-yantra",
+            "seed": 56267,
+            "instruction": "Gilgamesh: complete the magic square.",
+            "fact": "Babylonian clay tablets recorded grain prices, interest rates and commodity contracts — the world's first commodity futures market. Cuneiform records from 600 BCE show silver-denominated wheat prices responding to floods and harvests.",
+            "rebalanced": true
           }
         },
         {

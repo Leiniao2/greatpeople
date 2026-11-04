@@ -25,20 +25,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "typeset",
-            "seed": 1007,
+            "game": "konigsberg",
+            "configId": "venice",
+            "seed": 19900,
+            "instruction": "Johannes Gutenberg: walk every bridge once.",
             "fact": "Gutenberg's breakthrough was casting individual metal letters that could be arranged, printed, and rearranged indefinitely. The same 26 letters (in his case Gothic type) could print any text in any order — unlike woodblocks, which could only print the single text carved into them. His oil-based ink and screw press were important innovations, but the movable metal type was the revolution.",
-            "autogen": true,
-            "configId": "gutenberg-bible",
-            "params": {
-              "lines": [
-                "INDIVIDUAL",
-                "INDIVIDUAL METAL",
-                "INDIVIDUAL METAL",
-                "INDIVIDUAL METAL LETTERS"
-              ]
-            },
-            "instruction": "What key innovation made Gutenberg's printing press transformative, compared to woodblock printing? Set the answer in movable type — mirrored, right to left."
+            "rebalanced": true
           }
         }
       ]
@@ -82,12 +74,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "matchthree",
-            "seed": 1009,
+            "game": "painting",
+            "configId": "ocean-voyage",
+            "seed": 48722,
+            "instruction": "Johannes Gutenberg: paint each region in its true colour.",
             "fact": "It took 50 years for printing to reach every corner of Europe. By 1500, over 20 million books had been printed — more than all the manuscripts produced in the previous thousand years of European history. The printing press did not merely copy existing knowledge; it transformed who could access it, who could challenge it, and who could add to it.",
-            "autogen": true,
-            "configId": "lisbon-spices",
-            "instruction": "Arrange these consequences of Gutenberg's press in roughly chronological order after 1450: Gather what the story needs: match the goods until the tally is met."
+            "rebalanced": true
           }
         }
       ]
@@ -105,10 +97,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "matchthree",
-            "configId": "hanseatic-runes",
-            "instruction": "Gutenberg's Mainz sat on the Rhine trade route linking the Hanseatic League's northern cities to Italy's wealth. Match the trading symbols as his Bibles flow out of the workshop and into a hungry Europe.",
-            "fact": "The Hanseatic League — the great merchant confederation of northern Europe — had already built the infrastructure that carried Gutenberg's books. Trading cities like Lübeck, Hamburg, and Cologne had warehouses, ships, and agents throughout Europe, and they became the distribution network for the first mass-produced books. Commerce and knowledge traveled the same roads."
+            "game": "siege",
+            "configId": "vauban-star",
+            "seed": 87055,
+            "instruction": "Johannes Gutenberg: hold the walls against the waves.",
+            "fact": "The Hanseatic League — the great merchant confederation of northern Europe — had already built the infrastructure that carried Gutenberg's books. Trading cities like Lübeck, Hamburg, and Cologne had warehouses, ships, and agents throughout Europe, and they became the distribution network for the first mass-produced books. Commerce and knowledge traveled the same roads.",
+            "rebalanced": true
           }
         },
         {

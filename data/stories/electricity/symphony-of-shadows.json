@@ -28,15 +28,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "braille",
-            "seed": 1001,
+            "game": "truss",
+            "configId": "eiffel",
+            "seed": 6579,
+            "instruction": "Johannes Brahms: build a truss that holds.",
             "fact": "Robert Schumann heard the 20-year-old Brahms play in 1853 and immediately published an article declaring him 'the one called to give ideal expression to the times.' It was an extraordinary endorsement that launched Brahms' career — and also set impossible expectations that would haunt him for decades.",
-            "autogen": true,
-            "configId": "raised-dots",
-            "params": {
-              "plaintext": "ROBERT SCHUMANN"
-            },
-            "instruction": "A letter of introduction is signed in raised dots. Read the name of Brahms's champion."
+            "rebalanced": true
           }
         }
       ]
@@ -54,20 +51,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "typeset",
-            "seed": 1005,
+            "game": "compose",
+            "configId": "beethoven-fifth",
+            "seed": 11961,
+            "instruction": "Johannes Brahms: arrange the movements.",
             "fact": "Brahms labored over his First Symphony for 21 years, from 1854 to 1876. He was paralyzed by the shadow of Beethoven — convinced that any symphony he wrote would be compared unfavorably to Beethoven's nine. When it finally premiered, the conductor Hans von Bülow called it 'Beethoven's Tenth' — the highest compliment and a backhanded burden.",
-            "autogen": true,
-            "configId": "franklin-gazette",
-            "params": {
-              "lines": [
-                "BRAHMS",
-                "BRAHMS LABORED",
-                "BRAHMS LABORED OVER",
-                "BRAHMS LABORED OVER HIS"
-              ]
-            },
-            "instruction": "Brahms completed his First Symphony quickly, finishing it within a year of beginning it. Set the answer in movable type — mirrored, right to left."
+            "rebalanced": true
           }
         }
       ]
@@ -87,12 +76,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "sudoku",
-            "seed": 1006,
+            "game": "lorentz",
+            "configId": "lorentz-aurora",
+            "seed": 2281,
+            "instruction": "Johannes Brahms: steer the particle onto target.",
             "fact": "Brahms was his own harshest critic. He destroyed dozens of works he judged inferior, including a complete string quintet and multiple early symphonies. What survives — four symphonies, two piano concertos, the German Requiem, the Lullaby — represents only what passed his merciless standard.",
-            "autogen": true,
-            "configId": "lorentz-grid",
-            "instruction": "Arrange these milestones of Brahms' life in chronological order: Order the grid as the record was ordered — every row, column and box complete."
+            "rebalanced": true
           }
         }
       ]
@@ -106,20 +95,24 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "music",
-            "configId": "brahms-lullaby",
-            "instruction": "Brahms composed his famous Lullaby in 1868 as a gift for a friend's newborn son. Play the melody that has soothed children to sleep for 150 years.",
-            "fact": "Brahms based the Lullaby (Op. 49, No. 4) on a folk song he heard a childhood sweetheart sing, weaving his memory of her voice into the melody. It became the most hummed tune of the 19th century — and today it plays in hospitals worldwide to announce a birth."
+            "game": "bridge",
+            "configId": "greek-islands",
+            "seed": 86327,
+            "instruction": "Johannes Brahms: link the islands with bridges.",
+            "fact": "Brahms based the Lullaby (Op. 49, No. 4) on a folk song he heard a childhood sweetheart sing, weaving his memory of her voice into the melody. It became the most hummed tune of the 19th century — and today it plays in hospitals worldwide to announce a birth.",
+            "rebalanced": true
           }
         },
         {
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "sudoku",
-            "configId": "brahms-pattern",
-            "instruction": "Brahms constructed his symphonies with mathematical precision, layering motifs like a counterpoint puzzle. Solve the harmonic grid that mirrors his structural thinking.",
-            "fact": "Brahms was deeply influenced by Baroque counterpoint, studying Bach's manuscripts obsessively. His technique of 'developing variation' — transforming a small motif through subtle changes across an entire symphony — influenced Schoenberg, Webern, and the entire 20th-century tradition of motivic composition."
+            "game": "punnett",
+            "configId": "blood-types",
+            "seed": 23487,
+            "instruction": "Johannes Brahms: predict the inheritance.",
+            "fact": "Brahms was deeply influenced by Baroque counterpoint, studying Bach's manuscripts obsessively. His technique of 'developing variation' — transforming a small motif through subtle changes across an entire symphony — influenced Schoenberg, Webern, and the entire 20th-century tradition of motivic composition.",
+            "rebalanced": true
           }
         },
         {

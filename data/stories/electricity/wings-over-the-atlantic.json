@@ -28,12 +28,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "sudoku",
-            "seed": 1012,
+            "game": "cipher",
+            "configId": "al-kindi-frequency",
+            "seed": 2174,
+            "instruction": "Amelia Earhart: break the cipher.",
             "fact": "Earhart and navigator Fred Noonan disappeared on July 2, 1937, near tiny Howland Island in the Central Pacific — one of the most remote spots on Earth. They were never found. Her disappearance remains one of aviation's great mysteries.",
-            "autogen": true,
-            "configId": "lorentz-grid",
-            "instruction": "Amelia Earhart disappeared near which island during her 1937 round-the-world attempt? Order the grid as the record was ordered — every row, column and box complete."
+            "rebalanced": true
           }
         }
       ]
@@ -57,10 +57,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "maze",
-            "configId": "atlantic-sky",
-            "instruction": "Chart Earhart's course through the storm corridors over the Atlantic.",
-            "fact": "In 1932, Earhart flew solo from Newfoundland to Northern Ireland in 14 hours 56 minutes — battling icing, storm turbulence, and a leaking fuel tank."
+            "game": "cryptarithm",
+            "configId": "addition",
+            "seed": 77890,
+            "instruction": "Amelia Earhart: crack the letter sum.",
+            "fact": "In 1932, Earhart flew solo from Newfoundland to Northern Ireland in 14 hours 56 minutes — battling icing, storm turbulence, and a leaking fuel tank.",
+            "rebalanced": true
           }
         }
       ]
@@ -74,10 +76,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "geometry",
-            "configId": "ellipse-area",
-            "instruction": "Earth's orbit is an ellipse. Earhart circled the globe — calculate the area of the elliptical flight path around the equator.",
-            "fact": "Earhart flew her Lockheed Electra around the world's equator — the longest possible circumnavigation route. She completed 22,000 miles before disappearing with only 7,000 miles remaining."
+            "game": "chimpmath",
+            "configId": "nim-learns",
+            "seed": 2836,
+            "instruction": "Amelia Earhart: match the chimps at counting.",
+            "fact": "Earhart flew her Lockheed Electra around the world's equator — the longest possible circumnavigation route. She completed 22,000 miles before disappearing with only 7,000 miles remaining.",
+            "rebalanced": true
           }
         }
       ]
@@ -91,15 +95,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "telegraph",
-            "seed": 1013,
+            "game": "starchart",
+            "configId": "al-biruni-latitude",
+            "seed": 7021,
+            "instruction": "Amelia Earhart: read the stars.",
             "fact": "Charles Lindbergh made the first solo transatlantic flight in 1927. Earhart was the first WOMAN to do so — in 1932, flying from Newfoundland to Northern Ireland in 14 hours 56 minutes. She also set the record for fastest transatlantic solo flight at that time.",
-            "autogen": true,
-            "configId": "signal-lamp",
-            "params": {
-              "plaintext": "FIRST WOMAN SOLO ACROSS"
-            },
-            "instruction": "Word from Northern Ireland comes over the wire. Read the lamp."
+            "rebalanced": true
           }
         },
         {

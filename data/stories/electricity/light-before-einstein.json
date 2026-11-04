@@ -28,12 +28,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "logicgate",
-            "seed": 1008,
+            "game": "cryptarithm",
+            "configId": "three-ledgers",
+            "seed": 86142,
+            "instruction": "Hendrik Lorentz: crack the letter sum.",
             "fact": "Hendrik Lorentz derived the 'Lorentz transformation' equations in 1895–1904, which showed that time, length, and mass change with velocity. Einstein took these equations and provided the physical interpretation: special relativity (1905).",
-            "autogen": true,
-            "configId": "shannon-relays",
-            "instruction": "Lorentz predicted time dilation — that time moves slower for moving objects — before Einstein published his theory of relativity. Wire the gates until the circuit agrees with the table on every row."
+            "rebalanced": true
           }
         }
       ]
@@ -57,10 +57,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "geometry",
-            "configId": "cylinder-volume",
-            "instruction": "Lorentz's equations describe how a moving cylinder appears to shrink. Calculate the volume of this relativistic cylinder.",
-            "fact": "Lorentz contraction predicts that a moving object appears shorter in the direction of motion. A cylinder moving at 87% of light speed would appear halved in length — its volume halved — to a stationary observer."
+            "game": "assembly",
+            "configId": "ford",
+            "seed": 46009,
+            "instruction": "Hendrik Lorentz: run the line to target.",
+            "fact": "Lorentz contraction predicts that a moving object appears shorter in the direction of motion. A cylinder moving at 87% of light speed would appear halved in length — its volume halved — to a stationary observer.",
+            "rebalanced": true
           }
         }
       ]
@@ -74,10 +76,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "sudoku",
-            "configId": "lorentz-grid",
-            "instruction": "Lorentz's transformation equations describe a universe where time, space, and mass change with velocity — yet follow exact constraints. Fill the grid so each row, column, and 2×2 box contains 1–4 exactly once.",
-            "fact": "Hendrik Lorentz derived his transformation equations in 1895–1904, showing mathematically that length, time, and mass change with velocity. Einstein took these equations and provided the physical interpretation: special relativity. Lorentz considered Einstein's insight the greater achievement."
+            "game": "sapper",
+            "configId": "lille-citadel",
+            "seed": 47820,
+            "instruction": "Hendrik Lorentz: clear the field without a blast.",
+            "fact": "Hendrik Lorentz derived his transformation equations in 1895–1904, showing mathematically that length, time, and mass change with velocity. Einstein took these equations and provided the physical interpretation: special relativity. Lorentz considered Einstein's insight the greater achievement.",
+            "rebalanced": true
           }
         }
       ]

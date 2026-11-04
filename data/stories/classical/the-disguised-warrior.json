@@ -28,12 +28,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "matchthree",
-            "seed": 1009,
+            "game": "postroute",
+            "configId": "royal",
+            "seed": 37362,
+            "instruction": "Hua Mulan: plan the post round.",
             "fact": "The Ballad of Mulan, a poem dating to the Northern Wei dynasty (386–534 CE), tells of a daughter who disguises herself as a man to spare her aged, ailing father from conscription. She fights for twelve years, earns high honours, and then reveals her identity — astonishing her comrades.",
-            "autogen": true,
-            "configId": "venice-glass",
-            "instruction": "Why does Hua Mulan disguise herself as a man in the Ballad of Mulan? Gather what the story needs: match the goods until the tally is met."
+            "rebalanced": true
           }
         }
       ]
@@ -51,12 +51,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "maze",
-            "seed": 1010,
+            "game": "sliding",
+            "configId": "renaissance",
+            "seed": 25562,
+            "instruction": "Hua Mulan: slide the tiles back into order.",
             "fact": "The ballad's ending is deliberately understated: Mulan's comrades, who fought beside her for a decade, are stunned to discover she is a woman. The poem asks no moral question — it simply presents her choice as natural and her courage as obvious.",
-            "autogen": true,
-            "configId": "pleistoanax-mountain",
-            "instruction": "Arrange the key events of Mulan's story in narrative order: The way to the answer runs through these passages — find the exit."
+            "rebalanced": true
           }
         }
       ]
@@ -76,12 +76,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "sudoku",
-            "seed": 1011,
+            "game": "pairs",
+            "configId": "modern",
+            "seed": 44101,
+            "instruction": "Hua Mulan: match each figure to their work.",
             "fact": "Mulan refused the emperor's offer of office and asked only for a fast horse to carry her home. The original ballad ends with her reunited family and Mulan in her women's clothes again — her identity secure, her duty complete, her reward the return of ordinary life.",
-            "autogen": true,
-            "configId": "anaxagoras-grid",
-            "instruction": "After revealing her identity, Mulan accepted the emperor's offer of a high imperial post. Order the grid as the record was ordered — every row, column and box complete."
+            "rebalanced": true
           }
         }
       ]
@@ -99,20 +99,24 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "maze",
-            "configId": "mulan",
-            "instruction": "Lead Mulan's cavalry through the northern frontier — avoid ambushes and reach the enemy encampment before dawn.",
-            "fact": "The ballad describes a real frontier: the northern Wei territories were under constant pressure from the Rouran Khaganate. The poem's military details — twelve years of campaigns, the yellow river crossing, the Black Mountain pass — reflect genuine geography and the brutal reality of steppe warfare."
+            "game": "expedition",
+            "configId": "zheng-he",
+            "seed": 30333,
+            "instruction": "Hua Mulan: plan the expedition route.",
+            "fact": "The ballad describes a real frontier: the northern Wei territories were under constant pressure from the Rouran Khaganate. The poem's military details — twelve years of campaigns, the yellow river crossing, the Black Mountain pass — reflect genuine geography and the brutal reality of steppe warfare.",
+            "rebalanced": true
           }
         },
         {
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "tactics",
-            "configId": "general",
-            "instruction": "As a disguised officer earning trust through merit alone, find the decisive move that breaks the enemy's northern line.",
-            "fact": "The Ballad of Mulan became one of China's most enduring stories because it celebrated filial piety and personal courage simultaneously — two of Confucian culture's highest values. It has been retold in opera, film, and literature across fourteen centuries."
+            "game": "riverrun",
+            "configId": "kwanza-river",
+            "seed": 73524,
+            "instruction": "Hua Mulan: run the river safely.",
+            "fact": "The Ballad of Mulan became one of China's most enduring stories because it celebrated filial piety and personal courage simultaneously — two of Confucian culture's highest values. It has been retold in opera, film, and literature across fourteen centuries.",
+            "rebalanced": true
           }
         },
         {

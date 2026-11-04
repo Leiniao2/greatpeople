@@ -25,20 +25,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "typeset",
-            "seed": 1013,
+            "game": "canallock",
+            "configId": "canal-du-midi",
+            "seed": 34035,
+            "instruction": "Ibn Battuta: pass the boats through the locks.",
             "fact": "Ibn Battuta (1304–1368) traveled an estimated 75,000 miles — three times the distance of Marco Polo's journey — visiting the equivalent of 44 modern countries. He crossed the Sahara, sailed the Indian Ocean, traversed the steppes of Central Asia, visited China, and explored the Kingdom of Mali, all within a single lifetime of restless curiosity.",
-            "autogen": true,
-            "configId": "bi-sheng-clay",
-            "params": {
-              "lines": [
-                "APPROXIMATEL",
-                "APPROXIMATELY",
-                "APPROXIMATELY MILES",
-                "APPROXIMATELY MILES"
-              ]
-            },
-            "instruction": "How far did Ibn Battuta travel over the course of his 29-year journey? Set the answer in movable type — mirrored, right to left."
+            "rebalanced": true
           }
         }
       ]
@@ -56,15 +48,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "pigpen",
-            "seed": 1014,
+            "game": "tradeboard",
+            "configId": "spice",
+            "seed": 89878,
+            "instruction": "Ibn Battuta: outtrade the rival merchants.",
             "fact": "Ibn Battuta left Tangier in 1325 intending only to make the hajj to Mecca. He was 21 years old. The journey expanded as his curiosity grew — he kept finding reasons not to return home, following trade routes, accepting appointments, and exploring rumors of distant courts. He finally returned to Morocco 29 years later and immediately began planning further travels.",
-            "autogen": true,
-            "configId": "masonic-grid",
-            "params": {
-              "plaintext": "ONLY AS FAR AS MECCA"
-            },
-            "instruction": "Ibn Battuta's first plan is sketched in a merchant's grid code. Read where he meant to go."
+            "rebalanced": true
           }
         }
       ]
@@ -82,12 +71,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "maze",
-            "seed": 1015,
+            "game": "alchemy",
+            "configId": "jabir",
+            "seed": 4389,
+            "instruction": "Ibn Battuta: discover the target substance.",
             "fact": "Ibn Battuta's Rihla (A Gift to Those Who Contemplate the Wonders of Cities) was dictated to a court secretary, Ibn Juzayy, on his return. Some scholars have questioned whether he visited every place he describes — the China account in particular is suspiciously vague — but his eyewitness descriptions of Mali, India, and Constantinople remain invaluable historical documents.",
-            "autogen": true,
-            "configId": "cedar-forest",
-            "instruction": "Arrange the major regions Ibn Battuta visited in the order of his travels: The way to the answer runs through these passages — find the exit."
+            "rebalanced": true
           }
         },
         {
@@ -119,10 +108,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "matchthree",
-            "configId": "cairo-alchemy",
-            "instruction": "Cairo was the greatest city in the Islamic world when Ibn Battuta passed through — a crossroads of African gold, Asian spices, and Mediterranean scholarship. Clear the market board as trade flows through the medieval world's busiest hub.",
-            "fact": "Ibn Battuta described Cairo as 'the mother of cities' — sprawling, noisy, and overwhelming with life. The Mamluk sultan's court received caravans from Sub-Saharan Africa bearing gold, ivory, and enslaved people, while Mediterranean merchants arrived with silver, glass, and cloth. Cairo was the clearing house of the medieval world economy."
+            "game": "mancala",
+            "configId": "bao-lite",
+            "seed": 42481,
+            "instruction": "Ibn Battuta: capture the most seeds.",
+            "fact": "Ibn Battuta described Cairo as 'the mother of cities' — sprawling, noisy, and overwhelming with life. The Mamluk sultan's court received caravans from Sub-Saharan Africa bearing gold, ivory, and enslaved people, while Mediterranean merchants arrived with silver, glass, and cloth. Cairo was the clearing house of the medieval world economy.",
+            "rebalanced": true
           }
         },
         {

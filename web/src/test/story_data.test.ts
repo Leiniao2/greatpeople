@@ -102,6 +102,17 @@ describe('story data — challenges', () => {
     }
   })
 
+  it('no game type is used more than 4 times in Epic (fight lessons aside)', () => {
+    // scripts/rebalance-epic.mjs keeps this; it tightens to 3 as more types arrive.
+    const count: Record<string, number> = {}
+    for (const { ch } of all) {
+      const key = ch.type === 'minigame' ? ch.game : ch.type
+      if (key !== 'fight') count[key] = (count[key] ?? 0) + 1
+    }
+    const over = Object.entries(count).filter(([, n]) => n > 4)
+    expect(over).toEqual([])
+  })
+
   it('reports the quiz-style share (target ≤ 5% once all eras are authored)', () => {
     const quiz = all.filter(({ ch }) => QUIZ_TYPES.has(ch.type)).length
     const share = quiz / all.length

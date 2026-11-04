@@ -43,17 +43,13 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "Pericles' greatest architectural achievement was:",
-            "options": [
-              "The Colosseum",
-              "The Parthenon",
-              "The Library of Alexandria",
-              "Hadrian's Wall"
-            ],
-            "answer": 1,
-            "countdown": 10,
-            "fact": "The Parthenon, completed in 438 BCE, was a temple to Athena. Its proportions use the golden ratio and its 'straight' columns are actually slightly curved to correct optical illusions — mathematical perfection in marble."
+            "type": "minigame",
+            "game": "iceslide",
+            "configId": "enkidu-ice",
+            "seed": 36544,
+            "instruction": "Pericles: slide across the ice to the exit.",
+            "fact": "The Parthenon, completed in 438 BCE, was a temple to Athena. Its proportions use the golden ratio and its 'straight' columns are actually slightly curved to correct optical illusions — mathematical perfection in marble.",
+            "rebalanced": true
           }
         },
         {
@@ -76,20 +72,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "typeset",
-            "seed": 1002,
+            "game": "surveyor",
+            "configId": "pyramid-shadow",
+            "seed": 69471,
+            "instruction": "Pericles: measure it by the angles.",
             "fact": "Aspasia was from Miletus — a Greek city in modern Turkey. Her foreign birth placed her outside Athenian citizenship, but also freed her from the strict domestic confinement imposed on Athenian women.",
-            "autogen": true,
-            "configId": "bi-sheng-clay",
-            "params": {
-              "lines": [
-                "ASPASIA WAS",
-                "ASPASIA WAS FROM",
-                "ASPASIA WAS FROM",
-                "ASPASIA WAS FROM MILETUS"
-              ]
-            },
-            "instruction": "Aspasia was born in Athens and was a full citizen of the city. Set the answer in movable type — mirrored, right to left."
+            "rebalanced": true
           }
         }
       ]
@@ -113,10 +101,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "tactics",
-            "configId": "senate",
-            "instruction": "Pericles outmanoeuvres rivals in the Athenian assembly — can you find the winning move?",
-            "fact": "Pericles dominated Athenian politics for three decades through strategic alliances and oratorical power — power that his enemies claimed was shaped by Aspasia."
+            "game": "jigsaw",
+            "configId": "starry-night",
+            "seed": 81293,
+            "instruction": "Pericles: piece the picture together.",
+            "fact": "Pericles dominated Athenian politics for three decades through strategic alliances and oratorical power — power that his enemies claimed was shaped by Aspasia.",
+            "rebalanced": true
           }
         },
         {
@@ -160,10 +150,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "crossword",
-            "configId": "pericles",
-            "instruction": "Fill in the crossword with words from Aspasia's world — philosophy, rhetoric, and Athenian society.",
-            "fact": "The philosopher Socrates visited Aspasia's school. Plato has Socrates claim he learned the art of persuasion from Aspasia — whether seriously or satirically, it shows her intellectual reputation."
+            "game": "sokoban",
+            "configId": "giza-ramp",
+            "seed": 67900,
+            "instruction": "Pericles: haul the stones onto their marks.",
+            "fact": "The philosopher Socrates visited Aspasia's school. Plato has Socrates claim he learned the art of persuasion from Aspasia — whether seriously or satirically, it shows her intellectual reputation.",
+            "rebalanced": true
           }
         }
       ]
@@ -181,20 +173,24 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "sudoku",
-            "configId": "anaxagoras-grid",
-            "instruction": "Socrates, Aspasia's student, held that the unexamined life is not worth living. An ordered mind finds logic where others see chaos — fill the grid.",
-            "fact": "Aspasia ran an intellectual salon in Athens that attracted Socrates, Anaxagoras, and other leading thinkers of the age. Socrates is said to have learned rhetoric from her — and Plato later has Socrates recite one of her speeches from memory in the Menexenus dialogue."
+            "game": "postroute",
+            "configId": "pony",
+            "seed": 15964,
+            "instruction": "Pericles: plan the post round.",
+            "fact": "Aspasia ran an intellectual salon in Athens that attracted Socrates, Anaxagoras, and other leading thinkers of the age. Socrates is said to have learned rhetoric from her — and Plato later has Socrates recite one of her speeches from memory in the Menexenus dialogue.",
+            "rebalanced": true
           }
         },
         {
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "geometry",
-            "configId": "circle-circumference",
-            "instruction": "The Parthenon's architects used advanced geometry to create optical illusions — its columns bulge slightly, its steps curve upward. Calculate the perfect classical circle.",
-            "fact": "The Parthenon (447–432 BCE) was built with astonishing precision: its columns taper, its platform curves, and its lines are never quite straight — all deliberate optical corrections to make the building appear perfect to the human eye. Greek architecture and geometry were inseparable."
+            "game": "riverrun",
+            "configId": "colorado-powell",
+            "seed": 73165,
+            "instruction": "Pericles: run the river safely.",
+            "fact": "The Parthenon (447–432 BCE) was built with astonishing precision: its columns taper, its platform curves, and its lines are never quite straight — all deliberate optical corrections to make the building appear perfect to the human eye. Greek architecture and geometry were inseparable.",
+            "rebalanced": true
           }
         },
         {

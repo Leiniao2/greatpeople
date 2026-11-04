@@ -28,12 +28,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "matchthree",
-            "seed": 1009,
+            "game": "konigsberg",
+            "configId": "paris",
+            "seed": 5237,
+            "instruction": "Josiah Wedgwood: walk every bridge once.",
             "fact": "Josiah Wedgwood didn't just make pottery — he invented modern manufacturing. He introduced quality control, a money-back guarantee, free delivery, and celebrity endorsements. His factory pioneered the division of labour decades before Adam Smith wrote about it.",
-            "autogen": true,
-            "configId": "hanseatic-runes",
-            "instruction": "Arrange these milestones of the Industrial Revolution in which Wedgwood played a part: Gather what the story needs: match the goods until the tally is met."
+            "rebalanced": true
           }
         }
       ]
@@ -57,10 +57,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "porcelain",
-            "configId": "cobalt-bowl",
-            "instruction": "Wedgwood's breakthrough was Jasperware — a matte stoneware that could hold fine detail. Craft the cobalt bowl with the precision of his Etruria Works.",
-            "fact": "Wedgwood spent years and thousands of experiments to develop Jasperware — a ceramic so consistent that every piece looked identical. He believed in what today we call quality control: testing every batch, recording every failure. His laboratory notebooks survive, filled with meticulous records of clay, glaze, and kiln temperature."
+            "game": "canallock",
+            "configId": "dutch-overtoom",
+            "seed": 89826,
+            "instruction": "Josiah Wedgwood: pass the boats through the locks.",
+            "fact": "Wedgwood spent years and thousands of experiments to develop Jasperware — a ceramic so consistent that every piece looked identical. He believed in what today we call quality control: testing every batch, recording every failure. His laboratory notebooks survive, filled with meticulous records of clay, glaze, and kiln temperature.",
+            "rebalanced": true
           }
         }
       ]
@@ -80,20 +82,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "typeset",
-            "seed": 1010,
+            "game": "hanoi",
+            "configId": "reve",
+            "seed": 35092,
+            "instruction": "Josiah Wedgwood: move the stack of disks.",
             "fact": "Charles Darwin was Josiah Wedgwood's grandson — his mother Susannah was Wedgwood's daughter, and his wife Emma was Wedgwood's granddaughter. Darwin married his own cousin from the Wedgwood family, a common practice in Victorian upper-class families.",
-            "autogen": true,
-            "configId": "franklin-gazette",
-            "params": {
-              "lines": [
-                "CHARLES",
-                "CHARLES DARWIN",
-                "CHARLES DARWIN",
-                "CHARLES DARWIN"
-              ]
-            },
-            "instruction": "Josiah Wedgwood was the grandfather of which famous scientist? Set the answer in movable type — mirrored, right to left."
+            "rebalanced": true
           }
         }
       ]
@@ -127,12 +121,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "sudoku",
-            "seed": 1011,
+            "game": "pendulum",
+            "configId": "match-clocks",
+            "seed": 22971,
+            "instruction": "Josiah Wedgwood: set the clock to keep time.",
             "fact": "Wedgwood brilliantly marketed at both ends of the market. He sold exclusive pieces to royalty and aristocracy — then used their endorsements to sell affordable versions to the growing middle class. His catalogue, free delivery, and money-back guarantee made quality ceramics accessible to ordinary households, pioneering the modern retail model.",
-            "autogen": true,
-            "configId": "mendel-grid",
-            "instruction": "Wedgwood sold only to the wealthy — his pottery was exclusively a luxury product for aristocrats and royalty. Order the grid as the record was ordered — every row, column and box complete."
+            "rebalanced": true
           }
         },
         {

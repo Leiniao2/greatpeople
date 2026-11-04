@@ -34,12 +34,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "sudoku",
-            "seed": 1018,
+            "game": "lamplighter",
+            "configId": "westminster-bridge",
+            "seed": 60607,
+            "instruction": "An Jung-geun: light every lamp.",
             "fact": "On October 26, 1909, An Jung-geun shot Itō Hirobumi — Japan's first Prime Minister and the architect of Korean colonisation — at Harbin railway station. An was captured, tried, and executed in 1910, the same year Japan formally annexed Korea.",
-            "autogen": true,
-            "configId": "lorentz-grid",
-            "instruction": "An Jung-geun assassinated Itō Hirobumi in which year? Order the grid as the record was ordered — every row, column and box complete."
+            "rebalanced": true
           }
         }
       ]

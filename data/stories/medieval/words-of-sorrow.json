@@ -28,12 +28,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "matchthree",
-            "seed": 1004,
+            "game": "cargo",
+            "configId": "zheng-he",
+            "seed": 34941,
+            "instruction": "Li Qingzhao: stow the cargo.",
             "fact": "Li Qingzhao (1084–c.1155) is considered the greatest female poet in Chinese history and one of the greatest poets of all. She transformed the ci form — originally sung verses for entertainment — into a vehicle for profound personal expression.",
-            "autogen": true,
-            "configId": "changan-silks",
-            "instruction": "Li Qingzhao is regarded as: Gather what the story needs: match the goods until the tally is met."
+            "rebalanced": true
           }
         }
       ]
@@ -51,10 +51,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "music",
-            "configId": "pentatonic-descend",
-            "instruction": "Li Qingzhao's poems were set to music. Arrange this descending phrase — music of fading autumn.",
-            "fact": "The ci poems of Li Qingzhao were written to specific tunes — each tune had a name and a set pattern of tones. Her poems about loss, love, and exile have been sung and recited for 900 years."
+            "game": "postroute",
+            "configId": "inca",
+            "seed": 45107,
+            "instruction": "Li Qingzhao: plan the post round.",
+            "fact": "The ci poems of Li Qingzhao were written to specific tunes — each tune had a name and a set pattern of tones. Her poems about loss, love, and exile have been sung and recited for 900 years.",
+            "rebalanced": true
           }
         }
       ]
@@ -93,22 +95,24 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "sudoku",
-            "seed": 1006,
+            "game": "tafl",
+            "configId": "ballinderry",
+            "seed": 2936,
+            "instruction": "Li Qingzhao: bring the king to safety.",
             "fact": "Li Qingzhao lost her husband, her home, and her famous art collection when the Jin dynasty invaded northern China in 1127. Her later ci poems are hauntingly different from her earlier joyful verses. She wrote: 'Who is left to share the fragrance of the wine?' — a line that still resonates 900 years later.",
-            "autogen": true,
-            "configId": "al-khwarizmi-grid",
-            "instruction": "After the death of her husband Zhao Mingcheng, Li Qingzhao continued to write — producing some of her most profound poems, marked by deep grief and longing. Order the grid as the record was ordered — every row, column and box complete."
+            "rebalanced": true
           }
         },
         {
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "storysort",
-            "configId": "genji-moonlight",
-            "instruction": "Arrange the opening of Genji's story as Murasaki Shikibu wrote it — the Emperor's doomed love for a lady not of the first rank.",
-            "fact": "Written around 1008 CE by a court lady, The Tale of Genji is considered the world's first novel. Its author, known as Murasaki Shikibu, wrote in hiragana (considered 'women's script' then) while men wrote formal documents in Chinese — a subversion that produced one of humanity's great literary works."
+            "game": "caravan",
+            "configId": "mansa-musa",
+            "seed": 61934,
+            "instruction": "Li Qingzhao: turn a profit along the route.",
+            "fact": "Written around 1008 CE by a court lady, The Tale of Genji is considered the world's first novel. Its author, known as Murasaki Shikibu, wrote in hiragana (considered 'women's script' then) while men wrote formal documents in Chinese — a subversion that produced one of humanity's great literary works.",
+            "rebalanced": true
           }
         },
         {

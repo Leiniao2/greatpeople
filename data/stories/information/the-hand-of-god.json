@@ -28,12 +28,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "sudoku",
-            "seed": 1010,
+            "game": "expedition",
+            "configId": "hannibal-alps",
+            "seed": 60164,
+            "instruction": "Diego Maradona: plan the expedition route.",
             "fact": "In the 1986 World Cup quarterfinal, Maradona scored twice against England — first with a handball he called 'the Hand of God,' then with a dribble past five players that was later voted the Goal of the Century. Argentina won 2–1.",
-            "autogen": true,
-            "configId": "eisenstein-grid",
-            "instruction": "In which 1986 World Cup quarterfinal match did Maradona score both the 'Hand of God' and 'Goal of the Century'? Order the grid as the record was ordered — every row, column and box complete."
+            "rebalanced": true
           }
         }
       ]
@@ -57,20 +57,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "typeset",
-            "seed": 1011,
+            "game": "soccer",
+            "configId": "euro-penalty",
+            "seed": 28452,
+            "instruction": "Diego Maradona: score from the spot.",
             "fact": "Maradona's career compressed triumph and tragedy into a single volcanic life. He carried Argentina and Napoli to heights neither had reached before — and his personal demons brought him just as low. The 1978 World Cup, won without him, haunted him; 1986, with him at the centre, is the defining image of his legacy.",
-            "autogen": true,
-            "configId": "franklin-gazette",
-            "params": {
-              "lines": [
-                "MARADONA",
-                "MARADONA MAKES",
-                "MARADONA MAKES HIS",
-                "MARADONA MAKES HIS"
-              ]
-            },
-            "instruction": "Arrange the key moments of Diego Maradona's life in chronological order: Set the answer in movable type — mirrored, right to left."
+            "rebalanced": true
           }
         }
       ]
@@ -111,10 +103,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "tactics",
-            "configId": "musashi-duel",
-            "instruction": "One player against the world. Maradona's genius was being unpredictable. Find the decisive move in the one-on-one duel — just like the Goal of the Century.",
-            "fact": "Maradona's duel with England in 1986 was personal as well as sporting — four years after the Falklands War, England and Argentina met in a World Cup quarter-final. Maradona scored both goals: one with his hand, one with his feet. He later said both were scored 'with the hand of God and the head of Maradona.'"
+            "game": "punnett",
+            "configId": "blood-types",
+            "seed": 99938,
+            "instruction": "Diego Maradona: predict the inheritance.",
+            "fact": "Maradona's duel with England in 1986 was personal as well as sporting — four years after the Falklands War, England and Argentina met in a World Cup quarter-final. Maradona scored both goals: one with his hand, one with his feet. He later said both were scored 'with the hand of God and the head of Maradona.'",
+            "rebalanced": true
           }
         },
         {
@@ -127,12 +121,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "rhythm",
-            "seed": 1012,
+            "game": "worldclock",
+            "configId": "telegraph-globe",
+            "seed": 63894,
+            "instruction": "Diego Maradona: convert the times across the globe.",
             "fact": "Argentina coach César Luis Menotti left Maradona out of the 1978 squad, saying he was too young to carry the pressure. Argentina won the tournament on home soil. Maradona said the exclusion 'broke my heart' — and that winning the 1986 World Cup finally healed the wound. In 1978, a 17-year-old sat out history; in 1986, a 25-year-old made it.",
-            "autogen": true,
-            "configId": "bach-fugue",
-            "instruction": "Diego Maradona was excluded from Argentina's 1978 World Cup squad — which Argentina went on to win — because the coach considered him too young at 17. Learn the phrase and play it back, note for note."
+            "rebalanced": true
           }
         },
         {

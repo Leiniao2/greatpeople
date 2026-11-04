@@ -54,10 +54,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "geometry",
-            "configId": "volume-pyramid",
-            "instruction": "Sargon's engineers built massive ziggurats. Calculate the volume of the great pyramid — a feat of the same era.",
-            "fact": "Akkadian engineers built on Sumerian foundations — their ziggurats required the same mathematical knowledge that moved millions of tonnes of stone."
+            "game": "mancala",
+            "configId": "kalah",
+            "seed": 8162,
+            "instruction": "Sargon I: capture the most seeds.",
+            "fact": "Akkadian engineers built on Sumerian foundations — their ziggurats required the same mathematical knowledge that moved millions of tonnes of stone.",
+            "rebalanced": true
           }
         }
       ]

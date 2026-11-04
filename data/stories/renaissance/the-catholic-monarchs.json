@@ -28,10 +28,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "voting",
-            "configId": "spanish-court",
-            "instruction": "Queen Isabel must win court support to fund Columbus's westward voyage. The treasury is empty and the nobles are sceptical — persuade the council.",
-            "fact": "Columbus spent seven years seeking royal patronage before Isabel and Ferdinand agreed to fund his voyage. The myth that Isabel sold her jewels is almost certainly false — the funding came from the royal treasury and private investors. But Isabel's personal intervention was decisive after her council had already rejected the proposal."
+            "game": "optics",
+            "configId": "fresnel-lighthouse",
+            "seed": 55632,
+            "instruction": "Isabel I of Castile: focus the light.",
+            "fact": "Columbus spent seven years seeking royal patronage before Isabel and Ferdinand agreed to fund his voyage. The myth that Isabel sold her jewels is almost certainly false — the funding came from the royal treasury and private investors. But Isabel's personal intervention was decisive after her council had already rejected the proposal.",
+            "rebalanced": true
           }
         }
       ]
@@ -99,22 +101,24 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "matchthree",
-            "seed": 1003,
+            "game": "nonogram",
+            "configId": "louvre",
+            "seed": 64403,
+            "instruction": "Isabel I of Castile: reveal the picture from its clues.",
             "fact": "Educated Europeans had known the Earth was spherical since ancient Greece. The debate was about the Earth's SIZE — Columbus's critics correctly argued the ocean was too wide. He survived only because the Americas existed where he wrongly placed Asia.",
-            "autogen": true,
-            "configId": "lisbon-spices",
-            "instruction": "Ferdinand and Isabella funded Columbus' 1492 voyage primarily because they believed the Earth was flat. Gather what the story needs: match the goods until the tally is met."
+            "rebalanced": true
           }
         },
         {
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "storysort",
-            "configId": "don-quixote-windmills",
-            "instruction": "Reassemble the most famous scene in Spanish literature — Don Quixote's charge against the windmills he mistakes for giants.",
-            "fact": "Don Quixote (1605) by Cervantes is considered the first modern novel. The windmill scene became one of literature's greatest metaphors. Cervantes wrote Part I while imprisoned in Seville; the success was so great he wrote Part II a decade later."
+            "game": "quipu",
+            "configId": "top-cord",
+            "seed": 22685,
+            "instruction": "Isabel I of Castile: read and tie the quipu.",
+            "fact": "Don Quixote (1605) by Cervantes is considered the first modern novel. The windmill scene became one of literature's greatest metaphors. Cervantes wrote Part I while imprisoned in Seville; the success was so great he wrote Part II a decade later.",
+            "rebalanced": true
           }
         },
         {

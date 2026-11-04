@@ -28,10 +28,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "matchthree",
-            "configId": "babylon-tablets",
-            "instruction": "Ashurbanipal's scribes copied tablets column by column across the empire. Match the cuneiform symbols vertically — only column matches score on the ancient clay.",
-            "fact": "Cuneiform tablets were written in vertical columns read top to bottom, right to left. Ashurbanipal's library catalogue tablets — listing every text by first line — are among the oldest library indexes ever found. The Epic of Gilgamesh was filed under its opening words: 'He who saw the deep.'"
+            "game": "roundup",
+            "configId": "wild-mustangs",
+            "seed": 33329,
+            "instruction": "Ashurbanipal: round them all up.",
+            "fact": "Cuneiform tablets were written in vertical columns read top to bottom, right to left. Ashurbanipal's library catalogue tablets — listing every text by first line — are among the oldest library indexes ever found. The Epic of Gilgamesh was filed under its opening words: 'He who saw the deep.'",
+            "rebalanced": true
           }
         }
       ]
@@ -55,12 +57,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "matchthree",
-            "seed": 1005,
+            "game": "royalur",
+            "configId": "quick",
+            "seed": 32240,
+            "instruction": "Ashurbanipal: race your pieces home.",
             "fact": "The burning of Nineveh paradoxically preserved Ashurbanipal's library. The fire baked the clay tablets hard, protecting them. The library lay buried until Austen Henry Layard rediscovered it in 1849, bringing the Epic of Gilgamesh back to the world.",
-            "autogen": true,
-            "configId": "babylon-tablets",
-            "instruction": "Arrange the events of the Assyrian Empire's fall in order: Gather what the story needs: match the goods until the tally is met."
+            "rebalanced": true
           }
         }
       ]
@@ -80,12 +82,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "rhythm",
-            "seed": 1006,
+            "game": "wallbuilder",
+            "configId": "opus-reticulatum",
+            "seed": 76642,
+            "instruction": "Ashurbanipal: raise the wall without gaps.",
             "fact": "Ashurbanipal could read and write in multiple languages — an extraordinary feat for a king. He boasted of this in inscriptions, proud of mastering both the scribal arts and the military campaigns typical of Assyrian rulers.",
-            "autogen": true,
-            "configId": "court-drums",
-            "instruction": "Ashurbanipal is notable for being literate at a time when: Learn the phrase and play it back, note for note."
+            "rebalanced": true
           }
         },
         {
@@ -96,15 +98,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "polybius",
-            "seed": 1007,
+            "game": "pairs",
+            "configId": "renaissance",
+            "seed": 44982,
+            "instruction": "Ashurbanipal: match each figure to their work.",
             "fact": "Ashurbanipal sent scribes across his empire to copy every text they could find — myths, astronomy, medicine, and administration. Catalogue tablets listing the library's contents show it was deliberately organised by subject — the world's first planned library. The Epic of Gilgamesh was found among its holdings.",
-            "autogen": true,
-            "configId": "greek-torches",
-            "params": {
-              "plaintext": "COPY EVERY TABLET"
-            },
-            "instruction": "Ashurbanipal's order to his scribes arrives as pairs of numbers. Find each letter on the square."
+            "rebalanced": true
           }
         }
       ]
@@ -124,10 +123,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "klotski",
-            "configId": "last-general",
-            "instruction": "The Assyrian Empire is falling. Slide the last general through the collapsing kingdom before Nineveh is surrounded and burned.",
-            "fact": "Nineveh fell in 612 BCE to a coalition of Babylonians, Medes, and Scythians. The city was so thoroughly sacked that the Greek historian Xenophon marched past its ruins 200 years later without knowing what it had been. The library survived only because fire baked the clay tablets into permanence."
+            "game": "irrigation",
+            "configId": "egypt",
+            "seed": 44329,
+            "instruction": "Ashurbanipal: water every field before the flood ebbs.",
+            "fact": "Nineveh fell in 612 BCE to a coalition of Babylonians, Medes, and Scythians. The city was so thoroughly sacked that the Greek historian Xenophon marched past its ruins 200 years later without knowing what it had been. The library survived only because fire baked the clay tablets into permanence.",
+            "rebalanced": true
           }
         },
         {

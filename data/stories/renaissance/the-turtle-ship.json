@@ -48,12 +48,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "sudoku",
-            "seed": 1011,
+            "game": "knightstour",
+            "configId": "al-adli",
+            "seed": 60613,
+            "instruction": "Lee Sun-sin: tour every square with the knight.",
             "fact": "Yi was arrested, tortured, and demoted twice — the victim of court intrigue and a Japanese deception operation that planted false intelligence to undermine him. He served as a common soldier before being hastily reinstated when the navy collapsed without him. Myeongnyang was fought with the 13 ships that remained after his absence.",
-            "autogen": true,
-            "configId": "euclid-grid",
-            "instruction": "Admiral Yi Sun-sin was never removed from command during the Japanese invasions. Order the grid as the record was ordered — every row, column and box complete."
+            "rebalanced": true
           }
         }
       ]
@@ -71,12 +71,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "maze",
-            "seed": 1012,
+            "game": "morris",
+            "configId": "three-mens",
+            "seed": 45909,
+            "instruction": "Lee Sun-sin: form mills to win.",
             "fact": "Yi Sun-sin died at Noryang in 1598 — struck by a bullet during the battle that would finally expel Japanese forces from Korea. His last words, reportedly, were: 'The battle is at its height — do not announce my death.' He won the battle from his deathbed, concealing his death until the Japanese had fled.",
-            "autogen": true,
-            "configId": "pacific-strait",
-            "instruction": "Arrange the key events of the Imjin War and Yi Sun-sin's role in order: The way to the answer runs through these passages — find the exit."
+            "rebalanced": true
           }
         },
         {

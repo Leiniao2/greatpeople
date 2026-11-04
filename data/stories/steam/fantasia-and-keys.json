@@ -31,17 +31,13 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "What did Robert Schumann name the two contrasting personas he used to sign his music reviews?",
-            "options": [
-              "Apollo and Dionysus",
-              "Florestan and Eusebius",
-              "Maestro and Shadow",
-              "Major and Minor"
-            ],
-            "answer": 1,
-            "countdown": 10,
-            "fact": "Schumann's Florestan (passionate extrovert) and Eusebius (dreaming introvert) represented the two sides of Romantic temperament. He used both names in his music journal Neue Zeitschrift für Musik, which he founded in 1834."
+            "type": "minigame",
+            "game": "telegraphnet",
+            "configId": "morse",
+            "seed": 25248,
+            "instruction": "Clara Schumann: connect the cities by wire.",
+            "fact": "Schumann's Florestan (passionate extrovert) and Eusebius (dreaming introvert) represented the two sides of Romantic temperament. He used both names in his music journal Neue Zeitschrift für Musik, which he founded in 1834.",
+            "rebalanced": true
           }
         }
       ]
@@ -161,10 +157,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "music",
-            "configId": "clara-schumann",
-            "instruction": "Arrange the notes of a Clara Schumann melodic phrase — a rising chord journey in the Romantic style.",
-            "fact": "Clara Schumann's Piano Concerto in A minor (Op. 7) was composed when she was 14 — the same age Mendelssohn was when he wrote his Octet. She revised it at 16 and performed it before royalty."
+            "game": "orbit",
+            "configId": "halley-return",
+            "seed": 46094,
+            "instruction": "Clara Schumann: put the body into orbit.",
+            "fact": "Clara Schumann's Piano Concerto in A minor (Op. 7) was composed when she was 14 — the same age Mendelssohn was when he wrote his Octet. She revised it at 16 and performed it before royalty.",
+            "rebalanced": true
           }
         }
       ]
@@ -182,12 +180,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "logicgate",
-            "seed": 1002,
+            "game": "pendulum",
+            "configId": "foucault",
+            "seed": 25160,
+            "instruction": "Clara Schumann: set the clock to keep time.",
             "fact": "Schumann's finger-strengthening apparatus held some fingers stationary while exercising others. It permanently injured his right hand, ending his piano career and redirecting him entirely to composition and music criticism.",
-            "autogen": true,
-            "configId": "lovelace-engine",
-            "instruction": "Robert Schumann permanently damaged his right hand by using a mechanical device he invented to strengthen his fingers faster. Wire the gates until the circuit agrees with the table on every row."
+            "rebalanced": true
           }
         },
         {

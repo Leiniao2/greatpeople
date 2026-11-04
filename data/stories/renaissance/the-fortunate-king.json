@@ -28,20 +28,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "typeset",
-            "seed": 1001,
+            "game": "gears",
+            "configId": "clock-train",
+            "seed": 32923,
+            "instruction": "Manuel I of Portugal: build the gear train.",
             "fact": "'Manuel, o Venturoso' — The Fortunate. Under his reign, Vasco da Gama reached India (1498), Pedro Cabral reached Brazil (1500), and Portugal controlled the world's spice trade. Lisbon became the richest city in Europe.",
-            "autogen": true,
-            "configId": "gutenberg-bible",
-            "params": {
-              "lines": [
-                "THE",
-                "THE FORTUNATE",
-                "THE FORTUNATE",
-                "THE FORTUNATE"
-              ]
-            },
-            "instruction": "Manuel I of Portugal was known by what nickname, reflecting the extraordinary wealth of his reign? Set the answer in movable type — mirrored, right to left."
+            "rebalanced": true
           }
         }
       ]
@@ -71,10 +63,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "cooking",
-            "configId": "japanese-tea",
-            "instruction": "Portuguese traders were the first Europeans to reach Japan. Arrange the tea ceremony steps they would have witnessed there.",
-            "fact": "Portuguese traders arrived in Japan in 1543. They brought firearms, Catholicism, and tempura cooking — and in return encountered Japanese tea culture and Buddhist art. The cultural exchange flowed both ways."
+            "game": "morris",
+            "configId": "twelve-mens",
+            "seed": 35166,
+            "instruction": "Manuel I of Portugal: form mills to win.",
+            "fact": "Portuguese traders arrived in Japan in 1543. They brought firearms, Catholicism, and tempura cooking — and in return encountered Japanese tea culture and Buddhist art. The cultural exchange flowed both ways.",
+            "rebalanced": true
           }
         }
       ]
@@ -98,10 +92,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "matchthree",
-            "configId": "lisbon-spices",
-            "instruction": "Trade the spices in Lisbon's market — match three or more to clear the board.",
-            "fact": "Under Manuel I, Portugal controlled the spice trade from 1498 to the 1580s. A cargo of cloves from Maluku could return 100× its cost in Lisbon — funding the Manueline architecture still standing in Belém."
+            "game": "canallock",
+            "configId": "panama",
+            "seed": 25707,
+            "instruction": "Manuel I of Portugal: pass the boats through the locks.",
+            "fact": "Under Manuel I, Portugal controlled the spice trade from 1498 to the 1580s. A cargo of cloves from Maluku could return 100× its cost in Lisbon — funding the Manueline architecture still standing in Belém.",
+            "rebalanced": true
           }
         }
       ]
@@ -115,20 +111,24 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "matchthree",
-            "configId": "hanseatic-runes",
-            "instruction": "The Hanseatic League traded in six commodities across northern Europe. Six rune-marked goods flood the board — match 3 or more to clear them. 56 tiles to clear on a 7×7 grid.",
-            "fact": "The Hanseatic League at its peak united over 200 Northern European cities in a merchant alliance that bypassed feudal lords entirely. Its Kontors in London, Bergen, Bruges and Novgorod operated as sovereign trading colonies, complete with their own courts, weights, and private armies."
+            "game": "optics",
+            "configId": "alhazen-camera",
+            "seed": 3833,
+            "instruction": "Manuel I of Portugal: focus the light.",
+            "fact": "The Hanseatic League at its peak united over 200 Northern European cities in a merchant alliance that bypassed feudal lords entirely. Its Kontors in London, Bergen, Bruges and Novgorod operated as sovereign trading colonies, complete with their own courts, weights, and private armies.",
+            "rebalanced": true
           }
         },
         {
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "colormix",
-            "configId": "ultramarine-lapis",
-            "instruction": "Mix the ultramarine blue reserved for the Virgin Mary — mined from a single valley in Afghanistan and worth more than gold in the Renaissance.",
-            "fact": "Medieval contracts specified exactly how many grams of lapis lazuli an artist could use. Jan van Eyck and Fra Angelico reserved it solely for the Virgin Mary's robe. Michelangelo reportedly left the Entombment unfinished because his patron refused to supply enough lapis."
+            "game": "postroute",
+            "configId": "thurn",
+            "seed": 92597,
+            "instruction": "Manuel I of Portugal: plan the post round.",
+            "fact": "Medieval contracts specified exactly how many grams of lapis lazuli an artist could use. Jan van Eyck and Fra Angelico reserved it solely for the Virgin Mary's robe. Michelangelo reportedly left the Entombment unfinished because his patron refused to supply enough lapis.",
+            "rebalanced": true
           }
         },
         {

@@ -28,12 +28,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "maze",
-            "seed": 1008,
+            "game": "nonogram",
+            "configId": "ashmolean",
+            "seed": 8776,
+            "instruction": "Lei Zu: reveal the picture from its clues.",
             "fact": "Chinese tradition credits Lei Zu (also written Leizu or Si Ling-chi), wife of the Yellow Emperor Huangdi, with discovering silk around 2700 BCE when a silkworm cocoon fell into her tea and she unravelled its thread.",
-            "autogen": true,
-            "configId": "pyramid-deep",
-            "instruction": "According to Chinese legend, who discovered silk? The way to the answer runs through these passages — find the exit."
+            "rebalanced": true
           }
         }
       ]
@@ -57,20 +57,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "typeset",
-            "seed": 1009,
+            "game": "iceslide",
+            "configId": "pyramid-ice",
+            "seed": 74031,
+            "instruction": "Lei Zu: slide across the ice to the exit.",
             "fact": "The term 'Silk Road' (Seidenstraße) was coined by German geographer Ferdinand von Richthofen in 1877. Ancient traders called it by regional names — the unified concept of a single route is a modern invention.",
-            "autogen": true,
-            "configId": "bi-sheng-clay",
-            "params": {
-              "lines": [
-                "THE TERM",
-                "THE TERM SILK",
-                "THE TERM SILK ROAD",
-                "THE TERM SILK ROAD"
-              ]
-            },
-            "instruction": "The term 'Silk Road' was coined by ancient Chinese merchants who dominated the trade route. Set the answer in movable type — mirrored, right to left."
+            "rebalanced": true
           }
         }
       ]
@@ -90,12 +82,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "sudoku",
-            "seed": 1010,
+            "game": "tangram",
+            "configId": "junk-ship",
+            "seed": 42532,
+            "instruction": "Lei Zu: fit the seven pieces to the shape.",
             "fact": "A single silkworm cocoon is made from one continuous thread up to 900 metres long. It takes about 2,500 cocoons to make one pound of raw silk — explaining why silk was worth its weight in gold.",
-            "autogen": true,
-            "configId": "euclid-grid",
-            "instruction": "Arrange the steps of silk production in the correct order: Order the grid as the record was ordered — every row, column and box complete."
+            "rebalanced": true
           }
         },
         {
@@ -106,10 +98,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "matchthree",
-            "configId": "babylon-tablets",
-            "instruction": "Silk merchants logged every shipment in clay. Match the trade symbols vertically — only column matches score on the ancient tablet.",
-            "fact": "Along the Silk Road, merchants kept meticulous records of goods in transit. Babylonian clay tablet accounting spread westward just as Chinese silk spread east — commerce and literacy moved together."
+            "game": "wallbuilder",
+            "configId": "hadrian",
+            "seed": 75913,
+            "instruction": "Lei Zu: raise the wall without gaps.",
+            "fact": "Along the Silk Road, merchants kept meticulous records of goods in transit. Babylonian clay tablet accounting spread westward just as Chinese silk spread east — commerce and literacy moved together.",
+            "rebalanced": true
           }
         }
       ]

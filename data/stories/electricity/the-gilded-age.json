@@ -28,12 +28,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "logicgate",
-            "seed": 1020,
+            "game": "railway",
+            "configId": "yard",
+            "seed": 41161,
+            "instruction": "Andrew Mellon: lay the track for every train.",
             "fact": "Andrew Mellon served as Treasury Secretary under Harding, Coolidge, and Hoover (1921–1932) — the longest tenure since Alexander Hamilton. He oversaw the Roaring Twenties boom and the beginning of the Great Depression, for which he was blamed.",
-            "autogen": true,
-            "configId": "shannon-relays",
-            "instruction": "Andrew Mellon served as US Treasury Secretary under three consecutive presidents. Wire the gates until the circuit agrees with the table on every row."
+            "rebalanced": true
           }
         }
       ]
@@ -51,10 +51,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "geometry",
-            "configId": "cube-diagonal",
-            "instruction": "Mellon's National Gallery of Art is a masterpiece of architectural geometry. Calculate the space diagonal of this cubic gallery room.",
-            "fact": "Mellon donated his art collection and $15 million to build Washington's National Gallery of Art — one of the greatest acts of private cultural philanthropy in American history. His collection included Raphaels, Rembrandts, and van Eycks bought from the Hermitage."
+            "game": "truss",
+            "configId": "warren",
+            "seed": 84904,
+            "instruction": "Andrew Mellon: build a truss that holds.",
+            "fact": "Mellon donated his art collection and $15 million to build Washington's National Gallery of Art — one of the greatest acts of private cultural philanthropy in American history. His collection included Raphaels, Rembrandts, and van Eycks bought from the Hermitage.",
+            "rebalanced": true
           }
         }
       ]

@@ -25,20 +25,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "typeset",
-            "seed": 1013,
+            "game": "ferry",
+            "configId": "brothers-sisters",
+            "seed": 22108,
+            "instruction": "Montezuma II: get everyone safely across.",
             "fact": "Tenochtitlan, built on an island in Lake Texcoco, was one of the largest cities in the world in 1500 — home to 200,000–300,000 people, larger than London, Paris, or any city in Spain. When Hernán Cortés' soldiers first saw it, they wrote that they thought they were dreaming. Its causeways, aqueducts, and floating gardens had no parallel in European experience.",
-            "autogen": true,
-            "configId": "gutenberg-bible",
-            "params": {
-              "lines": [
-                "TENOCHTITLAN",
-                "TENOCHTITLAN",
-                "TENOCHTITLAN",
-                "TENOCHTITLAN"
-              ]
-            },
-            "instruction": "What was the Aztec capital city that Montezuma II ruled, which amazed the Spanish conquistadors? Set the answer in movable type — mirrored, right to left."
+            "rebalanced": true
           }
         }
       ]
@@ -82,12 +74,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "matchthree",
-            "seed": 1015,
+            "game": "knightstour",
+            "configId": "turk",
+            "seed": 47589,
+            "instruction": "Montezuma II: tour every square with the knight.",
             "fact": "The conquest of the Aztec Empire was not a European conquest of indigenous people — it was a coalition war. Cortés' key allies, the Tlaxcalans, had been enemies of the Aztec Triple Alliance for generations and contributed far more warriors to the siege of Tenochtitlan than the Spanish did. The Aztec empire fell to its own enemies as much as to European weapons.",
-            "autogen": true,
-            "configId": "lisbon-spices",
-            "instruction": "Arrange these events of Montezuma II's reign and the Spanish conquest in order: Gather what the story needs: match the goods until the tally is met."
+            "rebalanced": true
           }
         },
         {
@@ -98,10 +90,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "matchthree",
-            "configId": "aztec-market",
-            "instruction": "The Tlatelolco market next to Tenochtitlan was the largest in the Americas — Cortés' soldiers estimated 60,000 traders attended on market day. Clear the rows of cacao, jade, cotton, and gold that flowed through the empire's commercial heart.",
-            "fact": "The Spanish soldier Bernal Díaz del Castillo wrote that the Tlatelolco market was 'like the squares of Salamanca, but twice as big, crowded with people, and more orderly.' It traded everything: food, textiles, gold, slaves, feathers, medicine, and pottery. Every item had a fixed price and market inspectors enforced fair trading."
+            "game": "riverrun",
+            "configId": "yangtze-gorges",
+            "seed": 63100,
+            "instruction": "Montezuma II: run the river safely.",
+            "fact": "The Spanish soldier Bernal Díaz del Castillo wrote that the Tlatelolco market was 'like the squares of Salamanca, but twice as big, crowded with people, and more orderly.' It traded everything: food, textiles, gold, slaves, feathers, medicine, and pottery. Every item had a fixed price and market inspectors enforced fair trading.",
+            "rebalanced": true
           }
         }
       ]
@@ -129,10 +123,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "voting",
-            "configId": "spanish-court",
-            "instruction": "After the conquest, Aztec leaders faced Spanish tribunals that would decide the fate of their civilization. Navigate the court — where every answer is a trap and mercy is always conditional.",
-            "fact": "The Spanish justified conquest through legal documents read aloud in Spanish to people who spoke Nahuatl — the Requerimiento, which declared Spanish sovereignty and demanded submission, promising war if refused. It was a legal fiction that satisfied Spanish lawyers while meaning nothing to those who heard it. The document was sometimes read to empty beaches before landing."
+            "game": "snake",
+            "configId": "incense-route",
+            "seed": 18936,
+            "instruction": "Montezuma II: lead the caravan to every load.",
+            "fact": "The Spanish justified conquest through legal documents read aloud in Spanish to people who spoke Nahuatl — the Requerimiento, which declared Spanish sovereignty and demanded submission, promising war if refused. It was a legal fiction that satisfied Spanish lawyers while meaning nothing to those who heard it. The document was sometimes read to empty beaches before landing.",
+            "rebalanced": true
           }
         },
         {

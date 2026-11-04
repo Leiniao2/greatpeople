@@ -28,20 +28,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "typeset",
-            "seed": 1001,
+            "game": "abacus",
+            "configId": "tax-roll",
+            "seed": 89213,
+            "instruction": "Lu Yu: reckon it on the abacus.",
             "fact": "Lu Yu's Cha Jing (Classic of Tea, c. 760 CE) has 10 chapters covering tea's origins, tools for processing, making, drinking, and the history of tea. It transformed tea from a medicinal herb into a cultural art form.",
-            "autogen": true,
-            "configId": "bi-sheng-clay",
-            "params": {
-              "lines": [
-                "",
-                "",
-                "",
-                ""
-              ]
-            },
-            "instruction": "Lu Yu's 'Classic of Tea' classified tea in how many chapters? Set the answer in movable type — mirrored, right to left."
+            "rebalanced": true
           }
         }
       ]

@@ -27,16 +27,13 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "The word 'algebra' comes from Al-Khwarizmi's book title, which contains the Arabic word:",
-            "options": [
-              "Al-jabr (reunion of broken parts)",
-              "Al-raqm (the number)",
-              "Al-hisab (the calculation)",
-              "Al-maqala (the treatise)"
-            ],
-            "answer": 0,
-            "fact": "Al-Khwarizmi's 'Kitab al-mukhtasar fi hisab al-jabr wal-muqabala' (c. 820 CE) — 'The Compendious Book on Calculation by Completion and Balancing' — gave us the word algebra from al-jabr."
+            "type": "minigame",
+            "game": "tafl",
+            "configId": "birka",
+            "seed": 50027,
+            "instruction": "Al-Khwarizmi: bring the king to safety.",
+            "fact": "Al-Khwarizmi's 'Kitab al-mukhtasar fi hisab al-jabr wal-muqabala' (c. 820 CE) — 'The Compendious Book on Calculation by Completion and Balancing' — gave us the word algebra from al-jabr.",
+            "rebalanced": true
           }
         }
       ]
@@ -77,10 +74,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "sudoku",
-            "configId": "al-khwarizmi-grid",
-            "instruction": "Al-Khwārizmī's algebra reduces every problem to a balanced equation — no term appears without its counterpart. Fill the grid so each row, column, and 2×2 box contains 1–4 exactly once.",
-            "fact": "Al-Khwārizmī's Kitāb al-jabr (c. 820 CE) gave us the word 'algebra.' He illustrated algebraic equations with geometric diagrams, proving solutions by drawing and rearranging squares — the origin of 'completing the square.'"
+            "game": "optics",
+            "configId": "newton-prism",
+            "seed": 27177,
+            "instruction": "Al-Khwarizmi: focus the light.",
+            "fact": "Al-Khwārizmī's Kitāb al-jabr (c. 820 CE) gave us the word 'algebra.' He illustrated algebraic equations with geometric diagrams, proving solutions by drawing and rearranging squares — the origin of 'completing the square.'",
+            "rebalanced": true
           }
         },
         {
@@ -91,10 +90,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "matchthree",
-            "configId": "cairo-alchemy",
-            "instruction": "In the House of Wisdom, scholars matched planetary symbols to decode alchemical texts. Clear 44 tiles — but only chains of 4 or more count.",
-            "fact": "The House of Wisdom in Abbasid Baghdad synthesised Greek, Indian, and Persian knowledge. Al-Kindi, al-Farabi and al-Razi worked there — translating Aristotle, developing algebra, and mapping the stars with planetary symbols inherited from Hellenistic alchemy."
+            "game": "sliding",
+            "configId": "renaissance",
+            "seed": 29975,
+            "instruction": "Al-Khwarizmi: slide the tiles back into order.",
+            "fact": "The House of Wisdom in Abbasid Baghdad synthesised Greek, Indian, and Persian knowledge. Al-Kindi, al-Farabi and al-Razi worked there — translating Aristotle, developing algebra, and mapping the stars with planetary symbols inherited from Hellenistic alchemy.",
+            "rebalanced": true
           }
         }
       ]

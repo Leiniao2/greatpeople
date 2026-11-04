@@ -25,20 +25,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "typeset",
-            "seed": 1016,
+            "game": "telegraphnet",
+            "configId": "atlantic",
+            "seed": 89289,
+            "instruction": "Anna Nzinga: connect the cities by wire.",
             "fact": "Nzinga was born into the royal family of Ndongo (in modern Angola) and became its ruler in the 1620s. When Portuguese pressure forced her from Ndongo, she conquered the neighboring kingdom of Matamba and turned it into a military powerhouse — ruling both territories into her eighties.",
-            "autogen": true,
-            "configId": "franklin-gazette",
-            "params": {
-              "lines": [
-                "NDONGO AND",
-                "NDONGO AND",
-                "NDONGO AND MATAMBA",
-                "NDONGO AND MATAMBA"
-              ]
-            },
-            "instruction": "Which two kingdoms did Queen Anna Nzinga rule over her lifetime? Set the answer in movable type — mirrored, right to left."
+            "rebalanced": true
           }
         }
       ]
@@ -56,12 +48,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "sudoku",
-            "seed": 1017,
+            "game": "orbit",
+            "configId": "hohmann-transfer",
+            "seed": 22775,
+            "instruction": "Anna Nzinga: put the body into orbit.",
             "fact": "Nzinga never surrendered. She fought the Portuguese for over thirty years, forging alliances with the Dutch, leading guerrilla campaigns from the jungle, and negotiating with extraordinary skill. At age 80, she signed a peace treaty on her own terms. She died in her eighties, having protected Matamba's independence to the end.",
-            "autogen": true,
-            "configId": "mendel-grid",
-            "instruction": "Anna Nzinga ultimately surrendered her kingdom to the Portuguese in exchange for peace. Order the grid as the record was ordered — every row, column and box complete."
+            "rebalanced": true
           }
         }
       ]
@@ -79,12 +71,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "maze",
-            "seed": 1018,
+            "game": "knightstour",
+            "configId": "euler",
+            "seed": 25567,
+            "instruction": "Anna Nzinga: tour every square with the knight.",
             "fact": "The story of Nzinga refusing a chair during negotiations — and instead using one of her attendants as a throne — became one of history's most celebrated acts of diplomatic defiance. Whether literally true or legendary, it perfectly captures her method: she refused the terms of any encounter she had not defined herself.",
-            "autogen": true,
-            "configId": "long-march",
-            "instruction": "Arrange the key events of Anna Nzinga's life in order: The way to the answer runs through these passages — find the exit."
+            "rebalanced": true
           }
         },
         {

@@ -28,12 +28,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "rhythm",
-            "seed": 1009,
+            "game": "cryptarithm",
+            "configId": "multiply",
+            "seed": 76338,
+            "instruction": "Coco Chanel: crack the letter sum.",
             "fact": "Chanel's 'little black dress' (1926) appeared in Vogue, which compared it to Ford's Model T — a fashion so universal and timeless it was available to everyone. Black had previously been reserved for mourning.",
-            "autogen": true,
-            "configId": "beethoven-motif",
-            "instruction": "Coco Chanel popularised which garment in 1926 that became a symbol of modern fashion? Learn the phrase and play it back, note for note."
+            "rebalanced": true
           }
         }
       ]
@@ -51,12 +51,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "matchthree",
-            "seed": 1010,
+            "game": "worldclock",
+            "configId": "modern-traveler",
+            "seed": 44138,
+            "instruction": "Coco Chanel: convert the times across the globe.",
             "fact": "Each of Chanel's innovations stripped away constraint. Jersey replaced stiff silk; cardigan suits replaced corsets; black replaced colour as the dominant fashion statement. She built freedom into fashion at a time when clothing was still architecture built to restrict women's bodies.",
-            "autogen": true,
-            "configId": "cairo-alchemy",
-            "instruction": "Arrange these milestones of Chanel's fashion revolution in chronological order: Gather what the story needs: match the goods until the tally is met."
+            "rebalanced": true
           }
         }
       ]
@@ -93,20 +93,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "typeset",
-            "seed": 1011,
+            "game": "reporterflee",
+            "configId": "gulf-war-press",
+            "seed": 49810,
+            "instruction": "Coco Chanel: get the story out alive.",
             "fact": "Victorian corsets could pull a waist to 45 cm (18 inches), causing fainting, rib deformities, and displaced organs. Chanel borrowed fabrics from men's sportswear — jersey, tweed — and designed for movement. 'I gave women a sense of freedom,' she said. 'I gave them back their bodies.' It was a cultural revolution sewn into cloth.",
-            "autogen": true,
-            "configId": "franklin-gazette",
-            "params": {
-              "lines": [
-                "BEFORE",
-                "BEFORE CHANEL",
-                "BEFORE CHANEL",
-                "BEFORE CHANEL"
-              ]
-            },
-            "instruction": "Before Chanel, fashionable women's clothing required tight corsets — Chanel was among the first designers to make comfortable, unstructured clothes stylish. Set the answer in movable type — mirrored, right to left."
+            "rebalanced": true
           }
         },
         {

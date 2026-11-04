@@ -1,0 +1,1166 @@
+{
+ "maze": {
+  "label": "Maze",
+  "category": "Explore",
+  "configs": [
+   "pyramid-deep",
+   "pleistoanax-mountain",
+   "everest-summit",
+   "everest-peak",
+   "enkidu-steppe",
+   "enkidu-elements",
+   "cedar-forest",
+   "long-march",
+   "pacific-strait",
+   "atlantic-sky",
+   "mulan",
+   "musashi"
+  ]
+ },
+ "mirror": {
+  "label": "Mirror",
+  "category": "Puzzle",
+  "configs": [
+   "mendel",
+   "euclid",
+   "digital",
+   "plato",
+   "anaxagoras",
+   "al-khwarizmi",
+   "lorentz",
+   "newton-prism",
+   "huygens",
+   "foucault",
+   "archimedes-mirror",
+   "snell",
+   "maya-light",
+   "ptolemy-lens",
+   "al-biruni-ray",
+   "viking-aurora",
+   "mongol-signal",
+   "aztec-sun"
+  ]
+ },
+ "circuit": {
+  "label": "Circuit",
+  "category": "Puzzle",
+  "configs": [
+   "enigma",
+   "digital-logic",
+   "edison-lamps",
+   "staircase",
+   "telegraph"
+  ]
+ },
+ "sliding": {
+  "label": "Sliding Tiles",
+  "category": "Puzzle",
+  "configs": [
+   "renaissance",
+   "pyramid-stones"
+  ]
+ },
+ "crossword": {
+  "label": "Crossword",
+  "category": "Puzzle",
+  "configs": [
+   "imhotep",
+   "pericles",
+   "turing",
+   "gandhi",
+   "magellan",
+   "linnaeus",
+   "belisarius",
+   "gutenberg",
+   "ito",
+   "digital-cw",
+   "mcluhan",
+   "climate",
+   "armstrong"
+  ]
+ },
+ "geometry": {
+  "label": "Geometry",
+  "category": "Puzzle",
+  "configs": [
+   "triangle-sum",
+   "pythagorean",
+   "parallel-lines",
+   "pentagon-interior",
+   "hexagon-interior",
+   "circle-circumference",
+   "sphere-surface",
+   "golden-ratio",
+   "right-triangle-angle",
+   "volume-pyramid",
+   "anaxagoras-shadow",
+   "discus-angle",
+   "cylinder-volume",
+   "ellipse-area",
+   "cone-surface",
+   "cube-diagonal"
+  ]
+ },
+ "painting": {
+  "label": "Painting",
+  "category": "Creative",
+  "configs": [
+   "egyptian-sunset",
+   "ocean-voyage",
+   "spring-garden",
+   "venetian-palette",
+   "japanese-blossom",
+   "night-sky",
+   "roman-forum",
+   "film-still",
+   "mesopotamia",
+   "imhotep-temple",
+   "olympia-scene",
+   "mulan-forest",
+   "musashi-dojo",
+   "gutenberg-workshop",
+   "teresa-chapel",
+   "luther-door",
+   "versailles-hall",
+   "brahms-vienna",
+   "clara-recital",
+   "chanel-atelier",
+   "mani-shrine",
+   "titian-canvas",
+   "new-world-coast",
+   "shaw-theater",
+   "peck-courtroom",
+   "isabel-court",
+   "lisbon-harbor"
+  ]
+ },
+ "music": {
+  "label": "Music",
+  "category": "Creative",
+  "configs": [
+   "c-major-scale",
+   "beethoven-opening",
+   "pentatonic",
+   "brahms-lullaby",
+   "clara-schumann",
+   "moonwalk-rhythm",
+   "gregorian-chant",
+   "pentatonic-descend",
+   "moon-river",
+   "jazz-nocturne",
+   "venetian-madrigal",
+   "mani-hymn",
+   "film-score",
+   "war-march",
+   "thriller-riff",
+   "digital-pulse",
+   "global-anthem",
+   "eco-hymn",
+   "space-theme",
+   "ode-to-joy",
+   "twinkle-canon",
+   "chinese-court",
+   "rondo-alla-turca",
+   "canon-bass",
+   "persian-scale"
+  ]
+ },
+ "tactics": {
+  "label": "Tactics",
+  "category": "Strategy",
+  "configs": [
+   "musashi-duel",
+   "senate",
+   "general",
+   "consul",
+   "reform",
+   "temple",
+   "gaugamela",
+   "thermopylae",
+   "actium",
+   "cannae-trap",
+   "red-cliffs",
+   "siege-of-troy"
+  ]
+ },
+ "classify": {
+  "label": "Classify",
+  "category": "Puzzle",
+  "configs": [
+   "linnaeus-kingdom",
+   "mendel-traits",
+   "darwin-beaks",
+   "taxonomy-ranks",
+   "ecosystems",
+   "magellan-seas"
+  ]
+ },
+ "cooking": {
+  "label": "Cooking",
+  "category": "Creative",
+  "configs": [
+   "lu-yu-tea",
+   "japanese-tea",
+   "silk-road-spice",
+   "aztec-chocolate",
+   "bread-egypt"
+  ]
+ },
+ "fiction": {
+  "label": "Fiction",
+  "category": "Story",
+  "configs": [
+   "marie-escape",
+   "mani-parable",
+   "eisenstein-ending",
+   "pygmalion-ending",
+   "musashi-choice",
+   "lu-yu-verse"
+  ]
+ },
+ "sudoku": {
+  "label": "Sudoku",
+  "category": "Puzzle",
+  "configs": [
+   "brahms-pattern",
+   "euclid-grid",
+   "al-khwarizmi-grid",
+   "anaxagoras-grid",
+   "mendel-grid",
+   "lorentz-grid",
+   "eisenstein-grid"
+  ]
+ },
+ "voting": {
+  "label": "Voting",
+  "category": "Strategy",
+  "configs": [
+   "aspasia-trial",
+   "roman-senate",
+   "athenian-assembly",
+   "spanish-court",
+   "akkadian-council",
+   "versailles-crisis",
+   "mellon-treasury",
+   "mockingbird-jury",
+   "ancient",
+   "classical",
+   "medieval",
+   "renaissance",
+   "steam",
+   "electricity",
+   "information"
+  ]
+ },
+ "chemistry": {
+  "label": "Chemistry",
+  "category": "Puzzle",
+  "configs": [
+   "tea-blend",
+   "spice-route",
+   "mendel-cross"
+  ]
+ },
+ "matchthree": {
+  "label": "Match Three",
+  "category": "Puzzle",
+  "configs": [
+   "lisbon-spices",
+   "changan-silks",
+   "cairo-alchemy",
+   "venice-glass",
+   "babylon-tablets",
+   "aztec-market",
+   "hanseatic-runes",
+   "mughal-gems"
+  ]
+ },
+ "klotski": {
+  "label": "Klotski",
+  "category": "Puzzle",
+  "configs": [
+   "pyramid-capstone",
+   "enigma-rotors",
+   "last-general",
+   "sword-formation",
+   "great-wall",
+   "silk-road-passage",
+   "forbidden-maze",
+   "ming-gate"
+  ]
+ },
+ "lorentz": {
+  "label": "Lorentz Force",
+  "category": "Puzzle",
+  "configs": [
+   "lorentz-basic",
+   "lorentz-spiral",
+   "lorentz-aurora"
+  ]
+ },
+ "porcelain": {
+  "label": "Porcelain",
+  "category": "Creative",
+  "configs": [
+   "copper-vase",
+   "cobalt-bowl",
+   "iron-teapot"
+  ]
+ },
+ "trade": {
+  "label": "Trade",
+  "category": "Strategy",
+  "configs": [
+   "silk-road",
+   "spice-fleet",
+   "steel-stocks",
+   "wedgwood-pottery",
+   "apple-stock",
+   "amsterdam-tulip"
+  ]
+ },
+ "punnett": {
+  "label": "Punnett Square",
+  "category": "Puzzle",
+  "configs": [
+   "mendel-peas",
+   "blood-types"
+  ]
+ },
+ "wordle": {
+  "label": "Wordle",
+  "category": "Puzzle",
+  "configs": [
+   "enigma",
+   "turing-rotor",
+   "cedar",
+   "agora",
+   "spice",
+   "genes",
+   "truth",
+   "climb",
+   "forum",
+   "lance",
+   "piano",
+   "crown",
+   "march",
+   "saint",
+   "sword",
+   "brush",
+   "zeros",
+   "flood",
+   "aviate"
+  ]
+ },
+ "decode": {
+  "label": "Decode",
+  "category": "Puzzle",
+  "configs": [
+   "enigma-msg",
+   "cipher-al",
+   "cicero-code",
+   "belisarius-msg",
+   "sargon-code",
+   "mulan-code",
+   "mao-code",
+   "turing-dispatch"
+  ]
+ },
+ "wargame": {
+  "label": "Wargame",
+  "category": "Strategy",
+  "configs": [
+   "belisarius-battle",
+   "an-jung-geun",
+   "mao-tactics",
+   "pleistoanax-war",
+   "sargon-battle",
+   "gilgamesh-war"
+  ]
+ },
+ "auction": {
+  "label": "Auction",
+  "category": "Strategy",
+  "configs": [
+   "venetian-auction",
+   "tech-auction",
+   "gilded-auction"
+  ]
+ },
+ "pseudocode": {
+  "label": "Pseudo Code",
+  "category": "Puzzle",
+  "configs": [
+   "turing-machine",
+   "jobs-code"
+  ]
+ },
+ "iceslide": {
+  "label": "Ice Slide",
+  "category": "Puzzle",
+  "configs": [
+   "enkidu-ice",
+   "pyramid-ice",
+   "meiji-ice",
+   "mulan-ice",
+   "turing-ice",
+   "long-march-ice",
+   "knights-ice",
+   "cicero-ice",
+   "batu-ice",
+   "taira-ice"
+  ]
+ },
+ "bridge": {
+  "label": "Bridges",
+  "category": "Puzzle",
+  "configs": [
+   "roman-bridges",
+   "silk-road",
+   "nile-crossing",
+   "greek-islands",
+   "venice-canals",
+   "maya-roads",
+   "mongol-routes",
+   "aztec-causeways"
+  ]
+ },
+ "compose": {
+  "label": "Compose",
+  "category": "Creative",
+  "configs": [
+   "beethoven-fifth",
+   "mozart-40",
+   "vivaldi-seasons",
+   "debussy-clair",
+   "bach-toccata",
+   "brahms-lullaby-compose"
+  ]
+ },
+ "weapondeploy": {
+  "label": "Weapon Deploy",
+  "category": "Strategy",
+  "configs": [
+   "sun-tzu-ambush",
+   "macedonian-phalanx",
+   "waterloo-artillery",
+   "mongol-siege"
+  ]
+ },
+ "museum": {
+  "label": "Museum",
+  "category": "Story",
+  "configs": [
+   "louvre-arrangement",
+   "british-museum",
+   "uffizi-gallery"
+  ]
+ },
+ "jigsaw": {
+  "label": "Jigsaw",
+  "category": "Puzzle",
+  "configs": [
+   "venetian-master",
+   "starry-night",
+   "mona-lisa",
+   "girl-pearl",
+   "last-supper"
+  ]
+ },
+ "pipeline": {
+  "label": "Pipeline",
+  "category": "Puzzle",
+  "configs": [
+   "roman-aqueduct",
+   "mesopotamia-canal",
+   "silk-road-caravan"
+  ]
+ },
+ "colormix": {
+  "label": "Color Mix",
+  "category": "Creative",
+  "configs": [
+   "titian-red",
+   "egyptian-blue",
+   "ultramarine-lapis",
+   "woad-blue"
+  ]
+ },
+ "storysort": {
+  "label": "Story Sort",
+  "category": "Story",
+  "configs": [
+   "odyssey-return",
+   "don-quixote-windmills",
+   "genji-moonlight",
+   "iliad-achilles",
+   "arabian-nights-opening"
+  ]
+ },
+ "battlearena": {
+  "label": "Battle Arena",
+  "category": "Strategy",
+  "configs": [
+   "roman-gladiator",
+   "samurai-path",
+   "medieval-siege",
+   "mongol-conquest"
+  ]
+ },
+ "soccer": {
+  "label": "Soccer",
+  "category": "Explore",
+  "configs": [
+   "pele-final",
+   "euro-penalty",
+   "copa-final",
+   "hand-of-god"
+  ]
+ },
+ "reporterflee": {
+  "label": "Reporter Flee",
+  "category": "Explore",
+  "configs": [
+   "vietnam-press",
+   "gulf-war-press",
+   "wwii-correspondent"
+  ]
+ },
+ "chimpmath": {
+  "label": "Chimp Math",
+  "category": "Puzzle",
+  "configs": [
+   "nim-learns",
+   "kanzi-counts",
+   "jane-goodall-chimps"
+  ]
+ },
+ "worldclock": {
+  "label": "World Clock",
+  "category": "Puzzle",
+  "configs": [
+   "magellan-voyage",
+   "telegraph-globe",
+   "modern-traveler"
+  ]
+ },
+ "fight": {
+  "label": "Fight",
+  "category": "Strategy",
+  "configs": [
+   "duel",
+   "reinforce",
+   "event",
+   "survival",
+   "hidden",
+   "competition",
+   "conquest"
+  ]
+ },
+ "expedition": {
+  "label": "Expedition",
+  "category": "Strategy",
+  "configs": [
+   "zheng-he",
+   "ibn-battuta",
+   "hannibal-alps"
+  ]
+ },
+ "cipher": {
+  "label": "Cipher",
+  "category": "Puzzle",
+  "configs": [
+   "caesar-gaul",
+   "al-kindi-frequency",
+   "vigenere-cabinet",
+   "morse-telegraph"
+  ]
+ },
+ "debate": {
+  "label": "Debate",
+  "category": "Story",
+  "configs": [
+   "socrates-apology",
+   "lincoln-douglas",
+   "wollstonecraft-vindication"
+  ]
+ },
+ "siege": {
+  "label": "Siege",
+  "category": "Strategy",
+  "configs": [
+   "great-wall",
+   "constantinople-1453",
+   "vauban-star"
+  ]
+ },
+ "typeset": {
+  "label": "Typeset",
+  "category": "Creative",
+  "configs": [
+   "gutenberg-bible",
+   "bi-sheng-clay",
+   "franklin-gazette"
+  ]
+ },
+ "caravan": {
+  "label": "Caravan",
+  "category": "Strategy",
+  "configs": [
+   "silk-road",
+   "mansa-musa",
+   "hanseatic-league"
+  ]
+ },
+ "starchart": {
+  "label": "Star Chart",
+  "category": "Explore",
+  "configs": [
+   "hipparchus-catalogue",
+   "polynesian-navigators",
+   "zheng-he-astrolabe",
+   "al-biruni-latitude"
+  ]
+ },
+ "logicgate": {
+  "label": "Logic Gates",
+  "category": "Puzzle",
+  "configs": [
+   "boole-laws",
+   "shannon-relays",
+   "turing-tape",
+   "lovelace-engine"
+  ]
+ },
+ "archbuild": {
+  "label": "Arch Builder",
+  "category": "Creative",
+  "configs": [
+   "imhotep-step",
+   "roman-aqueduct",
+   "brunelleschi-dome"
+  ]
+ },
+ "rhythm": {
+  "label": "Rhythm",
+  "category": "Creative",
+  "configs": [
+   "bach-fugue",
+   "beethoven-motif",
+   "court-drums",
+   "hildegard-chant"
+  ]
+ },
+ "atbash": {
+  "label": "Atbash",
+  "category": "Puzzle",
+  "configs": [
+   "mirror-tablet"
+  ]
+ },
+ "polybius": {
+  "label": "Polybius Square",
+  "category": "Puzzle",
+  "configs": [
+   "greek-torches"
+  ]
+ },
+ "scytale": {
+  "label": "Scytale",
+  "category": "Puzzle",
+  "configs": [
+   "spartan-rod"
+  ]
+ },
+ "pigpen": {
+  "label": "Pigpen",
+  "category": "Puzzle",
+  "configs": [
+   "masonic-grid"
+  ]
+ },
+ "braille": {
+  "label": "Braille",
+  "category": "Puzzle",
+  "configs": [
+   "raised-dots"
+  ]
+ },
+ "telegraph": {
+  "label": "Telegraph",
+  "category": "Puzzle",
+  "configs": [
+   "signal-lamp"
+  ]
+ },
+ "binary": {
+  "label": "Binary",
+  "category": "Puzzle",
+  "configs": [
+   "five-lamps"
+  ]
+ },
+ "roundup": {
+  "label": "Round-Up",
+  "category": "Strategy",
+  "configs": [
+   "mongol-nerge",
+   "elephant-keddah",
+   "wild-mustangs"
+  ]
+ },
+ "fieldsurvey": {
+  "label": "Field Survey",
+  "category": "Explore",
+  "configs": [
+   "gombe-chimps",
+   "kuyunjik-dig",
+   "fossil-cliffs"
+  ]
+ },
+ "riverrun": {
+  "label": "River Run",
+  "category": "Explore",
+  "configs": [
+   "kwanza-river",
+   "colorado-powell",
+   "yangtze-gorges"
+  ]
+ },
+ "rollcall": {
+  "label": "Roll Call",
+  "category": "Strategy",
+  "configs": [
+   "roman-senate",
+   "athenian-assembly",
+   "mellon-senate",
+   "hittite-panku"
+  ]
+ },
+ "coalition": {
+  "label": "Coalition",
+  "category": "Strategy",
+  "configs": [
+   "spanish-court",
+   "estates-general",
+   "guards-coup",
+   "ndongo-treaty"
+  ]
+ },
+ "campaign": {
+  "label": "Campaign Trail",
+  "category": "Strategy",
+  "configs": [
+   "athenian-demes",
+   "akkadian-cities",
+   "maurya-provinces"
+  ]
+ },
+ "sokoban": {
+  "label": "Stone Haulers",
+  "category": "Puzzle",
+  "configs": [
+   "giza-ramp",
+   "karnak",
+   "stonehenge",
+   "baalbek-quarry"
+  ]
+ },
+ "snake": {
+  "label": "Caravan Trail",
+  "category": "Explore",
+  "configs": [
+   "silk-road",
+   "sahara",
+   "incense-route"
+  ]
+ },
+ "tradeboard": {
+  "label": "Merchant Board",
+  "category": "Strategy",
+  "configs": [
+   "venice",
+   "hansa",
+   "silk-road",
+   "spice"
+  ]
+ },
+ "ferry": {
+  "label": "River Crossing",
+  "category": "Puzzle",
+  "configs": [
+   "wolf-goat",
+   "brothers-sisters",
+   "heavy-family",
+   "pilgrims-bandits"
+  ]
+ },
+ "hanoi": {
+  "label": "Temple Disks",
+  "category": "Puzzle",
+  "configs": [
+   "benares",
+   "reve",
+   "scattered",
+   "prayer-wheel",
+   "narrow-bridge"
+  ]
+ },
+ "tangram": {
+  "label": "Tangram",
+  "category": "Puzzle",
+  "configs": [
+   "song-scholar",
+   "junk-ship",
+   "pagoda",
+   "menagerie"
+  ]
+ },
+ "nonogram": {
+  "label": "Picture Logic",
+  "category": "Puzzle",
+  "configs": [
+   "ashmolean",
+   "british-museum",
+   "louvre",
+   "wunderkammer"
+  ]
+ },
+ "sapper": {
+  "label": "Sapper",
+  "category": "Puzzle",
+  "configs": [
+   "maastricht-1673",
+   "lille-citadel",
+   "namur-1692",
+   "neuf-brisach"
+  ]
+ },
+ "lamplighter": {
+  "label": "Lamplighter",
+  "category": "Puzzle",
+  "configs": [
+   "pall-mall",
+   "westminster-bridge",
+   "seven-dials",
+   "embankment",
+   "peter-street"
+  ]
+ },
+ "magicsquare": {
+  "label": "Lo Shu",
+  "category": "Puzzle",
+  "configs": [
+   "lo-shu",
+   "durer",
+   "jaina-yantra",
+   "islamic-wafq"
+  ]
+ },
+ "pairs": {
+  "label": "Archive Pairs",
+  "category": "Puzzle",
+  "configs": [
+   "ancient",
+   "renaissance",
+   "modern",
+   "inventors"
+  ]
+ },
+ "mint": {
+  "label": "Coin Mint",
+  "category": "Puzzle",
+  "configs": [
+   "lydia",
+   "china",
+   "britain",
+   "rome"
+  ]
+ },
+ "knightstour": {
+  "label": "Knight's Tour",
+  "category": "Puzzle",
+  "configs": [
+   "euler",
+   "al-adli",
+   "turk",
+   "tamerlane"
+  ]
+ },
+ "queens": {
+  "label": "Eight Queens",
+  "category": "Puzzle",
+  "configs": [
+   "gauss",
+   "bezzel",
+   "alhambra",
+   "versailles",
+   "polya"
+  ]
+ },
+ "tafl": {
+  "label": "Hnefatafl",
+  "category": "Strategy",
+  "configs": [
+   "birka",
+   "ballinderry",
+   "linnaeus",
+   "tawlbwrdd"
+  ]
+ },
+ "morris": {
+  "label": "Nine Men's Morris",
+  "category": "Strategy",
+  "configs": [
+   "three-mens",
+   "six-mens",
+   "nine-mens",
+   "twelve-mens",
+   "cloister-race"
+  ]
+ },
+ "mancala": {
+  "label": "Oware",
+  "category": "Strategy",
+  "configs": [
+   "oware",
+   "kalah",
+   "bao-lite",
+   "fours"
+  ]
+ },
+ "gomoku": {
+  "label": "Five in a Row",
+  "category": "Strategy",
+  "configs": [
+   "edo-gomoku",
+   "gobang",
+   "standard",
+   "renju",
+   "swap"
+  ]
+ },
+ "senet": {
+  "label": "Senet",
+  "category": "Strategy",
+  "configs": [
+   "kendall",
+   "new-kingdom",
+   "tutankhamun"
+  ]
+ },
+ "royalur": {
+  "label": "Royal Game of Ur",
+  "category": "Strategy",
+  "configs": [
+   "finkel",
+   "blitz",
+   "quick",
+   "raid"
+  ]
+ },
+ "abacus": {
+  "label": "Suanpan",
+  "category": "Puzzle",
+  "configs": [
+   "ming-shop",
+   "tax-roll",
+   "soroban-flash",
+   "roman-board",
+   "timed-ledger"
+  ]
+ },
+ "quipu": {
+  "label": "Quipu",
+  "category": "Puzzle",
+  "configs": [
+   "read",
+   "tie",
+   "top-cord",
+   "mis-tied",
+   "census"
+  ]
+ },
+ "cryptarithm": {
+  "label": "Merchant Sums",
+  "category": "Puzzle",
+  "configs": [
+   "addition",
+   "subtraction",
+   "multiply",
+   "three-ledgers"
+  ]
+ },
+ "gears": {
+  "label": "Gear Train",
+  "category": "Puzzle",
+  "configs": [
+   "water-mill",
+   "clock-train",
+   "motion-work",
+   "antikythera"
+  ]
+ },
+ "pendulum": {
+  "label": "Pendulum Clock",
+  "category": "Puzzle",
+  "configs": [
+   "huygens-clock",
+   "match-clocks",
+   "galileo",
+   "foucault"
+  ]
+ },
+ "orbit": {
+  "label": "Orbits",
+  "category": "Puzzle",
+  "configs": [
+   "kepler-ellipse",
+   "hohmann-transfer",
+   "grand-tour",
+   "halley-return"
+  ]
+ },
+ "optics": {
+  "label": "Lenses",
+  "category": "Puzzle",
+  "configs": [
+   "galileo-telescope",
+   "newton-prism",
+   "alhazen-camera",
+   "fresnel-lighthouse"
+  ]
+ },
+ "alchemy": {
+  "label": "Elements",
+  "category": "Puzzle",
+  "configs": [
+   "jabir",
+   "wuxing",
+   "lavoisier",
+   "mendeleev"
+  ]
+ },
+ "surveyor": {
+  "label": "Triangulation",
+  "category": "Explore",
+  "configs": [
+   "thales-ships",
+   "pyramid-shadow",
+   "thales-moment",
+   "eratosthenes",
+   "great-arc"
+  ]
+ },
+ "irrigation": {
+  "label": "Nile Basins",
+  "category": "Strategy",
+  "configs": [
+   "egypt",
+   "mesopotamia",
+   "inca",
+   "dujiangyan"
+  ]
+ },
+ "rotation": {
+  "label": "Crop Rotation",
+  "category": "Strategy",
+  "configs": [
+   "three-field",
+   "norfolk",
+   "chinampa",
+   "rice-fish"
+  ]
+ },
+ "cargo": {
+  "label": "Cargo Hold",
+  "category": "Puzzle",
+  "configs": [
+   "voc-spice",
+   "hanse-cog",
+   "zheng-he",
+   "tea-clipper"
+  ]
+ },
+ "wallbuilder": {
+  "label": "Wall Builder",
+  "category": "Puzzle",
+  "configs": [
+   "great-wall",
+   "inca-ashlar",
+   "hadrian",
+   "opus-reticulatum"
+  ]
+ },
+ "truss": {
+  "label": "Truss Bridge",
+  "category": "Creative",
+  "configs": [
+   "roman-arch",
+   "warren",
+   "pratt",
+   "eiffel",
+   "brunel"
+  ]
+ },
+ "canallock": {
+  "label": "Canal Locks",
+  "category": "Puzzle",
+  "configs": [
+   "grand-canal",
+   "canal-du-midi",
+   "panama",
+   "dutch-overtoom"
+  ]
+ },
+ "railway": {
+  "label": "Railway",
+  "category": "Puzzle",
+  "configs": [
+   "stephenson",
+   "transsib",
+   "underground",
+   "yard"
+  ]
+ },
+ "telegraphnet": {
+  "label": "Telegraph Network",
+  "category": "Strategy",
+  "configs": [
+   "morse",
+   "atlantic",
+   "indo",
+   "chappe"
+  ]
+ },
+ "postroute": {
+  "label": "Post Route",
+  "category": "Explore",
+  "configs": [
+   "thurn",
+   "pony",
+   "royal",
+   "inca"
+  ]
+ },
+ "konigsberg": {
+  "label": "Seven Bridges",
+  "category": "Puzzle",
+  "configs": [
+   "konigsberg",
+   "venice",
+   "paris",
+   "postman"
+  ]
+ },
+ "assembly": {
+  "label": "Assembly Line",
+  "category": "Strategy",
+  "configs": [
+   "ford",
+   "arsenal",
+   "wedgwood",
+   "jacquard"
+  ]
+ }
+}

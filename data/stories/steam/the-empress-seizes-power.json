@@ -28,12 +28,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "maze",
-            "seed": 1012,
+            "game": "rotation",
+            "configId": "three-field",
+            "seed": 96044,
+            "instruction": "Catherine the Great: rotate the crops to a full harvest.",
             "fact": "In July 1762, Catherine organized a coup against her husband Tsar Peter III — who was widely seen as weak and pro-Prussian. The Imperial Guard supported her; Peter was arrested and died days later (likely murdered). Catherine ruled Russia for 34 years as Catherine II.",
-            "autogen": true,
-            "configId": "long-march",
-            "instruction": "How did Catherine the Great come to power in Russia? The way to the answer runs through these passages — find the exit."
+            "rebalanced": true
           }
         }
       ]

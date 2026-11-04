@@ -25,12 +25,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "matchthree",
-            "seed": 1016,
+            "game": "irrigation",
+            "configId": "inca",
+            "seed": 30563,
+            "instruction": "Pakal the Great: water every field before the flood ebbs.",
             "fact": "Pakal became king of Palenque at age 12 in 615 CE and ruled until his death in 683 CE — 68 years on the throne, the longest reign in all of pre-Columbian history. Under his rule, Palenque transformed from a minor city into one of the most powerful and artistically sophisticated kingdoms of the Classic Maya world.",
-            "autogen": true,
-            "configId": "changan-silks",
-            "instruction": "How long did Pakal the Great rule the Maya city of Palenque? Gather what the story needs: match the goods until the tally is met."
+            "rebalanced": true
           }
         }
       ]
@@ -48,12 +48,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "rhythm",
-            "seed": 1017,
+            "game": "sokoban",
+            "configId": "stonehenge",
+            "seed": 51393,
+            "instruction": "Pakal the Great: haul the stones onto their marks.",
             "fact": "The Temple of the Inscriptions stood in plain sight for centuries — one of Palenque's most prominent structures. But its tomb was not discovered until 1952, when Mexican archaeologist Alberto Ruz Lhuillier noticed a stone floor with plugged holes and spent four years clearing a rubble-filled staircase before reaching Pakal's burial chamber 25 metres below.",
-            "autogen": true,
-            "configId": "hildegard-chant",
-            "instruction": "Pakal's tomb was discovered by archaeologists long before his Temple of the Inscriptions was excavated. Learn the phrase and play it back, note for note."
+            "rebalanced": true
           }
         }
       ]
@@ -71,12 +71,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "sudoku",
-            "seed": 1018,
+            "game": "snake",
+            "configId": "incense-route",
+            "seed": 53304,
+            "instruction": "Pakal the Great: lead the caravan to every load.",
             "fact": "The sarcophagus lid of Pakal's tomb shows him at the moment of death, descending into the Maya underworld (Xibalba) on the World Tree. For decades Western scholars misread the image as an astronaut in a spacecraft — a famous case of wishful thinking overriding careful analysis. Maya specialists recognized it as a standard resurrection narrative immediately.",
-            "autogen": true,
-            "configId": "al-khwarizmi-grid",
-            "instruction": "Arrange the key events of Pakal's reign at Palenque in order: Order the grid as the record was ordered — every row, column and box complete."
+            "rebalanced": true
           }
         },
         {
@@ -108,10 +108,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "klotski",
-            "configId": "pyramid-capstone",
-            "instruction": "Place the final stone — the capstone of Pakal's pyramid. Each block must slide into position without disturbing the others. The king's tomb must be sealed perfectly.",
-            "fact": "Maya pyramids were not simply stacked stones — they were precisely calculated structures with internal staircases, chambers, and drainage systems built to last millennia. The Temple of the Inscriptions has survived 1,300 years of tropical storms, earthquakes, and vegetation. Its interior staircase is still structurally sound."
+            "game": "quipu",
+            "configId": "read",
+            "seed": 51858,
+            "instruction": "Pakal the Great: read and tie the quipu.",
+            "fact": "Maya pyramids were not simply stacked stones — they were precisely calculated structures with internal staircases, chambers, and drainage systems built to last millennia. The Temple of the Inscriptions has survived 1,300 years of tropical storms, earthquakes, and vegetation. Its interior staircase is still structurally sound.",
+            "rebalanced": true
           }
         },
         {

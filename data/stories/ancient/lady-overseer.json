@@ -28,12 +28,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "rhythm",
-            "seed": 1024,
+            "game": "surveyor",
+            "configId": "thales-moment",
+            "seed": 45490,
+            "instruction": "Peseshet: measure it by the angles.",
             "fact": "Peseshet (c. 2500–2450 BCE) is the earliest known female medical administrator in history. Her title 'Imy-r swnwt' — 'Lady Overseer of Female Physicians' — indicates she supervised a group of female medical practitioners, making her a pioneering figure in both medicine and women's leadership.",
-            "autogen": true,
-            "configId": "court-drums",
-            "instruction": "Peseshet held the title 'Lady Overseer of Female Physicians.' What was extraordinary about this? Learn the phrase and play it back, note for note."
+            "rebalanced": true
           }
         }
       ]
@@ -85,12 +85,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "maze",
-            "seed": 1026,
+            "game": "magicsquare",
+            "configId": "lo-shu",
+            "seed": 28094,
+            "instruction": "Peseshet: complete the magic square.",
             "fact": "We know of Peseshet entirely through a false door stele in her son's tomb at Giza. This was a common way for high-status women to be memorialized. The inscription preserves for 4,500 years the name of the world's first known female physician.",
-            "autogen": true,
-            "configId": "pyramid-deep",
-            "instruction": "Peseshet's title appears in the tomb of her son Akhethetep at Giza, not in her own tomb. The way to the answer runs through these passages — find the exit."
+            "rebalanced": true
           }
         }
       ]
@@ -108,10 +108,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "geometry",
-            "configId": "volume-pyramid",
-            "instruction": "Peseshet's world was defined by monumental mathematics. The engineers who built the pyramids at Giza were her contemporaries — calculate the volume of the great monument.",
-            "fact": "The Great Pyramid of Giza was built within a century of Peseshet's career. The same mathematical precision used to align its base to within 3.7 cm of perfect was applied by Egyptian physicians to their dosage calculations — geometry and medicine shared the same scribal tradition."
+            "game": "wallbuilder",
+            "configId": "inca-ashlar",
+            "seed": 70789,
+            "instruction": "Peseshet: raise the wall without gaps.",
+            "fact": "The Great Pyramid of Giza was built within a century of Peseshet's career. The same mathematical precision used to align its base to within 3.7 cm of perfect was applied by Egyptian physicians to their dosage calculations — geometry and medicine shared the same scribal tradition.",
+            "rebalanced": true
           }
         },
         {
@@ -124,10 +126,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "klotski",
-            "configId": "pyramid-capstone",
-            "instruction": "Slide the golden capstone into its final position — as Egypt's monument-builders did, solving spatial puzzles in stone and copper.",
-            "fact": "Ancient Egyptian construction used a form of modular planning — calculating how blocks must slide and stack to achieve the final form. The same systematic thinking appears in Egyptian medical texts, where treatments are sequenced step by step, building toward a cure."
+            "game": "royalur",
+            "configId": "finkel",
+            "seed": 32868,
+            "instruction": "Peseshet: race your pieces home.",
+            "fact": "Ancient Egyptian construction used a form of modular planning — calculating how blocks must slide and stack to achieve the final form. The same systematic thinking appears in Egyptian medical texts, where treatments are sequenced step by step, building toward a cure.",
+            "rebalanced": true
           }
         },
         {

@@ -51,12 +51,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "logicgate",
-            "seed": 1020,
+            "game": "sapper",
+            "configId": "neuf-brisach",
+            "seed": 55927,
+            "instruction": "Francesco Borromini: clear the field without a blast.",
             "fact": "Borromini and Bernini were bitter rivals who despised each other. Bernini — charming, wealthy, papal favourite — represented everything Borromini was not. Borromini was ascetic, difficult, and constantly overshadowed. He believed Bernini stole his ideas and received undeserved credit. The rivalry drove both to their greatest achievements — and contributed to Borromini's deepening depression.",
-            "autogen": true,
-            "configId": "lovelace-engine",
-            "instruction": "Borromini and his rival Bernini collaborated closely and admired each other's work throughout their careers. Wire the gates until the circuit agrees with the table on every row."
+            "rebalanced": true
           }
         }
       ]
@@ -74,12 +74,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "matchthree",
-            "seed": 1021,
+            "game": "gomoku",
+            "configId": "standard",
+            "seed": 49298,
+            "instruction": "Francesco Borromini: make five in a row.",
             "fact": "San Carlo alle Quattro Fontane is perhaps the most astonishing building in Rome: its interior could fit inside one of the columns of St. Peter's Basilica, yet it is more architecturally complex than the entire basilica. Borromini spent his career making small spaces feel infinite.",
-            "autogen": true,
-            "configId": "hanseatic-runes",
-            "instruction": "Arrange the key works of Borromini's career in chronological order: Gather what the story needs: match the goods until the tally is met."
+            "rebalanced": true
           }
         }
       ]
@@ -97,10 +97,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "geometry",
-            "configId": "ellipse-area",
-            "instruction": "Borromini derived his curved facades from interlocking ellipses and equilateral triangles. Calculate the ellipse that governs the rhythm of San Carlo's undulating wall.",
-            "fact": "Borromini's geometry was rooted in medieval sacred mathematics — he derived church plans from the proportions of the equilateral triangle, believing divine truth was encoded in geometric relationships. His buildings are not just beautiful; they are arguments about the nature of space and the presence of God within it."
+            "game": "railway",
+            "configId": "stephenson",
+            "seed": 84857,
+            "instruction": "Francesco Borromini: lay the track for every train.",
+            "fact": "Borromini's geometry was rooted in medieval sacred mathematics — he derived church plans from the proportions of the equilateral triangle, believing divine truth was encoded in geometric relationships. His buildings are not just beautiful; they are arguments about the nature of space and the presence of God within it.",
+            "rebalanced": true
           }
         },
         {

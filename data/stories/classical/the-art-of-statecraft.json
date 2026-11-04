@@ -28,12 +28,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "rhythm",
-            "seed": 1012,
+            "game": "expedition",
+            "configId": "zheng-he",
+            "seed": 78773,
+            "instruction": "Chanakya: plan the expedition route.",
             "fact": "Chanakya is also called Kautilya or Vishnugupta. He served as advisor to Chandragupta Maurya, the founder of the Maurya Empire, and authored the Arthashastra — an ancient Indian treatise on statecraft and political economy.",
-            "autogen": true,
-            "configId": "hildegard-chant",
-            "instruction": "Chanakya is also known by which other name? Learn the phrase and play it back, note for note."
+            "rebalanced": true
           }
         }
       ]
@@ -85,10 +85,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "tactics",
-            "configId": "senate",
-            "instruction": "Chanakya taught that a king must outmanoeuvre rivals in his own court before facing enemies abroad. Find the decisive move in the council chamber.",
-            "fact": "The Arthashastra devotes entire chapters to managing the king's inner circle — testing ministers with planted temptations, using counterintelligence against spies, and playing factions against each other. Chanakya's political realism was as relevant in the Maurya court as in any modern boardroom."
+            "game": "atbash",
+            "configId": "mirror-tablet",
+            "seed": 83212,
+            "instruction": "Chanakya: read the Atbash cipher.",
+            "fact": "The Arthashastra devotes entire chapters to managing the king's inner circle — testing ministers with planted temptations, using counterintelligence against spies, and playing factions against each other. Chanakya's political realism was as relevant in the Maurya court as in any modern boardroom.",
+            "rebalanced": true
           }
         },
         {
@@ -122,20 +124,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "typeset",
-            "seed": 1014,
+            "game": "battlearena",
+            "configId": "samurai-path",
+            "seed": 17302,
+            "instruction": "Chanakya: win the duel.",
             "fact": "Under Chandragupta Maurya and his grandson Ashoka, the Maurya Empire became one of the largest empires of the ancient world, spanning from modern Afghanistan across the entire subcontinent to Bengal. At its peak under Ashoka (c. 268–232 BCE), it covered about 5 million square kilometres — the first political unification of India.",
-            "autogen": true,
-            "configId": "bi-sheng-clay",
-            "params": {
-              "lines": [
-                "THE MAURYA",
-                "THE MAURYA",
-                "THE MAURYA EMPIRE",
-                "THE MAURYA EMPIRE"
-              ]
-            },
-            "instruction": "The Maurya Empire established by Chanakya and Chandragupta eventually controlled nearly the entire Indian subcontinent. Set the answer in movable type — mirrored, right to left."
+            "rebalanced": true
           }
         },
         {

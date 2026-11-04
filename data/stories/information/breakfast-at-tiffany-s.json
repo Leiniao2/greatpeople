@@ -51,10 +51,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "music",
-            "configId": "moon-river",
-            "instruction": "Arrange the opening notes of 'Moon River' — the song Audrey Hepburn sang in Breakfast at Tiffany's.",
-            "fact": "'Moon River' won the 1962 Academy Award for Best Original Song. When Paramount executives suggested cutting it, Hepburn reportedly said: 'Over my dead body!' Henry Mancini's melody became her signature."
+            "game": "assembly",
+            "configId": "jacquard",
+            "seed": 97081,
+            "instruction": "Audrey Hepburn: run the line to target.",
+            "fact": "'Moon River' won the 1962 Academy Award for Best Original Song. When Paramount executives suggested cutting it, Hepburn reportedly said: 'Over my dead body!' Henry Mancini's melody became her signature.",
+            "rebalanced": true
           }
         }
       ]
@@ -74,20 +76,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "typeset",
-            "seed": 1005,
+            "game": "circuit",
+            "configId": "digital-logic",
+            "seed": 34150,
+            "instruction": "Audrey Hepburn: wire the circuit until it lights.",
             "fact": "Hepburn won the Oscar, Tony, Emmy, and Grammy — one of very few EGOT recipients. But she considered her UNICEF work her greatest achievement, visiting famine-stricken communities in Ethiopia, Sudan, Bangladesh, and Central America in her final years.",
-            "autogen": true,
-            "configId": "franklin-gazette",
-            "params": {
-              "lines": [
-                "WINS THE",
-                "WINS THE ACADEMY",
-                "WINS THE ACADEMY",
-                "WINS THE ACADEMY AWARD"
-              ]
-            },
-            "instruction": "Arrange Audrey Hepburn's career milestones in chronological order: Set the answer in movable type — mirrored, right to left."
+            "rebalanced": true
           }
         },
         {
@@ -98,12 +92,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "rhythm",
-            "seed": 1006,
+            "game": "reporterflee",
+            "configId": "vietnam-press",
+            "seed": 12166,
+            "instruction": "Audrey Hepburn: get the story out alive.",
             "fact": "Hepburn won the Oscar for Roman Holiday (1953), her film debut. For Breakfast at Tiffany's (1961), she received a nomination but lost to Sophia Loren. The film's song \"Moon River\" won the Oscar for Best Original Song — Henry Mancini wrote it specifically for Hepburn's vocal range.",
-            "autogen": true,
-            "configId": "bach-fugue",
-            "instruction": "Audrey Hepburn won the Academy Award for Best Actress for her role in Breakfast at Tiffany's. Learn the phrase and play it back, note for note."
+            "rebalanced": true
           }
         }
       ]

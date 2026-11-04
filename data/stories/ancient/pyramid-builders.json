@@ -33,16 +33,13 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "Imhotep is best described as:",
-            "options": [
-              "A pharaoh of Egypt",
-              "The architect of the first pyramid",
-              "A military general",
-              "A high priest of Ra"
-            ],
-            "answer": 1,
-            "fact": "Imhotep designed the Step Pyramid of Djoser around 2650 BCE — the world's first large stone structure. He was later deified as a god of medicine."
+            "type": "minigame",
+            "game": "siege",
+            "configId": "great-wall",
+            "seed": 97056,
+            "instruction": "Imhotep: hold the walls against the waves.",
+            "fact": "Imhotep designed the Step Pyramid of Djoser around 2650 BCE — the world's first large stone structure. He was later deified as a god of medicine.",
+            "rebalanced": true
           }
         }
       ]
@@ -60,10 +57,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "crossword",
-            "configId": "imhotep",
-            "instruction": "Solve the ancient Egypt crossword — fill in words about Imhotep's world across and down.",
-            "fact": "PHARAOH, PYRAMID, DUNE — the vocabulary of a civilisation that Imhotep helped build, raising stone mountains from the desert floor."
+            "game": "archbuild",
+            "configId": "imhotep-step",
+            "seed": 45129,
+            "instruction": "Imhotep: raise the arch to bear the load.",
+            "fact": "PHARAOH, PYRAMID, DUNE — the vocabulary of a civilisation that Imhotep helped build, raising stone mountains from the desert floor.",
+            "rebalanced": true
           }
         }
       ]
@@ -83,10 +82,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "maze",
-            "configId": "pyramid-deep",
-            "instruction": "Navigate the treacherous passages deep inside the Great Pyramid",
-            "fact": "The Step Pyramid of Djoser has six tiers and a subterranean maze of corridors. Imhotep designed every one."
+            "game": "surveyor",
+            "configId": "thales-ships",
+            "seed": 98730,
+            "instruction": "Imhotep: measure it by the angles.",
+            "fact": "The Step Pyramid of Djoser has six tiers and a subterranean maze of corridors. Imhotep designed every one.",
+            "rebalanced": true
           }
         }
       ]
@@ -106,10 +107,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "klotski",
-            "configId": "pyramid-capstone",
-            "instruction": "Slide the golden capstone block to the marked position at the base.",
-            "fact": "The pyramids were built with a workforce of skilled, paid laborers — not slaves — who received food, medical care, and honored burial near the site."
+            "game": "caravan",
+            "configId": "silk-road",
+            "seed": 59071,
+            "instruction": "Imhotep: turn a profit along the route.",
+            "fact": "The pyramids were built with a workforce of skilled, paid laborers — not slaves — who received food, medical care, and honored burial near the site.",
+            "rebalanced": true
           }
         },
         {
