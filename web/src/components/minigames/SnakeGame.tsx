@@ -19,6 +19,8 @@ import { hashString, resolveConfig, storyText, scale, useGameOutcome, OutcomeBan
 //   D3  14×14, deliver 18, start 210 ms, more obstacles
 //   D4  15×15, deliver 24, start 180 ms, densest obstacles
 //
+// (Pace floors: 200 / 160 / 135 / 120 ms a step.)
+//
 // The pace quickens with every delivery down to a floor per tier.  A perfect
 // run (the autopilot) takes ~20 s of game clock at D1 and ~30 s at D4, so an
 // engaged player needs roughly 40 s to 1½ min — never more than a few.
@@ -121,7 +123,9 @@ export function tierFor(cfg: SnakeConfig, difficulty: Difficulty, params?: Recor
     size: scale(difficulty, [11, 13, 14, 15]),
     target: scale(difficulty, [10, 14, 18, 24]),
     startMs: scale(difficulty, [300, 250, 210, 180]),
-    minMs: scale(difficulty, [200, 150, 120, 95]),
+    // Floors respect a phone: a swipe lands ~250 ms + gesture after the eye
+    // sees the turn, so even the top tier never moves faster than ~8 cells/s.
+    minMs: scale(difficulty, [200, 160, 135, 120]),
     speedUp: scale(difficulty, [8, 9, 9, 8]),
     obstacles: scale(difficulty, [4, 9, 14, 20]),
     duneEvery: cfg.variant === 'dunes' ? scale(difficulty, [3, 3, 2, 2]) : 0,

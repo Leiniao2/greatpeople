@@ -118,7 +118,10 @@ export function scrambled(correct: readonly string[], seed: number): string[] {
 // ── Component ──────────────────────────────────────────────────────────────────
 
 export default function StorySortGame({ configId, difficulty, seed, onWin, onLose }: MinigameProps) {
-  const maxAttempts = scale(difficulty, [3, 2, 2, 1])
+  // A wrong check marks the misplaced paragraphs (tier 4: only how many are
+  // in place), so a miss teaches something before the next try.
+  const maxAttempts = scale(difficulty, [4, 3, 2, 2])
+  const markCards = difficulty < 4
   const [attempts, setAttempts] = useState(0)
   const config = CONFIGS[configId] ?? CONFIGS['odyssey-return']
   const correct = config.paragraphs
@@ -175,8 +178,8 @@ export default function StorySortGame({ configId, difficulty, seed, onWin, onLos
       {/* Cards */}
       <div className={`flex flex-col gap-2 ${shaking ? 'animate-[shake_0.45s_ease-in-out]' : ''}`}>
         {order.map((para, i) => {
-          const paraCorrect = submitted && para === correct[i]
-          const paraWrong   = submitted && !isCorrect && para !== correct[i]
+          const paraCorrect = submitted && (markCards || isCorrect) && para === correct[i]
+          const paraWrong   = submitted && markCards && !isCorrect && para !== correct[i]
           const isDraggingThis = dragging === i
 
           return (
@@ -238,6 +241,11 @@ export default function StorySortGame({ configId, difficulty, seed, onWin, onLos
         </button>
       )}
 
+      {submitted && !isCorrect && attempts < maxAttempts && (
+        <p className="text-muted text-[11px] text-center">
+          {order.filter((p, i) => p === correct[i]).length} of {correct.length} in place · {maxAttempts - attempts} {maxAttempts - attempts === 1 ? 'try' : 'tries'} left
+        </p>
+      )}
       {submitted && !isCorrect && attempts < maxAttempts && (
         <button
           onClick={() => setSubmitted(false)}

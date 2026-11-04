@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import type { MinigameProps } from '@/games/types'
 import { scale, useGameTimer, TimerBar } from './_shared'
 
@@ -77,9 +77,31 @@ export const CONFIGS: Record<string, ChemistryConfig> = {
   },
 }
 
+/** Per-ingredient verdict on a failed mix: add more, take some out, or right. */
+export type Verdict = 'more' | 'less' | 'ok'
+export function verdicts(cfg: Pick<ChemistryConfig, 'ingredients' | 'solution'>, counts: Record<string, number>): Record<string, Verdict> {
+  return Object.fromEntries(cfg.ingredients.map(i => {
+    const need = cfg.solution[i.symbol] ?? 0, have = counts[i.symbol] ?? 0
+    return [i.symbol, have < need ? 'more' : have > need ? 'less' : 'ok']
+  }))
+}
+
+/** The target as the player sees it: which ingredients go in, with the measures hidden. */
+export const hiddenFormula = (cfg: Pick<ChemistryConfig, 'ingredients' | 'solution'>) =>
+  cfg.ingredients.filter(i => i.symbol in cfg.solution).map(i => `? ${i.name}`).join(' + ')
+
 export default function ChemistryGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
-  // Higher difficulties put the puzzle on a clock.
+  // The measures are never printed (copying them was no puzzle): the target
+  // names the ingredients, the question hints the ratio, and a failed mix
+  // says per ingredient whether to add or remove.  Difficulty caps the
+  // failed mixes (a binary search over ≤ 6 measures needs at most 3 mixes)
+  // and from D3 runs a clock.
   const timeLimit = scale(difficulty, [0, 0, 120, 90])
+  const maxFails = scale(difficulty, [Infinity, 5, 4, 3])
+  const [fails, setFails] = useState(0)
+  const [verdict, setVerdict] = useState<Record<string, Verdict> | null>(null)
+  const lost = useRef(false)
+  const loseOnce = (why: string) => { if (!lost.current) { lost.current = true; onLose(why) } }
 
   const config = CONFIGS[configId] ?? CONFIGS['tea-blend']
   const [counts, setCounts] = useState<Record<string, number>>(
@@ -87,7 +109,7 @@ export default function ChemistryGame({ configId, difficulty, onWin, onLose }: M
   )
   const [reacted, setReacted] = useState(false)
   const [failed, setFailed] = useState(false)
-  const timer = useGameTimer({ seconds: timeLimit, running: !reacted, onExpire: () => onLose('out of time') })
+  const timer = useGameTimer({ seconds: timeLimit, running: !reacted && !lost.current, onExpire: () => loseOnce('out of time') })
 
   const adjust = (sym: string, delta: number) => {
     if (reacted) return
@@ -109,11 +131,17 @@ export default function ChemistryGame({ configId, difficulty, onWin, onLose }: M
   }
 
   const react = () => {
+    if (reacted || lost.current) return
     if (checkMatch()) {
       setReacted(true)
+      setVerdict(null)
       setTimeout(onWin, 700)
     } else {
       setFailed(true)
+      setVerdict(verdicts(config, counts))
+      const n = fails + 1
+      setFails(n)
+      if (n >= maxFails) { lost.current = true; setTimeout(() => onLose('the mixture spoiled'), 700) }
     }
   }
 
@@ -133,7 +161,7 @@ export default function ChemistryGame({ configId, difficulty, onWin, onLose }: M
       {/* Target */}
       <div className="flex flex-col gap-1 bg-panel border border-accent/20 rounded-xl p-3">
         <p className="text-[10px] text-accent/60 uppercase tracking-wider font-semibold">Target</p>
-        <p className="text-accent font-mono text-sm font-bold">{config.targetFormula}</p>
+        <p className="text-accent font-mono text-sm font-bold">{reacted ? config.targetFormula : hiddenFormula(config)}</p>
         <p className="text-muted text-[10px]">{config.targetName}</p>
       </div>
 
@@ -159,6 +187,11 @@ export default function ChemistryGame({ configId, difficulty, onWin, onLose }: M
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-ink text-xs font-medium truncate">{ing.name}</p>
+              {verdict && !reacted && (
+                <p className={`text-[10px] font-semibold ${verdict[ing.symbol] === 'ok' ? 'text-emerald-700' : 'text-red-700'}`}>
+                  {verdict[ing.symbol] === 'more' ? '▲ more' : verdict[ing.symbol] === 'less' ? '▼ less' : '✓ right'}
+                </p>
+              )}
             </div>
             <div className="flex items-center gap-1">
               <button onClick={() => adjust(ing.symbol, -1)} className="w-6 h-6 rounded bg-panel text-ink-2 text-sm hover:bg-panel-2 transition-colors">−</button>
@@ -170,7 +203,10 @@ export default function ChemistryGame({ configId, difficulty, onWin, onLose }: M
       </div>
 
       {failed && (
-        <p className="text-red-400 text-xs text-center">{config.hint}</p>
+        <p className="text-red-400 text-xs text-center">
+          {config.hint}
+          {Number.isFinite(maxFails) && fails < maxFails && ` ${maxFails - fails} ${maxFails - fails === 1 ? 'mix' : 'mixes'} left.`}
+        </p>
       )}
 
       {/* Action buttons */}

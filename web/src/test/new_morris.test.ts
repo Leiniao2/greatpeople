@@ -276,6 +276,22 @@ describe('computer opponent', () => {
     expect(lost).toBeGreaterThanOrEqual(6)
   }, 60_000)
 
+  it('balance: careful 2–3 ply players win a fair share at Levels 3–4, less at 4', () => {
+    // Measured over 16 games per board (p2 / p3 average): ~60% at Level 3, ~45% at Level 4.
+    const rate = (d: Difficulty) => {
+      let w = 0, n = 0
+      for (const [v, race] of [['six', false], ['nine', false], ['twelve', false], ['nine', true]] as [Variant, boolean][])
+        for (const depth of [2, 3]) for (let i = 0; i < 8; i++) { n++; if (playOut(v, d, 1000 + i * 37, depth, 20_000, race).winner === 1) w++ }
+      return w / n
+    }
+    const r3 = rate(3), r4 = rate(4)
+    console.log(`morris careful players: L3 ${r3.toFixed(2)}, L4 ${r4.toFixed(2)}`)
+    expect(r3).toBeGreaterThanOrEqual(0.45)
+    expect(r3).toBeLessThanOrEqual(0.85)
+    expect(r4).toBeGreaterThanOrEqual(0.3)
+    expect(r4).toBeLessThan(r3)
+  }, 120_000)
+
   it('the computer at Level 4 beats a careless player', () => {
     let lost = 0
     for (let i = 0; i < 4; i++) if (playOut('nine', 4, 3000 + i, 1, 500).winner === 2) lost++

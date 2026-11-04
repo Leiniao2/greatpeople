@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react'
-import type { MinigameProps } from '@/games/types'
+import type { Difficulty, MinigameProps } from '@/games/types'
 import { scale, useGameTimer, TimerBar } from './_shared'
 
 // ── Types ──────────────────────────────────────────────────────────────────────
@@ -147,11 +147,33 @@ export function genChoices(correct: number, count = 4): number[] {
   return arr
 }
 
+// ── Difficulty ─────────────────────────────────────────────────────────────────
+//
+// The clock is arithmetic, not trivia: every tier prints each city's UTC
+// offset, and the first tier also spells out the hour difference.  Higher
+// tiers raise the pass mark and put the five conversions on a clock (about
+// 8–10 s of reading and working per question plus the 1 s feedback).
+
+/** Seconds for the five questions (0 = untimed). */
+export const timeFor = (d: Difficulty) => scale(d, [0, 0, 100, 75])
+/** Share of the questions that must be right. */
+export const passShare = (d: Difficulty) => scale(d, [0.6, 0.6, 0.8, 0.8])
+export const passMark = (questions: number, d: Difficulty) => Math.ceil(questions * passShare(d) - 1e-9)
+/** Tier 1 states the difference between the two cities outright. */
+export const showsDifference = (d: Difficulty) => d === 1
+
+export const utcLabel = (offset: number) => (offset === 0 ? 'UTC' : `UTC${offset > 0 ? '+' : '−'}${Math.abs(offset)}`)
+export function differenceLabel(from: number, to: number): string {
+  const h = to - from
+  if (h === 0) return 'Same time zone'
+  return `${Math.abs(h)} hour${Math.abs(h) === 1 ? '' : 's'} ${h > 0 ? 'ahead' : 'behind'}`
+}
+
 // ── Component ──────────────────────────────────────────────────────────────────
 
 export default function WorldClockGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
   // Higher difficulties put the puzzle on a clock.
-  const timeLimit = scale(difficulty, [0, 0, 120, 90])
+  const timeLimit = timeFor(difficulty)
 
   const cfg = CONFIGS[configId] ?? CONFIGS['magellan-voyage']
 
@@ -188,7 +210,7 @@ export default function WorldClockGame({ configId, difficulty, onWin, onLose }: 
   function restart() { setQi(0); setScore(0); setFeedback(null); setPhase('quiz') }
 
   if (phase === 'done') {
-    const pass = score >= Math.ceil(questions.length * 0.6)
+    const pass = score >= passMark(questions.length, difficulty)
     return (
       <div className="flex flex-col items-center gap-4 p-6 text-center">
         <div className="text-5xl">{pass ? '🌍✈️' : '🕐😕'}</div>
@@ -224,7 +246,7 @@ export default function WorldClockGame({ configId, difficulty, onWin, onLose }: 
       {/* Source city clock */}
       <div className="w-full bg-panel-2 rounded-2xl p-4 text-center border border-line">
         <div className="text-2xl mb-1">{q.from.emoji}</div>
-        <div className="text-xs text-muted uppercase tracking-widest mb-2">{q.from.name}</div>
+        <div className="text-xs text-muted uppercase tracking-widest mb-2">{q.from.name} · {utcLabel(q.from.offset)}</div>
         <div className="font-mono text-4xl font-bold text-accent tracking-wider">
           {formatHour(q.fromHour)}
         </div>
@@ -233,8 +255,11 @@ export default function WorldClockGame({ configId, difficulty, onWin, onLose }: 
       {/* Question */}
       <div className="flex items-center gap-2 text-sm text-ink-2">
         <span className="text-xl">{q.to.emoji}</span>
-        <span>What time is it in <span className="font-semibold text-ink">{q.to.name}</span>?</span>
+        <span>What time is it in <span className="font-semibold text-ink">{q.to.name}</span> ({utcLabel(q.to.offset)})?</span>
       </div>
+      {showsDifference(difficulty) && (
+        <div className="text-xs text-muted -mt-2">{q.to.name} is {differenceLabel(q.from.offset, q.to.offset)} of {q.from.name}</div>
+      )}
 
       {/* Feedback */}
       {feedback && (
@@ -265,7 +290,7 @@ export default function WorldClockGame({ configId, difficulty, onWin, onLose }: 
         })}
       </div>
 
-      <div className="text-xs text-muted">Question {qi + 1} of {questions.length}</div>
+      <div className="text-xs text-muted">Question {qi + 1} of {questions.length} · {passMark(questions.length, difficulty)} right to pass</div>
     </div>
   )
 }

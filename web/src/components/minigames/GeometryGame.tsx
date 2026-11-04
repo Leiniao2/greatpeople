@@ -991,7 +991,8 @@ export default function GeometryGame({ configId, difficulty, seed, params, onWin
   const final = resolveConfig(CONFIGS, configId, params, 'triangle-sum')
   const [steps] = useState(() => stepsFor(configId, difficulty, final))
   const missLimit = scale(difficulty, [3, 3, 3, 2])
-  const timeLimit = steps.length * scale(difficulty, [0, 0, 45, 35])
+  // Per step: D4 hides the readout labels, which slows reading, so it keeps D3's 45 s.
+  const timeLimit = steps.length * scale(difficulty, [0, 0, 45, 45])
   const hideLabels = difficulty === 4
   const { outcome, settled, win, lose } = useGameOutcome({ onWin, onLose, delayMs: 1000 })
   const timer = useGameTimer({ seconds: timeLimit, running: !settled, onExpire: () => lose('out of time') })

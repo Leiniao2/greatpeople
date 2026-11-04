@@ -7,8 +7,10 @@ import { mulberry32, shuffle, resolveConfig, scale, useGameOutcome, OutcomeBanne
 // you, weak or irrelevant ones toward the opponent.  Reach the winning mark
 // before the meter empties.
 //
-// Difficulty: more rounds needed, a harsher penalty for weak cards, and
-// from tier 3 the cards' effects are hidden until played, plus a clock.
+// Difficulty: more rounds and a higher mark, a harsher penalty for weak
+// cards, and from tier 3 a clock.  A card's strength is shown only once it
+// is played (showing it up front made the game "tap the biggest number"),
+// so D1–D2 ask for a lower mark that forgives a weak reply.
 
 interface Card { text: string; effect: number; tag?: string }
 interface Round { claim: string; speaker?: string; cards: Card[] }
@@ -273,7 +275,7 @@ export function debateTargets(cfg: Pick<DebateConfig, 'rounds'>, difficulty: Dif
   const roundsToPlay = Math.min(cfg.rounds.length, scale(difficulty, [2, 3, cfg.rounds.length, cfg.rounds.length]))
   const best = cfg.rounds.slice(0, roundsToPlay).reduce((sum, r) => sum + Math.max(0, ...r.cards.map(c => c.effect)), 0)
   // A short debate (3 rounds × +3) can never reach the flat 10 of tier 4; allow one slip at most.
-  const winAt = Math.min(scale(difficulty, [5, 7, 9, 10]), Math.ceil(best * 0.85))
+  const winAt = Math.min(scale(difficulty, [4, 6, 9, 10]), Math.ceil(best * 0.85))
   return { roundsToPlay, winAt, best }
 }
 
@@ -281,8 +283,7 @@ export default function DebateGame({ configId, difficulty, seed, params, onWin, 
   const cfg = resolveConfig(CONFIGS, configId, params, 'socrates-apology')
   const { roundsToPlay, winAt } = debateTargets(cfg, difficulty)
   const penaltyScale = scale(difficulty, [1, 1.5, 2, 2])
-  const showEffects = difficulty < 3
-  const timeLimit = scale(difficulty, [0, 0, 150, 100])
+  const timeLimit = scale(difficulty, [0, 0, 150, 120])
 
   const { outcome, settled, win, lose } = useGameOutcome({ onWin, onLose, delayMs: 1000 })
   const timer = useGameTimer({ seconds: timeLimit, running: !settled, onExpire: () => lose('out of time') })
@@ -355,7 +356,7 @@ export default function DebateGame({ configId, difficulty, seed, params, onWin, 
                 <button key={i} disabled={played !== null} onClick={() => play(i)}
                   className={`text-left px-3 py-2.5 rounded-xl border text-xs leading-snug transition-all ${cls}`}>
                   {card.text}
-                  {(showEffects || isPlayed) && (
+                  {isPlayed && (
                     <span className={`ml-2 font-bold ${card.effect > 0 ? 'text-emerald-700' : card.effect < 0 ? 'text-red-700' : 'text-muted'}`}>
                       {card.effect > 0 ? `+${card.effect}` : card.effect}
                     </span>

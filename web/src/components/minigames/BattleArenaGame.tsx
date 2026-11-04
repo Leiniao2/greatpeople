@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import type { MinigameProps } from '@/games/types'
+import type { Difficulty, MinigameProps } from '@/games/types'
 import { scale, useGameTimer, TimerBar } from './_shared'
 
 // ── Types ──────────────────────────────────────────────────────────────────────
@@ -129,14 +129,21 @@ export const CONFIGS: Record<string, BattleConfig> = {
 
 interface LastResult { effLevel: 0|1|2; playerDmg: number; enemyDmg: number }
 
+/** Hit points on top of the config's, by difficulty (≈ two / one wrong weapons at D1 / D2). */
+export const hpBonus = (d: Difficulty) => scale(d, [6, 3, 0, 0])
+
 export default function BattleArenaGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
-  // Higher difficulties put the puzzle on a clock.
-  const timeLimit = scale(difficulty, [0, 0, 120, 90])
+  // Higher difficulties put the puzzle on a clock.  A perfect fight takes ~10
+  // attacks (~20 s with the animations), so even D4's clock is over twice that.
+  const timeLimit = scale(difficulty, [0, 0, 90, 50])
   const timer = useGameTimer({ seconds: timeLimit, running: true, onExpire: () => onLose('out of time') })
 
   const cfg = CONFIGS[configId] ?? CONFIGS['roman-gladiator']
+  // The authored hit points leave ~1 hp over a perfect fight, so a single wrong
+  // weapon lost even at D1.  Extra hp lets a learner make a mistake or two.
+  const maxHp = cfg.playerHp + hpBonus(difficulty)
 
-  const [playerHp, setPlayerHp] = useState(cfg.playerHp)
+  const [playerHp, setPlayerHp] = useState(maxHp)
   const [enemyIdx, setEnemyIdx] = useState(0)
   const [enemyHp, setEnemyHp] = useState(cfg.enemies[0].hp)
   const [phase, setPhase] = useState<'choose' | 'animating' | 'won' | 'lost'>('choose')
@@ -176,7 +183,7 @@ export default function BattleArenaGame({ configId, difficulty, onWin, onLose }:
   }
 
   function restart() {
-    setPlayerHp(cfg.playerHp)
+    setPlayerHp(maxHp)
     setEnemyIdx(0)
     setEnemyHp(cfg.enemies[0].hp)
     setPhase('choose')
@@ -229,7 +236,7 @@ export default function BattleArenaGame({ configId, difficulty, onWin, onLose }:
         <div className="flex-1 bg-line rounded-full h-2">
           <div
             className="bg-green-500 h-2 rounded-full transition-all duration-500"
-            style={{ width: `${(Math.max(0, playerHp) / cfg.playerHp) * 100}%` }}
+            style={{ width: `${(Math.max(0, playerHp) / maxHp) * 100}%` }}
           />
         </div>
         <span className="text-xs text-green-400 font-mono shrink-0">{Math.max(0, playerHp)}</span>

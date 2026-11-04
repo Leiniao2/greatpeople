@@ -21,7 +21,7 @@ import { hashString, mulberry32, resolveConfig, scale, shuffle, useGameOutcome, 
 //   1   6       +20%           90s     ~1 min
 //   2   7       +10%           120s    ~1.5 min
 //   3   8       +5%            150s    ~2 min
-//   4   9       exact          180s    ~3 min
+//   4   9       +2%            180s    ~2.5 min
 
 export type Mode = 'thurn' | 'pony' | 'royal' | 'inca'
 
@@ -77,7 +77,7 @@ export const CONFIGS: Record<string, PostConfig> = {
 export const CONFIG_IDS = Object.keys(CONFIGS)
 
 export const stopsFor = (d: Difficulty) => scale(d, [6, 7, 8, 9])
-export const slackFor = (d: Difficulty) => scale(d, [0.2, 0.1, 0.05, 0])
+export const slackFor = (d: Difficulty) => scale(d, [0.2, 0.1, 0.05, 0.02])
 export const secondsFor = (d: Difficulty) => scale(d, [90, 120, 150, 180])
 /** Uphill legs take this much longer per level climbed (downhill: no extra). */
 export const CLIMB = 0.3

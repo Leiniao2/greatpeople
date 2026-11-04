@@ -11,13 +11,13 @@ import { CONFIGS as CARAVAN, caravanPlan } from '@/components/minigames/CaravanG
 import { CONFIGS as EXPEDITION, expeditionBudgets } from '@/components/minigames/ExpeditionGame'
 import { CONFIGS as SIEGE, siegeTiers, siegeTick, spawnWave, bfsPath, WALL_COST, TOWER_COST, type Cell, type Attacker } from '@/components/minigames/SiegeGame'
 import { CONFIGS as TACTICS, boardFrom as tacticsBoard, legalMoves as tacticsLegalMoves, makeCampaign as tacticsCampaign, mateMove as tacticsMateMove, judgeMove as tacticsJudge, bestReply as tacticsReply, makeMove as tacticsMakeMove, type Piece } from '@/components/minigames/TacticsGame'
-import { makeInitialBoard, getValidMoves, applyMove, countPieces, cpuPickMove, type Board, type Move } from '@/components/minigames/WargameGame'
+import { makeInitialBoard, getValidMoves, applyMove, cpuMove, battleResult, moveCap, minimax as warMinimax, type Board, type Move } from '@/components/minigames/WargameGame'
 import { CONFIGS as ARENA, EFF, DMG_TABLE } from '@/components/minigames/BattleArenaGame'
-import { CONFIGS as DEPLOY, SPECS, spawnEnemies, battleStep } from '@/components/minigames/WeaponDeployGame'
-import { CONFIGS as AUCTION, BID_STEP, AI_MAX_MULT } from '@/components/minigames/AuctionGame'
-import { CONFIGS as TRADE } from '@/components/minigames/TradeGame'
+import { CONFIGS as DEPLOY, SPECS, spawnEnemies, battleStep, BUDGET_SHARE } from '@/components/minigames/WeaponDeployGame'
+import { CONFIGS as AUCTION, AI_MULT, winPrice, budgetFor, targetSpend } from '@/components/minigames/AuctionGame'
+import { CONFIGS as TRADE, targetFor as tradeTarget } from '@/components/minigames/TradeGame'
 import {
-  STAGE_TARGETS, ERA_POLICIES, CONFIG_ERA, resolveEra, initVoters, drawPolicies, pickAiPolicy, applyPolicies, tally, stageOutcome,
+  STAGE_TARGETS, ERA_POLICIES, POLITICS as VOTE_POLITICS, AI_BONUS as VOTE_AI_BONUS, CONFIG_ERA, resolveEra, initVoters, drawPolicies, pickAiPolicy, applyPolicies, tally, stageOutcome,
   type Policy,
 } from '@/components/minigames/VotingGame'
 import { CONFIGS as ROLLCALL, makeBoard as rollCallBoard, playOut as rollCallPlayOut, needFor as rollCallNeed } from '@/components/minigames/RollCallGame'
@@ -385,66 +385,50 @@ describe('Tactics: every campaign the story plays can be won', () => {
 })
 
 // ── Wargame ───────────────────────────────────────────────────────────────────
-// A shallow minimax player against the game's greedy CPU: it must win a clear
-// majority and games must end (no shuffling kings forever).
+// The battle is won by getting a few pieces ahead (or on pieces taken at the
+// move cap).  A scripted player that looks `depth` plies past its own move
+// plays the CPU at every difficulty.
 
-function evalBoard(b: Board): number {
-  let s = 0
-  for (let r = 0; r < 8; r++) for (let c = 0; c < 8; c++) {
-    const p = b[r][c]
-    if (!p) continue
-    const v = (p.type === 'king' ? 1.6 : 1) + (p.type === 'man' ? (p.color === 'light' ? (7 - r) : r) * 0.03 : 0)
-    s += p.color === 'light' ? v : -v
-  }
-  return s
-}
-function minimax(b: Board, depth: number, light: boolean, alpha: number, beta: number): number {
-  const moves = getValidMoves(b, light ? 'light' : 'dark')
-  if (moves.length === 0) return light ? -100 : 100
-  if (depth === 0) return evalBoard(b)
-  if (light) {
-    let best = -Infinity
-    for (const m of moves) { best = Math.max(best, minimax(applyMove(b, m), depth - 1, false, alpha, beta)); alpha = Math.max(alpha, best); if (beta <= alpha) break }
-    return best
-  }
-  let best = Infinity
-  for (const m of moves) { best = Math.min(best, minimax(applyMove(b, m), depth - 1, true, alpha, beta)); beta = Math.min(beta, best); if (beta <= alpha) break }
-  return best
-}
-function pickPlayerMove(b: Board, rnd: () => number): Move | null {
+function pickPlayerMove(b: Board, depth: number, rnd: () => number): Move | null {
   const moves = getValidMoves(b, 'light')
   if (!moves.length) return null
   let best: Move[] = [], bestV = -Infinity
   for (const m of moves) {
-    const v = minimax(applyMove(b, m), 3, false, -Infinity, Infinity)
+    const v = warMinimax(applyMove(b, m), depth, false, -Infinity, Infinity)
     if (v > bestV + 1e-9) { bestV = v; best = [m] } else if (Math.abs(v - bestV) < 1e-9) best.push(m)
   }
   return best[Math.floor(rnd() * best.length)]
 }
-function playWargame(rnd: () => number): 'win' | 'loss' | 'unsettled' {
-  let b = makeInitialBoard()
-  for (let ply = 0; ply < 300; ply++) {
-    const m = pickPlayerMove(b, rnd)
-    if (!m) return 'loss'
-    b = applyMove(b, m)
-    if (countPieces(b, 'dark') === 0) return 'win'
-    const cm = cpuPickMove(b)
-    if (!cm) return 'win'
-    b = applyMove(b, cm)
-    if (countPieces(b, 'light') === 0) return 'loss'
+function playWargame(d: Difficulty, depth: number, seed: number): { result: 'win' | 'lose'; moves: number } {
+  const rnd = mulberry32(seed), cpu = mulberry32(seed ^ 0xabc)
+  let b = makeInitialBoard(), moves = 0
+  for (;;) {
+    let r = battleResult(b, d, moves, 'light')
+    if (r) return { result: r, moves }
+    b = applyMove(b, pickPlayerMove(b, depth, rnd)!); moves++
+    r = battleResult(b, d, moves, 'dark')
+    if (r) return { result: r, moves }
+    b = applyMove(b, cpuMove(b, d, cpu)!)
   }
-  return 'unsettled'
 }
 
-describe('Wargame: the greedy CPU is beatable and games end', () => {
-  it('a 4-ply player wins most games', () => {
-    const rnd = mulberry32(42)
-    const tally: Record<string, number> = { win: 0, loss: 0, unsettled: 0 }
-    const GAMES = 12
-    for (let i = 0; i < GAMES; i++) tally[playWargame(rnd)]++
-    console.log(`wargame: ${JSON.stringify(tally)} of ${GAMES}`)
-    expect(tally.unsettled).toBe(0)
-    expect(tally.win / GAMES).toBeGreaterThanOrEqual(0.75)
+describe('Wargame: every level is beatable, harder at the top, and short', () => {
+  it('a careful player (1–3 plies) wins most at D1 and a fair share at D4, inside the move cap', () => {
+    // Measured over 30 games: 1-ply 100% / 57% / 50% / 40%, 3-ply 80% / 83% / 73% / 63% at D1–D4.
+    const rate: Record<number, number> = {}
+    for (const d of [1, 2, 3, 4] as Difficulty[]) {
+      let w = 0, n = 0
+      for (const depth of [1, 3]) for (let s = 1; s <= 8; s++) {
+        const g = playWargame(d, depth, s)
+        expect(g.moves).toBeLessThanOrEqual(moveCap(d))
+        n++; if (g.result === 'win') w++
+      }
+      rate[d] = w / n
+    }
+    console.log(`wargame win rates: ${JSON.stringify(rate)}`)
+    expect(rate[1]).toBeGreaterThanOrEqual(0.7)
+    expect(rate[4]).toBeGreaterThanOrEqual(0.3)
+    expect(rate[4]).toBeLessThan(rate[1])
   }, 120_000)
 })
 
@@ -528,7 +512,7 @@ describe('Weapon Deploy: a layout within budget stops every enemy', () => {
       const cfg = DEPLOY[configId]
       const spent = board.reduce((a, w) => a + (w ? SPECS[w].cost : 0), 0)
       // A good-but-imperfect human layout should also do: three quarters of the budget must still win.
-      const spare = bestDeploy(configId, 5, 0.75)
+      const spare = bestDeploy(configId, 5, BUDGET_SHARE[3]) // the D4 war chest
       console.log(`deploy ${configId}: best layout leaks ${leaked} (spent ${spent}/${cfg.budget}, ${board.filter(Boolean).length} weapons); at 75% budget leaks ${spare.leaked}`)
       expect(leaked).toBe(0)
       expect(spare.leaked).toBe(0)
@@ -537,26 +521,30 @@ describe('Weapon Deploy: a layout within budget stops every enemy', () => {
 })
 
 // ── Auction ───────────────────────────────────────────────────────────────────
-// The rival folds once the player's bid tops floor(0.9 × value); the player
-// bids S+10, S+30, S+50… so each target has a fixed winning price.
+// The rival folds once the player's bid tops floor(mult × value); the player
+// bids S+10, S+30, S+50… so each target has a fixed winning price.  Passing
+// costs nothing, so a player can always drop out of a bidding war.
 
 describe('Auction: enough budget to win the required targets', () => {
   for (const configId of Object.keys(AUCTION)) {
     it(configId, () => {
       const cfg = AUCTION[configId]
-      const prices = cfg.items.filter(i => i.isTarget).map(i => {
-        const aiMax = Math.floor(AI_MAX_MULT * i.trueValue)
-        let bid = i.startBid + BID_STEP
-        while (bid <= aiMax) bid += 2 * BID_STEP
-        return bid
-      }).sort((a, b) => a - b)
-      const cheapest = prices.slice(0, cfg.targetWins).reduce((a, b) => a + b, 0)
-      const dearest = prices.slice(-cfg.targetWins).reduce((a, b) => a + b, 0)
-      console.log(`auction ${configId}: target prices ${prices.join('/')} → need ${cheapest}..${dearest} of ${cfg.budget}`)
-      expect(prices.length).toBeGreaterThanOrEqual(cfg.targetWins)
-      expect(cheapest).toBeLessThanOrEqual(cfg.budget)
-      // Any pair of targets should be affordable, so order of play never traps the player.
-      expect(dearest).toBeLessThanOrEqual(cfg.budget)
+      const budgets = ([1, 2, 3, 4] as Difficulty[]).map(d => budgetFor(cfg, d))
+      for (const d of [1, 2, 3, 4] as Difficulty[]) {
+        const prices = cfg.items.filter(i => i.isTarget).map(i => winPrice(i, AI_MULT(d))).sort((a, b) => a - b)
+        const { cheapest, dearest } = targetSpend(cfg, d)
+        const budget = budgetFor(cfg, d)
+        console.log(`auction ${configId} D${d}: target prices ${prices.join('/')} → need ${cheapest}..${dearest} of ${budget}`)
+        expect(prices.length).toBeGreaterThanOrEqual(cfg.targetWins)
+        expect(cheapest, `D${d} winnable`).toBeLessThanOrEqual(budget)
+        // D1–D3: any set of targets is affordable, so order of play never traps the player.
+        if (d <= 3) expect(dearest, `D${d} any pair`).toBeLessThanOrEqual(budget)
+        // D4: the dearest set is out of reach — you must choose.
+        else expect(dearest, 'D4 forces a choice').toBeGreaterThan(budget)
+      }
+      // Slack over the dearest pair shrinks with difficulty.
+      expect(budgets[0]).toBeGreaterThan(budgets[2])
+      expect(budgets[3]).toBeLessThan(budgets[2])
     })
   }
 })
@@ -565,8 +553,8 @@ describe('Auction: enough budget to win the required targets', () => {
 // The event for the round is shown before the decision, so the honest optimum
 // is "all in before good news, all out before bad".  Random draw + noise.
 
-function playTrade(configId: string, rnd: () => number) {
-  const cfg = TRADE[configId]
+function playTrade(configId: string, rnd: () => number, d: Difficulty) {
+  const cfg = { ...TRADE[configId], targetCash: tradeTarget(TRADE[configId], d) }
   const e = [...cfg.events]
   for (let i = e.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [e[i], e[j]] = [e[j], e[i]] }
   const events = e.slice(0, cfg.rounds)
@@ -583,13 +571,17 @@ function playTrade(configId: string, rnd: () => number) {
 describe('Trade: the honest optimum reaches the target', () => {
   for (const configId of Object.keys(TRADE)) {
     it(configId, () => {
-      const rnd = mulberry32(11)
-      const N = 3000
-      let wins = 0
-      for (let i = 0; i < N; i++) if (playTrade(configId, rnd)) wins++
-      const rate = wins / N
-      console.log(`trade ${configId}: optimal-play win rate ${rate.toFixed(3)}`)
-      expect(rate).toBeGreaterThanOrEqual(0.9)
+      const rates = ([1, 2, 3, 4] as Difficulty[]).map(d => {
+        const rnd = mulberry32(11)
+        const N = 3000
+        let wins = 0
+        for (let i = 0; i < N; i++) if (playTrade(configId, rnd, d)) wins++
+        return wins / N
+      })
+      console.log(`trade ${configId}: optimal-play win rate by difficulty ${rates.map(r => r.toFixed(3)).join(' / ')}`)
+      expect(rates[0]).toBeGreaterThanOrEqual(0.95)
+      expect(rates[2]).toBeGreaterThanOrEqual(0.9)
+      expect(rates[3]).toBeGreaterThanOrEqual(0.75)
     })
   }
 })
@@ -598,7 +590,7 @@ describe('Trade: the honest optimum reaches the target', () => {
 // Scripted candidate: predicts the (deterministic) rival pick and takes the
 // policy with the best net swing.  Must reach 52 before the rival does.
 
-function playVoting(era: string, politics: number): { result: 'win' | 'loss' | 'unsettled'; rounds: number } {
+function playVoting(era: string, politics: number, aiBonus = 0): { result: 'win' | 'loss' | 'unsettled'; rounds: number } {
   let voters = initVoters(politics)
   let stage = 0, inStage = 0
   for (let round = 1; round <= 150; round++) {
@@ -607,11 +599,11 @@ function playVoting(era: string, politics: number): { result: 'win' | 'loss' | '
     const target = STAGE_TARGETS[stage]
     let pick: Policy = policies[0], best = -Infinity
     for (const p of policies) {
-      const next = tally(applyPolicies(voters, p, ai, politics))
+      const next = tally(applyPolicies(voters, p, ai, politics, aiBonus))
       const v = (next.player >= target ? 1000 : 0) - (next.ai >= target ? 2000 : 0) + next.player - next.ai
       if (v > best) { best = v; pick = p }
     }
-    voters = applyPolicies(voters, pick, ai, politics)
+    voters = applyPolicies(voters, pick, ai, politics, aiBonus)
     inStage++
     const outcome = stageOutcome(tally(voters), target, inStage)
     if (outcome === 'won') { if (stage === 2) return { result: 'win', rounds: round }; stage++; inStage = 0 }
@@ -621,7 +613,7 @@ function playVoting(era: string, politics: number): { result: 'win' | 'loss' | '
 }
 
 describe('Voting: a shrewd candidate wins the election', () => {
-  const POLITICS: Record<Difficulty, number> = { 1: 12, 2: 10, 3: 8, 4: 7 }
+  // A shrewd candidate who reads the rival's pick; D4 is meant to be hard (~70%), D1–D3 easier.
   const eras = new Set([...Object.keys(CONFIG_ERA).map(resolveEra), ...Object.keys(ERA_POLICIES)])
   for (const era of eras) {
     for (const d of DIFFS) {
@@ -629,11 +621,11 @@ describe('Voting: a shrewd candidate wins the election', () => {
         const N = 150
         const t: Record<string, number> = { win: 0, loss: 0, unsettled: 0 }
         let longest = 0
-        for (let i = 0; i < N; i++) { const r = playVoting(era, POLITICS[d]); t[r.result]++; longest = Math.max(longest, r.rounds) }
+        for (let i = 0; i < N; i++) { const r = playVoting(era, VOTE_POLITICS[d - 1], VOTE_AI_BONUS[d - 1]); t[r.result]++; longest = Math.max(longest, r.rounds) }
         console.log(`voting ${era} d${d}: ${JSON.stringify(t)} of ${N}, longest ${longest} rounds`)
         expect(t.unsettled).toBe(0)
         expect(longest, 'every election must end in a reasonable number of rounds').toBeLessThanOrEqual(3 * 8 + 6)
-        expect(t.win / N).toBeGreaterThanOrEqual(0.8)
+        expect(t.win / N).toBeGreaterThanOrEqual(d === 4 ? 0.5 : 0.8)
       })
     }
   }

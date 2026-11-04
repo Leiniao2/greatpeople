@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import type { MinigameProps } from '@/games/types'
+import type { Difficulty, MinigameProps } from '@/games/types'
 import { scale, useGameTimer, TimerBar } from './_shared'
 
 // ── Types ──────────────────────────────────────────────────────────────────────
@@ -75,13 +75,28 @@ function cellToCol(cell: number): number { return cell % COLS }
 
 const CELL_ARROW = ['↖','↑','↗','↙','↓','↘']
 
+// ── Difficulty ─────────────────────────────────────────────────────────────────
+
+/**
+ * How often the keeper reads your column at this tier: easier tiers dull the
+ * config's keeper, the top tier sharpens it.  A shot scores with chance
+ * (1 − read) × 2/3, so 3 of 5 wins ~79% of shootouts with no read and ~50%
+ * at read 0.25.
+ */
+export const readFor = (cfg: Pick<SoccerConfig, 'readProb'>, d: Difficulty) =>
+  Math.max(0, Math.min(1, cfg.readProb + scale(d, [-0.1, -0.2, 0, 0.06])))
+/** Goals needed: one fewer on the first tier, so a first shootout is a warm-up. */
+export const goalsFor = (cfg: Pick<SoccerConfig, 'targetGoals'>, d: Difficulty) =>
+  Math.max(1, cfg.targetGoals - (d === 1 ? 1 : 0))
+
 // ── Component ──────────────────────────────────────────────────────────────────
 
 interface KickRecord { shotCell: number; keeperCol: number; scored: boolean }
 
 export default function SoccerGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
   // Higher difficulties put the puzzle on a clock.
-  const cfg = CONFIGS[configId] ?? CONFIGS['pele-final']
+  const base = CONFIGS[configId] ?? CONFIGS['pele-final']
+  const cfg = { ...base, readProb: readFor(base, difficulty), targetGoals: goalsFor(base, difficulty) }
 
   const [kick, setKick] = useState(0)
   const [goals, setGoals] = useState(0)

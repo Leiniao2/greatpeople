@@ -23,8 +23,8 @@ import { hashString, mulberry32, resolveConfig, scale, useGameOutcome, OutcomeBa
 //   D   morse  atlantic  indo  chappe(cities/hills)  slack   timer  expected
 //   1   6      5+1       6     3 / 6                 +20%/+3 90s    ~1 min
 //   2   8      6+2       7     4 / 8                 +10%/+2 120s   ~1.5 min
-//   3   10     7+2       8     5 / 9                 +4%/+1  150s   ~2 min
-//   4   12     8+3       9     5 / 11                exact/+1 180s  ~3 min
+//   3   10     7+2       8     5 / 9                 +5%/+1  150s   ~2 min
+//   4   12     8+3       9     5 / 11                +3%/+1  180s   ~2.5 min
 
 export type Mode = 'mst' | 'sea' | 'chain' | 'semaphore'
 
@@ -82,7 +82,7 @@ export const CONFIGS: Record<string, TelegraphConfig> = {
 
 export const CONFIG_IDS = Object.keys(CONFIGS)
 
-export const slackFor = (d: Difficulty) => scale(d, [0.2, 0.1, 0.04, 0])
+export const slackFor = (d: Difficulty) => scale(d, [0.2, 0.1, 0.05, 0.03])
 export const towerSlackFor = (d: Difficulty) => scale(d, [3, 2, 1, 1])
 export const secondsFor = (d: Difficulty) => scale(d, [90, 120, 150, 180])
 export const SEA_FACTOR = 3

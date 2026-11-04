@@ -148,6 +148,16 @@ describe('AI', () => {
     }
     console.log('royalur strong player:', rows.join(' | '))
   }, 120_000)
+  it('balance: a sensible (2-ply) player wins ≥ 65% at D1 and ≥ 42% at D4 (target 45%), falling with difficulty', () => {
+    const N = 200
+    for (const cfg of CONFIG_IDS) {
+      const rate = (d: Difficulty) => { let w = 0; for (let i = 0; i < N; i++) if (playGame(cfg, strong, d, 1000 + i).winner === 0) w++; return w / N }
+      const r1 = rate(1), r4 = rate(4)
+      expect(r1, `${cfg} D1`).toBeGreaterThanOrEqual(0.65)
+      expect(r4, `${cfg} D4`).toBeGreaterThanOrEqual(0.42)
+      expect(r4, `${cfg} D4 < D1`).toBeLessThan(r1)
+    }
+  }, 120_000)
   it('a weak (random) player still loses to the D4 AI most of the time, so every config is losable', () => {
     const rng = mulberry32(5)
     const random = (s: UrState, roll: number, rules: UrRules) => { const ms = legalMoves(s, roll, rules); return ms.length ? ms[Math.floor(rng() * ms.length)] : null }

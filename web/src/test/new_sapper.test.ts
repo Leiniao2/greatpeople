@@ -159,7 +159,7 @@ describe('sapper component', () => {
     }
   })
 
-  it('digging a mine loses once; flags protect squares', () => {
+  it('digging mines loses once at the blast cap; flags protect squares', () => {
     vi.useFakeTimers()
     for (const d of DIFFS) {
       const onWin = vi.fn(), onLose = vi.fn()
@@ -174,8 +174,15 @@ describe('sapper component', () => {
       fireEvent.click(getByRole('button', { name: /Dig/ }))
       fireEvent.click(sq(container, mines[0]))
       expect(onLose).not.toHaveBeenCalled()
-      fireEvent.click(sq(container, mines[1]))
-      fireEvent.click(sq(container, mines[2]))
+      // Blasts before the cap mark the mine and play goes on; the last one loses.
+      const cap = tierFor(d).maxBlasts
+      for (let k = 1; k < cap; k++) {
+        fireEvent.click(sq(container, mines[k]))
+        expect(sq(container, mines[k]).getAttribute('data-state'), `d${d} blast ${k}`).toBe('3')
+        expect(onLose).not.toHaveBeenCalled()
+      }
+      fireEvent.click(sq(container, mines[cap]))
+      fireEvent.click(sq(container, mines[cap + 1]))
       act(() => { vi.advanceTimersByTime(1000) })
       expect(onLose).toHaveBeenCalledTimes(1)
       expect(onWin).not.toHaveBeenCalled()

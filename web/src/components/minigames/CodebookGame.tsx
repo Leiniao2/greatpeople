@@ -89,6 +89,8 @@ interface System {
   squareInput?: boolean
   /** Normalise a plaintext letter to what the player can enter. */
   answer?: (ch: string) => string
+  /** A competent reader's seconds per letter at tiers 1–2 and at 3–4 (where the key gets harder). */
+  pace: [number, number]
   configs: Record<string, CodebookConfig>
 }
 
@@ -149,6 +151,7 @@ const keyGrid = 'grid grid-cols-7 gap-x-2 gap-y-1 text-[10px] text-muted'
 
 const SYSTEMS = {
   atbash: {
+    pace: [3, 3],
     label: 'Atbash',
     glyph: ch => <Mono className="text-lg text-ink">{atbash(ch)}</Mono>,
     Key: () => (
@@ -186,6 +189,7 @@ const SYSTEMS = {
     },
   },
   polybius: {
+    pace: [2.5, 2.5],
     label: 'Polybius Square',
     glyph: ch => <Mono className="text-base text-ink tracking-wider">{polybius(ch)}</Mono>,
     Key: () => <p className="text-[10px] text-muted text-center">First number = row, second = column. I and J share a square.</p>,
@@ -225,6 +229,7 @@ const SYSTEMS = {
     },
   },
   pigpen: {
+    pace: [3.5, 3.5],
     label: 'Pigpen',
     glyph: ch => <PigpenGlyph ch={ch} />,
     Key: () => (
@@ -254,6 +259,7 @@ const SYSTEMS = {
     },
   },
   braille: {
+    pace: [3.5, 5],
     label: 'Braille',
     glyph: ch => <BrailleCell ch={ch} />,
     Key: ({ difficulty }) => {
@@ -293,6 +299,7 @@ const SYSTEMS = {
     },
   },
   telegraph: {
+    pace: [4, 4],
     label: 'Telegraph',
     glyph: (ch, small) => <Mono className={`${small ? 'text-sm' : 'text-lg'} text-ink tracking-[0.15em]`}>{MORSE[ch].replace(/\./g, '·').replace(/-/g, '–')}</Mono>,
     Key: () => (
@@ -334,6 +341,7 @@ const SYSTEMS = {
     },
   },
   binary: {
+    pace: [4, 6],
     label: 'Binary',
     glyph: ch => <Lamps ch={ch} />,
     Key: ({ difficulty }) => (
@@ -421,13 +429,23 @@ export function resolveCodebookConfig(configs: Record<string, CodebookConfig>, c
   return { ...cfg, plaintext: /[A-Z]/.test(msg) ? msg : cleanMessage(((configId && configs[configId]) || configs[fallback]).plaintext) }
 }
 
+/**
+ * The clock for a reader: 30 s to take in the key, then the system's
+ * per-letter pace times a slack that shrinks with the tier (D1 untimed).
+ */
+export const CODEBOOK_SLACK = [0, 3, 2, 1.6] as const
+export function codebookSeconds(pace: [number, number], difficulty: Difficulty, letters: number): number {
+  const slack = scale(difficulty, CODEBOOK_SLACK)
+  return slack ? Math.round(30 + letters * pace[difficulty >= 3 ? 1 : 0] * slack) : 0
+}
+
 function makeReader(sys: System): MinigameComponent {
   return function CodebookGame({ configId, difficulty, params, onWin, onLose }: MinigameProps) {
     const cfg = resolveCodebookConfig(sys.configs, configId, params)
     const plain = cfg.plaintext
     const letters = useMemo(() => [...plain].map((c, i) => ({ c, i })).filter(x => x.c !== ' '), [plain])
     const maxMistakes = scale(difficulty, [8, 6, 5, 4])
-    const timeLimit = scale(difficulty, [0, 0, 30 + letters.length * 8, 30 + letters.length * 6])
+    const timeLimit = codebookSeconds(sys.pace, difficulty, letters.length)
     const { outcome, settled, win, lose } = useGameOutcome({ onWin, onLose, delayMs: 900 })
     const timer = useGameTimer({ seconds: timeLimit, running: !settled, onExpire: () => lose('out of time') })
     const [pos, setPos] = useState(0)
@@ -572,9 +590,15 @@ function ScytaleGame({ configId, difficulty, seed, params, onWin, onLose }: Mini
   const [guess, setGuess] = useState(2)
   const [attempts, setAttempts] = useState(0)
   const faces = scytaleRead(strip, guess)
+  // From tier 3 the rod no longer winds live: the reading appears only for
+  // the rod last checked, and each wrong check counts.
+  const blind = difficulty >= 3
+  const [checked, setChecked] = useState<number | null>(null)
+  const showFaces = !blind || checked === guess
 
   const read = () => {
-    if (settled) return
+    if (settled || (blind && checked === guess)) return
+    setChecked(guess)
     if (guess === rows) { win(); return }
     const n = attempts + 1
     setAttempts(n)
@@ -609,15 +633,20 @@ function ScytaleGame({ configId, difficulty, seed, params, onWin, onLose }: Mini
       </div>
 
       <div className="rounded-xl overflow-hidden border border-amber-900/40 bg-gradient-to-b from-amber-800 via-amber-700 to-amber-800 p-2 flex flex-col gap-1">
-        {faces.map((f, i) => (
+        {!showFaces && (
+          <p data-testid="scytale-hidden" className="text-xs text-amber-50 text-center px-2 py-1 leading-relaxed">
+            On a rod with N faces, neighbouring letters of the message sit N places apart along the strip. Find the N that spells words, then check that rod.
+          </p>
+        )}
+        {showFaces && faces.map((f, i) => (
           <p key={i} className="font-mono text-sm tracking-[0.3em] text-ink bg-amber-50/90 rounded px-2 py-0.5 break-all"
             style={{ transform: `skewX(-8deg)` }}>{f}</p>
         ))}
       </div>
 
-      <button disabled={settled} onClick={read}
+      <button disabled={settled || (blind && checked === guess)} onClick={read}
         className="py-2.5 rounded-xl bg-accent text-accent-fg font-bold text-sm hover:bg-accent-hover transition-all disabled:opacity-50">
-        Read the message
+        {blind ? 'Check this rod' : 'Read the message'}
       </button>
 
       <OutcomeBanner outcome={outcome} detail={cfg.fact} winTitle="Message read!" loseTitle="The message stays hidden" />
@@ -627,8 +656,8 @@ function ScytaleGame({ configId, difficulty, seed, params, onWin, onLose }: Mini
 
 // ── Registry entries ──────────────────────────────────────────────────────────
 
-type Entry = { default: MinigameComponent; CONFIG_IDS: string[]; CONFIGS: Record<string, CodebookConfig> }
-const entry = (sys: System): Entry => ({ default: makeReader(sys), CONFIG_IDS: Object.keys(sys.configs), CONFIGS: sys.configs })
+type Entry = { default: MinigameComponent; CONFIG_IDS: string[]; CONFIGS: Record<string, CodebookConfig>; pace?: [number, number] }
+const entry = (sys: System): Entry => ({ default: makeReader(sys), CONFIG_IDS: Object.keys(sys.configs), CONFIGS: sys.configs, pace: sys.pace })
 
 export const CODEBOOKS: Record<CodebookKey, Entry> = {
   atbash: entry(SYSTEMS.atbash),

@@ -22,7 +22,7 @@ import { mulberry32, hashString, pick, shuffle, randInt, resolveConfig, scale, u
 //   D1    ±20 s/h, 5 trials, 1 mm, period shown   1 clock, 3 %, period shown   2 × 4, 35–60 %     2, ±8°, rate per hour shown        ~1 min
 //   D2    ±10 s/h, 4 trials, 1 mm                 2 clocks, 2 %               3 × 5, 20–35 %     3, ±5°, sin φ shown                ~1.5 min
 //   D3    ±5 s/h, 3 trials, 0.1 mm                3 clocks, 1 %               3 × 6, 12–20 %     3, ±3°, south + 1 reverse round    ~2–2.5 min
-//   D4    ±2 s/h, 2 trials, 0.1 mm                3 clocks, 0.5 %, harder     4 × 6, 7–12 %      4, ±2°, south + 2 reverse rounds   ~3 min
+//   D4    ±3 s/h, 3 trials, 0.1 mm                3 clocks, 0.5 %, harder     4 × 6, 7–12 %      4, ±2°, south + 2 reverse rounds   ~3 min
 //
 // Mistakes allowed (match, galileo, foucault): 3 / 3 / 2 / 2.
 
@@ -151,7 +151,7 @@ function genHuygens(d: Difficulty, rng: Rng): HuygensPuzzle {
   }
   return {
     kind: 'huygens-clock', geared, start, target,
-    tol: scale(d, [20, 10, 5, 2]), trials: scale(d, [5, 4, 3, 2]), res, showPeriod: d === 1,
+    tol: scale(d, [20, 10, 5, 3]), trials: scale(d, [5, 4, 3, 3]), res, showPeriod: d === 1,
   }
 }
 

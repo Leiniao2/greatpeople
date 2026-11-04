@@ -126,14 +126,25 @@ export const CONFIGS: Record<string, StarChartConfig> = {
   },
 }
 
+/** Sightings asked for at a tier. */
+export const altitudeCount = (available: number, difficulty: number) => Math.min(available, scale(difficulty as 1 | 2 | 3 | 4, [2, 3, 3, 4]))
+/** ±degrees allowed when sighting by eye on the dial, and when giving the latitude. */
+export const sightTolerance = (difficulty: number) => scale(difficulty as 1 | 2 | 3 | 4, [4, 3, 2, 2])
+export const latitudeTolerance = (difficulty: number) => scale(difficulty as 1 | 2 | 3 | 4, [3, 2, 1, 1])
+
 export const latitudeFrom = (s: Sighting) => s.declination === 90 ? s.altitude : 90 - s.altitude + s.declination
 
 export default function StarChartGame({ configId, difficulty, seed, params, onWin, onLose }: MinigameProps) {
   const cfg = resolveConfig(CONFIGS, configId, params, 'hipparchus-catalogue')
   const { outcome, settled, win, lose } = useGameOutcome({ onWin, onLose, delayMs: 900 })
-  const timeLimit = scale(difficulty, [0, 0, 120, 90])
+  // Identify: a few taps per figure.  Altitude: ~30 s per sighting to sight
+  // and compute, so its clock scales with the sightings asked for.
+  const timeLimit = cfg.mode === 'altitude'
+    ? scale(difficulty, [0, 0, 45, 45]) * altitudeCount(cfg.sightings?.length ?? 0, difficulty)
+    : scale(difficulty, [0, 0, 120, 90])
   const timer = useGameTimer({ seconds: timeLimit, running: !settled, onExpire: () => lose('the sky clouded over') })
-  const maxMistakes = scale(difficulty, [3, 2, 2, 1])
+  // The game is lost on this many mistakes (D4 forgives one).
+  const maxMistakes = scale(difficulty, [3, 3, 2, 2])
   const [mistakes, setMistakes] = useState(0)
 
   const miss = () => {
@@ -177,6 +188,7 @@ function Identify({ constellations, difficulty, seed, disabled, onDone, onMiss }
   const showLines = difficulty < 4
   const [found, setFound] = useState<string[]>([])
   const [flash, setFlash] = useState<string | null>(null)
+  const [missNote, setMissNote] = useState<string | null>(null)
   const current = targets[found.length]
 
   const tapConstellation = (c: Constellation) => {
@@ -184,10 +196,13 @@ function Identify({ constellations, difficulty, seed, disabled, onDone, onMiss }
     if (c.name === current.name) {
       const next = [...found, c.name]
       setFound(next)
+      setMissNote(null)
       if (next.length === targets.length) onDone()
     } else {
       setFlash(c.name)
       setTimeout(() => setFlash(null), 500)
+      // D1–D2 name the figure that was tapped, so a miss teaches a shape.
+      setMissNote(difficulty <= 2 ? `That is ${c.name}.` : 'Not that one.')
       onMiss()
     }
   }
@@ -218,6 +233,7 @@ function Identify({ constellations, difficulty, seed, disabled, onDone, onMiss }
           })}
         </svg>
       </div>
+      {missNote && !disabled && <p className="text-[11px] text-red-700">{missNote}</p>}
       <p className="text-[10px] text-muted/80">Tap the stars of the constellation. {showLines ? 'Outlines are drawn for you.' : 'No outlines at this height — know the shapes.'}</p>
     </div>
   )
@@ -228,8 +244,9 @@ function Identify({ constellations, difficulty, seed, disabled, onDone, onMiss }
 function Altitude({ sightings, difficulty, disabled, onDone, onMiss }: {
   sightings: Sighting[]; difficulty: number; disabled: boolean; onDone: () => void; onMiss: () => boolean
 }) {
-  const count = Math.min(sightings.length, scale(difficulty as 1 | 2 | 3 | 4, [2, 3, 3, 4]))
-  const tolerance = scale(difficulty as 1 | 2 | 3 | 4, [3, 2, 1, 1])
+  const count = altitudeCount(sightings.length, difficulty)
+  const sightTol = sightTolerance(difficulty)
+  const tolerance = latitudeTolerance(difficulty)
   const [idx, setIdx] = useState(0)
   const [dial, setDial] = useState(45)
   const [latitude, setLatitude] = useState(30)
@@ -239,7 +256,8 @@ function Altitude({ sightings, difficulty, disabled, onDone, onMiss }: {
 
   const confirmSight = () => {
     if (disabled) return
-    if (Math.abs(dial - s.altitude) <= tolerance) { setStage('compute'); setNote(null) }
+    // A good sight reads off the true altitude, so the sum uses exact numbers.
+    if (Math.abs(dial - s.altitude) <= sightTol) { setDial(s.altitude); setStage('compute'); setNote(null) }
     else { setNote(`The star is not on the sight line at ${dial}°.`); onMiss() }
   }
   const confirmLatitude = () => {
@@ -255,14 +273,14 @@ function Altitude({ sightings, difficulty, disabled, onDone, onMiss }: {
     }
   }
 
-  const hint = s.declination === 90
+  const hint = `Sighted at ${s.altitude}°. ` + (s.declination === 90
     ? 'The pole star stands as high as your latitude.'
-    : `${s.star} culminates ${s.south ? 'to the south' : 'overhead'} at declination ${s.declination}°: latitude = 90 − altitude + declination.`
+    : `${s.star} culminates ${s.south ? 'to the south' : 'overhead'} at declination ${s.declination}°: latitude = 90 − altitude + declination.`)
 
   return (
     <div className="flex flex-col gap-3">
       <p className="text-ink text-sm">Sighting {idx + 1} / {count}: <span className="font-bold text-accent">{s.star}</span>
-        <span className="text-muted text-[10px] ml-2">tolerance ±{tolerance}°</span></p>
+        <span className="text-muted text-[10px] ml-2">sight ±{sightTol}° · latitude ±{tolerance}°</span></p>
 
       {/* Astrolabe */}
       <div className="flex items-center gap-4">

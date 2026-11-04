@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import type { MinigameProps } from '@/games/types'
+import { mulberry32, scale, shuffle } from './_shared'
 
 interface FictionConfig {
   title: string
@@ -91,17 +92,25 @@ export const CONFIGS: Record<string, FictionConfig> = {
   },
 }
 
-export default function FictionGame({ configId, onWin, onLose }: MinigameProps) {
+export default function FictionGame({ configId, difficulty, seed, onWin, onLose }: MinigameProps) {
   const config = CONFIGS[configId] ?? CONFIGS['mani-parable']
+  // Wrong guesses allowed before the story is lost: a miss is struck out and
+  // the reader tries again (D4: one reading, one answer).
+  const maxMisses = scale(difficulty, [2, 1, 1, 0])
+  // Options are dealt in a seeded order so the answer's position gives nothing away.
+  const order = useMemo(() => shuffle(config.options.map((_, i) => i), mulberry32(seed ?? 1)), [config, seed])
   const [selected, setSelected] = useState<number | null>(null)
-  const revealed = selected !== null
+  const [missed, setMissed] = useState<number[]>([])
   const correct = selected === config.answer
+  const revealed = correct || missed.length > maxMisses
 
   const pick = (i: number) => {
-    if (revealed) return
+    if (revealed || missed.includes(i)) return
+    if (i === config.answer) { setSelected(i); setTimeout(onWin, 900); return }
+    const next = [...missed, i]
+    setMissed(next)
     setSelected(i)
-    if (i === config.answer) setTimeout(onWin, 900)
-    else setTimeout(() => onLose(), 900)
+    if (next.length > maxMisses) setTimeout(() => onLose(), 900)
   }
 
   return (
@@ -115,9 +124,12 @@ export default function FictionGame({ configId, onWin, onLose }: MinigameProps) 
       <p className="text-ink text-sm font-semibold">{config.prompt}</p>
 
       <div className="flex flex-col gap-2">
-        {config.options.map((opt, i) => {
+        {order.map((i, pos) => {
+          const opt = config.options[i]
           let cls = 'w-full text-left px-4 py-3 rounded-xl text-sm transition-all border '
-          if (!revealed) {
+          if (!revealed && missed.includes(i)) {
+            cls += 'bg-red-500/10 border-red-500/30 text-red-800 line-through opacity-70'
+          } else if (!revealed) {
             cls += 'bg-panel border-line text-ink-2 hover:border-accent/40 hover:text-ink cursor-pointer'
           } else if (i === config.answer) {
             cls += 'bg-emerald-500/10 border-emerald-500/40 text-emerald-800 font-medium'
@@ -127,13 +139,17 @@ export default function FictionGame({ configId, onWin, onLose }: MinigameProps) 
             cls += 'bg-panel border-line text-muted'
           }
           return (
-            <button key={i} onClick={() => pick(i)} className={cls}>
-              <span className="text-xs opacity-40 mr-2">{String.fromCharCode(65 + i)}.</span>
+            <button key={i} onClick={() => pick(i)} disabled={revealed || missed.includes(i)} className={cls}>
+              <span className="text-xs opacity-40 mr-2">{String.fromCharCode(65 + pos)}.</span>
               {opt}
             </button>
           )
         })}
       </div>
+
+      {!revealed && missed.length > 0 && (
+        <p className="text-muted text-xs">Not quite — read the passage again. {maxMisses - missed.length + 1} {maxMisses - missed.length + 1 === 1 ? 'guess' : 'guesses'} left.</p>
+      )}
 
       {revealed && (
         <div className={`p-3 rounded-xl border text-xs leading-relaxed ${correct ? 'bg-emerald-500/10 border-emerald-500/30' : 'bg-accent/10 border-accent/30'}`}>

@@ -50,7 +50,7 @@ import { hashString, mulberry32, resolveConfig, useGameOutcome, OutcomeBanner, t
 // Difficulty (AI): D1 plays greedy on raw progress and makes a random move
 // 60% of the time; D2 greedy on a full positional evaluation with 15% random
 // moves; D3 expectimax one throw ahead; D4 expectimax two throws ahead.
-// The lead piece is the human's at D1–2; at D3–4 the seed decides.
+// The lead piece is always the human's; D1–D2 also get a head start (HEAD_START).
 
 // ── Engine ──────────────────────────────────────────────────────────────────
 
@@ -101,7 +101,7 @@ export function initialState(pieces: number, humanLead = true, turn: Player = 1)
 /**
  * A seeded mid-game position: `pieces` per side on squares from–25 (8 by default), no square
  * shared, equal total progress.  `lead` moves the human's front piece on by
- * a few squares (the D1 head start).
+ * a few squares (the low-level head start).
  */
 export function midgameState(pieces: number, seed: number, lead = 0, turn: Player = 1, from = 8): State {
   const rng = mulberry32(hashString(`senet-mid:${seed}:${pieces}`))
@@ -393,15 +393,34 @@ export const CONFIGS: Record<string, SenetConfig> = {
   },
 }
 
+/**
+ * Squares the human's front piece starts ahead, by difficulty.  Senet is mostly
+ * luck: a sensible player won only ~2 in 3 at D1 and ~2 in 5 in the D4 openings,
+ * so the low levels get a head start and the human always holds the lead piece
+ * in the openings.  A sensible (one-throw lookahead) player now wins ~70–93% at
+ * D1, ~57–72% at D2, ~50–70% at D3 and ~50–59% at D4 (300 seeded games each).
+ */
+export const HEAD_START = [10, 3, 0, 0] as const
+
 /** The opening state of a config at a difficulty and seed. */
 export function startFor(configId: string, difficulty: Difficulty, seed: number): State {
   const c = CONFIGS[configId] ?? CONFIGS.kendall
   const pieces = c.pieces[difficulty - 1]
   const goal = c.goal ? c.goal[difficulty - 1] : pieces
   const turn = c.startTurn ?? 1
-  const base = c.start === 'midgame'
-    ? midgameState(pieces, seed, difficulty === 1 ? 4 : 0, turn, c.from)
-    : initialState(pieces, difficulty <= 2 ? true : (seed & 1) === 0, turn)
+  const lead = HEAD_START[difficulty - 1]
+  let base: State
+  if (c.start === 'midgame') base = midgameState(pieces, seed, lead, turn, c.from)
+  else {
+    base = initialState(pieces, true, turn)
+    if (lead) {
+      // The head start: the human's front piece steps on to the next free square `lead` ahead.
+      const front = base.board.lastIndexOf(1)
+      let to = front + lead
+      while (to < BEAUTY && base.board[to] !== 0) to++
+      if (to < BEAUTY) { base.board[front] = 0; base.board[to] = 1 }
+    }
+  }
   return { ...base, goal, hit: c.hit }
 }
 export const CONFIG_IDS = Object.keys(CONFIGS)

@@ -49,13 +49,13 @@ describe('Archive Pairs — logic', () => {
     for (const id of CONFIG_IDS) for (const d of DIFFS) for (const s of SEEDS) {
       const v = CONFIGS[id].variant
       const deck = makeDeck(id, CONFIGS[id], d, s)
-      expect(deck.length).toBe(pairsFor(d) * 2)
+      expect(deck.length).toBe(pairsFor(d, v) * 2)
       const r = perfectMemory(deck, v)
       expect(r.mistakes, `${id}@${d}#${s}`).toBeLessThanOrEqual(perfectBound(d, v))
       expect(perfectBound(d, v)).toBeLessThanOrEqual(mistakeBudget(d, v))
       expect(r.maxFlips).toBeLessThanOrEqual(FRAGILE_FLIPS)
       // A memory game, not a gimme: a perfect memory still needs real turns.
-      expect(r.turns.length).toBeGreaterThanOrEqual(pairsFor(d))
+      expect(r.turns.length).toBeGreaterThanOrEqual(pairsFor(d, v))
     }
   })
 
@@ -77,7 +77,7 @@ describe('Archive Pairs — logic', () => {
     for (const d of DIFFS) {
       expect(mistakeBudget(d, 'flash')).toBeLessThan(mistakeBudget(d, 'swap'))
       expect(peeksFor(d, 'flash')).toBe(0)
-      expect(perfectBound(d, 'ordered')).toBe(pairsFor(d))
+      expect(perfectBound(d, 'ordered')).toBe(pairsFor(d, 'ordered'))
       expect(timerFor(d, 'ordered')).toBeGreaterThanOrEqual(timerFor(d, 'swap'))
     }
   })
@@ -87,7 +87,7 @@ describe('Archive Pairs — component', () => {
   it('renders every config at every difficulty with its twist', () => {
     for (const id of CONFIG_IDS) for (const d of DIFFS) {
       const { container, getByTestId } = render(createElement(PairsGame, { configId: id, difficulty: d, seed: 3, onWin: () => {}, onLose: () => {} }))
-      expect(tilesOf(container).length).toBe(pairsFor(d) * 2)
+      expect(tilesOf(container).length).toBe(pairsFor(d, CONFIGS[id].variant) * 2)
       expect(getByTestId('pairs-twist').textContent).toContain(CONFIGS[id].twist)
       cleanup()
     }
@@ -173,7 +173,7 @@ describe('Archive Pairs — component', () => {
     // Pair 0 was filed; now try pair 2 before pair 1.
     fireEvent.click(pairs[2][0]); fireEvent.click(pairs[2][1])
     act(() => { vi.advanceTimersByTime(MISS_MS + 50) })
-    expect(container.textContent).toContain('1 / 8 pairs filed')
+    expect(container.textContent).toContain(`1 / ${pairsFor(d, 'ordered')} pairs filed`)
     expect(getByTestId('mistakes-left').textContent).toBe(left)
     expect(pairs[2][0].getAttribute('aria-label')).toBe('face-down slip')
   })

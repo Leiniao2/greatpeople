@@ -95,7 +95,7 @@ describe('lamplighter logic', () => {
   })
 
   it('time budget: ~1 min at D1 up to ~3 min at D4, and D1 still needs thought', () => {
-    const maxLamps = [16, 16, 25, 25], maxBudget = [8, 10, 12, 13]
+    const maxLamps = [16, 16, 25, 25], maxBudget = [8, 10, 11, 12]
     for (const d of DIFFS) {
       const t = tierFor(d)
       expect(t.n ** 2, `d${d} lamps`).toBeLessThanOrEqual(maxLamps[d - 1])
@@ -106,7 +106,13 @@ describe('lamplighter logic', () => {
         expect(p.optimal).toBeGreaterThanOrEqual(3)
       }
     }
-    expect(tierFor(4).slack).toBeLessThanOrEqual(1)
+    // A wrong press costs two, so every tier forgives at least one wrong lamp,
+    // and the forgiveness never grows with difficulty.
+    for (const d of DIFFS) expect(tierFor(d).slack, `d${d} slack`).toBeGreaterThanOrEqual(2)
+    for (const d of [2, 3, 4] as Difficulty[]) {
+      expect(tierFor(d).slack).toBeLessThanOrEqual(tierFor((d - 1) as Difficulty).slack)
+      expect(tierFor(d).minOptimal).toBeGreaterThan(tierFor((d - 1) as Difficulty).minOptimal)
+    }
   })
 
   it('every config is a distinct rule', () => {

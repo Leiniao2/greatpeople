@@ -99,6 +99,13 @@ export function circlesOverlap(p: Vec2, r1: number, c: { x: number; y: number; r
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
+/**
+ * Particles that may be lost before the run ends (0: unlimited).  Seven
+ * slider notches, one of which flies true; reading each miss's curve
+ * narrows it down, so three shots is fair at the top tier.
+ */
+export const LORENTZ_CRASHES = [0, 5, 4, 3] as const
+
 export default function LorentzGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
   // Higher difficulties put the puzzle on a clock.
   const timeLimit = scale(difficulty, [0, 0, 120, 90])
@@ -110,7 +117,20 @@ export default function LorentzGame({ configId, difficulty, onWin, onLose }: Min
   const [running, setRunning] = useState(false)
   const [won, setWon] = useState(false)
   const [dead, setDead] = useState(false)
-  const timer = useGameTimer({ seconds: timeLimit, running: !won, onExpire: () => onLose('out of time') })
+  const maxCrashes = scale(difficulty, LORENTZ_CRASHES)
+  const [crashes, setCrashes] = useState(0)
+  const out = maxCrashes > 0 && crashes >= maxCrashes
+  const timer = useGameTimer({ seconds: timeLimit, running: !won && !out, onExpire: () => onLose('out of time') })
+  // Each missed flight counts against the tier's cap: a crash, or a flight
+  // called back with ↺ before it landed.  The last one ends the run.
+  const flownRef = useRef(false)    // this flight has been launched
+  const chargedRef = useRef(false)  // and its miss already counted
+  const miss = () => { if (!chargedRef.current) { chargedRef.current = true; setCrashes(c => c + 1) } }
+  useEffect(() => { if (dead) miss() }, [dead]) // eslint-disable-line react-hooks/exhaustive-deps
+  const lostRef = useRef(false)
+  useEffect(() => {
+    if (out && !lostRef.current) { lostRef.current = true; onLose('the particle was lost') }
+  }, [out, onLose])
 
   const posRef = useRef<Vec2>({ ...cfg.startPos })
   const velRef = useRef<Vec2>({ ...cfg.startVel })
@@ -284,6 +304,7 @@ export default function LorentzGame({ configId, difficulty, onWin, onLose }: Min
         <span className="text-indigo-400 font-bold text-sm tracking-wide">{cfg.title}</span>
         {won && <span className="text-emerald-400 text-xs font-bold">✓ Target reached!</span>}
         {dead && <span className="text-red-400 text-xs font-bold">✕ Out of bounds</span>}
+        {maxCrashes > 0 && <span className={`text-[10px] ${crashes ? 'text-red-400 font-bold' : 'text-muted'}`}>✗ {crashes} / {maxCrashes}</span>}
       </div>
 
       <p className="text-muted text-xs text-center">
@@ -315,7 +336,7 @@ export default function LorentzGame({ configId, difficulty, onWin, onLose }: Min
       {/* Controls */}
       <div className="flex gap-2 w-full">
         {!running && !won && !dead && (
-          <button onClick={() => setRunning(true)}
+          <button onClick={() => { flownRef.current = true; setRunning(true) }}
             className="flex-1 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-sm transition-all">
             Launch ▶
           </button>
@@ -326,7 +347,11 @@ export default function LorentzGame({ configId, difficulty, onWin, onLose }: Min
             Pause ⏸
           </button>
         )}
-        <button onClick={reset}
+        <button onClick={() => {
+          if (flownRef.current && !wonRef.current) miss()
+          flownRef.current = false; chargedRef.current = false
+          reset()
+        }} disabled={out}
           className="px-4 py-2.5 rounded-xl bg-panel border border-line text-muted hover:text-ink text-sm transition-all">
           ↺
         </button>

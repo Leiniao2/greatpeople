@@ -61,7 +61,16 @@ const ALPHA_ROWS = [
 
 // ── Component ──────────────────────────────────────────────────────────────────
 
-export const DECODE_TIME_LIMITS = [0, 0, 180, 150] as const
+export const DECODE_TIME_LIMITS = [0, 240, 180, 150] as const
+/** Cipher letters decoded for the player at the start (the commonest first). */
+export const DECODE_REVEALS = [4, 2, 0, 0] as const
+
+/** The cipher letters given away at this tier: most frequent in the message first, ties alphabetical. */
+export function revealedLetters(ciphertext: string, count: number): string[] {
+  const freq: Record<string, number> = {}
+  for (const ch of ciphertext) if (ch !== ' ') freq[ch] = (freq[ch] ?? 0) + 1
+  return Object.keys(freq).sort((a, b) => freq[b] - freq[a] || a.localeCompare(b)).slice(0, count)
+}
 
 export default function DecodeGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
   // Higher difficulties put the puzzle on a clock.
@@ -88,7 +97,8 @@ export default function DecodeGame({ configId, difficulty, onWin, onLose }: Mini
   ).sort()
 
   // player assignments: cipher letter -> guessed plain letter
-  const [assignments, setAssignments] = useState<Record<string, string>>({})
+  const [assignments, setAssignments] = useState<Record<string, string>>(() =>
+    Object.fromEntries(revealedLetters(ciphertext, scale(difficulty, DECODE_REVEALS)).map(c => [c, decipherMap[c]])))
   // which cipher letter is currently selected
   const [selected, setSelected] = useState<string | null>(null)
   const [won, setWon] = useState(false)

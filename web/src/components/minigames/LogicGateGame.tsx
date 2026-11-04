@@ -249,10 +249,10 @@ export const PLANS: Record<string, [string[], string[], string[], string[]]> = {
 }
 
 /** Most slots the player has to choose per stage; the rest are locked to the reference gate. */
-export const OPEN_SLOTS = (d: Difficulty) => scale(d, [3, 3, 4, 5])
+export const OPEN_SLOTS = (d: Difficulty) => scale(d, [3, 3, 4, 4])
 /** Wrong checks allowed over the whole challenge. */
 export const MAX_CHECKS = (d: Difficulty) => scale(d, [5, 4, 4, 3])
-export const TIME_LIMIT = (d: Difficulty) => scale(d, [0, 0, 420, 360])
+export const TIME_LIMIT = (d: Difficulty) => scale(d, [0, 0, 300, 240])
 
 export const solves = (st: Extract<Stage, { kind: 'circuit' }>, gates: Assignment) =>
   rowsMatching(st.target, truthTable(st.build, gates)) === st.target.length

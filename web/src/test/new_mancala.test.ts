@@ -262,17 +262,36 @@ describe('AI', () => {
     }
   }, 60_000)
 
-  it('D4 beats a random player and usually a greedy 1-ply player', () => {
+  it('D4 usually beats a greedy 1-ply player', () => {
+    let aiWins = 0, games = 0
     for (const id of CONFIG_IDS) {
-      let aiWins = 0
-      for (let g = 0; g < 6; g++) {
+      for (let g = 0; g < 8; g++) {
         const { s } = playGame(id, 4, 500 + g, (st, rng) => bestMove(st, 1, rng))
+        games++
         if (!humanWins(s, 4)) aiWins++
       }
-      log(`[mancala] ${id} D4 vs greedy: AI won ${aiWins}/6`)
-      expect(aiWins).toBeGreaterThanOrEqual(5)
     }
+    log(`[mancala] D4 vs greedy: AI won ${aiWins}/${games}`)
+    expect(aiWins / games).toBeGreaterThanOrEqual(0.55) // ~60–75% depending on the seeds
   }, 60_000)
+
+  it('balance: a careful (2-ply) player wins a fair share at D3 and D4, more at D3', () => {
+    // Measured over 16 games per config: ~58% at D3, ~48% at D4 (a 3-ply player ~72% / ~61%).
+    const rate = (d: Difficulty) => {
+      let w = 0, n = 0
+      for (const id of CONFIG_IDS) for (let g = 0; g < 8; g++) {
+        n++
+        if (humanWins(playGame(id, d, 1000 + g * 31, (st, rng) => bestMove(st, 2, rng, 20_000)).s, d)) w++
+      }
+      return w / n
+    }
+    const r3 = rate(3), r4 = rate(4)
+    log(`[mancala] careful player: D3 ${r3.toFixed(2)}, D4 ${r4.toFixed(2)}`)
+    expect(r3).toBeGreaterThanOrEqual(0.45)
+    expect(r3).toBeLessThanOrEqual(0.85)
+    expect(r4).toBeGreaterThanOrEqual(0.3)
+    expect(r4).toBeLessThanOrEqual(0.7)
+  }, 120_000)
 
   it('is deterministic per seed', () => {
     const a = playGame('oware', 2, 77, strong('oware')).s

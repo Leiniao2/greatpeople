@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react'
-import type { MinigameProps } from '@/games/types'
+import type { Difficulty, MinigameProps } from '@/games/types'
+import { scale } from './_shared'
 
 interface TradeEvent {
   text: string
@@ -226,8 +227,18 @@ function SparkLine({ prices }: { prices: number[] }) {
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
-export default function TradeGame({ configId, onWin, onLose }: MinigameProps) {
-  const cfg = CONFIGS[configId] ?? CONFIGS['silk-road']
+/**
+ * The wealth target as a share of the config's.  Every level used the same
+ * target; now it rises with difficulty.  Reading every event right and going
+ * all in reaches it 97–100% of the time at D1 and 81–100% at D4; a looser
+ * trader (70% positions, one misread in ten) ~66–90% at D1, ~14–60% at D4.
+ */
+export const TARGET_SHARE = [0.8, 0.9, 1, 1.1] as const
+export const targetFor = (cfg: { targetCash: number }, d: Difficulty) => Math.round(cfg.targetCash * scale(d, TARGET_SHARE) / 10) * 10
+
+export default function TradeGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
+  const cfg0 = CONFIGS[configId] ?? CONFIGS['silk-road']
+  const cfg = useMemo(() => ({ ...cfg0, targetCash: targetFor(cfg0, difficulty) }), [cfg0, difficulty])
 
   // Shuffle events once on mount
   const shuffledEvents = useMemo(() => {

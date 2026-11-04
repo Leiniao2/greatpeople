@@ -4,7 +4,7 @@ import { createElement } from 'react'
 import { render, screen, fireEvent, act, cleanup } from '@testing-library/react'
 import SenetGame, {
   CONFIGS, CONFIG_IDS, initialState, legalMoves, applyMove, passTurn, winner, aiMove, throwSticks, throwAt,
-  waterDest, startFor, midgameState, hitSquare, type State, type Player, type Move,
+  waterDest, startFor, midgameState, hitSquare, HEAD_START, type State, type Player, type Move,
 } from '@/components/minigames/SenetGame'
 import { mulberry32 } from '@/components/minigames/_shared'
 import type { Difficulty } from '@/games/types'
@@ -178,6 +178,23 @@ describe('senet AI', () => {
   }, 120_000)
 })
 
+describe('senet balance', () => {
+  it('a sensible player (one-throw lookahead) wins ≥ 65% at D1 and ≥ 45% at D4, falling with difficulty', () => {
+    const N = 200
+    for (const id of CONFIG_IDS) {
+      const rate = (d: Difficulty) => {
+        let w = 0
+        for (let s = 1; s <= N; s++) if (playGame(id, s * 7919, 3, d).winner === 1) w++
+        return w / N
+      }
+      const r1 = rate(1), r4 = rate(4)
+      expect(r1, `${id} D1`).toBeGreaterThanOrEqual(0.65)
+      expect(r4, `${id} D4`).toBeGreaterThanOrEqual(0.45)
+      expect(r4, `${id} D4 < D1`).toBeLessThan(r1)
+    }
+  }, 180_000)
+})
+
 describe('senet variants and budget', () => {
   it('each config is a distinct challenge', () => {
     const sig = CONFIG_IDS.map(id => { const c = CONFIGS[id]; return `${c.start}/${c.hit}/${c.goal ? 'goal' : 'all'}` })
@@ -221,7 +238,7 @@ describe('senet variants and budget', () => {
       expect(a).toHaveLength(st.pieces)
       expect([...h, ...a].every(q => q >= (CONFIGS[id].from ?? 8) && q <= 26)).toBe(true)
       const sum = (x: number[]) => x.reduce((p, q) => p + q, 0)
-      if (d === 1) expect(sum(h)).toBeGreaterThan(sum(a))
+      if (HEAD_START[d - 1]) expect(sum(h)).toBeGreaterThan(sum(a))
       else expect(sum(h)).toBe(sum(a))
     }
     expect(midgameState(3, 1).board).not.toEqual(midgameState(3, 2).board)

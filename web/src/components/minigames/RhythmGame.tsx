@@ -157,13 +157,15 @@ export function rhythmRules(d: Difficulty) {
     /** Tempo gain per phrase. */
     rise: scale(d, [0.05, 0.06, 0.07, 0.07]),
     travelMs: scale(d, [2200, 1900, 1650, 1450]),
-    perfectMs: scale(d, [80, 70, 60, 50]),
-    goodMs: scale(d, [160, 140, 120, 105]),
+    // Windows allow for a phone: ~50 ms of tap jitter on top of a steady
+    // ~25 ms touch lag, so a careful player lands most taps "perfect".
+    perfectMs: scale(d, [90, 74, 66, 60]),
+    goodMs: scale(d, [180, 155, 140, 130]),
     /** Closest two notes may ever be, in any lanes. */
     minGapMs: scale(d, [300, 240, 190, 170]),
-    maxMisses: scale(d, [10, 8, 6, 4]),
+    maxMisses: scale(d, [12, 10, 9, 8]),
     /** (perfect + 0.6 × good) / notes needed at the end. */
-    target: scale(d, [0.55, 0.65, 0.72, 0.8]),
+    target: scale(d, [0.5, 0.64, 0.68, 0.7]),
     ornaments: d >= 3,
   }
 }

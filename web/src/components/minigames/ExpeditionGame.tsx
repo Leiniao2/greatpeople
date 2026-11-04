@@ -249,7 +249,7 @@ function key(a: string, b: string) { return a < b ? `${a}|${b}` : `${b}|${a}` }
 
 /** Budgets shrink with difficulty; hazards hide their cost from tier 3. */
 export function expeditionBudgets(cfg: ExpeditionConfig, difficulty: Difficulty) {
-  const budgetScale = scale(difficulty, [1, 0.85, 0.72, 0.62])
+  const budgetScale = scale(difficulty, [1, 0.8, 0.72, 0.66])
   return {
     supplyBudget: Math.round(cfg.supplies * budgetScale),
     dayBudget: Math.round(cfg.days * budgetScale),

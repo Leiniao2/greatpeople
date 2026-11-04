@@ -5,10 +5,12 @@ import { mulberry32, hashString, resolveConfig, scale, useGameOutcome, OutcomeBa
 // Sapper: Minesweeper in front of a Vauban fortress. Dig out every safe square
 // of ground; numbers count the counter-mines in a square's "reach".
 //
-//   D1   8×8   ~14% mines   (~9 mines, about a minute)
-//   D2   9×9   ~15%
-//   D3  10×10  ~16.5%
-//   D4  12×12  ~18%         (~26 mines, two to three minutes)
+//   D1   8×8   ~14% mines   3 blasts end the dig   (~9 mines, about a minute)
+//   D2   9×9   ~15%         3 blasts
+//   D3  10×10  ~16.5%       2 blasts
+//   D4  11×11  ~17%         2 blasts               (~21 mines, two to three minutes)
+//
+// A blast that does not end the dig marks that mine (💥) and play goes on.
 //
 // Each config is a different rule for what a number counts:
 //   king    the eight squares around (classic)
@@ -219,12 +221,14 @@ export function solveLogically(field: Field, mines: boolean[], start: number): b
   return true
 }
 
-export interface Tier { n: number; density: number }
+export interface Tier { n: number; density: number; maxBlasts: number }
 
 export function tierFor(difficulty: Difficulty): Tier {
   return {
-    n: scale(difficulty, [8, 9, 10, 12]),
-    density: scale(difficulty, [0.14, 0.15, 0.165, 0.18]),
+    n: scale(difficulty, [8, 9, 10, 11]),
+    density: scale(difficulty, [0.14, 0.15, 0.165, 0.17]),
+    // The dig is lost on this many blasts; earlier ones just mark the mine.
+    maxBlasts: scale(difficulty, [3, 3, 2, 2]),
   }
 }
 
@@ -278,11 +282,12 @@ const NUM_COLOURS = ['', 'text-blue-700', 'text-emerald-700', 'text-red-600', 't
 
 export default function SapperGame({ configId, difficulty, seed, params, onWin, onLose }: MinigameProps) {
   const config = resolveConfig(CONFIGS, configId, params, 'maastricht-1673')
-  const { n, density } = tierFor(difficulty)
+  const { n, density, maxBlasts } = tierFor(difficulty)
   const field = useMemo(() => makeField(n, config.shape, config.reach), [n, config.shape, config.reach])
   const insideCount = field.inside.filter(Boolean).length
   const [layout, setLayout] = useState<Layout | null>(null)
-  const [state, setState] = useState<Uint8Array>(() => new Uint8Array(n * n)) // 0 hidden, 1 open, 2 flag
+  const [state, setState] = useState<Uint8Array>(() => new Uint8Array(n * n)) // 0 hidden, 1 open, 2 flag, 3 blasted mine
+  const [blasts, setBlasts] = useState(0)
   const [flagMode, setFlagMode] = useState(false)
   const [boom, setBoom] = useState<number | null>(null)
   // An open number the player tapped: its reach is outlined.
@@ -291,7 +296,7 @@ export default function SapperGame({ configId, difficulty, seed, params, onWin, 
   const press = useRef<{ i: number; timer: ReturnType<typeof setTimeout> | null; long: boolean } | null>(null)
 
   const mineCount = layout?.mineCount ?? Math.round(insideCount * density)
-  const flags = state.reduce((s, v) => s + (v === 2 ? 1 : 0), 0)
+  const flags = state.reduce((s, v) => s + (v >= 2 ? 1 : 0), 0)
 
   const openCells = useCallback((lay: Layout, st: Uint8Array, cells: number[]) => {
     const next = new Uint8Array(st)
@@ -310,9 +315,14 @@ export default function SapperGame({ configId, difficulty, seed, params, onWin, 
   const finish = useCallback((lay: Layout, next: Uint8Array, hit: number | null) => {
     if (hit !== null) {
       setBoom(hit)
-      setState(next)
-      lose('A counter-mine went off')
-      return
+      const b = blasts + 1
+      setBlasts(b)
+      if (b >= maxBlasts) {
+        setState(next)
+        lose('A counter-mine went off')
+        return
+      }
+      next[hit] = 3
     }
     let opened = 0
     for (let i = 0; i < next.length; i++) if (next[i] === 1) opened++
@@ -323,10 +333,10 @@ export default function SapperGame({ configId, difficulty, seed, params, onWin, 
       return
     }
     setState(next)
-  }, [insideCount, win, lose])
+  }, [insideCount, win, lose, blasts, maxBlasts])
 
   const toggleFlag = useCallback((i: number) => {
-    if (settled || !field.inside[i] || state[i] === 1) return
+    if (settled || !field.inside[i] || state[i] === 1 || state[i] === 3) return
     const next = new Uint8Array(state)
     next[i] = state[i] === 2 ? 0 : 2
     setState(next)
@@ -334,13 +344,13 @@ export default function SapperGame({ configId, difficulty, seed, params, onWin, 
 
   const dig = useCallback((i: number) => {
     if (settled || !field.inside[i]) return
-    if (state[i] === 2) return
+    if (state[i] >= 2) return
     let lay = layout
     if (!lay) { lay = generate(config, difficulty, seed, i); setLayout(lay) }
     if (state[i] === 1) {
       // Chord: dig every unflagged neighbour once the flags match the number.
       const ns = lay.field.nbrs[i]
-      const f = ns.filter(k => state[k] === 2).length
+      const f = ns.filter(k => state[k] >= 2).length
       setPeek(p => (p === i ? null : i))
       if (lay.counts[i] === 0 || f !== lay.counts[i] || !ns.some(k => state[k] === 0)) return
       const { next, hit } = openCells(lay, state, ns.filter(k => state[k] === 0))
@@ -383,6 +393,7 @@ export default function SapperGame({ configId, difficulty, seed, params, onWin, 
         <div className="shrink-0 text-right text-[10px] text-muted">
           <p className="font-bold text-ink-2">{n}×{n}</p>
           <p data-testid="sap-mines">💣 {mineCount - flags}</p>
+          <p data-testid="sap-blasts" className={blasts ? 'text-red-600 font-bold' : ''}>💥 {blasts} / {maxBlasts}</p>
           <ReachDiagram reach={config.reach} />
         </div>
       </div>
@@ -405,6 +416,9 @@ export default function SapperGame({ configId, difficulty, seed, params, onWin, 
             } else if (showMine) {
               cls = boom === i ? 'bg-red-500' : 'bg-[#cbbd96]'
               body = <span>💣</span>
+            } else if (s === 3) {
+              cls = 'bg-red-300'
+              body = <span>💥</span>
             } else if (s === 2) {
               body = <span>🚩</span>
             }

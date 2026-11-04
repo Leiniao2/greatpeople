@@ -118,9 +118,18 @@ export function phenotypeRatio(cross: PunnettCross): { dominant: number; recessi
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
+/**
+ * Three crosses of four cells, two or three options each.  A wrong pick
+ * costs a mistake (otherwise guessing always wins); the clock comes in at
+ * tier 3 (a competent player fills the twelve cells in about 45 s).
+ */
+export const PUNNETT_MISTAKES = [5, 4, 3, 2] as const
+export const PUNNETT_TIME_LIMITS = [0, 0, 110, 80] as const
+
 export default function PunnettGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
   // Higher difficulties put the puzzle on a clock.
-  const timeLimit = scale(difficulty, [0, 0, 120, 90])
+  const timeLimit = scale(difficulty, PUNNETT_TIME_LIMITS)
+  const maxMistakes = scale(difficulty, PUNNETT_MISTAKES)
 
   const cfg = CONFIGS[configId] ?? CONFIGS['mendel-peas']
   const [crossIdx, setCrossIdx] = useState(0)
@@ -129,14 +138,16 @@ export default function PunnettGame({ configId, difficulty, onWin, onLose }: Min
   const [picking, setPicking] = useState<number | null>(null)
   const [crossDone, setCrossDone] = useState(false)
   const [allDone, setAllDone] = useState(false)
-  const timer = useGameTimer({ seconds: timeLimit, running: !allDone, onExpire: () => onLose('out of time') })
+  const [mistakes, setMistakes] = useState(0)
+  const [lost, setLost] = useState(false)
+  const timer = useGameTimer({ seconds: timeLimit, running: !allDone && !lost, onExpire: () => onLose('out of time') })
 
   const cross = cfg.crosses[crossIdx]
   const options = getOptions(cross)
   const ratio = phenotypeRatio(cross)
 
   const handlePick = (option: string) => {
-    if (picking === null) return
+    if (picking === null || lost || allDone) return
     const correct = cellAnswer(cross, Math.floor(picking / 2), picking % 2)
     const newCells = [...cells]
     const newErrors = [...errors]
@@ -147,6 +158,9 @@ export default function PunnettGame({ configId, difficulty, onWin, onLose }: Min
       newErrors[picking] = true
       setPicking(null)
       setErrors(newErrors)
+      const m = mistakes + 1
+      setMistakes(m)
+      if (m >= maxMistakes) { setLost(true); onLose('too many wrong offspring') }
       return
     }
     setCells(newCells)
@@ -154,6 +168,8 @@ export default function PunnettGame({ configId, difficulty, onWin, onLose }: Min
     setErrors(newErrors)
     if (newCells.every(c => c !== null)) {
       setCrossDone(true)
+      // The last square finishes the run (there is no "next" button after it).
+      if (crossIdx + 1 >= cfg.crosses.length) { setAllDone(true); setTimeout(onWin, 1200) }
     }
   }
 
@@ -179,7 +195,10 @@ export default function PunnettGame({ configId, difficulty, onWin, onLose }: Min
       {/* Header */}
       <div className="flex items-center justify-between">
         <span className="text-emerald-400 font-bold text-sm tracking-wide">{cfg.title}</span>
-        <span className="text-muted text-xs">Cross {crossIdx + 1}/{cfg.crosses.length}</span>
+        <span className="text-muted text-xs">
+          Cross {crossIdx + 1}/{cfg.crosses.length}
+          <span data-testid="punnett-mistakes" className={`ml-2 text-[10px] ${mistakes ? 'text-red-600 font-bold' : ''}`}>✗ {mistakes}/{maxMistakes}</span>
+        </span>
       </div>
 
       <p className="text-muted text-xs">{cross.traitLabel}</p>
@@ -213,7 +232,7 @@ export default function PunnettGame({ configId, difficulty, onWin, onLose }: Min
 
             return (
               <button key={i}
-                onClick={() => { if (!val && !crossDone) { setPicking(i); setErrors(e => { const n=[...e]; n[i]=false; return n }) } }}
+                onClick={() => { if (!val && !crossDone && !lost) { setPicking(i); setErrors(e => { const n=[...e]; n[i]=false; return n }) } }}
                 className="absolute flex items-center justify-center font-bold text-sm transition-all"
                 style={{
                   left: 48 + c * CELL, top: 40 + r * CELL,

@@ -351,10 +351,12 @@ export function traceLight(
 // ── Component ──────────────────────────────────────────────────────────────────
 
 
+/** Seconds per tier: one or two mirrors on a live beam take a competent player 20–40 s. */
+export const MIRROR_TIME_LIMITS = [0, 120, 90, 60] as const
+
 export default function MirrorGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
   // Higher difficulties put the puzzle on a clock.
-  const timeLimit = scale(difficulty, [0, 0, 120, 90])
-  const timer = useGameTimer({ seconds: timeLimit, running: true, onExpire: () => onLose('out of time') })
+  const timeLimit = scale(difficulty, MIRROR_TIME_LIMITS)
 
   const config = CONFIGS[configId as MirrorKey] ?? CONFIGS['mendel']
   const { gridSize, source, target, fixed, maxMirrors } = config
@@ -365,6 +367,8 @@ export default function MirrorGame({ configId, difficulty, onWin, onLose }: Mini
 
   const [playerMirrors, setPlayerMirrors] = useState<Record<string, MirrorChar>>({})
   const [won, setWon] = useState(false)
+  // The clock stops once the beam lands, so a late expiry cannot undo a win.
+  const timer = useGameTimer({ seconds: timeLimit, running: !won, onExpire: () => onLose('out of time') })
 
   const allMirrors = { ...fixedMap, ...playerMirrors }
 
@@ -399,7 +403,8 @@ export default function MirrorGame({ configId, difficulty, onWin, onLose }: Mini
   }, [won, fixedMap, maxMirrors])
 
   const playerMirrorCount = Object.keys(playerMirrors).length
-  const CELL = 56
+  // Fit the board and its edge row on a 390 px phone (about 340 px of room).
+  const CELL = Math.min(56, Math.floor(340 / (gridSize + 2)))
 
   // Direction arrow for source indicator
   const sourceArrow = { right: '→', left: '←', up: '↑', down: '↓' }[source.dir]

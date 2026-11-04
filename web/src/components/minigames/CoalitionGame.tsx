@@ -162,7 +162,9 @@ export const costOf = (cfg: CoalitionConfig, granted: ReadonlySet<string>) =>
   cfg.concessions.reduce((a, c) => a + (granted.has(c.id) ? c.cost : 0), 0)
 
 export function coalitionPlan(cfg: CoalitionConfig, d: Difficulty) {
-  return { budget: cfg.budget[d - 1], need: cfg.need[d - 1], seconds: scale(d, [0, 0, 90, 60]), preview: d === 1 }
+  // Reading six factions' wants and vetoes takes ~30 s before any thinking, and
+  // D4 has a single winning set: 60 s left a careful first-timer little chance.
+  return { budget: cfg.budget[d - 1], need: cfg.need[d - 1], seconds: scale(d, [0, 0, 120, 100]), preview: d === 1 }
 }
 
 /** Every set of concessions within budget that carries the vote. */

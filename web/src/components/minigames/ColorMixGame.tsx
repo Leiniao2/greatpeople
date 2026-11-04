@@ -1,5 +1,5 @@
 import { useState, useMemo, useRef } from 'react'
-import type { MinigameProps } from '@/games/types'
+import type { Difficulty, MinigameProps } from '@/games/types'
 import { scale, useGameTimer, TimerBar } from './_shared'
 
 // ── Types ──────────────────────────────────────────────────────────────────────
@@ -206,7 +206,7 @@ function Swatch({ hex, label, size = 'md' }: { hex: string; label?: string; size
 // ── Progress arc indicator ─────────────────────────────────────────────────────
 
 function MatchMeter({ pct }: { pct: number }) {
-  const color = pct >= 85 ? '#10b981' : pct >= 60 ? '#f59e0b' : '#ef4444'
+  const color = pct >= 67 ? '#10b981' : pct >= 40 ? '#f59e0b' : '#ef4444'   // ≥ 67% is within tolerance
   return (
     <div className="flex flex-col items-center gap-1">
       <div className="relative w-14 h-14">
@@ -236,10 +236,20 @@ function MatchMeter({ pct }: { pct: number }) {
 
 // ── Main component ─────────────────────────────────────────────────────────────
 
+/** Match tolerance at a tier: looser at D1, tighter at D3–D4. */
+export const toleranceAt = (cfg: Pick<ColorMixConfig, 'tolerance'>, difficulty: Difficulty) =>
+  cfg.tolerance * scale(difficulty, [1.25, 1, 0.85, 0.75])
+
 export default function ColorMixGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
-  // Higher difficulties put the puzzle on a clock.
+  // D1–D2: the match meter is live while mixing, any number of tries.
+  // D3–D4: tighter tolerance, the meter only reads after a mix, a clock,
+  // and a limited number of failed mixes.
   const timeLimit = scale(difficulty, [0, 0, 120, 90])
-  const cfg = CONFIGS[configId] ?? CONFIGS['titian-red']
+  const maxFails = scale(difficulty, [Infinity, Infinity, 4, 3])
+  const liveMeter = difficulty <= 2
+  const base = CONFIGS[configId] ?? CONFIGS['titian-red']
+  const cfg = useMemo(() => ({ ...base, tolerance: toleranceAt(base, difficulty) }), [base, difficulty])
+  const [fails, setFails] = useState(0)
   const [amounts, setAmounts] = useState<Record<string, number>>(
     () => Object.fromEntries(cfg.pigments.map(p => [p.id, 0]))
   )
@@ -255,8 +265,8 @@ export default function ColorMixGame({ configId, difficulty, onWin, onLose }: Mi
   const mixedHex = useMemo(() => rgbToHex(mixedRGB), [mixedRGB])
 
   const dist = useMemo(() => colourDist(mixedRGB, cfg.target.rgb), [mixedRGB, cfg.target.rgb])
-  // Map dist 0..tolerance to 100..0, clamped
-  const matchPct = useMemo(() => Math.max(0, Math.round(100 - (dist / cfg.tolerance) * 100)), [dist, cfg.tolerance])
+  // Map dist 0..3×tolerance to 100..0, clamped; a match is anything within tolerance (≥ 67%).
+  const matchPct = useMemo(() => Math.max(0, Math.round(100 - (dist / (3 * cfg.tolerance)) * 100)), [dist, cfg.tolerance])
   const isMatch = dist <= cfg.tolerance
 
   const adjust = (id: string, delta: number) => {
@@ -273,6 +283,10 @@ export default function ColorMixGame({ configId, difficulty, onWin, onLose }: Mi
     if (isMatch) {
       setWon(true)
       setTimeout(onWin, 800)
+    } else {
+      const n = fails + 1
+      setFails(n)
+      if (n >= maxFails && !lost.current) { lost.current = true; setTimeout(() => onLose('the pigment ran out'), 800) }
     }
   }
 
@@ -301,7 +315,7 @@ export default function ColorMixGame({ configId, difficulty, onWin, onLose }: Mi
         </div>
         {totalAdded > 0 && (
           <>
-            <MatchMeter pct={matchPct} />
+            {(liveMeter || mixed) && <MatchMeter pct={matchPct} />}
             <Swatch hex={mixedHex} label="Your mix" size="lg" />
           </>
         )}
@@ -352,7 +366,8 @@ export default function ColorMixGame({ configId, difficulty, onWin, onLose }: Mi
       {mixed && !won && (
         <div className="flex flex-col gap-2">
           <p className="text-red-400 text-xs text-center">
-            {matchPct >= 70 ? 'Very close! Adjust the proportions slightly.' : 'Not quite — rethink the mix.'}
+            {matchPct >= 50 ? 'Very close! Adjust the proportions slightly.' : 'Not quite — rethink the mix.'}
+            {Number.isFinite(maxFails) && fails < maxFails && ` ${maxFails - fails} ${maxFails - fails === 1 ? 'mix' : 'mixes'} left.`}
           </p>
           <button
             onClick={() => setShowHint(true)}

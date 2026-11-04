@@ -424,14 +424,18 @@ function PipeSVG({ openings, shape, rotation, lit, isSource, isSink }: {
 
 // ── Main component ─────────────────────────────────────────────────────────────
 
+/** Seconds per tier: a 4×4 or 5×5 board takes a competent player 25–60 s. */
+export const PIPELINE_TIME_LIMITS = [0, 150, 120, 90] as const
+
 export default function PipelineGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
   // Higher difficulties put the puzzle on a clock.
-  const timeLimit = scale(difficulty, [0, 0, 120, 90])
-  const timer = useGameTimer({ seconds: timeLimit, running: true, onExpire: () => onLose('out of time') })
+  const timeLimit = scale(difficulty, PIPELINE_TIME_LIMITS)
 
   const cfg = CONFIGS[configId] ?? CONFIGS['roman-aqueduct']
   const [tiles, setTiles] = useState<PipeTile[]>(() => buildInitialTiles(cfg))
   const [won, setWon] = useState(false)
+  // The clock stops once the water flows, so a late expiry cannot undo a win.
+  const timer = useGameTimer({ seconds: timeLimit, running: !won, onExpire: () => onLose('out of time') })
 
   const lit = floodFill(tiles, cfg.cols, cfg.rows, cfg.sourceIdx)
   const connected = lit.has(cfg.sinkIdx)

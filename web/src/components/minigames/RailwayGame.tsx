@@ -23,6 +23,8 @@ import { hashString, mulberry32, resolveConfig, scale, shuffle, useGameOutcome, 
 //   2   5×7 +15%    6×6, 2, +1                      5×6, 3               6 / 2×3               120s   ~1.5 min
 //   3   6×7 +5%     6×7, 2, +1                      6×6, 3               7 / 3×2               150s   ~2 min
 //   4   6×8 exact   6×8, 3, exact                   6×7, 4               8 / 3×2               180s   ~3 min
+//
+// Underground tries and yard undos: 3 / 3 / 2 / 2.
 
 export type Mode = 'stephenson' | 'transsib' | 'underground' | 'yard'
 
@@ -86,7 +88,7 @@ export const CONFIGS: Record<string, RailConfig> = {
 
 export const CONFIG_IDS = Object.keys(CONFIGS)
 export const secondsFor = (d: Difficulty) => scale(d, [90, 120, 150, 180])
-export const mistakesFor = (d: Difficulty) => scale(d, [3, 2, 2, 2])
+export const mistakesFor = (d: Difficulty) => scale(d, [3, 3, 2, 2])
 
 // ── Grid layouts ───────────────────────────────────────────────────────────────
 
@@ -622,7 +624,7 @@ function YardGame({ config, Y, difficulty, outcome, settled, win, lose }: {
 }) {
   const start: YardState = { next: 0, sent: 0, stacks: Array.from({ length: Y.sidings }, () => []) }
   const [hist, setHist] = useState<YardState[]>([start])
-  const [undos, setUndos] = useState(scale(difficulty, [3, 2, 1, 1]))
+  const [undos, setUndos] = useState(scale(difficulty, [3, 3, 2, 2]))
   const [note, setNote] = useState(config.intro)
   const st = hist[hist.length - 1]
   const want = st.sent + 1
