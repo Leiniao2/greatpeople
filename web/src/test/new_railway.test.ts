@@ -132,8 +132,12 @@ describe('Railway — component', () => {
     const { container, getByTestId } = render(createElement(RailwayGame, { configId: 'yard', difficulty: d, seed: 3, onWin, onLose }))
     const click = (m: YardMove) => fireEvent.click(container.querySelector(yardSel(m))!)
     seq.forEach(click)
-    fireEvent.click(getByTestId('undo'))
-    click(seq[seq.length - 1])
+    // D4 allows two undos: jam, take back, jam again — twice — and the yard is lost.
+    for (let k = 0; k < 2; k++) {
+      expect(onLose).not.toHaveBeenCalled()
+      fireEvent.click(getByTestId('undo'))
+      click(seq[seq.length - 1])
+    }
     act(() => { vi.advanceTimersByTime(2000) })
     expect(onLose).toHaveBeenCalledTimes(1)
     expect(onWin).not.toHaveBeenCalled()

@@ -23,7 +23,10 @@ import { hashString, mulberry32, resolveConfig, scale, shuffle, useGameOutcome, 
 // Time budget: about two seconds a jump.  D1 boards have 18–26 squares to
 // visit (about a minute, with Warnsdorff's onward-move counts shown) and no
 // level has more than 40 (≈ 1½–2½ minutes) — a full 8×8 knight's tour (64
-// jumps) is too long.  Undos shrink with difficulty; D1 has free hints, D2 one.
+// jumps) is too long.  Undos shrink with difficulty (6, 5, 4, 3); D1 has free
+// hints, D2 two, D3–D4 one.  An undo from a dead end goes back to the last
+// square the tour can still be finished from — dead ends show up long after
+// the jump that caused them, so one-step undos alone rarely rescued a tour.
 
 export interface TierSpec {
   rows: number
@@ -128,8 +131,23 @@ export const CONFIGS: Record<string, TourConfig> = {
   },
 }
 
-export const undosFor = (d: Difficulty) => scale(d, [6, 4, 3, 2])
-export const hintsFor = (d: Difficulty) => scale(d, [99, 1, 0, 0])
+export const undosFor = (d: Difficulty) => scale(d, [6, 5, 4, 3])
+export const hintsFor = (d: Difficulty) => scale(d, [99, 2, 1, 1])
+
+/**
+ * Where an undo from a dead end goes back to: the longest start of the path
+ * from which the tour can still be finished (completability only shrinks as
+ * the path grows, so a binary search finds it). One undo, a real way out.
+ */
+export function rescueLength(t: Tour, path: readonly number[]): number {
+  let lo = 1, hi = path.length - 1
+  while (lo < hi) {
+    const mid = Math.ceil((lo + hi) / 2)
+    if (findTour(t, path.slice(0, mid), 20_000, 2)) lo = mid
+    else hi = mid - 1
+  }
+  return lo
+}
 export const showDegrees = (d: Difficulty) => d === 1
 
 export interface Tour {
@@ -366,10 +384,14 @@ export default function KnightsTourGame({ configId, difficulty, seed, params, on
 
   const undo = () => {
     if (settled || undos <= 0 || path.length <= 1) return
-    setPath(path.slice(0, -1))
+    // From a dead end, one undo goes back to the last square the tour could
+    // still be finished from; otherwise it takes back a single jump.
+    const keep = stuck ? rescueLength(tour, path) : path.length - 1
+    const back = path.length - keep
+    setPath(path.slice(0, keep))
     setUndos(undos - 1)
     setHint(null)
-    setNote(`Took back a move. ${undos - 1} undo${undos - 1 === 1 ? '' : 's'} left.`)
+    setNote(`Took back ${back === 1 ? 'a move' : `${back} moves, to where the tour can still be finished`}. ${undos - 1} undo${undos - 1 === 1 ? '' : 's'} left.`)
   }
 
   const askHint = () => {

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type { MinigameProps, Difficulty } from '@/games/types'
-import { hashString, resolveConfig, scale, useGameOutcome, OutcomeBanner } from './_shared'
+import { hashString, resolveConfig, storyText, scale, useGameOutcome, OutcomeBanner } from './_shared'
 
 // Stone Haulers — Sokoban with a different rule at every site.  Walk the
 // overseer round the yard and push the blocks onto the marked plinths.
@@ -16,7 +16,10 @@ import { hashString, resolveConfig, scale, useGameOutcome, OutcomeBanner } from 
 //   D1  2 blocks, par ≤ 30 steps       labour cap: par × 3 + 20
 //   D2  2–3 blocks, par ≤ 40           labour cap: par × 2.5 + 15
 //   D3  2–3 blocks, par ≤ 50           labour cap: par × 2 + 10
-//   D4  3–4 blocks, par ≤ 62           labour cap: par + max(10, par / 3)
+//   D4  3–4 blocks, par ≤ 62           labour cap: par × 1.5 + 10
+//
+// (D4 once allowed only par + a third: with every undone step counted, a
+// 3–4 block yard had to be pushed near-perfectly on the first try.)
 //
 // "Labour" counts every step taken, including steps later undone and steps
 // before a restart — the day's daylight is spent either way.  Undo and
@@ -1068,7 +1071,7 @@ export function capFor(difficulty: Difficulty, par: number): number {
     par * 3 + 20,
     Math.ceil(par * 2.5) + 15,
     par * 2 + 10,
-    par + Math.max(10, Math.ceil(par / 3)),
+    Math.ceil(par * 1.5) + 10,
   ])
 }
 
@@ -1100,7 +1103,7 @@ const KEYS: Record<string, Dir> = {
 const NUMERALS = ['I', 'II', 'III', 'IV']
 
 export default function SokobanGame({ configId, difficulty, seed, params, onWin, onLose }: MinigameProps) {
-  const cfg = resolveConfig(CONFIGS, configId, undefined, 'giza-ramp')
+  const cfg = { ...resolveConfig(CONFIGS, configId, undefined, 'giza-ramp'), ...storyText(params) }
   const plan = useMemo(() => planLevel(configId, difficulty, seed, params), [configId, difficulty, seed, params])
   const { level, par, cap, variant, start: initial } = plan
 

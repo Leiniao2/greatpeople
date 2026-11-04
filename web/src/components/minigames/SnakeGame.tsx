@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type { MinigameProps, Difficulty } from '@/games/types'
-import { hashString, resolveConfig, scale, useGameOutcome, OutcomeBanner } from './_shared'
+import { hashString, resolveConfig, storyText, scale, useGameOutcome, OutcomeBanner } from './_shared'
 
 // Caravan Trail — grid Snake.  Lead a camel train round the trade route,
 // picking up goods; every bale adds a camel to the line.  Run into the edge
@@ -18,6 +18,8 @@ import { hashString, resolveConfig, scale, useGameOutcome, OutcomeBanner } from 
 //   D2  13×13, deliver 14, start 250 ms
 //   D3  14×14, deliver 18, start 210 ms, more obstacles
 //   D4  15×15, deliver 24, start 180 ms, densest obstacles
+//
+// (Pace floors: 200 / 160 / 135 / 120 ms a step.)
 //
 // The pace quickens with every delivery down to a floor per tier.  A perfect
 // run (the autopilot) takes ~20 s of game clock at D1 and ~30 s at D4, so an
@@ -121,7 +123,9 @@ export function tierFor(cfg: SnakeConfig, difficulty: Difficulty, params?: Recor
     size: scale(difficulty, [11, 13, 14, 15]),
     target: scale(difficulty, [10, 14, 18, 24]),
     startMs: scale(difficulty, [300, 250, 210, 180]),
-    minMs: scale(difficulty, [200, 150, 120, 95]),
+    // Floors respect a phone: a swipe lands ~250 ms + gesture after the eye
+    // sees the turn, so even the top tier never moves faster than ~8 cells/s.
+    minMs: scale(difficulty, [200, 160, 135, 120]),
     speedUp: scale(difficulty, [8, 9, 9, 8]),
     obstacles: scale(difficulty, [4, 9, 14, 20]),
     duneEvery: cfg.variant === 'dunes' ? scale(difficulty, [3, 3, 2, 2]) : 0,
@@ -477,7 +481,7 @@ const KEYS: Record<string, Dir> = {
 }
 
 export default function SnakeGame({ configId, difficulty, seed, params, onWin, onLose }: MinigameProps) {
-  const cfg = resolveConfig(CONFIGS, configId, undefined, 'silk-road')
+  const cfg = { ...resolveConfig(CONFIGS, configId, undefined, 'silk-road'), ...storyText(params) }
   const start = useMemo(() => newGame(configId, difficulty, seed, params), [configId, difficulty, seed, params])
   const { game } = start
   const [state, setState] = useState<SnakeState>(start.state)

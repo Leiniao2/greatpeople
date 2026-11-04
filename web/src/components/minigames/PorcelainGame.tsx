@@ -148,7 +148,13 @@ function VesselSVG({
 // ── Component ─────────────────────────────────────────────────────────────────
 
 export default function PorcelainGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
-  const maxAttempts = scale(difficulty, [3, 2, 2, 1])
+  // D1 prints each oxide's fired colour on the palette; from D2 the player
+  // works it out.  A failed firing names the wrong sections (D1–D3) and, up
+  // to D2, spells out the whole oxide→colour key for the next try.
+  const maxAttempts = scale(difficulty, [3, 3, 2, 2])
+  const showKey = difficulty === 1
+  const teachKey = difficulty <= 2
+  const markWrong = difficulty <= 3
   const [attempts, setAttempts] = useState(0)
 
   const cfg = CONFIGS[configId] ?? CONFIGS['copper-vase']
@@ -221,6 +227,7 @@ export default function PorcelainGame({ configId, difficulty, onWin, onLose }: M
             >
               <span className="text-base">{sym}</span>
               <span className="font-normal opacity-70">{info.element}</span>
+              {showKey && <span className="font-normal opacity-70">→ {FIRED_HINT[sym]}</span>}
             </button>
           )
         })}
@@ -238,8 +245,8 @@ export default function PorcelainGame({ configId, difficulty, onWin, onLose }: M
           {cfg.sections.map(section => {
             const elem = painted[section.id]
             const info = elem ? ELEMENT_COLORS[elem] : null
-            const isCorrect = fired && elem === section.targetElement
-            const isWrong = fired && elem && elem !== section.targetElement
+            const isCorrect = fired && (markWrong || won) && elem === section.targetElement
+            const isWrong = fired && markWrong && elem && elem !== section.targetElement
 
             return (
               <button
@@ -271,7 +278,7 @@ export default function PorcelainGame({ configId, difficulty, onWin, onLose }: M
                 {elem && (
                   <span className="font-bold" style={{ color: fired ? (info?.fired ?? '#fff') : '#94a3b8' }}>
                     {elem}
-                    {fired && <span className="font-normal ml-1">
+                    {fired && (markWrong || won) && <span className="font-normal ml-1">
                       {isCorrect ? `→ ${info?.firedLabel}` : '✕ wrong oxide'}
                     </span>}
                   </span>
@@ -310,7 +317,11 @@ export default function PorcelainGame({ configId, difficulty, onWin, onLose }: M
         }`}>
           {won
             ? <>Perfect glaze — all metal oxides in the right sections! {cfg.fact}</>
-            : <>Some sections used the wrong oxide. Copper fires green, cobalt blue, iron amber, manganese purple, titanium white, chromium jade. <button onClick={reset} className="underline ml-1">Try again</button></>
+            : <>
+                {markWrong ? 'Some sections used the wrong oxide.' : `${cfg.sections.filter(s => painted[s.id] !== s.targetElement).length} of ${cfg.sections.length} sections used the wrong oxide.`}
+                {teachKey && ' Copper fires green, cobalt blue, iron amber, manganese purple, titanium white, chromium jade.'}
+                {attempts < maxAttempts && <> {maxAttempts - attempts} {maxAttempts - attempts === 1 ? 'firing' : 'firings'} left. <button onClick={reset} className="underline ml-1">Try again</button></>}
+              </>
           }
         </div>
       )}

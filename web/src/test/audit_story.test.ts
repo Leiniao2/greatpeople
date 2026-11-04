@@ -112,29 +112,50 @@ describe('audit — Fiction', () => {
     }
   })
 
-  it('picking the answer wins once; picking a distractor loses once', () => {
+  it('picking the answer wins once; running out of guesses loses once', () => {
     vi.useFakeTimers()
+    const optionButton = (text: string) => screen.getByText(text).closest('button')!
     for (const [id, cfg] of Object.entries(FICTION)) {
+      const distractors = cfg.options.filter((_, i) => i !== cfg.answer)
       for (const difficulty of DIFFS) {
         const onWin = vi.fn(), onLose = vi.fn()
         render(createElement(FictionGame, { configId: id, difficulty, seed: 1, onWin, onLose }))
-        const buttons = screen.getAllByRole('button')
-        fireEvent.click(buttons[cfg.answer])
-        fireEvent.click(buttons[cfg.answer])
-        fireEvent.click(buttons[(cfg.answer + 1) % cfg.options.length])
+        fireEvent.click(optionButton(cfg.options[cfg.answer]))
+        fireEvent.click(optionButton(cfg.options[cfg.answer]))
+        fireEvent.click(optionButton(distractors[0]))
         act(() => { vi.advanceTimersByTime(2000) })
         expect(onWin, `${id}@${difficulty}`).toHaveBeenCalledTimes(1)
         expect(onLose, `${id}@${difficulty}`).not.toHaveBeenCalled()
         cleanup()
 
+        // D1 forgives two wrong guesses, D2–D3 one, D4 none.
+        const allowed = [2, 1, 1, 0][difficulty - 1]
         const onWin2 = vi.fn(), onLose2 = vi.fn()
         render(createElement(FictionGame, { configId: id, difficulty, seed: 1, onWin: onWin2, onLose: onLose2 }))
-        fireEvent.click(screen.getAllByRole('button')[(cfg.answer + 1) % cfg.options.length])
+        for (let k = 0; k < allowed; k++) {
+          fireEvent.click(optionButton(distractors[k]))
+          fireEvent.click(optionButton(distractors[k]))   // a struck-out guess does not count twice
+          act(() => { vi.advanceTimersByTime(2000) })
+          expect(onLose2, `${id}@${difficulty} miss ${k + 1} is forgiven`).not.toHaveBeenCalled()
+        }
+        fireEvent.click(optionButton(distractors[allowed]))
         act(() => { vi.advanceTimersByTime(2000) })
         expect(onLose2, `${id}@${difficulty} lose`).toHaveBeenCalledTimes(1)
         expect(onWin2).not.toHaveBeenCalled()
         cleanup()
       }
+    }
+  })
+
+  it('the answer is not always dealt in the same place', () => {
+    for (const [id, cfg] of Object.entries(FICTION)) {
+      const positions = new Set<number>()
+      for (const seed of [1, 2, 3, 4, 5, 6, 7, 8]) {
+        render(createElement(FictionGame, { configId: id, difficulty: 2, seed, onWin: () => {}, onLose: () => {} }))
+        positions.add(screen.getAllByRole('button').findIndex(b => b.textContent!.includes(cfg.options[cfg.answer])))
+        cleanup()
+      }
+      expect(positions.size, id).toBeGreaterThan(1)
     }
   })
 })
@@ -189,18 +210,22 @@ describe('audit — Museum', () => {
     }
   })
 
-  it('a poor arrangement at difficulty 4 loses on the first attempt', () => {
+  it('a poor arrangement at difficulty 4 loses on the second attempt', () => {
     vi.useFakeTimers()
     const onWin = vi.fn(), onLose = vi.fn()
     render(createElement(MuseumGame, { configId: 'louvre-arrangement', difficulty: 4, seed: 1, onWin, onLose }))
-    // Deliberately mismatched: shepherd→denon, mona→sully, winged→richelieu, lacemaker→modern = 60+100+80+70 = 310 < 400
+    // Deliberately mismatched: shepherd→denon, mona→sully, winged→richelieu, lacemaker→modern = 60+100+80+70 = 310
     const bad: [string, string][] = [['Arcadian Shepherds', 'Denon Wing'], ['Mona Lisa', 'Sully Wing'], ['Winged Victory', 'Richelieu Wing'], ['The Lacemaker', 'Modern Gallery']]
-    for (const [art, room] of bad) {
-      fireEvent.click(screen.getByText(art, { selector: 'p.font-bold.leading-tight' }))
-      fireEvent.click(screen.getByText(room).closest('button')!)
+    for (let attempt = 0; attempt < 2; attempt++) {
+      for (const [art, room] of bad) {
+        fireEvent.click(screen.getByText(art, { selector: 'p.font-bold.leading-tight' }))
+        fireEvent.click(screen.getByText(room).closest('button')!)
+      }
+      fireEvent.click(screen.getByText('Open Museum Doors!'))
+      act(() => { vi.advanceTimersByTime(2000) })
+      expect(onLose).toHaveBeenCalledTimes(attempt)
+      if (attempt === 0) fireEvent.click(screen.getByText('Rearrange'))
     }
-    fireEvent.click(screen.getByText('Open Museum Doors!'))
-    act(() => { vi.advanceTimersByTime(2000) })
     expect(onLose).toHaveBeenCalledTimes(1)
     expect(onWin).not.toHaveBeenCalled()
   })
@@ -241,10 +266,14 @@ describe('audit — Story Sort', () => {
     }
   })
 
-  it('a wrong order at difficulty 4 loses after the single attempt', () => {
+  it('a wrong order at difficulty 4 loses after the second attempt', () => {
     vi.useFakeTimers()
     const onWin = vi.fn(), onLose = vi.fn()
     render(createElement(StorySortGame, { configId: 'odyssey-return', difficulty: 4, seed: 3, onWin, onLose }))
+    fireEvent.click(screen.getByText('Check Order →'))
+    act(() => { vi.advanceTimersByTime(1500) })
+    expect(onLose).not.toHaveBeenCalled()
+    expect(screen.getByText(/of 4 in place · 1 try left/)).toBeInTheDocument()
     fireEvent.click(screen.getByText('Check Order →'))
     act(() => { vi.advanceTimersByTime(1500) })
     expect(onLose).toHaveBeenCalledTimes(1)

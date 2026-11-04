@@ -7,8 +7,7 @@ import { resolveConfig, scale, useGameOutcome, OutcomeBanner, useGameTimer, Time
 // once both springers meet, and the stock of blocks is limited.  Place a
 // block with no support and the course collapses — costing one block.
 //
-// Difficulty: taller spans, fewer spare blocks, a load test at the end that
-// needs every keystone in, and a clock.
+// Difficulty: fewer spare blocks (4 → 1) and, from tier 3, a clock.
 
 interface Blueprint {
   title: string
@@ -115,7 +114,9 @@ export function isBuildable(plan: string[]): boolean {
 export default function ArchBuildGame({ configId, difficulty, params, onWin, onLose }: MinigameProps) {
   const cfg = resolveConfig(CONFIGS, configId, params, 'imhotep-step')
   const { outcome, settled, win, lose } = useGameOutcome({ onWin, onLose, delayMs: 1000 })
-  const timeLimit = scale(difficulty, [0, 0, 120, 90])
+  // The plan is drawn for you, so the clock is what makes the upper tiers
+  // bite: ~16–17 blocks, a competent builder needs ~25 s at D4.
+  const timeLimit = scale(difficulty, [0, 0, 55, 40])
   const timer = useGameTimer({ seconds: timeLimit, running: !settled, onExpire: () => lose('the season ended') })
 
   // Rows are stored bottom-up for the support check; drawn top-down.

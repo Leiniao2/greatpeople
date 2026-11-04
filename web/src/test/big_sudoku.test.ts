@@ -28,10 +28,10 @@ describe('sudoku generator', () => {
     })
   }
 
-  it('sizes and variants per tier: 6×6, then 9×9, then diagonal 9×9', () => {
-    expect(DIFFS.map(d => tierFor(d).board.n)).toEqual([6, 9, 9, 9])
+  it('sizes and variants per tier: 6×6 twice, then 9×9, then diagonal 9×9', () => {
+    expect(DIFFS.map(d => tierFor(d).board.n)).toEqual([6, 6, 9, 9])
     expect(DIFFS.map(d => !!tierFor(d).board.diagonal)).toEqual([false, false, false, true])
-    expect(DIFFS.map(d => tierFor(d).maxMistakes)).toEqual([3, 3, 3, 2])
+    expect(DIFFS.map(d => tierFor(d).maxMistakes)).toEqual([3, 3, 3, 3])
   })
 
   it('the diagonal puzzle really needs its diagonals: as a plain sudoku it is ambiguous for most seeds', () => {

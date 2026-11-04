@@ -610,13 +610,13 @@ export interface Level {
 
 export function levelFor(cfg: MatchThreeConfig, difficulty: Difficulty): Level {
   const n = scale(difficulty, [8, 8, 9, 9])
-  const moves = scale(difficulty, [30, 26, 24, 22])
+  const moves = scale(difficulty, [30, 24, 22, 21])
   // 9×9 boards score about a third more per move than 8×8.
   const pace = cfg.pace * (n === 9 ? 1.3 : 1)
   // Share of a greedy player's average haul each goal asks for.
-  const score = Math.max(200, Math.round((pace * moves * scale(difficulty, [0.35, 0.45, 0.42, 0.42])) / 50) * 50)
+  const score = Math.max(200, Math.round((pace * moves * scale(difficulty, [0.35, 0.5, 0.48, 0.5])) / 50) * 50)
   const haul = cfg.haul * (n === 9 ? 1.3 : 1)
-  const collect = difficulty === 1 ? 0 : Math.max(5, Math.round(haul * moves * scale(difficulty, [0, 0.5, 0.45, 0.42])))
+  const collect = difficulty === 1 ? 0 : Math.max(5, Math.round(haul * moves * scale(difficulty, [0, 0.55, 0.5, 0.5])))
   // Slow boards (one axis, match-4) get fewer crates.
   const fast = cfg.pace >= 150
   const oneAxis = (cfg.rules?.axis ?? 'both') !== 'both'

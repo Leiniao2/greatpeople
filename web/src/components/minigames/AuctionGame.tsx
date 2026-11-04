@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
-import type { MinigameProps } from '@/games/types'
+import type { Difficulty, MinigameProps } from '@/games/types'
+import { scale } from './_shared'
 
-interface AuctionItem {
+export interface AuctionItem {
   id: string
   name: string
   hint: string
@@ -10,7 +11,7 @@ interface AuctionItem {
   isTarget: boolean
 }
 
-interface Config {
+export interface Config {
   title: string
   description: string
   budget: number
@@ -19,8 +20,40 @@ interface Config {
 }
 
 export const BID_STEP = 10
-// AI will bid up to this fraction of an item's true value
+// AI will bid up to this fraction of an item's true value (D2–D4; D1 uses AI_MULT)
 export const AI_MAX_MULT = 0.9
+/** The rival's ceiling as a fraction of true value, by difficulty. */
+export const AI_MULT = (d: Difficulty) => scale(d, [0.8, AI_MAX_MULT, AI_MAX_MULT, AI_MAX_MULT])
+
+/** What you pay to win an item: you bid S+10, S+30, S+50… until you top the rival's ceiling. */
+export function winPrice(item: AuctionItem, mult: number): number {
+  const aiMax = Math.floor(mult * item.trueValue)
+  let bid = item.startBid + BID_STEP
+  while (bid <= aiMax) bid += 2 * BID_STEP
+  return bid
+}
+
+/** Cheapest and dearest sets of `targetWins` targets at a difficulty. */
+export function targetSpend(cfg: Config, d: Difficulty): { cheapest: number; dearest: number } {
+  const prices = cfg.items.filter(i => i.isTarget).map(i => winPrice(i, AI_MULT(d))).sort((a, b) => a - b)
+  const sum = (xs: number[]) => xs.reduce((a, b) => a + b, 0)
+  return { cheapest: sum(prices.slice(0, cfg.targetWins)), dearest: sum(prices.slice(-cfg.targetWins)) }
+}
+
+/**
+ * Your purse.  Every level used the config's budget, which covered any pair of
+ * targets with room for decoys, so D3–D4 played like D1.  Now: D1 is generous,
+ * D2 is the authored budget, D3 just covers the dearest pair (no room for
+ * decoys), and at D4 the dearest pair is out of reach — bid on every target but
+ * know when to drop out.
+ */
+export function budgetFor(cfg: Config, d: Difficulty): number {
+  const { cheapest, dearest } = targetSpend(cfg, d)
+  if (d === 1) return Math.round(cfg.budget * 1.2 / 5) * 5
+  if (d === 2) return cfg.budget
+  if (d === 3) return Math.max(dearest, cheapest)
+  return Math.max(cheapest, Math.floor((cheapest + dearest) / 2 / 5) * 5)
+}
 
 export const CONFIGS: Record<string, Config> = {
   'venetian-auction': {
@@ -92,21 +125,22 @@ export const CONFIGS: Record<string, Config> = {
 
 type Phase = 'rules' | 'reveal' | 'bidding' | 'ai-thinking' | 'item-done' | 'finished'
 
-export default function AuctionGame({ configId, onWin, onLose }: MinigameProps) {
+export default function AuctionGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
   const cfg = CONFIGS[configId] ?? CONFIGS['venetian-auction']
+  const purse = budgetFor(cfg, difficulty)
 
   const [itemIdx,    setItemIdx]    = useState(0)
   const [phase,      setPhase]      = useState<Phase>('rules')
   const [currentBid, setCurrentBid] = useState(cfg.items[0].startBid)
   const [playerHigh, setPlayerHigh] = useState(false)
-  const [budget,     setBudget]     = useState(cfg.budget)
+  const [budget,     setBudget]     = useState(purse)
   const [wonIds,     setWonIds]     = useState<string[]>([])
   const [aiMsg,      setAiMsg]      = useState('')
   const [flash,      setFlash]      = useState<'win' | 'lose' | null>(null)
   const [result,     setResult]     = useState<'won' | 'lost' | null>(null)
 
   const item  = cfg.items[itemIdx]
-  const aiMax = Math.floor(AI_MAX_MULT * item.trueValue)
+  const aiMax = Math.floor(AI_MULT(difficulty) * item.trueValue)
 
   useEffect(() => {
     if (phase !== 'reveal') return
@@ -191,7 +225,7 @@ export default function AuctionGame({ configId, onWin, onLose }: MinigameProps) 
         <div className="flex flex-col gap-2 text-sm text-ink-2">
           <div className="flex gap-2 items-start">
             <span className="text-accent font-bold mt-0.5">💰</span>
-            <span>You have <span className="text-accent font-bold">{cfg.budget} coins</span> to bid with. Don't spend it all on decoys.</span>
+            <span>You have <span className="text-accent font-bold">{purse} coins</span> to bid with. Don't spend it all on decoys.</span>
           </div>
           <div className="flex gap-2 items-start">
             <span className="text-accent font-bold mt-0.5">★</span>

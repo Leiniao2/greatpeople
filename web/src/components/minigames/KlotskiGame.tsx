@@ -1,5 +1,5 @@
-import { useState, useCallback } from 'react'
-import type { MinigameProps } from '@/games/types'
+import { useState, useCallback, useMemo } from 'react'
+import type { MinigameProps, Difficulty } from '@/games/types'
 import { scale, useGameTimer, TimerBar } from './_shared'
 
 // A piece is defined by its cells (row, col offsets from a reference point)
@@ -310,19 +310,113 @@ export function movePiece(piece: Piece, dir: Dir): Piece {
   return { ...piece, cells: piece.cells.map(([r, c]) => [r + dr, c + dc] as [number, number]) }
 }
 
+// ── Difficulty ────────────────────────────────────────────────────────────────
+//
+// The authored yards need 15–29 single-step moves.  Easier tiers start the
+// yard part-way along a shortest solution, so the player faces at most
+//
+//   D1  8 moves   no clock     D2  12 moves   no clock
+//   D3  16 moves  3:00         D4  22 moves   2:30
+//
+// (a first-time player takes two to three times the optimal count).
+
+export const DEPTHS: readonly [number, number, number, number] = [8, 12, 16, 22]
+export const timeLimitFor = (d: Difficulty) => scale(d, [0, 0, 180, 150])
+
+/** A shortest solution (BFS over single-cell slides) as the boards along it, start first; null if none. */
+export function solvePath(cfg: Pick<KlotskiConfig, 'rows' | 'cols' | 'pieces' | 'targetRow' | 'targetCol'>, limit = 400_000): Piece[][] | null {
+  const { rows, cols, pieces } = cfg
+  // Each piece as a shape (cell offsets from its top-left) and an anchor.
+  const codes = new Map<string, number>()
+  const shapes = pieces.map(p => {
+    const minR = Math.min(...p.cells.map(([r]) => r)), minC = Math.min(...p.cells.map(([, c]) => c))
+    const offs = p.cells.map(([r, c]) => [r - minR, c - minC] as [number, number])
+    const key = p.isGoal ? 'G' : offs.map(([r, c]) => `${r}.${c}`).sort().join('|')
+    if (!codes.has(key)) codes.set(key, codes.size + 1)
+    return { offs, code: codes.get(key)!, minR, minC }
+  })
+  const goal = pieces.findIndex(p => p.isGoal)
+  // Goal test on the goal piece's top-left cell (not its bounding box).
+  const g0 = pieces[goal].cells.reduce((min, [r, c]) => (r < min[0] || (r === min[0] && c < min[1]) ? [r, c] : min), pieces[goal].cells[0])
+  const gdr = g0[0] - shapes[goal].minR, gdc = g0[1] - shapes[goal].minC
+  const P = pieces.length
+  const start = new Int8Array(P * 2)
+  shapes.forEach((sh, i) => { start[2 * i] = sh.minR; start[2 * i + 1] = sh.minC })
+  const occ = new Int8Array(rows * cols)
+  const fill = (st: Int8Array) => {
+    occ.fill(-1)
+    for (let i = 0; i < P; i++) for (const [r, c] of shapes[i].offs) occ[(st[2 * i] + r) * cols + st[2 * i + 1] + c] = i
+  }
+  const keyOf = (st: Int8Array) => {
+    fill(st)
+    let k = ''
+    for (let j = 0; j < occ.length; j++) k += occ[j] < 0 ? '0' : String.fromCharCode(48 + shapes[occ[j]].code)
+    return k
+  }
+  const isGoal = (st: Int8Array) => st[2 * goal] + gdr === cfg.targetRow && st[2 * goal + 1] + gdc === cfg.targetCol
+  const states: Int8Array[] = [start], parent: number[] = [-1]
+  const seen = new Set<string>([keyOf(start)])
+  let found = isGoal(start) ? 0 : -1
+  const D: [number, number][] = [[-1, 0], [1, 0], [0, -1], [0, 1]]
+  for (let head = 0; found < 0 && head < states.length; head++) {
+    const st = states[head]
+    fill(st)
+    const moves: [number, number, number][] = []
+    for (let i = 0; i < P; i++) for (const [dr, dc] of D) {
+      let ok = true
+      for (const [r, c] of shapes[i].offs) {
+        const nr = st[2 * i] + r + dr, nc = st[2 * i + 1] + c + dc
+        if (nr < 0 || nr >= rows || nc < 0 || nc >= cols) { ok = false; break }
+        const o = occ[nr * cols + nc]
+        if (o >= 0 && o !== i) { ok = false; break }
+      }
+      if (ok) moves.push([i, dr, dc])
+    }
+    for (const [i, dr, dc] of moves) {
+      const next = st.slice()
+      next[2 * i] += dr; next[2 * i + 1] += dc
+      const key = keyOf(next)
+      if (seen.has(key)) continue
+      seen.add(key)
+      states.push(next); parent.push(head)
+      if (isGoal(next)) { found = states.length - 1; break }
+    }
+    if (seen.size > limit) return null
+  }
+  if (found < 0) return null
+  const out: Piece[][] = []
+  for (let k = found; k >= 0; k = parent[k]) {
+    const st = states[k]
+    out.push(pieces.map((p, i) => ({ ...p, cells: shapes[i].offs.map(([r, c]) => [st[2 * i] + r, st[2 * i + 1] + c] as [number, number]) })))
+  }
+  return out.reverse()
+}
+
+const pathCache = new Map<string, Piece[][] | null>()
+
+/** The starting pieces at a difficulty: at most DEPTHS[d] optimal moves from the goal. */
+export function startFor(configId: string, difficulty: Difficulty): Piece[] {
+  const cfg = CONFIGS[configId] ?? PYRAMID
+  if (!pathCache.has(configId)) pathCache.set(configId, solvePath(cfg))
+  const path = pathCache.get(configId)!
+  const fresh = (ps: Piece[]) => ps.map(p => ({ ...p, cells: p.cells.map(x => [...x] as [number, number]) }))
+  if (!path) return fresh(cfg.pieces)
+  const optimal = path.length - 1
+  return fresh(path[Math.max(0, optimal - DEPTHS[difficulty - 1])])
+}
+
 // ── Component ─────────────────────────────────────────────────────────────────
 
 export default function KlotskiGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
-  // Higher difficulties put the puzzle on a clock. Optimal solutions run 8–22
-  // single-step moves, so leave time to think.
-  const timeLimit = scale(difficulty, [0, 0, 240, 180])
-  const timer = useGameTimer({ seconds: timeLimit, running: true, onExpire: () => onLose('out of time') })
-
   const cfg = CONFIGS[configId] ?? PYRAMID
-  const [pieces, setPieces] = useState<Piece[]>(() => cfg.pieces.map(p => ({ ...p, cells: [...p.cells] })))
+  const initial = useMemo(() => startFor(configId, difficulty), [configId, difficulty])
+  const [won, setWon] = useState(false)
+  // Higher difficulties put the puzzle on a clock.
+  const timer = useGameTimer({ seconds: timeLimitFor(difficulty), running: !won, onExpire: () => onLose('out of time') })
+
+  const [pieces, setPieces] = useState<Piece[]>(() => initial.map(p => ({ ...p, cells: [...p.cells] })))
   const [selected, setSelected] = useState<number | null>(null)
   const [moves, setMoves] = useState(0)
-  const [won, setWon] = useState(false)
 
   const board = buildBoard(cfg.rows, cfg.cols, pieces)
 
@@ -349,7 +443,7 @@ export default function KlotskiGame({ configId, difficulty, onWin, onLose }: Min
   }, [selected, won, pieces, board, cfg.rows, cfg.cols, checkWin])
 
   const reset = () => {
-    setPieces(cfg.pieces.map(p => ({ ...p, cells: [...p.cells] })))
+    setPieces(initial.map(p => ({ ...p, cells: [...p.cells] })))
     setSelected(null)
     setMoves(0)
     setWon(false)

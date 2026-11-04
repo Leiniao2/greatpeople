@@ -38,7 +38,7 @@ export const CONFIGS: Record<string, CaravanConfig> = {
       { name: 'Baghdad',   prices: { Silk: 44, Spice: 14, Glass: 18, Horses: 36 } },
       { name: 'Constantinople', prices: { Silk: 60, Spice: 24, Glass: 12, Horses: 50 } },
     ],
-    startGold: 200, targetMul: 2,
+    startGold: 200, targetMul: 3.5, // the silk road compounds ~6× for an all-in trader: 2× left 3–4× slack at D4
     events: [
       { text: 'Bandits in the Taklamakan take a tenth of your gold.', effect: { goldDelta: -0.1 } },
       { text: 'A Sogdian merchant tips you: silk fetches double in the next city.', effect: { good: 'Silk', priceMul: 2 } },
@@ -59,7 +59,7 @@ export const CONFIGS: Record<string, CaravanConfig> = {
       { name: 'Magan',   prices: { Textiles: 44, Copper: 14, Carnelian: 18, Oil: 36 } },
       { name: 'Meluhha', prices: { Textiles: 60, Copper: 24, Carnelian: 12, Oil: 50 } },
     ],
-    startGold: 200, targetMul: 2,
+    startGold: 200, targetMul: 3.5, // same price table as the silk road
     events: [
       { text: 'Raiders in the marshes take a tenth of your silver.', effect: { goldDelta: -0.1 } },
       { text: 'A Dilmun merchant tips you: cloth fetches double at the next port.', effect: { good: 'Textiles', priceMul: 2 } },

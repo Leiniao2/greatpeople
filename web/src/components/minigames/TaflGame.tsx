@@ -81,7 +81,24 @@ export const sizeFor = (d: Difficulty) => scale(d, [7, 7, 9, 9])
 /** Your moves before the game is called: a loss when defending, a win when raiding. */
 export const moveLimitFor = (d: Difficulty, id?: string) =>
   cfgOf(id).mode === 'raid' ? scale(d, [10, 14, 20, 24]) : scale(d, [16, 20, 26, 30])
-export const depthFor = (d: Difficulty) => scale(d, [1, 2, 2, 3])
+// D3 searches as deep as D4 but blunders more; on the 9×9 board a flawless
+// depth-2/3 attacker held the king in about two games of three, so both top
+// levels keep a little noise (a careful player wins ~60% at D3, ~50–60% at D4).
+export const depthFor = (d: Difficulty) => scale(d, [1, 2, 3, 3])
+/** How often the computer plays one of its next-best moves instead of the best. */
+export const noiseFor = (d: Difficulty, id?: string) => {
+  const c = cfgOf(id)
+  if (c.mode === 'raid') return scale(d, [0.4, 0.2, 0.05, 0])
+  // Linnaeus's weak king: D3 starts two raiders short with a sharp AI, D4 one short with a sloppier one.
+  return c.weakKing ? scale(d, [0.25, 0.15, 0.1, 0.3]) : scale(d, [0.25, 0.15, 0.2, 0.1])
+}
+/** Men the computer's side starts without, chosen by seed. */
+export const attackersShort = (d: Difficulty, id?: string) => {
+  const c = cfgOf(id)
+  if (c.mode === 'raid') return scale(d, [1, 0, 0, 0])
+  if (c.escape === 'edge') return scale(d, [0, 1, 2, 1]) // Linnaeus: the weak king is easily caught, so his foes start short from D2
+  return c.kingArmed ? scale(d, [1, 0, 0, 0]) : scale(d, [1, 0, 1, 0]) // the unarmed king gets a hand on the first 9×9 board
+}
 export const rulesFor = (d: Difficulty, id?: string): Rules => {
   const c = cfgOf(id)
   return {
@@ -409,7 +426,7 @@ export function aiMove(b: readonly number[], d: Difficulty, id: string, seed: nu
   const raid = c.mode === 'raid'
   return searchMove(b, rulesFor(d, id), raid ? 'D' : 'A', {
     depth: raid ? scale(d, [1, 2, 2, 2]) : depthFor(d), style: styleFor(d, id), rng,
-    noise: raid ? scale(d, [0.4, 0.2, 0.05, 0]) : scale(d, [0.25, 0.15, 0, 0]),
+    noise: noiseFor(d, id),
     nodeBudget: scale(d, [5000, 10_000, 40_000, 45_000]),
   })
 }
@@ -417,17 +434,17 @@ export function aiMove(b: readonly number[], d: Difficulty, id: string, seed: nu
 /** Back-compat: the attackers' move in a defending config. */
 export const attackerMove = (b: readonly number[], d: Difficulty, _style: Style, seed: number, ply: number, id = 'birka') => aiMove(b, d, id, seed, ply)
 
-/** Starting position: at D1 the computer's side starts one man short, chosen by seed. */
+/** Starting position: the computer's side may start a man or two short (see attackersShort), chosen by seed. */
 export function startBoard(d: Difficulty, seed: number, configId: string): number[] {
   const n = sizeFor(d)
   const b = initialBoard(n)
-  // Edge escape is quick enough already: Linnaeus keeps every attacker.
-  if (d === 1 && cfgOf(configId).escape === 'corner') {
+  const short = attackersShort(d, configId)
+  if (short) {
     const raid = cfgOf(configId).mode === 'raid'
     const rng = mulberry32(seed ^ hashString(`tafl:start:${configId}`))
     const kind = raid ? DEF : ATK
     const men = b.map((v, i) => (v === kind ? i : -1)).filter(i => i >= 0)
-    for (const i of shuffle(men, rng).slice(0, 1)) b[i] = EMPTY
+    for (const i of shuffle(men, rng).slice(0, short)) b[i] = EMPTY
   }
   return b
 }

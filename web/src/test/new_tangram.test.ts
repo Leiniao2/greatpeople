@@ -135,7 +135,7 @@ describe('tangram component', () => {
     for (const id of CONFIG_IDS) for (const d of DIFFS) {
       const { container, unmount } = render(createElement(TangramGame, { configId: id, difficulty: d, seed: 4, onWin: () => {}, onLose: () => {} }))
       const hints = container.querySelectorAll('[data-hint]').length
-      expect(hints).toBe(d === 1 ? 7 : d === 2 ? 3 : 0)
+      expect(hints).toBe(d === 1 ? 7 : d <= 3 ? 3 : 0)
       expect(container.querySelectorAll('[data-piece]').length).toBe(CONFIGS[id].twist === 'decoy' ? 8 : 7)
       unmount()
     }

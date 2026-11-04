@@ -107,7 +107,10 @@ export const CONFIGS: Record<string, CookingConfig> = {
 }
 
 export default function CookingGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
-  const maxAttempts = scale(difficulty, [3, 2, 2, 1])
+  // Each wrong recipe shows which steps were out of place, so a player can
+  // learn from a miss; at tier 4 only the count of misplaced steps is told.
+  const maxAttempts = scale(difficulty, [4, 3, 2, 2])
+  const markSteps = difficulty < 4
   const [attempts, setAttempts] = useState(0)
 
   const config = CONFIGS[configId] ?? CONFIGS['lu-yu-tea']
@@ -153,8 +156,8 @@ export default function CookingGame({ configId, difficulty, onWin, onLose }: Min
           <p className="text-muted/80 text-xs italic self-center my-1">Tap steps below in order…</p>
         )}
         {chosen.map((step, i) => {
-          const isStepCorrect = submitted && step === config.steps[i]
-          const isStepWrong = submitted && step !== config.steps[i]
+          const isStepCorrect = submitted && (markSteps || isCorrect) && step === config.steps[i]
+          const isStepWrong = submitted && markSteps && step !== config.steps[i]
           return (
             <button
               key={step}
@@ -202,7 +205,9 @@ export default function CookingGame({ configId, difficulty, onWin, onLose }: Min
             : 'bg-red-500/10 border-red-500/30 text-red-300'
         }`}>
           <span className="font-bold mr-1">{isCorrect ? '✓ Perfect recipe!' : '✗ Not quite —'}</span>
-          {config.fact}
+          {isCorrect || attempts >= maxAttempts
+            ? config.fact
+            : `${chosen.filter((s, i) => s === config.steps[i]).length} of ${config.steps.length} steps in place · ${maxAttempts - attempts} ${maxAttempts - attempts === 1 ? 'try' : 'tries'} left`}
         </div>
       )}
 

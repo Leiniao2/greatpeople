@@ -156,8 +156,11 @@ function shuffle<T>(arr: T[]): T[] {
   return a
 }
 
+/** Wrong checks allowed over the whole challenge (every wrong check marks the misplaced lines). */
+export const PSEUDO_ATTEMPTS = [5, 4, 3, 2] as const
+
 export default function PseudoCodeGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
-  const maxAttempts = scale(difficulty, [3, 2, 2, 1])
+  const maxAttempts = scale(difficulty, PSEUDO_ATTEMPTS)
   const [attempts, setAttempts] = useState(0)
 
   const cfg = CONFIGS[configId] ?? CONFIGS['turing-machine']

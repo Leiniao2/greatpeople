@@ -32,8 +32,8 @@ import { hashString, mulberry32, pick, resolveConfig, useGameOutcome, OutcomeBan
 // plus the computer's reply takes ~5 s); the tests measure this.
 //
 // Difficulty: the AI's search grows from a careless greedy player that
-// ignores danger (D1, also playing at random 40% of the time) to a 3-ply
-// expectimax over the dice (D4).  The goal grows with difficulty, at D1 one
+// ignores danger (D1, also playing at random 40% of the time) to a 2-ply
+// expectimax over the dice (D3–D4).  The goal grows with difficulty, at D1 one
 // of your pieces starts on your first rosette, and at D4 the AI throws first.
 //
 // Test hooks (documented, only used by tests): params.startPos sets the
@@ -72,6 +72,8 @@ export const isShared = (s: number) => s >= 5 && s <= 12
 const other = (p: Player): Player => (p === 0 ? 1 : 0)
 export const goalOf = (rules: UrRules) => Math.min(rules.pieces, rules.goal ?? rules.pieces)
 
+/** D1's head start in a mid-game: one human piece this many squares on. */
+export const MIDGAME_HEAD_START = 5
 /** D1's head start: pieces placed on the player's first rosette (square 4). */
 export const HEAD_START_SQUARE = 4
 
@@ -85,7 +87,7 @@ const sum = (a: number[]) => a.reduce((x, y) => x + y, 0)
 /**
  * A seeded mid-game position (the Guards' endgame): every piece is already
  * on the route, the two sides have equal total progress, and no two pieces
- * share a square.  The D1 head start moves one human piece 3 squares on.
+ * share a square.  The D1 head start moves one human piece MIDGAME_HEAD_START squares on.
  */
 export function midgameState(rules: UrRules, seed: number, opts: { headStart?: number; first?: Player } = {}): UrState {
   const rng = mulberry32(seed ^ hashString('ur-midgame'))
@@ -104,7 +106,7 @@ export function midgameState(rules: UrRules, seed: number, opts: { headStart?: n
     if (h.some(x => isShared(x) && a.includes(x))) continue
     if (opts.headStart) {
       const top = h[h.length - 1]
-      let to = top + 3
+      let to = top + MIDGAME_HEAD_START
       while (to < HOME && (h.includes(to) || (isShared(to) && a.includes(to)))) to++
       if (to >= HOME) continue
       h[h.length - 1] = to
@@ -233,13 +235,17 @@ export function searchMove(state: UrState, roll: number, rules: UrRules, depth: 
   return best
 }
 
-/** Search depth per difficulty. */
-export const AI_DEPTH: Record<Difficulty, number> = { 1: 1, 2: 1, 3: 2, 4: 3 }
+/**
+ * Search depth per difficulty.  D4 differs from D3 by throwing first; a
+ * 3-ply search on top of that held a sensible (2-ply) player to ~39–44% in
+ * finkel, quick and the garrison, so D4 searches 2 plies too (~46–50%, 400 games).
+ */
+export const AI_DEPTH: Record<Difficulty, number> = { 1: 1, 2: 1, 3: 2, 4: 2 }
 
 /**
  * The computer's move.  D1 plays at random 40% of the time and otherwise
  * greedily without looking at danger to its own pieces; D2 is greedy with a
- * full evaluation; D3 and D4 search 2 and 3 plies of expectimax.
+ * full evaluation; D3 and D4 search 2 plies of expectimax (D4 also throws first).
  */
 export function aiMove(state: UrState, roll: number, difficulty: Difficulty, rng: Rng, rules: UrRules): UrMove | null {
   const moves = legalMoves(state, roll, rules)

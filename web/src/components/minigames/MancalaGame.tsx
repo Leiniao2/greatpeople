@@ -40,7 +40,7 @@ import { hashString, mulberry32, resolveConfig, scale, useGameOutcome, OutcomeBa
 // AI: negamax with alpha-beta and iterative deepening under a node budget
 // (deterministic, well under 300 ms).  D1 plays a 1-ply greedy move and
 // throws in a random move 45% of the time; D2 searches 3 plies with 20%
-// random moves; D3 searches 5 plies; D4 searches 8 (7 in bao).  Ties between
+// random moves; D3 searches 3 plies with 15%; D4 searches 4 with 10%.  Ties between
 // equal moves are broken by the seeded rng, so every seed is a new game.
 
 export type Variant = 'oware' | 'kalah' | 'bao' | 'fours'
@@ -358,8 +358,10 @@ export function bestMove(s: MState, depth: number, rng: Rng, budget?: number): n
   return best[Math.floor(rng() * best.length)].move
 }
 
-export const AI_DEPTH = (d: Difficulty, v: Variant) => scale(d, v === 'bao' ? [1, 3, 4, 7] : [1, 3, 5, 8])
-export const AI_RANDOM = (d: Difficulty) => scale(d, [0.45, 0.2, 0, 0])
+// A flawless 5–8 ply search beat a careful (2–3 ply) player in ~95% of games at
+// D3–D4; these levels leave a careful player ~60–70% at D3 and ~50–60% at D4.
+export const AI_DEPTH = (d: Difficulty, _v: Variant) => scale(d, [1, 3, 3, 4])
+export const AI_RANDOM = (d: Difficulty) => scale(d, [0.45, 0.2, 0.15, 0.1])
 const AI_BUDGET = (d: Difficulty) => scale(d, [5_000, 20_000, 60_000, 150_000])
 
 /** The computer's move at a difficulty. */

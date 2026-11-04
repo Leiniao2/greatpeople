@@ -1,27 +1,28 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type { MinigameProps, Difficulty } from '@/games/types'
-import { hashString, mulberry32, resolveConfig, scale, useGameOutcome, OutcomeBanner } from './_shared'
+import { hashString, mulberry32, resolveConfig, storyText, scale, useGameOutcome, OutcomeBanner } from './_shared'
 
 // Temple Disks — the Tower of Hanoi and three of its classic variants.
 // Move the whole stack to the marked peg, one disk at a time, never placing
 // a larger disk on a smaller one.
 //
 //   config        variant                                   disks D1 → D4   optimal moves
-//   benares       Lucas's 1883 puzzle, 3 pegs                 4, 5, 5, 6      15, 31, 31, 63
-//   reve          Dudeney's Reve's puzzle (1907), 4 pegs      5, 6, 7, 8      13, 17, 25, 33
-//   scattered     start from a scattered legal position       4, 5, 5, 6      ≥ 70% of 2ⁿ − 1
+//   benares       Lucas's 1883 puzzle, 3 pegs                 4, 5, 5, 5      15, 31, 31, 31
+//   reve          Dudeney's Reve's puzzle (1907), 4 pegs      5, 6, 6, 7      13, 17, 17, 25
+//   scattered     start from a scattered legal position       4, 5, 5, 5      ≥ 70% of 2ⁿ − 1
 //   prayer-wheel  one-way: disks only move clockwise          3, 3, 3, 4      15, 15/21, 21, 43
 //   narrow-bridge only between neighbouring pegs (no 1 ↔ 3)   3, 3, 3, 4      13, 13/26, 26, 40
 //
 // Time budget: at roughly two seconds a move an engaged player needs about
-// 30–45 s at D1 and at most ~2½ minutes at D4 — no level asks for more than
-// 65 optimal moves (a 7-disk tower, 127 moves, would be far too long).
+// 30–45 s at D1 and at most ~2 minutes at D4 — no level asks for more than
+// 45 optimal moves (a 6-disk tower's 63 moves under a tight cap was a
+// three-minute, expert-only climb; a 7-disk tower, 127 moves, far too long).
 //
 // The seed chooses the start and goal pegs (and the scattered position),
 // and the optimal move count comes from the exported BFS solver.
 //
 //   move cap  D1 2 × optimal + 6   D2 2 × optimal   D3 1.5 × optimal + 2
-//             D4 optimal + max(3, 20%)
+//             D4 1.25 × optimal + 3
 
 interface HanoiConfig {
   title: string
@@ -41,25 +42,25 @@ export const CONFIGS: Record<string, HanoiConfig> = {
     title: 'The Tower of Brahma',
     intro: 'Move the golden stack to the marked peg. One disk at a time — never a larger disk on a smaller one.',
     fact: 'Édouard Lucas sold the puzzle in 1883 as "La Tour d\'Hanoï" under the name "Professor N. Claus de Siam" — an anagram of Lucas d\'Amiens. His legend tells of priests in a temple at Benares moving 64 golden disks; at one move a second that takes 2⁶⁴ − 1 seconds, about 585 billion years.',
-    pegs: 3, disks: [4, 5, 5, 6], palette: ['#f6d365', '#f1b84b', '#e39b32', '#cf7f22', '#b5651d', '#94501a', '#743d15', '#5a2f10'],
+    pegs: 3, disks: [4, 5, 5, 5], palette: ['#f6d365', '#f1b84b', '#e39b32', '#cf7f22', '#b5651d', '#94501a', '#743d15', '#5a2f10'],
   },
   'zeno-dichotomy': {
     title: 'The Dichotomy',
     intro: 'Before the whole stack can move, the smaller stack above it must move — and before that, a smaller one still. Bring the stack to the marked peg, one disk at a time, never a larger disk on a smaller one.',
     fact: 'Aristotle preserves Zeno\'s Dichotomy: to cross any distance you must first cross half of it, then half of what is left, and so without end. The tower\'s regress, unlike Zeno\'s, bottoms out — n disks always take exactly 2ⁿ − 1 moves.',
-    pegs: 3, disks: [4, 5, 5, 6], palette: ['#e8e2d0', '#d6cba9', '#c2b182', '#ab965f', '#927b44', '#786332', '#5f4d26', '#48391c'],
+    pegs: 3, disks: [4, 5, 5, 5], palette: ['#e8e2d0', '#d6cba9', '#c2b182', '#ab965f', '#927b44', '#786332', '#5f4d26', '#48391c'],
   },
   reve: {
     title: "The Reve's Cheeses",
     intro: 'Four stools this time. Move the cheeses to the marked stool, never a larger cheese on a smaller one — the extra stool makes far shorter solutions possible.',
     fact: "Henry Dudeney's The Canterbury Puzzles (1907) gives \"The Reve's Puzzle\": the Reve of Chaucer's pilgrims moves cheeses across four stools. Its general four-peg solution, the Frame–Stewart algorithm (1941), was only proven optimal for every size in 2014 by Thierry Bousch.",
-    pegs: 4, disks: [5, 6, 7, 8], palette: ['#fff1b8', '#ffe28a', '#fcd25c', '#f5c242', '#e9ad2c', '#d9971f', '#c4801a', '#a86915'],
+    pegs: 4, disks: [5, 6, 6, 7], palette: ['#fff1b8', '#ffe28a', '#fcd25c', '#f5c242', '#e9ad2c', '#d9971f', '#c4801a', '#a86915'],
   },
   scattered: {
     title: 'The Scattered Temple',
     intro: 'An earthquake has scattered the temple disks across the pegs. Gather them into one tower on the marked peg — still never a larger disk on a smaller one.',
     fact: 'Lucas also posed the puzzle from any legal arrangement. From any position, gathering the disks onto a chosen peg takes at most 2ⁿ − 1 moves — the positions of the Tower of Hanoi form a graph shaped like the Sierpiński triangle.',
-    scattered: true, pegs: 3, disks: [4, 5, 5, 6], palette: ['#b5e3d8', '#8fd3c3', '#64bfae', '#3fa796', '#2a8c7d', '#1f7266', '#175a51', '#10433c'],
+    scattered: true, pegs: 3, disks: [4, 5, 5, 5], palette: ['#b5e3d8', '#8fd3c3', '#64bfae', '#3fa796', '#2a8c7d', '#1f7266', '#175a51', '#10433c'],
   },
   'prayer-wheel': {
     title: 'The Prayer Wheel',
@@ -71,13 +72,13 @@ export const CONFIGS: Record<string, HanoiConfig> = {
     title: 'The Hatboxes of Rue Cambon',
     intro: 'Move the stack of hatboxes to the marked shelf, one box at a time — never a larger box on a smaller one, or the hats inside are crushed.',
     fact: 'Gabrielle "Coco" Chanel began making hats in Étienne Balsan’s Paris flat on the boulevard Malesherbes in 1909. In 1910, with money from Arthur "Boy" Capel, she opened Chanel Modes at 21 rue Cambon, selling straw boaters to actresses.',
-    pegs: 3, disks: [4, 5, 5, 6], palette: ['#f5f5f4', '#e7e5e4', '#d6d3d1', '#a8a29e', '#78716c', '#57534e', '#44403c', '#1c1917'],
+    pegs: 3, disks: [4, 5, 5, 5], palette: ['#f5f5f4', '#e7e5e4', '#d6d3d1', '#a8a29e', '#78716c', '#57534e', '#44403c', '#1c1917'],
   },
   'queens-ware': {
     title: 'The Queen’s Service',
     intro: 'Carry the stack of cream-coloured dishes to the marked bench, one dish at a time — never a larger dish on a smaller one, or the stack topples and the order is lost.',
     fact: 'In 1765 Queen Charlotte ordered a tea service of Josiah Wedgwood’s cream-coloured earthenware. He won the title “Potter to Her Majesty” and renamed the ware Queen’s Ware — then sold it to everyone who wanted to eat like a queen.',
-    pegs: 3, disks: [4, 5, 5, 6], palette: ['#fbf6e4', '#f5ecc9', '#eee0ad', '#e5d291', '#d9c277', '#c9ae5f', '#b4984b', '#9a7f3a'],
+    pegs: 3, disks: [4, 5, 5, 5], palette: ['#fbf6e4', '#f5ecc9', '#eee0ad', '#e5d291', '#d9c277', '#c9ae5f', '#b4984b', '#9a7f3a'],
   },
   'narrow-bridge': {
     title: 'The Narrow Bridge',
@@ -89,7 +90,7 @@ export const CONFIGS: Record<string, HanoiConfig> = {
     title: 'The Order of Succession',
     intro: 'The law fixes the order of rank, and no one may break it: move the royal line to the marked peg one disk at a time, and never set a greater disk above a lesser one.',
     fact: 'The Edict of Telepinu sets the order: a king’s son of the first rank becomes king; if there is none, a son of the second rank; and if there is no prince at all, a husband is to be taken for a first-rank daughter, and he becomes king.',
-    pegs: 3, disks: [4, 5, 5, 6], palette: ['#f3d9a4', '#e6c07a', '#d4a556', '#bf8a3c', '#a5712c', '#8a5b22', '#6e461a', '#533413'],
+    pegs: 3, disks: [4, 5, 5, 5], palette: ['#f3d9a4', '#e6c07a', '#d4a556', '#bf8a3c', '#a5712c', '#8a5b22', '#6e461a', '#533413'],
   },
 }
 
@@ -239,14 +240,14 @@ export function capFor(difficulty: Difficulty, optimal: number): number {
     optimal * 2 + 6,
     optimal * 2,
     Math.ceil(optimal * 1.5) + 2,
-    optimal + Math.max(3, Math.ceil(optimal * 0.2)),
+    Math.ceil(optimal * 1.25) + 3,
   ])
 }
 
 // ── Component ──────────────────────────────────────────────────────────────────
 
 export default function HanoiGame({ configId, difficulty, seed, params, onWin, onLose }: MinigameProps) {
-  const cfg = resolveConfig(CONFIGS, configId, undefined, 'benares')
+  const cfg = { ...resolveConfig(CONFIGS, configId, undefined, 'benares'), ...storyText(params) }
   const puzzle = useMemo(() => generatePuzzle(configId, difficulty, seed, params), [configId, difficulty, seed, params])
   const cap = capFor(difficulty, puzzle.optimal)
 

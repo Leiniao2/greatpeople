@@ -35,6 +35,12 @@ export default function ChallengeRenderer({ challenge, seed, onWin, onLose }: Pr
         return <p className="text-red-700 text-xs">Unknown game "{challenge.game}".</p>
       }
       const Game = LazyGame[challenge.game]
+      // The screen around the game shows the challenge's own fact on a win,
+      // so blank the config's built-in fact: a reused config would otherwise
+      // show a second fact about some other place or person.
+      const params = challenge.fact && challenge.params?.fact === undefined
+        ? { ...challenge.params, fact: '' }
+        : challenge.params
       return (
         <div className="flex flex-col gap-3">
           <p className="text-ink-2 text-xs leading-relaxed italic border-l-2 border-accent/40 pl-3">{challenge.instruction}</p>
@@ -42,7 +48,7 @@ export default function ChallengeRenderer({ challenge, seed, onWin, onLose }: Pr
             <Suspense fallback={<GameLoading />}>
               <Game
                 configId={challenge.configId ?? ''}
-                params={challenge.params}
+                params={params}
                 difficulty={challenge.difficulty ?? 1}
                 seed={seed}
                 onWin={win}

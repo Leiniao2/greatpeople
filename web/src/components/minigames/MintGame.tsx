@@ -120,8 +120,11 @@ export const undosFor = (d: Difficulty) => scale(d, [3, 2, 1, 0])
 export const highSpawnFor = (d: Difficulty) => scale(d, [0.05, 0.1, 0.1, 0.15])
 /** Twist strength per difficulty. */
 export const wildFor = (d: Difficulty) => scale(d, [0.035, 0.03, 0.025, 0.02])
-export const leadFor = (d: Difficulty) => scale(d, [0.06, 0.08, 0.08, 0.1])
-export const blocksFor = (d: Difficulty) => scale(d, [1, 1, 2, 2])
+// Counterfeits and broken dies eat the 4×4 tray fast: at the old 8–10%
+// forgeries, and two dies from tier 3, a casual player almost never struck
+// the 256 coin.  The second die now waits for the top tier.
+export const leadFor = (d: Difficulty) => scale(d, [0.04, 0.05, 0.06, 0.07])
+export const blocksFor = (d: Difficulty) => scale(d, [1, 1, 1, 2])
 /** Swipes a strong player needs at most — the time budget the tests hold the game to. */
 export const MAX_SWIPES: Record<Difficulty, number> = { 1: 100, 2: 100, 3: 180, 4: 180 }
 

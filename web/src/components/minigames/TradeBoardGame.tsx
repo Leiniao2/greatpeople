@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import type { MinigameProps, Difficulty } from '@/games/types'
-import { hashString, resolveConfig, scale, useGameOutcome, OutcomeBanner } from './_shared'
+import { hashString, resolveConfig, storyText, scale, useGameOutcome, OutcomeBanner } from './_shared'
 
 // Merchant Board — a short Monopoly-style trading game.  Roll dice round a
 // 20-square board of ports, buy the ones you land on, complete a set to
@@ -181,13 +181,16 @@ export interface Rules {
 export const roundsFor = (d: Difficulty) => scale(d, [8, 9, 10, 10])
 
 export function rulesFor(difficulty: Difficulty, variant: TradeVariant = 'pilot'): Rules {
-  const target = variant === 'boom' ? scale(difficulty, [900, 980, 1040, 1100]) : scale(difficulty, [850, 920, 980, 1030])
+  // Seeds are pre-checked winnable, and the dice decide most of a game, so with the
+  // old D3–D4 bars a casual merchant (buy what you can, build a little) still won
+  // ~90% of them.  The higher bars bring that to ~60–85% at D3 and ~55–75% at D4.
+  const target = variant === 'boom' ? scale(difficulty, [900, 980, 1250, 1430]) : scale(difficulty, [850, 920, 1080, 1240])
   return {
     variant,
     rounds: roundsFor(difficulty),
     target,
-    charterGoal: scale(difficulty, [4, 5, 6, 6]),
-    margin: scale(difficulty, [80, 90, 100, 120]),
+    charterGoal: scale(difficulty, [4, 5, 7, 8]),
+    margin: scale(difficulty, [80, 90, 180, 300]),
     startCash: scale(difficulty, [500, 500, 450, 450]),
     rivals: scale(difficulty, [1, 2, 2, 3]),
     aiReserve: scale(difficulty, [220, 150, 100, 70]),
@@ -631,9 +634,10 @@ function ringCell(i: number): [number, number] {
 const PLAYER_COLORS = ['#1f6feb', '#c0392b', '#1e8449', '#8e44ad']
 const DIE = ['', '⚀', '⚁', '⚂', '⚃', '⚄', '⚅']
 
-export default function TradeBoardGame({ configId, difficulty, seed, onWin, onLose }: MinigameProps) {
+export default function TradeBoardGame({ configId, difficulty, seed, params, onWin, onLose }: MinigameProps) {
   const game = useMemo(() => newTrade(configId, difficulty, seed), [configId, difficulty, seed])
-  const { cfg, board, rules } = game
+  const { board, rules } = game
+  const cfg = { ...game.cfg, ...storyText(params) }
   const [state, setState] = useState<TradeState>(() => initialState(game))
   const [focus, setFocus] = useState<number | null>(null)
   const { outcome, settled, win, lose } = useGameOutcome({ onWin, onLose })

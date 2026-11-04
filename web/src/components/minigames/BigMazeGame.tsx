@@ -18,7 +18,7 @@ import type { Rng } from './_shared'
 //   spread    a hazard (fire, flood) spreads one cell per turn through its
 //             medium; reach the exit before it closes the route
 //   elements  mixed ground: ice slides, wind pushes, earth stops you
-//   labyrinth a big corridor maze (21×21 up to 41×41) seen through a scrolling
+//   labyrinth a big corridor maze (21×21 up to 31×31) seen through a scrolling
 //             viewport: coloured keys open matching doors, optional relics,
 //             wandering (D1–2) or chasing (D3–4) monsters, fog at D3–4 and a
 //             step budget at D4.  The big configs end on one as their finale.
@@ -323,6 +323,16 @@ export function step(level: Level, st: GameState, input: Dir): GameState {
   if (same(level.exit, m.r, m.c)) status = 'won'
   else if (status === 'playing' && level.burnTime && level.burnTime[m.r][m.c] <= turn) { status = 'lost'; lostHow = 'caught' }
   return { r: m.r, c: m.c, hasKey: m.hasKey, dir: m.dir, speed: m.speed, turn, lives, path: m.path, status, lostHow }
+}
+
+/**
+ * "Restart level": back to this level's start, keeping what the attempt cost.
+ * Lives lost to crashes stay lost and moves already made still count against
+ * a step budget (`spent`); the run's clock lives outside the board and keeps
+ * running, so a restart is never a way round the time limit.
+ */
+export function restartLevel(level: Level, st: GameState, spent: number): { state: GameState; spent: number } {
+  return { state: initialState(level, st.lives), spent: spent + st.turn }
 }
 
 // ── Solver ─────────────────────────────────────────────────────────────────────
@@ -635,10 +645,13 @@ export interface LabState {
 
 export function labSettings(config: MazeConfig, difficulty: Difficulty, monsterCount?: number) {
   return {
-    size: scale(difficulty, [21, 27, 33, 41]),
+    // A corridor maze explored through fog costs ~1.3× its solution in steps
+    // plus a swipe at every junction; 41×41 ran past four minutes, so the
+    // top tier stops at 31×31 (~350 steps, ~2 minutes with its physics levels).
+    size: scale(difficulty, [21, 23, 27, 31]),
     doors: scale(difficulty, [0, 1, 2, 3]),
     relics: scale(difficulty, [2, 3, 3, 4]),
-    monsters: monsterCount !== undefined ? Math.max(0, Math.min(8, Math.floor(monsterCount))) : scale(difficulty, [2, 3, 4, 5]),
+    monsters: monsterCount !== undefined ? Math.max(0, Math.min(8, Math.floor(monsterCount))) : scale(difficulty, [2, 3, 3, 4]),
     chase: difficulty >= 3,
     sight: scale(difficulty, [0, 0, 8, 10]),
     fog: scale(difficulty, [0, config.fog ? 7 : 0, 5, 4]),
@@ -1083,6 +1096,8 @@ function PhysicsBoard({ config, difficulty, seed, kindIdx, levelNo, levelCount, 
   const th = THEME[config.theme]
   const level = useMemo(() => generateLevel(config, difficulty, seed, kindIdx), [config, difficulty, seed, kindIdx])
   const [gs, setGs] = useState<GameState>(() => initialState(level, rules.lives))
+  /** Moves made on earlier attempts at this level (see restartLevel). */
+  const [spent, setSpent] = useState(0)
   const [intro, setIntro] = useState(true)
   const [crashFlash, setCrashFlash] = useState(false)
   const stepBudget = rules.budgetFactor
@@ -1090,8 +1105,8 @@ function PhysicsBoard({ config, difficulty, seed, kindIdx, levelNo, levelCount, 
 
   useEffect(() => { const t = setTimeout(() => setIntro(false), 900); return () => clearTimeout(t) }, [])
 
-  const live = useRef({ gs, intro, settled })
-  live.current = { gs, intro, settled }
+  const live = useRef({ gs, intro, settled, spent })
+  live.current = { gs, intro, settled, spent }
 
   const move = useCallback((d: Dir) => {
     const cur = live.current
@@ -1101,10 +1116,19 @@ function PhysicsBoard({ config, difficulty, seed, kindIdx, levelNo, levelCount, 
     live.current = { ...cur, gs: next }
     setGs(next)
     if (next.lives < cur.gs.lives) { setCrashFlash(true); setTimeout(() => setCrashFlash(false), 500) }
-    if (next.status === 'won') { setTimeout(() => onCleared({ moves: next.turn }), 250); return }
+    if (next.status === 'won') { setTimeout(() => onCleared({ moves: cur.spent + next.turn }), 250); return }
     if (next.status === 'lost') { onFail(next.lostHow); return }
-    if (stepBudget && next.turn >= stepBudget) onFail('out of steps')
+    if (stepBudget && cur.spent + next.turn >= stepBudget) onFail('out of steps')
   }, [level, onCleared, onFail, stepBudget])
+
+  const restart = useCallback(() => {
+    const cur = live.current
+    if (cur.settled || cur.intro || cur.gs.status !== 'playing' || cur.gs.turn === 0) return
+    const r = restartLevel(level, cur.gs, cur.spent)
+    live.current = { ...cur, gs: r.state, spent: r.spent }
+    setGs(r.state)
+    setSpent(r.spent)
+  }, [level])
 
   useArrowKeys(move)
   const swipe = useSwipe(move)
@@ -1164,8 +1188,8 @@ function PhysicsBoard({ config, difficulty, seed, kindIdx, levelNo, levelCount, 
   return (
     <div className="flex flex-col items-center gap-3 w-full">
       <div className="flex items-center gap-3 text-xs flex-wrap justify-center">
-        <span className={stepBudget && gs.turn > stepBudget * 0.8 ? 'text-red-600 font-bold' : 'text-muted'}>
-          Moves <span className={`font-bold ${th.text}`}>{gs.turn}</span>{stepBudget ? ` / ${stepBudget}` : ''}
+        <span className={stepBudget && spent + gs.turn > stepBudget * 0.8 ? 'text-red-600 font-bold' : 'text-muted'}>
+          Moves <span className={`font-bold ${th.text}`}>{spent + gs.turn}</span>{stepBudget ? ` / ${stepBudget}` : ''}
         </span>
         {mode === 'inertia' && (
           <span className="text-muted">
@@ -1218,6 +1242,11 @@ function PhysicsBoard({ config, difficulty, seed, kindIdx, levelNo, levelCount, 
         mode === 'gravity' ? <span className="text-base">{DIR_GLYPH[gs.dir]}</span>
           : mode === 'inertia' ? <span>{gs.speed > 0 ? `${DIR_GLYPH[gs.dir]}${gs.speed}` : '·'}</span>
           : undefined} />
+
+      <button type="button" onClick={restart} disabled={settled || intro || gs.status !== 'playing' || gs.turn === 0}
+        className="text-[11px] px-3 py-1 rounded-lg border border-line text-ink-2 hover:border-accent disabled:opacity-40">
+        ↺ Restart level
+      </button>
     </div>
   )
 }

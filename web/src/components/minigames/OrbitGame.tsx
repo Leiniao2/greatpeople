@@ -218,14 +218,14 @@ function genKepler(d: Difficulty, rng: Rng): Level {
   L.r0 = d >= 4 ? +(0.8 + 0.45 * rng()).toFixed(2) : 1
   L.theta0 = rng() * 2 * Math.PI
   L.chartR = 3.2
-  L.tol = scale(d, [0.16, 0.11, 0.15, 0.11])
+  L.tol = scale(d, [0.16, 0.12, 0.16, 0.13])
   L.controls = [
     ctl('speed', 'Launch speed', range(0.7, 1.36, 0.02), '× circular', 2),
     ctl('angle', 'Launch angle (outward +)', range(-40, 40, 5), '°', 0),
   ]
   const nMarkers = d >= 3 ? 2 : 1
   let best: { trial: Level; score: number } | null = null
-  for (let attempt = 0; attempt < 60 && !(best && attempt >= 12); attempt++) {
+  for (let attempt = 0; attempt < 60 && !(best && attempt >= 12 && best.score <= 2); attempt++) {
     // A random setting whose orbit is a clearly elliptical, fully visible loop.
     const idx = [Math.floor(rng() * L.controls[0].values.length), Math.floor(rng() * L.controls[1].values.length)]
     const trial: Level = { ...L, markers: [] }
@@ -240,7 +240,7 @@ function genKepler(d: Difficulty, rng: Rng): Level {
     trial.markers = spots.map(f => { const p = shot.path[Math.floor(f * n)]; return { x: p.x, y: p.y } })
     trial.solution = idx
     // Keep the candidate whose count of winning settings is nearest the tier's aim.
-    const score = Math.abs(keplerApproxWinners(trial) - scale(d, [8, 5, 4, 2]))
+    const score = Math.abs(keplerApproxWinners(trial) - scale(d, [10, 8, 7, 5]))
     if (!best || score < best.score) best = { trial, score }
   }
   const trial = best?.trial ?? keplerFallback(L, nMarkers)
@@ -460,7 +460,7 @@ function genSling(d: Difficulty, rng: Rng): Level {
     }
     // Random settings until some are flung out to the ring (about one in six).
     const found: { idx: number[]; cross: number }[] = []
-    for (let k = 0; k < 60 && found.length < (d >= 3 ? 4 : 1); k++) {
+    for (let k = 0; k < 60 && found.length < (d >= 3 ? 6 : 1); k++) {
       const idx = trial.controls.map(c => Math.floor(rng() * c.values.length))
       const shot = evalSling(trial, idx, true)
       if (!shot.win) continue
@@ -470,14 +470,25 @@ function genSling(d: Difficulty, rng: Rng): Level {
     if (!found.length) continue
     let pickK = 0
     if (d >= 3) {
-      // Aim the sector at the most unusual exit seen, so the common route misses it.
-      const w = scale(d, [0, 0, 36, 24])
+      // Aim the sector at an unusual exit, so the common route misses it — but
+      // at one a second sampled launch also reaches (and at most half of them
+      // do), so the sector is a region a player can find, not a needle setting.
+      const w = scale(d, [0, 0, 50, 40])
+      const unusual = (f: { cross: number }) => found.reduce((m, g) => m + Math.abs(wrap(g.cross - f.cross)), 0)
+      const near = (f: { cross: number }) => found.filter(g => Math.abs(wrap(g.cross - f.cross)) <= 0.4 * w * DEG).length
       let bestScore = -1
       found.forEach((f, k) => {
-        const score = found.reduce((m, g) => m + Math.abs(wrap(g.cross - f.cross)), 0)
-        if (score > bestScore) { bestScore = score; pickK = k }
+        const n = near(f)
+        if (n < 2 || n > found.length / 2) return
+        const sc = unusual(f)
+        if (sc > bestScore) { bestScore = sc; pickK = k }
       })
-      trial.sector = { c: found[pickK].cross + (rng() - 0.5) * 0.4 * w * DEG, w }
+      if (bestScore < 0) {
+        if (attempt < 12) continue
+        found.forEach((f, k) => { const sc = unusual(f); if (sc > bestScore) { bestScore = sc; pickK = k } })
+      }
+      const centre = found[pickK].cross
+      trial.sector = { c: centre + (rng() - 0.5) * 0.2 * w * DEG, w }
     }
     trial.solution = found[pickK].idx
     trial.start = pickStart(trial, i => evalSling(trial, i, false).win)

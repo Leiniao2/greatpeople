@@ -375,8 +375,10 @@ export interface AiLevel {
 
 export const AI_LEVELS: Record<Difficulty, AiLevel> = {
   1: { defense: 0.45, sloppy: 0.45, sloppyBelow: 5e6, blockFive: 0.7, noise: 0.25, vcf: 0, guard: false, ms: 60 },
-  2: { defense: 0.75, sloppy: 0.2, sloppyBelow: 5e6, blockFive: 1, noise: 0.12, vcf: 0, guard: false, ms: 80 },
-  3: { defense: 0.9, sloppy: 0.08, sloppyBelow: 5e4, blockFive: 1, noise: 0.06, vcf: 5, guard: false, ms: 140 },
+  2: { defense: 0.65, sloppy: 0.3, sloppyBelow: 5e6, blockFive: 1, noise: 0.15, vcf: 0, guard: false, ms: 80 },
+  // D3 sometimes misses an open three (it still always blocks a four); with flawless defence it
+  // out-held the D4 master on the smaller board and a careful player won only ~1 game in 4.
+  3: { defense: 0.9, sloppy: 0.2, sloppyBelow: 5e6, blockFive: 1, noise: 0.06, vcf: 5, guard: false, ms: 140 },
   4: { defense: 0.92, sloppy: 0, sloppyBelow: 0, blockFive: 1, noise: 0.03, vcf: 8, vct: 2, vctNodes: 300, guard: true, ms: 200 },
 }
 

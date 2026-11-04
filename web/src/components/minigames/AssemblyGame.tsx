@@ -25,6 +25,8 @@ import { hashString, mulberry32, resolveConfig, scale, shuffle, useGameOutcome, 
 //   2   6 / 3                 2 × 4                    5 × 3                   4 × 5                 some   120s   ~1.5 min
 //   3   8 / 3                 3 × 4                    6 × 3                   4 × 6                 small  150s   ~2 min
 //   4   9 / 4                 3 × 5                    7 × 3                   5 × 7                 exact  180s   ~3 min
+//
+// Runs allowed (failed "Run the line" presses): 3 / 3 / 2 / 2.
 
 export type Mode = 'ford' | 'arsenal' | 'wedgwood' | 'jacquard'
 
@@ -88,7 +90,7 @@ export const CONFIGS: Record<string, AssemblyConfig> = {
 
 export const CONFIG_IDS = Object.keys(CONFIGS)
 export const secondsFor = (d: Difficulty) => scale(d, [90, 120, 150, 180])
-export const mistakesFor = (d: Difficulty) => scale(d, [3, 2, 2, 2])
+export const mistakesFor = (d: Difficulty) => scale(d, [3, 3, 2, 2])
 
 // ── Ford: line balancing ──────────────────────────────────────────────────────
 
@@ -176,7 +178,7 @@ function makeArsenal(rng: Rng, d: Difficulty): ArsenalLevel {
     const sol = shortestLine(recipes, stores)
     // Too easy if the galleys simply share one order.
     if (sol.length <= len + 1) continue
-    return { kind: 'arsenal', recipes, stores, optimum: sol.length, target: sol.length + scale(d, [2, 1, 0, 0]), solution: sol }
+    return { kind: 'arsenal', recipes, stores, optimum: sol.length, target: sol.length + scale(d, [2, 1, 1, 0]), solution: sol }
   }
 }
 

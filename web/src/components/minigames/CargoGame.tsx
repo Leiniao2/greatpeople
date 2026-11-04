@@ -482,6 +482,7 @@ export default function CargoGame({ configId, difficulty, seed, params, onWin, o
     ...base,
     title: typeof params?.title === 'string' ? params.title : base.title,
     intro: typeof params?.intro === 'string' ? params.intro : base.intro,
+    ...(typeof params?.fact === 'string' ? { fact: params.fact } : {}),
   }
   const pz = useMemo(() => planLevel(configId, difficulty, seed), [configId, difficulty, seed])
   const { hold, pieces } = pz

@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
-import type { MinigameProps } from '@/games/types'
+import type { MinigameProps, Difficulty } from '@/games/types'
+import { scale } from './_shared'
 
 // ── Config ─────────────────────────────────────────────────────────────────────
 
@@ -37,6 +38,17 @@ export const CONFIGS: Record<string, WordleConfig> = {
 
 export const MAX_GUESSES = 6
 export const WORD_LENGTH = 5
+
+// Difficulty.  The clue all but names the word, so it now arrives later:
+//
+//   D1  clue from the start, 6 guesses
+//   D2  clue after the 1st guess, 6 guesses
+//   D3  clue after the 3rd guess, 6 guesses
+//   D4  clue after the 4th guess, 5 guesses (the title is the only lead before)
+export const tierFor = (difficulty: Difficulty) => ({
+  hintAfter: scale(difficulty, [0, 1, 3, 4]),
+  maxGuesses: scale(difficulty, [6, 6, 6, 5]),
+})
 
 const KEYBOARD_ROWS = [
   ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
@@ -120,7 +132,8 @@ function keyBg(state: TileState | undefined): string {
 
 // ── Component ──────────────────────────────────────────────────────────────────
 
-export default function WordleGame({ configId, onWin, onLose }: MinigameProps) {
+export default function WordleGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
+  const { hintAfter, maxGuesses } = tierFor(difficulty ?? 1)
   const config = CONFIGS[configId] ?? Object.values(CONFIGS)[0]
   const word = config.word
 
@@ -160,10 +173,10 @@ export default function WordleGame({ configId, onWin, onLose }: MinigameProps) {
         setWon(true)
         setTimeout(() => onWin(), 800)
       }, WORD_LENGTH * 120 + 400)
-    } else if (newGuesses.length >= MAX_GUESSES) {
+    } else if (newGuesses.length >= maxGuesses) {
       setTimeout(() => setLost(true), WORD_LENGTH * 120 + 400)
     }
-  }, [current, guesses, word, onWin])
+  }, [current, guesses, word, onWin, maxGuesses])
 
   const pressKey = useCallback((key: string) => {
     if (!canType) return
@@ -196,7 +209,7 @@ export default function WordleGame({ configId, onWin, onLose }: MinigameProps) {
 
   // Build the 6-row grid
   const rows: Array<{ tiles: Array<{ letter: string; state: TileState }>; revealed: boolean }> = []
-  for (let r = 0; r < MAX_GUESSES; r++) {
+  for (let r = 0; r < maxGuesses; r++) {
     if (r < guesses.length) {
       rows.push({ tiles: guesses[r], revealed: revealedRows[r] ?? false })
     } else if (r === guesses.length && !won && !lost) {
@@ -219,7 +232,11 @@ export default function WordleGame({ configId, onWin, onLose }: MinigameProps) {
       {/* Header */}
       <div className="text-center px-2">
         <p className="text-accent font-bold text-sm tracking-wide">{config.title}</p>
-        <p className="text-muted text-xs mt-0.5 max-w-[280px] leading-snug">{config.hint}</p>
+        <p className="text-muted text-xs mt-0.5 max-w-[280px] leading-snug" data-testid="wordle-hint">
+          {guesses.length >= hintAfter || won || lost
+            ? config.hint
+            : `Clue after ${hintAfter - guesses.length} more guess${hintAfter - guesses.length === 1 ? '' : 'es'}`}
+        </p>
       </div>
 
       {/* Tile grid */}

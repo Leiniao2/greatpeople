@@ -1,5 +1,5 @@
-import { useReducer, useEffect, useCallback } from 'react'
-import type { MinigameProps } from '@/games/types'
+import { useReducer, useEffect, useCallback, useMemo } from 'react'
+import type { Difficulty, MinigameProps } from '@/games/types'
 import { scale, useGameTimer, TimerBar } from './_shared'
 
 // ── Constants ──────────────────────────────────────────────────────────────────
@@ -82,6 +82,10 @@ export const CONFIGS: Record<string, ReporterConfig> = {
   },
 }
 
+/** Lives per tier: the config's own at first; from tier 3 the boards stay the same but every hit costs more. */
+export const livesFor = (cfg: Pick<ReporterConfig, 'lives'>, d: Difficulty) =>
+  scale(d, [cfg.lives, cfg.lives, Math.min(cfg.lives, 2), 1])
+
 // ── Game state / reducer ───────────────────────────────────────────────────────
 
 export interface GameState {
@@ -162,7 +166,8 @@ export function reducer(state: GameState, action: Action): GameState {
 
 export default function ReporterFleeGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
   // Higher difficulties put the puzzle on a clock.
-  const cfg = CONFIGS[configId] ?? CONFIGS['vietnam-press']
+  const base = CONFIGS[configId] ?? CONFIGS['vietnam-press']
+  const cfg = useMemo(() => ({ ...base, lives: livesFor(base, difficulty) }), [base, difficulty])
 
   const [state, dispatch] = useReducer(
     reducer,

@@ -107,10 +107,12 @@ export function bfsPath(grid: Cell[][], from: [number, number], to: [number, num
 
 /** Per-difficulty wave shape: how many waves, how tough, how many per wave, and the budget each wave. */
 export function siegeTiers(cfg: SiegeConfig, difficulty: Difficulty) {
+  // D3 used six attackers a wave, the same as D4: the audit's greedy builder
+  // finished both with 1 keep hp in most castles.  Five a wave leaves it 2 at D3.
   return {
     waves: scale(difficulty, [2, 3, 4, 5]),
     attackerHp: scale(difficulty, [2, 2, 3, 3]),
-    perWave: scale(difficulty, [4, 5, 6, 6]),
+    perWave: scale(difficulty, [4, 5, 5, 6]),
     budgetPerWave: Math.round(cfg.budget * scale(difficulty, [1, 0.9, 0.8, 0.8])),
   }
 }

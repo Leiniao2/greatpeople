@@ -273,11 +273,19 @@ describe('Hnefatafl — winnable and losable', () => {
     }
   }, 60_000)
 
-  it('a one-ply player loses at the top levels', () => {
-    for (const id of CONFIG_IDS) {
-      const lost = [1, 2, 3].filter(seed => playGame(4, id, seed, 1).result === 'lose').length
-      expect(lost, id).toBeGreaterThanOrEqual(2)
+  it('D3–D4 are fair: a careful (2-ply) player wins roughly half to three quarters, never every game', () => {
+    // Measured over 24 seeds: birka 71%/62%, ballinderry 58%/50%, linnaeus 71%/58%, tawlbwrdd 58%/46%.
+    for (const id of CONFIG_IDS) for (const d of [3, 4] as Difficulty[]) {
+      const wins = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].filter(seed => playGame(d, id, seed).result === 'win').length
+      expect(wins, `${id}@D${d}`).toBeGreaterThanOrEqual(4)
+      expect(wins, `${id}@D${d}`).toBeLessThanOrEqual(10)
     }
+  }, 180_000)
+
+  it('a careless (1-ply) player loses most games somewhere at the top levels', () => {
+    let lost = 0
+    for (const id of CONFIG_IDS) lost += [1, 2, 3].filter(seed => playGame(4, id, seed, 1).result === 'lose').length
+    expect(lost).toBeGreaterThanOrEqual(6)
   }, 60_000)
 })
 

@@ -67,7 +67,7 @@ describe('hanoi engine', () => {
   it('fits the time budget: ~1 min at D1, never more than ~3 min at D4', () => {
     // About two seconds per move: D1 needs 9–22 optimal moves (real decisions,
     // under a minute), no level more than 65 (a 7-disk tower's 127 is too long).
-    const maxMoves = [22, 35, 35, 65]
+    const maxMoves = [22, 35, 35, 45]
     for (const id of CONFIG_IDS) for (const d of DIFFS) for (const seed of SEEDS) {
       const p = generatePuzzle(id, d, seed)
       expect(p.optimal, `${id} d${d}`).toBeLessThanOrEqual(maxMoves[d - 1])

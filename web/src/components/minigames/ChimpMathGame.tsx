@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import type { MinigameProps } from '@/games/types'
+import type { Difficulty, MinigameProps } from '@/games/types'
 import { scale, useGameTimer, TimerBar } from './_shared'
 
 // ── Types ──────────────────────────────────────────────────────────────────────
@@ -105,11 +105,19 @@ export function makeChoices(correct: number): number[] {
   return arr
 }
 
+// ── Difficulty ─────────────────────────────────────────────────────────────────
+
+/** Seconds for the whole lesson (0 = untimed): ~3 s a sum plus the 0.9 s feedback, with room to spare. */
+export const timeFor = (d: Difficulty) => scale(d, [0, 0, 40, 30])
+/** Share of the sums that must be right. */
+export const passShare = (d: Difficulty) => scale(d, [0.6, 0.8, 0.8, 1])
+export const passMark = (questions: number, d: Difficulty) => Math.ceil(questions * passShare(d) - 1e-9)
+
 // ── Component ──────────────────────────────────────────────────────────────────
 
 export default function ChimpMathGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
   // Higher difficulties put the puzzle on a clock.
-  const timeLimit = scale(difficulty, [0, 0, 120, 90])
+  const timeLimit = timeFor(difficulty)
 
   const cfg = CONFIGS[configId] ?? CONFIGS['jane-goodall-chimps']
 
@@ -143,7 +151,7 @@ export default function ChimpMathGame({ configId, difficulty, onWin, onLose }: M
   }
 
   if (phase === 'done') {
-    const pass = score >= Math.ceil(cfg.questions.length * 0.6)
+    const pass = score >= passMark(cfg.questions.length, difficulty)
     return (
       <div className="flex flex-col items-center gap-4 p-6 text-center">
         <div className="text-5xl">{pass ? `${cfg.chimpEmoji}🎉` : `${cfg.chimpEmoji}😔`}</div>
@@ -178,7 +186,7 @@ export default function ChimpMathGame({ configId, difficulty, onWin, onLose }: M
       <div className="flex items-end gap-3 mt-2">
         <div className="text-7xl select-none">{cfg.chimpEmoji}</div>
         <div className="relative bg-line border border-line-2 rounded-2xl rounded-bl-none px-5 py-3 text-center">
-          <div className="text-xs text-muted mb-1">Feed {cfg.chimpName} the right number of bananas!</div>
+          <div className="text-xs text-muted mb-1">Feed {cfg.chimpName} the right number of bananas! ({passMark(cfg.questions.length, difficulty)} of {cfg.questions.length} to pass)</div>
           <div className="text-2xl font-mono font-bold text-ink tracking-widest">
             {q.a} {q.op === '+' ? '➕' : '➖'} {q.b} ＝ ?
           </div>

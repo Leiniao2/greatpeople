@@ -118,7 +118,7 @@ export const CONFIGS: Record<string, CampaignConfig> = {
 
 export const turnsFor = (d: Difficulty) => scale(d, [7, 7, 6, 6])
 /** Share of all votes you must carry. */
-export const needShare = (d: Difficulty) => scale(d, [0.5, 0.55, 0.6, 0.55])
+export const needShare = (d: Difficulty) => scale(d, [0.5, 0.55, 0.6, 0.5])
 
 const clamp = (v: number) => Math.max(-MAX_SUPPORT, Math.min(MAX_SUPPORT, v))
 

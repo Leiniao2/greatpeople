@@ -49,27 +49,35 @@ Built in waves of 20; tick a box when the game is in the registry.
 - [x] `konigsberg` — Seven Bridges — draw a route using every bridge once (Euler path)
 - [x] `assembly` — Assembly Line — route parts along conveyors in order — Ford, 1913
 
-## Wave 3 — strategy and management
-- [ ] `battleship` — Naval Battle — find the hidden fleet by salvos — Trafalgar
-- [ ] `xiangqi` — Xiangqi Puzzles — Chinese chess mates
-- [ ] `tsume` — Tsume Shogi — shogi mating puzzles
-- [ ] `conquest` — Provinces — Risk-lite territory control vs AI — Alexander's empire
-- [ ] `diplomacy` — Alliances — negotiate treaties to keep a balance of power — Congress of Vienna
-- [ ] `castrum` — Roman Camp — zone a legion's camp to its rules
-- [ ] `bazaar` — Bazaar — set collection with trading — Grand Bazaar, Istanbul
-- [ ] `tulips` — Tulip Mania — buy and sell before the bubble bursts — 1637 Holland
-- [ ] `bankrun` — Bank Run — keep reserves against withdrawals — Medici bank
-- [ ] `quarantine` — Quarantine — contain an outbreak on a grid — Venice's lazaretto
-- [ ] `firebreak` — Firebreak — cut breaks to stop a spreading fire — London 1666
-- [ ] `logistics` — Supply Lines — keep an army fed along a route — Napoleon 1812
-- [ ] `workforce` — Workforce — schedule crews and seasons — pyramid builders
-- [ ] `harvest` — Harvest — time planting to the seasons and floods
-- [ ] `shipyard` — Shipyard — build ships to order with limited timber — Venetian Arsenal
-- [ ] `colony` — Settlement — place farms, wells and walls around a centre
-- [ ] `tradewinds` — Trade Winds — sail using seasonal winds — Indian Ocean monsoon
-- [ ] `stockexchange` — Exchange — trade shares on news — Amsterdam 1602
-- [ ] `guild` — Guild — train apprentices to masters under constraints
-- [ ] `tribute` — Tribute — balance tribute and loyalty among vassals
+## Wave 3 — physics, simulation, strategy and economics
+Re-planned from the original list toward hands-on physical rules.  Dropped
+as overlapping existing games: `conquest` (campaign), `diplomacy`
+(coalition), `stockexchange` (trade); `tsume`, `workforce`, `colony`,
+`guild` and `tribute` are left for later.
+
+Physics
+- [x] `trebuchet` — Trebuchet — set counterweight, sling and release angle (or a bombard's charge); the stone flies a simulated arc with gravity, drag and wind — Kenilworth 1266, Xiangyang 1273, Stirling 1304, Constantinople 1453
+- [x] `eureka` — Eureka — buoyancy and displacement with real densities: overflow volume, draft, Boyle's-law diver, metacentric height — Hiero's crown, Plimsoll line, Cartesian diver, the Vasa 1628
+- [x] `lever` — Balance and Lever — torque by hand: slide the fulcrum, pivot or poise, add counterweight — Archimedes, the shaduf, the Roman steelyard, Su Song's escapement
+- [x] `sundial` — Sundial — tilt and turn the gnomon, lay out hour lines, correct by the equation of time, time the solstice — Catania dial at Rome, Ibn al-Shatir, Jantar Mantar, Guo Shoujing
+
+Simulation
+- [x] `firebreak` — Firebreak — one action a turn against a fire that spreads downwind and throws sparks — London 1666, Rome 64, Edo 1657, Chicago 1871, Moscow 1812 (burn the stores)
+- [x] `quarantine` — Quarantine — contain an outbreak spreading along roads — Venice lazaretto, Broad Street pump, Eyam, Jenner, 1918 flu
+- [x] `harvest` — Harvest — one job a week against flood, warmth, rain, blight or wind — Nile basins, 24 solar terms, Maya milpa, Irish blight, Dust Bowl
+- [x] `tradewinds` — Trade Winds — sail a wind-and-current grid where speed depends on the angle to the wind — monsoon, Zheng He, volta do mar, doldrums, Viking sunstone
+
+Strategy
+- [x] `battleship` — Naval Battle — salvos against a hidden fleet, with a different clue per battle (line of battle, scout counts, ASDIC range, a moving fleet) — Trafalgar, Midway, Western Approaches, Salamis
+- [x] `xiangqi` — Xiangqi Mates — mate in 1–3 on the full board against a minimax defender — Ju Zhong Mi, cannon and horse mates, Seven Stars, Korean janggi
+- [x] `castrum` — Roman Camp — place gates, tents, HQ, granary and horse lines to a unique solution from row and column clues — Polybius, marching camp, milecastle, Masada, Han camp
+- [x] `shipyard` — Shipyard — saw ship parts from limited timber; cuts are permanent and each new log costs a day — Venetian Arsenal, Viking longship, Zheng He, HMS Victory, Liberty ships
+
+Economics
+- [x] `tulips` — Tulip Mania — trade a momentum bubble before it bursts — Haarlem 1637, South Sea, Mississippi, Railway Mania, 1929 margin
+- [x] `bankrun` — Bank Run — pay the withdrawal queue by selling, calling or pledging assets — Medici, Amsterdam, 1907, Bagehot, 1933
+- [x] `logistics` — Supply Lines — route, carts and depots, where the carts' animals eat too — Napoleon 1812, Hannibal, Gedrosia, Red Ball Express, Zhuge Liang
+- [x] `bazaar` — Grand Bazaar — haggle against hidden reservation prices to collect a set — Istanbul, Tlatelolco, Chang'an, Timbuktu, Kaifeng
 
 ## Wave 4 — creative, story and exploration
 - [ ] `calligraphy` — Calligraphy — trace strokes in the right order

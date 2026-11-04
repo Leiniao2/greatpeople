@@ -169,8 +169,13 @@ export function greedySolve(blocked: readonly boolean[], animal: number, riders:
   return null
 }
 
-export const ridersFor = (d: Difficulty) => scale(d, [2, 2, 1, 1])
-export const obstaclesFor = (d: Difficulty) => scale(d, [10, 4, 20, 15])
+// Rocks help the riders: the herd is boxed in by them.  Playtests (a player
+// who posts half the time on its shortest way out and half the time next to
+// it) held every old tier above 90%, so from tier 2 one rider is posted a
+// turn: on open ground with the escape routes shaded (D2), on rockier ground
+// with them hidden (D3), then on open ground with them hidden (D4).
+export const ridersFor = (d: Difficulty) => scale(d, [2, 1, 1, 1])
+export const obstaclesFor = (d: Difficulty) => scale(d, [10, 6, 12, 6])
 
 export interface RoundUpBoard { blocked: boolean[]; animal: number }
 

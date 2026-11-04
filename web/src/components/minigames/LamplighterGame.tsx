@@ -18,10 +18,13 @@ import { mulberry32, hashString, resolveConfig, scale, useGameOutcome, OutcomeBa
 // lamps are dark holes that cannot be pressed, are not toggled and do not
 // need lighting.
 //
-//   D1  4×4   optimal ≥ 3   budget optimal + 3   1 hint    ~1 min
-//   D2  4×4   optimal ≥ 4   budget optimal + 2   1 hint
-//   D3  5×5   optimal ≥ 5   budget optimal + 2
-//   D4  5×5   optimal ≥ 7   budget optimal + 1             ~3 min
+//   D1  4×4   optimal ≥ 3   budget optimal + 4   1 hint    ~1 min
+//   D2  4×4   optimal ≥ 4   budget optimal + 4   1 hint
+//   D3  5×5   optimal ≥ 5   budget optimal + 4   1 hint
+//   D4  5×5   optimal ≥ 6   budget optimal + 2             ~2–3 min
+//
+// A wrong press costs two from the budget (it has to be pressed again), so
+// D1–D3 forgive two wrong lamps and D4 one.
 //
 // The game is lost as soon as the lamps still dark cannot be lit in the
 // presses left (checked exactly after every press), or the budget runs out.
@@ -201,10 +204,12 @@ export interface Tier { n: number; presses: number; minOptimal: number; slack: n
 export function tierFor(difficulty: Difficulty): Tier {
   return {
     n: scale(difficulty, [4, 4, 5, 5]),
-    presses: scale(difficulty, [3, 5, 6, 8]),
-    minOptimal: scale(difficulty, [3, 4, 5, 7]),
-    slack: scale(difficulty, [3, 2, 2, 1]),
-    hints: scale(difficulty, [1, 1, 0, 0]),
+    presses: scale(difficulty, [3, 4, 5, 6]),
+    minOptimal: scale(difficulty, [3, 4, 5, 6]),
+    // A wrong press costs two (it must be pressed again), so slack 4 forgives
+    // two wrong lamps and slack 2 one.
+    slack: scale(difficulty, [4, 4, 4, 2]),
+    hints: scale(difficulty, [1, 1, 1, 0]),
   }
 }
 

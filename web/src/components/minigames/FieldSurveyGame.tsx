@@ -66,10 +66,12 @@ export const CONFIGS: Record<string, SurveyConfig> = {
 export interface SurveyTier { size: number; finds: number; searches: number; rough: boolean }
 
 export const tierFor = (d: Difficulty): SurveyTier => scale(d, [
-  { size: 6, finds: 2, searches: 15, rough: false },
-  { size: 7, finds: 3, searches: 20, rough: false },
-  { size: 7, finds: 3, searches: 18, rough: false },
-  { size: 7, finds: 3, searches: 22, rough: true },
+  // Search budgets sit just above what a sloppy-but-logical searcher needs
+  // (≈ 7 / 11 / 14 / 14 searches at the median; rough readings from tier 3).
+  { size: 6, finds: 2, searches: 12, rough: false },
+  { size: 7, finds: 3, searches: 12, rough: false },
+  { size: 7, finds: 3, searches: 15, rough: true },
+  { size: 7, finds: 3, searches: 13, rough: true },
 ])
 
 /** Searches the reference solver may need on an accepted board, leaving the rest as slack. */

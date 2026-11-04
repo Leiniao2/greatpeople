@@ -76,7 +76,8 @@ export interface RiverTier { length: number; view: number; density: number; live
 
 export const tierFor = (d: Difficulty): RiverTier => scale(d, [
   { length: 18, view: 6, density: 0.22, lives: 3, currentMs: 0 },
-  { length: 24, view: 5, density: 0.28, lives: 3, currentMs: 0 },
+  // From tier 2 the current pushes you on if you dither (generous at first).
+  { length: 24, view: 5, density: 0.28, lives: 3, currentMs: 2400 },
   { length: 28, view: 4, density: 0.32, lives: 2, currentMs: 1500 },
   { length: 32, view: 4, density: 0.36, lives: 2, currentMs: 1100 },
 ])

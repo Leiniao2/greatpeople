@@ -1,5 +1,5 @@
 import { useState, useMemo, useRef, useCallback } from 'react'
-import type { MinigameProps } from '@/games/types'
+import type { Difficulty, MinigameProps } from '@/games/types'
 import { scale } from './_shared'
 
 interface MusicConfig {
@@ -228,8 +228,22 @@ function shuffle<T>(arr: T[]): T[] {
   return a
 }
 
+/**
+ * Per tier: tries allowed, whether the tune can be heard before the first
+ * try (tier 1 only — otherwise only after a miss), and whether a miss marks
+ * each note right or wrong (the top tier only says how many are in place).
+ */
+export function musicRules(d: Difficulty) {
+  return {
+    attempts: scale(d, [3, 3, 2, 2]),
+    listenFirst: d === 1,
+    markNotes: d < 4,
+  }
+}
+
 export default function MusicGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
-  const maxAttempts = scale(difficulty, [3, 3, 2, 2])
+  const rules = musicRules(difficulty)
+  const maxAttempts = rules.attempts
   const [attempts, setAttempts] = useState(0)
   const config = CONFIGS[configId] ?? CONFIGS['c-major-scale']
   const labels = config.noteLabels ?? config.notes
@@ -334,6 +348,7 @@ export default function MusicGame({ configId, difficulty, onWin, onLose }: Minig
   const allPicked = chosen.length === indexedCorrect.length
 
   const isCorrect = submitted && chosen.every((c, i) => c.idx === indexedCorrect[i].idx)
+  const inPlace = chosen.filter((c, i) => c.idx === indexedCorrect[i]?.idx).length
 
   const handlePlayAndCheck = () => {
     if (isPlaying) return
@@ -374,8 +389,8 @@ export default function MusicGame({ configId, difficulty, onWin, onLose }: Minig
           {/* Chosen notes on staff */}
           <div className="absolute inset-0 flex items-center gap-3 px-2">
             {chosen.map((c, pos) => {
-              const noteCorrect = submitted && c.idx === indexedCorrect[pos].idx
-              const noteWrong = submitted && c.idx !== indexedCorrect[pos].idx
+              const noteCorrect = submitted && rules.markNotes && c.idx === indexedCorrect[pos].idx
+              const noteWrong = submitted && rules.markNotes && c.idx !== indexedCorrect[pos].idx
               const h = getNoteHeight(c.note)
               const color = getNoteColor(c.note)
               return (
@@ -418,6 +433,16 @@ export default function MusicGame({ configId, difficulty, onWin, onLose }: Minig
         ))}
       </div>
 
+      {rules.listenFirst && !submitted && attempts === 0 && (
+        <button
+          onClick={handleHearAnswer}
+          disabled={isPlaying}
+          className="py-2 rounded-xl border border-accent/50 text-accent text-xs hover:border-accent transition-all disabled:opacity-50"
+        >
+          {isPlaying ? '♪ Playing…' : 'Hear the tune ▶'}
+        </button>
+      )}
+
       {allPicked && !submitted && (
         <button
           onClick={handlePlayAndCheck}
@@ -435,7 +460,7 @@ export default function MusicGame({ configId, difficulty, onWin, onLose }: Minig
             : 'bg-red-500/10 border-red-500/30 text-red-300'
         }`}>
           <span className="font-bold mr-1">
-            {isCorrect ? '✓ Perfect melody!' : '✗ Not quite —'}
+            {isCorrect ? '✓ Perfect melody!' : rules.markNotes ? '✗ Not quite —' : `✗ Not quite — ${inPlace} of ${indexedCorrect.length} notes in place.`}
           </span>
           {config.fact}
         </div>

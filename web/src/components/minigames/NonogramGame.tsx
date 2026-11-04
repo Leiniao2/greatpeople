@@ -7,11 +7,12 @@ import { mulberry32, hashString, resolveConfig, scale, useGameOutcome, OutcomeBa
 //
 //   D1  5×5     4 mistakes   1–2 twisted lines
 //   D2  7×7     3 mistakes   2–3
-//   D3  8×8     3 mistakes   2–4
-//   D4  10×10   3 mistakes   3–4
+//   D3  8×8     3 mistakes   2–3
+//   D4  8×8     2 mistakes   4–6 (classic: the mistake cap is the step up)
 //
 // About a second or two per cell for an engaged solver: ~40 s at D1 to
-// ~3 min at D4.
+// ~2½ min at D4 (a 10×10 ran past three minutes for a first-time solver, so
+// D4 keeps the 8×8 and twists twice the lines instead).
 //
 // Each config is a different rule twist on some of the clue lines:
 //   classic  every clue lists the runs of filled cells, in order
@@ -477,10 +478,10 @@ export interface Tier {
 
 export function tierFor(difficulty: Difficulty): Tier {
   return {
-    size: scale(difficulty, [5, 7, 8, 10]),
-    maxMistakes: scale(difficulty, [4, 3, 3, 3]),
-    twists: scale(difficulty, [2, 3, 4, 4]),
-    minTwists: scale(difficulty, [1, 2, 2, 3]),
+    size: scale(difficulty, [5, 7, 8, 8]),
+    maxMistakes: scale(difficulty, [4, 3, 3, 2]),
+    twists: scale(difficulty, [2, 3, 3, 6]),
+    minTwists: scale(difficulty, [1, 2, 2, 4]),
   }
 }
 

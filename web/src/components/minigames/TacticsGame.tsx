@@ -318,7 +318,9 @@ export interface TacticsStage {
 
 export const BOARD_SIZE = (d: Difficulty) => scale(d, [6, 7, 8, 8])
 /** Mate depths of the generated positions that follow the authored opener. */
-export const STAGE_DEPTHS = (d: Difficulty): number[] => scale(d, [[2], [1, 2], [2, 3], [2, 2, 3]])
+// One mate in three at most, and only from D4: D3 had a mate in three and D4 two mates in
+// two plus a mate in three, which ran past three minutes for a casual player.
+export const STAGE_DEPTHS = (d: Difficulty): number[] => scale(d, [[2], [1, 2], [2, 2], [2, 3]])
 export const DISTRACTORS = (d: Difficulty) => scale(d, [0, 0, 2, 3])
 /** Wrong-but-legal moves allowed over the whole campaign. */
 export const MAX_MISSES = (d: Difficulty) => scale(d, [4, 3, 3, 2])

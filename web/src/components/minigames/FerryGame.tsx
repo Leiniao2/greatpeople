@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useState } from 'react'
 import type { MinigameProps, Difficulty } from '@/games/types'
-import { hashString, mulberry32, shuffle, resolveConfig, scale, useGameOutcome, OutcomeBanner, type Rng } from './_shared'
+import { hashString, mulberry32, shuffle, resolveConfig, storyText, scale, useGameOutcome, OutcomeBanner, type Rng } from './_shared'
 
 // River Crossing — Alcuin of York's river puzzles (Propositiones ad acuendos
 // juvenes, c. 800 CE) and their descendants.  Load the boat, row across,
@@ -357,8 +357,8 @@ export function rulesFor(difficulty: Difficulty, optimal: number): FerryRules {
 
 // ── Component ──────────────────────────────────────────────────────────────────
 
-export default function FerryGame({ configId, difficulty, seed, onWin, onLose }: MinigameProps) {
-  const cfg = resolveConfig(CONFIGS, configId, undefined, 'wolf-goat')
+export default function FerryGame({ configId, difficulty, seed, params, onWin, onLose }: MinigameProps) {
+  const cfg = { ...resolveConfig(CONFIGS, configId, undefined, 'wolf-goat'), ...storyText(params) }
   const puzzle = useMemo(() => generatePuzzle(configId, difficulty, seed), [configId, difficulty, seed])
   const rules = rulesFor(difficulty, puzzle.optimal)
   const n = puzzle.people.length

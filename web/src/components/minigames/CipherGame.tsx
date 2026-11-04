@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import type { MinigameProps } from '@/games/types'
+import type { Difficulty, MinigameProps } from '@/games/types'
 import { mulberry32, resolveConfig, scale, useGameOutcome, OutcomeBanner, useGameTimer, TimerBar } from './_shared'
 
 // Cipher: recover a message.  Three modes share one component:
@@ -116,11 +116,41 @@ export function resolveCipherConfig(configId: string | undefined, params?: Recor
   return cfg
 }
 
+/**
+ * Caesar and Vigenère: a few wrong readings, the frequency / keyword hint
+ * goes at tier 3, and a clock from tier 3.  Morse: every mistyped symbol
+ * counts, so the cap is per letter-ish, and the card always stays (nobody
+ * keys Morse from memory); its clock scales with the message.
+ */
+export function cipherTier(mode: Mode, difficulty: Difficulty, plaintext: string) {
+  if (mode === 'morse') {
+    const letters = plaintext.replace(/[^A-Za-z]/g, '').length
+    return {
+      maxAttempts: scale(difficulty, [6, 5, 4, 3]),
+      showHints: true,
+      timeLimit: scale(difficulty, [0, 30 + letters * 12, 30 + letters * 9, 30 + letters * 7]),
+    }
+  }
+  if (mode === 'caesar') {
+    // From tier 3 the wheel no longer reads out live: the player works the
+    // shift out (the frequency counts stay to make that fair) and checks it.
+    return {
+      maxAttempts: scale(difficulty, [4, 3, 2, 2]),
+      showHints: true,
+      blind: difficulty >= 3,
+      timeLimit: scale(difficulty, [0, 0, 120, 90]),
+    }
+  }
+  return {
+    maxAttempts: scale(difficulty, [4, 3, 2, 2]),
+    showHints: difficulty < 3,
+    timeLimit: scale(difficulty, [0, 0, 180, 150]),
+  }
+}
+
 export default function CipherGame({ configId, difficulty, seed, params, onWin, onLose }: MinigameProps) {
   const cfg = resolveCipherConfig(configId, params)
-  const maxAttempts = scale(difficulty, [4, 3, 2, 2])
-  const showHints = difficulty < 3
-  const timeLimit = scale(difficulty, [0, 0, 150, 100])
+  const { maxAttempts, showHints, timeLimit, blind = false } = cipherTier(cfg.mode, difficulty, cfg.plaintext)
   const { outcome, settled, win, lose } = useGameOutcome({ onWin, onLose, delayMs: 900 })
   const timer = useGameTimer({ seconds: timeLimit, running: !settled, onExpire: () => lose('out of time') })
   const [attempts, setAttempts] = useState(0)
@@ -153,7 +183,7 @@ export default function CipherGame({ configId, difficulty, seed, params, onWin, 
       </div>
       {timer.active && <TimerBar remaining={timer.remaining} total={timer.total} />}
 
-      {cfg.mode === 'caesar' && <CaesarWheel ciphertext={ciphertext} shift={shift} showHints={showHints} disabled={settled} onCheck={check} />}
+      {cfg.mode === 'caesar' && <CaesarWheel ciphertext={ciphertext} shift={shift} showHints={showHints} blind={blind} disabled={settled} onCheck={check} />}
       {cfg.mode === 'vigenere' && <VigenerePanel ciphertext={ciphertext} keyword={keyword} showHints={showHints} disabled={settled} onCheck={check} />}
       {cfg.mode === 'morse' && <MorseKey plain={plain} showHints={showHints} disabled={settled} onCheck={check} onWrong={() => check(false)} />}
 
@@ -164,10 +194,13 @@ export default function CipherGame({ configId, difficulty, seed, params, onWin, 
 
 // ── Caesar ─────────────────────────────────────────────────────────────────────
 
-function CaesarWheel({ ciphertext, shift, showHints, disabled, onCheck }: {
-  ciphertext: string; shift: number; showHints: boolean; disabled: boolean; onCheck: (ok: boolean) => void
+function CaesarWheel({ ciphertext, shift, showHints, blind, disabled, onCheck }: {
+  ciphertext: string; shift: number; showHints: boolean; blind: boolean; disabled: boolean; onCheck: (ok: boolean) => void
 }) {
   const [guess, setGuess] = useState(0)
+  // Blind wheel: the reading appears only for the setting last checked.
+  const [checked, setChecked] = useState<number | null>(null)
+  const showReading = !blind || checked === guess
   const decoded = encodeCaesar(ciphertext, -guess)
   const freq = useMemo(() => {
     const counts: Record<string, number> = {}
@@ -188,15 +221,17 @@ function CaesarWheel({ ciphertext, shift, showHints, disabled, onCheck }: {
         <button disabled={disabled} onClick={() => setGuess(g => (g + 1) % 26)}
           className="w-10 h-10 rounded-xl bg-panel border border-line text-ink font-bold hover:border-accent/40">+</button>
       </div>
-      <p className="font-mono text-sm tracking-[0.2em] text-accent bg-panel border border-accent/30 rounded-xl p-3 break-words">{decoded}</p>
+      <p data-testid="caesar-reading" className="font-mono text-sm tracking-[0.2em] text-accent bg-panel border border-accent/30 rounded-xl p-3 break-words">
+        {showReading ? decoded : <span className="text-muted text-xs tracking-normal">Work out the shift, then check it to read the result.</span>}
+      </p>
       {showHints && (
         <p className="text-[10px] text-muted">
           Most frequent symbols: {freq.map(([c, n]) => `${c}×${n}`).join(', ')} — in English, E, T and A lead.
         </p>
       )}
-      <button disabled={disabled} onClick={() => onCheck(guess === shift)}
+      <button disabled={disabled || (blind && checked === guess)} onClick={() => { setChecked(guess); onCheck(guess === shift) }}
         className="py-2.5 rounded-xl bg-accent text-accent-fg font-bold text-sm hover:bg-accent-hover transition-all disabled:opacity-50">
-        Read the message
+        {blind ? 'Check this shift' : 'Read the message'}
       </button>
     </div>
   )

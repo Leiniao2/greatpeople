@@ -26,13 +26,19 @@ describe('nonogram logic', () => {
 
   it('time budget: ~1 min at D1 up to ~3 min at D4 (cells to decide, mistakes allowed)', () => {
     // An engaged solver settles roughly one cell every 1–2 s.
-    const maxCells = [25, 49, 64, 100]
+    // 10×10 ran past three minutes for a first-time solver: D4 is an 8×8
+    // with twice the twisted lines of D3.
+    const maxCells = [25, 49, 64, 64]
     for (const d of DIFFS) {
       const t = tierFor(d)
       expect(t.size ** 2, `d${d} cells`).toBeLessThanOrEqual(maxCells[d - 1])
-      expect(t.maxMistakes).toBeGreaterThanOrEqual(3)
+      expect(t.maxMistakes).toBeGreaterThanOrEqual(d === 4 ? 2 : 3)
       expect(t.twists).toBeLessThanOrEqual(t.size)
-      if (d > 1) expect(t.size).toBeGreaterThan(tierFor((d - 1) as Difficulty).size)
+      if (d > 1) {
+        const prev = tierFor((d - 1) as Difficulty)
+        expect(t.size).toBeGreaterThanOrEqual(prev.size)
+        expect(t.size > prev.size || (t.minTwists > prev.minTwists && t.maxMistakes < prev.maxMistakes), `d${d} harder than d${d - 1}`).toBe(true)
+      }
     }
     // D1 is still a real puzzle: a 5×5 that one sweep of the line solver does not finish.
     for (let seed = 1; seed <= 12; seed++) {

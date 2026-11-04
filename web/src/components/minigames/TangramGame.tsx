@@ -18,11 +18,13 @@ import { mulberry32, hashString, resolveConfig, scale, useGameOutcome, OutcomeBa
 //
 //   D1  faint outline of every piece in the silhouette   2:00
 //   D2  outlines of the two large and the medium triangle 2:30
-//   D3  silhouette only, pieces start turned              3:00
+//   D3  outlines of the large and medium triangles, pieces start turned  3:00
 //   D4  silhouette only, pieces start turned, twist at its tightest  3:00
 //
 // Time budget: seven pieces take an engaged player about a minute with the
 // D1 outlines, two to three without; the clock never allows more than 3:00.
+// A bare silhouette with turned pieces is D4 only: at D3 too it left a
+// first-time player little chance inside three minutes.
 //
 // Each config adds its own rule twist (see TWISTS):
 //   song-scholar  memory   — the silhouette is shown, then hidden; a few short peeks
@@ -247,7 +249,7 @@ export interface Tier { outlines: 'all' | 'some' | 'none'; turned: boolean; seco
 
 export function tierFor(difficulty: Difficulty): Tier {
   return {
-    outlines: scale(difficulty, ['all', 'some', 'none', 'none'] as const),
+    outlines: scale(difficulty, ['all', 'some', 'some', 'none'] as const),
     turned: difficulty >= 3,
     seconds: scale(difficulty, [120, 150, 180, 180]),
   }

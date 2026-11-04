@@ -5,7 +5,7 @@ import type { Difficulty } from '@/games/types'
 import { mulberry32 } from '@/components/minigames/_shared'
 import MintGame, {
   CONFIGS, CONFIG_IDS, DIRS, BLOCK, LEAD, WILD, MAX_SWIPES, playOut, sizeFor, targetFor, rulesFor, slideGrid, slideTiles, tilesToGrid,
-  canMove, bestDir, initialGrid, spawnAt, turn, traySeed, playableSeed, blockCells, mergeOf, type Tile, type Dir,
+  canMove, bestDir, initialGrid, spawnAt, turn, traySeed, playableSeed, blockCells, mergeOf, blocksFor, type Tile, type Dir,
 } from '@/components/minigames/MintGame'
 
 const DIFFS: Difficulty[] = [1, 2, 3, 4]
@@ -113,7 +113,8 @@ describe('Coin Mint — variants', () => {
   it('blocked (Britain): broken dies stop coins and never move', () => {
     for (const d of DIFFS) {
       const r = rulesFor('blocked', d, 77)
-      expect(r.blocks.length).toBe(d <= 2 ? 1 : 2)
+      expect(r.blocks.length).toBe(blocksFor(d))
+      expect(r.blocks.length).toBe(d <= 3 ? 1 : 2)
       for (const b of r.blocks) expect([0, 3, 12, 15]).not.toContain(b)
       expect(initialGrid(r, 77).grid.filter(v => v === BLOCK).length).toBe(r.blocks.length)
     }
@@ -139,7 +140,7 @@ describe('Coin Mint — component', () => {
       const { container, getByTestId } = render(createElement(MintGame, { configId: id, difficulty: d, seed: 4, onWin: () => {}, onLose: () => {} }))
       expect(container.querySelectorAll('[data-coin]:not([data-ghost])').length).toBe(2)
       expect(getByTestId('mint-twist').textContent).toContain(CONFIGS[id].twistText)
-      expect(container.querySelectorAll('[data-block]').length).toBe(CONFIGS[id].twist === 'blocked' ? (d <= 2 ? 1 : 2) : 0)
+      expect(container.querySelectorAll('[data-block]').length).toBe(CONFIGS[id].twist === 'blocked' ? blocksFor(d) : 0)
       if (CONFIGS[id].twist === 'tilt') expect(container.querySelector<HTMLButtonElement>('[data-dir="up"]')!.disabled).toBe(true)
       cleanup()
     }

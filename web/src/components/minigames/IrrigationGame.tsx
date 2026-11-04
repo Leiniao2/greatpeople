@@ -25,8 +25,8 @@ import { mulberry32, hashString, resolveConfig, scale, useGameOutcome, OutcomeBa
 // plus a little slack.
 //
 //   D1  5×5  2 sluices  2 fields  1 village  ≥2 actions  slack 2  ~1 min
-//   D2  6×6  3 sluices  3 fields  1 village  ≥3 actions  slack 1  ~1.5 min
-//   D3  7×6  4 sluices  3 fields  1 village  ≥4 actions  slack 1  ~2 min
+//   D2  6×6  3 sluices  3 fields  1 village  ≥3 actions  slack 2  ~1.5 min
+//   D3  7×6  4 sluices  3 fields  1 village  ≥4 actions  slack 2  ~2 min
 //   D4  7×7  5 sluices  4 fields  2 villages ≥5 actions  slack 1  ~3 min
 //       (egypt D4: 4 sluices, 3 basins, ≥4 actions — each basin soaks twice)
 
@@ -305,7 +305,7 @@ export function tierFor(d: Difficulty, rules?: Rules): Tier {
     gates: scale(d, [2, 3, 4, 5]),
     fields: scale(d, [2, 3, 3, 4]),
     villages: scale(d, [1, 1, 1, 2]),
-    slack: scale(d, [2, 1, 1, 1]),
+    slack: scale(d, [2, 2, 2, 1]),
     minActs: scale(d, [2, 3, 4, 5]),
     maxTurns: scale(d, [7, 9, 11, 13]),
     hints: scale(d, [2, 1, 0, 0]),

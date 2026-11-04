@@ -1,6 +1,6 @@
-import { useState, useEffect, useCallback } from 'react'
-import type { MinigameProps } from '@/games/types'
-import { scale, useGameTimer, TimerBar } from './_shared'
+import { useState, useEffect, useCallback, useMemo } from 'react'
+import type { MinigameProps, Difficulty } from '@/games/types'
+import { scale, useGameTimer, TimerBar, mulberry32, hashString } from './_shared'
 
 // Grid legend: '#'=wall '.'=ice 'S'=start 'E'=exit 'B'=blocker stone
 interface Config {
@@ -254,16 +254,121 @@ export function slidePos(grid: string[][], r: number, c: number, dir: Dir): [num
   return [r, c]
 }
 
-export default function IceSlideGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
-  // Higher difficulties put the puzzle on a clock.
-  const timeLimit = scale(difficulty, [0, 0, 120, 90])
-  const timer = useGameTimer({ seconds: timeLimit, running: true, onExpire: () => onLose('out of time') })
+// ── Difficulty ────────────────────────────────────────────────────────────────
+//
+// Most authored yards were two slides long at every difficulty.  The fewest
+// slides to the exit now sets the tier:
+//
+//   D1  3–4 slides   no clock      D2  5–6 slides   no clock
+//   D3  7–8 slides   2:00          D4  9–11 slides  2:00
+//
+// An authored yard is used when it falls in the band; otherwise the seed lays
+// stones (and the start and exit) on the yard's own walls until the shortest
+// route does.  Every stop the player can reach can still reach the exit, so
+// no slide ever traps the player.
 
+export const BANDS: readonly { lo: number; hi: number }[] = [
+  { lo: 3, hi: 4 }, { lo: 5, hi: 6 }, { lo: 7, hi: 8 }, { lo: 9, hi: 11 },
+]
+export const timeLimitFor = (d: Difficulty) => scale(d, [0, 0, 120, 120])
+
+const DIRS: Dir[] = ['up', 'down', 'left', 'right']
+
+/** Fewest slides from the start to the exit, or -1; also -1 if some reachable stop is a trap. */
+export function analyse(lines: string[]): { optimal: number; trapFree: boolean } {
+  const { grid, sr, sc } = parseGrid(lines)
+  const key = (r: number, c: number) => r * 64 + c
+  const dist = new Map<number, number>([[key(sr, sc), 0]])
+  const edges = new Map<number, number[]>()
+  const queue: [number, number][] = [[sr, sc]]
+  let optimal = -1
+  for (let h = 0; h < queue.length; h++) {
+    const [r, c] = queue[h]
+    const k = key(r, c), out: number[] = []
+    if (grid[r][c] === 'E') { if (optimal < 0) optimal = dist.get(k)!; edges.set(k, out); continue }
+    for (const dir of DIRS) {
+      const [nr, nc] = slidePos(grid, r, c, dir)
+      const nk = key(nr, nc)
+      if (nk === k) continue
+      out.push(nk)
+      if (!dist.has(nk)) { dist.set(nk, dist.get(k)! + 1); queue.push([nr, nc]) }
+    }
+    edges.set(k, out)
+  }
+  if (optimal < 0) return { optimal: -1, trapFree: false }
+  // Every reachable stop must still reach the exit: search backwards from it.
+  const back = new Map<number, number[]>()
+  for (const [k, out] of edges) for (const nk of out) back.set(nk, [...(back.get(nk) ?? []), k])
+  const exits = [...edges.keys()].filter(k => grid[Math.floor(k / 64)][k % 64] === 'E')
+  const good = new Set(exits), stack = [...exits]
+  while (stack.length) { const k = stack.pop()!; for (const pk of back.get(k) ?? []) if (!good.has(pk)) { good.add(pk); stack.push(pk) } }
+  return { optimal, trapFree: [...edges.keys()].every(k => good.has(k)) }
+}
+
+/** The yard played at a difficulty (an authored one when it fits the band). */
+export function yardFor(configId: string, difficulty: Difficulty, seed: number): string[] {
   const cfg = CONFIGS[configId] ?? CONFIGS['enkidu-ice']
-  const { grid, sr, sc } = parseGrid(cfg.grid)
+  const band = BANDS[difficulty - 1]
+  const fits = (lines: string[]) => { const a = analyse(lines); return a.trapFree && a.optimal >= band.lo && a.optimal <= band.hi }
+  if (fits(cfg.grid)) return cfg.grid
+  const rng = mulberry32(hashString(`ice:${configId}:${difficulty}:${seed}`))
+  const walls = cfg.grid.map(l => l.replace(/[SEB]/g, '.').split(''))
+  const ice: [number, number][] = []
+  walls.forEach((row, r) => row.forEach((ch, c) => { if (ch === '.') ice.push([r, c]) }))
+  let best: string[] | null = null, bestGap = Infinity
+  for (let attempt = 0; attempt < 400; attempt++) {
+    const g = walls.map(row => [...row])
+    const cells = [...ice]
+    for (let i = cells.length - 1; i > 0; i--) { const j = Math.floor(rng() * (i + 1)); [cells[i], cells[j]] = [cells[j], cells[i]] }
+    const stones = Math.round(ice.length * (0.12 + rng() * 0.1))
+    for (const [r, c] of cells.slice(0, stones)) g[r][c] = 'B'
+    const [sr, sc] = cells[stones]
+    g[sr][sc] = 'S'
+    // Exit: the reachable stop whose distance best fits the band.
+    const lines0 = g.map(row => row.join(''))
+    const stops = reachableStops(lines0)
+    for (const [k, d] of stops) {
+      if (d < 2 || d > band.hi + 1) continue
+      if (d < band.lo && bestGap <= band.lo - d) continue
+      const er = Math.floor(k / 64), ec = k % 64
+      const trial = g.map(row => [...row]); trial[er][ec] = 'E'
+      const lines = trial.map(row => row.join(''))
+      const a = analyse(lines)
+      if (!a.trapFree) continue
+      if (a.optimal >= band.lo && a.optimal <= band.hi) return lines
+      // A small yard may not reach the band: keep the closest, never the authored 2-slider.
+      const gap = a.optimal < band.lo ? band.lo - a.optimal : a.optimal - band.hi
+      if (gap < bestGap) { best = lines; bestGap = gap }
+    }
+  }
+  return best ?? cfg.grid
+}
+
+/** Every stop reachable from the start, with its slide distance (key r·64 + c). */
+function reachableStops(lines: string[]): Map<number, number> {
+  const { grid, sr, sc } = parseGrid(lines)
+  const dist = new Map<number, number>([[sr * 64 + sc, 0]])
+  const queue: [number, number][] = [[sr, sc]]
+  for (let h = 0; h < queue.length; h++) {
+    const [r, c] = queue[h]
+    for (const dir of DIRS) {
+      const [nr, nc] = slidePos(grid, r, c, dir)
+      const nk = nr * 64 + nc
+      if (!dist.has(nk)) { dist.set(nk, dist.get(r * 64 + c)! + 1); queue.push([nr, nc]) }
+    }
+  }
+  return dist
+}
+
+export default function IceSlideGame({ configId, difficulty, seed, onWin, onLose }: MinigameProps) {
+  const cfg = CONFIGS[configId] ?? CONFIGS['enkidu-ice']
+  const yard = useMemo(() => yardFor(configId, difficulty, seed ?? 0), [configId, difficulty, seed])
+  const { grid, sr, sc } = useMemo(() => parseGrid(yard), [yard])
 
   const [pos, setPos] = useState<[number, number]>([sr, sc])
   const [won, setWon] = useState(false)
+  // Higher difficulties put the puzzle on a clock.
+  const timer = useGameTimer({ seconds: timeLimitFor(difficulty), running: !won, onExpire: () => onLose('out of time') })
   const [trail, setTrail] = useState<Set<string>>(new Set([`${sr},${sc}`]))
 
   const move = useCallback((dir: Dir) => {

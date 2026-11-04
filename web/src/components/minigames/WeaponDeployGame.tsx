@@ -1,5 +1,6 @@
-import { useState, useEffect, useRef, useCallback } from 'react'
-import type { MinigameProps } from '@/games/types'
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
+import type { Difficulty, MinigameProps } from '@/games/types'
+import { scale } from './_shared'
 
 type WeaponType = 'archer' | 'catapult' | 'cannon'
 type Phase = 'deploy' | 'battle' | 'won' | 'lost'
@@ -131,8 +132,18 @@ export function battleStep(cfg: DeployConfig, board: (WeaponType | null)[], enem
   return { next, flash }
 }
 
-export default function WeaponDeployGame({ configId, onWin, onLose }: MinigameProps) {
-  const cfg = CONFIGS[configId] ?? CONFIGS['sun-tzu-ambush']
+/**
+ * Your war chest as a share of the config's budget.  With the full budget a
+ * random spread of weapons beside the path held in most configs at every level;
+ * the shrinking chest makes placement matter.  Some layout within 75% of the
+ * budget stops every enemy in every config (audit_strategy), so D4 stays winnable.
+ */
+export const BUDGET_SHARE = [1.15, 1, 0.85, 0.75] as const
+export const budgetFor = (cfg: { budget: number }, d: Difficulty) => Math.floor(cfg.budget * scale(d, BUDGET_SHARE))
+
+export default function WeaponDeployGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
+  const cfg0 = CONFIGS[configId] ?? CONFIGS['sun-tzu-ambush']
+  const cfg = useMemo(() => ({ ...cfg0, budget: budgetFor(cfg0, difficulty) }), [cfg0, difficulty])
   const total = cfg.cols * cfg.rows
 
   const [board, setBoard] = useState<(WeaponType | null)[]>(() => Array(total).fill(null))

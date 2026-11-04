@@ -32,9 +32,9 @@ import { mulberry32, resolveConfig, scale, shuffle, useGameOutcome, OutcomeBanne
 // Three men's from Level 3: the opening placement may not use the centre,
 // which removes the opener's easy forced win.
 //
-// Difficulty: search depth 1/2/3/4 (1/1/2/3 on the tiny three men's board; alpha-beta, iterative deepening under a
+// Difficulty: search depth 1/2/2/3 (1/1/2/3 on the tiny three men's board; alpha-beta, iterative deepening under a
 // node budget so every move stays well under 300 ms); the computer plays a
-// random legal move 35% / 12% / 3% / 0% of the time; and at Levels 1–2 it is
+// random legal move 35% / 12% / 10% / 10% of the time; and at Levels 1–2 it is
 // beaten a step early (reduced to 4 / 3 pieces instead of 2).
 
 // ── Boards ───────────────────────────────────────────────────────────────────
@@ -265,10 +265,12 @@ export function adjudicate(rules: Rules, s: MState): Side {
 
 // ── Computer opponent ────────────────────────────────────────────────────────
 
-export const AI_DEPTH = [1, 2, 3, 4] as const
+// Levels 3–4 used to search 3 / 4 plies without slips: a careful 2–3 ply player
+// won ~20% / ~10% (mostly knocked out in the nine men's games).  Now ~60% / ~45%.
+export const AI_DEPTH = [1, 2, 2, 3] as const
 /** Three men's is tiny, so the same depth sees much further; keep it shallower. */
 export const AI_DEPTH_THREE = [1, 1, 2, 3] as const
-export const AI_RANDOM = [0.35, 0.12, 0.03, 0] as const
+export const AI_RANDOM = [0.35, 0.12, 0.1, 0.1] as const
 /** Three men's without the centre opening is a draw with perfect play, so the top level slips now and then. */
 export const AI_RANDOM_THREE = [0.35, 0.12, 0.03, 0.12] as const
 export const AI_NODES = [3000, 10000, 30000, 60000] as const

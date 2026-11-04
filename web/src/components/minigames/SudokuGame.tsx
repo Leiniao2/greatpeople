@@ -201,11 +201,20 @@ function makePuzzle(b: Board, solution: number[][], blanks: number, rng: Rng): n
   const puzzle = solution.map(r => [...r])
   const cells = Array.from({ length: b.n * b.n }, (_, i) => i)
   for (let i = cells.length - 1; i > 0; i--) { const j = Math.floor(rng() * (i + 1)); [cells[i], cells[j]] = [cells[j], cells[i]] }
+  // Diagonal boards blank the diagonals first, so the extra rule is needed.
+  if (b.diagonal) {
+    const onDiag = (i: number) => onMain(Math.floor(i / b.n), i % b.n) || onAnti(b.n, Math.floor(i / b.n), i % b.n)
+    cells.sort((x, y) => Number(onDiag(y)) - Number(onDiag(x)))
+  }
   let removed = 0
+  // A diagonal board may blank a few more cells until the diagonals are
+  // really needed (as a plain sudoku it would be ambiguous).
+  const needsDiagonals = () => !b.diagonal || countSolutions(BOARDS.nine, puzzle) > 1
   for (const idx of cells) {
-    if (removed >= blanks) break
+    if (removed >= blanks && (removed >= blanks + 6 || needsDiagonals())) break
     const r = Math.floor(idx / b.n), c = idx % b.n
     const keep = puzzle[r][c]
+    if (!keep) continue
     puzzle[r][c] = 0
     if (countSolutions(b, puzzle) === 1) removed++
     else puzzle[r][c] = keep
@@ -217,10 +226,10 @@ export interface Tier { board: Board; blankShare: number; maxMistakes: number }
 
 export function tierFor(difficulty: Difficulty): Tier {
   return {
-    board: scale(difficulty, [BOARDS.six, BOARDS.nine, BOARDS.nine, BOARDS.diagonal]),
-    // Share of cells left blank.
-    blankShare: scale(difficulty, [0.5, 0.5, 0.6, 0.62]),
-    maxMistakes: scale(difficulty, [3, 3, 3, 2]),
+    board: scale(difficulty, [BOARDS.six, BOARDS.six, BOARDS.nine, BOARDS.diagonal]),
+    // Share of cells left blank: 15, 21, 32 and 37 cells to fill.
+    blankShare: scale(difficulty, [0.42, 0.6, 0.4, 0.46]),
+    maxMistakes: scale(difficulty, [3, 3, 3, 3]),
   }
 }
 

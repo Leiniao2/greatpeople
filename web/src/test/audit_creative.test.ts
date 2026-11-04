@@ -8,12 +8,12 @@ import storyChallenges from '@/data/story_challenges.json'
 import type { Challenge, Difficulty, MinigameChallenge, MinigameComponent } from '@/games/types'
 import { resolveConfig } from '@/components/minigames/_shared'
 
-import ColorMixGame, { CONFIGS as COLORMIX, mixRGB, colourDist } from '@/components/minigames/ColorMixGame'
+import ColorMixGame, { CONFIGS as COLORMIX, mixRGB, colourDist, toleranceAt } from '@/components/minigames/ColorMixGame'
 import PaintingGame, { CONFIGS as PAINTING } from '@/components/minigames/PaintingGame'
 import PorcelainGame, { CONFIGS as PORCELAIN, ELEMENT_COLORS, FIRED_HINT } from '@/components/minigames/PorcelainGame'
 import CookingGame, { CONFIGS as COOKING } from '@/components/minigames/CookingGame'
 import MusicGame, { CONFIGS as MUSIC } from '@/components/minigames/MusicGame'
-import ComposeMusicGame, { CONFIGS as COMPOSE } from '@/components/minigames/ComposeMusicGame'
+import ComposeMusicGame, { CONFIGS as COMPOSE, unnumbered } from '@/components/minigames/ComposeMusicGame'
 import RhythmGame, { CONFIGS as RHYTHM, buildChart, LANE_KEYS, LEAD_IN_MS } from '@/components/minigames/RhythmGame'
 import TypesetGame, { CONFIGS as TYPESET, buildForme, quadSupply, quadUnits, typesetRules, lettersIn, settableLine } from '@/components/minigames/TypesetGame'
 import ArchBuildGame, { CONFIGS as ARCH, isBuildable } from '@/components/minigames/ArchBuildGame'
@@ -271,7 +271,7 @@ describe('Painting', () => {
       const cfg = PAINTING[id]
       const h = mount(PaintingGame, id, 4)
       for (const r of cfg.regions) {
-        fireEvent.click(screen.getByTitle(cfg.palette.find(p => p.color === r.targetColor)!.name))
+        fireEvent.click(screen.getByLabelText(cfg.palette.find(p => p.color === r.targetColor)!.name))
         fireEvent.click(screen.getAllByText(r.label).map(el => el.closest('button')!).find(b => b?.className.includes('px-2.5'))!)
       }
       tick(2000)
@@ -283,7 +283,7 @@ describe('Painting', () => {
   }
   it('loses when the clock runs out at difficulty 4', () => {
     const h = mount(PaintingGame, 'titian-canvas', 4)
-    tick(91_000)
+    tick(61_000)
     expect(h.onLose).toHaveBeenCalledTimes(1)
     expect(h.onWin).not.toHaveBeenCalled()
   })
@@ -309,10 +309,40 @@ describe('ColorMix', () => {
       expect(h.onLose).not.toHaveBeenCalled()
     })
   }
+  for (const [id, amounts] of Object.entries(known)) {
+    it(`${id}: the known recipe matches at every tier's tolerance`, () => {
+      const cfg = COLORMIX[id]
+      for (const d of DIFFS) expect(colourDist(mixRGB(cfg.pigments, amounts), cfg.target.rgb), `${id}@${d}`).toBeLessThanOrEqual(toleranceAt(cfg, d))
+    })
+  }
   it('loses on the clock at difficulty 4', () => {
     const h = mount(ColorMixGame, 'titian-red', 4)
     tick(91_000)
     expect(h.onLose).toHaveBeenCalledTimes(1)
+  })
+  it('loses at difficulty 4 after three failed mixes, once', () => {
+    const h = mount(ColorMixGame, 'titian-red', 4)
+    const plus = screen.getAllByText('+')
+    for (let i = 0; i < 3; i++) {
+      fireEvent.click(plus[2])                 // lead white alone is nowhere near Titian red
+      fireEvent.click(screen.getByText(/Mix Pigments/))
+      tick(1000)
+      expect(h.onLose).toHaveBeenCalledTimes(i < 2 ? 0 : 1)
+      if (i < 2) fireEvent.click(screen.getByText('Try Again'))
+    }
+    tick(120_000)
+    expect(h.onLose).toHaveBeenCalledTimes(1)
+    expect(h.onWin).not.toHaveBeenCalled()
+  })
+  it('never loses on failed mixes at difficulty 1', () => {
+    const h = mount(ColorMixGame, 'titian-red', 1)
+    for (let i = 0; i < 6; i++) {
+      fireEvent.click(screen.getAllByText('+')[2])
+      fireEvent.click(screen.getByText(/Mix Pigments/))
+      tick(1000)
+      fireEvent.click(screen.getByText('Try Again'))
+    }
+    expect(h.onLose).not.toHaveBeenCalled()
   })
 })
 
@@ -341,13 +371,32 @@ describe('Porcelain', () => {
       expect(h.onLose).not.toHaveBeenCalled()
     })
   }
-  it('loses at difficulty 4 on a single wrong oxide', () => {
+  it('loses at difficulty 4 after two wrong firings, once', () => {
     const cfg = PORCELAIN['cobalt-bowl']
     const h = mount(PorcelainGame, 'cobalt-bowl', 4)
     fire('cobalt-bowl', t => cfg.palette.find(p => p !== t)!)
     tick(1500)
+    expect(h.onLose).not.toHaveBeenCalled()
+    // D4 says only how many sections are wrong, not which, and no colour key.
+    expect(screen.getByText(/sections used the wrong oxide/).textContent).toMatch(/\d+ of \d+ sections/)
+    expect(screen.queryByText(/Copper fires green/)).toBeNull()
+    fireEvent.click(screen.getByText('Try again'))
+    fire('cobalt-bowl', t => cfg.palette.find(p => p !== t)!)
+    tick(1500)
     expect(h.onLose).toHaveBeenCalledTimes(1)
     expect(h.onWin).not.toHaveBeenCalled()
+  })
+  it('a wrong firing teaches the key at difficulty 2, and the next firing can win', () => {
+    const cfg = PORCELAIN['cobalt-bowl']
+    const h = mount(PorcelainGame, 'cobalt-bowl', 2)
+    fire('cobalt-bowl', t => cfg.palette.find(p => p !== t)!)
+    tick(1500)
+    expect(screen.getByText(/Copper fires green/)).toBeInTheDocument()
+    fireEvent.click(screen.getByText('Try again'))
+    fire('cobalt-bowl', t => t)
+    tick(1500)
+    expect(h.onWin).toHaveBeenCalledTimes(1)
+    expect(h.onLose).not.toHaveBeenCalled()
   })
 })
 
@@ -362,13 +411,21 @@ describe('Cooking', () => {
       expect(h.onLose).not.toHaveBeenCalled()
     })
   }
-  it('loses at difficulty 4 after one wrong order', () => {
+  it('loses at difficulty 4 after two wrong orders, once', () => {
     const steps = [...COOKING['lu-yu-tea'].steps].reverse()
     const h = mount(CookingGame, 'lu-yu-tea', 4)
-    for (const step of steps) fireEvent.click(screen.getByText(step))
-    fireEvent.click(screen.getByText(/Follow Recipe/))
-    tick(1000)
+    for (let attempt = 0; attempt < 2; attempt++) {
+      for (const step of steps) fireEvent.click(screen.getByText(step))
+      fireEvent.click(screen.getByText(/Follow Recipe/))
+      tick(1000)
+      if (attempt === 0) {
+        expect(h.onLose).not.toHaveBeenCalled()
+        expect(screen.getByText(/steps in place · 1 try left/)).toBeInTheDocument()
+        fireEvent.click(screen.getByText('Try again'))
+      }
+    }
     expect(h.onLose).toHaveBeenCalledTimes(1)
+    expect(h.onWin).not.toHaveBeenCalled()
   })
 })
 
@@ -415,7 +472,7 @@ describe('Compose', () => {
       // Selection sort with the ▲ buttons.
       for (let target = 0; target < cfg.passages.length; target++) {
         for (let guard = 0; guard < 10; guard++) {
-          const cur = titlesInOrder().findIndex(t => t.includes(cfg.passages[target].title))
+          const cur = titlesInOrder().findIndex(t => t.includes(cfg.passages[target].description))
           if (cur === target) break
           fireEvent.click(screen.getAllByText('▲')[cur])
         }
@@ -426,19 +483,33 @@ describe('Compose', () => {
       expect(h.onLose).not.toHaveBeenCalled()
     })
   }
-  it('loses on the first wrong check at difficulty 4', () => {
+  it('loses on the second wrong check at difficulty 4, once', () => {
     const cfg = COMPOSE['brahms-lullaby-compose']
     const h = mount(ComposeMusicGame, 'brahms-lullaby-compose', 4)
     const first = titlesInOrder()[0]
     // Make sure the order is wrong: put the last movement on top.
-    if (first.includes(cfg.passages[0].title)) {
+    if (first.includes(cfg.passages[0].description)) {
       const last = cfg.passages.length - 1
       for (let i = 0; i < last; i++) fireEvent.click(screen.getAllByText('▲')[last - i])
     }
     fireEvent.click(screen.getByText('Check Order'))
     tick(2000)
+    expect(h.onLose).not.toHaveBeenCalled()
+    fireEvent.click(screen.getByText('Check Order'))
+    tick(2000)
     expect(h.onLose).toHaveBeenCalledTimes(1)
     expect(h.onWin).not.toHaveBeenCalled()
+  })
+  it('movement numbers are shown only at difficulty 1', () => {
+    expect(unnumbered('III. Allegro (Scherzo)')).toBe('Allegro (Scherzo)')
+    expect(unnumbered('Act II — The Furies')).toBe('The Furies')
+    expect(unnumbered('Spring — La Primavera')).toBe('Spring — La Primavera')
+    mount(ComposeMusicGame, 'beethoven-fifth', 1)
+    expect(screen.getByText('I. Allegro con brio')).toBeInTheDocument()
+    cleanup()
+    mount(ComposeMusicGame, 'beethoven-fifth', 2)
+    expect(screen.queryByText('I. Allegro con brio')).toBeNull()
+    expect(screen.getByText('Allegro con brio')).toBeInTheDocument()
   })
 })
 

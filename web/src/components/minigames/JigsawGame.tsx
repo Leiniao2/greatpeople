@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react'
-import type { MinigameProps } from '@/games/types'
+import type { MinigameProps, Difficulty } from '@/games/types'
 import { scale, useGameTimer, TimerBar } from './_shared'
 
 interface Piece { id: string; emoji: string; label: string; color: string }
@@ -166,10 +166,22 @@ function shuffle<T>(arr: T[]): T[] {
   return a
 }
 
+// Difficulty: a piece in its right place glows green at D1–D2; from D3 only
+// the count of misplaced pieces is shown, so the order has to be reasoned out
+// from the labels and the count.  (With the glow every tier was a minute of
+// trial swaps, clock or not.)
+//
+//   D1  glow, no clock   D2  glow, 1:00   D3  count only, 2:30   D4  count only, 2:00
+export const tierFor = (difficulty: Difficulty) => ({
+  showCorrect: difficulty <= 2,
+  seconds: scale(difficulty, [0, 60, 150, 120]),
+})
+
 export default function JigsawGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
+  const tier = tierFor(difficulty)
+  const [won, setWon] = useState(false)
   // Higher difficulties put the puzzle on a clock.
-  const timeLimit = scale(difficulty, [0, 0, 120, 90])
-  const timer = useGameTimer({ seconds: timeLimit, running: true, onExpire: () => onLose('out of time') })
+  const timer = useGameTimer({ seconds: tier.seconds, running: !won, onExpire: () => onLose('out of time') })
 
   const config = CONFIGS[configId] ?? CONFIGS['venetian-master']
   const correctOrder = useMemo(() => config.pieces.map(p => p.id), [config])
@@ -182,7 +194,6 @@ export default function JigsawGame({ configId, difficulty, onWin, onLose }: Mini
     return [...correctOrder.slice(1), correctOrder[0]]
   })
   const [selected, setSelected] = useState<number | null>(null)
-  const [won, setWon] = useState(false)
 
   const pieceMap = useMemo(() => Object.fromEntries(config.pieces.map(p => [p.id, p])), [config])
 
@@ -214,7 +225,7 @@ export default function JigsawGame({ configId, difficulty, onWin, onLose }: Mini
       <div className="grid gap-1.5" style={{ gridTemplateColumns: `repeat(${config.cols}, 1fr)` }}>
         {board.map((pieceId, idx) => {
           const piece = pieceMap[pieceId]
-          const isCorrect = pieceId === correctOrder[idx]
+          const isCorrect = tier.showCorrect && pieceId === correctOrder[idx]
           const isSelected = selected === idx
           return (
             <button

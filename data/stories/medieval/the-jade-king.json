@@ -51,7 +51,11 @@
             "configId": "stonehenge",
             "seed": 51393,
             "instruction": "The nine terraces of the Temple of the Inscriptions rise stone by stone. Haul each block onto its mark — once a stone is set it cannot be moved again, so raise them in the right order.",
-            "fact": "The Temple of the Inscriptions stood in plain sight for centuries — one of Palenque's most prominent structures. But its tomb was not discovered until 1952, when Mexican archaeologist Alberto Ruz Lhuillier noticed a stone floor with plugged holes and spent four years clearing a rubble-filled staircase before reaching Pakal's burial chamber 25 metres below."
+            "fact": "The Temple of the Inscriptions stood in plain sight for centuries — one of Palenque's most prominent structures. But its tomb was not discovered until 1952, when Mexican archaeologist Alberto Ruz Lhuillier noticed a stone floor with plugged holes and spent four years clearing a rubble-filled staircase before reaching Pakal's burial chamber 25 metres below.",
+            "params": {
+              "title": "The Temple of the Inscriptions",
+              "intro": "Once a limestone block drops onto its terrace mark it is set for good — it can never be pushed off again, or rolled across another mark. Raise the stones in the right order."
+            }
           }
         }
       ]
@@ -105,11 +109,14 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "quipu",
-            "configId": "read",
+            "game": "lever",
+            "configId": "archimedes-lever",
+            "params": {
+              "title": "Raising Pakal's Lid"
+            },
             "seed": 51858,
-            "instruction": "Pakal's monuments are full of counts of days and kings. Far to the south, Andean record-keepers kept their counts in knotted cords — read the glowing cord and enter its number.",
-            "fact": "Maya pyramids were not simply stacked stones — they were precisely calculated structures with internal staircases, chambers, and drainage systems built to last millennia. The Temple of the Inscriptions has survived 1,300 years of tropical storms, earthquakes, and vegetation. Its interior staircase is still structurally sound."
+            "instruction": "Deep under the temple, Ruz Lhuillier's crew faces the carved stone lid of Pakal's sarcophagus. Set the fulcrum and the bar so the men can raise the slab high enough to look inside.",
+            "fact": "The carved limestone lid of Pakal's sarcophagus measures about 3.8 by 2.2 metres and weighs several tonnes. In November 1952 Ruz's team raised it with jacks and wedged logs beneath it, and saw the king in his jade mask."
           }
         },
         {

@@ -519,8 +519,13 @@ export const CONFIGS: Record<string, PaintingConfig> = {
 }
 
 export default function PaintingGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
-  // Higher difficulties put the puzzle on a clock.
-  const timeLimit = scale(difficulty, [0, 0, 120, 90])
+  // D1 names every paint and marks each region right or wrong as it is
+  // painted.  D2 hides the paint names (match by eye).  From D3 a region
+  // no longer says whether it is right — only the count once all are
+  // painted — and a clock runs.
+  const timeLimit = scale(difficulty, [0, 0, 90, 60])
+  const showNames = difficulty === 1
+  const markRegions = difficulty <= 2
   const config = CONFIGS[configId] ?? CONFIGS['spring-garden']
   const [filled, setFilled] = useState<Record<string, string>>({})
   const [selectedColor, setSelectedColor] = useState<string>(config.palette[0].color)
@@ -548,7 +553,7 @@ export default function PaintingGame({ configId, difficulty, onWin, onLose }: Mi
       const target = r.targetColor
       const isFilled = !!filled[r.id]
       const isCorrect = filled[r.id] === target
-      const stroke = isFilled ? (isCorrect ? '#34d399' : '#f87171') : '#475569'
+      const stroke = isFilled && (markRegions || won) ? (isCorrect ? '#34d399' : '#f87171') : isFilled ? '#e2e8f0' : '#475569'
       const sw = isFilled ? 2 : 1
       // Inject fill and stroke into the shape
       const shape = r.svgShape.replace(/\/>/, ` fill="${color}" stroke="${stroke}" stroke-width="${sw}" style="cursor:pointer"/>`).replace(/<(\w+)/, `<$1 data-id="${r.id}" `)
@@ -581,7 +586,7 @@ export default function PaintingGame({ configId, difficulty, onWin, onLose }: Mi
       {/* Region labels */}
       <div className="flex flex-wrap gap-1.5 justify-center">
         {config.regions.map(r => {
-          const isFilled = !!filled[r.id]
+          const isFilled = !!filled[r.id] && (markRegions || won)
           const isCorrect = filled[r.id] === r.targetColor
           return (
             <button
@@ -611,7 +616,8 @@ export default function PaintingGame({ configId, difficulty, onWin, onLose }: Mi
             <button
               key={p.color}
               onClick={() => setSelectedColor(p.color)}
-              title={p.name}
+              title={showNames ? p.name : undefined}
+              aria-label={p.name}
               className={`w-8 h-8 rounded-lg border-2 transition-all ${
                 selectedColor === p.color ? 'border-white scale-110 shadow-lg' : 'border-transparent hover:scale-105'
               }`}
@@ -619,7 +625,7 @@ export default function PaintingGame({ configId, difficulty, onWin, onLose }: Mi
             />
           ))}
         </div>
-        {selectedColor && (
+        {selectedColor && showNames && (
           <p className="text-muted text-[10px] mt-1">
             Selected: <span className="text-ink">{config.palette.find(p => p.color === selectedColor)?.name}</span>
           </p>

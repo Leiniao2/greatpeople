@@ -1,11 +1,12 @@
 import { useState, useMemo, useCallback } from 'react'
-import type { MinigameProps } from '@/games/types'
+import type { Difficulty, MinigameProps } from '@/games/types'
 import { scale } from './_shared'
 
 type ArtType = 'portrait' | 'landscape' | 'sculpture' | 'ancient' | 'modern' | 'abstract'
 
 interface Artwork { id: string; title: string; artist: string; type: ArtType; emoji: string; baseValue: number }
 interface Room { id: string; name: string; emoji: string; bonusTypes: ArtType[]; mult: number; hint: string; color: string }
+// winScore is the authored target; play now uses targetScore() (a share of the best hanging per tier).
 interface MuseumConfig { title: string; museum: string; artworks: Artwork[]; rooms: Room[]; winScore: number; fact: string }
 
 export const CONFIGS: Record<string, MuseumConfig> = {
@@ -110,11 +111,38 @@ export const CONFIGS: Record<string, MuseumConfig> = {
   },
 }
 
+/** Best total over every way of hanging one artwork per room. */
+export function bestScore(cfg: MuseumConfig): number {
+  let best = 0
+  const used = new Set<string>()
+  const go = (ri: number, total: number) => {
+    if (ri === cfg.rooms.length) { best = Math.max(best, total); return }
+    const room = cfg.rooms[ri]
+    for (const art of cfg.artworks) {
+      if (used.has(art.id)) continue
+      used.add(art.id)
+      go(ri + 1, total + Math.round(art.baseValue * (room.bonusTypes.includes(art.type) ? room.mult : 1)))
+      used.delete(art.id)
+    }
+  }
+  go(0, 0)
+  return best
+}
+
+/**
+ * The score to beat.  The live score bar lets the player rearrange freely,
+ * so difficulty is how close to the best hanging they must get: D1 asks for
+ * the obvious bonus matches, D4 for (nearly) the optimum.
+ */
+export const targetScore = (cfg: MuseumConfig, difficulty: Difficulty) =>
+  Math.round(bestScore(cfg) * scale(difficulty, [0.8, 0.88, 0.94, 0.98]))
+
 export default function MuseumGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
-  const maxAttempts = scale(difficulty, [3, 2, 2, 1])
+  const maxAttempts = scale(difficulty, [3, 3, 2, 2])
   const [attempts, setAttempts] = useState(0)
 
   const cfg = CONFIGS[configId] ?? CONFIGS['louvre-arrangement']
+  const winScore = useMemo(() => targetScore(cfg, difficulty), [cfg, difficulty])
 
   const [assignments, setAssignments] = useState<Record<string, string | null>>(
     () => Object.fromEntries(cfg.rooms.map(r => [r.id, null]))
@@ -155,7 +183,7 @@ export default function MuseumGame({ configId, difficulty, onWin, onLose }: Mini
   const submit = () => {
     if (!allFilled) return
     setSubmitted(true)
-    if (score >= cfg.winScore) { setWon(true); setTimeout(onWin, 800) }
+    if (score >= winScore) { setWon(true); setTimeout(onWin, 800) }
     else {
       const n = attempts + 1
       setAttempts(n)
@@ -173,7 +201,7 @@ export default function MuseumGame({ configId, difficulty, onWin, onLose }: Mini
       <div className="text-center">
         <p className="text-accent font-bold text-sm">{cfg.title}</p>
         <p className="text-muted text-xs">{cfg.museum}</p>
-        <p className="text-muted text-xs mt-0.5">Target: {cfg.winScore} pts — match artworks to rooms for maximum bonus</p>
+        <p className="text-muted text-xs mt-0.5">Target: {winScore} pts — match artworks to rooms for maximum bonus</p>
       </div>
 
       {/* Score bar */}
@@ -183,12 +211,12 @@ export default function MuseumGame({ configId, difficulty, onWin, onLose }: Mini
           <div
             className="h-full rounded-full transition-all"
             style={{
-              width: `${Math.min((score / cfg.winScore) * 100, 100)}%`,
-              background: score >= cfg.winScore ? '#10b981' : '#f59e0b',
+              width: `${Math.min((score / winScore) * 100, 100)}%`,
+              background: score >= winScore ? '#10b981' : '#f59e0b',
             }}
           />
         </div>
-        <span className={`font-bold font-mono ${score >= cfg.winScore ? 'text-emerald-700' : 'text-accent'}`}>{score}</span>
+        <span className={`font-bold font-mono ${score >= winScore ? 'text-emerald-700' : 'text-accent'}`}>{score}</span>
       </div>
 
       {/* Rooms */}
@@ -283,7 +311,7 @@ export default function MuseumGame({ configId, difficulty, onWin, onLose }: Mini
       )}
       {submitted && !won && (
         <div className="p-3 bg-red-500/10 border border-red-500/30 rounded-xl text-center">
-          <p className="text-red-700 font-bold text-sm">Score: {score} — need {cfg.winScore}</p>
+          <p className="text-red-700 font-bold text-sm">Score: {score} — need {winScore}</p>
           <p className="text-muted text-xs mt-0.5">Try matching artwork types to room specialities.</p>
           <button onClick={reset} className="mt-2 px-4 py-1.5 bg-panel text-ink-2 text-xs rounded-lg hover:bg-panel-2 transition-all">
             Rearrange

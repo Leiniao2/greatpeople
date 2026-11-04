@@ -135,8 +135,17 @@ function shuffle<T>(arr: T[]): T[] {
   return a
 }
 
+/** Drop a movement's number ("III. ", "Act II — ") so the order has to be read from the music. */
+export const unnumbered = (title: string) => title.replace(/^(?:[IVX]+\.\s+|Act [IVX]+\s+—\s+)/, '')
+
 export default function ComposeMusicGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
-  const maxAttempts = scale(difficulty, [3, 2, 2, 1])
+  // D1 keeps the movement numbers as a crutch; from D2 the order must be read
+  // from the descriptions.  A wrong check marks the misplaced cards, except
+  // at D4, which only says how many are in place.
+  const maxAttempts = scale(difficulty, [3, 3, 2, 2])
+  const showNumbers = difficulty === 1
+  const markWrong = difficulty < 4
+  const [inPlace, setInPlace] = useState<number | null>(null)
   const [attempts, setAttempts] = useState(0)
 
   const config = CONFIGS[configId] ?? CONFIGS['beethoven-fifth']
@@ -165,7 +174,8 @@ export default function ComposeMusicGame({ configId, difficulty, onWin, onLose }
       setWon(true)
       setTimeout(onWin, 900)
     } else {
-      setWrongIdxs(wrong)
+      setWrongIdxs(markWrong ? wrong : new Set())
+      setInPlace(order.length - wrong.size)
       setFlash('wrong')
       const n = attempts + 1
       setAttempts(n)
@@ -200,7 +210,7 @@ export default function ComposeMusicGame({ configId, difficulty, onWin, onLose }
             >
               <span className="text-2xl leading-none flex-shrink-0 mt-0.5 select-none">{p.emoji}</span>
               <div className="flex-1 min-w-0">
-                <p className="text-ink-2 text-xs font-bold leading-tight">{p.title}</p>
+                <p className="text-ink-2 text-xs font-bold leading-tight">{showNumbers ? p.title : unnumbered(p.title)}</p>
                 <p className="text-ink-2 text-[11px] leading-snug mt-0.5">{p.description}</p>
               </div>
               <div className="flex flex-col gap-0.5 flex-shrink-0 pt-0.5">
@@ -218,6 +228,12 @@ export default function ComposeMusicGame({ configId, difficulty, onWin, onLose }
           )
         })}
       </div>
+
+      {inPlace !== null && !won && attempts < maxAttempts && (
+        <p className="text-muted text-[11px] text-center">
+          {inPlace} of {order.length} in place · {maxAttempts - attempts} {maxAttempts - attempts === 1 ? 'try' : 'tries'} left
+        </p>
+      )}
 
       {!won && (
         <button onClick={check} disabled={!!flash}

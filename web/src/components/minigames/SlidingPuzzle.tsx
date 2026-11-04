@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react'
-import type { MinigameProps } from '@/games/types'
-import { scale, useGameTimer, TimerBar } from './_shared'
+import { useState, useEffect, useMemo } from 'react'
+import type { MinigameProps, Difficulty } from '@/games/types'
+import { useGameTimer, TimerBar, mulberry32, hashString } from './_shared'
 
 // ── Types & config ─────────────────────────────────────────────────────────────
 
@@ -205,18 +205,80 @@ function slideTile(board: TileBoard, tileIdx: number): TileBoard | null {
   return next
 }
 
+// ── Difficulty ─────────────────────────────────────────────────────────────────
+//
+// The scramble's optimal distance sets the difficulty (a first-time player
+// takes three to four times the optimal number of slides):
+//
+//   D1   6–10 moves   no clock      D2  11–15 moves   no clock
+//   D3  16–19 moves   2:30          D4  20–23 moves   3:00
+//
+// A config's authored scramble is used when it falls in the tier's band;
+// otherwise the seed picks a scramble at the band's target distance.
+
+export const TIERS: readonly { lo: number; hi: number; target: number; seconds: number }[] = [
+  { lo: 6, hi: 10, target: 8, seconds: 0 },
+  { lo: 11, hi: 15, target: 13, seconds: 0 },
+  { lo: 16, hi: 19, target: 17, seconds: 150 },
+  { lo: 20, hi: 23, target: 21, seconds: 180 },
+]
+
+const encode = (b: readonly number[]) => b.reduce((a, v) => a * 9 + v, 0)
+const decode = (k: number) => { const b = Array(9).fill(0); for (let i = 8; i >= 0; i--) { b[i] = k % 9; k = Math.floor(k / 9) } return b }
+let distCache: { depth: number; dist: Map<number, number>; layers: number[][] } | null = null
+
+/** BFS from the solved board out to `depth` slides (cached; boards encoded base 9). */
+function distances(depth: number) {
+  if (distCache && distCache.depth >= depth) return distCache
+  const dist = new Map<number, number>([[encode(SOLVED), 0]])
+  const layers: number[][] = [[encode(SOLVED)]]
+  for (let d = 1; d <= depth; d++) {
+    const next: number[] = []
+    for (const k0 of layers[d - 1]) {
+      const b = decode(k0), z = b.indexOf(0)
+      for (const j of getNeighbors(z)) {
+        b[z] = b[j]; b[j] = 0
+        const k = encode(b)
+        b[j] = b[z]; b[z] = 0
+        if (dist.has(k)) continue
+        dist.set(k, d)
+        next.push(k)
+      }
+    }
+    layers.push(next)
+  }
+  distCache = { depth, dist, layers }
+  return distCache
+}
+
+/** Optimal number of slides to solve `board`, or -1 if more than `max`. */
+export function optimalMoves(board: readonly number[], max = 23): number {
+  return distances(max).dist.get(encode(board)) ?? -1
+}
+
+export function scrambleFor(configId: string, difficulty: Difficulty, seed: number): TileBoard {
+  const tier = TIERS[difficulty - 1]
+  const config = CONFIGS[configId as PuzzleKey] ?? CONFIGS['renaissance']
+  const d = optimalMoves(config.initial, tier.hi)
+  if (d >= tier.lo && d <= tier.hi) return [...config.initial]
+  const layer = distances(tier.target).layers[tier.target]
+  const rng = mulberry32(hashString(`sliding:${configId}:${seed}`))
+  return decode(layer[Math.floor(rng() * layer.length)])
+}
+
 // ── Component ──────────────────────────────────────────────────────────────────
 
 
-export default function SlidingPuzzle({ configId, difficulty, onWin, onLose }: MinigameProps) {
+export default function SlidingPuzzle({ configId, difficulty, seed, onWin, onLose }: MinigameProps) {
+  const initial = useMemo(() => scrambleFor(configId, difficulty, seed ?? 0), [configId, difficulty, seed])
+  const [board, setBoard] = useState<TileBoard>(() => [...initial])
+  const [won, setWon] = useState(false)
   // Higher difficulties put the puzzle on a clock.
-  const timeLimit = scale(difficulty, [0, 0, 120, 90])
-  const timer = useGameTimer({ seconds: timeLimit, running: true, onExpire: () => onLose('out of time') })
+  const timeLimit = TIERS[difficulty - 1].seconds
+  const timer = useGameTimer({ seconds: timeLimit, running: !won, onExpire: () => onLose('out of time') })
 
   const config = CONFIGS[configId as PuzzleKey] ?? CONFIGS['renaissance']
-  const [board, setBoard] = useState<TileBoard>([...config.initial])
   const [moves, setMoves] = useState(0)
-  const [won, setWon] = useState(false)
   const [lastMoved, setLastMoved] = useState<number | null>(null)
 
   const handleTileClick = (tileIdx: number) => {

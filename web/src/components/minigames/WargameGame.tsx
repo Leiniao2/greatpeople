@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
-import type { MinigameProps } from '@/games/types'
+import type { Difficulty, MinigameProps } from '@/games/types'
+import { scale } from './_shared'
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
@@ -169,9 +170,83 @@ export function countPieces(board: Board, color: Color): number {
   return n
 }
 
+// ── Difficulty ────────────────────────────────────────────────────────────────
+// A full game of checkers to the last piece ran 30–60 of your moves (well past
+// three minutes) and never changed with difficulty.  Now the battle is won by a
+// decisive lead: be `leadToWin` pieces up (pieces taken minus pieces lost) and
+// you win; fall that far behind and you lose.  After `moveCap` of your moves
+// the side that has taken more wins, and a tie goes to you at D1–2 and to the
+// computer at D3–4.  The computer grows from a greedy capturer (D1) to a short
+// look-ahead search.
+
+/** The lead in pieces that wins the battle at once (either side). */
+export const LEAD_TO_WIN = [2, 3, 3, 3] as const
+export const leadToWin = (d: Difficulty) => scale(d, LEAD_TO_WIN)
+/** Your moves before the battle is judged on pieces taken. */
+export const MOVE_CAP = [24, 28, 28, 30] as const
+export const moveCap = (d: Difficulty) => scale(d, MOVE_CAP)
+/** CPU search depth in plies after its own move (0 = greedy capturer). */
+export const CPU_DEPTH = [0, 1, 1, 2] as const
+/** Chance the CPU plays a random legal move instead (its slips). */
+export const CPU_SLIP = [0.3, 0.2, 0.1, 0.1] as const
+
+export const taken = (board: Board, color: Color) => 12 - countPieces(board, color)
+
+/** The battle's result with `toMove` to play, or null while it goes on. `moves` = your moves so far. */
+export function battleResult(board: Board, d: Difficulty, moves: number, toMove: Color): 'win' | 'lose' | null {
+  const lead = taken(board, 'dark') - taken(board, 'light')
+  if (lead >= leadToWin(d) || countPieces(board, 'dark') === 0) return 'win'
+  if (-lead >= leadToWin(d) || countPieces(board, 'light') === 0) return 'lose'
+  if (!getValidMoves(board, toMove).length) return toMove === 'light' ? 'lose' : 'win'
+  if (toMove === 'light' && moves >= moveCap(d)) return lead > 0 ? 'win' : lead < 0 ? 'lose' : d <= 2 ? 'win' : 'lose'
+  return null
+}
+
+/** Material from light's side: a king is worth 1.6 men, men gain a little as they advance. */
+export function evalBoard(b: Board): number {
+  let s = 0
+  for (let r = 0; r < 8; r++) for (let c = 0; c < 8; c++) {
+    const p = b[r][c]
+    if (!p) continue
+    const v = (p.type === 'king' ? 1.6 : 1) + (p.type === 'man' ? (p.color === 'light' ? (7 - r) : r) * 0.03 : 0)
+    s += p.color === 'light' ? v : -v
+  }
+  return s
+}
+
+/** Alpha-beta minimax: light maximises evalBoard. */
+export function minimax(b: Board, depth: number, light: boolean, alpha: number, beta: number): number {
+  const moves = getValidMoves(b, light ? 'light' : 'dark')
+  if (moves.length === 0) return light ? -100 : 100
+  if (depth === 0) return evalBoard(b)
+  if (light) {
+    let best = -Infinity
+    for (const m of moves) { best = Math.max(best, minimax(applyMove(b, m), depth - 1, false, alpha, beta)); alpha = Math.max(alpha, best); if (beta <= alpha) break }
+    return best
+  }
+  let best = Infinity
+  for (const m of moves) { best = Math.min(best, minimax(applyMove(b, m), depth - 1, true, alpha, beta)); beta = Math.min(beta, best); if (beta <= alpha) break }
+  return best
+}
+
+/** The computer's move at a difficulty (dark). */
+export function cpuMove(board: Board, d: Difficulty, rnd: () => number = Math.random): Move | null {
+  const moves = getValidMoves(board, 'dark')
+  if (!moves.length) return null
+  if (rnd() < CPU_SLIP[d - 1]) return moves[Math.floor(rnd() * moves.length)]
+  const depth = CPU_DEPTH[d - 1]
+  if (depth === 0) return cpuPickMove(board, rnd)
+  let best: Move[] = [], bestV = Infinity
+  for (const m of moves) {
+    const v = minimax(applyMove(board, m), depth, true, -Infinity, Infinity)
+    if (v < bestV - 1e-9) { bestV = v; best = [m] } else if (Math.abs(v - bestV) < 1e-9) best.push(m)
+  }
+  return best[Math.floor(rnd() * best.length)]
+}
+
 // ── CPU AI ─────────────────────────────────────────────────────────────────────
 
-export function cpuPickMove(board: Board): Move | null {
+export function cpuPickMove(board: Board, rnd: () => number = Math.random): Move | null {
   const moves = getValidMoves(board, 'dark')
   if (moves.length === 0) return null
 
@@ -182,7 +257,7 @@ export function cpuPickMove(board: Board): Move | null {
     const piece = board[m.from[0]][m.from[1]]!
     if (piece.type === 'man' && m.to[0] === 7) score += 5
     // Add small random noise
-    score += Math.random()
+    score += rnd()
     return { move: m, score }
   })
 
@@ -190,13 +265,16 @@ export function cpuPickMove(board: Board): Move | null {
   // Among top-scored (within 0.5 of max), pick randomly
   const best = scored[0].score
   const top = scored.filter(s => s.score >= best - 0.5)
-  return top[Math.floor(Math.random() * top.length)].move
+  return top[Math.floor(rnd() * top.length)].move
 }
 
 // ── Component ──────────────────────────────────────────────────────────────────
 
-export default function WargameGame({ configId, onWin, onLose }: MinigameProps) {
+export default function WargameGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
   const config = CONFIGS[configId] ?? CONFIGS['belisarius-battle']
+  const [moves, setMoves] = useState(0)
+  const movesRef = useRef(0)
+  useEffect(() => { movesRef.current = moves }, [moves])
 
   const [board, setBoard] = useState<Board>(makeInitialBoard)
   const [selected, setSelected] = useState<[number, number] | null>(null)
@@ -210,33 +288,29 @@ export default function WargameGame({ configId, onWin, onLose }: MinigameProps) 
   // Recompute player moves whenever board changes and it's player's turn
   useEffect(() => {
     if (phase === 'playing') {
-      const moves = getValidMoves(board, 'light')
-      setAllPlayerMoves(moves)
-      if (moves.length === 0) setPhase('cpu-won')
+      const legal = getValidMoves(board, 'light')
+      setAllPlayerMoves(legal)
+      const r = battleResult(board, difficulty, movesRef.current, 'light')
+      if (r) setPhase(r === 'win' ? 'player-won' : 'cpu-won')
     }
-  }, [board, phase])
+  }, [board, phase, difficulty])
 
   // CPU turn
   useEffect(() => {
     if (phase !== 'cpu-thinking') return
     const id = setTimeout(() => {
       const b = boardRef.current
-      const move = cpuPickMove(b)
+      const move = cpuMove(b, difficulty)
       if (!move) {
         setPhase('player-won')
         return
       }
       const next = applyMove(b, move)
       setBoard(next)
-      // Check if player has pieces left
-      if (countPieces(next, 'light') === 0) {
-        setPhase('cpu-won')
-      } else {
-        setPhase('playing')
-      }
+      setPhase('playing') // the 'playing' effect judges the new position
     }, 600)
     return () => clearTimeout(id)
-  }, [phase])
+  }, [phase, difficulty])
 
   const handleCellClick = useCallback((r: number, c: number) => {
     if (phase !== 'playing') return
@@ -256,14 +330,13 @@ export default function WargameGame({ configId, onWin, onLose }: MinigameProps) 
       const move = validMoves.find(m => m.to[0] === r && m.to[1] === c)
       if (move) {
         const next = applyMove(board, move)
+        const made = moves + 1
         setBoard(next)
+        setMoves(made); movesRef.current = made
         setSelected(null)
         setValidMoves([])
-        if (countPieces(next, 'dark') === 0) {
-          setPhase('player-won')
-        } else {
-          setPhase('cpu-thinking')
-        }
+        const r = battleResult(next, difficulty, made, 'dark')
+        setPhase(r ? (r === 'win' ? 'player-won' : 'cpu-won') : 'cpu-thinking')
         return
       }
     }
@@ -271,13 +344,14 @@ export default function WargameGame({ configId, onWin, onLose }: MinigameProps) 
     // Deselect
     setSelected(null)
     setValidMoves([])
-  }, [phase, board, selected, validMoves, allPlayerMoves])
+  }, [phase, board, selected, validMoves, allPlayerMoves, moves, difficulty])
 
   const reset = () => {
     const b = makeInitialBoard()
     setBoard(b)
     setSelected(null)
     setValidMoves([])
+    setMoves(0); movesRef.current = 0
     setPhase('playing')
     setAllPlayerMoves(getValidMoves(b, 'light'))
   }
@@ -299,6 +373,10 @@ export default function WargameGame({ configId, onWin, onLose }: MinigameProps) 
       {/* Header */}
       <div className="text-center">
         <p className="text-accent font-bold text-sm tracking-wide">{config.title}</p>
+        <p className="text-muted text-[11px] mt-0.5">
+          Get {leadToWin(difficulty)} pieces ahead to win · move {Math.min(moves + 1, moveCap(difficulty))} of {moveCap(difficulty)}
+          {' '}· then most pieces taken wins{difficulty >= 3 ? ' (a tie loses)' : ' (a tie wins)'}
+        </p>
       </div>
 
       {/* Piece counts */}

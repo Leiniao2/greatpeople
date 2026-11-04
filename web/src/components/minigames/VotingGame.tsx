@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback, useMemo } from 'react'
 import type { MinigameProps } from '@/games/types'
-import { scale } from './_shared'
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
@@ -154,10 +153,10 @@ export function pickAiPolicy(voters: Voter[], policies: Policy[]): Policy {
   return policies.reduce((best, p) => (available[p.pref] ?? 0) > (available[best.pref] ?? 0) ? p : best)
 }
 
-export function applyPolicies(voters: Voter[], pp: Policy, ap: Policy, politics: number): Voter[] {
+export function applyPolicies(voters: Voter[], pp: Policy, ap: Policy, politics: number, aiBonus = 0): Voter[] {
   const next = voters.map(v => ({ ...v }))
   const pEff = pp.strength + Math.floor(politics / 6)
-  const aEff = ap.strength
+  const aEff = Math.max(1, ap.strength + aiBonus)
 
   const neutralsFirst = (a: Voter, b: Voter) => (a.allegiance === 'neutral' ? 0 : 1) - (b.allegiance === 'neutral' ? 0 : 1)
 
@@ -202,9 +201,19 @@ export function stageOutcome(votes: { player: number; ai: number }, target: numb
 
 // ── Component ──────────────────────────────────────────────────────────────────
 
+/**
+ * Your persuasion (starting voters and +politics/6 on every policy) and the
+ * rival's extra pull per policy, by difficulty.  Persuasion alone hardly moved
+ * the result: a player who simply takes the policy that wins most voters won
+ * ~85% at every level.  Now that player wins ~97% / ~85% / ~60% / ~34% at
+ * D1–D4, one who also reads the rival's likely pick ~100% / ~98% / ~96% / ~71%.
+ */
+export const POLITICS = [12, 10, 12, 8] as const
+export const AI_BONUS = [-1, 0, 1, 1] as const
+
 export default function VotingGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
-  // Persuasion points per round; tighter at higher difficulty.
-  const politics = scale(difficulty, [12, 10, 8, 7])
+  const politics = POLITICS[difficulty - 1]
+  const aiBonus = AI_BONUS[difficulty - 1]
   const era = useMemo(() => resolveEra(configId), [configId])
 
   const [voters,      setVoters]      = useState<Voter[]>(() => initVoters(politics))
@@ -244,7 +253,7 @@ export default function VotingGame({ configId, difficulty, onWin, onLose }: Mini
     const before = votes.player
     const t = setTimeout(() => {
       setVoters(prev => {
-        const next = applyPolicies(prev, playerPick, aiPick, politics)
+        const next = applyPolicies(prev, playerPick, aiPick, politics, aiBonus)
         const after = next.filter(v => v.allegiance === 'player').length
         const gain = after - before
         setGainMsg(gain > 0 ? `+${gain} voters joined you` : gain < 0 ? `${gain} voters defected` : 'No votes changed')
@@ -254,7 +263,7 @@ export default function VotingGame({ configId, difficulty, onWin, onLose }: Mini
       setPhase('resolving')
     }, 1400)
     return () => clearTimeout(t)
-  }, [phase, playerPick, aiPick, votes.player, politics])
+  }, [phase, playerPick, aiPick, votes.player, politics, aiBonus])
 
   // Resolving → check milestone or next round
   useEffect(() => {

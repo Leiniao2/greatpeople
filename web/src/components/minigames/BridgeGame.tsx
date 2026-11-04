@@ -221,7 +221,8 @@ export function checkWin(islands: Island[], bridges: BridgeMap): boolean {
 
 export default function BridgeGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
   // Higher difficulties put the puzzle on a clock.
-  const timeLimit = scale(difficulty, [0, 0, 120, 90])
+  // D2 adds a gentle clock so it is not D1 again; competent players need ~45–60 s.
+  const timeLimit = scale(difficulty, [0, 150, 120, 90])
   const timer = useGameTimer({ seconds: timeLimit, running: true, onExpire: () => onLose('out of time') })
 
   const cfg = CONFIGS[configId] ?? CONFIGS['roman-bridges']

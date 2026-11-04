@@ -12,10 +12,10 @@ import { hashString, mulberry32, resolveConfig, scale, shuffle, useGameOutcome, 
 //   flash    (Medici)      the desk is shown face up at the start; no peeks,
 //                          a much tighter mistake budget
 //   ordered  (British Lib) pairs must be filed in the readers' request order
-//   fragile  (Patents)     a slip may be turned up only twice — a third turn
+//   fragile  (Patents)     a slip may be turned up only three times — a fourth turn
 //                          tears it and loses
 //
-// Time budget: 6 to 12 pairs (3×4 → 6×4), untimed at D1 then a 90–150 s
+// Time budget: 6 to 12 pairs (3×4 → 6×4; the ordered twist stays on 3×4), untimed at D1 then a 90–150 s
 // clock, so a desk takes about one to two and a half minutes.  A player with
 // a perfect memory stays inside every budget (perfectMemory proves it for
 // each variant), so every deck is winnable; matching streaks of three earn a
@@ -95,7 +95,7 @@ export const CONFIGS: Record<string, PairsConfig> = {
     title: 'The Patent Office',
     intro: 'The patent clerks have dropped the files. Match every inventor to the invention on their papers.',
     variant: 'fragile',
-    twist: 'Fragile papers: every slip survives being turned up only twice. Turn one up a third time and it tears — and the patent office is lost.',
+    twist: 'Fragile papers: every slip survives being turned up only three times. Turn one up a fourth time and it tears — and the patent office is lost.',
     fact: 'The world’s first patent law, the Venetian Statute of 1474, gave inventors ten years’ protection for “new and ingenious devices”.',
     pairs: [
       ['James Watt', 'Steam engine'], ['Edison', 'Phonograph'], ['Bell', 'Telephone'], ['Tesla', 'AC motor'],
@@ -110,25 +110,33 @@ export const CONFIGS: Record<string, PairsConfig> = {
 
 export interface Tile { pair: number; kind: 'person' | 'work'; text: string }
 
-/** [rows, cols] of the desk. */
-export const layoutFor = (d: Difficulty): [number, number] => scale(d, [[3, 4], [4, 4], [5, 4], [6, 4]] as const) as [number, number]
-export const pairsFor = (d: Difficulty) => { const [r, c] = layoutFor(d); return (r * c) / 2 }
+/**
+ * [rows, cols] of the desk.  Filing in request order makes nearly every
+ * exploring turn a mistake, so that twist keeps the 3×4 desk at every tier
+ * and gets harder through peeks and the mistake budget instead.
+ */
+export const layoutFor = (d: Difficulty, variant: PairsVariant = 'swap'): [number, number] =>
+  variant === 'ordered' ? [3, 4] : scale(d, [[3, 4], [4, 4], [5, 4], [6, 4]] as const) as [number, number]
+export const pairsFor = (d: Difficulty, variant: PairsVariant = 'swap') => { const [r, c] = layoutFor(d, variant); return (r * c) / 2 }
 /** The most mistakes a perfect memory can need: pairs − 1 (pairs when filing in order, 0 after a full look). */
 export function perfectBound(d: Difficulty, variant: PairsVariant = 'swap'): number {
-  return variant === 'flash' ? 0 : variant === 'ordered' ? pairsFor(d) : pairsFor(d) - 1
+  return variant === 'flash' ? 0 : variant === 'ordered' ? pairsFor(d, variant) : pairsFor(d) - 1
 }
 /** Mistakes allowed; never fewer than perfectBound. */
 export function mistakeBudget(d: Difficulty, variant: PairsVariant = 'swap'): number {
   if (variant === 'flash') return Math.ceil(pairsFor(d) / 2) + scale(d, [2, 1, 1, 0])
-  return perfectBound(d, variant) + scale(d, [6, 3, 1, 0])
+  // Ordered: a casual memory peaks at ~4–10 mistakes on the 3×4 desk.
+  if (variant === 'ordered') return perfectBound(d, variant) + scale(d, [8, 4, 2, 1])
+  return perfectBound(d, variant) + scale(d, [4, 1, 0, 0])
 }
 /** Seconds on the clock (0 = untimed); filing in order takes extra turns. */
 export const timerFor = (d: Difficulty, variant: PairsVariant = 'swap') => scale(d, [0, 90, 120, 150]) + (variant === 'ordered' && d > 1 ? 30 : 0)
-export const peeksFor = (d: Difficulty, variant: PairsVariant = 'swap') => (variant === 'flash' ? 0 : scale(d, [2, 1, 0, 0]))
+export const peeksFor = (d: Difficulty, variant: PairsVariant = 'swap') =>
+  variant === 'flash' ? 0 : scale(d, variant === 'ordered' ? [2, 1, 1, 0] : [2, 1, 0, 0])
 /** Flash variant: how long the desk is shown face up. */
 export const flashMsFor = (d: Difficulty) => scale(d, [4000, 5000, 6000, 7000])
-/** Fragile variant: turns up a slip survives. */
-export const FRAGILE_FLIPS = 2
+/** Fragile variant: turns up a slip survives (a slip is turned once to learn it and once to file it, plus one slip of memory). */
+export const FRAGILE_FLIPS = 3
 export const PEEK_MS = 1400
 export const MISS_MS = 900
 /** A run of this many matches without a mistake earns one mistake back. */
@@ -137,7 +145,7 @@ export const COMBO_REFUND = 3
 /** Pick the deck's pairs from the config's pool and lay out the tiles.  Pair ids 0, 1, … are the request order. */
 export function makeDeck(configId: string, config: PairsConfig, d: Difficulty, seed: number): Tile[] {
   const rng = mulberry32(seed ^ hashString(`pairs:${configId}:${d}`))
-  const n = Math.min(pairsFor(d), config.pairs.length)
+  const n = Math.min(pairsFor(d, config.variant), config.pairs.length)
   const chosen = shuffle(config.pairs.map((_, i) => i), rng).slice(0, n)
   const tiles: Tile[] = []
   chosen.forEach((p, k) => {
@@ -216,7 +224,7 @@ export default function PairsGame({ configId, difficulty, seed, params, onWin, o
   const config = resolveConfig(CONFIGS, configId, params, 'ancient')
   const variant = config.variant ?? 'swap'
   const deck = useMemo(() => makeDeck(configId, config, difficulty, seed), [configId, config, difficulty, seed])
-  const [rows, cols] = layoutFor(difficulty)
+  const [rows, cols] = layoutFor(difficulty, variant)
   const budget = mistakeBudget(difficulty, variant)
   const { outcome, settled, win, lose } = useGameOutcome({ onWin, onLose })
 
