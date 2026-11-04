@@ -31,6 +31,14 @@ android {
             buildConfigField("String", "WEB_BASE_URL", "\"https://greatpeople-109767033732.us-central1.run.app\"")
             buildConfigField("String", "API_BASE_URL", "\"https://greatpeople-109767033732.us-central1.run.app/\"")
         }
+        // Debug-signed build against the live site, for installing on a real phone.
+        create("device") {
+            initWith(getByName("debug"))
+            applicationIdSuffix = ".device"
+            matchingFallbacks += listOf("debug")
+            buildConfigField("String", "WEB_BASE_URL", "\"https://greatpeople-109767033732.us-central1.run.app\"")
+            buildConfigField("String", "API_BASE_URL", "\"https://greatpeople-109767033732.us-central1.run.app/\"")
+        }
     }
 
     compileOptions {
