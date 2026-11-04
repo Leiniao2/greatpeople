@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { ARCADE_TRACKS, LEVELS_PER_TRACK, buildTrack, difficultyForLevel, levelChallenge, starsForAttempts } from '@/games/arcade'
+import { ARCADE_TRACKS, LEVELS_PER_TRACK, buildTrack, difficultyForLevel, levelChallenge, levelCode, starsForAttempts } from '@/games/arcade'
 import { GAMES, GAME_KEYS } from '@/games/registry'
 import { mergeProgress, emptyProgress } from '@/hooks/useStoryProgress'
 
@@ -34,7 +34,11 @@ describe('arcade tracks', () => {
   it('builds a playable minigame challenge for a level', () => {
     const ch = levelChallenge({ index: 7, game: 'maze', configId: 'cedar-forest', difficulty: 2, seed: 42 })
     expect(ch).toMatchObject({ type: 'minigame', game: 'maze', configId: 'cedar-forest', difficulty: 2, seed: 42, id: 'arcade:maze:7' })
-    expect(ch.instruction).toContain('Level 8')
+    expect(ch.instruction).toContain('B2')
+  })
+
+  it('labels levels A1–D6', () => {
+    expect([0, 5, 6, 7, 18, 23].map(levelCode)).toEqual(['A1', 'A6', 'B1', 'B2', 'D1', 'D6'])
   })
 
   it('stars reward first-try clears', () => {
