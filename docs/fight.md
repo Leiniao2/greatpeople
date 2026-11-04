@@ -6,7 +6,7 @@ The battle supported Player vs Player up to 5 people and Player vs Computer also
 
 ## 1. Game Setup.
 
-Game could be configured All era or Single era. The All era game locations card and great people card are distributed without era limitation.
+Game could be configured All era or Single era. The All era game locations card and great people card are distributed without era limitation. The Single era game only uses location cards and great people cards from the chosen era; because an era has only 10-15 great people, a large table deals fewer great people per player (equal for everyone, at most 4).
 
 Each battle starts with 4 Great People card, 2 Event cards, and 8 Follower cards distributed to each player. All cards are started as hand cards.
 

@@ -127,8 +127,6 @@ Enterprise Quarter, Port
 Stock Exchange, Enterprise Quarter, Fine Dining
 ## Shenzhen
 Stock Exchange, Enterprise Quarter
-## Taipei
-Enterprise Quarter
 ## Sydney
 Concert Hall, Port
 ## Dubai

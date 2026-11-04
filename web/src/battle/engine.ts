@@ -463,8 +463,16 @@ export function computeEventSide(
 
 // ─── Game Initialization ──────────────────────────────────────────────────────
 
+export const STARTING_GP_HAND = 4
+
+/** GP cards in play: a single-era game only uses Great People from that era. */
+export function gpPool(eraMode: EraMode, singleEra?: string): Card[] {
+  if (eraMode === 'single' && singleEra) return ALL_GP_CARDS.filter(c => c.era === singleEra)
+  return ALL_GP_CARDS
+}
+
 export function initGame(setup: GameSetup): GameState {
-  const gpDeck = shuffle(ALL_GP_CARDS.map(c => c.id))
+  const gpDeck = shuffle(gpPool(setup.eraMode, setup.singleEra).map(c => c.id))
   const eventDeck = makeEventDeck()
   const followerDeck = makeFollowerDeck()
 
@@ -475,10 +483,13 @@ export function initGame(setup: GameSetup): GameState {
       : []),
   ]
 
+  // An era has only 10-15 Great People, so a full single-era table deals
+  // smaller, equal hands rather than leaving later players short.
+  const handSize = Math.min(STARTING_GP_HAND, Math.floor(gpDeck.length / Math.max(1, allPlayerNames.length)))
   let deckCursor = 0
   const players: PlayerState[] = allPlayerNames.map((name, i) => {
-    const gpHand = gpDeck.slice(deckCursor, deckCursor + 4)
-    deckCursor += 4
+    const gpHand = gpDeck.slice(deckCursor, deckCursor + handSize)
+    deckCursor += handSize
     const eventHand = eventDeck.splice(0, 2)
     const followerHand = followerDeck.splice(0, 8)
     return {
