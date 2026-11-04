@@ -28,15 +28,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "polybius",
+            "game": "royalur",
+            "configId": "raid",
             "seed": 1001,
-            "fact": "The Akkadian Empire (c. 2334–2154 BCE) unified diverse Sumerian city-states under a single ruler for the first time in recorded history — a template copied by every empire since.",
-            "autogen": true,
-            "configId": "greek-torches",
-            "params": {
-              "plaintext": "ONE KING FOR ALL SUMER"
-            },
-            "instruction": "A runner brings Sargon's new title as pairs of numbers. Find each letter on the square."
+            "instruction": "The cup-bearer has seized the throne, and the cities of Sumer must learn it. Win the raid: send the target number of your rival's pieces back to the start.",
+            "fact": "The Akkadian Empire (c. 2334–2154 BCE) unified diverse Sumerian city-states under a single ruler for the first time in recorded history — a template copied by every empire since."
           }
         }
       ]
@@ -54,12 +50,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "mancala",
-            "configId": "kalah",
+            "game": "irrigation",
+            "configId": "mesopotamia",
             "seed": 8162,
-            "instruction": "Sargon I: capture the most seeds.",
-            "fact": "Akkadian engineers built on Sumerian foundations — their ziggurats required the same mathematical knowledge that moved millions of tonnes of stone.",
-            "rebalanced": true
+            "instruction": "The legend says Aqqi the water-drawer lifted the baby from the river and raised him as his gardener. Work the sluices and water every field, as the young Sargon once did.",
+            "fact": "The Legend of Sargon, written down long after his time, has the king tell how his mother set him on the Euphrates in a basket of rushes sealed with bitumen, and how Aqqi the water-drawer lifted him out and raised him as a gardener."
           }
         }
       ]
@@ -94,21 +89,17 @@
       "scenes": [
         {
           "type": "narration",
-          "text": "Three thousand years of Mesopotamian civilization would rise and fall in succession. Each empire learned from the last — a chain of innovation in law, astronomy, and mathematics that underpins our world today. Place them in order..."
+          "text": "Three thousand years of Mesopotamian civilization would rise and fall in succession. Each empire learned from the last — a chain of innovation in law, astronomy, and mathematics that underpins our world today. And it began with Sargon's ships, riding at anchor by the quay of Akkad."
         },
         {
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "scytale",
+            "game": "caravan",
+            "configId": "akkad-quay",
             "seed": 1001,
-            "fact": "Sargon of Akkad (c. 2334–2279 BCE) created history's first empire, uniting dozens of city-states under one ruler for the first time. His daughter Enheduanna became history's first named author.",
-            "autogen": true,
-            "configId": "spartan-rod",
-            "params": {
-              "plaintext": "SARGON WAS A CUPBEARER"
-            },
-            "instruction": "An enemy of the king has written Sargon's humble past on a wound strip. Find the rod that lines it up."
+            "instruction": "Sargon's empire lived on its trade as well as its armies. Sail his route from the quay of Akkad to Meluhha and come home with a fortune.",
+            "fact": "Sargon of Akkad (c. 2334–2279 BCE) created history's first empire, uniting dozens of city-states under one ruler for the first time. His daughter Enheduanna became history's first named author."
           }
         },
         {

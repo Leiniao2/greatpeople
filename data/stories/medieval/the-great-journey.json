@@ -25,12 +25,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "canallock",
-            "configId": "canal-du-midi",
+            "game": "tradeboard",
+            "configId": "silk-road",
             "seed": 34035,
-            "instruction": "Ibn Battuta: pass the boats through the locks.",
-            "fact": "Ibn Battuta (1304–1368) traveled an estimated 75,000 miles — three times the distance of Marco Polo's journey — visiting the equivalent of 44 modern countries. He crossed the Sahara, sailed the Indian Ocean, traversed the steppes of Central Asia, visited China, and explored the Kingdom of Mali, all within a single lifetime of restless curiosity.",
-            "rebalanced": true
+            "instruction": "Through Syria and Persia he rides with the caravans, resting at caravanserais a day’s march apart. Buy inns along the road and outtrade the rival merchants before the season ends.",
+            "fact": "Ibn Battuta (1304–1368) traveled an estimated 75,000 miles — three times the distance of Marco Polo's journey — visiting the equivalent of 44 modern countries. He crossed the Sahara, sailed the Indian Ocean, traversed the steppes of Central Asia, visited China, and explored the Kingdom of Mali, all within a single lifetime of restless curiosity."
           }
         }
       ]
@@ -48,12 +47,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "tradeboard",
-            "configId": "spice",
+            "game": "snake",
+            "configId": "sahara",
             "seed": 89878,
-            "instruction": "Ibn Battuta: outtrade the rival merchants.",
-            "fact": "Ibn Battuta left Tangier in 1325 intending only to make the hajj to Mecca. He was 21 years old. The journey expanded as his curiosity grew — he kept finding reasons not to return home, following trade routes, accepting appointments, and exploring rumors of distant courts. He finally returned to Morocco 29 years later and immediately began planning further travels.",
-            "rebalanced": true
+            "instruction": "Years later he crosses the Sahara to the Mali Empire. Lead the salt caravan south and keep your line clear of the rising dunes.",
+            "fact": "Ibn Battuta left Tangier in 1325 intending only to make the hajj to Mecca. He was 21 years old. The journey expanded as his curiosity grew — he kept finding reasons not to return home, following trade routes, accepting appointments, and exploring rumors of distant courts. He finally returned to Morocco 29 years later and immediately began planning further travels."
           }
         }
       ]
@@ -71,12 +69,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "alchemy",
-            "configId": "jabir",
+            "game": "cargo",
+            "configId": "calicut-junk",
             "seed": 4389,
-            "instruction": "Ibn Battuta: discover the target substance.",
-            "fact": "Ibn Battuta's Rihla (A Gift to Those Who Contemplate the Wonders of Cities) was dictated to a court secretary, Ibn Juzayy, on his return. Some scholars have questioned whether he visited every place he describes — the China account in particular is suspiciously vague — but his eyewitness descriptions of Mali, India, and Constantinople remain invaluable historical documents.",
-            "rebalanced": true
+            "instruction": "The Sultan of Delhi names him envoy to the emperor of China. At Calicut, stow the Sultan’s gifts aboard the junk so she rides level.",
+            "fact": "Ibn Battuta's Rihla (A Gift to Those Who Contemplate the Wonders of Cities) was dictated to a court secretary, Ibn Juzayy, on his return. Some scholars have questioned whether he visited every place he describes — the China account in particular is suspiciously vague — but his eyewitness descriptions of Mali, India, and Constantinople remain invaluable historical documents."
           }
         },
         {
@@ -87,9 +84,9 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "pipeline",
-            "configId": "silk-road-caravan",
-            "instruction": "Route Ibn Battuta's caravan across Central Asia — threading through oasis cities and mountain passes, connecting the known world's great trading hubs.",
+            "game": "caravan",
+            "configId": "silk-road",
+            "instruction": "From Constantinople to China, the Mongol peace keeps the roads open. Carry what each city wants and turn a profit along the route.",
             "fact": "The Silk Road was not a single road but a network of shifting routes connecting China to the Mediterranean. Ibn Battuta traveled it in both directions, recording the hospitality of Mongol khans, the luxury of Persian court life, and the stunning efficiency of the Pax Mongolica — the peace imposed by Mongol dominance that made the entire route safe for travelers for the first time."
           }
         }
@@ -111,9 +108,8 @@
             "game": "mancala",
             "configId": "bao-lite",
             "seed": 42481,
-            "instruction": "Ibn Battuta: capture the most seeds.",
-            "fact": "Ibn Battuta described Cairo as 'the mother of cities' — sprawling, noisy, and overwhelming with life. The Mamluk sultan's court received caravans from Sub-Saharan Africa bearing gold, ivory, and enslaved people, while Mediterranean merchants arrived with silver, glass, and cloth. Cairo was the clearing house of the medieval world economy.",
-            "rebalanced": true
+            "instruction": "Dictating in Morocco, he remembers the Swahili coast, where he landed at Mombasa and Kilwa in 1331. Play bao against the Zanzibar master and capture the most seeds.",
+            "fact": "Ibn Battuta sailed down the Swahili coast in 1331, stopping at Mombasa and Kilwa. He called Kilwa one of the most beautiful and best-built towns in the world, and praised its sultan, known as “the father of gifts” for his generosity."
           }
         },
         {
@@ -121,8 +117,8 @@
           "challenge": {
             "type": "minigame",
             "game": "decode",
-            "configId": "cipher-al",
-            "instruction": "Arabic script linked the scholars, judges, and merchants that Ibn Battuta encountered across 29 years of travel. Decode the message written in the ink of the medieval Islamic world.",
+            "configId": "rihla-title",
+            "instruction": "In Fez the scholar Ibn Juzayy writes the travels down and gives the book its title. Decode the words letter by letter.",
             "fact": "The Arabic language was Ibn Battuta's greatest asset. Across the vast arc from Morocco to China, he could walk into any mosque and find educated men who shared his language, his faith, and his legal tradition. The Islamic world of the 14th century was in many ways more unified than any political empire — held together by shared scripture, shared law, and shared script."
           }
         },

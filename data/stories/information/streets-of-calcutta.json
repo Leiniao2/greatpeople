@@ -60,12 +60,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "logicgate",
+            "game": "chimpmath",
+            "configId": "motijhil-school",
             "seed": 1001,
-            "fact": "When Mother Teresa received the Nobel Peace Prize in 1979, she asked that the $192,000 Nobel banquet fund be donated directly to the poor of Calcutta. She described the prize as recognition of 'the poorest of the poor.'",
-            "autogen": true,
-            "configId": "turing-tape",
-            "instruction": "Mother Teresa asked that the traditional Nobel banquet be cancelled and the money given to the poor. Wire the gates until the circuit agrees with the table on every row."
+            "instruction": "With no building and no money, Teresa gathers the children of Motijhil in the open and teaches them in the dirt. Work out each sum and share out the bananas — a lesson and a meal together.",
+            "fact": "When Mother Teresa left Loreto in 1948, she first took a short course in nursing with the Medical Mission Sisters in Patna, then came back to Calcutta to teach the children of Motijhil and visit the sick in their homes."
           }
         }
       ]
@@ -89,15 +88,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "binary",
+            "game": "sudoku",
+            "configId": "nirmal-hriday-rota",
             "seed": 1002,
-            "fact": "Each step built on the last: leaving the convent (1948) gave her freedom to serve; the Missionaries (1950) gave her sisters; Nirmal Hriday (1952) gave the dying dignity; and the Nobel Prize (1979) gave her voice to the world.",
-            "autogen": true,
-            "configId": "five-lamps",
-            "params": {
-              "plaintext": "SERVE THE POOREST"
-            },
-            "instruction": "Mother Teresa's calling is stored as lamps. Add up each row to read it."
+            "instruction": "Nirmal Hriday is open, and the dying are brought in from the streets day and night. Draw up the sisters' rota so every duty is covered and no one is left alone.",
+            "fact": "Each step built on the last: leaving the convent (1948) gave her freedom to serve; the Missionaries (1950) gave her sisters; Nirmal Hriday (1952) gave the dying dignity; and the Nobel Prize (1979) gave her voice to the world."
           }
         }
       ]
@@ -121,12 +116,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "chimpmath",
-            "configId": "jane-goodall-chimps",
+            "game": "binary",
+            "configId": "nobel-telex",
             "seed": 80262,
-            "instruction": "Mother Teresa: match the chimps at counting.",
-            "fact": "Akbar's Mughal Empire controlled the world's richest gem pipeline: rubies from Burma, emeralds from Colombia via Portuguese Goa, sapphires from Ceylon, and diamonds from Golconda — the mine that produced the Koh-i-Noor. European merchants called Agra's Jauhari Bazaar the most magnificent market on Earth.",
-            "rebalanced": true
+            "instruction": "News of the Nobel Prize reaches Calcutta by telex. Read the lamps to learn in whose name Teresa accepts it.",
+            "fact": "By her death in 1997 the Missionaries of Charity had grown from a handful of sisters in Calcutta to more than 4,000, running some 610 missions in 123 countries — hospices, orphanages, and homes for people with leprosy and HIV/AIDS."
           }
         },
         {

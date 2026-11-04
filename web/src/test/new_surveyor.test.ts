@@ -19,7 +19,10 @@ const mode = (id: string) => CONFIGS[id].mode
 describe('surveyor logic', () => {
   it('has at least four configs with distinct rules and true facts', () => {
     expect(CONFIG_IDS.length).toBeGreaterThanOrEqual(4)
-    expect(new Set(CONFIG_IDS.map(mode)).size).toBe(CONFIG_IDS.length)
+    // The base configs are each their own twist; story-themed configs reuse one of them.
+    const BASE = ['thales-ships', 'pyramid-shadow', 'thales-moment', 'eratosthenes', 'great-arc']
+    expect(new Set(BASE.map(mode)).size).toBe(BASE.length)
+    for (const id of CONFIG_IDS) expect(BASE.map(mode), id).toContain(mode(id))
     for (const id of CONFIG_IDS) { expect(CONFIGS[id].fact.length).toBeGreaterThan(40); expect(CONFIGS[id].intro.length).toBeGreaterThan(40) }
   })
 

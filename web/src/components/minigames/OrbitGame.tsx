@@ -36,6 +36,18 @@ export const CONFIGS: Record<string, OrbitConfig> = {
     fact: 'In Astronomia nova (1609) Johannes Kepler used Tycho Brahe’s observations of Mars to show that planets move on ellipses with the Sun at one focus.',
     kind: 'kepler',
   },
+  'qing-observatory': {
+    title: 'The Beijing Observatory',
+    intro: 'The Jesuit astronomers of the Imperial Astronomical Bureau have marked a planet’s sightings on the chart. Choose its launch speed and angle so the orbit passes through every sighting and comes all the way round.',
+    fact: 'Jesuit astronomers ran the Qing Imperial Astronomical Bureau in Beijing for over a century. Under Ignaz Kögler the Bureau compiled the Lixiang kaocheng houbian (1742), which brought Kepler’s elliptical orbits into the official calendar.',
+    kind: 'kepler',
+  },
+  'hill-of-the-star': {
+    title: 'The Hill of the Star, 1455',
+    intro: 'At the end of a 52-year cycle the sky must prove it will go on. The watchers have marked where a wandering light was seen night after night. Choose its launch speed and angle so its path passes through every sighting and comes all the way round.',
+    fact: 'Every 52 years the Mexica put out every fire and held the New Fire ceremony: on the Hill of the Star near Tenochtitlan, priests watched for the Pleiades to cross the sky at midnight — the sign the world would go on — and kindled a new fire. Ceremonies were held in 1455, in Tlacaelel’s lifetime, and in 1507.',
+    kind: 'kepler',
+  },
   'hohmann-transfer': {
     title: 'Hohmann’s Transfer, 1925',
     intro: 'Your ship circles with the Earth. Burn 1 stretches the orbit out to the target planet’s; burn 2 fires automatically at the far point (aphelion) and must round the orbit off.',
@@ -53,6 +65,12 @@ export const CONFIGS: Record<string, OrbitConfig> = {
     intro: 'Set the comet’s speed at its sighting so it comes back on the predicted date. Kepler’s third law: period² = a³ (years, AU), where a is half the longest width of the ellipse.',
     fact: 'Edmond Halley predicted in 1705 that the comet of 1682 would return in 1758. Alexis Clairaut, adding the pull of Jupiter and Saturn, forecast perihelion for April 1759; it came on 13 March.',
     kind: 'halley',
+  },
+  'great-comet-1680': {
+    title: 'The Great Comet of 1680',
+    intro: 'The comet’s positions are marked on the chart as astronomers saw them over the winter of 1680. Choose its speed and angle at the first sighting so its path passes through every mark and comes all the way round.',
+    fact: 'Gottfried Kirch found the Great Comet of 1680 on 14 November — the first comet discovered with a telescope. It blazed over Rome as Bernini lay dying; he died on 28 November. Newton used its track in the Principia (1687) to show that comets, like planets, move under the Sun’s gravity on conic orbits.',
+    kind: 'kepler',
   },
 }
 

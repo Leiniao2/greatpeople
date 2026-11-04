@@ -28,12 +28,16 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "iceslide",
-            "configId": "mulan-ice",
+            "game": "magicsquare",
+            "configId": "lo-shu",
+            "params": {
+              "title": "Equal Syllables",
+              "intro": "Valmiki's verse fell into four balanced quarters. Restore the square so every row, column and both long diagonals share one sum.",
+              "fact": "Sanskrit metres are counted in syllables, light and heavy, not in stresses. Pingala's Chandahshastra, a few centuries BCE, set out every pattern of light and heavy syllables — an early cousin of binary counting."
+            },
             "seed": 63528,
-            "instruction": "Valmiki: slide across the ice to the exit.",
-            "fact": "The Ramayana's battle sequences describe military formations, siege tactics, and the strategic use of terrain that reflect real Bronze Age warfare in ancient India. The epic's narrative of a righteous king leading a coalition army against an unjust ruler became a template for political legitimacy across South Asia.",
-            "rebalanced": true
+            "instruction": "The words came out in a rhythm Valmiki had never spoken: four quarters, equal syllables, every part in balance. Make every line of the square balance the same way.",
+            "fact": "Tradition calls Valmiki the Adi Kavi, the first poet, and his Ramayana the Adi Kavya, the first poem of Sanskrit literature. The epic opens with the story of how he came to poetry, before it tells a single deed of Rama."
           }
         }
       ]
@@ -57,12 +61,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "mint",
-            "configId": "britain",
+            "game": "riverrun",
+            "configId": "ganga-crossing",
             "seed": 27040,
-            "instruction": "Valmiki: mint the target coin.",
-            "fact": "The Ramayana centers on Prince Rama of Ayodhya — his exile with his wife Sita and brother Lakshmana, Sita's abduction by the demon king Ravana, and Rama's journey to rescue her with the help of Hanuman and an army of monkeys. It remains one of Asia's most beloved epics.",
-            "rebalanced": true
+            "instruction": "Brahma has given Valmiki the story of Rama, and it begins with exile. Rama, Sita and Lakshmana have left Ayodhya; take Guha's boat across the Ganga.",
+            "fact": "The Ramayana centers on Prince Rama of Ayodhya — his exile with his wife Sita and brother Lakshmana, Sita's abduction by the demon king Ravana, and Rama's journey to rescue her with the help of Hanuman and an army of monkeys. It remains one of Asia's most beloved epics."
           }
         }
       ]
@@ -82,12 +85,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "battlearena",
-            "configId": "roman-gladiator",
+            "game": "expedition",
+            "configId": "rama-exile",
             "seed": 66960,
-            "instruction": "Valmiki: win the duel.",
-            "fact": "The Ramayana's themes — the duty of a prince, the devotion of a wife, the loyalty of a friend — have resonated across Asia for 2,500 years. The epic has more than 300 known versions across South and Southeast Asia, each reflecting the values of its culture.",
-            "rebalanced": true
+            "instruction": "Valmiki's verses follow Rama south. Lead the exiles from Chitrakuta to Panchavati, where Sita is taken, then to Kishkindha and the shore of the southern sea.",
+            "fact": "The Ramayana's themes — the duty of a prince, the devotion of a wife, the loyalty of a friend — have resonated across Asia for 2,500 years. The epic has more than 300 known versions across South and Southeast Asia, each reflecting the values of its culture."
           }
         }
       ]
@@ -105,12 +107,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "sokoban",
-            "configId": "baalbek-quarry",
+            "game": "storysort",
+            "configId": "valmiki-krauncha",
             "seed": 33656,
-            "instruction": "Valmiki: haul the stones onto their marks.",
-            "fact": "The shloka metre — the pattern Valmiki invented in that moment of grief — became the dominant verse form of Sanskrit epic poetry. The Mahabharata, the Puranas, and thousands of religious texts all use the same metre that Valmiki created spontaneously, in sorrow, beside a river.",
-            "rebalanced": true
+            "instruction": "Every telling of the Ramayana goes back to one riverbank. Put the moment in order — the river, the two birds, the hunter's arrow and the verse that grief made.",
+            "fact": "The shloka metre — the pattern Valmiki invented in that moment of grief — became the dominant verse form of Sanskrit epic poetry. The Mahabharata, the Puranas, and thousands of religious texts all use the same metre that Valmiki created spontaneously, in sorrow, beside a river."
           }
         },
         {
@@ -123,12 +124,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "hanoi",
-            "configId": "scattered",
+            "game": "battlearena",
+            "configId": "lanka-war",
             "seed": 90612,
-            "instruction": "Valmiki: move the stack of disks.",
-            "fact": "The Ramayana has influenced cultures across Southeast Asia for over a thousand years. Thailand has the Ramakien, Indonesia has the Kakawin Ramayana, and Cambodia's Reamker is performed at the royal court. Puppetry and dance forms based on the Ramayana are UNESCO-listed cultural traditions in Malaysia, Thailand, and Myanmar.",
-            "rebalanced": true
+            "instruction": "The war that ends the tale: Rama faces Ravana's champions at Lanka. Choose the right weapon for each foe — the poem that tells it will outlast every king.",
+            "fact": "The Ramayana has influenced cultures across Southeast Asia for over a thousand years. Thailand has the Ramakien, Indonesia has the Kakawin Ramayana, and Cambodia's Reamker is performed at the royal court. Puppetry and dance forms based on the Ramayana are UNESCO-listed cultural traditions in Malaysia, Thailand, and Myanmar."
           }
         },
         {

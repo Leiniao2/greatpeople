@@ -58,11 +58,7 @@
             "game": "telegraph",
             "seed": 1001,
             "fact": "The Salt March of 1930 transformed Gandhi from a respected Indian leader into a global symbol. When he picked up a pinch of salt on the Dandi beach, he broke British law — and the world was watching. Within weeks, 60,000 Indians had been arrested for the same act of defiance.",
-            "autogen": true,
-            "configId": "signal-lamp",
-            "params": {
-              "plaintext": "GANDHI PICKS UP THE SALT"
-            },
+            "configId": "dandi-dispatch",
             "instruction": "A reporter on Dandi beach wires the news. Read the lamp."
           }
         }
@@ -83,12 +79,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "logicgate",
+            "game": "reporterflee",
             "seed": 1002,
-            "fact": "Gandhi devoted his life to Indian independence (swaraj). However, he insisted the path must be nonviolent. His Quit India speech of 1942 demanded immediate British withdrawal — 'Do or Die' — and triggered mass arrests. Gandhi saw independence not merely as political freedom but as moral regeneration.",
-            "autogen": true,
-            "configId": "shannon-relays",
-            "instruction": "Gandhi opposed Indian independence from Britain, believing the British Empire could be reformed from within. Wire the gates until the circuit agrees with the table on every row."
+            "fact": "After Gandhi's arrest on 5 May 1930, the poet Sarojini Naidu led some 2,500 volunteers to the Dharasana Salt Works. Row after row walked forward to be beaten down by the police, and not one raised a hand to defend himself.",
+            "configId": "dharasana-1930",
+            "instruction": "Gandhi is in jail, but the satyagrahis march on the Dharasana salt works and take the blows without striking back. Get Webb Miller's story past the police lines and out to the world."
           }
         }
       ]
@@ -100,7 +95,7 @@
       "scenes": [
         {
           "type": "narration",
-          "text": "Gandhi's path through British India required navigating complex colonial obstacles — reaching the people, the press, and the sea. Navigate his march toward the coast..."
+          "text": "Gandhi's revolution was built from small things — a spinning wheel, a pinch of salt, and, years before, a football club in South Africa."
         },
         {
           "type": "challenge",
@@ -108,7 +103,7 @@
             "type": "minigame",
             "game": "crossword",
             "configId": "gandhi",
-            "instruction": "Complete the crossword of Gandhi's India — the people, places, and principles that shaped a revolution without rifles.",
+            "instruction": "Complete the crossword of Gandhi's India — the people, places and principles of a revolution without rifles.",
             "fact": "Gandhi's methods were studied and adopted by civil rights leaders around the world. Martin Luther King Jr. called Gandhi's philosophy 'the guiding light of our technique of nonviolent social change.' Nelson Mandela, Cesar Chavez, and Aung San Suu Kyi all cited Gandhi's example."
           }
         },
@@ -116,10 +111,10 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "maze",
-            "configId": "long-march",
-            "instruction": "Walk Gandhi's Salt March — 240 miles in 24 days. Navigate the coastal road to Dandi, where a handful of salt will shake an empire.",
-            "fact": "The 1930 Salt March began with 78 hand-picked followers and ended with tens of thousands. When Gandhi arrived at the sea after 24 days, he said: 'With this, I am shaking the foundations of the British Empire.' The American press called it 'the most spectacular individual act of defiance in modern history.'"
+            "game": "soccer",
+            "configId": "passive-resisters",
+            "instruction": "Long before Dandi, Gandhi organised in South Africa — even on the football pitch, where his teams played as the Passive Resisters. Score three from the spot.",
+            "fact": "Gandhi lived in South Africa from 1893 to 1914. There he first organised mass nonviolent resistance against laws aimed at Indians, and worked out the methods he would bring home to India."
           }
         },
         {

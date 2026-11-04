@@ -28,12 +28,27 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "tafl",
-            "configId": "birka",
+            "game": "abacus",
+            "configId": "ming-shop",
+            "params": {
+              "title": "Reckoning with Sifr",
+              "intro": "Each rod is a place — ones, tens, hundreds — and an empty rod stands for nothing: the Indians’ zero. Add each amount the market clerk calls out and press Enter; the beads must show the running total.",
+              "fact": "Al-Khwarizmi’s book on Indian reckoning taught place value with nine digits and a zero, which Arabic called sifr, “empty”. Its Latin translation begins “Dixit Algorizmi”, and sifr gave European languages both “cipher” and “zero”.",
+              "unit": "dirhams",
+              "items": [
+                "paper ream",
+                "pepper sack",
+                "lamp oil",
+                "ink jar",
+                "date basket",
+                "cotton bale",
+                "copper pot",
+                "saffron pouch"
+              ]
+            },
             "seed": 50027,
-            "instruction": "Al-Khwarizmi: bring the king to safety.",
-            "fact": "Al-Khwarizmi's 'Kitab al-mukhtasar fi hisab al-jabr wal-muqabala' (c. 820 CE) — 'The Compendious Book on Calculation by Completion and Balancing' — gave us the word algebra from al-jabr.",
-            "rebalanced": true
+            "instruction": "Zero makes the system complete. Reckon the merchant’s sums place by place, and let an empty rod stand for nothing.",
+            "fact": "Al-Khwarizmi's 'Kitab al-mukhtasar fi hisab al-jabr wal-muqabala' (c. 820 CE) — 'The Compendious Book on Calculation by Completion and Balancing' — gave us the word algebra from al-jabr."
           }
         }
       ]
@@ -53,7 +68,7 @@
             "type": "minigame",
             "game": "decode",
             "configId": "cipher-al",
-            "instruction": "A coded message has arrived from Al-Khwarizmi's House of Wisdom. Decode it letter by letter.",
+            "instruction": "A coded message has arrived from the House of Wisdom. Decode it letter by letter.",
             "fact": "Al-Khwarizmi's mathematical texts were written in a kind of symbolic code that unlocked the logic of the universe — algebra as a language of hidden structure."
           }
         }
@@ -74,12 +89,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "optics",
-            "configId": "newton-prism",
+            "game": "ferry",
+            "configId": "wolf-goat",
             "seed": 27177,
-            "instruction": "Al-Khwarizmi: focus the light.",
-            "fact": "Al-Khwārizmī's Kitāb al-jabr (c. 820 CE) gave us the word 'algebra.' He illustrated algebraic equations with geometric diagrams, proving solutions by drawing and rearranging squares — the origin of 'completing the square.'",
-            "rebalanced": true
+            "instruction": "Any problem can be reduced and solved step by step. In these same years Alcuin of York set this river puzzle at Charlemagne’s court: find the sequence of crossings that works.",
+            "fact": "Al-Khwārizmī's Kitāb al-jabr (c. 820 CE) gave us the word 'algebra.' He illustrated algebraic equations with geometric diagrams, proving solutions by drawing and rearranging squares — the origin of 'completing the square.'"
           }
         },
         {
@@ -90,12 +104,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "sliding",
-            "configId": "renaissance",
+            "game": "alchemy",
+            "configId": "jabir",
             "seed": 29975,
-            "instruction": "Al-Khwarizmi: slide the tiles back into order.",
-            "fact": "The House of Wisdom in Abbasid Baghdad synthesised Greek, Indian, and Persian knowledge. Al-Kindi, al-Farabi and al-Razi worked there — translating Aristotle, developing algebra, and mapping the stars with planetary symbols inherited from Hellenistic alchemy.",
-            "rebalanced": true
+            "instruction": "In Latin he became Algoritmi, just as Jabir the alchemist became Geber. Follow the steps on Jabir’s scroll to make the target substance: a method, like an algorithm.",
+            "fact": "Jabir ibn Hayyan’s writings reached Latin Europe in the 12th century, and later alchemists wrote under his Latinised name, Geber. Al-Khwarizmi’s name went the same way: Algoritmi became “algorithm”."
           }
         }
       ]
@@ -109,9 +122,9 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "mirror",
-            "configId": "archimedes-mirror",
-            "instruction": "The House of Wisdom translated Archimedes — including his mirror theories. Thread the beam through the array using two mirrors across an 8×8 grid.",
+            "game": "optics",
+            "configId": "alhazen-camera",
+            "instruction": "A century later Ibn al-Haytham built on the House of Wisdom’s translations. Make the hole in the wall of the dark room so the candle’s image lands on the marks.",
             "fact": "Ibn al-Haytham, working a century after Al-Khwarizmi, built on the House of Wisdom's translations to write 'Kitab al-Manazir' (Book of Optics) — the first correct account of how vision works. Light enters the eye; the eye does not emit rays."
           }
         },

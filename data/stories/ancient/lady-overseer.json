@@ -28,12 +28,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "surveyor",
-            "configId": "thales-moment",
+            "game": "nonogram",
+            "configId": "physicians-school",
             "seed": 45490,
-            "instruction": "Peseshet: measure it by the angles.",
-            "fact": "Peseshet (c. 2500–2450 BCE) is the earliest known female medical administrator in history. Her title 'Imy-r swnwt' — 'Lady Overseer of Female Physicians' — indicates she supervised a group of female medical practitioners, making her a pioneering figure in both medicine and women's leadership.",
-            "rebalanced": true
+            "instruction": "Peseshet's students learn from old papyri, worn and stained by damp. Restore the picture on the teaching sheet from the clues that survive.",
+            "fact": "Peseshet (c. 2500–2450 BCE) is the earliest known female medical administrator in history. Her title 'Imy-r swnwt' — 'Lady Overseer of Female Physicians' — indicates she supervised a group of female medical practitioners, making her a pioneering figure in both medicine and women's leadership."
           }
         }
       ]
@@ -58,14 +57,13 @@
           "challenge": {
             "type": "minigame",
             "game": "atbash",
-            "seed": 1025,
-            "fact": "Peseshet predates Hippocrates — the 'Father of Medicine' — by nearly 2,000 years. Her title 'Lady Overseer of Female Physicians' implies there were enough women doctors to require an administrator, suggesting female medical practice was established, not exceptional.",
-            "autogen": true,
-            "configId": "mirror-tablet",
+            "configId": "saqqara-mirror",
             "params": {
               "plaintext": "PESESHET OVERSEES THE DOCTORS"
             },
-            "instruction": "A temple scribe has written Peseshet's title in mirror letters. Read it with the folded alphabet."
+            "seed": 1025,
+            "instruction": "The young physician asks what the law allows. Peseshet points to her own title, cut in mirror letters on the wall — read it.",
+            "fact": "Peseshet predates Hippocrates — the 'Father of Medicine' — by nearly 2,000 years. Her title 'Lady Overseer of Female Physicians' implies there were enough women doctors to require an administrator, suggesting female medical practice was established, not exceptional."
           }
         }
       ]
@@ -85,12 +83,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "magicsquare",
-            "configId": "lo-shu",
+            "game": "mint",
+            "configId": "horus-eye",
             "seed": 28094,
-            "instruction": "Peseshet: complete the magic square.",
-            "fact": "We know of Peseshet entirely through a false door stele in her son's tomb at Giza. This was a common way for high-status women to be memorialized. The inscription preserves for 4,500 years the name of the world's first known female physician.",
-            "rebalanced": true
+            "instruction": "The patient in front of you needs a remedy now. Measure out the dose, joining the small parts of the hekat until it is exactly right.",
+            "fact": "We know of Peseshet entirely through a false door stele in her son's tomb at Giza. This was a common way for high-status women to be memorialized. The inscription preserves for 4,500 years the name of the world's first known female physician."
           }
         }
       ]
@@ -108,12 +105,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "wallbuilder",
-            "configId": "inca-ashlar",
+            "game": "surveyor",
+            "configId": "giza-lesson",
             "seed": 70789,
-            "instruction": "Peseshet: raise the wall without gaps.",
-            "fact": "The Great Pyramid of Giza was built within a century of Peseshet's career. The same mathematical precision used to align its base to within 3.7 cm of perfect was applied by Egyptian physicians to their dosage calculations — geometry and medicine shared the same scribal tradition.",
-            "rebalanced": true
+            "instruction": "Peseshet's school teaches the scribes' arithmetic along with medicine. Take the lesson beside the new pyramids of Giza and measure one by its shadow.",
+            "fact": "The Great Pyramid of Giza, raised within a century of Peseshet's career, is set square to the four cardinal points to within a fraction of a degree, and its 230-metre base is level to about two centimetres."
           }
         },
         {
@@ -126,12 +122,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "royalur",
-            "configId": "finkel",
+            "game": "senet",
+            "configId": "giza-hall",
             "seed": 32868,
-            "instruction": "Peseshet: race your pieces home.",
-            "fact": "Ancient Egyptian construction used a form of modular planning — calculating how blocks must slide and stack to achieve the final form. The same systematic thinking appears in Egyptian medical texts, where treatments are sequenced step by step, building toward a cure.",
-            "rebalanced": true
+            "instruction": "Peseshet's name will be kept in her son's tomb at Giza, among the things the dead take with them. Play senet with a student in the physicians' hall.",
+            "fact": "A false door was the place in an Egyptian tomb where the living set down offerings and the spirit of the dead was believed to pass between worlds. Peseshet's own false door was set up in the tomb of her son Akhethotep."
           }
         },
         {

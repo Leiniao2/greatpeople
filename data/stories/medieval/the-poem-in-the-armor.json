@@ -25,12 +25,16 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "cargo",
-            "configId": "hanse-cog",
+            "game": "tafl",
+            "configId": "ballinderry",
+            "params": {
+              "title": "Out of the Burning Capital",
+              "intro": "Kyoto, summer 1183: the Minamoto close in. The child emperor cannot fight — he cannot help take a raider, not even as the far side of a sandwich. Your four guards must do all the fighting while he runs for a corner.",
+              "fact": "When the Taira abandoned Kyoto in the seventh month of 1183, they took the five-year-old Emperor Antoku and the three sacred regalia with them, so that wherever the clan went, the throne went too."
+            },
             "seed": 65338,
-            "instruction": "Taira no Tadanori: stow the cargo.",
-            "fact": "Tadanori was one of the leading waka poets of his generation, a student of the master Fujiwara no Shunzei. On the eve of the Taira clan's final flight from Kyoto, he rode back alone through the night to deliver a scroll of his poems to Shunzei — asking only that one be included in the imperial anthology. One was: it appears in the Senzai Wakashū without his name, since he died a rebel.",
-            "rebalanced": true
+            "instruction": "While the clan escorts the boy emperor out of Kyoto, Tadanori turns back alone toward Shunzei’s gate. Guard the emperor’s flight and get him clear of the closing ring.",
+            "fact": "Tadanori was one of the leading waka poets of his generation, a student of the master Fujiwara no Shunzei. On the eve of the Taira clan's final flight from Kyoto, he rode back alone through the night to deliver a scroll of his poems to Shunzei — asking only that one be included in the imperial anthology. One was: it appears in the Senzai Wakashū without his name, since he died a rebel."
           }
         }
       ]
@@ -48,15 +52,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "scytale",
+            "game": "klotski",
+            "configId": "taira-flight",
             "seed": 1020,
-            "fact": "Because Tadanori died on the losing side of the Genpei War, his poem was included in the Senzai Wakashū as 'anonymous' — it would have been politically unacceptable to honor a Taira rebel by name. Yet the poem's inclusion was itself an act of aesthetic respect. Everyone knew whose poem it was, and that silent knowledge became part of the poem's beauty.",
-            "autogen": true,
-            "configId": "spartan-rod",
-            "params": {
-              "plaintext": "THE POEM IS SIGNED ANONYMOUS"
-            },
-            "instruction": "A courtier has wound the anthology's verdict round a rod. Find the rod that lines it up."
+            "instruction": "The Taira take to their ships and the Minamoto hold every harbour mouth. Shift the crowding boats aside and steer the imperial vessel out to open water.",
+            "fact": "Because Tadanori died on the losing side of the Genpei War, his poem was included in the Senzai Wakashū as 'anonymous' — it would have been politically unacceptable to honor a Taira rebel by name. Yet the poem's inclusion was itself an act of aesthetic respect. Everyone knew whose poem it was, and that silent knowledge became part of the poem's beauty."
           }
         }
       ]
@@ -74,12 +74,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "tradeboard",
-            "configId": "venice",
+            "game": "canallock",
+            "configId": "grand-canal",
             "seed": 69057,
-            "instruction": "Taira no Tadanori: outtrade the rival merchants.",
-            "fact": "The tale of Tadanori riding back to his poetry master on the night of defeat became one of the most celebrated stories in Japanese literary history. It appears in the Heike Monogatari — the great narrative of the Genpei War — as the moment when a warrior reveals that poetry, not victory, is what he cannot bear to leave behind.",
-            "rebalanced": true
+            "instruction": "Fukuhara, beside the Ichi-no-Tani camp, was the port Tadanori’s brother Kiyomori built for ships from Song China, whose goods came down canals like this one. Work the barges through the locks before the Minamoto fall on the camp.",
+            "fact": "The tale of Tadanori riding back to his poetry master on the night of defeat became one of the most celebrated stories in Japanese literary history. It appears in the Heike Monogatari — the great narrative of the Genpei War — as the moment when a warrior reveals that poetry, not victory, is what he cannot bear to leave behind."
           }
         },
         {
@@ -90,12 +89,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "nonogram",
-            "configId": "wunderkammer",
+            "game": "pigpen",
+            "configId": "tadanori-quiver",
             "seed": 29122,
-            "instruction": "Taira no Tadanori: reveal the picture from its clues.",
-            "fact": "The Heike Monogatari opens with the most famous line in Japanese literature: 'The sound of the Gion Shoja bells echoes the impermanence of all things.' It was not read but performed — chanted to biwa accompaniment by traveling monks who served as medieval Japan's living archive of history and loss.",
-            "rebalanced": true
+            "instruction": "Tadanori’s killer unties a paper from the fallen warrior’s quiver. Read the poem shape by shape and learn whose life he has taken.",
+            "fact": "The Heike Monogatari opens with the most famous line in Japanese literature: 'The sound of the Gion Shoja bells echoes the impermanence of all things.' It was not read but performed — chanted to biwa accompaniment by traveling monks who served as medieval Japan's living archive of history and loss."
           }
         }
       ]
@@ -113,24 +111,22 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "roundup",
-            "configId": "elephant-keddah",
+            "game": "scytale",
+            "configId": "shunzei-scroll",
             "seed": 51046,
-            "instruction": "Taira no Tadanori: round them all up.",
-            "fact": "The Battle of Ichi-no-Tani (1184) was a Minamoto tactical masterpiece: while one force engaged the Taira from the front, Minamoto Yoshitsune led cavalry down a cliff believed to be impassable. The surprise attack from above broke the Taira position. Tadanori died fighting in this rout — killed by a Minamoto warrior who recognized him only by a poem tucked inside his armour.",
-            "rebalanced": true
+            "instruction": "Years later Shunzei unrolls the scroll Tadanori left at his gate. Find the roller that lines up the words and read how the anthology will name him.",
+            "fact": "The Battle of Ichi-no-Tani (1184) was a Minamoto tactical masterpiece: while one force engaged the Taira from the front, Minamoto Yoshitsune led cavalry down a cliff believed to be impassable. The surprise attack from above broke the Taira position. Tadanori died fighting in this rout — killed by a Minamoto warrior who recognized him only by a poem tucked inside his armour."
           }
         },
         {
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "tafl",
-            "configId": "linnaeus",
+            "game": "mancala",
+            "configId": "oware",
             "seed": 27055,
-            "instruction": "Taira no Tadanori: bring the king to safety.",
-            "fact": "Waka poetry — 31 syllables in a 5-7-5-7-7 pattern — was the highest art form of Heian Japan. To compose a poem in the moment, on the correct seasonal image, in response to a situation, was the mark of a complete human being. Tadanori carried his poems into battle. When his killer discovered the scroll tucked in his armour, he wept.",
-            "rebalanced": true
+            "instruction": "The war is lost, but the poem has outlived the clan. Take a quiet game of sowing and capture, as a later reader might pause with Tadanori’s verse.",
+            "fact": "Waka poetry — 31 syllables in a 5-7-5-7-7 pattern — was the highest art form of Heian Japan. To compose a poem in the moment, on the correct seasonal image, in response to a situation, was the mark of a complete human being. Tadanori carried his poems into battle. When his killer discovered the scroll tucked in his armour, he wept."
           }
         },
         {

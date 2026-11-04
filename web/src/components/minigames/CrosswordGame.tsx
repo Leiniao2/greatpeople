@@ -34,6 +34,15 @@ export const CONFIGS: Record<string, CrosswordConfig> = {
       { number: 3, direction: 'across', row: 4, col: 5, word: 'VOTE',     clue: 'Democratic act in the Assembly' },
     ],
   },
+  euclid: {
+    rows: 6, cols: 8,
+    words: [
+      { number: 1, direction: 'across', row: 0, col: 0, word: 'ELEMENTS', clue: "Euclid's thirteen books of geometry" },
+      { number: 1, direction: 'down',   row: 0, col: 0, word: 'EUCLID',   clue: 'He told a king there is no royal road to geometry' },
+      { number: 2, direction: 'down',   row: 0, col: 2, word: 'EVEN',     clue: 'A number divisible into two equal parts (Elements, Book VII)' },
+      { number: 3, direction: 'across', row: 3, col: 0, word: 'LINE',     clue: 'Breadthless length, by Euclid\'s first definitions' },
+    ],
+  },
   turing: {
     rows: 6, cols: 6,
     words: [

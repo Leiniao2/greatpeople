@@ -28,12 +28,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "konigsberg",
-            "configId": "paris",
+            "game": "hanoi",
+            "configId": "queens-ware",
             "seed": 5237,
-            "instruction": "Josiah Wedgwood: walk every bridge once.",
-            "fact": "Josiah Wedgwood didn't just make pottery — he invented modern manufacturing. He introduced quality control, a money-back guarantee, free delivery, and celebrity endorsements. His factory pioneered the division of labour decades before Adam Smith wrote about it.",
-            "rebalanced": true
+            "instruction": "Queen Charlotte's order has made Wedgwood's cream-coloured ware the fashion. Carry the stack of dishes to the packing bench one at a time, never a larger on a smaller — a single broken piece shames the 'Potter to Her Majesty'.",
+            "fact": "Josiah Wedgwood didn't just make pottery — he invented modern manufacturing. He introduced quality control, a money-back guarantee, free delivery, and celebrity endorsements. His factory pioneered the division of labour decades before Adam Smith wrote about it."
           }
         }
       ]
@@ -57,12 +56,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "canallock",
-            "configId": "dutch-overtoom",
+            "game": "colormix",
+            "configId": "jasper-blue",
             "seed": 89826,
-            "instruction": "Josiah Wedgwood: pass the boats through the locks.",
-            "fact": "Wedgwood spent years and thousands of experiments to develop Jasperware — a ceramic so consistent that every piece looked identical. He believed in what today we call quality control: testing every batch, recording every failure. His laboratory notebooks survive, filled with meticulous records of clay, glaze, and kiln temperature.",
-            "rebalanced": true
+            "instruction": "Thousands of trials, and the jasper still comes out wrong. Stain the white body with oxides until it matches the pale blue Wedgwood is after.",
+            "fact": "Wedgwood spent years and thousands of experiments to develop Jasperware — a ceramic so consistent that every piece looked identical. He believed in what today we call quality control: testing every batch, recording every failure. His laboratory notebooks survive, filled with meticulous records of clay, glaze, and kiln temperature."
           }
         }
       ]
@@ -82,12 +80,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "hanoi",
-            "configId": "reve",
+            "game": "railway",
+            "configId": "froghall-wagonway",
             "seed": 35092,
-            "instruction": "Josiah Wedgwood: move the stack of disks.",
-            "fact": "Charles Darwin was Josiah Wedgwood's grandson — his mother Susannah was Wedgwood's daughter, and his wife Emma was Wedgwood's granddaughter. Darwin married his own cousin from the Wedgwood family, a common practice in Victorian upper-class families.",
-            "rebalanced": true
+            "instruction": "The medallions go out by the thousand, and Wedgwood's canal company now brings in limestone on rails from Caldon Low. Sort the wagons at Froghall onto the sidings and send them out to the boats in order.",
+            "fact": "Charles Darwin was Josiah Wedgwood's grandson — his mother Susannah was Wedgwood's daughter, and his wife Emma was Wedgwood's granddaughter. Darwin married his own cousin from the Wedgwood family, a common practice in Victorian upper-class families."
           }
         }
       ]
@@ -106,8 +103,8 @@
           "challenge": {
             "type": "minigame",
             "game": "trade",
-            "configId": "steel-stocks",
-            "instruction": "The Industrial Revolution ran on raw materials and capital. Bid on commodities to supply Wedgwood's Etruria factory — clay, coal, and canal shares.",
+            "configId": "wedgwood-pottery",
+            "instruction": "Wedgwood sells to queens and shopkeepers alike. Trade his china as royal orders, rivals and canal news move the price, and finish richer than you started.",
             "fact": "Wedgwood was a major investor in the Grand Trunk Canal, which connected his Staffordshire potteries to the ports at Liverpool and Hull. He understood that transport was as important as manufacturing — cheap bulk movement of clay in and finished goods out made his mass-production model possible."
           }
         },
@@ -121,12 +118,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "pendulum",
-            "configId": "match-clocks",
+            "game": "canallock",
+            "configId": "trent-and-mersey",
             "seed": 22971,
-            "instruction": "Josiah Wedgwood: set the clock to keep time.",
-            "fact": "Wedgwood brilliantly marketed at both ends of the market. He sold exclusive pieces to royalty and aristocracy — then used their endorsements to sell affordable versions to the growing middle class. His catalogue, free delivery, and money-back guarantee made quality ceramics accessible to ordinary households, pioneering the modern retail model.",
-            "rebalanced": true
+            "instruction": "The system ends where the ware leaves Etruria: on the Trent and Mersey Canal. Work the boats up and down the narrow locks and waste as little of the scarce summit water as you can.",
+            "fact": "Wedgwood brilliantly marketed at both ends of the market. He sold exclusive pieces to royalty and aristocracy — then used their endorsements to sell affordable versions to the growing middle class. His catalogue, free delivery, and money-back guarantee made quality ceramics accessible to ordinary households, pioneering the modern retail model."
           }
         },
         {

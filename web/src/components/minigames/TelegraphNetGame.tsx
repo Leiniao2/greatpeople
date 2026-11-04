@@ -60,6 +60,24 @@ export const CONFIGS: Record<string, TelegraphConfig> = {
     fact: 'Claude Chappe’s optical telegraph sent its first message from Paris to Lille in 1794; by the 1840s some 530 towers spanned France, relaying signals at about 3 symbols a minute.',
     mode: 'semaphore',
   },
+  'earhart-news': {
+    title: 'News Across the Atlantic, 1932',
+    intro: 'Earhart has landed in Ireland; New York is waiting. Join both coasts with cable. Sea cable costs three times as much per mile — islands may serve as relays, if they save cable.',
+    fact: 'Earhart crossed by the same short gap between Newfoundland and Ireland that the first transatlantic telegraph cable spanned in 1858. Within hours of her landing at Culmore on 21 May 1932, the news was in New York, and President Hoover cabled his congratulations.',
+    mode: 'sea',
+  },
+  'chappe-1793': {
+    title: 'The Republic’s Towers, 1793',
+    intro: 'The Convention wants news to outrun any courier. Build semaphore towers on the hills until every city can signal every other. Towers see only so far, and never through mountains. Use as few as you can.',
+    fact: 'In the summer of 1793, as Marie Antoinette was moved to the Conciergerie to await trial, the Convention adopted Claude Chappe’s semaphore and ordered a line from Paris to Lille. It opened in 1794, and in August that year brought Paris news of the recapture of Le Quesnoy within an hour.',
+    mode: 'semaphore',
+  },
+  'chappe-brulon': {
+    title: 'The Chappe Brothers’ Towers',
+    intro: 'Plan the signal towers that would carry news across the kingdom. Build towers on the hills until every city can signal every other. Towers see only so far, and never through mountains. Use as few as you can.',
+    fact: 'On 2 March 1791 Claude Chappe and his brothers sent a message some 14 km between Brûlon and Parcé in the Sarthe; on 22 March 1792 his brother Ignace, a deputy, presented the invention to the Legislative Assembly. The first line, Paris to Lille, opened in 1794.',
+    mode: 'semaphore',
+  },
 }
 
 export const CONFIG_IDS = Object.keys(CONFIGS)

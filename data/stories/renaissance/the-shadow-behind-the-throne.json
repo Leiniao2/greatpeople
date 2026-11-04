@@ -25,20 +25,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "typeset",
+            "game": "siege",
+            "configId": "tenochtitlan-1428",
             "seed": 1019,
-            "fact": "Tlacaelel (c.1397–1487) held the office of Cihuacoatl — officially the second speaker, the emperor's shadow. In practice, he directed state policy under three emperors (Itzcoatl, Motecuhzoma I, and Axayacatl) for over fifty years. He was offered the supreme throne three times and refused it each time — understanding that the power behind the throne is more durable than the throne itself.",
-            "autogen": true,
-            "configId": "gutenberg-bible",
-            "params": {
-              "lines": [
-                "CIHUACOATL",
-                "CIHUACOATL THE",
-                "CIHUACOATL THE",
-                "CIHUACOATL THE SECOND IN"
-              ]
-            },
-            "instruction": "What was Tlacaelel's title, and what unique power did he hold in the Aztec state? Set the answer in movable type — mirrored, right to left."
+            "instruction": "Maxtla's Tepanecs mean to starve the Mexica into submission. Hold the island city while Tlacaelel binds Texcoco and Tlacopan into an alliance.",
+            "fact": "Tlacaelel (c.1397–1487) held the office of Cihuacoatl — officially the second speaker, the emperor's shadow. In practice, he directed state policy under three emperors (Itzcoatl, Motecuhzoma I, and Axayacatl) for over fifty years. He was offered the supreme throne three times and refused it each time — understanding that the power behind the throne is more durable than the throne itself."
           }
         }
       ]
@@ -56,15 +47,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "polybius",
+            "game": "canallock",
+            "configId": "albarradon-1449",
             "seed": 1020,
-            "fact": "Tlacaelel ordered the burning of existing historical codices — the painted books that recorded Aztec history before his reforms. He then commissioned new histories that placed the Mexica at the center of a divinely ordained cosmic narrative. The burning was not destruction for its own sake: it was the replacement of one story with a more useful one.",
-            "autogen": true,
-            "configId": "greek-torches",
-            "params": {
-              "plaintext": "BURN THE OLD CODICES"
-            },
-            "instruction": "Tlacaelel's order travels as pairs of numbers. Find each letter on the square."
+            "instruction": "Tlacaelel will not take the throne, but he steers every emperor who does. After the great flood of 1449, bring the tribute canoes through the gates of the new dike.",
+            "fact": "Tlacaelel served as cihuacoatl under Itzcoatl, Motecuhzoma I and Axayacatl. Chronicles describe Motecuhzoma I and Tlacaelel ruling almost as a pair, and the great waterworks of the mid-1400s — the dike across the lake, the aqueduct from Chapultepec — date from their time."
           }
         }
       ]
@@ -82,12 +69,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "abacus",
-            "configId": "soroban-flash",
+            "game": "painting",
+            "configId": "mexica-codex",
             "seed": 12651,
-            "instruction": "Tlacaelel: reckon it on the abacus.",
-            "fact": "Tlacaelel's greatest achievement was ideological: he transformed the Mexica from one of many Nahua-speaking peoples into the chosen people of the sun god, with a cosmic obligation to feed Huitzilopochtli through human sacrifice. This narrative made every war a religious act and every conquest a divine duty — creating the psychological engine that drove Aztec expansion for a century.",
-            "rebalanced": true
+            "instruction": "Tlacaelel has the old painted histories burned. Paint the page of the new one: the eagle on the cactus in the lake, under Huitzilopochtli's sun.",
+            "fact": "Tlacaelel ordered the burning of existing historical codices — the painted books that recorded Aztec history before his reforms. He then commissioned new histories that placed the Mexica at the center of a divinely ordained cosmic narrative. The burning was not destruction for its own sake: it was the replacement of one story with a more useful one."
           }
         },
         {
@@ -98,12 +84,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "sapper",
-            "configId": "namur-1692",
+            "game": "rhythm",
+            "configId": "flower-war-drums",
             "seed": 92141,
-            "instruction": "Tlacaelel: clear the field without a blast.",
-            "fact": "The Aztec tribute system was Tlacaelel's administrative masterpiece. He formalized the list of goods each conquered province owed the empire and created the bureaucratic machinery to collect it. The Mendoza Codex — a post-conquest record of the tribute system — shows 400 towns paying tribute in 42 categories of goods. It was the most elaborate tax system in the pre-Columbian Americas.",
-            "rebalanced": true
+            "instruction": "The Flower Wars begin — battles fixed by agreement and fought to take captives for the gods. March the warriors out to the beat of the drums.",
+            "fact": "The Flower Wars (Xochiyaoyotl) that Tlacaelel institutionalized were a unique form of ritualized conflict: neighboring states would agree to scheduled battles whose purpose was not territorial conquest but the capture of living warriors for sacrifice. Critics called them morally monstrous; defenders argued they were a more humane alternative to wars of annihilation. The truth is that they also kept potential rivals permanently weak."
           }
         }
       ]
@@ -131,12 +116,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "magicsquare",
-            "configId": "islamic-wafq",
+            "game": "orbit",
+            "configId": "hill-of-the-star",
             "seed": 5271,
-            "instruction": "Tlacaelel: complete the magic square.",
-            "fact": "The Flower Wars (Xochiyaoyotl) that Tlacaelel institutionalized were a unique form of ritualized conflict: neighboring states would agree to scheduled battles whose purpose was not territorial conquest but the capture of living warriors for sacrifice. Critics called them morally monstrous; defenders argued they were a more humane alternative to wars of annihilation. The truth is that they also kept potential rivals permanently weak.",
-            "rebalanced": true
+            "instruction": "In 1455 a 52-year cycle ends and every fire in the valley goes out. On the Hill of the Star, follow the wandering light until it comes all the way round — and the world goes on.",
+            "fact": "Tlacaelel's greatest achievement was ideological: he transformed the Mexica from one of many Nahua-speaking peoples into the chosen people of the sun god, with a cosmic obligation to feed Huitzilopochtli through human sacrifice. This narrative made every war a religious act and every conquest a divine duty — creating the psychological engine that drove Aztec expansion for a century."
           }
         },
         {

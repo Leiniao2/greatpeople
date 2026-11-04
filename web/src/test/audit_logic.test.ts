@@ -292,6 +292,10 @@ describe('WorldClockGame configs', () => {
     'magellan-voyage':  [19, 13, 16, 18, 5],
     'telegraph-globe':  [7, 16, 12, 14, 21],
     'modern-traveler':  [13, 23, 9, 13, 18],
+    'linnaeus-apostles': [19, 16, 15, 8, 15],
+    'atelier-cities':   [20, 2, 2, 4, 5],
+    'baghdad-live':     [18, 0, 9, 1, 15],
+    'earhart-atlantic': [0, 8, 19, 12, 1],
   }
   for (const [id, cfg] of Object.entries(CLOCKS)) {
     it(`${id}: cities exist and conversions match the authored answers`, () => {

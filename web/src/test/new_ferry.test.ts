@@ -83,7 +83,10 @@ describe('ferry rules', () => {
   }
 
   it('every config is a different rule', () => {
-    expect(new Set(CONFIG_IDS.map(id => CONFIGS[id].kind)).size).toBe(CONFIG_IDS.length)
+    // The base configs are each a different rule; story-themed configs reuse one of them.
+    const BASE = ['wolf-goat', 'brothers-sisters', 'heavy-family', 'pilgrims-bandits']
+    expect(new Set(BASE.map(id => CONFIGS[id].kind)).size).toBe(BASE.length)
+    for (const id of CONFIG_IDS) expect(BASE.map(b => CONFIGS[b].kind), id).toContain(CONFIGS[id].kind)
   })
 
   it('time budget: few crossings and a small cast at every tier', () => {

@@ -27,6 +27,14 @@ export const CONFIGS: Record<string, SurveyConfig> = {
     sign: 'nests',
     fact: 'Goodall spent months before the chimps of Gombe let her come near. Her patience paid off in 1960, when she watched David Greybeard strip a twig and use it to fish termites from a mound — and science had to rethink what made humans unique.',
   },
+  'jain-path': {
+    title: 'Sweeping the Path',
+    intro: 'Before each step the monk looks down and sweeps. Find every small creature on the road before you walk it — each spot you sweep shows how many steps away the nearest one is, judged by the tracks in the dust.',
+    find: '🐜',
+    ground: '🟫',
+    sign: 'tracks',
+    fact: 'Jain monks and nuns carry a soft whisk of wool, the rajoharana, to brush insects gently from their path and from wherever they sit or lie, and they walk only by daylight with their eyes on the ground so as not to tread on any living thing.',
+  },
   'kuyunjik-dig': {
     title: 'The Mound of Kuyunjik',
     intro: 'The library lies buried under the mound across the Tigris from Mosul. Each trench you dig shows how many steps away the nearest cache of tablets is, judged by the shards in the soil.',
@@ -34,6 +42,14 @@ export const CONFIGS: Record<string, SurveyConfig> = {
     ground: '🟫',
     sign: 'shards',
     fact: "Austen Henry Layard's trenches at Kuyunjik reached the first rooms of tablets in 1849–51, and Hormuzd Rassam found Ashurbanipal's North Palace in 1853. Between them they shipped more than 30,000 clay tablets and fragments to the British Museum — among them the Epic of Gilgamesh, first read again by George Smith in 1872.",
+  },
+  'kocho-ruins': {
+    title: 'The Ruins of Kocho',
+    intro: 'The mud-brick city near Turfan lies half buried in sand. Each trench you dig shows how many steps away the nearest cache of Manichaean books is, judged by the scraps of painted paper in the soil.',
+    find: '📜',
+    ground: '🟫',
+    sign: 'scraps',
+    fact: 'Between 1902 and 1914 German expeditions dug at Kocho (Gaochang) near Turfan, the old Uyghur capital, and brought back Manichaean manuscripts in Middle Persian, Parthian, Sogdian and Old Uyghur, with fragments of illuminated books. The Uyghur khagan had made Manichaeism his state religion in 763.',
   },
   'fossil-cliffs': {
     title: 'The Lyme Cliffs',

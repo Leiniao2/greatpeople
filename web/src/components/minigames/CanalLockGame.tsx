@@ -47,6 +47,18 @@ export const CONFIGS: Record<string, CanalConfig> = {
     fact: 'In 984 the official Qiao Weiyue built the first recorded pound lock on the Grand Canal near Huai’an: two gates about 50 paces apart, closing a chamber that was filled and emptied through sluices — replacing the double slipways where heavy grain barges had often been wrecked.',
     water: '#6aa5c8', stone: '#b9a27a',
   },
+  'albarradon-1449': {
+    title: 'The Great Dike of Tenochtitlan',
+    intro: 'The new dike holds the salt lake back from the fresh lagoon round the city, and canoes pass its gates between waters of different level. Bring the tribute canoes through both ways. Fresh water is precious: every fill costs a gateful, so let a canoe going down ride a chamber one coming up has just filled.',
+    fact: 'After the floods of 1449, Motecuhzoma I had Nezahualcoyotl of Texcoco build a dike of stakes, stone and earth some 16 km long across the lake. Its sluice gates held back the brackish water of Lake Texcoco and kept the lagoon around Tenochtitlan fresh enough for its chinampa gardens.',
+    water: '#5f9fae', stone: '#a89a7a',
+  },
+  'trent-and-mersey': {
+    title: 'The Grand Trunk',
+    intro: 'Work the narrowboats of crated ware and Cornish clay through the narrow locks below the Harecastle summit. Summit water is scarce: every fill costs a lockful, so let a boat going down ride a chamber one coming up has just filled.',
+    fact: 'Wedgwood cut the first sod of the Trent and Mersey Canal in 1766 and built his Etruria works on its bank. Engineered by James Brindley, it opened in 1777 with the 2.6 km Harecastle tunnel through the summit, and carried clay in and fragile ware out at a fraction of the cost of packhorses.',
+    water: '#6b9bb0', stone: '#b3916b',
+  },
   'canal-du-midi': {
     title: 'The Fonserannes Staircase',
     intro: 'The chambers of a staircase share their gates — there are no pounds to pass in. A chamber can only empty into the one below once that one is empty. Schedule boats both ways up the stair.',

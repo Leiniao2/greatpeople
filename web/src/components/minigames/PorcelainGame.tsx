@@ -53,6 +53,19 @@ export const CONFIGS: Record<string, PorcelainConfig> = {
     ],
     fact: 'Blue-and-white porcelain uses cobalt oxide as its colorant. Persian cobalt ("smalt") was imported along the Silk Road and became synonymous with Ming Dynasty porcelain.',
   },
+  'yongzheng-vase': {
+    title: 'Yongzheng Imperial Vase',
+    vessel: 'vase',
+    palette: ['Co', 'Cu', 'Fe', 'Mn'],
+    sections: [
+      { id: 'neck',  label: 'Cobalt Neck Band',    path: 'M 90,30 Q 100,25 110,30 L 115,60 Q 100,55 85,60 Z',          targetElement: 'Co' },
+      { id: 'upper', label: 'Iron Enamel Shoulder', path: 'M 85,60 Q 100,55 115,60 L 125,100 Q 100,95 75,100 Z',        targetElement: 'Fe' },
+      { id: 'belly', label: 'Green Enamel Belly',  path: 'M 75,100 Q 100,95 125,100 L 130,145 Q 100,140 70,145 Z',     targetElement: 'Cu' },
+      { id: 'lower', label: 'Aubergine Panel',     path: 'M 70,145 Q 100,140 130,145 L 120,175 Q 100,170 80,175 Z',   targetElement: 'Mn' },
+      { id: 'foot',  label: 'Cobalt Foot Ring',    path: 'M 80,175 Q 100,170 120,175 L 115,190 Q 100,187 85,190 Z',   targetElement: 'Co' },
+    ],
+    fact: 'From 1726 Nian Xiyao ran the imperial kilns at Jingdezhen for the Yongzheng Emperor, with Tang Ying as his deputy from 1728. Their kilns paired underglaze cobalt blue with overglaze enamels — green from copper, aubergine from manganese, red from iron — and revived glazes not made since the Ming.',
+  },
   'iron-teapot': {
     title: 'Iron Amber Teapot',
     vessel: 'teapot',

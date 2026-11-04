@@ -70,6 +70,10 @@ export const CONFIGS: Record<string, MazeConfig> = {
     title: 'Inner Sanctum', subtitle: "Tilt the capstone sledge down the shafts of the pharaoh's tomb",
     theme: 'sandstone', actor: '🔺', mode: 'gravity', levels: 3, hasKey: true, fog: true, portals: true, finale: true, seedBase: 17,
   },
+  'pakal-stair': {
+    title: 'The Hidden Stair', subtitle: 'Work down the rubble-choked stairway of the Temple of the Inscriptions to the king’s tomb',
+    theme: 'sandstone', actor: '🪔', mode: 'gravity', levels: 3, hasKey: true, fog: true, portals: true, finale: true, seedBase: 683,
+  },
   'pleistoanax-mountain': {
     title: 'Mount Lycaeum', subtitle: 'A rockfall descent from exile through the sacred mountain',
     theme: 'mountain', actor: '🪨', mode: 'gravity', levels: 2, hasKey: false, fog: true, seedBase: 99,

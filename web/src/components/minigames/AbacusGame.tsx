@@ -69,12 +69,26 @@ export const CONFIGS: Record<string, AbacusConfig> = {
     upper: 1, lower: 4, ops: 'add', unit: 'mon', readingUpTo: 1, flash: true,
     items: ['rice tally', 'cloth tally', 'sake tally', 'charcoal tally', 'oil tally', 'fish tally'],
   },
+  'casa-da-india': {
+    title: 'The Ledger of the Casa da Índia',
+    intro: 'The Indies fleet is in the Tagus, and every sack goes through the king’s warehouse. Add each cargo on the reckoning board — a counter above the line is five, each one below is one — and press Enter: the counters must show the running total.',
+    fact: 'Under Manuel I every spice from the Indies had to be landed at the Casa da Índia, the crown’s warehouse and customs house on the Lisbon waterfront, where it was weighed, taxed and sold under royal monopoly. European clerks of the time still reckoned with counters on lined boards.',
+    upper: 1, lower: 4, ops: 'add', unit: 'cruzados', readingUpTo: 2,
+    items: ['pepper', 'cloves', 'cinnamon', 'ginger', 'nutmeg', 'mace', 'Chinese silk', 'porcelain', 'pearls', 'lac'],
+  },
   'roman-board': {
     title: 'The Roman Counting Board',
     intro: 'A Roman banker writes in numerals: columns I, X, C and M, with a five-bead (V, L, D) above each. Set the first sum, then add each one after.',
     fact: 'Romans reckoned with pebbles — calculi — on counting boards, and pocket bronze abaci with one bead above and four below each slot survive; “calculate” comes from calculus, a small stone.',
     upper: 1, lower: 4, ops: 'roman', unit: 'denarii', readingUpTo: 1,
     items: ['wine amphorae', 'olive oil', 'a mule', 'lamp oil', 'a toga', 'grain dole', 'bath fees', 'a slave’s wage'],
+  },
+  'cocoon-thread': {
+    title: 'How Long Is the Thread?',
+    intro: 'The thread keeps coming off the cocoon. Each length is called out for a few seconds and then hidden — add it on the counting frame before you lose the count.',
+    fact: 'A silkworm spins its cocoon from one unbroken filament, often 600 to 900 metres long. Softening the cocoon in hot water so that the filament can be reeled off whole is still the first step in making silk — just as in the legend of Lei Zu’s teacup.',
+    upper: 2, lower: 5, ops: 'add', unit: 'chǐ', readingUpTo: 1, flash: true,
+    items: ['first length', 'second length', 'third length', 'fourth length', 'fifth length', 'sixth length', 'seventh length', 'eighth length'],
   },
   'timed-ledger': {
     title: 'The Timed Ledger',

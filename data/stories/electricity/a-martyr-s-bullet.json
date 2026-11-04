@@ -34,12 +34,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "lamplighter",
-            "configId": "westminster-bridge",
+            "game": "railway",
+            "configId": "harbin-line",
             "seed": 60607,
-            "instruction": "An Jung-geun: light every lamp.",
-            "fact": "On October 26, 1909, An Jung-geun shot Itō Hirobumi — Japan's first Prime Minister and the architect of Korean colonisation — at Harbin railway station. An was captured, tried, and executed in 1910, the same year Japan formally annexed Korea.",
-            "rebalanced": true
+            "instruction": "Ahn has ridden the Chinese Eastern Railway from Vladivostok to be waiting when Itō's train arrives. Lay the line from Harbin to Vladivostok, station by station.",
+            "fact": "On October 26, 1909, An Jung-geun shot Itō Hirobumi — Japan's first Prime Minister and the architect of Korean colonisation — at Harbin railway station. An was captured, tried, and executed in 1910, the same year Japan formally annexed Korea."
           }
         }
       ]
@@ -59,7 +58,7 @@
             "type": "minigame",
             "game": "wargame",
             "configId": "an-jung-geun",
-            "instruction": "Lead the resistance on the board. Capture the enemy pieces to honor the cause.",
+            "instruction": "Ahn told his judges he was an officer of the Korean Righteous Army, not a murderer. Lead the resistance across the board and capture the enemy pieces.",
             "fact": "An Jung-geun saw himself not as an assassin but as a soldier of justice — his act of resistance at Harbin Station became a symbol of Korean defiance against colonization."
           }
         }
@@ -82,7 +81,7 @@
             "type": "minigame",
             "game": "crossword",
             "configId": "ito",
-            "instruction": "Test your knowledge of the Meiji era — the vocabulary of Japan's great modernisation under Itō Hirobumi.",
+            "instruction": "To answer Itō, Ahn had to understand his world. Fill in the words of Meiji Japan and the peninsula it claimed.",
             "fact": "An Jung-geun wrote a treatise on peace in East Asia while awaiting execution, calling for cooperation between China, Japan, and Korea against Western colonialism. He was a complex figure — a Catholic, a scholar, and a revolutionary."
           }
         }
@@ -100,12 +99,8 @@
             "game": "telegraph",
             "seed": 1019,
             "fact": "Ahn Jung-geun was executed by Japan in 1910. In Korea he is a national hero; in China, a statue stands at Harbin station where the assassination occurred. In Japan he is officially considered a criminal. The same act reads entirely differently across national histories.",
-            "autogen": true,
-            "configId": "signal-lamp",
-            "params": {
-              "plaintext": "HERO IN KOREA CRIMINAL IN JAPAN"
-            },
-            "instruction": "Two newspapers wire their verdicts on Ahn Jung-geun. Read the lamp."
+            "configId": "harbin-wire",
+            "instruction": "Two nations wire two verdicts on the same man. Read the lamp and spell out how the news from Harbin was told."
           }
         },
         {

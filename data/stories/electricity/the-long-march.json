@@ -28,12 +28,16 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "truss",
-            "configId": "pratt",
+            "game": "sapper",
+            "configId": "maastricht-1673",
             "seed": 64338,
-            "instruction": "Mao Zedong: build a truss that holds.",
+            "instruction": "Chiang's blockhouses ring the Jiangxi Soviet. Find the gaps and slip the Red Army through the lines without walking into a strongpoint.",
             "fact": "The Long March (1934–35) covered about 9,000 km — crossing 18 mountain ranges and 24 rivers. Of the 80,000 who began, fewer than 10,000 completed it. It transformed apparent defeat into the founding myth of Communist China.",
-            "rebalanced": true
+            "params": {
+              "title": "The Blockhouse Lines, 1934",
+              "intro": "Chiang Kai-shek's blockhouses ring the Jiangxi Soviet. Open every safe square; each number counts the strongpoints in the eight squares around it.",
+              "fact": "In his fifth encirclement campaign of 1933–34 Chiang Kai-shek closed on the Jiangxi Soviet behind lines of fortified blockhouses. In October 1934 the Red Army broke out westward through four blockade lines, losing more than half its strength by the end of the year."
+            }
           }
         }
       ]
@@ -52,11 +56,10 @@
           "challenge": {
             "type": "minigame",
             "game": "decode",
-            "configId": "enigma-msg",
+            "configId": "mao-code",
             "seed": 93596,
-            "instruction": "Mao Zedong: decode the message.",
-            "fact": "The Long March was a 9,000 km strategic retreat that repositioned the Red Army — transforming apparent defeat into the foundation of eventual victory.",
-            "rebalanced": true
+            "instruction": "Orders for the breakout travel in code across the Red Army's columns. Decode the dispatch from the Jiangxi Soviet.",
+            "fact": "The Long March was a 9,000 km strategic retreat that repositioned the Red Army — transforming apparent defeat into the foundation of eventual victory."
           }
         }
       ]
@@ -76,12 +79,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "sapper",
-            "configId": "maastricht-1673",
+            "game": "truss",
+            "configId": "luding-chains",
             "seed": 53821,
-            "instruction": "Mao Zedong: clear the field without a blast.",
-            "fact": "The most decisive battle of the Long March was the crossing of the Luding Bridge — a chain bridge over a gorge, its planks removed, defended by machine guns. Communist soldiers crawled across the chains under fire.",
-            "rebalanced": true
+            "instruction": "At the Dadu River the planks of the Luding Bridge have been stripped away. Hang a new deck from the iron chains so the army can cross.",
+            "fact": "The most decisive battle of the Long March was the crossing of the Luding Bridge — a chain bridge over a gorge, its planks removed, defended by machine guns. Communist soldiers crawled across the chains under fire."
           }
         }
       ]
@@ -93,18 +95,17 @@
       "scenes": [
         {
           "type": "narration",
-          "text": "The Long March route wound through the most treacherous terrain in China. Navigate the mountain passes to reach the safety of Yan'an..."
+          "text": "In 1936 an American reporter set out to find the Red Army in its new base in the northwest — and to bring its story out to the world."
         },
         {
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "chemistry",
-            "configId": "spice-route",
+            "game": "reporterflee",
+            "configId": "red-star-1936",
             "seed": 4766,
-            "instruction": "Mao Zedong: mix the right measures.",
-            "fact": "When the Long March began in October 1934, approximately 86,000 soldiers set out. Fewer than 8,000 reached Yan'an in October 1935 — a loss of over 90%. Mao Zedong transformed this catastrophic retreat into a founding myth of Communist China, portraying it as proof of revolutionary will and endurance.",
-            "rebalanced": true
+            "instruction": "Edgar Snow has his interviews with Mao. Get the story of the Long March past the Nationalist lines and into print.",
+            "fact": "When the Long March began in October 1934, approximately 86,000 soldiers set out. Fewer than 8,000 reached Yan'an in October 1935 — a loss of over 90%. Mao Zedong transformed this catastrophic retreat into a founding myth of Communist China, portraying it as proof of revolutionary will and endurance."
           }
         },
         {

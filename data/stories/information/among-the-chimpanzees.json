@@ -28,12 +28,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "alchemy",
-            "configId": "mendeleev",
+            "game": "fieldsurvey",
+            "configId": "gombe-chimps",
             "seed": 468,
-            "instruction": "Jane Goodall: discover the target substance.",
-            "fact": "Jane Goodall arrived at Gombe with no scientific degree — just a passion for animals and a naturalist's notebook. Her 60+ years of continuous research at Gombe is the longest running wildlife study in history, revealing that chimpanzees have personalities, cultures, and emotions.",
-            "rebalanced": true
+            "instruction": "For months every chimpanzee has fled when Jane comes near. Read the signs in the Gombe forest — nests, dropped fruit — and find each group without scaring it off.",
+            "fact": "Jane Goodall arrived at Gombe with no scientific degree — just a passion for animals and a naturalist's notebook. Her 60+ years of continuous research at Gombe is the longest running wildlife study in history, revealing that chimpanzees have personalities, cultures, and emotions."
           }
         }
       ]
@@ -57,15 +56,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "binary",
+            "game": "telegraph",
+            "configId": "leakey-cable",
             "seed": 1014,
-            "fact": "In 1960, Goodall observed chimpanzees stripping leaves from twigs to fish termites from mounds — the first recorded instance of animals making and using tools. When she reported this to Louis Leakey, he replied: 'Now we must redefine tool, redefine man, or accept chimpanzees as humans.'",
-            "autogen": true,
-            "configId": "five-lamps",
-            "params": {
-              "plaintext": "CHIMPS MAKE TOOLS"
-            },
-            "instruction": "Jane's field note has been stored as lamps. Add up each row to read her discovery."
+            "instruction": "Jane has cabled Louis Leakey about David Greybeard and his twig. Read Leakey's reply as it comes down the line.",
+            "fact": "In 1960, Goodall observed chimpanzees stripping leaves from twigs to fish termites from mounds — the first recorded instance of animals making and using tools. When she reported this to Louis Leakey, he replied: 'Now we must redefine tool, redefine man, or accept chimpanzees as humans.'"
           }
         }
       ]
@@ -85,12 +80,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "sliding",
-            "configId": "pyramid-stones",
+            "game": "chimpmath",
+            "configId": "jane-goodall-chimps",
             "seed": 45308,
-            "instruction": "Jane Goodall: slide the tiles back into order.",
-            "fact": "Jane Goodall's research at Gombe revealed that chimpanzee communities have distinct cultures — different groups use different tools, have different social customs, and even different vocalizations. Culture, once thought uniquely human, turns out to be a primate invention at least 7 million years old.",
-            "rebalanced": true
+            "instruction": "David Greybeard now walks into camp for bananas, and the others follow his lead. Work out each sum and give David the right number.",
+            "fact": "Jane Goodall's research at Gombe revealed that chimpanzee communities have distinct cultures — different groups use different tools, have different social customs, and even different vocalizations. Culture, once thought uniquely human, turns out to be a primate invention at least 7 million years old."
           }
         },
         {
@@ -101,12 +95,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "pseudocode",
-            "configId": "turing-machine",
+            "game": "punnett",
+            "configId": "chimp-blood",
             "seed": 4897,
-            "instruction": "Jane Goodall: put the program in order.",
-            "fact": "Darwin's finches and Goodall's chimps are linked by the same insight: organisms adapt their behaviour and bodies to their environment. When Goodall observed chimps selecting and modifying specific twigs to fish for termites, she was watching tool-use behaviour — a hallmark of intelligence — arising from the same evolutionary pressures Darwin described.",
-            "rebalanced": true
+            "instruction": "On the lecture circuit Jane makes the case that chimpanzees are our close kin — down to their blood groups. Work out how a chimpanzee's blood group passes from parents to young.",
+            "fact": "In 1986 Goodall helped organise the 'Understanding Chimpanzees' conference in Chicago. Reports there of vanishing forests and of chimpanzees hunted for meat and sold as pets turned her from field scientist into campaigner; since then she has travelled some 300 days a year."
           }
         }
       ]
@@ -126,21 +119,20 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "soccer",
-            "configId": "copa-final",
+            "game": "sliding",
+            "configId": "gombe-forest",
             "seed": 52379,
-            "instruction": "Jane Goodall: score from the spot.",
-            "fact": "More than 60 years after Goodall first set up camp at Gombe, researchers continue her work, following multiple generations of chimpanzees. The study has revealed the transmission of cultural practices across generations and the devastating impact of habitat loss — no other wildlife study has tracked a single population for so long.",
-            "rebalanced": true
+            "instruction": "The hills around Gombe have been cleared for farms and firewood. Slide the patches of forest back together so the chimpanzees' range is whole again.",
+            "fact": "By the 1990s Gombe was an island of forest among bare hills. In 1994 the Jane Goodall Institute began TACARE, working with the surrounding villages on tree planting, farming and health, so that the people living beside the chimpanzees lead their protection."
           }
         },
         {
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "fieldsurvey",
-            "configId": "gombe-chimps",
-            "instruction": "Goodall's science began with patient fieldwork. Read the signs in the Gombe forest — nests, dropped fruit — and locate every chimpanzee group before the light goes.",
+            "game": "binary",
+            "configId": "gombe-archive",
+            "instruction": "Sixty years of Gombe notebooks now live inside a computer. Read Jane's message to the next generation, lamp by lamp.",
             "fact": "Goodall gave the Gombe chimpanzees names instead of numbers, which shocked the scientists of the day. Her study, begun in 1960, is now the longest-running field study of any wild animal, and her Roots & Shoots programme runs in more than 60 countries."
           }
         },

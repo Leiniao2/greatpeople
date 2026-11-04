@@ -32,12 +32,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "bridge",
-            "configId": "roman-bridges",
+            "game": "expedition",
+            "configId": "everest-1953",
             "seed": 22812,
-            "instruction": "Edmund Hillary: link the islands with bridges.",
-            "fact": "Hillary and Tenzing summited at 11:30 AM on 29 May 1953, spending only 15 minutes on top before descending — long enough for photographs and to bury a small cross and some sweets as offerings. The news reached London in time to appear on the morning of Queen Elizabeth II's coronation.",
-            "rebalanced": true
+            "instruction": "Tenzing's seventh attempt begins with a long march. Lead the porters from Kathmandu to Thyangboche to acclimatise, then up through the Icefall to the South Col and the top.",
+            "fact": "Hillary and Tenzing summited at 11:30 AM on 29 May 1953, spending only 15 minutes on top before descending — long enough for photographs and to bury a small cross and some sweets as offerings. The news reached London in time to appear on the morning of Queen Elizabeth II's coronation."
           }
         }
       ]
@@ -67,12 +66,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "assembly",
-            "configId": "wedgwood",
+            "game": "bridge",
+            "configId": "everest-camps",
             "seed": 39954,
-            "instruction": "Edmund Hillary: run the line to target.",
-            "fact": "Hillary always insisted that he and Tenzing summited together as a team, refusing to say who stepped onto the peak first. He later wrote: 'We didn't talk about it much — it didn't seem important.' For the rest of his life, Hillary devoted enormous energy to building schools, hospitals, and water pipelines for the Sherpa communities of Nepal.",
-            "rebalanced": true
+            "instruction": "Roped together for weeks, Hillary and Tenzing depend on the lines fixed below them. Link the high camps with exactly the ropes each one needs.",
+            "fact": "Hillary always insisted that he and Tenzing summited together as a team, refusing to say who stepped onto the peak first. He later wrote: 'We didn't talk about it much — it didn't seem important.' For the rest of his life, Hillary devoted enormous energy to building schools, hospitals, and water pipelines for the Sherpa communities of Nepal."
           }
         }
       ]
@@ -102,12 +100,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "worldclock",
-            "configId": "telegraph-globe",
+            "game": "maze",
+            "configId": "everest-peak",
             "seed": 90564,
-            "instruction": "Edmund Hillary: convert the times across the globe.",
-            "fact": "The 1953 expedition was a meticulous logistical operation: 400 porters, 362 loads of equipment, months of acclimatization. John Hunt's planning was military in precision. But in the end, it came down to two men in the predawn cold, kicking steps into ice above the Hillary Step.",
-            "rebalanced": true
+            "instruction": "First light, 29 May. Pick a way along the knife-edge ridge and up the Hillary Step to the summit — every step at this height costs twice the breath.",
+            "fact": "The 1953 expedition was a meticulous logistical operation: 400 porters, 362 loads of equipment, months of acclimatization. John Hunt's planning was military in precision. But in the end, it came down to two men in the predawn cold, kicking steps into ice above the Hillary Step."
           }
         }
       ]
@@ -137,10 +134,10 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "maze",
-            "configId": "everest-peak",
-            "instruction": "Navigate the South Col route to the summit — through the Khumbu Icefall, up the Lhotse Face, past the South Summit. Every step at 29,000 feet costs twice the oxygen it would at sea level.",
-            "fact": "Above 8,000 metres, the human body cannot acclimatize — it only deteriorates. In the 'Death Zone,' each breath delivers half the oxygen of sea level. Hillary later described the final ridge as 'a knife-edge of ice, with a drop of eight thousand feet on each side.' The Hillary Step — a 12-metre rock wall near the summit — remained the crux of every Everest ascent until 2017, when it collapsed in an earthquake."
+            "game": "decode",
+            "configId": "morris-cable",
+            "instruction": "A runner is already on his way down to Namche with The Times's coded message. Decode it — the news must reach London before anyone else hears.",
+            "fact": "James Morris of The Times sent the news in a pre-arranged code: 'Snow conditions bad. Advanced base abandoned yesterday. Awaiting improvement' meant that Hillary and Tenzing had reached the top. It reached London on the eve of Queen Elizabeth II's coronation, and the paper broke the story on coronation morning, 2 June 1953."
           }
         },
         {
@@ -151,10 +148,10 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "geometry",
-            "configId": "sphere-surface",
-            "instruction": "Surveyors had to calculate Everest's true height from miles away, correcting for Earth's curvature. Calculate the surface area of the Earth's sphere at Everest's latitude.",
-            "fact": "Everest's height of 8,849 metres (as of 2023 measurements) was first calculated mathematically in 1856 by the Survey of India, who observed the peak from over 160 km away. They named it after Sir George Everest, the Surveyor General — though locals had always called it Chomolungma (Tibetan) or Sagarmatha (Nepali), meaning 'Goddess of the Sky' and 'Forehead of the Sky.'"
+            "game": "surveyor",
+            "configId": "great-arc",
+            "instruction": "Long before anyone stood on top, surveyors measured the mountain from the plains of India. Chain the triangles from the baseline up to Peak XV.",
+            "fact": "The Survey of India first computed the height of Peak XV in 1856 from stations more than 160 km away and named it after Sir George Everest, its former Surveyor General. Tibetans call it Chomolungma, 'Goddess Mother of the World', and Nepalis Sagarmatha, 'Forehead of the Sky'. Its height, 8,848.86 m, was last fixed jointly by Nepal and China in 2020."
           }
         },
         {

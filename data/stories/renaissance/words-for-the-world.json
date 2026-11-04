@@ -25,12 +25,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "konigsberg",
-            "configId": "venice",
+            "game": "optics",
+            "configId": "mainz-spectacles",
             "seed": 19900,
-            "instruction": "Johannes Gutenberg: walk every bridge once.",
-            "fact": "Gutenberg's breakthrough was casting individual metal letters that could be arranged, printed, and rearranged indefinitely. The same 26 letters (in his case Gothic type) could print any text in any order — unlike woodblocks, which could only print the single text carved into them. His oil-based ink and screw press were important innovations, but the movable metal type was the revolution.",
-            "rebalanced": true
+            "instruction": "Copying a book takes a monk a year, and old copyists' eyes fail by candlelight. Before Gutenberg changes how books are made, help them see: bring each candle's image to its mark.",
+            "fact": "Gutenberg's breakthrough was casting individual metal letters that could be arranged, printed, and rearranged indefinitely. The same 26 letters (in his case Gothic type) could print any text in any order — unlike woodblocks, which could only print the single text carved into them. His oil-based ink and screw press were important innovations, but the movable metal type was the revolution."
           }
         }
       ]
@@ -48,15 +47,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "pigpen",
+            "game": "typeset",
+            "configId": "gutenberg-bible",
             "seed": 1008,
-            "fact": "Gutenberg died nearly broke. His primary financial backer, Johann Fust, sued him over unpaid loans and won — seizing the printing equipment and the first run of Bibles. The press that changed the world made little money for its inventor. Gutenberg was awarded a pension by the Archbishop of Mainz in his final years, dying in 1468 largely unrewarded by the revolution he had started.",
-            "autogen": true,
-            "configId": "masonic-grid",
-            "params": {
-              "plaintext": "GUTENBERG DIED NEARLY BROKE"
-            },
-            "instruction": "A note in a printer's grid code records how the inventor ended his days. Read it."
+            "instruction": "Fust's money is in the workshop, and the Bible of 42 lines must be set page by page. Compose the forme — mirrored, right to left — then ink it and pull the press.",
+            "fact": "The 42-line Bible was finished at Mainz by 1455. About 180 copies were printed, some on vellum and most on paper; 49 survive, complete or in part."
           }
         }
       ]
@@ -74,12 +69,14 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "painting",
-            "configId": "ocean-voyage",
+            "game": "pigpen",
+            "configId": "masonic-grid",
+            "params": {
+              "plaintext": "GUTENBERG DIED NEARLY BROKE"
+            },
             "seed": 48722,
-            "instruction": "Johannes Gutenberg: paint each region in its true colour.",
-            "fact": "It took 50 years for printing to reach every corner of Europe. By 1500, over 20 million books had been printed — more than all the manuscripts produced in the previous thousand years of European history. The printing press did not merely copy existing knowledge; it transformed who could access it, who could challenge it, and who could add to it.",
-            "rebalanced": true
+            "instruction": "Fust sues and takes the press. In this puzzle a note in a grid code records how the inventor ended his days — match each shape to its letter and read it.",
+            "fact": "Gutenberg died nearly broke. His primary financial backer, Johann Fust, sued him over unpaid loans and won — seizing the printing equipment and the first run of Bibles. The press that changed the world made little money for its inventor. Gutenberg was awarded a pension by the Archbishop of Mainz in his final years, dying in 1468 largely unrewarded by the revolution he had started."
           }
         }
       ]
@@ -97,12 +94,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "siege",
-            "configId": "vauban-star",
+            "game": "ferry",
+            "configId": "rhine-1462",
             "seed": 87055,
-            "instruction": "Johannes Gutenberg: hold the walls against the waves.",
-            "fact": "The Hanseatic League — the great merchant confederation of northern Europe — had already built the infrastructure that carried Gutenberg's books. Trading cities like Lübeck, Hamburg, and Cologne had warehouses, ships, and agents throughout Europe, and they became the distribution network for the first mass-produced books. Commerce and knowledge traveled the same roads.",
-            "rebalanced": true
+            "instruction": "In 1462 Mainz is sacked, and its printers scatter, taking the craft with them. Get one printer's household and goods across the Rhine.",
+            "fact": "It took 50 years for printing to reach every corner of Europe. By 1500, over 20 million books had been printed — more than all the manuscripts produced in the previous thousand years of European history. The printing press did not merely copy existing knowledge; it transformed who could access it, who could challenge it, and who could add to it."
           }
         },
         {
@@ -113,10 +109,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "storysort",
-            "configId": "don-quixote-windmills",
-            "instruction": "Gutenberg's press made Don Quixote possible — a book about a man who read too many books. Sort the scenes of the windmill chapter: without printing, this story could never have reached you.",
-            "fact": "Cervantes' Don Quixote (1605) is sometimes called the first modern novel — and it exists because of Gutenberg. Without mass printing, literary culture remained in monasteries and palaces. With it, a middle-class Spaniard could read romances, go mad imagining himself a knight, and become a character in the world's first self-aware fiction."
+            "game": "scytale",
+            "configId": "printed-plutarch",
+            "seed": 25236,
+            "instruction": "Every book and every newspaper owes him a debt — even the ancients' secrets are in print now. Wind the strip on the right rod and read what his invention means.",
+            "fact": "Gutenberg never put his name on a book. Most of what we know of his work comes from lawsuits and loan records — above all the Helmasperger notarial instrument of 1455, which records Fust's suit against him."
           }
         },
         {

@@ -21,7 +21,10 @@ const levelOf = (id: string, d: Difficulty, seed: number) => {
 describe('Coin Mint — engine', () => {
   it('configs have facts, enough denominations, and each is a distinct twist', () => {
     expect(CONFIG_IDS.length).toBeGreaterThanOrEqual(4)
-    expect(new Set(CONFIG_IDS.map(id => CONFIGS[id].twist)).size).toBe(CONFIG_IDS.length)
+    // The base configs are each their own twist; story-themed configs reuse one of them.
+    const BASE = ['lydia', 'china', 'britain', 'rome']
+    expect(new Set(BASE.map(id => CONFIGS[id].twist)).size).toBe(BASE.length)
+    for (const id of CONFIG_IDS) expect(BASE.map(b => CONFIGS[b].twist), id).toContain(CONFIGS[id].twist)
     for (const id of ['lydia', 'china', 'britain']) expect(CONFIGS[id]).toBeDefined()
     for (const id of CONFIG_IDS) {
       expect(CONFIGS[id].coins.length, id).toBeGreaterThanOrEqual(targetFor(4))

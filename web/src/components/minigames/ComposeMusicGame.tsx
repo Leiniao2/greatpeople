@@ -85,6 +85,19 @@ export const CONFIGS: Record<string, ComposeConfig> = {
     ],
     fact: 'Bach\'s Toccata and Fugue in D Minor (BWV 565) is the most recognised organ work ever written. Its authorship has occasionally been debated, but the manuscript tradition points firmly to Bach.',
   },
+  'gluck-orphee': {
+    title: "Orphée et Eurydice",
+    composer: "Christoph Willibald Gluck",
+    year: "1774",
+    gpCard: "Gluck",
+    passages: [
+      { id: 'i',   title: 'Act I — The Tomb',            description: 'Shepherds and nymphs mourn at Eurydice’s tomb while Orpheus cries out her name. Love appears: he may bring her back from the dead, if he does not look at her on the way.', emoji: '⚱️', color: 'from-slate-800 to-slate-950' },
+      { id: 'ii',  title: 'Act II — The Furies',         description: 'At the gates of the underworld the Furies roar “Non!” and dance in a frenzy, until Orpheus’s singing softens them and they let him pass.', emoji: '🔥', color: 'from-red-900 to-red-950' },
+      { id: 'iii', title: 'Act II — The Elysian Fields', description: 'Calm after the storm: the Dance of the Blessed Spirits, its long flute solo floating over muted strings, as the happy shades lead Eurydice to him.', emoji: '🕊️', color: 'from-sky-900 to-sky-950' },
+      { id: 'iv',  title: 'Act III — The Return',        description: 'Climbing toward daylight, Eurydice begs for a single glance. He turns; she dies; he sings “J’ai perdu mon Eurydice” — until Love relents and restores her.', emoji: '🌅', color: 'from-amber-800 to-amber-950' },
+    ],
+    fact: 'Gluck had taught the young Archduchess Maria Antonia music in Vienna. As Dauphine she backed his move to Paris, where Iphigénie en Aulide opened on 19 April 1774 and his French Orphée et Eurydice, rewritten for the tenor Joseph Legros, on 2 August 1774.',
+  },
   'brahms-lullaby-compose': {
     title: "A German Requiem",
     composer: "Johannes Brahms",
@@ -97,6 +110,19 @@ export const CONFIGS: Record<string, ComposeConfig> = {
       { id: 'iv',  title: 'VI. For Here Have We No Continuing City', description: 'A baritone soloist warns of mortality, then the chorus erupts in the great resurrection fugue: "Death is swallowed up in victory."', emoji: '🏆', color: 'from-violet-900 to-violet-950' },
     ],
     fact: 'Brahms began his German Requiem after his mother\'s death in 1865. Uniquely, he set German Bible texts of comfort rather than the Latin Mass for the dead — a Requiem for the living.',
+  },
+  'carissimi-jephte': {
+    title: "Jephte",
+    composer: "Giacomo Carissimi",
+    year: "c. 1648",
+    gpCard: "Borromini",
+    passages: [
+      { id: 'vow',     title: 'The Vow',             description: 'The narrator tells of Israel at war with the Ammonites. Jephthah swears that if God grants him victory he will offer up whoever first comes out of his house to meet him.', emoji: '🙏', color: 'from-indigo-900 to-indigo-950' },
+      { id: 'battle',  title: 'The Battle',          description: 'Trumpet-like calls and a rushing chorus — "Fugite, cedite" — as the Ammonites scatter and Jephthah wins.', emoji: '⚔️', color: 'from-red-900 to-red-950' },
+      { id: 'welcome', title: 'The Daughter’s Welcome', description: 'Jephthah’s only daughter runs out to greet him with timbrels and dancing — "Incipite in tympanis" — the first to leave his house.', emoji: '🥁', color: 'from-amber-800 to-amber-950' },
+      { id: 'lament',  title: 'The Lament',          description: 'Jephthah cries out in grief; his daughter asks for time to mourn in the mountains and sings her lament, answered by echoes, before the six-voice chorus "Plorate filii Israel" closes the work.', emoji: '🕯️', color: 'from-slate-800 to-slate-950' },
+    ],
+    fact: 'The oratorio takes its name from the Oratory of St Philip Neri in Rome, whose prayer meetings mixed sermons with sung sacred stories. Carissimi’s Latin Jephte, written in Rome around 1648, is the masterpiece of the early form; Handel later reworked its closing chorus in Samson.',
   },
 }
 

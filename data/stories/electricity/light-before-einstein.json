@@ -29,11 +29,10 @@
           "challenge": {
             "type": "minigame",
             "game": "cryptarithm",
-            "configId": "three-ledgers",
+            "configId": "lorentz-algebra",
             "seed": 86142,
-            "instruction": "Hendrik Lorentz: crack the letter sum.",
-            "fact": "Hendrik Lorentz derived the 'Lorentz transformation' equations in 1895–1904, which showed that time, length, and mass change with velocity. Einstein took these equations and provided the physical interpretation: special relativity (1905).",
-            "rebalanced": true
+            "instruction": "Lorentz's answer to Michelson and Morley is pure calculation. Work the letter sum digit by digit, as carefully as he worked his equations.",
+            "fact": "Hendrik Lorentz derived the 'Lorentz transformation' equations in 1895–1904, which showed that time, length, and mass change with velocity. Einstein took these equations and provided the physical interpretation: special relativity (1905)."
           }
         }
       ]
@@ -57,12 +56,75 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "assembly",
-            "configId": "ford",
+            "game": "pairs",
+            "configId": "ancient",
             "seed": 46009,
-            "instruction": "Hendrik Lorentz: run the line to target.",
+            "instruction": "Einstein builds on Lorentz's equations, and the whole of physics is talking. Match each physicist of the age with the discovery that made his name.",
             "fact": "Lorentz contraction predicts that a moving object appears shorter in the direction of motion. A cylinder moving at 87% of light speed would appear halved in length — its volume halved — to a stationary observer.",
-            "rebalanced": true
+            "params": {
+              "title": "The Leiden Letters",
+              "intro": "Physics around 1900 is a small world of letters, lectures and congresses. Match each physicist with the discovery that made his name.",
+              "twist": "Shifting papers: whenever you turn up two slips that do not match, they trade places as they go face down. Remember where each one went.",
+              "fact": "Lorentz chaired the first Solvay Conference in Brussels in 1911 and every one until his death in 1928; Einstein called him the greatest and noblest man of their time.",
+              "pairs": [
+                [
+                  "Lorentz",
+                  "Transformation"
+                ],
+                [
+                  "Zeeman",
+                  "Zeeman effect"
+                ],
+                [
+                  "Einstein",
+                  "Special relativity"
+                ],
+                [
+                  "Michelson",
+                  "Interferometer"
+                ],
+                [
+                  "Maxwell",
+                  "Field equations"
+                ],
+                [
+                  "Kamerlingh Onnes",
+                  "Superconductivity"
+                ],
+                [
+                  "Röntgen",
+                  "X-rays"
+                ],
+                [
+                  "J. J. Thomson",
+                  "Electron"
+                ],
+                [
+                  "Marie Curie",
+                  "Radium"
+                ],
+                [
+                  "Planck",
+                  "Quantum of action"
+                ],
+                [
+                  "Hertz",
+                  "Radio waves"
+                ],
+                [
+                  "FitzGerald",
+                  "Contraction hypothesis"
+                ],
+                [
+                  "Becquerel",
+                  "Radioactivity"
+                ],
+                [
+                  "Rutherford",
+                  "Atomic nucleus"
+                ]
+              ]
+            }
           }
         }
       ]
@@ -76,12 +138,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "sapper",
-            "configId": "lille-citadel",
+            "game": "bridge",
+            "configId": "zuiderzee-dikes",
             "seed": 47820,
-            "instruction": "Hendrik Lorentz: clear the field without a blast.",
-            "fact": "Hendrik Lorentz derived his transformation equations in 1895–1904, showing mathematically that length, time, and mass change with velocity. Einstein took these equations and provided the physical interpretation: special relativity. Lorentz considered Einstein's insight the greater achievement.",
-            "rebalanced": true
+            "instruction": "Late in life Lorentz turns his mathematics on the sea itself. Link the islands and shores of the Zuiderzee with dikes, as his committee's tide calculations allow.",
+            "fact": "Lorentz shared the 1902 Nobel Prize in Physics with his former student Pieter Zeeman, whose discovery that a magnetic field splits spectral lines Lorentz had explained with his theory of the electron."
           }
         }
       ]
@@ -97,7 +158,7 @@
             "type": "minigame",
             "game": "lorentz",
             "configId": "lorentz-basic",
-            "instruction": "Control the magnetic field strength to guide the charged particle to the target.",
+            "instruction": "Lorentz's electron theory says a magnetic field bends a moving charge. Set the field strength to curve the particle onto the target.",
             "fact": "The Lorentz force (F = qv × B) causes charged particles to curve in a magnetic field — the foundation of cathode ray tubes, particle accelerators, and mass spectrometers."
           }
         },

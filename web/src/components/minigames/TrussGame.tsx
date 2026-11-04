@@ -48,6 +48,12 @@ export const CONFIGS: Record<string, TrussConfig> = {
     fact: "Apollodorus of Damascus built Trajan's Bridge over the Danube in 105 CE: timber arches on twenty stone piers, over 1,100 m long. It was the longest arch bridge in the world for more than a thousand years.",
     kind: 'arch', rule: 'Compression only — no beam may pull', unit: 'denarii', beam: '#8b5a2b',
   },
+  'kulibin-neva': {
+    title: "Kulibin's Neva Arch",
+    intro: 'Prop the roadway across the Neva from the two banks with timber struts — no piers in the river, where the spring ice would crush them. Pegged timber only pushes: every strut must be in compression.',
+    fact: "Ivan Kulibin, the self-taught mechanic Catherine made head of the Academy of Sciences' workshops in 1769, designed a single wooden arch to span the Neva — about 298 m. In 1776 a one-tenth-scale model was load-tested at the Academy and held far more than its design load; the full bridge was never built.",
+    kind: 'arch', rule: 'Compression only — no beam may pull', unit: 'roubles', beam: '#8b5a2b',
+  },
   warren: {
     title: 'The Warren Girder',
     intro: 'Triangulate the girder from equal-length beams in equilateral triangles. No verticals exist on this lattice — only chords and diagonals.',
@@ -71,6 +77,24 @@ export const CONFIGS: Record<string, TrussConfig> = {
     intro: 'Hang the deck from the tower tops. Wrought-iron chains and rods only pull: every beam must be in tension.',
     fact: "Isambard Kingdom Brunel won the competition for the Clifton Suspension Bridge in 1831 at 24. It opened in 1864, five years after his death, using chains reused from his Hungerford Bridge in London.",
     kind: 'brunel', rule: 'Tension only — no beam may push', unit: 'pounds', beam: '#1f2937',
+  },
+  'mcclintic-marshall': {
+    title: 'McClintic-Marshall, Pittsburgh',
+    intro: 'Triangulate a steel girder from equal-length beams in equilateral triangles. No verticals exist on this lattice — only chords and diagonals.',
+    fact: 'Andrew and Richard Mellon backed the McClintic-Marshall Construction Company, founded in Pittsburgh in 1900, which grew into one of the largest steel fabricators in America and built the lock gates of the Panama Canal.',
+    kind: 'warren', rule: 'Equal beams, triangles only', unit: 'dollars', beam: '#6b7280',
+  },
+  'luding-chains': {
+    title: 'The Luding Bridge, 1935',
+    intro: 'The planks are gone; only the iron chains remain. Hang a new deck from the bridgeheads. Chains and rods only pull: every beam must be in tension.',
+    fact: 'The Luding Bridge over the Dadu River, built in 1705, hangs from thirteen iron chains. In the official account, on 29 May 1935 twenty-two Red Army volunteers crawled across the bare chains under fire and seized the far end; historians have since questioned how much fighting took place.',
+    kind: 'brunel', rule: 'Tension only — no beam may push', unit: 'planks', beam: '#3f3f46',
+  },
+  'kinner-canary': {
+    title: 'The Canary’s Wings',
+    intro: 'Brace the biplane’s wing bay. A gust may strike any rib, so the bracing must carry a load at every joint in turn.',
+    fact: 'In 1921 Amelia Earhart bought her first aeroplane, a yellow Kinner Airster biplane she named The Canary. In October 1922 she flew it to 14,000 feet, a world altitude record for women.',
+    kind: 'pratt', rule: 'Moving load — every rib in turn', unit: 'dollars', beam: '#ca8a04',
   },
 }
 

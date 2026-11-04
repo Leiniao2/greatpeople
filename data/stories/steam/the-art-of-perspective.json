@@ -25,15 +25,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "braille",
+            "game": "gomoku",
             "seed": 1025,
             "fact": "Nian Xiyao (1671–1738) published Shixue ('The Science of Vision') in 1729, systematically explaining Western linear perspective — vanishing points, foreshortening, and the geometry of sight — to Chinese readers for the first time. He worked closely with the Jesuit painter Giuseppe Castiglione at the Yongzheng court, blending Eastern aesthetic sensibility with Western mathematical precision.",
-            "autogen": true,
-            "configId": "raised-dots",
-            "params": {
-              "plaintext": "THE SCIENCE OF VISION"
-            },
-            "instruction": "Nian Xiyao's book title is pressed in raised dots. Read the name of his work."
+            "configId": "wuzi-qi",
+            "instruction": "Perspective starts with straight lines on a grid, and Nian Xiyao tests his eye on a weiqi board left half-played. Line up five stones in a row before your opponent does."
           }
         }
       ]
@@ -51,12 +47,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "cargo",
-            "configId": "tea-clipper",
+            "game": "orbit",
+            "configId": "qing-observatory",
             "seed": 88706,
-            "instruction": "Nian Xiyao: stow the cargo.",
-            "fact": "Traditional Chinese painting used 'axonometric' perspective — objects remained the same size regardless of distance, and there was no single vanishing point. This was a deliberate artistic choice, not a technical limitation: it allowed the eye to travel through a landscape rather than fix on one point. Nian Xiyao presented Western perspective as a complementary system, not a replacement.",
-            "rebalanced": true
+            "instruction": "Shixue rests on the same Western geometry the Jesuits use at the Beijing observatory. Set the planet's launch speed and angle so its ellipse passes through every recorded sighting.",
+            "fact": "Traditional Chinese painting used 'axonometric' perspective — objects remained the same size regardless of distance, and there was no single vanishing point. This was a deliberate artistic choice, not a technical limitation: it allowed the eye to travel through a landscape rather than fix on one point. Nian Xiyao presented Western perspective as a complementary system, not a replacement."
           }
         }
       ]
@@ -74,12 +69,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "telegraphnet",
-            "configId": "indo",
+            "game": "cargo",
+            "configId": "canton-export",
             "seed": 87771,
-            "instruction": "Nian Xiyao: connect the cities by wire.",
-            "fact": "Nian Xiyao's imperial kilns at Jingdezhen produced some of the most technically spectacular porcelain in Chinese history: new enamel colors mixed from European pigments, copper-red glazes that had been lost for centuries, and forms that reflected Western shapes while remaining distinctly Chinese. His career embodied the Yongzheng court's sophisticated engagement with global culture.",
-            "rebalanced": true
+            "instruction": "Jingdezhen's kilns also make porcelain for Europe, painted with Western scenes and shipped from Canton. Stow the hold with the most valuable cargo until the manifest is met.",
+            "fact": "Nian Xiyao's imperial kilns at Jingdezhen produced some of the most technically spectacular porcelain in Chinese history: new enamel colors mixed from European pigments, copper-red glazes that had been lost for centuries, and forms that reflected Western shapes while remaining distinctly Chinese. His career embodied the Yongzheng court's sophisticated engagement with global culture."
           }
         },
         {
@@ -91,9 +85,9 @@
           "challenge": {
             "type": "minigame",
             "game": "porcelain",
-            "configId": "cobalt-bowl",
-            "instruction": "Nian Xiyao supervised the imperial kilns — where European pigments met Chinese clay. Shape and glaze a bowl that speaks two artistic languages at once.",
-            "fact": "The Jingdezhen kilns employed 100,000 workers at their peak, organized into specialized workshops — some mixed clay, some threw pots, some applied glaze, some painted designs, and some loaded the kilns. Nian Xiyao introduced quality control systems borrowed from the engineering approach of the Jesuit missionaries at court."
+            "configId": "yongzheng-vase",
+            "instruction": "Nian Xiyao sends his designs from Beijing to Jingdezhen. Choose the metal oxide for each band of the imperial vase so every enamel fires true.",
+            "fact": "Nian Xiyao ran the imperial kilns at Jingdezhen from 1726 while serving as a customs official, sending designs and orders from the court. His deputy Tang Ying, who arrived in 1728, succeeded him and later wrote illustrated accounts of each stage of porcelain making."
           }
         }
       ]
@@ -111,24 +105,22 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "queens",
-            "configId": "gauss",
+            "game": "pendulum",
+            "configId": "qing-clockworks",
             "seed": 32535,
-            "instruction": "Nian Xiyao: place the queens in peace.",
-            "fact": "Linear perspective was developed by Filippo Brunelleschi in Florence around 1420 and became the dominant visual system of European art. Nian Xiyao's Shixue explained that perspective was not merely an artistic convention but a mathematical truth — that sight itself operates geometrically. This was a revolutionary claim in a culture that viewed painting as an act of imagination rather than observation.",
-            "rebalanced": true
+            "instruction": "Between the kilns and the court, Nian Xiyao moves among Jesuit craftsmen whose pendulum clocks tick in the palace workshops. Move the bob until the new clock keeps time.",
+            "fact": "Linear perspective was developed by Filippo Brunelleschi in Florence around 1420 and became the dominant visual system of European art. Nian Xiyao's Shixue explained that perspective was not merely an artistic convention but a mathematical truth — that sight itself operates geometrically. This was a revolutionary claim in a culture that viewed painting as an act of imagination rather than observation."
           }
         },
         {
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "debate",
-            "configId": "socrates-apology",
+            "game": "lamplighter",
+            "configId": "lantern-festival",
             "seed": 11636,
-            "instruction": "Nian Xiyao: win the argument with evidence.",
-            "fact": "The 'famille rose' enamel palette that transformed 18th-century Chinese porcelain — pink, purple, and opaque white — was introduced during Nian Xiyao's tenure as kiln superintendent. The key ingredient was a tin-based opacifier previously unknown in Chinese ceramic chemistry. These colors made Qing porcelain unlike anything before or since.",
-            "rebalanced": true
+            "instruction": "The art Nian Xiyao helped shape lives on at the Qianlong court, where the emperor keeps the Lantern Festival at the Yuanmingyuan. Light every lantern in the lattice.",
+            "fact": "The 'famille rose' palette — pinks made with colloidal gold and an opaque lead-arsenate white, both learned from European enamelling — was perfected in the Yongzheng years, when Nian Xiyao ran the imperial kilns. Its soft, shaded colours became the signature of 18th-century Qing porcelain."
           }
         },
         {

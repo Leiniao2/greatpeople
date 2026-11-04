@@ -28,12 +28,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "battlearena",
-            "configId": "medieval-siege",
+            "game": "pipeline",
+            "configId": "metu-vessels",
             "seed": 64657,
-            "instruction": "Hesy-Ra: win the duel.",
-            "fact": "Hesy-Ra (c. 2700–2600 BCE) is the earliest known physician in recorded history. He held the title 'Chief of Dentists and Physicians' — inscribed on a wooden panel in his tomb at Saqqara, making him the first named doctor in history.",
-            "rebalanced": true
+            "instruction": "To Hesy-Ra the body is a system of channels running out from the heart. Turn the vessels until the heart reaches every part — then the whole body can be read.",
+            "fact": "Hesy-Ra (c. 2700–2600 BCE) is the earliest known physician in recorded history. He held the title 'Chief of Dentists and Physicians' — inscribed on a wooden panel in his tomb at Saqqara, making him the first named doctor in history."
           }
         }
       ]
@@ -57,12 +56,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "tangram",
-            "configId": "pagoda",
+            "game": "matchthree",
+            "configId": "saqqara-remedies",
             "seed": 97740,
-            "instruction": "Hesy-Ra: fit the seven pieces to the shape.",
-            "fact": "Hesy-Ra was Chief of Dentists and Physicians under Pharaoh Djoser (c. 2650 BCE). The Step Pyramid at Saqqara, designed by Imhotep, was built during the same reign — making Hesy-Ra and Imhotep contemporaries at the world's most ambitious construction project.",
-            "rebalanced": true
+            "instruction": "The Pharaoh has not slept for three nights. Gather from the physician's stores everything the remedy for his tooth will need.",
+            "fact": "Hesy-Ra was Chief of Dentists and Physicians under Pharaoh Djoser (c. 2650 BCE). The Step Pyramid at Saqqara, designed by Imhotep, was built during the same reign — making Hesy-Ra and Imhotep contemporaries at the world's most ambitious construction project."
           }
         }
       ]
@@ -82,15 +80,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "atbash",
+            "game": "wallbuilder",
+            "configId": "hesy-ra-filling",
             "seed": 1013,
-            "fact": "Ancient Egyptian medical knowledge was remarkably advanced. The Edwin Smith Papyrus describes 48 surgical cases with diagnoses, treatments, and prognoses — a clinical approach that would not be surpassed in Europe for thousands of years.",
-            "autogen": true,
-            "configId": "mirror-tablet",
-            "params": {
-              "plaintext": "HESY RA CHIEF OF DENTISTS"
-            },
-            "instruction": "The carving on Hesy-Ra's tomb panel has been copied out in mirror letters. Read his title."
+            "instruction": "Juniper, honey and ground malachite: pack the cavity firmly, layer by layer, and leave no gap for the rot to return.",
+            "fact": "Ancient Egyptian medical knowledge was remarkably advanced. The Edwin Smith Papyrus describes 48 surgical cases with diagnoses, treatments, and prognoses — a clinical approach that would not be surpassed in Europe for thousands of years."
           }
         }
       ]
@@ -108,10 +102,10 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "crossword",
-            "configId": "imhotep",
-            "instruction": "Hesy-Ra and Imhotep were contemporaries under Pharaoh Djoser. Fill in the crossword of their shared world — pyramids, medicine, and ancient Egypt.",
-            "fact": "Hesy-Ra and Imhotep both served under Djoser at Saqqara around 2650 BCE — one built the world's first pyramid, the other held the world's first physician title. They may have walked the same palace corridors."
+            "game": "senet",
+            "configId": "hesy-ra",
+            "instruction": "Hesy-Ra's tomb is painted with everything he will need in eternity, a senet board among it. Play the game of Djoser's court against one of its scribes.",
+            "fact": "Hesy-Ra's tomb at Saqqara is famous for its carved wooden panels, which show him with a scribe's palette and a staff of office, and for a painted corridor picturing his grave goods — chests, vessels, tools and game boards."
           }
         },
         {
@@ -124,9 +118,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "maze",
-            "configId": "pyramid-deep",
-            "instruction": "Egyptian doctors worked beside priests in the labyrinthine temples of Memphis. Navigate the inner passages — every turn holds a medical secret.",
+            "game": "atbash",
+            "configId": "saqqara-mirror",
+            "params": {
+              "plaintext": "HESY RA CHIEF OF DENTISTS"
+            },
+            "instruction": "The carvers have cut Hesy-Ra's titles as a mirror image, to face him from the far side of the panel. Read what they say.",
             "fact": "Egyptian medicine was practised in temple 'Houses of Life' — scriptorium-hospitals where physicians copied medical papyri alongside religious texts. Hesy-Ra's work as both scribe and physician reflects this union of healing and sacred knowledge."
           }
         },

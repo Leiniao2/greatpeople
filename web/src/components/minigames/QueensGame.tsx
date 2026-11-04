@@ -70,6 +70,14 @@ export const CONFIGS: Record<string, QueensConfig> = {
     sizes: [5, 6, 7, 8],
     palette: GLAZES,
   },
+  'vassal-kings': {
+    title: 'The Sworn Kings of Pegu',
+    intro: 'Each conquered realm keeps exactly one sworn king — one throne per row, column and realm. Diagonals don’t matter, but no two thrones may touch, not even corner to corner, or the neighbours will plot together.',
+    fact: 'Bayinnaung usually left defeated rulers on their thrones as sworn vassals and kept their sons at his court in Pegu as hostages — the future king Naresuan of Siam grew up there. The system held only as long as Bayinnaung lived.',
+    mode: 'regions',
+    sizes: [5, 6, 7, 8],
+    palette: GLAZES,
+  },
   versailles: {
     title: 'The Parterres of Versailles',
     intro: 'Le Nôtre’s flower beds each want one queen — one per row, column and bed — and these are true queens: no two may share a diagonal, however far apart.',
@@ -77,6 +85,15 @@ export const CONFIGS: Record<string, QueensConfig> = {
     mode: 'parterre',
     sizes: [5, 6, 7, 8],
     palette: PARTERRE,
+  },
+  'uppsala-garden': {
+    title: 'The Uppsala Botanic Garden',
+    intro: 'Linnaeus plants one tall tree per row of beds. Some trees already stand and stay put; plant the rest so that no two share a row, a column or a diagonal and none shades another.',
+    fact: 'From 1741 Linnaeus rebuilt Uppsala University’s neglected botanic garden, ordering its beds by his sexual system of plants; by his time it grew about 3,000 species. Restored, it is now the Linnaean Garden.',
+    mode: 'classic',
+    sizes: [6, 7, 7, 8],
+    blocked: [0, 0, 0, 'tight'],
+    givens: [1, 2, 1, 2],
   },
   polya: {
     title: 'Pólya’s Doughnut, 1918',

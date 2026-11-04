@@ -25,20 +25,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "typeset",
+            "game": "museum",
             "seed": 1022,
             "fact": "Apollo and Daphne (1622–1625) shows the moment Daphne transforms into a laurel tree to escape Apollo — her fingers becoming branches, bark creeping up her legs. Bernini carved this in marble when he was in his mid-twenties. Viewers reported that the finished work looked impossible, as if he had found a way to capture a single instant of motion in stone.",
-            "autogen": true,
-            "configId": "franklin-gazette",
-            "params": {
-              "lines": [
-                "APOLLO AND",
-                "APOLLO AND",
-                "APOLLO AND DAPHNE",
-                "APOLLO AND DAPHNE"
-              ]
-            },
-            "instruction": "Which of Bernini's sculptures is considered his greatest early masterpiece? Set the answer in movable type — mirrored, right to left."
+            "configId": "galleria-borghese",
+            "instruction": "Cardinal Scipione Borghese has filled his villa with the young Bernini's marbles. Place each work in the room that shows it best, with Apollo and Daphne where it can astonish."
           }
         }
       ]
@@ -56,12 +47,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "railway",
-            "configId": "transsib",
+            "game": "matchthree",
+            "configId": "barberini-bees",
             "seed": 23666,
-            "instruction": "Gian Lorenzo Bernini: lay the track for every train.",
-            "fact": "Bernini designed St. Peter's Square's twin colonnades to open at their ends, creating a welcoming gesture toward the city. He described them as 'the motherly arms of the Church' reaching out to embrace the faithful — Catholics to confirm their faith, heretics to reunite with the Church, and unbelievers to discover the light. The design is both engineering and theology.",
-            "rebalanced": true
+            "instruction": "Above St Peter's tomb the bronze baldachin rises, crawling with Urban VIII's Barberini bees, laurel and suns. Match the emblems as Bernini's foundry casts and gilds them.",
+            "fact": "Bernini's baldachin (1624–1634) rises about 29 m over the tomb of St Peter on four twisted bronze columns modelled on the ancient columns of Old St Peter's. Urban VIII had bronze stripped from the Pantheon's portico, much of it for cannon at Castel Sant'Angelo, prompting Romans to quip: 'What the barbarians did not do, the Barberini did.'"
           }
         }
       ]
@@ -79,12 +69,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "gomoku",
-            "configId": "edo-gomoku",
+            "game": "mirror",
+            "configId": "cornaro-chapel",
             "seed": 14627,
-            "instruction": "Gian Lorenzo Bernini: make five in a row.",
-            "fact": "Bernini dominated Roman art for six decades, serving under eight popes. Unlike most artists, he died wealthy, celebrated, and with his genius universally acknowledged in his own lifetime. When Louis XIV invited him to Paris to redesign the Louvre, the King of France came personally to see the great man off.",
-            "rebalanced": true
+            "instruction": "Bernini wants St Teresa to glow as if lit from heaven, by a source no worshipper can see. Steer the daylight from his hidden window down onto the saint and the angel.",
+            "fact": "The Cornaro Chapel in Santa Maria della Vittoria (1647–1652) was commissioned by Cardinal Federico Cornaro. A window concealed above the altar pours daylight down gilded bronze rays onto Teresa and the angel, while marble members of the Cornaro family watch from theatre boxes on the side walls."
           }
         },
         {
@@ -95,10 +84,16 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "museum",
-            "configId": "louvre-arrangement",
-            "instruction": "Louis XIV summoned Bernini to Paris to redesign the Louvre — the greatest commission in Europe. Arrange the gallery to reveal the Baroque at its most commanding.",
-            "fact": "Bernini's 1665 Paris visit was a diplomatic triumph and an artistic failure. His plans for the Louvre were ultimately rejected in favour of a French classical design. But his reception was extraordinary: the King walked his horse beside Bernini's carriage, the streets were lined with spectators, and the court treated him as the greatest living artist in the world."
+            "game": "knightstour",
+            "configId": "al-adli",
+            "instruction": "Bernini's colonnade wraps St Peter's Square in four rows of columns. Leap through every bay of the square once, touching the numbered marks in order, as a pilgrim crossing the motherly arms of the Church.",
+            "fact": "Bernini designed St. Peter's Square's twin colonnades to open at their ends, creating a welcoming gesture toward the city. He described them as 'the motherly arms of the Church' reaching out to embrace the faithful — Catholics to confirm their faith, heretics to reunite with the Church, and unbelievers to discover the light. The design is both engineering and theology.",
+            "params": {
+              "title": "The Colonnade of St Peter’s",
+              "twist": "numbered marks in order",
+              "intro": "Bernini’s colonnade (1656–1667) frames St Peter’s Square. Leap through every bay of the square once, landing on the numbered marks in order — 1, then 2, then 3. A numbered mark cannot be entered early.",
+              "fact": "Bernini built the colonnade of St Peter’s Square for Alexander VII between 1656 and 1667: 284 columns in four rows, topped by 140 statues of saints."
+            }
           }
         }
       ]
@@ -116,20 +111,20 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "jigsaw",
-            "configId": "venetian-master",
-            "instruction": "Bernini painted as well as he sculpted — studying Titian's color to understand how light reveals form. Reassemble the Baroque canvas, restoring its luminous depth.",
-            "fact": "Bernini credited painting, not sculpture, as his primary creative exercise. He claimed that painting allowed him to study light and color, which he then translated into marble. The Ecstasy of Saint Teresa uses hidden windows to cast a single shaft of light onto the sculpture — painting with architecture."
+            "game": "orbit",
+            "configId": "great-comet-1680",
+            "instruction": "In his last winter a great comet hangs over Rome. Plot its path through the astronomers' sightings, the last wonder of the sky Bernini will see.",
+            "fact": "Bernini died in Rome on 28 November 1680, aged 81, a fortnight after Gottfried Kirch first saw the Great Comet. He had served popes from Paul V to Innocent XI, and was buried in Santa Maria Maggiore beneath a plain slab in the floor."
           }
         },
         {
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "colormix",
-            "configId": "ultramarine-lapis",
-            "instruction": "Bernini's Rome blazed with color — gilded ceilings, lapis lazuli altars, porphyry columns. Mix the pigments that transformed a city into an act of worship.",
-            "fact": "The ultramarine pigment used in Rome's greatest Baroque decorations was made from lapis lazuli ground to powder — worth more than gold by weight. A single altarpiece might consume the annual output of Afghan mines. The Church's lavish use of precious pigment was itself a theological statement: nothing is too costly to offer God."
+            "game": "konigsberg",
+            "configId": "ponte-sant-angelo",
+            "instruction": "In his late sixties Bernini turns the old bridge to Castel Sant'Angelo into a Way of the Cross lined with angels. Lead the pilgrims over every bridge once and home to St Peter's.",
+            "fact": "In 1667 Clement IX commissioned ten angels for the Ponte Sant'Angelo, each holding an instrument of the Passion. Bernini designed them all and carved two himself — the angels with the Crown of Thorns and the Superscription — which the pope kept from the weather; they are now in Sant'Andrea delle Fratte."
           }
         },
         {

@@ -30,6 +30,17 @@ export const CONFIGS: Record<string, Blueprint> = {
     ],
     fact: "The Step Pyramid at Saqqara (c. 2650 BCE) is the oldest large-scale stone building in the world. Imhotep, its architect, was later worshipped as a god of medicine — one of very few non-royal Egyptians to be deified.",
   },
+  'odeon-of-pericles': {
+    title: 'The Odeon of Pericles',
+    intro: 'Beside the theatre of Dionysus, a great hall of music rises under a roof that slopes up from every side to a single peak. Build each course on the one below, the peak last.',
+    plan: [
+      '...K...',
+      '..###..',
+      '.#####.',
+      '#######',
+    ],
+    fact: 'Plutarch says the Odeon Pericles built for the music contests of the Panathenaea was a hall of many seats and columns, its roof sloping down from a single peak, and that it was made in imitation of the Persian king\'s tent. Pericles himself was chosen to direct the contests.',
+  },
   'roman-aqueduct': {
     title: 'Pont du Gard',
     intro: 'Three tiers of arches carry water across the Gardon. Set the springers, then close each arch with its keystone.',
@@ -40,6 +51,28 @@ export const CONFIGS: Record<string, Blueprint> = {
       '#######',
     ],
     fact: 'The Pont du Gard, built around 50 CE, carried the Nîmes aqueduct 50 km with a fall of just 17 metres — a gradient of 1 in 3,000 — using unmortared stone blocks of up to six tonnes.',
+  },
+  'hattusa-gates': {
+    title: 'The Gates of Hattusa',
+    intro: 'Raise the gate towers of the royal city course by course, then close each passage with its top stone. A gate is only as strong as the stones beneath it.',
+    plan: [
+      '.K...K.',
+      '#.#.#.#',
+      '#.#.#.#',
+      '#######',
+    ],
+    fact: 'Hattusa’s great stone gates, such as the Lion Gate with its two carved lions, belong to the city’s later growth, when its walls came to run for kilometres around the Upper City. The capital stood for some three hundred years after Telepinu, until it was abandoned around 1200 BCE.',
+  },
+  'asasif-pylon': {
+    title: 'The Gateway of the Tomb',
+    intro: 'Pediamenopet’s tomb is fronted by a great mud-brick gateway. Build each course on the one below, the cornice stone last.',
+    plan: [
+      '...K...',
+      '..###..',
+      '.#####.',
+      '#######',
+    ],
+    fact: 'Pediamenopet’s tomb (TT33) in the Asasif at Thebes is the largest private tomb in Egypt: more than twenty rock-cut halls, corridors and chambers on several levels, reached through open courts. The great Late Period tombs of the Asasif were fronted by mud-brick pylon gateways.',
   },
   'brunelleschi-dome': {
     title: 'The Dome of Florence',

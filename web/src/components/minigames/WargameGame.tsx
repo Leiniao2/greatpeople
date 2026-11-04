@@ -28,6 +28,7 @@ interface WargameConfig {
 const CONFIGS: Record<string, WargameConfig> = {
   'belisarius-battle': { title: 'Battle of Ad Decimum', playerLabel: 'Byzantine Forces', cpuLabel: 'Vandal Army' },
   'an-jung-geun':      { title: 'Defense of Korea',    playerLabel: 'Korean Resistance',  cpuLabel: 'Imperial Forces' },
+  'myeongnyang-1597':  { title: 'Myeongnyang Strait, 1597', playerLabel: 'Joseon Navy',     cpuLabel: 'Japanese Fleet' },
   'mao-tactics':       { title: 'Jiangxi Campaign',    playerLabel: 'Red Army',            cpuLabel: 'KMT Forces' },
   'pleistoanax-war':   { title: 'Attica Campaign',     playerLabel: 'Spartan Army',        cpuLabel: 'Athenian Forces' },
   'sargon-battle':     { title: 'Conquest of Sumer',   playerLabel: 'Akkadian Forces',     cpuLabel: 'Sumerian Cities' },

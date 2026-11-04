@@ -25,12 +25,16 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "alchemy",
-            "configId": "wuxing",
+            "game": "tafl",
+            "configId": "tawlbwrdd",
             "seed": 85102,
-            "instruction": "Batu Khan: discover the target substance.",
+            "instruction": "Ryazan is the first city in Batu's path. Close the ring round its walls so the prince cannot break out before the city falls.",
             "fact": "Batu Khan (c.1207–1255) was the grandson of Genghis Khan and founder of the Golden Horde. In 1241, he led the most western Mongol campaign in history, crushing Polish and Hungarian armies simultaneously and reaching the gates of Vienna — before news of Ögedei Khan's death caused the army to withdraw.",
-            "rebalanced": true
+            "params": {
+              "title": "The Ring Round Ryazan, 1237",
+              "intro": "You command the black attackers closing on Ryazan. Keep Prince Yuri from every corner until the moves run out — or surround him for an early win. The edge counts against him.",
+              "fact": "In December 1237 the Mongols ringed Ryazan with a palisade so no one could get in or out, battered the walls with siege engines for five days and stormed the city on 21 December. Prince Yuri Igorevich died with his people; Vladimir fell the following February."
+            }
           }
         }
       ]
@@ -48,12 +52,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "chemistry",
-            "configId": "spice-route",
+            "game": "mirror",
+            "configId": "legnica-mohi",
             "seed": 50166,
-            "instruction": "Batu Khan: mix the right measures.",
-            "fact": "At the Battle of Legnica (1241), the Mongols annihilated a combined Polish-German force. At the Battle of Mohi the same month, they destroyed the Hungarian army. Western Europe was essentially undefended. The Mongols withdrew not because of military defeat but because of succession politics — Ögedei Khan's death required the princes to return east.",
-            "rebalanced": true
+            "instruction": "Batu's northern wing in Poland and his own army in Hungary must strike within days of each other. Bend the signal through the mirrors so both armies move on the same plan.",
+            "fact": "In April 1241 two Mongol forces about 600 km apart won within two days of each other: Baidar and Kadan's wing crushed Duke Henry II of Silesia at Legnica on 9 April, and Batu and Subutai destroyed King Béla IV's Hungarian army at Mohi on 11 April. The Mongols withdrew not because of military defeat but because Ögedei Khan's death required the princes to return east."
           }
         }
       ]
@@ -71,12 +74,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "canallock",
-            "configId": "grand-canal",
+            "game": "tradeboard",
+            "configId": "silk-road",
             "seed": 180,
-            "instruction": "Batu Khan: pass the boats through the locks.",
-            "fact": "The Mongol campaign of 1241 was one of the most devastating military events in medieval European history. Poland, Hungary, and Moravia were devastated. Poland lost an estimated 25% of its population. When the Mongols withdrew, medieval Europe assumed it was a temporary pause — for years, communities lived in terror of their return.",
-            "rebalanced": true
+            "instruction": "From his golden tent at Sarai, Batu taxes every caravan that crosses the western steppe. Buy up the caravanserais and outgrow the rival houses before the season ends.",
+            "fact": "Batu founded Sarai on the lower Volga as the Golden Horde's capital. It sat on the northern branch of the Silk Road, where caravans carried furs, slaves, silk and silver between the Rus lands, Central Asia and the Black Sea — and the Horde took its tolls on all of it. The Franciscan William of Rubruck, who visited Batu's camp in 1253, described a moving city of tents and wagons."
           }
         },
         {
@@ -109,8 +111,8 @@
           "challenge": {
             "type": "minigame",
             "game": "tactics",
-            "configId": "general",
-            "instruction": "Batu Khan's commanders used feigned retreats to lure heavy European cavalry out of formation. Spring the trap — draw them forward, then encircle.",
+            "configId": "mohi-feint",
+            "instruction": "The European knights cannot resist chasing a fleeing enemy. Let them ride into the trap, then close the ring with one decisive move.",
             "fact": "The feigned retreat was the signature Mongol tactic in Europe. Heavy knights, trained to charge and pursue, could not resist a retreating enemy. The Mongols would fall back for miles, drawing the pursuers into scattered disorder, then wheel and destroy them in detail. European commanders had no answer for an 'enemy' that ran away only to fight on its own terms."
           }
         },
@@ -118,9 +120,9 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "klotski",
-            "configId": "sword-formation",
-            "instruction": "Break the European shield wall — heavy cavalry blocks every direct path. Rearrange the pieces to open a line for the horse archers to exploit.",
+            "game": "postroute",
+            "configId": "mongol-yam",
+            "instruction": "The Horde rules from the Volga to Kiev because the khan's word travels fast. Carry his order through every town and back to Sarai, changing horses at the yam stations.",
             "fact": "The Golden Horde that Batu established dominated the Russian steppe for 250 years, collecting tribute from every Russian principality. Moscow grew wealthy as a tax collector for the Horde — a relationship that profoundly shaped Russian political culture, centralizing power and accustoming rulers to absolute authority."
           }
         },

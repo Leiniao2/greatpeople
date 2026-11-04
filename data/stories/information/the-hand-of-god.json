@@ -28,12 +28,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "expedition",
-            "configId": "hannibal-alps",
+            "game": "geometry",
+            "configId": "first-ball",
             "seed": 60164,
-            "instruction": "Diego Maradona: plan the expedition route.",
-            "fact": "In the 1986 World Cup quarterfinal, Maradona scored twice against England — first with a handball he called 'the Hand of God,' then with a dribble past five players that was later voted the Goal of the Century. Argentina won 2–1.",
-            "rebalanced": true
+            "instruction": "In Villa Fiorito the boys kick balls of rags — until Diego's cousin gives him a real leather football. Work out the size of the ball he will not let go of.",
+            "fact": "For his third birthday Diego's cousin Beto gave him a leather football, and he slept hugging it. By the age of eight he was playing for Los Cebollitas, a youth side that went 136 games unbeaten."
           }
         }
       ]
@@ -58,11 +57,10 @@
           "challenge": {
             "type": "minigame",
             "game": "soccer",
-            "configId": "euro-penalty",
+            "configId": "hand-of-god",
             "seed": 28452,
-            "instruction": "Diego Maradona: score from the spot.",
-            "fact": "Maradona's career compressed triumph and tragedy into a single volcanic life. He carried Argentina and Napoli to heights neither had reached before — and his personal demons brought him just as low. The 1978 World Cup, won without him, haunted him; 1986, with him at the centre, is the defining image of his legacy.",
-            "rebalanced": true
+            "instruction": "Mexico City, 22 June 1986: Argentina against England, four years after the Falklands. Beat the English goalkeeper and put Argentina through.",
+            "fact": "Argentina beat England 2–1 in the quarter-final at the Estadio Azteca, then Belgium in the semi-final and West Germany in the final. Maradona, the captain, was named player of the tournament."
           }
         }
       ]
@@ -81,9 +79,9 @@
           "challenge": {
             "type": "minigame",
             "game": "klotski",
-            "configId": "sword-formation",
-            "instruction": "Maradona's Goal of the Century — dribbling past five defenders in 10 seconds — was a formation broken by individual genius. Slide through the defence.",
-            "fact": "Maradona received the ball in his own half and dribbled 60 metres, evading five English players and the goalkeeper before scoring. Peter Reid, one of the defenders he beat, said: 'I just kept thinking — this can't be happening.' It happened. FIFA fans voted it the Goal of the Century in 2002."
+            "configId": "goal-of-the-century",
+            "instruction": "Diego takes the ball in his own half and runs. Slide him through the English defence — Reid, Butcher, Fenwick, then Shilton in goal — and into the net.",
+            "fact": "On Argentine radio, the commentator Víctor Hugo Morales wept as he called the run, crying 'Barrilete cósmico — from what planet did you come?' The phrase 'cosmic kite' stuck to Maradona for life."
           }
         }
       ]
@@ -103,12 +101,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "punnett",
-            "configId": "blood-types",
+            "game": "cipher",
+            "configId": "hand-of-god-quote",
             "seed": 99938,
-            "instruction": "Diego Maradona: predict the inheritance.",
-            "fact": "Maradona's duel with England in 1986 was personal as well as sporting — four years after the Falklands War, England and Argentina met in a World Cup quarter-final. Maradona scored both goals: one with his hand, one with his feet. He later said both were scored 'with the hand of God and the head of Maradona.'",
-            "rebalanced": true
+            "instruction": "The journalist wants to know how he explains the first goal. Decode Diego's answer from the reporter's notebook.",
+            "fact": "For nearly twenty years Maradona was coy about the handball. In 2005 he admitted on Argentine television that he had punched the ball in on purpose."
           }
         },
         {
@@ -121,12 +118,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "worldclock",
-            "configId": "telegraph-globe",
+            "game": "scytale",
+            "configId": "azteca-banner",
             "seed": 63894,
-            "instruction": "Diego Maradona: convert the times across the globe.",
-            "fact": "Argentina coach César Luis Menotti left Maradona out of the 1978 squad, saying he was too young to carry the pressure. Argentina won the tournament on home soil. Maradona said the exclusion 'broke my heart' — and that winning the 1986 World Cup finally healed the wound. In 1978, a 17-year-old sat out history; in 1986, a 25-year-old made it.",
-            "rebalanced": true
+            "instruction": "Six minutes from the end of the final, Burruchaga scores from Diego's pass. In the stands a furled banner is waiting — wind it on the right pole and read what Argentina is about to become.",
+            "fact": "Argentina coach César Luis Menotti left Maradona out of the 1978 squad, saying he was too young to carry the pressure. Argentina won the tournament on home soil. Maradona said the exclusion 'broke my heart' — and that winning the 1986 World Cup finally healed the wound. In 1978, a 17-year-old sat out history; in 1986, a 25-year-old made it."
           }
         },
         {

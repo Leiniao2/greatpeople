@@ -78,6 +78,24 @@ export const CONFIGS: Record<string, ColorMixConfig> = {
     tolerance: 22,
     fact: "Titian's reds were so celebrated that 'rosso Tizianesco' became a synonym for luminous crimson. He applied multiple thin glazes of kermes lake over a vermilion ground, building up depth impossible to achieve in a single coat — a method only perfected through decades of practice.",
   },
+  'nocheztli-red': {
+    title: 'Nocheztli — The Blood of the Nopal',
+    subtitle: 'Tenochtitlan, c. 1510',
+    pigments: [
+      { id: 'grana',   name: 'Cochineal',    hex: '#a01030', rgb: [160, 16,  48 ], source: 'Insects of the nopal cactus, Oaxaca' },
+      { id: 'achiote', name: 'Achiote',      hex: '#d6621e', rgb: [214, 98,  30 ], source: 'Seeds of the annatto shrub' },
+      { id: 'clay',    name: 'White Clay',   hex: '#ece6d6', rgb: [236, 230, 214], source: 'Chalky earth of the valley' },
+      { id: 'soot',    name: 'Pine Soot',    hex: '#282422', rgb: [40,  36,  34 ], source: 'Smoke of ocote pine torches' },
+    ],
+    target: {
+      name: 'Tribute Crimson',
+      hex: '#ae252c',
+      rgb: [174, 37, 44],
+      hint: 'Mostly cochineal, warmed with a little achiote — no clay, no soot.',
+    },
+    tolerance: 22,
+    fact: 'Cochineal — nocheztli, “blood of the nopal” — is a crimson dye made from scale insects raised on prickly-pear cactus. Towns of Oaxaca sent it to Tenochtitlan as tribute, as the Codex Mendoza records; after the conquest it became one of New Spain’s most valuable exports and the crimson of European cloth and painting.',
+  },
   'egyptian-blue': {
     title: "Nefertiti's Blue — Mix the Royal Pigment",
     subtitle: 'Egypt, c. 1340 BCE',
@@ -95,6 +113,24 @@ export const CONFIGS: Record<string, ColorMixConfig> = {
     },
     tolerance: 25,
     fact: "Egyptian blue (cuprorivaite) was the world's first synthetic pigment, manufactured in Egypt from around 3200 BCE. Made by heating quartz sand, copper minerals, and limestone to 850–1000°C, it was traded across the ancient world. When illuminated with infrared light, Egyptian blue glows so brightly it can be detected from space.",
+  },
+  'nakht-tomb': {
+    title: "The Harvesters' Red — Paint Nakht's Tomb",
+    subtitle: 'Thebes, c. 1400 BCE',
+    pigments: [
+      { id: 'red',    name: 'Red Ochre',    hex: '#a84028', rgb: [168, 64,  40 ], source: 'Iron-rich earth'        },
+      { id: 'yellow', name: 'Yellow Ochre', hex: '#cc983c', rgb: [204, 152, 60 ], source: 'Desert clay'            },
+      { id: 'black',  name: 'Carbon Black', hex: '#282624', rgb: [40,  38,  36 ], source: 'Soot from lamps'        },
+      { id: 'white',  name: 'Gypsum White', hex: '#eee8dc', rgb: [238, 232, 220], source: 'Ground gypsum'          },
+    ],
+    target: {
+      name: "Harvesters' Skin",
+      hex: '#994a2b',
+      rgb: [153, 74, 43],
+      hint: 'Mostly red ochre, warmed with a little yellow ochre and darkened with a touch of black.',
+    },
+    tolerance: 22,
+    fact: "Egyptian painters worked with a small set of colours: red and yellow ochre, carbon black, white gypsum or chalk, and the manufactured Egyptian blue and green. By convention men's skin was painted a reddish brown and women's a paler yellow, as the figures in Nakht's tomb still show.",
   },
   'ultramarine-lapis': {
     title: "Fra Angelico's Sky — Mix Ultramarine",
@@ -131,6 +167,24 @@ export const CONFIGS: Record<string, ColorMixConfig> = {
     },
     tolerance: 28,
     fact: "Woad was the only blue pigment available in northern Europe before indigo arrived from Asia in the 13th century. The woad trade was so lucrative it built the Gothic cathedrals of Toulouse — merchants' woad profits funded the Capitole de Toulouse and much of the city's medieval wealth. When cheaper Indian indigo arrived, the woad industry collapsed in a generation.",
+  },
+  'jasper-blue': {
+    title: "Wedgwood's Blue — Stain the Jasper",
+    subtitle: 'Etruria, Staffordshire, c. 1775',
+    pigments: [
+      { id: 'cobalt', name: 'Cobalt Oxide',   hex: '#2840a0', rgb: [40,  64,  160], source: 'Zaffre, from Saxon cobalt ore'  },
+      { id: 'white',  name: 'White Jasper',   hex: '#eceae2', rgb: [236, 234, 226], source: 'Clay and cawk (barium sulphate), Derbyshire' },
+      { id: 'mang',   name: 'Manganese',      hex: '#4a3442', rgb: [74,  52,  66 ], source: 'Manganese oxide, for black and lilac' },
+      { id: 'iron',   name: 'Iron Oxide',     hex: '#964e2c', rgb: [150, 78,  44 ], source: 'Red iron earth'                 },
+    ],
+    target: {
+      name: 'Pale Jasper Blue',
+      hex: '#96a8cc',
+      rgb: [150, 168, 204],
+      hint: 'A little cobalt in a lot of white body — about three parts to four. Manganese and iron only muddy it.',
+    },
+    tolerance: 22,
+    fact: 'Wedgwood logged thousands of trial pieces before launching jasper around 1775: a fine unglazed stoneware made with barium sulphate, stained right through with metal oxides. Cobalt gave the pale blue that still carries his name, set off by white classical reliefs.',
   },
 }
 

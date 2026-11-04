@@ -47,6 +47,20 @@ export const CONFIGS: Record<string, SoccerConfig> = {
     kicks: 5, targetGoals: 3, readProb: 0.20,
     fact: "In the 1986 World Cup quarter-final, Maradona scored two iconic goals against England — the infamous 'Hand of God' header with his fist, and then the 'Goal of the Century', dribbling past five defenders in 11 seconds. Both in the same match.",
   },
+  'fulham-1999': {
+    title: 'Craven Cottage, April 1999',
+    homeTeam: 'Fulham', awayTeam: 'Wigan Athletic',
+    homeEmoji: '⚪', awayEmoji: '🔵',
+    kicks: 5, targetGoals: 3, readProb: 0.20,
+    fact: "In April 1999 Michael Jackson watched Fulham play Wigan Athletic at Craven Cottage as the guest of the club's owner, Mohamed Al-Fayed. In 2011 Al-Fayed put up a statue of Jackson at the ground; the club's next owners took it down in 2013.",
+  },
+  'passive-resisters': {
+    title: 'The Passive Resisters',
+    homeTeam: 'Passive Resisters', awayTeam: 'Rival Club',
+    homeEmoji: '🕊️', awayEmoji: '⚽',
+    kicks: 5, targetGoals: 3, readProb: 0.2,
+    fact: "In South Africa Gandhi helped organise Indian football clubs in Durban, Pretoria and Johannesburg, and the teams took the name Passive Resisters. He used the matches to spread the message of satyagraha, the campaign of nonviolent resistance he began there in 1906.",
+  },
 }
 
 // Goal uses 3 columns × 2 rows = 6 cells.

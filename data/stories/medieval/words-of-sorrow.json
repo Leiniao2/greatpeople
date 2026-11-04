@@ -29,11 +29,10 @@
           "challenge": {
             "type": "minigame",
             "game": "cargo",
-            "configId": "zheng-he",
+            "configId": "li-qingzhao-boat",
             "seed": 34941,
-            "instruction": "Li Qingzhao: stow the cargo.",
-            "fact": "Li Qingzhao (1084–c.1155) is considered the greatest female poet in Chinese history and one of the greatest poets of all. She transformed the ci form — originally sung verses for entertainment — into a vehicle for profound personal expression.",
-            "rebalanced": true
+            "instruction": "Only what fits in the boat can cross the Huai; everything else is left to the invaders. Stow the books, rubbings and bronzes, keeping the paintings on top.",
+            "fact": "Li Qingzhao (1084–c.1155) is considered the greatest female poet in Chinese history and one of the greatest poets of all. She transformed the ci form — originally sung verses for entertainment — into a vehicle for profound personal expression."
           }
         }
       ]
@@ -51,12 +50,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "postroute",
-            "configId": "inca",
+            "game": "rhythm",
+            "configId": "li-qingzhao-ci",
             "seed": 45107,
-            "instruction": "Li Qingzhao: plan the post round.",
-            "fact": "The ci poems of Li Qingzhao were written to specific tunes — each tune had a name and a set pattern of tones. Her poems about loss, love, and exile have been sung and recited for 900 years.",
-            "rebalanced": true
+            "instruction": "Li Qingzhao sets her grief to a tune everyone already knows. Sing her new words to it, note for note, as the melody quickens.",
+            "fact": "The ci poems of Li Qingzhao were written to specific tunes — each tune had a name and a set pattern of tones. Her poems about loss, love, and exile have been sung and recited for 900 years."
           }
         }
       ]
@@ -76,12 +74,16 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "rhythm",
-            "seed": 1005,
-            "fact": "Li Qingzhao's life split sharply in two: the happy early years in Jinan collecting and writing beside her husband, and the desolate later years as a refugee. Her poem 'Sheng Sheng Man' opens with eighteen consecutive monosyllables evoking emptiness and longing — one of the most technically daring openings in all of Chinese poetry.",
-            "autogen": true,
-            "configId": "hildegard-chant",
-            "instruction": "Arrange these events of Li Qingzhao's life in chronological order: Learn the phrase and play it back, note for note."
+            "game": "nonogram",
+            "configId": "british-museum",
+            "params": {
+              "title": "Faded Rubbings",
+              "intro": "Damp has got into the last rubbings from the collection: some clues have faded to “?”, and those lines could hold anything. The surviving clues are still enough — work round the gaps.",
+              "fact": "Li Qingzhao and her husband Zhao Mingcheng spent some twenty years gathering rubbings of inscriptions on ancient bronzes and stones. His catalogue of about 2,000 of them, Records on Metal and Stone (Jin Shi Lu), survives with her Postface, written after his death and the loss of most of the originals."
+            },
+            "seed": 111,
+            "instruction": "Beside the wilting chrysanthemums, Li Qingzhao unrolls a rubbing she once traced with her husband. Restore the faded vessel from the clues that remain.",
+            "fact": "Li Qingzhao's life split sharply in two: the happy early years in Jinan collecting and writing beside her husband, and the desolate later years as a refugee. Her poem 'Sheng Sheng Man' opens with eighteen consecutive monosyllables evoking emptiness and longing — one of the most technically daring openings in all of Chinese poetry."
           }
         }
       ]
@@ -95,24 +97,27 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "tafl",
-            "configId": "ballinderry",
+            "game": "canallock",
+            "configId": "grand-canal",
             "seed": 2936,
-            "instruction": "Li Qingzhao: bring the king to safety.",
-            "fact": "Li Qingzhao lost her husband, her home, and her famous art collection when the Jin dynasty invaded northern China in 1127. Her later ci poems are hauntingly different from her earlier joyful verses. She wrote: 'Who is left to share the fragrance of the wine?' — a line that still resonates 900 years later.",
-            "rebalanced": true
+            "instruction": "What is left of the collection goes south by barge toward the new capital at Hangzhou. Pass the boats through the pound locks without wasting the scarce water.",
+            "fact": "Li Qingzhao lost her husband, her home, and her famous art collection when the Jin dynasty invaded northern China in 1127. Her later ci poems are hauntingly different from her earlier joyful verses. She wrote: 'Who is left to share the fragrance of the wine?' — a line that still resonates 900 years later."
           }
         },
         {
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "caravan",
-            "configId": "mansa-musa",
+            "game": "tafl",
+            "configId": "linnaeus",
+            "params": {
+              "title": "The Emperor Takes to the Sea",
+              "intro": "Winter 1129: Jin cavalry hunt Emperor Gaozong down the coast. Get him to ANY edge square — the open sea — but away from his throne he is weak, taken by just two attackers like any man.",
+              "fact": "When the Jin crossed the Yangtze in 1129, Emperor Gaozong fled to the coast and spent that winter aboard ships off Zhejiang. Li Qingzhao, newly widowed, followed the fleeing court by boat as far as Wenzhou, losing more of the collection at every stop."
+            },
             "seed": 61934,
-            "instruction": "Li Qingzhao: turn a profit along the route.",
-            "fact": "Written around 1008 CE by a court lady, The Tale of Genji is considered the world's first novel. Its author, known as Murasaki Shikibu, wrote in hiragana (considered 'women's script' then) while men wrote formal documents in Chinese — a subversion that produced one of humanity's great literary works.",
-            "rebalanced": true
+            "instruction": "Li Qingzhao follows the fleeing emperor down the coast with what she can carry. Lead the emperor to the open sea before the Jin riders close the shore.",
+            "fact": "In her later ci Li Qingzhao wrote of widowhood and exile in plain, spoken words. In “Spring at Wuling” she says the boats on Twin Streams are too small to carry so much sorrow — a line still quoted for grief that has no place to go."
           }
         },
         {

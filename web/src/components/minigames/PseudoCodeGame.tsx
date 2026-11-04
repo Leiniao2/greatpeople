@@ -51,6 +51,61 @@ export const CONFIGS: Record<string, Config> = {
       },
     ],
   },
+  'atticus-defence': {
+    name: 'Atticus Finch for the Defence',
+    challenges: [
+      {
+        title: 'The Left Hand',
+        description: "Order Atticus's questions so the jury sees who really struck Mayella Ewell.",
+        lines: [
+          { id: 'l1', text: 'injury ← Sheriff Tate: "her right eye was blacked"', order: 0 },
+          { id: 'l2', text: 'hand Bob Ewell a pen:  "write your name"', order: 1 },
+          { id: 'l3', text: 'if Ewell writes with his left hand:  let the jury see it', order: 2 },
+          { id: 'l4', text: 'ask Tom Robinson to stand', order: 3 },
+          { id: 'l5', text: "if Tom's left arm is crippled:  he could not have struck her", order: 4 },
+          { id: 'l6', text: 'rest the case for the defence', order: 5 },
+        ],
+      },
+      {
+        title: 'The Closing Argument',
+        description: 'Arrange the closing so each point rests on the one before.',
+        lines: [
+          { id: 'c1', text: 'remind the jury:  no doctor was ever called', order: 0 },
+          { id: 'c2', text: 'show:  the blows were struck by a left hand', order: 1 },
+          { id: 'c3', text: 'show:  Bob Ewell is left-handed', order: 2 },
+          { id: 'c4', text: "show:  Tom Robinson's left hand is useless", order: 2 },
+          { id: 'c5', text: 'ask:  "In the name of God, do your duty"', order: 3 },
+        ],
+      },
+    ],
+  },
+  'baghdad-censor': {
+    name: 'Reporting from Baghdad',
+    challenges: [
+      {
+        title: 'Filing Under Censorship',
+        description: "Put Arnett's routine in order so the report gets out — and viewers know what it is.",
+        lines: [
+          { id: 'b1', text: 'go to the site with the Iraqi minder', order: 0 },
+          { id: 'b2', text: 'write only what you saw yourself', order: 1 },
+          { id: 'b3', text: 'submit the script to the Iraqi censor', order: 2 },
+          { id: 'b4', text: 'if lines were cut:  tell viewers the report was censored', order: 3 },
+          { id: 'b5', text: 'go live to Atlanta on the four-wire', order: 4 },
+        ],
+      },
+      {
+        title: 'The Live Shot',
+        description: 'Order the steps of a live report from a city under bombardment.',
+        lines: [
+          { id: 's1', text: 'while the line to Atlanta is open:', order: 0 },
+          { id: 's2', text: '  describe what you can see from the window', order: 1 },
+          { id: 's3', text: '  attribute every claim to its source', order: 1 },
+          { id: 's4', text: '  if a claim cannot be checked:  say so on air', order: 2 },
+          { id: 's5', text: 'when the line drops:  file by phone or courier', order: 3 },
+        ],
+      },
+    ],
+  },
   'jobs-code': {
     name: 'Programming Puzzles',
     challenges: [

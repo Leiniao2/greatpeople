@@ -28,12 +28,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "cipher",
-            "configId": "al-kindi-frequency",
+            "game": "worldclock",
+            "configId": "earhart-atlantic",
             "seed": 2174,
-            "instruction": "Amelia Earhart: break the cipher.",
-            "fact": "Earhart and navigator Fred Noonan disappeared on July 2, 1937, near tiny Howland Island in the Central Pacific — one of the most remote spots on Earth. They were never found. Her disappearance remains one of aviation's great mysteries.",
-            "rebalanced": true
+            "instruction": "Earhart takes off from Harbour Grace as the sun goes down and will fly into the sunrise. Work out the hour on each side of the ocean.",
+            "fact": "Earhart flew a single-engine Lockheed Vega 5B, painted red with gold trim. The same aeroplane now hangs in the Smithsonian's National Air and Space Museum in Washington."
           }
         }
       ]
@@ -57,12 +56,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "cryptarithm",
-            "configId": "addition",
+            "game": "maze",
+            "configId": "atlantic-sky",
             "seed": 77890,
-            "instruction": "Amelia Earhart: crack the letter sum.",
-            "fact": "In 1932, Earhart flew solo from Newfoundland to Northern Ireland in 14 hours 56 minutes — battling icing, storm turbulence, and a leaking fuel tank.",
-            "rebalanced": true
+            "instruction": "Ice on the wings, a broken altimeter, flames at the exhaust. Ride the winds across the Atlantic and find land.",
+            "fact": "In 1932, Earhart flew solo from Newfoundland to Northern Ireland in 14 hours 56 minutes — battling icing, storm turbulence, and a leaking fuel tank."
           }
         }
       ]
@@ -76,12 +74,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "chimpmath",
-            "configId": "nim-learns",
+            "game": "truss",
+            "configId": "kinner-canary",
             "seed": 2836,
-            "instruction": "Amelia Earhart: match the chimps at counting.",
-            "fact": "Earhart flew her Lockheed Electra around the world's equator — the longest possible circumnavigation route. She completed 22,000 miles before disappearing with only 7,000 miles remaining.",
-            "rebalanced": true
+            "instruction": "Earhart learned her trade in a yellow biplane called The Canary. Brace its wings so they hold, whatever the air throws at them.",
+            "fact": "Earhart took her first flying lessons in January 1921 from Neta Snook, one of the first women aviators in California, and saved for months to buy a plane of her own."
           }
         }
       ]
@@ -95,22 +92,21 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "starchart",
-            "configId": "al-biruni-latitude",
+            "game": "telegraphnet",
+            "configId": "earhart-news",
             "seed": 7021,
-            "instruction": "Amelia Earhart: read the stars.",
-            "fact": "Charles Lindbergh made the first solo transatlantic flight in 1927. Earhart was the first WOMAN to do so — in 1932, flying from Newfoundland to Northern Ireland in 14 hours 56 minutes. She also set the record for fastest transatlantic solo flight at that time.",
-            "rebalanced": true
+            "instruction": "She has landed in a pasture near Londonderry. Lay the cable that carries the news back to New York.",
+            "fact": "Charles Lindbergh made the first solo transatlantic flight in 1927. Earhart was the first WOMAN to do so — in 1932, flying from Newfoundland to Northern Ireland in 14 hours 56 minutes. She also set the record for fastest transatlantic solo flight at that time."
           }
         },
         {
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "wordle",
-            "configId": "aviate",
-            "instruction": "Earhart communicated with ground crew using radio codes. Guess the 6-letter word that describes her mission across the Atlantic.",
-            "fact": "Amelia Earhart flew solo across the Atlantic on 20 May 1932 in 14 h 56 min — fighting ice on her wings, a broken altimeter, and a flame leaking from her exhaust manifold."
+            "game": "starchart",
+            "configId": "noonan-sextant",
+            "instruction": "1937: Earhart sets out to circle the globe with Fred Noonan navigating. Take his star sights and fix the Electra's latitude, leg by leg.",
+            "fact": "Earhart and Noonan vanished on 2 July 1937 near Howland Island in the central Pacific. The US Navy and Coast Guard mounted a vast search, but no trace of them was ever found."
           }
         },
         {

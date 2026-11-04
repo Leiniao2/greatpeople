@@ -412,6 +412,18 @@ export const CONFIGS: Record<string, MorrisConfig> = {
     intro: 'Twelve pieces each, and the corners are joined by diagonals — more lines, more mills, a crowded board.',
     fact: "Twelve men's morris lives on in southern Africa as Morabaraba, which is played in organised leagues and tournaments in South Africa.",
   },
+  'alfonso-alquerque': {
+    title: 'Alquerque de Nueve',
+    variant: 'nine',
+    intro: 'The board from the Castilian king’s Book of Games: nine pieces each on three squares. Make mills to take pieces; down to three, a side may fly anywhere.',
+    fact: 'The Libro de los juegos made for Alfonso X of Castile in 1283 explains chess, dice and the morris games it calls alquerque — alquerque de nueve is nine men’s morris — with painted miniatures of kings, nobles and townsfolk at play.',
+  },
+  'cham-gonu': {
+    title: 'Cham-gonu',
+    variant: 'twelve',
+    intro: 'Twelve pieces each on three squares whose corners are joined by diagonals — more lines, more mills, a crowded board.',
+    fact: 'Gonu is the family of traditional Korean board games played on lines scratched in the ground or drawn on paper. Cham-gonu uses this board of three squares joined at the corners, with twelve pieces a side — the same game as twelve men’s morris.',
+  },
   'cloister-race': {
     title: 'The Cloister Race',
     variant: 'nine',

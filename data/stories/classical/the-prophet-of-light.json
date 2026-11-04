@@ -28,12 +28,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "fieldsurvey",
-            "configId": "fossil-cliffs",
+            "game": "jigsaw",
+            "configId": "mani-picture-book",
             "seed": 72442,
-            "instruction": "Mani: survey the field.",
-            "fact": "Mani (216–274 CE) founded Manichaeism, a dualistic religion blending Zoroastrian light-and-darkness cosmology, Christian ethics, and Buddhist concepts of spiritual purification. At its height, Manichaeism spread from the Roman Empire to Tang Dynasty China — one of history's most geographically expansive faiths.",
-            "rebalanced": true
+            "instruction": "Mani taught his vision in pictures as well as words. Piece together the page of his Picture Book that shows the battle of Light and Darkness.",
+            "fact": "Mani (216–274 CE) founded Manichaeism, a dualistic religion blending Zoroastrian light-and-darkness cosmology, Christian ethics, and Buddhist concepts of spiritual purification. At its height, Manichaeism spread from the Roman Empire to Tang Dynasty China — one of history's most geographically expansive faiths."
           }
         }
       ]
@@ -57,15 +56,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "polybius",
+            "game": "postroute",
+            "configId": "mani-epistles",
             "seed": 1007,
-            "fact": "Mani was a gifted painter who created the Ardahang, an illustrated holy book of extraordinary beauty. He used visual art as a missionary tool, believing images could convey divine truth across language barriers. His followers called him 'the Apostle of Light' and celebrated his paintings as sacred revelation.",
-            "autogen": true,
-            "configId": "greek-torches",
-            "params": {
-              "plaintext": "MANI PAINTED HIS HOLY BOOK"
-            },
-            "instruction": "A follower signals a secret about the prophet as pairs of numbers. Find each letter on the square."
+            "instruction": "From Persia, Mani's letters go out to every congregation on the royal roads. Plan a round that carries them to every town and back to the prophet.",
+            "fact": "Mani wrote his scriptures himself, in a script adapted from Syriac, so that his teaching would not be corrupted after his death as he believed the teachings of Zoroaster, the Buddha and Jesus had been."
           }
         }
       ]
@@ -83,20 +78,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "typeset",
+            "game": "polybius",
+            "configId": "mani-last-words",
             "seed": 1008,
-            "fact": "Mani's death in 274 CE echoed the martyrdom narratives of the very religions he synthesized. His followers spread his teachings across the Silk Road for centuries — Manichaean texts were still being copied in China in the 13th century.",
-            "autogen": true,
-            "configId": "bi-sheng-clay",
-            "params": {
-              "lines": [
-                "MANI",
-                "MANI RECEIVES",
-                "MANI RECEIVES HIS",
-                "MANI RECEIVES HIS FIRST"
-              ]
-            },
-            "instruction": "Arrange the key events of Mani's life in order: Set the answer in movable type — mirrored, right to left."
+            "instruction": "Kartir has turned the king against him, and Mani lies in chains. Read his last message to the church as his disciples signal it, letter by letter.",
+            "fact": "Mani's death in 274 CE echoed the martyrdom narratives of the very religions he synthesized. His followers spread his teachings across the Silk Road for centuries — Manichaean texts were still being copied in China in the 13th century."
           }
         }
       ]
@@ -120,12 +106,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "archbuild",
-            "configId": "brunelleschi-dome",
+            "game": "fieldsurvey",
+            "configId": "kocho-ruins",
             "seed": 7289,
-            "instruction": "Mani: raise the arch to bear the load.",
-            "fact": "Mani composed hymnbooks in multiple languages, including Middle Persian, Parthian, and Syriac. The Coptic Manichaean Psalm-Book, discovered in Egypt in 1930, preserves hundreds of hymns that reveal a sophisticated musical tradition within his church.",
-            "rebalanced": true
+            "instruction": "A thousand years on, Mani's books lay buried in the sand of the Silk Road. Dig the ruins of Kocho and bring them back to the light.",
+            "fact": "Mani composed hymnbooks in multiple languages, including Middle Persian, Parthian, and Syriac. The Coptic Manichaean Psalm-Book, discovered in Egypt in 1930, preserves hundreds of hymns that reveal a sophisticated musical tradition within his church."
           }
         },
         {

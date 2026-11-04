@@ -74,6 +74,32 @@ export const CONFIGS: Record<string, TourConfig> = {
       { rows: 6, cols: 6, start: 'any', blocked: 0, waypoints: 4 },
     ],
   },
+  'lucena-1497': {
+    title: 'Lucena’s Book, Salamanca 1497',
+    twist: 'waypoints in order',
+    rule: 'waypoints',
+    intro: 'A chess book printed for the heir of Castile and Aragon sets the knight a path to follow. Visit every square once, landing on the numbered squares in order — 1, then 2, then 3. A numbered square cannot be entered early.',
+    fact: 'Luis Ramírez de Lucena’s Repetición de amores y arte de ajedrez (Salamanca, c. 1497), dedicated to Prince Juan, son of Isabel and Ferdinand, is the oldest surviving printed chess book — and one of the first to teach the new game in which the queen sweeps the whole board.',
+    tiers: [
+      { rows: 5, cols: 5, start: 'corner', blocked: 0, waypoints: 2 },
+      { rows: 5, cols: 6, start: 'any', blocked: 0, waypoints: 3 },
+      { rows: 6, cols: 6, start: 'any', blocked: 0, waypoints: 3 },
+      { rows: 6, cols: 6, start: 'any', blocked: 0, waypoints: 4 },
+    ],
+  },
+  'janggi-horse': {
+    title: 'The Janggi Horse',
+    twist: 'closed tour',
+    rule: 'closed',
+    intro: 'In janggi the horse moves one point straight and one aslant — the knight’s move. Visit every point once, and finish a horse’s move from where you began (the ringed square), like a patrol that comes home.',
+    fact: 'Janggi, Korean chess, grew from Chinese xiangqi and was played in Joseon Korea by scholars and soldiers alike. Its horse moves one point orthogonally and then one diagonally, though unlike the European knight it can be blocked by a piece in the way.',
+    tiers: [
+      { rows: 5, cols: 6, start: 'any', blocked: 4 },
+      { rows: 5, cols: 6, start: 'any', blocked: 0 },
+      { rows: 6, cols: 6, start: 'any', blocked: 2 },
+      { rows: 6, cols: 6, start: 'any', blocked: 0 },
+    ],
+  },
   turk: {
     title: 'The Mechanical Turk',
     twist: 'ruined squares',

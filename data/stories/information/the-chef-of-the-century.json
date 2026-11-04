@@ -28,12 +28,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "assembly",
-            "configId": "arsenal",
+            "game": "cooking",
+            "configId": "pomme-puree",
             "seed": 59742,
-            "instruction": "Joël Robuchon: run the line to target.",
-            "fact": "At his peak, Joël Robuchon held 32 Michelin stars across his restaurants worldwide — more than any chef in history. His empire spanned Paris, Monte Carlo, Las Vegas, Tokyo, Hong Kong, and beyond, each kitchen reflecting his obsessive pursuit of perfection.",
-            "rebalanced": true
+            "instruction": "Perfecting the simple is the hardest thing in cooking. Make Robuchon's mashed potatoes the Jamin way, every step in its place.",
+            "fact": "At his peak, Joël Robuchon held 32 Michelin stars across his restaurants worldwide — more than any chef in history. His empire spanned Paris, Monte Carlo, Las Vegas, Tokyo, Hong Kong, and beyond, each kitchen reflecting his obsessive pursuit of perfection."
           }
         }
       ]
@@ -57,12 +56,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "sliding",
-            "configId": "pyramid-stones",
+            "game": "tradeboard",
+            "configId": "robuchon-ateliers",
             "seed": 83716,
-            "instruction": "Joël Robuchon: slide the tiles back into order.",
-            "fact": "Robuchon's retirement in 1996 was unprecedented in fine dining. He said he was exhausted and wanted to explore life beyond the kitchen. Seven years later, his return with the L'Atelier concept — casual counter seating around an open kitchen — reinvented fine dining for a new generation.",
-            "rebalanced": true
+            "instruction": "Robuchon answers the critic with a counter, not a speech. Take L'Atelier from Saint-Germain round the world and finish the season ahead of the rival houses.",
+            "fact": "Robuchon's retirement in 1996 was unprecedented in fine dining. He said he was exhausted and wanted to explore life beyond the kitchen. Seven years later, his return with the L'Atelier concept — casual counter seating around an open kitchen — reinvented fine dining for a new generation."
           }
         }
       ]
@@ -82,9 +80,9 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "cooking",
-            "configId": "japanese-tea",
-            "instruction": "Robuchon's perfectionism matched the Japanese tea ceremony — every gesture deliberate, every ingredient chosen with absolute care. Prepare the tea with the same precision he brought to mashed potatoes.",
+            "game": "assembly",
+            "configId": "atelier-counter",
+            "instruction": "L'Atelier puts the cooks behind a counter, in full view of the guests. Share the work along the counter so no station holds up the meal.",
             "fact": "Robuchon spent years studying Japanese culinary philosophy — the concept of shokunin kishitsu (craftsman's spirit) deeply influenced his cooking. His L'Atelier restaurants, modelled on Japanese counter dining, blended French technique with Japanese minimalism and obsessive attention to the guest experience."
           }
         }
@@ -103,10 +101,10 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "matchthree",
-            "configId": "venice-glass",
-            "instruction": "Robuchon's plating was art — each element placed with the precision of a Renaissance craftsman. Match the Venetian glass pieces into a perfect arrangement.",
-            "fact": "Robuchon's approach to plating transformed fine dining aesthetics. He said: 'The most important ingredient in a recipe is love for the work.' His kitchens were run with military discipline — every plate identical, every temperature precise. He earned more Michelin stars than any chef in history because perfection, for him, was the minimum standard."
+            "game": "worldclock",
+            "configId": "atelier-cities",
+            "instruction": "Robuchon's kitchens now run on three continents, and he calls them all. Work out the time in each city before the phone rings.",
+            "fact": "When Robuchon died in 2018, his restaurants around the world held 31 Michelin stars between them — more than any other chef."
           }
         },
         {
@@ -119,12 +117,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "rhythm",
+            "game": "matchthree",
+            "configId": "atelier-pass",
             "seed": 1018,
-            "fact": "This is one of the most misunderstood facts about the Michelin system. Stars belong to the restaurant address and experience, not the individual chef. When Robuchon retired and closed his restaurants, their stars vanished. When he returned with L'Atelier, he earned new stars from scratch — accumulating more than any chef in history.",
-            "autogen": true,
-            "configId": "bach-fugue",
-            "instruction": "When Robuchon retired and closed his Paris restaurant, he lost all his Michelin stars — because stars are awarded to restaurants, not to chefs. Learn the phrase and play it back, note for note."
+            "instruction": "Every plate is a letter, and every one must say something true. Line up the ingredients at the pass until each plate is perfect.",
+            "fact": "This is one of the most misunderstood facts about the Michelin system. Stars belong to the restaurant address and experience, not the individual chef. When Robuchon retired and closed his restaurants, their stars vanished. When he returned with L'Atelier, he earned new stars from scratch — accumulating more than any chef in history."
           }
         },
         {

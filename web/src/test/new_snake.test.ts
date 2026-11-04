@@ -52,8 +52,10 @@ describe('snake engine', () => {
   })
 
   it('every route plays a different rule', () => {
-    const v = CONFIG_IDS.map(id => CONFIGS[id].variant)
-    expect(new Set(v).size).toBe(CONFIG_IDS.length)
+    // The base routes each play a different rule; story-themed routes reuse one of them.
+    const BASE = ['silk-road', 'sahara', 'incense-route']
+    expect(new Set(BASE.map(id => CONFIGS[id].variant)).size).toBe(BASE.length)
+    for (const id of CONFIG_IDS) expect(BASE.map(b => CONFIGS[b].variant), id).toContain(CONFIGS[id].variant)
     for (const d of DIFFS) {
       expect(tierFor(CONFIGS['silk-road'], d).decoyPenalty).toBe(2)
       expect(tierFor(CONFIGS['silk-road'], d).duneEvery).toBe(0)

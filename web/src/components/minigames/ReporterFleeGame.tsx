@@ -45,12 +45,40 @@ export const CONFIGS: Record<string, ReporterConfig> = {
     lives: 3,
     fact: "During the Gulf War (1990–91), CNN's live coverage from Baghdad transformed journalism forever. Peter Arnett reported live as bombs fell around him — the first time audiences watched a war unfold in real time. It created both the 'CNN Effect' and new ethical questions about embedded reporting.",
   },
+  'dharasana-1930': {
+    title: 'Dharasana Salt Works, 1930',
+    soldiers: [{ x: 4, y: 3 }, { x: 7, y: 5 }, { x: 2, y: 1 }],
+    mines:    [{ x: 3, y: 4 }, { x: 5, y: 2 }, { x: 6, y: 3 }],
+    lives: 3,
+    fact: "On 21 May 1930 the United Press correspondent Webb Miller watched police club column after column of unresisting satyagrahis at the Dharasana Salt Works. British censors held up his cable, but his account was eventually printed in more than a thousand newspapers worldwide.",
+  },
+  'red-star-1936': {
+    title: 'Through the Blockade, 1936',
+    soldiers: [{ x: 3, y: 5 }, { x: 6, y: 4 }, { x: 1, y: 2 }, { x: 5, y: 1 }],
+    mines:    [{ x: 2, y: 3 }, { x: 4, y: 2 }, { x: 7, y: 3 }],
+    lives: 3,
+    fact: "In the summer of 1936 the American journalist Edgar Snow slipped through the Nationalist blockade into the Red base in northern Shaanxi and spent months interviewing Mao Zedong. His book Red Star Over China (1937) told the world the story of the Long March.",
+  },
   'wwii-correspondent': {
     title: 'WWII Front Lines',
     soldiers: [{ x: 2, y: 4 }, { x: 5, y: 3 }, { x: 7, y: 2 }, { x: 4, y: 1 }],
     mines:    [{ x: 1, y: 3 }, { x: 3, y: 2 }, { x: 6, y: 4 }, { x: 8, y: 1 }],
     lives: 2,
     fact: "WWII correspondents like Ernie Pyle and Martha Gellhorn faced the same dangers as the soldiers they covered. Pyle won the Pulitzer Prize for his dispatches from North Africa, Sicily, and France — then was killed by Japanese machine-gun fire in 1945.",
+  },
+  'arnhem-1944': {
+    title: 'Occupied Arnhem, 1944',
+    soldiers: [{ x: 4, y: 3 }, { x: 7, y: 5 }, { x: 2, y: 1 }],
+    mines:    [{ x: 3, y: 4 }, { x: 5, y: 2 }, { x: 6, y: 3 }],
+    lives: 3,
+    fact: 'As a teenager in occupied Arnhem and Velp, Audrey Hepburn danced in secret recitals that raised money for the Dutch resistance and, by several accounts, carried its underground leaflets. She came through the Hunger Winter of 1944–45 badly malnourished.',
+  },
+  'baghdad-1991': {
+    title: 'Al-Rashid Hotel, Baghdad 1991',
+    soldiers: [{ x: 3, y: 5 }, { x: 6, y: 4 }, { x: 1, y: 2 }, { x: 5, y: 1 }],
+    mines:    [{ x: 2, y: 3 }, { x: 4, y: 2 }, { x: 7, y: 3 }],
+    lives: 3,
+    fact: 'When the bombing began on 17 January 1991, most Western journalists left Baghdad or were expelled. Peter Arnett stayed on for weeks, the only Western television correspondent reporting live from the Iraqi capital, working under Iraqi minders and censors.',
   },
 }
 

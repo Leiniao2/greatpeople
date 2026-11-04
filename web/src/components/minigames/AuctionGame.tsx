@@ -62,6 +62,32 @@ export const CONFIGS: Record<string, Config> = {
       { id: 'electric', name: 'Edison Patent License',     hint: 'The right to illuminate a city',           trueValue: 90, startBid: 35, isTarget: true  },
     ],
   },
+  'givenchy-sale': {
+    title: "Christie's, London 2006",
+    description: "Audrey's film wardrobe goes under the hammer for children's schools in India. Win 2 starred lots.",
+    budget: 200,
+    targetWins: 2,
+    items: [
+      { id: 'gown',   name: 'Black Givenchy Gown',         hint: "Worn in the opening scene of Breakfast at Tiffany's", trueValue: 90, startBid: 40, isTarget: true  },
+      { id: 'script', name: 'Annotated Shooting Script',   hint: 'Her own copy, with notes in the margins',            trueValue: 55, startBid: 20, isTarget: false },
+      { id: 'still',  name: 'Signed Roman Holiday Still',  hint: 'From the role that won her the Oscar',               trueValue: 70, startBid: 25, isTarget: true  },
+      { id: 'shoes',  name: 'Pair of Ballet Shoes',        hint: 'From the years she trained to dance',                trueValue: 50, startBid: 20, isTarget: false },
+      { id: 'dress',  name: 'Givenchy Cocktail Dress',     hint: 'From the atelier that dressed her for forty years',  trueValue: 95, startBid: 35, isTarget: true  },
+    ],
+  },
+  'apple-relics': {
+    title: 'The Apple Relics Sale',
+    description: "Steve Jobs's early artefacts now sell for fortunes. Win 2 starred lots before the rival collectors do.",
+    budget: 200,
+    targetWins: 2,
+    items: [
+      { id: 'apple1', name: 'Apple-1 Computer',            hint: 'Hand-assembled in 1976, sold for $666.66',     trueValue: 90, startBid: 40, isTarget: true  },
+      { id: 'jobapp', name: "Jobs's 1973 Job Application", hint: 'Filled in by hand, three years before Apple', trueValue: 55, startBid: 20, isTarget: false },
+      { id: 'mac',    name: 'Macintosh 128K',               hint: 'The 1984 machine with a smile on its screen',  trueValue: 70, startBid: 25, isTarget: true  },
+      { id: 'next',   name: 'NeXT Cube',                    hint: 'The black magnesium cube of the exile years',  trueValue: 50, startBid: 20, isTarget: false },
+      { id: 'imac',   name: 'Bondi Blue iMac',              hint: 'The 1998 machine that saved the company',      trueValue: 95, startBid: 35, isTarget: true  },
+    ],
+  },
 }
 
 type Phase = 'rules' | 'reveal' | 'bidding' | 'ai-thinking' | 'item-done' | 'finished'

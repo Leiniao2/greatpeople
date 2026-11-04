@@ -37,6 +37,14 @@ export const CONFIGS: Record<string, RoundUpConfig> = {
     obstacle: '🌳',
     fact: 'The Arthashastra set aside protected elephant forests on the frontiers under a Superintendent of Elephants. Elephants were captured alive and trained, never hunted: the text prescribes death for anyone who kills one, because a war elephant was worth more than a company of soldiers.',
   },
+  'mount-papua': {
+    title: 'The Blockade of Mount Papua',
+    intro: 'Gelimer, last king of the Vandals, has fled into the mountains. Post your Heruli on the passes so he has no way left to slip down to the coast.',
+    animal: '👑',
+    rider: '🛡️',
+    obstacle: '⛰️',
+    fact: 'After his defeats in 533, the Vandal king Gelimer took refuge on Mount Papua in Numidia. Belisarius’s officer Pharas and his Heruli blockaded it through the winter until Gelimer surrendered in March 534; Procopius says he asked only for a loaf of bread, a sponge and a lyre.',
+  },
   'wild-mustangs': {
     title: 'Mustangs of the High Plains',
     intro: 'A band of mustangs is loose on open range. Post riders to steer them into the canyon corral before they scatter.',
@@ -44,6 +52,14 @@ export const CONFIGS: Record<string, RoundUpConfig> = {
     rider: '🤠',
     obstacle: '🌵',
     fact: "Spanish horses that escaped or were traded north in the 1600s became the mustang herds of the American West. The Comanche built an empire on them, and by 1800 there may have been two million wild horses on the plains.",
+  },
+  'enkidu-gazelles': {
+    title: 'The Watering Hole',
+    intro: 'The trapper has dug his pits all over the steppe. Close a ring round the gazelles at the watering hole so that none can stray out toward the snares.',
+    animal: '🦌',
+    rider: '🧔',
+    obstacle: '🪨',
+    fact: 'In the first tablet of the Epic of Gilgamesh a trapper meets the wild man at the watering hole among the herds: Enkidu has filled in his pits and torn up his snares, and the game slips away from him. The trapper’s complaint reaches Gilgamesh, who sends Shamhat to bring Enkidu to the city.',
   },
 }
 

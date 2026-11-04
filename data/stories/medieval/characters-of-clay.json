@@ -25,12 +25,10 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "ferry",
-            "configId": "heavy-family",
-            "seed": 18959,
-            "instruction": "Bi Sheng: get everyone safely across.",
-            "fact": "Bi Sheng invented movable type during the Song Dynasty (c.1040 CE) using baked clay — the same material Chinese potters had mastered for thousands of years. Each character was carved in clay, hardened by fire, then set in an iron frame with pine resin. After printing, the resin was heated and the characters removed for reuse.",
-            "rebalanced": true
+            "game": "sliding",
+            "configId": "clay-type-forme",
+            "instruction": "The characters are carved and fired hard. Slide the clay type into reading order inside the iron frame, the way Bi Sheng set a page.",
+            "fact": "Bi Sheng invented movable type during the Song Dynasty (c.1040 CE) using baked clay — the same material Chinese potters had mastered for thousands of years. Each character was carved in clay, hardened by fire, then set in an iron frame with pine resin. After printing, the resin was heated and the characters removed for reuse."
           }
         }
       ]
@@ -48,12 +46,10 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "rotation",
-            "configId": "chinampa",
-            "seed": 73830,
-            "instruction": "Bi Sheng: rotate the crops to a full harvest.",
-            "fact": "Despite its ingenuity, Bi Sheng's clay type did not replace woodblock printing, which remained dominant in China for centuries. Chinese has tens of thousands of characters, making movable type logistically complex — a single print job might require thousands of individual pieces. Woodblock printing remained faster for short texts. Movable type proved more revolutionary in alphabetic languages like Korean and later European languages.",
-            "rebalanced": true
+            "game": "chemistry",
+            "configId": "bi-sheng-plate",
+            "instruction": "Two plates double the speed: while one prints, the other is set. Mix the resin, wax and paper ash that will hold the type on the second plate.",
+            "fact": "Despite its ingenuity, Bi Sheng's clay type did not replace woodblock printing, which remained dominant in China for centuries. Chinese has tens of thousands of characters, making movable type logistically complex — a single print job might require thousands of individual pieces. Woodblock printing remained faster for short texts. Movable type proved more revolutionary in alphabetic languages like Korean and later European languages."
           }
         }
       ]
@@ -71,12 +67,29 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "quipu",
-            "configId": "tie",
+            "game": "abacus",
+            "configId": "ming-shop",
+            "params": {
+              "title": "Counting the Type",
+              "intro": "A page needs many copies of the commonest characters. Add each count the compositor calls out on the counting frame and press Enter — the beads must show the running total.",
+              "fact": "Shen Kuo says Bi Sheng made several pieces of type for every character, and more than twenty for common ones such as 之 and 也, so they could appear many times on one page. A rare character was carved and fired on the spot.",
+              "unit": "pieces",
+              "items": [
+                "之 (zhī)",
+                "也 (yě)",
+                "不 (bù)",
+                "而 (ér)",
+                "以 (yǐ)",
+                "其 (qí)",
+                "人 (rén)",
+                "者 (zhě)",
+                "有 (yǒu)",
+                "為 (wéi)"
+              ]
+            },
             "seed": 80768,
-            "instruction": "Bi Sheng: read and tie the quipu.",
-            "fact": "Bi Sheng's system was described in detail by the statesman Shen Kuo in his 'Dream Pool Essays' (1088 CE) — one of the great scientific documents of the medieval world. Without Shen Kuo's account, we might never have known of Bi Sheng's invention, since none of his actual type survives.",
-            "rebalanced": true
+            "instruction": "Thousands of characters wait in cases labelled by rhyme. Tally how many pieces of the commonest ones the next page will need.",
+            "fact": "Bi Sheng's system was described in detail by the statesman Shen Kuo in his 'Dream Pool Essays' (1088 CE) — one of the great scientific documents of the medieval world. Without Shen Kuo's account, we might never have known of Bi Sheng's invention, since none of his actual type survives."
           }
         }
       ]
@@ -95,8 +108,8 @@
           "challenge": {
             "type": "minigame",
             "game": "porcelain",
-            "configId": "cobalt-bowl",
-            "instruction": "Bi Sheng's clay type was fired in the same kilns that produced Song Dynasty ceramics. Shape and fire the clay — the same hands that made bowls made the letters that carried the world's knowledge.",
+            "configId": "copper-vase",
+            "instruction": "Bi Sheng hardened his type in fire, as Song potters hardened their wares. Glaze each band of the vase with the right oxide, then fire the kiln.",
             "fact": "Song Dynasty China (960–1279 CE) was a civilization of extraordinary technological creativity: compass navigation, gunpowder weapons, paper money, paddlewheel ships, and movable type all emerged in a single century. The Song state funded scientific investigation and published encyclopedias — creating the world's first information economy."
           }
         },
@@ -109,11 +122,15 @@
           "challenge": {
             "type": "minigame",
             "game": "alchemy",
-            "configId": "lavoisier",
+            "configId": "wuxing",
+            "params": {
+              "title": "The Five Phases of the Type",
+              "intro": "Earth, fire, wood and metal made Bi Sheng’s type. No recipe book here — only the cycle. Two things of one phase kindle the next phase. A thing fed by its mother phase grows one level. Pairs across the star clash and cost two attempts.",
+              "fact": "Song scholars described the world through the Five Phases — Wood, Fire, Earth, Metal, Water — each generating the next. Bi Sheng’s type drew on them all: clay of the earth, hardened by fire, held on an iron plate in pine resin, and inked for printing."
+            },
             "seed": 52183,
-            "instruction": "Bi Sheng: discover the target substance.",
-            "fact": "Writing had been recorded on clay tablets since Mesopotamia in 3500 BCE. Bi Sheng's great insight was that clay — the oldest writing substrate in human history — could itself become the tool for mass reproduction of text. He connected the ancient world of clay and the modern world of print in a single creative act.",
-            "rebalanced": true
+            "instruction": "The oldest writing material became a printing tool. Work the Five Phases to reach the target, as clay and fire became Bi Sheng’s type.",
+            "fact": "Writing had been recorded on clay tablets since Mesopotamia in 3500 BCE. Bi Sheng's great insight was that clay — the oldest writing substrate in human history — could itself become the tool for mass reproduction of text. He connected the ancient world of clay and the modern world of print in a single creative act."
           }
         },
         {

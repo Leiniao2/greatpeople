@@ -182,8 +182,11 @@ describe('time budget', () => {
   })
 
   it('every config is its own twist (board, flying, win rule or race)', () => {
-    const keys = CONFIG_IDS.map(id => `${CONFIGS[id].variant}:${!!CONFIGS[id].race}`)
-    expect(new Set(keys).size).toBe(CONFIG_IDS.length)
+    // The base configs are each their own twist; story-themed configs reuse one of them.
+    const BASE = ['three-mens', 'six-mens', 'nine-mens', 'twelve-mens', 'cloister-race']
+    const key = (id: string) => `${CONFIGS[id].variant}:${!!CONFIGS[id].race}`
+    expect(new Set(BASE.map(key)).size).toBe(BASE.length)
+    for (const id of CONFIG_IDS) expect(BASE.map(key), id).toContain(key(id))
     expect(CONFIG_IDS.length).toBeGreaterThanOrEqual(5)
   })
 })

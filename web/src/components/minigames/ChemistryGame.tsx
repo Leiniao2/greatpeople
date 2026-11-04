@@ -15,6 +15,21 @@ interface ChemistryConfig {
 }
 
 export const CONFIGS: Record<string, ChemistryConfig> = {
+  'bi-sheng-plate': {
+    title: "Bi Sheng's Iron Plate",
+    question: "Coat the iron plate that holds the type. Shen Kuo names the mixture but gives no measures — here it is equal parts of each.",
+    targetFormula: "1 松脂 + 1 蠟 + 1 灰",
+    targetName: "Type-bed mixture (藥)",
+    ingredients: [
+      { symbol: '松脂', name: 'Pine Resin', color: 'bg-amber-700', max: 3 },
+      { symbol: '蠟', name: 'Wax',        color: 'bg-yellow-200', max: 3 },
+      { symbol: '灰', name: 'Paper Ash',   color: 'bg-slate-400', max: 3 },
+      { symbol: '木', name: 'Wood Type',   color: 'bg-orange-900', max: 2 },
+    ],
+    solution: { '松脂': 1, '蠟': 1, '灰': 1 },
+    hint: 'Bi Sheng rejected wood: its grain is uneven, it swells when wet, and it sticks to the mixture.',
+    fact: "Shen Kuo's Dream Pool Essays (1088) say Bi Sheng covered an iron plate with pine resin, wax and paper ash, set an iron frame on it, packed it with type and warmed it until the mixture softened, then pressed the type level with a board. He kept two plates: while one printed, the type was set on the other.",
+  },
   'tea-blend': {
     title: "Lu Yu's Perfect Cup",
     question: "Combine the ingredients in the proportions Lu Yu prescribed in the Classic of Tea.",

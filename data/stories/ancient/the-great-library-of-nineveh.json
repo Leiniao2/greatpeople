@@ -28,12 +28,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "roundup",
-            "configId": "wild-mustangs",
+            "game": "snake",
+            "configId": "nineveh-tablets",
             "seed": 33329,
-            "instruction": "Ashurbanipal: round them all up.",
-            "fact": "Cuneiform tablets were written in vertical columns read top to bottom, right to left. Ashurbanipal's library catalogue tablets — listing every text by first line — are among the oldest library indexes ever found. The Epic of Gilgamesh was filed under its opening words: 'He who saw the deep.'",
-            "rebalanced": true
+            "instruction": "The king's agents ride for Babylon, Nippur and Uruk with a list in hand. Bring back only the tablets Ashurbanipal has asked for.",
+            "fact": "Cuneiform tablets were written in vertical columns read top to bottom, right to left. Ashurbanipal's library catalogue tablets — listing every text by first line — are among the oldest library indexes ever found. The Epic of Gilgamesh was filed under its opening words: 'He who saw the deep.'"
           }
         }
       ]
@@ -60,9 +59,8 @@
             "game": "royalur",
             "configId": "quick",
             "seed": 32240,
-            "instruction": "Ashurbanipal: race your pieces home.",
-            "fact": "The burning of Nineveh paradoxically preserved Ashurbanipal's library. The fire baked the clay tablets hard, protecting them. The library lay buried until Austen Henry Layard rediscovered it in 1849, bringing the Epic of Gilgamesh back to the world.",
-            "rebalanced": true
+            "instruction": "The carts of tablets keep coming and the palace guards have time on their hands. Play the guards' game in the courtyard while the scribes unload.",
+            "fact": "The burning of Nineveh paradoxically preserved Ashurbanipal's library. The fire baked the clay tablets hard, protecting them. The library lay buried until Austen Henry Layard rediscovered it in 1849, bringing the Epic of Gilgamesh back to the world."
           }
         }
       ]
@@ -82,12 +80,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "wallbuilder",
-            "configId": "opus-reticulatum",
+            "game": "pairs",
+            "configId": "nineveh-catalogue",
             "seed": 76642,
-            "instruction": "Ashurbanipal: raise the wall without gaps.",
-            "fact": "Ashurbanipal could read and write in multiple languages — an extraordinary feat for a king. He boasted of this in inscriptions, proud of mastering both the scribal arts and the military campaigns typical of Assyrian rulers.",
-            "rebalanced": true
+            "instruction": "Organise them by subject, says the king. Shelve each work with the subject it belongs to.",
+            "fact": "Ashurbanipal could read and write in multiple languages — an extraordinary feat for a king. He boasted of this in inscriptions, proud of mastering both the scribal arts and the military campaigns typical of Assyrian rulers."
           }
         },
         {
@@ -98,12 +95,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "pairs",
-            "configId": "renaissance",
+            "game": "tangram",
+            "configId": "nineveh-reliefs",
             "seed": 44982,
-            "instruction": "Ashurbanipal: match each figure to their work.",
-            "fact": "Ashurbanipal sent scribes across his empire to copy every text they could find — myths, astronomy, medicine, and administration. Catalogue tablets listing the library's contents show it was deliberately organised by subject — the world's first planned library. The Epic of Gilgamesh was found among its holdings.",
-            "rebalanced": true
+            "instruction": "Nineveh burns: the fire bakes the clay and cracks the stone. Fit the shattered pieces of the palace reliefs back into their outlines.",
+            "fact": "Ashurbanipal sent scribes across his empire to copy every text they could find — myths, astronomy, medicine, and administration. Catalogue tablets listing the library's contents show it was deliberately organised by subject — the world's first planned library. The Epic of Gilgamesh was found among its holdings."
           }
         }
       ]
@@ -123,12 +119,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "irrigation",
-            "configId": "egypt",
+            "game": "polybius",
+            "configId": "nineveh-sign-list",
             "seed": 44329,
-            "instruction": "Ashurbanipal: water every field before the flood ebbs.",
-            "fact": "Nineveh fell in 612 BCE to a coalition of Babylonians, Medes, and Scythians. The city was so thoroughly sacked that the Greek historian Xenophon marched past its ruins 200 years later without knowing what it had been. The library survived only because fire baked the clay tablets into permanence.",
-            "rebalanced": true
+            "instruction": "Copy it carefully. Check each sign of the Gilgamesh tablet against the scribes' sign list and read out its famous first line.",
+            "fact": "Nineveh fell in 612 BCE to a coalition of Babylonians, Medes, and Scythians. The city was so thoroughly sacked that the Greek historian Xenophon marched past its ruins 200 years later without knowing what it had been. The library survived only because fire baked the clay tablets into permanence."
           }
         },
         {

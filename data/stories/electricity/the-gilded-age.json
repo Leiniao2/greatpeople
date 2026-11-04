@@ -28,12 +28,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "railway",
-            "configId": "yard",
+            "game": "truss",
+            "configId": "mcclintic-marshall",
             "seed": 41161,
-            "instruction": "Andrew Mellon: lay the track for every train.",
-            "fact": "Andrew Mellon served as Treasury Secretary under Harding, Coolidge, and Hoover (1921–1932) — the longest tenure since Alexander Hamilton. He oversaw the Roaring Twenties boom and the beginning of the Great Depression, for which he was blamed.",
-            "rebalanced": true
+            "instruction": "Mellon backs men as much as ideas — like the two Pittsburgh engineers building in steel. Triangulate their girder so it carries the load.",
+            "fact": "Andrew Mellon served as Treasury Secretary under Harding, Coolidge, and Hoover (1921–1932) — the longest tenure since Alexander Hamilton. He oversaw the Roaring Twenties boom and the beginning of the Great Depression, for which he was blamed."
           }
         }
       ]
@@ -51,12 +50,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "truss",
-            "configId": "warren",
+            "game": "cryptarithm",
+            "configId": "mellon-treasury",
             "seed": 84904,
-            "instruction": "Andrew Mellon: build a truss that holds.",
-            "fact": "Mellon donated his art collection and $15 million to build Washington's National Gallery of Art — one of the greatest acts of private cultural philanthropy in American history. His collection included Raphaels, Rembrandts, and van Eycks bought from the Hermitage.",
-            "rebalanced": true
+            "instruction": "At the Treasury Mellon cuts taxes and still runs a surplus. Balance the books, letter by letter.",
+            "fact": "Mellon donated his art collection and $15 million to build Washington's National Gallery of Art — one of the greatest acts of private cultural philanthropy in American history. His collection included Raphaels, Rembrandts, and van Eycks bought from the Hermitage."
           }
         }
       ]
@@ -95,7 +93,7 @@
             "type": "minigame",
             "game": "trade",
             "configId": "steel-stocks",
-            "instruction": "Trade Carnegie Steel shares over 8 rounds of market events. Reach the target portfolio to win.",
+            "instruction": "Pittsburgh's fortunes rise and fall with steel. Trade Carnegie Steel shares through eight rounds of news and reach the target portfolio.",
             "fact": "Carnegie Steel's rise mirrored the Gilded Age: astonishing wealth creation alongside brutal labour conditions. The 1892 Homestead Strike left seven dead and fatally damaged Carnegie's public image, despite his later philanthropic legacy."
           }
         },
@@ -105,7 +103,7 @@
             "type": "minigame",
             "game": "auction",
             "configId": "gilded-auction",
-            "instruction": "Bid on industrial-era assets at the Gilded Age estate sale. Secure your target investments wisely.",
+            "instruction": "Wealth must eventually serve beauty. Bid at the estate sale and secure the starred pieces before the money runs out.",
             "fact": "The Gilded Age saw explosive growth in auction houses and financial markets as railroads, steel, and electricity transformed the American economy."
           }
         },

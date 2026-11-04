@@ -28,20 +28,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "typeset",
+            "game": "nonogram",
+            "configId": "theban-draughtsman",
             "seed": 1021,
-            "fact": "The tomb of Pediamenopet at Luxor (Tomb TT27) contains over 2,000 lines of religious and funerary text — the longest such compilation in ancient Egypt. It drew from the Book of the Dead, Pyramid Texts, Coffin Texts, and other ritual collections.",
-            "autogen": true,
-            "configId": "bi-sheng-clay",
-            "params": {
-              "lines": [
-                "OVER LINES",
-                "OVER LINES",
-                "OVER LINES",
-                "OVER LINES"
-              ]
-            },
-            "instruction": "Pediamenopet's tomb contains the longest known ancient Egyptian funerary text. Approximately how many lines does it contain? Set the answer in movable type — mirrored, right to left."
+            "instruction": "Before a single spell is carved, the draughtsmen rule the walls into squares. Lay out the first figure on the grid.",
+            "fact": "The tomb of Pediamenopet at Thebes (TT33) holds the largest collection of funerary texts in Egypt, drawn from the Pyramid Texts, the Coffin Texts, the Book of the Dead and the books of the underworld such as the Amduat."
           }
         }
       ]
@@ -66,11 +57,10 @@
           "challenge": {
             "type": "minigame",
             "game": "royalur",
-            "configId": "blitz",
+            "configId": "theban-garrison",
             "seed": 47911,
-            "instruction": "Pediamenopet: race your pieces home.",
-            "fact": "Pediamenopet lived during the Late Period, a turbulent age of foreign invasions. His vast tomb was a monument so packed with sacred texts that no conqueror's curse could erase all of them. Scholars are still copying and translating them today.",
-            "rebalanced": true
+            "instruction": "Assyrian soldiers idle by the temple gate over a board scratched in the stone. Keep them at their game — and their eyes off the tomb — by beating them at it.",
+            "fact": "Pediamenopet lived during the Late Period, a turbulent age of foreign invasions. His vast tomb was a monument so packed with sacred texts that no conqueror's curse could erase all of them. Scholars are still copying and translating them today."
           }
         }
       ]
@@ -91,11 +81,10 @@
           "challenge": {
             "type": "minigame",
             "game": "senet",
-            "configId": "tutankhamun",
+            "configId": "coming-forth",
             "seed": 35549,
-            "instruction": "Pediamenopet: bear your pieces off first.",
-            "fact": "The Book of the Dead (more accurately 'Book of Coming Forth by Day') was a personal funerary guide. Spell 125, the Weighing of the Heart, was the most critical: the deceased's heart was weighed against the feather of Ma'at. A heart heavier than the feather — burdened by sins — was devoured by the monster Ammit.",
-            "rebalanced": true
+            "instruction": "These texts guide the soul through death, and the Book of the Dead promises the blessed a game of senet in the hereafter. Win the game of passing.",
+            "fact": "The Book of the Dead (more accurately 'Book of Coming Forth by Day') was a personal funerary guide. Spell 125, the Weighing of the Heart, was the most critical: the deceased's heart was weighed against the feather of Ma'at. A heart heavier than the feather — burdened by sins — was devoured by the monster Ammit."
           }
         }
       ]
@@ -114,9 +103,9 @@
           "challenge": {
             "type": "minigame",
             "game": "sudoku",
-            "configId": "al-khwarizmi-grid",
-            "instruction": "Pediamenopet's tomb was a grid of ordered knowledge — every text in its place. Fill the grid so that logic, not chaos, governs every cell.",
-            "fact": "The High Priests of Amun were administrators as much as theologians — they managed vast temple estates, supervised scribes, and maintained archives. The same orderly thinking that filled a grid filled Pediamenopet's tomb with the world's largest collection of funerary knowledge."
+            "configId": "tt33-walls",
+            "instruction": "Every text in its place and none repeated: lay out the panels of spells on the wall before the carvers begin.",
+            "fact": "Pediamenopet held the title Chief Lector Priest — the priest who read the sacred books aloud during the rituals — which may explain why his tomb became a library of sacred texts."
           }
         },
         {
@@ -129,9 +118,9 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "matchthree",
-            "configId": "babylon-tablets",
-            "instruction": "The ancient world recorded its wisdom in columns on clay and papyrus. Match the scribal symbols — the same act Pediamenopet's scribes performed copying 3,000 years of Egyptian sacred text.",
+            "game": "archbuild",
+            "configId": "asasif-pylon",
+            "instruction": "What he carves into this limestone will outlast the Assyrians. Build the great gateway of his tomb course by course, the cornice last.",
             "fact": "Pediamenopet's tomb contains texts copied from sources spanning 2,000 years — from Old Kingdom pyramid texts to New Kingdom funerary literature. His scribes were the original archivists, assembling a complete library of the afterlife's instruction manual in one underground room."
           }
         },

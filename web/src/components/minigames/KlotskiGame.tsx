@@ -145,6 +145,23 @@ const SILK_ROAD: KlotskiConfig = {
   fact: 'Ibn Battuta travelled the Silk Road extensively, covering over 75,000 miles across 40+ countries. The road was less a single route than a web of shifting passages — each requiring careful navigation around obstacles.',
 }
 
+// 'taira-flight': 5×4 – same layout as silk-road-passage (optimal solution 22 moves)
+const TAIRA_FLIGHT: KlotskiConfig = {
+  title: 'The Flight by Sea',
+  rows: 5, cols: 4,
+  pieces: [
+    { id: 1,  cells: [[0,1],[0,2],[1,1],[1,2]], color: '#b91c1c', label: '舟', isGoal: true },
+    { id: 2,  cells: [[0,0],[1,0]],             color: '#818cf8', label: '|' },
+    { id: 3,  cells: [[0,3],[1,3]],             color: '#818cf8', label: '|' },
+    { id: 4,  cells: [[2,0],[2,1]],             color: '#34d399', label: '—' },
+    { id: 5,  cells: [[2,2],[3,2]],             color: '#60a5fa', label: '|' },
+    { id: 6,  cells: [[3,3],[4,3]],             color: '#60a5fa', label: '|' },
+    { id: 7,  cells: [[4,0]],                   color: '#f87171', label: '□' },
+  ],
+  targetRow: 3, targetCol: 1,
+  fact: 'In the summer of 1183 the Taira abandoned Kyoto, set fire to their own mansions, and took ship west with the five-year-old Emperor Antoku and the imperial regalia — first to Kyushu, then to Yashima in Shikoku. For two years the clan fought from the sea.',
+}
+
 // 'forbidden-maze': 5×4 – more 1×1 pieces, tighter board
 const FORBIDDEN_MAZE: KlotskiConfig = {
   title: 'Forbidden City Maze',
@@ -165,6 +182,26 @@ const FORBIDDEN_MAZE: KlotskiConfig = {
   fact: 'The Forbidden City contains 980 buildings with 8,700 rooms. Its layout is a labyrinth of courtyards and gates deliberately designed to disorient enemies and impress visitors with the emperor\'s power.',
 }
 
+// 'goal-of-the-century': 5×4 – same layout as forbidden-maze; the 1×1 pieces are the English defenders
+const GOAL_OF_THE_CENTURY: KlotskiConfig = {
+  title: 'The Goal of the Century',
+  rows: 5, cols: 4,
+  pieces: [
+    { id: 1,  cells: [[0,1],[0,2],[1,1],[1,2]], color: '#f59e0b', label: '10', isGoal: true },
+    { id: 2,  cells: [[0,0],[1,0]],             color: '#818cf8', label: '|' },
+    { id: 3,  cells: [[0,3],[1,3]],             color: '#818cf8', label: '|' },
+    { id: 4,  cells: [[2,0],[3,0]],             color: '#34d399', label: '|' },
+    { id: 5,  cells: [[2,1]],                   color: '#f87171', label: 'R' },
+    { id: 6,  cells: [[2,2]],                   color: '#f87171', label: 'B' },
+    { id: 7,  cells: [[2,3],[3,3]],             color: '#34d399', label: '|' },
+    { id: 8,  cells: [[3,1]],                   color: '#f87171', label: 'F' },
+    { id: 9,  cells: [[3,2]],                   color: '#f87171', label: 'S' },
+    // row 4 empty — optimal solution 17 moves
+  ],
+  targetRow: 3, targetCol: 1,
+  fact: 'Four minutes after the Hand of God, Maradona took the ball in his own half and ran some 60 metres in about ten seconds, past Peter Beardsley, Peter Reid, Terry Butcher and Terry Fenwick, then rounded the goalkeeper Peter Shilton. In 2002 a FIFA poll voted it the Goal of the Century.',
+}
+
 // 'ming-gate': 5×4 – goal starts top-left, must reach bottom-center
 const MING_GATE: KlotskiConfig = {
   title: 'The Ming Gate',
@@ -183,15 +220,60 @@ const MING_GATE: KlotskiConfig = {
   fact: 'The Yongle Emperor moved China\'s capital to Beijing in 1421 and built the Forbidden City\'s main gate — the Meridian Gate — as the symbolic threshold of imperial power. Only the emperor could use the central passage.',
 }
 
+// 'ichijoji-pine': 5×4 – same layout as last-general (optimal solution 15 moves);
+// the four 1×1 pieces are the Yoshioka disciples round the pine
+const ICHIJOJI_PINE: KlotskiConfig = {
+  title: 'The Pine at Ichijō-ji',
+  rows: 5,
+  cols: 4,
+  pieces: [
+    { id: 1, cells: [[0,1],[0,2],[1,1],[1,2]], color: '#f59e0b', label: '武', isGoal: true },
+    { id: 2, cells: [[0,0],[1,0]], color: '#818cf8', label: '|' },
+    { id: 3, cells: [[0,3],[1,3]], color: '#818cf8', label: '|' },
+    { id: 4, cells: [[2,0]], color: '#f87171', label: '□' },
+    { id: 5, cells: [[2,1]], color: '#f87171', label: '□' },
+    { id: 6, cells: [[2,2]], color: '#f87171', label: '□' },
+    { id: 7, cells: [[2,3]], color: '#f87171', label: '□' },
+    { id: 8, cells: [[3,0],[4,0]], color: '#60a5fa', label: '|' },
+    { id: 9, cells: [[3,3],[4,3]], color: '#60a5fa', label: '|' },
+  ],
+  targetRow: 3,
+  targetCol: 1,
+  fact: 'In 1604 Musashi fought the Yoshioka school of Kyoto three times. He beat its head Seijūrō, then his brother Denshichirō; at the pine of Ichijō-ji the disciples gathered in force round the boy they had made the new head, and Musashi struck first and cut his way out.',
+}
+
 export const CONFIGS: Record<string, KlotskiConfig> = {
+  'ichijoji-pine': ICHIJOJI_PINE,
   'pyramid-capstone': PYRAMID,
   'enigma-rotors': ENIGMA,
   'last-general': LAST_GENERAL,
+  // jiva-ascent: LAST_GENERAL turned upside down — the soul starts at the bottom and must rise to the top row.
+  'jiva-ascent': {
+    title: 'The Soul Rises',
+    rows: 5,
+    cols: 4,
+    pieces: [
+      { id: 1, cells: [[3,1],[3,2],[4,1],[4,2]], color: '#f59e0b', label: '☸', isGoal: true },   // the soul (jiva)
+      { id: 2, cells: [[3,0],[4,0]], color: '#818cf8', label: '|' },
+      { id: 3, cells: [[3,3],[4,3]], color: '#818cf8', label: '|' },
+      { id: 4, cells: [[2,0]], color: '#f87171', label: '😠' },   // anger
+      { id: 5, cells: [[2,1]], color: '#f87171', label: '👑' },   // pride
+      { id: 6, cells: [[2,2]], color: '#f87171', label: '🎭' },   // deceit
+      { id: 7, cells: [[2,3]], color: '#f87171', label: '💰' },   // greed
+      { id: 8, cells: [[0,0],[1,0]], color: '#60a5fa', label: '|' },
+      { id: 9, cells: [[0,3],[1,3]], color: '#60a5fa', label: '|' },
+    ],
+    targetRow: 0,
+    targetCol: 1,
+    fact: 'Jain teaching holds that the soul (jiva) is weighed down by karmic matter, which clings to it through the four passions — anger, pride, deceit and greed. Freed of every karma, the soul rises by its own nature to the summit of the universe, the Siddhashila, and rests there in perfect knowledge.',
+  },
   'sword-formation': SWORD_FORMATION,
   'great-wall': GREAT_WALL,
   'silk-road-passage': SILK_ROAD,
+  'taira-flight': TAIRA_FLIGHT,
   'forbidden-maze': FORBIDDEN_MAZE,
   'ming-gate': MING_GATE,
+  'goal-of-the-century': GOAL_OF_THE_CENTURY,
 }
 
 // ── Board helpers ─────────────────────────────────────────────────────────────

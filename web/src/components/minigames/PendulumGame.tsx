@@ -39,6 +39,12 @@ export const CONFIGS: Record<string, PendulumConfig> = {
     fact: 'Christiaan Huygens built the first pendulum clock in 1656 and patented it in 1657; it cut the error of the best clocks from about 15 minutes a day to about 15 seconds.',
     kind: 'huygens-clock',
   },
+  'qing-clockworks': {
+    title: 'The Palace Clock Workshop',
+    intro: 'A new pendulum clock for the Forbidden City does not keep time. Move the bob to change the pendulum’s length, run the clock for an hour against the palace timekeeper, and read how far it is off. A shorter pendulum swings faster.',
+    fact: 'The Qing palace workshops in Beijing had their own clock-making shop, where Jesuit clockmakers and Chinese craftsmen built and repaired pendulum clocks and automata for the Kangxi, Yongzheng and Qianlong emperors.',
+    kind: 'huygens-clock',
+  },
   'match-clocks': {
     title: 'Clocks in Sympathy',
     intro: 'Tune each clock to beat at its ratio to the master clock. Period goes with the square root of length: to beat twice as fast, a pendulum must be a quarter as long.',
@@ -56,6 +62,18 @@ export const CONFIGS: Record<string, PendulumConfig> = {
     intro: 'Earth turns under a long free pendulum, so its swing plane seems to rotate: 15° × sin(latitude) every hour — clockwise in the north, anticlockwise in the south. Set where the swing will point.',
     fact: 'In 1851 Léon Foucault hung a 28 kg bob on a 67 m wire from the dome of the Panthéon in Paris; its swing plane turned about 11° an hour, the first simple proof that the Earth rotates.',
     kind: 'foucault',
+  },
+  'wieck-metronome': {
+    title: 'Strict Time in Wieck’s House',
+    intro: 'Friedrich Wieck drills his pupils to the beat of a swinging pendulum. Tap every pendulum that keeps time with the reference — then confirm. Heavy or light, wide swing or narrow: only its length sets the tempo.',
+    fact: 'Johann Maelzel patented the metronome in 1815 — a pendulum with a sliding weight: move the weight up and the beat slows. Beethoven began printing metronome marks in 1817, and by Clara’s childhood they were standard on new piano music.',
+    kind: 'galileo',
+  },
+  'brahms-metronome': {
+    title: 'Brahms and the Metronome',
+    intro: 'Brahms trusts the bones of the music, not a ticking machine — but a pendulum keeps strict time. Tap every pendulum that beats with the reference — then confirm. Heavy or light, wide swing or narrow: only its length sets the tempo.',
+    fact: 'Asked by George Henschel how strictly to keep the metronome marks in A German Requiem, Brahms answered that the metronome was of no value: “As far at least as my experience goes, everybody has, sooner or later, withdrawn his metronome marks.” Few of his published works carry metronome marks at all; he set the tempo in words — Allegro, Andante — and trusted the player.',
+    kind: 'galileo',
   },
 }
 

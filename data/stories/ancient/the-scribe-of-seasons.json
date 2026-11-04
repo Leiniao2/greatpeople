@@ -28,12 +28,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "archbuild",
-            "configId": "brunelleschi-dome",
+            "game": "irrigation",
+            "configId": "egypt",
             "seed": 30068,
-            "instruction": "Nakht: raise the arch to bear the load.",
-            "fact": "Egyptian scribes and Babylonian scribes independently developed similar record-keeping systems. Agricultural data — flood levels, grain yields, star positions — was the first 'big data,' used to predict and plan. Nakht's astronomical records fed the same cycle.",
-            "rebalanced": true
+            "instruction": "Nakht knows from Sirius when the flood will come. Open the dykes in time so that every basin drinks and the village stays dry.",
+            "fact": "Egypt's year had three seasons named for the river: Akhet, the inundation; Peret, the growing; and Shemu, the harvest. An astronomer of Amun like Nakht watched the sky to say when each would begin."
           }
         }
       ]
@@ -57,12 +56,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "tangram",
-            "configId": "song-scholar",
+            "game": "colormix",
+            "configId": "nakht-tomb",
             "seed": 13416,
-            "instruction": "Nakht: fit the seven pieces to the shape.",
-            "fact": "The Egyptian civil calendar was based on the Nile's flooding cycle. As Astronomer of Amun, Nakht would have tracked Sirius (Sopdet) — the star's first appearance above the horizon at dawn — which predicted the flood with remarkable accuracy.",
-            "rebalanced": true
+            "instruction": "Nakht wants the harvesters' faces painted as they really are. Mix the red-brown the painters use for men's skin until it matches the wall.",
+            "fact": "The tomb of Nakht (TT52) is a single small painted chapel, yet its scenes of harvest, of fowling in the marshes and of a banquet with a blind harpist and women musicians are among the best-known paintings of ancient Egypt."
           }
         }
       ]
@@ -82,12 +80,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "starchart",
-            "configId": "polynesian-navigators",
+            "game": "mancala",
+            "configId": "nakht-harvest",
             "seed": 96749,
-            "instruction": "Nakht: read the stars.",
-            "fact": "Egyptian astronomers divided the night into 12 hours using 'decan' stars that rose sequentially. Nakht's role as 'Astronomer of Amun' meant charting these risings with calendar precision — the same logical discipline that fills a grid with no repeats.",
-            "rebalanced": true
+            "instruction": "Nakht counts the harvesters' labour seed by seed. Sow round the fields and bring in more of the grain than the overseer.",
+            "fact": "Scribes recorded every harvest for the temple granaries: fields were measured with knotted ropes, the standing crop was assessed for tax, and the grain was counted into the stores measure by measure."
           }
         }
       ]
@@ -108,9 +105,8 @@
             "game": "senet",
             "configId": "kendall",
             "seed": 93682,
-            "instruction": "Nakht: bear your pieces off first.",
-            "fact": "The heliacal rising of Sirius — called Sopdet by Egyptians — occurred just before the Nile's annual flood. This celestial signal was so important that the Egyptian calendar year began on this day. Astronomer-officials like Nakht were responsible for predicting it.",
-            "rebalanced": true
+            "instruction": "In his tomb Nakht's journey goes on. Play senet, the game of passing, against the temple scribe.",
+            "fact": "The heliacal rising of Sirius — called Sopdet by Egyptians — occurred just before the Nile's annual flood. This celestial signal was so important that the Egyptian calendar year began on this day. Astronomer-officials like Nakht were responsible for predicting it."
           }
         },
         {
@@ -123,12 +119,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "snake",
-            "configId": "sahara",
+            "game": "starchart",
+            "configId": "theban-night",
             "seed": 49583,
-            "instruction": "Nakht: lead the caravan to every load.",
-            "fact": "Egyptian priests calculated the solar year at 365 days — off by only a quarter-day. They tracked the sun's annual path using shadow clocks and star tables. The geometry of circles, arcs, and angles was essential astronomical knowledge long before Greek mathematicians formalised it.",
-            "rebalanced": true
+            "instruction": "The stars are Nakht's clock, calendar and map. Name the star groups of the night as the hour-watchers of Amun did.",
+            "fact": "Egyptian priests calculated the solar year at 365 days — off by only a quarter-day. They tracked the sun's annual path using shadow clocks and star tables. The geometry of circles, arcs, and angles was essential astronomical knowledge long before Greek mathematicians formalised it."
           }
         },
         {

@@ -36,6 +36,17 @@ export const CONFIGS: Record<string, StorySortConfig> = {
     ],
     fact: "Published in 1605, Don Quixote by Miguel de Cervantes is widely considered the first modern novel. The windmill episode became one of literature's most enduring metaphors — 'tilting at windmills' now means fighting imaginary enemies or pursuing delusional ideals.",
   },
+  'five-rings': {
+    title: 'The Book of Five Rings',
+    source: "Miyamoto Musashi's Go Rin no Sho (1645) — the opening, retold",
+    paragraphs: [
+      "In the tenth month of the twentieth year of Kan'ei, I climbed Mount Iwato in Higo to bow to heaven and pray to Kannon, and took up my brush to set down the Way of strategy I have trained in for many years, which I call Niten Ichi-ryū. I am sixty years old.",
+      "The Earth scroll is the ground of the Way. A strategist should be like the master carpenter, who knows his timbers, plans the house, and sets every man to the work he is fit for.",
+      "In the Water scroll the spirit takes water for its model: it takes the shape of its vessel, square or round; it is a single drop and it is the wide sea. The Fire scroll is fighting — for fire grows great or small, and the spirit of one duel and of a battle of ten thousand is the same.",
+      "The Wind scroll tells of the ways of other schools, for you cannot know your own Way without knowing theirs. Last is the Void: what has no beginning and no end. When you have truly mastered the Way, you will let it go, and act without knowing that you act.",
+    ],
+    fact: "Musashi began the Go Rin no Sho in 1643 in Reigandō, a cave on Mount Iwato near Kumamoto, and gave it to his pupil Terao Magonojō shortly before he died in 1645. Its five scrolls are named Earth, Water, Fire, Wind and Void.",
+  },
   'genji-moonlight': {
     title: 'A Lady Not of the First Rank',
     source: "Murasaki Shikibu's The Tale of Genji — Chapter I",
@@ -57,6 +68,28 @@ export const CONFIGS: Record<string, StorySortConfig> = {
       "Then Achilles called the people to assembly. The goddess Hera put this in his mind, for she was sorry to see the Achaeans dying. When they were gathered, Achilles rose and spoke among them — and the quarrel between the greatest of kings and the greatest of warriors began.",
     ],
     fact: "Homer's Iliad, composed around 750–700 BCE, covers only 51 days of the decade-long Trojan War but centres on a single conflict: the rage of Achilles after King Agamemnon dishonours him. Ancient Greeks considered it their most sacred text — Alexander the Great slept with a copy under his pillow.",
+  },
+  'valmiki-krauncha': {
+    title: 'The First Shloka',
+    source: "Valmiki's Ramayana — Bala Kanda, Canto 2",
+    paragraphs: [
+      "The sage Valmiki went down to the Tamasa, not far from the Ganges, to bathe. Seeing its clear water, calm as the mind of a good man, he lingered on the bank with his disciple Bharadvaja and walked into the forest.",
+      "There a pair of krauncha birds wandered together, never apart, singing sweetly. Then a hunter, his heart set on harm, shot the male before the sage's eyes, and it fell to the ground, its wings beating in its own blood.",
+      "Seeing her mate rolling on the earth, the female cried out in pitiful grief. Pity rose in the sage, and he said: 'Hunter, may you find no rest for endless years, for you have killed one of a pair of krauncha birds lost in love.'",
+      "Then he pondered what he had spoken. 'Born of my grief, bound in four quarters of equal syllables, fit to be sung to the lute — let it be called a shloka.' And Bharadvaja, delighted, learned the verse by heart.",
+    ],
+    fact: "Valmiki's curse — mā niṣāda in Sanskrit — is remembered as the first shloka: four quarters of eight syllables each. The Ramayana plays on the words itself: the shloka was born of shoka, grief.",
+  },
+  'gilgamesh-serpent': {
+    title: 'The Plant and the Serpent',
+    source: 'The Epic of Gilgamesh — Tablet XI (retold)',
+    paragraphs: [
+      "Before Gilgamesh went home, Utnapishtim told him a secret of the gods: at the bottom of the deep there grows a plant like a thorn-bush, and whoever eats it grows young again. Gilgamesh tied heavy stones to his feet, sank down into the waters of the Apsu and seized the plant, though its thorns tore his hands.",
+      "He cut the stones loose, and the sea cast him up on the shore. 'This plant will give a man back his life,' he told Urshanabi the boatman. 'I will take it to Uruk and give it to the old men to eat. Its name shall be The Old Man Grows Young — and I too will eat it, and be as I was in my youth.'",
+      "At twenty leagues they broke bread; at thirty more they stopped for the night. Gilgamesh saw a pool of cool water and went down into it to bathe. A serpent smelled the scent of the plant, came up out of the water and carried it off — and as it went, it cast off its skin.",
+      "Then Gilgamesh sat down and wept, the tears running down his face. 'For whom, Urshanabi, have my hands laboured? For whom has my heart's blood been spent? I have won no good for myself; I have done a good deed for the serpent of the ground.'",
+    ],
+    fact: "The Standard Babylonian Epic of Gilgamesh, in twelve tablets, was copied for Ashurbanipal's library at Nineveh. Its serpent explains, in the poem's own terms, why snakes renew themselves by shedding their skin while men grow old and die.",
   },
   'arabian-nights-opening': {
     title: "Scheherazade's First Night",

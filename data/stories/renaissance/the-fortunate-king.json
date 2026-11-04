@@ -28,12 +28,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "gears",
-            "configId": "clock-train",
+            "game": "voting",
+            "configId": "renaissance",
             "seed": 32923,
-            "instruction": "Manuel I of Portugal: build the gear train.",
-            "fact": "'Manuel, o Venturoso' — The Fortunate. Under his reign, Vasco da Gama reached India (1498), Pedro Cabral reached Brazil (1500), and Portugal controlled the world's spice trade. Lisbon became the richest city in Europe.",
-            "rebalanced": true
+            "instruction": "Manuel's council warns that a fleet to India will ruin the kingdom. Win the court round, faction by faction, before the ships can sail.",
+            "fact": "'Manuel, o Venturoso' — The Fortunate. Under his reign, Vasco da Gama reached India (1498), Pedro Cabral reached Brazil (1500), and Portugal controlled the world's spice trade. Lisbon became the richest city in Europe."
           }
         }
       ]
@@ -63,12 +62,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "morris",
-            "configId": "twelve-mens",
+            "game": "siege",
+            "configId": "cochin-1504",
             "seed": 35166,
-            "instruction": "Manuel I of Portugal: form mills to win.",
-            "fact": "Portuguese traders arrived in Japan in 1543. They brought firearms, Catholicism, and tempura cooking — and in return encountered Japanese tea culture and Buddhist art. The cultural exchange flowed both ways.",
-            "rebalanced": true
+            "instruction": "Calicut's ruler will not let the newcomers stay. Hold the fords of Cochin, Portugal's only ally, with a handful of men against his army.",
+            "fact": "Vasco da Gama's first voyage of 1497–99 lost two of its four ships and more than half its men, but the spices it brought home paid for it many times over. Manuel answered Calicut's hostility with armed fleets every year and a chain of forts."
           }
         }
       ]
@@ -92,12 +90,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "canallock",
-            "configId": "panama",
+            "game": "abacus",
+            "configId": "casa-da-india",
             "seed": 25707,
-            "instruction": "Manuel I of Portugal: pass the boats through the locks.",
-            "fact": "Under Manuel I, Portugal controlled the spice trade from 1498 to the 1580s. A cargo of cloves from Maluku could return 100× its cost in Lisbon — funding the Manueline architecture still standing in Belém.",
-            "rebalanced": true
+            "instruction": "With Goa, Malacca and Hormuz in Portuguese hands, the riches of the East come up the Tagus. Reckon each cargo into the king's ledger as the clerk calls it.",
+            "fact": "Albuquerque took Goa in 1510, Malacca in 1511 and Hormuz in 1515, giving Portugal command of the straits of the Indian Ocean. For a generation Lisbon set the price of pepper for all of Europe."
           }
         }
       ]
@@ -111,24 +108,22 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "optics",
-            "configId": "alhazen-camera",
+            "game": "mancala",
+            "configId": "kilwa-bao",
             "seed": 3833,
-            "instruction": "Manuel I of Portugal: focus the light.",
-            "fact": "The Hanseatic League at its peak united over 200 Northern European cities in a merchant alliance that bypassed feudal lords entirely. Its Kontors in London, Bergen, Bruges and Novgorod operated as sovereign trading colonies, complete with their own courts, weights, and private armies.",
-            "rebalanced": true
+            "instruction": "From Lisbon to Malacca, Manuel's forts ring the Indian Ocean, and in their shadow life goes on. Sit down at the board with a merchant of Kilwa.",
+            "fact": "Manuel's reign gave its name to the Manueline style, whose stone ropes, armillary spheres and sea creatures cover the Jerónimos Monastery and the Tower of Belém in Lisbon, both built with the profits of the spice trade."
           }
         },
         {
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "postroute",
-            "configId": "thurn",
+            "game": "gears",
+            "configId": "madeira-sugar-mill",
             "seed": 92597,
-            "instruction": "Manuel I of Portugal: plan the post round.",
-            "fact": "Medieval contracts specified exactly how many grams of lapis lazuli an artist could use. Jan van Eyck and Fra Angelico reserved it solely for the Virgin Mary's robe. Michelangelo reportedly left the Entombment unfinished because his patron refused to supply enough lapis.",
-            "rebalanced": true
+            "instruction": "Not all of Manuel's fortune comes from the East: Madeira's sugar mills grind for the crown too. Build the gear train so the water wheel turns the crushing stone just right.",
+            "fact": "Madeira, settled by the Portuguese from the 1420s, was Europe's great source of sugar by 1500. The planters' methods were carried on to São Tomé and then to Brazil, the land Cabral claimed for Manuel in 1500."
           }
         },
         {

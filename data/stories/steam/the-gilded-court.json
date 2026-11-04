@@ -36,13 +36,12 @@
             "type": "minigame",
             "game": "pigpen",
             "seed": 1001,
-            "fact": "Louis XVI became king at age 20 in 1774, inheriting a state near bankruptcy from his grandfather Louis XV. He was a skilled locksmith and passionate map-maker — a careful craftsman in a role that demanded bold political vision.",
-            "autogen": true,
+            "fact": "Louis XVI became king at nineteen on 10 May 1774, when his grandfather Louis XV died of smallpox, inheriting a state close to bankruptcy. He was a skilled locksmith and a passionate map-maker — a careful craftsman in a role that demanded bold political vision.",
             "configId": "masonic-grid",
             "params": {
-              "plaintext": "CROWNED AT TWENTY"
+              "plaintext": "THE KING IS DEAD LONG LIVE THE KING"
             },
-            "instruction": "A courtier's note about the new king is drawn in a grid code. Read it."
+            "instruction": "Louis remembers May 1774, when a note in the courtiers' grid code ran through Versailles as his grandfather lay dead. Read it — the words that made a nineteen-year-old king."
           }
         }
       ]
@@ -60,12 +59,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "lamplighter",
-            "configId": "pall-mall",
+            "game": "telegraphnet",
+            "configId": "chappe-brulon",
             "seed": 93610,
-            "instruction": "Louis XVI: light every lamp.",
-            "fact": "The Palace of Versailles was a machine of political spectacle — every corridor, mirror, and gilded surface designed to awe visitors into submission. Louis XVI inherited this stage but never fully commanded it.",
-            "rebalanced": true
+            "instruction": "Once the Estates-General meet, news from Versailles outruns every courier. Plan the line of signal towers the Chappe brothers would soon propose, so that every city of France can see the next one's arms.",
+            "fact": "The Palace of Versailles was a machine of political spectacle — every corridor, mirror, and gilded surface designed to awe visitors into submission. Louis XVI inherited this stage but never fully commanded it."
           }
         }
       ]
@@ -106,12 +104,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "gomoku",
-            "configId": "gobang",
+            "game": "logicgate",
+            "configId": "louis-locksmith",
             "seed": 71369,
-            "instruction": "Louis XVI: make five in a row.",
-            "fact": "The Bastille held just 7 prisoners on July 14, 1789: four forgers, two men committed at their families' request, and one nobleman. But as a symbol of royal arbitrary power, its fall electrified France. The governor's head was paraded through Paris on a pike. Today Bastille Day is France's national holiday.",
-            "rebalanced": true
+            "instruction": "When the factions will not obey him, Louis retreats to the one machine he understands: his locksmith's bench. Set the gates so the lock's levers agree with the table on every row.",
+            "fact": "Louis XVI kept a locksmith's forge above his private apartments at Versailles and worked there with the locksmith François Gamain. In November 1792 Gamain revealed the hidden iron cupboard, the armoire de fer, that he had helped the king fit in the Tuileries; its papers were used against Louis at his trial."
           }
         },
         {

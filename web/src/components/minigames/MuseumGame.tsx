@@ -29,6 +29,25 @@ export const CONFIGS: Record<string, MuseumConfig> = {
     winScore: 400,
     fact: 'The Louvre is the world\'s most-visited museum with over 9 million annual visitors. Its I. M. Pei glass pyramid, built in 1989, nearly caused a public revolt — now it\'s iconic.',
   },
+  'catherine-hermitage': {
+    title: "Hang Catherine's Hermitage",
+    museum: 'The Hermitage, St Petersburg',
+    artworks: [
+      { id: 'prodigal', title: 'Return of the Prodigal Son', artist: 'Rembrandt',              type: 'portrait',  emoji: '🙏', baseValue: 100 },
+      { id: 'danae',    title: 'Danaë',                      artist: 'Rembrandt',              type: 'portrait',  emoji: '🖼️', baseValue: 90  },
+      { id: 'judith',   title: 'Judith',                     artist: 'Giorgione',              type: 'portrait',  emoji: '🗡️', baseValue: 80  },
+      { id: 'voltaire', title: 'Voltaire Seated',            artist: 'Houdon',                 type: 'sculpture', emoji: '🗿', baseValue: 85  },
+      { id: 'marbles',  title: 'Roman Marbles',              artist: 'Lyde Browne collection', type: 'ancient',   emoji: '🏛️', baseValue: 70  },
+    ],
+    rooms: [
+      { id: 'small',    name: 'Small Hermitage',  emoji: '🌿', bonusTypes: ['portrait'],  mult: 1.8, hint: '+80% for paintings',  color: 'from-emerald-900' },
+      { id: 'large',    name: 'Large Hermitage',  emoji: '👑', bonusTypes: ['portrait'],  mult: 1.7, hint: '+70% for paintings',  color: 'from-violet-900'  },
+      { id: 'sculpture',name: 'Sculpture Hall',   emoji: '🗿', bonusTypes: ['sculpture'], mult: 1.8, hint: '+80% for sculpture',  color: 'from-stone-800'   },
+      { id: 'antique',  name: 'Antiquities Room', emoji: '🏺', bonusTypes: ['ancient'],   mult: 1.9, hint: '+90% for antiquities', color: 'from-amber-900'   },
+    ],
+    winScore: 580,
+    fact: 'Catherine bought her first 225 paintings from the Berlin merchant Johann Ernst Gotzkowsky in 1764, the year the Hermitage counts as its founding. The Crozat collection (1772) brought Rembrandt’s Danaë and Giorgione’s Judith; Sir Robert Walpole’s pictures from Houghton Hall followed in 1779.',
+  },
   'british-museum': {
     title: 'Arrange the British Museum',
     museum: 'British Museum, London',
@@ -68,6 +87,26 @@ export const CONFIGS: Record<string, MuseumConfig> = {
     ],
     winScore: 430,
     fact: 'The Uffizi was designed by Vasari in 1560 as government offices ("uffizi") for Cosimo de\' Medici. The Medici art collection began moving there in 1581, making it the world\'s oldest art museum.',
+  },
+  'galleria-borghese': {
+    title: 'Cardinal Scipione’s Villa',
+    museum: 'Villa Borghese, Rome',
+    artworks: [
+      { id: 'apollo',     title: 'Apollo and Daphne',       artist: 'Bernini', type: 'sculpture', emoji: '🌿', baseValue: 100 },
+      { id: 'proserpina', title: 'The Rape of Proserpina',  artist: 'Bernini', type: 'sculpture', emoji: '🔱', baseValue: 95  },
+      { id: 'david',      title: 'David',                   artist: 'Bernini', type: 'sculpture', emoji: '🪨', baseValue: 90  },
+      { id: 'aeneas',     title: 'Aeneas and Anchises',     artist: 'Bernini', type: 'sculpture', emoji: '🔥', baseValue: 75  },
+      { id: 'selfport',   title: 'Self-Portrait',           artist: 'Bernini', type: 'portrait',  emoji: '🖌️', baseValue: 70  },
+      { id: 'sacred',     title: 'Sacred and Profane Love', artist: 'Titian',  type: 'landscape', emoji: '⛲', baseValue: 85  },
+    ],
+    rooms: [
+      { id: 'emperors', name: 'Hall of the Emperors', emoji: '🏛️', bonusTypes: ['sculpture'],             mult: 1.9, hint: '+90% for sculpture',              color: 'from-stone-800'  },
+      { id: 'salone',   name: 'Great Salon',          emoji: '🗿', bonusTypes: ['sculpture', 'ancient'],  mult: 1.8, hint: '+80% for sculpture & antiquities', color: 'from-amber-900'  },
+      { id: 'pictures', name: 'Picture Gallery',      emoji: '🖼️', bonusTypes: ['portrait'],              mult: 1.8, hint: '+80% for portraits',              color: 'from-violet-900' },
+      { id: 'loggia',   name: 'Garden Loggia',        emoji: '🌳', bonusTypes: ['landscape'],             mult: 1.6, hint: '+60% for landscapes',             color: 'from-emerald-900'},
+    ],
+    winScore: 540,
+    fact: 'Cardinal Scipione Borghese, nephew of Pope Paul V, commissioned the young Bernini’s great marbles for his villa on the Pincian hill: Aeneas and Anchises (1618–19), The Rape of Proserpina (1621–22), Apollo and Daphne (1622–25) and David (1623–24). All four stand today in the Galleria Borghese.',
   },
 }
 

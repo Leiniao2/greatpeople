@@ -25,15 +25,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "braille",
+            "game": "wordle",
             "seed": 1019,
             "fact": "Borromini (1599–1667) invented a new architectural language: walls that curved inward and outward, spaces that expanded and contracted as you moved through them, and geometry derived from interlocking triangles rather than squares. His buildings feel alive — as if the stone itself is breathing.",
-            "autogen": true,
-            "configId": "raised-dots",
-            "params": {
-              "plaintext": "WALLS THAT CURVE"
-            },
-            "instruction": "Borromini's plan is labelled in raised dots. Read what makes his churches new."
+            "configId": "borromini-curve",
+            "instruction": "Borromini's walls refuse to stand straight. Guess the five-letter word for what his façades do where Bernini's stand firm."
           }
         }
       ]
@@ -51,12 +47,17 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "sapper",
-            "configId": "neuf-brisach",
+            "game": "knightstour",
+            "configId": "euler",
             "seed": 55927,
-            "instruction": "Francesco Borromini: clear the field without a blast.",
-            "fact": "Borromini and Bernini were bitter rivals who despised each other. Bernini — charming, wealthy, papal favourite — represented everything Borromini was not. Borromini was ascetic, difficult, and constantly overshadowed. He believed Bernini stole his ideas and received undeserved credit. The rivalry drove both to their greatest achievements — and contributed to Borromini's deepening depression.",
-            "rebalanced": true
+            "instruction": "Every Borromini plan closes on itself, built from triangles and ovals with nothing left to chance. Ride the knight across every square and end one leap from where you began, a figure as closed as his geometry.",
+            "fact": "Borromini's geometry was rooted in medieval sacred mathematics — he derived church plans from the proportions of the equilateral triangle, believing divine truth was encoded in geometric relationships. His buildings are not just beautiful; they are arguments about the nature of space and the presence of God within it.",
+            "params": {
+              "title": "The Hidden Skeleton",
+              "twist": "closed figure",
+              "intro": "Borromini drew his plans from interlocking triangles and ovals, every curve closing on itself. Visit every square once — and finish a knight’s move from where you began (the ringed square).",
+              "fact": "Borromini built the plan of San Carlo alle Quattro Fontane (begun 1634) from two equilateral triangles sharing a base, with an oval traced inside them."
+            }
           }
         }
       ]
@@ -74,12 +75,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "gomoku",
-            "configId": "standard",
+            "game": "compose",
+            "configId": "carissimi-jephte",
             "seed": 49298,
-            "instruction": "Francesco Borromini: make five in a row.",
-            "fact": "San Carlo alle Quattro Fontane is perhaps the most astonishing building in Rome: its interior could fit inside one of the columns of St. Peter's Basilica, yet it is more architecturally complex than the entire basilica. Borromini spent his career making small spaces feel infinite.",
-            "rebalanced": true
+            "instruction": "For the Oratorians Borromini is building the hall where Rome gathers to hear sacred stories sung. Put the sections of an oratorio of the day in the order the story unfolds.",
+            "fact": "Borromini designed the Oratory of the Filippini beside the Chiesa Nuova from 1637 for the Congregation of the Oratory founded by St Philip Neri. Its concave brick façade hides the hall where the congregation's musical prayer meetings — the gatherings that gave the oratorio its name — were held."
           }
         }
       ]
@@ -97,12 +97,16 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "railway",
-            "configId": "stephenson",
+            "game": "gomoku",
+            "configId": "edo-gomoku",
             "seed": 84857,
-            "instruction": "Francesco Borromini: lay the track for every train.",
-            "fact": "Borromini's geometry was rooted in medieval sacred mathematics — he derived church plans from the proportions of the equilateral triangle, believing divine truth was encoded in geometric relationships. His buildings are not just beautiful; they are arguments about the nature of space and the presence of God within it.",
-            "rebalanced": true
+            "instruction": "Rome has become a board for two players: Bernini's fountain on one side of Piazza Navona, Borromini's Sant'Agnese on the other. Take the rivalry square by square and line up five before your rival does.",
+            "fact": "On Piazza Navona Bernini's Fountain of the Four Rivers (1648–1651) stands before Borromini's Sant'Agnese in Agone (begun 1653). The tale that Bernini's River Plate raises a hand to shield himself from the falling church is a legend: the fountain was finished before Borromini began the façade. The rivalry itself was real — Borromini believed Bernini took credit for his ideas.",
+            "params": {
+              "title": "Piazza Navona",
+              "intro": "A rivalry played out on one square: you are black and move first. Five or more in a row wins.",
+              "fact": "Bernini’s Fountain of the Four Rivers (1651) and Borromini’s Sant’Agnese in Agone face each other across Piazza Navona, the ancient stadium of Domitian."
+            }
           }
         },
         {
@@ -113,10 +117,10 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "museum",
-            "configId": "uffizi-gallery",
-            "instruction": "Rome in Borromini's day was an open-air gallery of competing architectural ambitions. Arrange the Baroque masters' works in the order that best reveals the evolution of the style.",
-            "fact": "The Baroque was born in Rome as the Catholic Church's answer to Protestant austerity. Where Protestantism stripped churches bare, the Counter-Reformation filled them with overwhelming beauty. Borromini's contribution was to make that beauty geometrically impossible — a space that could not exist by the rules of classical architecture yet stood before you undeniably real."
+            "game": "konigsberg",
+            "configId": "borromini-walk",
+            "instruction": "Borromini is dead, but his churches still curve across the city. Walk his Rome and cross every bridge exactly once.",
+            "fact": "Borromini's last great work, Sant'Ivo alla Sapienza (1642–1660), rests on a star-hexagon plan of two interlocking triangles and is crowned by a spiralling lantern. He died in August 1667 after falling on his sword; his buildings outlived every critic."
           }
         },
         {

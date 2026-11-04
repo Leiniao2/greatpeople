@@ -51,6 +51,16 @@ export const CONFIGS: Record<string, BattleConfig> = {
     ],
     fact: 'Roman gladiators specialized in specific weapons and fighting styles. A gladiator who showed skill and bravado could win the crowd — and their life.',
   },
+  'cedar-forest': {
+    title: 'Two Against the Gods',
+    playerHp: 15,
+    enemies: [
+      { type: 'beast', emoji: '🦁', name: 'Lion of the Mountain Pass', hp:  8, attack: 2 },
+      { type: 'giant', emoji: '👹', name: 'Humbaba',                   hp: 10, attack: 3 },
+      { type: 'beast', emoji: '🐂', name: 'Bull of Heaven',            hp:  8, attack: 2 },
+    ],
+    fact: 'Gilgamesh and Enkidu killed Humbaba, the guardian the god Enlil had set over the Cedar Forest, and felled its cedars; back in Uruk they slew the Bull of Heaven that Ishtar sent against the city. For these deeds the gods decreed that Enkidu must die.',
+  },
   'samurai-path': {
     title: 'Path of the Samurai',
     playerHp: 15,
@@ -81,6 +91,37 @@ export const CONFIGS: Record<string, BattleConfig> = {
       { type: 'giant',  emoji: '🐘', name: 'War Elephant',         hp: 14, attack: 4 },
     ],
     fact: "The Mongol army's versatility was its greatest strength — mounted archers engaged from distance, then switched to lances for the charge and sabers in close combat.",
+  },
+  'seleucid-war': {
+    title: 'The Indus Frontier',
+    playerHp: 15,
+    enemies: [
+      { type: 'archer', emoji: '🏹', name: 'Cretan Archer',       hp:  8, attack: 2 },
+      { type: 'beast',  emoji: '🐎', name: 'Companion Cavalry',   hp:  8, attack: 2 },
+      { type: 'knight', emoji: '🛡️', name: 'Macedonian Phalanx',  hp: 10, attack: 3 },
+    ],
+    fact: 'Around 305 BCE Seleucus I, heir to Alexander\'s eastern conquests, crossed the Indus against Chandragupta. The war ended in a treaty: Seleucus gave up Arachosia, Gedrosia and the Paropamisadae for 500 war elephants, and his envoy Megasthenes went to live at Pataliputra.',
+  },
+  'lanka-war': {
+    title: 'The War at Lanka',
+    playerHp: 24,
+    enemies: [
+      { type: 'knight', emoji: '🗡️', name: 'Rakshasa Warrior',     hp:  8, attack: 2 },
+      { type: 'mage',   emoji: '🌫️', name: 'Indrajit the Unseen',  hp:  8, attack: 2 },
+      { type: 'giant',  emoji: '😴', name: 'Kumbhakarna',          hp: 12, attack: 3 },
+      { type: 'giant',  emoji: '👑', name: 'Ravana of Ten Heads',  hp: 12, attack: 3 },
+    ],
+    fact: 'In the Yuddha Kanda, the sixth book of the Ramayana, Rama and the monkey army besiege Lanka. Ravana\'s son Indrajit fights unseen by sorcery, the giant Kumbhakarna is woken from his months-long sleep, and Rama at last kills Ravana with the weapon of Brahma.',
+  },
+  'parrhasia-421': {
+    title: 'The March into Parrhasia',
+    playerHp: 15,
+    enemies: [
+      { type: 'archer', emoji: '🪨', name: 'Arcadian Slinger',   hp:  7, attack: 2 },
+      { type: 'knight', emoji: '🛡️', name: 'Mantinean Hoplite',  hp:  8, attack: 2 },
+      { type: 'giant',  emoji: '🏰', name: 'Fort at Cypsela',    hp: 10, attack: 3 },
+    ],
+    fact: 'In the summer of 421 BCE, Thucydides writes, the Spartans marched into Parrhasia in Arcadia under King Pleistoanax, at the Parrhasians\' call, to free them from Mantinea. They razed the Mantinean fort at Cypsela and went home.',
   },
 }
 

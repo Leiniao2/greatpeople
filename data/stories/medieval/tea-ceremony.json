@@ -28,12 +28,16 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "abacus",
-            "configId": "tax-roll",
+            "game": "alchemy",
+            "configId": "wuxing",
+            "params": {
+              "title": "Lu Yu’s Brazier",
+              "intro": "Lu Yu’s brazier held wind, fire and water in balance. No recipe book here — only the cycle. Two things of one phase kindle the next phase. A thing fed by its mother phase grows one level. Pairs across the star clash and cost two attempts.",
+              "fact": "In the Classic of Tea Lu Yu describes his cast-metal brazier: its windows bore the trigrams for wind, fire and water, because wind kindles fire and fire boils water, and one leg carried the words “its body balances the Five Phases and drives off a hundred ills”."
+            },
             "seed": 89213,
-            "instruction": "Lu Yu: reckon it on the abacus.",
-            "fact": "Lu Yu's Cha Jing (Classic of Tea, c. 760 CE) has 10 chapters covering tea's origins, tools for processing, making, drinking, and the history of tea. It transformed tea from a medicinal herb into a cultural art form.",
-            "rebalanced": true
+            "instruction": "Water, flame and vessel must agree before the tea is made. Work the Five Phases as Lu Yu’s brazier did: wind kindles fire, and fire boils water.",
+            "fact": "Lu Yu's Cha Jing (Classic of Tea, c. 760 CE) has 10 chapters covering tea's origins, tools for processing, making, drinking, and the history of tea. It transformed tea from a medicinal herb into a cultural art form."
           }
         }
       ]
@@ -53,7 +57,7 @@
             "type": "minigame",
             "game": "cooking",
             "configId": "lu-yu-tea",
-            "instruction": "Follow Lu Yu's precise method from the Chajing — every step matters.",
+            "instruction": "Brew the tea in the Tang manner Lu Yu set down in the Classic of Tea. Put every step in its proper order.",
             "fact": "Lu Yu insisted on spring water collected before sunrise. He could allegedly identify which mountain spring water came from purely by taste."
           }
         }
@@ -76,8 +80,8 @@
             "type": "minigame",
             "game": "chemistry",
             "configId": "tea-blend",
-            "instruction": "Combine the ingredients in the proportions Lu Yu prescribed in the Classic of Tea.",
-            "fact": "Lu Yu's Classic of Tea (茶經) specified precise proportions for water, tea leaves, and salt — the world's first systematic sensory science, written around 760 CE."
+            "instruction": "Lu Yu measured every cup. Combine the ingredients in the proportions shown, and leave out what belongs under the kettle, not in the bowl.",
+            "fact": "Lu Yu says to season the water with a little salt at the first boil, to add the powdered tea at the second, and that one sheng of water makes five bowls. Too much water, he warns, and the flavour turns thin."
           }
         }
       ]
@@ -93,7 +97,7 @@
             "type": "minigame",
             "game": "porcelain",
             "configId": "iron-teapot",
-            "instruction": "Apply the correct metal oxides to each section of the teapot, then fire the kiln.",
+            "instruction": "Lu Yu’s rules outlived the Tang: Song tea masters, and later Japan’s tea ceremony, prized iron-glazed tea ware. Give each part of the teapot its oxide, then fire the kiln.",
             "fact": "Tenmoku (天目) glazes — prized in Japanese tea ceremony — used iron oxide to create the signature oil-spot and hare's fur patterns in Song Dynasty kilns."
           }
         },

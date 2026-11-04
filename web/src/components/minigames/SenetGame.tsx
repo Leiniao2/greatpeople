@@ -360,6 +360,37 @@ export const CONFIGS: Record<string, SenetConfig> = {
     hit: 'rebirth',
     fact: "Tutankhamun's tomb held four senet boxes, one of ebony and ivory with a drawer for the pieces and knucklebones and throw sticks for play.",
   },
+  'hesy-ra': {
+    title: "Hesy-Ra's Board",
+    intro: 'The full opening, but the old rule: a piece you land on is not swapped — it is thrown back to the House of Rebirth (15). The first to bear off the target number wins.',
+    opponent: 'a court scribe of Djoser',
+    pieces: [7, 7, 7, 7],
+    goal: [1, 1, 2, 2],
+    start: 'opening',
+    hit: 'rebirth',
+    fact: "The painted corridor of Hesy-Ra's tomb at Saqqara (3rd Dynasty, c. 2650 BCE) shows the goods he took into eternity — chests, vessels and tools — and among them one of the earliest known pictures of a senet board.",
+  },
+  'giza-hall': {
+    title: 'A Game in the Physicians’ Hall',
+    intro: 'A game already under way: land on a lone piece to swap places, pairs guard, rows of three wall off the road. The first to bear off the target number wins.',
+    opponent: 'a student physician',
+    pieces: [2, 3, 3, 3],
+    goal: [1, 2, 2, 3],
+    start: 'midgame',
+    hit: 'swap',
+    fact: 'Senet means “passing”. Old Kingdom tomb reliefs at Giza and Saqqara already show pairs of players crouched over the thirty-square board, and boards were placed in tombs so the dead could go on playing.',
+  },
+  'coming-forth': {
+    title: 'Coming Forth by Day',
+    intro: 'A game under way against an unseen opponent. A piece you land on is thrown back to the House of Rebirth (15). The first to bear off the target number passes through.',
+    opponent: 'the unseen opponent',
+    pieces: [2, 2, 3, 3],
+    goal: [1, 2, 2, 3],
+    start: 'midgame',
+    from: 12,
+    hit: 'rebirth',
+    fact: 'Chapter 17 of the Book of the Dead promises the deceased “playing senet” in the hereafter, and its vignettes show the dead seated alone at the board against an invisible opponent: by then senet had become a picture of the soul’s passage to the afterlife.',
+  },
 }
 
 /** The opening state of a config at a difficulty and seed. */

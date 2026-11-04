@@ -25,12 +25,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "rhythm",
+            "game": "polybius",
+            "configId": "bongsu-beacons",
             "seed": 1010,
-            "fact": "At Myeongnyang in 1597, Admiral Yi commanded just 13 remaining warships against a Japanese fleet of over 300. He positioned his ships in the narrow strait where the current reversed twice daily, luring the Japanese into a bottleneck where numbers meant nothing. He sank or damaged 31 enemy ships without losing a single one of his own.",
-            "autogen": true,
-            "configId": "bach-fugue",
-            "instruction": "What was the decisive ratio of ships at the Battle of Myeongnyang (1597), which Admiral Yi Sun-sin won? Learn the phrase and play it back, note for note."
+            "instruction": "In 1592 the beacon fires blaze along the coast: the Japanese have landed. Read the alarm as it runs from tower to tower — each letter a row and a column of the square.",
+            "fact": "The turtle ship (geobukseon) was the world's first ironclad warship — its curved, iron-plated deck prevented Japanese boarding parties from swarming the deck in their preferred hand-to-hand style. It carried cannons on all sides and a dragon's head at the bow that could emit smoke to disorient the enemy. Yi deployed it as a spearhead to break enemy formations before his lighter warships engaged."
           }
         }
       ]
@@ -49,11 +48,10 @@
           "challenge": {
             "type": "minigame",
             "game": "knightstour",
-            "configId": "al-adli",
+            "configId": "janggi-horse",
             "seed": 60613,
-            "instruction": "Lee Sun-sin: tour every square with the knight.",
-            "fact": "Yi was arrested, tortured, and demoted twice — the victim of court intrigue and a Japanese deception operation that planted false intelligence to undermine him. He served as a common soldier before being hastily reinstated when the navy collapsed without him. Myeongnyang was fought with the 13 ships that remained after his absence.",
-            "rebalanced": true
+            "instruction": "Before Hansan, Yi plots his patrols through the islands like the horse on a janggi board. Visit every point once and come home to where you began.",
+            "fact": "The Battle of Hansan Island (1592) is considered one of the most significant naval battles in Asian history. Yi used a feigned retreat to draw the Japanese fleet into open water, then sprang the crane-wing encirclement. He sank 47 Japanese ships and captured 12, breaking Japan's naval dominance in a single afternoon."
           }
         }
       ]
@@ -72,11 +70,10 @@
           "challenge": {
             "type": "minigame",
             "game": "morris",
-            "configId": "three-mens",
+            "configId": "cham-gonu",
             "seed": 45909,
-            "instruction": "Lee Sun-sin: form mills to win.",
-            "fact": "Yi Sun-sin died at Noryang in 1598 — struck by a bullet during the battle that would finally expel Japanese forces from Korea. His last words, reportedly, were: 'The battle is at its height — do not announce my death.' He won the battle from his deathbed, concealing his death until the Japanese had fled.",
-            "rebalanced": true
+            "instruction": "Stripped of rank and serving as a common soldier, Yi still thinks in lines and formations. Play the camp's board game — every line of three takes a piece.",
+            "fact": "Yi was arrested, tortured, and demoted twice — the victim of court intrigue and a Japanese deception operation that planted false intelligence to undermine him. He served as a common soldier before being hastily reinstated when the navy collapsed without him. Myeongnyang was fought with the 13 ships that remained after his absence."
           }
         },
         {
@@ -88,9 +85,10 @@
           "challenge": {
             "type": "minigame",
             "game": "wargame",
-            "configId": "an-jung-geun",
+            "configId": "myeongnyang-1597",
+            "seed": 43072,
             "instruction": "Korean resistance against invasion required total commitment. Command the naval engagement — read the current, hold the strait, and let geography be your fleet.",
-            "fact": "The turtle ship (geobukseon) was the world's first ironclad warship — its curved, iron-plated deck prevented Japanese boarding parties from swarming the deck in their preferred hand-to-hand style. It carried cannons on all sides and a dragon's head at the bow that could emit smoke to disorient the enemy. Yi deployed it as a spearhead to break enemy formations before his lighter warships engaged."
+            "fact": "At Myeongnyang in 1597, Admiral Yi commanded just 13 remaining warships against a Japanese fleet of over 300. He positioned his ships in the narrow strait where the current reversed twice daily, luring the Japanese into a bottleneck where numbers meant nothing. He sank or damaged 31 enemy ships without losing a single one of his own."
           }
         }
       ]
@@ -109,9 +107,10 @@
           "challenge": {
             "type": "minigame",
             "game": "tactics",
-            "configId": "general",
+            "configId": "crane-wing",
+            "seed": 37059,
             "instruction": "At Hansan Island, Yi surrounded the Japanese fleet using the 'Crane Wing' formation — a classic envelopment. Execute the maneuver: extend the wings, close the trap, allow no escape.",
-            "fact": "The Battle of Hansan Island (1592) is considered one of the most significant naval battles in Asian history. Yi used a feigned retreat to draw the Japanese fleet into open water, then sprang the crane-wing encirclement. He sank 47 Japanese ships and captured 12, breaking Japan's naval dominance in a single afternoon."
+            "fact": "Yi Sun-sin died at Noryang in 1598 — struck by a bullet during the battle that would finally expel Japanese forces from Korea. His last words, reportedly, were: 'The battle is at its height — do not announce my death.' He won the battle from his deathbed, concealing his death until the Japanese had fled."
           }
         },
         {

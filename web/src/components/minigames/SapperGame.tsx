@@ -43,6 +43,13 @@ export const CONFIGS: Record<string, SapperConfig> = {
     shape: 'square',
     reach: 'king',
   },
+  'teocajas-pits': {
+    title: 'The Pits of Teocajas, 1534',
+    intro: 'Your warriors have dug covered pits across the plain to break the Spanish horses. Now bring your own men back through the field: open every safe square; each number counts the pits in the eight squares around it.',
+    fact: 'Chroniclers of Sebastián de Belalcázar’s march on Quito in 1534 describe pits lined with stakes and hidden under grass, dug across the roads to cripple the horses — one of the few answers the Inca had to cavalry. At Teocajas Rumiñahui’s army fought the Spanish to a standstill before falling back.',
+    shape: 'square',
+    reach: 'king',
+  },
   'lille-citadel': {
     title: 'The Queen of Citadels',
     intro: 'Before Lille’s star fort the listening galleries run dead straight: each number counts mines only in the four squares sharing a side — never the diagonals.',

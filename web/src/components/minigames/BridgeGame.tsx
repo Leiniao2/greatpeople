@@ -30,6 +30,17 @@ export const CONFIGS: Record<string, Config> = {
     ],
     fact: "Rome's road and aqueduct networks connected over 400 cities — each node in the empire was reachable from any other, the original 'all roads lead to Rome.'",
   },
+  'everest-camps': {
+    title: 'Ropes Between the Camps',
+    question: 'Link the high camps with fixed ropes and ladders — each number shows how many lines a camp needs.',
+    rows: 5, cols: 5,
+    islands: [
+      { id: 0, r: 0, c: 0, n: 3 }, { id: 1, r: 0, c: 2, n: 3 }, { id: 2, r: 0, c: 4, n: 3 },
+      { id: 3, r: 2, c: 0, n: 4 }, { id: 4, r: 2, c: 2, n: 6 }, { id: 5, r: 2, c: 4, n: 5 },
+      { id: 6, r: 4, c: 0, n: 3 }, { id: 7, r: 4, c: 2, n: 6 }, { id: 8, r: 4, c: 4, n: 3 },
+    ],
+    fact: 'To move loads up the mountain, the 1953 team fixed ropes and laid aluminium ladders across the crevasses of the Khumbu Icefall and the Western Cwm, linking a chain of camps. The highest, Camp IX, was pitched on the South-East Ridge at about 8,500 metres.',
+  },
   'silk-road': {
     title: 'Silk Road Crossings',
     question: 'Build bridges to connect the Silk Road trading posts.',
@@ -51,6 +62,28 @@ export const CONFIGS: Record<string, Config> = {
       { id: 5, r: 4, c: 0, n: 3 }, { id: 6, r: 4, c: 3, n: 2 },
     ],
     fact: "The Nile Delta was the ancient world's most fertile and connected region — a network of waterways that made Egypt the breadbasket of the Mediterranean.",
+  },
+  'kwanza-camps': {
+    title: 'The Kwanza Crossings',
+    question: 'Link Nzinga\'s war camps and her Dutch allies\' posts across the rivers — each number shows how many crossings it needs.',
+    rows: 5, cols: 5,
+    islands: [
+      { id: 0, r: 0, c: 1, n: 1 }, { id: 1, r: 0, c: 4, n: 2 },
+      { id: 2, r: 2, c: 0, n: 3 }, { id: 3, r: 2, c: 2, n: 3 }, { id: 4, r: 2, c: 4, n: 2 },
+      { id: 5, r: 4, c: 0, n: 3 }, { id: 6, r: 4, c: 3, n: 2 },
+    ],
+    fact: 'After the Dutch seized Luanda in 1641, Nzinga allied with them. In 1647 her army and Dutch troops routed a Portuguese force at Kombi and besieged the Portuguese fort of Massangano on the Kwanza, until a Portuguese fleet from Brazil retook Luanda in 1648.',
+  },
+  'ionian-schools': {
+    title: 'The Ionian Schools',
+    question: 'Link the cities where philosophers first asked what the world is made of — each number shows how many routes it needs.',
+    rows: 5, cols: 5,
+    islands: [
+      { id: 0, r: 0, c: 1, n: 1 }, { id: 1, r: 0, c: 4, n: 2 },
+      { id: 2, r: 2, c: 0, n: 3 }, { id: 3, r: 2, c: 2, n: 3 }, { id: 4, r: 2, c: 4, n: 2 },
+      { id: 5, r: 4, c: 0, n: 3 }, { id: 6, r: 4, c: 3, n: 2 },
+    ],
+    fact: 'Philosophy began on the Ionian coast: Thales, Anaximander and Anaximenes at Miletus, Heraclitus at Ephesus, Anaxagoras at Clazomenae. Anaxagoras carried the Ionian questions to Athens, while Parmenides and Zeno answered them from Elea in Italy.',
   },
   'greek-islands': {
     title: 'Aegean Routes',
@@ -106,6 +139,17 @@ export const CONFIGS: Record<string, Config> = {
       { id: 4, r: 4, c: 2, n: 2 }, { id: 5, r: 4, c: 4, n: 2 },
     ],
     fact: "Tenochtitlan was connected to the mainland by three great causeways, each wide enough for ten horsemen to ride abreast — Cortés described them as the most magnificent roads he had ever seen.",
+  },
+  'zuiderzee-dikes': {
+    title: 'Closing the Zuiderzee',
+    question: 'Link the islands and shores of the Zuiderzee with dikes — each number shows how many dikes it needs.',
+    rows: 5, cols: 7,
+    islands: [
+      { id: 0, r: 0, c: 0, n: 2 }, { id: 1, r: 0, c: 3, n: 3 }, { id: 2, r: 0, c: 6, n: 1 },
+      { id: 3, r: 2, c: 0, n: 4 }, { id: 4, r: 2, c: 3, n: 2 },
+      { id: 5, r: 4, c: 0, n: 4 }, { id: 6, r: 4, c: 2, n: 3 }, { id: 7, r: 4, c: 5, n: 1 },
+    ],
+    fact: "In 1918 the Dutch government asked Lorentz to chair a state committee predicting how damming the Zuiderzee would change the tides along the coast. His team's calculations, finished in 1926, proved close to what happened when the Afsluitdijk closed the sea in 1932.",
   },
 }
 

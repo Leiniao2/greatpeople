@@ -28,12 +28,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "chimpmath",
-            "configId": "jane-goodall-chimps",
+            "game": "sliding",
+            "configId": "mockingbird-script",
             "seed": 21894,
-            "instruction": "Gregory Peck: match the chimps at counting.",
-            "fact": "Harper Lee based Atticus partly on her own father, a lawyer who defended two Black men in Alabama. Peck and Harper Lee became lifelong friends after the 1962 film.",
-            "rebalanced": true
+            "instruction": "Peck reads the script in one sitting and calls Pakula straight away. Put the scenes of Horton Foote's screenplay back in order.",
+            "fact": "Harper Lee based Atticus partly on her own father, a lawyer who defended two Black men in Alabama. Peck and Harper Lee became lifelong friends after the 1962 film."
           }
         }
       ]
@@ -57,9 +56,9 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "classify",
-            "configId": "ecosystems",
-            "instruction": "Maycomb's rigid social order works like a food chain. Sort the roles: who produces, who consumes, who dominates.",
+            "game": "pseudocode",
+            "configId": "atticus-defence",
+            "instruction": "To play Atticus, Peck has to think like him. Put the defence's questions in the order that shows the jury who really struck Mayella Ewell.",
             "fact": "The AFI voted Atticus Finch the greatest movie hero of the 20th century. Peck later said the role was the one closest to his own moral convictions — he fought for civil rights throughout his career."
           }
         }
@@ -101,15 +100,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "binary",
+            "game": "typeset",
+            "configId": "mockingbird-window-card",
             "seed": 1026,
-            "fact": "To Kill a Mockingbird (1960) won the Pulitzer Prize in 1961 and became an immediate bestseller. It has sold more than 40 million copies and remains widely taught in schools. Harper Lee published almost nothing for 55 years afterward, until Go Set a Watchman appeared in 2015, shortly before her death in 2016.",
-            "autogen": true,
-            "configId": "five-lamps",
-            "params": {
-              "plaintext": "PULITZER IN ONE YEAR"
-            },
-            "instruction": "The prize committee's record is stored as lamps. Add up each row to read it."
+            "instruction": "The picture is ready for the cinemas. Set the window card for the lobby — Gregory Peck as Atticus Finch — and pull a clean proof.",
+            "fact": "To Kill a Mockingbird (1960) won the Pulitzer Prize in 1961 and became an immediate bestseller. It has sold more than 40 million copies and remains widely taught in schools. Harper Lee published almost nothing for 55 years afterward, until Go Set a Watchman appeared in 2015, shortly before her death in 2016."
           }
         },
         {

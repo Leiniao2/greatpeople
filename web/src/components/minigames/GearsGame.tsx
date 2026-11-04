@@ -46,6 +46,12 @@ export const CONFIGS: Record<string, GearConfig> = {
     fact: 'Vitruvius described a geared water mill around 25 BC: a vertical water-wheel turning a millstone through right-angle gearing — the earliest known account of a geared mill.',
     kind: 'water-mill', liveRatioUpTo: 2,
   },
+  'madeira-sugar-mill': {
+    title: 'The Sugar Mill of Funchal',
+    intro: 'The crushing stone’s axle is fixed in the mill floor. Chain gears from the water-wheel gear to reach it exactly, so the stone turns at the right speed and the right way to crush the cane.',
+    fact: 'Around 1500 Madeira was the leading sugar producer of the Atlantic, its cane crushed in water-driven mills on the island’s streams. Manuel I raised its sugar port, Funchal, to the rank of city in 1508.',
+    kind: 'water-mill', liveRatioUpTo: 2,
+  },
   'clock-train': {
     title: 'The Clockmaker’s Train',
     intro: 'Each wheel in the box exists only once. Put two wheels on one axle to compound the reduction, and add an idler if the hand turns the wrong way.',
@@ -58,11 +64,29 @@ export const CONFIGS: Record<string, GearConfig> = {
     fact: 'In a clock’s “motion work” the minute pinion drives a minute wheel, whose own pinion drives the hour wheel on the same centre as the minute hand — the reduction is 12 : 1 so the hour hand goes round twice a day.',
     kind: 'motion-work', liveRatioUpTo: 1,
   },
+  'archimedes-sphere': {
+    title: 'The Sphere of Archimedes',
+    intro: 'The bronze sphere Marcellus carried home from Syracuse has lost some wheels. Work out their tooth counts from the ratio the moon\'s dial must show and the fixed axle distances, then fit them from the box of fragments.',
+    fact: 'In On the Republic Cicero describes the sphere of Archimedes that Marcellus brought back from Syracuse: one turning moved the sun, moon and planets at their own speeds and even showed eclipses. As quaestor in Sicily in 75 BCE, Cicero found Archimedes\' forgotten tomb under the brambles.',
+    kind: 'antikythera', liveRatioUpTo: 0,
+  },
   antikythera: {
     title: 'The Antikythera Mechanism',
     intro: 'A corroded train from the sea: some wheels are lost. Work out their tooth counts from the ratio the dial must show and the fixed axle distances, then fit them from the box of fragments.',
     fact: 'Found in a shipwreck off Antikythera in 1901, the mechanism (c. 100 BC) has about 30 surviving bronze gears; its largest wheel has 223 teeth — the number of lunar months in the Saros eclipse cycle.',
     kind: 'antikythera', liveRatioUpTo: 0,
+  },
+  'hutton-machine': {
+    title: 'A Machine of Peculiar Construction',
+    intro: 'Hutton saw the Earth as a mill that never stops: rivers grind the hills down, the sea spreads the grit in beds, heat lifts them up again. Chain gears from the water-wheel to the millstone’s fixed axle so the stone turns at the right speed and the right way.',
+    fact: 'Hutton’s Theory of the Earth (1788) describes the globe as “a machine of a peculiar construction”, whose decaying parts are always being repaired — the same wheel of erosion, deposition and uplift turning without end.',
+    kind: 'water-mill', liveRatioUpTo: 2,
+  },
+  'brahms-phonograph': {
+    title: 'Edison’s Phonograph in Vienna',
+    intro: 'Edison’s man has brought a phonograph to Vienna to record Brahms. In this puzzle the fast motor drives the wax cylinder through a gear train: each wheel in the box exists only once, so put two wheels on one axle to compound the reduction, and add an idler if the cylinder turns the wrong way.',
+    fact: 'In 1889 Edison sent his engineer Theo Wangemann to Europe with the new wax-cylinder phonograph. That October he recorded Otto von Bismarck’s voice at Friedrichsruh; on 2 December, at the Vienna home of Brahms’s friends the Fellingers, he recorded Brahms playing part of his first Hungarian Dance.',
+    kind: 'clock-train', liveRatioUpTo: 2,
   },
 }
 

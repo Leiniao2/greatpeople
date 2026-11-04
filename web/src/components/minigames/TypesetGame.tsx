@@ -40,12 +40,33 @@ export const CONFIGS: Record<string, TypesetConfig> = {
     fact: "Shen Kuo's Dream Pool Essays (1088) describe Bi Sheng's invention of movable type in the 1040s — four centuries before Gutenberg. Clay sorts were set in a frame of resin and wax, printed, then melted free for reuse.",
     art: 'typeset_bisheng',
   },
+  'systema-naturae': {
+    title: 'Systema Naturae, 1758',
+    intro: "Lars Salvius's shop in Stockholm sets Linnaeus's tenth edition, where humans stand among the primates. Mirrored type, right to left, justified to the measure — then ink it and pull the press.",
+    lines: ['HOMO SAPIENS', 'NOSCE TE IPSUM', 'SYSTEMA NATURAE', 'REGNUM ANIMALE'],
+    fact: "The tenth edition of Systema Naturae (1758), printed in Stockholm by Lars Salvius, is the starting point of the scientific names of animals. In it Linnaeus named our species Homo sapiens and set it in the order Primates; for the genus Homo he gave no anatomy, only the motto 'Nosce te ipsum' — know thyself.",
+    art: 'typeset_case',
+  },
   'franklin-gazette': {
     title: 'The Pennsylvania Gazette',
     intro: "Young Benjamin Franklin sets tomorrow's front page. Mirrored type, right to left, justified to the measure — and the press waits.",
     lines: ['JOIN OR DIE', 'TIME IS MONEY', 'EARLY TO BED EARLY TO RISE', 'POOR RICHARDS ALMANACK'],
     fact: "Franklin was apprenticed to his brother's print shop at twelve and later owned the Pennsylvania Gazette. His 'Join, or Die' woodcut of 1754 was the first political cartoon printed in an American newspaper.",
     art: 'typeset_franklin',
+  },
+  'mendel-versuche': {
+    title: 'Versuche über Pflanzen-Hybriden',
+    intro: "The Natural History Society of Brünn is printing Mendel's pea experiments in its Proceedings. Mirrored type, right to left, justified to the measure — then ink it and pull the press.",
+    lines: ['VERSUCHE UEBER PFLANZEN HYBRIDEN', 'DOMINIREND', 'RECESSIV', 'GREGOR MENDEL'],
+    fact: "Mendel read his paper to the Natural History Society of Brünn on 8 February and 8 March 1865; it was printed in the Society's Verhandlungen for 1865, which appeared in 1866. In it he named the two kinds of trait 'dominirend' and 'recessiv'. He ordered 40 offprints and sent some to leading botanists, among them Carl Nägeli, but almost no one saw what his tables of counts meant.",
+    art: 'typeset_case',
+  },
+  'mockingbird-window-card': {
+    title: 'The Window Card, 1962',
+    intro: 'The picture is ready for the cinemas, and a print shop sets the window card that will hang in the lobby. Mirrored type, right to left, justified to the measure — then ink it and pull a proof.',
+    lines: ['TO KILL A MOCKINGBIRD', 'GREGORY PECK', 'AS ATTICUS FINCH', 'A UNIVERSAL PICTURE'],
+    fact: "To Kill a Mockingbird won three Academy Awards in April 1963: Best Actor for Gregory Peck, Best Adapted Screenplay for Horton Foote, and Best Art Direction for its black-and-white sets of a 1930s Alabama town, built on the Universal lot.",
+    art: 'typeset_case',
   },
 }
 

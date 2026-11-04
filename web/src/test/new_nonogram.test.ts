@@ -76,8 +76,10 @@ describe('nonogram logic', () => {
   })
 
   it('every config is a distinct twist, and each twist uses only its own clue kind', () => {
-    const twists = CONFIG_IDS.map(id => CONFIGS[id].twist)
-    expect(new Set(twists).size).toBe(CONFIG_IDS.length)
+    // The base configs are each a distinct twist; story-themed configs reuse one of them.
+    const BASE = ['ashmolean', 'british-museum', 'louvre', 'wunderkammer']
+    expect(new Set(BASE.map(id => CONFIGS[id].twist)).size).toBe(BASE.length)
+    for (const id of CONFIG_IDS) expect(BASE.map(b => CONFIGS[b].twist), id).toContain(CONFIGS[id].twist)
     const kindOf: Record<Twist, string> = { classic: 'runs', faded: 'hidden', jumbled: 'jumbled', tally: 'total' }
     for (const id of CONFIG_IDS) for (const d of DIFFS) {
       const p = generate(id, d, 5)

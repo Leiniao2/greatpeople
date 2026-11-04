@@ -51,6 +51,24 @@ export const CONFIGS: Record<string, OpticsConfig> = {
     fact: 'In his Book of Optics (c. 1011–1021) Ibn al-Haytham (Alhazen) explained the camera obscura: light from candles through a small hole forms inverted images, proof that light travels in straight lines.',
     kind: 'alhazen',
   },
+  'inti-raymi-fire': {
+    title: 'The New Fire of Inti Raymi',
+    intro: 'Light runs either way: the glass that turns a point of fire into one parallel beam will gather the Sun’s parallel rays back to that point. Set the centre lens and the outer rings so the fire’s light leaves as a single beam — and the Sun’s will meet on the tinder.',
+    fact: 'Garcilaso de la Vega wrote in 1609 that at Inti Raymi, the Inca feast of the Sun, the high priest lit the sacred fire by catching sunlight in a polished concave bracelet and focusing it onto carded cotton. Spanish authorities banned the festival; it was revived at Cusco in 1944.',
+    kind: 'fresnel',
+  },
+  'barbaro-camera': {
+    title: 'Barbaro’s Camera, Venice 1568',
+    intro: 'Daniele Barbaro put a lens in the shutter of a darkened room so painters could trace the scene on paper. Make the opening in the wall so each candle’s image falls on its mark on the back wall — upside down, as the lens throws it.',
+    fact: 'In La pratica della perspettiva (Venice, 1568) the patriarch-elect Daniele Barbaro described fitting a lens into the hole of a camera obscura and tracing the sharp image it cast on paper, a help for drawing in perspective. Titian had painted Barbaro’s portrait some twenty years earlier.',
+    kind: 'alhazen',
+  },
+  'mainz-spectacles': {
+    title: 'Reading Glasses by Candlelight',
+    intro: 'Scribes and correctors worked late by candles, and old eyes needed a glass. Light from each point of a candle travels in straight lines; a convex lens bends them to meet again. Make the opening in the shutter — a bare hole, or a lens where one is needed — so each candle’s image falls on its mark, upside down.',
+    fact: 'Convex reading spectacles were made in northern Italy from about 1290, and by the late 15th century spectacle-makers were at work in German towns such as Nuremberg. Printing multiplied readers, and the trade in reading glasses grew with it.',
+    kind: 'alhazen',
+  },
   'fresnel-lighthouse': {
     title: 'Fresnel’s Lantern, Cordouan 1823',
     intro: 'Turn the lamp’s spreading light into one parallel beam out to sea. The centre takes a lens; the outer zones take thin prism rings that each bend light back by a fixed amount.',

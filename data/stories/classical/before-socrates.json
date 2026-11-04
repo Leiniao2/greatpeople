@@ -33,11 +33,10 @@
           "challenge": {
             "type": "minigame",
             "game": "starchart",
-            "configId": "hipparchus-catalogue",
+            "configId": "anaxagoras-sky",
             "seed": 71046,
-            "instruction": "Anaxagoras: read the stars.",
-            "fact": "Around 450 BCE, Anaxagoras was charged with impiety for saying the sun was a fiery rock larger than the Peloponnese. He was saved from execution by his friend Pericles but exiled from Athens.",
-            "rebalanced": true
+            "instruction": "Anaxagoras turns his students' eyes to the night sky over Athens: these are not gods but stones on fire. Find each figure he names among the stars.",
+            "fact": "Around 450 BCE, Anaxagoras was charged with impiety for saying the sun was a fiery rock larger than the Peloponnese. He was saved from execution by his friend Pericles but exiled from Athens."
           }
         }
       ]
@@ -71,7 +70,7 @@
             "type": "minigame",
             "game": "geometry",
             "configId": "anaxagoras-shadow",
-            "instruction": "Anaxagoras estimated the sun's size using shadows and geometry. Calculate the sun's angle from shadow measurements.",
+            "instruction": "Zeno trusts reason over the senses; Anaxagoras reasons from what he sees. Set the sun so the 2 m post throws a 10 m shadow, and read the sun's height from the shadow alone.",
             "fact": "Anaxagoras correctly deduced that the moon shines with reflected sunlight, that eclipses occur when the moon covers the sun, and that the sun is a glowing rock. All this 2,500 years before telescopes."
           }
         }
@@ -101,11 +100,10 @@
           "challenge": {
             "type": "minigame",
             "game": "bridge",
-            "configId": "nile-crossing",
+            "configId": "ionian-schools",
             "seed": 59870,
-            "instruction": "Anaxagoras: link the islands with bridges.",
-            "fact": "The pre-Socratics were the first to explain nature without myth. Their debate between flux (Heraclitus) and permanence (Parmenides) set up every major argument in Western philosophy that followed.",
-            "rebalanced": true
+            "instruction": "The questions Zeno and Anaxagoras argue over were first asked in the Ionian cities. Link the schools of philosophy so that every city is joined to the rest.",
+            "fact": "The pre-Socratics were the first to explain nature without myth. Their debate between flux (Heraclitus) and permanence (Parmenides) set up every major argument in Western philosophy that followed."
           }
         }
       ]
@@ -120,8 +118,8 @@
           "challenge": {
             "type": "minigame",
             "game": "mirror",
-            "configId": "huygens",
-            "instruction": "Anaxagoras said the sun is a fiery rock that lights the moon. Prove it — use one mirror to route sunlight across three reflections and illuminate the far corner.",
+            "configId": "anaxagoras",
+            "instruction": "Anaxagoras said the moon has no light of its own — it shines with the sun's. Place the mirror so the sun's beam reaches the far corner, as sunlight reaches the moon.",
             "fact": "Anaxagoras was the first to correctly explain lunar phases and eclipses: the moon reflects the sun's light and the earth's shadow causes eclipses. He deduced this by reasoning about light and geometry, 2,500 years before anyone could test it directly."
           }
         },
@@ -129,10 +127,10 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "storysort",
-            "configId": "iliad-achilles",
-            "instruction": "Restore Homer's opening to the Iliad — the invocation of the Muse and the quarrel that sets ten years of war in motion.",
-            "fact": "Homer's Iliad, composed around 750 BCE, was the closest thing ancient Greeks had to a sacred text. Alexander the Great slept with an annotated copy under his pillow, alongside a dagger. The poem covers only 51 days of the decade-long Trojan War, yet captures the whole arc of human conflict."
+            "game": "irrigation",
+            "configId": "anaxagoras-nile",
+            "instruction": "Even the Nile was a question for reason: Anaxagoras said its summer flood was melting snow from Ethiopia. Work the sluices so the flood waters every basin and spares the village.",
+            "fact": "Anaxagoras spent his last years at Lampsacus on the Hellespont. Asked what honour he wanted, he asked that the children have a holiday every year in the month he died — and Lampsacus kept the custom long after."
           }
         },
         {

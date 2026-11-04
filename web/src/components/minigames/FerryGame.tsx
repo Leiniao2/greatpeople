@@ -45,6 +45,12 @@ export const CONFIGS: Record<string, FerryConfig> = {
     intro: 'The boat carries one cart-load and no more. Shuttle the family — and their goods — across in as few trips as you can.',
     fact: "Alcuin's Propositio 19 has a man and a woman, each as heavy as a loaded cart, and two children who together weigh one cart-load; their boat carries only one cart-load. The answer takes nine crossings — the children do most of the rowing.",
   },
+  'rhine-1462': {
+    title: 'The Rhine Ferry, 1462',
+    kind: 'weight',
+    intro: 'Mainz has been sacked and a printer’s household must get out. The ferry carries one cart-load and no more — shuttle the family and their goods across the Rhine in as few trips as you can.',
+    fact: 'On 28 October 1462 Adolph of Nassau stormed Mainz in his war for the archbishopric and drove out many of its citizens. Printers trained there carried the craft away with them: by 1470 there were presses in Cologne, Basel, Rome, Venice and Paris. Gutenberg himself was taken into Adolph’s household with a pension in 1465.',
+  },
   'pilgrims-bandits': {
     title: 'Pilgrims and Bandits',
     kind: 'escort',

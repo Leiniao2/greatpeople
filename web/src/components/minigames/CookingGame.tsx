@@ -90,6 +90,20 @@ export const CONFIGS: Record<string, CookingConfig> = {
     ],
     fact: 'Ancient Egyptians baked over 30 varieties of bread. Workers who built the pyramids received beer and bread as wages. The word "Lord" (hm) in Egyptian is related to "bread-baker."',
   },
+  'pomme-puree': {
+    title: 'Purée Robuchon',
+    question: 'The dish that made Jamin famous. Arrange the steps of Robuchon’s mashed potatoes in the correct order:',
+    steps: [
+      '🥔 Simmer whole ratte potatoes, skins on, from cold salted water',
+      '🔪 Peel them while they are still hot',
+      '⚙️ Pass them through a food mill',
+      '🔥 Dry the purée over low heat, stirring',
+      '🧈 Beat in cold butter, a little at a time',
+      '🥛 Work in hot whole milk in a thin stream',
+      '🕸️ Push it through a fine sieve and season',
+    ],
+    fact: 'Robuchon’s pommes purée — ratte potatoes, a startling quantity of cold butter and hot milk, passed through a fine sieve — became the signature of Jamin in the 1980s and is still served in his restaurants.',
+  },
 }
 
 export default function CookingGame({ configId, difficulty, onWin, onLose }: MinigameProps) {

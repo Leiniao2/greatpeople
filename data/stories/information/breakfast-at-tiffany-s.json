@@ -28,12 +28,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "logicgate",
+            "game": "assembly",
+            "configId": "givenchy-atelier",
             "seed": 1001,
-            "fact": "Audrey Hepburn won an Oscar (Roman Holiday, 1953), Tony (Ondine, 1954), Emmy (Love Among Thieves, 1993), and Grammy (spoken word album, 1993) — becoming one of very few EGOT winners. She also received the Presidential Medal of Freedom.",
-            "autogen": true,
-            "configId": "turing-tape",
-            "instruction": "Audrey Hepburn is the only actress to have won which four major entertainment awards (EGOT)? Wire the gates until the circuit agrees with the table on every row."
+            "instruction": "Paramount needs clothes for Sabrina, and Audrey goes to Paris to find a young couturier called Hubert de Givenchy. Share the work across the atelier so the wardrobe is ready before the cameras roll.",
+            "fact": "Sabrina (1954) won the Academy Award for costume design, but the Oscar went to the studio designer Edith Head, and Givenchy's name was left off the credits. Hepburn made sure he was credited on her later films."
           }
         }
       ]
@@ -51,12 +50,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "assembly",
-            "configId": "jacquard",
+            "game": "expedition",
+            "configId": "unicef-missions",
             "seed": 97081,
-            "instruction": "Audrey Hepburn: run the line to target.",
-            "fact": "'Moon River' won the 1962 Academy Award for Best Original Song. When Paramount executives suggested cutting it, Hepburn reportedly said: 'Over my dead body!' Henry Mancini's melody became her signature.",
-            "rebalanced": true
+            "instruction": "As UNICEF's Goodwill Ambassador, Audrey goes where the cameras rarely go. Plan her missions from home in Switzerland to Ethiopia, then Bangladesh, and at last to Somalia.",
+            "fact": "Hepburn became a UNICEF Goodwill Ambassador in 1988 for a token salary of one dollar a year. As a starving child in Holland in 1945 she had been fed by the Allied relief agencies that were the forerunners of UNICEF."
           }
         }
       ]
@@ -76,12 +74,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "circuit",
-            "configId": "digital-logic",
+            "game": "jigsaw",
+            "configId": "tiffany-window",
             "seed": 34150,
-            "instruction": "Audrey Hepburn: wire the circuit until it lights.",
-            "fact": "Hepburn won the Oscar, Tony, Emmy, and Grammy — one of very few EGOT recipients. But she considered her UNICEF work her greatest achievement, visiting famine-stricken communities in Ethiopia, Sudan, Bangladesh, and Central America in her final years.",
-            "rebalanced": true
+            "instruction": "Dawn on Fifth Avenue, a black dress and a pastry at Tiffany's window — the scene that made Audrey an icon. Swap the pieces until the opening of Breakfast at Tiffany's is whole.",
+            "fact": "'Moon River' won the 1962 Academy Award for Best Original Song. When a Paramount executive suggested cutting it, Hepburn reportedly said: 'Over my dead body!' Henry Mancini wrote the melody to suit her small vocal range."
           }
         },
         {
@@ -93,11 +90,10 @@
           "challenge": {
             "type": "minigame",
             "game": "reporterflee",
-            "configId": "vietnam-press",
+            "configId": "arnhem-1944",
             "seed": 12166,
-            "instruction": "Audrey Hepburn: get the story out alive.",
-            "fact": "Hepburn won the Oscar for Roman Holiday (1953), her film debut. For Breakfast at Tiffany's (1961), she received a nomination but lost to Sophia Loren. The film's song \"Moon River\" won the Oscar for Best Original Song — Henry Mancini wrote it specifically for Hepburn's vocal range.",
-            "rebalanced": true
+            "instruction": "Arnhem, 1944 — long before Hollywood. Help teenage Audrey slip through the occupied streets for the resistance, past the patrols and the mines, and home again.",
+            "fact": "Hepburn spent the war in the Netherlands. In 1942 the occupiers executed her uncle, and her half-brother was sent to a labour camp in Germany. In the Hunger Winter of 1944–45 she lived on scraps, including flour made from tulip bulbs."
           }
         }
       ]
@@ -111,20 +107,20 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "jigsaw",
-            "configId": "mona-lisa",
-            "instruction": "Audrey Hepburn loved the Louvre. Reassemble da Vinci's Mona Lisa — swap tiles until her enigmatic smile is whole again.",
-            "fact": "Da Vinci worked on the Mona Lisa from approximately 1503 to 1517, carrying it with him when he moved to France. X-ray scans reveal three entirely different compositions beneath the final paint."
+            "game": "museum",
+            "configId": "louvre-arrangement",
+            "instruction": "In Funny Face Audrey sweeps down the Louvre's grand staircase beneath the Winged Victory. Hang the masterpieces in the wings where they shine brightest and open the doors.",
+            "fact": "In Funny Face (1957) Hepburn runs down the Daru staircase of the Louvre past the Winged Victory of Samothrace, a red chiffon scarf streaming behind her, while Fred Astaire's photographer shouts 'Take the picture!'"
           }
         },
         {
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "museum",
-            "configId": "louvre-arrangement",
-            "instruction": "Four wings of the Louvre await your curatorial eye. Place each masterpiece in the room that earns the greatest bonus and open the museum doors.",
-            "fact": "Audrey Hepburn was a devoted visitor of European museums and served as a UNICEF ambassador for the last five years of her life, championing education and the arts for children worldwide."
+            "game": "auction",
+            "configId": "givenchy-sale",
+            "instruction": "Years after Audrey's death, her black Givenchy gown goes under the hammer to build schools for poor children in India. Win the starred lots for the cause.",
+            "fact": "In December 2006 the black Givenchy gown from Breakfast at Tiffany's sold at Christie's in London for £467,200, several times its estimate. The money went to City of Joy Aid, Dominique Lapierre's charity, to build schools for children in India."
           }
         },
         {

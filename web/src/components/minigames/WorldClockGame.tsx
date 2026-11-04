@@ -18,9 +18,14 @@ interface ClockConfig {
 export const CITIES: Record<string, CityDef> = {
   'los-angeles': { name: 'Los Angeles', emoji: '🎬', offset: -8 },
   'new-york':    { name: 'New York',    emoji: '🗽', offset: -5 },
+  'las-vegas':   { name: 'Las Vegas',   emoji: '🎰', offset: -8 },
+  'atlanta':     { name: 'Atlanta',     emoji: '📡', offset: -5 },
+  'baghdad':     { name: 'Baghdad',     emoji: '🕌', offset:  3 },
+  'hong-kong':   { name: 'Hong Kong',   emoji: '🌃', offset:  8 },
   'sao-paulo':   { name: 'São Paulo',   emoji: '🌴', offset: -3 },
   'london':      { name: 'London',      emoji: '🎡', offset:  0 },
   'paris':       { name: 'Paris',       emoji: '🗼', offset:  1 },
+  'uppsala':     { name: 'Uppsala',     emoji: '🌼', offset:  1 },
   'cairo':       { name: 'Cairo',       emoji: '🏺', offset:  2 },
   'nairobi':     { name: 'Nairobi',     emoji: '🦒', offset:  3 },
   'dubai':       { name: 'Dubai',       emoji: '🏙️', offset:  4 },
@@ -44,6 +49,17 @@ export const CONFIGS: Record<string, ClockConfig> = {
     ],
     fact: "Magellan's circumnavigation (1519–1522) proved the Earth was round and far larger than expected. The crew discovered that sailing west around the world gained them an extra day — the very phenomenon that makes time zones necessary.",
   },
+  'linnaeus-apostles': {
+    title: "Linnaeus's Apostles",
+    questions: [
+      { fromKey: 'uppsala', fromHour: 12, toKey: 'beijing' },  // 7 PM — Osbeck in China
+      { fromKey: 'uppsala', fromHour:  8, toKey: 'tokyo'   },  // 4 PM — Thunberg in Japan
+      { fromKey: 'uppsala', fromHour:  6, toKey: 'sydney'  },  // 3 PM — Solander at Botany Bay
+      { fromKey: 'cairo',   fromHour:  9, toKey: 'uppsala' },  // 8 AM — Hasselquist and Forsskål in Egypt
+      { fromKey: 'london',  fromHour: 14, toKey: 'uppsala' },  // 3 PM — Solander in London
+    ],
+    fact: "Linnaeus sent some seventeen students — his 'apostles' — round the world: Pehr Osbeck to China, Fredrik Hasselquist to Egypt and Palestine, Pehr Forsskål to Egypt and Arabia, Daniel Solander with Cook to Australia, Carl Peter Thunberg to Japan. Several, Hasselquist and Forsskål among them, died on their journeys.",
+  },
   'telegraph-globe': {
     title: 'Telegraph Time Zones',
     questions: [
@@ -65,6 +81,39 @@ export const CONFIGS: Record<string, ClockConfig> = {
       { fromKey: 'sydney',    fromHour: 20, toKey: 'beijing'   },  // 6 PM
     ],
     fact: "Jet lag occurs because crossing time zones disrupts the body's circadian rhythm. Travelling east is harder than west because it requires advancing your internal clock — the same reason it's easier to stay up late than to fall asleep early.",
+  },
+  'atelier-cities': {
+    title: "Robuchon's Kitchens",
+    questions: [
+      { fromKey: 'paris',     fromHour: 12, toKey: 'tokyo'     },  // 8 PM
+      { fromKey: 'tokyo',     fromHour: 19, toKey: 'las-vegas' },  // 2 AM
+      { fromKey: 'las-vegas', fromHour: 18, toKey: 'london'    },  // 2 AM
+      { fromKey: 'london',    fromHour: 20, toKey: 'hong-kong' },  // 4 AM
+      { fromKey: 'hong-kong', fromHour: 12, toKey: 'paris'     },  // 5 AM
+    ],
+    fact: "From Paris and Tokyo in 2003, L'Atelier de Joël Robuchon spread to Las Vegas, London, Hong Kong, New York and beyond. With restaurants on three continents, Robuchon held more Michelin stars than any other chef — over thirty at his peak.",
+  },
+  'baghdad-live': {
+    title: 'Live from Baghdad',
+    questions: [
+      { fromKey: 'baghdad',  fromHour:  2, toKey: 'atlanta'  },  // 6 PM
+      { fromKey: 'baghdad',  fromHour:  3, toKey: 'london'   },  // 12 AM
+      { fromKey: 'atlanta',  fromHour: 19, toKey: 'tokyo'    },  // 9 AM
+      { fromKey: 'baghdad',  fromHour:  9, toKey: 'new-york' },  // 1 AM
+      { fromKey: 'london',   fromHour: 12, toKey: 'baghdad'  },  // 3 PM
+    ],
+    fact: "The air war began at about 2:30 a.m. Baghdad time on 17 January 1991 — 6:30 p.m. the evening before at CNN's headquarters in Atlanta — so Americans watched the first night of bombing live during the evening news, and satellites carried the same pictures around the world.",
+  },
+  'earhart-atlantic': {
+    title: 'Flying Into the Sunrise',
+    questions: [
+      { fromKey: 'new-york',    fromHour: 19, toKey: 'london'      },  // 12 AM
+      { fromKey: 'london',      fromHour: 13, toKey: 'new-york'    },  // 8 AM
+      { fromKey: 'london',      fromHour: 18, toKey: 'paris'       },  // 7 PM
+      { fromKey: 'los-angeles', fromHour:  9, toKey: 'new-york'    },  // 12 PM
+      { fromKey: 'paris',       fromHour: 10, toKey: 'los-angeles' },  // 1 AM
+    ],
+    fact: "Earhart took off from Harbour Grace, Newfoundland, at about 7:12 pm local time on 20 May 1932 and landed in a pasture at Culmore, near Londonderry, 14 hours 56 minutes later. Flying east, she lost hours to the clock: Newfoundland kept time three and a half hours behind Greenwich.",
   },
 }
 

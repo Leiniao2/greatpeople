@@ -43,6 +43,27 @@ export const CONFIGS: Record<string, DeployConfig> = {
     waves: [{ count: 4, hp: 65, speed: 1 }, { count: 5, hp: 90, speed: 1 }],
     fact: 'At Gaugamela, Alexander defeated a Persian army five times larger by concentrating force on a weakened point and striking before the Persians could encircle him. He deployed obliquely to lure their cavalry wide.',
   },
+  'attica-446': {
+    title: 'Attica, 446 BCE — Pleistoanax at Eleusis',
+    cols: 7, rows: 4, pathRow: 2, budget: 100,
+    weapons: ['archer'],
+    waves: [{ count: 5, hp: 55, speed: 1 }, { count: 4, hp: 75, speed: 2 }],
+    fact: 'When Megara revolted in 446 BCE, King Pleistoanax led the Peloponnesian army as far as Eleusis and then turned back without a battle. Plutarch says Pericles\' accounts that year showed ten talents spent "for a necessary purpose" — and the Athenians asked no questions.',
+  },
+  'dara-530': {
+    title: 'Battle of Dara — Belisarius, 530',
+    cols: 7, rows: 4, pathRow: 2, budget: 100,
+    weapons: ['archer'],
+    waves: [{ count: 5, hp: 55, speed: 1 }, { count: 4, hp: 75, speed: 2 }],
+    fact: 'At Dara in 530 Belisarius, with about 25,000 men against some 50,000 Persians, dug a trench with gaps before the city and posted Hun horse archers in its angles. When the Persian wings broke through, Pharas and his Heruli came out from behind a hill into their rear and the Persian army fled.',
+  },
+  'wei-frontier': {
+    title: 'The Northern Wei Frontier — against the Rouran',
+    cols: 8, rows: 4, pathRow: 2, budget: 120,
+    weapons: ['archer', 'catapult'],
+    waves: [{ count: 4, hp: 65, speed: 1 }, { count: 5, hp: 90, speed: 1 }],
+    fact: 'The Rouran, horse nomads of the Mongolian steppe, raided the Northern Wei for more than a century. In 423 the Wei began a long wall of more than 2,000 li to keep them out, and Wei armies answered with great campaigns north into the steppe.',
+  },
   'waterloo-artillery': {
     title: 'Battle of Waterloo — Napoleon, 1815',
     cols: 8, rows: 4, pathRow: 1, budget: 160,

@@ -43,6 +43,12 @@ export const CONFIGS: Record<string, HanoiConfig> = {
     fact: 'Édouard Lucas sold the puzzle in 1883 as "La Tour d\'Hanoï" under the name "Professor N. Claus de Siam" — an anagram of Lucas d\'Amiens. His legend tells of priests in a temple at Benares moving 64 golden disks; at one move a second that takes 2⁶⁴ − 1 seconds, about 585 billion years.',
     pegs: 3, disks: [4, 5, 5, 6], palette: ['#f6d365', '#f1b84b', '#e39b32', '#cf7f22', '#b5651d', '#94501a', '#743d15', '#5a2f10'],
   },
+  'zeno-dichotomy': {
+    title: 'The Dichotomy',
+    intro: 'Before the whole stack can move, the smaller stack above it must move — and before that, a smaller one still. Bring the stack to the marked peg, one disk at a time, never a larger disk on a smaller one.',
+    fact: 'Aristotle preserves Zeno\'s Dichotomy: to cross any distance you must first cross half of it, then half of what is left, and so without end. The tower\'s regress, unlike Zeno\'s, bottoms out — n disks always take exactly 2ⁿ − 1 moves.',
+    pegs: 3, disks: [4, 5, 5, 6], palette: ['#e8e2d0', '#d6cba9', '#c2b182', '#ab965f', '#927b44', '#786332', '#5f4d26', '#48391c'],
+  },
   reve: {
     title: "The Reve's Cheeses",
     intro: 'Four stools this time. Move the cheeses to the marked stool, never a larger cheese on a smaller one — the extra stool makes far shorter solutions possible.',
@@ -61,11 +67,29 @@ export const CONFIGS: Record<string, HanoiConfig> = {
     fact: 'The one-way "cyclic" Tower of Hanoi was analysed by Atkinson in 1981. Restricting moves to one direction makes the shortest solution grow roughly as (1 + √3)ⁿ instead of 2ⁿ — moving 4 disks one step clockwise takes 43 moves instead of 15.',
     cyclic: true, pegs: 3, disks: [3, 3, 3, 4], palette: ['#f5b7b1', '#ec7063', '#cb4335', '#943126', '#78281f', '#641e16', '#4a1610', '#33100b'],
   },
+  'rue-cambon': {
+    title: 'The Hatboxes of Rue Cambon',
+    intro: 'Move the stack of hatboxes to the marked shelf, one box at a time — never a larger box on a smaller one, or the hats inside are crushed.',
+    fact: 'Gabrielle "Coco" Chanel began making hats in Étienne Balsan’s Paris flat on the boulevard Malesherbes in 1909. In 1910, with money from Arthur "Boy" Capel, she opened Chanel Modes at 21 rue Cambon, selling straw boaters to actresses.',
+    pegs: 3, disks: [4, 5, 5, 6], palette: ['#f5f5f4', '#e7e5e4', '#d6d3d1', '#a8a29e', '#78716c', '#57534e', '#44403c', '#1c1917'],
+  },
+  'queens-ware': {
+    title: 'The Queen’s Service',
+    intro: 'Carry the stack of cream-coloured dishes to the marked bench, one dish at a time — never a larger dish on a smaller one, or the stack topples and the order is lost.',
+    fact: 'In 1765 Queen Charlotte ordered a tea service of Josiah Wedgwood’s cream-coloured earthenware. He won the title “Potter to Her Majesty” and renamed the ware Queen’s Ware — then sold it to everyone who wanted to eat like a queen.',
+    pegs: 3, disks: [4, 5, 5, 6], palette: ['#fbf6e4', '#f5ecc9', '#eee0ad', '#e5d291', '#d9c277', '#c9ae5f', '#b4984b', '#9a7f3a'],
+  },
   'narrow-bridge': {
     title: 'The Narrow Bridge',
     intro: 'The pegs stand in a row across a narrow bridge: a disk may only step to the neighbouring peg — never straight from the first peg to the last. Bring the stack to the marked peg.',
     fact: 'This "adjacent" or linear Tower of Hanoi was posed by Scorer, Grundy and Smith in 1944. Carrying n disks from one end to the other takes 3ⁿ − 1 moves, and the solution passes through every one of the 3ⁿ legal positions exactly once.',
     adjacent: true, pegs: 3, disks: [3, 3, 3, 4], palette: ['#c7d2fe', '#a5b4fc', '#818cf8', '#6366f1', '#4f46e5', '#4338ca', '#3730a3', '#312e81'],
+  },
+  'hittite-succession': {
+    title: 'The Order of Succession',
+    intro: 'The law fixes the order of rank, and no one may break it: move the royal line to the marked peg one disk at a time, and never set a greater disk above a lesser one.',
+    fact: 'The Edict of Telepinu sets the order: a king’s son of the first rank becomes king; if there is none, a son of the second rank; and if there is no prince at all, a husband is to be taken for a first-rank daughter, and he becomes king.',
+    pegs: 3, disks: [4, 5, 5, 6], palette: ['#f3d9a4', '#e6c07a', '#d4a556', '#bf8a3c', '#a5712c', '#8a5b22', '#6e461a', '#533413'],
   },
 }
 

@@ -85,6 +85,34 @@ export const CONFIGS: Record<string, TangramConfig> = {
     fact: 'The name qiqiao ban means “seven boards of skill.” Qing-era books such as the Qiqiao tu he bi (1813) printed hundreds of figures — people, animals, boats and buildings — with the solutions in a separate volume.',
     shapes: ['crane', 'cat', 'rabbit', 'horse', 'carp'],
   },
+  'hattusa-monuments': {
+    title: 'Monuments of Hattusa',
+    intro: 'The masons have cut the blocks for a new monument, but a stray block from another site has got into the tray. Fill the outline exactly — one block will be left over.',
+    twist: 'decoy',
+    fact: 'The Edict of Telepinu survives only on broken clay tablets from Hattusa — no complete copy, in Hittite or in its Akkadian version, has ever been found, and scholars have pieced its text together from the fragments.',
+    shapes: ['stele', 'altar', 'house', 'twin-peaks', 'kneeling'],
+  },
+  'nineveh-reliefs': {
+    title: 'Shards from the North Palace',
+    intro: 'The fire has baked every fragment hard: a piece left wholly inside the outline sets fast as soon as you pick up another. Only a few can be prised loose again — set each with care.',
+    twist: 'lacquer',
+    fact: 'Ashurbanipal lined his North Palace at Nineveh with carved stone reliefs: the royal lion hunts with their horses and chariots, and the king and queen feasting in a garden. Excavated in the 1850s, many are now in the British Museum.',
+    shapes: ['stele', 'altar', 'horse', 'table', 'house'],
+  },
+  'silkworm-mother': {
+    title: 'What the Patient See',
+    intro: 'Study the silhouette while it is shown — it then fades, and you must fill it from memory with all seven boards. A few short peeks are allowed.',
+    twist: 'memory',
+    fact: 'Lei Zu is honoured in China as Xiling Shi and as the Silkworm Mother; emperors and empresses made offerings to her at an altar to sericulture, and the Qing court kept one at the Altar of the First Silkworm in Beijing’s Beihai park.',
+    shapes: ['teapot', 'kneeling', 'crane', 'carp', 'pine'],
+  },
+  'jina-meditation': {
+    title: 'No Needless Movement',
+    intro: 'A Jain monk moves with care so as to harm nothing: every quarter-turn or flip spends one turn from a small budget. Plan each board’s turns before you place it.',
+    twist: 'turns',
+    fact: 'Jain images show the Jinas in one of two postures only: seated in meditation, or standing upright with arms hanging straight down — the kayotsarga, “abandoning the body”, in which Mahavira is said to have stood unmoving through long fasts.',
+    shapes: ['sage', 'person', 'stupa', 'altar', 'kneeling'],
+  },
 }
 
 // ── Pieces ─────────────────────────────────────────────────────────────────────

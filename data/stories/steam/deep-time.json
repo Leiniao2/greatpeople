@@ -28,12 +28,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "truss",
-            "configId": "roman-arch",
+            "game": "jigsaw",
+            "configId": "jedburgh-unconformity",
             "seed": 92254,
-            "instruction": "James Hutton: build a truss that holds.",
-            "fact": "James Hutton (1726–1797) is called the 'Father of Modern Geology' for his Theory of the Earth (1788), which proposed that the Earth's features were shaped by slow, ongoing natural processes — not a single catastrophic event.",
-            "rebalanced": true
+            "instruction": "Before Siccar Point, Hutton had found the same broken join at Jedburgh, and his friend John Clerk drew it. Piece the drawing back together and see what he saw: flat sandstone laid across layers stood on end.",
+            "fact": "James Hutton (1726–1797) is called the 'Father of Modern Geology' for his Theory of the Earth (1788), which proposed that the Earth's features were shaped by slow, ongoing natural processes — not a single catastrophic event."
           }
         }
       ]
@@ -57,15 +56,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "telegraph",
+            "game": "debate",
+            "configId": "hutton-kirwan",
             "seed": 1007,
-            "fact": "The geological timescale assembled during and after Hutton's lifetime required his key insight: processes we observe today — erosion, deposition, volcanism — are the same ones that shaped ancient rocks. If the present is the key to the past, the past must be unimaginably long.",
-            "autogen": true,
-            "configId": "signal-lamp",
-            "params": {
-              "plaintext": "THE PRESENT IS THE KEY TO THE PAST"
-            },
-            "instruction": "A geologist's maxim comes down the line. Read the lamp."
+            "instruction": "Playfair is right that the critics are coming. Defend the Theory of the Earth against Richard Kirwan with the evidence of the rocks, not with defiance.",
+            "fact": "The geological timescale assembled during and after Hutton's lifetime required his key insight: processes we observe today — erosion, deposition, volcanism — are the same ones that shaped ancient rocks. If the present is the key to the past, the past must be unimaginably long."
           }
         }
       ]
@@ -85,12 +80,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "worldclock",
-            "configId": "magellan-voyage",
+            "game": "orbit",
+            "configId": "halley-return",
             "seed": 17924,
-            "instruction": "James Hutton: convert the times across the globe.",
-            "fact": "Hutton realised that the volume of sediment deposited in river deltas must equal the volume of rock eroded from mountains — and that the mountains were still there. The rates of erosion he could observe were so slow that the cycle must have repeated millions of times. Geometry became an argument for deep time.",
-            "rebalanced": true
+            "instruction": "Hutton holds that the Earth renews itself the way the planets keep their courses — and in 1759 Halley's comet came back exactly as foretold. Set the comet's speed so it returns on time, the kind of law Hutton wants for rocks.",
+            "fact": "Hutton realised that the volume of sediment deposited in river deltas must equal the volume of rock eroded from mountains — and that the mountains were still there. The rates of erosion he could observe were so slow that the cycle must have repeated millions of times. Geometry became an argument for deep time."
           }
         }
       ]
@@ -108,12 +102,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "compose",
-            "configId": "vivaldi-seasons",
+            "game": "rotation",
+            "configId": "norfolk",
             "seed": 88192,
-            "instruction": "James Hutton: arrange the movements.",
-            "fact": "Hutton's 1788 paper 'Theory of the Earth' proposed that the planet was a self-maintaining system — soil feeds plants, erosion renews the soil, uplift renews the mountains. This 'steady-state' Earth anticipated modern geology and ecology by two centuries. James Lovelock's Gaia hypothesis of 1972 owes an explicit debt to Hutton.",
-            "rebalanced": true
+            "instruction": "Hutton was a farmer before he was a geologist, and the soil taught him that the Earth feeds itself. Run his Norfolk rotation so every field keeps yielding, year after year, with none left to rest.",
+            "fact": "Hutton's 1788 paper 'Theory of the Earth' proposed that the planet was a self-maintaining system — soil feeds plants, erosion renews the soil, uplift renews the mountains. This 'steady-state' Earth anticipated modern geology and ecology by two centuries. James Lovelock's Gaia hypothesis of 1972 owes an explicit debt to Hutton."
           }
         },
         {
@@ -127,11 +120,10 @@
           "challenge": {
             "type": "minigame",
             "game": "gears",
-            "configId": "antikythera",
+            "configId": "hutton-machine",
             "seed": 81982,
-            "instruction": "James Hutton: build the gear train.",
-            "fact": "Darwin read Lyell's Principles of Geology on the HMS Beagle and was transformed by it. The logic — that gradual, uniform processes over immense time can produce dramatic change — applies equally to geology and to evolution. Darwin acknowledged: 'The idea that geology had done for rocks, I wished to do for species.' Hutton's deep time was the foundation Darwin needed.",
-            "rebalanced": true
+            "instruction": "\"It is a machine,\" Hutton says. Build his machine in miniature: gear the water-wheel to the millstone so it turns true, as rivers, seas and fire turn the Earth.",
+            "fact": "Darwin read Lyell's Principles of Geology on the HMS Beagle and was transformed by it. The logic — that gradual, uniform processes over immense time can produce dramatic change — applies equally to geology and to evolution. Darwin acknowledged: 'The idea that geology had done for rocks, I wished to do for species.' Hutton's deep time was the foundation Darwin needed."
           }
         },
         {

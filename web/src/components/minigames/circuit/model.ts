@@ -117,6 +117,16 @@ export const THEMES = {
     blurb: 'Long series lines: every key on the way must close, and a single open one silences the whole line.',
     gang: [1, 2], nc: 0.3, bare: 0.25, series: 0.72, extraLamps: 0,
   },
+  'billie-jean': {
+    title: 'The Billie Jean pavement',
+    blurb: 'Each paving stone lights as Michael steps on it. Throw the switches so exactly the marked stones glow — a closed bare branch beside a stone steals its current.',
+    gang: [1, 2], nc: 0.2, bare: 0.6, series: 0.35, extraLamps: 1,
+  },
+  'four-wire': {
+    title: "CNN's four-wire",
+    blurb: 'One leased line carries the voices out of Baghdad. Every relay on the way must close, and a single open one takes CNN off the air.',
+    gang: [1, 2], nc: 0.3, bare: 0.25, series: 0.72, extraLamps: 0,
+  },
 } satisfies Record<string, Theme>
 
 export type ThemeKey = keyof typeof THEMES

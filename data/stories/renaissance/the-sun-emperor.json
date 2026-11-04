@@ -25,12 +25,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "ferry",
-            "configId": "brothers-sisters",
+            "game": "rotation",
+            "configId": "chinampa",
             "seed": 22108,
-            "instruction": "Montezuma II: get everyone safely across.",
-            "fact": "Tenochtitlan, built on an island in Lake Texcoco, was one of the largest cities in the world in 1500 — home to 200,000–300,000 people, larger than London, Paris, or any city in Spain. When Hernán Cortés' soldiers first saw it, they wrote that they thought they were dreaming. Its causeways, aqueducts, and floating gardens had no parallel in European experience.",
-            "rebalanced": true
+            "instruction": "Tenochtitlan feeds 200,000 people from gardens built out into the lake. Plan the chinampa fields season by season to bring in the maize.",
+            "fact": "Tenochtitlan, built on an island in Lake Texcoco, was one of the largest cities in the world in 1500 — home to 200,000–300,000 people, larger than London, Paris, or any city in Spain. When Hernán Cortés' soldiers first saw it, they wrote that they thought they were dreaming. Its causeways, aqueducts, and floating gardens had no parallel in European experience."
           }
         }
       ]
@@ -48,15 +47,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "scytale",
+            "game": "colormix",
+            "configId": "nocheztli-red",
             "seed": 1014,
-            "fact": "The story that Montezuma mistook Cortés for Quetzalcoatl appears in later accounts heavily influenced by Spanish interpreters and indigenous collaborators with reasons to justify the conquest. Modern historians believe Montezuma was an experienced and politically sophisticated ruler who recognized the Spanish as dangerous strangers — not gods. He attempted to manage the threat diplomatically before it overwhelmed him.",
-            "autogen": true,
-            "configId": "spartan-rod",
-            "params": {
-              "plaintext": "CORTES IS A MAN NOT A GOD"
-            },
-            "instruction": "A message for Montezuma is wound round a rod. Find the rod that lines it up."
+            "instruction": "Tribute pours in from every province — gold, jade, jaguar skins, and bags of cochineal from Oaxaca. Mix the crimson the tribute dye makes.",
+            "fact": "Montezuma II pushed the empire's wars south into Oaxaca and east toward the Gulf coast. The great Sun Stone, now usually dated to his reign, was dug up beneath Mexico City's main square in 1790."
           }
         }
       ]
@@ -74,12 +69,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "knightstour",
-            "configId": "turk",
+            "game": "painting",
+            "configId": "envoys-report",
             "seed": 47589,
-            "instruction": "Montezuma II: tour every square with the knight.",
-            "fact": "The conquest of the Aztec Empire was not a European conquest of indigenous people — it was a coalition war. Cortés' key allies, the Tlaxcalans, had been enemies of the Aztec Triple Alliance for generations and contributed far more warriors to the siege of Tenochtitlan than the Spanish did. The Aztec empire fell to its own enemies as much as to European weapons.",
-            "rebalanced": true
+            "instruction": "Strangers have landed on the coast in floating houses. Montezuma's envoys bring their report painted on cloth — paint the ships as they saw them.",
+            "fact": "The story that Montezuma mistook Cortés for Quetzalcoatl appears in later accounts heavily influenced by Spanish interpreters and indigenous collaborators with reasons to justify the conquest. Modern historians believe Montezuma was an experienced and politically sophisticated ruler who recognized the Spanish as dangerous strangers — not gods. He attempted to manage the threat diplomatically before it overwhelmed him."
           }
         },
         {
@@ -90,12 +84,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "riverrun",
-            "configId": "yangtze-gorges",
+            "game": "konigsberg",
+            "configId": "tenochtitlan-canals",
             "seed": 63100,
-            "instruction": "Montezuma II: run the river safely.",
-            "fact": "The Spanish soldier Bernal Díaz del Castillo wrote that the Tlatelolco market was 'like the squares of Salamanca, but twice as big, crowded with people, and more orderly.' It traded everything: food, textiles, gold, slaves, feathers, medicine, and pottery. Every item had a fixed price and market inspectors enforced fair trading.",
-            "rebalanced": true
+            "instruction": "Montezuma is a hostage in his own palace, and after the massacre the city rises. The warriors take up the canal bridges to trap the Spaniards — lift or lay as few as you must so a runner can still cross every one.",
+            "fact": "The conquest of the Aztec Empire was not a European conquest of indigenous people — it was a coalition war. Cortés' key allies, the Tlaxcalans, had been enemies of the Aztec Triple Alliance for generations and contributed far more warriors to the siege of Tenochtitlan than the Spanish did. The Aztec empire fell to its own enemies as much as to European weapons."
           }
         }
       ]
@@ -124,11 +117,10 @@
           "challenge": {
             "type": "minigame",
             "game": "snake",
-            "configId": "incense-route",
+            "configId": "pochteca",
             "seed": 18936,
-            "instruction": "Montezuma II: lead the caravan to every load.",
-            "fact": "The Spanish justified conquest through legal documents read aloud in Spanish to people who spoke Nahuatl — the Requerimiento, which declared Spanish sovereignty and demanded submission, promising war if refused. It was a legal fiction that satisfied Spanish lawyers while meaning nothing to those who heard it. The document was sometimes read to empty beaches before landing.",
-            "rebalanced": true
+            "instruction": "The empire falls, but the markets Cortés marvelled at were stocked by merchants who walked. Lead the porters' line to every load the Tlatelolco market has ordered.",
+            "fact": "The Spanish soldier Bernal Díaz del Castillo wrote that the Tlatelolco market was 'like the squares of Salamanca, but twice as big, crowded with people, and more orderly.' It traded everything: food, textiles, gold, slaves, feathers, medicine, and pottery. Every item had a fixed price and market inspectors enforced fair trading."
           }
         },
         {

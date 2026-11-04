@@ -68,6 +68,12 @@ export const CONFIGS: Record<string, SurveyConfig> = {
     fact: 'Plutarch’s Banquet of the Seven Sages has Thales measure a pyramid by planting a stick at the end of its shadow: the sun’s rays make two similar triangles, so pyramid is to stick as shadow is to shadow.',
     mode: 'ratio',
   },
+  'giza-lesson': {
+    title: 'A Lesson at Giza',
+    intro: 'A teacher’s exercise beside the new pyramids: set a staff in the sand and wait for the right hour. When the pyramid’s shadow runs square off a face and clears the base, height = (half base + rope) × staff ÷ staff’s shadow. A slanted shadow gives a short answer.',
+    fact: 'Egyptian builders fixed a pyramid’s slope by its seked — how many palms the face runs in for every cubit it rises — and the Rhind Mathematical Papyrus (c. 1550 BCE) sets such sums as exercises for students. Measuring a pyramid by its shadow is a Greek story, told of Thales two thousand years after Giza was built.',
+    mode: 'ratio',
+  },
   'thales-moment': {
     title: 'Thales’ Moment',
     intro: 'No arithmetic this time: at the moment a staff’s shadow equals the staff, the pyramid’s height is half its base plus the rope. Choose the day and the hour when the sun stands at 45° and the shadow runs square off a face.',

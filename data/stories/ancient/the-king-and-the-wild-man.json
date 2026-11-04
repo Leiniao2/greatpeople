@@ -42,12 +42,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "abacus",
-            "configId": "ming-shop",
+            "game": "roundup",
+            "configId": "enkidu-gazelles",
             "seed": 66515,
-            "instruction": "Gilgamesh: reckon it on the abacus.",
-            "fact": "The Epic of Gilgamesh, preserved on twelve clay tablets, predates Homer's Iliad by at least 1,500 years. It contains a great flood story remarkably similar to Noah's in the Bible.",
-            "rebalanced": true
+            "instruction": "Enkidu runs with the gazelles and fills in the trapper's pits. Ring the herd at the watering hole so that none strays toward the snares.",
+            "fact": "The Epic of Gilgamesh, preserved on twelve clay tablets, predates Homer's Iliad by at least 1,500 years. It contains a great flood story remarkably similar to Noah's in the Bible."
           }
         }
       ]
@@ -71,12 +70,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "nonogram",
-            "configId": "british-museum",
+            "game": "siege",
+            "configId": "uruk-aga",
             "seed": 69345,
-            "instruction": "Gilgamesh: reveal the picture from its clues.",
-            "fact": "Babylonian mathematicians knew the Pythagorean theorem over a thousand years before Pythagoras. Plimpton 322, a clay tablet from 1800 BCE, lists Pythagorean triples.",
-            "rebalanced": true
+            "instruction": "Gilgamesh boasts of the walls he built and the battles he won. Aga of Kish has come against Uruk — hold the walls.",
+            "fact": "The Sumerian King List names Gilgamesh as the fifth king of the First Dynasty of Uruk; if he lived, he reigned around 2700 BCE. The kings of Ur, six centuries later, still called him their brother."
           }
         },
         {
@@ -87,12 +85,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "caravan",
-            "configId": "mansa-musa",
+            "game": "royalur",
+            "configId": "uruk",
             "seed": 46094,
-            "instruction": "Gilgamesh: turn a profit along the route.",
-            "fact": "Enkidu's journey from wilderness to brotherhood mirrors humanity's own emergence — his taming by a priestess represents the Mesopotamian belief that civilisation elevated human beings above the animals they had once lived among.",
-            "rebalanced": true
+            "instruction": "In the shepherds' camp Shamhat teaches Enkidu the ways of men — bread, beer and the games of the city. Beat her at twenty squares.",
+            "fact": "Enkidu's journey from wilderness to brotherhood mirrors humanity's own emergence — his taming by a priestess represents the Mesopotamian belief that civilisation elevated human beings above the animals they had once lived among."
           }
         }
       ]
@@ -122,12 +119,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "fieldsurvey",
-            "configId": "fossil-cliffs",
+            "game": "battlearena",
+            "configId": "cedar-forest",
             "seed": 8015,
-            "instruction": "Gilgamesh: survey the field.",
-            "fact": "Enkidu and Gilgamesh fought briefly at the city gate, but quickly became the closest of friends. Enkidu's death from divine punishment drives the epic's second half and Gilgamesh's desperate quest for immortality.",
-            "rebalanced": true
+            "instruction": "Brothers now, Gilgamesh and Enkidu go out in search of glory. Fight through the lion of the pass, Humbaba of the Cedar Forest and the Bull of Heaven.",
+            "fact": "Enkidu and Gilgamesh fought briefly at the city gate, but quickly became the closest of friends. Enkidu's death from divine punishment drives the epic's second half and Gilgamesh's desperate quest for immortality."
           }
         },
         {
@@ -144,12 +140,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "hanoi",
-            "configId": "benares",
+            "game": "iceslide",
+            "configId": "mashu-passes",
             "seed": 17021,
-            "instruction": "Gilgamesh: move the stack of disks.",
-            "fact": "Uruk was one of the world's earliest cities — home to 50,000–80,000 people in 3000 BCE. Gilgamesh was its legendary king and the builder of its great walls.",
-            "rebalanced": true
+            "instruction": "Enkidu is dead, and Gilgamesh will not accept it. Cross the frozen passes to the mountain of the sun, on the road to the one man who escaped death.",
+            "fact": "Gilgamesh's search leads to Utnapishtim, survivor of the Flood, whom the gods made immortal. His account of the deluge in Tablet XI is so close to the story of Noah that George Smith's reading of it in London in 1872 caused a sensation."
           }
         }
       ]
@@ -167,22 +162,21 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "magicsquare",
-            "configId": "jaina-yantra",
+            "game": "storysort",
+            "configId": "gilgamesh-serpent",
             "seed": 56267,
-            "instruction": "Gilgamesh: complete the magic square.",
-            "fact": "Babylonian clay tablets recorded grain prices, interest rates and commodity contracts — the world's first commodity futures market. Cuneiform records from 600 BCE show silver-denominated wheat prices responding to floods and harvests.",
-            "rebalanced": true
+            "instruction": "The quest ends beside a pool. Put the story of the plant of youth back in order, from the bottom of the sea to the serpent.",
+            "fact": "Even in failure the epic gives its answer: the plant is lost, but Gilgamesh comes home and shows Urshanabi the walls of Uruk — the work of his that will last."
           }
         },
         {
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "pipeline",
-            "configId": "mesopotamia-canal",
-            "instruction": "Route Sennacherib's canal to bring water to Nineveh — the world's first long-distance water supply, built 500 years before the Roman aqueducts.",
-            "fact": "King Sennacherib of Assyria built an 80 km canal system supplying Nineveh around 700 BCE, complete with a proto-aqueduct bridge over a valley. It was the world's first known long-distance water supply."
+            "game": "wallbuilder",
+            "configId": "uruk-walls",
+            "instruction": "Gilgamesh sees the walls of Uruk with new eyes. Lay the brickwork true and keep the gates open — this is what will outlast him.",
+            "fact": "The epic ends where it began, on the wall of Uruk: “Go up on the wall and walk around… a square mile is city, a square mile date-grove, a square mile clay-pit, half a square mile the temple of Ishtar.”"
           }
         },
         {

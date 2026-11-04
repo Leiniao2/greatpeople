@@ -29,11 +29,15 @@
           "challenge": {
             "type": "minigame",
             "game": "lamplighter",
-            "configId": "embankment",
+            "configId": "peter-street",
             "seed": 55279,
-            "instruction": "Sergei Eisenstein: light every lamp.",
+            "instruction": "Before he picks up a camera, Eisenstein lights a stage. Bring every lamp of the Proletkult rig up to full for the opening night.",
             "fact": "Eisenstein believed that two images in sequence create a third meaning absent from either — as in the Kuleshov effect. A shot of a man's neutral face followed by soup suggests hunger; followed by a coffin suggests grief. Same face, different meanings.",
-            "rebalanced": true
+            "params": {
+              "title": "The Proletkult Stage, 1923",
+              "intro": "The stage lamps have three notches — dark, dim, bright. Each tap turns a lamp and its four neighbours up one notch, and bright wraps round to dark. Bring every lamp to bright.",
+              "fact": "At Moscow's Proletkult Theatre in 1923 Eisenstein staged Ostrovsky's comedy Enough Stupidity in Every Wise Man as a 'montage of attractions' — circus turns, a tightrope walk and his first film, the short Glumov's Diary."
+            }
           }
         }
       ]
@@ -76,7 +80,7 @@
             "type": "minigame",
             "game": "sudoku",
             "configId": "eisenstein-grid",
-            "instruction": "Eisenstein's montage: juxtapose shots so no image repeats the same idea in the same context — meaning emerges between them. Fill the grid so each row, column, and 2×2 box contains 1–4 exactly once.",
+            "instruction": "Montage means no shot repeats the idea beside it. Fill the grid so each row, column and box holds every number once — and let the meaning emerge between them.",
             "fact": "Eisenstein's montage theory holds that meaning is created between shots, not within them. The Kuleshov effect proves it: the same neutral face, cut to food, reads as hunger; cut to a coffin, reads as grief. The Odessa Steps sequence in Battleship Potemkin (1925) remains the most studied example of this principle."
           }
         }
@@ -91,12 +95,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "rhythm",
+            "game": "debate",
             "seed": 1015,
             "fact": "Battleship Potemkin (1925) was banned in the UK until 1954, in Nazi Germany, and across much of Europe for portraying mutiny as heroic. In the UK, the censor wrote it presented 'Bolshevik propaganda' too powerfully. The bans made the film legendary — its Odessa Steps sequence is still cited as one of the greatest in film history.",
-            "autogen": true,
-            "configId": "beethoven-motif",
-            "instruction": "Eisenstein's film Battleship Potemkin was banned in several countries including the United Kingdom upon its 1925 release for its revolutionary political content. Learn the phrase and play it back, note for note."
+            "configId": "eisenstein-montage",
+            "instruction": "Potemkin is banned abroad and argued over at home. Answer the critics with the ideas that made it: montage, the mass as hero, the Kino-Fist."
           }
         },
         {

@@ -39,6 +39,19 @@ interface CargoConfig {
 }
 
 export const CONFIGS: Record<string, CargoConfig> = {
+  'calicut-junk': {
+    title: "The Sultan's Gifts, Calicut",
+    intro: "The Sultan of Delhi's gifts for the emperor of China go aboard the junk. Stow every bale and chest so she floats level — heavy cargo far to one side makes her list. Keep the trim inside the mark.",
+    fact: 'In the early 1340s Sultan Muhammad bin Tughluq sent Ibn Battuta as his envoy to the Yuan emperor of China. At Calicut a storm wrecked the junk carrying the gifts while he was still ashore, and the smaller ship with his own goods sailed on without him.',
+    mode: 'balance',
+    goods: [
+      { name: 'Robes of honour', icon: '👘', color: '#9c5a8a', density: 1 },
+      { name: 'Brocade', icon: '🧶', color: '#c08a3e', density: 2 },
+      { name: 'Silver vessels', icon: '🏺', color: '#a8adb4', density: 3 },
+      { name: 'Swords', icon: '🗡️', color: '#5d636b', density: 4 },
+    ],
+    decoys: [],
+  },
   'voc-spice': {
     title: 'VOC Spice Fleet',
     intro: 'Hold space is short on the run home to Amsterdam. Load the crates worth the most guilders per square until the manifest reaches its target — big cheap crates waste room.',
@@ -55,6 +68,24 @@ export const CONFIGS: Record<string, CargoConfig> = {
       { name: 'Copper', icon: '🟤', color: '#b87333', density: 4 },
       { name: 'Sappanwood', icon: '🪓', color: '#8b5a3c', density: 3 },
       { name: 'Rice', icon: '🍚', color: '#d8cfb4', density: 2 },
+    ],
+  },
+  'armada-de-molucca': {
+    title: 'The Armada de Molucca, Seville 1519',
+    intro: 'The cloves must be bought with what the ships can carry. Fill the hold with the barter goods the Spice Islands want most until the manifest reaches its target — bulky goods of little worth waste the room.',
+    fact: 'Magellan’s five ships carried trade goods to exchange for spices: quicksilver and copper, bolts of coloured cloth, mirrors, knives, fishhooks and thousands of little hawk’s bells. The fleet left Sanlúcar de Barrameda, Seville’s seaport, on 20 September 1519.',
+    mode: 'value',
+    goods: [
+      { name: 'Quicksilver', icon: '⚗️', color: '#9aa3ad', density: 9 },
+      { name: 'Coloured cloth', icon: '🧶', color: '#b5333b', density: 8 },
+      { name: 'Mirrors', icon: '🪞', color: '#7fa7c4', density: 7 },
+      { name: 'Hawk’s bells', icon: '🔔', color: '#c9a227', density: 6 },
+      { name: 'Knives', icon: '🔪', color: '#6c6f73', density: 5 },
+    ],
+    decoys: [
+      { name: 'Lead', icon: '🪨', color: '#5b5f66', density: 4 },
+      { name: 'Firewood', icon: '🪵', color: '#8b5a3c', density: 3 },
+      { name: 'Ballast stone', icon: '⚪', color: '#c9c3b8', density: 2 },
     ],
   },
   'hanse-cog': {
@@ -83,6 +114,38 @@ export const CONFIGS: Record<string, CargoConfig> = {
     decoys: [],
     fragile: { name: 'Porcelain', icon: '🏺', color: '#4a6fb5', density: 1 },
     ballast: { name: 'Iron ballast', icon: '⚓', color: '#555b63', density: 1 },
+  },
+  'canton-export': {
+    title: 'Canton Export Ware, 1730s',
+    intro: 'A European East Indiaman loads at Canton. Hold space is short: stow the crates worth the most silver per square until the manifest reaches its target — Jingdezhen porcelain painted to European order sells dear.',
+    fact: 'Jingdezhen made porcelain for export as well as for the throne; it went down to Canton, where painters added European scenes and coats of arms to order. In the holds of East Indiamen the heavy, waterproof porcelain was stowed low, with tea packed above it.',
+    mode: 'value',
+    goods: [
+      { name: 'Silk', icon: '🧵', color: '#c0587a', density: 9 },
+      { name: 'Armorial porcelain', icon: '🏺', color: '#4a6fb5', density: 8 },
+      { name: 'Tea', icon: '🍵', color: '#6f8f4e', density: 7 },
+      { name: 'Lacquerware', icon: '🟥', color: '#9e2b25', density: 6 },
+      { name: 'Rhubarb root', icon: '🌿', color: '#7a4a2a', density: 5 },
+    ],
+    decoys: [
+      { name: 'Rattan', icon: '🪵', color: '#a0522d', density: 4 },
+      { name: 'Sugar', icon: '🍬', color: '#d8cfb4', density: 3 },
+      { name: 'Ballast stone', icon: '🪨', color: '#6b6b6b', density: 2 },
+    ],
+  },
+  'li-qingzhao-boat': {
+    title: 'Across the Huai',
+    intro: 'The collection must cross the river in one boatload. Fill the hold completely: nothing may be stacked on the painted scrolls, and the heavy bronzes must rest on the bottom of the hull.',
+    fact: 'In her Postface to Records on Metal and Stone, Li Qingzhao says that when they fled south in 1127 the collection was cut down to fifteen cartloads — first the bulky printed books, then paintings in many scrolls, then the bronzes that bore no inscriptions — and carried by boat across the Huai and the Yangtze to Jiankang.',
+    mode: 'fragile',
+    goods: [
+      { name: 'Books', icon: '📚', color: '#8a6f4e', density: 1 },
+      { name: 'Rubbings', icon: '📜', color: '#c9b58c', density: 1 },
+      { name: 'Inscribed stones', icon: '🪨', color: '#7d7f86', density: 1 },
+    ],
+    decoys: [],
+    fragile: { name: 'Painted scrolls', icon: '🖼️', color: '#b0527a', density: 1 },
+    ballast: { name: 'Bronze vessels', icon: '🏺', color: '#6b7f3a', density: 1 },
   },
   'tea-clipper': {
     title: 'The Great Tea Race',

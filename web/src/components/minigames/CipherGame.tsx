@@ -29,12 +29,26 @@ export const CONFIGS: Record<string, CipherConfig> = {
     plaintext: 'VENI VIDI VICI',
     fact: 'Suetonius records that Julius Caesar wrote to Cicero and his generals in a cipher that shifted each letter three places — the earliest documented military use of substitution.',
   },
+  'philippics-warning': {
+    title: 'A Warning in Cipher',
+    intro: 'A friend writes to Cicero in the shifted alphabet Caesar once used in his letters to him. Turn the wheel until it names the man who wants Cicero dead.',
+    mode: 'caesar',
+    plaintext: 'MARC ANTONY',
+    fact: 'Suetonius records that Caesar wrote to Cicero and others in a cipher that shifted each letter three places. In 43 BCE, after the fourteen Philippics, Antony put Cicero on the proscription list; he was caught near his villa at Formiae and killed.',
+  },
   'al-kindi-frequency': {
     title: 'The Frequency of Letters',
     intro: "Al-Kindi's method: the commonest symbol in a long ciphertext is almost certainly the commonest letter of the language. Use the counts to set the shift.",
     mode: 'caesar',
     plaintext: 'KNOWLEDGE IS THE TREASURE OF THE WISE',
     fact: "In the ninth century Abū Yūsuf al-Kindī wrote 'A Manuscript on Deciphering Cryptographic Messages', describing frequency analysis — the technique that broke every simple substitution cipher for the next thousand years.",
+  },
+  'hand-of-god-quote': {
+    title: 'After the Match, Mexico City 1986',
+    intro: "A reporter has jotted down Diego's answer in his own shorthand, every letter shifted down the alphabet. Turn the wheel until it reads.",
+    mode: 'caesar',
+    plaintext: 'A LITTLE WITH THE HEAD OF MARADONA AND A LITTLE WITH THE HAND OF GOD',
+    fact: "Asked about his first goal against England, Maradona said it was scored 'a little with the head of Maradona and a little with the hand of God'. The Tunisian referee, Ali Bin Nasser, had not seen the handball, and with no video review the goal stood.",
   },
   'vigenere-cabinet': {
     title: 'Le Chiffre Indéchiffrable',
@@ -43,6 +57,20 @@ export const CONFIGS: Record<string, CipherConfig> = {
     plaintext: 'ATTACK AT DAWN',
     keyword: 'LEMON',
     fact: "Blaise de Vigenère's polyalphabetic cipher (1586) resisted attack for three centuries until Charles Babbage and Friedrich Kasiski independently broke it in the 1850s by finding the keyword's length from repeated fragments.",
+  },
+  'bletchley-crib': {
+    title: 'The Morning Crib',
+    intro: 'A practice intercept on the Bletchley Park training course, shifted down the alphabet. Turn the wheel until the German word every codebreaker hoped to see appears.',
+    mode: 'caesar',
+    plaintext: 'WETTERBERICHT',
+    fact: 'German weather stations and ships sent a "Wetterbericht" (weather report) in the same format at the same hour every day. Guessed plaintext like this — a crib — was what Turing\'s Bombe needed to test Enigma settings at speed.',
+  },
+  'fae-motto': {
+    title: 'Frei aber einsam',
+    intro: 'Joachim\'s motto is hidden in shifted letters, as the Schumann circle loved to hide words in music. Turn the wheel until it reads.',
+    mode: 'caesar',
+    plaintext: 'FREI ABER EINSAM',
+    fact: 'In October 1853 Robert Schumann, the 20-year-old Brahms and Albert Dietrich wrote a violin sonata together for Joseph Joachim on the notes F–A–E, from his motto "Frei aber einsam" — free but lonely. Brahms wrote the scherzo.',
   },
   'morse-telegraph': {
     title: 'What Hath God Wrought',

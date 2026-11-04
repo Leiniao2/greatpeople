@@ -22,7 +22,10 @@ const byPair = (c: HTMLElement) => {
 describe('Archive Pairs — logic', () => {
   it('has at least 4 configs, each a distinct twist with a fact and enough pairs', () => {
     expect(CONFIG_IDS.length).toBeGreaterThanOrEqual(4)
-    expect(new Set(CONFIG_IDS.map(id => CONFIGS[id].variant)).size).toBe(CONFIG_IDS.length)
+    // The base configs are each their own twist; story-themed configs reuse one of them.
+    const BASE = ['ancient', 'renaissance', 'modern', 'inventors']
+    expect(new Set(BASE.map(id => CONFIGS[id].variant)).size).toBe(BASE.length)
+    for (const id of CONFIG_IDS) expect(BASE.map(b => CONFIGS[b].variant), id).toContain(CONFIGS[id].variant)
     for (const id of CONFIG_IDS) {
       const c = CONFIGS[id]
       expect(c.fact.length, id).toBeGreaterThan(20)

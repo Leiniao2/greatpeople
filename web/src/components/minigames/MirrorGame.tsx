@@ -27,6 +27,7 @@ interface FixedMirror {
 type MirrorKey = 'mendel' | 'euclid' | 'digital' | 'plato' | 'anaxagoras' | 'al-khwarizmi' | 'lorentz'
   | 'newton-prism' | 'huygens' | 'foucault' | 'archimedes-mirror' | 'snell'
   | 'maya-light' | 'ptolemy-lens' | 'al-biruni-ray' | 'viking-aurora' | 'mongol-signal' | 'aztec-sun'
+  | 'legnica-mohi' | 'cornaro-chapel'
 
 interface MirrorConfig {
   title: string
@@ -228,9 +229,34 @@ export const CONFIGS: Record<MirrorKey, MirrorConfig> = {
     ],
     maxMirrors: 1,
   },
+  'legnica-mohi': {
+    title: 'Two Armies, One Plan — 1241',
+    instruction: "Batu's northern wing in Poland and his main army in Hungary must strike in step. One mirror bends the signal through five bounces to the far camp.",
+    gridSize: 8,
+    source: { row: 3, col: -1, dir: 'right' },
+    target: { row: 5, col: 8 },
+    fixed: [
+      { row: 3, col: 5, mirror: '/' },
+      { row: 0, col: 5, mirror: '\\' },
+      { row: 0, col: 2, mirror: '/' },
+    ],
+    maxMirrors: 1,
+  },
   'aztec-sun': {
     title: 'Aztec Sun Temple',
     instruction: "The Aztec calendar stone was used to track the sun's path. Two fixed mirrors guide the beam — place the third to reach the far altar.",
+    gridSize: 7,
+    source: { row: -1, col: 0, dir: 'down' },
+    target: { row: 2, col: 7 },
+    fixed: [
+      { row: 3, col: 0, mirror: '\\' },
+      { row: 3, col: 4, mirror: '/' },
+    ],
+    maxMirrors: 1,
+  },
+  'cornaro-chapel': {
+    title: 'The Hidden Window',
+    instruction: "Daylight falls from a window hidden above the altar of the Cornaro Chapel. Two fixed reflections carry it in — place the last so the light lands on St Teresa and the angel.",
     gridSize: 7,
     source: { row: -1, col: 0, dir: 'down' },
     target: { row: 2, col: 7 },

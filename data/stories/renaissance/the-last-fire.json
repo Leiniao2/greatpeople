@@ -25,12 +25,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "chemistry",
-            "configId": "mendel-cross",
+            "game": "quipu",
+            "configId": "census",
             "seed": 81982,
-            "instruction": "Rumiñahui: mix the right measures.",
-            "fact": "Rumiñahui ('Stone Eye') was Atahualpa's most capable general. When Pizarro captured and executed the Inca emperor in 1533, Rumiñahui gathered the northern army and led resistance from Quito. Rather than let Pizarro's forces loot the city's treasures, he burned Quito and hid its gold — a legendary hoard that has never been found.",
-            "rebalanced": true
+            "instruction": "Before the Spanish can reach Quito, Rumiñahui's cord keepers must count what is to be hidden. Read only the cords of the colour asked — yellow for gold, red for warriors — and give him the total.",
+            "fact": "Rumiñahui ('Stone Eye') was Atahualpa's most capable general. When Pizarro captured and executed the Inca emperor in 1533, Rumiñahui gathered the northern army and led resistance from Quito. Rather than let Pizarro's forces loot the city's treasures, he burned Quito and hid its gold — a legendary hoard that has never been found."
           }
         }
       ]
@@ -48,12 +47,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "painting",
-            "configId": "egyptian-sunset",
+            "game": "sapper",
+            "configId": "teocajas-pits",
             "seed": 49717,
-            "instruction": "Rumiñahui: paint each region in its true colour.",
-            "fact": "After months of guerrilla resistance, Rumiñahui was captured in early 1535. He was tortured by the Spanish, who demanded to know where he had hidden Quito's treasure. He revealed nothing. He was publicly executed in Quito in early 1535 — an act the Spanish intended as a demonstration of power, which instead made him an immortal symbol of defiance.",
-            "rebalanced": true
+            "instruction": "Belalcázar's horsemen are coming up the road. Rumiñahui's warriors have hidden pits across the plain — bring your own men through without falling into one.",
+            "fact": "Belalcázar marched on Quito in 1534 with about 200 Spaniards and thousands of Cañari and other native allies who hated Atahualpa's rule. Rumiñahui fought them at Teocajas and in the passes for months before falling back on the city."
           }
         }
       ]
@@ -72,11 +70,10 @@
           "challenge": {
             "type": "minigame",
             "game": "snake",
-            "configId": "silk-road",
+            "configId": "quito-gold",
             "seed": 50673,
-            "instruction": "Rumiñahui: lead the caravan to every load.",
-            "fact": "The lost treasure of Quito became one of the great legends of the Americas. Expeditions searched for it for centuries, and legends of El Dorado were partly inspired by the belief that Rumiñahui had hidden an incomprehensible fortune somewhere in the Andes. No credible discovery has ever been made.",
-            "rebalanced": true
+            "instruction": "Quito will burn rather than become a Spanish trophy — but first its treasure must go. Lead the llama train to each load before the Spanish arrive, then on into the mountains.",
+            "fact": "The lost treasure of Quito became one of the great legends of the Americas. Expeditions searched for it for centuries, and legends of El Dorado were partly inspired by the belief that Rumiñahui had hidden an incomprehensible fortune somewhere in the Andes. No credible discovery has ever been made."
           }
         },
         {
@@ -87,12 +84,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "pendulum",
-            "configId": "galileo",
+            "game": "konigsberg",
+            "configId": "andes-bridges",
             "seed": 96893,
-            "instruction": "Rumiñahui: set the clock to keep time.",
-            "fact": "The Spanish advantage in the Inca conquest was not just steel and gunpowder — it was horses. The Inca had no large domesticated animals. The sight of mounted soldiers, armored in steel, was psychologically devastating. Rumiñahui understood this and consistently drew Spanish forces into terrain that negated the horse — steep trails, forest, and fast rivers.",
-            "rebalanced": true
+            "instruction": "The Spanish close in from every side. Rumiñahui's bands fall back through the gorges, cutting each rope bridge behind them — find the line of retreat that crosses every bridge exactly once.",
+            "fact": "The Spanish advantage in the Inca conquest was not just steel and gunpowder — it was horses. The Inca had no large domesticated animals. The sight of mounted soldiers, armored in steel, was psychologically devastating. Rumiñahui understood this and consistently drew Spanish forces into terrain that negated the horse — steep trails, forest, and fast rivers."
           }
         }
       ]
@@ -110,20 +106,22 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "klotski",
-            "configId": "last-general",
-            "instruction": "Rumiñahui's final campaign was a strategic puzzle — how to keep an army in the field when the enemy controls every city. Rearrange the pieces to find the one path that keeps resistance alive.",
-            "fact": "Rumiñahui's resistance lasted over a year after Atahualpa's execution — longer than most regional Inca leaders managed. He maintained cohesion through personal authority and the loyalty of the Quitan military class. When he was finally taken, it was through betrayal rather than defeat in battle, which the Spanish admitted privately."
+            "game": "postroute",
+            "configId": "inca",
+            "seed": 52152,
+            "instruction": "Rumiñahui is gone, but the roads he fought along remain. Run the message through every post of the Inca road and home again, as the chasquis did.",
+            "fact": "The Qhapaq Ñan, the Inca road network of some 30,000 km, became a UNESCO World Heritage Site in 2014, shared by six countries from Colombia to Chile — Ecuador among them."
           }
         },
         {
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "voting",
-            "configId": "spanish-court",
-            "instruction": "The Spanish conducted formal legal proceedings to justify the conquest. Navigate the colonial tribunal where Inca resistance was reframed as rebellion against legitimate Spanish authority.",
-            "fact": "The Spanish legal doctrine of the time held that indigenous rulers who resisted after being informed of Spanish sovereignty were rebels, not sovereign enemies — removing any obligation to treat them as prisoners of war. This legal fiction allowed the Spanish to torture and execute leaders like Rumiñahui without violating their own laws. It was the first formal deployment of what modern scholars call the 'lawfare' of conquest."
+            "game": "optics",
+            "configId": "inti-raymi-fire",
+            "seed": 50669,
+            "instruction": "The Spanish will forbid the feast of the Sun and put out its fires. Kindle the last fire as the priests did at Inti Raymi, bringing the light to a single point.",
+            "fact": "Rumiñahui was executed in Quito in 1535. Ecuador honours him as a national hero of indigenous resistance, and a canton near Quito bears his name."
           }
         },
         {

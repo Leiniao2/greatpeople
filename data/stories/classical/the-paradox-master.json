@@ -29,11 +29,10 @@
           "challenge": {
             "type": "minigame",
             "game": "debate",
-            "configId": "lincoln-douglas",
+            "configId": "zeno-paradoxes",
             "seed": 83232,
-            "instruction": "Zeno of Elea: win the argument with evidence.",
-            "fact": "Achilles and the Tortoise argues that before catching the tortoise, Achilles must reach its starting point — by which time it has moved. This repeats infinitely, seemingly making overtaking impossible. Calculus resolved it 2,000 years later.",
-            "rebalanced": true
+            "instruction": "Parmenides' critics call his One absurd. Zeno answers by showing their own view is worse — pick the argument that turns each objection back on itself.",
+            "fact": "Achilles and the Tortoise argues that before catching the tortoise, Achilles must reach its starting point — by which time it has moved. This repeats infinitely, seemingly making overtaking impossible. Calculus resolved it 2,000 years later."
           }
         }
       ]
@@ -63,12 +62,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "weapondeploy",
-            "configId": "waterloo-artillery",
+            "game": "hanoi",
+            "configId": "zeno-dichotomy",
             "seed": 74885,
-            "instruction": "Zeno of Elea: deploy the defences.",
-            "fact": "Zeno's paradoxes were a rhetorical defense of his teacher Parmenides, not his personal beliefs. He used them as reductio ad absurdum — if you accept common sense, you get contradictions. It was a philosophical weapon, not a physics claim.",
-            "rebalanced": true
+            "instruction": "Half the distance, then half of the rest, then half again. Feel the regress: to move the stack you must first move a smaller one, and before that a smaller one still.",
+            "fact": "Zeno's paradoxes were a rhetorical defense of his teacher Parmenides, not his personal beliefs. He used them as reductio ad absurdum — if you accept common sense, you get contradictions. It was a philosophical weapon, not a physics claim."
           }
         }
       ]
@@ -86,12 +84,16 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "magicsquare",
-            "configId": "durer",
+            "game": "morris",
+            "configId": "six-mens",
+            "params": {
+              "title": "Hemmed In",
+              "intro": "Argue as Zeno did: never attack head-on, but close every line your opponent might escape by. Two squares, six pieces each; mills form along the sides, nobody flies, and a side with no move left loses.",
+              "fact": "In Plato's Republic, Adeimantus complains that arguing with a master of question and answer is like playing a board game against a skilled player: step by step the weaker side is hemmed in until it has no move left. Aristotle called Zeno the inventor of dialectic."
+            },
             "seed": 9370,
-            "instruction": "Zeno of Elea: complete the magic square.",
-            "fact": "Zeno's paradoxes were not resolved until Newton and Leibniz developed calculus in the 17th century. The infinite series 1/2 + 1/4 + 1/8 + ... converges to 1 — Achilles catches the tortoise, and the math finally proved it.",
-            "rebalanced": true
+            "instruction": "Zeno never argued head-on: he closed every way out until his opponent had no move left. Play him on the board the same way.",
+            "fact": "Zeno's paradoxes were not resolved until Newton and Leibniz developed calculus in the 17th century. The infinite series 1/2 + 1/4 + 1/8 + ... converges to 1 — Achilles catches the tortoise, and the math finally proved it."
           }
         }
       ]
@@ -105,12 +107,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "irrigation",
-            "configId": "mesopotamia",
+            "game": "sliding",
+            "configId": "zeno-stadium",
             "seed": 10415,
-            "instruction": "Zeno of Elea: water every field before the flood ebbs.",
-            "fact": "The mathematical resolution to Zeno's paradoxes came with calculus: an infinite sum of terms can converge to a finite value. The series ½ + ¼ + ⅛ + … = 1. Newton and Leibniz solved in the 1660s what Zeno posed in 450 BCE — it took 2,100 years to find the right mathematical language.",
-            "rebalanced": true
+            "instruction": "In the Stadium paradox, rows of bodies slide past one another and Zeno asks how short a moment can be. Slide the rows back into order.",
+            "fact": "The mathematical resolution to Zeno's paradoxes came with calculus: an infinite sum of terms can converge to a finite value. The series ½ + ¼ + ⅛ + … = 1. Newton and Leibniz solved in the 1660s what Zeno posed in 450 BCE — it took 2,100 years to find the right mathematical language."
           }
         },
         {

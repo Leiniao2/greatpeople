@@ -73,7 +73,10 @@ describe('sapper logic', () => {
   })
 
   it('every config counts a different reach, and the reaches are what the rules say', () => {
-    expect(new Set(CONFIG_IDS.map(id => CONFIGS[id].reach)).size).toBe(CONFIG_IDS.length)
+    // The base configs each count a different reach; story-themed configs reuse one of them.
+    const BASE = ['maastricht-1673', 'lille-citadel', 'namur-1692', 'neuf-brisach']
+    expect(new Set(BASE.map(id => CONFIGS[id].reach)).size).toBe(BASE.length)
+    for (const id of CONFIG_IDS) expect(BASE.map(b => CONFIGS[b].reach), id).toContain(CONFIGS[id].reach)
     const sizes: Record<Reach, number> = { king: 8, orth: 4, knight: 8, ring: 16 }
     for (const r of Object.keys(REACH) as Reach[]) {
       expect(REACH[r].length, r).toBe(sizes[r])

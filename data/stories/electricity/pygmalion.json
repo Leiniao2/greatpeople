@@ -31,9 +31,8 @@
             "game": "lamplighter",
             "configId": "seven-dials",
             "seed": 83264,
-            "instruction": "George Bernard Shaw: light every lamp.",
-            "fact": "My Fair Lady (1956) ran for 2,717 performances on Broadway. Shaw famously wrote his own stage directions to prevent producers from adding a romantic happy ending.",
-            "rebalanced": true
+            "instruction": "Pygmalion opens on a wet night in Covent Garden, a few streets from the slums of Seven Dials. Light every lamp on the streets where Eliza sells her flowers.",
+            "fact": "My Fair Lady (1956) ran for 2,717 performances on Broadway. Shaw famously wrote his own stage directions to prevent producers from adding a romantic happy ending."
           }
         }
       ]
@@ -63,12 +62,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "telegraphnet",
-            "configId": "chappe",
+            "game": "wordle",
+            "configId": "shaw-vowel",
             "seed": 39,
-            "instruction": "George Bernard Shaw: connect the cities by wire.",
-            "fact": "Shaw wrote 'Back to Methuselah' (1921), a five-play epic spanning from Adam and Eve to 31,920 AD. He was the only person to win both a Nobel Prize (1925) and an Academy Award (1938).",
-            "rebalanced": true
+            "instruction": "Higgins can place a speaker within six miles by a single sound. Guess the five-letter word for what he means to change in Eliza.",
+            "fact": "Shaw wrote 'Back to Methuselah' (1921), a five-play cycle running from Adam and Eve to the year 31,920. He was the first person to win both a Nobel Prize (1925) and an Academy Award (1938, for the screenplay of Pygmalion)."
           }
         }
       ]
@@ -112,11 +110,7 @@
             "game": "braille",
             "seed": 1025,
             "fact": "Shaw explicitly wrote that Eliza marries Freddy Eynsford-Hill, not Higgins. He was furious when stage productions implied a romance. His epilogue spells out that Higgins is too self-absorbed for love. The musical My Fair Lady contradicts Shaw's own ending.",
-            "autogen": true,
-            "configId": "raised-dots",
-            "params": {
-              "plaintext": "ELIZA MARRIES FREDDY"
-            },
+            "configId": "shaw-epilogue",
             "instruction": "Shaw's epilogue has been printed in raised dots. Read how Eliza's story ends."
           }
         },

@@ -73,6 +73,13 @@ export const CONFIGS: Record<string, MancalaConfig> = {
     fact: 'Oware is the national mancala of the Akan peoples of Ghana; the abapa rules played here — no grand slam, always feed your opponent — are the ones used in international tournaments today.',
     pits: 6, seeds: [4, 4, 4, 4], target: [10, 12, 14, 16], plyCap: [36, 44, 52, 60], opponent: 'the Kumasi elder',
   },
+  'nakht-harvest': {
+    variant: 'oware',
+    title: 'Seed Time and Harvest',
+    intro: 'Sow the seed field by field round the board, and gather any pit on your rival\'s row that your last seed makes 2 or 3 — chaining back along the row. First to bring in the target wins.',
+    fact: 'The tomb of Nakht at Thebes (TT52) paints the farming year: ploughing and sowing as the flood retreats, then reaping and winnowing the grain — the work the scribe’s calendar timed and his records counted.',
+    pits: 6, seeds: [4, 4, 4, 4], target: [10, 12, 14, 16], plyCap: [36, 44, 52, 60], opponent: 'the overseer of the fields',
+  },
   kalah: {
     variant: 'kalah',
     title: 'Kalah',
@@ -86,6 +93,13 @@ export const CONFIGS: Record<string, MancalaConfig> = {
     intro: 'Relay sowing: when your last seed lands in a full pit, lift it and sow on. End in an empty pit of yours to capture across. First to the target wins.',
     fact: 'Bao — Swahili for "board" — is played along the East African coast on a board of four rows of eight pits, and is counted among the most complex mancala games; its relay sowing can carry a single move several times round the board.',
     pits: 8, seeds: [3, 3, 3, 3], target: [16, 18, 20, 22], plyCap: [36, 44, 52, 60], opponent: 'the Zanzibar master',
+  },
+  'kilwa-bao': {
+    variant: 'bao',
+    title: 'Bao at Kilwa, 1505',
+    intro: 'The new Portuguese fort stands over the harbour, but the merchants of Kilwa still play their board in the shade. Relay sowing: when your last seed lands in a full pit, lift it and sow on. End in an empty pit of yours to capture across. First to the target wins.',
+    fact: 'In 1505 Francisco de Almeida, sailing as Manuel I’s first viceroy of India, took Kilwa and sacked Mombasa on the Swahili coast and built a fort at Kilwa. The coast’s mancala, bao — Swahili for “board” — is still played there on boards of four rows of eight pits.',
+    pits: 8, seeds: [3, 3, 3, 3], target: [16, 18, 20, 22], plyCap: [36, 44, 52, 60], opponent: 'the Kilwa merchant',
   },
   fours: {
     variant: 'fours',

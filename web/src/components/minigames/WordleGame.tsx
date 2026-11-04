@@ -22,6 +22,7 @@ export const CONFIGS: Record<string, WordleConfig> = {
   lance:          { word: 'LANCE', title: 'The Cavalry Weapon',  hint: "The weapon that gave Belisarius's cataphracts their devastating first charge" },
   piano:          { word: 'PIANO', title: "Schumann's Voice",    hint: 'The instrument through which Robert Schumann spoke when words failed him' },
   crown:          { word: 'CROWN', title: 'The Final Price',     hint: 'What Marie Antoinette wore — and ultimately sacrificed everything for' },
+  'borromini-curve': { word: 'CURVE', title: 'San Carlo’s Façade', hint: 'What Borromini’s walls do where Bernini’s stand straight — concave, convex, concave' },
   march:          { word: 'MARCH', title: 'The Long March',      hint: 'The strategic retreat that became the founding myth of Chinese Communism' },
   saint:          { word: 'SAINT', title: 'Canonized',           hint: 'The designation Pope Francis conferred on Teresa of Calcutta in 2016' },
   sword:          { word: 'SWORD', title: "Musashi's Path",      hint: "Miyamoto Musashi's way of the sword ultimately led to the way of the self" },
@@ -29,6 +30,7 @@ export const CONFIGS: Record<string, WordleConfig> = {
   zeros:          { word: 'ZEROS', title: 'The Nothing Number',  hint: "Al-Khwarizmi helped transmit the concept of zero to Western mathematics" },
   flood:          { word: 'FLOOD', title: 'The Great Deluge',    hint: "The catastrophe that tests the hero in the world's oldest epic" },
   aviate:         { word: 'PILOT', title: 'Lady Lindy',          hint: 'What Amelia Earhart was — the first woman to fly the Atlantic alone' },
+  'shaw-vowel':   { word: 'VOWEL', title: 'Written in the Mouth', hint: 'Shaw: the class system is written into these sounds — change them and Eliza passes for a duchess' },
 }
 
 // ── Constants ──────────────────────────────────────────────────────────────────

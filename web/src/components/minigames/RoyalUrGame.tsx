@@ -310,6 +310,23 @@ export const CONFIGS: Record<string, UrConfig> = {
     rivals: ['An Elamite raider', 'A Sumerian charioteer', 'A temple champion'],
     fact: 'Leonard Woolley excavated the Royal Cemetery of Ur in the 1920s; one of its game boards lay beside the famous "Standard of Ur", whose panels show war and peace.',
   },
+  uruk: {
+    title: 'Twenty Squares at Uruk',
+    intro: 'Five pieces each. The central rosette is a safe haven, and every capture earns another throw. The first to bring the target number home wins.',
+    rules: { pieces: 5, safeCentral: true, captureBonus: true },
+    goal: [1, 2, 2, 2],
+    rivals: ['Shamhat', 'A shepherd of the steppe', 'A brewer of Uruk'],
+    fact: 'Boards for the game of twenty squares were buried in the Royal Cemetery of Ur around 2600 BCE — about the age in which a historical Gilgamesh is thought to have ruled Uruk — and the game went on being played across the Near East for more than two thousand years.',
+  },
+  'theban-garrison': {
+    title: 'The Garrison’s Board',
+    intro: 'A game already under way, every piece on the board. No rosette is safe, and every capture earns another throw. Bring all of yours home first.',
+    rules: { pieces: 3, safeCentral: false, captureBonus: true },
+    pieces: [2, 3, 3, 3],
+    midgame: true,
+    rivals: ['An Assyrian soldier', 'A garrison scribe', 'A Kushite archer'],
+    fact: 'The Mesopotamian game of twenty squares had reached Egypt by the New Kingdom. Many Egyptian senet boxes carry its board on the underside, so one box served for both games.',
+  },
 }
 
 /** The concrete rules of a config at a difficulty. */

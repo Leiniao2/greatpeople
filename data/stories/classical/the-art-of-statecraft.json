@@ -28,12 +28,33 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "expedition",
-            "configId": "zheng-he",
+            "game": "mint",
+            "configId": "china",
+            "params": {
+              "title": "The War Chest",
+              "intro": "Strike copper kakanis and mashakas up into silver panas and gold suvarnas — enough to pay an army.",
+              "fact": "The Arthashastra puts a master of the mint over the striking of silver and copper coins and an examiner of coins to test them, and fixes fines for anyone who makes or passes false coin. Its rule is blunt: every undertaking depends first on the treasury.",
+              "coins": [
+                "Half kakani",
+                "Kakani",
+                "Half mashaka",
+                "Mashaka",
+                "Eighth pana",
+                "Quarter pana",
+                "Half pana",
+                "Pana",
+                "Suvarna",
+                "Nishka",
+                "Treasure chest",
+                "Royal treasury"
+              ],
+              "palette": "mediterranean",
+              "twistText": "False coin: counterfeits slip into the tray. They never merge with true coins — slide two counterfeits together and the examiner melts them down.",
+              "special": "Counterfeit"
+            },
             "seed": 78773,
-            "instruction": "Chanakya: plan the expedition route.",
-            "fact": "Chanakya is also called Kautilya or Vishnugupta. He served as advisor to Chandragupta Maurya, the founder of the Maurya Empire, and authored the Arthashastra — an ancient Indian treatise on statecraft and political economy.",
-            "rebalanced": true
+            "instruction": "Thrown out of the Nanda court with nothing, Chanakya knows a new throne has to be paid for. Strike copper into silver and gold for the war chest — and keep the counterfeits out.",
+            "fact": "Chanakya is also called Kautilya or Vishnugupta. He served as advisor to Chandragupta Maurya, the founder of the Maurya Empire, and authored the Arthashastra — an ancient Indian treatise on statecraft and political economy."
           }
         }
       ]
@@ -58,14 +79,10 @@
           "challenge": {
             "type": "minigame",
             "game": "polybius",
+            "configId": "arthashastra-spies",
             "seed": 1013,
-            "fact": "The Arthashastra (c. 300 BCE) is remarkably pragmatic — Chanakya advises a king to plant spies even in his own court, test ministers with temptations, and treat foreign relations as perpetual competition. Its realpolitik predates Machiavelli's The Prince by nearly 1,800 years.",
-            "autogen": true,
-            "configId": "greek-torches",
-            "params": {
-              "plaintext": "FILL THE TREASURY FIRST"
-            },
-            "instruction": "Chanakya sends his first lesson for the new king as pairs of numbers. Find each letter on the square."
+            "instruction": "Chanakya sends Chandragupta his first lesson in the code his spies use, each letter a pair of numbers. Find every letter on the square.",
+            "fact": "The Arthashastra (c. 300 BCE) is remarkably pragmatic — Chanakya advises a king to plant spies even in his own court, test ministers with temptations, and treat foreign relations as perpetual competition. Its realpolitik predates Machiavelli's The Prince by nearly 1,800 years."
           }
         }
       ]
@@ -86,11 +103,10 @@
           "challenge": {
             "type": "minigame",
             "game": "atbash",
-            "configId": "mirror-tablet",
+            "configId": "upadha-test",
             "seed": 83212,
-            "instruction": "Chanakya: read the Atbash cipher.",
-            "fact": "The Arthashastra devotes entire chapters to managing the king's inner circle — testing ministers with planted temptations, using counterintelligence against spies, and playing factions against each other. Chanakya's political realism was as relevant in the Maurya court as in any modern boardroom.",
-            "rebalanced": true
+            "instruction": "To learn which ministers can be trusted, Chanakya has a letter of treason planted on one of them. Read it in its folded alphabet, as the minister will.",
+            "fact": "The Arthashastra devotes entire chapters to managing the king's inner circle — testing ministers with planted temptations, using counterintelligence against spies, and playing factions against each other. Chanakya's political realism was as relevant in the Maurya court as in any modern boardroom."
           }
         },
         {
@@ -125,11 +141,10 @@
           "challenge": {
             "type": "minigame",
             "game": "battlearena",
-            "configId": "samurai-path",
+            "configId": "seleucid-war",
             "seed": 17302,
-            "instruction": "Chanakya: win the duel.",
-            "fact": "Under Chandragupta Maurya and his grandson Ashoka, the Maurya Empire became one of the largest empires of the ancient world, spanning from modern Afghanistan across the entire subcontinent to Bengal. At its peak under Ashoka (c. 268–232 BCE), it covered about 5 million square kilometres — the first political unification of India.",
-            "rebalanced": true
+            "instruction": "To hold a frontier on the Hindu Kush, Chandragupta's army must face the Macedonians of Seleucus at the Indus. Choose the right weapon for each enemy.",
+            "fact": "Under Chandragupta Maurya and his grandson Ashoka, the Maurya Empire became one of the largest empires of the ancient world, spanning from modern Afghanistan across the entire subcontinent to Bengal. At its peak under Ashoka (c. 268–232 BCE), it covered about 5 million square kilometres — the first political unification of India."
           }
         },
         {

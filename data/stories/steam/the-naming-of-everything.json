@@ -83,12 +83,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "compose",
-            "configId": "mozart-40",
+            "game": "typeset",
+            "configId": "systema-naturae",
             "seed": 90604,
-            "instruction": "Carl Linnaeus: arrange the movements.",
-            "fact": "Linnaeus classified 7,700 plant species and 4,400 animal species. His binomial system — genus plus species — replaced unwieldy Latin phrases with clean two-word names still used by every scientist on Earth. Naming Homo sapiens was audacious: placing humanity inside the animal kingdom challenged centuries of theological certainty.",
-            "rebalanced": true
+            "instruction": "Linnaeus will print what the bones tell him, whatever the bishops say. Set the type for the tenth edition of Systema Naturae, where humankind takes its new name.",
+            "fact": "Linnaeus classified 7,700 plant species and 4,400 animal species. His binomial system — genus plus species — replaced unwieldy Latin phrases with clean two-word names still used by every scientist on Earth. Naming Homo sapiens was audacious: placing humanity inside the animal kingdom challenged centuries of theological certainty."
           }
         }
       ]
@@ -102,22 +101,21 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "bridge",
-            "configId": "silk-road",
+            "game": "queens",
+            "configId": "uppsala-garden",
             "seed": 57632,
-            "instruction": "Carl Linnaeus: link the islands with bridges.",
-            "fact": "When Linnaeus placed humans among the primates in Systema Naturae (1758), critics were outraged. A bishop wrote demanding he separate humans from animals. Linnaeus replied: 'I ask you and the whole world for a generic difference between man and simian that follows from the principles of natural history. I absolutely do not know of one.' Darwin would agree a century later.",
-            "rebalanced": true
+            "instruction": "Back in Uppsala, Linnaeus lays out the university garden as a living Systema Naturae. Plant the trees so that no two share a row, column or diagonal.",
+            "fact": "Linnaeus first set humans beside the apes in 1735 and named us Homo sapiens in 1758. Critics were outraged; in a 1747 letter to the botanist Johann Gmelin he wrote that he knew of no generic difference between man and ape that followed from the principles of natural history."
           }
         },
         {
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "mirror",
-            "configId": "snell",
-            "instruction": "Just as Linnaeus gave every species a precise law of naming, Snell gave every ray of light a precise law of bending. One mirror, four bounces — find the path.",
-            "fact": "Willebrord Snell (1580–1626) discovered his law of refraction in 1621 but never published it. René Descartes rediscovered it independently and published it first. The law — n₁ sin θ₁ = n₂ sin θ₂ — predicts exactly how much light bends when crossing between media of different densities."
+            "game": "worldclock",
+            "configId": "linnaeus-apostles",
+            "instruction": "Linnaeus's students carry his system to every continent. Work out the hour where each of his 'apostles' is collecting, so the letters home can be dated.",
+            "fact": "Linnaeus sent some seventeen students — his 'apostles' — round the world: Osbeck to China, Hasselquist to the Levant, Forsskål to Arabia, Solander with Cook to Australia, Thunberg to Japan. Several died on the road, but the specimens they sent back made Linnaean names the common language of naturalists everywhere."
           }
         },
         {

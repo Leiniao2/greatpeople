@@ -55,6 +55,27 @@ export const CONFIGS: Record<string, SnakeConfig> = {
     goods: ['🧵', '🍵', '🏺', '💎'],
     obstacle: '⛰️', obstacleClass: 'bg-[#a7a39a]', ground: 'bg-[#efe3c2]', layout: 'peaks', variant: 'orders', rule: 'Fill the order',
   },
+  'nineveh-tablets': {
+    title: 'Tablets for Nineveh',
+    intro: 'The king’s letter names the tablets he wants. Two loads wait on the road, but only the one on the list counts — take the wrong one and you must haul two extra camels for nothing. Every right load adds a camel; steer clear of the hills and your own line.',
+    fact: 'A surviving letter of Ashurbanipal orders his officials in Borsippa to search the scholars’ houses and the temple of Ezida for tablets — prayers, rituals, omens and incantations — and to send to Nineveh any of which no copy exists in Assyria.',
+    goods: ['📜', '⭐', '🌿', '🏛️'],
+    obstacle: '⛰️', obstacleClass: 'bg-[#a7a39a]', ground: 'bg-[#ece0c4]', layout: 'peaks', variant: 'orders', rule: 'Fill the order',
+  },
+  'quito-gold': {
+    title: 'The Gold of Quito',
+    intro: 'The Spanish are days away. Lead the llama train to each load of gold and silver before the hour to move it passes, then on into the mountains — ridges of rock split the valleys, so pick your line early.',
+    fact: 'Legend says Rumiñahui’s men carried the treasure of Quito into the Llanganates mountains east of the city before he burned it. A written route to the hoard, the “Derrotero de Valverde”, surfaced in colonial times, and treasure hunters have searched the Llanganates ever since without finding it.',
+    goods: ['🪙', '🏺', '🦙'],
+    obstacle: '', obstacleClass: 'bg-[#7d7468] rounded-sm', ground: 'bg-[#dfe3c8]', layout: 'ridges', variant: 'spoil', rule: 'Before the Spanish come',
+  },
+  pochteca: {
+    title: 'The Pochteca Road',
+    intro: 'The merchants of Tlatelolco bring home only what the market has asked for. Two loads wait on the road, but only the one on the order counts — the wrong one adds two porters for nothing. Every right load adds a porter; keep clear of the volcanoes and your own line.',
+    fact: 'The pochteca were the long-distance merchants of the Aztec world. With no pack animals or carts, they travelled with lines of porters (tlameme) carrying cacao, feathers, jade and cloth, and they also served the tlatoani as spies in foreign lands.',
+    goods: ['🪶', '🫘', '🟢', '🧶'],
+    obstacle: '🌋', obstacleClass: 'bg-[#a39a8f]', ground: 'bg-[#e9dfc0]', layout: 'peaks', variant: 'orders', rule: 'Fill the order',
+  },
   sahara: {
     title: 'Trans-Saharan Salt Caravan',
     intro: 'Carry salt and gold across the Sahara. The wind is building new dunes as you travel — keep your line moving and away from the sand.',

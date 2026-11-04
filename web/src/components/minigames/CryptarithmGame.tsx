@@ -52,6 +52,30 @@ export const CONFIGS: Record<string, CryptConfig> = {
     fact: 'The Hanseatic League linked some 200 towns from London to Novgorod; its merchants at Lübeck kept accounts in Roman numerals well into the 1500s.',
     kind: 'add3',
   },
+  'chanel-ledger': {
+    title: 'The House Accounts',
+    intro: 'Chanel checks the books herself. Each letter hides one digit; different letters, different digits; no number starts with 0. Make the sum add up.',
+    fact: 'In 1924 Chanel let Pierre and Paul Wertheimer found Parfums Chanel to sell No. 5. They took 70% and the department-store owner Théophile Bader 20%; Chanel kept 10% — a share she fought over in the courts for twenty years.',
+    kind: 'add',
+  },
+  'mendel-tally': {
+    title: 'The Brno Tallies',
+    intro: 'Three counts from the pea beds are added into one total. Each letter is one digit, different letters different digits, none leading with 0.',
+    fact: 'In his seed-shape cross Mendel counted 5,474 round seeds and 1,850 wrinkled ones in the second generation — a ratio of 2.96 to 1. He reported such counts for all seven traits in his 1866 paper.',
+    kind: 'add3',
+  },
+  'lorentz-algebra': {
+    title: 'The Leiden Calculation',
+    intro: 'A word multiplied by a single letter gives the answer below. Each letter is one digit, none leading with 0. Work the carries as carefully as an equation.',
+    fact: 'Lorentz set out his transformation in full in 1904. In 1905 Henri Poincaré named it the Lorentz transformation — the same year Einstein derived it afresh from two simple postulates.',
+    kind: 'mul',
+  },
+  'mellon-treasury': {
+    title: 'The Treasury Books',
+    intro: 'A subtraction: the top line less the second gives the bottom. Each letter is one digit, none leading with 0. Balance the books.',
+    fact: 'Under Treasury Secretary Mellon the federal government ran a surplus every year of the 1920s, cutting the national debt from about $24 billion in 1921 to about $16 billion by 1930.',
+    kind: 'sub',
+  },
 }
 
 // ── Puzzle bank ───────────────────────────────────────────────────────────────

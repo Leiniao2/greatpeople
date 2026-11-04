@@ -52,11 +52,35 @@ export const CONFIGS: Record<string, BridgesConfig> = {
     fact: 'The Pont Neuf, finished in 1607 under Henri IV, is despite its name the oldest standing bridge across the Seine in Paris — the first built without houses on it.',
     mode: 'path',
   },
+  'andes-bridges': {
+    title: 'The Rope Bridges of the Andes',
+    intro: 'Your scattered bands fall back through the gorges, and each rope bridge is cut once they are over. Cross every bridge exactly once — no start is marked, so choose the bank where such a retreat can begin.',
+    fact: 'Inca roads crossed the Andean gorges on suspension bridges of woven grass rope, rebuilt by the villages around them. Inca commanders cut or burned them to slow the Spanish; one, the Q’eswachaka bridge over the Apurímac, is still rewoven by hand every year.',
+    mode: 'path',
+  },
+  'tenochtitlan-canals': {
+    title: 'The Canals of Tenochtitlan, 1520',
+    intro: 'The city rises against the Spaniards, and the warriors lift the canal bridges to trap them. Too many shores have an odd number of bridges for one runner to cross them all once — lift or lay the fewest bridges, then make the walk.',
+    fact: 'Tenochtitlan was laced with canals crossed by removable wooden bridges, and its causeways to the shore had gaps bridged the same way. When the Mexica rose in 1520 they took the bridges up; on the Noche Triste of 30 June the Spaniards fleeing the city lost hundreds of men in the gaps.',
+    mode: 'fix',
+  },
   postman: {
     title: 'The Postman’s Round',
     intro: 'Walk every street at least once and return to the post office. Repeat streets if you must — but keep the round short.',
     fact: 'The “Chinese postman problem” is named after Meigu Guan (Kwan Mei-Ko), who posed it in 1960; Jack Edmonds and Ellis Johnson solved it efficiently in 1973 using minimum matchings.',
     mode: 'postman',
+  },
+  'ponte-sant-angelo': {
+    title: 'The Bridge of Angels, 1667–1671',
+    intro: 'Pilgrims reach St Peter’s across the Tiber. Leave St Peter’s (★), cross every bridge exactly once, and come home to St Peter’s.',
+    fact: 'Clement IX had Bernini line the Ponte Sant’Angelo with ten marble angels bearing the instruments of the Passion. Bernini carved two himself; they were judged too fine for the weather and went to Sant’Andrea delle Fratte, with copies put on the bridge.',
+    mode: 'circuit',
+  },
+  'borromini-walk': {
+    title: 'A Walk Through Borromini’s Rome',
+    intro: 'From San Carlo on the Quirinal to Sant’Ivo at the Sapienza and the Oratory by the Chiesa Nuova — cross every bridge exactly once. No start is marked: choose the shore where such a walk can begin.',
+    fact: 'Borromini was buried in San Giovanni dei Fiorentini, beside the Tiber, in the tomb of his kinsman and first master Carlo Maderno.',
+    mode: 'path',
   },
 }
 

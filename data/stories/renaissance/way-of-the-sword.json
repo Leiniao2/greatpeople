@@ -28,12 +28,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "cargo",
-            "configId": "voc-spice",
+            "game": "klotski",
+            "configId": "ichijoji-pine",
             "seed": 9718,
-            "instruction": "Miyamoto Musashi: stow the cargo.",
-            "fact": "Musashi arrived late for his duel with Kojiro on Ganryūjima island (1612), having carved a practice sword from a boat oar on the way. He killed Kojiro with one strike — the psychological warfare of his lateness was as devastating as the blow.",
-            "rebalanced": true
+            "instruction": "The Yoshioka school has gathered its whole following under the pine at Ichijō-ji to finish the stranger. Slide the ranks aside and cut a way out.",
+            "fact": "By his own count Musashi fought more than sixty duels before he was thirty and never lost one. The Yoshioka fights of 1604 in Kyoto made his name."
           }
         }
       ]
@@ -51,12 +50,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "optics",
-            "configId": "galileo-telescope",
+            "game": "gomoku",
+            "configId": "edo-gomoku",
             "seed": 10169,
-            "instruction": "Miyamoto Musashi: focus the light.",
-            "fact": "Musashi never lost a duel in 60+ fights. In his later years he renounced killing, became a painter and sculptor, and wrote The Book of Five Rings — still read by business leaders and martial artists worldwide.",
-            "rebalanced": true
+            "instruction": "Musashi teaches that one Way runs through every art — the sword, the brush, even a game of stones. Read the board as you would an opponent and line up five first.",
+            "fact": "Musashi never lost a duel in 60+ fights. In his later years he renounced killing, became a painter and sculptor, and wrote The Book of Five Rings — still read by business leaders and martial artists worldwide."
           }
         }
       ]
@@ -77,11 +75,10 @@
           "challenge": {
             "type": "minigame",
             "game": "painting",
-            "configId": "spring-garden",
+            "configId": "musashi-dojo",
             "seed": 39675,
-            "instruction": "Miyamoto Musashi: paint each region in its true colour.",
-            "fact": "Musashi arrived two hours late — deliberately. The waiting destroyed Kojirō's composure. 'You have already lost,' Musashi said, then charged.",
-            "rebalanced": true
+            "instruction": "Earth, Water, Fire, Wind, Void: Musashi sees his strategy in everything, and he paints as he fights. Paint the dojo where the Way is practised.",
+            "fact": "Musashi arrived late for his duel with Kojiro on Ganryūjima island (1612), having carved a practice sword from a boat oar on the way. He killed Kojiro with one strike — the psychological warfare of his lateness was as devastating as the blow."
           }
         }
       ]
@@ -99,12 +96,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "orbit",
-            "configId": "kepler-ellipse",
+            "game": "storysort",
+            "configId": "five-rings",
             "seed": 83267,
-            "instruction": "Miyamoto Musashi: put the body into orbit.",
-            "fact": "Renaissance swordsmanship manuals (fencing treatises) were among the first printed technical manuals, systematizing combat for the first time in European history.",
-            "rebalanced": true
+            "instruction": "In a cave on Mount Iwato an old swordsman writes down all he knows. Put the opening of The Book of Five Rings back in order.",
+            "fact": "Musashi was also one of the finest ink painters of his age: works such as Shrike on a Withered Branch are Important Cultural Properties of Japan."
           }
         },
         {

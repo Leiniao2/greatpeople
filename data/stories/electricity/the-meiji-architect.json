@@ -28,12 +28,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "wordle",
-            "configId": "turing-rotor",
+            "game": "railway",
+            "configId": "meiji-lines",
             "seed": 9672,
-            "instruction": "Itō Hirobumi: guess the word.",
-            "fact": "The Meiji Constitution of 1889 was drafted under Itō's leadership after he studied European constitutional models — particularly Prussia's. It established Japan as a constitutional monarchy and remained in force until 1947.",
-            "rebalanced": true
+            "instruction": "Itō has seen what railways did for Britain. Lay out Japan's first lines so each pair of terminals is joined.",
+            "fact": "The Meiji Constitution of 1889 was drafted under Itō's leadership after he studied European constitutional models — particularly Prussia's. It established Japan as a constitutional monarchy and remained in force until 1947."
           }
         }
       ]
@@ -66,9 +65,8 @@
             "game": "circuit",
             "configId": "edison-lamps",
             "seed": 36153,
-            "instruction": "Itō Hirobumi: wire the circuit until it lights.",
-            "fact": "Itō served as Japan's Prime Minister four separate times between 1885 and 1901. His assassination by An Jung-geun in 1909 made him a martyr in Japan and a symbol of imperialism in Korea — two truths that coexist uncomfortably.",
-            "rebalanced": true
+            "instruction": "As Minister of Public Works Itō brings Western engineering to Tokyo; in 1878 his ministry's college lights Japan's first electric lamp. Wire the circuit until it glows.",
+            "fact": "Itō served as Japan's Prime Minister four separate times between 1885 and 1901. His assassination by An Jung-geun in 1909 made him a martyr in Japan and a symbol of imperialism in Korea — two truths that coexist uncomfortably."
           }
         }
       ]
@@ -86,12 +84,16 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "pairs",
-            "configId": "ancient",
+            "game": "lamplighter",
+            "configId": "pall-mall",
             "seed": 56493,
-            "instruction": "Itō Hirobumi: match each figure to their work.",
+            "instruction": "Gaslight arrives with the Meiji reforms. Light every lamp along Yokohama's new street.",
             "fact": "Japan went from feudal isolation to modern nation-state between 1868 and 1912: abolishing samurai, building railroads, establishing universal education, and defeating both China and Russia in war. No country modernized so completely so quickly.",
-            "rebalanced": true
+            "params": {
+              "title": "Bashamichi, Yokohama, 1872",
+              "intro": "Each lamp you light shares its gas main with the lamps beside it, above and below: tapping one toggles it and its four neighbours. Light the whole street.",
+              "fact": "Japan's first gas street lamps were lit in Yokohama in October 1872 by a company of the merchant Takashima Kaemon, with the French engineer Henri Pelegrin. Tokyo's new brick Ginza had gas lamps by 1874."
+            }
           }
         }
       ]
@@ -105,12 +107,16 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "cryptarithm",
-            "configId": "subtraction",
+            "game": "sapper",
+            "configId": "lille-citadel",
             "seed": 2302,
-            "instruction": "Itō Hirobumi: crack the letter sum.",
+            "instruction": "The modern army Itō's Japan built goes to war with Russia. Clear a path for the sappers before Port Arthur without setting off a blast.",
             "fact": "Japan transformed from a feudal samurai society to a modern industrial nation in a single generation — faster than any other country in history. By 1905, Japan had defeated Russia in war, astonishing the world and inspiring anti-colonial movements across Asia.",
-            "rebalanced": true
+            "params": {
+              "title": "Port Arthur, 1904",
+              "intro": "Japanese sappers tunnel towards the Russian forts: each number counts mines only in the four squares sharing a side — never the diagonals.",
+              "fact": "At the siege of Port Arthur (1904–05) Japanese engineers dug saps and tunnels beneath the Russian forts and blew them up with mines. The fortress surrendered on 2 January 1905 after five months."
+            }
           }
         },
         {

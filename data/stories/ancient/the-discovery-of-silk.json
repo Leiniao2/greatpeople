@@ -28,12 +28,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "nonogram",
-            "configId": "ashmolean",
+            "game": "abacus",
+            "configId": "cocoon-thread",
             "seed": 8776,
-            "instruction": "Lei Zu: reveal the picture from its clues.",
-            "fact": "Chinese tradition credits Lei Zu (also written Leizu or Si Ling-chi), wife of the Yellow Emperor Huangdi, with discovering silk around 2700 BCE when a silkworm cocoon fell into her tea and she unravelled its thread.",
-            "rebalanced": true
+            "instruction": "The thread keeps unwinding from the cocoon in Lei Zu's cup. How long is it? Add each length to the count as it comes off.",
+            "fact": "Chinese tradition credits Lei Zu (also written Leizu or Si Ling-chi), wife of the Yellow Emperor Huangdi, with discovering silk around 2700 BCE when a silkworm cocoon fell into her tea and she unravelled its thread."
           }
         }
       ]
@@ -57,12 +56,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "iceslide",
-            "configId": "pyramid-ice",
+            "game": "pipeline",
+            "configId": "mulberry-grove",
             "seed": 74031,
-            "instruction": "Lei Zu: slide across the ice to the exit.",
-            "fact": "The term 'Silk Road' (Seidenstraße) was coined by German geographer Ferdinand von Richthofen in 1877. Ancient traders called it by regional names — the unified concept of a single route is a modern invention.",
-            "rebalanced": true
+            "instruction": "Silkworms eat nothing but mulberry leaves. Lead water to the mulberry grove so that the palace worms never go hungry.",
+            "fact": "Chinese tradition credits Lei Zu with teaching people to plant mulberries and raise silkworms as well as to reel silk. Sericulture became women's work, and empresses performed a yearly rite of gathering mulberry leaves."
           }
         }
       ]
@@ -82,12 +80,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "tangram",
-            "configId": "junk-ship",
+            "game": "wallbuilder",
+            "configId": "longshan-hangtu",
             "seed": 42532,
-            "instruction": "Lei Zu: fit the seven pieces to the shape.",
-            "fact": "A single silkworm cocoon is made from one continuous thread up to 900 metres long. It takes about 2,500 cocoons to make one pound of raw silk — explaining why silk was worth its weight in gold.",
-            "rebalanced": true
+            "instruction": "Guard the secret carefully. Raise a rammed-earth wall around the silk-house, one tamped layer at a time.",
+            "fact": "China kept sericulture to itself for thousands of years. By one legend the secret left only when a Chinese princess, married to the king of Khotan, smuggled silkworm eggs out in her headdress — a story recorded by the pilgrim Xuanzang in the 7th century."
           }
         },
         {
@@ -98,12 +95,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "wallbuilder",
-            "configId": "hadrian",
+            "game": "caravan",
+            "configId": "silk-road",
             "seed": 75913,
-            "instruction": "Lei Zu: raise the wall without gaps.",
-            "fact": "Along the Silk Road, merchants kept meticulous records of goods in transit. Babylonian clay tablet accounting spread westward just as Chinese silk spread east — commerce and literacy moved together.",
-            "rebalanced": true
+            "instruction": "Lei Zu's thread will one day cross the world. Lead a caravan from Chang'an to Constantinople and sell the silk where it is rarest.",
+            "fact": "Silk reached Rome through many middlemen. In 14 CE the Senate forbade men to wear it, and Pliny the Elder complained that India, China and Arabia drained a hundred million sesterces a year from the empire for luxuries."
           }
         }
       ]
@@ -123,20 +119,20 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "geometry",
-            "configId": "pythagorean",
-            "instruction": "Chinese mathematicians solved right-triangle problems in the Nine Chapters on the Mathematical Art — centuries before Pythagoras. Solve this ancient construction problem.",
-            "fact": "The Zhoubi Suanjing (c. 1000 BCE) proves the Pythagorean theorem using a visual 'proof without words.' China's mathematical tradition was as rigorous as Greece's — and developed independently, along the same trade routes that carried silk westward."
+            "game": "magicsquare",
+            "configId": "lo-shu",
+            "instruction": "Lei Zu learned by noticing small patterns. Restore the dots on the Luo River turtle's shell so that every line has the same sum.",
+            "fact": "The Lo Shu is among the oldest magic squares known. Chinese tradition ties it to Yu the Great, the legendary tamer of floods, who is placed a few centuries after the Yellow Emperor and Lei Zu."
           }
         },
         {
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "pipeline",
-            "configId": "silk-road-caravan",
-            "instruction": "Connect the Silk Road caravan route from Chang'an westward — rotate pipe tiles to find the path through the Taklamakan Desert.",
-            "fact": "Zhang Qian's westward mission in 130 BCE established the first official Silk Road routes. The trade network eventually stretched 7,000 km from China to Rome, carrying silk, spices, glassware, and ideas."
+            "game": "tangram",
+            "configId": "silkworm-mother",
+            "instruction": "The greatest discoveries wait for someone patient enough to notice. Study the shape while it is shown, then build it from memory.",
+            "fact": "Lei Zu's story comes from later texts, but archaeology bears out the age of Chinese silk: woven silk from about 2700 BCE has been found in Zhejiang, and traces of silk protein in tombs at Jiahu are some 8,500 years old."
           }
         },
         {

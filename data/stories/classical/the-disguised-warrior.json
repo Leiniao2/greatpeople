@@ -28,12 +28,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "postroute",
-            "configId": "royal",
+            "game": "riverrun",
+            "configId": "yellow-river",
             "seed": 37362,
-            "instruction": "Hua Mulan: plan the post round.",
-            "fact": "The Ballad of Mulan, a poem dating to the Northern Wei dynasty (386–534 CE), tells of a daughter who disguises herself as a man to spare her aged, ailing father from conscription. She fights for twelve years, earns high honours, and then reveals her identity — astonishing her comrades.",
-            "rebalanced": true
+            "instruction": "Mulan has left home at dawn in her father's armour, and by dusk she camps by the Yellow River. Take the crossing at first light and reach the northern bank.",
+            "fact": "The Ballad of Mulan, a poem dating to the Northern Wei dynasty (386–534 CE), tells of a daughter who disguises herself as a man to spare her aged, ailing father from conscription. She fights for twelve years, earns high honours, and then reveals her identity — astonishing her comrades."
           }
         }
       ]
@@ -51,12 +50,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "sliding",
-            "configId": "renaissance",
+            "game": "weapondeploy",
+            "configId": "wei-frontier",
             "seed": 25562,
-            "instruction": "Hua Mulan: slide the tiles back into order.",
-            "fact": "The ballad's ending is deliberately understated: Mulan's comrades, who fought beside her for a decade, are stunned to discover she is a woman. The poem asks no moral question — it simply presents her choice as natural and her courage as obvious.",
-            "rebalanced": true
+            "instruction": "Year after year the Rouran horsemen ride at the Wei border. Post Mulan's archers and catapults along the road so that no raider gets through.",
+            "fact": "The ballad's ending is deliberately understated: Mulan's comrades, who fought beside her for a decade, are stunned to discover she is a woman. The poem asks no moral question — it simply presents her choice as natural and her courage as obvious."
           }
         }
       ]
@@ -78,10 +76,81 @@
             "type": "minigame",
             "game": "pairs",
             "configId": "modern",
+            "params": {
+              "title": "The Ballad of Mulan",
+              "intro": "Home after twelve years. Match each person, place or thing in the ballad with what it brings to her story.",
+              "twist": "Call and answer: the pairs must be found in the order they are called out. A right pair turned up out of turn goes back face down (no mistake, but it costs time).",
+              "fact": "The ballad ends with a riddle: the he-hare kicks his feet, the she-hare narrows her eyes, but when two hares run side by side, who can tell which is he and which is she?",
+              "pairs": [
+                [
+                  "The loom",
+                  "Mulan sighs at it"
+                ],
+                [
+                  "The Khan",
+                  "Twelve scrolls of the draft"
+                ],
+                [
+                  "East market",
+                  "A fine horse"
+                ],
+                [
+                  "West market",
+                  "A saddle"
+                ],
+                [
+                  "South market",
+                  "A bridle"
+                ],
+                [
+                  "North market",
+                  "A long whip"
+                ],
+                [
+                  "Yellow River",
+                  "The first night's camp"
+                ],
+                [
+                  "Black Mountain",
+                  "Nomad horses neighing"
+                ],
+                [
+                  "The Son of Heaven",
+                  "Rewards in the Bright Hall"
+                ],
+                [
+                  "A swift steed",
+                  "All she asks for"
+                ],
+                [
+                  "Father and mother",
+                  "Meet her at the city wall"
+                ],
+                [
+                  "Elder sister",
+                  "Puts on her rouge"
+                ],
+                [
+                  "Little brother",
+                  "Sharpens the knife for a feast"
+                ],
+                [
+                  "Her comrades",
+                  "Stunned she is a woman"
+                ],
+                [
+                  "The he-hare",
+                  "Kicking feet"
+                ],
+                [
+                  "The she-hare",
+                  "Narrowed eyes"
+                ]
+              ]
+            },
             "seed": 44101,
-            "instruction": "Hua Mulan: match each figure to their work.",
-            "fact": "Mulan refused the emperor's offer of office and asked only for a fast horse to carry her home. The original ballad ends with her reunited family and Mulan in her women's clothes again — her identity secure, her duty complete, her reward the return of ordinary life.",
-            "rebalanced": true
+            "instruction": "Mulan turns down the Khan's honours and rides home. Tell her ballad again from the loom to the two hares: match each person, place and thing to its part in the song, in order.",
+            "fact": "Mulan refused the emperor's offer of office and asked only for a fast horse to carry her home. The original ballad ends with her reunited family and Mulan in her women's clothes again — her identity secure, her duty complete, her reward the return of ordinary life."
           }
         }
       ]
@@ -100,23 +169,21 @@
           "challenge": {
             "type": "minigame",
             "game": "expedition",
-            "configId": "zheng-he",
+            "configId": "mulan-frontier",
             "seed": 30333,
-            "instruction": "Hua Mulan: plan the expedition route.",
-            "fact": "The ballad describes a real frontier: the northern Wei territories were under constant pressure from the Rouran Khaganate. The poem's military details — twelve years of campaigns, the yellow river crossing, the Black Mountain pass — reflect genuine geography and the brutal reality of steppe warfare.",
-            "rebalanced": true
+            "instruction": "The army marches north through the passes. Lead Mulan's company from the Yellow River by way of the Black Mountain to the Yan Mountains before supplies or days run out.",
+            "fact": "The ballad describes a real frontier: the northern Wei territories were under constant pressure from the Rouran Khaganate. The poem's military details — twelve years of campaigns, the yellow river crossing, the Black Mountain pass — reflect genuine geography and the brutal reality of steppe warfare."
           }
         },
         {
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "riverrun",
-            "configId": "kwanza-river",
+            "game": "iceslide",
+            "configId": "mulan-ice",
             "seed": 73524,
-            "instruction": "Hua Mulan: run the river safely.",
-            "fact": "The Ballad of Mulan became one of China's most enduring stories because it celebrated filial piety and personal courage simultaneously — two of Confucian culture's highest values. It has been retold in opera, film, and literature across fourteen centuries.",
-            "rebalanced": true
+            "instruction": "The last battle is fought on frozen ground. Charge Mulan across the ice — once she is moving she slides until something stops her — and reach the far end.",
+            "fact": "The Ballad of Mulan became one of China's most enduring stories because it celebrated filial piety and personal courage simultaneously — two of Confucian culture's highest values. It has been retold in opera, film, and literature across fourteen centuries."
           }
         },
         {

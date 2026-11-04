@@ -56,6 +56,27 @@ export const CONFIGS: Record<string, PunnettConfig> = {
     ],
     fact: "ABO blood types follow codominance — both A and B alleles are expressed equally. Karl Landsteiner discovered blood groups in 1901, making blood transfusions safe and earning him the 1930 Nobel Prize.",
   },
+  'chimp-blood': {
+    title: 'Our Closest Kin',
+    crosses: [
+      {
+        parent1: ['I_A', 'i'], parent2: ['I_A', 'i'],
+        traitLabel: 'Chimpanzee blood group: I_A = A allele  ·  i = O allele',
+        dominant: 'Type A', recessive: 'Type O',
+      },
+      {
+        parent1: ['I_A', 'i'], parent2: ['i', 'i'],
+        traitLabel: 'Chimpanzee blood group: I_A = A allele  ·  i = O allele',
+        dominant: 'Type A', recessive: 'Type O',
+      },
+      {
+        parent1: ['I_A', 'I_A'], parent2: ['i', 'i'],
+        traitLabel: 'Chimpanzee blood group: I_A = A allele  ·  i = O allele',
+        dominant: 'Type A', recessive: 'Type O',
+      },
+    ],
+    fact: 'Chimpanzees share the ABO blood-group system with humans, though almost all chimpanzees are type A or type O. Shared traits like this reflect how recently our two lineages split — some six or seven million years ago.',
+  },
 }
 
 // ── Helpers ───────────────────────────────────────────────────────────────────

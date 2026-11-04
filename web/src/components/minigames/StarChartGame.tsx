@@ -36,6 +36,19 @@ export const CONFIGS: Record<string, StarChartConfig> = {
     ],
     fact: 'Comparing his observations with those of Timocharis 150 years earlier, Hipparchus (c. 190–120 BCE) discovered the precession of the equinoxes — the slow 26,000-year wobble of the Earth\'s axis.',
   },
+  'anaxagoras-sky': {
+    title: 'Stones on Fire',
+    intro: 'Anaxagoras looked up and saw not gods but burning stones. Find each figure the Greeks knew in the night sky over Athens.',
+    mode: 'identify',
+    constellations: [
+      { name: 'Orion',      stars: [[30, 60], [34, 50], [38, 40], [26, 42], [44, 58], [28, 70], [42, 72]], lines: [[0, 1], [1, 2], [2, 3], [3, 0], [0, 5], [4, 6]] },
+      { name: 'Cassiopeia', stars: [[60, 15], [66, 22], [72, 14], [78, 22], [84, 12]], lines: [[0, 1], [1, 2], [2, 3], [3, 4]] },
+      { name: 'The Great Bear', stars: [[10, 20], [16, 24], [22, 22], [28, 26], [30, 34], [22, 36], [18, 30]], lines: [[0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 3]] },
+      { name: 'The Swan',   stars: [[60, 50], [66, 56], [72, 62], [60, 66], [78, 54]], lines: [[0, 1], [1, 2], [1, 3], [1, 4]] },
+      { name: 'The Lyre',   stars: [[86, 40], [90, 46], [88, 52], [82, 50]], lines: [[0, 1], [1, 2], [2, 3], [3, 0]] },
+    ],
+    fact: 'Anaxagoras taught that the sun, moon and stars are fiery stones carried round by the whirl of the heavens, too far off for us to feel the stars\' heat. Aristotle reports his idea that the Milky Way is the light of the stars the Earth\'s shadow hides from the sun.',
+  },
   'polynesian-navigators': {
     title: 'The Star Compass',
     intro: 'Polynesian wayfinders memorised where each star rises and sets. Find the guiding constellations before they drop below the horizon.',
@@ -47,6 +60,33 @@ export const CONFIGS: Record<string, StarChartConfig> = {
       { name: 'Pleiades',  stars: [[88, 60], [90, 64], [86, 66], [92, 68], [89, 70]], lines: [[0, 1], [1, 3], [2, 4]] },
     ],
     fact: 'Without instruments, Polynesian navigators settled islands across 10 million square miles of the Pacific, steering by a star compass of rising and setting points, swell patterns and the flight of birds. Hōkūleʻa proved the method again in 1976.',
+  },
+  'theban-night': {
+    title: 'The Stars of the Hours',
+    intro: 'The hour-watcher of Amun names the night by its stars. Find each star group named below before the dawn washes them out.',
+    mode: 'identify',
+    constellations: [
+      { name: 'Meskhetyu — the Foreleg', stars: [[8, 12], [14, 16], [20, 14], [26, 18], [28, 26], [20, 28], [16, 22]], lines: [[0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 3]] },
+      { name: 'The Lion', stars: [[44, 10], [48, 6], [54, 8], [56, 14], [52, 18], [66, 20], [60, 14]], lines: [[0, 1], [1, 2], [2, 3], [3, 4], [3, 6], [6, 5]] },
+      { name: 'Sah — Orion', stars: [[22, 58], [26, 48], [30, 38], [18, 40], [36, 56], [20, 68], [34, 70]], lines: [[0, 1], [1, 2], [2, 3], [3, 0], [0, 5], [4, 6]] },
+      { name: 'Sopdet — Sirius', stars: [[52, 62], [56, 68], [50, 72], [60, 74], [48, 66]], lines: [[0, 1], [1, 3], [1, 2], [0, 4]] },
+      { name: 'The Pleiades', stars: [[80, 40], [82, 44], [78, 46], [84, 48], [81, 50]], lines: [[0, 1], [1, 3], [2, 4]] },
+    ],
+    fact: 'The ceiling of Senenmut’s tomb at Thebes (c. 1470 BCE), a few decades before Nakht, is the oldest Egyptian star chart known. It lists the decans — star groups whose risings marked the hours of the night — with Sah (Orion) and Sopdet (Sirius) among them, and Meskhetyu, the bull’s foreleg we call the Plough, in the northern sky.',
+  },
+  'kalpa-sutra': {
+    title: 'The Lodgings of the Moon',
+    intro: 'Indian sky-watchers told the days by the nakshatras, the moon’s lodgings among the stars. Find each one named below.',
+    mode: 'identify',
+    constellations: [
+      { name: 'Magha — the Sickle', stars: [[10, 40], [12, 32], [16, 26], [14, 20], [8, 18], [6, 24]], lines: [[0, 1], [1, 2], [2, 3], [3, 4], [4, 5]] },
+      { name: 'Purva Phalguni', stars: [[30, 22], [34, 30]], lines: [[0, 1]] },
+      { name: 'Hastottara — Uttara Phalguni', stars: [[52, 26], [56, 20]], lines: [[0, 1]] },
+      { name: 'Hasta — the Hand', stars: [[60, 52], [68, 50], [70, 58], [62, 60], [66, 44]], lines: [[0, 1], [1, 2], [2, 3], [3, 0], [1, 4]] },
+      { name: 'Chitra — Spica', stars: [[84, 68]] },
+      { name: 'Svati — Arcturus', stars: [[86, 14]] },
+    ],
+    fact: 'The Jain Kalpa Sutra says that Mahavira’s conception, birth, renunciation and enlightenment all came when the moon stood in Hastottara — the asterism Uttara Phalguni, in Leo — and that he reached nirvana under Svati, the star Arcturus.',
   },
   'zheng-he-astrolabe': {
     title: 'Steering by the Pole',
@@ -71,6 +111,18 @@ export const CONFIGS: Record<string, StarChartConfig> = {
       { star: 'Polaris', declination: 90, altitude: 36, south: false },
     ],
     fact: 'Abū Rayḥān al-Bīrūnī (973–1048) measured the radius of the Earth to within 1% from the dip of the horizon seen from a mountain in Punjab, and wrote on astronomy, geodesy, pharmacology and the history of India.',
+  },
+  'noonan-sextant': {
+    title: "Noonan's Star Sights",
+    intro: "Fred Noonan fixes the Electra's position by the stars on the long legs of the world flight. Set the sextant to each star's altitude and give the latitude.",
+    mode: 'altitude',
+    sightings: [
+      { star: 'Polaris', declination: 90, altitude: 26, south: false },
+      { star: 'Polaris', declination: 90, altitude: 25, south: false },
+      { star: 'Canopus', declination: -52.7, altitude: 44, south: true },
+      { star: 'Sirius', declination: -16.7, altitude: 72, south: true },
+    ],
+    fact: 'Fred Noonan, a former Pan American navigator who had charted its Pacific clipper routes, navigated Earhart\'s 1937 world flight by sextant and dead reckoning. Their last leg, from Lae in New Guinea to tiny Howland Island just north of the equator, was some 2,500 miles of open ocean.',
   },
 }
 

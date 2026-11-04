@@ -28,12 +28,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "rotation",
-            "configId": "three-field",
+            "game": "pigpen",
+            "configId": "peterhof-dawn",
             "seed": 96044,
-            "instruction": "Catherine the Great: rotate the crops to a full harvest.",
-            "fact": "In July 1762, Catherine organized a coup against her husband Tsar Peter III — who was widely seen as weak and pro-Prussian. The Imperial Guard supported her; Peter was arrested and died days later (likely murdered). Catherine ruled Russia for 34 years as Catherine II.",
-            "rebalanced": true
+            "instruction": "Peterhof, before dawn: Alexei Orlov has ridden through the night with a note from the Guards. Read the grid code — it tells Catherine whether this is the morning she takes Russia.",
+            "fact": "In July 1762, Catherine organized a coup against her husband Tsar Peter III — who was widely seen as weak and pro-Prussian. The Imperial Guard supported her; Peter was arrested and died days later (likely murdered). Catherine ruled Russia for 34 years as Catherine II."
           }
         }
       ]
@@ -57,15 +56,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "pigpen",
+            "game": "rotation",
             "seed": 1013,
             "fact": "Catherine ruled Russia for 34 years — longer than any other female ruler in Russian history. She expanded Russia's territory by 520,000 square kilometres and corresponded with Voltaire and Diderot while suppressing the very freedoms they championed.",
-            "autogen": true,
-            "configId": "masonic-grid",
-            "params": {
-              "plaintext": "CATHERINE TAKES THE THRONE"
-            },
-            "instruction": "The guards' signal is drawn in a grid code. Read what happens tonight."
+            "configId": "free-economic-society",
+            "instruction": "Catherine writes to Voltaire of reform, but Russia lives on its harvest. Plan the village fields the way her Free Economic Society urges — rye, oats, clover and fallow — so there is grain to sell and fodder for the herd."
           }
         }
       ]
@@ -85,10 +80,10 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "matchthree",
-            "configId": "venice-glass",
-            "instruction": "Catherine's Winter Palace rivalled Versailles in splendour. Match the treasures of the imperial court — candlesticks, mirrors, porcelain, and gold.",
-            "fact": "Catherine the Great transformed the Winter Palace into one of Europe's greatest art collections, acquiring over 4,000 paintings, 10,000 drawings, and 16,000 coins. She wrote to Voltaire: 'I am devouring without discrimination. It is not love of art — it is greed.' The Hermitage Museum was born from that greed."
+            "game": "truss",
+            "configId": "kulibin-neva",
+            "instruction": "To wake Russia, Catherine backs the self-taught genius Ivan Kulibin. Build his single timber arch across the Neva, every strut pushing, so it can carry its load without a pier in the ice-choked river.",
+            "fact": "In 1769 Catherine made Ivan Kulibin, a self-taught clockmaker from Nizhny Novgorod, head of the mechanical workshop of the Academy of Sciences. Besides his Neva bridge he built a searchlight with mirrors, a river boat that winched itself upstream, and mechanical legs for wounded soldiers."
           }
         }
       ]
@@ -109,7 +104,7 @@
             "game": "coalition",
             "configId": "guards-coup",
             "instruction": "Catherine's coup is underway. Promise what each Guard regiment and power in Petersburg wants — without driving the others away — before Peter III realises what is happening.",
-            "fact": "Catherine's coup on 9 July 1762 succeeded because she personally rode to each Guard regiment and asked for their loyalty. The five regiments that mattered swore allegiance to her within hours. Peter III, who had alienated the military by admiring Prussia, found himself without a single defender. He abdicated by evening."
+            "fact": "On 28 June 1762 (9 July in the modern calendar) Catherine rode from Peterhof to the barracks of the Izmailovsky Guards, then the Semyonovsky and Preobrazhensky, and by mid-morning was proclaimed empress at the Kazan Cathedral in St Petersburg. Peter III, who had alienated the army by making peace with Prussia, signed his abdication the next day."
           }
         },
         {
@@ -122,12 +117,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "logicgate",
+            "game": "museum",
             "seed": 1014,
-            "fact": "Catherine collected art obsessively — she bought entire collections from European aristocrats, sometimes acquiring over 2,000 paintings at once. Her private 'hermitage' adjacent to the Winter Palace held works by Rembrandt, Raphael, and Titian. It opened to the public in 1852 and today holds over 3 million objects, making it one of the world's largest museums.",
-            "autogen": true,
-            "configId": "lovelace-engine",
-            "instruction": "The Hermitage Museum began as Catherine's private art collection — she called it her 'hermitage' because she could retreat there alone with her paintings. Wire the gates until the circuit agrees with the table on every row."
+            "fact": "Catherine bought whole collections at once — Gotzkowsky's 225 paintings in 1764, Count Brühl's in 1769, Crozat's in 1772, Walpole's in 1779 — and wrote that it was not love of art but greed. Her Hermitage opened to the public in 1852 and today holds over three million objects.",
+            "configId": "catherine-hermitage",
+            "instruction": "Catherine retreats to her 'hermitage' beside the Winter Palace, where the pictures she buys by the hundred wait to be hung. Place each masterpiece in the room that shows it best."
           }
         },
         {

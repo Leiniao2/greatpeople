@@ -39,7 +39,10 @@ describe('Eight Queens — variants', () => {
   const empty = (n: number, mode: Mode, regions: number[] | null = null) => ({ n, mode, blocked: [] as number[], regions })
   it('every config is a distinct rule twist, explained in its intro', () => {
     const twist = (id: string) => `${CONFIGS[id].mode}|${(CONFIGS[id].givens ?? []).some(g => g > 0)}|${(CONFIGS[id].blocked ?? []).some(b => b !== 0)}`
-    expect(new Set(CONFIG_IDS.map(twist)).size).toBe(CONFIG_IDS.length)
+    // The base configs are each a distinct twist; story-themed configs reuse one of them.
+    const BASE = ['gauss', 'bezzel', 'alhambra', 'versailles', 'polya']
+    expect(new Set(BASE.map(twist)).size).toBe(BASE.length)
+    for (const id of CONFIG_IDS) expect(BASE.map(twist), id).toContain(twist(id))
     expect(new Set(CONFIG_IDS.map(id => CONFIGS[id].mode))).toEqual(new Set(['classic', 'regions', 'parterre', 'torus']))
     expect(CONFIGS.gauss.intro).toMatch(/already on the board/)
     expect(CONFIGS.bezzel.intro).toMatch(/ruined/)

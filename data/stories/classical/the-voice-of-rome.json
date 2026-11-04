@@ -32,16 +32,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "cipher",
+            "game": "rollcall",
+            "configId": "roman-senate",
             "seed": 1001,
-            "fact": "After Caesar's assassination, Cicero attacked Marc Antony in speeches called the Philippics. Antony had him killed. His hands — which had written the speeches — were nailed to the Senate doors.",
-            "autogen": true,
-            "configId": "caesar-gaul",
-            "params": {
-              "mode": "caesar",
-              "plaintext": "MARC ANTONY"
-            },
-            "instruction": "A slave brings word in Caesar's own shift cipher: the name of the man who wants Cicero dead. Turn the wheel until it reads."
+            "instruction": "Step into Cicero's sandals: count heads and win over the senators one by one, so the vote to act against Catiline's conspirators carries.",
+            "fact": "Cicero's four Catilinarian Orations (63 BCE) are among history's most famous speeches. He secured the Senate's vote to execute the conspirators — and was later exiled for putting Roman citizens to death without trial."
           }
         }
       ]
@@ -63,7 +58,7 @@
             "type": "minigame",
             "game": "tactics",
             "configId": "general",
-            "instruction": "Cicero's logic traps his opponent — find the decisive move.",
+            "instruction": "Law, Cicero says, is the bond of the state — and a sound argument leaves an opponent nowhere to go. Find the move that corners him.",
             "fact": "Cicero's Catilinarian Orations cornered the conspirators so completely that even Catiline's allies abandoned him. His rhetoric was his weapon."
           }
         }
@@ -88,10 +83,10 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "rollcall",
-            "configId": "roman-senate",
-            "instruction": "Step into Cicero's sandals: count heads and win over the senators one by one, so the vote to act against Catiline's conspirators carries.",
-            "fact": "Cicero's four Catilinarian Orations (63 BCE) are among history's most famous speeches. He secured the Senate's emergency vote — and was later exiled for bypassing the right to trial."
+            "game": "cipher",
+            "configId": "philippics-warning",
+            "instruction": "Cicero has spoken out against Antony fourteen times, and now a friend sends word in Caesar's old cipher. Turn the wheel to learn whose hand is raised against him.",
+            "fact": "After Caesar's assassination, Cicero attacked Mark Antony in the speeches called the Philippics. Antony had him killed in 43 BCE, and his head and hands — which had spoken and written them — were nailed up on the Rostra in the Forum."
           }
         }
       ]
@@ -106,11 +101,10 @@
           "challenge": {
             "type": "minigame",
             "game": "gears",
-            "configId": "motion-work",
+            "configId": "archimedes-sphere",
             "seed": 42983,
-            "instruction": "Cicero: build the gear train.",
-            "fact": "Cicero convinced the Senate to execute the Catilinarian conspirators without trial — a legally questionable act for which he was later exiled. His famous line \"Quousque tandem abutere, Catilina, patientia nostra?\" (How long, Catiline, will you abuse our patience?) is still quoted today.",
-            "rebalanced": true
+            "instruction": "Cicero loved the wonders of Greek learning, none more than Archimedes' sphere, carried to Rome from Syracuse. Restore its lost wheels so the moon keeps time again.",
+            "fact": "More of Cicero's writing survives than of any other Roman: speeches, books of philosophy and rhetoric, and more than 900 letters, many to his friend Atticus. They make him the best-documented person of the ancient world."
           }
         },
         {
@@ -118,9 +112,9 @@
           "challenge": {
             "type": "minigame",
             "game": "pipeline",
-            "configId": "roman-aqueduct",
-            "instruction": "Route Rome's Aqua Claudia from mountain springs to the city — the engineering marvel that gave Rome water for a million people.",
-            "fact": "Rome's eleven major aqueducts delivered over one billion litres of water per day. The Aqua Claudia ran 69 km, mostly underground, with spectacular arched sections up to 28 metres high. No pumps were needed — only gravity and precision."
+            "configId": "aqua-marcia",
+            "instruction": "A republic shows its worth in public works, Cicero wrote — walls, harbours, aqueducts. Route the Aqua Marcia from the Anio springs into Rome.",
+            "fact": "The Aqua Marcia entered Rome on arches and carried water up to the Capitol. Two later aqueducts, the Tepula and the Julia, were built on top of its arcades, three channels sharing one line of arches."
           }
         },
         {

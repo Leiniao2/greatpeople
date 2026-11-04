@@ -28,12 +28,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "morris",
-            "configId": "nine-mens",
+            "game": "iceslide",
+            "configId": "lycaeum-ice",
             "seed": 36673,
-            "instruction": "Pleistoanax: form mills to win.",
-            "fact": "Pleistoanax was exiled in 445 BCE after being accused of accepting bribes from Pericles to withdraw the Spartan army from Attica. He spent nineteen years in exile near Mount Lycaeum before being recalled.",
-            "rebalanced": true
+            "instruction": "Condemned and exiled, Pleistoanax flees to Mount Lycaeum in the dead of winter. Slide down the frozen slopes to the precinct of Zeus, where Sparta cannot touch him.",
+            "fact": "Pleistoanax was exiled in 445 BCE after being accused of accepting bribes from Pericles to withdraw the Spartan army from Attica. He spent nineteen years in exile near Mount Lycaeum before being recalled."
           }
         }
       ]
@@ -58,11 +57,10 @@
           "challenge": {
             "type": "minigame",
             "game": "wargame",
-            "configId": "mao-tactics",
+            "configId": "pleistoanax-war",
             "seed": 50203,
-            "instruction": "Pleistoanax: outmanoeuvre the enemy.",
-            "fact": "The Peace of Nicias (421 BCE) was negotiated largely by Pleistoanax on the Spartan side. It guaranteed fifty years of peace between Athens and Sparta — though it lasted less than seven before the Sicilian Expedition shattered it.",
-            "rebalanced": true
+            "instruction": "Without their king, the Spartans march into Attica year after year and come home with nothing. Show the elders what a king could do: outmanoeuvre the Athenian forces.",
+            "fact": "Thucydides reports that Pleistoanax's enemies accused him of bribing the priestess at Delphi, who told every Spartan embassy to bring back the seed of the demigod son of Zeus from a foreign land, or plough with a silver ploughshare."
           }
         }
       ]
@@ -86,12 +84,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "pairs",
-            "configId": "inventors",
+            "game": "scytale",
+            "configId": "ephors-recall",
             "seed": 23310,
-            "instruction": "Pleistoanax: match each figure to their work.",
-            "fact": "Pleistoanax negotiated the Thirty Years' Peace in 446 BCE after withdrawing from Attica — a withdrawal his enemies called cowardice or corruption. The peace lasted only fifteen years before the Peloponnesian War erupted, but it gave Greece a generation of relative stability in which philosophy, drama, and architecture flourished.",
-            "rebalanced": true
+            "instruction": "At last the ephors send for him. A leather strip arrives on Mount Lycaeum — find the rod that makes it read.",
+            "fact": "When Sparta recalled Pleistoanax, around 427 BCE, Thucydides says it welcomed him home with the same dances and sacrifices as when its first kings were installed at the founding of Lacedaemon."
           }
         }
       ]
@@ -105,12 +102,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "siege",
-            "configId": "constantinople-1453",
+            "game": "battlearena",
+            "configId": "parrhasia-421",
             "seed": 59114,
-            "instruction": "Pleistoanax: hold the walls against the waves.",
-            "fact": "The Thirty Years' Peace (446 BCE) lasted only fourteen years before the Peloponnesian War broke out in 431 BCE. Thucydides blamed Spartan fear of Athenian power growth — not any specific provocation — as the true cause of the war.",
-            "rebalanced": true
+            "instruction": "Back on the throne, Pleistoanax leads the Spartans out once more — into Parrhasia, to free the Arcadians from Mantinea. Choose the right weapon for each defender.",
+            "fact": "The Peace of Nicias (421 BCE) was negotiated largely by Pleistoanax on the Spartan side. It was meant to last fifty years, but it lasted less than seven before the Sicilian Expedition shattered it."
           }
         },
         {

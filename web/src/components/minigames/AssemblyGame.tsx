@@ -60,6 +60,30 @@ export const CONFIGS: Record<string, AssemblyConfig> = {
     fact: 'Joseph Marie Jacquard’s loom of 1804 wove patterns from chains of punched cards; Charles Babbage borrowed the idea to program his Analytical Engine.',
     mode: 'jacquard',
   },
+  'chanel-workrooms': {
+    title: 'The Workrooms of Rue Cambon',
+    intro: 'A run of little black dresses in jersey must be ready for the clients. Give every job — cutting, sewing, fitting, finishing — to a station along the line. A job can’t be done before the jobs it needs. The slowest station sets the pace.',
+    fact: 'In October 1926 American Vogue printed a Chanel little black dress and called it “the Chanel ‘Ford’” — a simple design anyone could wear, like the Model T. Chanel had been cutting dresses from machine-knitted jersey, once used for men’s underwear, since 1916.',
+    mode: 'ford',
+  },
+  'givenchy-atelier': {
+    title: 'Givenchy’s Atelier, Paris 1953',
+    intro: 'Audrey’s wardrobe for Sabrina must be ready before shooting. Give every job — cutting, sewing, fitting — to a station along the line. A job can’t be done before the jobs it needs. The slowest station sets the pace.',
+    fact: 'In 1953 Audrey Hepburn walked into the Paris atelier of the young couturier Hubert de Givenchy looking for clothes for Sabrina. It began a forty-year partnership: Givenchy dressed her for Funny Face, Breakfast at Tiffany’s and much of her life off screen.',
+    mode: 'ford',
+  },
+  'atelier-counter': {
+    title: 'L’Atelier, Paris 2003',
+    intro: 'At L’Atelier the cooks work in an open kitchen behind the counter, in full view of the guests. Give every job to a station along the counter. A job can’t be done before the jobs it needs. The slowest station sets the pace.',
+    fact: 'Robuchon opened L’Atelier de Joël Robuchon in Paris in 2003, seating diners on stools around an open kitchen, an idea he drew from Japanese sushi counters and Spanish tapas bars.',
+    mode: 'ford',
+  },
+  'pixar-pipeline': {
+    title: 'Toy Story, Point Richmond 1995',
+    intro: 'Every shot of Toy Story passes through the same pipeline: story, modelling, animation, lighting, rendering. Give every job to a station along the line. A job can’t be done before the jobs it needs. The slowest station sets the pace.',
+    fact: 'Steve Jobs bought the computer graphics division of Lucasfilm in 1986 and named it Pixar. Its Toy Story (1995) was the first feature-length film made entirely with computer animation; each frame took hours to render on a farm of Sun workstations.',
+    mode: 'ford',
+  },
 }
 
 export const CONFIG_IDS = Object.keys(CONFIGS)

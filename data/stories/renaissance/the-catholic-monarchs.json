@@ -28,12 +28,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "optics",
-            "configId": "fresnel-lighthouse",
+            "game": "morris",
+            "configId": "alfonso-alquerque",
             "seed": 55632,
-            "instruction": "Isabel I of Castile: focus the light.",
-            "fact": "Columbus spent seven years seeking royal patronage before Isabel and Ferdinand agreed to fund his voyage. The myth that Isabel sold her jewels is almost certainly false — the funding came from the royal treasury and private investors. But Isabel's personal intervention was decisive after her council had already rejected the proposal.",
-            "rebalanced": true
+            "instruction": "The great lords of Castile will not bow to a queen of twenty-three. Beat them at their own game on the old Castilian board: form mills, take their pieces and leave them no line to hold.",
+            "fact": "Isabel's claim to Castile was contested by her niece Juana, backed by Afonso V of Portugal and many of the great nobles. The War of the Castilian Succession turned at Toro in 1476 and ended with the Treaty of Alcáçovas in 1479."
           }
         }
       ]
@@ -63,10 +62,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "cooking",
-            "configId": "aztec-chocolate",
-            "instruction": "Columbus returned to Isabel's court with cacao from the Americas. Prepare the sacred Aztec drink that first reached Spain in her era.",
-            "fact": "Columbus brought cacao beans to Spain on his fourth voyage in 1502. Isabel died in 1504, likely never tasting chocolate. It was her descendants who introduced the sweetened drink to European courts."
+            "game": "queens",
+            "configId": "alhambra",
+            "seed": 4729,
+            "instruction": "Granada falls in January 1492, and the Alhambra is Isabel's. Set one queen in every glaze of its tilework — one per row, column and colour, and none touching.",
+            "fact": "On 2 January 1492 Muhammad XII, the last Nasrid sultan, handed the keys of Granada to Isabel and Ferdinand, ending nearly eight centuries of Muslim rule in Iberia. That April, at Santa Fe outside the city, they signed the agreement that sent Columbus west."
           }
         }
       ]
@@ -101,24 +101,22 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "nonogram",
-            "configId": "louvre",
+            "game": "cooking",
+            "configId": "aztec-chocolate",
             "seed": 64403,
-            "instruction": "Isabel I of Castile: reveal the picture from its clues.",
-            "fact": "Educated Europeans had known the Earth was spherical since ancient Greece. The debate was about the Earth's SIZE — Columbus's critics correctly argued the ocean was too wide. He survived only because the Americas existed where he wrongly placed Asia.",
-            "rebalanced": true
+            "instruction": "Her captains have found a new world, and its riches are only beginning to reach Castile. Prepare the cacao drink of the peoples they met across the ocean.",
+            "fact": "On his fourth voyage, in 1502, Columbus met a great Maya trading canoe off the island of Guanaja whose crew treasured cacao beans like money. Isabel died in 1504 without tasting chocolate; the drink reached the Spanish court decades later."
           }
         },
         {
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "quipu",
-            "configId": "top-cord",
+            "game": "knightstour",
+            "configId": "lucena-1497",
             "seed": 22685,
-            "instruction": "Isabel I of Castile: read and tie the quipu.",
-            "fact": "Don Quixote (1605) by Cervantes is considered the first modern novel. The windmill scene became one of literature's greatest metaphors. Cervantes wrote Part I while imprisoned in Seville; the success was so great he wrote Part II a decade later.",
-            "rebalanced": true
+            "instruction": "In Salamanca a chess book is printed for Isabel's son and heir. Follow the knight's path it sets — every square once, the numbered squares in order.",
+            "fact": "Prince Juan, to whom Lucena dedicated his chess book, died in October 1497 at nineteen. The crowns of Castile and Aragon passed through his sister Juana to her son, the future Emperor Charles V."
           }
         },
         {

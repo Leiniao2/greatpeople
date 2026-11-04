@@ -37,6 +37,18 @@ interface NonoConfig {
 }
 
 export const CONFIGS: Record<string, NonoConfig> = {
+  'theban-draughtsman': {
+    title: 'The Draughtsman’s Grid',
+    intro: 'Before the carvers cut a single sign, the draughtsman rules the wall into squares. Each clue lists the runs of filled squares in that line, in order. Fill in the figure.',
+    fact: 'Egyptian draughtsmen laid out every figure on a grid of squares ruled in red, so that proportions stayed the same from wall to wall and from century to century. Unfinished tomb walls at Thebes still show the grid lines beneath the outlines.',
+    twist: 'classic',
+  },
+  'physicians-school': {
+    title: 'The Teaching Papyrus',
+    intro: 'An old papyrus from the physicians’ school: damp has faded some clues to “?”, and those lines could hold anything. The surviving clues are still enough — work round the gaps.',
+    fact: 'Peseshet’s title — imy-r swnwt, “overseer of women physicians” — survives on a single false door in the Giza tomb of her son Akhethotep. Where her physicians trained is unknown; later texts place medical teaching in the temple “Houses of Life”, where the books were copied and kept.',
+    twist: 'faded',
+  },
   'ashmolean': {
     title: 'The Ashmolean Register',
     intro: 'A keeper’s catalogue records each artefact only as numbers on a grid. Each clue lists the runs of filled squares in that line, in order. Fill in the picture.',
@@ -54,6 +66,12 @@ export const CONFIGS: Record<string, NonoConfig> = {
     intro: 'A hasty revolutionary clerk sorted some clues by size. Lines marked ⇄ list their runs smallest first — the runs are right, but their order along the line is for you to find.',
     fact: 'The Louvre palace opened as a public museum on 10 August 1793, the first anniversary of the fall of the monarchy, with 537 paintings largely drawn from the royal collection.',
     twist: 'jumbled',
+  },
+  'grimani-antiquities': {
+    title: 'The Grimani Inventory, Venice',
+    intro: 'The lagoon damp has got into the Grimani inventory: some clues have faded to “?”, and those lines could hold anything. The surviving clues are still enough to draw each piece of the collection — work round the gaps.',
+    fact: 'Cardinal Domenico Grimani left his antiquities to the Republic of Venice in 1523, and his nephew Giovanni added his own in 1587. Shown from 1596 in the Statuario Pubblico beside the Library of St Mark’s, they made one of Europe’s first public collections — the classical models Venetian painters learned from.',
+    twist: 'faded',
   },
   'wunderkammer': {
     title: 'The Cabinet of Curiosities',

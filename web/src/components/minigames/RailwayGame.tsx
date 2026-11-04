@@ -46,16 +46,40 @@ export const CONFIGS: Record<string, RailConfig> = {
     fact: 'Built from 1891 to 1916, the Trans-Siberian Railway runs about 9,289 km from Moscow to Vladivostok — still the longest railway line in the world.',
     mode: 'transsib',
   },
+  'leipzig-vienna': {
+    title: 'Leipzig to Vienna',
+    intro: 'Lay the line from Leipzig (★) to Vienna (V) through the numbered concert towns in order. Curve pieces are scarce — use as few as you can.',
+    fact: 'The Leipzig–Dresden line, opened in 1839, was Germany’s first long-distance railway. By 1851 the rails ran on from Dresden through Prague to Vienna, and touring virtuosos like Clara Schumann rode them from city to city.',
+    mode: 'transsib',
+  },
   underground: {
     title: 'The London Underground',
     intro: 'Join each coloured line’s two stations. Lines may meet only at interchanges (◎) — and every interchange must serve at least two lines.',
     fact: 'The Metropolitan Railway opened the world’s first underground line on 10 January 1863, between Paddington and Farringdon, with steam locomotives in shallow cut-and-cover tunnels.',
     mode: 'underground',
   },
+  'harbin-line': {
+    title: 'The Chinese Eastern Railway, 1909',
+    intro: 'Lay the line from Harbin (★) to Vladivostok (V) through the numbered stations in order. Curve pieces are scarce — use as few as you can.',
+    fact: 'Russia built the Chinese Eastern Railway across Manchuria between 1897 and 1903 as a shortcut for the Trans-Siberian to Vladivostok; Harbin grew up around its junction. In October 1909 Ahn Jung-geun rode it from Vladivostok to Harbin to meet Itō Hirobumi’s train.',
+    mode: 'transsib',
+  },
+  'meiji-lines': {
+    title: 'The Meiji Railways',
+    intro: 'Join each coloured line’s two terminals. Lines may meet only at interchanges (◎) — and every interchange must serve at least two lines.',
+    fact: 'Japan’s first railway opened on 14 October 1872 between Shimbashi in Tokyo and Yokohama, built by British engineers under Edmund Morel with a loan raised in London. Itō Hirobumi and Ōkuma Shigenobu were its leading champions in the new government.',
+    mode: 'underground',
+  },
   yard: {
     title: 'The Switching Yard',
     intro: 'Wagons arrive in a jumble. Set the points to park them on sidings and send them out in order 1, 2, 3… The last wagon in a siding is the first out.',
     fact: 'Hump yards, which sort wagons by rolling them by gravity through a fan of points, appeared in the 1880s; at their peak big yards sorted thousands of wagons a day.',
+    mode: 'yard',
+  },
+  'froghall-wagonway': {
+    title: 'The Froghall Wagonway',
+    intro: 'Horse-drawn wagons come down the wooden rails in a jumble. Set the points to park them on sidings and send them out to the canal boats in order 1, 2, 3… The last wagon in a siding is the first out.',
+    fact: 'Around 1778 the Trent and Mersey company laid a horse-drawn wagonway of wooden rails from its Caldon branch at Froghall up to the limestone quarries at Caldon Low — one of the plateways that fed Britain’s canals half a century before steam locomotives.',
     mode: 'yard',
   },
 }

@@ -53,6 +53,30 @@ export const CONFIGS: Record<string, ChimpConfig> = {
     ],
     fact: "Jane Goodall's groundbreaking research at Gombe Stream showed that chimpanzees make and use tools, have complex social bonds, and experience emotions. Her work — begun in 1960 — forever changed our understanding of the boundary between humans and other animals.",
   },
+  'bubbles-tour': {
+    title: 'Bubbles on Tour',
+    chimpName: 'Bubbles', chimpEmoji: '🐒',
+    questions: [
+      { a: 2, op: '+', b: 5 },
+      { a: 6, op: '-', b: 4 },
+      { a: 3, op: '+', b: 3 },
+      { a: 9, op: '-', b: 2 },
+      { a: 4, op: '+', b: 5 },
+    ],
+    fact: "Michael Jackson's chimpanzee Bubbles lived at his Encino home and Neverland, and travelled with him to Japan on the 1987 Bad tour. Since 2005 Bubbles has lived at the Center for Great Apes, a sanctuary in Florida.",
+  },
+  'motijhil-school': {
+    title: 'The Motijhil School',
+    chimpName: "Motijhil's children", chimpEmoji: '🧒',
+    questions: [
+      { a: 1, op: '+', b: 2 },
+      { a: 4, op: '+', b: 3 },
+      { a: 5, op: '-', b: 2 },
+      { a: 3, op: '+', b: 5 },
+      { a: 8, op: '-', b: 4 },
+    ],
+    fact: 'In December 1948 Mother Teresa began teaching a handful of children in the open air in Motijhil, a Calcutta slum, writing letters in the dirt with a stick. More came each day, and the open-air class became her first school.',
+  },
 }
 
 // ── Helpers ────────────────────────────────────────────────────────────────────

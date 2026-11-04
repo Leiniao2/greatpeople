@@ -72,7 +72,10 @@ describe("Knight's Tour — every level is winnable", () => {
   })
 
   it('each config is its own rule twist', () => {
-    expect(new Set(CONFIG_IDS.map(id => CONFIGS[id].rule)).size).toBe(CONFIG_IDS.length)
+    // The base configs are each a different twist; story-themed configs reuse one of them.
+    const BASE = ['euler', 'al-adli', 'turk', 'tamerlane']
+    expect(new Set(BASE.map(id => CONFIGS[id].rule)).size).toBe(BASE.length)
+    for (const id of CONFIG_IDS) expect(BASE.map(b => CONFIGS[b].rule), id).toContain(CONFIGS[id].rule)
     for (const id of CONFIG_IDS) expect(CONFIGS[id].intro.length, id).toBeGreaterThan(40)
   })
 

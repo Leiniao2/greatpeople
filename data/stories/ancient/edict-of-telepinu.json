@@ -28,12 +28,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "mint",
-            "configId": "lydia",
+            "game": "hanoi",
+            "configId": "hittite-succession",
             "seed": 54091,
-            "instruction": "King Telepinu: mint the target coin.",
-            "fact": "The Hittite royal family had suffered generations of murder, coup, and revenge killings over succession. Telepinu's Edict (c. 1600 BCE) established a clear line of succession and banned the killing of royal family members — replacing blood with law.",
-            "rebalanced": true
+            "instruction": "Who inherits, and in what order: write it so that no prince can jump the line. Move the royal line one step at a time, never a greater above a lesser.",
+            "fact": "The Hittite royal family had suffered generations of murder, coup and revenge over the throne. Telepinu's Edict (c. 1500 BCE) fixed the order of succession and forbade the killing of royal kin — replacing blood with law."
           }
         }
       ]
@@ -57,12 +56,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "senet",
-            "configId": "new-kingdom",
+            "game": "mint",
+            "configId": "hittite-silver",
             "seed": 62686,
-            "instruction": "King Telepinu: bear your pieces off first.",
-            "fact": "The Hittite Empire (c. 1700–1200 BCE) was based in Hattusa, near modern Boğazkale in Turkey. At its peak it rivalled Egypt — and the Hittite-Egyptian clash at Kadesh (c. 1274 BCE) is the first well-documented pitched battle in recorded history.",
-            "rebalanced": true
+            "instruction": "The princes will not like the price of breaking this law. Weigh out the silver that the law demands, shekel by shekel, until the penalty is paid.",
+            "fact": "The Hittite Empire (c. 1700–1200 BCE) was based in Hattusa, near modern Boğazkale in Turkey. At its peak it rivalled Egypt — and the Hittite-Egyptian clash at Kadesh (c. 1274 BCE) is the first well-documented pitched battle in recorded history."
           }
         }
       ]
@@ -82,12 +80,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "sokoban",
-            "configId": "karnak",
+            "game": "archbuild",
+            "configId": "hattusa-gates",
             "seed": 29897,
-            "instruction": "King Telepinu: haul the stones onto their marks.",
-            "fact": "Telepinu's Edict predates Greek democratic codes by centuries. Its core principle — that even kings must follow established succession rules — represented a revolutionary idea: that the most powerful rulers were subject to written law.",
-            "rebalanced": true
+            "instruction": "A kingdom strong enough that its succession is boring: raise the gates of Hattusa stone on stone, each passage closed by its top stone.",
+            "fact": "Telepinu's Edict predates Greek democratic codes by centuries. Its core principle — that even kings must follow established succession rules — represented a revolutionary idea: that the most powerful rulers were subject to written law."
           }
         }
       ]
@@ -121,10 +118,10 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "klotski",
-            "configId": "last-general",
-            "instruction": "The Hittite Empire's final years required desperate strategic moves. Slide the last general to safety before the Bronze Age Collapse closes every escape.",
-            "fact": "Around 1200 BCE, the Hittite Empire was one of several great powers destroyed by the Bronze Age Collapse. Invaders known as the 'Sea Peoples,' combined with drought and internal revolt, wiped out civilisations across the eastern Mediterranean within decades. The Hittites were so thoroughly destroyed that their very existence was forgotten for 3,000 years."
+            "game": "tangram",
+            "configId": "hattusa-monuments",
+            "instruction": "Let this tablet outlast every king whose name is on it. Fit the cut blocks into the monument's outline — one stray block does not belong.",
+            "fact": "Hattusa was abandoned around 1200 BCE and its archives lay buried until 1906, when excavations at Boğazköy began to recover some 30,000 clay tablets and fragments — the Edict of Telepinu among them."
           }
         },
         {

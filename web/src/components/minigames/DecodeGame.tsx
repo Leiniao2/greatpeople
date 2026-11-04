@@ -18,7 +18,9 @@ export const CONFIGS: Record<string, DecodeConfig> = {
   'sargon-code':    { title: 'Royal Seal',            hint: 'An Akkadian royal decree encoded for messengers',                plaintext: 'UNITE THE LAND OR LOSE IT' },
   'mulan-code':     { title: 'Hidden Orders',         hint: 'A military dispatch from the Northern Wei campaigns',            plaintext: 'HONOR NEEDS NO NAME' },
   'mao-code':       { title: 'Long March Dispatch',   hint: 'A coded military order from the Jiangxi Soviet, 1934',           plaintext: 'MARCH OR FACE DEFEAT' },
+  'morris-cable':   { title: 'Message for The Times', hint: "James Morris's coded report of the summit, sent from Namche Bazaar, 1953", plaintext: 'SNOW CONDITIONS BAD ADVANCED BASE ABANDONED' },
   'turing-dispatch':{ title: 'Naval Intercept',       hint: 'An Enigma-encoded naval message, North Atlantic 1943',           plaintext: 'THE MACHINE SEES ALL' },
+  'rihla-title':    { title: 'The Name of the Book',  hint: 'Words from the title of the Rihla, written down at Fez, 1355',  plaintext: 'THE WONDERS OF CITIES' },
 }
 
 // ── Cipher generation ──────────────────────────────────────────────────────────

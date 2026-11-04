@@ -31,13 +31,8 @@
             "game": "cipher",
             "seed": 1007,
             "fact": "The Enigma machine had 17,576 possible rotor starting positions (26×26×26). But with plugboard settings, the actual number of configurations was 158 quintillion — the Bombe exploited cribs (known plaintext) to narrow the search.",
-            "autogen": true,
-            "configId": "caesar-gaul",
-            "params": {
-              "mode": "caesar",
-              "plaintext": "WEATHER REPORT"
-            },
-            "instruction": "Before the Bombe, Turing practises on a simple shift. The message is the crib Bletchley Park hunted for every morning. Turn the wheel until it reads."
+            "configId": "bletchley-crib",
+            "instruction": "Before the Bombe, Turing practises on a simple shift. The hidden word is the crib Bletchley Park hunted for every morning — turn the wheel until it reads."
           }
         }
       ]
@@ -57,8 +52,8 @@
             "type": "minigame",
             "game": "wordle",
             "configId": "enigma",
-            "instruction": "Crack the code — guess the 5-letter word hidden in the Bombe's output.",
-            "fact": "Turing's Bombe worked through every possible rotor setting until the ciphertext collapsed into readable English — just as each Wordle guess collapses possibility."
+            "instruction": "Five letters name the machine Turing designed to search Enigma's settings. Guess it before the day's key changes at midnight.",
+            "fact": "Turing's Bombe ran through Enigma rotor settings at speed, rejecting every one that contradicted the crib, until only a handful were left for the codebreakers to test by hand."
           }
         }
       ]
@@ -80,7 +75,7 @@
             "type": "minigame",
             "game": "circuit",
             "configId": "enigma",
-            "instruction": "Complete the Bombe circuit — the electrical circuit that cracked Enigma.",
+            "instruction": "Every Enigma keypress closed an electrical path through the plugboard and rotors to a lamp. Complete the circuit so the signal gets through.",
             "fact": "Turing's Bombe was based on a Polish machine called the Bomba, which Turing and Gordon Welchman dramatically improved. At peak operation, 211 Bombe machines ran simultaneously at Bletchley Park."
           }
         }
@@ -93,18 +88,17 @@
       "scenes": [
         {
           "type": "narration",
-          "text": "The Enigma encoding required precise electrical circuit paths. Reconstruct the switch configuration that would allow the correct signal to pass through to decode the message..."
+          "text": "After the war Turing went back to the idea he had published in 1936: a single universal machine that could carry out any computation written on its tape."
         },
         {
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "reporterflee",
-            "configId": "vietnam-press",
+            "game": "logicgate",
+            "configId": "turing-tape",
             "seed": 22572,
-            "instruction": "Alan Turing: get the story out alive.",
-            "fact": "Alan Turing's bombe machine exploited a flaw in Enigma — no letter ever encrypted to itself — to narrow down rotor positions and crack the daily key.",
-            "rebalanced": true
+            "instruction": "Back to the idea of 1936: a machine that reads a tape and rewrites it by rule. Wire the gates so the circuit gives the right output on every row.",
+            "fact": "In 1946 Turing designed the Automatic Computing Engine (ACE) for the National Physical Laboratory, one of the first complete designs for a stored-program computer; a Pilot ACE ran in 1950."
           }
         },
         {
@@ -113,7 +107,7 @@
             "type": "minigame",
             "game": "pseudocode",
             "configId": "turing-machine",
-            "instruction": "Arrange the pseudo-code lines in the correct logical order to build working algorithms — just as Turing formalized computation.",
+            "instruction": "Put the steps in order so the machine accepts the right strings and rejects the rest — computation broken into rules simple enough for a machine to follow.",
             "fact": "Turing's 1936 paper introduced the concept of a universal machine: a theoretical device that could simulate any algorithm by reading and writing symbols on a tape."
           }
         },

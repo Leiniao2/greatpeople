@@ -29,11 +29,10 @@
           "challenge": {
             "type": "minigame",
             "game": "circuit",
-            "configId": "staircase",
+            "configId": "four-wire",
             "seed": 30515,
-            "instruction": "Peter Arnett: wire the circuit until it lights.",
-            "fact": "Peter Arnett broadcast live from Baghdad for CNN during the Gulf War air campaign on January 17, 1991 — the first time a war had been broadcast live on television. His reports from inside the enemy capital were watched by hundreds of millions worldwide.",
-            "rebalanced": true
+            "instruction": "The other networks' lines have gone dead. Close every relay on CNN's four-wire and keep the voices from the ninth floor on the air.",
+            "fact": "Peter Arnett broadcast live from Baghdad for CNN during the Gulf War air campaign on January 17, 1991 — the first time a war had been broadcast live on television. His reports from inside the enemy capital were watched by hundreds of millions worldwide."
           }
         }
       ]
@@ -57,15 +56,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "telegraph",
+            "game": "binary",
+            "configId": "ap-telex",
             "seed": 1020,
-            "fact": "War journalism transformed how governments prosecute and justify wars. Russell's dispatches triggered military reforms; Adams' photo changed American public opinion on Vietnam; Arnett's Gulf War broadcasts created the first live war on television — watched simultaneously by world leaders and ordinary viewers.",
-            "autogen": true,
-            "configId": "signal-lamp",
-            "params": {
-              "plaintext": "DISPATCH FROM CRIMEA"
-            },
-            "instruction": "The first war correspondent's report comes down the line. Read the lamp."
+            "instruction": "Arnett learned to stay put in Vietnam, filing for the AP while others left. Read one of his Saigon dispatches off the teleprinter, lamp by lamp.",
+            "fact": "War journalism transformed how governments prosecute and justify wars. Russell's dispatches triggered military reforms; Adams' photo changed American public opinion on Vietnam; Arnett's Gulf War broadcasts created the first live war on television — watched simultaneously by world leaders and ordinary viewers."
           }
         }
       ]
@@ -85,10 +80,10 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "decode",
-            "configId": "cipher-al",
-            "instruction": "Arnett's Gulf War dispatches were scrutinised by military censors before broadcast. Decode the message — what gets through when every word is watched?",
-            "fact": "CNN's Baghdad correspondents operated under military press pools and Iraqi government minders simultaneously. Every broadcast was monitored. Arnett later said he chose his words carefully — describing what he could see while knowing the military and the Iraqi government were both watching. Real-time war journalism was born under those constraints."
+            "game": "reporterflee",
+            "configId": "baghdad-1991",
+            "instruction": "'Someone has to be here. I will stay.' Get through the blacked-out city and back to the Al-Rashid with the story.",
+            "fact": "Arnett's reports were read by Iraqi censors before broadcast, and CNN told viewers so. His report from a bombed factory that Iraq called a baby-milk plant — the US said it made biological weapons — drew fierce criticism in Washington."
           }
         }
       ]
@@ -106,9 +101,9 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "sudoku",
-            "configId": "eisenstein-grid",
-            "instruction": "War correspondents must impose order on chaos — filing accurate reports under fire. The grid has one solution. Find it before the deadline.",
+            "game": "worldclock",
+            "configId": "baghdad-live",
+            "instruction": "The whole world is watching the same broadcast at the same moment. Work out what time Arnett's live reports reach each city.",
             "fact": "Live television journalism from a war zone required split-second decisions: what to broadcast, how to frame it, what to leave out. Arnett's reporting from Baghdad was criticised by the US military as too sympathetic to Iraq and praised by journalists as the only independent witness in the city. Both sides were watching the same broadcast."
           }
         },
@@ -122,12 +117,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "punnett",
-            "configId": "mendel-peas",
+            "game": "pseudocode",
+            "configId": "baghdad-censor",
             "seed": 98989,
-            "instruction": "Peter Arnett: predict the inheritance.",
-            "fact": "In March 1997, Arnett (then at CNN) conducted a rare interview with Osama bin Laden in Afghanistan. Bin Laden declared war on the United States and said he would bring Americans to justice. The interview was largely ignored by media and public. Four years and five months later, the September 11 attacks occurred.",
-            "rebalanced": true
+            "instruction": "If you are in the right place with a microphone, the world cannot look away. Put Arnett's routine in order so the story gets out — and viewers know what it is.",
+            "fact": "In March 1997 Arnett, then with CNN, interviewed Osama bin Laden at a hideout in eastern Afghanistan — bin Laden's first television interview — in which he declared holy war on the United States. Four and a half years later came the attacks of 11 September 2001."
           }
         },
         {

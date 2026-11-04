@@ -28,12 +28,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "cryptarithm",
-            "configId": "multiply",
+            "game": "hanoi",
+            "configId": "rue-cambon",
             "seed": 76338,
-            "instruction": "Coco Chanel: crack the letter sum.",
-            "fact": "Chanel's 'little black dress' (1926) appeared in Vogue, which compared it to Ford's Model T — a fashion so universal and timeless it was available to everyone. Black had previously been reserved for mourning.",
-            "rebalanced": true
+            "instruction": "Chanel is moving her hats from Balsan's flat to her own shop at 21 rue Cambon. Carry the stack of hatboxes across without crushing a single hat.",
+            "fact": "Chanel's first success was hats: plain straw boaters stripped of the feathers and fruit then in fashion. When the actress Gabrielle Dorziat wore them on the Paris stage in 1912, the city followed."
           }
         }
       ]
@@ -51,12 +50,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "worldclock",
-            "configId": "modern-traveler",
+            "game": "assembly",
+            "configId": "chanel-workrooms",
             "seed": 44138,
-            "instruction": "Coco Chanel: convert the times across the globe.",
-            "fact": "Each of Chanel's innovations stripped away constraint. Jersey replaced stiff silk; cardigan suits replaced corsets; black replaced colour as the dominant fashion statement. She built freedom into fashion at a time when clothing was still architecture built to restrict women's bodies.",
-            "rebalanced": true
+            "instruction": "Simplicity still has to be made by hand. Set up the workrooms so each jersey dress moves from cutting to finishing without a bottleneck.",
+            "fact": "Each of Chanel's innovations stripped away constraint. Jersey replaced stiff silk; cardigan suits replaced corsets; black replaced colour as the dominant fashion statement. She built freedom into fashion at a time when clothing was still architecture built to restrict women's bodies."
           }
         }
       ]
@@ -93,12 +91,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "reporterflee",
-            "configId": "gulf-war-press",
+            "game": "cryptarithm",
+            "configId": "chanel-ledger",
             "seed": 49810,
-            "instruction": "Coco Chanel: get the story out alive.",
-            "fact": "Victorian corsets could pull a waist to 45 cm (18 inches), causing fainting, rib deformities, and displaced organs. Chanel borrowed fabrics from men's sportswear — jersey, tweed — and designed for movement. 'I gave women a sense of freedom,' she said. 'I gave them back their bodies.' It was a cultural revolution sewn into cloth.",
-            "rebalanced": true
+            "instruction": "Chanel built an empire on her own terms and watched every franc of it. Make the house accounts add up.",
+            "fact": "Victorian corsets could pull a waist to 45 cm (18 inches), causing fainting, rib deformities, and displaced organs. Chanel borrowed fabrics from men's sportswear — jersey, tweed — and designed for movement. 'I gave women a sense of freedom,' she said. 'I gave them back their bodies.' It was a cultural revolution sewn into cloth."
           }
         },
         {

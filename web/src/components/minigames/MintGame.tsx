@@ -84,6 +84,25 @@ export const CONFIGS: Record<string, MintConfig> = {
     twist: 'tilt',
     twistText: 'Tilted tray: the tray leans toward you, so coins can be swiped left, right and down — never up. Keep your big coins on the bottom row.',
   },
+  'horus-eye': {
+    title: 'The Eye of Horus Measures',
+    intro: 'Measure out a remedy: pour small parts of the hekat together, doubling each time, until the dose the patient needs is ready.',
+    fact: 'Egyptian scribes split the hekat, the measure for grain, by halving: ½, ¼, ⅛ and on down to 1/64, each written with its own sign — signs long linked to the Eye of Horus. Prescriptions in the medical papyri give their ingredients as fractions of a measure in just this way.',
+    coins: ['1/64 hekat', '1/32 hekat', '1/16 hekat', '⅛ hekat', '¼ hekat', '½ hekat', 'Hekat', 'Double hekat', 'Four hekat', 'Eight hekat', 'Khar sack', 'Temple store'],
+    palette: 'mediterranean',
+    twist: 'tilt',
+    twistText: 'Tilted bench: the dispensary bench leans toward you, so measures can be swiped left, right and down — never up. Keep the large measures on the bottom row.',
+  },
+  'hittite-silver': {
+    title: 'Silver by the Shekel',
+    intro: 'The law sets every penalty in weighed silver. Join the small weights into shekels, and the shekels into ever larger sums, until the fine is paid in full.',
+    fact: 'The Hittites had no coins: payments were weighed out in silver by the shekel and the mina. The Hittite Laws set compensation in silver for most offences rather than blood for blood, and the Edict of Telepinu rules that a prince who kills pays with his own head — but his house and his children are not to be harmed.',
+    coins: ['⅛ shekel', '¼ shekel', '½ shekel', 'Shekel', '2 shekels', '4 shekels', '8 shekels', '16 shekels', '32 shekels', '64 shekels', 'Silver bar', 'Royal treasury'],
+    palette: 'britain',
+    twist: 'blocked',
+    twistText: 'Cracked weights: false weights are found on the scale and taken off it for good. Weights stop against them, and you must build your sum around them.',
+    special: 'Cracked weight',
+  },
 }
 
 export type Dir = 'left' | 'right' | 'up' | 'down'

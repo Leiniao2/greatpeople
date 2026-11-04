@@ -86,6 +86,18 @@ export const CONFIGS: Record<string, TradeConfig> = {
     variant: 'boom',
     twist: 'Silk boom: every round prices and tolls rise 10%, and what you own rises with them. Buy early, before the market runs away from you.',
   },
+  pegu: {
+    title: 'The Ports of Pegu',
+    intro: 'Junks from China, Gujarati dhows and Portuguese carracks crowd the Gulf of Martaban. Trade for the King of Kings: buy posts along the coast and up the Irrawaddy, complete a region to double its tolls, and build before the monsoon turns.',
+    fact: 'Under Bayinnaung, Pegu was one of the great ports of the Bay of Bengal. The Venetian merchant Cesare Federici, who saw it in the late 1560s, described its walls, its gilded palace and a trade in rubies, lac, rice and Indian cloth that drew merchants from Malacca to the Coromandel coast.',
+    currency: 'ticals', start: 'Pegu', rest: 'Monsoon harbour', tax: 'Royal toll', festival: 'Pagoda festival',
+    ports: ['Syriam', 'Dagon', 'Bassein', 'Martaban', 'Ye', 'Prome', 'Pagan', 'Ava', 'Chiang Mai', 'Lamphun', 'Ayutthaya', 'Tenasserim'],
+    groupNames: ['Delta', 'Martaban Coast', 'Irrawaddy', 'Lan Na', 'Siam'],
+    rivals: [{ name: 'Portuguese factors', icon: '⛵' }, { name: 'Fujian junk masters', icon: '🏮' }, { name: 'Gujarati brokers', icon: '🧵' }],
+    storm: 'A cyclone in the Gulf of Martaban sinks a cargo', plague: 'Fever aboard! You wait out the rains in harbour', fair: 'The monsoon carries you home to Pegu', pirates: 'Arakanese raiders strike your posts',
+    variant: 'boom',
+    twist: 'Boom years: every round prices and tolls rise 10%, and what you own rises with them. Buy early, before the market runs away from you.',
+  },
   spice: {
     title: 'The Spice Race',
     intro: 'Sail for the Indies as a Dutch company captain. Buy factories along the route and out-trade the rival companies before the monsoon turns.',
@@ -97,6 +109,18 @@ export const CONFIGS: Record<string, TradeConfig> = {
     storm: 'A monsoon gale dismasts a ship', plague: 'Scurvy aboard! You rest at the Cape', fair: 'The trade winds carry you home to Amsterdam', pirates: 'Privateers raid your factories',
     variant: 'rivalry',
     twist: 'Company race: there is no fixed goal — when the season ends you must be the richest merchant on the board, ahead of every rival by the margin shown.',
+  },
+  'robuchon-ateliers': {
+    title: 'L’Atelier Goes Round the World',
+    intro: 'Robuchon is back, with guests on stools round an open kitchen. Open L’Ateliers city by city, complete a region to double its takings, and build up before the season ends.',
+    fact: 'Robuchon opened the first two L’Ateliers in 2003, in Saint-Germain in Paris and at Roppongi Hills in Tokyo. Las Vegas followed in 2005 and London, New York and Hong Kong in 2006; later came Taipei, Singapore and Shanghai, alongside his grand restaurants in Monte-Carlo, Macau and Bordeaux.',
+    currency: 'euros', start: 'Saint-Germain', rest: 'Retirement', tax: 'Landlord’s rent', festival: 'Rungis market',
+    ports: ['Étoile', 'Bordeaux', 'Tokyo', 'Taipei', 'Shanghai', 'Hong Kong', 'Macau', 'Singapore', 'Monte-Carlo', 'London', 'Las Vegas', 'New York'],
+    groupNames: ['France', 'East Asia', 'South China Sea', 'Europe', 'America'],
+    rivals: [{ name: 'Rival house', icon: '👨‍🍳' }, { name: 'Grand hotel', icon: '🏨' }, { name: 'Brasserie group', icon: '🍷' }],
+    storm: 'The cold room fails overnight and the stock is lost', plague: 'Exhausted, you step back from the stoves', fair: 'A rave review brings you home to Saint-Germain', pirates: 'Copycat counters poach your guests',
+    variant: 'rivalry',
+    twist: 'Star race: there is no fixed goal — when the season ends you must be the richest house on the board, ahead of every rival by the margin shown.',
   },
 }
 

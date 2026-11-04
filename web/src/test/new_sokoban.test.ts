@@ -109,8 +109,9 @@ describe('sokoban rules', () => {
 
 describe('sokoban pools', () => {
   it('every site plays a different rule', () => {
-    const rules = CONFIG_IDS.map(id => CONFIGS[id].variant)
-    expect(new Set(rules).size).toBe(CONFIG_IDS.length)
+    // The base configs are each their own twist; story-themed configs reuse one of them.
+    const BASE = ['giza-ramp', 'karnak', 'stonehenge', 'baalbek-quarry']
+    expect(new Set(BASE.map(id => CONFIGS[id].variant)).size).toBe(BASE.length)
     for (const id of CONFIG_IDS) expect(RULES).toContain(CONFIGS[id].variant)
   })
 

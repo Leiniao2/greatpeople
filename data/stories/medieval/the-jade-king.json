@@ -26,11 +26,10 @@
           "challenge": {
             "type": "minigame",
             "game": "irrigation",
-            "configId": "inca",
+            "configId": "lakamha",
             "seed": 30563,
-            "instruction": "Pakal the Great: water every field before the flood ebbs.",
-            "fact": "Pakal became king of Palenque at age 12 in 615 CE and ruled until his death in 683 CE — 68 years on the throne, the longest reign in all of pre-Columbian history. Under his rule, Palenque transformed from a minor city into one of the most powerful and artistically sophisticated kingdoms of the Classic Maya world.",
-            "rebalanced": true
+            "instruction": "Lakamha', the city of big water, needs its gardens fed. Open the sluices so water runs down the terraces to every garden — and keep the flood out of the young king's town.",
+            "fact": "Pakal became king of Palenque at age 12 in 615 CE and ruled until his death in 683 CE — 68 years on the throne, the longest reign in all of pre-Columbian history. Under his rule, Palenque transformed from a minor city into one of the most powerful and artistically sophisticated kingdoms of the Classic Maya world."
           }
         }
       ]
@@ -51,9 +50,8 @@
             "game": "sokoban",
             "configId": "stonehenge",
             "seed": 51393,
-            "instruction": "Pakal the Great: haul the stones onto their marks.",
-            "fact": "The Temple of the Inscriptions stood in plain sight for centuries — one of Palenque's most prominent structures. But its tomb was not discovered until 1952, when Mexican archaeologist Alberto Ruz Lhuillier noticed a stone floor with plugged holes and spent four years clearing a rubble-filled staircase before reaching Pakal's burial chamber 25 metres below.",
-            "rebalanced": true
+            "instruction": "The nine terraces of the Temple of the Inscriptions rise stone by stone. Haul each block onto its mark — once a stone is set it cannot be moved again, so raise them in the right order.",
+            "fact": "The Temple of the Inscriptions stood in plain sight for centuries — one of Palenque's most prominent structures. But its tomb was not discovered until 1952, when Mexican archaeologist Alberto Ruz Lhuillier noticed a stone floor with plugged holes and spent four years clearing a rubble-filled staircase before reaching Pakal's burial chamber 25 metres below."
           }
         }
       ]
@@ -71,12 +69,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "snake",
-            "configId": "incense-route",
+            "game": "rotation",
+            "configId": "maya-milpa",
             "seed": 53304,
-            "instruction": "Pakal the Great: lead the caravan to every load.",
-            "fact": "The sarcophagus lid of Pakal's tomb shows him at the moment of death, descending into the Maya underworld (Xibalba) on the World Tree. For decades Western scholars misread the image as an astronaut in a spacecraft — a famous case of wishful thinking overriding careful analysis. Maya specialists recognized it as a standard resurrection narrative immediately.",
-            "rebalanced": true
+            "instruction": "The Palace astronomers read the sun to time the planting. Plan the milpas year by year so Palenque has maize and beans — and let the tired fields lie fallow.",
+            "fact": "The sarcophagus lid of Pakal's tomb shows him at the moment of death, descending into the Maya underworld (Xibalba) on the World Tree. For decades Western scholars misread the image as an astronaut in a spacecraft — a famous case of wishful thinking overriding careful analysis. Maya specialists recognized it as a standard resurrection narrative immediately."
           }
         },
         {
@@ -88,8 +85,8 @@
           "challenge": {
             "type": "minigame",
             "game": "maze",
-            "configId": "pyramid-deep",
-            "instruction": "Navigate the hidden staircase beneath the Temple of the Inscriptions — sealed for 1,300 years. Descend through the rubble to the jade king's chamber at the pyramid's heart.",
+            "configId": "pakal-stair",
+            "instruction": "Descend the hidden stairway beneath the Temple of the Inscriptions, sealed with rubble for 1,300 years, to the jade king's chamber at the pyramid's heart.",
             "fact": "The staircase descending to Pakal's tomb is 25 metres long and was completely filled with rubble when Alberto Ruz first entered. His team spent four excavation seasons (1949–1952) removing it stone by stone. When they finally broke through the sealed chamber door, they found a jade-encrusted sarcophagus surrounded by six sacrificed retainers and walls painted with the nine lords of the Maya underworld."
           }
         }
@@ -111,9 +108,8 @@
             "game": "quipu",
             "configId": "read",
             "seed": 51858,
-            "instruction": "Pakal the Great: read and tie the quipu.",
-            "fact": "Maya pyramids were not simply stacked stones — they were precisely calculated structures with internal staircases, chambers, and drainage systems built to last millennia. The Temple of the Inscriptions has survived 1,300 years of tropical storms, earthquakes, and vegetation. Its interior staircase is still structurally sound.",
-            "rebalanced": true
+            "instruction": "Pakal's monuments are full of counts of days and kings. Far to the south, Andean record-keepers kept their counts in knotted cords — read the glowing cord and enter its number.",
+            "fact": "Maya pyramids were not simply stacked stones — they were precisely calculated structures with internal staircases, chambers, and drainage systems built to last millennia. The Temple of the Inscriptions has survived 1,300 years of tropical storms, earthquakes, and vegetation. Its interior staircase is still structurally sound."
           }
         },
         {
@@ -121,9 +117,14 @@
           "challenge": {
             "type": "minigame",
             "game": "geometry",
-            "configId": "volume-pyramid",
-            "instruction": "Calculate the volume of Pakal's stepped pyramid — built without metal tools, wheels, or draft animals. Every stone was cut with obsidian, moved on wooden rollers, and lifted by human hands.",
-            "fact": "Maya builders achieved extraordinary geometric precision without metal tools or wheeled vehicles. They used astronomical alignments, knotted ropes, and water levels to plan their monuments. The Temple of the Inscriptions aligns so that at the winter solstice sunset, the sun appears to descend into the pyramid along the same axis as the internal staircase to Pakal's tomb."
+            "configId": "anaxagoras-shadow",
+            "instruction": "Pakal's builders tied his tomb to the sky. Find the low winter sun's angle from the shadow it casts across the Palace plaza.",
+            "fact": "Maya builders worked without metal tools or draft animals, yet set their monuments to the sky. Linda Schele noted in the 1970s that, seen from the Palace, the sun at the winter solstice sets directly behind the Temple of the Inscriptions — as if the dying sun were entering Pakal's tomb.",
+            "params": {
+              "title": "The Solstice Sun at Palenque",
+              "goal": "Drag the setting sun until the 2 m stela casts a shadow exactly 10 m long. Only the sun's angle above the horizon is shown.",
+              "explanation": "tan θ = 2/10 → θ ≈ 11.3°. Maya astronomers followed the sun's path through the year; seen from the Palace at Palenque, the winter-solstice sun sets behind the Temple of the Inscriptions."
+            }
           }
         },
         {

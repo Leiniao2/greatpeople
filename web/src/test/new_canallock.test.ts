@@ -100,7 +100,8 @@ describe('canal lock instances', () => {
         expect(inst.cap).toBe(capFor(d, inst.par))
         expect(inst.cap).toBeGreaterThan(inst.par)
         expect(isSolved(inst, inst.start)).toBe(false)
-        expect(inst.waterBudget !== null).toBe(id === 'grand-canal')
+        // Story-themed configs without their own layout play the grand-canal rule.
+        expect(inst.waterBudget !== null).toBe(!['canal-du-midi', 'panama', 'dutch-overtoom'].includes(id))
         const sol = solve(inst)!
         expect(sol.cost).toBe(inst.par)
         const { s, cost } = replay(inst, inst.start, sol.path)

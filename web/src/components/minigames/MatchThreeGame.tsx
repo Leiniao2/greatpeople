@@ -54,6 +54,47 @@ export const CONFIGS: Record<string, MatchThreeConfig> = {
     ruleDesc: "Swap adjacent · match 3+",
     fact: "Manuel I's Portugal controlled the spice trade from 1498 to the 1580s. A cargo of cloves from Maluku could return 100× its cost in Lisbon. The monopoly funded the Manueline architecture still standing in Belém — cathedrals literally built on pepper.",
   },
+  // Same board as lisbon-spices (5 types, plain swaps), so the same pace and haul.
+  'atelier-pass': {
+    title: "L'Atelier's Pass, Paris",
+    tiles: [
+      { label: '🥔', bg: 'bg-accent',      border: 'border-accent' },
+      { label: '🧈', bg: 'bg-yellow-500',  border: 'border-yellow-300' },
+      { label: '🦞', bg: 'bg-red-700',     border: 'border-red-500' },
+      { label: '🍄', bg: 'bg-orange-700',  border: 'border-orange-500' },
+      { label: '🌿', bg: 'bg-emerald-800', border: 'border-emerald-500' },
+    ],
+    art: 'm3_lisbon_spices', pace: 200, haul: 2.3,
+    ruleDesc: "Swap adjacent · match 3+",
+    fact: 'Robuchon ran his kitchens with fierce discipline: every plate was built to the same exact pattern and checked at the pass before it went out, whether in Paris, Tokyo or Las Vegas.',
+  },
+  // Same board as lisbon-spices (5 types, plain swaps), so the same pace and haul.
+  'barberini-bees': {
+    title: "The Baldachin of St Peter's, 1624–1634",
+    tiles: [
+      { label: 'B', bg: 'bg-accent',  border: 'border-accent' },
+      { label: 'L', bg: 'bg-emerald-800', border: 'border-emerald-500' },
+      { label: 'S', bg: 'bg-yellow-500', border: 'border-yellow-300' },
+      { label: 'K', bg: 'bg-orange-700', border: 'border-orange-500' },
+      { label: 'T', bg: 'bg-red-700',    border: 'border-red-500' },
+    ],
+    art: 'm3_venice_glass', pace: 200, haul: 2.3,
+    ruleDesc: "Swap adjacent · match 3+ · Bees, Laurel, Sun, Keys, Tiara",
+    fact: "Bernini's bronze baldachin over St Peter's tomb, about 29 m high, is covered in the emblems of his patron Urban VIII, Maffeo Barberini: bees and the sun from the family arms, laurel for the poet-pope, and the papal keys and tiara on the arms at the column bases.",
+  },
+  'pegu-bazaar': {
+    title: "The Bazaar of Pegu, 1570s",
+    tiles: [
+      { label: 'R', bg: 'bg-red-700',     border: 'border-red-400' },
+      { label: 'L', bg: 'bg-orange-700',  border: 'border-orange-400' },
+      { label: 'S', bg: 'bg-purple-700',  border: 'border-purple-400' },
+      { label: 'P', bg: 'bg-sky-700',     border: 'border-sky-400' },
+      { label: 'G', bg: 'bg-yellow-600',  border: 'border-yellow-300' },
+    ],
+    art: 'm3_mughal_gems', pace: 200, haul: 2.3,
+    ruleDesc: "Swap adjacent · match 3+ · rubies, lac, silk, porcelain, gold",
+    fact: "European visitors knew the King of Pegu as a lord of rubies: stones from the mines of upper Burma passed through his markets with lac, rice and gold, traded for Indian cloth and Chinese porcelain and silk.",
+  },
   'changan-silks': {
     title: "Chang'an Silk Market",
     tiles: [
@@ -66,6 +107,20 @@ export const CONFIGS: Record<string, MatchThreeConfig> = {
     art: 'm3_changan_silks', pace: 220, haul: 2.4,
     ruleDesc: "Swap adjacent · match 3+",
     fact: "Tang Dynasty Chang'an (modern Xi'an) was the eastern terminus of the Silk Road and the world's largest city, with one million inhabitants. The Western Market alone had 3,000 registered shops trading silk, porcelain, and spices from as far as Persia and Byzantium.",
+  },
+
+  'saqqara-remedies': {
+    title: "The Physician's Stores, Saqqara",
+    tiles: [
+      { label: '🍯', bg: 'bg-yellow-600',  border: 'border-yellow-400' },
+      { label: '🌿', bg: 'bg-emerald-800', border: 'border-emerald-500' },
+      { label: '◆',  bg: 'bg-teal-600',    border: 'border-teal-400' },
+      { label: '🧂', bg: 'bg-stone-500',   border: 'border-stone-300' },
+      { label: '🏺', bg: 'bg-orange-700',  border: 'border-orange-500' },
+    ],
+    art: 'm3_cairo_alchemy', pace: 210, haul: 2.3,
+    ruleDesc: "Swap adjacent · match 3+",
+    fact: "Egyptian remedies were compounded from a well-stocked store: honey, fats and oils, plant resins, juniper berries, natron salt and ground minerals such as malachite, often bound in beer or milk. The Ebers Papyrus (c. 1550 BCE) lists some 700 such ingredients and formulas.",
   },
 
   // ── Hard challenges ─────────────────────────────────────────────────────────

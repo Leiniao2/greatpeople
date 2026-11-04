@@ -25,12 +25,10 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "telegraphnet",
-            "configId": "atlantic",
-            "seed": 89289,
-            "instruction": "Anna Nzinga: connect the cities by wire.",
-            "fact": "Nzinga was born into the royal family of Ndongo (in modern Angola) and became its ruler in the 1620s. When Portuguese pressure forced her from Ndongo, she conquered the neighboring kingdom of Matamba and turned it into a military powerhouse — ruling both territories into her eighties.",
-            "rebalanced": true
+            "game": "coalition",
+            "configId": "ndongo-treaty",
+            "instruction": "No chair is offered, so Nzinga makes a seat of her attendant and treats as the governor's equal. Choose the terms that enough of the room in Luanda will sign without Ndongo kneeling to Portugal.",
+            "fact": "In 1622 Nzinga persuaded Governor João Correia de Sousa to treat Ndongo as an ally rather than a tributary vassal, and was baptised in Luanda as Dona Ana de Sousa. She used the faith as diplomacy: years later she returned to her own religion, then accepted Christianity again in the 1650s to make peace with Portugal."
           }
         }
       ]
@@ -48,12 +46,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "orbit",
-            "configId": "hohmann-transfer",
+            "game": "trade",
+            "configId": "matamba-cloth",
             "seed": 22775,
-            "instruction": "Anna Nzinga: put the body into orbit.",
-            "fact": "Nzinga never surrendered. She fought the Portuguese for over thirty years, forging alliances with the Dutch, leading guerrilla campaigns from the jungle, and negotiating with extraordinary skill. At age 80, she signed a peace treaty on her own terms. She died in her eighties, having protected Matamba's independence to the end.",
-            "rebalanced": true
+            "instruction": "Matamba's markets will pay for Nzinga's new kingdom and its army. Buy raffia cloth when the news drives it cheap and sell when war and shortage drive it dear.",
+            "fact": "Driven out of Ndongo, Nzinga conquered the kingdom of Matamba around 1631 and made it her base, welcoming runaway slaves and allying with Imbangala war bands. Matamba grew rich on trade — above all, grimly, the sale of war captives to European slavers."
           }
         }
       ]
@@ -71,12 +68,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "knightstour",
-            "configId": "euler",
+            "game": "bridge",
+            "configId": "kwanza-camps",
             "seed": 25567,
-            "instruction": "Anna Nzinga: tour every square with the knight.",
-            "fact": "The story of Nzinga refusing a chair during negotiations — and instead using one of her attendants as a throne — became one of history's most celebrated acts of diplomatic defiance. Whether literally true or legendary, it perfectly captures her method: she refused the terms of any encounter she had not defined herself.",
-            "rebalanced": true
+            "instruction": "With the Dutch now holding Luanda, Nzinga must join her war camps to her new allies' posts. Link every camp across the rivers so the alliance can move as one army.",
+            "fact": "After the Dutch seized Luanda in 1641, Nzinga allied with them against Portugal. In 1647 her army and Dutch troops routed the Portuguese at Kombi and besieged the fort of Massangano, until a Portuguese fleet from Brazil retook Luanda in 1648."
           }
         },
         {
@@ -109,7 +105,7 @@
           "challenge": {
             "type": "minigame",
             "game": "tactics",
-            "configId": "general",
+            "configId": "nzinga-ambush",
             "instruction": "Lead Nzinga's forces in a flanking raid against a Portuguese supply column. Speed and terrain are your weapons — European cannon cannot aim at what it cannot see.",
             "fact": "Portuguese military reports describe Nzinga's forces as extraordinarily mobile and difficult to engage in pitched battle. She understood that her army could not match European firepower in open confrontation, so she avoided it — choosing ambushes, river crossings, and night raids that neutralized the Portuguese advantage."
           }
@@ -118,10 +114,16 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "coalition",
-            "configId": "ndongo-treaty",
-            "instruction": "Luanda, 1622. Nzinga negotiates with the Portuguese governor. Choose your concessions so that enough parties at the table accept the treaty — every concession is a feint.",
-            "fact": "Nzinga was multilingual and converted to Christianity strategically, understanding that the Portuguese were far more willing to negotiate with a Christian queen than a 'pagan' ruler. She later renounced Christianity when the political winds shifted, then accepted it again — always on her own terms. European diplomats found her simultaneously charming, erudite, and utterly undefeatable."
+            "game": "sapper",
+            "configId": "maastricht-1673",
+            "seed": 64471,
+            "params": {
+              "title": "The Siege of Massangano, 1647",
+              "intro": "After routing the Portuguese at Kombi, Nzinga and her Dutch allies close on the river fort of Massangano, but the garrison has sown the approaches with buried powder charges. Open every safe square; each number counts the charges in the eight squares around it.",
+              "fact": "In October 1647 Nzinga and her Dutch allies routed a Portuguese army at Kombi and laid siege to Massangano, the last Portuguese stronghold inland. The fort held out: in August 1648 Salvador Correia de Sá retook Luanda from the Dutch, and Nzinga had to withdraw to Matamba."
+            },
+            "instruction": "Her greatest campaign brings Nzinga to the walls of Massangano. Clear a safe way through the Portuguese defences without setting off a single charge.",
+            "fact": "In October 1647 Nzinga and her Dutch allies routed a Portuguese army at Kombi and laid siege to Massangano, the last Portuguese stronghold inland. The fort held out: in August 1648 Salvador Correia de Sá retook Luanda from the Dutch, and Nzinga had to withdraw to Matamba."
           }
         },
         {

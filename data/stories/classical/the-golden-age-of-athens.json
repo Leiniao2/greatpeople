@@ -44,12 +44,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "iceslide",
-            "configId": "enkidu-ice",
+            "game": "campaign",
+            "configId": "athenian-demes",
             "seed": 36544,
-            "instruction": "Pericles: slide across the ice to the exit.",
-            "fact": "The Parthenon, completed in 438 BCE, was a temple to Athena. Its proportions use the golden ratio and its 'straight' columns are actually slightly curved to correct optical illusions — mathematical perfection in marble.",
-            "rebalanced": true
+            "instruction": "Not every Athenian wants the allies' tribute spent on temples. Thucydides son of Melesias is stirring up the countryside — tour the demes of Attica and win them for Pericles' building programme.",
+            "fact": "The quarrel over the building programme was settled by ostracism around 443 BCE: Thucydides son of Melesias was sent into exile for ten years, and Pericles was elected general year after year until his death."
           }
         },
         {
@@ -72,12 +71,32 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "surveyor",
-            "configId": "pyramid-shadow",
+            "game": "mint",
+            "configId": "lydia",
+            "params": {
+              "title": "The Owls of Athens",
+              "intro": "Strike Laurion silver from tiny obols up to the four-drachma owl — and on to the talents of the treasury.",
+              "fact": "Athens struck its silver tetradrachms, stamped with Athena and her owl, from the mines of Laurion. In 454 BCE the treasury of the Delian League was moved from Delos to Athens, and Pericles spent its tribute on the Acropolis.",
+              "coins": [
+                "Quarter obol",
+                "Half obol",
+                "Obol",
+                "Two obols",
+                "Three obols",
+                "Four obols",
+                "Drachma",
+                "Owl tetradrachm",
+                "Decadrachm",
+                "Mina",
+                "Talent",
+                "Athena's treasury"
+              ],
+              "twistText": "Laurion silver: a raw lump of silver merges with any coin and lifts it one tier — but two lumps will not merge. Save them for the coin that needs them.",
+              "special": "Laurion silver"
+            },
             "seed": 69471,
-            "instruction": "Pericles: measure it by the angles.",
-            "fact": "Aspasia was from Miletus — a Greek city in modern Turkey. Her foreign birth placed her outside Athenian citizenship, but also freed her from the strict domestic confinement imposed on Athenian women.",
-            "rebalanced": true
+            "instruction": "Aspasia's salon talks philosophy, but the city outside runs on silver. Strike Laurion silver up to the owl that carries Athens' name across the Aegean.",
+            "fact": "Athenian owls were trusted so widely that they were imitated from Egypt to Arabia. 'Owls to Athens' was a Greek saying for something pointless — Aristophanes uses it in The Birds."
           }
         }
       ]
@@ -101,12 +120,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "jigsaw",
-            "configId": "starry-night",
+            "game": "weapondeploy",
+            "configId": "attica-446",
             "seed": 81293,
-            "instruction": "Pericles: piece the picture together.",
-            "fact": "Pericles dominated Athenian politics for three decades through strategic alliances and oratorical power — power that his enemies claimed was shaped by Aspasia.",
-            "rebalanced": true
+            "instruction": "Pleistoanax's warning becomes an army: in 446 BCE the Peloponnesians march into Attica. Post the Athenian archers along the road from Eleusis so the invaders cannot reach the city.",
+            "fact": "Pericles dominated Athenian politics for three decades through strategic alliances and oratorical power — power that his enemies claimed was shaped by Aspasia."
           }
         },
         {
@@ -151,11 +169,10 @@
           "challenge": {
             "type": "minigame",
             "game": "sokoban",
-            "configId": "giza-ramp",
+            "configId": "parthenon-drums",
             "seed": 67900,
-            "instruction": "Pericles: haul the stones onto their marks.",
-            "fact": "The philosopher Socrates visited Aspasia's school. Plato has Socrates claim he learned the art of persuasion from Aspasia — whether seriously or satirically, it shows her intellectual reputation.",
-            "rebalanced": true
+            "instruction": "While Aspasia's enemies attack in court, the work on the Acropolis goes on. Every column rises from numbered marble drums: push each drum onto its own base.",
+            "fact": "Each Doric column of the Parthenon was built up from about ten to twelve drums of Pentelic marble, quarried on Mount Pentelikon some 16 km from the Acropolis and fluted only after the column stood. Pheidias oversaw the works for Pericles."
           }
         }
       ]
@@ -173,24 +190,22 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "postroute",
-            "configId": "pony",
+            "game": "siege",
+            "configId": "long-walls",
             "seed": 15964,
-            "instruction": "Pericles: plan the post round.",
-            "fact": "Aspasia ran an intellectual salon in Athens that attracted Socrates, Anaxagoras, and other leading thinkers of the age. Socrates is said to have learned rhetoric from her — and Plato later has Socrates recite one of her speeches from memory in the Menexenus dialogue.",
-            "rebalanced": true
+            "instruction": "War comes at last. Pericles brings the people of Attica inside the Long Walls and lets the Spartans burn the fields — place walls and towers so no raiding party reaches the city.",
+            "fact": "In the winter of 431 BCE Pericles gave the Funeral Oration for the war's first dead, as Thucydides records it: 'the whole earth is the tomb of famous men.' In Plato's Menexenus, Socrates teases that Aspasia composed it."
           }
         },
         {
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "riverrun",
-            "configId": "colorado-powell",
+            "game": "archbuild",
+            "configId": "odeon-of-pericles",
             "seed": 73165,
-            "instruction": "Pericles: run the river safely.",
-            "fact": "The Parthenon (447–432 BCE) was built with astonishing precision: its columns taper, its platform curves, and its lines are never quite straight — all deliberate optical corrections to make the building appear perfect to the human eye. Greek architecture and geometry were inseparable.",
-            "rebalanced": true
+            "instruction": "What outlasted the war was what Athens built and sang. Raise the Odeon of Pericles course by course, its peaked roof last.",
+            "fact": "The Parthenon (447–432 BCE) was built with astonishing precision: its columns taper, its platform curves, and its lines are never quite straight — all deliberate optical corrections to make the building appear perfect to the human eye. Greek architecture and geometry were inseparable."
           }
         },
         {

@@ -135,6 +135,26 @@ export const CONFIGS: Record<string, ClassifyConfig> = {
     ],
     fact: "Magellan's fleet crossed three oceans: the Atlantic on the outward leg, the Pacific in the longest and most grueling stretch (98 days with no landfall), and the Indian Ocean on the homeward run after Magellan's death in the Philippines.",
   },
+  'apple-grid': {
+    title: 'Four Boxes, Cupertino 1997',
+    question: "Jobs's grid has a consumer row and a pro row, each with one desktop and one portable. Put every product in its row — or cut it.",
+    categories: [
+      { id: 'consumer', label: 'Consumer', emoji: '🏠' },
+      { id: 'pro',      label: 'Pro',      emoji: '💼' },
+      { id: 'cut',      label: 'Cut',      emoji: '✂️' },
+    ],
+    items: [
+      { label: 'iMac',            category: 'consumer', emoji: '🖥️' },
+      { label: 'iBook',           category: 'consumer', emoji: '💻' },
+      { label: 'Power Mac G3',    category: 'pro',      emoji: '🖥️' },
+      { label: 'PowerBook G3',    category: 'pro',      emoji: '💻' },
+      { label: 'Newton MessagePad', category: 'cut',    emoji: '📟' },
+      { label: 'eMate 300',       category: 'cut',      emoji: '🎒' },
+      { label: 'Pippin console',  category: 'cut',      emoji: '🎮' },
+      { label: 'QuickTake camera', category: 'cut',     emoji: '📷' },
+    ],
+    fact: 'When Jobs returned in 1997, Apple sold a confusing spread of Macintosh models alongside printers, cameras, the Newton handheld and the Pippin console. He cut the line to four boxes — consumer and pro, desktop and portable — later filled by the iMac, iBook, Power Mac G3 and PowerBook G3.',
+  },
 }
 
 export default function ClassifyGame({ configId, difficulty, onWin, onLose }: MinigameProps) {

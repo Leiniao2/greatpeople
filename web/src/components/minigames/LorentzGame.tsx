@@ -57,6 +57,17 @@ export const CONFIGS: Record<string, LorentzConfig> = {
     startVel: { x: 0.0035, y: 0.0007 },
     fact: 'The aurora borealis occurs when solar wind particles are guided by Earth\'s magnetic field into the polar atmosphere, causing atmospheric gases to glow.',
   },
+  'imac-crt': {
+    title: 'Inside the iMac: Steer the Beam',
+    obstacles: [
+      { x: 0.35, y: 0.42, r: 0.07 },
+      { x: 0.6,  y: 0.3,  r: 0.06 },
+    ],
+    target: { x: 0.80, y: 0.80, r: 0.06 },
+    startPos: { x: 0.08, y: 0.5 },
+    startVel: { x: 0.004, y: 0.0 },
+    fact: "The 1998 iMac was built around a 15-inch cathode-ray tube: an electron gun fires a beam that magnetic coils bend across the screen, line by line — the Lorentz force at work. Jony Ive's translucent Bondi Blue shell let buyers see the machinery inside.",
+  },
 }
 
 // ── Physics ───────────────────────────────────────────────────────────────────

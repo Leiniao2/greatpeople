@@ -35,11 +35,10 @@
           "challenge": {
             "type": "minigame",
             "game": "wallbuilder",
-            "configId": "great-wall",
+            "configId": "carthage-walls",
             "seed": 11312,
-            "instruction": "Belisarius: raise the wall without gaps.",
-            "fact": "Belisarius retook North Africa (533 CE), Italy (536–540 CE), and part of Spain — temporarily reuniting the old Western Roman Empire under Constantinople. He did it with armies far smaller than his opponents'.",
-            "rebalanced": true
+            "instruction": "Carthage is yours, but the Vandals let its walls crumble. Rebuild the breached circuit up to the line before Gelimer can return — and keep the gateways open for your army.",
+            "fact": "Belisarius retook North Africa from the Vandals in 533–534 and most of Italy from the Ostrogoths in 535–540, briefly restoring much of the old Western Roman Empire to Constantinople. He did it with armies far smaller than his opponents'."
           }
         }
       ]
@@ -59,7 +58,7 @@
             "type": "minigame",
             "game": "wargame",
             "configId": "belisarius-battle",
-            "instruction": "Command Belisarius's amber forces. Outmaneuver the enemy to victory.",
+            "instruction": "The enemy outnumbers you, as it always does. Command Belisarius's amber forces and win with speed and discipline.",
             "fact": "Belisarius won battles against overwhelming odds through disciplined positioning, feigned retreats, and flanking strikes — tactics centuries ahead of his time."
           }
         }
@@ -80,12 +79,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "tradeboard",
-            "configId": "hansa",
+            "game": "roundup",
+            "configId": "mount-papua",
             "seed": 73271,
-            "instruction": "Belisarius: outtrade the rival merchants.",
-            "fact": "Byzantine siege engineers used torsion catapults and trebuchets that required precise angle and distance calculations. A few degrees off meant the difference between destroying a gate or overshooting the wall.",
-            "rebalanced": true
+            "instruction": "Gelimer, the beaten Vandal king, has fled into the mountains. Close every pass so he must surrender — a victory your jealous officers will soon twist into a charge of treason.",
+            "fact": "After the conquest of Africa, some of Belisarius's officers wrote secretly to Justinian that he meant to make himself king there. Justinian offered him the choice of staying or coming home; Belisarius sailed at once for Constantinople with Gelimer as his prisoner, and was granted a triumph in 534."
           }
         }
       ]
@@ -103,12 +101,10 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "ferry",
-            "configId": "wolf-goat",
-            "seed": 3145,
-            "instruction": "Belisarius: get everyone safely across.",
-            "fact": "HuaRong Road (华容道) is a Chinese sliding puzzle based on Cao Cao's escape after the Battle of Red Cliffs in 208 AD — one of the most analyzed puzzles in combinatorics.",
-            "rebalanced": true
+            "game": "pipeline",
+            "configId": "naples-aqueduct",
+            "instruction": "Naples will not open its gates. Route your picked men through the old aqueduct channel, under the walls and up into the sleeping city.",
+            "fact": "Belisarius besieged Naples in 536 on his way to Rome. After about three weeks, his men discovered that the city's aqueduct, which he had cut, ran beneath the walls; some 400 soldiers crept through it at night and the city fell."
           }
         },
         {
@@ -116,9 +112,9 @@
           "challenge": {
             "type": "minigame",
             "game": "weapondeploy",
-            "configId": "macedonian-phalanx",
-            "instruction": "Belisarius always faced superior numbers. Deploy your archers and catapults before the battle begins — then launch the attack and watch your strategy unfold.",
-            "fact": "Belisarius reconquered North Africa, Italy, and Spain for Emperor Justinian with armies of 10,000–15,000 against forces of 100,000+. He relied on disciplined cavalry and coordinated missile fire — tactics that anticipated modern combined arms."
+            "configId": "dara-530",
+            "instruction": "At Dara the Persians outnumber you two to one. Place your archers behind the trench before the attack comes, then watch the line hold.",
+            "fact": "Belisarius reconquered North Africa and Italy for Justinian with small field armies — about 15,000 men sailed for Africa in 533 — against larger enemies. He relied on disciplined cavalry and mounted archers who could shoot from the saddle, as Procopius stresses."
           }
         },
         {

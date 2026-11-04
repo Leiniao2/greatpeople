@@ -60,6 +60,12 @@ export const CONFIGS: Record<string, IrrigationConfig> = {
     fact: 'Egyptian farmers walled the Nile floodplain into earthen basins; the late-summer flood was let in through cuts in the dykes and left standing for weeks before it drained back to the river, leaving fresh silt.',
     rules: { conduct: true, soak: 2, elevation: false, gateUses: Infinity, inlets: 1, surge: false },
   },
+  'anaxagoras-nile': {
+    title: 'The Summer Flood',
+    intro: 'Anaxagoras said the Nile rises in summer because snow melts in Ethiopia. Here comes the flood: let it run from basin to basin, hold each basin wet for 2 turns, and keep it out of the village.',
+    fact: 'Herodotus scoffed at the idea that the Nile flood came from melting snow far to the south, and Seneca and Diodorus credit it to Anaxagoras. He had the place right if not the cause: the flood comes from the summer monsoon rains on the Ethiopian highlands.',
+    rules: { conduct: true, soak: 2, elevation: false, gateUses: Infinity, inlets: 1, surge: false },
+  },
   mesopotamia: {
     title: 'Canals of Sumer',
     intro: 'Tigris silt jams a sluice once it has been worked: each gate can be moved only once. Water every field without flooding the village.',
@@ -70,6 +76,12 @@ export const CONFIGS: Record<string, IrrigationConfig> = {
     title: 'Terraces of the Andes',
     intro: 'Water runs only downhill or level (the small numbers are heights), and terraces spill into the terraces below. Water every terrace, spare the village.',
     fact: 'Andean farmers, and later the Inca, built stone-walled terraces (andenes) fed by stone channels; at Moray, rings of terraces step down about 30 m into a natural hollow.',
+    rules: { conduct: true, soak: 1, elevation: true, gateUses: Infinity, inlets: 1, surge: false },
+  },
+  lakamha: {
+    title: 'The Waters of Lakamha’',
+    intro: 'Palenque sits on a stepped shelf of hills cut by streams. Water runs only downhill or level (the small numbers are heights), and each garden terrace spills into the ones below. Water every garden, keep the flood out of the town.',
+    fact: 'Palenque’s ancient name, Lakamha’, means “Big Water”. Some 56 springs and nine streams cross the site, and its builders roofed the Otolum stream with a vaulted stone aqueduct that carries it beneath the main plaza beside the Palace.',
     rules: { conduct: true, soak: 1, elevation: true, gateUses: Infinity, inlets: 1, surge: false },
   },
   dujiangyan: {

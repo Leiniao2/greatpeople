@@ -28,9 +28,9 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "pseudocode",
-            "configId": "jobs-code",
-            "instruction": "Jobs believed every great product was 10,000 decisions, each one right. Arrange the pseudo-code in the correct order — the logic that made Apple's comeback possible.",
+            "game": "classify",
+            "configId": "apple-grid",
+            "instruction": "A hundred products, and nobody loves any of them. Sort Apple's line into Jobs's four boxes — consumer or pro — and cut everything else.",
             "fact": "When Jobs returned to Apple in 1997, the company had 350 products. He cut it to 10 — a 2×2 grid of consumer and professional, desktop and portable. 'Deciding what not to do is as important as deciding what to do,' he said. The focus that followed produced the iMac, iPod, iPhone, and iPad within a decade."
           }
         }
@@ -55,12 +55,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "chimpmath",
-            "configId": "kanzi-counts",
+            "game": "lorentz",
+            "configId": "imac-crt",
             "seed": 70340,
-            "instruction": "Steve Jobs: match the chimps at counting.",
-            "fact": "Directed by Ridley Scott and aired once during Super Bowl XVIII (1984), the '1984' Macintosh commercial depicted Apple as a liberator smashing IBM's Orwellian conformity. It is credited with transforming advertising into a medium for brand mythology.",
-            "rebalanced": true
+            "instruction": "Jony Ive's translucent shell lets you see right inside, down to the picture tube. Bend the electron beam with the magnets so it lands on target.",
+            "fact": "The iMac went on sale in August 1998 in Bondi Blue, named after the sea at Sydney's Bondi Beach, and became the fastest-selling computer in Apple's history; five fruit colours followed in January 1999."
           }
         },
         {
@@ -73,12 +72,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "expedition",
-            "configId": "ibn-battuta",
+            "game": "logicgate",
+            "configId": "imac-logic",
             "seed": 5658,
-            "instruction": "Steve Jobs: plan the expedition route.",
-            "fact": "Each Apple product under Jobs didn't just sell — it created or redefined an entire category. The Mac made personal computing accessible; the iPod destroyed the CD model; the iPhone made every previous phone obsolete. Jobs launched five industry-defining products in 26 years.",
-            "rebalanced": true
+            "instruction": "Under the blue teardrop it still has to work perfectly. Wire the gates so the circuit agrees with the table on every row.",
+            "fact": "Jobs insisted that the inside of a machine be as well made as the outside — a lesson, he said, from his father, who finished the backs of cabinets that no one would ever see."
           }
         }
       ]
@@ -96,9 +94,9 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "auction",
-            "configId": "tech-auction",
-            "instruction": "Silicon Valley's founding artefacts are up for bid. Compete for the relics of the digital revolution — the same objects Jobs touched, pitched, and obsessed over.",
+            "game": "binary",
+            "configId": "mac-bitmap",
+            "instruction": "Technology and art are not separate things — the Mac proved it with letters made of dots. Read the lamps to spell out the campaign that brought Apple back.",
             "fact": "Jobs dropped out of Reed College in 1972 but kept auditing classes — including a calligraphy course by Lloyd Reynolds. That course taught him about serif and sans-serif typefaces, proportional spacing, and typographic beauty. Ten years later, the Macintosh became the first computer with multiple typefaces. 'If I had never dropped in on that course, every Mac would have had the same boring font.'"
           }
         },
@@ -112,12 +110,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "cipher",
-            "configId": "vigenere-cabinet",
+            "game": "assembly",
+            "configId": "pixar-pipeline",
             "seed": 51427,
-            "instruction": "Steve Jobs: break the cipher.",
-            "fact": "Jobs' exile produced two revolutions. NeXT's operating system became the foundation of macOS when Apple acquired NeXT in 1997 — bringing Jobs back. Pixar, bought from George Lucas for $10 million in 1986, produced Toy Story (1995), the first fully computer-animated feature film. Disney acquired Pixar for $7.4 billion in 2006, making Jobs Disney's largest individual shareholder.",
-            "rebalanced": true
+            "instruction": "In his years away from Apple, Jobs bet on a small graphics company called Pixar. Balance the Toy Story pipeline so no team holds up the film.",
+            "fact": "Jobs' exile produced two revolutions. NeXT's operating system became the foundation of macOS when Apple acquired NeXT in 1997 — bringing Jobs back. Pixar, bought from George Lucas for $10 million in 1986, produced Toy Story (1995), the first fully computer-animated feature film. Disney acquired Pixar for $7.4 billion in 2006, making Jobs Disney's largest individual shareholder."
           }
         }
       ]
@@ -133,7 +130,7 @@
             "type": "minigame",
             "game": "pseudocode",
             "configId": "jobs-code",
-            "instruction": "Arrange the pseudo-code in the right order. Jobs famously believed every programmer should learn to code — it teaches you how to think.",
+            "instruction": "'Everybody should learn to program a computer, because it teaches you how to think.' Put each program's lines in the right order.",
             "fact": "Steve Jobs said: 'Everybody in this country should learn how to program a computer... because it teaches you how to think.'"
           }
         },
@@ -142,9 +139,9 @@
           "challenge": {
             "type": "minigame",
             "game": "auction",
-            "configId": "tech-auction",
-            "instruction": "Bid on landmark Silicon Valley assets. Win the starred computing relics before your rivals claim them.",
-            "fact": "The early Silicon Valley era saw fierce competition over patents and prototypes. Apple's lawsuit against Xerox over the GUI and Jobs' NeXT venture shaped the modern tech landscape."
+            "configId": "apple-relics",
+            "instruction": "Today the machines Jobs built change hands for fortunes. Outbid the collectors for the starred relics.",
+            "fact": "In 2014 a working Apple-1 — one of about 200 that Jobs and Steve Wozniak built in 1976 — sold at auction in New York for $905,000. Jobs's handwritten 1973 job application has also sold for six figures."
           }
         },
         {

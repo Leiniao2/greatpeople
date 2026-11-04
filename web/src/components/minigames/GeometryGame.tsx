@@ -381,6 +381,23 @@ export const CONFIGS: Record<string, GeometryConfig> = {
       <circle cx={120} cy={100} r={2} fill={INK} />
     </>,
   },
+  'first-ball': {
+    title: 'The First Ball',
+    goal: 'Drag the seam to set the radius of a full-size football so its leather covers 1,519.76 cm² (use π ≈ 3.14). Only r is shown.',
+    explanation: 'Surface area = 4πr² = 4 × 3.14 × 11² = 1,519.76 cm². A size-5 football is 68–70 cm round, so its radius is about 11 cm.',
+    params: [{ key: 'r', min: 1, max: 15, step: 1 }],
+    handles: [{ pos: p => [120 + 5 * p.r, 100], drag: x => ({ r: (x - 120) / 5 }) }],
+    given: [{ label: 'r', value: p => p.r, unit: ' cm', param: 'r', handle: 0 }],
+    hidden: p => 4 * PI * p.r * p.r, hiddenLabel: 'surface area', target: 4 * PI * 11 * 11, unit: ' cm²',
+    tol: [5, 3, 1, 0.01],
+    draw: p => <>
+      <circle cx={120} cy={100} r={5 * p.r} fill={`${ACCENT}10`} stroke={INK} strokeWidth={2} />
+      <ellipse cx={120} cy={100} rx={5 * p.r} ry={1.5 * p.r} fill="none" stroke={MUTED} strokeWidth={1.2} strokeDasharray="4 3" />
+      <ellipse cx={120} cy={100} rx={1.5 * p.r} ry={5 * p.r} fill="none" stroke={MUTED} strokeWidth={1.2} strokeDasharray="4 3" />
+      <Dash x1={120} y1={100} x2={120 + 5 * p.r} y2={100} color={ACCENT} />
+      <circle cx={120} cy={100} r={2} fill={INK} />
+    </>,
+  },
   'golden-ratio': goldenStep(34, {
     title: 'The Golden Ratio',
     goal: 'Slide the cut along the 34-unit segment so that whole : long equals long : short — the golden section. Both parts are shown.',
@@ -725,6 +742,23 @@ export const PRELUDES: Record<string, GeometryConfig[]> = {
       goal: 'Set the radius so one hemisphere\'s curved surface is 157.',
       explanation: 'A hemisphere is 2πr² = 2 × 3.14 × 25 = 157 — two great discs.',
     }, p => 2 * PI * p.r * p.r, 'hemisphere', 157, undefined, [5, 3, 2, 0.01], { px: 5, max: 15, mark: '½ S = ?', sphere: true }),
+  ],
+  'first-ball': [
+    circleStep({
+      title: 'Round the Ball',
+      goal: 'Set the radius so the ball measures 69.08 cm around its middle (π ≈ 3.14).',
+      explanation: 'C = 2πr = 2 × 3.14 × 11 = 69.08 cm — inside the 68–70 cm a full-size ball must measure.',
+    }, p => 2 * PI * p.r, 'circumference', 69.08, ' cm', [1, 0.8, 0.5, 0.01], { px: 5, max: 15, mark: 'C = ?', sphere: true, rUnit: ' cm' }),
+    circleStep({
+      title: 'Through the Middle',
+      goal: 'Set the radius so the disc through the ball’s centre has area 379.94 cm².',
+      explanation: 'πr² = 3.14 × 121 = 379.94 cm². The ball’s whole surface is exactly four of these discs.',
+    }, p => PI * p.r * p.r, 'disc area', 379.94, ' cm²', [3, 2, 1, 0.01], { px: 5, max: 15, mark: 'A = ?', fill: true, sphere: true, rUnit: ' cm' }),
+    circleStep({
+      title: 'Half the Leather',
+      goal: 'Set the radius so one half of the ball is covered by 759.88 cm² of leather.',
+      explanation: 'A hemisphere is 2πr² = 2 × 3.14 × 121 = 759.88 cm² — two of those discs.',
+    }, p => 2 * PI * p.r * p.r, 'hemisphere', 759.88, ' cm²', [5, 3, 2, 0.01], { px: 5, max: 15, mark: '½ S = ?', sphere: true, rUnit: ' cm' }),
   ],
   'golden-ratio': [
     goldenStep(8, {

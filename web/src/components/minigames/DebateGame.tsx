@@ -54,6 +54,134 @@ export const CONFIGS: Record<string, DebateConfig> = {
     ],
     fact: "Socrates was convicted by a vote of roughly 280 to 220 and, offered the chance to propose his own penalty, suggested free meals for life in the Prytaneum. The jury chose death. Plato's Apology is the record his student wrote of the defence.",
   },
+  'zeno-paradoxes': {
+    title: 'In Defence of the One',
+    intro: 'Athens, at the Great Panathenaea. Parmenides\' critics laugh at the claim that all is one and unchanging. Zeno answers each objection by showing where it leads.',
+    opponent: 'A Critic of Parmenides',
+    rounds: [
+      { claim: 'Look around you: things are many, not one.', cards: [
+        { text: 'If things are many, they must be both like and unlike each other — and that is impossible. So the many cannot be.', effect: 3 },
+        { text: 'Many things may still share one nature.', effect: 1 },
+        { text: 'Parmenides said so, and that is enough.', effect: -2 },
+        { text: 'Count them, then.', effect: 0 },
+      ] },
+      { claim: 'Swift Achilles plainly overtakes the slow tortoise.', cards: [
+        { text: 'First he must reach the place the tortoise left; by then it has moved on, and so again, without end. He never catches it.', effect: 3 },
+        { text: 'Races are a matter of luck.', effect: -1 },
+        { text: 'The tortoise is faster than it looks.', effect: -2 },
+        { text: 'Achilles might stumble.', effect: 0 },
+      ] },
+      { claim: 'An arrow in flight is moving.', cards: [
+        { text: 'At each instant it fills a space equal to itself, so at each instant it is at rest. When, then, does it move?', effect: 3 },
+        { text: 'It only seems to move because it is quick.', effect: 1 },
+        { text: 'The archer is the one who moves.', effect: -1 },
+        { text: 'Arrows are not real.', effect: -2 },
+      ] },
+      { claim: 'Anyone can walk the length of the stadium.', cards: [
+        { text: 'Before the end he must reach the half, before the half the quarter — infinitely many places to pass in a finite time.', effect: 3 },
+        { text: 'The stadium is very long.', effect: -1 },
+        { text: 'Then let him run.', effect: -2 },
+        { text: 'Walking is not the same as moving.', effect: 0 },
+      ] },
+    ],
+    fact: 'In Plato\'s Parmenides, Zeno comes to Athens with Parmenides for the Great Panathenaea and reads his book aloud. He says he wrote it as a young man to defend his teacher: if things are many, he argued, even stranger consequences follow than from saying all is one.',
+  },
+  'euclid-proof': {
+    title: 'No Royal Road',
+    intro: 'Alexandria, c. 300 BCE. A king, a student and a sceptic each want geometry made easier. Answer them as Euclid would.',
+    opponent: 'The Doubters',
+    rounds: [
+      { claim: 'Is there no shorter way to geometry than all thirteen books of your Elements?', speaker: 'King Ptolemy', cards: [
+        { text: 'There is no royal road to geometry.', effect: 3 },
+        { text: 'For you, my king, I will write a short version.', effect: -2 },
+        { text: 'Read only the first book.', effect: -1 },
+        { text: 'Ask the philosophers in Athens.', effect: 0 },
+      ] },
+      { claim: 'What shall I gain by learning these things?', speaker: 'A student', cards: [
+        { text: 'Give him a coin, since he must make a profit from what he learns.', effect: 3 },
+        { text: 'It will help you survey land.', effect: 1 },
+        { text: 'A post at court.', effect: -1 },
+        { text: 'Nothing; it is useless.', effect: -2 },
+      ] },
+      { claim: 'Why prove what anyone can see in a drawing?', speaker: 'A sceptic', cards: [
+        { text: 'A drawing can fool the eye and shows one triangle; a proof from the postulates holds for every triangle at once.', effect: 3 },
+        { text: 'Because the king demands proofs.', effect: -2 },
+        { text: 'Drawings are easily smudged.', effect: -1 },
+        { text: 'Plato would have wanted it.', effect: 0 },
+      ] },
+      { claim: 'Surely the primes run out somewhere. No one has counted them all.', speaker: 'A sceptic', cards: [
+        { text: 'Take any primes you like, multiply them and add one. None of them divides the result, so there is always another prime.', effect: 3 },
+        { text: 'I have counted past a thousand and found more.', effect: -1 },
+        { text: 'The gods made them endless.', effect: -2 },
+        { text: 'There are as many primes as stars.', effect: -1 },
+      ] },
+    ],
+    fact: 'Proclus tells of Euclid\'s answer to Ptolemy I, and Stobaeus of the student who asked what he would gain. Book IX, Proposition 20 of the Elements proves that there are more primes than any number you name — the proof is still taught today.',
+  },
+  'hutton-kirwan': {
+    title: 'Fire against Water',
+    intro: 'Edinburgh, 1790s. Richard Kirwan, champion of the Neptunists, attacks the Theory of the Earth. Answer each charge with what the rocks themselves show.',
+    opponent: 'Richard Kirwan',
+    rounds: [
+      { claim: 'Every rock, granite included, settled out of a universal ocean that once covered the globe.', cards: [
+        { text: 'At Glen Tilt veins of red granite run up into the schist and break it apart. The granite was molten, and it forced its way in after the schist was laid down.', effect: 3 },
+        { text: 'No one has ever seen granite settle out of water.', effect: 1 },
+        { text: 'Water cannot make anything so hard.', effect: -1 },
+        { text: 'Werner has never visited Scotland.', effect: -2 },
+      ] },
+      { claim: 'Scripture fixes the age of the world at a few thousand years.', cards: [
+        { text: 'At Siccar Point upright strata were raised, worn flat and buried under new sandstone. Rivers do that work grain by grain; no few thousand years could hold it.', effect: 3 },
+        { text: 'Scripture was not written to teach mineralogy.', effect: 1 },
+        { text: 'The Bible is wrong.', effect: -3 },
+        { text: 'Nobody can know how old the world is.', effect: -1 },
+      ] },
+      { claim: 'A theory that finds no beginning denies the Creator.', cards: [
+        { text: 'I find no vestige of a beginning — that is the limit of the evidence, not a denial of design. A world that repairs itself shows more wisdom, not less.', effect: 3 },
+        { text: 'My theory says nothing about religion at all.', effect: 0 },
+        { text: 'Many good Christians agree with me.', effect: 1 },
+        { text: 'Then so much the worse for the Creator.', effect: -3 },
+      ] },
+      { claim: 'If rivers wear the land away, the continents should long ago have washed into the sea.', cards: [
+        { text: 'So they would, unless they are renewed: heat below the ocean floor hardens the sediments and lifts them up as new land — which is why sea shells lie in mountain strata.', effect: 3 },
+        { text: 'Erosion is far too slow to matter.', effect: -1 },
+        { text: 'Perhaps the continents are shrinking.', effect: -2 },
+        { text: 'Rivers carry away only soil, never rock.', effect: 0 },
+      ] },
+    ],
+    fact: 'In 1793 the Irish chemist Richard Kirwan attacked Hutton’s theory as contrary to reason and to Scripture. Hutton answered by expanding it into the two-volume Theory of the Earth (1795), and his friend John Playfair’s clearer Illustrations of the Huttonian Theory (1802) won it readers.',
+  },
+  'nzinga-luanda': {
+    title: 'The Talks at Luanda',
+    intro: 'Luanda, 1622. Governor João Correia de Sousa demands that Ndongo submit to Portugal. Nzinga, envoy of her brother Ngola Mbandi, answers him — pick the reply that keeps her kingdom free.',
+    opponent: 'Governor Correia de Sousa',
+    rounds: [
+      { claim: 'Ndongo must become a vassal of the King of Portugal and pay him a yearly tribute.', cards: [
+        { text: 'Tribute is paid by the conquered. Ndongo has not been conquered: we come as one sovereign to another, offering friendship, not submission.', effect: 3 },
+        { text: 'My brother may consider a small gift each year.', effect: -1 },
+        { text: 'Portugal has no right to be in Africa at all.', effect: -2 },
+        { text: 'We will answer after the rains.', effect: 0 },
+      ] },
+      { claim: 'Your brother\'s warriors attack our forts. Why should Portugal trust Ndongo?', cards: [
+        { text: 'Pull your fort at Ambaca back from our land and stop arming the Imbangala bands who ravage both our peoples — and the fighting ends.', effect: 3 },
+        { text: 'Our warriors only answer your raids.', effect: 1 },
+        { text: 'Trust is for merchants, not kings.', effect: -2 },
+        { text: 'Those warriors do not obey my brother.', effect: -1 },
+      ] },
+      { claim: 'A Christian king cannot ally himself with a pagan court.', cards: [
+        { text: 'Then let me be baptised here in Luanda, and let the governor stand as my godfather.', effect: 3 },
+        { text: 'Our own gods have served Ndongo well.', effect: -1 },
+        { text: 'The priests may visit our court.', effect: 1 },
+        { text: 'Religion has nothing to do with treaties.', effect: -2 },
+      ] },
+      { claim: 'Why should Portugal treat with a woman instead of the king himself?', cards: [
+        { text: 'I speak with my brother\'s authority and my own blood. You gave me no chair, so I made one — I sit at this table as your equal.', effect: 3 },
+        { text: 'The king is too busy to come.', effect: -2 },
+        { text: 'I am only a messenger.', effect: -1 },
+        { text: 'In Ndongo women have ruled before.', effect: 1 },
+      ] },
+    ],
+    fact: 'In 1622 Nzinga persuaded Governor João Correia de Sousa to treat Ndongo as an ally rather than a tributary vassal, and was baptised in Luanda as Dona Ana de Sousa. The story that she sat on a kneeling attendant because no chair was offered comes from the later account of the Capuchin missionary Cavazzi.',
+  },
   'lincoln-douglas': {
     title: 'The Lincoln–Douglas Debates',
     intro: 'Illinois, 1858. Stephen Douglas defends popular sovereignty; Abraham Lincoln answers. Pick the reply that cuts deepest.',
@@ -105,6 +233,38 @@ export const CONFIGS: Record<string, DebateConfig> = {
       ] },
     ],
     fact: "A Vindication of the Rights of Woman (1792) argued that women appeared inferior only because they were denied education. It was widely read in its day, then eclipsed for a century before the suffrage movement reclaimed it.",
+  },
+  'eisenstein-montage': {
+    title: 'The Kino-Fist',
+    intro: 'Moscow, 1925–26. Critics, rivals and censors attack Battleship Potemkin. Answer each objection with Eisenstein’s own ideas about cinema.',
+    opponent: 'The Critics',
+    rounds: [
+      { claim: 'Cinema is only theatre photographed.', cards: [
+        { text: 'Cinema is montage: two shots placed side by side create a meaning that neither holds alone.', effect: 3 },
+        { text: 'A camera can go where no stage can — up and down the Odessa Steps.', effect: 1 },
+        { text: 'The theatre is dead, so it hardly matters.', effect: -2 },
+        { text: 'Films sell more tickets than plays.', effect: -1 },
+      ] },
+      { claim: 'A film needs one hero for the audience to follow.', cards: [
+        { text: 'In Potemkin the hero is the mass — the sailors and the people of Odessa acting together.', effect: 3 },
+        { text: 'The sailor Vakulinchuk’s death gives the crowd its cause.', effect: 1 },
+        { text: 'Stars cost too much to hire.', effect: -2 },
+        { text: 'The audience will find a hero anyway.', effect: 0 },
+      ] },
+      { claim: 'There was no massacre on the Odessa Steps in 1905.', cards: [
+        { text: 'Montage is not a newsreel: it builds the truth of 1905 out of fragments — the boots, the mother, the pram.', effect: 3 },
+        { text: 'Troops did fire on the people of Odessa that June.', effect: 1 },
+        { text: 'No one in the audience will check.', effect: -2 },
+        { text: 'It is only a film.', effect: -1 },
+      ] },
+      { claim: 'Then cinema should simply record life as it is, as Vertov’s Kino-Eye does.', cards: [
+        { text: 'Not a Kino-Eye but a Kino-Fist: a film must strike the spectator and change how he thinks.', effect: 3 },
+        { text: 'A newsreel camera cannot cut between the rolling pram and the advancing boots.', effect: 1 },
+        { text: 'Recording life is cheaper, but dull.', effect: -1 },
+        { text: 'Life is too boring to film.', effect: -2 },
+      ] },
+    ],
+    fact: 'In a 1925 essay Eisenstein answered the documentary-maker Dziga Vertov: what cinema needed, he wrote, was not a “Kino-Eye” but a “Kino-Fist” — films that strike the audience through the shock of montage.',
   },
 }
 

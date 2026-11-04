@@ -517,6 +517,13 @@ export const CONFIGS: Record<string, GomokuConfig> = {
     rule: 'captures',
     fact: "Ninuki-renju, gomoku with captures, was played in Japan long before 1977, when it was repackaged in America as Pente — and the Victorians' Go-bang took its name from the Japanese goban it was played on.",
   },
+  'wuzi-qi': {
+    title: 'Wuziqi on the Weiqi Board',
+    intro: 'A game left half-played on a weiqi board in Beijing: a few stones of each colour are already down. You are black and move next. Five or more in a row wins.',
+    rule: 'freestyle',
+    opening: 2,
+    fact: 'Lining up five stones on a weiqi board is called wuziqi, "five-piece chess", in China and gomoku in Japan. Its early history is poorly recorded, but the board and stones it borrows belonged to weiqi, counted with music, calligraphy and painting among the four arts of the Chinese scholar.',
+  },
   standard: {
     title: 'Standard Gomoku',
     intro: 'Tournament rule: exactly five wins. A line of six or more (an overline) does not count, for either side.',

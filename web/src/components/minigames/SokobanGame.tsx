@@ -57,6 +57,22 @@ export const CONFIGS: Record<string, SokobanConfig> = {
     block: 'bg-[#e8d9a8] border-[#a88f52]', blockOnGoal: 'bg-[#f3c96b] border-[#b07d1c]',
     floor: 'bg-[#f2e6c4]', wall: 'bg-[#b08a52]', goal: 'border-[#b07d1c]', worker: '𓀀', offset: 0, variant: 'slide',
   },
+  saqqara: {
+    title: 'The Sledges of Saqqara',
+    intro: 'Limestone for Djoser’s monument comes up from the river on wooden sledges over wetted sand: a pushed block slides on until it hits a wall or another block — or runs onto a sledge station, whose brake stops it dead. Plan where each slide will end.',
+    rule: 'Blocks slide',
+    fact: 'The Step Pyramid at Saqqara (c. 2650 BCE) was the first monument built entirely of cut stone. Its core used local limestone; the fine white casing came from the Tura quarries across the Nile. Egyptians moved heavy stones on sledges, pouring water on the sand ahead to cut the friction.',
+    block: 'bg-[#ece3c8] border-[#a8956a]', blockOnGoal: 'bg-[#f6eed2] border-[#b0915a]',
+    floor: 'bg-[#f2e6c4]', wall: 'bg-[#b08a52]', goal: 'border-[#b0915a]', worker: '𓀀', offset: 5, variant: 'slide',
+  },
+  'parthenon-drums': {
+    title: 'The Parthenon Colonnade',
+    intro: 'Every marble drum is marked for its own column: drum I belongs on base I, drum II on base II. A drum on the wrong base does not count. Push, never pull.',
+    rule: 'Numbered drums',
+    fact: 'Each Doric column of the Parthenon was built up from about ten to twelve drums of Pentelic marble, quarried on Mount Pentelikon some 16 km from the Acropolis and fluted only after the column stood.',
+    block: 'bg-[#ece6da] border-[#a39a88]', blockOnGoal: 'bg-[#f7f1e3] border-[#7d725e]',
+    floor: 'bg-[#efe8d8]', wall: 'bg-[#8a8170]', goal: 'border-[#7d725e]', worker: '🏛', offset: 2, variant: 'matched',
+  },
   karnak: {
     title: 'Karnak Hypostyle',
     intro: 'Every drum is numbered for its own column: drum I belongs on base I, drum II on base II. A drum on the wrong base does not count. Push, never pull.',

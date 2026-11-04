@@ -66,6 +66,12 @@ export const CONFIGS: Record<string, LampConfig> = {
     pattern: 'king',
     broken: 0.08,
   },
+  'lantern-festival': {
+    title: 'The Lantern Festival',
+    intro: 'On the fifteenth night of the New Year the palace hangs its lanterns in a lattice, each wick linked to the eight around it: tapping a lantern toggles it and all eight neighbours. Light every lantern.',
+    fact: 'The Lantern Festival closes the Chinese New Year on the fifteenth night of the first month. At the Qing court the emperor watched lanterns and fireworks at the Yuanmingyuan, where Jesuit artists such as Castiglione also worked.',
+    pattern: 'king',
+  },
   'peter-street': {
     title: 'Great Peter Street Works',
     intro: 'The new burners have three notches — dark, dim, bright. Each tap turns a lamp and its four neighbours up one notch, and bright wraps round to dark. Turn every lamp to bright.',

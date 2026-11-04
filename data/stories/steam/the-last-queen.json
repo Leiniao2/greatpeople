@@ -29,11 +29,10 @@
           "challenge": {
             "type": "minigame",
             "game": "iceslide",
-            "configId": "meiji-ice",
+            "configId": "versailles-sleigh",
             "seed": 95814,
-            "instruction": "Marie Antoinette: slide across the ice to the exit.",
-            "fact": "There is no historical evidence Marie Antoinette said this. The phrase appears in Rousseau's Confessions before she arrived in France, attributed anonymously. It was likely propaganda — useful for portraying her as callously out of touch with the poor.",
-            "rebalanced": true
+            "instruction": "Winter comes to Versailles and the young Dauphine has her sleighs brought out, as at home in Vienna. Steer across the frozen park — a sleigh glides until it hits a bank or a statue — to reach the far landing.",
+            "fact": "On 7 May 1770 the fourteen-year-old Archduchess Maria Antonia was handed over to France on an island in the Rhine near Strasbourg, where she left behind her Austrian clothes and attendants. She married the Dauphin, the future Louis XVI, at Versailles on 16 May."
           }
         }
       ]
@@ -63,12 +62,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "orbit",
-            "configId": "grand-tour",
+            "game": "compose",
+            "configId": "gluck-orphee",
             "seed": 46457,
-            "instruction": "Marie Antoinette: put the body into orbit.",
-            "fact": "Versailles under Marie Antoinette employed over 1,500 servants. The annual cost of running the palace was equivalent to 25% of France's entire royal revenue — a number the revolutionaries never let anyone forget.",
-            "rebalanced": true
+            "instruction": "The queen's parties set the fashion, and so does her music: she has brought her old teacher Gluck to Paris. Put the scenes of his Orphée in order for the Opéra.",
+            "fact": "Gluck's French operas split Paris in the late 1770s into Gluckists and Piccinnists, partisans of the Italian composer Niccolò Piccinni, and the quarrel was fought out in pamphlets as fiercely as any political cause."
           }
         }
       ]
@@ -109,12 +107,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "queens",
-            "configId": "bezzel",
+            "game": "telegraphnet",
+            "configId": "chappe-1793",
             "seed": 34327,
-            "instruction": "Marie Antoinette: place the queens in peace.",
-            "fact": "Marie Antoinette's reputation for extravagance was partly real and partly manufactured. Her annual clothing budget was enormous — but Louis XVI actually cut it after they married. Revolutionary pamphlets exaggerated her spending into legend. The 'Madame Deficit' nickname stuck regardless of the facts.",
-            "rebalanced": true
+            "instruction": "While the queen waits in the Conciergerie, the Republic that will try her is building a faster France. Raise Chappe's semaphore towers so every city can signal every other with as few towers as possible.",
+            "fact": "In the summer of 1793, as Marie Antoinette was moved to the Conciergerie to await trial, the Convention adopted Claude Chappe's semaphore and ordered a line from Paris to Lille. She was guillotined on 16 October 1793; the line opened the next year."
           }
         },
         {

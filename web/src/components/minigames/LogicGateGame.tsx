@@ -83,6 +83,21 @@ export const CONFIGS: Record<string, LogicConfig> = {
     fact: 'Ada Lovelace\'s 1843 notes include a method for computing Bernoulli numbers on the Analytical Engine, often called the first computer program, and the observation that the machine might one day compose music.',
     art: 'logic_lovelace',
   },
+  'imac-logic': {
+    title: 'Inside the iMac',
+    intro: 'Beige box or translucent teardrop, every computer comes down to logic gates. Choose gates so the circuit agrees with the table on every row.',
+    target: (a, b, c) => (a | b) & c,
+    description: 'Output is 1 when A or B is on, and C is on.',
+    fact: 'The first iMac of 1998 ran on a 233 MHz PowerPC G3 processor — some six million transistors, each one a switch wired into logic gates like these.',
+    art: 'logic_shannon',
+  },
+  'louis-locksmith': {
+    title: "The King's Lock",
+    intro: 'Louis XVI’s happiest hours were spent at his locksmith’s bench. A lever lock’s bolt moves only when its levers are set just so: choose gates so the mechanism agrees with the table on every row.',
+    target: (a, b, c) => a & b & c,
+    description: 'The bolt draws (1) only when levers A, B and C are all lifted.',
+    fact: 'In 1778 Robert Barron patented the double-acting lever tumbler lock in London: the bolt moves only when every lever is lifted to exactly the right height, no more and no less.',
+  },
 }
 
 // ── The classic two-gate warm-up ─────────────────────────────────────────────
@@ -229,6 +244,8 @@ export const PLANS: Record<string, [string[], string[], string[], string[]]> = {
   'shannon-relays':  [['classic', 'random'], ['classic', 'halfAdder', 'fullAdder'], ['halfAdder', 'fullAdder', 'adder2'], ['fullAdder', 'adder2', 'comparator']],
   'turing-tape':     [['classic', 'random'], ['classic', 'random', 'equal2'], ['classic', 'equal2', 'comparator'], ['comparator', 'adder2', 'tape']],
   'lovelace-engine': [['classic', 'random'], ['classic', 'halfAdder', 'random'], ['halfAdder', 'fullAdder', 'mux'], ['fullAdder', 'mux', 'adder2']],
+  'louis-locksmith': [['classic', 'random'], ['classic', 'random', 'mux'], ['classic', 'mux', 'equal2'], ['mux', 'equal2', 'comparator']],
+  'imac-logic':      [['classic', 'random'], ['classic', 'halfAdder', 'random'], ['halfAdder', 'fullAdder', 'adder2'], ['fullAdder', 'adder2', 'comparator']],
 }
 
 /** Most slots the player has to choose per stage; the rest are locked to the reference gate. */

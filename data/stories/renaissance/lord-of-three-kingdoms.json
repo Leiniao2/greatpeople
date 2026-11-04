@@ -25,12 +25,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "tradeboard",
-            "configId": "silk-road",
+            "game": "campaign",
+            "configId": "toungoo-conquests",
             "seed": 44570,
-            "instruction": "Bayinnaung: outtrade the rival merchants.",
-            "fact": "Bayinnaung (1516–1581) built the largest empire in Southeast Asian history, conquering the Shan States, the Lan Na kingdom (Chiang Mai), and twice capturing Ayutthaya (the Siamese capital). His Toungoo Empire briefly unified Burma, Thailand, Laos, and portions of Yunnan under one administration.",
-            "rebalanced": true
+            "instruction": "From Toungoo, Bayinnaung sets out to make himself king of kings. Carry the realms from Ava to Ayutthaya before Siam's king can rally them against you.",
+            "fact": "Bayinnaung (1516–1581) built the largest empire in Southeast Asian history, conquering the Shan States, the Lan Na kingdom (Chiang Mai), and twice capturing Ayutthaya (the Siamese capital). His Toungoo Empire briefly unified Burma, Thailand, Laos, and portions of Yunnan under one administration."
           }
         }
       ]
@@ -48,12 +47,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "rotation",
-            "configId": "norfolk",
+            "game": "queens",
+            "configId": "vassal-kings",
             "seed": 99655,
-            "instruction": "Bayinnaung: rotate the crops to a full harvest.",
-            "fact": "Bayinnaung was known for remarkable religious tolerance. He allowed conquered rulers to keep their thrones as vassals, permitted local customs to continue, and interfered with Portuguese missionaries in Pegu only when they destroyed Buddhist temples. He sought legitimacy through ceremony and generosity as much as through force.",
-            "rebalanced": true
+            "instruction": "Bayinnaung lets the kings he defeats keep their thrones — if they swear to him. Seat one sworn king in every realm, with no two close enough to plot together.",
+            "fact": "Bayinnaung was known for remarkable religious tolerance. He allowed conquered rulers to keep their thrones as vassals, permitted local customs to continue, and interfered with Portuguese missionaries in Pegu only when they destroyed Buddhist temples. He sought legitimacy through ceremony and generosity as much as through force."
           }
         }
       ]
@@ -71,12 +69,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "konigsberg",
-            "configId": "konigsberg",
+            "game": "tradeboard",
+            "configId": "pegu",
             "seed": 64562,
-            "instruction": "Bayinnaung: walk every bridge once.",
-            "fact": "The white elephant was the ultimate symbol of royal legitimacy in Southeast Asia. When Bayinnaung captured Ayutthaya's white elephants, he was claiming the spiritual mandate of regional kingship. His Pegu capital became one of the most cosmopolitan cities in Asia, hosting Portuguese traders, Siamese princes, and Chinese merchants simultaneously.",
-            "rebalanced": true
+            "instruction": "Merchants from China, India and Portugal crowd the ports of Pegu. Trade along the coast and up the river, and make the King of Kings' ports the richest on the Bay of Bengal.",
+            "fact": "The white elephant was the ultimate symbol of royal legitimacy in Southeast Asia. When Bayinnaung captured Ayutthaya's white elephants, he was claiming the spiritual mandate of regional kingship. His Pegu capital became one of the most cosmopolitan cities in Asia, hosting Portuguese traders, Siamese princes, and Chinese merchants simultaneously."
           }
         },
         {
@@ -87,12 +84,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "queens",
-            "configId": "alhambra",
+            "game": "riverrun",
+            "configId": "irrawaddy-flotilla",
             "seed": 56408,
-            "instruction": "Bayinnaung: place the queens in peace.",
-            "fact": "Bayinnaung's military campaigns required extraordinary logistical sophistication — moving armies through tropical jungle with no road infrastructure. He developed a system of river transport, local supply contracts, and staged advance bases that would not have been out of place in a modern campaign.",
-            "rebalanced": true
+            "instruction": "With no roads through the jungle, Bayinnaung moves his host by water. Bring the war boats up the Irrawaddy past the sandbanks and snags to the camp at Ava.",
+            "fact": "Bayinnaung's military campaigns required extraordinary logistical sophistication — moving armies through tropical jungle with no road infrastructure. He developed a system of river transport, local supply contracts, and staged advance bases that would not have been out of place in a modern campaign."
           }
         }
       ]
@@ -111,7 +107,8 @@
           "challenge": {
             "type": "minigame",
             "game": "matchthree",
-            "configId": "lisbon-spices",
+            "configId": "pegu-bazaar",
+            "seed": 55485,
             "instruction": "Pegu's markets traded silks, rubies, elephants, and spices with Portuguese merchants and Chinese fleets. Match the commodities that flow through the greatest emporium of Southeast Asia.",
             "fact": "The city of Pegu under Bayinnaung was described by the Portuguese merchant Fernão Mendes Pinto as the most magnificent city he had ever seen — and he had visited Malacca, Goa, and Hormuz. Its markets brought together goods from China, India, the Spice Islands, and Europe in a single magnificent bazaar."
           }
@@ -121,8 +118,9 @@
           "challenge": {
             "type": "minigame",
             "game": "trade",
-            "configId": "steel-stocks",
-            "instruction": "Bayinnaung's treasury ran on tribute, trade tolls, and monopolies. Balance the empire's revenues — wars are expensive and white elephants require golden stables.",
+            "configId": "pegu-rubies",
+            "seed": 18269,
+            "instruction": "Bayinnaung's treasury runs on tribute, tolls and the ruby trade, and every campaign costs more than the last. Buy and sell the stones through the seasons and fill the treasury before the next war.",
             "fact": "Bayinnaung's empire was as much a trade network as a military conquest. Control of the overland route between China and the Indian Ocean gave his treasury a cut of the most profitable commerce in Asia. The Portuguese paid handsomely for port rights in Pegu — and Bayinnaung collected from everyone."
           }
         },

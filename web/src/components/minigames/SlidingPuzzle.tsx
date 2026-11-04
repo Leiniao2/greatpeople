@@ -4,7 +4,7 @@ import { scale, useGameTimer, TimerBar } from './_shared'
 
 // ── Types & config ─────────────────────────────────────────────────────────────
 
-type PuzzleKey = 'renaissance' | 'pyramid-stones'
+type PuzzleKey = 'renaissance' | 'pyramid-stones' | 'clay-type-forme' | 'zeno-stadium' | 'gombe-forest' | 'mockingbird-script'
 
 // 0 = blank tile
 type TileBoard = number[]
@@ -45,6 +45,32 @@ export const CONFIGS: Record<PuzzleKey, PuzzleConfig> = {
       8: 'text-stone-200',
     },
   },
+  'zeno-stadium': {
+    title: 'The Moving Rows',
+    subtitle: "Zeno's Stadium: rows of bodies slide past one another — set them back in order, one move at a time",
+    // Same scramble as renaissance: blank at index 7 — solvable (14 inversions, even)
+    initial: [5, 2, 8, 4, 1, 7, 3, 0, 6],
+    tileColors: {
+      1: 'from-stone-300 to-stone-200',
+      2: 'from-stone-400 to-stone-300',
+      3: 'from-stone-500 to-stone-400',
+      4: 'from-amber-200 to-amber-100',
+      5: 'from-amber-300 to-amber-200',
+      6: 'from-amber-400 to-amber-300',
+      7: 'from-sky-800 to-sky-700',
+      8: 'from-sky-900 to-sky-800',
+    },
+    tileTextColors: {
+      1: 'text-ink-2',
+      2: 'text-ink-2',
+      3: 'text-ink-2',
+      4: 'text-ink-2',
+      5: 'text-ink-2',
+      6: 'text-ink-2',
+      7: 'text-sky-100',
+      8: 'text-sky-100',
+    },
+  },
   'pyramid-stones': {
     title: 'Pyramid Cornerstone',
     subtitle: 'Assemble the ancient stone pattern',
@@ -69,6 +95,84 @@ export const CONFIGS: Record<PuzzleKey, PuzzleConfig> = {
       6: 'text-stone-100',
       7: 'text-stone-200',
       8: 'text-zinc-200',
+    },
+  },
+  'gombe-forest': {
+    title: 'Replanting Gombe',
+    subtitle: 'Slide the patches of forest back together until the chimpanzees’ range is whole again',
+    // Same scramble as pyramid-stones: blank at index 4 — solvable
+    initial: [3, 6, 4, 1, 0, 2, 7, 8, 5],
+    tileColors: {
+      1: 'from-emerald-900 to-emerald-800',
+      2: 'from-emerald-800 to-emerald-700',
+      3: 'from-green-800 to-green-700',
+      4: 'from-green-700 to-green-600',
+      5: 'from-lime-800 to-lime-700',
+      6: 'from-lime-700 to-lime-600',
+      7: 'from-sky-800 to-sky-700',
+      8: 'from-sky-900 to-sky-800',
+    },
+    tileTextColors: {
+      1: 'text-emerald-100',
+      2: 'text-emerald-100',
+      3: 'text-green-100',
+      4: 'text-green-100',
+      5: 'text-lime-100',
+      6: 'text-lime-100',
+      7: 'text-sky-100',
+      8: 'text-sky-100',
+    },
+  },
+  'mockingbird-script': {
+    title: 'The Screenplay, 1962',
+    subtitle: 'Horton Foote’s script for To Kill a Mockingbird has come apart — slide its scenes back into order',
+    // Same scramble as renaissance: blank at index 7 — solvable (14 inversions, even)
+    initial: [5, 2, 8, 4, 1, 7, 3, 0, 6],
+    tileColors: {
+      1: 'from-stone-200 to-stone-100',
+      2: 'from-stone-300 to-stone-200',
+      3: 'from-stone-200 to-stone-100',
+      4: 'from-stone-300 to-stone-200',
+      5: 'from-stone-200 to-stone-100',
+      6: 'from-stone-300 to-stone-200',
+      7: 'from-stone-200 to-stone-100',
+      8: 'from-stone-300 to-stone-200',
+    },
+    tileTextColors: {
+      1: 'text-ink-2',
+      2: 'text-ink-2',
+      3: 'text-ink-2',
+      4: 'text-ink-2',
+      5: 'text-ink-2',
+      6: 'text-ink-2',
+      7: 'text-ink-2',
+      8: 'text-ink-2',
+    },
+  },
+  'clay-type-forme': {
+    title: 'Bi Sheng’s Iron Forme',
+    subtitle: 'Slide the fired clay type into reading order in the frame',
+    // Scramble: blank at index 6 — solvable (8 inversions, even)
+    initial: [4, 1, 3, 7, 2, 5, 0, 8, 6],
+    tileColors: {
+      1: 'from-amber-800 to-amber-700',
+      2: 'from-orange-800 to-orange-700',
+      3: 'from-stone-700 to-stone-600',
+      4: 'from-amber-900 to-amber-800',
+      5: 'from-orange-900 to-orange-800',
+      6: 'from-stone-800 to-stone-700',
+      7: 'from-yellow-800 to-yellow-700',
+      8: 'from-red-900 to-red-800',
+    },
+    tileTextColors: {
+      1: 'text-amber-100',
+      2: 'text-orange-100',
+      3: 'text-stone-100',
+      4: 'text-amber-100',
+      5: 'text-orange-100',
+      6: 'text-stone-100',
+      7: 'text-yellow-100',
+      8: 'text-red-100',
     },
   },
 }

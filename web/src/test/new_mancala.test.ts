@@ -180,7 +180,10 @@ describe('race targets and the cap', () => {
     }
   })
   it('every config is a different rule set', () => {
-    expect(new Set(CONFIG_IDS.map(id => CONFIGS[id].variant)).size).toBe(CONFIG_IDS.length)
+    // The base configs are each a different rule set; story-themed configs reuse one of them.
+    const BASE = ['oware', 'kalah', 'bao-lite', 'fours']
+    expect(new Set(BASE.map(id => CONFIGS[id].variant)).size).toBe(BASE.length)
+    for (const id of CONFIG_IDS) expect(BASE.map(b => CONFIGS[b].variant), id).toContain(CONFIGS[id].variant)
     expect(CONFIG_IDS.length).toBeGreaterThanOrEqual(4)
   })
 })

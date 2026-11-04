@@ -28,12 +28,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "truss",
-            "configId": "eiffel",
+            "game": "cipher",
+            "configId": "fae-motto",
             "seed": 6579,
-            "instruction": "Johannes Brahms: build a truss that holds.",
-            "fact": "Robert Schumann heard the 20-year-old Brahms play in 1853 and immediately published an article declaring him 'the one called to give ideal expression to the times.' It was an extraordinary endorsement that launched Brahms' career — and also set impossible expectations that would haunt him for decades.",
-            "rebalanced": true
+            "instruction": "Twenty-three years before this premiere, the young Brahms joined Schumann in writing a sonata on a friend's motto. Turn the wheel until Joachim's motto reads.",
+            "fact": "Robert Schumann heard the 20-year-old Brahms play in 1853 and immediately published an article declaring him 'the one called to give ideal expression to the times.' It was an extraordinary endorsement that launched Brahms' career — and also set impossible expectations that would haunt him for decades."
           }
         }
       ]
@@ -52,11 +51,10 @@
           "challenge": {
             "type": "minigame",
             "game": "compose",
-            "configId": "beethoven-fifth",
+            "configId": "brahms-lullaby-compose",
             "seed": 11961,
-            "instruction": "Johannes Brahms: arrange the movements.",
-            "fact": "Brahms labored over his First Symphony for 21 years, from 1854 to 1876. He was paralyzed by the shadow of Beethoven — convinced that any symphony he wrote would be compared unfavorably to Beethoven's nine. When it finally premiered, the conductor Hans von Bülow called it 'Beethoven's Tenth' — the highest compliment and a backhanded burden.",
-            "rebalanced": true
+            "instruction": "Before any symphony, Brahms made his name with a requiem written after his mother's death. Arrange the movements of A German Requiem in order.",
+            "fact": "Brahms labored over his First Symphony for 21 years, from 1854 to 1876. He was paralyzed by the shadow of Beethoven — convinced that any symphony he wrote would be compared unfavorably to Beethoven's nine. When it finally premiered, the conductor Hans von Bülow called it 'Beethoven's Tenth' — the highest compliment and a backhanded burden."
           }
         }
       ]
@@ -76,12 +74,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "lorentz",
-            "configId": "lorentz-aurora",
+            "game": "pendulum",
+            "configId": "brahms-metronome",
             "seed": 2281,
-            "instruction": "Johannes Brahms: steer the particle onto target.",
-            "fact": "Brahms was his own harshest critic. He destroyed dozens of works he judged inferior, including a complete string quintet and multiple early symphonies. What survives — four symphonies, two piano concertos, the German Requiem, the Lullaby — represents only what passed his merciless standard.",
-            "rebalanced": true
+            "instruction": "Brahms hears tempo in the structure of the music, not in a ticking machine. Still, pick out every pendulum that truly beats with the reference — only its length sets the time.",
+            "fact": "Brahms was his own harshest critic. By his own account he wrote some twenty string quartets before he let one be published — the pair of Op. 51, in 1873 — and he burned many drafts and early works he judged unworthy."
           }
         }
       ]
@@ -95,24 +92,22 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "bridge",
-            "configId": "greek-islands",
+            "game": "rhythm",
+            "configId": "brahms-wiegenlied",
             "seed": 86327,
-            "instruction": "Johannes Brahms: link the islands with bridges.",
-            "fact": "Brahms based the Lullaby (Op. 49, No. 4) on a folk song he heard a childhood sweetheart sing, weaving his memory of her voice into the melody. It became the most hummed tune of the 19th century — and today it plays in hospitals worldwide to announce a birth.",
-            "rebalanced": true
+            "instruction": "The song Brahms wrote for a friend's newborn became the world's lullaby. Play it through as the strings press the tempo.",
+            "fact": "Brahms's Wiegenlied was first sung in public in Vienna in December 1869, with Clara Schumann at the piano. Few melodies have been sung over more cradles since."
           }
         },
         {
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "punnett",
-            "configId": "blood-types",
+            "game": "gears",
+            "configId": "brahms-phonograph",
             "seed": 23487,
-            "instruction": "Johannes Brahms: predict the inheritance.",
-            "fact": "Brahms was deeply influenced by Baroque counterpoint, studying Bach's manuscripts obsessively. His technique of 'developing variation' — transforming a small motif through subtle changes across an entire symphony — influenced Schoenberg, Webern, and the entire 20th-century tradition of motivic composition.",
-            "rebalanced": true
+            "instruction": "Edison's agent has carried a phonograph to Vienna to catch the master at the piano. Gear the motor down so the wax cylinder turns true while Brahms plays his Hungarian Dance.",
+            "fact": "On 2 December 1889 Brahms played part of his first Hungarian Dance into Edison's phonograph in Vienna. The worn cylinder, copied many times since, is the only recording of Brahms himself at the keyboard."
           }
         },
         {

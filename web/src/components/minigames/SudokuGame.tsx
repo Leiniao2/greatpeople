@@ -35,6 +35,12 @@ export const CONFIGS: Record<string, SudokuConfig> = {
     intro: "Euclid's Elements organises 465 propositions so no concept appears before it is proven. Fill the grid so each row, column and box holds every number exactly once.",
     fact: "Euclid's Elements (c. 300 BCE) laid out all of classical geometry from five axioms alone. Its logical structure — each proposition built strictly on what came before — was so airtight that it served as the definitive mathematics textbook for over 2,000 years.",
   },
+  'tt33-walls': {
+    surface: 'sudoku_parchment',
+    title: 'Every Text in Its Place',
+    intro: 'The wall is ruled into panels before the carvers begin, and no spell may appear twice in one row, column or panel. Fill the grid so each row, column and box holds every number exactly once.',
+    fact: 'Late Period priests at Thebes searched out texts up to two thousand years old — Pyramid Texts first carved for Old Kingdom kings among them — and had them copied again, deliberately reviving Egypt’s sacred past. Pediamenopet’s tomb gathers more of them than any other.',
+  },
   'al-khwarizmi-grid': {
     surface: 'sudoku_clay',
     title: "Al-Khwārizmī's Balance",
@@ -58,6 +64,12 @@ export const CONFIGS: Record<string, SudokuConfig> = {
     title: 'The Transformation',
     intro: "Lorentz's equations describe a universe where time, space and mass change with velocity — yet follow exact mathematical constraints. Fill the grid so each row, column and box holds every number exactly once.",
     fact: "Hendrik Lorentz derived his transformation equations in 1895–1904, showing mathematically that length, time, and mass all change with velocity. Einstein took these same equations and provided the physical interpretation: they do not describe a distortion of measurement, but a genuine feature of spacetime. Lorentz was magnanimous about this — he considered Einstein's insight the greater achievement.",
+  },
+  'nirmal-hriday-rota': {
+    surface: 'sudoku_parchment',
+    title: 'The Kalighat Rota',
+    intro: 'At Nirmal Hriday the sisters share out the day — washing, feeding, nursing, sitting with the dying — so every duty is covered and no one carries the same one twice. Fill the rota so each row, column and box holds every number exactly once.',
+    fact: "Mother Teresa opened Nirmal Hriday ('Pure Heart'), her home for the dying destitute, in 1952 in a former pilgrims' hostel beside the Kali temple at Kalighat, Calcutta. The sisters and volunteers from around the world still care for the dying there.",
   },
   'eisenstein-grid': {
     surface: 'sudoku_parchment',

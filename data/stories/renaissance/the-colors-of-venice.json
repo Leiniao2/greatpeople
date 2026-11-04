@@ -28,12 +28,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "pendulum",
-            "configId": "huygens-clock",
+            "game": "magicsquare",
+            "configId": "durer",
             "seed": 9022,
-            "instruction": "Titian: set the clock to keep time.",
-            "fact": "Titian (c. 1488–1576) worked for nearly 70 years, painting for Holy Roman Emperor Charles V, Philip II of Spain, and Pope Paul III. His late style — loose, almost abstract brushwork — was centuries ahead of its time.",
-            "rebalanced": true
+            "instruction": "Bellini's workshop still talks of the German who came to Venice, Albrecht Dürer. Complete the magic square he would later engrave: every line, every quarter, the centre and the corners.",
+            "fact": "Albrecht Dürer stayed in Venice in 1505–07 and wrote home that the aged Giovanni Bellini, Titian's master, was still the best painter of them all. His engraving Melencolia I, with its magic square, followed in 1514."
           }
         },
         {
@@ -81,12 +80,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "campaign",
-            "configId": "athenian-demes",
+            "game": "optics",
+            "configId": "barbaro-camera",
             "seed": 93182,
-            "instruction": "Titian: win the campaign.",
-            "fact": "Venice ordered all glassmakers to the island of Murano in 1291 — ostensibly to prevent fires, really to contain the secrets of cristallo glass. Murano craftsmen held rare freedom: they could marry nobility and carry swords, but leaving the island was punishable by death.",
-            "rebalanced": true
+            "instruction": "In Titian's last years his friend Daniele Barbaro teaches painters a new trick: a lens in the wall of a darkened room. Open the wall so each candle's image falls on its mark.",
+            "fact": "Barbaro's camera used a convex lens, the kind Venice's spectacle-makers ground, to throw an image bright enough to trace. Titian, still painting in his eighties, died in Venice in August 1576 during an outbreak of plague."
           }
         }
       ]
@@ -147,10 +145,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "colormix",
-            "configId": "titian-red",
-            "instruction": "Recreate Titian's legendary crimson — a layered blend of vermilion and kermes lake that defined Venetian painting for a century.",
-            "fact": "Titian's reds were so celebrated that 'rosso Tizianesco' became a byword for luminous crimson. He applied multiple thin glazes of kermes lake over a vermilion ground — a method only perfected over decades."
+            "game": "nonogram",
+            "configId": "grimani-antiquities",
+            "seed": 81817,
+            "instruction": "The ancient marbles that taught Venice's painters are being catalogued for the Republic. Recover each piece from the damp-stained inventory.",
+            "fact": "Titian's St Sebastian in the Averoldi altarpiece (1520–22) borrows the twisting pose of the Laocoön, the ancient marble rediscovered in Rome in 1506. Venetian painters learned from antiquities as eagerly as the Florentines."
           }
         },
         {

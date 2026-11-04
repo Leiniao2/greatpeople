@@ -66,15 +66,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "scytale",
+            "game": "debate",
+            "configId": "euclid-proof",
             "seed": 1001,
-            "fact": "Euclid's Elements (c. 300 BCE) comprises 13 books and 465 propositions. It was used in university geometry courses until the early 20th century — over 2,000 years of continuous use.",
-            "autogen": true,
-            "configId": "spartan-rod",
-            "params": {
-              "plaintext": "THIRTEEN BOOKS OF GEOMETRY"
-            },
-            "instruction": "A student has wound a note about Euclid's work round a rod. Find the rod that lines it up."
+            "instruction": "Ptolemy wants a shortcut, a student wants a profit, a sceptic wants a picture. Answer each of them as Euclid did — with proof.",
+            "fact": "Euclid's Elements (c. 300 BCE) comprises 13 books and 465 propositions. It was used in university geometry courses until the early 20th century — over 2,000 years of continuous use."
           }
         }
       ]
@@ -89,8 +85,8 @@
           "challenge": {
             "type": "minigame",
             "game": "crossword",
-            "configId": "linnaeus",
-            "instruction": "Euclid classified all geometric knowledge. Test your knowledge with this classification crossword.",
+            "configId": "euclid",
+            "instruction": "The Elements begins with definitions and builds every proof on them. Fill the crossword with the words Euclid's geometry starts from.",
             "fact": "Euclid's proof of the Pythagorean theorem occupies a full page of the Elements and uses nothing but logic. It remains one of the most beautiful proofs in all of mathematics."
           }
         }
@@ -109,24 +105,93 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "campaign",
-            "configId": "akkadian-cities",
+            "game": "surveyor",
+            "configId": "eratosthenes",
             "seed": 70059,
-            "instruction": "Euclid: win the campaign.",
-            "fact": "Euclid wrote 'Optica', one of the earliest works on optics and perspective, laying the groundwork for understanding how light behaves.",
-            "rebalanced": true
+            "instruction": "Eratosthenes, librarian at Alexandria, turned Euclid's geometry on the Earth itself. Read the gnomon's noon shadow and measure the planet.",
+            "fact": "Eratosthenes' method rests on a theorem of the Elements: a straight line falling on two parallel lines makes the alternate angles equal (Book I, Proposition 29). The sun's rays at Syene and Alexandria are the parallels."
           }
         },
         {
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "debate",
-            "configId": "wollstonecraft-vindication",
+            "game": "pairs",
+            "configId": "ancient",
+            "params": {
+              "title": "The Scrolls of the Mouseion",
+              "intro": "New scrolls have come to Alexandria and the catalogue slips are mixed. Match each Greek author with the work the scholars of the Mouseion copied and studied.",
+              "fact": "Under Ptolemy I and II the Mouseion of Alexandria gathered scholars and books from the whole Greek world. Callimachus later catalogued the Library in his Pinakes, 120 books of lists of authors and their works.",
+              "pairs": [
+                [
+                  "Homer",
+                  "The Iliad"
+                ],
+                [
+                  "Hesiod",
+                  "Works and Days"
+                ],
+                [
+                  "Sappho",
+                  "Lyric odes"
+                ],
+                [
+                  "Aeschylus",
+                  "The Oresteia"
+                ],
+                [
+                  "Sophocles",
+                  "Oedipus the King"
+                ],
+                [
+                  "Euripides",
+                  "Medea"
+                ],
+                [
+                  "Herodotus",
+                  "The Histories"
+                ],
+                [
+                  "Thucydides",
+                  "The Peloponnesian War"
+                ],
+                [
+                  "Hippocrates",
+                  "Aphorisms"
+                ],
+                [
+                  "Plato",
+                  "The Republic"
+                ],
+                [
+                  "Aristotle",
+                  "Physics"
+                ],
+                [
+                  "Aristophanes",
+                  "The Clouds"
+                ],
+                [
+                  "Pindar",
+                  "Victory odes"
+                ],
+                [
+                  "Theophrastus",
+                  "Enquiry into Plants"
+                ],
+                [
+                  "Xenophon",
+                  "Anabasis"
+                ],
+                [
+                  "Euclid",
+                  "Elements"
+                ]
+              ]
+            },
             "seed": 67409,
-            "instruction": "Euclid: win the argument with evidence.",
-            "fact": "Euclid's 'Catoptrics' studied mirrors and reflection. It took nearly two thousand more years for Newton to explain why white light splits into a spectrum — but the geometry Euclid laid down made that discovery possible.",
-            "rebalanced": true
+            "instruction": "The scholars who came after Euclid built on the Library's books. Match each author to the scroll Alexandria kept — before the slips shift again.",
+            "fact": "Euclid's Elements was copied and commented on at Alexandria for centuries. Theon of Alexandria's edition of the 4th century CE is the source of almost every manuscript that survives."
           }
         },
         {

@@ -82,7 +82,10 @@ describe('tangram logic', () => {
   })
 
   it('every config is a distinct twist', () => {
-    expect(new Set(CONFIG_IDS.map(id => CONFIGS[id].twist)).size).toBe(CONFIG_IDS.length)
+    // The base configs are each their own twist; story-themed configs reuse one of them.
+    const BASE = ['song-scholar', 'junk-ship', 'pagoda', 'menagerie']
+    expect(new Set(BASE.map(id => CONFIGS[id].twist)).size).toBe(BASE.length)
+    for (const id of CONFIG_IDS) expect(BASE.map(b => CONFIGS[b].twist), id).toContain(CONFIGS[id].twist)
     expect(CONFIG_IDS.every(id => CONFIGS[id].twist)).toBe(true)
   })
 

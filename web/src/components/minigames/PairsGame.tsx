@@ -35,6 +35,20 @@ export interface PairsConfig {
 }
 
 export const CONFIGS: Record<string, PairsConfig> = {
+  'nineveh-catalogue': {
+    title: 'The Shelves of Nineveh',
+    intro: 'The tablets have come in from every city of the empire. Shelve each work with the subject it belongs to.',
+    variant: 'swap',
+    twist: 'Shifting tablets: whenever you turn up two that do not match, they trade places as they go face down. Remember where each one went.',
+    fact: 'Ashurbanipal’s scholars knew each text by its opening words, and long works ran in numbered series of tablets: the sky-omen series Enuma Anu Enlil alone filled some seventy. Catalogue tablets list the works held at Nineveh.',
+    pairs: [
+      ['Epic of Gilgamesh', 'A king seeks life everlasting'], ['Enuma Elish', 'Marduk orders the world'], ['Atrahasis', 'The gods send the flood'],
+      ['Enuma Anu Enlil', 'Omens in the sky'], ['Shumma alu', 'Omens of daily life'], ['Shumma izbu', 'Omens from strange births'],
+      ['Sakikku', 'Diagnosing the sick'], ['Maqlu', 'Burning the witch'], ['Ludlul bel nemeqi', 'The righteous sufferer'],
+      ['Erra and Ishum', 'The plague god rampages'], ['Descent of Ishtar', 'A goddess in the underworld'], ['Anzu', 'The stolen Tablet of Destinies'],
+      ['Etana', 'A king flies on an eagle'], ['MUL.APIN', 'Catalogue of the stars'],
+    ],
+  },
   ancient: {
     title: 'Library of Alexandria',
     intro: 'The scrolls of the ancient world have been mixed up. Match each author or ruler to their great work.',

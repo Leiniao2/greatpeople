@@ -74,6 +74,78 @@ export const CONFIGS: Record<string, PipelineConfig> = {
     ],
     fact: "Rome's Aqua Claudia, begun by Caligula and completed by Claudius in 52 CE, ran 69 km from springs in the Anio valley to the city — much of it on soaring arched arcades. Nine major aqueducts supplied ancient Rome with more water per capita than modern-day New York.",
   },
+  'naples-aqueduct': {
+    title: 'Through the Aqueduct — Naples, 536',
+    subtitle: 'Lead the picked men along the dry channel into the city',
+    cols: 5,
+    rows: 4,
+    sourceIdx: 0,
+    sinkIdx: 19,
+    // Same board as roman-aqueduct. Solution path: 0→1→2→7→12→17→18→19
+    tiles: [
+      // row 0
+      { shape: 'source',   base: [1,2],    rotation: 0, fixed: true  }, // 0
+      { shape: 'straight', base: [1,3],    rotation: 0              }, // 1
+      { shape: 'elbow',    base: [2,3],    rotation: 0              }, // 2
+      { shape: 'elbow',    base: [0,1],    rotation: 0              }, // 3
+      { shape: 'elbow',    base: [0,3],    rotation: 0              }, // 4
+      // row 1
+      { shape: 'straight', base: [0,2],    rotation: 0              }, // 5
+      { shape: 'tee',      base: [0,1,2],  rotation: 0              }, // 6
+      { shape: 'straight', base: [0,2],    rotation: 0              }, // 7
+      { shape: 'straight', base: [1,3],    rotation: 0              }, // 8
+      { shape: 'elbow',    base: [2,3],    rotation: 0              }, // 9
+      // row 2
+      { shape: 'elbow',    base: [1,2],    rotation: 0              }, // 10
+      { shape: 'straight', base: [1,3],    rotation: 0              }, // 11
+      { shape: 'straight', base: [0,2],    rotation: 0              }, // 12
+      { shape: 'elbow',    base: [0,1],    rotation: 0              }, // 13
+      { shape: 'straight', base: [0,2],    rotation: 0              }, // 14
+      // row 3
+      { shape: 'elbow',    base: [0,1],    rotation: 0              }, // 15
+      { shape: 'straight', base: [1,3],    rotation: 0              }, // 16
+      { shape: 'elbow',    base: [0,1],    rotation: 0              }, // 17
+      { shape: 'straight', base: [1,3],    rotation: 0              }, // 18
+      { shape: 'sink',     base: [3,0],    rotation: 0, fixed: true }, // 19
+    ],
+    fact: 'Naples held out against Belisarius for some three weeks in 536 until an Isaurian soldier found that the aqueduct he had cut ran under the walls. Its channel was widened in silence, and about 400 men crawled through it by night, came up inside the city and opened the way for the assault.',
+  },
+  'aqua-marcia': {
+    title: 'Aqua Marcia — Route the Aqueduct',
+    subtitle: 'Rome, 144–140 BCE',
+    cols: 5,
+    rows: 4,
+    sourceIdx: 0,
+    sinkIdx: 19,
+    // Same board as roman-aqueduct. Solution path: 0→1→2→7→12→17→18→19
+    tiles: [
+      // row 0
+      { shape: 'source',   base: [1,2],    rotation: 0, fixed: true  }, // 0  source, opens E+S
+      { shape: 'straight', base: [1,3],    rotation: 0              }, // 1  horiz
+      { shape: 'elbow',    base: [2,3],    rotation: 0              }, // 2  S+W → turns down
+      { shape: 'elbow',    base: [0,1],    rotation: 0              }, // 3  N+E
+      { shape: 'elbow',    base: [0,3],    rotation: 0              }, // 4  N+W
+      // row 1
+      { shape: 'straight', base: [0,2],    rotation: 0              }, // 5  vert
+      { shape: 'tee',      base: [0,1,2],  rotation: 0              }, // 6  N+E+S
+      { shape: 'straight', base: [0,2],    rotation: 0              }, // 7  vert
+      { shape: 'straight', base: [1,3],    rotation: 0              }, // 8  horiz
+      { shape: 'elbow',    base: [2,3],    rotation: 0              }, // 9  S+W
+      // row 2
+      { shape: 'elbow',    base: [1,2],    rotation: 0              }, // 10 E+S
+      { shape: 'straight', base: [1,3],    rotation: 0              }, // 11 horiz
+      { shape: 'straight', base: [0,2],    rotation: 0              }, // 12 vert
+      { shape: 'elbow',    base: [0,1],    rotation: 0              }, // 13 N+E
+      { shape: 'straight', base: [0,2],    rotation: 0              }, // 14 vert
+      // row 3
+      { shape: 'elbow',    base: [0,1],    rotation: 0              }, // 15 N+E
+      { shape: 'straight', base: [1,3],    rotation: 0              }, // 16 horiz
+      { shape: 'elbow',    base: [0,1],    rotation: 0              }, // 17 N+E → turns right
+      { shape: 'straight', base: [1,3],    rotation: 0              }, // 18 horiz
+      { shape: 'sink',     base: [3,0],    rotation: 0, fixed: true }, // 19 sink, opens W+N
+    ],
+    fact: 'The praetor Quintus Marcius Rex built the Aqua Marcia in 144–140 BCE, running some 91 km from springs in the upper Anio valley — the longest aqueduct Rome then had, and Pliny thought its cold water the best in the city. Cicero, in On Duties, counts aqueducts among the public works truly worth a statesman\'s money.',
+  },
   'mesopotamia-canal': {
     title: "Sennacherib's Canal — Nineveh, 700 BCE",
     subtitle: 'Nineveh, Assyrian Empire',
@@ -105,6 +177,70 @@ export const CONFIGS: Record<string, PipelineConfig> = {
       { shape: 'sink',     base: [0,3],    rotation: 0, fixed: true }, // 15
     ],
     fact: "King Sennacherib of Assyria built the world's first long-distance water supply channel around 700 BCE — an 80 km canal system supplying Nineveh, complete with a proto-aqueduct bridge over a valley. It predates the Roman aqueducts by 500 years.",
+  },
+  'metu-vessels': {
+    title: 'The Vessels of the Heart',
+    subtitle: 'Saqqara, c. 2650 BCE',
+    cols: 4,
+    rows: 4,
+    sourceIdx: 0,
+    sinkIdx: 15,
+    // Same board as mesopotamia-canal. Solution path: 0→4→8→9→10→14→15
+    tiles: [
+      // row 0
+      { shape: 'source',   base: [1,2],    rotation: 0, fixed: true  }, // 0
+      { shape: 'elbow',    base: [2,3],    rotation: 0              }, // 1
+      { shape: 'straight', base: [0,2],    rotation: 0              }, // 2
+      { shape: 'elbow',    base: [2,3],    rotation: 0              }, // 3
+      // row 1
+      { shape: 'straight', base: [0,2],    rotation: 0              }, // 4
+      { shape: 'straight', base: [0,2],    rotation: 0              }, // 5
+      { shape: 'tee',      base: [1,2,3],  rotation: 0              }, // 6
+      { shape: 'straight', base: [0,2],    rotation: 0              }, // 7
+      // row 2
+      { shape: 'elbow',    base: [0,1],    rotation: 0              }, // 8  N+E
+      { shape: 'straight', base: [1,3],    rotation: 0              }, // 9
+      { shape: 'elbow',    base: [2,3],    rotation: 0              }, // 10 S+W
+      { shape: 'straight', base: [0,2],    rotation: 0              }, // 11
+      // row 3
+      { shape: 'elbow',    base: [0,1],    rotation: 0              }, // 12
+      { shape: 'straight', base: [1,3],    rotation: 0              }, // 13
+      { shape: 'elbow',    base: [0,1],    rotation: 0              }, // 14 N+E
+      { shape: 'sink',     base: [0,3],    rotation: 0, fixed: true }, // 15
+    ],
+    fact: 'Egyptian physicians taught that channels, the metu, run from the heart to every part of the body, carrying air, water and blood. The Ebers Papyrus says a physician who lays his fingers on the head, the hands or the legs “finds the heart”, for its vessels lead to every limb.',
+  },
+  'mulberry-grove': {
+    title: 'Watering the Mulberry Grove',
+    subtitle: 'China, c. 2700 BCE',
+    cols: 4,
+    rows: 4,
+    sourceIdx: 0,
+    sinkIdx: 15,
+    // Same board as mesopotamia-canal. Solution path: 0→4→8→9→10→14→15
+    tiles: [
+      // row 0
+      { shape: 'source',   base: [1,2],    rotation: 0, fixed: true  }, // 0
+      { shape: 'elbow',    base: [2,3],    rotation: 0              }, // 1
+      { shape: 'straight', base: [0,2],    rotation: 0              }, // 2
+      { shape: 'elbow',    base: [2,3],    rotation: 0              }, // 3
+      // row 1
+      { shape: 'straight', base: [0,2],    rotation: 0              }, // 4
+      { shape: 'straight', base: [0,2],    rotation: 0              }, // 5
+      { shape: 'tee',      base: [1,2,3],  rotation: 0              }, // 6
+      { shape: 'straight', base: [0,2],    rotation: 0              }, // 7
+      // row 2
+      { shape: 'elbow',    base: [0,1],    rotation: 0              }, // 8  N+E
+      { shape: 'straight', base: [1,3],    rotation: 0              }, // 9
+      { shape: 'elbow',    base: [2,3],    rotation: 0              }, // 10 S+W
+      { shape: 'straight', base: [0,2],    rotation: 0              }, // 11
+      // row 3
+      { shape: 'elbow',    base: [0,1],    rotation: 0              }, // 12
+      { shape: 'straight', base: [1,3],    rotation: 0              }, // 13
+      { shape: 'elbow',    base: [0,1],    rotation: 0              }, // 14 N+E
+      { shape: 'sink',     base: [0,3],    rotation: 0, fixed: true }, // 15
+    ],
+    fact: 'The domesticated silkworm, Bombyx mori, eats nothing but mulberry leaves, so every silk house needed its mulberry grove. Woven silk found at Qianshanyang in Zhejiang dates to around 2700 BCE — the age Chinese tradition gives to Lei Zu.',
   },
   'silk-road-caravan': {
     title: "Zhang Qian's Silk Road — Route the Caravan",

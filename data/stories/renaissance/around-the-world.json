@@ -28,12 +28,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "gears",
-            "configId": "water-mill",
+            "game": "cargo",
+            "configId": "armada-de-molucca",
             "seed": 90793,
-            "instruction": "Magellan: build the gear train.",
-            "fact": "Only 18 men completed the first circumnavigation, arriving back in Spain in September 1522 — three years after departing. Magellan himself was killed in the Philippines in April 1521, so he never finished the journey.",
-            "rebalanced": true
+            "instruction": "Before the five ships leave Seville, their holds must carry what the Spice Islands will take in trade for cloves. Stow the barter goods worth the most and leave the dead weight on the quay.",
+            "fact": "Only 18 men completed the first circumnavigation, arriving back in Spain in September 1522 — three years after departing. Magellan himself was killed in the Philippines in April 1521, so he never finished the journey."
           }
         }
       ]
@@ -78,12 +77,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "siege",
-            "configId": "vauban-star",
+            "game": "chemistry",
+            "configId": "spice-route",
             "seed": 63571,
-            "instruction": "Magellan: hold the walls against the waves.",
-            "fact": "Magellan's voyage proved the Earth is a sphere and that the Pacific is far larger than anyone imagined. He left in 1519 with five ships and 270 men; one ship, the Victoria, returned in 1522 with 18 skeletal survivors. The Strait of Magellan — 570 kilometres of treacherous winding channels — took 38 days to navigate.",
-            "rebalanced": true
+            "instruction": "Without their captain, the survivors reach Tidore and its cloves at last. Load the flagship's hold with the mix of spices that will pay for everything they have lost.",
+            "fact": "At Tidore in November 1521 the two surviving ships, Trinidad and Victoria, took on cloves. The Trinidad sprang a leak and stayed behind for repairs; only the Victoria, under Juan Sebastián Elcano, sailed on west for Spain."
           }
         }
       ]
@@ -98,11 +96,10 @@
           "challenge": {
             "type": "minigame",
             "game": "caravan",
-            "configId": "hanseatic-league",
+            "configId": "victoria-homeward",
             "seed": 67809,
-            "instruction": "Magellan: turn a profit along the route.",
-            "fact": "Hernán Cortés wrote to Charles V that Tlatelolco was larger than any market in Spain. It drew 60,000 traders daily — cacao, jade, feathers, obsidian blades, and human beings. Dedicated judges walked the aisles enforcing weights and punishing fraud on the spot.",
-            "rebalanced": true
+            "instruction": "Elcano brings the Victoria home the long way, round Africa and clear of the Portuguese. Buy and sell at every landfall so the cargo is worth the lives it cost.",
+            "fact": "The Victoria's cloves sold in Spain for more than the cost of the whole expedition. Charles V gave Elcano a coat of arms bearing a globe and the motto Primus circumdedisti me — 'You first went around me.'"
           }
         },
         {

@@ -33,6 +33,7 @@ const CANONICAL: Record<string, Params> = {
   'hexagon-interior': { n: 6 },
   'circle-circumference': { r: 7 },
   'sphere-surface': { r: 5 },
+  'first-ball': { r: 11 },
   'golden-ratio': { L: 21 },
   'right-triangle-angle': { t: 37 },
   'volume-pyramid': { h: 147 },

@@ -32,12 +32,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "telegraphnet",
-            "configId": "morse",
+            "game": "pendulum",
+            "configId": "wieck-metronome",
             "seed": 25248,
-            "instruction": "Clara Schumann: connect the cities by wire.",
-            "fact": "Schumann's Florestan (passionate extrovert) and Eusebius (dreaming introvert) represented the two sides of Romantic temperament. He used both names in his music journal Neue Zeitschrift für Musik, which he founded in 1834.",
-            "rebalanced": true
+            "instruction": "Robert lodges with Friedrich Wieck and practises to his teacher's strict beat. Pick out every pendulum that keeps time with the reference — the discipline Florestan hates and Eusebius needs.",
+            "fact": "Schumann's Florestan (passionate extrovert) and Eusebius (dreaming introvert) represented the two sides of Romantic temperament. He used both names in his music journal Neue Zeitschrift für Musik, which he founded in 1834."
           }
         }
       ]
@@ -69,7 +68,7 @@
             "type": "minigame",
             "game": "music",
             "configId": "clara-schumann",
-            "instruction": "Clara Schumann performed this phrase publicly for sixty years. Play the ascending melody — the voice of history's greatest concert pianist.",
+            "instruction": "Clara is a child prodigy who already writes her own music. Put the notes of her rising Romantic phrase in order.",
             "fact": "Clara Schumann (1819–1896) gave her first public performance at age nine and her last at seventy-one. She performed across Europe for over sixty years, premiering works by her husband Robert and her closest friend Johannes Brahms. Brahms said: 'Clara is the most gifted artist and personality I have ever known.'"
           }
         },
@@ -95,13 +94,9 @@
             "type": "minigame",
             "game": "braille",
             "seed": 1001,
-            "fact": "Clara Schumann's performing career spanned over 60 years. After Robert's death in 1856, she became the family's sole breadwinner, supporting seven children through concerts across Europe and championing Brahms's music.",
-            "autogen": true,
-            "configId": "raised-dots",
-            "params": {
-              "plaintext": "CLARA TOURS EUROPE"
-            },
-            "instruction": "A concert notice is printed in raised dots. Read how Clara keeps her family."
+            "fact": "In 1839 Clara toured Paris without her father. That summer she and Robert went to court in Leipzig to marry without Wieck's consent; the judges ruled for them in August 1840.",
+            "configId": "paris-1839",
+            "instruction": "In 1839 Clara goes to Paris without her father to play on her own terms. Read the notice in Louis Braille's raised dots, the code taught at the city's school for the blind, one letter at a time."
           }
         }
       ]
@@ -131,9 +126,9 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "wordle",
-            "configId": "piano",
-            "instruction": "Solve the Romantic music crossword — notes, composers, and the language of the soul.",
+            "game": "railway",
+            "configId": "leipzig-vienna",
+            "instruction": "Robert writes the songs; Clara carries them from city to city. Lay her line from Leipzig to Vienna through every concert town in order, with as few curves as you can.",
             "fact": "Schumann championed young talent — he was one of the first critics to recognise Chopin and Brahms publicly. His review of Brahms' debut announced: 'a young eagle has arrived.' Brahms was twenty, Schumann forty-three."
           }
         },
@@ -157,12 +152,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "orbit",
-            "configId": "halley-return",
+            "game": "queens",
+            "configId": "bezzel",
             "seed": 46094,
-            "instruction": "Clara Schumann: put the body into orbit.",
-            "fact": "Clara Schumann's Piano Concerto in A minor (Op. 7) was composed when she was 14 — the same age Mendelssohn was when he wrote his Octet. She revised it at 16 and performed it before royalty.",
-            "rebalanced": true
+            "instruction": "With Robert in Endenich, Clara must keep seven children, her concerts and his name from colliding. Place every queen so that none of them threatens another.",
+            "fact": "With Robert confined at Endenich from March 1854, the twenty-year-old Johannes Brahms moved to Düsseldorf to help Clara and the children, while she went back on tour to support the family. The eight queens puzzle had been posed by the Bavarian chess composer Max Bezzel in the Berliner Schachzeitung in 1848."
           }
         }
       ]
@@ -180,12 +174,11 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "pendulum",
-            "configId": "foucault",
+            "game": "telegraph",
+            "configId": "endenich-telegram",
             "seed": 25160,
-            "instruction": "Clara Schumann: set the clock to keep time.",
-            "fact": "Schumann's finger-strengthening apparatus held some fingers stationary while exercising others. It permanently injured his right hand, ending his piano career and redirecting him entirely to composition and music criticism.",
-            "rebalanced": true
+            "instruction": "In July 1856 a telegram comes from Endenich. Read the dots and dashes and learn what Clara must do.",
+            "fact": "Robert Schumann died at the Endenich asylum near Bonn on 29 July 1856, aged 46. Clara had reached him two days earlier; she wrote that he knew her and put his arm around her."
           }
         },
         {
@@ -198,7 +191,7 @@
             "type": "minigame",
             "game": "compose",
             "configId": "brahms-lullaby-compose",
-            "instruction": "Brahms — Clara's closest companion after Robert's death — wrote his German Requiem during these years. Arrange its movements in the correct order.",
+            "instruction": "Brahms, Clara's closest friend after Robert's death, finished his German Requiem in 1868. Put its movements in the order he wrote them.",
             "fact": "Brahms was devoted to Clara for the rest of her life. She championed his music from his first compositions, and he dedicated works to her memory. Their 40-year friendship was the great sustaining relationship of both their lives."
           }
         },

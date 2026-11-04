@@ -39,8 +39,10 @@ describe('merchant board rules', () => {
 
   it('every config is a different rule twist, with text explaining it', () => {
     expect(CONFIG_IDS.length).toBeGreaterThanOrEqual(4)
-    const variants = CONFIG_IDS.map(id => CONFIGS[id].variant)
-    expect(new Set(variants).size).toBe(CONFIG_IDS.length)
+    // The base configs are each a different twist; story-themed configs reuse one of them.
+    const BASE = ['venice', 'hansa', 'silk-road', 'spice']
+    expect(new Set(BASE.map(id => CONFIGS[id].variant)).size).toBe(BASE.length)
+    for (const id of CONFIG_IDS) expect(BASE.map(b => CONFIGS[b].variant), id).toContain(CONFIGS[id].variant)
     for (const id of CONFIG_IDS) {
       expect(CONFIGS[id].twist.length, id).toBeGreaterThan(40)
       expect(CONFIGS[id].rivals.length).toBeGreaterThanOrEqual(3)

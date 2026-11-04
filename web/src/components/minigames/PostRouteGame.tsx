@@ -30,6 +30,8 @@ export interface PostConfig {
   intro: string
   fact: string
   mode: Mode
+  /** Town labels, post house first (defaults to the mode's own towns). */
+  names?: string[]
 }
 
 export const CONFIGS: Record<string, PostConfig> = {
@@ -51,11 +53,24 @@ export const CONFIGS: Record<string, PostConfig> = {
     fact: 'Herodotus describes Darius’s Royal Road, about 2,500 km from Sardis to Susa with 111 relay stations; royal couriers covered it in about nine days, a journey of three months on foot.',
     mode: 'royal',
   },
+  'mani-epistles': {
+    title: "Mani's Letters",
+    intro: "Carry Mani's letters to every congregation on the old royal roads of Persia and return to him. Many roads run one way only — follow the arrows. You may pass through a town again.",
+    fact: 'Mani wrote letters to his churches and sent missionaries out from Persia: Addai west into the Roman Empire, Mar Ammo east to Parthia and beyond the Oxus. Shapur I let him preach throughout the empire, and Mani travelled in the king\'s retinue.',
+    mode: 'royal',
+  },
   inca: {
     title: 'The Inca Chasquis',
     intro: 'Run the message through every post and back. Climbing is slow, running downhill is quick — choose your direction well.',
     fact: 'Inca chasqui runners relayed messages and quipus along some 40,000 km of mountain roads, handing over at posts every few kilometres; they could carry a message about 240 km in a day.',
     mode: 'inca',
+  },
+  'mongol-yam': {
+    title: 'The Yam of the Golden Horde',
+    intro: 'Ride the khan’s order from Sarai through every town and back. Horses tire: change them at yam stations (◆) before you ride too far.',
+    fact: 'Ögedei Khan organised the yam in the 1230s: post stations a day’s ride apart, stocked with fresh horses and food for riders carrying a paiza, the khan’s metal tablet of authority. The Golden Horde kept the network running across the western steppe; Marco Polo later marvelled at the same system in China.',
+    mode: 'thurn',
+    names: ['Sarai', 'Bolgr', 'Ryazn', 'Vlad', 'Suzd', 'Kiev', 'Chern', 'Murom', 'Kozel'],
   },
 }
 
@@ -233,7 +248,7 @@ export function makeRoute(configId: string, config: PostConfig, d: Difficulty, s
   const mode = config.mode
   for (let attempt = 0; ; attempt++) {
     const nodes = scatter(n, rng)
-    const names = NAMES[mode].slice(0, n)
+    const names = (config.names ?? NAMES[mode]).slice(0, n)
     const alt = nodes.map(() => Math.floor(rng() * 6))
     let cost = nodes.map((a, i) => nodes.map((b, j) => (i === j ? 0 : leagues(a, b))))
     if (mode === 'inca') cost = cost.map((row, i) => row.map((c, j) => (i === j ? 0 : Math.round(c * (1 + CLIMB * Math.max(0, alt[j] - alt[i]))))))
