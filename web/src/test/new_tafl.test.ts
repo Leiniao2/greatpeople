@@ -4,7 +4,8 @@ import { describe, it, expect, afterEach, vi } from 'vitest'
 import type { Difficulty } from '@/games/types'
 import TaflGame, {
   CONFIGS, CONFIG_IDS, EMPTY, ATK, DEF, KING, initialBoard, movesFor, applyMove, kingCaptured, kingEscaped, kingRoutes,
-  searchMove, attackerMove, startBoard, playTurn, rulesFor, sizeFor, moveLimitFor, throneOf, type Rules, type Move,
+  searchMove, attackerMove, aiMove, startBoard, playTurn, rulesFor, sizeFor, moveLimitFor, throneOf, sideOf, kingLanes,
+  type Rules, type Move,
 } from '@/components/minigames/TaflGame'
 
 const DIFFS: Difficulty[] = [1, 2, 3, 4]
@@ -14,21 +15,22 @@ const R7: Rules = { n: 7, edgeHostileToKing: false, kingArmed: true }
 const empty = (n: number) => new Array<number>(n * n).fill(EMPTY)
 const at = (n: number, r: number, c: number) => r * n + c
 
-/** Defender player for tests: two-ply search (its move, the attackers' best reply). */
-const defenderMove = (b: number[], d: Difficulty) => searchMove(b, rulesFor(d), 'D', { depth: 2, style: 'balanced', nodeBudget: 200_000 })
+/** Test player: a `depth`-ply search for whichever side the config gives you. */
+const playerMove = (b: number[], d: Difficulty, id: string, depth = 2) =>
+  searchMove(b, rulesFor(d, id), sideOf(id), { depth, style: 'balanced', nodeBudget: 200_000 })
 
-function playGame(d: Difficulty, id: string, seed: number): { result: 'win' | 'lose' | 'limit'; moves: Move[] } {
+function playGame(d: Difficulty, id: string, seed: number, depth = 2): { result: 'win' | 'lose'; why: string | null; moves: Move[] } {
   let b = startBoard(d, seed, id)
   const moves: Move[] = []
-  for (let ply = 0; ply < moveLimitFor(d); ply++) {
-    const m = defenderMove(b, d)
-    if (!m) return { result: 'lose', moves }
+  for (let ply = 0; ply <= moveLimitFor(d, id); ply++) {
+    const m = playerMove(b, d, id, depth)
+    if (!m) return { result: 'lose', why: 'stuck', moves }
     moves.push(m)
-    const r = playTurn(b, d, CONFIGS[id].style, seed, ply, m)
-    if (r.result) return { result: r.result, moves }
+    const r = playTurn(b, d, id, seed, ply, m)
+    if (r.result) return { result: r.result, why: r.why, moves }
     b = r.afterAi!
   }
-  return { result: 'limit', moves }
+  throw new Error('the move cap did not end the game')
 }
 
 describe('Hnefatafl — rules', () => {
@@ -39,8 +41,9 @@ describe('Hnefatafl — rules', () => {
       expect(b.filter(v => v === DEF).length).toBe(dd)
       expect(b[throneOf(n)]).toBe(KING)
     }
-    expect([1, 2, 3, 4].map(d => sizeFor(d as Difficulty))).toEqual([7, 7, 9, 11])
-    expect(startBoard(1, 5, 'birka').filter(v => v === ATK).length).toBe(6)
+    expect([1, 2, 3, 4].map(d => sizeFor(d as Difficulty))).toEqual([7, 7, 9, 9])
+    expect(startBoard(1, 5, 'birka').filter(v => v === ATK).length).toBe(7)
+    expect(startBoard(2, 5, 'birka').filter(v => v === ATK).length).toBe(8)
   })
 
   it('pieces slide like rooks, only the king stops on the throne or corners, and the empty throne can be crossed', () => {
@@ -102,15 +105,115 @@ describe('Hnefatafl — rules', () => {
   it('escape: a king on a corner wins; open lanes to corners are counted', () => {
     const b = empty(7)
     b[at(7, 0, 3)] = KING
-    expect(kingRoutes(b, 7)).toBe(2)
+    expect(kingRoutes(b, R7)).toBe(2)
     b[at(7, 0, 1)] = ATK
-    expect(kingRoutes(b, 7)).toBe(1)
+    expect(kingRoutes(b, R7)).toBe(1)
+    expect(kingEscaped(b, R7)).toBe(false)
     b[at(7, 0, 3)] = EMPTY; b[at(7, 0, 6)] = KING
-    expect(kingEscaped(b, 7)).toBe(true)
+    expect(kingEscaped(b, R7)).toBe(true)
   })
 })
 
-describe('Hnefatafl — attackers AI', () => {
+describe('Hnefatafl — variants', () => {
+  it('each config is a different rule twist', () => {
+    const keys = CONFIG_IDS.map(id => { const c = CONFIGS[id]; return `${c.mode}:${c.escape}:${c.kingArmed}:${c.weakKing}` })
+    expect(new Set(keys).size).toBe(CONFIG_IDS.length)
+    expect(CONFIG_IDS).toEqual(expect.arrayContaining(['birka', 'ballinderry', 'linnaeus', 'tawlbwrdd']))
+    for (const id of CONFIG_IDS) expect(CONFIGS[id].intro.length, id).toBeGreaterThan(40)
+  })
+
+  it('ballinderry: the king is unarmed, and the edge never counts against him', () => {
+    for (const d of DIFFS) {
+      expect(rulesFor(d, 'ballinderry').kingArmed).toBe(false)
+      expect(rulesFor(d, 'ballinderry').edgeHostileToKing).toBe(false)
+    }
+    expect(rulesFor(3, 'birka').edgeHostileToKing).toBe(true)
+    // King moves to (1,1) beside an attacker at (1,2) with a defender at (1,3): no capture when unarmed.
+    const b = empty(7); b[at(7, 1, 0)] = KING; b[at(7, 1, 2)] = ATK; b[at(7, 1, 3)] = DEF
+    expect(applyMove(b, rulesFor(1, 'ballinderry'), { from: at(7, 1, 0), to: at(7, 1, 1) }).captured).toEqual([])
+    expect(applyMove(b, rulesFor(1, 'birka'), { from: at(7, 1, 0), to: at(7, 1, 1) }).captured).toEqual([at(7, 1, 2)])
+  })
+
+  it('linnaeus: any edge square is an escape', () => {
+    const r = rulesFor(2, 'linnaeus')
+    const b = empty(7); b[at(7, 2, 2)] = KING
+    expect(kingLanes(b, r)).toHaveLength(4)
+    expect(kingRoutes(b, rulesFor(2, 'birka'))).toBe(0)
+    b[at(7, 0, 2)] = ATK
+    expect(kingRoutes(b, r)).toBe(3)
+    const e = empty(7); e[at(7, 0, 2)] = KING
+    expect(kingEscaped(e, r)).toBe(true)
+    expect(kingEscaped(e, rulesFor(2, 'birka'))).toBe(false)
+  })
+
+  it('linnaeus: off the throne the king is weak — two attackers take him; beside the throne he needs four', () => {
+    const r = rulesFor(2, 'linnaeus')
+    const b = empty(7); b[at(7, 1, 1)] = KING; b[at(7, 1, 0)] = ATK; b[at(7, 5, 2)] = ATK
+    const after = applyMove(b, r, { from: at(7, 5, 2), to: at(7, 1, 2) })
+    expect(after.captured).toEqual([at(7, 1, 1)])
+    expect(kingCaptured(after.board, r)).toBe(true)
+    expect(kingCaptured(applyMove(b, rulesFor(2, 'birka'), { from: at(7, 5, 2), to: at(7, 1, 2) }).board, rulesFor(2, 'birka'))).toBe(false)
+    // Beside the throne (3,2): a sandwich of two is not enough.
+    const t = empty(7); t[at(7, 3, 2)] = KING; t[at(7, 2, 2)] = ATK; t[at(7, 6, 2)] = ATK; t[throneOf(7)] = DEF
+    const t2 = applyMove(t, r, { from: at(7, 6, 2), to: at(7, 4, 2) })
+    expect(t2.captured).toEqual([])
+    expect(kingCaptured(t2.board, r)).toBe(false)
+  })
+
+  it('tawlbwrdd: you play the attackers; holding to the cap wins, an escape loses; edge escape on 9×9', () => {
+    expect(sideOf('tawlbwrdd')).toBe('A')
+    expect(sideOf('birka')).toBe('D')
+    expect(rulesFor(2, 'tawlbwrdd').edgeEscape).toBe(false)
+    expect(rulesFor(3, 'tawlbwrdd').edgeEscape).toBe(true)
+    expect(rulesFor(1, 'tawlbwrdd').edgeHostileToKing).toBe(true)
+    expect(startBoard(1, 3, 'tawlbwrdd').filter(v => v === DEF).length).toBe(3)
+    expect(startBoard(1, 3, 'tawlbwrdd').filter(v => v === ATK).length).toBe(8)
+    // The computer moves the defenders.
+    const b = startBoard(2, 1, 'tawlbwrdd')
+    const m = movesFor(b, 7, 'A')[0]
+    const r = playTurn(b, 2, 'tawlbwrdd', 1, 0, m)
+    const ai = r.ai!
+    expect([DEF, KING]).toContain(r.afterMine[ai.from])
+    // On the last move, surviving is a win; in a defending config the cap is a loss.
+    const g = playGame(2, 'tawlbwrdd', 1)
+    expect(g).toMatchObject({ result: 'win', why: 'limit' })
+    expect(g.moves).toHaveLength(moveLimitFor(2, 'tawlbwrdd'))
+  })
+})
+
+describe('Hnefatafl — time budget', () => {
+  it('small boards and short caps: ≤16 of your moves at D1, ≤30 at D4, never 11×11', () => {
+    for (const id of CONFIG_IDS) {
+      const caps = DIFFS.map(d => moveLimitFor(d, id))
+      expect(caps[0], id).toBeLessThanOrEqual(16)
+      expect(caps[3], id).toBeLessThanOrEqual(30)
+      expect(caps.every((c, i) => i === 0 || c >= caps[i - 1]), id).toBe(true)
+    }
+    expect(DIFFS.every(d => sizeFor(d) <= 9)).toBe(true)
+  })
+
+  it('a strong player wins D1 quickly (median ≤ 10 moves) but a random one usually loses', () => {
+    for (const id of CONFIG_IDS) {
+      const lens = [1, 2, 3, 4, 5].map(seed => playGame(1, id, seed))
+      expect(lens.filter(g => g.result === 'win').length, id).toBeGreaterThanOrEqual(3)
+      const sorted = lens.map(g => g.moves.length).sort((a, b) => a - b)
+      if (CONFIGS[id].mode === 'defend') expect(sorted[2], `${id} median`).toBeLessThanOrEqual(10)
+      let lost = 0
+      for (const seed of [1, 2, 3, 4, 5, 6]) {
+        let b = startBoard(1, seed, id)
+        for (let ply = 0; ; ply++) {
+          const ms = movesFor(b, 7, sideOf(id))
+          const r = playTurn(b, 1, id, seed, ply, ms[(seed * 7 + ply * 13) % ms.length])
+          if (r.result) { if (r.result === 'lose') lost++; break }
+          b = r.afterAi!
+        }
+      }
+      expect(lost, `${id} random player`).toBeGreaterThanOrEqual(3)
+    }
+  }, 60_000)
+})
+
+describe('Hnefatafl — computer AI', () => {
   it('blocks a single open lane and takes the king when it can', () => {
     const b = empty(7)
     b[at(7, 0, 3)] = KING; b[at(7, 0, 1)] = ATK; b[at(7, 4, 5)] = ATK; b[at(7, 5, 2)] = DEF
@@ -124,18 +227,20 @@ describe('Hnefatafl — attackers AI', () => {
 
   it('answers fast at every difficulty (< 200 ms typical, generous ceiling in CI)', () => {
     for (const d of DIFFS) {
-      let b = startBoard(d, 1, 'linnaeus')
-      let worst = 0
-      for (let ply = 0; ply < 6; ply++) {
-        const m = defenderMove(b, d)!
-        b = applyMove(b, rulesFor(d), m).board
-        const t0 = performance.now()
-        const a = attackerMove(b, d, 'hunter', 1, ply)
-        worst = Math.max(worst, performance.now() - t0)
-        if (!a) break
-        b = applyMove(b, rulesFor(d), a).board
+      for (const id of ['linnaeus', 'tawlbwrdd']) {
+        let b = startBoard(d, 1, id)
+        let worst = 0
+        for (let ply = 0; ply < 6; ply++) {
+          const m = playerMove(b, d, id)!
+          b = applyMove(b, rulesFor(d, id), m).board
+          const t0 = performance.now()
+          const a = aiMove(b, d, id, 1, ply)
+          worst = Math.max(worst, performance.now() - t0)
+          if (!a) break
+          b = applyMove(b, rulesFor(d, id), a).board
+        }
+        expect(worst, `${id} D${d} worst ${worst.toFixed(0)}ms`).toBeLessThan(400)
       }
-      expect(worst, `D${d} worst ${worst.toFixed(0)}ms`).toBeLessThan(400)
     }
   })
 
@@ -144,22 +249,36 @@ describe('Hnefatafl — attackers AI', () => {
     const m = movesFor(b, 9, 'D')[3]
     const after = applyMove(b, rulesFor(3), m).board
     expect(attackerMove(after, 3, 'balanced', 4, 0)).toEqual(attackerMove(after, 3, 'balanced', 4, 0))
+    expect(aiMove(after, 3, 'birka', 4, 0)).toEqual(attackerMove(after, 3, 'balanced', 4, 0, 'birka'))
   })
 })
 
-describe('Hnefatafl — winnable', () => {
-  it('a winning line exists against the AI at D1 and D2 for every config and seed', () => {
-    for (const d of [1, 2] as Difficulty[]) for (const id of CONFIG_IDS) for (const seed of [1, 2, 3, 4, 5, 6]) {
-      const g = playGame(d, id, seed)
-      expect(g.result, `${id}@${d}#${seed}`).toBe('win')
-    }
-  }, 60_000)
-  it('the test player also wins some D3 and D4 games', () => {
-    for (const d of [3, 4] as Difficulty[]) {
-      const wins = CONFIG_IDS.flatMap(id => [1, 2, 5].map(seed => playGame(d, id, seed).result)).filter(r => r === 'win').length
-      expect(wins, `D${d}`).toBeGreaterThan(0)
+describe('Hnefatafl — winnable and losable', () => {
+  it('a search player wins every config × difficulty for some seed, within the cap', () => {
+    for (const id of CONFIG_IDS) for (const d of DIFFS) {
+      let win: { seed: number; moves: number } | null = null
+      outer: for (const depth of d <= 2 ? [2] : [2, 3]) for (let seed = 1; seed <= 12; seed++) {
+        const g = playGame(d, id, seed, depth)
+        if (g.result === 'win') { win = { seed, moves: g.moves.length }; break outer }
+      }
+      expect(win, `${id}@D${d}`).not.toBeNull()
+      expect(win!.moves).toBeLessThanOrEqual(moveLimitFor(d, id))
     }
   }, 120_000)
+
+  it('the D1 and D2 search player wins most games', () => {
+    for (const d of [1, 2] as Difficulty[]) for (const id of CONFIG_IDS) {
+      const wins = [1, 2, 3, 4, 5, 6].filter(seed => playGame(d, id, seed).result === 'win').length
+      expect(wins, `${id}@D${d}`).toBeGreaterThanOrEqual(3)
+    }
+  }, 60_000)
+
+  it('a one-ply player loses at the top levels', () => {
+    for (const id of CONFIG_IDS) {
+      const lost = [1, 2, 3].filter(seed => playGame(4, id, seed, 1).result === 'lose').length
+      expect(lost, id).toBeGreaterThanOrEqual(2)
+    }
+  }, 60_000)
 })
 
 describe('Hnefatafl — component', () => {
@@ -167,6 +286,7 @@ describe('Hnefatafl — component', () => {
     for (const id of CONFIG_IDS) for (const d of DIFFS) {
       const { container } = render(createElement(TaflGame, { configId: id, difficulty: d, seed: 1, onWin: () => {}, onLose: () => {} }))
       expect(container.querySelectorAll('[data-sq]').length).toBe(sizeFor(d) ** 2)
+      expect(container.textContent).toContain(`${moveLimitFor(d, id)} moves left`)
       expect(container.querySelectorAll(`[data-piece="${KING}"]`).length).toBe(1)
       cleanup()
     }
@@ -176,11 +296,27 @@ describe('Hnefatafl — component', () => {
 
   it('playing the winning line wins exactly once', () => {
     vi.useFakeTimers()
-    const id = 'ballinderry', d: Difficulty = 2, seed = 3
+    const id = 'ballinderry', d: Difficulty = 2
+    const seed = [1, 2, 3, 4, 5, 6].find(sd => playGame(d, id, sd).result === 'win')!
     const { moves, result } = playGame(d, id, seed)
     expect(result).toBe('win')
     const onWin = vi.fn(), onLose = vi.fn()
     const { container } = render(createElement(TaflGame, { configId: id, difficulty: d, seed, onWin, onLose }))
+    for (const m of moves) {
+      click(container, m.from); click(container, m.to)
+      act(() => { vi.advanceTimersByTime(500) })
+    }
+    act(() => { vi.advanceTimersByTime(2000) })
+    expect(onWin).toHaveBeenCalledTimes(1)
+    expect(onLose).not.toHaveBeenCalled()
+  })
+
+  it('as the raider, holding the ring to the cap wins exactly once', () => {
+    vi.useFakeTimers()
+    const { moves, result } = playGame(1, 'tawlbwrdd', 1)
+    expect(result).toBe('win')
+    const onWin = vi.fn(), onLose = vi.fn()
+    const { container } = render(createElement(TaflGame, { configId: 'tawlbwrdd', difficulty: 1, seed: 1, onWin, onLose }))
     for (const m of moves) {
       click(container, m.from); click(container, m.to)
       act(() => { vi.advanceTimersByTime(500) })

@@ -7,10 +7,21 @@ import { hashString, mulberry32, resolveConfig, scale, shuffle, useGameOutcome, 
 // for; the tiles are catalogue slips face down on the desk.  Turn two at a
 // time: a person and their work stay up, anything else is a mistake.
 //
-// Difficulty: a bigger desk (3×4 → 6×6), a tighter mistake budget, a clock
-// from D2 and fewer peeks.  A player with a perfect memory never makes more
-// mistakes than pairs − 1, and every budget is at least that, so every deck
-// is winnable; matching streaks of three earn a mistake back.
+// Every config is a rule twist (PairsVariant):
+//   swap     (Alexandria)  two mismatched slips trade places as they go down
+//   flash    (Medici)      the desk is shown face up at the start; no peeks,
+//                          a much tighter mistake budget
+//   ordered  (British Lib) pairs must be filed in the readers' request order
+//   fragile  (Patents)     a slip may be turned up only twice — a third turn
+//                          tears it and loses
+//
+// Time budget: 6 to 12 pairs (3×4 → 6×4), untimed at D1 then a 90–150 s
+// clock, so a desk takes about one to two and a half minutes.  A player with
+// a perfect memory stays inside every budget (perfectMemory proves it for
+// each variant), so every deck is winnable; matching streaks of three earn a
+// mistake back.
+
+export type PairsVariant = 'swap' | 'flash' | 'ordered' | 'fragile'
 
 export interface PairsConfig {
   title: string
@@ -18,12 +29,17 @@ export interface PairsConfig {
   fact: string
   /** [great person, their work] — person ↔ work tiles. */
   pairs: [string, string][]
+  variant: PairsVariant
+  /** One line explaining the twist. */
+  twist: string
 }
 
 export const CONFIGS: Record<string, PairsConfig> = {
   ancient: {
     title: 'Library of Alexandria',
     intro: 'The scrolls of the ancient world have been mixed up. Match each author or ruler to their great work.',
+    variant: 'swap',
+    twist: 'Shifting scrolls: whenever you turn up two slips that do not match, they trade places as they go face down. Remember where each one went.',
     fact: 'The Library of Alexandria was founded under Ptolemy I and II around 285 BCE and, by legend, copied every book carried by ships into the harbour.',
     pairs: [
       ['Hammurabi', 'Law code'], ['Imhotep', 'Step pyramid'], ['Homer', 'The Iliad'], ['Confucius', 'The Analects'],
@@ -36,6 +52,8 @@ export const CONFIGS: Record<string, PairsConfig> = {
   renaissance: {
     title: 'The Medici Archive',
     intro: 'Florence’s archivist needs every master paired with the masterpiece that made their name.',
+    variant: 'flash',
+    twist: 'One look: the whole desk is shown face up for a few seconds before play. There are no peeks and far fewer mistakes allowed — study hard.',
     fact: 'Cosimo de’ Medici opened the library of San Marco in Florence in 1444 — one of the first public libraries of Renaissance Europe.',
     pairs: [
       ['Gutenberg', 'Printing press'], ['Leonardo', 'Mona Lisa'], ['Michelangelo', 'Sistine ceiling'], ['Copernicus', 'Sun-centred cosmos'],
@@ -48,6 +66,8 @@ export const CONFIGS: Record<string, PairsConfig> = {
   modern: {
     title: 'The British Library',
     intro: 'The modern collection is out of order. Match each thinker, artist or leader with the work they left us.',
+    variant: 'ordered',
+    twist: 'Reader requests: slips must be filed in the order readers ask for them. A right pair turned up out of turn goes back face down (no mistake, but it costs time).',
     fact: 'The British Library holds around 170 million items, including Magna Carta and Beatles lyrics in their authors’ hands.',
     pairs: [
       ['Newton', 'Principia'], ['Darwin', 'Origin of Species'], ['Marie Curie', 'Radium'], ['Einstein', 'Relativity'],
@@ -60,6 +80,8 @@ export const CONFIGS: Record<string, PairsConfig> = {
   inventors: {
     title: 'The Patent Office',
     intro: 'The patent clerks have dropped the files. Match every inventor to the invention on their papers.',
+    variant: 'fragile',
+    twist: 'Fragile papers: every slip survives being turned up only twice. Turn one up a third time and it tears — and the patent office is lost.',
     fact: 'The world’s first patent law, the Venetian Statute of 1474, gave inventors ten years’ protection for “new and ingenious devices”.',
     pairs: [
       ['James Watt', 'Steam engine'], ['Edison', 'Phonograph'], ['Bell', 'Telephone'], ['Tesla', 'AC motor'],
@@ -75,18 +97,30 @@ export const CONFIGS: Record<string, PairsConfig> = {
 export interface Tile { pair: number; kind: 'person' | 'work'; text: string }
 
 /** [rows, cols] of the desk. */
-export const layoutFor = (d: Difficulty): [number, number] => scale(d, [[3, 4], [4, 4], [5, 4], [6, 6]] as const) as [number, number]
+export const layoutFor = (d: Difficulty): [number, number] => scale(d, [[3, 4], [4, 4], [5, 4], [6, 4]] as const) as [number, number]
 export const pairsFor = (d: Difficulty) => { const [r, c] = layoutFor(d); return (r * c) / 2 }
-/** Mistakes allowed; never fewer than pairs − 1, the most a perfect memory needs. */
-export const mistakeBudget = (d: Difficulty) => pairsFor(d) - 1 + scale(d, [6, 3, 1, 0])
-export const timerFor = (d: Difficulty) => scale(d, [0, 100, 140, 210])
-export const peeksFor = (d: Difficulty) => scale(d, [2, 1, 0, 0])
+/** The most mistakes a perfect memory can need: pairs − 1 (pairs when filing in order, 0 after a full look). */
+export function perfectBound(d: Difficulty, variant: PairsVariant = 'swap'): number {
+  return variant === 'flash' ? 0 : variant === 'ordered' ? pairsFor(d) : pairsFor(d) - 1
+}
+/** Mistakes allowed; never fewer than perfectBound. */
+export function mistakeBudget(d: Difficulty, variant: PairsVariant = 'swap'): number {
+  if (variant === 'flash') return Math.ceil(pairsFor(d) / 2) + scale(d, [2, 1, 1, 0])
+  return perfectBound(d, variant) + scale(d, [6, 3, 1, 0])
+}
+/** Seconds on the clock (0 = untimed); filing in order takes extra turns. */
+export const timerFor = (d: Difficulty, variant: PairsVariant = 'swap') => scale(d, [0, 90, 120, 150]) + (variant === 'ordered' && d > 1 ? 30 : 0)
+export const peeksFor = (d: Difficulty, variant: PairsVariant = 'swap') => (variant === 'flash' ? 0 : scale(d, [2, 1, 0, 0]))
+/** Flash variant: how long the desk is shown face up. */
+export const flashMsFor = (d: Difficulty) => scale(d, [4000, 5000, 6000, 7000])
+/** Fragile variant: turns up a slip survives. */
+export const FRAGILE_FLIPS = 2
 export const PEEK_MS = 1400
 export const MISS_MS = 900
 /** A run of this many matches without a mistake earns one mistake back. */
 export const COMBO_REFUND = 3
 
-/** Pick the deck's pairs from the config's pool and lay out the tiles. */
+/** Pick the deck's pairs from the config's pool and lay out the tiles.  Pair ids 0, 1, … are the request order. */
 export function makeDeck(configId: string, config: PairsConfig, d: Difficulty, seed: number): Tile[] {
   const rng = mulberry32(seed ^ hashString(`pairs:${configId}:${d}`))
   const n = Math.min(pairsFor(d), config.pairs.length)
@@ -100,76 +134,140 @@ export function makeDeck(configId: string, config: PairsConfig, d: Difficulty, s
 }
 
 /**
- * Plays the deck with a perfect memory, flipping unknown tiles in reading
- * order, and returns how many mistakes it made.  Never more than pairs − 1.
+ * Plays the deck with a perfect memory under the variant's rules and reports
+ * its mistakes, its turns (tile indices — identities, which survive swaps)
+ * and the most times it turned up any one tile.
+ *
+ * Policy: take a fully known pair (the requested one, when ordered); else turn
+ * a new tile, then its known partner if there is one, else another new tile.
+ * Every mistake turns up two new tiles, so mistakes ≤ pairs (≤ pairs − 1 when
+ * any pair may be filed), and a tile is turned only to learn it and to file it.
  */
-export function perfectMemoryMistakes(deck: Tile[]): { mistakes: number; turns: [number, number][] } {
-  const known = new Map<number, number>() // pair → index of a seen, unmatched tile
-  const done = new Set<number>()
+export function perfectMemory(deck: Tile[], variant: PairsVariant = 'swap'): { mistakes: number; turns: [number, number][]; maxFlips: number } {
   const turns: [number, number][] = []
-  let mistakes = 0
-  const nextUnknown = (seen: Set<number>) => deck.findIndex((_, i) => !done.has(i) && !seen.has(i))
+  const flips = deck.map(() => 0)
+  if (variant === 'flash') {
+    // It saw everything: file each pair in order, without a mistake.
+    for (let p = 0; p < deck.length / 2; p++) {
+      const [a, b] = deck.map((t, i) => (t.pair === p ? i : -1)).filter(i => i >= 0)
+      turns.push([a, b]); flips[a]++; flips[b]++
+    }
+    return { mistakes: 0, turns, maxFlips: Math.max(...flips) }
+  }
+  const ordered = variant === 'ordered'
+  const done = new Set<number>()
   const seen = new Set<number>()
-  while (done.size < deck.length) {
-    // A pair whose both halves are known: take it.
-    const both = [...known.entries()].find(([p, i]) => deck.some((t, j) => j !== i && t.pair === p && seen.has(j) && !done.has(j)))
-    if (both) {
-      const [p, i] = both
-      const j = deck.findIndex((t, k) => k !== i && t.pair === p)
-      turns.push([i, j]); done.add(i); done.add(j); known.delete(p)
+  let mistakes = 0
+  let next = 0
+  const partnerOf = (i: number) => deck.findIndex((t, j) => j !== i && t.pair === deck[i].pair)
+  const file = (a: number, b: number) => {
+    turns.push([a, b]); flips[a]++; flips[b]++
+    if (ordered && deck[a].pair !== next) return false
+    done.add(a); done.add(b)
+    if (ordered) while (next < deck.length / 2 && deck.some((t, i) => t.pair === next && done.has(i))) next++
+    return true
+  }
+  const newTile = (skip = -1) => deck.findIndex((_, i) => !done.has(i) && !seen.has(i) && i !== skip)
+  for (let guard = 0; done.size < deck.length && guard < 1000; guard++) {
+    // A fully known pair we may file now.
+    const known = [...seen].find(i => !done.has(i) && seen.has(partnerOf(i)) && (!ordered || deck[i].pair === next))
+    if (known !== undefined) { file(known, partnerOf(known)); continue }
+    const a = newTile()
+    seen.add(a)
+    const pa = partnerOf(a)
+    if (seen.has(pa)) {
+      // Its partner is known: file it if allowed; ordered and out of turn, it just goes back (no mistake).
+      if (!ordered || deck[a].pair === next) { file(a, pa); continue }
+      const b = newTile(a)
+      if (b < 0) { turns.push([a, pa]); flips[a]++; flips[pa]++; continue }
+      seen.add(b)
+      flips[a]++; flips[b]++; turns.push([a, b])
+      mistakes++
       continue
     }
-    const a = nextUnknown(seen)
-    seen.add(a)
-    const partner = known.get(deck[a].pair)
-    if (partner !== undefined) { turns.push([partner, a]); done.add(a); done.add(partner); known.delete(deck[a].pair); continue }
-    const b = nextUnknown(seen)
+    const b = newTile(a)
     seen.add(b)
-    turns.push([a, b])
-    if (deck[a].pair === deck[b].pair) { done.add(a); done.add(b); continue }
+    flips[a]++
+    if (deck[b].pair === deck[a].pair) { flips[a]--; file(a, b); continue }
+    flips[b]++; turns.push([a, b])
     mistakes++
-    known.set(deck[a].pair, a)
-    if (!known.has(deck[b].pair)) known.set(deck[b].pair, b)
   }
-  return { mistakes, turns }
+  return { mistakes, turns, maxFlips: Math.max(...flips) }
 }
+
+/** @deprecated the classic name: perfect memory under the default rules. */
+export const perfectMemoryMistakes = (deck: Tile[]) => perfectMemory(deck)
 
 export default function PairsGame({ configId, difficulty, seed, params, onWin, onLose }: MinigameProps) {
   const config = resolveConfig(CONFIGS, configId, params, 'ancient')
+  const variant = config.variant ?? 'swap'
   const deck = useMemo(() => makeDeck(configId, config, difficulty, seed), [configId, config, difficulty, seed])
   const [rows, cols] = layoutFor(difficulty)
-  const budget = mistakeBudget(difficulty)
+  const budget = mistakeBudget(difficulty, variant)
   const { outcome, settled, win, lose } = useGameOutcome({ onWin, onLose })
 
+  /** Desk position → deck tile (positions change in the swap variant). */
+  const [slots, setSlots] = useState<number[]>(() => deck.map((_, i) => i))
+  /** Flipped and matched hold deck tile indices. */
   const [flipped, setFlipped] = useState<number[]>([])
   const [matched, setMatched] = useState<Set<number>>(() => new Set())
+  const [flips, setFlips] = useState<number[]>(() => deck.map(() => 0))
   const [mistakes, setMistakes] = useState(0)
   const [streak, setStreak] = useState(0)
-  const [peeks, setPeeks] = useState(peeksFor(difficulty))
-  const [peeking, setPeeking] = useState(false)
+  const [peeks, setPeeks] = useState(peeksFor(difficulty, variant))
+  const [peeking, setPeeking] = useState(variant === 'flash')
   const [lock, setLock] = useState(false)
-  const [note, setNote] = useState(config.intro)
+  const [swapped, setSwapped] = useState<number[]>([])
+  const [note, setNote] = useState(variant === 'flash' ? 'Study the desk — it turns face down in a moment…' : config.intro)
   const [bonus, setBonus] = useState(0)
   const timers = useRef<ReturnType<typeof setTimeout>[]>([])
   useEffect(() => () => timers.current.forEach(clearTimeout), [])
   const later = (fn: () => void, ms: number) => { timers.current.push(setTimeout(fn, ms)) }
+  useEffect(() => {
+    if (variant !== 'flash') return
+    const t = setTimeout(() => { setPeeking(false); setNote('Face down! Now file them from memory.') }, flashMsFor(difficulty))
+    return () => clearTimeout(t)
+  }, [variant, difficulty])
 
-  const timer = useGameTimer({ seconds: timerFor(difficulty), running: !settled, onExpire: () => lose('the archive closed for the night') })
+  const timer = useGameTimer({ seconds: timerFor(difficulty, variant), running: !settled && !(variant === 'flash' && peeking), onExpire: () => lose('the archive closed for the night') })
   const left = budget - mistakes
+  /** Ordered: the lowest pair id not yet filed. */
+  const nextPair = useMemo(() => {
+    for (let p = 0; p < deck.length / 2; p++) if (!deck.some((t, i) => t.pair === p && matched.has(i))) return p
+    return -1
+  }, [deck, matched])
+  const requested = nextPair >= 0 ? deck.find(t => t.pair === nextPair && t.kind === 'person')!.text : ''
 
-  const tap = (i: number) => {
+  const tap = (pos: number) => {
+    const i = slots[pos]
     if (settled || lock || peeking || matched.has(i) || flipped.includes(i)) return
+    const f = flips.slice(); f[i]++
+    setFlips(f)
+    if (variant === 'fragile' && f[i] > FRAGILE_FLIPS) {
+      setFlipped([...flipped, i])
+      setNote(`“${deck[i].text}” tore — it was turned up once too often.`)
+      lose('a fragile paper tore')
+      return
+    }
     if (flipped.length === 0) { setFlipped([i]); return }
     const a = flipped[0]
-    const pair = [a, i]
     if (deck[a].pair === deck[i].pair) {
+      const person = deck[a].kind === 'person' ? deck[a] : deck[i]
+      const work = deck[a].kind === 'person' ? deck[i] : deck[a]
+      if (variant === 'ordered' && deck[a].pair !== nextPair) {
+        // A right pair, out of turn: back it goes, no mistake.
+        setFlipped([a, i])
+        setStreak(0)
+        setNote(`${person.text} — ${work.text} is right, but the reader asked for ${requested} first.`)
+        setLock(true)
+        later(() => { setFlipped([]); setLock(false) }, MISS_MS)
+        return
+      }
       const m = new Set(matched); m.add(a); m.add(i)
       setMatched(m)
       setFlipped([])
       const s = streak + 1
       setStreak(s)
-      const person = deck[a].kind === 'person' ? deck[a] : deck[i]
-      const work = deck[a].kind === 'person' ? deck[i] : deck[a]
       let text = `${person.text} — ${work.text}. Filed!`
       if (s % COMBO_REFUND === 0 && mistakes > 0) {
         setMistakes(mistakes - 1)
@@ -180,7 +278,7 @@ export default function PairsGame({ configId, difficulty, seed, params, onWin, o
       if (m.size === deck.length) win()
       return
     }
-    setFlipped(pair)
+    setFlipped([a, i])
     setStreak(0)
     const n = mistakes + 1
     setMistakes(n)
@@ -189,7 +287,21 @@ export default function PairsGame({ configId, difficulty, seed, params, onWin, o
       ? `Two ${deck[a].kind === 'person' ? 'people' : 'works'} — a pair is a person and their work.`
       : `${deck[a].kind === 'person' ? deck[a].text : deck[i].text} did not make that.`)
     setLock(true)
-    later(() => { setFlipped([]); setLock(false) }, MISS_MS)
+    later(() => {
+      setFlipped([])
+      setLock(false)
+      if (variant === 'swap') {
+        // The two slips trade places on the desk.
+        setSlots(sl => {
+          const pa = sl.indexOf(a), pb = sl.indexOf(i)
+          const next = sl.slice(); next[pa] = i; next[pb] = a
+          setSwapped([pa, pb])
+          return next
+        })
+        setNote('The two slips trade places!')
+        later(() => setSwapped([]), 900)
+      }
+    }, MISS_MS)
   }
 
   const peek = () => {
@@ -211,6 +323,9 @@ export default function PairsGame({ configId, difficulty, seed, params, onWin, o
             {matched.size / 2} / {deck.length / 2} pairs filed
             {streak >= 2 && <span className="ml-2 text-accent">combo ×{streak}</span>}
           </p>
+          {variant === 'ordered' && nextPair >= 0 && (
+            <p className="text-xs text-ink-2" data-testid="pairs-request">Next request: <span className="font-bold text-accent">{requested}</span></p>
+          )}
         </div>
         <div className="flex flex-col items-end shrink-0">
           <p className={`text-xs font-bold tabular-nums ${left <= 1 ? 'text-red-600' : 'text-ink-2'}`} data-testid="mistakes-left">
@@ -219,6 +334,9 @@ export default function PairsGame({ configId, difficulty, seed, params, onWin, o
           {bonus > 0 && <p className="text-[10px] text-emerald-700">+{bonus} forgiven</p>}
         </div>
       </div>
+      <p className="text-[11px] leading-snug text-ink-2 rounded-lg bg-panel border border-line px-2 py-1" data-testid="pairs-twist">
+        <span className="font-bold text-accent">Twist · </span>{config.twist}
+      </p>
       {timer.active && <TimerBar remaining={timer.remaining} total={timer.total} />}
 
       <div
@@ -226,19 +344,21 @@ export default function PairsGame({ configId, difficulty, seed, params, onWin, o
         style={{ gridTemplateColumns: `repeat(${cols}, 1fr)`, gridTemplateRows: `repeat(${rows}, 1fr)` }}
         data-testid="pairs-board"
       >
-        {deck.map((t, i) => {
-          const up = peeking || matched.has(i) || flipped.includes(i)
-          const done = matched.has(i)
-          const wrong = flipped.length === 2 && flipped.includes(i) && !done
+        {slots.map((ti, pos) => {
+          const t = deck[ti]
+          const up = peeking || matched.has(ti) || flipped.includes(ti)
+          const done = matched.has(ti)
+          const wrong = flipped.length === 2 && flipped.includes(ti) && !done
+          const wear = variant === 'fragile' ? Math.max(0, FRAGILE_FLIPS - flips[ti]) : -1
           return (
             <button
-              key={i}
-              data-tile={i}
+              key={pos}
+              data-tile={pos}
               data-pair={t.pair}
               data-kind={t.kind}
               aria-label={up ? `${t.kind}: ${t.text}` : 'face-down slip'}
-              onClick={() => tap(i)}
-              className="relative aspect-[3/4] [perspective:600px]"
+              onClick={() => tap(pos)}
+              className={`relative aspect-[3/4] [perspective:600px] rounded-lg ${swapped.includes(pos) ? 'ring-2 ring-amber-400' : ''}`}
             >
               <span
                 className="absolute inset-0 transition-transform duration-300 [transform-style:preserve-3d]"
@@ -247,6 +367,11 @@ export default function PairsGame({ configId, difficulty, seed, params, onWin, o
                 {/* Back: a sealed catalogue slip. */}
                 <span className="absolute inset-0 rounded-lg border-2 border-line bg-panel flex items-center justify-center [backface-visibility:hidden] shadow-sm">
                   <span className="w-[46%] aspect-square rounded-full bg-accent/80 text-accent-fg flex items-center justify-center text-sm font-bold shadow-inner">❦</span>
+                  {wear >= 0 && !done && (
+                    <span className="absolute bottom-1 left-0 right-0 text-center text-[9px] tracking-widest text-muted" data-wear={wear}>
+                      {'●'.repeat(wear)}{'○'.repeat(FRAGILE_FLIPS - wear)}
+                    </span>
+                  )}
                 </span>
                 {/* Face. */}
                 <span
@@ -265,7 +390,7 @@ export default function PairsGame({ configId, difficulty, seed, params, onWin, o
 
       <div className="flex items-center justify-between gap-2 min-h-[2.5rem]">
         <p className="text-xs leading-snug text-ink-2" role="status">{note}</p>
-        {peeksFor(difficulty) > 0 && (
+        {peeksFor(difficulty, variant) > 0 && (
           <button
             onClick={peek}
             disabled={settled || peeks <= 0 || peeking}

@@ -2,59 +2,96 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import type { Difficulty, MinigameProps } from '@/games/types'
 import { hashString, mulberry32, resolveConfig, scale, shuffle, useGameOutcome, OutcomeBanner, type Rng } from './_shared'
 
-// Hnefatafl: the Viking "king's table".  You command the defenders; get the
-// king to any corner square before the attackers close in.
+// Tafl: the Viking "king's table", played on short boards so one game is a
+// couple of minutes: 7×7 Brandubh at D1–2, 9×9 Tablut at D3–4, with a cap on
+// your moves.
 //
 // Rules: every piece moves like a chess rook.  Only the king may stop on the
 // throne (centre) or a corner; others may pass over the empty throne.  A
 // piece is captured when the enemy sandwiches it in a line between two of
 // theirs — or between one of theirs and a corner or the empty throne.  The
 // king is captured when attackers (or the throne) close all four sides; from
-// D3 the board edge counts as a side too, so three attackers trap a king on
-// the edge.  You lose if the king is taken, you have no move, or you run out
-// of moves.
+// D3 the board edge counts as a side too.
 //
-// The attackers are played by a shallow iterative-deepening alpha-beta search
-// (one ply at D1, two at D2–3, three at D4) over a cheap evaluation that
-// knows about open lanes to the corners and whether they can be blocked.  D1
-// also sends two attackers away, and D1–2 let the AI blunder now and then.
-// Search is capped by node count, so it stays well under 200 ms and is
+// Each config is a different rule twist:
+//   birka       — classic: you defend, the king escapes to a corner, armed king.
+//   ballinderry — unarmed king: the king never helps capture, as hammer or anvil.
+//   linnaeus    — Linnaeus's tablut: the king escapes to ANY edge square, but
+//                 away from the throne he is a weak king, taken by two attackers
+//                 like any other man.
+//   tawlbwrdd   — you are the attackers: hold the ring for the move cap (or
+//                 capture the king) while the computer tries to run him out.
+//
+// The computer is a shallow iterative-deepening alpha-beta search over a
+// cheap evaluation that knows about open escape lanes and whether they can be
+// blocked.  Search is capped by node count, so it stays fast and is
 // deterministic for a seed.
 
 export type Style = 'balanced' | 'wall' | 'hunter'
+export type Mode = 'defend' | 'raid'
+export type Escape = 'corner' | 'edge'
 
-export interface TaflConfig { title: string; intro: string; fact: string; style: Style }
+export interface TaflConfig {
+  title: string; intro: string; fact: string
+  /** How the computer plays, by difficulty (one style for all, or one per level). */
+  style: Style | readonly [Style, Style, Style, Style]
+  /** defend = you move the king's side; raid = you move the attackers. */
+  mode: Mode
+  escape: Escape
+  kingArmed: boolean
+  /** Away from the throne the king is taken by two, like any man. */
+  weakKing: boolean
+}
 
 export const CONFIGS: Record<string, TaflConfig> = {
   birka: {
     title: 'The Birka Graves',
-    intro: 'The jarl’s hall at Birka is surrounded. Lead the defenders and slip the king out to a corner.',
+    intro: 'Classic rules. The jarl’s hall at Birka is surrounded: lead the defenders and slip the king out to a corner. The king fights beside his men.',
     fact: 'Glass and bone hnefatafl pieces, including a king, were buried with Viking warriors at Birka in Sweden in the 9th and 10th centuries.',
-    style: 'balanced',
+    style: 'balanced', mode: 'defend', escape: 'corner', kingArmed: true, weakKing: false,
   },
   ballinderry: {
     title: 'The Ballinderry Board',
-    intro: 'An Irish brandubh board — the raiders mean to wall off every corner. Find the gap before they close it.',
+    intro: 'Unarmed king: he cannot help take a raider, not even as the far side of a sandwich. Your four men must do all the fighting while he runs for a corner.',
     fact: 'A 10th-century wooden board for brandubh, with 7×7 peg holes and a decorated centre, was found in a crannog at Ballinderry, Ireland, in 1932.',
-    style: 'wall',
+    style: ['wall', 'wall', 'wall', 'balanced'], mode: 'defend', escape: 'corner', kingArmed: false, weakKing: false,
   },
   linnaeus: {
     title: 'Linnaeus in Lapland',
-    intro: 'The Sámi taught Linnaeus their tablut: the Swedes hunt the Muscovite king. Keep him clear of the hunters.',
+    intro: 'Tablut as Linnaeus wrote it: the king wins by reaching ANY edge square — but off the throne he is weak, taken by just two attackers like any man.',
     fact: 'Carl Linnaeus wrote down the rules of tablut while travelling among the Sámi in 1732 — the only first-hand record of how tafl games were played.',
-    style: 'hunter',
+    style: 'hunter', mode: 'defend', escape: 'edge', kingArmed: true, weakKing: true,
+  },
+  tawlbwrdd: {
+    title: 'The Raiders’ Ring',
+    intro: 'Switch sides: you command the black attackers. Keep the king from every corner until the moves run out — or surround him for an early win. The edge counts against him.',
+    fact: 'A Welsh manuscript of 1587 by Robert ap Ifan describes tawlbwrdd, the Welsh tafl, played with a king and his men against twice as many attackers.',
+    style: 'balanced', mode: 'raid', escape: 'corner', kingArmed: true, weakKing: false,
   },
 }
 
 export const EMPTY = 0, ATK = 1, DEF = 2, KING = 3
 export type Side = 'A' | 'D'
-export interface Rules { n: number; edgeHostileToKing: boolean; kingArmed: boolean }
+export interface Rules { n: number; edgeHostileToKing: boolean; kingArmed: boolean; edgeEscape?: boolean; weakKing?: boolean }
 export interface Move { from: number; to: number }
 
-export const sizeFor = (d: Difficulty) => scale(d, [7, 7, 9, 11])
-export const moveLimitFor = (d: Difficulty) => scale(d, [40, 40, 50, 60])
+const cfgOf = (id?: string) => (id && CONFIGS[id]) || CONFIGS.birka
+export const styleFor = (d: Difficulty, id?: string): Style => { const st = cfgOf(id).style; return typeof st === 'string' ? st : scale(d, st) }
+export const sizeFor = (d: Difficulty) => scale(d, [7, 7, 9, 9])
+/** Your moves before the game is called: a loss when defending, a win when raiding. */
+export const moveLimitFor = (d: Difficulty, id?: string) =>
+  cfgOf(id).mode === 'raid' ? scale(d, [10, 14, 20, 24]) : scale(d, [16, 20, 26, 30])
 export const depthFor = (d: Difficulty) => scale(d, [1, 2, 2, 3])
-export const rulesFor = (d: Difficulty): Rules => ({ n: sizeFor(d), edgeHostileToKing: d >= 3, kingArmed: true })
+export const rulesFor = (d: Difficulty, id?: string): Rules => {
+  const c = cfgOf(id)
+  return {
+    // The unarmed king's consolation: the board edge never counts against him.
+    n: sizeFor(d), edgeHostileToKing: c.mode === 'raid' || (d >= 3 && c.kingArmed), kingArmed: c.kingArmed,
+    // Raiding on the 9×9 board, the king escapes to any edge (Linnaeus's tablut), or holding him would be too easy.
+    edgeEscape: c.escape === 'edge' || (c.mode === 'raid' && d >= 3), weakKing: c.weakKing,
+  }
+}
+export const sideOf = (id?: string): Side => (cfgOf(id).mode === 'raid' ? 'A' : 'D')
 
 // ── Board ───────────────────────────────────────────────────────────────────
 
@@ -116,8 +153,12 @@ export function applyMove(b: readonly number[], rules: Rules, m: Move): { board:
   nb[m.from] = EMPTY
   const mine = p === ATK ? 'A' : 'D'
   const friendly = (v: number) => (mine === 'A' ? v === ATK : v === DEF || (v === KING && rules.kingArmed))
-  const enemy = (v: number) => (mine === 'A' ? v === DEF : v === ATK)
   const throne = throneOf(n)
+  const enemyAt = (x: number) => {
+    const v = nb[x]
+    if (mine === 'D') return v === ATK
+    return v === DEF || (v === KING && !!rules.weakKing && !nearThrone(n, x))
+  }
   const captured: number[] = []
   // An unarmed king takes no part in captures, as hammer or anvil.
   if (p === KING && !rules.kingArmed) return { board: nb, captured }
@@ -126,7 +167,7 @@ export function applyMove(b: readonly number[], rules: Rules, m: Move): { board:
     const r1 = r + dr, c1 = c + dc, r2 = r + 2 * dr, c2 = c + 2 * dc
     if (r2 < 0 || r2 >= n || c2 < 0 || c2 >= n) continue
     const x = r1 * n + c1, y = r2 * n + c2
-    if (!enemy(nb[x])) continue
+    if (!enemyAt(x)) continue
     const anvil = friendly(nb[y]) || isCorner(n, y) || (y === throne && nb[y] === EMPTY)
     if (anvil) { nb[x] = EMPTY; captured.push(x) }
   }
@@ -134,6 +175,13 @@ export function applyMove(b: readonly number[], rules: Rules, m: Move): { board:
 }
 
 export const kingAt = (b: readonly number[]) => b.indexOf(KING)
+
+/** On the throne or orthogonally beside it: even a weak king needs four sides closed here. */
+export function nearThrone(n: number, i: number): boolean {
+  const t = throneOf(n)
+  return i === t || i === t - 1 || i === t + 1 || i === t - n || i === t + n
+}
+const onEdge = (n: number, i: number) => { const r = Math.floor(i / n), c = i % n; return r === 0 || c === 0 || r === n - 1 || c === n - 1 }
 
 /** Is the king surrounded on every side by attackers, the empty throne or (if hostile) the edge? */
 export function kingCaptured(b: readonly number[], rules: Rules): boolean {
@@ -153,14 +201,32 @@ export function kingCaptured(b: readonly number[], rules: Rules): boolean {
   return true
 }
 
-export const kingEscaped = (b: readonly number[], n: number) => isCorner(n, kingAt(b))
+export function kingEscaped(b: readonly number[], rules: Rules): boolean {
+  const k = kingAt(b)
+  if (k < 0) return false
+  return rules.edgeEscape ? onEdge(rules.n, k) : isCorner(rules.n, k)
+}
 
-/** The open lanes from the king to a corner: the squares the king would cross. */
-export function kingLanes(b: readonly number[], n: number): number[][] {
+/** The open lanes from the king to an escape square: the squares the king would cross. */
+export function kingLanes(b: readonly number[], rules: Rules): number[][] {
+  const { n } = rules
   const k = kingAt(b)
   if (k < 0) return []
   const r = Math.floor(k / n), c = k % n
   const lanes: number[][] = []
+  if (rules.edgeEscape) {
+    for (const [dr, dc] of DIRS) {
+      const cells: number[] = []
+      let rr = r + dr, cc = c + dc, open = true
+      while (rr >= 0 && rr < n && cc >= 0 && cc < n) {
+        const j = rr * n + cc
+        if (b[j] !== EMPTY || j === throneOf(n)) { open = false; break }
+        cells.push(j); rr += dr; cc += dc
+      }
+      if (open && cells.length) lanes.push(cells)
+    }
+    return lanes
+  }
   const tryLane = (cells: number[]) => { if (cells.every(j => b[j] === EMPTY)) lanes.push(cells) }
   const span = (a: number, z: number) => { const o: number[] = []; for (let x = a; x <= z; x++) o.push(x); return o }
   if (r === 0 || r === n - 1) {
@@ -174,8 +240,8 @@ export function kingLanes(b: readonly number[], n: number): number[][] {
   return lanes
 }
 
-/** Corners the king could reach with its next move. */
-export const kingRoutes = (b: readonly number[], n: number) => kingLanes(b, n).length
+/** Escapes the king could make with his next move. */
+export const kingRoutes = (b: readonly number[], rules: Rules) => kingLanes(b, rules).length
 
 /** Can some attacker step onto a non-corner square of `lane` in one move? */
 export function laneBlockable(b: readonly number[], n: number, lane: number[]): boolean {
@@ -208,9 +274,9 @@ const WIN = 100_000
 export function evaluate(b: readonly number[], rules: Rules, toMove: Side, style: Style = 'balanced'): number {
   const { n } = rules
   if (kingCaptured(b, rules)) return WIN
-  if (kingEscaped(b, n)) return -WIN
+  if (kingEscaped(b, rules)) return -WIN
   const w = WEIGHTS[style]
-  const lanes = kingLanes(b, n)
+  const lanes = kingLanes(b, rules)
   let s = 0
   if (lanes.length) {
     if (toMove === 'D') s -= WIN / 2
@@ -224,7 +290,7 @@ export function evaluate(b: readonly number[], rules: Rules, toMove: Side, style
       atk++
       const r = Math.floor(i / n), c = i % n
       const nr = Math.min(r, n - 1 - r), nc = Math.min(c, n - 1 - c)
-      if ((nr === 0 && nc === 1) || (nr === 1 && nc === 0) || (nr === 1 && nc === 1)) guard++
+      if (!rules.edgeEscape && ((nr === 0 && nc === 1) || (nr === 1 && nc === 0) || (nr === 1 && nc === 1))) guard++
     } else if (v === DEF) def++
   }
   s += atk * 14 - def * 22 + guard * w.guard
@@ -242,7 +308,7 @@ export function evaluate(b: readonly number[], rules: Rules, toMove: Side, style
     if (open && (rr !== kr + dr || cc !== kc + dc)) rays++
   }
   s -= mob * w.mob + rays * w.ray
-  const dist = Math.min(kr, n - 1 - kr) + Math.min(kc, n - 1 - kc)
+  const dist = rules.edgeEscape ? Math.min(kr, n - 1 - kr, kc, n - 1 - kc) * 3 : Math.min(kr, n - 1 - kr) + Math.min(kc, n - 1 - kc)
   s += dist * w.dist
   return s
 }
@@ -278,7 +344,7 @@ export function searchMove(b: readonly number[], rules: Rules, side: Side, opts:
   const flip = (x: Side): Side => (x === 'A' ? 'D' : 'A')
   const terminal = (nb: number[], mover: Side): number | null => {
     if (mover === 'A' && kingCaptured(nb, rules)) return WIN
-    if (mover === 'D' && kingEscaped(nb, n)) return -WIN
+    if (mover === 'D' && kingEscaped(nb, rules)) return -WIN
     return null
   }
   /** Value of `pos` for `who`, who is to move, searching `depth` plies. */
@@ -336,49 +402,71 @@ export function searchMove(b: readonly number[], rules: Rules, side: Side, opts:
   return (rng ? top[Math.floor(rng() * top.length)] : top[0]).m
 }
 
-/** The attackers' AI for a difficulty: move `ply` of a game with this seed. */
-export function attackerMove(b: readonly number[], d: Difficulty, style: Style, seed: number, ply: number): Move | null {
+/** The computer's move for a difficulty and config: move `ply` of a game with this seed. */
+export function aiMove(b: readonly number[], d: Difficulty, id: string, seed: number, ply: number): Move | null {
+  const c = cfgOf(id)
   const rng = mulberry32(hashString(`tafl:${seed}:${ply}`))
-  return searchMove(b, rulesFor(d), 'A', { depth: depthFor(d), style, rng, noise: scale(d, [0.25, 0.15, 0, 0]), nodeBudget: scale(d, [5000, 10_000, 40_000, 45_000]) })
+  const raid = c.mode === 'raid'
+  return searchMove(b, rulesFor(d, id), raid ? 'D' : 'A', {
+    depth: raid ? scale(d, [1, 2, 2, 2]) : depthFor(d), style: styleFor(d, id), rng,
+    noise: raid ? scale(d, [0.4, 0.2, 0.05, 0]) : scale(d, [0.25, 0.15, 0, 0]),
+    nodeBudget: scale(d, [5000, 10_000, 40_000, 45_000]),
+  })
 }
 
-/** Starting position for a level: D1 sends two of the attackers away, by seed. */
+/** Back-compat: the attackers' move in a defending config. */
+export const attackerMove = (b: readonly number[], d: Difficulty, _style: Style, seed: number, ply: number, id = 'birka') => aiMove(b, d, id, seed, ply)
+
+/** Starting position: at D1 the computer's side starts one man short, chosen by seed. */
 export function startBoard(d: Difficulty, seed: number, configId: string): number[] {
   const n = sizeFor(d)
   const b = initialBoard(n)
-  if (d === 1) {
+  // Edge escape is quick enough already: Linnaeus keeps every attacker.
+  if (d === 1 && cfgOf(configId).escape === 'corner') {
+    const raid = cfgOf(configId).mode === 'raid'
     const rng = mulberry32(seed ^ hashString(`tafl:start:${configId}`))
-    const atk = b.map((v, i) => (v === ATK ? i : -1)).filter(i => i >= 0)
-    for (const i of shuffle(atk, rng).slice(0, 2)) b[i] = EMPTY
+    const kind = raid ? DEF : ATK
+    const men = b.map((v, i) => (v === kind ? i : -1)).filter(i => i >= 0)
+    for (const i of shuffle(men, rng).slice(0, 1)) b[i] = EMPTY
   }
   return b
 }
 
 export type Result = 'win' | 'lose' | null
+export type Why = 'escaped' | 'captured' | 'stuck' | 'ai-stuck' | 'limit' | null
 
-/** Play the defenders' move and the attackers' answer; for tests and the component. */
-export function playTurn(b: readonly number[], d: Difficulty, style: Style, seed: number, ply: number, m: Move):
-  { afterMine: number[]; capturedMine: number[]; afterAi: number[] | null; ai: Move | null; capturedAi: number[]; result: Result } {
-  const rules = rulesFor(d)
+/** Play your move and the computer's answer (ply = your moves so far); for tests and the component. */
+export function playTurn(b: readonly number[], d: Difficulty, id: string, seed: number, ply: number, m: Move):
+  { afterMine: number[]; capturedMine: number[]; afterAi: number[] | null; ai: Move | null; capturedAi: number[]; result: Result; why: Why } {
+  const rules = rulesFor(d, id)
+  const raid = cfgOf(id).mode === 'raid'
+  const me = sideOf(id)
   const mine = applyMove(b, rules, m)
-  if (kingEscaped(mine.board, rules.n)) return { afterMine: mine.board, capturedMine: mine.captured, afterAi: null, ai: null, capturedAi: [], result: 'win' }
-  const ai = attackerMove(mine.board, d, style, seed, ply)
-  if (!ai) return { afterMine: mine.board, capturedMine: mine.captured, afterAi: null, ai: null, capturedAi: [], result: 'win' }
+  const base = { afterMine: mine.board, capturedMine: mine.captured, afterAi: null, ai: null, capturedAi: [] as number[] }
+  if (!raid && kingEscaped(mine.board, rules)) return { ...base, result: 'win', why: 'escaped' }
+  if (raid && kingCaptured(mine.board, rules)) return { ...base, result: 'win', why: 'captured' }
+  const ai = aiMove(mine.board, d, id, seed, ply)
+  if (!ai) return { ...base, result: 'win', why: 'ai-stuck' }
   const theirs = applyMove(mine.board, rules, ai)
-  let result: Result = null
-  if (kingCaptured(theirs.board, rules)) result = 'lose'
-  else if (!movesFor(theirs.board, rules.n, 'D').length) result = 'lose'
-  return { afterMine: mine.board, capturedMine: mine.captured, afterAi: theirs.board, ai, capturedAi: theirs.captured, result }
+  let result: Result = null, why: Why = null
+  if (!raid && kingCaptured(theirs.board, rules)) { result = 'lose'; why = 'captured' }
+  else if (raid && kingEscaped(theirs.board, rules)) { result = 'lose'; why = 'escaped' }
+  else if (!movesFor(theirs.board, rules.n, me).length) { result = 'lose'; why = 'stuck' }
+  else if (ply + 1 >= moveLimitFor(d, id)) { result = raid ? 'win' : 'lose'; why = 'limit' }
+  return { afterMine: mine.board, capturedMine: mine.captured, afterAi: theirs.board, ai, capturedAi: theirs.captured, result, why }
 }
 
 // ── Component ───────────────────────────────────────────────────────────────
 
 export default function TaflGame({ configId, difficulty, seed, params, onWin, onLose }: MinigameProps) {
   const config = resolveConfig(CONFIGS, configId, params, 'birka')
-  const rules = rulesFor(difficulty)
+  const id = CONFIGS[configId] ? configId : 'birka'
+  const rules = rulesFor(difficulty, id)
   const { n } = rules
-  const limit = moveLimitFor(difficulty)
-  const start = useMemo(() => startBoard(difficulty, seed, configId), [difficulty, seed, configId])
+  const raid = config.mode === 'raid'
+  const me = sideOf(id)
+  const limit = moveLimitFor(difficulty, id)
+  const start = useMemo(() => startBoard(difficulty, seed, id), [difficulty, seed, id])
   const { outcome, settled, win, lose } = useGameOutcome({ onWin, onLose })
 
   const [board, setBoard] = useState<number[]>(start)
@@ -387,51 +475,60 @@ export default function TaflGame({ configId, difficulty, seed, params, onWin, on
   const [thinking, setThinking] = useState(false)
   const [last, setLast] = useState<Move | null>(null)
   const [gone, setGone] = useState<number[]>([])
-  const [note, setNote] = useState(config.intro)
+  const [note, setNote] = useState(raid ? 'Your move — pick one of your black attackers.' : 'Your move — pick a white defender or the king.')
   const timers = useRef<ReturnType<typeof setTimeout>[]>([])
   useEffect(() => () => timers.current.forEach(clearTimeout), [])
 
-  const targets = useMemo(() => (selected === null ? [] : movesFor(board, n, 'D').filter(m => m.from === selected)), [board, n, selected])
+  const targets = useMemo(() => (selected === null ? [] : movesFor(board, n, me).filter(m => m.from === selected)), [board, n, me, selected])
   const throne = throneOf(n)
   const atkCount = board.filter(v => v === ATK).length
   const defCount = board.filter(v => v === DEF).length
+  const goal = raid ? 'hold the ring' : config.escape === 'edge' ? 'reach any edge' : 'reach a corner'
 
   const move = (m: Move) => {
     setSelected(null)
-    const res = playTurn(board, difficulty, config.style, seed, ply, m)
+    const res = playTurn(board, difficulty, id, seed, ply, m)
     setBoard(res.afterMine)
     setLast(m)
     setGone(res.capturedMine)
-    if (res.result === 'win') {
-      setNote(res.ai === null && !kingEscaped(res.afterMine, n) ? 'The attackers are hemmed in and yield!' : 'The king reaches the corner — he escapes!')
+    if (res.result === 'win' && !res.afterAi) {
+      setNote(res.why === 'ai-stuck' ? 'The enemy is hemmed in and yields!'
+        : res.why === 'captured' ? 'The king is surrounded and taken!'
+        : config.escape === 'edge' ? 'The king reaches the edge — he escapes!' : 'The king reaches the corner — he escapes!')
       win()
       return
     }
     setThinking(true)
-    setNote(res.capturedMine.length ? `Captured ${res.capturedMine.length}! The attackers regroup…` : 'The attackers move…')
+    setNote(res.capturedMine.length ? `Captured ${res.capturedMine.length}! The enemy regroups…` : raid ? 'The defenders move…' : 'The attackers move…')
     timers.current.push(setTimeout(() => {
       setThinking(false)
       setBoard(res.afterAi!)
       setLast(res.ai)
       setGone(res.capturedAi)
-      const nextPly = ply + 1
-      setPly(nextPly)
+      setPly(ply + 1)
       if (res.result === 'lose') {
-        const why = kingCaptured(res.afterAi!, rules) ? 'the king was captured' : 'the defenders cannot move'
-        setNote(why === 'the king was captured' ? 'The king is surrounded and taken.' : 'Your pieces are pinned — no move left.')
+        const why = res.why === 'captured' ? 'the king was captured' : res.why === 'escaped' ? 'the king escaped' : res.why === 'limit' ? 'out of moves' : 'no move left'
+        setNote(res.why === 'captured' ? 'The king is surrounded and taken.'
+          : res.why === 'escaped' ? 'The king slips through your ring and escapes.'
+          : res.why === 'limit' ? 'The night is over — the king did not get away.'
+          : 'Your pieces are pinned — no move left.')
         lose(why)
         return
       }
-      if (nextPly >= limit) { setNote('The night is over — the king did not get away.'); lose('out of moves'); return }
-      const routes = kingRoutes(res.afterAi!, n)
-      setNote(res.capturedAi.length ? `The attackers took ${res.capturedAi.length} defender${res.capturedAi.length > 1 ? 's' : ''}.` : routes ? 'A corner is open — the king can run!' : 'Your move.')
+      if (res.result === 'win') { setNote('Dawn breaks and the ring held — the king is trapped!'); win(); return }
+      const routes = kingRoutes(res.afterAi!, rules)
+      const took = res.capturedAi.length
+      setNote(took ? `The enemy took ${took} of your men.`
+        : routes ? (raid ? 'The king has an open run — block it!' : 'An escape lane is open — the king can run!')
+        : 'Your move.')
     }, 380))
   }
 
   const tap = (i: number) => {
     if (settled || thinking) return
     const v = board[i]
-    if (v === DEF || v === KING) { setSelected(selected === i ? null : i); return }
+    const own = raid ? v === ATK : v === DEF || v === KING
+    if (own) { setSelected(selected === i ? null : i); return }
     const m = targets.find(t => t.to === i)
     if (m) move(m)
     else setSelected(null)
@@ -445,7 +542,7 @@ export default function TaflGame({ configId, difficulty, seed, params, onWin, on
         <div className="min-w-0">
           <p className="text-[10px] font-bold uppercase tracking-widest text-accent truncate">{config.title}</p>
           <p className="text-ink text-sm font-semibold leading-tight">
-            {n === 7 ? 'Brandubh' : n === 9 ? 'Tablut' : 'Hnefatafl'} {n}×{n} · reach a corner
+            {n === 7 ? 'Brandubh' : n === 9 ? 'Tablut' : 'Hnefatafl'} {n}×{n} · {raid ? 'you are black' : 'you are white'} · {goal}
           </p>
         </div>
         <div className="text-right shrink-0">
@@ -497,7 +594,9 @@ export default function TaflGame({ configId, difficulty, seed, params, onWin, on
 
       <p className={`text-xs leading-snug min-h-[2.5rem] ${thinking ? 'text-muted' : 'text-ink-2'}`} role="status">{note}</p>
 
-      <OutcomeBanner outcome={outcome} detail={config.fact} winTitle="The king escapes!" loseTitle="The king is lost" />
+      <p className="text-[11px] leading-snug text-muted">{config.intro}</p>
+
+      <OutcomeBanner outcome={outcome} detail={config.fact} winTitle={raid ? 'The ring holds!' : 'The king escapes!'} loseTitle={raid ? 'The king got away' : 'The king is lost'} />
     </div>
   )
 }

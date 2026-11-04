@@ -218,7 +218,10 @@ function predatorPuzzle(species: string[], extraSeats: number, boy = false): Puz
 }
 
 /** Minimum crossings demanded per tier, and the most we allow. */
-export const CROSSING_RANGE: Record<Difficulty, [number, number]> = { 1: [5, 9], 2: [9, 13], 3: [9, 17], 4: [11, 25] }
+// Time budget: a crossing takes an engaged player ~6–12 s to plan and load,
+// so 5–9 crossings is about a minute at D1 and at most 15 stays under ~3 min
+// at D4 (where no undo and two lives make every crossing deliberate).
+export const CROSSING_RANGE: Record<Difficulty, [number, number]> = { 1: [5, 9], 2: [9, 13], 3: [9, 13], 4: [11, 15] }
 
 function finish(p: Puzzle): Puzzle | null {
   const sol = solve(p)

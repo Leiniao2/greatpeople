@@ -1,11 +1,12 @@
-// Morris: the rules engine for three/six/nine/twelve men's morris, the
-// alpha-beta opponent, and the component's win/lose wiring.
+// Morris: the rules engine for three/six/nine/twelve men's morris and the
+// mill race, the time budget, the alpha-beta opponent (beaten by a search
+// player at every config × difficulty), and the component's win/lose wiring.
 import { describe, it, expect, vi } from 'vitest'
 import { createElement } from 'react'
 import { render, screen, fireEvent, act, cleanup } from '@testing-library/react'
 import MorrisGame, {
   CONFIGS, CONFIG_IDS, makeLayout, makeRules, initialState, legalMoves, applyMove, winner, removable, aiMove, searchBest,
-  total, type MState, type Variant, type Cell, type Rules,
+  total, LIMITS, RACE_TO, type MState, type Variant, type Cell, type Rules,
 } from '@/components/minigames/MorrisGame'
 import { mulberry32 } from '@/components/minigames/_shared'
 import type { Difficulty } from '@/games/types'
@@ -113,8 +114,7 @@ describe('rules', () => {
     expect(legalMoves(r, s).every(m => m.remove === -1)).toBe(true)
   })
 
-  it("three men's is a forced win for the opener (so it is always winnable)", () => {
-    const r = makeRules('three', 4)
+  const forcedWin = (r: Rules, depth: number) => {
     const memo = new Map<string, boolean>()
     const forced = (s: MState, d: number): boolean => {
       const w = winner(r, s)
@@ -128,25 +128,81 @@ describe('rules', () => {
       memo.set(k, v)
       return v
     }
-    expect(forced(initialState(r), 9)).toBe(true)
+    return forced(initialState(r), depth)
+  }
+
+  it("three men's at Levels 1–2 is a forced win for the opener (so it is always winnable)", () => {
+    expect(forcedWin(makeRules('three', 1), 9)).toBe(true)
+    expect(forcedWin(makeRules('three', 2), 9)).toBe(true)
+  })
+
+  it("three men's from Level 3: no centre on the first placement, and the easy forced win is gone", () => {
+    const r = makeRules('three', 3)
+    expect(r.noCentreOpen).toBe(true)
+    expect(makeRules('three', 2).noCentreOpen).toBe(false)
+    const first = legalMoves(r, initialState(r)).map(m => m.to)
+    expect(first).toHaveLength(8)
+    expect(first).not.toContain(4)
+    // Only the opening placement is restricted.
+    const after = applyMove(initialState(r), { from: -1, to: 0, remove: -1 })
+    expect(legalMoves(r, after).map(m => m.to)).toContain(4)
+    expect(forcedWin(r, 13)).toBe(false)
+  })
+})
+
+describe('mill race (cloister-race)', () => {
+  it('the first to take three pieces wins; you need only two at Level 1', () => {
+    expect(CONFIGS['cloister-race'].race).toBe(true)
+    expect(CONFIGS['cloister-race'].variant).toBe('nine')
+    expect(RACE_TO).toEqual([2, 3, 3, 3])
+    expect(makeRules('nine', 1, true).loseAt).toEqual([6, 7])
+    expect(makeRules('nine', 4, true).loseAt).toEqual([6, 6])
+    const r = makeRules('nine', 3, true)
+    // Mid-placement, 9 v 9 pieces: taking a third piece wins on the spot.
+    const s = pos(r, [0, 1], [8, 20, 21, 22], { hand: [7, 3] })
+    const m = legalMoves(r, s).find(x => x.to === 2 && x.remove === 8)!
+    expect(winner(r, applyMove(s, m))).toBe(1)
+    // …and losing three of yours loses, with plenty still on the board.
+    expect(winner(r, pos(r, [0, 1, 2, 3, 4, 5], [8, 9, 10, 11, 12, 13, 14, 15, 16]))).toBe(2)
+    // The plain nine men's rules would play on.
+    expect(winner(makeRules('nine', 3), pos(r, [0, 1, 2, 3, 4, 5], [8, 9, 10, 11, 12, 13, 14, 15, 16]))).toBeNull()
+  })
+})
+
+describe('time budget', () => {
+  it('moving-phase limits keep a game to at most ~22 of your moves at Level 1 and ~30 at Level 4', () => {
+    for (const id of CONFIG_IDS) {
+      const v = CONFIGS[id].variant
+      const most = DIFFS.map(d => makeLayout(v).pieces + Math.ceil(makeRules(v, d, !!CONFIGS[id].race).limit / 2))
+      expect(most[0], `${id} D1`).toBeLessThanOrEqual(22)
+      expect(most[3], `${id} D4`).toBeLessThanOrEqual(30)
+      expect(most.every((x, i) => i === 0 || x >= most[i - 1]), id).toBe(true)
+    }
+    expect(Object.keys(LIMITS).sort()).toEqual(['nine', 'six', 'three', 'twelve'])
+  })
+
+  it('every config is its own twist (board, flying, win rule or race)', () => {
+    const keys = CONFIG_IDS.map(id => `${CONFIGS[id].variant}:${!!CONFIGS[id].race}`)
+    expect(new Set(keys).size).toBe(CONFIG_IDS.length)
+    expect(CONFIG_IDS.length).toBeGreaterThanOrEqual(5)
   })
 })
 
 // ── The computer opponent ───────────────────────────────────────────────────
 
-interface Played { winner: 1 | 2; aiMaxMs: number }
+interface Played { winner: 1 | 2; aiMaxMs: number; mine: number }
 /** You play `depth`-ply search; the computer plays the real opponent. */
-function playOut(variant: Variant, d: Difficulty, seed: number, depth: number, nodes: number): Played {
-  const rules = makeRules(variant, d)
+function playOut(variant: Variant, d: Difficulty, seed: number, depth: number, nodes: number, race = false): Played {
+  const rules = makeRules(variant, d, race)
   let s = initialState(rules)
   const you = mulberry32(seed), them = mulberry32(seed ^ 0x5bd1e995)
-  let aiMaxMs = 0
+  let aiMaxMs = 0, mine = 0
   for (let ply = 0; ply < 1000; ply++) {
     const w = winner(rules, s)
-    if (w) return { winner: w, aiMaxMs }
+    if (w) return { winner: w, aiMaxMs, mine }
     const legal = legalMoves(rules, s)
     let m
-    if (s.turn === 1) m = searchBest(rules, s, depth, nodes, you)
+    if (s.turn === 1) { m = searchBest(rules, s, depth, nodes, you); mine++ }
     else {
       const t = performance.now()
       m = aiMove(rules, s, d, them)
@@ -181,26 +237,41 @@ describe('computer opponent', () => {
     expect(worst).toBeLessThan(300)
   }, 120_000)
 
-  it('a strong player beats Level 1 nearly always and Level 4 at least sometimes', () => {
-    const N = 6
+  it('winnable and short at every config × difficulty: a search player wins, within the move budget', () => {
+    const N = 5
+    // Median of the search player's own moves (placements included) per level.
+    const MEDIAN_MAX = [18, 22, 26, 30]
     const rates: string[] = []
-    let beatD4 = 0
-    for (const v of VARIANTS) {
+    for (const id of CONFIG_IDS) {
+      const { variant, race } = CONFIGS[id]
       // On the tiny three men's board a deep search is cheap and finds the forced win.
-      const [depth, nodes] = v === 'three' ? [9, 400_000] : [5, 120_000]
-      let w1 = 0, w4 = 0
-      for (let i = 0; i < N; i++) {
-        if (playOut(v, 1, 1000 + i * 37, depth, nodes).winner === 1) w1++
-        if (playOut(v, 4, 2000 + i * 37, depth, nodes).winner === 1) w4++
+      const [depth, nodes] = variant === 'three' ? [9, 400_000] : [5, 120_000]
+      for (const d of DIFFS) {
+        let wins = 0
+        const lens: number[] = []
+        for (let i = 0; i < N; i++) {
+          const g = playOut(variant, d, 1000 + i * 37, depth, nodes, !!race)
+          if (g.winner === 1) wins++
+          lens.push(g.mine)
+        }
+        lens.sort((a, b) => a - b)
+        rates.push(`${id} L${d} ${wins}/${N} med ${lens[N >> 1]}`)
+        expect(wins, `${id} L${d} winnable`).toBeGreaterThan(0)
+        if (d === 1) expect(wins, `${id} L1`).toBeGreaterThanOrEqual(N - 1)
+        expect(lens[N >> 1], `${id} L${d} median moves`).toBeLessThanOrEqual(MEDIAN_MAX[d - 1])
       }
-      rates.push(`${v}: vs L1 ${w1}/${N}, vs L4 ${w4}/${N}`)
-      expect(w1).toBeGreaterThanOrEqual(N - 1)
-      beatD4 += w4
-      expect(w4, `${v} beatable at L4`).toBeGreaterThan(0)
     }
     console.log(`morris win rates — ${rates.join('; ')}`)
-    expect(beatD4).toBeGreaterThan(0)
-  }, 300_000)
+  }, 400_000)
+
+  it("the mill race and three men's at Level 4 beat a shallow player", () => {
+    let lost = 0
+    for (let i = 0; i < 4; i++) {
+      if (playOut('nine', 4, 4000 + i, 2, 4000, true).winner === 2) lost++
+      if (playOut('three', 4, 4000 + i, 2, 4000).winner === 2) lost++
+    }
+    expect(lost).toBeGreaterThanOrEqual(6)
+  }, 60_000)
 
   it('the computer at Level 4 beats a careless player', () => {
     let lost = 0
@@ -213,7 +284,7 @@ describe('computer opponent', () => {
 
 describe('MorrisGame component', () => {
   it('renders every config at every difficulty', () => {
-    expect(CONFIG_IDS.length).toBeGreaterThanOrEqual(3)
+    expect(CONFIG_IDS.length).toBeGreaterThanOrEqual(5)
     for (const id of CONFIG_IDS) {
       expect(CONFIGS[id].fact.length).toBeGreaterThan(20)
       for (const d of DIFFS) {

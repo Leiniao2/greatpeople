@@ -4,39 +4,47 @@ import { hashString, mulberry32, resolveConfig, scale, useGameOutcome, OutcomeBa
 
 // Mancala: sow seeds round a two-row board against a computer opponent.
 //
-// Three real rule sets share one engine:
+// Four rule sets share one engine, and each config is a different twist:
 //  - oware (abapa, the tournament rules of Ghana's Oware): 12 pits × 4 seeds,
 //    sow counter-clockwise skipping the starting pit on a lap, capture pits of
 //    2 or 3 on the opponent's side chaining backwards, a capture that would
 //    take every opposing seed (grand slam) captures nothing, and you must feed
-//    an opponent whose row is empty; if you cannot, the game ends.
-//  - kalah (Champion's 1940s rules): 6 pits × 4 seeds plus a store each; the
-//    last seed in your store earns another turn, the last seed in an empty pit
-//    of yours takes it and the seeds opposite; when a row empties, each side
-//    keeps what is left on its own row.
+//    an opponent whose row is empty; if you cannot, the game ends.  Played as
+//    a race: the first to capture `target` seeds wins.
+//  - kalah (Champion's 1940s rules): 6 pits plus a store each; the last seed
+//    in your store earns another turn, the last seed in an empty pit of yours
+//    takes it and the seeds opposite; when a row empties, each side keeps what
+//    is left on its own row.  Three seeds a pit at D1–2, four from D3.
 //  - bao (a two-row "Bao lite" after the East African relay games): 8 pits a
 //    side, 48 seeds; when the last seed lands in an occupied pit you lift that
 //    pit and keep sowing (relay); ending in an empty pit of your own captures
 //    the pit opposite.  You must start from a pit of 2+ seeds if you have one.
 //    The starting layout is seeded but point-symmetric, so it is always fair.
+//  - fours (anan-anan / "fours", a Ghanaian children's game): 12 pits × 4.
+//    Every pit that reaches exactly four seeds while you sow is taken at once
+//    by the owner of the row it is on — except the pit your last seed lands
+//    in, which you take wherever it is.  Long sowings can feed your rival.
 //
 // Pit indices: the human (player 0) owns 0..n-1 along the bottom row, left to
 // right; the computer (player 1) owns n..2n-1 along the top, right to left.
 // Sowing runs up the index (counter-clockwise).  Captured seeds go to
-// `store[player]`.  The game ends when someone holds more than half the
-// seeds, when the side to move has no legal move (remaining seeds go to the
-// owner of the row they sit on), or at a ply limit (likewise).
+// `store[player]`.  The game ends when someone reaches the target (a majority
+// of the seeds unless the config sets a race target), when the side to move
+// has no legal move (remaining seeds go to the owner of the row they sit
+// on), or at a ply cap (likewise) — the cap keeps one game to ~15–35 of your
+// moves.
 //
-// Outcome: you win with more seeds than the computer.  A 24–24 tie counts as
-// a win at difficulty 1–2 and a loss at 3–4.
+// Outcome: you win with more seeds than the computer.  A tie counts as a win
+// at difficulty 1–2 and a loss at 3–4.
 //
 // AI: negamax with alpha-beta and iterative deepening under a node budget
 // (deterministic, well under 300 ms).  D1 plays a 1-ply greedy move and
 // throws in a random move 45% of the time; D2 searches 3 plies with 20%
-// random moves; D3 searches 5 plies; D4 searches 7 (6 in bao).  Ties between
+// random moves; D3 searches 5 plies; D4 searches 8 (7 in bao).  Ties between
 // equal moves are broken by the seeded rng, so every seed is a new game.
 
-export type Variant = 'oware' | 'kalah' | 'bao'
+export type Variant = 'oware' | 'kalah' | 'bao' | 'fours'
+type Tiers = readonly [number, number, number, number]
 export type Player = 0 | 1
 
 export interface MancalaConfig {
@@ -46,9 +54,12 @@ export interface MancalaConfig {
   fact: string
   /** Pits per player. */
   pits: number
-  /** Seeds per pit at the start (bao reshuffles them symmetrically by seed). */
-  seeds: number
-  plyLimit: number
+  /** Seeds per pit at the start, by difficulty (bao reshuffles them symmetrically by seed). */
+  seeds: Tiers
+  /** Seeds that win on the spot, by difficulty; omitted = a majority of all seeds. */
+  target?: Tiers
+  /** Plies (both sides' moves, extra turns included) before the game is called, by difficulty. */
+  plyCap: Tiers
   opponent: string
   /** Authoring/test hook: a fixed starting position instead of the standard one. */
   start?: { pits: number[]; store: [number, number]; turn?: Player }
@@ -58,23 +69,30 @@ export const CONFIGS: Record<string, MancalaConfig> = {
   oware: {
     variant: 'oware',
     title: 'Oware Abapa',
-    intro: 'Sow seeds round the board and capture pits of two or three on your rival\'s row. First to 25 seeds wins.',
+    intro: 'A capture race: sow round the board and take any pit on your rival\'s row that your last seed makes 2 or 3 — chaining back along the row. First to the target wins.',
     fact: 'Oware is the national mancala of the Akan peoples of Ghana; the abapa rules played here — no grand slam, always feed your opponent — are the ones used in international tournaments today.',
-    pits: 6, seeds: 4, plyLimit: 240, opponent: 'the Kumasi elder',
+    pits: 6, seeds: [4, 4, 4, 4], target: [10, 12, 14, 16], plyCap: [36, 44, 52, 60], opponent: 'the Kumasi elder',
   },
   kalah: {
     variant: 'kalah',
     title: 'Kalah',
-    intro: 'Sow into your store for an extra turn, and land in an empty pit to take the seeds across from it.',
+    intro: 'Stores and free turns: a last seed in your store sows again, and a last seed in an empty pit of yours steals the pit across. Most seeds wins.',
     fact: 'Kalah was marketed in the United States by William Julius Champion Jr. from the 1940s, adapted from African mancala games; in 2000 researchers solved it by computer, showing the first player can force a win with six pits and four seeds.',
-    pits: 6, seeds: 4, plyLimit: 300, opponent: 'the parlour champion',
+    pits: 6, seeds: [3, 3, 4, 4], plyCap: [44, 50, 60, 66], opponent: 'the parlour champion',
   },
   'bao-lite': {
     variant: 'bao',
     title: 'Bao Relay',
-    intro: 'A two-row taste of Swahili Bao: when your last seed lands in a full pit, lift it and sow on. End in an empty pit of yours to capture across.',
+    intro: 'Relay sowing: when your last seed lands in a full pit, lift it and sow on. End in an empty pit of yours to capture across. First to the target wins.',
     fact: 'Bao — Swahili for "board" — is played along the East African coast on a board of four rows of eight pits, and is counted among the most complex mancala games; its relay sowing can carry a single move several times round the board.',
-    pits: 8, seeds: 3, plyLimit: 200, opponent: 'the Zanzibar master',
+    pits: 8, seeds: [3, 3, 3, 3], target: [16, 18, 20, 22], plyCap: [36, 44, 52, 60], opponent: 'the Zanzibar master',
+  },
+  fours: {
+    variant: 'fours',
+    title: 'Anan-Anan: Fours',
+    intro: 'Watch every pit, not just the last: any pit that reaches four while you sow goes to whoever owns that row — but the pit your last seed makes four is yours. First to the target wins.',
+    fact: 'Anan-anan ("four-four") is a children\'s mancala of Ghana in which every pit of four is captured as the seeds go round; it is a quick game often learned before full Oware.',
+    pits: 6, seeds: [4, 4, 4, 4], target: [16, 20, 20, 24], plyCap: [36, 44, 52, 60], opponent: 'the village children',
   },
 }
 
@@ -89,6 +107,8 @@ export interface MState {
   ply: number
   plyLimit: number
   total: number
+  /** Seeds that end the game at once. */
+  target: number
   over: boolean
 }
 
@@ -102,6 +122,8 @@ export interface MoveInfo {
   extraTurn: boolean
   grandSlam: boolean
   relays: number
+  /** Fours: seeds that went to the other player during your sowing. */
+  given: number
 }
 
 export const ownerOf = (s: { n: number }, i: number): Player => (i < s.n ? 0 : 1)
@@ -113,9 +135,10 @@ export const sideSum = (s: { n: number; pits: number[] }, p: Player) => {
 }
 
 /** Standard start (or `config.start`); bao spreads its seeds by rng, point-symmetrically. */
-export function initialState(config: MancalaConfig, rng: Rng = Math.random): MState {
+export function initialState(config: MancalaConfig, rng: Rng = Math.random, difficulty: Difficulty = 4): MState {
   const n = config.pits
-  let pits = Array(2 * n).fill(config.seeds) as number[]
+  const seeds = scale(difficulty, config.seeds)
+  let pits = Array(2 * n).fill(seeds) as number[]
   let store: [number, number] = [0, 0]
   let turn: Player = 0
   if (config.start) {
@@ -123,7 +146,7 @@ export function initialState(config: MancalaConfig, rng: Rng = Math.random): MSt
     store = [...config.start.store] as [number, number]
     turn = config.start.turn ?? 0
   } else if (config.variant === 'bao') {
-    const half = Array(n).fill(config.seeds) as number[]
+    const half = Array(n).fill(seeds) as number[]
     for (let k = 0; k < 10; k++) {
       const a = Math.floor(rng() * n), b = Math.floor(rng() * n)
       if (a !== b && half[a] > 1) { half[a]--; half[b]++ }
@@ -131,7 +154,8 @@ export function initialState(config: MancalaConfig, rng: Rng = Math.random): MSt
     pits = [...half, ...half]
   }
   const total = pits.reduce((a, b) => a + b, 0) + store[0] + store[1]
-  const s: MState = { variant: config.variant, n, pits, store, turn, ply: 0, plyLimit: config.plyLimit, total, over: false }
+  const target = config.target ? scale(difficulty, config.target) : Math.floor(total / 2) + 1
+  const s: MState = { variant: config.variant, n, pits, store, turn, ply: 0, plyLimit: scale(difficulty, config.plyCap), total, target, over: false }
   return checkEnd(s)
 }
 
@@ -165,8 +189,7 @@ function sweep(s: MState) {
 /** Mark the state over (and sweep leftover seeds) if the game has ended. Mutates and returns `s`. */
 export function checkEnd(s: MState): MState {
   if (s.over) return s
-  const half = s.total / 2
-  if (s.store[0] > half || s.store[1] > half) { s.over = true; return s }
+  if (s.store[0] >= s.target || s.store[1] >= s.target) { s.over = true; return s }
   if (s.variant === 'kalah') {
     if (sideSum(s, 0) === 0 || sideSum(s, 1) === 0) sweep(s)
   } else if (rawMoves(s).length === 0) {
@@ -183,7 +206,7 @@ export function applyMove(s: MState, pit: number): { state: MState; info: MoveIn
   const store: [number, number] = [s.store[0], s.store[1]]
   let k = pits[pit]
   pits[pit] = 0
-  const info: MoveInfo = { player: p, pit, sown: [], captured: [], take: 0, extraTurn: false, grandSlam: false, relays: 0 }
+  const info: MoveInfo = { player: p, pit, sown: [], captured: [], take: 0, extraTurn: false, grandSlam: false, relays: 0, given: 0 }
   const own = (i: number) => (i < n ? 0 : 1) === p
 
   if (s.variant === 'oware') {
@@ -224,6 +247,21 @@ export function applyMove(s: MState, pit: number): { state: MState; info: MoveIn
       if (own(i) && pits[i] === 1 && pits[o] > 0) {
         info.take = pits[o] + 1; info.captured = [o, i]
         store[p] += info.take; pits[o] = 0; pits[i] = 0
+      }
+    }
+  } else if (s.variant === 'fours') {
+    // Every pit that reaches four goes to its row's owner; the last one to the sower.
+    const lap = k >= N
+    let pos = pit
+    while (k > 0) {
+      pos = (pos + 1) % N
+      if (lap && pos === pit) continue
+      pits[pos]++; info.sown.push(pos); k--
+      if (pits[pos] === 4) {
+        const taker: Player = k === 0 ? p : ownerOf(s, pos)
+        store[taker] += 4; pits[pos] = 0; info.captured.push(pos)
+        if (taker === p) info.take += 4
+        else info.given += 4
       }
     }
   } else {
@@ -328,7 +366,7 @@ const RULES: Record<Variant, string[]> = {
     'If your last seed makes a pit on the top row hold 2 or 3, you capture it — and the pit before it, and so on, while they hold 2 or 3.',
     'Grand slam: a capture that would take every seed on the top row captures nothing.',
     'If the opponent\'s row is empty you must sow into it; if you can\'t, the game ends and each side keeps its own seeds.',
-    'First to 25 of the 48 seeds wins.',
+    'First to the target wins.',
   ],
   kalah: [
     'Tap one of your pits. Seeds are sown counter-clockwise into your pits, your store (right) and the opponent\'s pits — never into their store.',
@@ -336,11 +374,17 @@ const RULES: Record<Variant, string[]> = {
     'Last seed in an empty pit of yours: capture it plus every seed in the pit opposite.',
     'When either row is empty the game ends; each side keeps the seeds on its own row. Most seeds wins.',
   ],
+  fours: [
+    'Tap one of your pits (bottom row). Its seeds are sown one by one, counter-clockwise; a pit of 12+ skips its own pit on the lap.',
+    'Any pit that reaches exactly four as the seeds go round is taken at once by the owner of that row — even if that is your rival.',
+    'The pit your last seed makes four is always yours, on either row.',
+    'First to the target wins; if you cannot move, the game ends and each side keeps its own row.',
+  ],
   bao: [
     'Tap a pit with 2+ seeds (singles only when nothing else is left). Seeds are sown counter-clockwise.',
     'Relay: if the last seed lands in an occupied pit, lift all its seeds and keep sowing.',
     'When the last seed lands in an empty pit on your row, capture the seeds in the pit opposite.',
-    'If you have no seeds to sow the game ends; first to 25 of the 48 seeds wins.',
+    'If you have no seeds to sow the game ends. First to the target wins.',
   ],
 }
 
@@ -359,7 +403,7 @@ function Seeds({ count, light }: { count: number; light?: boolean }) {
 export default function MancalaGame({ configId, difficulty, seed, params, onWin, onLose }: MinigameProps) {
   const config = resolveConfig(CONFIGS, configId, params, 'oware')
   const rng = useMemo(() => mulberry32((seed ^ hashString(`mancala:${configId}`)) >>> 0), [seed, configId])
-  const initial = useMemo(() => initialState(config, rng), [config.variant, config.pits, config.seeds, config.start, rng]) // eslint-disable-line react-hooks/exhaustive-deps
+  const initial = useMemo(() => initialState(config, rng, difficulty), [config.variant, config.pits, config.seeds, config.start, rng, difficulty]) // eslint-disable-line react-hooks/exhaustive-deps
   const [state, setState] = useState<MState>(initial)
   const [last, setLast] = useState<MoveInfo | null>(null)
   const [note, setNote] = useState('Your turn — tap a glowing pit on your row.')
@@ -372,6 +416,7 @@ export default function MancalaGame({ configId, difficulty, seed, params, onWin,
     if (info.relays) bits.push(`${info.relays} relay${info.relays > 1 ? 's' : ''}`)
     if (info.take) bits.push(`captured ${info.take}`)
     if (info.grandSlam) bits.push('grand slam — no capture')
+    if (info.given) bits.push(`${info.given} went to the other side`)
     if (info.extraTurn) bits.push('extra turn')
     return `${who} sowed${bits.length ? ` · ${bits.join(' · ')}` : ''}.`
   }
@@ -465,7 +510,10 @@ export default function MancalaGame({ configId, difficulty, seed, params, onWin,
         </div>
         <p className="text-ink-2 text-xs leading-snug mt-0.5">{config.intro}</p>
         <p className="text-muted text-[10px] mt-1">
-          Opponent: {config.opponent} · Win with {Math.floor(state.total / 2) + 1}+ of {state.total} seeds{difficulty <= 2 ? ' (a tie also counts)' : ''}
+          Opponent: {config.opponent} · First to {state.target} of {state.total} seeds{difficulty <= 2 ? ' (a tie also counts)' : ''}
+        </p>
+        <p className="text-muted text-[10px]" data-testid="moves-left">
+          {Math.max(0, state.plyLimit - state.ply)} turns left (both sides) — then each side keeps its row and most seeds wins
         </p>
       </div>
 

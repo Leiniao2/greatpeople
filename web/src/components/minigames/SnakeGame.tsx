@@ -4,16 +4,24 @@ import { hashString, resolveConfig, scale, useGameOutcome, OutcomeBanner } from 
 
 // Caravan Trail — grid Snake.  Lead a camel train round the trade route,
 // picking up goods; every bale adds a camel to the line.  Run into the edge
-// of the map, an obstacle or your own caravan and the journey ends.
+// of the map, an obstacle or your own caravan and the journey ends.  Each
+// route adds its own rule:
 //
-//   D1  11×11, deliver  8, start 300 ms/step, few obstacles
-//   D2  13×13, deliver 12, start 250 ms
-//   D3  14×14, deliver 16, start 210 ms, more obstacles
-//   D4  15×15, deliver 22, start 180 ms, densest obstacles
+//   silk-road      orders  two bales lie on the map; only the one the market
+//                          ordered counts — the wrong one adds 2 extra camels
+//   sahara         dunes   new dunes rise as the wind blows, one every few
+//                          deliveries, never next to the caravan
+//   incense-route  spoil   each load spoils if it is not reached within a
+//                          step allowance — then the journey fails
 //
-// The pace quickens with every delivery down to a floor per tier.  On the
-// Sahara route (and on every route at D4) new dunes rise as the wind blows:
-// one every few deliveries, never next to the lead camel.
+//   D1  11×11, deliver 10, start 300 ms/step, few obstacles
+//   D2  13×13, deliver 14, start 250 ms
+//   D3  14×14, deliver 18, start 210 ms, more obstacles
+//   D4  15×15, deliver 24, start 180 ms, densest obstacles
+//
+// The pace quickens with every delivery down to a floor per tier.  A perfect
+// run (the autopilot) takes ~20 s of game clock at D1 and ~30 s at D4, so an
+// engaged player needs roughly 40 s to 1½ min — never more than a few.
 //
 // Obstacles are generated so the open ground stays connected with no
 // dead-end pockets, and food is drawn from a seeded stream, so a run is
@@ -31,31 +39,35 @@ interface SnakeConfig {
   ground: string
   /** Obstacle layout style. */
   layout: 'peaks' | 'dunes' | 'ridges'
-  /** Dunes rise during play on this route at every difficulty. */
-  shifting: boolean
+  /** The route's rule twist (see the header). */
+  variant: SnakeVariant
+  /** The twist in a few words. */
+  rule: string
 }
+
+export type SnakeVariant = 'orders' | 'dunes' | 'spoil'
 
 export const CONFIGS: Record<string, SnakeConfig> = {
   'silk-road': {
     title: 'The Silk Road',
-    intro: 'Lead the camel train from oasis to oasis. Every bale of silk, tea or porcelain adds a camel — steer clear of the mountains and your own line.',
+    intro: 'Two bales wait on the road, but the market wants only the one on the order slip. Take the wrong one and you must haul two extra camels for nothing. Every right bale adds a camel — steer clear of the mountains and your own line.',
     fact: 'The name "Silk Road" (Seidenstraße) was coined only in 1877 by the German geographer Ferdinand von Richthofen. Bactrian camels, which can carry around 200 kg and drink over 100 litres at once, were the workhorses of its desert legs.',
     goods: ['🧵', '🍵', '🏺', '💎'],
-    obstacle: '⛰️', obstacleClass: 'bg-[#a7a39a]', ground: 'bg-[#efe3c2]', layout: 'peaks', shifting: false,
+    obstacle: '⛰️', obstacleClass: 'bg-[#a7a39a]', ground: 'bg-[#efe3c2]', layout: 'peaks', variant: 'orders', rule: 'Fill the order',
   },
   sahara: {
     title: 'Trans-Saharan Salt Caravan',
     intro: 'Carry salt and gold across the Sahara. The wind is building new dunes as you travel — keep your line moving and away from the sand.',
     fact: 'Ibn Battuta crossed the Sahara to the Mali Empire in 1352 and described Taghaza, a town whose houses and mosque were built of salt blocks. Salt from Taghaza traded south for gold, sometimes reportedly weight for weight.',
     goods: ['🧂', '🪙', '🌴'],
-    obstacle: '', obstacleClass: 'bg-[#d9a95b] rounded-[45%]', ground: 'bg-[#f5deb0]', layout: 'dunes', shifting: true,
+    obstacle: '', obstacleClass: 'bg-[#d9a95b] rounded-[45%]', ground: 'bg-[#f5deb0]', layout: 'dunes', variant: 'dunes', rule: 'Rising dunes',
   },
   'incense-route': {
     title: 'The Incense Route',
-    intro: 'Wind through the rocky wadis of Arabia carrying frankincense and myrrh to the markets of the north. Ridges of rock split the trail.',
+    intro: 'Frankincense and myrrh lose their worth on the road: reach each load before its freshness runs out, or the venture fails. Ridges of rock split the wadis, so pick your line early.',
     fact: 'Frankincense from southern Arabia travelled the Incense Route to Gaza and the Mediterranean. Pliny the Elder (1st century CE) wrote that the trade made the South Arabians among the richest people on earth; the Nabataean city of Petra grew rich taxing it.',
     goods: ['🌿', '🏺', '🪔'],
-    obstacle: '', obstacleClass: 'bg-[#8a6f5a] rounded-sm', ground: 'bg-[#ead7bb]', layout: 'ridges', shifting: false,
+    obstacle: '', obstacleClass: 'bg-[#8a6f5a] rounded-sm', ground: 'bg-[#ead7bb]', layout: 'ridges', variant: 'spoil', rule: 'Goods spoil',
   },
 }
 
@@ -77,18 +89,23 @@ export interface SnakeTier {
   obstacles: number
   /** A new dune rises every this many deliveries (0 = never). */
   duneEvery: number
+  /** orders: a decoy bale lies on the map; taking it adds this many camels (0 = no decoy). */
+  decoyPenalty: number
+  /** spoil: steps allowed to reach each load (0 = goods keep). */
+  freshSteps: number
 }
 
 export function tierFor(cfg: SnakeConfig, difficulty: Difficulty, params?: Record<string, unknown>): SnakeTier {
-  const shifting = cfg.shifting || difficulty === 4
   const t: SnakeTier = {
     size: scale(difficulty, [11, 13, 14, 15]),
-    target: scale(difficulty, [8, 12, 16, 22]),
+    target: scale(difficulty, [10, 14, 18, 24]),
     startMs: scale(difficulty, [300, 250, 210, 180]),
     minMs: scale(difficulty, [200, 150, 120, 95]),
     speedUp: scale(difficulty, [8, 9, 9, 8]),
     obstacles: scale(difficulty, [4, 9, 14, 20]),
-    duneEvery: shifting ? scale(difficulty, [4, 3, 3, 2]) : 0,
+    duneEvery: cfg.variant === 'dunes' ? scale(difficulty, [3, 3, 2, 2]) : 0,
+    decoyPenalty: cfg.variant === 'orders' ? 2 : 0,
+    freshSteps: cfg.variant === 'spoil' ? scale(difficulty, [34, 34, 32, 32]) : 0,
   }
   if (typeof params?.target === 'number') t.target = params.target as number
   return t
@@ -105,6 +122,12 @@ export interface SnakeState {
   body: number[]
   dir: Dir
   food: number
+  /** orders: the wrong bale (-1 = none). */
+  decoy: number
+  /** Camels still to join from a wrong bale: the tail stays put while this is > 0. */
+  grow: number
+  /** spoil: steps left to reach the current load. */
+  fresh: number
   eaten: number
   /** Obstacles, including dunes risen during play. */
   blocked: boolean[]
@@ -205,20 +228,46 @@ export function buildMap(cfg: SnakeConfig, tier: SnakeTier, seed: number): boole
   return Array(size * size).fill(false)
 }
 
-function placeFood(size: number, blocked: boolean[], body: number[], rng: number): [number, number] {
+/** Open-ground distance from `from` to every cell, ignoring the caravan. */
+function distances(size: number, blocked: boolean[], from: number): Int16Array {
+  const dist = new Int16Array(size * size).fill(-1)
+  dist[from] = 0
+  const q = [from]
+  for (let qi = 0; qi < q.length; qi++) for (const d of DIRS) {
+    const j = neighbor(size, q[qi], d)
+    if (j < 0 || blocked[j] || dist[j] >= 0) continue
+    dist[j] = dist[q[qi]] + 1; q.push(j)
+  }
+  return dist
+}
+
+/**
+ * Draw a free cell for a bale.  Perishable goods (spoil) are only laid where
+ * the open-ground distance from the lead camel is at most half the allowance,
+ * so every load is reachable in time with room for a detour.
+ */
+function placeFood(tier: SnakeTier, blocked: boolean[], body: number[], rng: number, avoid: number[] = []): [number, number] {
+  const { size } = tier
   const free: number[] = []
-  const occupied = new Set(body)
-  for (let i = 0; i < size * size; i++) if (!blocked[i] && !occupied.has(i)) free.push(i)
+  const occupied = new Set([...body, ...avoid])
+  const dist = tier.freshSteps ? distances(size, blocked, body[0]) : null
+  const reach = Math.floor(tier.freshSteps / 2)
+  for (let i = 0; i < size * size; i++) {
+    if (blocked[i] || occupied.has(i)) continue
+    if (dist && (dist[i] < 3 || dist[i] > reach)) continue
+    free.push(i)
+  }
   const [v, next] = draw(rng)
   return [free[Math.floor(v * free.length)] ?? -1, next]
 }
 
 function freshGame(tier: SnakeTier, blocked: boolean[], seed: number): { game: SnakeGame; state: SnakeState } {
   const body = startBody(tier.size)
-  const [food, rng] = placeFood(tier.size, blocked, body, hashString(`snake-food:${seed}`))
+  const [food, rng] = placeFood(tier, blocked, body, hashString(`snake-food:${seed}`))
+  const [decoy, rng2] = tier.decoyPenalty ? placeFood(tier, blocked, body, rng, [food]) : [-1, rng]
   return {
     game: { size: tier.size, blocked, tier },
-    state: { body, dir: 'R', food, eaten: 0, blocked, rng, status: 'playing' },
+    state: { body, dir: 'R', food, decoy, grow: 0, fresh: tier.freshSteps, eaten: 0, blocked, rng: rng2, status: 'playing' },
   }
 }
 
@@ -269,7 +318,7 @@ function raiseDune(game: SnakeGame, s: SnakeState, rng: number): [boolean[], num
     const [v, n] = draw(a); a = n
     const i = Math.floor(v * size * size)
     const r = Math.floor(i / size), c = i % size
-    if (s.blocked[i] || near.has(i) || i === s.food) continue
+    if (s.blocked[i] || near.has(i) || i === s.food || i === s.decoy) continue
     if (Math.abs(r - hr) + Math.abs(c - hc) < 5) continue
     const trial = [...s.blocked]
     trial[i] = true
@@ -286,28 +335,43 @@ export function step(game: SnakeGame, s: SnakeState, dir?: Dir): SnakeState {
   const next = neighbor(game.size, s.body[0], d)
   if (next < 0) return { ...s, dir: d, status: 'crashed', crash: 'The caravan wandered off the map' }
   if (s.blocked[next]) return { ...s, dir: d, status: 'crashed', crash: game.tier.duneEvery ? 'The caravan ran into a dune' : 'The caravan ran into the rocks' }
+  const { tier } = game
   const eating = next === s.food
-  // The tail moves away this step unless the caravan grows.
-  const rest = eating ? s.body : s.body.slice(0, -1)
+  // The tail moves away this step unless the caravan grows (a fresh bale,
+  // or extra camels still joining from a wrong one).
+  const growing = eating || s.grow > 0
+  const rest = growing ? s.body : s.body.slice(0, -1)
   if (rest.includes(next)) return { ...s, dir: d, status: 'crashed', crash: 'The caravan tangled with its own camels' }
   const body = [next, ...rest]
-  if (!eating) return { ...s, body, dir: d }
+  let grow = !eating && s.grow > 0 ? s.grow - 1 : s.grow
+  if (!eating) {
+    const fresh = tier.freshSteps ? s.fresh - 1 : s.fresh
+    if (next === s.decoy) {
+      // The wrong bale: two more camels to feed and walk, and a new decoy.
+      grow += tier.decoyPenalty
+      const [decoy, rng] = placeFood(tier, s.blocked, body, s.rng, [s.food])
+      return { ...s, body, dir: d, grow, decoy, rng, fresh }
+    }
+    if (tier.freshSteps && fresh <= 0) return { ...s, body, dir: d, grow, fresh: 0, status: 'crashed', crash: 'The incense spoiled before the caravan reached it' }
+    return { ...s, body, dir: d, grow, fresh }
+  }
   const eaten = s.eaten + 1
-  if (eaten >= game.tier.target) return { ...s, body, dir: d, eaten, food: -1, status: 'won' }
+  if (eaten >= tier.target) return { ...s, body, dir: d, grow, eaten, food: -1, decoy: -1, status: 'won' }
   let blocked = s.blocked, rng = s.rng
-  if (game.tier.duneEvery && eaten % game.tier.duneEvery === 0) {
+  if (tier.duneEvery && eaten % tier.duneEvery === 0) {
     [blocked, rng] = raiseDune(game, { ...s, body }, rng)
   }
-  const [food, rng2] = placeFood(game.size, blocked, body, rng)
-  return { ...s, body, dir: d, eaten, food, blocked, rng: rng2 }
+  const [food, rng2] = placeFood(tier, blocked, body, rng)
+  const [decoy, rng3] = tier.decoyPenalty ? placeFood(tier, blocked, body, rng2, [food]) : [-1, rng2]
+  return { ...s, body, dir: d, grow, eaten, food, decoy, blocked, rng: rng3, fresh: tier.freshSteps }
 }
 
 /** Shortest time-aware path for the head to `target`; null if none. */
-export function pathTo(size: number, body: number[], blocked: boolean[], target: number, food = -1): Dir[] | null {
+export function pathTo(size: number, body: number[], blocked: boolean[], target: number, food = -1, grow = 0): Dir[] | null {
   // Time-aware: the segment k places from the head moves off its cell
-  // after (length - k) steps, so the path may run into it once it's gone.
+  // after (length - k + grow) steps, so the path may run into it once it's gone.
   const freeAt = new Map<number, number>()
-  body.forEach((c, k) => freeAt.set(c, body.length - k))
+  body.forEach((c, k) => freeAt.set(c, body.length - k + grow))
   const prev = new Map<number, [number, Dir]>()
   const depth = new Map<number, number>([[body[0], 0]])
   const q = [body[0]]
@@ -337,7 +401,13 @@ export function pathTo(size: number, body: number[], blocked: boolean[], target:
  */
 export function autopilot(game: SnakeGame, s: SnakeState, hungry = 0): Dir {
   const { size } = game
-  const bfs = (body: number[], blocked: boolean[], target: number, food = -1) => pathTo(size, body, blocked, target, food)
+  // The wrong bale is treated as rock: it is never worth the extra camels.
+  const ground = (t: SnakeState) => {
+    if (t.decoy < 0) return t.blocked
+    const b = [...t.blocked]; b[t.decoy] = true
+    return b
+  }
+  const bfs = (t: SnakeState, target: number, food = -1) => pathTo(size, t.body, ground(t), target, food, t.grow)
   // Open cells reachable from the head, for when no move keeps the tail in reach.
   const room = (t: SnakeState): number => {
     const occ = new Set(t.body)
@@ -355,23 +425,24 @@ export function autopilot(game: SnakeGame, s: SnakeState, hungry = 0): Dir {
     for (const d of path) t = step(game, t, d)
     return t
   }
-  const toFood = s.food >= 0 ? bfs(s.body, s.blocked, s.food) : null
+  const toFood = s.food >= 0 ? bfs(s, s.food) : null
   if (toFood && toFood.length) {
     const after = simulate(toFood)
     if (after.status === 'won') return toFood[0]
-    if (after.status === 'playing' && room(after) >= after.body.length * 2 && bfs(after.body, after.blocked, after.body[after.body.length - 1], after.food)) return toFood[0]
-    // Circling too long: take the risk.
-    if (hungry > game.size * game.size * 2 && step(game, s, toFood[0]).status !== 'crashed') return toFood[0]
+    if (after.status === 'playing' && room(after) >= after.body.length * 2 && bfs(after, after.body[after.body.length - 1], after.food)) return toFood[0]
+    // Circling too long, or the goods about to spoil: take the risk.
+    const urgent = game.tier.freshSteps > 0 && toFood.length >= s.fresh - 4
+    if ((urgent || hungry > game.size * game.size * 2) && step(game, s, toFood[0]).status !== 'crashed') return toFood[0]
   }
   // Otherwise: a safe move that keeps the tail reachable, preferring the longest way round.
-  let best: Dir | null = null, bestScore = -1
+  let best: Dir | null = null, bestScore = -Infinity
   for (const d of DIRS) {
     if (d === OPPOSITE[s.dir]) continue
     const t = step(game, s, d)
     if (t.status === 'crashed') continue
     if (t.status === 'won') return d
-    const tail = bfs(t.body, t.blocked, t.body[t.body.length - 1], t.food)
-    const score = (tail ? 10000 : 0) + room(t) * 10 + (tail ? Math.min(tail.length, 9) : 0)
+    const tail = bfs(t, t.body[t.body.length - 1], t.food)
+    const score = (tail ? 10000 : 0) + room(t) * 10 + (tail ? Math.min(tail.length, 9) : 0) - (t.grow > s.grow ? 20000 : 0)
     if (score > bestScore) { bestScore = score; best = d }
   }
   return best ?? s.dir
@@ -453,13 +524,14 @@ export default function SnakeGame({ configId, difficulty, seed, params, onWin, o
   const { size, tier } = game
   const bodyIndex = new Map(state.body.map((c, k) => [c, k]))
   const good = cfg.goods[state.eaten % cfg.goods.length]
+  const wrongGood = cfg.goods[(state.eaten + 1) % cfg.goods.length]
   const pace = Math.round(1000 / tickMs(game, state) * 10) / 10
 
   return (
     <div className="flex flex-col gap-3 bg-paper-2 rounded-xl p-3 sm:p-4">
       <div className="flex items-start justify-between gap-3">
         <div>
-          <p className="text-accent text-[10px] font-bold uppercase tracking-widest">{cfg.title}</p>
+          <p className="text-accent text-[10px] font-bold uppercase tracking-widest">{cfg.title} · <span data-testid="snake-rule">{cfg.rule}</span></p>
           <p className="text-muted text-xs leading-relaxed">{cfg.intro}</p>
         </div>
         <div className="shrink-0 text-right text-[10px] text-muted tabular-nums">
@@ -467,6 +539,9 @@ export default function SnakeGame({ configId, difficulty, seed, params, onWin, o
           <p>goods delivered</p>
           <p>{pace} steps/s</p>
           {tier.duneEvery > 0 && <p>dune every {tier.duneEvery}</p>}
+          {tier.decoyPenalty > 0 && <p data-testid="snake-order">order: <span className="text-sm">{good}</span> not {wrongGood}</p>}
+          {state.grow > 0 && <p className="text-red-600 font-bold">+{state.grow} camels joining</p>}
+          {tier.freshSteps > 0 && <p className={state.fresh <= 8 ? 'text-red-600 font-bold' : ''} data-testid="snake-fresh">fresh {state.fresh} steps</p>}
         </div>
       </div>
 
@@ -483,7 +558,9 @@ export default function SnakeGame({ configId, difficulty, seed, params, onWin, o
             return (
               <div key={i} className="relative aspect-square">
                 {rock && <div className={`absolute inset-[6%] flex items-center justify-center text-[min(4vw,16px)] ${cfg.obstacleClass}`}>{cfg.obstacle}</div>}
-                {i === state.food && <div className="absolute inset-0 flex items-center justify-center text-[min(4.4vw,18px)] leading-none">{good}</div>}
+                {i === state.food && <div className="absolute inset-0 flex items-center justify-center text-[min(4.4vw,18px)] leading-none"
+                  style={tier.freshSteps ? { opacity: 0.35 + 0.65 * (state.fresh / tier.freshSteps) } : undefined}>{good}</div>}
+                {i === state.decoy && <div className="absolute inset-[6%] flex items-center justify-center text-[min(3.8vw,15px)] leading-none rounded-full ring-2 ring-red-500/60" data-testid="snake-decoy">{wrongGood}</div>}
                 {k === 0 && <div className="absolute inset-0 flex items-center justify-center text-[min(4.6vw,19px)] leading-none"
                   style={{ transform: state.dir === 'L' ? 'none' : state.dir === 'R' ? 'scaleX(-1)' : 'none' }}>🐪</div>}
                 {k !== undefined && k > 0 && (
