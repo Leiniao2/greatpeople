@@ -80,5 +80,9 @@ class AuthViewModel @Inject constructor(
         }
     }
 
+    fun googleFailed(message: String) {
+        _state.value = AuthUiState.Error(message)
+    }
+
     fun resetState() { _state.value = AuthUiState.Idle }
 }
