@@ -92,7 +92,7 @@
           ]
         },
         "instruction": "Fight lesson 1 · First Duel. Deploy Imhotep to Memphis, add the Astronomer, then tap Imhotep and tap Ashurbanipal to attack. Win one attack.",
-        "fact": "In a Local Event every card at the location counts: Imhotep brings 9 Intelligence, the Astronomer adds +2 (or +3 beside a Great Person who shares that identity), and the higher total wins the attack. The loser returns to its owner's hand unless Kill mode is on.",
+        "fact": "In a Local Event every card at the location counts: Imhotep brings 9 Intelligence, the Astronomer adds +2 (or +4 beside a Great Person who shares that identity), and the higher total wins the attack. The loser returns to its owner's hand unless Kill mode is on.",
         "id": "pyramid-builders:5",
         "stage": "legacy",
         "difficulty": 4
@@ -186,7 +186,7 @@
           ]
         },
         "instruction": "Fight lesson 1 · First Duel. Deploy Sargon I to Uruk, add the General, then tap Sargon I and tap Ashurbanipal to attack. Win one attack.",
-        "fact": "In a Local Event every card at the location counts: Sargon I brings 10 Strength, the General adds +2 (or +3 beside a Great Person who shares that identity), and the higher total wins the attack. The loser returns to its owner's hand unless Kill mode is on.",
+        "fact": "In a Local Event every card at the location counts: Sargon I brings 10 Strength, the General adds +2 (or +4 beside a Great Person who shares that identity), and the higher total wins the attack. The loser returns to its owner's hand unless Kill mode is on.",
         "id": "the-first-empire:4",
         "stage": "legacy",
         "difficulty": 4
@@ -310,7 +310,7 @@
           ]
         },
         "instruction": "Fight lesson 1 · First Duel. Deploy Gilgamesh to Uruk, add the Warrior, then tap Gilgamesh and tap Ashurbanipal to attack. Win one attack.",
-        "fact": "In a Local Event every card at the location counts: Gilgamesh brings 10 Strength, the Warrior adds +2 (or +3 beside a Great Person who shares that identity), and the higher total wins the attack. The loser returns to its owner's hand unless Kill mode is on.",
+        "fact": "In a Local Event every card at the location counts: Gilgamesh brings 10 Strength, the Warrior adds +2 (or +4 beside a Great Person who shares that identity), and the higher total wins the attack. The loser returns to its owner's hand unless Kill mode is on.",
         "id": "the-king-and-the-wild-man:7",
         "stage": "legacy",
         "difficulty": 4
@@ -422,7 +422,7 @@
           ]
         },
         "instruction": "Fight lesson 1 · First Duel. Deploy Ashurbanipal to Uruk, add the Sovereign, then tap Ashurbanipal and tap Nakht to attack. Win one attack.",
-        "fact": "In a Local Event every card at the location counts: Ashurbanipal brings 8 Politics, the Sovereign adds +2 (or +3 beside a Great Person who shares that identity), and the higher total wins the attack. The loser returns to its owner's hand unless Kill mode is on.",
+        "fact": "In a Local Event every card at the location counts: Ashurbanipal brings 8 Politics, the Sovereign adds +2 (or +4 beside a Great Person who shares that identity), and the higher total wins the attack. The loser returns to its owner's hand unless Kill mode is on.",
         "id": "the-great-library-of-nineveh:6",
         "stage": "legacy",
         "difficulty": 4
@@ -532,7 +532,7 @@
           ]
         },
         "instruction": "Fight lesson 1 · First Duel. Deploy Lei Zu to Memphis, add the Noble, then tap Lei Zu and tap Ashurbanipal to attack. Win one attack.",
-        "fact": "In a Local Event every card at the location counts: Lei Zu brings 10 Wealth, the Noble adds +2 (or +3 beside a Great Person who shares that identity), and the higher total wins the attack. The loser returns to its owner's hand unless Kill mode is on.",
+        "fact": "In a Local Event every card at the location counts: Lei Zu brings 10 Wealth, the Noble adds +2 (or +4 beside a Great Person who shares that identity), and the higher total wins the attack. The loser returns to its owner's hand unless Kill mode is on.",
         "id": "the-discovery-of-silk:6",
         "stage": "legacy",
         "difficulty": 4
@@ -633,7 +633,7 @@
           ]
         },
         "instruction": "Fight lesson 1 · First Duel. Deploy Hesy-Ra to Memphis, add the Doctor, then tap Hesy-Ra and tap Lei Zu to attack. Win one attack.",
-        "fact": "In a Local Event every card at the location counts: Hesy-Ra brings 9 Technique, the Doctor adds +2 (or +3 beside a Great Person who shares that identity), and the higher total wins the attack. The loser returns to its owner's hand unless Kill mode is on.",
+        "fact": "In a Local Event every card at the location counts: Hesy-Ra brings 9 Technique, the Doctor adds +2 (or +4 beside a Great Person who shares that identity), and the higher total wins the attack. The loser returns to its owner's hand unless Kill mode is on.",
         "id": "the-first-physician:5",
         "stage": "legacy",
         "difficulty": 4
@@ -731,7 +731,7 @@
           ]
         },
         "instruction": "Fight lesson 1 · First Duel. Deploy King Telepinu to Uruk, add the Monastic, then tap King Telepinu and tap Peseshet to attack. Win one attack.",
-        "fact": "In a Local Event every card at the location counts: King Telepinu brings 9 Belief, the Monastic adds +2 (or +3 beside a Great Person who shares that identity), and the higher total wins the attack. The loser returns to its owner's hand unless Kill mode is on.",
+        "fact": "In a Local Event every card at the location counts: King Telepinu brings 9 Belief, the Monastic adds +2 (or +4 beside a Great Person who shares that identity), and the higher total wins the attack. The loser returns to its owner's hand unless Kill mode is on.",
         "id": "edict-of-telepinu:5",
         "stage": "legacy",
         "difficulty": 4
@@ -846,7 +846,7 @@
           ]
         },
         "instruction": "Fight lesson 1 · First Duel. Deploy Mahavira to Memphis, add the Prophet, then tap Mahavira and tap King Telepinu to attack. Win one attack.",
-        "fact": "In a Local Event every card at the location counts: Mahavira brings 12 Belief, the Prophet adds +2 (or +3 beside a Great Person who shares that identity), and the higher total wins the attack. The loser returns to its owner's hand unless Kill mode is on.",
+        "fact": "In a Local Event every card at the location counts: Mahavira brings 12 Belief, the Prophet adds +2 (or +4 beside a Great Person who shares that identity), and the higher total wins the attack. The loser returns to its owner's hand unless Kill mode is on.",
         "id": "the-great-hero:6",
         "stage": "legacy",
         "difficulty": 4
@@ -948,7 +948,7 @@
           ]
         },
         "instruction": "Fight lesson 1 · First Duel. Deploy Nakht to Memphis, add the Official, then tap Nakht and tap Peseshet to attack. Win one attack.",
-        "fact": "In a Local Event every card at the location counts: Nakht brings 7 Politics, the Official adds +2 (or +3 beside a Great Person who shares that identity), and the higher total wins the attack. The loser returns to its owner's hand unless Kill mode is on.",
+        "fact": "In a Local Event every card at the location counts: Nakht brings 7 Politics, the Official adds +2 (or +4 beside a Great Person who shares that identity), and the higher total wins the attack. The loser returns to its owner's hand unless Kill mode is on.",
         "id": "the-scribe-of-seasons:5",
         "stage": "legacy",
         "difficulty": 4
@@ -1054,7 +1054,7 @@
           ]
         },
         "instruction": "Fight lesson 1 · First Duel. Deploy Pediamenopet to Memphis, add the Priest, then tap Pediamenopet and tap Peseshet to attack. Win one attack.",
-        "fact": "In a Local Event every card at the location counts: Pediamenopet brings 9 Belief, the Priest adds +2 (or +3 beside a Great Person who shares that identity), and the higher total wins the attack. The loser returns to its owner's hand unless Kill mode is on.",
+        "fact": "In a Local Event every card at the location counts: Pediamenopet brings 9 Belief, the Priest adds +2 (or +4 beside a Great Person who shares that identity), and the higher total wins the attack. The loser returns to its owner's hand unless Kill mode is on.",
         "id": "the-longest-text:5",
         "stage": "legacy",
         "difficulty": 4
@@ -1159,7 +1159,7 @@
           ]
         },
         "instruction": "Fight lesson 1 · First Duel. Deploy Peseshet to Memphis, add the Astronomer, then tap Peseshet and tap Mahavira to attack. Win one attack.",
-        "fact": "In a Local Event every card at the location counts: Peseshet brings 8 Intelligence, the Astronomer adds +2 (or +3 beside a Great Person who shares that identity), and the higher total wins the attack. The loser returns to its owner's hand unless Kill mode is on.",
+        "fact": "In a Local Event every card at the location counts: Peseshet brings 8 Intelligence, the Astronomer adds +2 (or +4 beside a Great Person who shares that identity), and the higher total wins the attack. The loser returns to its owner's hand unless Kill mode is on.",
         "id": "lady-overseer:5",
         "stage": "legacy",
         "difficulty": 4
