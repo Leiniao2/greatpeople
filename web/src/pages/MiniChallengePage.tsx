@@ -115,18 +115,13 @@ function LevelPlayer({ track, index, progress, onLevel, onClose }: {
 
 // ── Track card and level grid ─────────────────────────────────────────────────
 
-function ProgressDots({ progress }: { progress: ArcadeProgress }) {
+function ProgressBar({ progress }: { progress: ArcadeProgress }) {
+  const pct = Math.min(100, (progress.cleared / LEVELS_PER_TRACK) * 100)
   return (
-    <div className="flex flex-wrap gap-[3px]" aria-label={`${progress.cleared} of ${LEVELS_PER_TRACK} levels cleared`}>
-      {Array.from({ length: LEVELS_PER_TRACK }, (_, i) => {
-        const done = (progress.stars[i] ?? 0) > 0
-        const next = i === progress.cleared
-        return (
-          <span key={i}
-            className={`w-2 h-2 rounded-full ${done ? 'bg-accent' : next ? 'bg-accent/40 ring-1 ring-accent' : 'bg-line'}
-              ${i > 0 && i % 6 === 0 ? 'ml-1' : ''}`} />
-        )
-      })}
+    <div className="h-1.5 rounded-full bg-line overflow-hidden" role="progressbar"
+      aria-valuemin={0} aria-valuemax={LEVELS_PER_TRACK} aria-valuenow={progress.cleared}
+      aria-label={`${progress.cleared} of ${LEVELS_PER_TRACK} levels cleared`}>
+      <div className="h-full rounded-full bg-accent transition-all" style={{ width: `${pct}%` }} />
     </div>
   )
 }
@@ -147,7 +142,7 @@ function TrackCard({ game, progress, onOpen, onContinue }: {
           {progress.cleared} / {LEVELS_PER_TRACK} · <span className="text-accent">★ {totalStars(progress)}</span>
         </span>
       </button>
-      <ProgressDots progress={progress} />
+      <ProgressBar progress={progress} />
       <div className="flex items-center justify-between gap-2">
         <button onClick={onOpen} className="text-muted text-[10px] hover:text-ink">All levels</button>
         <button onClick={onContinue}
