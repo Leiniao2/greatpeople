@@ -99,10 +99,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "klotski",
-            "configId": "enigma-rotors",
-            "instruction": "Rearrange the rotor blocks to bring the cipher module to its target position.",
-            "fact": "Alan Turing's bombe machine exploited a flaw in Enigma — no letter ever encrypted to itself — to narrow down rotor positions and crack the daily key."
+            "game": "reporterflee",
+            "configId": "vietnam-press",
+            "seed": 22572,
+            "instruction": "Alan Turing: get the story out alive.",
+            "fact": "Alan Turing's bombe machine exploited a flaw in Enigma — no letter ever encrypted to itself — to narrow down rotor positions and crack the daily key.",
+            "rebalanced": true
           }
         },
         {

@@ -65,12 +65,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "sudoku",
-            "seed": 1022,
+            "game": "royalur",
+            "configId": "blitz",
+            "seed": 47911,
+            "instruction": "Pediamenopet: race your pieces home.",
             "fact": "Pediamenopet lived during the Late Period, a turbulent age of foreign invasions. His vast tomb was a monument so packed with sacred texts that no conqueror's curse could erase all of them. Scholars are still copying and translating them today.",
-            "autogen": true,
-            "configId": "euclid-grid",
-            "instruction": "Arrange these great periods of ancient Egyptian history from earliest to most recent: Order the grid as the record was ordered — every row, column and box complete."
+            "rebalanced": true
           }
         }
       ]
@@ -90,12 +90,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "matchthree",
-            "seed": 1023,
+            "game": "senet",
+            "configId": "tutankhamun",
+            "seed": 35549,
+            "instruction": "Pediamenopet: bear your pieces off first.",
             "fact": "The Book of the Dead (more accurately 'Book of Coming Forth by Day') was a personal funerary guide. Spell 125, the Weighing of the Heart, was the most critical: the deceased's heart was weighed against the feather of Ma'at. A heart heavier than the feather — burdened by sins — was devoured by the monster Ammit.",
-            "autogen": true,
-            "configId": "babylon-tablets",
-            "instruction": "The Book of the Dead contained spells to help the deceased navigate the underworld and pass the final judgement before Osiris. Gather what the story needs: match the goods until the tally is met."
+            "rebalanced": true
           }
         }
       ]

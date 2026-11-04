@@ -56,12 +56,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "sudoku",
-            "seed": 1023,
+            "game": "railway",
+            "configId": "transsib",
+            "seed": 23666,
+            "instruction": "Gian Lorenzo Bernini: lay the track for every train.",
             "fact": "Bernini designed St. Peter's Square's twin colonnades to open at their ends, creating a welcoming gesture toward the city. He described them as 'the motherly arms of the Church' reaching out to embrace the faithful — Catholics to confirm their faith, heretics to reunite with the Church, and unbelievers to discover the light. The design is both engineering and theology.",
-            "autogen": true,
-            "configId": "mendel-grid",
-            "instruction": "Bernini designed St. Peter's Square's famous colonnade to enclose the piazza completely, blocking the view from the streets of Rome. Order the grid as the record was ordered — every row, column and box complete."
+            "rebalanced": true
           }
         }
       ]
@@ -79,12 +79,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "maze",
-            "seed": 1024,
+            "game": "gomoku",
+            "configId": "edo-gomoku",
+            "seed": 14627,
+            "instruction": "Gian Lorenzo Bernini: make five in a row.",
             "fact": "Bernini dominated Roman art for six decades, serving under eight popes. Unlike most artists, he died wealthy, celebrated, and with his genius universally acknowledged in his own lifetime. When Louis XIV invited him to Paris to redesign the Louvre, the King of France came personally to see the great man off.",
-            "autogen": true,
-            "configId": "long-march",
-            "instruction": "Arrange these major works of Bernini's career in the order they were created: The way to the answer runs through these passages — find the exit."
+            "rebalanced": true
           }
         },
         {

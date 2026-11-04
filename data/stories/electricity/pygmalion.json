@@ -28,12 +28,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "sudoku",
-            "seed": 1024,
+            "game": "lamplighter",
+            "configId": "seven-dials",
+            "seed": 83264,
+            "instruction": "George Bernard Shaw: light every lamp.",
             "fact": "My Fair Lady (1956) ran for 2,717 performances on Broadway. Shaw famously wrote his own stage directions to prevent producers from adding a romantic happy ending.",
-            "autogen": true,
-            "configId": "lorentz-grid",
-            "instruction": "Shaw's 1913 play 'Pygmalion' was later adapted into which enormously successful musical? Order the grid as the record was ordered — every row, column and box complete."
+            "rebalanced": true
           }
         }
       ]
@@ -63,10 +63,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "classify",
-            "configId": "darwin-beaks",
-            "instruction": "Shaw was fascinated by Darwin and evolution. Classify these beaks as Darwin would — each adapted to a different food source.",
-            "fact": "Shaw wrote 'Back to Methuselah' (1921), a five-play epic spanning from Adam and Eve to 31,920 AD. He was the only person to win both a Nobel Prize (1925) and an Academy Award (1938)."
+            "game": "telegraphnet",
+            "configId": "chappe",
+            "seed": 39,
+            "instruction": "George Bernard Shaw: connect the cities by wire.",
+            "fact": "Shaw wrote 'Back to Methuselah' (1921), a five-play epic spanning from Adam and Eve to 31,920 AD. He was the only person to win both a Nobel Prize (1925) and an Academy Award (1938).",
+            "rebalanced": true
           }
         }
       ]

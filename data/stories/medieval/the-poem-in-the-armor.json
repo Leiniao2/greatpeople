@@ -25,20 +25,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "typeset",
-            "seed": 1019,
+            "game": "cargo",
+            "configId": "hanse-cog",
+            "seed": 65338,
+            "instruction": "Taira no Tadanori: stow the cargo.",
             "fact": "Tadanori was one of the leading waka poets of his generation, a student of the master Fujiwara no Shunzei. On the eve of the Taira clan's final flight from Kyoto, he rode back alone through the night to deliver a scroll of his poems to Shunzei — asking only that one be included in the imperial anthology. One was: it appears in the Senzai Wakashū without his name, since he died a rebel.",
-            "autogen": true,
-            "configId": "bi-sheng-clay",
-            "params": {
-              "lines": [
-                "HIS POETRY",
-                "HIS POETRY HE",
-                "HIS POETRY HE WAS",
-                "HIS POETRY HE WAS"
-              ]
-            },
-            "instruction": "What is Taira no Tadanori best remembered for, beyond his role as a Taira clan general? Set the answer in movable type — mirrored, right to left."
+            "rebalanced": true
           }
         }
       ]
@@ -82,12 +74,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "maze",
-            "seed": 1021,
+            "game": "tradeboard",
+            "configId": "venice",
+            "seed": 69057,
+            "instruction": "Taira no Tadanori: outtrade the rival merchants.",
             "fact": "The tale of Tadanori riding back to his poetry master on the night of defeat became one of the most celebrated stories in Japanese literary history. It appears in the Heike Monogatari — the great narrative of the Genpei War — as the moment when a warrior reveals that poetry, not victory, is what he cannot bear to leave behind.",
-            "autogen": true,
-            "configId": "cedar-forest",
-            "instruction": "Arrange the key events of Taira no Tadanori's life in order: The way to the answer runs through these passages — find the exit."
+            "rebalanced": true
           }
         },
         {
@@ -98,10 +90,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "music",
-            "configId": "pentatonic-descend",
-            "instruction": "The Heike Monogatari was performed by blind biwa monks — its tales chanted in a pentatonic mode that matched the falling cadence of the Taira clan's fall. Arrange the descending phrase that closes Tadanori's story.",
-            "fact": "The Heike Monogatari opens with the most famous line in Japanese literature: 'The sound of the Gion Shoja bells echoes the impermanence of all things.' It was not read but performed — chanted to biwa accompaniment by traveling monks who served as medieval Japan's living archive of history and loss."
+            "game": "nonogram",
+            "configId": "wunderkammer",
+            "seed": 29122,
+            "instruction": "Taira no Tadanori: reveal the picture from its clues.",
+            "fact": "The Heike Monogatari opens with the most famous line in Japanese literature: 'The sound of the Gion Shoja bells echoes the impermanence of all things.' It was not read but performed — chanted to biwa accompaniment by traveling monks who served as medieval Japan's living archive of history and loss.",
+            "rebalanced": true
           }
         }
       ]
@@ -119,20 +113,24 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "tactics",
-            "configId": "musashi-duel",
-            "instruction": "At Ichi-no-Tani, samurai combat was still partly individual — warrior sought warrior in the chaos. Choose your moment and your ground: skill and honor matter as much as numbers.",
-            "fact": "The Battle of Ichi-no-Tani (1184) was a Minamoto tactical masterpiece: while one force engaged the Taira from the front, Minamoto Yoshitsune led cavalry down a cliff believed to be impassable. The surprise attack from above broke the Taira position. Tadanori died fighting in this rout — killed by a Minamoto warrior who recognized him only by a poem tucked inside his armour."
+            "game": "roundup",
+            "configId": "elephant-keddah",
+            "seed": 51046,
+            "instruction": "Taira no Tadanori: round them all up.",
+            "fact": "The Battle of Ichi-no-Tani (1184) was a Minamoto tactical masterpiece: while one force engaged the Taira from the front, Minamoto Yoshitsune led cavalry down a cliff believed to be impassable. The surprise attack from above broke the Taira position. Tadanori died fighting in this rout — killed by a Minamoto warrior who recognized him only by a poem tucked inside his armour.",
+            "rebalanced": true
           }
         },
         {
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "storysort",
-            "configId": "genji-moonlight",
-            "instruction": "Tadanori lived inside the literary world of the Heian court — where the Tale of Genji set the terms for all beauty. Arrange the moonlit scenes of Japanese court literature that his poems breathed.",
-            "fact": "Waka poetry — 31 syllables in a 5-7-5-7-7 pattern — was the highest art form of Heian Japan. To compose a poem in the moment, on the correct seasonal image, in response to a situation, was the mark of a complete human being. Tadanori carried his poems into battle. When his killer discovered the scroll tucked in his armour, he wept."
+            "game": "tafl",
+            "configId": "linnaeus",
+            "seed": 27055,
+            "instruction": "Taira no Tadanori: bring the king to safety.",
+            "fact": "Waka poetry — 31 syllables in a 5-7-5-7-7 pattern — was the highest art form of Heian Japan. To compose a poem in the moment, on the correct seasonal image, in response to a situation, was the mark of a complete human being. Tadanori carried his poems into battle. When his killer discovered the scroll tucked in his armour, he wept.",
+            "rebalanced": true
           }
         },
         {

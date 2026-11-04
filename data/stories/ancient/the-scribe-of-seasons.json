@@ -28,10 +28,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "matchthree",
-            "configId": "babylon-tablets",
-            "instruction": "Nakht recorded every flood and harvest on papyrus. Match the scribal symbols vertically — column by column, season by season.",
-            "fact": "Egyptian scribes and Babylonian scribes independently developed similar record-keeping systems. Agricultural data — flood levels, grain yields, star positions — was the first 'big data,' used to predict and plan. Nakht's astronomical records fed the same cycle."
+            "game": "archbuild",
+            "configId": "brunelleschi-dome",
+            "seed": 30068,
+            "instruction": "Nakht: raise the arch to bear the load.",
+            "fact": "Egyptian scribes and Babylonian scribes independently developed similar record-keeping systems. Agricultural data — flood levels, grain yields, star positions — was the first 'big data,' used to predict and plan. Nakht's astronomical records fed the same cycle.",
+            "rebalanced": true
           }
         }
       ]
@@ -55,12 +57,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "maze",
-            "seed": 1020,
+            "game": "tangram",
+            "configId": "song-scholar",
+            "seed": 13416,
+            "instruction": "Nakht: fit the seven pieces to the shape.",
             "fact": "The Egyptian civil calendar was based on the Nile's flooding cycle. As Astronomer of Amun, Nakht would have tracked Sirius (Sopdet) — the star's first appearance above the horizon at dawn — which predicted the flood with remarkable accuracy.",
-            "autogen": true,
-            "configId": "pyramid-deep",
-            "instruction": "Arrange the agricultural seasons Nakht would have tracked in the Egyptian calendar: The way to the answer runs through these passages — find the exit."
+            "rebalanced": true
           }
         }
       ]
@@ -80,10 +82,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "sudoku",
-            "configId": "anaxagoras-grid",
-            "instruction": "An astronomer's mind is a grid of order. Nakht tracked the stars to impose regularity on chaos — fill each row, column, and box with every value exactly once.",
-            "fact": "Egyptian astronomers divided the night into 12 hours using 'decan' stars that rose sequentially. Nakht's role as 'Astronomer of Amun' meant charting these risings with calendar precision — the same logical discipline that fills a grid with no repeats."
+            "game": "starchart",
+            "configId": "polynesian-navigators",
+            "seed": 96749,
+            "instruction": "Nakht: read the stars.",
+            "fact": "Egyptian astronomers divided the night into 12 hours using 'decan' stars that rose sequentially. Nakht's role as 'Astronomer of Amun' meant charting these risings with calendar precision — the same logical discipline that fills a grid with no repeats.",
+            "rebalanced": true
           }
         }
       ]
@@ -100,16 +104,13 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "The heliacal rising of which star signaled the annual Nile flood to Egyptians?",
-            "options": [
-              "Polaris",
-              "Sirius (Sopdet)",
-              "Orion",
-              "Jupiter"
-            ],
-            "answer": 1,
-            "fact": "The heliacal rising of Sirius — called Sopdet by Egyptians — occurred just before the Nile's annual flood. This celestial signal was so important that the Egyptian calendar year began on this day. Astronomer-officials like Nakht were responsible for predicting it."
+            "type": "minigame",
+            "game": "senet",
+            "configId": "kendall",
+            "seed": 93682,
+            "instruction": "Nakht: bear your pieces off first.",
+            "fact": "The heliacal rising of Sirius — called Sopdet by Egyptians — occurred just before the Nile's annual flood. This celestial signal was so important that the Egyptian calendar year began on this day. Astronomer-officials like Nakht were responsible for predicting it.",
+            "rebalanced": true
           }
         },
         {
@@ -122,10 +123,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "geometry",
-            "configId": "circle-circumference",
-            "instruction": "Nakht tracked the sun's arc across the sky. Calculate the circumference of the celestial circle the sun traces — the geometry of Egyptian astronomical thought.",
-            "fact": "Egyptian priests calculated the solar year at 365 days — off by only a quarter-day. They tracked the sun's annual path using shadow clocks and star tables. The geometry of circles, arcs, and angles was essential astronomical knowledge long before Greek mathematicians formalised it."
+            "game": "snake",
+            "configId": "sahara",
+            "seed": 49583,
+            "instruction": "Nakht: lead the caravan to every load.",
+            "fact": "Egyptian priests calculated the solar year at 365 days — off by only a quarter-day. They tracked the sun's annual path using shadow clocks and star tables. The geometry of circles, arcs, and angles was essential astronomical knowledge long before Greek mathematicians formalised it.",
+            "rebalanced": true
           }
         },
         {

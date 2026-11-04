@@ -28,12 +28,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "logicgate",
-            "seed": 1007,
+            "game": "soccer",
+            "configId": "hand-of-god",
+            "seed": 33382,
+            "instruction": "Michael Jackson: score from the spot.",
             "fact": "Thriller (1982) has sold an estimated 66–70 million copies worldwide — the best-selling album in history. It produced seven Top 10 singles and won a record eight Grammy Awards in one night.",
-            "autogen": true,
-            "configId": "turing-tape",
-            "instruction": "Michael Jackson's 'Thriller' is the best-selling album of all time. Approximately how many copies has it sold? Wire the gates until the circuit agrees with the table on every row."
+            "rebalanced": true
           }
         }
       ]
@@ -57,10 +57,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "music",
-            "configId": "moonwalk-rhythm",
-            "instruction": "Arrange notes of Michael Jackson's iconic melodic phrase — the King of Pop's signature sound.",
-            "fact": "Jackson's falsetto vocal style, rhythmic precision, and melodic invention were unprecedented in pop music. His vocal range spanned 4 octaves — from bass to soprano — and he used his voice as a percussive instrument as much as a melodic one."
+            "game": "lorentz",
+            "configId": "lorentz-aurora",
+            "seed": 75579,
+            "instruction": "Michael Jackson: steer the particle onto target.",
+            "fact": "Jackson's falsetto vocal style, rhythmic precision, and melodic invention were unprecedented in pop music. His vocal range spanned 4 octaves — from bass to soprano — and he used his voice as a percussive instrument as much as a melodic one.",
+            "rebalanced": true
           }
         }
       ]
@@ -96,12 +98,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "matchthree",
-            "seed": 1009,
+            "game": "reporterflee",
+            "configId": "wwii-correspondent",
+            "seed": 37462,
+            "instruction": "Michael Jackson: get the story out alive.",
             "fact": "The sliding step had existed in various forms since the 1930s and was used by artists including Cab Calloway, Marcel Marceau, and Jeffrey Daniel. Jackson perfected and popularised it on Motown 25 (March 1983), but he credited James Brown and Fred Astaire as his inspirations — not himself as an inventor.",
-            "autogen": true,
-            "configId": "mughal-gems",
-            "instruction": "Michael Jackson invented the moonwalk dance move. Gather what the story needs: match the goods until the tally is met."
+            "rebalanced": true
           }
         },
         {

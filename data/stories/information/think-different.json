@@ -55,12 +55,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "sudoku",
-            "seed": 1022,
+            "game": "chimpmath",
+            "configId": "kanzi-counts",
+            "seed": 70340,
+            "instruction": "Steve Jobs: match the chimps at counting.",
             "fact": "Directed by Ridley Scott and aired once during Super Bowl XVIII (1984), the '1984' Macintosh commercial depicted Apple as a liberator smashing IBM's Orwellian conformity. It is credited with transforming advertising into a medium for brand mythology.",
-            "autogen": true,
-            "configId": "eisenstein-grid",
-            "instruction": "What is the significance of Apple's 1984 Macintosh commercial? Order the grid as the record was ordered — every row, column and box complete."
+            "rebalanced": true
           }
         },
         {
@@ -73,20 +73,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "typeset",
-            "seed": 1023,
+            "game": "expedition",
+            "configId": "ibn-battuta",
+            "seed": 5658,
+            "instruction": "Steve Jobs: plan the expedition route.",
             "fact": "Each Apple product under Jobs didn't just sell — it created or redefined an entire category. The Mac made personal computing accessible; the iPod destroyed the CD model; the iPhone made every previous phone obsolete. Jobs launched five industry-defining products in 26 years.",
-            "autogen": true,
-            "configId": "franklin-gazette",
-            "params": {
-              "lines": [
-                "APPLE",
-                "APPLE MACINTOSH",
-                "APPLE MACINTOSH THE",
-                "APPLE MACINTOSH THE"
-              ]
-            },
-            "instruction": "Arrange these landmark Apple product launches in chronological order: Set the answer in movable type — mirrored, right to left."
+            "rebalanced": true
           }
         }
       ]
@@ -120,12 +112,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "rhythm",
-            "seed": 1024,
+            "game": "cipher",
+            "configId": "vigenere-cabinet",
+            "seed": 51427,
+            "instruction": "Steve Jobs: break the cipher.",
             "fact": "Jobs' exile produced two revolutions. NeXT's operating system became the foundation of macOS when Apple acquired NeXT in 1997 — bringing Jobs back. Pixar, bought from George Lucas for $10 million in 1986, produced Toy Story (1995), the first fully computer-animated feature film. Disney acquired Pixar for $7.4 billion in 2006, making Jobs Disney's largest individual shareholder.",
-            "autogen": true,
-            "configId": "bach-fugue",
-            "instruction": "After being pushed out of Apple in 1985, Jobs founded NeXT Computer and co-acquired Pixar — both of which later transformed their respective industries. Learn the phrase and play it back, note for note."
+            "rebalanced": true
           }
         }
       ]

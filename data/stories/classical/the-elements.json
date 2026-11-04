@@ -109,20 +109,24 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "mirror",
-            "configId": "euclid",
-            "instruction": "Prove Euclid's law of reflection — redirect the light beam to hit the target using mirrors.",
-            "fact": "Euclid wrote 'Optica', one of the earliest works on optics and perspective, laying the groundwork for understanding how light behaves."
+            "game": "campaign",
+            "configId": "akkadian-cities",
+            "seed": 70059,
+            "instruction": "Euclid: win the campaign.",
+            "fact": "Euclid wrote 'Optica', one of the earliest works on optics and perspective, laying the groundwork for understanding how light behaves.",
+            "rebalanced": true
           }
         },
         {
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "mirror",
-            "configId": "newton-prism",
-            "instruction": "Euclid knew light reflects — but what about refraction? Route the beam through two fixed deflectors using two mirrors of your own.",
-            "fact": "Euclid's 'Catoptrics' studied mirrors and reflection. It took nearly two thousand more years for Newton to explain why white light splits into a spectrum — but the geometry Euclid laid down made that discovery possible."
+            "game": "debate",
+            "configId": "wollstonecraft-vindication",
+            "seed": 67409,
+            "instruction": "Euclid: win the argument with evidence.",
+            "fact": "Euclid's 'Catoptrics' studied mirrors and reflection. It took nearly two thousand more years for Newton to explain why white light splits into a spectrum — but the geometry Euclid laid down made that discovery possible.",
+            "rebalanced": true
           }
         },
         {

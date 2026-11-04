@@ -21,7 +21,7 @@ const sources = [
 ]
 
 describe('Typeset formes', () => {
-  it('there are 30 story challenges to cover', () => { expect(uses.length).toBe(30) })
+  it('Epic uses typeset at most 4 times', () => { expect(uses.length).toBeGreaterThan(0); expect(uses.length).toBeLessThanOrEqual(4) })
 
   for (const src of sources) {
     it(`${src.label}: completable forme at every difficulty`, () => {

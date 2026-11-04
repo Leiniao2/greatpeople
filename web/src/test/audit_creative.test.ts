@@ -517,8 +517,9 @@ describe('Typeset', () => {
       })
     }
   }
-  it('story challenge with empty lines (tea-ceremony) still has a forme to set', () => {
-    const ch = storyUses('typeset').find(c => c.id === 'tea-ceremony:0')!
+  it('a challenge with empty lines still has a forme to set', () => {
+    // Was tea-ceremony:0 before the Epic rebalance moved it to another game.
+    const ch = { configId: 'bi-sheng-clay', params: { lines: ['', '', '', ''] }, difficulty: 1 as const }
     const { lines, measure } = buildForme(resolveConfig(TYPESET, ch.configId, ch.params, 'gutenberg-bible'), ch.difficulty!, TYPESET[ch.configId!])
     expect(lines).toEqual(['MOVABLE TYPE'])
     const h = mount(TypesetGame, ch.configId!, ch.difficulty!, 1, ch.params)

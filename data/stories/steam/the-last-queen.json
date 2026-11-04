@@ -28,12 +28,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "matchthree",
-            "seed": 1015,
+            "game": "iceslide",
+            "configId": "meiji-ice",
+            "seed": 95814,
+            "instruction": "Marie Antoinette: slide across the ice to the exit.",
             "fact": "There is no historical evidence Marie Antoinette said this. The phrase appears in Rousseau's Confessions before she arrived in France, attributed anonymously. It was likely propaganda — useful for portraying her as callously out of touch with the poor.",
-            "autogen": true,
-            "configId": "hanseatic-runes",
-            "instruction": "Marie Antoinette famously said 'Let them eat cake' when told the French people had no bread. Gather what the story needs: match the goods until the tally is met."
+            "rebalanced": true
           }
         }
       ]
@@ -63,10 +63,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "matchthree",
-            "configId": "mughal-gems",
-            "instruction": "Match the treasures of Versailles — candlesticks, mirrors, roses, and gold.",
-            "fact": "Versailles under Marie Antoinette employed over 1,500 servants. The annual cost of running the palace was equivalent to 25% of France's entire royal revenue — a number the revolutionaries never let anyone forget."
+            "game": "orbit",
+            "configId": "grand-tour",
+            "seed": 46457,
+            "instruction": "Marie Antoinette: put the body into orbit.",
+            "fact": "Versailles under Marie Antoinette employed over 1,500 servants. The annual cost of running the palace was equivalent to 25% of France's entire royal revenue — a number the revolutionaries never let anyone forget.",
+            "rebalanced": true
           }
         }
       ]
@@ -107,10 +109,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "matchthree",
-            "configId": "hanseatic-runes",
-            "instruction": "Versailles was a world of mirrors and gilded excess. Match the treasures of the palace — the same luxury that the revolutionary crowds outside could not afford.",
-            "fact": "Marie Antoinette's reputation for extravagance was partly real and partly manufactured. Her annual clothing budget was enormous — but Louis XVI actually cut it after they married. Revolutionary pamphlets exaggerated her spending into legend. The 'Madame Deficit' nickname stuck regardless of the facts."
+            "game": "queens",
+            "configId": "bezzel",
+            "seed": 34327,
+            "instruction": "Marie Antoinette: place the queens in peace.",
+            "fact": "Marie Antoinette's reputation for extravagance was partly real and partly manufactured. Her annual clothing budget was enormous — but Louis XVI actually cut it after they married. Revolutionary pamphlets exaggerated her spending into legend. The 'Madame Deficit' nickname stuck regardless of the facts.",
+            "rebalanced": true
           }
         },
         {

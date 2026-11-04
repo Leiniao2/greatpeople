@@ -27,17 +27,13 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "What plant did Gregor Mendel use in his heredity experiments?",
-            "options": [
-              "Pea plants",
-              "Apple trees",
-              "Wheat",
-              "Sunflowers"
-            ],
-            "answer": 0,
-            "countdown": 10,
-            "fact": "Mendel chose pea plants (Pisum sativum) with extraordinary care. They had clearly distinguishable traits — smooth or wrinkled seeds, yellow or green pods, tall or short stems — that produced consistent, countable offspring. Over eight years, he tracked 29,000 plants and applied mathematics to biology for the first time."
+            "type": "minigame",
+            "game": "soccer",
+            "configId": "pele-final",
+            "seed": 92214,
+            "instruction": "Gregor Mendel: score from the spot.",
+            "fact": "Mendel chose pea plants (Pisum sativum) with extraordinary care. They had clearly distinguishable traits — smooth or wrinkled seeds, yellow or green pods, tall or short stems — that produced consistent, countable offspring. Over eight years, he tracked 29,000 plants and applied mathematics to biology for the first time.",
+            "rebalanced": true
           }
         }
       ]
@@ -55,12 +51,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "rhythm",
-            "seed": 1003,
+            "game": "debate",
+            "configId": "wollstonecraft-vindication",
+            "seed": 63049,
+            "instruction": "Gregor Mendel: win the argument with evidence.",
             "fact": "When Mendel published his results in 1866, the scientific world largely ignored them. His paper was cited only a handful of times in the next 35 years. It was not until 1900 — 16 years after Mendel's death — that three botanists independently rediscovered his laws and finally found his original paper, launching the science of genetics.",
-            "autogen": true,
-            "configId": "beethoven-motif",
-            "instruction": "Mendel's discovery of the laws of heredity was immediately celebrated by the scientific community. Learn the phrase and play it back, note for note."
+            "rebalanced": true
           }
         }
       ]
@@ -80,12 +76,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "matchthree",
-            "seed": 1004,
+            "game": "railway",
+            "configId": "underground",
+            "seed": 5545,
+            "instruction": "Gregor Mendel: lay the track for every train.",
             "fact": "The 3:1 ratio Mendel observed — three dominant to one recessive — was not a coincidence or approximation. It was a mathematical law. Mendel was the first scientist to apply statistical analysis to biology, and his insight that inheritance comes in discrete packets (what we now call genes) was centuries ahead of its time.",
-            "autogen": true,
-            "configId": "cairo-alchemy",
-            "instruction": "Arrange the key steps of Mendel's pea experiment in order: Gather what the story needs: match the goods until the tally is met."
+            "rebalanced": true
           }
         },
         {
@@ -123,10 +119,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "sudoku",
-            "configId": "mendel-grid",
-            "instruction": "Mendel counted and sorted thousands of seeds using meticulous grid records. Fill the inheritance grid — each row, column, and box must contain every trait combination exactly once.",
-            "fact": "Mendel kept records of extraordinary precision across eight years of experiments. He tracked 29,000 plants through multiple generations, recording results in tables that would not be out of place in a modern biology lab. His data was so clean that statistician R.A. Fisher later controversially suggested it was too perfect."
+            "game": "lorentz",
+            "configId": "lorentz-spiral",
+            "seed": 91294,
+            "instruction": "Gregor Mendel: steer the particle onto target.",
+            "fact": "Mendel kept records of extraordinary precision across eight years of experiments. He tracked 29,000 plants through multiple generations, recording results in tables that would not be out of place in a modern biology lab. His data was so clean that statistician R.A. Fisher later controversially suggested it was too perfect.",
+            "rebalanced": true
           }
         },
         {

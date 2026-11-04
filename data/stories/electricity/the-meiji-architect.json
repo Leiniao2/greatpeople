@@ -28,12 +28,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "rhythm",
-            "seed": 1021,
+            "game": "wordle",
+            "configId": "turing-rotor",
+            "seed": 9672,
+            "instruction": "Itō Hirobumi: guess the word.",
             "fact": "The Meiji Constitution of 1889 was drafted under Itō's leadership after he studied European constitutional models — particularly Prussia's. It established Japan as a constitutional monarchy and remained in force until 1947.",
-            "autogen": true,
-            "configId": "beethoven-motif",
-            "instruction": "What was Itō Hirobumi's greatest constitutional achievement for Japan? Learn the phrase and play it back, note for note."
+            "rebalanced": true
           }
         }
       ]
@@ -63,12 +63,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "matchthree",
-            "seed": 1022,
+            "game": "circuit",
+            "configId": "edison-lamps",
+            "seed": 36153,
+            "instruction": "Itō Hirobumi: wire the circuit until it lights.",
             "fact": "Itō served as Japan's Prime Minister four separate times between 1885 and 1901. His assassination by An Jung-geun in 1909 made him a martyr in Japan and a symbol of imperialism in Korea — two truths that coexist uncomfortably.",
-            "autogen": true,
-            "configId": "cairo-alchemy",
-            "instruction": "Arrange the key events of Itō Hirobumi's career in chronological order: Gather what the story needs: match the goods until the tally is met."
+            "rebalanced": true
           }
         }
       ]
@@ -86,10 +86,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "crossword",
-            "configId": "ito",
-            "instruction": "Complete the Meiji era crossword — the reforms that transformed Japan in a single generation.",
-            "fact": "Japan went from feudal isolation to modern nation-state between 1868 and 1912: abolishing samurai, building railroads, establishing universal education, and defeating both China and Russia in war. No country modernized so completely so quickly."
+            "game": "pairs",
+            "configId": "ancient",
+            "seed": 56493,
+            "instruction": "Itō Hirobumi: match each figure to their work.",
+            "fact": "Japan went from feudal isolation to modern nation-state between 1868 and 1912: abolishing samurai, building railroads, establishing universal education, and defeating both China and Russia in war. No country modernized so completely so quickly.",
+            "rebalanced": true
           }
         }
       ]
@@ -103,20 +105,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "typeset",
-            "seed": 1023,
+            "game": "cryptarithm",
+            "configId": "subtraction",
+            "seed": 2302,
+            "instruction": "Itō Hirobumi: crack the letter sum.",
             "fact": "Japan transformed from a feudal samurai society to a modern industrial nation in a single generation — faster than any other country in history. By 1905, Japan had defeated Russia in war, astonishing the world and inspiring anti-colonial movements across Asia.",
-            "autogen": true,
-            "configId": "franklin-gazette",
-            "params": {
-              "lines": [
-                "FEUDAL",
-                "FEUDAL DOMAINS",
-                "FEUDAL DOMAINS HAN",
-                "FEUDAL DOMAINS HAN"
-              ]
-            },
-            "instruction": "Arrange these Meiji Restoration reforms in the order they were introduced: Set the answer in movable type — mirrored, right to left."
+            "rebalanced": true
           }
         },
         {

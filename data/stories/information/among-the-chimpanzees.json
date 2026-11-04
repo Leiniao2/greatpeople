@@ -28,12 +28,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "logicgate",
-            "seed": 1013,
+            "game": "alchemy",
+            "configId": "mendeleev",
+            "seed": 468,
+            "instruction": "Jane Goodall: discover the target substance.",
             "fact": "Jane Goodall arrived at Gombe with no scientific degree — just a passion for animals and a naturalist's notebook. Her 60+ years of continuous research at Gombe is the longest running wildlife study in history, revealing that chimpanzees have personalities, cultures, and emotions.",
-            "autogen": true,
-            "configId": "turing-tape",
-            "instruction": "Arrange these milestones of Jane Goodall's career in chronological order: Wire the gates until the circuit agrees with the table on every row."
+            "rebalanced": true
           }
         }
       ]
@@ -85,10 +85,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "classify",
-            "configId": "ecosystems",
-            "instruction": "Gombe Stream is a complex ecosystem of rainforest, savannah, and lakeshore. Classify each species into its correct ecological role — as Goodall mapped her chimpanzees' world.",
-            "fact": "Jane Goodall's research at Gombe revealed that chimpanzee communities have distinct cultures — different groups use different tools, have different social customs, and even different vocalizations. Culture, once thought uniquely human, turns out to be a primate invention at least 7 million years old."
+            "game": "sliding",
+            "configId": "pyramid-stones",
+            "seed": 45308,
+            "instruction": "Jane Goodall: slide the tiles back into order.",
+            "fact": "Jane Goodall's research at Gombe revealed that chimpanzee communities have distinct cultures — different groups use different tools, have different social customs, and even different vocalizations. Culture, once thought uniquely human, turns out to be a primate invention at least 7 million years old.",
+            "rebalanced": true
           }
         },
         {
@@ -99,10 +101,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "classify",
-            "configId": "darwin-beaks",
-            "instruction": "Goodall's chimps used different tools for different tasks — just as Darwin's finches evolved different beaks for different foods. Classify each beak by what it eats.",
-            "fact": "Darwin's finches and Goodall's chimps are linked by the same insight: organisms adapt their behaviour and bodies to their environment. When Goodall observed chimps selecting and modifying specific twigs to fish for termites, she was watching tool-use behaviour — a hallmark of intelligence — arising from the same evolutionary pressures Darwin described."
+            "game": "pseudocode",
+            "configId": "turing-machine",
+            "seed": 4897,
+            "instruction": "Jane Goodall: put the program in order.",
+            "fact": "Darwin's finches and Goodall's chimps are linked by the same insight: organisms adapt their behaviour and bodies to their environment. When Goodall observed chimps selecting and modifying specific twigs to fish for termites, she was watching tool-use behaviour — a hallmark of intelligence — arising from the same evolutionary pressures Darwin described.",
+            "rebalanced": true
           }
         }
       ]
@@ -122,12 +126,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "matchthree",
-            "seed": 1015,
+            "game": "soccer",
+            "configId": "copa-final",
+            "seed": 52379,
+            "instruction": "Jane Goodall: score from the spot.",
             "fact": "More than 60 years after Goodall first set up camp at Gombe, researchers continue her work, following multiple generations of chimpanzees. The study has revealed the transmission of cultural practices across generations and the devastating impact of habitat loss — no other wildlife study has tracked a single population for so long.",
-            "autogen": true,
-            "configId": "mughal-gems",
-            "instruction": "Jane Goodall's research at Gombe Stream, begun in 1960, is the longest-running continuous wildlife field study in history. Gather what the story needs: match the goods until the tally is met."
+            "rebalanced": true
           }
         },
         {

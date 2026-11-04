@@ -28,12 +28,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "rhythm",
-            "seed": 1018,
+            "game": "morris",
+            "configId": "nine-mens",
+            "seed": 36673,
+            "instruction": "Pleistoanax: form mills to win.",
             "fact": "Pleistoanax was exiled in 445 BCE after being accused of accepting bribes from Pericles to withdraw the Spartan army from Attica. He spent nineteen years in exile near Mount Lycaeum before being recalled.",
-            "autogen": true,
-            "configId": "hildegard-chant",
-            "instruction": "Why was Pleistoanax exiled from Sparta? Learn the phrase and play it back, note for note."
+            "rebalanced": true
           }
         }
       ]
@@ -57,10 +57,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "tactics",
-            "configId": "thermopylae",
-            "instruction": "Negotiate the Peace of Nicias — maneuver Sparta and Athens toward a lasting truce.",
-            "fact": "The Peace of Nicias (421 BCE) was negotiated largely by Pleistoanax on the Spartan side. It guaranteed fifty years of peace between Athens and Sparta — though it lasted less than seven before the Sicilian Expedition shattered it."
+            "game": "wargame",
+            "configId": "mao-tactics",
+            "seed": 50203,
+            "instruction": "Pleistoanax: outmanoeuvre the enemy.",
+            "fact": "The Peace of Nicias (421 BCE) was negotiated largely by Pleistoanax on the Spartan side. It guaranteed fifty years of peace between Athens and Sparta — though it lasted less than seven before the Sicilian Expedition shattered it.",
+            "rebalanced": true
           }
         }
       ]
@@ -84,10 +86,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "tactics",
-            "configId": "gaugamela",
-            "instruction": "Pleistoanax must outmanoeuvre the Athenian alliance on the Spartan board. Find the decisive move that secures a lasting peace — or at least a temporary one.",
-            "fact": "Pleistoanax negotiated the Thirty Years' Peace in 446 BCE after withdrawing from Attica — a withdrawal his enemies called cowardice or corruption. The peace lasted only fifteen years before the Peloponnesian War erupted, but it gave Greece a generation of relative stability in which philosophy, drama, and architecture flourished."
+            "game": "pairs",
+            "configId": "inventors",
+            "seed": 23310,
+            "instruction": "Pleistoanax: match each figure to their work.",
+            "fact": "Pleistoanax negotiated the Thirty Years' Peace in 446 BCE after withdrawing from Attica — a withdrawal his enemies called cowardice or corruption. The peace lasted only fifteen years before the Peloponnesian War erupted, but it gave Greece a generation of relative stability in which philosophy, drama, and architecture flourished.",
+            "rebalanced": true
           }
         }
       ]
@@ -101,15 +105,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "scytale",
-            "seed": 1019,
+            "game": "siege",
+            "configId": "constantinople-1453",
+            "seed": 59114,
+            "instruction": "Pleistoanax: hold the walls against the waves.",
             "fact": "The Thirty Years' Peace (446 BCE) lasted only fourteen years before the Peloponnesian War broke out in 431 BCE. Thucydides blamed Spartan fear of Athenian power growth — not any specific provocation — as the true cause of the war.",
-            "autogen": true,
-            "configId": "spartan-rod",
-            "params": {
-              "plaintext": "THE PEACE BREAKS SPARTA MARCHES"
-            },
-            "instruction": "A Spartan dispatch has been captured on its leather strip. Find the rod that lines it up and read the news."
+            "rebalanced": true
           }
         },
         {

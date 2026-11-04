@@ -28,12 +28,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "rhythm",
-            "seed": 1006,
+            "game": "fieldsurvey",
+            "configId": "fossil-cliffs",
+            "seed": 72442,
+            "instruction": "Mani: survey the field.",
             "fact": "Mani (216–274 CE) founded Manichaeism, a dualistic religion blending Zoroastrian light-and-darkness cosmology, Christian ethics, and Buddhist concepts of spiritual purification. At its height, Manichaeism spread from the Roman Empire to Tang Dynasty China — one of history's most geographically expansive faiths.",
-            "autogen": true,
-            "configId": "hildegard-chant",
-            "instruction": "What religion did Mani found in the 3rd century CE? Learn the phrase and play it back, note for note."
+            "rebalanced": true
           }
         }
       ]
@@ -120,10 +120,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "music",
-            "configId": "mani-hymn",
-            "instruction": "Mani composed hymns for every corner of his cosmic map. Arrange the descending phrases of a Manichaean hymn — light descending into the world, note by note.",
-            "fact": "Mani composed hymnbooks in multiple languages, including Middle Persian, Parthian, and Syriac. The Coptic Manichaean Psalm-Book, discovered in Egypt in 1930, preserves hundreds of hymns that reveal a sophisticated musical tradition within his church."
+            "game": "archbuild",
+            "configId": "brunelleschi-dome",
+            "seed": 7289,
+            "instruction": "Mani: raise the arch to bear the load.",
+            "fact": "Mani composed hymnbooks in multiple languages, including Middle Persian, Parthian, and Syriac. The Coptic Manichaean Psalm-Book, discovered in Egypt in 1930, preserves hundreds of hymns that reveal a sophisticated musical tradition within his church.",
+            "rebalanced": true
           }
         },
         {

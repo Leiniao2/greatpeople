@@ -28,12 +28,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "sudoku",
-            "seed": 1016,
+            "game": "assembly",
+            "configId": "arsenal",
+            "seed": 59742,
+            "instruction": "Joël Robuchon: run the line to target.",
             "fact": "At his peak, Joël Robuchon held 32 Michelin stars across his restaurants worldwide — more than any chef in history. His empire spanned Paris, Monte Carlo, Las Vegas, Tokyo, Hong Kong, and beyond, each kitchen reflecting his obsessive pursuit of perfection.",
-            "autogen": true,
-            "configId": "eisenstein-grid",
-            "instruction": "How many Michelin stars did Joël Robuchon hold at the peak of his career? Order the grid as the record was ordered — every row, column and box complete."
+            "rebalanced": true
           }
         }
       ]
@@ -57,20 +57,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "typeset",
-            "seed": 1017,
+            "game": "sliding",
+            "configId": "pyramid-stones",
+            "seed": 83716,
+            "instruction": "Joël Robuchon: slide the tiles back into order.",
             "fact": "Robuchon's retirement in 1996 was unprecedented in fine dining. He said he was exhausted and wanted to explore life beyond the kitchen. Seven years later, his return with the L'Atelier concept — casual counter seating around an open kitchen — reinvented fine dining for a new generation.",
-            "autogen": true,
-            "configId": "franklin-gazette",
-            "params": {
-              "lines": [
-                "ROBUCHON",
-                "ROBUCHON WINS",
-                "ROBUCHON WINS HIS",
-                "ROBUCHON WINS HIS FIRST"
-              ]
-            },
-            "instruction": "Arrange these milestones of Joël Robuchon's extraordinary career in order: Set the answer in movable type — mirrored, right to left."
+            "rebalanced": true
           }
         }
       ]

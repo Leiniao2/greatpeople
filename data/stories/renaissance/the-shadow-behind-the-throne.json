@@ -82,12 +82,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "matchthree",
-            "seed": 1021,
+            "game": "abacus",
+            "configId": "soroban-flash",
+            "seed": 12651,
+            "instruction": "Tlacaelel: reckon it on the abacus.",
             "fact": "Tlacaelel's greatest achievement was ideological: he transformed the Mexica from one of many Nahua-speaking peoples into the chosen people of the sun god, with a cosmic obligation to feed Huitzilopochtli through human sacrifice. This narrative made every war a religious act and every conquest a divine duty — creating the psychological engine that drove Aztec expansion for a century.",
-            "autogen": true,
-            "configId": "lisbon-spices",
-            "instruction": "Arrange the key reforms and events of Tlacaelel's career in order: Gather what the story needs: match the goods until the tally is met."
+            "rebalanced": true
           }
         },
         {
@@ -98,10 +98,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "matchthree",
-            "configId": "aztec-market",
-            "instruction": "The Aztec empire ran on tribute — cloth, cacao, jade, and gold flowing into Tenochtitlan from every conquered province. Clear the tribute board that fed the greatest empire in the Americas.",
-            "fact": "The Aztec tribute system was Tlacaelel's administrative masterpiece. He formalized the list of goods each conquered province owed the empire and created the bureaucratic machinery to collect it. The Mendoza Codex — a post-conquest record of the tribute system — shows 400 towns paying tribute in 42 categories of goods. It was the most elaborate tax system in the pre-Columbian Americas."
+            "game": "sapper",
+            "configId": "namur-1692",
+            "seed": 92141,
+            "instruction": "Tlacaelel: clear the field without a blast.",
+            "fact": "The Aztec tribute system was Tlacaelel's administrative masterpiece. He formalized the list of goods each conquered province owed the empire and created the bureaucratic machinery to collect it. The Mendoza Codex — a post-conquest record of the tribute system — shows 400 towns paying tribute in 42 categories of goods. It was the most elaborate tax system in the pre-Columbian Americas.",
+            "rebalanced": true
           }
         }
       ]
@@ -129,10 +131,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "tactics",
-            "configId": "senate",
-            "instruction": "Behind every Aztec emperor stood Tlacaelel — the counselor who turned political advantage into permanent architecture. Navigate the council chamber where empires are made with words.",
-            "fact": "The Flower Wars (Xochiyaoyotl) that Tlacaelel institutionalized were a unique form of ritualized conflict: neighboring states would agree to scheduled battles whose purpose was not territorial conquest but the capture of living warriors for sacrifice. Critics called them morally monstrous; defenders argued they were a more humane alternative to wars of annihilation. The truth is that they also kept potential rivals permanently weak."
+            "game": "magicsquare",
+            "configId": "islamic-wafq",
+            "seed": 5271,
+            "instruction": "Tlacaelel: complete the magic square.",
+            "fact": "The Flower Wars (Xochiyaoyotl) that Tlacaelel institutionalized were a unique form of ritualized conflict: neighboring states would agree to scheduled battles whose purpose was not territorial conquest but the capture of living warriors for sacrifice. Critics called them morally monstrous; defenders argued they were a more humane alternative to wars of annihilation. The truth is that they also kept potential rivals permanently weak.",
+            "rebalanced": true
           }
         },
         {

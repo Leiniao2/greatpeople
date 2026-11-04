@@ -25,20 +25,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "typeset",
-            "seed": 1007,
+            "game": "alchemy",
+            "configId": "wuxing",
+            "seed": 85102,
+            "instruction": "Batu Khan: discover the target substance.",
             "fact": "Batu Khan (c.1207–1255) was the grandson of Genghis Khan and founder of the Golden Horde. In 1241, he led the most western Mongol campaign in history, crushing Polish and Hungarian armies simultaneously and reaching the gates of Vienna — before news of Ögedei Khan's death caused the army to withdraw.",
-            "autogen": true,
-            "configId": "bi-sheng-clay",
-            "params": {
-              "lines": [
-                "GRANDSON OF",
-                "GRANDSON OF",
-                "GRANDSON OF GENGHIS",
-                "GRANDSON OF GENGHIS KHAN"
-              ]
-            },
-            "instruction": "Whose grandson was Batu Khan, and what western invasion did he lead? Set the answer in movable type — mirrored, right to left."
+            "rebalanced": true
           }
         }
       ]
@@ -56,15 +48,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "pigpen",
-            "seed": 1008,
+            "game": "chemistry",
+            "configId": "spice-route",
+            "seed": 50166,
+            "instruction": "Batu Khan: mix the right measures.",
             "fact": "At the Battle of Legnica (1241), the Mongols annihilated a combined Polish-German force. At the Battle of Mohi the same month, they destroyed the Hungarian army. Western Europe was essentially undefended. The Mongols withdrew not because of military defeat but because of succession politics — Ögedei Khan's death required the princes to return east.",
-            "autogen": true,
-            "configId": "masonic-grid",
-            "params": {
-              "plaintext": "THE MONGOLS WIN AT LEGNICA"
-            },
-            "instruction": "A scout's report from Poland is drawn in grid shapes. Read what happened at Legnica."
+            "rebalanced": true
           }
         }
       ]
@@ -82,12 +71,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "maze",
-            "seed": 1009,
+            "game": "canallock",
+            "configId": "grand-canal",
+            "seed": 180,
+            "instruction": "Batu Khan: pass the boats through the locks.",
             "fact": "The Mongol campaign of 1241 was one of the most devastating military events in medieval European history. Poland, Hungary, and Moravia were devastated. Poland lost an estimated 25% of its population. When the Mongols withdrew, medieval Europe assumed it was a temporary pause — for years, communities lived in terror of their return.",
-            "autogen": true,
-            "configId": "cedar-forest",
-            "instruction": "Arrange the key events of Batu Khan's western campaign in order: The way to the answer runs through these passages — find the exit."
+            "rebalanced": true
           }
         },
         {

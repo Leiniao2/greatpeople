@@ -25,12 +25,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "rhythm",
-            "seed": 1016,
+            "game": "chemistry",
+            "configId": "mendel-cross",
+            "seed": 81982,
+            "instruction": "Rumiñahui: mix the right measures.",
             "fact": "Rumiñahui ('Stone Eye') was Atahualpa's most capable general. When Pizarro captured and executed the Inca emperor in 1533, Rumiñahui gathered the northern army and led resistance from Quito. Rather than let Pizarro's forces loot the city's treasures, he burned Quito and hid its gold — a legendary hoard that has never been found.",
-            "autogen": true,
-            "configId": "bach-fugue",
-            "instruction": "Why is Rumiñahui remembered as one of the great symbols of Inca resistance? Learn the phrase and play it back, note for note."
+            "rebalanced": true
           }
         }
       ]
@@ -48,12 +48,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "sudoku",
-            "seed": 1017,
+            "game": "painting",
+            "configId": "egyptian-sunset",
+            "seed": 49717,
+            "instruction": "Rumiñahui: paint each region in its true colour.",
             "fact": "After months of guerrilla resistance, Rumiñahui was captured in early 1535. He was tortured by the Spanish, who demanded to know where he had hidden Quito's treasure. He revealed nothing. He was publicly executed in Quito in early 1535 — an act the Spanish intended as a demonstration of power, which instead made him an immortal symbol of defiance.",
-            "autogen": true,
-            "configId": "euclid-grid",
-            "instruction": "Rumiñahui was treated as a prisoner of war and eventually released after the conquest of Quito. Order the grid as the record was ordered — every row, column and box complete."
+            "rebalanced": true
           }
         }
       ]
@@ -71,12 +71,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "maze",
-            "seed": 1018,
+            "game": "snake",
+            "configId": "silk-road",
+            "seed": 50673,
+            "instruction": "Rumiñahui: lead the caravan to every load.",
             "fact": "The lost treasure of Quito became one of the great legends of the Americas. Expeditions searched for it for centuries, and legends of El Dorado were partly inspired by the belief that Rumiñahui had hidden an incomprehensible fortune somewhere in the Andes. No credible discovery has ever been made.",
-            "autogen": true,
-            "configId": "pacific-strait",
-            "instruction": "Arrange the key events of Rumiñahui's resistance in order: The way to the answer runs through these passages — find the exit."
+            "rebalanced": true
           }
         },
         {
@@ -87,10 +87,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "tactics",
-            "configId": "general",
-            "instruction": "Rumiñahui had no answer to Spanish cavalry on flat ground — so he chose mountain passes, river crossings, and jungle ambushes. Position your forces where horsemen cannot charge.",
-            "fact": "The Spanish advantage in the Inca conquest was not just steel and gunpowder — it was horses. The Inca had no large domesticated animals. The sight of mounted soldiers, armored in steel, was psychologically devastating. Rumiñahui understood this and consistently drew Spanish forces into terrain that negated the horse — steep trails, forest, and fast rivers."
+            "game": "pendulum",
+            "configId": "galileo",
+            "seed": 96893,
+            "instruction": "Rumiñahui: set the clock to keep time.",
+            "fact": "The Spanish advantage in the Inca conquest was not just steel and gunpowder — it was horses. The Inca had no large domesticated animals. The sight of mounted soldiers, armored in steel, was psychologically devastating. Rumiñahui understood this and consistently drew Spanish forces into terrain that negated the horse — steep trails, forest, and fast rivers.",
+            "rebalanced": true
           }
         }
       ]

@@ -31,17 +31,13 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "When did Edmund Hillary and Tenzing Norgay first reach the summit of Mount Everest?",
-            "options": [
-              "29 May 1953",
-              "12 April 1950",
-              "3 June 1955",
-              "29 May 1956"
-            ],
-            "answer": 0,
-            "countdown": 10,
-            "fact": "Hillary and Tenzing summited at 11:30 AM on 29 May 1953, spending only 15 minutes on top before descending — long enough for photographs and to bury a small cross and some sweets as offerings. The news reached London in time to appear on the morning of Queen Elizabeth II's coronation."
+            "type": "minigame",
+            "game": "bridge",
+            "configId": "roman-bridges",
+            "seed": 22812,
+            "instruction": "Edmund Hillary: link the islands with bridges.",
+            "fact": "Hillary and Tenzing summited at 11:30 AM on 29 May 1953, spending only 15 minutes on top before descending — long enough for photographs and to bury a small cross and some sweets as offerings. The news reached London in time to appear on the morning of Queen Elizabeth II's coronation.",
+            "rebalanced": true
           }
         }
       ]
@@ -71,12 +67,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "matchthree",
-            "seed": 1003,
+            "game": "assembly",
+            "configId": "wedgwood",
+            "seed": 39954,
+            "instruction": "Edmund Hillary: run the line to target.",
             "fact": "Hillary always insisted that he and Tenzing summited together as a team, refusing to say who stepped onto the peak first. He later wrote: 'We didn't talk about it much — it didn't seem important.' For the rest of his life, Hillary devoted enormous energy to building schools, hospitals, and water pipelines for the Sherpa communities of Nepal.",
-            "autogen": true,
-            "configId": "mughal-gems",
-            "instruction": "Hillary claimed to the press that he reached the summit alone, ahead of Tenzing Norgay. Gather what the story needs: match the goods until the tally is met."
+            "rebalanced": true
           }
         }
       ]
@@ -106,12 +102,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "sudoku",
-            "seed": 1004,
+            "game": "worldclock",
+            "configId": "telegraph-globe",
+            "seed": 90564,
+            "instruction": "Edmund Hillary: convert the times across the globe.",
             "fact": "The 1953 expedition was a meticulous logistical operation: 400 porters, 362 loads of equipment, months of acclimatization. John Hunt's planning was military in precision. But in the end, it came down to two men in the predawn cold, kicking steps into ice above the Hillary Step.",
-            "autogen": true,
-            "configId": "eisenstein-grid",
-            "instruction": "Arrange the key events of the 1953 Everest expedition in order: Order the grid as the record was ordered — every row, column and box complete."
+            "rebalanced": true
           }
         }
       ]

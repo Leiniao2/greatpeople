@@ -121,10 +121,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "matchthree",
-            "configId": "mughal-gems",
-            "instruction": "Agra's jewellers demanded perfection — only chains of 4 or more gems matter, and diagonals count. Clear 36 gems from the 7×7 bazaar.",
-            "fact": "Akbar's Mughal Empire controlled the world's richest gem pipeline: rubies from Burma, emeralds from Colombia via Portuguese Goa, sapphires from Ceylon, and diamonds from Golconda — the mine that produced the Koh-i-Noor. European merchants called Agra's Jauhari Bazaar the most magnificent market on Earth."
+            "game": "chimpmath",
+            "configId": "jane-goodall-chimps",
+            "seed": 80262,
+            "instruction": "Mother Teresa: match the chimps at counting.",
+            "fact": "Akbar's Mughal Empire controlled the world's richest gem pipeline: rubies from Burma, emeralds from Colombia via Portuguese Goa, sapphires from Ceylon, and diamonds from Golconda — the mine that produced the Koh-i-Noor. European merchants called Agra's Jauhari Bazaar the most magnificent market on Earth.",
+            "rebalanced": true
           }
         },
         {

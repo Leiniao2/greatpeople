@@ -51,12 +51,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "logicgate",
-            "seed": 1026,
+            "game": "cargo",
+            "configId": "tea-clipper",
+            "seed": 88706,
+            "instruction": "Nian Xiyao: stow the cargo.",
             "fact": "Traditional Chinese painting used 'axonometric' perspective — objects remained the same size regardless of distance, and there was no single vanishing point. This was a deliberate artistic choice, not a technical limitation: it allowed the eye to travel through a landscape rather than fix on one point. Nian Xiyao presented Western perspective as a complementary system, not a replacement.",
-            "autogen": true,
-            "configId": "lovelace-engine",
-            "instruction": "Chinese painting traditions had long used the same perspective system as European art before Nian Xiyao's book. Wire the gates until the circuit agrees with the table on every row."
+            "rebalanced": true
           }
         }
       ]
@@ -74,12 +74,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "matchthree",
-            "seed": 1027,
+            "game": "telegraphnet",
+            "configId": "indo",
+            "seed": 87771,
+            "instruction": "Nian Xiyao: connect the cities by wire.",
             "fact": "Nian Xiyao's imperial kilns at Jingdezhen produced some of the most technically spectacular porcelain in Chinese history: new enamel colors mixed from European pigments, copper-red glazes that had been lost for centuries, and forms that reflected Western shapes while remaining distinctly Chinese. His career embodied the Yongzheng court's sophisticated engagement with global culture.",
-            "autogen": true,
-            "configId": "hanseatic-runes",
-            "instruction": "Arrange these key contributions of Nian Xiyao's career in order: Gather what the story needs: match the goods until the tally is met."
+            "rebalanced": true
           }
         },
         {
@@ -111,20 +111,24 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "geometry",
-            "configId": "anaxagoras-shadow",
-            "instruction": "Western perspective begins with a single point of light casting predictable shadows. Master the geometry of sight that Nian Xiyao translated for the Qing imperial court.",
-            "fact": "Linear perspective was developed by Filippo Brunelleschi in Florence around 1420 and became the dominant visual system of European art. Nian Xiyao's Shixue explained that perspective was not merely an artistic convention but a mathematical truth — that sight itself operates geometrically. This was a revolutionary claim in a culture that viewed painting as an act of imagination rather than observation."
+            "game": "queens",
+            "configId": "gauss",
+            "seed": 32535,
+            "instruction": "Nian Xiyao: place the queens in peace.",
+            "fact": "Linear perspective was developed by Filippo Brunelleschi in Florence around 1420 and became the dominant visual system of European art. Nian Xiyao's Shixue explained that perspective was not merely an artistic convention but a mathematical truth — that sight itself operates geometrically. This was a revolutionary claim in a culture that viewed painting as an act of imagination rather than observation.",
+            "rebalanced": true
           }
         },
         {
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "colormix",
-            "configId": "ultramarine-lapis",
-            "instruction": "Nian Xiyao introduced European enamel pigments to the imperial palette — cobalt blues, copper greens, and opaque whites unknown in China. Mix the colors that fused two worlds on a single porcelain surface.",
-            "fact": "The 'famille rose' enamel palette that transformed 18th-century Chinese porcelain — pink, purple, and opaque white — was introduced during Nian Xiyao's tenure as kiln superintendent. The key ingredient was a tin-based opacifier previously unknown in Chinese ceramic chemistry. These colors made Qing porcelain unlike anything before or since."
+            "game": "debate",
+            "configId": "socrates-apology",
+            "seed": 11636,
+            "instruction": "Nian Xiyao: win the argument with evidence.",
+            "fact": "The 'famille rose' enamel palette that transformed 18th-century Chinese porcelain — pink, purple, and opaque white — was introduced during Nian Xiyao's tenure as kiln superintendent. The key ingredient was a tin-based opacifier previously unknown in Chinese ceramic chemistry. These colors made Qing porcelain unlike anything before or since.",
+            "rebalanced": true
           }
         },
         {

@@ -33,16 +33,13 @@
         {
           "type": "challenge",
           "challenge": {
-            "type": "quiz",
-            "question": "Belisarius reconquered which three territories for Emperor Justinian?",
-            "options": [
-              "Persia, Egypt, and Britain",
-              "North Africa, Italy, and part of Spain",
-              "Greece, Syria, and Arabia",
-              "France, Germany, and Britain"
-            ],
-            "answer": 1,
-            "fact": "Belisarius retook North Africa (533 CE), Italy (536–540 CE), and part of Spain — temporarily reuniting the old Western Roman Empire under Constantinople. He did it with armies far smaller than his opponents'."
+            "type": "minigame",
+            "game": "wallbuilder",
+            "configId": "great-wall",
+            "seed": 11312,
+            "instruction": "Belisarius: raise the wall without gaps.",
+            "fact": "Belisarius retook North Africa (533 CE), Italy (536–540 CE), and part of Spain — temporarily reuniting the old Western Roman Empire under Constantinople. He did it with armies far smaller than his opponents'.",
+            "rebalanced": true
           }
         }
       ]
@@ -83,10 +80,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "geometry",
-            "configId": "circle-circumference",
-            "instruction": "Belisarius's siege engineers needed to calculate the perimeter of fortifications. Solve this circumference problem.",
-            "fact": "Byzantine siege engineers used torsion catapults and trebuchets that required precise angle and distance calculations. A few degrees off meant the difference between destroying a gate or overshooting the wall."
+            "game": "tradeboard",
+            "configId": "hansa",
+            "seed": 73271,
+            "instruction": "Belisarius: outtrade the rival merchants.",
+            "fact": "Byzantine siege engineers used torsion catapults and trebuchets that required precise angle and distance calculations. A few degrees off meant the difference between destroying a gate or overshooting the wall.",
+            "rebalanced": true
           }
         }
       ]
@@ -104,10 +103,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "klotski",
-            "configId": "last-general",
-            "instruction": "Guide the general (gold block) through the formation to the exit at the bottom.",
-            "fact": "HuaRong Road (华容道) is a Chinese sliding puzzle based on Cao Cao's escape after the Battle of Red Cliffs in 208 AD — one of the most analyzed puzzles in combinatorics."
+            "game": "ferry",
+            "configId": "wolf-goat",
+            "seed": 3145,
+            "instruction": "Belisarius: get everyone safely across.",
+            "fact": "HuaRong Road (华容道) is a Chinese sliding puzzle based on Cao Cao's escape after the Battle of Red Cliffs in 208 AD — one of the most analyzed puzzles in combinatorics.",
+            "rebalanced": true
           }
         },
         {

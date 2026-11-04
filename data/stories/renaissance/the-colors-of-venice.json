@@ -28,20 +28,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "typeset",
-            "seed": 1001,
+            "game": "pendulum",
+            "configId": "huygens-clock",
+            "seed": 9022,
+            "instruction": "Titian: set the clock to keep time.",
             "fact": "Titian (c. 1488–1576) worked for nearly 70 years, painting for Holy Roman Emperor Charles V, Philip II of Spain, and Pope Paul III. His late style — loose, almost abstract brushwork — was centuries ahead of its time.",
-            "autogen": true,
-            "configId": "gutenberg-bible",
-            "params": {
-              "lines": [
-                "TITIAN",
-                "TITIAN CONTINUED",
-                "TITIAN CONTINUED",
-                "TITIAN CONTINUED"
-              ]
-            },
-            "instruction": "Titian continued painting actively until his death at approximately 90 years of age — still accepting royal commissions. Set the answer in movable type — mirrored, right to left."
+            "rebalanced": true
           }
         },
         {
@@ -89,10 +81,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "matchthree",
-            "configId": "venice-glass",
-            "instruction": "Murano glassmakers arranged geometric forms to hide their secrets — matches can run in any direction, even diagonally. Clear 40 shapes.",
-            "fact": "Venice ordered all glassmakers to the island of Murano in 1291 — ostensibly to prevent fires, really to contain the secrets of cristallo glass. Murano craftsmen held rare freedom: they could marry nobility and carry swords, but leaving the island was punishable by death."
+            "game": "campaign",
+            "configId": "athenian-demes",
+            "seed": 93182,
+            "instruction": "Titian: win the campaign.",
+            "fact": "Venice ordered all glassmakers to the island of Murano in 1291 — ostensibly to prevent fires, really to contain the secrets of cristallo glass. Murano craftsmen held rare freedom: they could marry nobility and carry swords, but leaving the island was punishable by death.",
+            "rebalanced": true
           }
         }
       ]

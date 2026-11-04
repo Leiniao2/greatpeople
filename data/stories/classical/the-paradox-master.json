@@ -28,20 +28,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "typeset",
-            "seed": 1020,
+            "game": "debate",
+            "configId": "lincoln-douglas",
+            "seed": 83232,
+            "instruction": "Zeno of Elea: win the argument with evidence.",
             "fact": "Achilles and the Tortoise argues that before catching the tortoise, Achilles must reach its starting point — by which time it has moved. This repeats infinitely, seemingly making overtaking impossible. Calculus resolved it 2,000 years later.",
-            "autogen": true,
-            "configId": "bi-sheng-clay",
-            "params": {
-              "lines": [
-                "ACHILLES AND",
-                "ACHILLES AND THE",
-                "ACHILLES AND THE",
-                "ACHILLES AND THE"
-              ]
-            },
-            "instruction": "Which of Zeno's paradoxes argues that the fastest runner can never overtake the slowest? Set the answer in movable type — mirrored, right to left."
+            "rebalanced": true
           }
         }
       ]
@@ -71,12 +63,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "matchthree",
-            "seed": 1021,
+            "game": "weapondeploy",
+            "configId": "waterloo-artillery",
+            "seed": 74885,
+            "instruction": "Zeno of Elea: deploy the defences.",
             "fact": "Zeno's paradoxes were a rhetorical defense of his teacher Parmenides, not his personal beliefs. He used them as reductio ad absurdum — if you accept common sense, you get contradictions. It was a philosophical weapon, not a physics claim.",
-            "autogen": true,
-            "configId": "venice-glass",
-            "instruction": "Zeno of Elea personally believed that motion was impossible and that nothing in the universe actually moves. Gather what the story needs: match the goods until the tally is met."
+            "rebalanced": true
           }
         }
       ]
@@ -94,10 +86,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "geometry",
-            "configId": "golden-ratio",
-            "instruction": "Solve the infinite division problem — how does space halve endlessly, yet still have an end?",
-            "fact": "Zeno's paradoxes were not resolved until Newton and Leibniz developed calculus in the 17th century. The infinite series 1/2 + 1/4 + 1/8 + ... converges to 1 — Achilles catches the tortoise, and the math finally proved it."
+            "game": "magicsquare",
+            "configId": "durer",
+            "seed": 9370,
+            "instruction": "Zeno of Elea: complete the magic square.",
+            "fact": "Zeno's paradoxes were not resolved until Newton and Leibniz developed calculus in the 17th century. The infinite series 1/2 + 1/4 + 1/8 + ... converges to 1 — Achilles catches the tortoise, and the math finally proved it.",
+            "rebalanced": true
           }
         }
       ]
@@ -111,10 +105,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "geometry",
-            "configId": "circle-circumference",
-            "instruction": "Zeno proved — or tried to — that you can never cross a room. Solve the infinite division: how does halving space endlessly still add up to something finite?",
-            "fact": "The mathematical resolution to Zeno's paradoxes came with calculus: an infinite sum of terms can converge to a finite value. The series ½ + ¼ + ⅛ + … = 1. Newton and Leibniz solved in the 1660s what Zeno posed in 450 BCE — it took 2,100 years to find the right mathematical language."
+            "game": "irrigation",
+            "configId": "mesopotamia",
+            "seed": 10415,
+            "instruction": "Zeno of Elea: water every field before the flood ebbs.",
+            "fact": "The mathematical resolution to Zeno's paradoxes came with calculus: an infinite sum of terms can converge to a finite value. The series ½ + ¼ + ⅛ + … = 1. Newton and Leibniz solved in the 1660s what Zeno posed in 450 BCE — it took 2,100 years to find the right mathematical language.",
+            "rebalanced": true
           }
         },
         {

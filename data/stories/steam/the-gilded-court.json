@@ -60,10 +60,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "geometry",
-            "configId": "sphere-surface",
-            "instruction": "Versailles aspired to govern the entire globe. Calculate the surface area of the sphere of French ambition.",
-            "fact": "The Palace of Versailles was a machine of political spectacle — every corridor, mirror, and gilded surface designed to awe visitors into submission. Louis XVI inherited this stage but never fully commanded it."
+            "game": "lamplighter",
+            "configId": "pall-mall",
+            "seed": 93610,
+            "instruction": "Louis XVI: light every lamp.",
+            "fact": "The Palace of Versailles was a machine of political spectacle — every corridor, mirror, and gilded surface designed to awe visitors into submission. Louis XVI inherited this stage but never fully commanded it.",
+            "rebalanced": true
           }
         }
       ]
@@ -104,12 +106,12 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "sudoku",
-            "seed": 1005,
+            "game": "gomoku",
+            "configId": "gobang",
+            "seed": 71369,
+            "instruction": "Louis XVI: make five in a row.",
             "fact": "The Bastille held just 7 prisoners on July 14, 1789: four forgers, two men committed at their families' request, and one nobleman. But as a symbol of royal arbitrary power, its fall electrified France. The governor's head was paraded through Paris on a pike. Today Bastille Day is France's national holiday.",
-            "autogen": true,
-            "configId": "mendel-grid",
-            "instruction": "When the Bastille was stormed on July 14, 1789, it held only seven prisoners — but as a symbol of royal tyranny, its fall ignited the French Revolution. Order the grid as the record was ordered — every row, column and box complete."
+            "rebalanced": true
           }
         },
         {
