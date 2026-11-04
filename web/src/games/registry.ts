@@ -111,6 +111,27 @@ export const GAMES = {
   gomoku:       def('Five in a Row',     'Strategy', () => import('@/components/minigames/GomokuGame'), true),
   senet:        def('Senet',             'Strategy', () => import('@/components/minigames/SenetGame'), true),
   royalur:      def('Royal Game of Ur',  'Strategy', () => import('@/components/minigames/RoyalUrGame'), true),
+  // ── Wave 2: numbers, measurement and machines (docs/game-catalog.md)
+  abacus:       def('Suanpan'           , 'Puzzle'  , () => import('@/components/minigames/AbacusGame'), true),
+  quipu:        def('Quipu'             , 'Puzzle'  , () => import('@/components/minigames/QuipuGame'), true),
+  cryptarithm:  def('Merchant Sums'     , 'Puzzle'  , () => import('@/components/minigames/CryptarithmGame'), true),
+  gears:        def('Gear Train'        , 'Puzzle'  , () => import('@/components/minigames/GearsGame'), true),
+  pendulum:     def('Pendulum Clock'    , 'Puzzle'  , () => import('@/components/minigames/PendulumGame'), true),
+  orbit:        def('Orbits'            , 'Puzzle'  , () => import('@/components/minigames/OrbitGame'), true),
+  optics:       def('Lenses'            , 'Puzzle'  , () => import('@/components/minigames/OpticsGame'), true),
+  alchemy:      def('Elements'          , 'Puzzle'  , () => import('@/components/minigames/AlchemyGame'), true),
+  surveyor:     def('Triangulation'     , 'Explore' , () => import('@/components/minigames/SurveyorGame'), true),
+  irrigation:   def('Nile Basins'       , 'Strategy', () => import('@/components/minigames/IrrigationGame'), true),
+  rotation:     def('Crop Rotation'     , 'Strategy', () => import('@/components/minigames/RotationGame'), true),
+  cargo:        def('Cargo Hold'        , 'Puzzle'  , () => import('@/components/minigames/CargoGame'), true),
+  wallbuilder:  def('Wall Builder'      , 'Puzzle'  , () => import('@/components/minigames/WallBuilderGame'), true),
+  truss:        def('Truss Bridge'      , 'Creative', () => import('@/components/minigames/TrussGame'), true),
+  canallock:    def('Canal Locks'       , 'Puzzle'  , () => import('@/components/minigames/CanalLockGame'), true),
+  railway:      def('Railway'           , 'Puzzle'  , () => import('@/components/minigames/RailwayGame'), true),
+  telegraphnet: def('Telegraph Network' , 'Strategy', () => import('@/components/minigames/TelegraphNetGame'), true),
+  postroute:    def('Post Route'        , 'Explore' , () => import('@/components/minigames/PostRouteGame'), true),
+  konigsberg:   def('Seven Bridges'     , 'Puzzle'  , () => import('@/components/minigames/KonigsbergGame'), true),
+  assembly:     def('Assembly Line'     , 'Strategy', () => import('@/components/minigames/AssemblyGame'), true),
 } satisfies Record<string, GameDef>
 
 export type GameKey = keyof typeof GAMES

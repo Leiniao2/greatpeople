@@ -28,26 +28,26 @@ Built in waves of 20; tick a box when the game is in the registry.
 - [x] `magicsquare` — Lo Shu — fill a magic square so every line sums equal — the Lo Shu turtle
 
 ## Wave 2 — numbers, measurement and machines
-- [ ] `abacus` — Suanpan — compute on a bead abacus — Ming China
-- [ ] `quipu` — Quipu — read and tie knotted cords as numbers — the Inca
-- [ ] `cryptarithm` — Merchant Sums — letter-for-digit arithmetic
-- [ ] `gears` — Gear Train — chain gears to hit a target ratio — Antikythera mechanism
-- [ ] `pendulum` — Pendulum Clock — tune length to keep time — Huygens
-- [ ] `orbit` — Orbits — launch a body into a stable orbit — Kepler / Newton
-- [ ] `optics` — Lenses — place lenses to focus light on a target — Galileo's telescope
-- [ ] `alchemy` — Elements — combine elements to discover new ones — Jabir ibn Hayyan
-- [ ] `surveyor` — Triangulation — measure a distance by angles — the Great Trigonometrical Survey
-- [ ] `irrigation` — Nile Basins — open sluices to water fields before the flood ebbs
-- [ ] `rotation` — Crop Rotation — plan four-field rotations for best yield — Townshend
-- [ ] `cargo` — Cargo Hold — pack polyomino crates into a hull (Tetris-like) — VOC ships
-- [ ] `wallbuilder` — Wall Builder — falling-block wall without gaps — the Great Wall
-- [ ] `truss` — Truss Bridge — build a truss that holds the load — Eiffel / Brunel
-- [ ] `canallock` — Canal Locks — fill and drain locks to pass boats — Grand Canal
-- [ ] `railway` — Railway — lay track tiles so every train reaches its station — Stephenson
-- [ ] `telegraphnet` — Telegraph Network — connect cities with the least wire (spanning tree)
-- [ ] `postroute` — Post Route — shortest round trip through towns (TSP) — Thurn und Taxis post
-- [ ] `konigsberg` — Seven Bridges — draw a route using every bridge once (Euler path)
-- [ ] `assembly` — Assembly Line — route parts along conveyors in order — Ford, 1913
+- [x] `abacus` — Suanpan — compute on a bead abacus — Ming China
+- [x] `quipu` — Quipu — read and tie knotted cords as numbers — the Inca
+- [x] `cryptarithm` — Merchant Sums — letter-for-digit arithmetic
+- [x] `gears` — Gear Train — chain gears to hit a target ratio — Antikythera mechanism
+- [x] `pendulum` — Pendulum Clock — tune length to keep time — Huygens
+- [x] `orbit` — Orbits — launch a body into a stable orbit — Kepler / Newton
+- [x] `optics` — Lenses — place lenses to focus light on a target — Galileo's telescope
+- [x] `alchemy` — Elements — combine elements to discover new ones — Jabir ibn Hayyan
+- [x] `surveyor` — Triangulation — measure a distance by angles — the Great Trigonometrical Survey
+- [x] `irrigation` — Nile Basins — open sluices to water fields before the flood ebbs
+- [x] `rotation` — Crop Rotation — plan four-field rotations for best yield — Townshend
+- [x] `cargo` — Cargo Hold — pack polyomino crates into a hull (Tetris-like) — VOC ships
+- [x] `wallbuilder` — Wall Builder — falling-block wall without gaps — the Great Wall
+- [x] `truss` — Truss Bridge — build a truss that holds the load — Eiffel / Brunel
+- [x] `canallock` — Canal Locks — fill and drain locks to pass boats — Grand Canal
+- [x] `railway` — Railway — lay track tiles so every train reaches its station — Stephenson
+- [x] `telegraphnet` — Telegraph Network — connect cities with the least wire (spanning tree)
+- [x] `postroute` — Post Route — shortest round trip through towns (TSP) — Thurn und Taxis post
+- [x] `konigsberg` — Seven Bridges — draw a route using every bridge once (Euler path)
+- [x] `assembly` — Assembly Line — route parts along conveyors in order — Ford, 1913
 
 ## Wave 3 — strategy and management
 - [ ] `battleship` — Naval Battle — find the hidden fleet by salvos — Trafalgar
