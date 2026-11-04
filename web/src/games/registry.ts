@@ -132,6 +132,23 @@ export const GAMES = {
   postroute:    def('Post Route'        , 'Explore' , () => import('@/components/minigames/PostRouteGame'), true),
   konigsberg:   def('Seven Bridges'     , 'Puzzle'  , () => import('@/components/minigames/KonigsbergGame'), true),
   assembly:     def('Assembly Line'     , 'Strategy', () => import('@/components/minigames/AssemblyGame'), true),
+  // ── Wave 3: physics, simulation, strategy and economics (docs/game-catalog.md)
+  trebuchet:    def('Trebuchet'         , 'Puzzle'  , () => import('@/components/minigames/TrebuchetGame'), true),
+  eureka:       def('Eureka'            , 'Puzzle'  , () => import('@/components/minigames/EurekaGame'), true),
+  lever:        def('Balance and Lever' , 'Puzzle'  , () => import('@/components/minigames/LeverGame'), true),
+  sundial:      def('Sundial'           , 'Puzzle'  , () => import('@/components/minigames/SundialGame'), true),
+  firebreak:    def('Firebreak'         , 'Strategy', () => import('@/components/minigames/FirebreakGame'), true),
+  quarantine:   def('Quarantine'        , 'Strategy', () => import('@/components/minigames/QuarantineGame'), true),
+  harvest:      def('Harvest'           , 'Strategy', () => import('@/components/minigames/HarvestGame'), true),
+  tradewinds:   def('Trade Winds'       , 'Explore' , () => import('@/components/minigames/TradeWindsGame'), true),
+  tulips:       def('Tulip Mania'       , 'Strategy', () => import('@/components/minigames/TulipsGame'), true),
+  bankrun:      def('Bank Run'          , 'Strategy', () => import('@/components/minigames/BankRunGame'), true),
+  logistics:    def('Supply Lines'      , 'Strategy', () => import('@/components/minigames/LogisticsGame'), true),
+  bazaar:       def('Grand Bazaar'      , 'Strategy', () => import('@/components/minigames/BazaarGame'), true),
+  battleship:   def('Naval Battle'      , 'Strategy', () => import('@/components/minigames/BattleshipGame'), true),
+  xiangqi:      def('Xiangqi Mates'     , 'Strategy', () => import('@/components/minigames/XiangqiGame'), true),
+  castrum:      def('Roman Camp'        , 'Puzzle'  , () => import('@/components/minigames/CastrumGame'), true),
+  shipyard:     def('Shipyard'          , 'Puzzle'  , () => import('@/components/minigames/ShipyardGame'), true),
 } satisfies Record<string, GameDef>
 
 export type GameKey = keyof typeof GAMES

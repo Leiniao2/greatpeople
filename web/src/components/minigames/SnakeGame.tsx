@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type { MinigameProps, Difficulty } from '@/games/types'
-import { hashString, resolveConfig, scale, useGameOutcome, OutcomeBanner } from './_shared'
+import { hashString, resolveConfig, storyText, scale, useGameOutcome, OutcomeBanner } from './_shared'
 
 // Caravan Trail — grid Snake.  Lead a camel train round the trade route,
 // picking up goods; every bale adds a camel to the line.  Run into the edge
@@ -477,7 +477,7 @@ const KEYS: Record<string, Dir> = {
 }
 
 export default function SnakeGame({ configId, difficulty, seed, params, onWin, onLose }: MinigameProps) {
-  const cfg = resolveConfig(CONFIGS, configId, undefined, 'silk-road')
+  const cfg = { ...resolveConfig(CONFIGS, configId, undefined, 'silk-road'), ...storyText(params) }
   const start = useMemo(() => newGame(configId, difficulty, seed, params), [configId, difficulty, seed, params])
   const { game } = start
   const [state, setState] = useState<SnakeState>(start.state)

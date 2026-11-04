@@ -101,11 +101,14 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "cooking",
-            "configId": "aztec-chocolate",
+            "game": "tradewinds",
+            "configId": "volta-do-mar",
+            "params": {
+              "title": "The Ocean Sea, 1492–1493"
+            },
             "seed": 64403,
-            "instruction": "Her captains have found a new world, and its riches are only beginning to reach Castile. Prepare the cacao drink of the peoples they met across the ocean.",
-            "fact": "On his fourth voyage, in 1502, Columbus met a great Maya trading canoe off the island of Guanaja whose crew treasured cacao beans like money. Isabel died in 1504 without tasting chocolate; the drink reached the Spanish court decades later."
+            "instruction": "Isabel's gamble pays: Columbus has found land across the Ocean Sea. Ride the trade winds west from the Canaries, then swing north to the westerlies to bring the news home to Castile.",
+            "fact": "On his first voyage in 1492 Columbus sailed south to the Canaries to pick up the north-east trade winds, and in 1493 he came home far to the north, on the westerlies. Spanish fleets followed the same loop for three centuries."
           }
         },
         {

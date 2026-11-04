@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type { MinigameProps, Difficulty } from '@/games/types'
-import { hashString, mulberry32, resolveConfig, scale, useGameOutcome, OutcomeBanner } from './_shared'
+import { hashString, mulberry32, resolveConfig, storyText, scale, useGameOutcome, OutcomeBanner } from './_shared'
 
 // Temple Disks — the Tower of Hanoi and three of its classic variants.
 // Move the whole stack to the marked peg, one disk at a time, never placing
@@ -246,7 +246,7 @@ export function capFor(difficulty: Difficulty, optimal: number): number {
 // ── Component ──────────────────────────────────────────────────────────────────
 
 export default function HanoiGame({ configId, difficulty, seed, params, onWin, onLose }: MinigameProps) {
-  const cfg = resolveConfig(CONFIGS, configId, undefined, 'benares')
+  const cfg = { ...resolveConfig(CONFIGS, configId, undefined, 'benares'), ...storyText(params) }
   const puzzle = useMemo(() => generatePuzzle(configId, difficulty, seed, params), [configId, difficulty, seed, params])
   const cap = capFor(difficulty, puzzle.optimal)
 

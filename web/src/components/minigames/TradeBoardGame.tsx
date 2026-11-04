@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import type { MinigameProps, Difficulty } from '@/games/types'
-import { hashString, resolveConfig, scale, useGameOutcome, OutcomeBanner } from './_shared'
+import { hashString, resolveConfig, storyText, scale, useGameOutcome, OutcomeBanner } from './_shared'
 
 // Merchant Board — a short Monopoly-style trading game.  Roll dice round a
 // 20-square board of ports, buy the ones you land on, complete a set to
@@ -631,9 +631,10 @@ function ringCell(i: number): [number, number] {
 const PLAYER_COLORS = ['#1f6feb', '#c0392b', '#1e8449', '#8e44ad']
 const DIE = ['', '⚀', '⚁', '⚂', '⚃', '⚄', '⚅']
 
-export default function TradeBoardGame({ configId, difficulty, seed, onWin, onLose }: MinigameProps) {
+export default function TradeBoardGame({ configId, difficulty, seed, params, onWin, onLose }: MinigameProps) {
   const game = useMemo(() => newTrade(configId, difficulty, seed), [configId, difficulty, seed])
-  const { cfg, board, rules } = game
+  const { board, rules } = game
+  const cfg = { ...game.cfg, ...storyText(params) }
   const [state, setState] = useState<TradeState>(() => initialState(game))
   const [focus, setFocus] = useState<number | null>(null)
   const { outcome, settled, win, lose } = useGameOutcome({ onWin, onLose })

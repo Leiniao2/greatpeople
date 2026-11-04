@@ -74,10 +74,17 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "canallock",
-            "configId": "grand-canal",
+            "game": "firebreak",
+            "configId": "moscow-1812",
+            "params": {
+              "title": "Fukuhara Abandoned, 1183",
+              "rule": "Burn the stores, spare the quay",
+              "intro": "The Minamoto are coming. Torch houses so the wind carries the fire through every storehouse (🌾) before they arrive, and pull down houses so it never reaches the stone quay (🏰). You have fewer torches than storehouses.",
+              "target": "quay",
+              "enemy": "The Minamoto"
+            },
             "seed": 69057,
-            "instruction": "Fukuhara, beside the Ichi-no-Tani camp, was the port Tadanori’s brother Kiyomori built for ships from Song China, whose goods came down canals like this one. Work the barges through the locks before the Minamoto fall on the camp.",
+            "instruction": "In 1183 the Taira abandon the capital, then Fukuhara, the port Kiyomori built for the ships of Song China. Leave nothing for the Minamoto: let the wind carry fire through the storehouses, and keep it off the stone quay where the fleet waits.",
             "fact": "The tale of Tadanori riding back to his poetry master on the night of defeat became one of the most celebrated stories in Japanese literary history. It appears in the Heike Monogatari — the great narrative of the Genpei War — as the moment when a warrior reveals that poetry, not victory, is what he cannot bear to leave behind."
           }
         },
@@ -122,11 +129,15 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "mancala",
-            "configId": "oware",
+            "game": "battleship",
+            "configId": "salamis",
+            "params": {
+              "title": "Dan-no-ura, 1185",
+              "intro": "In the strait the Taira ships keep moving: each turn every ship moves one square along its row, turning about at the shore. You cannot see them — until one is hit and burns."
+            },
             "seed": 27055,
-            "instruction": "The war is lost, but the poem has outlived the clan. Take a quiet game of sowing and capture, as a later reader might pause with Tadanori’s verse.",
-            "fact": "Waka poetry — 31 syllables in a 5-7-5-7-7 pattern — was the highest art form of Heian Japan. To compose a poem in the moment, on the correct seasonal image, in response to a situation, was the mark of a complete human being. Tadanori carried his poems into battle. When his killer discovered the scroll tucked in his armour, he wept."
+            "instruction": "Spring 1185: the last Taira fleet meets the Minamoto in the strait of Dan-no-ura, where the tide runs hard and turns at midday. The ships never stop moving with the current. Find them before the day is spent.",
+            "fact": "At Dan-no-ura, in the Kanmon Strait, the Taira fleet was destroyed on 25 April 1185. As the battle turned, Kiyomori's widow leapt into the sea with the child emperor Antoku in her arms, and the clan Tadanori died for was gone."
           }
         },
         {

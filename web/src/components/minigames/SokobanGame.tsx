@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type { MinigameProps, Difficulty } from '@/games/types'
-import { hashString, resolveConfig, scale, useGameOutcome, OutcomeBanner } from './_shared'
+import { hashString, resolveConfig, storyText, scale, useGameOutcome, OutcomeBanner } from './_shared'
 
 // Stone Haulers — Sokoban with a different rule at every site.  Walk the
 // overseer round the yard and push the blocks onto the marked plinths.
@@ -1100,7 +1100,7 @@ const KEYS: Record<string, Dir> = {
 const NUMERALS = ['I', 'II', 'III', 'IV']
 
 export default function SokobanGame({ configId, difficulty, seed, params, onWin, onLose }: MinigameProps) {
-  const cfg = resolveConfig(CONFIGS, configId, undefined, 'giza-ramp')
+  const cfg = { ...resolveConfig(CONFIGS, configId, undefined, 'giza-ramp'), ...storyText(params) }
   const plan = useMemo(() => planLevel(configId, difficulty, seed, params), [configId, difficulty, seed, params])
   const { level, par, cap, variant, start: initial } = plan
 
