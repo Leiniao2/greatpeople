@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '@/hooks/useAuth'
 import allChallenges from '@/data/story_challenges.json'
+import UiIcon from '@/components/UiIcon'
 
 const CHALLENGE_COUNT = (allChallenges as { challenges: unknown[] }[])
   .reduce((sum, s) => sum + s.challenges.length, 0)
@@ -20,31 +21,31 @@ const CHANGELOG = [
 
 const MODES = [
   {
-    icon: '⚡',
+    icon: 'epic' as const,
     name: 'EPIC',
     subtitle: 'Unlock stories, earn cards',
     path: '/epic',
   },
   {
-    icon: '♛',
+    icon: 'collection' as const,
     name: 'COLLECTION',
     subtitle: 'Your card gallery',
     path: '/collection',
   },
   {
-    icon: '⚔',
+    icon: 'fight' as const,
     name: 'FIGHT',
     subtitle: 'Compete with others',
     path: '/battle',
   },
   {
-    icon: '🎮',
+    icon: 'arcade' as const,
     name: 'ARCADE',
     subtitle: `${CHALLENGE_COUNT} mini challenges, play freely`,
     path: '/arcade',
   },
   {
-    icon: '◉',
+    icon: 'profile' as const,
     name: 'PROFILE',
     subtitle: 'Your account & stats',
     path: '/profile',
@@ -144,7 +145,7 @@ export default function HomePage() {
           <div
             className="inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-5"
             style={{ background: 'rgba(155,44,35,0.12)', border: '1px solid rgba(155,44,35,0.25)' }}>
-            <span className="text-3xl select-none">⚡</span>
+            <UiIcon name="epic" className="w-8 h-8 text-accent" />
           </div>
           <h1 className="font-display text-3xl font-bold tracking-[0.15em] text-ink uppercase mb-1">
             GREAT PEOPLE
@@ -171,7 +172,7 @@ export default function HomePage() {
               <div
                 className="flex-shrink-0 flex items-center justify-center w-11 h-11 rounded-xl text-xl"
                 style={{ background: 'rgba(155,44,35,0.12)', border: '1px solid rgba(155,44,35,0.2)' }}>
-                {mode.icon}
+                <UiIcon name={mode.icon} className="w-6 h-6 text-accent" />
               </div>
 
               {/* Text */}

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useGoogleLogin } from '@react-oauth/google'
 import { useAuth } from '@/hooks/useAuth'
 import { describeApiError } from '@/api/errors'
+import UiIcon from '@/components/UiIcon'
 
 type Tab = 'login' | 'register'
 
@@ -117,7 +118,7 @@ export default function LoginPage() {
           <div className="px-8 pt-9 pb-7 text-center border-b border-line">
             <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-4"
               style={{ background: 'rgba(155,44,35,0.15)', border: '1px solid rgba(155,44,35,0.25)' }}>
-              <span className="text-accent text-4xl leading-none select-none">♛</span>
+              <UiIcon name="collection" className="w-9 h-9 text-accent" />
             </div>
             <h1 className="font-display text-3xl font-bold tracking-[0.12em] text-ink uppercase mb-1.5">
               Great People

@@ -1,13 +1,14 @@
 import { Suspense } from 'react'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import LoadingScreen from '@/components/LoadingScreen'
+import UiIcon from '@/components/UiIcon'
 
 const TABS = [
-  { path: '/epic',       label: 'Epic',       icon: '⚡', title: 'Epic — Read stories and unlock Great People cards through quizzes and mini-challenges' },
-  { path: '/collection', label: 'Collection', icon: '♛', title: 'Collection — Browse and manage all the Great People cards you have unlocked' },
-  { path: '/battle',     label: 'Fight',      icon: '⚔', title: 'Fight — Deploy your cards across history\'s greatest cities and battle other players' },
-  { path: '/arcade',     label: 'Arcade',     icon: '🎮', title: 'Arcade — Play any mini-challenge freely, without going through a story' },
-  { path: '/profile',    label: 'Profile',    icon: '◉', title: 'Profile — View your account, stats, and sign in or out' },
+  { path: '/epic',       label: 'Epic',       icon: 'epic', title: 'Epic — Read stories and unlock Great People cards through quizzes and mini-challenges' },
+  { path: '/collection', label: 'Collection', icon: 'collection', title: 'Collection — Browse and manage all the Great People cards you have unlocked' },
+  { path: '/battle',     label: 'Fight',      icon: 'fight', title: 'Fight — Deploy your cards across history\'s greatest cities and battle other players' },
+  { path: '/arcade',     label: 'Arcade',     icon: 'arcade', title: 'Arcade — Play any mini-challenge freely, without going through a story' },
+  { path: '/profile',    label: 'Profile',    icon: 'profile', title: 'Profile — View your account, stats, and sign in or out' },
 ] as const
 
 export default function MainLayout() {
@@ -39,7 +40,7 @@ export default function MainLayout() {
                 title={tab.title}
                 className={`flex flex-col items-center justify-center gap-1 py-3 transition-colors duration-200
                             ${isActive ? 'text-accent' : 'text-muted/80 hover:text-muted'}`}>
-                <span className="text-xl leading-none select-none">{tab.icon}</span>
+                <UiIcon name={tab.icon} className="w-6 h-6" />
                 <span className="text-[10px] uppercase tracking-widest font-semibold">
                   {tab.label}
                 </span>

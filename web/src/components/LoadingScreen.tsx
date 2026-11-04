@@ -1,6 +1,8 @@
 // Full-screen loading state shared by route transitions and page preloads.
 // Parchment & Ink styling to match the rest of the app.
 
+import UiIcon from '@/components/UiIcon'
+
 interface Props {
   /** 0–1. Omit for an indeterminate bar. */
   progress?: number
@@ -11,7 +13,7 @@ export default function LoadingScreen({ progress, label = 'Loading' }: Props) {
   const determinate = typeof progress === 'number'
   return (
     <div className="fixed inset-0 z-[60] flex flex-col items-center justify-center bg-paper text-ink select-none">
-      <span className="text-accent text-4xl leading-none mb-4">♛</span>
+      <UiIcon name="collection" className="w-10 h-10 text-accent mb-4" />
       <h1 className="font-display text-2xl font-bold tracking-[0.12em] uppercase mb-6">
         Great People
       </h1>

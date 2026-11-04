@@ -6,6 +6,7 @@ import { GAMES, type Category, type GameKey } from '@/games/registry'
 import { ARCADE_TRACKS, LEVELS_PER_TRACK, buildTrack, levelChallenge, levelCode, starsForAttempts, type ArcadeLevel } from '@/games/arcade'
 import { useStoryProgress } from '@/hooks/useStoryProgress'
 import type { ArcadeProgress } from '@/api/progress'
+import UiIcon, { type UiIconName } from '@/components/UiIcon'
 
 // The Arcade is a set of ladders, one per game type, grouped by category.
 // Each ladder is LEVELS_PER_TRACK generated levels of rising difficulty;
@@ -13,13 +14,13 @@ import type { ArcadeProgress } from '@/api/progress'
 
 type CategoryKey = 'All' | Category
 
-const CATEGORIES: { key: CategoryKey; label: string; icon: string; color: string; border: string; bg: string }[] = [
-  { key: 'All',      label: 'All',      icon: '◈', color: 'text-ink-2',       border: 'border-line-2',      bg: 'bg-panel-2'        },
-  { key: 'Puzzle',   label: 'Puzzle',   icon: '◻', color: 'text-cyan-700',    border: 'border-cyan-500',    bg: 'bg-cyan-500/20'    },
-  { key: 'Strategy', label: 'Strategy', icon: '♜', color: 'text-accent',      border: 'border-accent',      bg: 'bg-accent/15'      },
-  { key: 'Creative', label: 'Creative', icon: '✿', color: 'text-emerald-700', border: 'border-emerald-500', bg: 'bg-emerald-500/20' },
-  { key: 'Story',    label: 'Story',    icon: '✦', color: 'text-violet-700',  border: 'border-violet-500',  bg: 'bg-violet-500/20'  },
-  { key: 'Explore',  label: 'Explore',  icon: '◎', color: 'text-red-700',     border: 'border-red-500',     bg: 'bg-red-500/20'     },
+const CATEGORIES: { key: CategoryKey; label: string; icon: UiIconName; color: string; border: string; bg: string }[] = [
+  { key: 'All',      label: 'All',      icon: 'all', color: 'text-ink-2',       border: 'border-line-2',      bg: 'bg-panel-2'        },
+  { key: 'Puzzle',   label: 'Puzzle',   icon: 'puzzle', color: 'text-cyan-700',    border: 'border-cyan-500',    bg: 'bg-cyan-500/20'    },
+  { key: 'Strategy', label: 'Strategy', icon: 'strategy', color: 'text-accent',      border: 'border-accent',      bg: 'bg-accent/15'      },
+  { key: 'Creative', label: 'Creative', icon: 'creative', color: 'text-emerald-700', border: 'border-emerald-500', bg: 'bg-emerald-500/20' },
+  { key: 'Story',    label: 'Story',    icon: 'story', color: 'text-violet-700',  border: 'border-violet-500',  bg: 'bg-violet-500/20'  },
+  { key: 'Explore',  label: 'Explore',  icon: 'explore', color: 'text-red-700',     border: 'border-red-500',     bg: 'bg-red-500/20'     },
 ]
 const SECTIONS = CATEGORIES.filter(c => c.key !== 'All')
 const catFor = (key: GameKey) => CATEGORIES.find(c => c.key === GAMES[key].category) ?? CATEGORIES[0]
@@ -135,7 +136,7 @@ function TrackCard({ game, progress, onOpen, onContinue }: {
     <div className="flex flex-col gap-2 p-3.5 rounded-2xl bg-panel border border-line hover:border-line-2 transition-all">
       <button onClick={onOpen} className="flex items-center justify-between gap-2 text-left">
         <span className="flex items-center gap-2 min-w-0">
-          <span className={`${cat.color} text-sm`}>{cat.icon}</span>
+          <UiIcon name={cat.icon} className={`${cat.color} w-4 h-4`} />
           <span className="text-ink font-semibold text-sm truncate">{GAMES[game].label}</span>
         </span>
         <span className="text-[10px] text-muted shrink-0">
@@ -235,7 +236,7 @@ export default function MiniChallengePage() {
                 <button key={cat.key} onClick={() => setActiveCategory(cat.key)}
                   className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap border transition-all shrink-0
                     ${active ? `${cat.bg} ${cat.color} ${cat.border}` : 'bg-panel border-line text-muted hover:border-line-2 hover:text-ink-2'}`}>
-                  <span>{cat.icon}</span>
+                  <UiIcon name={cat.icon} className="w-3.5 h-3.5" />
                   <span>{cat.label}</span>
                   <span className={`text-[9px] ${active ? 'opacity-70' : 'opacity-40'}`}>{count}</span>
                 </button>
@@ -253,7 +254,7 @@ export default function MiniChallengePage() {
           {sections.map(section => (
             <section key={section.key} className="mb-5">
               <h2 className={`flex items-center gap-2 px-1 mb-2 text-xs font-bold uppercase tracking-widest ${section.color}`}>
-                <span>{section.icon}</span>{section.label}
+                <UiIcon name={section.icon} className="w-4 h-4" />{section.label}
                 <span className="text-muted/70 font-normal normal-case tracking-normal">· {section.games.length} tracks</span>
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">

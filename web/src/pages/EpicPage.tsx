@@ -9,6 +9,7 @@ import { eraBackdropUrl, locationImageUrl, portraitUrl } from '@/data/images'
 import PageLoader from '@/components/PageLoader'
 import { useAssetPreload } from '@/hooks/useAssetPreload'
 import EraIcon from '@/components/EraIcon'
+import UiIcon from '@/components/UiIcon'
 
 // ── Story data ────────────────────────────────────────────────────────────────
 
@@ -181,7 +182,7 @@ function EpicContent() {
           <div
             className="inline-flex items-center justify-center w-14 h-14 rounded-2xl mb-3"
             style={{ background: 'rgba(155,44,35,0.12)', border: '1px solid rgba(155,44,35,0.25)' }}>
-            <span className="text-3xl select-none">⚡</span>
+            <UiIcon name="epic" className="w-7 h-7 text-accent" />
           </div>
           <h1 className="font-display text-xl font-bold tracking-[0.1em] text-ink uppercase mb-1">
             EPIC
