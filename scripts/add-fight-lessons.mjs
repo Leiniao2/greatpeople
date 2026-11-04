@@ -68,7 +68,7 @@ const SCENES = {
   duel: {
     dialog: 'The lesson is simple. {opp0} stands at {loc0} and the {event} has begun. Bring me onto the board, put a {follower0} at my side, and let us measure {stat} against {stat}.',
     instruction: 'Fight lesson 1 · First Duel. Deploy {hero} to {loc0}, add the {follower0}, then tap {hero} and tap {opp0} to attack. Win one attack.',
-    fact: 'In a Local Event every card at the location counts: {hero} brings {heroStat} {stat}, the {follower0} adds +2 (or +3 beside a Great Person who shares that identity), and the higher total wins the attack. The loser returns to its owner\'s hand unless Kill mode is on.',
+    fact: 'In a Local Event every card at the location counts: {hero} brings {heroStat} {stat}, the {follower0} adds +2 (or +4 beside a Great Person who shares that identity), and the higher total wins the attack. The loser returns to its owner\'s hand unless Kill mode is on.',
   },
   reinforce: {
     dialog: '{opp0} and {opp1} hold {loc0} together, and a follower stands with them. One card alone will not move them. Bring {ally0} with me, add both followers, and strike twice.',
@@ -133,7 +133,7 @@ export function chooseCast(story, { cards, followers, locations }) {
       break
     }
     case 'reinforce': {
-      // player: hero + ally + two followers (+2 or +3 each); rival: two cards + one follower (+2).
+      // player: hero + ally + two followers (+2 or +4 each); rival: two cards + one follower (+2).
       let best = null
       for (const ally of allyPool.slice(0, 12)) {
         const fBonus = followerBonuses(stat, followers, [hero, ally], 2)
@@ -194,7 +194,7 @@ export function chooseCast(story, { cards, followers, locations }) {
   }
   if (opponents.some(o => !o) || allies.some(a => !a)) throw new Error(`${story.slug}: could not cast ${tier}`)
 
-  // Followers of the lesson's stat: the hero's own identities first (they earn +3).
+  // Followers of the lesson's stat: the hero's own identities first (they earn +4).
   const ofStat = followers.filter(f => f.stat === stat)
   const heroIds = new Set(hero.identities ?? [])
   const oppIds = new Set(opponents.flatMap(o => o.identities ?? []))
@@ -226,7 +226,7 @@ export function chooseCast(story, { cards, followers, locations }) {
 function followerBonuses(stat, followers, gps, n) {
   const ids = new Set(gps.flatMap(g => g.identities ?? []))
   const ofStat = followers.filter(f => f.stat === stat).sort((a, b) => (ids.has(b.name) ? 1 : 0) - (ids.has(a.name) ? 1 : 0))
-  return ofStat.slice(0, n).reduce((s, f) => s + (ids.has(f.name) ? 3 : 2), 0)
+  return ofStat.slice(0, n).reduce((s, f) => s + (ids.has(f.name) ? 4 : 2), 0)
 }
 
 function fill(template, v) {
