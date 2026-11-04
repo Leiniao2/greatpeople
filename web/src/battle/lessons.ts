@@ -85,7 +85,7 @@ const onBoard = (side: 'player' | 'cpu', gp: string, location: number, isPublic 
 const TIERS: Record<LessonTier, TierDef> = {
   duel: {
     title: 'First Duel',
-    teaches: 'A Local Event compares one stat. Every card you have at the location adds to your total: a Great Person brings the stat itself, a follower adds +2, or +3 beside a Great Person who shares their identity. The higher total wins the attack.',
+    teaches: 'A Local Event compares one stat. Every card you have at the location adds to your total: a Great Person brings the stat itself, a follower adds +2, or +4 beside a Great Person who shares their identity. The higher total wins the attack.',
     maxRounds: 3,
     goal: () => ({ kind: 'win_attacks', count: 1 }),
     goalText: (_, n) => `Deploy ${n.hero} to ${n.loc[0]}, add your follower, and win one attack against ${n.opp[0]} in the ${n.event}.`,

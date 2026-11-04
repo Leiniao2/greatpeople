@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import ChallengeRenderer from '@/games/ChallengeRenderer'
 import ResultPanel from '@/games/ResultPanel'
 import { GAMES, type Category, type GameKey } from '@/games/registry'
-import { ARCADE_TRACKS, LEVELS_PER_TRACK, buildTrack, levelChallenge, prettyConfig, starsForAttempts, type ArcadeLevel } from '@/games/arcade'
+import { ARCADE_TRACKS, LEVELS_PER_TRACK, buildTrack, levelChallenge, levelCode, starsForAttempts, type ArcadeLevel } from '@/games/arcade'
 import { useStoryProgress } from '@/hooks/useStoryProgress'
 import type { ArcadeProgress } from '@/api/progress'
 
@@ -23,7 +23,7 @@ const CATEGORIES: { key: CategoryKey; label: string; icon: string; color: string
 ]
 const SECTIONS = CATEGORIES.filter(c => c.key !== 'All')
 const catFor = (key: GameKey) => CATEGORIES.find(c => c.key === GAMES[key].category) ?? CATEGORIES[0]
-const TIER_NAMES = ['Apprentice', 'Journeyman', 'Master', 'Legend']
+const TIERS = ['A', 'B', 'C', 'D']
 
 const EMPTY: ArcadeProgress = { cleared: 0, stars: [] }
 const totalStars = (p: ArcadeProgress) => p.stars.reduce((a, b) => a + (b ?? 0), 0)
@@ -83,8 +83,7 @@ function LevelPlayer({ track, index, progress, onLevel, onClose }: {
           {GAMES[level.game].label}
         </span>
         <p className="flex-1 min-w-0 text-muted text-[10px] truncate">
-          Level {index + 1} / {track.length} · {TIER_NAMES[level.difficulty - 1]}
-          {level.configId && <> · {prettyConfig(level.configId)}</>}
+          {levelCode(index)} · {index + 1} / {track.length}
         </p>
         <button onClick={onClose}
           className="w-8 h-8 flex items-center justify-center rounded-xl bg-panel text-muted hover:text-ink hover:bg-panel-2 transition-all text-lg"
@@ -106,7 +105,7 @@ function LevelPlayer({ track, index, progress, onLevel, onClose }: {
           fact={outcome === 'won' && !hasNext ? `Track complete — all ${track.length} levels cleared.` : undefined}
           onReplay={replay}
           onNext={nextOpen ? () => onLevel(index + 1) : undefined}
-          nextLabel={`Level ${index + 2} →`}
+          nextLabel={`${levelCode(index + 1)} →`}
           onBack={onClose}
         />
       )}
@@ -153,7 +152,7 @@ function TrackCard({ game, progress, onOpen, onContinue }: {
         <button onClick={onOpen} className="text-muted text-[10px] hover:text-ink">All levels</button>
         <button onClick={onContinue}
           className="px-3 py-1.5 rounded-xl bg-accent text-accent-fg text-xs font-bold hover:bg-accent-hover transition-all">
-          {complete ? 'Replay ▶' : progress.cleared === 0 ? 'Start ▶' : `Level ${progress.cleared + 1} ▶`}
+          {complete ? 'Replay ▶' : progress.cleared === 0 ? 'Start ▶' : `${levelCode(progress.cleared)} ▶`}
         </button>
       </div>
     </div>
@@ -168,20 +167,19 @@ function LevelGrid({ game, track, progress, onPlay, onBack }: {
       <button onClick={onBack} className="text-muted text-xs mb-3 hover:text-ink">← All tracks</button>
       <h2 className="font-display text-2xl font-bold text-ink">{GAMES[game].label}</h2>
       <p className="text-muted text-xs mb-4">{progress.cleared} / {LEVELS_PER_TRACK} cleared · ★ {totalStars(progress)} / {LEVELS_PER_TRACK * 3}</p>
-      {!track ? <p className="text-muted text-xs">Loading levels…</p> : TIER_NAMES.map((tier, t) => (
-        <div key={tier} className="mb-4">
-          <p className="text-[10px] uppercase tracking-widest text-muted mb-2">{tier} · difficulty {t + 1}</p>
-          <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
+      {!track ? <p className="text-muted text-xs">Loading levels…</p> : TIERS.map((tier, t) => (
+        <div key={tier} className="mb-4 flex items-start gap-3">
+          <p className="w-6 pt-2 font-display text-xl font-bold text-accent text-center shrink-0">{tier}</p>
+          <div className="flex-1 grid grid-cols-6 gap-1.5">
             {track.slice(t * 6, t * 6 + 6).map(level => {
               const stars = progress.stars[level.index] ?? 0
               const unlocked = level.index <= progress.cleared
               return (
                 <button key={level.index} disabled={!unlocked} onClick={() => onPlay(level.index)}
-                  className={`flex flex-col items-center gap-0.5 py-2 rounded-xl border text-xs transition-all
+                  className={`flex flex-col items-center gap-0.5 py-2 rounded-xl border text-sm transition-all
                     ${unlocked ? 'bg-panel border-line hover:border-accent/50' : 'bg-paper-2 border-line/50 opacity-50 cursor-not-allowed'}
                     ${level.index === progress.cleared ? 'ring-2 ring-accent/50' : ''}`}>
-                  <span className="font-bold text-ink">{unlocked ? level.index + 1 : '🔒'}</span>
-                  <span className="text-[9px] text-muted truncate max-w-full px-1">{prettyConfig(level.configId) || '—'}</span>
+                  <span className={`font-bold ${unlocked ? 'text-ink' : 'text-muted'}`}>{levelCode(level.index)}</span>
                   <span className="text-[10px] text-accent leading-none">{stars ? '★'.repeat(stars) : ' '}</span>
                 </button>
               )

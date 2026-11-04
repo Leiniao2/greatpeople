@@ -147,6 +147,8 @@ export function uid(): string {
 }
 
 export const NUM_LOCATIONS = 7
+/** A follower whose identity matches an allied GP at its location adds this instead of its own bonus. */
+export const FOLLOWER_IDENTITY_MATCH_BONUS = 4
 
 export function pickLocations(eraMode: EraMode, singleEra?: string): LocationTemplate[] {
   if (eraMode === 'single' && singleEra) {
@@ -376,7 +378,7 @@ export function computeLocationTotal(
         const hasIdentityMatch = locationCards.some(
           lc => lc.playerId === playerId && lc.type === 'gp' && gpCards[lc.cardId]?.identities?.includes(f.name)
         )
-        total += hasIdentityMatch ? 3 : f.bonus
+        total += hasIdentityMatch ? FOLLOWER_IDENTITY_MATCH_BONUS : f.bonus
       }
     }
   }
@@ -412,7 +414,7 @@ export function computeSide(
       const hasIdentityMatch = f.stat === stat && locationCards.some(
         lc => lc.playerId === playerId && lc.type === 'gp' && gpMap[lc.cardId]?.identities?.includes(f.name)
       )
-      const followerBonus = f.stat === stat ? (hasIdentityMatch ? 3 : f.bonus) : 0
+      const followerBonus = f.stat === stat ? (hasIdentityMatch ? FOLLOWER_IDENTITY_MATCH_BONUS : f.bonus) : 0
       cards.push({ type: 'follower', name: f.name, imageKey: f.imageKey, baseStat: 0, traitBonus: 0, followerBonus, locationBonus: 0 })
       total += followerBonus
     }
@@ -450,8 +452,8 @@ export function computeEventSide(
         lc => lc.playerId === playerId && lc.type === 'gp' && gpMap[lc.cardId]?.identities?.includes(f.name)
       )
       const followerBonus = stat
-        ? (f.stat === stat ? (hasIdentityMatch ? 3 : f.bonus) : 0)
-        : (hasIdentityMatch ? 3 : f.bonus)
+        ? (f.stat === stat ? (hasIdentityMatch ? FOLLOWER_IDENTITY_MATCH_BONUS : f.bonus) : 0)
+        : (hasIdentityMatch ? FOLLOWER_IDENTITY_MATCH_BONUS : f.bonus)
       cards.push({ type: 'follower', name: f.name, imageKey: f.imageKey, baseStat: 0, traitBonus: 0, followerBonus, locationBonus: 0 })
       total += followerBonus
     }
@@ -1240,7 +1242,7 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
                   const hasIdentityMatch = updatedCards.some(
                     lc => lc.playerId === pid && lc.type === 'gp' && gpMap[lc.cardId]?.identities?.includes(f.name)
                   )
-                  const bonus = hasIdentityMatch ? 3 : f.bonus
+                  const bonus = hasIdentityMatch ? FOLLOWER_IDENTITY_MATCH_BONUS : f.bonus
                   statTotals[f.stat as StatKey] += bonus
                   cards.push({ type: 'follower', name: f.name, imageKey: f.imageKey, baseStat: 0, traitBonus: 0, followerBonus: bonus, locationBonus: 0 })
                 }

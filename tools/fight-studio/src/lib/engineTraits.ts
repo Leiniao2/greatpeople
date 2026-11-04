@@ -14,7 +14,7 @@ export const ENGINE_CONSTANTS = {
   startingFollowers: 8,
   followerDeckCopies: 3,
   followerBonus: 2,
-  followerIdentityMatchBonus: 3,
+  followerIdentityMatchBonus: 4,
   localSurvivalThreshold: 5,
   hazardMinStatThreshold: 5,
   hazardChancePerRound: 0.2,

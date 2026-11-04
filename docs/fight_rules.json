@@ -291,10 +291,10 @@
     "title": "Follower bonus",
     "docText": "'Any follower bonus' is added to the GP total.",
     "docSource": "docs/fight.md §5",
-    "codeBehaviour": "Follower adds its bonus (2) if its stat matches the scenario stat; 3 instead if an allied GP at the location has the follower's identity.",
-    "codeSource": "web/src/battle/engine.ts computeSide",
+    "codeBehaviour": "Follower adds its bonus (2) if its stat matches the scenario stat; 4 (FOLLOWER_IDENTITY_MATCH_BONUS) instead if an allied GP at the location has the follower's identity.",
+    "codeSource": "web/src/battle/engine.ts FOLLOWER_IDENTITY_MATCH_BONUS, computeSide, computeEventSide, computeLocationTotal",
     "status": "unspecified",
-    "notes": "Identity-match bonus (+3) exists only in code."
+    "notes": "Identity-match bonus (+4, raised from +3 by designer instruction) exists only in code; docs/fight.md does not state it."
   },
   {
     "id": "scn-location-bonus",

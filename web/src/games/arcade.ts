@@ -68,9 +68,14 @@ export function levelChallenge(level: ArcadeLevel): MinigameChallenge {
     configId: level.configId,
     difficulty: level.difficulty,
     seed: level.seed,
-    instruction: `${label} · Level ${level.index + 1}${level.configId ? ` · ${prettyConfig(level.configId)}` : ''}`,
+    instruction: `${label} · ${levelCode(level.index)}`,
     fact: '',
   }
+}
+
+/** Short label for a level: tier letter + position, e.g. index 7 → "B2". */
+export function levelCode(index: number): string {
+  return `${'ABCD'[Math.min(3, Math.floor(index / LEVELS_PER_TIER))]}${(index % LEVELS_PER_TIER) + 1}`
 }
 
 /** Stars for a cleared level: first try 3, one retry 2, more 1. */

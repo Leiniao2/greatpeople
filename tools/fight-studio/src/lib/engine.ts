@@ -247,7 +247,7 @@ export function locationBonusByEra(locs: LocationCard[]): LocationStatRow[] {
   }))
 }
 
-/** How many GPs can give each follower identity the +3 identity-match bonus. */
+/** How many GPs can give each follower identity the +4 identity-match bonus. */
 export function identityCoverage(cards: Card[], followers: FollowerTemplate[]): { identity: string; stat: StatKey; gpCount: number; figures: string[] }[] {
   return followers.map(f => {
     const figures = cards.filter(c => c.identities.includes(f.name)).map(c => c.figureName)
