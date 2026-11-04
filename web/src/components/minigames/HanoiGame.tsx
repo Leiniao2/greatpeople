@@ -6,11 +6,16 @@ import { hashString, mulberry32, resolveConfig, scale, useGameOutcome, OutcomeBa
 // Move the whole stack to the marked peg, one disk at a time, never placing
 // a larger disk on a smaller one.
 //
-//   config      variant                                       disks D1 → D4
-//   benares     Lucas's 1883 puzzle, 3 pegs                     3, 4, 5, 6
-//   reve        Dudeney's Reve's puzzle (1907), 4 pegs          4, 5, 6, 8
-//   scattered   start from a scattered legal position           3, 4, 5, 6
-//   prayer-wheel  one-way: disks only move clockwise            2, 3, 3 (long way), 4
+//   config        variant                                   disks D1 → D4   optimal moves
+//   benares       Lucas's 1883 puzzle, 3 pegs                 4, 5, 5, 6      15, 31, 31, 63
+//   reve          Dudeney's Reve's puzzle (1907), 4 pegs      5, 6, 7, 8      13, 17, 25, 33
+//   scattered     start from a scattered legal position       4, 5, 5, 6      ≥ 70% of 2ⁿ − 1
+//   prayer-wheel  one-way: disks only move clockwise          3, 3, 3, 4      15, 15/21, 21, 43
+//   narrow-bridge only between neighbouring pegs (no 1 ↔ 3)   3, 3, 3, 4      13, 13/26, 26, 40
+//
+// Time budget: at roughly two seconds a move an engaged player needs about
+// 30–45 s at D1 and at most ~2½ minutes at D4 — no level asks for more than
+// 65 optimal moves (a 7-disk tower, 127 moves, would be far too long).
 //
 // The seed chooses the start and goal pegs (and the scattered position),
 // and the optimal move count comes from the exported BFS solver.
@@ -26,6 +31,8 @@ interface HanoiConfig {
   disks: readonly [number, number, number, number]
   scattered?: boolean
   cyclic?: boolean
+  /** Disks may only move between neighbouring pegs (1 ↔ 2 ↔ 3). */
+  adjacent?: boolean
   palette: string[]
 }
 
@@ -34,25 +41,31 @@ export const CONFIGS: Record<string, HanoiConfig> = {
     title: 'The Tower of Brahma',
     intro: 'Move the golden stack to the marked peg. One disk at a time — never a larger disk on a smaller one.',
     fact: 'Édouard Lucas sold the puzzle in 1883 as "La Tour d\'Hanoï" under the name "Professor N. Claus de Siam" — an anagram of Lucas d\'Amiens. His legend tells of priests in a temple at Benares moving 64 golden disks; at one move a second that takes 2⁶⁴ − 1 seconds, about 585 billion years.',
-    pegs: 3, disks: [3, 4, 5, 6], palette: ['#f6d365', '#f1b84b', '#e39b32', '#cf7f22', '#b5651d', '#94501a', '#743d15', '#5a2f10'],
+    pegs: 3, disks: [4, 5, 5, 6], palette: ['#f6d365', '#f1b84b', '#e39b32', '#cf7f22', '#b5651d', '#94501a', '#743d15', '#5a2f10'],
   },
   reve: {
     title: "The Reve's Cheeses",
     intro: 'Four stools this time. Move the cheeses to the marked stool, never a larger cheese on a smaller one — the extra stool makes far shorter solutions possible.',
     fact: "Henry Dudeney's The Canterbury Puzzles (1907) gives \"The Reve's Puzzle\": the Reve of Chaucer's pilgrims moves cheeses across four stools. Its general four-peg solution, the Frame–Stewart algorithm (1941), was only proven optimal for every size in 2014 by Thierry Bousch.",
-    pegs: 4, disks: [4, 5, 6, 8], palette: ['#fff1b8', '#ffe28a', '#fcd25c', '#f5c242', '#e9ad2c', '#d9971f', '#c4801a', '#a86915'],
+    pegs: 4, disks: [5, 6, 7, 8], palette: ['#fff1b8', '#ffe28a', '#fcd25c', '#f5c242', '#e9ad2c', '#d9971f', '#c4801a', '#a86915'],
   },
   scattered: {
     title: 'The Scattered Temple',
     intro: 'An earthquake has scattered the temple disks across the pegs. Gather them into one tower on the marked peg — still never a larger disk on a smaller one.',
     fact: 'Lucas also posed the puzzle from any legal arrangement. From any position, gathering the disks onto a chosen peg takes at most 2ⁿ − 1 moves — the positions of the Tower of Hanoi form a graph shaped like the Sierpiński triangle.',
-    scattered: true, pegs: 3, disks: [3, 4, 5, 6], palette: ['#b5e3d8', '#8fd3c3', '#64bfae', '#3fa796', '#2a8c7d', '#1f7266', '#175a51', '#10433c'],
+    scattered: true, pegs: 3, disks: [4, 5, 5, 6], palette: ['#b5e3d8', '#8fd3c3', '#64bfae', '#3fa796', '#2a8c7d', '#1f7266', '#175a51', '#10433c'],
   },
   'prayer-wheel': {
     title: 'The Prayer Wheel',
     intro: 'The pegs stand in a ring and disks may only travel clockwise to the next peg. Bring the stack to the marked peg.',
     fact: 'The one-way "cyclic" Tower of Hanoi was analysed by Atkinson in 1981. Restricting moves to one direction makes the shortest solution grow roughly as (1 + √3)ⁿ instead of 2ⁿ — moving 4 disks one step clockwise takes 43 moves instead of 15.',
-    cyclic: true, pegs: 3, disks: [2, 3, 3, 4], palette: ['#f5b7b1', '#ec7063', '#cb4335', '#943126', '#78281f', '#641e16', '#4a1610', '#33100b'],
+    cyclic: true, pegs: 3, disks: [3, 3, 3, 4], palette: ['#f5b7b1', '#ec7063', '#cb4335', '#943126', '#78281f', '#641e16', '#4a1610', '#33100b'],
+  },
+  'narrow-bridge': {
+    title: 'The Narrow Bridge',
+    intro: 'The pegs stand in a row across a narrow bridge: a disk may only step to the neighbouring peg — never straight from the first peg to the last. Bring the stack to the marked peg.',
+    fact: 'This "adjacent" or linear Tower of Hanoi was posed by Scorer, Grundy and Smith in 1944. Carrying n disks from one end to the other takes 3ⁿ − 1 moves, and the solution passes through every one of the 3ⁿ legal positions exactly once.',
+    adjacent: true, pegs: 3, disks: [3, 3, 3, 4], palette: ['#c7d2fe', '#a5b4fc', '#818cf8', '#6366f1', '#4f46e5', '#4338ca', '#3730a3', '#312e81'],
   },
 }
 
@@ -64,6 +77,8 @@ export interface HanoiPuzzle {
   pegs: number
   disks: number
   cyclic: boolean
+  /** Only moves between neighbouring pegs are allowed. */
+  adjacent?: boolean
   /** start[d] = peg of disk d (0 = smallest). */
   start: number[]
   goal: number
@@ -90,6 +105,7 @@ export function moveProblem(p: HanoiPuzzle, state: number[], from: number, to: n
   const d = topOf(state, from)
   if (d < 0) return 'That peg is empty'
   if (p.cyclic && to !== (from + 1) % p.pegs) return 'Disks may only travel clockwise to the next peg'
+  if (p.adjacent && Math.abs(from - to) !== 1) return 'Disks may only step to a neighbouring peg'
   const t = topOf(state, to)
   if (t >= 0 && t < d) return 'A larger disk cannot sit on a smaller one'
   return null
@@ -107,7 +123,7 @@ export const isSolved = (p: HanoiPuzzle, state: number[]) => state.every(x => x 
 const encode = (state: number[], pegs: number) => state.reduce((a, x, i) => a + x * pegs ** i, 0)
 
 /** BFS distances from the goal tower to every position (moves are reversed for the one-way variant). */
-function distancesToGoal(pegs: number, disks: number, cyclic: boolean, goal: number): Int32Array {
+function distancesToGoal(pegs: number, disks: number, cyclic: boolean, goal: number, adjacent = false): Int32Array {
   const total = pegs ** disks
   const dist = new Int32Array(total).fill(-1)
   const goalState = Array(disks).fill(goal)
@@ -121,6 +137,7 @@ function distancesToGoal(pegs: number, disks: number, cyclic: boolean, goal: num
       if (from === to) continue
       // Reverse search: a forward move to→from must be legal, i.e. from = to + 1 when cyclic.
       if (cyclic && from !== (to + 1) % pegs) continue
+      if (adjacent && Math.abs(from - to) !== 1) continue
       const d = topOf(s, from)
       if (d < 0) continue
       const t = topOf(s, to)
@@ -137,7 +154,7 @@ function distancesToGoal(pegs: number, disks: number, cyclic: boolean, goal: num
 
 /** A shortest sequence of moves from `state` to the goal tower. */
 export function solve(p: HanoiPuzzle, state: number[] = p.start): Move[] {
-  const dist = distancesToGoal(p.pegs, p.disks, p.cyclic, p.goal)
+  const dist = distancesToGoal(p.pegs, p.disks, p.cyclic, p.goal, !!p.adjacent)
   const path: Move[] = []
   let s = state
   while (!isSolved(p, s)) {
@@ -157,16 +174,28 @@ export function generatePuzzle(configId: string, difficulty: Difficulty, seed: n
   const cfg = resolveConfig(CONFIGS, configId, undefined, 'benares')
   const disks = typeof params?.disks === 'number' ? (params.disks as number) : scale(difficulty, cfg.disks)
   const rng = mulberry32(hashString(`hanoi:${configId}:${seed}`))
-  const startPeg = Math.floor(rng() * cfg.pegs)
-  const goal = cfg.cyclic
-    // One step clockwise or two (the longer journey); D3 always takes the long way.
-    ? (startPeg + (difficulty === 3 ? 2 : 1 + Math.floor(rng() * 2))) % cfg.pegs
-    : (startPeg + 1 + Math.floor(rng() * (cfg.pegs - 1))) % cfg.pegs
+  let startPeg = Math.floor(rng() * cfg.pegs)
+  let goal: number
+  if (cfg.cyclic) {
+    // One step clockwise or two (the longer journey): D1 and D4 one step, D3 the long way, D2 either.
+    const step = scale(difficulty, [1, 1 + Math.floor(rng() * 2), 2, 1])
+    goal = (startPeg + step) % cfg.pegs
+  } else if (cfg.adjacent) {
+    // To or from the middle peg (half the journey), or end to end (3ⁿ − 1).
+    const endToEnd = scale(difficulty, [false, rng() < 0.5, true, false])
+    const end = rng() < 0.5 ? 0 : cfg.pegs - 1
+    if (endToEnd) { startPeg = end; goal = cfg.pegs - 1 - end }
+    else if (rng() < 0.5) { startPeg = end; goal = 1 }
+    else { startPeg = 1; goal = end }
+  } else {
+    goal = (startPeg + 1 + Math.floor(rng() * (cfg.pegs - 1))) % cfg.pegs
+  }
   const cyclic = !!cfg.cyclic
+  const adjacent = !!cfg.adjacent
   let start = Array(disks).fill(startPeg)
   if (cfg.scattered) {
     // A random legal position far from the goal: at least 70% of the worst case.
-    const dist = distancesToGoal(cfg.pegs, disks, cyclic, goal)
+    const dist = distancesToGoal(cfg.pegs, disks, cyclic, goal, adjacent)
     const worst = Math.max(...dist)
     const far: number[] = []
     for (let k = 0; k < dist.length; k++) if (dist[k] >= Math.ceil(worst * 0.7)) far.push(k)
@@ -176,7 +205,7 @@ export function generatePuzzle(configId: string, difficulty: Difficulty, seed: n
     const pool = spread.length ? spread : far
     start = decode(pool[Math.floor(rng() * pool.length)])
   }
-  const p: HanoiPuzzle = { pegs: cfg.pegs, disks, cyclic, start, goal, optimal: 0 }
+  const p: HanoiPuzzle = { pegs: cfg.pegs, disks, cyclic, adjacent, start, goal, optimal: 0 }
   p.optimal = solve(p).length
   return p
 }
@@ -314,6 +343,9 @@ export default function HanoiGame({ configId, difficulty, seed, params, onWin, o
         </div>
         {puzzle.cyclic && (
           <p className="text-[10px] text-center text-muted mt-1">↻ one way only: {Array.from({ length: puzzle.pegs }, (_, i) => i + 1).join(' → ')} → 1</p>
+        )}
+        {puzzle.adjacent && (
+          <p className="text-[10px] text-center text-muted mt-1">⇄ neighbours only: {Array.from({ length: puzzle.pegs }, (_, i) => i + 1).join(' ↔ ')} — never 1 → {puzzle.pegs} directly</p>
         )}
       </div>
 

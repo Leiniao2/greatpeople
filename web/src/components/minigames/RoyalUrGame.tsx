@@ -15,13 +15,26 @@ import { hashString, mulberry32, pick, resolveConfig, useGameOutcome, OutcomeBan
 // other shared square sends it back to the start.  Pieces never share a
 // square with a friend.  A throw of 0, or a throw with no legal move, passes.
 //
-// Configs are documented rule sets: Finkel (7 pieces), Blitz (5 pieces, no
-// safe rosette, a capture earns another throw) and a 3-piece Quick game.
+// Each config is a different rule set, not just a different piece count:
+//   finkel — seven pieces from the start, Finkel's safe rosette, and the
+//            race is "first to bear off N" (N by difficulty), so it is an
+//            opening battle over the shared row.
+//   blitz  — no safe rosette and a capture earns another throw; first to
+//            bear off N of five.
+//   quick  — the Guards' endgame: a seeded mid-game position with pieces
+//            already on the board, bear them all off.
+//   raid   — a capture race: the first to send K enemy pieces back wins
+//            (or bears every piece off, which rarely comes first).
+//
+// Time budget: a full seven-piece race is ~60 throws a side (8–10 minutes),
+// far past the 1–3 minute challenge.  The goals above keep a median game
+// near 10–14 of the player's throws at D1 and at most ~26 at D4 (each throw
+// plus the computer's reply takes ~5 s); the tests measure this.
 //
 // Difficulty: the AI's search grows from a careless greedy player that
 // ignores danger (D1, also playing at random 40% of the time) to a 3-ply
-// expectimax over the dice (D4).  The win condition shifts too: at D1 you
-// start with one piece already borne off, and at D4 the AI throws first.
+// expectimax over the dice (D4).  The goal grows with difficulty, at D1 one
+// of your pieces starts on your first rosette, and at D4 the AI throws first.
 //
 // Test hooks (documented, only used by tests): params.startPos sets the
 // starting positions `[human, ai]`, params.rolls scripts the dice throws.
@@ -35,11 +48,17 @@ export interface UrRules {
   safeCentral: boolean
   /** A capture earns another throw (Blitz). */
   captureBonus: boolean
+  /** Pieces a side must bear off to win (default: all of them). */
+  goal?: number
+  /** Captures that win the game outright (0/absent: off). */
+  raid?: number
 }
 export interface UrState {
   /** Piece positions per player: 0 waiting, 1–14 on the route, 15 home. */
   pos: [number[], number[]]
   turn: Player
+  /** Captures made by each side (only matters in a raid). */
+  caps?: [number, number]
 }
 export interface UrMove { from: number; to: number; capture: boolean }
 export interface Throw { total: number; tips: boolean[] }
@@ -51,10 +70,48 @@ export const ROLL_PROBS = [1 / 16, 4 / 16, 6 / 16, 4 / 16, 1 / 16] as const
 export const isShared = (s: number) => s >= 5 && s <= 12
 
 const other = (p: Player): Player => (p === 0 ? 1 : 0)
+export const goalOf = (rules: UrRules) => Math.min(rules.pieces, rules.goal ?? rules.pieces)
+
+/** D1's head start: pieces placed on the player's first rosette (square 4). */
+export const HEAD_START_SQUARE = 4
 
 export function initialState(rules: UrRules, opts: { headStart?: number; first?: Player } = {}): UrState {
-  const human = Array.from({ length: rules.pieces }, (_, i) => (i < (opts.headStart ?? 0) ? HOME : 0))
-  return { pos: [human, Array(rules.pieces).fill(0)], turn: opts.first ?? 0 }
+  const human = Array.from({ length: rules.pieces }, (_, i) => (i < (opts.headStart ?? 0) ? HEAD_START_SQUARE : 0))
+  return { pos: [human, Array(rules.pieces).fill(0)], turn: opts.first ?? 0, caps: [0, 0] }
+}
+
+const sum = (a: number[]) => a.reduce((x, y) => x + y, 0)
+
+/**
+ * A seeded mid-game position (the Guards' endgame): every piece is already
+ * on the route, the two sides have equal total progress, and no two pieces
+ * share a square.  The D1 head start moves one human piece 3 squares on.
+ */
+export function midgameState(rules: UrRules, seed: number, opts: { headStart?: number; first?: Player } = {}): UrState {
+  const rng = mulberry32(seed ^ hashString('ur-midgame'))
+  const n = rules.pieces
+  for (let tries = 0; tries < 5000; tries++) {
+    const pickSide = () => {
+      const out: number[] = []
+      while (out.length < n) {
+        const sq = 1 + Math.floor(rng() * 12) // 1..12: on the route, none home yet
+        if (!out.includes(sq)) out.push(sq)
+      }
+      return out.sort((a, b) => a - b)
+    }
+    const h = pickSide(), a = pickSide()
+    if (sum(h) !== sum(a) || sum(h) < n * 5 || sum(h) > n * 8) continue
+    if (h.some(x => isShared(x) && a.includes(x))) continue
+    if (opts.headStart) {
+      const top = h[h.length - 1]
+      let to = top + 3
+      while (to < HOME && (h.includes(to) || (isShared(to) && a.includes(to)))) to++
+      if (to >= HOME) continue
+      h[h.length - 1] = to
+    }
+    return { pos: [h, a], turn: opts.first ?? 0, caps: [0, 0] }
+  }
+  return initialState(rules, opts)
 }
 
 /** Throw four tetrahedral dice: each has two marked tips of four. */
@@ -91,17 +148,25 @@ export function applyMove(state: UrState, move: UrMove, rules: UrRules): { state
   const mine = state.pos[me].slice()
   mine[mine.indexOf(move.from)] = move.to
   let theirs = state.pos[opp]
-  if (move.capture) { theirs = theirs.slice(); theirs[theirs.indexOf(move.to)] = 0 }
+  const caps: [number, number] = state.caps ? [state.caps[0], state.caps[1]] : [0, 0]
+  if (move.capture) { theirs = theirs.slice(); theirs[theirs.indexOf(move.to)] = 0; caps[me]++ }
   const extra = ROSETTES.has(move.to) || (move.capture && rules.captureBonus)
   const pos: [number[], number[]] = me === 0 ? [mine, theirs] : [theirs, mine]
-  return { state: { pos, turn: extra ? me : opp }, extra }
+  return { state: { pos, turn: extra ? me : opp, caps }, extra }
 }
 
-export const passTurn = (state: UrState): UrState => ({ pos: state.pos, turn: other(state.turn) })
+export const passTurn = (state: UrState): UrState => ({ ...state, turn: other(state.turn) })
 
-export function winner(state: UrState): Player | null {
-  if (state.pos[0].every(p => p === HOME)) return 0
-  if (state.pos[1].every(p => p === HOME)) return 1
+export const homeCount = (state: UrState, p: Player) => state.pos[p].filter(x => x === HOME).length
+
+/** The winner, if any: first to bear off the goal, or (in a raid) to make enough captures. */
+export function winner(state: UrState, rules?: UrRules): Player | null {
+  const goal = rules ? goalOf(rules) : state.pos[0].length
+  const raid = rules?.raid ?? 0
+  for (const p of [0, 1] as Player[]) {
+    if (homeCount(state, p) >= goal) return p
+    if (raid && (state.caps?.[p] ?? 0) >= raid) return p
+  }
   return null
 }
 
@@ -110,7 +175,10 @@ export function winner(state: UrState): Player | null {
 /** Progress plus safety for one side; `careful` subtracts the chance of being hit. */
 function sideScore(state: UrState, p: Player, rules: UrRules, careful: boolean): number {
   const opp = state.pos[other(p)]
-  let s = 0
+  const raid = rules.raid ?? 0
+  // In a raid a lost piece is a step toward defeat, so risk weighs more.
+  const riskWeight = raid ? 3 : 1
+  let s = raid ? (state.caps?.[p] ?? 0) * 40 : 0
   for (const pos of state.pos[p]) {
     if (pos === HOME) { s += 20; continue }
     if (pos === 0) continue
@@ -119,21 +187,21 @@ function sideScore(state: UrState, p: Player, rules: UrRules, careful: boolean):
     if (careful && isShared(pos) && !isSafe(pos, rules)) {
       let risk = 0
       for (let d = 1; d <= 4; d++) if (opp.includes(pos - d)) risk += ROLL_PROBS[d]
-      s -= risk * (pos + 2)
+      s -= risk * (pos + 2) * riskWeight
     }
   }
   return s
 }
 
 export function evaluate(state: UrState, me: Player, rules: UrRules, careless = false): number {
-  const w = winner(state)
+  const w = winner(state, rules)
   if (w !== null) return w === me ? 1000 : -1000
   return sideScore(state, me, rules, !careless) - sideScore(state, other(me), rules, true)
 }
 
 /** Expected value of `state` (before its mover throws) for `me`, `depth` plies deep. */
 function chanceValue(state: UrState, me: Player, depth: number, rules: UrRules): number {
-  if (depth <= 0 || winner(state) !== null) return evaluate(state, me, rules)
+  if (depth <= 0 || winner(state, rules) !== null) return evaluate(state, me, rules)
   let v = ROLL_PROBS[0] * chanceValue(passTurn(state), me, depth - 1, rules)
   for (let r = 1; r <= 4; r++) {
     const moves = legalMoves(state, r, rules)
@@ -190,36 +258,74 @@ export function setupFor(difficulty: Difficulty): { headStart: number; first: Pl
 
 // ── Configs ──────────────────────────────────────────────────────────────────
 
+type PerDiff = readonly [number, number, number, number]
 interface UrConfig {
   title: string
   intro: string
   fact: string
-  rules: UrRules
+  /** Base rules; `goal`/`raid` come from the per-difficulty tables below. */
+  rules: Omit<UrRules, 'goal' | 'raid'>
+  /** Pieces to bear off per difficulty (absent: all). */
+  goal?: PerDiff
+  /** Captures that win per difficulty (absent: no raid). */
+  raid?: PerDiff
+  /** Pieces per side per difficulty, overriding rules.pieces. */
+  pieces?: PerDiff
+  /** Start from a seeded mid-game position instead of an empty board. */
+  midgame?: boolean
   rivals: string[]
 }
 
 export const CONFIGS: Record<string, UrConfig> = {
   finkel: {
     title: 'The Royal Tombs of Ur',
-    intro: "Seven pieces each, Irving Finkel's rules: the central rosette is a safe haven.",
+    intro: "Seven pieces each on Irving Finkel's rules — the central rosette is a safe haven. The first to bring the target number home wins.",
     rules: { pieces: 7, safeCentral: true, captureBonus: false },
+    goal: [1, 2, 2, 2],
     rivals: ['Queen Puabi', 'Meskalamdug', 'A temple scribe'],
     fact: 'Irving Finkel reconstructed these rules from a cuneiform tablet copied by the Babylonian scribe Itti-Marduk-balāṭu in 177 BC, nearly 2,500 years after the boards were buried at Ur.',
   },
   blitz: {
     title: 'Blitz in Babylon',
-    intro: 'Five pieces, no safe rosette, and every capture earns another throw.',
+    intro: 'Five pieces, no safe rosette, and every capture earns another throw. First to bring the target number home wins.',
     rules: { pieces: 5, safeCentral: false, captureBonus: true },
+    goal: [1, 2, 2, 2],
     rivals: ['A Babylonian merchant', 'A palace guard', 'A diviner'],
     fact: 'The game outlived Mesopotamia: the Jewish community of Kochi in India still played a version of it on a 20-square board into the 20th century.',
   },
   quick: {
     title: "The Guards' Game",
-    intro: 'A short race with three pieces each, on Finkel\'s rules.',
+    intro: "A game already under way: every piece is on the board, both sides equally far along. Bring all of yours home first.",
     rules: { pieces: 3, safeCentral: true, captureBonus: false },
+    pieces: [2, 3, 3, 3],
+    midgame: true,
     rivals: ['A gate guard', 'A bored sentry', 'A soldier off duty'],
     fact: "Bored guards scratched a 20-square Ur board into the base of a stone lamassu at the Assyrian palace of Khorsabad; it can still be seen in the British Museum.",
   },
+  raid: {
+    title: 'Raid on the Middle Row',
+    intro: 'A capture race: no rosette is safe, and the first to send the target number of enemy pieces back to the start wins.',
+    rules: { pieces: 5, safeCentral: false, captureBonus: false },
+    raid: [2, 2, 3, 3],
+    rivals: ['An Elamite raider', 'A Sumerian charioteer', 'A temple champion'],
+    fact: 'Leonard Woolley excavated the Royal Cemetery of Ur in the 1920s; one of its game boards lay beside the famous "Standard of Ur", whose panels show war and peace.',
+  },
+}
+
+/** The concrete rules of a config at a difficulty. */
+export function rulesFor(configId: string, difficulty: Difficulty): UrRules {
+  const c = CONFIGS[configId] ?? CONFIGS.finkel
+  const i = difficulty - 1
+  const pieces = c.pieces ? c.pieces[i] : c.rules.pieces
+  return { ...c.rules, pieces, goal: c.goal ? c.goal[i] : pieces, raid: c.raid ? c.raid[i] : 0 }
+}
+
+/** The opening position of a config at a difficulty and seed. */
+export function startFor(configId: string, difficulty: Difficulty, seed: number): UrState {
+  const c = CONFIGS[configId] ?? CONFIGS.finkel
+  const rules = rulesFor(configId, difficulty)
+  const setup = setupFor(difficulty)
+  return c.midgame ? midgameState(rules, seed, setup) : initialState(rules, setup)
 }
 
 // ── UI ───────────────────────────────────────────────────────────────────────
@@ -258,16 +364,18 @@ function Piece({ player, glow }: { player: Player; glow?: boolean }) {
 
 export default function RoyalUrGame({ configId, difficulty, seed, params, onWin, onLose }: MinigameProps) {
   const config = resolveConfig(CONFIGS, configId, params, 'finkel')
-  const rules = config.rules
+  const cfgId = configId && CONFIGS[configId] ? configId : 'finkel'
+  const rules = useMemo(() => rulesFor(cfgId, difficulty), [cfgId, difficulty])
+  const goal = goalOf(rules)
   const { outcome, settled, win, lose } = useGameOutcome({ onWin, onLose, delayMs: 900 })
   const rival = useMemo(() => pick(config.rivals, mulberry32(seed ^ hashString(configId || 'ur'))), [config, seed, configId])
 
   const start = useMemo<UrState>(() => {
     const setup = setupFor(difficulty)
     const custom = params?.startPos as [number[], number[]] | undefined
-    if (custom) return { pos: [custom[0].slice(), custom[1].slice()], turn: (params?.first as Player) ?? setup.first }
-    return initialState(rules, setup)
-  }, [difficulty, params, rules])
+    if (custom) return { pos: [custom[0].slice(), custom[1].slice()], turn: (params?.first as Player) ?? setup.first, caps: [0, 0] }
+    return startFor(cfgId, difficulty, seed)
+  }, [difficulty, params, cfgId, seed])
 
   const diceRng = useRef<Rng>(mulberry32(seed ^ hashString('ur-dice')))
   const aiRng = useRef<Rng>(mulberry32(seed ^ hashString('ur-ai')))
@@ -302,11 +410,12 @@ export default function RoyalUrGame({ configId, difficulty, seed, params, onWin,
 
   // Hand over to whoever moves next, or settle the game.
   const advance = (s: UrState, extra: boolean) => {
-    const w = winner(s)
+    const w = winner(s, rules)
     if (w !== null) {
       setPhase('done')
-      if (w === 0) { setNote('All your pieces are home — you win the race!'); win() }
-      else { setNote(`${rival} brings every piece home first.`); lose(`${rival} won the race`) }
+      const byRaid = !!rules.raid && (s.caps?.[w] ?? 0) >= rules.raid
+      if (w === 0) { setNote(byRaid ? `Your ${rules.raid}th capture — the raid is won!` : goal < rules.pieces ? `${goal} pieces home — you win the race!` : 'All your pieces are home — you win the race!'); win() }
+      else { setNote(byRaid ? `${rival} made ${rules.raid} captures first.` : goal < rules.pieces ? `${rival} brings ${goal} pieces home first.` : `${rival} brings every piece home first.`); lose(`${rival} won the race`) }
       return
     }
     if (s.turn === 0) {
@@ -429,7 +538,10 @@ export default function RoyalUrGame({ configId, difficulty, seed, params, onWin,
           <p className="text-[10px] font-bold uppercase tracking-widest text-accent truncate">{config.title}</p>
           <span className="text-[10px] text-muted shrink-0">{tierLabel} · vs {rival}</span>
         </div>
-        <p className="text-ink-2 text-xs leading-snug mt-0.5">{config.intro}{difficulty === 1 ? ' You start with one piece already home.' : difficulty === 4 ? ` ${rival} throws first.` : ''}</p>
+        <p className="text-ink-2 text-xs leading-snug mt-0.5">{config.intro}{difficulty === 1 ? ' One of your pieces starts ahead.' : difficulty === 4 ? ` ${rival} throws first.` : ''}</p>
+        <p className="text-[11px] text-ink mt-1 font-semibold">
+          {rules.raid ? `Goal: ${rules.raid} captures — you ${game.caps?.[0] ?? 0} · ${rival} ${game.caps?.[1] ?? 0}` : `Goal: ${goal} of ${rules.pieces} home — you ${home(0)} · ${rival} ${home(1)}`}
+        </p>
       </div>
 
       <div className="flex gap-2">{pool(1, 'start')}{pool(1, 'home')}</div>
@@ -492,11 +604,11 @@ export default function RoyalUrGame({ configId, difficulty, seed, params, onWin,
           <li>Your route: 4 squares on your row, the 8 shared middle squares, then 2 back on your row, and off with an exact throw.</li>
           <li>Land on a rosette ✿ to throw again.{rules.safeCentral ? ' A piece on the central rosette cannot be captured.' : ' No rosette is safe in this game.'}</li>
           <li>Land on a rival piece in the middle row to send it back to the start.{rules.captureBonus ? ' A capture earns another throw.' : ''}</li>
-          <li>You may not land on your own piece. A 0 or no legal move passes. First to bring all {rules.pieces} home wins.</li>
+          <li>You may not land on your own piece. A 0 or no legal move passes. {rules.raid ? `First to make ${rules.raid} captures wins (or to bring all ${rules.pieces} home).` : goal < rules.pieces ? `First to bring ${goal} of ${rules.pieces} pieces home wins.` : `First to bring all ${rules.pieces} home wins.`}</li>
         </ul>
       </details>
 
-      <OutcomeBanner outcome={outcome} detail={config.fact} winTitle="All pieces home — victory!" loseTitle={`${rival} won the race`} />
+      <OutcomeBanner outcome={outcome} detail={config.fact} winTitle="Victory at Ur!" loseTitle={`${rival} won the race`} />
     </div>
   )
 }

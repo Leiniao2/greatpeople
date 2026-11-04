@@ -16,10 +16,20 @@ import { mulberry32, hashString, resolveConfig, scale, useGameOutcome, OutcomeBa
 // outline is derived from a known tiling and is always solvable. A seed picks
 // one of the config's silhouettes and may mirror it.
 //
-//   D1  faint outline of every piece in the silhouette   5:00
-//   D2  outlines of the two large and the medium triangle 4:00
+//   D1  faint outline of every piece in the silhouette   2:00
+//   D2  outlines of the two large and the medium triangle 2:30
 //   D3  silhouette only, pieces start turned              3:00
-//   D4  silhouette only, pieces start turned              2:00
+//   D4  silhouette only, pieces start turned, twist at its tightest  3:00
+//
+// Time budget: seven pieces take an engaged player about a minute with the
+// D1 outlines, two to three without; the clock never allows more than 3:00.
+//
+// Each config adds its own rule twist (see TWISTS):
+//   song-scholar  memory   — the silhouette is shown, then hidden; a few short peeks
+//   junk-ship     lacquer  — a board left wholly inside the outline sets fast
+//                            when you pick up another; prying one loose is rationed
+//   pagoda        turns    — every quarter-turn or flip spends from a small budget
+//   menagerie     decoy    — an eighth board is in the tray; one board is left over
 //
 // Drag a piece to move it (it snaps to the grid); tap it to turn it 90°. The
 // control bar turns, flips (parallelogram) and nudges the selected piece.
@@ -30,30 +40,48 @@ interface TangramConfig {
   fact: string
   /** Silhouette keys from SILHOUETTES. */
   shapes: string[]
+  /** The rule twist. */
+  twist?: Twist
+}
+
+export type Twist = 'memory' | 'lacquer' | 'turns' | 'decoy'
+
+/** Per-difficulty knobs for each twist. */
+export const TWISTS = {
+  /** Seconds the silhouette is shown at the start, peeks allowed, seconds per peek. */
+  memory: (d: Difficulty) => ({ showSeconds: scale(d, [20, 15, 10, 8]), peeks: scale(d, [3, 2, 1, 1]), peekSeconds: 3 }),
+  /** Boards that may be pried loose again. */
+  lacquer: (d: Difficulty) => ({ pries: scale(d, [3, 2, 1, 1]) }),
+  /** Spare turns above the fewest the puzzle needs. */
+  turns: (d: Difficulty) => ({ spare: scale(d, [6, 4, 2, 1]) }),
 }
 
 export const CONFIGS: Record<string, TangramConfig> = {
   'song-scholar': {
     title: 'The Scholar’s Seven Boards',
-    intro: 'A scholar’s parlour game: arrange all seven boards to fill the silhouette exactly — no gaps, no overlaps.',
+    intro: 'A test of the scholar’s memory: study the silhouette while it is shown — it then fades, and you must fill it from memory with all seven boards. A few short peeks are allowed.',
+    twist: 'memory',
     fact: 'In the Song dynasty Huang Bosi designed sets of banquet tables (yanji tu) that could be rearranged into many shapes — often named as an ancestor of the tangram, whose seven-piece form first appears in Chinese books around 1800.',
     shapes: ['person', 'sage', 'kneeling', 'chair', 'table', 'teapot', 'inkstone', 'kite', 'square'],
   },
   'junk-ship': {
     title: 'Canton Harbour',
-    intro: 'Sailors carried the seven-board puzzle out of Canton. Fit every board into the outline of the vessel.',
+    intro: 'Freshly lacquered boards: a board left wholly inside the outline sets fast as soon as you pick up another. Place each one with care — only a few can be pried loose again.',
+    twist: 'lacquer',
     fact: 'Tangrams reached Europe and America on trading ships from Canton around 1815–1817 and set off a craze; puzzle books of “the Chinese puzzle” sold in London, Paris and Philadelphia.',
     shapes: ['junk', 'sampan', 'two-master', 'moon-bridge', 'carp'],
   },
   'pagoda': {
     title: 'Temples and Towers',
-    intro: 'Build the temple from seven boards. Every board must be used and the outline filled exactly.',
+    intro: 'The mason’s boards are heavy: every quarter-turn or flip spends one turn from a small budget. Plan each board’s turns before you build the temple.',
+    twist: 'turns',
     fact: 'The Iron Pagoda of Kaifeng, built in 1049 under the Song, is clad in glazed brick the colour of iron and has survived nearly a thousand years of floods and earthquakes.',
     shapes: ['house', 'stupa', 'pagoda', 'tiered-pagoda', 'pailou', 'pine', 'twin-peaks', 'stele', 'altar'],
   },
   'menagerie': {
     title: 'The Seven-Board Menagerie',
-    intro: 'Qing puzzle books were full of animals made from the seven boards. Fill the creature’s silhouette exactly.',
+    intro: 'A stray eighth board has crept into the tray. Fill the creature’s silhouette exactly — one board will be left over in the tray.',
+    twist: 'decoy',
     fact: 'The name qiqiao ban means “seven boards of skill.” Qing-era books such as the Qiqiao tu he bi (1813) printed hundreds of figures — people, animals, boats and buildings — with the solutions in a separate volume.',
     shapes: ['crane', 'cat', 'rabbit', 'horse', 'carp'],
   },
@@ -179,7 +207,13 @@ export interface Puzzle {
   kinds: Kind[]
   target: Set<string>
   start: Placement[]
+  twist?: Twist
+  /** The 'turns' twist: quarter-turns and flips allowed. */
+  turnBudget?: number
 }
+
+/** The tray starts at this row: pieces wholly below it are off the board. */
+export const TRAY_Y = BOARD_H + 1
 
 export interface Tier { outlines: 'all' | 'some' | 'none'; turned: boolean; seconds: number }
 
@@ -187,11 +221,11 @@ export function tierFor(difficulty: Difficulty): Tier {
   return {
     outlines: scale(difficulty, ['all', 'some', 'none', 'none'] as const),
     turned: difficulty >= 3,
-    seconds: scale(difficulty, [300, 240, 180, 120]),
+    seconds: scale(difficulty, [120, 150, 180, 180]),
   }
 }
 
-export function makePuzzle(config: Pick<TangramConfig, 'shapes'>, difficulty: Difficulty, seed: number): Puzzle {
+export function makePuzzle(config: Pick<TangramConfig, 'shapes' | 'twist'>, difficulty: Difficulty, seed: number): Puzzle {
   const rng = mulberry32(seed ^ hashString(config.shapes.join()))
   const key = config.shapes[Math.floor(rng() * config.shapes.length)]
   const placed = parseSolution(SOLUTIONS[key].sol)
@@ -205,33 +239,80 @@ export function makePuzzle(config: Pick<TangramConfig, 'shapes'>, difficulty: Di
   const slots = Array.from({ length: 10 }, (_, i) => [(i % 5) * 2, BOARD_H + 1 + Math.floor(i / 5) * 2] as Pt)
   for (let i = slots.length - 1; i > 0; i--) { const j = Math.floor(rng() * (i + 1)); [slots[i], slots[j]] = [slots[j], slots[i]] }
   const tier = tierFor(difficulty)
-  const start = SET.map((kind, i) => {
-    const rot = tier.turned ? Math.floor(rng() * 4) : 0
-    const flip = kind === 'P' && tier.turned && rng() < 0.5
+  const twist = config.twist
+  // The decoy: an extra medium triangle, square, parallelogram or small triangle.
+  const tray: Kind[] = twist === 'decoy' ? [...SET, (['M', 'Q', 'P', 'S'] as const)[Math.floor(rng() * 4)]] : SET
+  const turned = tier.turned || twist === 'turns'
+  const lay = () => tray.map((kind, i) => {
+    const rot = turned ? Math.floor(rng() * 4) : 0
+    const flip = kind === 'P' && turned && rng() < 0.5
     const { w, h } = boxOf({ kind, rot, flip })
     return { kind, rot, flip, x: slots[i][0] + Math.floor((2 - w) / 2), y: slots[i][1] + Math.floor((2 - h) / 2) }
   })
-  return { key, name: SOLUTIONS[key].name, solution: polys, kinds: placed.map(p => p.kind), target, start }
+  const puzzle: Puzzle = { key, name: SOLUTIONS[key].name, solution: polys, kinds: placed.map(p => p.kind), target, start: lay(), twist }
+  if (twist === 'turns') {
+    // Make the turns matter: re-deal until at least four are needed.
+    for (let k = 0; k < 20 && minTurns(puzzle) < 4; k++) puzzle.start = lay()
+    puzzle.turnBudget = minTurns(puzzle) + TWISTS.turns(difficulty).spare
+  }
+  return puzzle
 }
 
+/** Quarter-turns (either way) plus flips to bring orientation `a` to `b`. */
+export function turnCost(a: Pick<Placement, 'rot' | 'flip'>, b: Pick<Placement, 'rot' | 'flip'>): number {
+  const dr = (((b.rot - a.rot) % 4) + 4) % 4
+  return (a.flip !== b.flip ? 1 : 0) + Math.min(dr, 4 - dr)
+}
+
+const shapeKey = (kind: Kind, rot: number, flip: boolean) => quartersOf(orient(kind, rot, flip)).sort().join(' ')
+
 /**
- * The puzzle's solution as piece placements in SET order (one per piece),
- * recovered from the (possibly mirrored) solution outlines.
+ * The puzzle's solution as piece placements in SET order (one per piece of
+ * the set; a decoy, last in the tray, is left out), recovered from the
+ * (possibly mirrored) solution outlines. Of the equivalent orientations, and
+ * of the ways to match identical pieces, it picks the one needing the fewest
+ * turns from the start.
  */
 export function placementsFor(puzzle: Puzzle): Placement[] {
-  const used = new Set<number>()
-  return SET.map(kind => {
-    const k = puzzle.kinds.findIndex((kk, idx) => kk === kind && !used.has(idx))
-    used.add(k)
+  // Every orientation of a piece that fills solution polygon k.
+  const fits = (kind: Kind, k: number): Placement[] => {
     const poly = puzzle.solution[k]
     const x = Math.min(...poly.map(p => p[0])), y = Math.min(...poly.map(p => p[1]))
-    const want = quartersOf(poly).sort().join(' ')
+    const want = quartersOf(poly.map(([px, py]) => [px - x, py - y] as Pt)).sort().join(' ')
+    const out: Placement[] = []
     for (const flip of kind === 'P' ? [false, true] : [false]) for (let rot = 0; rot < 4; rot++) {
-      const p = { kind, rot, flip, x, y }
-      if (quartersOf(polygonOf(p)).sort().join(' ') === want) return p
+      if (shapeKey(kind, rot, flip) === want) out.push({ kind, rot, flip, x, y })
     }
-    throw new Error(`no orientation for ${kind} in ${puzzle.key}`)
-  })
+    if (!out.length) throw new Error(`no orientation for ${kind} in ${puzzle.key}`)
+    return out
+  }
+  const best = (i: number, k: number) => {
+    const from = puzzle.start[i] ?? { rot: 0, flip: false }
+    return fits(SET[i], k).reduce((a, b) => (turnCost(from, b) < turnCost(from, a) ? b : a))
+  }
+  const cost = (i: number, k: number) => turnCost(puzzle.start[i] ?? { rot: 0, flip: false }, best(i, k))
+  const out: Placement[] = []
+  const used = new Set<number>()
+  for (let i = 0; i < SET.length; i++) {
+    if (out[i]) continue
+    const ks = puzzle.kinds.map((_, idx) => idx).filter(idx => puzzle.kinds[idx] === SET[i] && !used.has(idx))
+    const twin = SET.findIndex((kk, j) => j > i && kk === SET[i])
+    if (twin >= 0 && ks.length >= 2) {
+      // Two identical pieces: match them to the two outlines the cheaper way.
+      const [a, b] = ks
+      const swap = cost(i, b) + cost(twin, a) < cost(i, a) + cost(twin, b)
+      out[i] = best(i, swap ? b : a); out[twin] = best(twin, swap ? a : b)
+      used.add(a); used.add(b)
+    } else {
+      out[i] = best(i, ks[0]); used.add(ks[0])
+    }
+  }
+  return out
+}
+
+/** The fewest quarter-turns and flips that solve the puzzle from its start. */
+export function minTurns(puzzle: Puzzle): number {
+  return placementsFor(puzzle).reduce((a, p, i) => a + turnCost(puzzle.start[i], p), 0)
 }
 
 const clampPos = (p: Placement): Placement => {
@@ -251,6 +332,11 @@ export function rotatePiece(p: Placement): Placement {
   return clampPos({ ...p, rot, x: p.x + (odd ? Math.floor(dx) : Math.ceil(dx)), y: p.y + (odd ? Math.ceil(dy) : Math.floor(dy)) })
 }
 
+/** Turn 90° anticlockwise (three clockwise turns' worth). */
+export function rotatePieceBack(p: Placement): Placement {
+  return rotatePiece(rotatePiece(rotatePiece(p)))
+}
+
 export function flipPiece(p: Placement): Placement {
   return p.kind === 'P' ? clampPos({ ...p, flip: !p.flip }) : p
 }
@@ -259,10 +345,12 @@ export function movePiece(p: Placement, dx: number, dy: number): Placement {
   return clampPos({ ...p, x: p.x + dx, y: p.y + dy })
 }
 
-/** Covered target quarters (counting each once) and whether the cover is exact. */
+export const inTray = (p: Placement) => p.y >= TRAY_Y
+
+/** Covered target quarters (counting each once) and whether the cover is exact. Boards left in the tray do not count. */
 export function coverage(pieces: Placement[], target: Set<string>): { covered: number; solved: boolean } {
   const seen = new Map<string, number>()
-  for (const p of pieces) for (const k of quartersOf(polygonOf(p))) seen.set(k, (seen.get(k) ?? 0) + 1)
+  for (const p of pieces) if (!inTray(p)) for (const k of quartersOf(polygonOf(p))) seen.set(k, (seen.get(k) ?? 0) + 1)
   let covered = 0, exact = seen.size === target.size
   for (const k of target) if (seen.has(k)) covered++
   for (const [k, n] of seen) if (n !== 1 || !target.has(k)) exact = false
@@ -274,29 +362,94 @@ export function coverage(pieces: Placement[], target: Set<string>): { covered: n
 const COLOURS: Record<Kind, string> = { L: '#c2410c', M: '#0f766e', S: '#b45309', Q: '#7c3aed', P: '#be123c' }
 const COLOURS2 = ['#c2410c', '#ea580c', '#0f766e', '#b45309', '#ca8a04', '#7c3aed', '#be123c']
 
+const KIND_NAMES: Record<Kind, string> = { L: 'large triangle', M: 'medium triangle', S: 'small triangle', Q: 'square', P: 'parallelogram' }
+
+/** Would board `i` set fast where it lies: wholly inside the outline, overlapping no other board? */
+export function fitsInside(pieces: Placement[], i: number, target: Set<string>): boolean {
+  const mine = quartersOf(polygonOf(pieces[i]))
+  if (inTray(pieces[i]) || !mine.every(k => target.has(k))) return false
+  const others = new Set(pieces.flatMap((p, k) => (k === i || inTray(p) ? [] : quartersOf(polygonOf(p)))))
+  return mine.every(k => !others.has(k))
+}
+
 export default function TangramGame({ configId, difficulty, seed, params, onWin, onLose }: MinigameProps) {
   const config = resolveConfig(CONFIGS, configId, params, 'song-scholar')
-  const puzzle = useMemo(() => makePuzzle(config, difficulty, seed), [config.shapes.join(), difficulty, seed]) // eslint-disable-line react-hooks/exhaustive-deps
+  const puzzle = useMemo(() => makePuzzle(config, difficulty, seed), [config.shapes.join(), config.twist, difficulty, seed]) // eslint-disable-line react-hooks/exhaustive-deps
   const tier = tierFor(difficulty)
+  const twist = puzzle.twist
+  const memory = TWISTS.memory(difficulty)
+  const n = puzzle.start.length
   const [pieces, setPieces] = useState<Placement[]>(puzzle.start)
   const [selected, setSelected] = useState<number | null>(null)
-  const [order, setOrder] = useState<number[]>(() => SET.map((_, i) => i))
+  const [order, setOrder] = useState<number[]>(() => puzzle.start.map((_, i) => i))
   const [drag, setDrag] = useState<{ i: number; sx: number; sy: number; dx: number; dy: number } | null>(null)
+  // Twists: lacquered boards, turn budget, memory.
+  const [locked, setLocked] = useState<boolean[]>(() => Array(n).fill(false))
+  const [pries, setPries] = useState(TWISTS.lacquer(difficulty).pries)
+  const [turnsLeft, setTurnsLeft] = useState(puzzle.turnBudget ?? Infinity)
+  const [shown, setShown] = useState(true)
+  const [showFor, setShowFor] = useState(memory.showSeconds)
+  const [peeks, setPeeks] = useState(memory.peeks)
+  const [note, setNote] = useState<string | null>(null)
   const svgRef = useRef<SVGSVGElement>(null)
   const { outcome, settled, win, lose } = useGameOutcome({ onWin, onLose })
   const timer = useGameTimer({ seconds: tier.seconds, running: !settled, onExpire: () => lose('Time ran out') })
+
+  useEffect(() => {
+    if (twist !== 'memory' || !shown || settled) return
+    const id = setTimeout(() => setShown(false), showFor * 1000)
+    return () => clearTimeout(id)
+  }, [twist, shown, showFor, settled])
+  const silhouetteVisible = twist !== 'memory' || shown || settled
 
   const { covered } = coverage(pieces, puzzle.target)
   const pct = Math.round((covered / puzzle.target.size) * 100)
 
   const commit = useCallback((i: number, next: Placement) => {
-    if (settled) return
+    if (settled || locked[i]) return
     const all = pieces.map((p, k) => (k === i ? next : p))
     setPieces(all)
     setSelected(i)
+    setNote(null)
     setOrder(o => [...o.filter(k => k !== i), i])
     if (coverage(all, puzzle.target).solved) win()
-  }, [settled, pieces, puzzle.target, win])
+  }, [settled, locked, pieces, puzzle.target, win])
+
+  /** Select a board; with lacquer, the board put down sets fast if it lies inside the outline. */
+  const select = useCallback((i: number) => {
+    if (twist === 'lacquer' && selected !== null && selected !== i && !locked[selected] && fitsInside(pieces, selected, puzzle.target)) {
+      setLocked(l => l.map((v, k) => v || k === selected))
+      setNote('That board has set fast.')
+    }
+    setSelected(i)
+    setOrder(o => [...o.filter(k => k !== i), i])
+  }, [twist, selected, locked, pieces, puzzle.target])
+
+  /** A quarter-turn or flip, charged to the budget under the 'turns' twist. */
+  const turn = useCallback((i: number, f: (p: Placement) => Placement) => {
+    if (settled || locked[i]) return
+    const next = f(pieces[i])
+    if (next === pieces[i]) return
+    if (twist === 'turns') {
+      if (turnsLeft <= 0) { setNote('No turns left — only moves now.'); return }
+      setTurnsLeft(t => t - 1)
+    }
+    commit(i, next)
+  }, [settled, locked, pieces, twist, turnsLeft, commit])
+
+  const pry = () => {
+    if (selected === null || !locked[selected] || pries <= 0 || settled) return
+    setLocked(l => l.map((v, k) => v && k !== selected))
+    setPries(p => p - 1)
+    setNote(null)
+  }
+
+  const peek = () => {
+    if (twist !== 'memory' || shown || peeks <= 0 || settled) return
+    setPeeks(p => p - 1)
+    setShowFor(memory.peekSeconds)
+    setShown(true)
+  }
 
   const toSvg = (e: { clientX: number; clientY: number }) => {
     const r = svgRef.current?.getBoundingClientRect()
@@ -311,14 +464,16 @@ export default function TangramGame({ configId, difficulty, seed, params, onWin,
   const onDown = (i: number) => (e: React.PointerEvent) => {
     if (settled) return
     e.preventDefault()
+    select(i)
+    if (locked[i]) return
     const { x, y } = toSvg(e)
     setDragBoth({ i, sx: x, sy: y, dx: 0, dy: 0 })
-    setSelected(i)
-    setOrder(o => [...o.filter(k => k !== i), i])
   }
 
   const commitRef = useRef(commit)
   commitRef.current = commit
+  const turnRef = useRef(turn)
+  turnRef.current = turn
   const piecesRef = useRef(pieces)
   piecesRef.current = pieces
   const dragging = drag !== null
@@ -335,7 +490,7 @@ export default function TangramGame({ configId, difficulty, seed, params, onWin,
       if (!d) return
       setDragBoth(null)
       const p = piecesRef.current[d.i]
-      if (Math.hypot(d.dx, d.dy) < 0.25) commitRef.current(d.i, rotatePiece(p))
+      if (Math.hypot(d.dx, d.dy) < 0.25) turnRef.current(d.i, rotatePiece)
       else commitRef.current(d.i, movePiece(p, Math.round(d.dx), Math.round(d.dy)))
     }
     window.addEventListener('pointermove', move)
@@ -352,23 +507,35 @@ export default function TangramGame({ configId, difficulty, seed, params, onWin,
     if (selected === null || settled) return
     commit(selected, f(pieces[selected]))
   }
+  const actTurn = (f: (p: Placement) => Placement) => () => { if (selected !== null) turn(selected, f) }
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (selected === null || settled) return
       const mv: Record<string, [number, number]> = { ArrowUp: [0, -1], ArrowDown: [0, 1], ArrowLeft: [-1, 0], ArrowRight: [1, 0] }
       if (mv[e.key]) { e.preventDefault(); commit(selected, movePiece(pieces[selected], ...mv[e.key])) }
-      else if (e.key === 'r' || e.key === 'R') commit(selected, rotatePiece(pieces[selected]))
-      else if (e.key === 'f' || e.key === 'F') commit(selected, flipPiece(pieces[selected]))
+      else if (e.key === 'r' || e.key === 'R') turn(selected, rotatePiece)
+      else if (e.key === 'e' || e.key === 'E') turn(selected, rotatePieceBack)
+      else if (e.key === 'f' || e.key === 'F') turn(selected, flipPiece)
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [selected, settled, pieces, commit])
+  }, [selected, settled, pieces, commit, turn])
 
   const hinted = (k: number) => tier.outlines === 'all' || (tier.outlines === 'some' && (puzzle.kinds[k] === 'L' || puzzle.kinds[k] === 'M'))
   const pts = (poly: Pt[]) => poly.map(p => p.join(',')).join(' ')
   const sel = selected !== null ? pieces[selected] : null
+  const selLocked = selected !== null && locked[selected]
+  const noTurns = twist === 'turns' && turnsLeft <= 0
   const btn = 'h-10 rounded-lg border text-sm font-bold bg-panel border-line text-ink-2 disabled:opacity-40'
+  const status = twist === 'turns' ? `↻ ${turnsLeft} turn${turnsLeft === 1 ? '' : 's'} left`
+    : twist === 'lacquer' ? `${locked.filter(Boolean).length} set · ${pries} pr${pries === 1 ? 'y' : 'ies'}`
+    : twist === 'memory' ? `${peeks} peek${peeks === 1 ? '' : 's'}`
+    : twist === 'decoy' ? 'one is a decoy' : null
+  const help = twist === 'lacquer' ? 'A board inside the outline sets fast when you pick up another.'
+    : twist === 'turns' ? 'Each turn (↻ ↺) or flip (⇋) spends one from the budget.'
+    : twist === 'memory' ? (shown ? 'Study the silhouette — it will fade.' : 'Build it from memory.')
+    : twist === 'decoy' ? 'Leave the odd board in the tray.' : ''
 
   return (
     <div className="flex flex-col gap-3 bg-paper-2 rounded-xl p-3 sm:p-4">
@@ -378,8 +545,9 @@ export default function TangramGame({ configId, difficulty, seed, params, onWin,
           <p className="text-muted text-xs leading-relaxed">{config.intro}</p>
         </div>
         <div className="shrink-0 text-right text-[10px] text-muted">
-          <p className="font-bold text-ink-2">7 boards</p>
-          <p data-testid="tg-cover">◩ {pct}%</p>
+          <p className="font-bold text-ink-2">{n} boards</p>
+          <p data-testid="tg-cover">◩ {silhouetteVisible ? `${pct}%` : '?'}</p>
+          {status && <p data-testid="tg-twist" className={noTurns ? 'text-red-600 font-bold' : ''}>{status}</p>}
         </div>
       </div>
       <TimerBar remaining={timer.remaining} total={timer.total} />
@@ -395,25 +563,27 @@ export default function TangramGame({ configId, difficulty, seed, params, onWin,
           <rect x="0" y={BOARD_H + 0.5} width={W} height={H - BOARD_H - 0.5} className="fill-panel" opacity="0.6" />
           <line x1="0" x2={W} y1={BOARD_H + 0.5} y2={BOARD_H + 0.5} stroke="currentColor" strokeWidth="0.04" className="text-line" />
           {/* Silhouette: the solution polygons in one colour, seams hidden by a matching stroke. */}
-          <g data-testid="tg-target">
-            {puzzle.solution.map((poly, k) => (
-              <polygon key={k} points={pts(poly)} fill="#1f2937" stroke="#1f2937" strokeWidth="0.03" strokeLinejoin="round" opacity={outcome === 'won' ? 0.15 : 0.85} />
-            ))}
-            {puzzle.solution.map((poly, k) => hinted(k) && (
-              <polygon key={`h${k}`} data-hint={k} points={pts(poly)} fill="none" stroke="#f8fafc" strokeOpacity={tier.outlines === 'all' ? 0.35 : 0.5} strokeWidth="0.05" strokeDasharray="0.15 0.1" />
-            ))}
-          </g>
+          {silhouetteVisible && (
+            <g data-testid="tg-target">
+              {puzzle.solution.map((poly, k) => (
+                <polygon key={k} points={pts(poly)} fill="#1f2937" stroke="#1f2937" strokeWidth="0.03" strokeLinejoin="round" opacity={outcome === 'won' ? 0.15 : 0.85} />
+              ))}
+              {puzzle.solution.map((poly, k) => hinted(k) && (
+                <polygon key={`h${k}`} data-hint={k} points={pts(poly)} fill="none" stroke="#f8fafc" strokeOpacity={tier.outlines === 'all' ? 0.35 : 0.5} strokeWidth="0.05" strokeDasharray="0.15 0.1" />
+              ))}
+            </g>
+          )}
           {order.map(i => {
             const p = pieces[i]
             const d = drag?.i === i ? drag : null
             return (
               <g key={i} transform={d ? `translate(${d.dx} ${d.dy})` : undefined}>
-                <polygon data-piece={i} points={pts(polygonOf(p))} tabIndex={0} role="button"
-                  aria-label={`${p.kind === 'L' ? 'large triangle' : p.kind === 'M' ? 'medium triangle' : p.kind === 'S' ? 'small triangle' : p.kind === 'Q' ? 'square' : 'parallelogram'} ${i + 1}`}
-                  onPointerDown={onDown(i)} onFocus={() => setSelected(i)}
+                <polygon data-piece={i} data-locked={locked[i] ? '1' : undefined} points={pts(polygonOf(p))} tabIndex={0} role="button"
+                  aria-label={`${KIND_NAMES[p.kind]} ${i + 1}${locked[i] ? ' (set fast)' : ''}`}
+                  onPointerDown={onDown(i)} onFocus={() => select(i)}
                   fill={COLOURS2[i] ?? COLOURS[p.kind]} fillOpacity={0.92}
-                  stroke={selected === i ? '#fde047' : '#fffbeb'} strokeWidth={selected === i ? 0.09 : 0.04} strokeLinejoin="round"
-                  style={{ cursor: settled ? 'default' : 'grab', outline: 'none' }} />
+                  stroke={selected === i ? '#fde047' : locked[i] ? '#1f2937' : '#fffbeb'} strokeWidth={selected === i ? 0.09 : locked[i] ? 0.07 : 0.04} strokeLinejoin="round"
+                  style={{ cursor: settled || locked[i] ? 'default' : 'grab', outline: 'none' }} />
               </g>
             )
           })}
@@ -421,17 +591,32 @@ export default function TangramGame({ configId, difficulty, seed, params, onWin,
       </div>
 
       {!settled && (
-        <div className="grid grid-cols-6 gap-1.5 w-full max-w-[400px] mx-auto">
-          <button type="button" className={btn} disabled={!sel} onClick={act(rotatePiece)} aria-label="Turn">↻</button>
-          <button type="button" className={btn} disabled={!sel || sel.kind !== 'P'} onClick={act(flipPiece)} aria-label="Flip">⇋</button>
-          <button type="button" className={btn} disabled={!sel} onClick={act(p => movePiece(p, -1, 0))} aria-label="Left">←</button>
-          <button type="button" className={btn} disabled={!sel} onClick={act(p => movePiece(p, 0, -1))} aria-label="Up">↑</button>
-          <button type="button" className={btn} disabled={!sel} onClick={act(p => movePiece(p, 0, 1))} aria-label="Down">↓</button>
-          <button type="button" className={btn} disabled={!sel} onClick={act(p => movePiece(p, 1, 0))} aria-label="Right">→</button>
+        <div className="grid grid-cols-7 gap-1.5 w-full max-w-[400px] mx-auto">
+          <button type="button" className={btn} disabled={!sel || selLocked || noTurns} onClick={actTurn(rotatePiece)} aria-label="Turn">↻</button>
+          <button type="button" className={btn} disabled={!sel || selLocked || noTurns} onClick={actTurn(rotatePieceBack)} aria-label="Turn back">↺</button>
+          <button type="button" className={btn} disabled={!sel || selLocked || noTurns || sel.kind !== 'P'} onClick={actTurn(flipPiece)} aria-label="Flip">⇋</button>
+          <button type="button" className={btn} disabled={!sel || selLocked} onClick={act(p => movePiece(p, -1, 0))} aria-label="Left">←</button>
+          <button type="button" className={btn} disabled={!sel || selLocked} onClick={act(p => movePiece(p, 0, -1))} aria-label="Up">↑</button>
+          <button type="button" className={btn} disabled={!sel || selLocked} onClick={act(p => movePiece(p, 0, 1))} aria-label="Down">↓</button>
+          <button type="button" className={btn} disabled={!sel || selLocked} onClick={act(p => movePiece(p, 1, 0))} aria-label="Right">→</button>
         </div>
       )}
-      <p className="text-muted/80 text-[10px] text-center">
-        {outcome === 'won' ? `It is ${puzzle.name}!` : 'Drag a board to move it; tap it to turn it. ⇋ flips the parallelogram.'}
+      {!settled && (twist === 'memory' || (twist === 'lacquer' && selLocked)) && (
+        <div className="flex justify-center">
+          {twist === 'memory' && (
+            <button type="button" className="px-3 py-1.5 rounded-lg text-xs font-bold bg-accent text-accent-fg disabled:opacity-40" disabled={shown || peeks <= 0} onClick={peek}>
+              Peek ({peeks})
+            </button>
+          )}
+          {twist === 'lacquer' && selLocked && (
+            <button type="button" className="px-3 py-1.5 rounded-lg text-xs font-bold bg-accent text-accent-fg disabled:opacity-40" disabled={pries <= 0} onClick={pry}>
+              Pry loose ({pries})
+            </button>
+          )}
+        </div>
+      )}
+      <p className="text-muted/80 text-[10px] text-center" role="status">
+        {outcome === 'won' ? `It is ${puzzle.name}!` : note ?? `Drag a board to move it; tap it to turn it. ⇋ flips the parallelogram. ${help}`}
       </p>
 
       <OutcomeBanner outcome={outcome} detail={config.fact} winTitle={`Solved: ${puzzle.name}`} loseTitle="The boards would not fit in time" />

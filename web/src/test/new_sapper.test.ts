@@ -1,10 +1,11 @@
 // Sapper (no-guess Minesweeper): every field is logic-solvable from the first
-// square, the first square is a clear opening, and the component wins and
-// loses exactly once.
+// square, the first square is a clear opening, every config counts a
+// different reach, the time budget holds, and the component wins and loses
+// exactly once.
 import { createElement } from 'react'
 import { render, cleanup, fireEvent, act } from '@testing-library/react'
 import { describe, it, expect, afterEach, vi } from 'vitest'
-import SapperGame, { CONFIGS, CONFIG_IDS, generate, solveLogically, makeField, countsFor, tierFor } from '@/components/minigames/SapperGame'
+import SapperGame, { CONFIGS, CONFIG_IDS, REACH, generate, solveLogically, makeField, countsFor, tierFor, type Reach } from '@/components/minigames/SapperGame'
 import type { Difficulty } from '@/games/types'
 
 afterEach(() => { cleanup(); vi.useRealTimers() })
@@ -17,11 +18,11 @@ describe('sapper logic', () => {
       const { n, density } = tierFor(d)
       const boards = new Set<string>()
       for (let seed = 1; seed <= 10; seed++) {
-        const field = makeField(n, CONFIGS[id].shape)
+        const field = makeField(n, CONFIGS[id].shape, CONFIGS[id].reach)
         const starts = field.inside.map((ok, i) => (ok ? i : -1)).filter(i => i >= 0)
         const start = starts[(seed * 53) % starts.length]
         const t0 = performance.now()
-        const L = generate(CONFIGS[id].shape, d, seed, start)
+        const L = generate(CONFIGS[id], d, seed, start)
         worst = Math.max(worst, performance.now() - t0)
         expect(L.mines.filter(Boolean).length).toBe(L.mineCount)
         const inside = field.inside.filter(Boolean).length
@@ -38,8 +39,61 @@ describe('sapper logic', () => {
   })
 
   it('is deterministic in seed and start', () => {
-    expect(generate('square', 3, 5, 40).mines).toEqual(generate('square', 3, 5, 40).mines)
-    expect(generate('square', 3, 5, 40).mines).not.toEqual(generate('square', 3, 6, 40).mines)
+    const r = { shape: 'square', reach: 'king' } as const
+    expect(generate(r, 3, 5, 40).mines).toEqual(generate(r, 3, 5, 40).mines)
+    expect(generate(r, 3, 5, 40).mines).not.toEqual(generate(r, 3, 6, 40).mines)
+    expect(generate(r, 3, 5, 40).mines).not.toEqual(generate({ ...r, reach: 'knight' }, 3, 5, 40).mines)
+  })
+
+  it('time budget: ~1 min at D1 up to ~3 min at D4, and D1 still needs deductions', () => {
+    const maxCells = [64, 81, 100, 144], maxMines = [10, 13, 18, 27]
+    for (const d of DIFFS) {
+      const { n, density } = tierFor(d)
+      expect(n * n, `d${d} cells`).toBeLessThanOrEqual(maxCells[d - 1])
+      expect(Math.round(n * n * density), `d${d} mines`).toBeLessThanOrEqual(maxMines[d - 1])
+      if (d > 1) expect(n * n * density).toBeGreaterThan(tierFor((d - 1) as Difficulty).n ** 2 * tierFor((d - 1) as Difficulty).density)
+    }
+    // The opening flood never clears a D1 field by itself.
+    for (const id of CONFIG_IDS) for (let seed = 1; seed <= 10; seed++) {
+      const { n } = tierFor(1)
+      const field = makeField(n, CONFIGS[id].shape, CONFIGS[id].reach)
+      const inside = field.inside.map((ok, i) => (ok ? i : -1)).filter(i => i >= 0)
+      const start = inside[(seed * 17) % inside.length]
+      const L = generate(CONFIGS[id], 1, seed, start)
+      const seen = new Set<number>(), stack = [start]
+      while (stack.length) {
+        const j = stack.pop()!
+        if (seen.has(j)) continue
+        seen.add(j)
+        if (L.counts[j] === 0) stack.push(...field.nbrs[j])
+      }
+      const safe = field.inside.filter(Boolean).length - L.mineCount
+      expect(seen.size, `${id} s${seed}`).toBeLessThan(safe)
+    }
+  })
+
+  it('every config counts a different reach, and the reaches are what the rules say', () => {
+    expect(new Set(CONFIG_IDS.map(id => CONFIGS[id].reach)).size).toBe(CONFIG_IDS.length)
+    const sizes: Record<Reach, number> = { king: 8, orth: 4, knight: 8, ring: 16 }
+    for (const r of Object.keys(REACH) as Reach[]) {
+      expect(REACH[r].length, r).toBe(sizes[r])
+      // Symmetric: if a counts b then b counts a.
+      const f = makeField(7, 'square', r)
+      f.nbrs.forEach((ns, i) => ns.forEach(j => expect(f.nbrs[j]).toContain(i)))
+      expect(f.nbrs[24].length).toBe(sizes[r]) // centre of a 7×7
+    }
+    // One mine at (0,0) of a 5×5: who sees it under each rule.
+    const mines = Array(25).fill(false); mines[0] = true
+    const at = (r: Reach, row: number, col: number) => countsFor(makeField(5, 'square', r), mines)[row * 5 + col]
+    expect([at('king', 1, 1), at('orth', 1, 1), at('knight', 1, 1), at('ring', 1, 1)]).toEqual([1, 0, 0, 0])
+    expect([at('king', 0, 1), at('orth', 0, 1), at('knight', 0, 1), at('ring', 0, 1)]).toEqual([1, 1, 0, 0])
+    expect([at('king', 1, 2), at('orth', 1, 2), at('knight', 1, 2), at('ring', 1, 2)]).toEqual([0, 0, 1, 1])
+    expect([at('king', 2, 2), at('orth', 2, 2), at('knight', 2, 2), at('ring', 2, 2)]).toEqual([0, 0, 0, 1])
+    // The start's own reach is always clear, whatever the rule.
+    for (const id of CONFIG_IDS) {
+      const L = generate(CONFIGS[id], 4, 9, 30)
+      expect(L.field.nbrs[30].some(k => L.mines[k]), id).toBe(false)
+    }
   })
 
   it('the solver is selective: it refuses guess-only fields and a classic 50/50', () => {
@@ -76,6 +130,8 @@ describe('sapper component', () => {
     for (const id of CONFIG_IDS) for (const d of DIFFS) {
       const { container, unmount } = render(createElement(SapperGame, { configId: id, difficulty: d, seed: 1, onWin: () => {}, onLose: () => {} }))
       expect(container.querySelectorAll('[data-cell]').length).toBe(tierFor(d).n ** 2)
+      // The reach key shows exactly the squares a number counts.
+      expect(container.querySelectorAll('[data-testid="sap-reach"] .bg-sky-500').length).toBe(REACH[CONFIGS[id].reach].length)
       unmount()
     }
   })
@@ -85,10 +141,10 @@ describe('sapper component', () => {
     for (const id of CONFIG_IDS) for (const d of DIFFS) {
       const onWin = vi.fn(), onLose = vi.fn()
       const { container, unmount } = render(createElement(SapperGame, { configId: id, difficulty: d, seed: 8, onWin, onLose }))
-      const field = makeField(tierFor(d).n, CONFIGS[id].shape)
+      const field = makeField(tierFor(d).n, CONFIGS[id].shape, CONFIGS[id].reach)
       const start = field.inside.lastIndexOf(true) - 1
       fireEvent.click(sq(container, start))
-      const L = generate(CONFIGS[id].shape, d, 8, start)
+      const L = generate(CONFIGS[id], d, 8, start)
       L.mines.forEach((m, i) => {
         if (m || !field.inside[i]) return
         if (sq(container, i).getAttribute('data-state') === '0') fireEvent.click(sq(container, i))
@@ -106,7 +162,7 @@ describe('sapper component', () => {
       const onWin = vi.fn(), onLose = vi.fn()
       const { container, getByRole, unmount } = render(createElement(SapperGame, { configId: 'namur-1692', difficulty: d, seed: 3, onWin, onLose }))
       fireEvent.click(sq(container, 0))
-      const L = generate('square', d, 3, 0)
+      const L = generate(CONFIGS['namur-1692'], d, 3, 0)
       const mines = L.mines.map((m, i) => (m ? i : -1)).filter(i => i >= 0)
       // Flag the first mine in flag mode: digging it then does nothing.
       fireEvent.click(getByRole('button', { name: /Flag/ }))
@@ -131,5 +187,20 @@ describe('sapper component', () => {
     act(() => { vi.advanceTimersByTime(500) })
     fireEvent.click(sq(container, 10))
     expect(sq(container, 10).getAttribute('data-state')).toBe('2')
+  })
+
+  it('tapping an open number outlines the squares it counts', () => {
+    for (const id of CONFIG_IDS) {
+      const { container, unmount } = render(createElement(SapperGame, { configId: id, difficulty: 1, seed: 4, onWin: () => {}, onLose: () => {} }))
+      const start = 27
+      fireEvent.click(sq(container, start))
+      const L = generate(CONFIGS[id], 1, 4, 27)
+      const open = [...container.querySelectorAll<HTMLElement>('[data-state="1"]')].map(e => Number(e.getAttribute('data-cell')))
+      const num = open.find(i => L.counts[i] > 0)!
+      fireEvent.click(sq(container, num))
+      const peeked = [...container.querySelectorAll('[data-peek="true"]')].map(e => Number(e.getAttribute('data-cell')))
+      expect(peeked.sort((a, b) => a - b), id).toEqual([...L.field.nbrs[num]].sort((a, b) => a - b))
+      unmount()
+    }
   })
 })

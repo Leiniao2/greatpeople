@@ -1,10 +1,13 @@
 // Picture Logic (nonogram): every picture is uniquely line-solvable, every
-// config × difficulty × seed yields one, and the component wins and loses once.
+// config × difficulty × seed yields one (with its twisted clues), the time
+// budget holds, each twist rule really changes the clues, and the component
+// wins and loses once.
 import { createElement } from 'react'
 import { render, cleanup, fireEvent, act } from '@testing-library/react'
 import { describe, it, expect, afterEach, vi } from 'vitest'
 import NonogramGame, {
-  CONFIG_IDS, PICTURES, generate, toBitmap, cluesOf, cluesFor, solveLine, lineSolve, isUniquelyLineSolvable, tierFor,
+  CONFIGS, CONFIG_IDS, PICTURES, generate, toBitmap, cluesOf, cluesFor, solveLine, solveClue, shownClue, lineSolve,
+  isUniquelyLineSolvable, tierFor, type Twist,
 } from '@/components/minigames/NonogramGame'
 import type { Difficulty } from '@/games/types'
 
@@ -21,23 +24,99 @@ describe('nonogram logic', () => {
     for (const d of DIFFS) expect(PICTURES.filter(p => p.rows.length === tierFor(d).size).length, `d${d}`).toBeGreaterThanOrEqual(5)
   })
 
+  it('time budget: ~1 min at D1 up to ~3 min at D4 (cells to decide, mistakes allowed)', () => {
+    // An engaged solver settles roughly one cell every 1–2 s.
+    const maxCells = [25, 49, 64, 100]
+    for (const d of DIFFS) {
+      const t = tierFor(d)
+      expect(t.size ** 2, `d${d} cells`).toBeLessThanOrEqual(maxCells[d - 1])
+      expect(t.maxMistakes).toBeGreaterThanOrEqual(3)
+      expect(t.twists).toBeLessThanOrEqual(t.size)
+      if (d > 1) expect(t.size).toBeGreaterThan(tierFor((d - 1) as Difficulty).size)
+    }
+    // D1 is still a real puzzle: a 5×5 that one sweep of the line solver does not finish.
+    for (let seed = 1; seed <= 12; seed++) {
+      const p = generate('ashmolean', 1, seed)
+      const g = p.bitmap.map(row => row.map(() => -1 as const))
+      const oneRowPass = p.rowClues.map((c, r) => solveClue(c, g[r])!)
+      expect(oneRowPass.flat().some(v => v === -1), `seed ${seed}`).toBe(true)
+    }
+  })
+
   it('every config × difficulty × seed gives a valid, uniquely solvable puzzle quickly', () => {
     let worst = 0
     for (const id of CONFIG_IDS) for (const d of DIFFS) {
       const seen = new Set<string>()
+      const tier = tierFor(d)
       for (let seed = 1; seed <= 12; seed++) {
         const t0 = performance.now()
         const p = generate(id, d, seed)
-        expect(p.bitmap.length).toBe(tierFor(d).size)
+        expect(p.bitmap.length).toBe(tier.size)
+        // The solver uses only the clues as shown (twists included) and fills everything.
         const g = lineSolve(p.rowClues, p.colClues)!
         worst = Math.max(worst, performance.now() - t0)
-        expect(g.map(r => r.map(v => v === 1))).toEqual(p.bitmap)
-        expect(cluesFor(p.bitmap)).toEqual({ rowClues: p.rowClues, colClues: p.colClues })
+        expect(g.map(r => r.map(v => v === 1)), `${id} d${d} s${seed}`).toEqual(p.bitmap)
+        // Underlying runs are the picture's true runs.
+        const base = cluesFor(p.bitmap)
+        expect(p.rowClues.map(c => c.runs)).toEqual(base.rowClues)
+        expect(p.colClues.map(c => c.runs)).toEqual(base.colClues)
+        const twisted = [...p.rowClues, ...p.colClues].filter(c => c.kind !== 'runs').length
+        expect(twisted).toBe(p.twisted)
+        if (CONFIGS[id].twist === 'classic') expect(twisted).toBe(0)
+        else {
+          expect(twisted, `${id} d${d} s${seed} twisted lines`).toBeGreaterThanOrEqual(tier.minTwists)
+          expect(twisted).toBeLessThanOrEqual(tier.twists)
+        }
+        expect(generate(id, d, seed)).toEqual(p)
         seen.add(JSON.stringify(p.bitmap))
       }
       expect(seen.size, `${id} d${d} variety`).toBeGreaterThanOrEqual(4)
     }
-    expect(worst).toBeLessThan(200)
+    expect(worst).toBeLessThan(300)
+  })
+
+  it('every config is a distinct twist, and each twist uses only its own clue kind', () => {
+    const twists = CONFIG_IDS.map(id => CONFIGS[id].twist)
+    expect(new Set(twists).size).toBe(CONFIG_IDS.length)
+    const kindOf: Record<Twist, string> = { classic: 'runs', faded: 'hidden', jumbled: 'jumbled', tally: 'total' }
+    for (const id of CONFIG_IDS) for (const d of DIFFS) {
+      const p = generate(id, d, 5)
+      const kinds = new Set([...p.rowClues, ...p.colClues].map(c => c.kind))
+      for (const k of kinds) expect(['runs', kindOf[p.twist]]).toContain(k)
+    }
+  })
+
+  it('twisted clues lose information that plain runs would have given', () => {
+    for (const id of CONFIG_IDS) {
+      if (CONFIGS[id].twist === 'classic') continue
+      const p = generate(id, 4, 3)
+      for (const c of [...p.rowClues, ...p.colClues]) {
+        if (c.kind === 'runs') continue
+        const blank = Array(p.bitmap.length).fill(-1)
+        const plain = solveClue({ kind: 'runs', runs: c.runs }, blank)!
+        const twisted = solveClue(c, blank)!
+        // Never knows more than the plain clue would.
+        twisted.forEach((v, i) => { if (v !== -1) expect(plain[i]).toBe(v) })
+      }
+    }
+  })
+
+  it('variant rules: faded, jumbled and tally lines deduce what they should', () => {
+    // Faded: nothing new.
+    expect(solveClue({ kind: 'hidden', runs: [3] }, [-1, 1, -1, -1])).toEqual([-1, 1, -1, -1])
+    expect(shownClue({ kind: 'hidden', runs: [3] })).toEqual([])
+    // Tally: only the count matters, not contiguity.
+    expect(shownClue({ kind: 'total', runs: [2, 1] })).toEqual([3])
+    expect(solveClue({ kind: 'total', runs: [2, 1] }, [1, 1, -1, 1, -1])).toEqual([1, 1, 0, 1, 0])
+    expect(solveClue({ kind: 'total', runs: [3] }, [-1, 0, -1, 0, -1])).toEqual([1, 0, 1, 0, 1])
+    expect(solveClue({ kind: 'total', runs: [3] }, [0, 0, 0, -1, -1])).toBeNull()
+    // Jumbled: shown smallest first; either order is allowed.
+    expect(shownClue({ kind: 'jumbled', runs: [3, 1] })).toEqual([1, 3])
+    // [3,1] in 5 is forced as ###.#, but jumbled also allows #.###.
+    expect(solveLine([3, 1], [-1, -1, -1, -1, -1])).toEqual([1, 1, 1, 0, 1])
+    expect(solveClue({ kind: 'jumbled', runs: [3, 1] }, [-1, -1, -1, -1, -1])).toEqual([1, -1, 1, -1, 1])
+    expect(solveClue({ kind: 'jumbled', runs: [3, 1] }, [-1, 0, -1, -1, -1])).toEqual([1, 0, 1, 1, 1])
+    expect(solveClue({ kind: 'jumbled', runs: [3, 1] }, [-1, -1, 0, -1, -1])).toBeNull()
   })
 
   it('line solver basics: overlap, contradictions and ambiguity', () => {
@@ -59,6 +138,13 @@ describe('nonogram component', () => {
     for (const id of CONFIG_IDS) for (const d of DIFFS) {
       const { container, unmount } = render(createElement(NonogramGame, { configId: id, difficulty: d, seed: 1, onWin: () => {}, onLose: () => {} }))
       expect(container.querySelectorAll('[data-cell]').length).toBe(tierFor(d).size ** 2)
+      // Twisted clues are marked for the player.
+      const p = generate(id, d, 1)
+      const kinds = [...container.querySelectorAll('[data-kind]')].map(e => e.getAttribute('data-kind'))
+      expect(kinds.filter(k => k !== 'runs').length).toBe(p.twisted)
+      if (p.twist === 'faded') expect(container.textContent).toContain('?')
+      if (p.twist === 'tally') expect(container.textContent).toContain('Σ')
+      if (p.twist === 'jumbled') expect(container.textContent).toContain('⇄')
       unmount()
     }
   })

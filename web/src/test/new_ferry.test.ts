@@ -82,6 +82,21 @@ describe('ferry rules', () => {
     })
   }
 
+  it('every config is a different rule', () => {
+    expect(new Set(CONFIG_IDS.map(id => CONFIGS[id].kind)).size).toBe(CONFIG_IDS.length)
+  })
+
+  it('time budget: few crossings and a small cast at every tier', () => {
+    expect(CROSSING_RANGE[1][1]).toBeLessThanOrEqual(9)
+    expect(CROSSING_RANGE[4][1]).toBeLessThanOrEqual(15)
+    for (const id of CONFIG_IDS) for (const d of DIFFS) for (const seed of SEEDS) {
+      const p = generatePuzzle(id, d, seed)
+      expect(p.optimal).toBeLessThanOrEqual(d === 1 ? 9 : 15)
+      expect(p.people.length).toBeLessThanOrEqual(11)
+      expect(rulesFor(d, p.optimal).cap).toBeLessThanOrEqual([27, 33, 26, 19][d - 1])
+    }
+  })
+
   it('gets bigger with difficulty', () => {
     for (const id of CONFIG_IDS) {
       const size = (d: Difficulty) => SEEDS.reduce((a, s) => a + generatePuzzle(id, d, s).optimal, 0)

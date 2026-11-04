@@ -2,33 +2,42 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import type { Difficulty, MinigameProps } from '@/games/types'
 import { hashString, mulberry32, resolveConfig, scale, useGameOutcome, OutcomeBanner, type Rng } from './_shared'
 
-// Five in a Row (gomoku) against a computer opponent.  You play black and
-// move first; the computer plays white.  Five stones in an unbroken line
-// (across, down or diagonally) wins.  A full board counts as a loss.
+// Five in a Row (gomoku) against a computer opponent.  Five stones in an
+// unbroken line (across, down or diagonally) wins.  A full board, or running
+// out of moves, counts as a loss.
 //
-// Rule variants by config:
-//   freestyle — five or more in a row wins.
-//   exact     — exactly five wins; an overline (six or more) does not.
-//   renju     — the classic renju restrictions are laid on the computer:
-//               it may not play double-threes, double-fours or overlines,
-//               and only an exact five wins for it.  You play freely.
+// Every config is its own rule twist:
+//   edo-gomoku  freestyle — five or more in a row wins.
+//   gobang      captures (ninuki) — flank exactly two enemy stones to take
+//               them off the board; five in a row or five captured pairs wins.
+//   standard    exact — exactly five wins; an overline (six or more) does not.
+//   renju       renju restrictions bind the computer: no double-threes,
+//               double-fours or overlines, and only an exact five wins for it.
+//   swap        swap opening — the computer lays three opening stones and
+//               you choose which colour to take.
 //
-// Difficulty: the board grows from 9×9 to 15×15, and the opponent goes from
-// a careless novice (misses blocks, random moves) to a master that searches
-// for forced wins by continuous fours (VCF) and refuses moves that hand you
-// one.  You still move first, which in gomoku is a real advantage.
+// Time budget: boards are 9×9 to 13×13 and you get a fixed number of stones
+// (`moveCap`, 18 at D1 to 24 at D4); fail to make five with them and the
+// game is lost.  At ~4–6 s a move that keeps a game to ~1 min at D1 (most end well before the cap) and under
+// ~3 min at D4.  The opponent goes from a careless novice (misses blocks,
+// random moves) to a master that searches for forced wins by continuous
+// fours (VCF) and refuses moves that hand you one.
 
 // ── Engine ───────────────────────────────────────────────────────────────────
 
 export type Player = 1 | 2 // 1 = black (human, moves first), 2 = white (computer)
-export type Rule = 'freestyle' | 'exact' | 'renju'
+export type Rule = 'freestyle' | 'exact' | 'renju' | 'captures'
 export type Board = number[]
 
 export const HUMAN: Player = 1
 export const AI: Player = 2
 const DIRS: [number, number][] = [[0, 1], [1, 0], [1, 1], [1, -1]]
 
-export const boardSize = (d: Difficulty) => scale(d, [9, 11, 13, 15] as const)
+export const boardSize = (d: Difficulty) => scale(d, [9, 11, 11, 13] as const)
+/** Your stones per game: make five with these or lose. */
+export const moveCap = (d: Difficulty) => scale(d, [18, 20, 22, 24] as const)
+/** Captured pairs that win under the captures rule. */
+export const CAPTURE_WIN = 5
 export const newBoard = (n: number): Board => Array(n * n).fill(0)
 export const isFull = (b: Board) => b.every(v => v !== 0)
 export const exactFor = (rule: Rule, p: Player) => rule === 'exact' || (rule === 'renju' && p === AI)
@@ -39,6 +48,39 @@ export function place(b: Board, idx: number, p: Player): Board {
   const nb = b.slice()
   nb[idx] = p
   return nb
+}
+
+const DIRS8: [number, number][] = [[0, 1], [1, 0], [1, 1], [1, -1], [0, -1], [-1, 0], [-1, -1], [-1, 1]]
+
+/** Enemy stones a p stone on idx would capture (pattern p-o-o-p in any direction). */
+export function capturesAt(b: Board, n: number, idx: number, p: Player): number[] {
+  const opp = 3 - p
+  const r0 = Math.floor(idx / n), c0 = idx % n
+  const out: number[] = []
+  for (const [dr, dc] of DIRS8) {
+    const r3 = r0 + 3 * dr, c3 = c0 + 3 * dc
+    if (r3 < 0 || r3 >= n || c3 < 0 || c3 >= n) continue
+    const a = (r0 + dr) * n + c0 + dc, b2 = (r0 + 2 * dr) * n + c0 + 2 * dc
+    if (b[a] === opp && b[b2] === opp && b[r3 * n + c3] === p) out.push(a, b2)
+  }
+  return out
+}
+
+/** Pairs of p's stones the opponent could capture with a single move. */
+export function pairsAtRisk(b: Board, n: number, p: Player): number {
+  const opp = (3 - p) as Player
+  let k = 0
+  for (let i = 0; i < b.length; i++) if (b[i] === 0) k += capturesAt(b, n, i, opp).length / 2
+  return k
+}
+
+/** Play a move under `rule`: the new board and the stones it captured. */
+export function applyMove(b: Board, n: number, idx: number, p: Player, rule: Rule): { board: Board; captured: number[] } {
+  const nb = place(b, idx, p)
+  if (rule !== 'captures') return { board: nb, captured: [] }
+  const captured = capturesAt(nb, n, idx, p)
+  for (const c of captured) nb[c] = 0
+  return { board: nb, captured }
 }
 
 /** Length of p's run through idx in direction (dr, dc), counting idx as p's. */
@@ -341,14 +383,30 @@ export const AI_LEVELS: Record<Difficulty, AiLevel> = {
 export const AI_NAMES: Record<Difficulty, string> = { 1: 'Novice', 2: 'Teahouse regular', 3: 'Club player', 4: 'Master' }
 
 /** Candidate moves for p ranked by heuristic (attack + weighted defence). */
-export function rankMoves(b: Board, n: number, p: Player, rule: Rule, defense: number, noise = 0, rng?: Rng) {
+export function rankMoves(b: Board, n: number, p: Player, rule: Rule, defense: number, noise = 0, rng?: Rng, caps: Caps = NO_CAPS) {
   const opp = (3 - p) as Player
   const mid = (n - 1) / 2
   const out: { idx: number; score: number }[] = []
   for (const c of candidates(b, n)) {
     if (isForbidden(b, n, c, p, rule)) continue
-    const a = cellScore(b, n, c, p, rule)
-    const d = isForbidden(b, n, c, opp, rule) ? 0 : cellScore(b, n, c, opp, rule)
+    let a = cellScore(b, n, c, p, rule)
+    let d = isForbidden(b, n, c, opp, rule) ? 0 : cellScore(b, n, c, opp, rule)
+    if (rule === 'captures') {
+      // Taking a pair is worth less than stopping an open three, more as the count nears a win;
+      // standing on the opponent's capture point saves a pair.
+      const mine = capturesAt(b, n, c, p).length / 2, theirs = capturesAt(b, n, c, opp).length / 2
+      a += mine * (900 + 700 * caps[p])
+      d += theirs * (900 + 700 * caps[opp])
+      // Don't hand over a pair: penalise moves that leave new pairs capturable.
+      const before = pairsAtRisk(b, n, p)
+      b[c] = p
+      const gone = capturesAt(b, n, c, p)
+      for (const x of gone) b[x] = 0
+      const after = pairsAtRisk(b, n, p)
+      for (const x of gone) b[x] = opp
+      b[c] = 0
+      if (after > before) a -= (after - before) * (400 + 500 * caps[opp])
+    }
     const r = Math.floor(c / n), col = c % n
     let s = a + defense * d + (n - Math.abs(r - mid) - Math.abs(col - mid)) * 0.5
     if (noise && rng) s *= 1 + noise * rng()
@@ -357,17 +415,45 @@ export function rankMoves(b: Board, n: number, p: Player, rule: Rule, defense: n
   return out.sort((x, y) => y.score - x.score)
 }
 
+/** Captured pairs so far, per player (index 1 and 2). */
+export type Caps = [number, number, number]
+export const NO_CAPS: Caps = [0, 0, 0]
+
+/** Cells where p would capture enough pairs to win right now (captures rule). */
+export function captureWinPoints(b: Board, n: number, p: Player, rule: Rule, caps: Caps): number[] {
+  if (rule !== 'captures') return []
+  const out: number[] = []
+  for (let i = 0; i < b.length; i++) if (b[i] === 0 && caps[p] + capturesAt(b, n, i, p).length / 2 >= CAPTURE_WIN) out.push(i)
+  return out
+}
+
 /** Pick a move for p.  Pure apart from the seeded rng it consumes. */
-export function aiMove(b: Board, n: number, difficulty: Difficulty, rng: Rng, rule: Rule, p: Player = AI, level: AiLevel = AI_LEVELS[difficulty]): number {
+export function aiMove(b: Board, n: number, difficulty: Difficulty, rng: Rng, rule: Rule, p: Player = AI, level: AiLevel = AI_LEVELS[difficulty], caps: Caps = NO_CAPS): number {
   const opp = (3 - p) as Player
   const work = b.slice()
   const start = Date.now()
   // 1. Win now.
   const mine = winPoints(work, n, p, rule)
   if (mine.length) return mine[0]
+  const capWin = captureWinPoints(work, n, p, rule, caps)
+  if (capWin.length) return capWin[0]
   // 2. Block a five.
   const theirs = winPoints(work, n, opp, rule).filter(c => !isForbidden(work, n, c, p, rule))
+  if (rule === 'captures' && theirs.length && level.defense >= 0.75) {
+    // A capture that breaks up every threatened five beats a plain block.
+    for (let c = 0; c < work.length; c++) {
+      if (work[c] !== 0) continue
+      const gone = capturesAt(work, n, c, p)
+      if (!gone.length) continue
+      work[c] = p; for (const x of gone) work[x] = 0
+      const left = winPoints(work, n, opp, rule).length
+      work[c] = 0; for (const x of gone) work[x] = opp
+      if (!left) return c
+    }
+  }
   if (theirs.length && rng() < level.blockFive) return theirs[0]
+  const theirCapWin = captureWinPoints(work, n, opp, rule, caps)
+  if (theirCapWin.length && rng() < level.blockFive) return theirCapWin[0]
   // 3. Forced win by continuous fours.
   if (level.vcf) {
     const v = findVCF(work, n, p, rule, level.vcf, { deadline: start + level.ms * 0.4, nodes: 600 })
@@ -377,7 +463,7 @@ export function aiMove(b: Board, n: number, difficulty: Difficulty, rng: Rng, ru
     const v = findVCT(work, n, p, rule, level.vct, { deadline: start + level.ms * 0.5, nodes: level.vctNodes ?? 800 })
     if (v >= 0) return v
   }
-  const ranked = rankMoves(work, n, p, rule, level.defense, level.noise, rng)
+  const ranked = rankMoves(work, n, p, rule, level.defense, level.noise, rng, caps)
   if (!ranked.length) {
     const any = legalMoves(work, n, p, rule)
     return any.length ? any[Math.floor(rng() * any.length)] : -1
@@ -412,6 +498,8 @@ export interface GomokuConfig {
   rule: Rule
   /** Seeded scattered stones per side at the start. */
   opening?: number
+  /** Swap opening: three seeded stones (black, white, black), then you pick a colour. */
+  swap?: boolean
   /** A fixed starting position (0-based rows/cols); overrides `opening`. */
   stones?: Stone[]
 }
@@ -419,16 +507,15 @@ export interface GomokuConfig {
 export const CONFIGS: Record<string, GomokuConfig> = {
   'edo-gomoku': {
     title: 'Edo Teahouse',
-    intro: 'Gomoku narabe, as played with go stones in Edo Japan. Five or more in a row wins.',
+    intro: 'Gomoku narabe, as played with go stones in Edo Japan. You are black and move first. Five or more in a row wins.',
     rule: 'freestyle',
     fact: "In Japan the game was long called gomoku narabe, 'lining up five stones', and was played with ordinary go stones on a go board.",
   },
   gobang: {
-    title: 'Victorian Go-bang',
-    intro: 'A few stones are already scattered on the board. Five or more in a row wins.',
-    rule: 'freestyle',
-    opening: 2,
-    fact: "Victorian Britain knew the game as Go-bang, a name taken from the Japanese goban, the board it was played on.",
+    title: 'Ninuki: The Capturing Game',
+    intro: 'Captures are on: flank exactly two enemy stones (●○○●) to lift them off the board. Win with five in a row — or by capturing five pairs. Guard your own pairs!',
+    rule: 'captures',
+    fact: "Ninuki-renju, gomoku with captures, was played in Japan long before 1977, when it was repackaged in America as Pente — and the Victorians' Go-bang took its name from the Japanese goban it was played on.",
   },
   standard: {
     title: 'Standard Gomoku',
@@ -442,6 +529,13 @@ export const CONFIGS: Record<string, GomokuConfig> = {
     rule: 'renju',
     fact: "Journalist Kuroiwa Ruikō renamed the game renju, 'connected pearls', in his newspaper Yorozu Chōhō in 1899; restrictions on the first player were later added to offset the first-move advantage.",
   },
+  swap: {
+    title: 'The Swap Opening',
+    intro: 'Your opponent lays the first three stones, then you choose: take black (two stones down, white to reply) or take white and move at once. Read the opening before you pick.',
+    rule: 'freestyle',
+    swap: true,
+    fact: 'Because the first player at gomoku can force a win, modern tournaments open with a swap: one player lays the first stones and the other chooses a colour. The Swap2 opening has been the world-championship rule since 2009.',
+  },
 }
 
 /** The starting board for a config, difficulty and seed. */
@@ -449,6 +543,21 @@ export function startBoard(config: GomokuConfig, n: number, seed: number): Board
   const b = newBoard(n)
   if (config.stones) {
     for (const s of config.stones) if (s.r < n && s.c < n) b[s.r * n + s.c] = s.p
+    return b
+  }
+  if (config.swap) {
+    // Black near the centre, then white and black within two of it.
+    const rng = mulberry32(seed ^ 0x2f6b3c1d)
+    const m = Math.floor(n / 2)
+    b[m * n + m] = HUMAN
+    const near = () => {
+      for (;;) {
+        const i = (m + Math.floor(rng() * 5) - 2) * n + m + Math.floor(rng() * 5) - 2
+        if (b[i] === 0) return i
+      }
+    }
+    b[near()] = AI
+    b[near()] = HUMAN
     return b
   }
   const k = config.opening ?? 0
@@ -479,51 +588,80 @@ function starPoints(n: number): number[] {
 export default function GomokuGame({ configId, difficulty, seed, params, onWin, onLose }: MinigameProps) {
   const config = resolveConfig(CONFIGS, configId, params, 'edo-gomoku')
   const n = boardSize(difficulty)
+  const cap = moveCap(difficulty)
   const rule = config.rule
   const initial = useMemo(() => startBoard(config, n, seed), [config, n, seed])
   const { outcome, settled, win, lose } = useGameOutcome({ onWin, onLose })
 
   const [board, setBoard] = useState<Board>(initial)
+  // Your colour; null while the swap choice is pending.
+  const [me, setMe] = useState<Player | null>(config.swap ? null : HUMAN)
   const [turn, setTurn] = useState<'human' | 'ai'>('human')
   const [last, setLast] = useState<number | null>(null)
   const [preview, setPreview] = useState<number | null>(null)
   const [line, setLine] = useState<number[] | null>(null)
-  const [note, setNote] = useState('Your move — you play black. Tap an intersection.')
+  const [caps, setCaps] = useState<Caps>([0, 0, 0])
+  const [used, setUsed] = useState(0)
+  const [note, setNote] = useState(config.swap ? 'Study the opening, then choose your colour.' : 'Your move — you play black. Tap an intersection.')
   const rng = useRef<Rng>(mulberry32(seed ^ hashString(`gomoku:${configId}`)))
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null)
   useEffect(() => () => { if (timer.current) clearTimeout(timer.current) }, [])
 
   const confirmTap = n >= 13
+  const colour = (p: Player) => (p === HUMAN ? 'black' : 'white')
 
-  const play = (idx: number) => {
-    const nb = place(board, idx, HUMAN)
-    setBoard(nb); setLast(idx); setPreview(null)
-    const wl = winningLine(nb, n, idx, rule)
-    if (wl) { setLine(wl); setNote('Five in a row — you win!'); win(); return }
-    if (isFull(nb)) { setNote('The board is full — a draw counts as a loss.'); lose('the board filled up'); return }
+  const aiTurn = (nb: Board, mine: Player, nc: Caps) => {
+    const them = (3 - mine) as Player
     setTurn('ai'); setNote(`${AI_NAMES[difficulty]} is thinking…`)
     timer.current = setTimeout(() => {
-      const mv = aiMove(nb, n, difficulty, rng.current, rule)
+      const mv = aiMove(nb, n, difficulty, rng.current, rule, them, AI_LEVELS[difficulty], nc)
       if (mv < 0) { setNote('Your opponent has no legal move — you win!'); win(); return }
-      const ab = place(nb, mv, AI)
-      setBoard(ab); setLast(mv)
+      const { board: ab, captured } = applyMove(nb, n, mv, them, rule)
+      const ac: Caps = [...nc] as Caps
+      ac[them] += captured.length / 2
+      setBoard(ab); setLast(mv); setCaps(ac)
       const wl2 = winningLine(ab, n, mv, rule)
-      if (wl2) { setLine(wl2); setNote('White made five in a row.'); lose('your opponent made five in a row'); return }
+      if (wl2) { setLine(wl2); setNote(`${colour(them)[0].toUpperCase() + colour(them).slice(1)} made five in a row.`); lose('your opponent made five in a row'); return }
+      if (ac[them] >= CAPTURE_WIN) { setNote(`Your opponent captured ${CAPTURE_WIN} pairs.`); lose('your opponent captured five pairs'); return }
       if (isFull(ab)) { setNote('The board is full — a draw counts as a loss.'); lose('the board filled up'); return }
-      const threat = winPoints(ab, n, AI, rule).length
+      const threat = winPoints(ab, n, them, rule).length
       setTurn('human')
-      setNote(threat ? 'Careful — white threatens five!' : 'Your move.')
+      setNote(captured.length ? `They captured a pair! ${threat ? 'And they threaten five!' : 'Your move.'}` : threat ? `Careful — ${colour(them)} threatens five!` : 'Your move.')
     }, 350)
   }
 
+  const choose = (p: Player) => {
+    if (settled || me !== null) return
+    setMe(p)
+    // The opening has black, white, black: white is to move.
+    if (p === AI) { setTurn('human'); setNote('You play white — your move.') }
+    else aiTurn(board, p, caps)
+  }
+
+  const play = (idx: number) => {
+    if (me === null) return
+    const { board: nb, captured } = applyMove(board, n, idx, me, rule)
+    const nc: Caps = [...caps] as Caps
+    nc[me] += captured.length / 2
+    const k = used + 1
+    setBoard(nb); setLast(idx); setPreview(null); setCaps(nc); setUsed(k)
+    const wl = winningLine(nb, n, idx, rule)
+    if (wl) { setLine(wl); setNote('Five in a row — you win!'); win(); return }
+    if (nc[me] >= CAPTURE_WIN) { setNote(`${CAPTURE_WIN} pairs captured — you win!`); win(); return }
+    if (isFull(nb)) { setNote('The board is full — a draw counts as a loss.'); lose('the board filled up'); return }
+    if (k >= cap) { setNote(`That was your last stone — no five in ${cap} moves.`); lose('you ran out of stones'); return }
+    aiTurn(nb, me, nc)
+  }
+
   const tap = (idx: number) => {
-    if (settled || turn !== 'human' || board[idx] !== 0) return
+    if (settled || me === null || turn !== 'human' || board[idx] !== 0) return
     if (confirmTap && preview !== idx) { setPreview(idx); setNote('Tap again to place your stone.'); return }
     play(idx)
   }
 
   const stars = new Set(starPoints(n))
   const lineSet = new Set(line ?? [])
+  const left = cap - used
 
   return (
     <div className="flex flex-col gap-3 bg-paper-2 rounded-xl p-3 select-none">
@@ -533,7 +671,24 @@ export default function GomokuGame({ configId, difficulty, seed, params, onWin, 
           <p className="text-[10px] text-muted shrink-0">{n}×{n} · vs {AI_NAMES[difficulty]}</p>
         </div>
         <p className="text-ink text-sm leading-snug mt-0.5">{config.intro}</p>
+        <div className="flex items-center justify-between gap-2 mt-1 text-[11px] font-bold">
+          <span data-testid="stones-left" className={left <= 3 ? 'text-red-600' : 'text-ink-2'}>Stones left: {left} / {cap}</span>
+          {rule === 'captures' && me !== null && (
+            <span data-testid="captures" className="text-ink-2">Pairs taken: you {caps[me]} · them {caps[3 - me]} (of {CAPTURE_WIN})</span>
+          )}
+        </div>
       </div>
+
+      {config.swap && me === null && !settled && (
+        <div className="flex gap-2" role="group" aria-label="choose colour">
+          <button data-choose="black" onClick={() => choose(HUMAN)} className="flex-1 rounded-lg border border-line bg-[#111] text-white text-xs font-bold py-2">
+            Take black · white replies
+          </button>
+          <button data-choose="white" onClick={() => choose(AI)} className="flex-1 rounded-lg border border-line bg-white text-[#111] text-xs font-bold py-2">
+            Take white · move now
+          </button>
+        </div>
+      )}
 
       <div className="flex justify-center">
         <div
@@ -575,7 +730,7 @@ export default function GomokuGame({ configId, difficulty, seed, params, onWin, 
                     </span>
                   )}
                   {v === 0 && preview === i && (
-                    <span className="absolute inset-[7%] rounded-full bg-black/45 border border-accent animate-pulse" />
+                    <span className={`absolute inset-[7%] rounded-full ${me === AI ? 'bg-white/60' : 'bg-black/45'} border border-accent animate-pulse`} />
                   )}
                 </button>
               )
@@ -589,17 +744,20 @@ export default function GomokuGame({ configId, difficulty, seed, params, onWin, 
       <details className="rounded-lg border border-line bg-paper px-3 py-2 text-xs text-ink-2">
         <summary className="font-semibold text-ink cursor-pointer">Rules</summary>
         <ul className="list-disc pl-4 mt-1 space-y-0.5">
-          <li>You are black and move first; take turns placing one stone on an empty intersection.</li>
+          {config.swap
+            ? <li>Three opening stones are laid for you. Choose black (white moves next) or white (you move now).</li>
+            : <li>You are black and move first; take turns placing one stone on an empty intersection.</li>}
           <li>Win with {rule === 'exact' ? 'exactly five' : 'five or more'} in a row — across, down or diagonal.</li>
           {rule === 'renju' && <li>White may not make double-threes, double-fours or overlines, and only an exact five wins for white.</li>}
           {rule === 'exact' && <li>An overline of six or more does not win for either side.</li>}
-          <li>If white makes five, or the board fills up, you lose.</li>
+          {rule === 'captures' && <li>Flank exactly two enemy stones in a line to capture them. Capturing {CAPTURE_WIN} pairs also wins.</li>}
+          <li>You have {cap} stones. If none of them makes five, or your opponent does, or the board fills, you lose.</li>
           <li>An open four (four with both ends free) can't be stopped. Block open threes early!</li>
           {confirmTap && <li>On big boards, tap once to preview and again to place.</li>}
         </ul>
       </details>
 
-      <OutcomeBanner outcome={outcome} detail={config.fact} winTitle="Five in a row!" loseTitle="White took the board" />
+      <OutcomeBanner outcome={outcome} detail={config.fact} winTitle="You win the board!" loseTitle="The board is lost" />
     </div>
   )
 }

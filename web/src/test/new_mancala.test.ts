@@ -1,5 +1,6 @@
-// Mancala (Oware abapa, Kalah, Bao relay): rules engine, AI budget, win
-// rates against a deeper search, and the component's single-outcome contract.
+// Mancala (Oware abapa race, Kalah, Bao relay, Anan-anan fours): rules
+// engine, the time budget, win rates against a deeper search at every
+// config × difficulty, and the component's single-outcome contract.
 import { describe, it, expect, vi } from 'vitest'
 import {
   CONFIGS, CONFIG_IDS, initialState, legalMoves, applyMove, winner, humanWins, aiMove, bestMove,
@@ -7,19 +8,21 @@ import {
 } from '@/components/minigames/MancalaGame'
 import { mulberry32 } from '@/components/minigames/_shared'
 import type { Difficulty } from '@/games/types'
+import { scale } from '@/components/minigames/_shared'
 
 const DIFFS: Difficulty[] = [1, 2, 3, 4]
 // Win rates go to stderr so they show in the vitest output.
 const log = (m: string) => (globalThis as { process?: { stderr: { write(s: string): void } } }).process?.stderr.write(m + '\n')
 
-function pos(configId: string, pits: number[], store: [number, number] = [0, 0], turn: Player = 0): MState {
-  const config: MancalaConfig = { ...CONFIGS[configId], start: { pits, store, turn } }
-  return initialState(config)
+/** A fixed position under a config's rules; by default the target is a plain majority. */
+function pos(configId: string, pits: number[], store: [number, number] = [0, 0], turn: Player = 0, race = false, d: Difficulty = 4): MState {
+  const config: MancalaConfig = { ...CONFIGS[configId], ...(race ? {} : { target: undefined }), start: { pits, store, turn } }
+  return initialState(config, Math.random, d)
 }
 
 describe('oware (abapa)', () => {
   it('starts with 4 seeds in each of 12 pits and six moves', () => {
-    const s = initialState(CONFIGS.oware)
+    const s = initialState(CONFIGS.oware, mulberry32(1), 2)
     expect(s.pits).toEqual(Array(12).fill(4))
     expect(legalMoves(s)).toEqual([0, 1, 2, 3, 4, 5])
   })
@@ -60,7 +63,7 @@ describe('oware (abapa)', () => {
     expect(stuck.store).toEqual([24, 24])
   })
   it('ends as soon as someone holds more than half the seeds', () => {
-    const r = applyMove(pos('oware', [0, 0, 0, 0, 0, 2, 2, 1, 0, 0, 0, 5], [22, 16]), 5)
+    const r = applyMove(pos('oware', [0, 0, 0, 0, 0, 2, 2, 1, 0, 0, 0, 5], [20, 16]), 5)
     expect(r.info.take).toBe(5)
     expect(r.state.over).toBe(true)
     expect(winner(r.state)).toBe(0)
@@ -111,10 +114,74 @@ describe('bao relay', () => {
   })
   it('seeded layouts hold 48 seeds and are point-symmetric', () => {
     for (let seed = 1; seed < 20; seed++) {
-      const s = initialState(CONFIGS['bao-lite'], mulberry32(seed))
+      const s = initialState(CONFIGS['bao-lite'], mulberry32(seed), ((seed % 4) + 1) as Difficulty)
       expect(s.total).toBe(48)
       expect(s.pits.slice(0, 8)).toEqual(s.pits.slice(8))
     }
+  })
+})
+
+describe('fours (anan-anan)', () => {
+  it('a pit reaching four mid-sowing goes to its row owner; the last pit of four to the sower', () => {
+    // Pit 4 (4 seeds) sows 5, 6, 7, 8. Pit 5 (mine) and pit 7 (theirs) reach four
+    // on the way; pit 8 reaches four with the last seed and is mine.
+    const s = pos('fours', [0, 0, 0, 0, 4, 3, 1, 3, 3, 0, 0, 1])
+    const { state, info } = applyMove(s, 4)
+    expect(info.captured).toEqual([5, 7, 8])
+    expect(info.take).toBe(8)
+    expect(info.given).toBe(4)
+    expect(state.store).toEqual([8, 4])
+    expect(state.pits[6]).toBe(2)
+  })
+  it('feeding a rival pit up to four mid-sowing hands it over', () => {
+    const { state, info } = applyMove(pos('fours', [0, 0, 0, 0, 0, 3, 3, 0, 0, 0, 0, 1]), 5)
+    // 6 → 4 (theirs, not the last seed), 7 → 1, 8 → 1.
+    expect(info.given).toBe(4)
+    expect(info.take).toBe(0)
+    expect(state.store).toEqual([0, 4])
+  })
+  it('starts with four everywhere and nothing is taken until a pit is refilled to four', () => {
+    const s = initialState(CONFIGS.fours, mulberry32(1), 1)
+    expect(s.pits).toEqual(Array(12).fill(4))
+    expect(applyMove(s, 0).info.captured).toEqual([])
+  })
+})
+
+describe('race targets and the cap', () => {
+  it('oware, bao and fours are races to a target that grows with difficulty; kalah needs a majority', () => {
+    expect(DIFFS.map(d => initialState(CONFIGS.oware, mulberry32(1), d).target)).toEqual([10, 12, 14, 16])
+    expect(DIFFS.map(d => initialState(CONFIGS.kalah, mulberry32(1), d).target)).toEqual([19, 19, 25, 25])
+    expect(DIFFS.map(d => initialState(CONFIGS.kalah, mulberry32(1), d).total)).toEqual([36, 36, 48, 48])
+    for (const id of ['bao-lite', 'fours']) {
+      const t = DIFFS.map(d => initialState(CONFIGS[id], mulberry32(1), d).target)
+      expect(t.every((x, i) => i === 0 || x >= t[i - 1]), id).toBe(true)
+      expect(t[3]).toBeLessThan(25)
+    }
+  })
+  it('reaching the race target ends the game on the spot', () => {
+    // Oware at D1 (target 10): capturing 3 from 8 wins although most seeds are still out.
+    const r = applyMove(pos('oware', [0, 0, 0, 0, 0, 1, 2, 4, 4, 4, 4, 4], [8, 0], 0, true, 1), 5)
+    expect(r.info.take).toBe(3)
+    expect(r.state.over).toBe(true)
+    expect(humanWins(r.state, 1)).toBe(true)
+  })
+  it('the cap ends a game: each side keeps its row, most seeds wins', () => {
+    let s = initialState(CONFIGS.oware, mulberry32(4), 1)
+    while (!s.over) s = applyMove(s, legalMoves(s)[0]).state
+    expect(s.ply).toBeLessThanOrEqual(s.plyLimit)
+    expect(s.store[0] + s.store[1]).toBe(48)
+  })
+  it('time budget: at most 33 of your turns at D4 and 18 at D1', () => {
+    for (const id of CONFIG_IDS) {
+      const caps = DIFFS.map(d => scale(d, CONFIGS[id].plyCap))
+      expect(caps.every((c, i) => i === 0 || c >= caps[i - 1]), id).toBe(true)
+      expect(caps[0] / 2, id).toBeLessThanOrEqual(22)
+      expect(caps[3] / 2, id).toBeLessThanOrEqual(33)
+    }
+  })
+  it('every config is a different rule set', () => {
+    expect(new Set(CONFIG_IDS.map(id => CONFIGS[id].variant)).size).toBe(CONFIG_IDS.length)
+    expect(CONFIG_IDS.length).toBeGreaterThanOrEqual(4)
   })
 })
 
@@ -130,11 +197,11 @@ describe('outcome rule', () => {
 /** Play one game: the human side uses `human`, the computer uses aiMove at `d`. */
 function playGame(configId: string, d: Difficulty, seed: number, human: (s: MState, rng: () => number) => number) {
   const rng = mulberry32(seed)
-  let s = initialState(CONFIGS[configId], rng)
-  let maxMs = 0
+  let s = initialState(CONFIGS[configId], rng, d)
+  let maxMs = 0, mine = 0
   while (!s.over) {
     let m: number
-    if (s.turn === 0) m = human(s, rng)
+    if (s.turn === 0) { m = human(s, rng); mine++ }
     else {
       const t = performance.now()
       m = aiMove(s, d, rng)
@@ -143,7 +210,7 @@ function playGame(configId: string, d: Difficulty, seed: number, human: (s: MSta
     }
     s = applyMove(s, m).state
   }
-  return { s, maxMs }
+  return { s, maxMs, mine }
 }
 
 const strong = (configId: string) => (s: MState, rng: () => number) => bestMove(s, configId === 'bao-lite' ? 8 : 10, rng, 400_000)
@@ -158,18 +225,39 @@ describe('AI', () => {
     }
   })
 
-  it('a deeper search beats D1 in most games and D4 at least sometimes', () => {
-    const GAMES = 8
+  it('winnable at every config × difficulty, and short: a deeper search wins most games in few moves', () => {
+    const GAMES = 6
+    // Median of the strong player's own moves per difficulty must stay inside the budget.
+    const MEDIAN_MAX = [14, 18, 24, 30]
     for (const id of CONFIG_IDS) {
-      for (const d of [1, 4] as Difficulty[]) {
+      for (const d of DIFFS) {
         let wins = 0
-        for (let g = 0; g < GAMES; g++) if (humanWins(playGame(id, d, 1000 + g * 31, strong(id)).s, d)) wins++
-        log(`[mancala] ${id} strong vs D${d}: ${wins}/${GAMES}`)
-        if (d === 1) expect(wins).toBeGreaterThanOrEqual(GAMES - 1)
-        else expect(wins).toBeGreaterThanOrEqual(1)
+        const lens: number[] = []
+        for (let g = 0; g < GAMES; g++) {
+          const { s, mine } = playGame(id, d, 1000 + g * 31, strong(id))
+          lens.push(mine)
+          if (humanWins(s, d)) wins++
+        }
+        lens.sort((a, b) => a - b)
+        const median = lens[GAMES >> 1]
+        log(`[mancala] ${id} strong vs D${d}: ${wins}/${GAMES}, median ${median} moves, max ${lens[GAMES - 1]}`)
+        expect(wins, `${id} D${d}`).toBeGreaterThanOrEqual(d === 1 ? GAMES - 1 : GAMES / 2)
+        expect(median, `${id} D${d} median moves`).toBeLessThanOrEqual(MEDIAN_MAX[d - 1])
+        expect(lens[GAMES - 1], `${id} D${d} longest`).toBeLessThanOrEqual(scale(d, CONFIGS[id].plyCap))
       }
     }
-  }, 120_000)
+  }, 300_000)
+
+  it('D1 still needs real decisions: a random player loses some games', () => {
+    for (const id of CONFIG_IDS) {
+      let lost = 0
+      for (let g = 0; g < 10; g++) {
+        const { s } = playGame(id, 1, 700 + g, (st, rng) => legalMoves(st)[Math.floor(rng() * legalMoves(st).length)])
+        if (!humanWins(s, 1)) lost++
+      }
+      expect(lost, id).toBeGreaterThan(0)
+    }
+  }, 60_000)
 
   it('D4 beats a random player and usually a greedy 1-ply player', () => {
     for (const id of CONFIG_IDS) {
@@ -189,6 +277,7 @@ describe('AI', () => {
     expect(a.store).toEqual(b.store)
     expect(a.pits).toEqual(b.pits)
     expect(a.store[0] + a.store[1] + sideSum(a, 0) + sideSum(a, 1)).toBe(48)
+    expect(a.ply).toBeLessThanOrEqual(a.plyLimit)
   })
 })
 

@@ -27,13 +27,28 @@ import { hashString, mulberry32, resolveConfig, useGameOutcome, OutcomeBanner, t
 // - If no forward move exists, a piece must move backward by the throw
 //   (not from 26 or beyond; swaps and blockades still apply). If no backward
 //   move exists either, the turn is passed (an extra throw is still kept).
-// - First to bear off all pieces wins. There is no draw.
+// - First to bear off the goal (all pieces, unless the config says fewer)
+//   wins. There is no draw.
+//
+// Each config is a different challenge, not just a piece count:
+//   kendall      — "Passing Through": a seeded mid-game position on Kendall's
+//                  rules; bear off every piece first.
+//   new-kingdom  — the full opening of seven pieces a side, but the first to
+//                  bear off N wins: a fight to break out of the start.
+//   tutankhamun  — the Steward's rule: a hit piece is not swapped but thrown
+//                  back to the House of Rebirth (15, or the nearest free
+//                  square before it), from a mid-game position further on.
+//
+// Time budget: a full Kendall game of five or seven pieces runs 50–80 throws
+// a side (8+ minutes).  The setups above keep the median game to ~10–14 of
+// the player's throws at D1 and ~25 at D4 (each throw plus replies ≈ 5 s);
+// the tests measure it.
 //
 // Throws are deterministic per seed: throw k of each side comes from its own
 // seeded stream, so a replay with the same choices plays out identically.
 //
 // Difficulty (AI): D1 plays greedy on raw progress and makes a random move
-// 45% of the time; D2 greedy on a full positional evaluation with 12% random
+// 60% of the time; D2 greedy on a full positional evaluation with 15% random
 // moves; D3 expectimax one throw ahead; D4 expectimax two throws ahead.
 // The lead piece is the human's at D1–2; at D3–4 the seed decides.
 
@@ -46,6 +61,10 @@ export interface State {
   off: [number, number]
   turn: Player
   pieces: number
+  /** Pieces to bear off to win (default: all). */
+  goal?: number
+  /** What landing on a lone enemy does: swap places (Kendall) or send it to the House of Rebirth. */
+  hit?: 'swap' | 'rebirth'
 }
 export interface Move { from: number; to: number; backward?: boolean }
 
@@ -77,6 +96,40 @@ export function initialState(pieces: number, humanLead = true, turn: Player = 1)
     board[s] = even === humanLead ? 1 : 2
   }
   return { board, off: [0, 0], turn, pieces }
+}
+
+/**
+ * A seeded mid-game position: `pieces` per side on squares from–25 (8 by default), no square
+ * shared, equal total progress.  `lead` moves the human's front piece on by
+ * a few squares (the D1 head start).
+ */
+export function midgameState(pieces: number, seed: number, lead = 0, turn: Player = 1, from = 8): State {
+  const rng = mulberry32(hashString(`senet-mid:${seed}:${pieces}`))
+  const sum = (a: number[]) => a.reduce((x, y) => x + y, 0)
+  for (let tries = 0; tries < 5000; tries++) {
+    const used = new Set<number>()
+    const side = () => {
+      const out: number[] = []
+      while (out.length < pieces) {
+        const q = from + Math.floor(rng() * (BEAUTY - from)) // from..25
+        if (!used.has(q)) { used.add(q); out.push(q) }
+      }
+      return out.sort((a, b) => a - b)
+    }
+    const h = side(), a = side()
+    if (sum(h) !== sum(a)) continue
+    if (lead) {
+      let to = h[h.length - 1] + lead
+      while (to < BEAUTY && used.has(to)) to++
+      if (to > BEAUTY || used.has(to)) continue
+      used.delete(h[h.length - 1]); used.add(to); h[h.length - 1] = to
+    }
+    const board = Array(32).fill(0)
+    h.forEach(q => { board[q] = 1 })
+    a.forEach(q => { board[q] = 2 })
+    return { board, off: [0, 0], turn, pieces }
+  }
+  return initialState(pieces, true, turn)
 }
 
 /** Is square q part of a run of 3+ pieces of player p? */
@@ -138,9 +191,14 @@ export function applyMove(st: State, m: Move, roll: number): State {
   b[m.from] = 0
   if (m.to === OFF) off[me - 1]++
   else if (m.to === WATER) b[waterDest(b)] = me
-  else if (b[m.to] === opp(me)) { b[m.from] = opp(me); b[m.to] = me }
+  else if (b[m.to] === opp(me)) {
+    if (st.hit === 'rebirth') {
+      b[m.to] = me
+      b[waterDest(b)] = opp(me)
+    } else { b[m.from] = opp(me); b[m.to] = me }
+  }
   else b[m.to] = me
-  return { board: b, off, turn: extraThrow(roll) ? me : opp(me), pieces: st.pieces }
+  return { ...st, board: b, off, turn: extraThrow(roll) ? me : opp(me) }
 }
 
 export function passTurn(st: State, roll: number): State {
@@ -148,8 +206,9 @@ export function passTurn(st: State, roll: number): State {
 }
 
 export function winner(st: State): Player | null {
-  if (st.off[0] >= st.pieces) return 1
-  if (st.off[1] >= st.pieces) return 2
+  const goal = Math.min(st.pieces, st.goal ?? st.pieces)
+  if (st.off[0] >= goal) return 1
+  if (st.off[1] >= goal) return 2
   return null
 }
 
@@ -157,6 +216,14 @@ export function winner(st: State): Player | null {
 export function restingSquare(st: State, m: Move): number {
   if (m.to !== WATER) return m.to
   const b = st.board.slice(); b[m.from] = 0
+  return waterDest(b)
+}
+
+/** Where the hit enemy piece ends up (its old square on a swap). */
+export function hitSquare(st: State, m: Move): number | null {
+  if (m.to === OFF || m.to === WATER || st.board[m.to] !== opp(st.turn)) return null
+  if (st.hit !== 'rebirth') return m.from
+  const b = st.board.slice(); b[m.from] = 0; b[m.to] = st.turn
   return waterDest(b)
 }
 
@@ -217,7 +284,7 @@ export function expectimax(st: State, depth: number, me: Player): number {
 }
 
 export const AI_DEPTH = [0, 0, 1, 2] as const
-export const AI_RANDOM = [0.45, 0.12, 0, 0] as const
+export const AI_RANDOM = [0.6, 0.15, 0, 0] as const
 
 /** Choose a move for the side to move (`st.turn`), or null to pass. */
 export function aiMove(st: State, roll: number, difficulty: Difficulty, rng: Rng): Move | null {
@@ -242,11 +309,20 @@ export function aiMove(st: State, roll: number, difficulty: Difficulty, rng: Rng
 
 // ── Configs ─────────────────────────────────────────────────────────────────
 
+type PerDiff = readonly [number, number, number, number]
 interface SenetConfig {
   title: string
   intro: string
   opponent: string
-  pieces: number
+  /** Pieces per side, per difficulty. */
+  pieces: PerDiff
+  /** Pieces to bear off to win, per difficulty (absent: all). */
+  goal?: PerDiff
+  /** 'opening': the classic start on 1…2N; 'midgame': a seeded position under way. */
+  start: 'opening' | 'midgame'
+  /** First square of the mid-game spread (default 8). */
+  from?: number
+  hit: 'swap' | 'rebirth'
   fact: string
   /** Test/authoring hooks: a custom start (31 entries, index = square). */
   startBoard?: number[]
@@ -257,25 +333,45 @@ interface SenetConfig {
 export const CONFIGS: Record<string, SenetConfig> = {
   kendall: {
     title: 'Passing Through',
-    intro: 'Five spools against five cones. Race them along the S of the board and bear them all off first.',
+    intro: 'A game already under way on Kendall\'s rules: land on a lone piece to swap places, pairs guard, rows of three wall off the road. Bear all yours off first.',
     opponent: 'the temple scribe',
-    pieces: 5,
+    pieces: [2, 3, 3, 3],
+    start: 'midgame',
+    hit: 'swap',
     fact: 'Senet boards appear in Egyptian tombs from about 3000 BC; the Book of the Dead pictures the deceased playing senet against an unseen opponent for safe passage.',
   },
   'new-kingdom': {
     title: "Nefertari's Board",
-    intro: 'Seven pieces a side, as in the New Kingdom. Pairs guard, rows of three wall off the road.',
+    intro: 'The full opening: seven pieces a side packed on the first row. Break out — the first to bear off the target number wins.',
     opponent: 'Queen Nefertari',
-    pieces: 7,
+    pieces: [7, 7, 7, 7],
+    goal: [1, 1, 2, 2],
+    start: 'opening',
+    hit: 'swap',
     fact: "Nefertari's tomb in the Valley of the Queens shows her seated alone at a senet board — a game against fate for her passage to the afterlife.",
   },
   tutankhamun: {
     title: "The Boy King's Box",
-    intro: 'A quick game of four pieces each on one of the boards buried with Tutankhamun.',
+    intro: "The steward's rule: a piece you land on is not swapped but thrown back to the House of Rebirth (15). A game under way — bear all yours off first.",
     opponent: 'the royal steward',
-    pieces: 4,
+    pieces: [2, 2, 3, 3],
+    start: 'midgame',
+    from: 12,
+    hit: 'rebirth',
     fact: "Tutankhamun's tomb held four senet boxes, one of ebony and ivory with a drawer for the pieces and knucklebones and throw sticks for play.",
   },
+}
+
+/** The opening state of a config at a difficulty and seed. */
+export function startFor(configId: string, difficulty: Difficulty, seed: number): State {
+  const c = CONFIGS[configId] ?? CONFIGS.kendall
+  const pieces = c.pieces[difficulty - 1]
+  const goal = c.goal ? c.goal[difficulty - 1] : pieces
+  const turn = c.startTurn ?? 1
+  const base = c.start === 'midgame'
+    ? midgameState(pieces, seed, difficulty === 1 ? 4 : 0, turn, c.from)
+    : initialState(pieces, difficulty <= 2 ? true : (seed & 1) === 0, turn)
+  return { ...base, goal, hit: c.hit }
 }
 export const CONFIG_IDS = Object.keys(CONFIGS)
 
@@ -306,16 +402,18 @@ interface Game {
 
 export default function SenetGame({ configId, difficulty, seed, params, onWin, onLose }: MinigameProps) {
   const config = resolveConfig(CONFIGS, configId, params, 'kendall')
+  const cfgId = configId && CONFIGS[configId] ? configId : 'kendall'
   const { outcome, settled, win, lose } = useGameOutcome({ onWin, onLose, delayMs: 900 })
   const start = useMemo<State>(() => {
+    const base = startFor(cfgId, difficulty, seed)
     if (config.startBoard) {
       const board = Array(32).fill(0)
       config.startBoard.forEach((v, i) => { if (i >= 1 && i <= 30) board[i] = v })
-      return { board, off: config.startOff ?? [0, 0], turn: config.startTurn ?? 1, pieces: config.pieces }
+      return { ...base, board, off: config.startOff ?? [0, 0], turn: config.startTurn ?? 1 }
     }
-    const humanLead = difficulty <= 2 ? true : (seed & 1) === 0
-    return initialState(config.pieces, humanLead, config.startTurn ?? 1)
-  }, [config, difficulty, seed])
+    return { ...base, turn: config.startTurn ?? base.turn }
+  }, [config, cfgId, difficulty, seed])
+  const goal = Math.min(start.pieces, start.goal ?? start.pieces)
 
   const [g, setG] = useState<Game>(() => ({
     st: start, stage: 'throw', roll: null, sticks: null, idx: [0, 0], last: null,
@@ -331,7 +429,7 @@ export default function SenetGame({ configId, difficulty, seed, params, onWin, o
     setG(next)
     const w = winner(next.st)
     if (w === 1) win()
-    else if (w === 2) lose(`${config.opponent} bore off every piece first`)
+    else if (w === 2) lose(goal < next.st.pieces ? `${config.opponent} bore off ${goal} first` : `${config.opponent} bore off every piece first`)
   }
 
   const doMove = (m: Move | null) => {
@@ -343,7 +441,7 @@ export default function SenetGame({ configId, difficulty, seed, params, onWin, o
     let note = !m ? `${actor} had no move with a ${roll}.`
       : m.to === OFF ? `${actor} bore a piece off!`
       : m.to === WATER ? `${actor} fell into the Waters of Chaos — back to ${rest}.`
-      : g.st.board[m.to] === opp(who) ? `${actor} swapped places with a piece on ${m.to}.`
+      : g.st.board[m.to] === opp(who) ? (g.st.hit === 'rebirth' ? `${actor} hit the piece on ${m.to} — back to square ${hitSquare(g.st, m)}.` : `${actor} swapped places with a piece on ${m.to}.`)
       : m.backward ? `${actor} had to move back to ${m.to}.`
       : `${actor} moved ${m.from} → ${m.to}.`
     if (extraThrow(roll)) note += ` A ${roll} — throw again.`
@@ -419,8 +517,8 @@ export default function SenetGame({ configId, difficulty, seed, params, onWin, o
         </div>
         <p className="text-ink-2 text-xs leading-snug mt-1">{config.intro}</p>
         <div className="flex justify-between text-[11px] mt-1.5 text-ink">
-          <span>You (ivory): <b>{g.st.off[0]}</b>/{g.st.pieces} off</span>
-          <span>Them (ebony): <b>{g.st.off[1]}</b>/{g.st.pieces} off</span>
+          <span>You (ivory): <b>{g.st.off[0]}</b>/{goal} off</span>
+          <span>Them (ebony): <b>{g.st.off[1]}</b>/{goal} off</span>
         </div>
       </div>
 
@@ -494,12 +592,12 @@ export default function SenetGame({ configId, difficulty, seed, params, onWin, o
         <summary className="font-semibold text-ink cursor-pointer">Rules (Kendall's reconstruction)</summary>
         <ul className="list-disc pl-4 mt-1 space-y-0.5">
           <li>Sticks: light faces up = 1–4; none light = 5. 1, 4 and 5 throw again.</li>
-          <li>Move a piece forward along the S. Land on a lone enemy piece to swap places.</li>
+          <li>Move a piece forward along the S. {start.hit === 'rebirth' ? 'Land on a lone enemy piece to throw it back to the House of Rebirth (15).' : 'Land on a lone enemy piece to swap places.'}</li>
           <li>Two pieces side by side are safe; three in a row can't be passed.</li>
           <li>Every piece must stop exactly on 26 𓄤. From there: 1 falls in the water ≈ (back to 15 ☥), 2/3/4 go to 28/29/30, 5 bears off.</li>
           <li>Bear off with an exact throw: 3 from 28, 2 from 29, 1 from 30. 26–30 are safe.</li>
           <li>No forward move? You must move a piece backward; if you can't, you pass.</li>
-          <li>Bear off all your pieces first to win.</li>
+          <li>{goal < start.pieces ? `Bear off ${goal} of your ${start.pieces} pieces first to win.` : 'Bear off all your pieces first to win.'}</li>
         </ul>
       </details>
 

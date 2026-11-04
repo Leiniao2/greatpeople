@@ -4,7 +4,7 @@ import { createElement } from 'react'
 import { render, screen, fireEvent, act, cleanup } from '@testing-library/react'
 import SenetGame, {
   CONFIGS, CONFIG_IDS, initialState, legalMoves, applyMove, passTurn, winner, aiMove, throwSticks, throwAt,
-  waterDest, type State, type Player, type Move,
+  waterDest, startFor, midgameState, hitSquare, type State, type Player, type Move,
 } from '@/components/minigames/SenetGame'
 import { mulberry32 } from '@/components/minigames/_shared'
 import type { Difficulty } from '@/games/types'
@@ -104,18 +104,23 @@ describe('senet engine', () => {
   })
 })
 
-/** Play a full game: player 1 policy at `hd`, AI at `ad`. */
-function playGame(config: string, seed: number, hd: Difficulty, ad: Difficulty, humanLead = true): Player {
-  let st = initialState(CONFIGS[config].pieces, humanLead)
+/** Play a game of `config` at difficulty `ad`: player 1 uses the AI policy at `hd` (or random moves). */
+function playGame(config: string, seed: number, hd: Difficulty | 'random', ad: Difficulty): { winner: Player; throws: number } {
+  let st = startFor(config, ad, seed)
   const idx = [0, 0]
+  const pick = mulberry32(seed ^ 0x51ed)
+  let throws = 0
   for (let turn = 0; turn < 4000; turn++) {
     const p = st.turn
     const roll = throwAt(seed, p, idx[p - 1]++).value
+    if (p === 1) throws++
     const rng = mulberry32(seed * 31 + turn)
-    const m = aiMove(st, roll, p === 1 ? hd : ad, rng)
+    let m: Move | null
+    if (p === 1 && hd === 'random') { const ms = legalMoves(st, roll); m = ms.length ? ms[Math.floor(pick() * ms.length)] : null }
+    else m = aiMove(st, roll, p === 1 ? (hd as Difficulty) : ad, rng)
     st = m ? applyMove(st, m, roll) : passTurn(st, roll)
     const w = winner(st)
-    if (w) return w
+    if (w) return { winner: w, throws }
   }
   throw new Error('game did not finish')
 }
@@ -147,20 +152,80 @@ describe('senet AI', () => {
     expect(worst).toBeLessThan(300)
   })
 
-  it('a strong player beats D1 most of the time and D4 at least sometimes', () => {
-    const rate = (cfg: string, ad: Difficulty, n: number, lead = true) => {
-      let w = 0
-      for (let s = 1; s <= n; s++) if (playGame(cfg, s * 7919, 4, ad, lead) === 1) w++
-      return w / n
+  it('every config × difficulty: a strong player wins often, a random one less, and games are short', () => {
+    // Time budget: a player throw plus the replies is ~5 s, so the median
+    // game must stay within ~22 of the player's throws at D1 (≈ 1.5 min) and
+    // ~34 at D4 (≈ 3 min).  A full Kendall game is 50–80 throws.
+    const N = 30
+    const rows: string[] = []
+    for (const id of CONFIG_IDS) for (const d of DIFFS) {
+      let wins = 0, rwins = 0
+      const throws: number[] = []
+      for (let s = 1; s <= N; s++) {
+        const r = playGame(id, s * 7919, 3, d)
+        if (r.winner === 1) wins++
+        throws.push(r.throws)
+        if (playGame(id, s * 7919, 'random', d).winner === 1) rwins++
+      }
+      throws.sort((a, b) => a - b)
+      const median = throws[N >> 1]
+      rows.push(`${id} D${d}: ${Math.round((wins / N) * 100)}% (random ${Math.round((rwins / N) * 100)}%) median ${median}`)
+      expect(wins / N, `${id}@${d} strong`).toBeGreaterThan(d === 1 ? 0.5 : 0.2)
+      expect(median, `${id}@${d} median throws`).toBeLessThanOrEqual(d === 1 ? 24 : 34)
+      if (d >= 3) expect(rwins / N, `${id}@${d} random player should mostly lose`).toBeLessThan(0.45)
     }
-    const vsD1 = rate('kendall', 1, 40)
-    const vsD4 = rate('kendall', 4, 24, false)
-    const quickD1 = rate('tutankhamun', 1, 30)
-    console.log(`senet win rates (D4 player): vs D1 ${(vsD1 * 100).toFixed(0)}%, vs D4 ${(vsD4 * 100).toFixed(0)}%, tutankhamun vs D1 ${(quickD1 * 100).toFixed(0)}%`)
-    expect(vsD1).toBeGreaterThan(0.6)
-    expect(quickD1).toBeGreaterThan(0.55)
-    expect(vsD4).toBeGreaterThan(0.15)
+    console.log('senet:', rows.join(' | '))
   }, 120_000)
+})
+
+describe('senet variants and budget', () => {
+  it('each config is a distinct challenge', () => {
+    const sig = CONFIG_IDS.map(id => { const c = CONFIGS[id]; return `${c.start}/${c.hit}/${c.goal ? 'goal' : 'all'}` })
+    expect(new Set(sig).size).toBe(CONFIG_IDS.length)
+    for (const id of CONFIG_IDS) expect(CONFIGS[id].fact.length).toBeGreaterThan(20)
+  })
+  it('pieces left to carry stay small at every difficulty', () => {
+    for (const id of CONFIG_IDS) for (const d of DIFFS) {
+      const st = startFor(id, d, 5)
+      const goal = st.goal ?? st.pieces
+      if (CONFIGS[id].start === 'midgame') expect(goal, `${id}@${d}`).toBeLessThanOrEqual(d === 1 ? 2 : 3)
+      else expect(goal, `${id}@${d}`).toBeLessThanOrEqual(d <= 2 ? 1 : 2)
+    }
+  })
+  it('first to bear off the goal wins in the New Kingdom opening', () => {
+    const st = startFor('new-kingdom', 3, 1)
+    expect(st.pieces).toBe(7)
+    expect(st.goal).toBe(2)
+    expect(winner({ ...st, off: [2, 1] })).toBe(1)
+    expect(winner({ ...st, off: [1, 1] })).toBe(null)
+  })
+  it("the steward's rule throws a hit piece back to the House of Rebirth", () => {
+    const st: State = { ...mk({ 18: 1, 20: 2, 3: 2 }), hit: 'rebirth' }
+    const m = legalMoves(st, 2).find(x => x.to === 20)!
+    expect(hitSquare(st, m)).toBe(15)
+    const after = applyMove(st, m, 2)
+    expect(after.board[20]).toBe(1)
+    expect(after.board[18]).toBe(0)
+    expect(after.board[15]).toBe(2)
+    // Kendall's swap for comparison.
+    const k = applyMove(mk({ 18: 1, 20: 2 }), { from: 18, to: 20 }, 2)
+    expect(k.board[18]).toBe(2)
+  })
+  it('mid-game starts are seeded, fair and inside the board', () => {
+    for (const id of CONFIG_IDS.filter(i => CONFIGS[i].start === 'midgame')) for (const d of DIFFS) for (let seed = 1; seed < 30; seed++) {
+      const st = startFor(id, d, seed)
+      expect(st).toEqual(startFor(id, d, seed))
+      const h: number[] = [], a: number[] = []
+      for (let q = 1; q <= 30; q++) { if (st.board[q] === 1) h.push(q); if (st.board[q] === 2) a.push(q) }
+      expect(h).toHaveLength(st.pieces)
+      expect(a).toHaveLength(st.pieces)
+      expect([...h, ...a].every(q => q >= (CONFIGS[id].from ?? 8) && q <= 26)).toBe(true)
+      const sum = (x: number[]) => x.reduce((p, q) => p + q, 0)
+      if (d === 1) expect(sum(h)).toBeGreaterThan(sum(a))
+      else expect(sum(h)).toBe(sum(a))
+    }
+    expect(midgameState(3, 1).board).not.toEqual(midgameState(3, 2).board)
+  })
 })
 
 describe('SenetGame UI', () => {
@@ -181,7 +246,7 @@ describe('SenetGame UI', () => {
     const startBoard = Array(31).fill(0); startBoard[30] = 1; startBoard[3] = 2
     let won = 0, lost = 0
     render(createElement(SenetGame, {
-      configId: 'kendall', difficulty: 4, seed, params: { startBoard, startOff: [4, 0] },
+      configId: 'kendall', difficulty: 4, seed, params: { startBoard, startOff: [2, 0] },
       onWin: () => { won++ }, onLose: () => { lost++ },
     }))
     fireEvent.click(screen.getByRole('button', { name: 'Throw sticks' }))
@@ -201,7 +266,7 @@ describe('SenetGame UI', () => {
     const startBoard = Array(31).fill(0); startBoard[28] = 2; startBoard[3] = 1
     let won = 0, lost = 0
     render(createElement(SenetGame, {
-      configId: 'tutankhamun', difficulty: 1, seed, params: { startBoard, startOff: [0, 3], startTurn: 2 },
+      configId: 'tutankhamun', difficulty: 1, seed, params: { startBoard, startOff: [0, 1], startTurn: 2 },
       onWin: () => { won++ }, onLose: () => { lost++ },
     }))
     act(() => { vi.advanceTimersByTime(500) })

@@ -21,11 +21,16 @@ import { mulberry32, resolveConfig, scale, shuffle, useGameOutcome, OutcomeBanne
 // move, loses.  You always open.
 //
 // Move limit (documented fair rule): if the moving phase lasts `limit`
-// plies, the game is adjudicated on pieces — more pieces wins.  A tie goes
+// plies (see LIMITS — short, so a game stays ~15–32 of your moves), the game is adjudicated on pieces — more pieces wins.  A tie goes
 // to you at Levels 1–2 ("you held the field") and to the computer at
 // Levels 3–4, so at the top tiers you must actually win.  A board filled
 // completely during placement (possible in twelve men's) is adjudicated the
 // same way.
+//
+// Mill race (cloister-race): the nine men's board, but the first to take three
+// pieces wins (you need only two at Level 1) — encoded as a higher `loseAt`.
+// Three men's from Level 3: the opening placement may not use the centre,
+// which removes the opener's easy forced win.
 //
 // Difficulty: search depth 1/2/3/4 (1/1/2/3 on the tiny three men's board; alpha-beta, iterative deepening under a
 // node budget so every move stays well under 300 ms); the computer plays a
@@ -110,6 +115,8 @@ export type Cell = 0 | Side
 
 export interface Rules {
   layout: Layout
+  /** Three men's from Level 3: the opening placement may not take the centre point. */
+  noCentreOpen: boolean
   /** A side whose total (board + hand) drops to this or below has lost. Index 0 = you, 1 = computer. */
   loseAt: [number, number]
   /** Moving-phase plies before adjudication. */
@@ -132,13 +139,26 @@ export interface Move { from: number; to: number; remove: number }
 
 export const other = (s: Side): Side => (s === 1 ? 2 : 1)
 
-export function makeRules(variant: Variant, difficulty: Difficulty): Rules {
+/** Moving-phase plies before adjudication: keeps a game to ~15–32 of your moves. */
+export const LIMITS: Record<Variant, readonly [number, number, number, number]> = {
+  three: [20, 24, 28, 30],
+  six: [24, 28, 32, 36],
+  nine: [26, 30, 36, 40],
+  twelve: [20, 24, 28, 32],
+}
+
+/** Pieces you must take to win a mill race (the computer always needs 3). */
+export const RACE_TO = [2, 3, 3, 3] as const
+
+export function makeRules(variant: Variant, difficulty: Difficulty, race = false): Rules {
   const layout = makeLayout(variant)
   const bonus = variant === 'three' ? 0 : variant === 'six' ? scale(difficulty, [1, 0, 0, 0]) : scale(difficulty, [2, 1, 0, 0])
+  const n = layout.pieces
   return {
     layout,
-    loseAt: [2, 2 + bonus],
-    limit: variant === 'three' ? 40 : variant === 'six' ? 80 : 100,
+    noCentreOpen: variant === 'three' && difficulty >= 3,
+    loseAt: race ? [n - 3, n - RACE_TO[difficulty - 1]] : [2, 2 + bonus],
+    limit: scale(difficulty, LIMITS[variant]),
     tieGoesTo: difficulty <= 2 ? 1 : 2,
   }
 }
@@ -176,7 +196,8 @@ export function baseMoves(rules: Rules, s: MState): [number, number][] {
   const side = s.turn
   const out: [number, number][] = []
   if (s.hand[side - 1] > 0) {
-    s.board.forEach((c, i) => { if (!c) out.push([-1, i]) })
+    const opening = rules.noCentreOpen && s.board.every(c => c === 0)
+    s.board.forEach((c, i) => { if (!c && !(opening && i === 4)) out.push([-1, i]) })
     return out
   }
   const fly = layout.flying && onBoard(s, side) === 3
@@ -248,6 +269,8 @@ export const AI_DEPTH = [1, 2, 3, 4] as const
 /** Three men's is tiny, so the same depth sees much further; keep it shallower. */
 export const AI_DEPTH_THREE = [1, 1, 2, 3] as const
 export const AI_RANDOM = [0.35, 0.12, 0.03, 0] as const
+/** Three men's without the centre opening is a draw with perfect play, so the top level slips now and then. */
+export const AI_RANDOM_THREE = [0.35, 0.12, 0.03, 0.12] as const
 export const AI_NODES = [3000, 10000, 30000, 60000] as const
 
 const WIN = 1_000_000
@@ -348,7 +371,7 @@ export function searchBest(rules: Rules, s: MState, depth: number, nodes: number
 
 export function aiMove(rules: Rules, s: MState, difficulty: Difficulty, rng: Rng): Move {
   const moves = legalMoves(rules, s)
-  if (rng() < AI_RANDOM[difficulty - 1]) return moves[Math.floor(rng() * moves.length)]
+  if (rng() < (rules.layout.lineWins ? AI_RANDOM_THREE : AI_RANDOM)[difficulty - 1]) return moves[Math.floor(rng() * moves.length)]
   const depth = (rules.layout.lineWins ? AI_DEPTH_THREE : AI_DEPTH)[difficulty - 1]
   return searchBest(rules, s, depth, AI_NODES[difficulty - 1], rng)
 }
@@ -358,6 +381,8 @@ export function aiMove(rules: Rules, s: MState, difficulty: Difficulty, rng: Rng
 interface MorrisConfig {
   title: string
   variant: Variant
+  /** Mill race: the first to take three pieces wins (two for you at Level 1). */
+  race?: boolean
   intro: string
   fact: string
 }
@@ -366,19 +391,19 @@ export const CONFIGS: Record<string, MorrisConfig> = {
   'three-mens': {
     title: "Three Men's Morris",
     variant: 'three',
-    intro: 'Three pieces each on a small grid. Place them, then slide along the lines — the first straight line of three wins.',
+    intro: 'No captures at all: place three pieces, then slide along the lines — the first straight line of three wins. From Level 3 your first piece may not take the centre.',
     fact: "Ovid's Ars Amatoria (c. 2 AD) describes a little game won by getting three pieces in a row; it is usually identified as three men's morris.",
   },
   'six-mens': {
     title: "Six Men's Morris",
     variant: 'six',
-    intro: 'Two squares, six pieces each. Mills form only along the sides, and there is no flying.',
+    intro: 'Two squares, six pieces each. Mills form only along the sides and nobody ever flies — a boxed-in side simply loses.',
     fact: "Six men's morris was popular in medieval Italy, France and England, but had all but disappeared by about 1600.",
   },
   'nine-mens': {
     title: "Nine Men's Morris",
     variant: 'nine',
-    intro: 'The classic: nine pieces each on three squares. Make mills to take pieces; down to three, you may fly.',
+    intro: 'The classic: nine pieces each on three squares. Make mills to take pieces; down to three, a side may fly anywhere.',
     fact: 'A nine men\'s morris board was cut into a deck plank of the Gokstad Viking ship, buried in Norway around 900 AD.',
   },
   'twelve-mens': {
@@ -386,6 +411,13 @@ export const CONFIGS: Record<string, MorrisConfig> = {
     variant: 'twelve',
     intro: 'Twelve pieces each, and the corners are joined by diagonals — more lines, more mills, a crowded board.',
     fact: "Twelve men's morris lives on in southern Africa as Morabaraba, which is played in organised leagues and tournaments in South Africa.",
+  },
+  'cloister-race': {
+    title: 'The Cloister Race',
+    variant: 'nine',
+    race: true,
+    intro: 'A mill race on the nine men\'s board: forget the long grind — the first to take three pieces wins (two for you at Level 1). Every early mill counts.',
+    fact: "Morris boards scratched into the stone benches of medieval cloisters, such as those at Canterbury, Gloucester and Westminster, show that monks and masons played the game during idle hours.",
   },
 }
 
@@ -397,7 +429,7 @@ const AI_DELAY = 450
 
 export default function MorrisGame({ configId, difficulty, seed, params, onWin, onLose }: MinigameProps) {
   const config = resolveConfig(CONFIGS, configId, params, 'nine-mens')
-  const rules = useMemo(() => makeRules(config.variant, difficulty), [config.variant, difficulty])
+  const rules = useMemo(() => makeRules(config.variant, difficulty, !!config.race), [config.variant, difficulty, config.race])
   const { layout } = rules
   const { outcome, settled, win, lose } = useGameOutcome({ onWin, onLose })
   const rng = useMemo(() => mulberry32((seed ^ 0x9e3779b9) >>> 0), [seed])
@@ -491,7 +523,10 @@ export default function MorrisGame({ configId, difficulty, seed, params, onWin, 
   const pad = 22
   const R = layout.variant === 'three' ? 17 : layout.variant === 'twelve' ? 12 : 13
   const lastMarks = last && !pending ? last.move : null
-  const goal = layout.lineWins ? 'Make a line of three' : `Reduce the computer to ${rules.loseAt[1]}`
+  const race = !!config.race
+  const goal = layout.lineWins ? 'Make a line of three'
+    : race ? `Take ${layout.pieces - rules.loseAt[1]} pieces first · taken ${layout.pieces - total(state, 2)}`
+    : `Reduce the computer to ${rules.loseAt[1]}`
 
   return (
     <div className="flex flex-col gap-3 bg-paper-2 rounded-xl p-3 select-none">
@@ -557,13 +592,16 @@ export default function MorrisGame({ configId, difficulty, seed, params, onWin, 
             <>
               <li>Take turns placing your 3 pieces; then slide one piece per turn along a line to an empty neighbouring point.</li>
               <li>The first to get three in a straight line (diagonals count) wins.</li>
+              {rules.noCentreOpen && <li>Your very first piece may not go on the centre point.</li>}
             </>
           ) : (
             <>
               <li>Take turns placing your {layout.pieces} pieces on empty points. When all are placed, slide one piece per turn along a line to an empty neighbour.</li>
               <li>Three of yours in a line{layout.variant === 'six' ? ' along a side' : ''} is a <b>mill</b>: take one computer piece. Pieces in a mill are safe unless every piece is in one.</li>
               {layout.flying && <li>With only three pieces left, a player may fly to any empty point.</li>}
-              <li>Win by reducing the computer to {rules.loseAt[1]} pieces or leaving it no move. You lose at 2 pieces or when blocked.</li>
+              {race
+                ? <li>Mill race: you win the moment you have taken {layout.pieces - rules.loseAt[1]} computer pieces (or it cannot move); you lose when it has taken 3 of yours or you are blocked.</li>
+                : <li>Win by reducing the computer to {rules.loseAt[1]} pieces or leaving it no move. You lose at 2 pieces or when blocked.</li>}
             </>
           )}
           <li>After {rules.limit} moves the side with more pieces wins; a tie goes to {rules.tieGoesTo === 1 ? 'you' : 'the computer'} at this level.</li>
@@ -584,7 +622,7 @@ function withBase(board: Cell[], from: number, to: number): Cell[] {
 
 function endReason(rules: Rules, s: MState): string {
   if (rules.layout.lineWins) return s.moving >= rules.limit ? 'out of moves' : 'the computer made a line'
-  if (total(s, 1) <= rules.loseAt[0]) return 'down to two pieces'
+  if (total(s, 1) <= rules.loseAt[0]) return rules.loseAt[0] > 2 ? 'the computer took three pieces first' : 'down to two pieces'
   if (s.moving >= rules.limit || s.board.every(c => c)) return 'out of moves'
   return 'no moves left'
 }

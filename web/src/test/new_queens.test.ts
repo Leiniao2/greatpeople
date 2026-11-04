@@ -3,7 +3,8 @@ import { render, cleanup, fireEvent, act } from '@testing-library/react'
 import { describe, it, expect, afterEach, vi } from 'vitest'
 import type { Difficulty } from '@/games/types'
 import QueensGame, {
-  CONFIGS, CONFIG_IDS, makePuzzle, solveQueens, allSolutions, clashWith, extendable, livesFor, type Puzzle,
+  CONFIGS, CONFIG_IDS, makePuzzle, solveQueens, allSolutions, clashWith, clashKind, extendable, livesFor, timerFor, shadingFor,
+  hasRegions, MAX_SIZE, type Puzzle, type Mode,
 } from '@/components/minigames/QueensGame'
 
 const DIFFS: Difficulty[] = [1, 2, 3, 4]
@@ -34,6 +35,79 @@ describe('Eight Queens — solver', () => {
   })
 })
 
+describe('Eight Queens — variants', () => {
+  const empty = (n: number, mode: Mode, regions: number[] | null = null) => ({ n, mode, blocked: [] as number[], regions })
+  it('every config is a distinct rule twist, explained in its intro', () => {
+    const twist = (id: string) => `${CONFIGS[id].mode}|${(CONFIGS[id].givens ?? []).some(g => g > 0)}|${(CONFIGS[id].blocked ?? []).some(b => b !== 0)}`
+    expect(new Set(CONFIG_IDS.map(twist)).size).toBe(CONFIG_IDS.length)
+    expect(new Set(CONFIG_IDS.map(id => CONFIGS[id].mode))).toEqual(new Set(['classic', 'regions', 'parterre', 'torus']))
+    expect(CONFIGS.gauss.intro).toMatch(/already on the board/)
+    expect(CONFIGS.bezzel.intro).toMatch(/ruined/)
+    expect(CONFIGS.alhambra.intro).toMatch(/touch/)
+    expect(CONFIGS.versailles.intro).toMatch(/diagonal/)
+    expect(CONFIGS.polya.intro).toMatch(/wrap/)
+  })
+  it('torus: diagonals wrap round the edge; peaceful boards exist only when n shares no factor with 6', () => {
+    expect([4, 5, 6, 7, 8].map(n => solveQueens(empty(n, 'torus'), [], 1000).count)).toEqual([0, 10, 0, 28, 0])
+    const n = 5, at = (r: number, c: number) => r * n + c
+    // (0,4) and (1,0) touch across the wrapped edge; on a flat board they do not clash.
+    expect(clashWith(empty(n, 'torus'), [at(0, 4)], at(1, 0))).toBe(at(0, 4))
+    expect(clashWith(empty(n, 'classic'), [at(0, 4)], at(1, 0))).toBeNull()
+    expect(clashKind(empty(n, 'torus'), at(0, 4), at(1, 0))).toMatch(/wrapped/)
+  })
+  it('regions vs parterre: Alhambra queens may share a long diagonal, Versailles queens may not', () => {
+    const n = 5, at = (r: number, c: number) => r * n + c
+    const regions = Array.from({ length: n * n }, (_, i) => i % n) // each column its own region
+    expect(clashWith(empty(n, 'regions', regions), [at(0, 0)], at(2, 2))).toBeNull()
+    expect(clashWith(empty(n, 'parterre', regions), [at(0, 0)], at(2, 2))).toBe(at(0, 0))
+    // Touching diagonally is barred in both.
+    expect(clashWith(empty(n, 'regions', regions), [at(0, 0)], at(1, 1))).toBe(at(0, 0))
+    expect(clashWith(empty(n, 'parterre', regions), [at(0, 0)], at(1, 1))).toBe(at(0, 0))
+    // Same region clashes in both.
+    const one = new Array(n * n).fill(0)
+    expect(clashKind(empty(n, 'parterre', one), at(0, 0), at(2, 3))).toMatch(/colour/)
+    // A parterre answer is also a classic N-queens answer.
+    for (const s of SEEDS) {
+      const p = makePuzzle('versailles', CONFIGS.versailles, 4, s)
+      expect(valid({ ...p, mode: 'classic', regions: null }, p.solution)).toBe(true)
+    }
+  })
+  it('ruins and given queens are honoured', () => {
+    for (const s of SEEDS) {
+      const b = makePuzzle('bezzel', CONFIGS.bezzel, 2, s)
+      expect(b.blocked.length).toBe(3)
+      for (const x of b.blocked) expect(b.solution).not.toContain(x)
+      const g = makePuzzle('gauss', CONFIGS.gauss, 1, s)
+      expect(g.givens.length).toBe(1)
+    }
+  })
+})
+
+describe('Eight Queens — time budget', () => {
+  it('boards stay small and clocks short', () => {
+    expect(MAX_SIZE).toEqual([7, 7, 7, 8])
+    for (const id of CONFIG_IDS) for (const d of DIFFS) {
+      expect(CONFIGS[id].sizes[d - 1], `${id}@${d}`).toBeLessThanOrEqual(MAX_SIZE[d - 1])
+    }
+    for (const d of DIFFS) expect(timerFor(d)).toBeLessThanOrEqual(180)
+    expect(timerFor(1)).toBe(0)
+    expect(shadingFor(1) && shadingFor(2)).toBe(true)
+    expect(livesFor(4)).toBeLessThan(livesFor(1))
+  })
+  it('D1 still needs decisions: many legal pairs of queens lead nowhere', () => {
+    for (const id of CONFIG_IDS) for (const s of SEEDS) {
+      const p = makePuzzle(id, CONFIGS[id], 1, s)
+      const open = Array.from({ length: p.n * p.n }, (_, c) => c).filter(c => !p.givens.includes(c) && !p.blocked.includes(c) && clashWith(p, p.givens, c) === null)
+      let dead = 0
+      for (const a of open) for (const b of open) {
+        if (b <= a || clashWith(p, [...p.givens, a], b) !== null) continue
+        if (!extendable(p, [...p.givens, a, b])) dead++
+      }
+      expect(dead, `${id}#${s}`).toBeGreaterThanOrEqual(3)
+    }
+  })
+})
+
 describe('Eight Queens — every level is winnable', () => {
   it('every config × difficulty × seed has a valid answer that keeps the givens', () => {
     for (const id of CONFIG_IDS) for (const d of DIFFS) for (const s of SEEDS) {
@@ -43,7 +117,7 @@ describe('Eight Queens — every level is winnable', () => {
       for (const g of p.givens) expect(p.solution).toContain(g)
       const { count } = solveQueens(p, p.givens, 100)
       expect(count).toBeGreaterThan(0)
-      if (CONFIGS[id].mode === 'regions') expect(count, `${id}@${d}#${s} unique`).toBe(1)
+      if (hasRegions(CONFIGS[id].mode)) expect(count, `${id}@${d}#${s} unique`).toBe(1)
       if (d === 4) expect(count, `${id}@${d}#${s} unique-ish`).toBeLessThanOrEqual(2)
       // Placing the answer one queen at a time never gets turned away.
       const queens = [...p.givens]
@@ -70,8 +144,8 @@ describe('Eight Queens — component', () => {
 
   it('placing the answer wins exactly once', () => {
     vi.useFakeTimers()
-    for (const id of CONFIG_IDS) {
-      const d: Difficulty = 4, seed = 8
+    for (const id of CONFIG_IDS) for (const d of DIFFS) {
+      const seed = 8
       const p = makePuzzle(id, CONFIGS[id], d, seed)
       const onWin = vi.fn(), onLose = vi.fn()
       const { container } = render(createElement(QueensGame, { configId: id, difficulty: d, seed, onWin, onLose }))
@@ -79,19 +153,19 @@ describe('Eight Queens — component', () => {
       for (const c of p.solution) if (!p.givens.includes(c)) fireEvent.click(container.querySelector(`[data-cell="${c}"]`)!)
       fireEvent.click(container.querySelector(`[data-cell="${p.solution[0]}"]`)!)
       act(() => { vi.advanceTimersByTime(2000) })
-      expect(onWin, id).toHaveBeenCalledTimes(1)
+      expect(onWin, `${id}@${d}`).toHaveBeenCalledTimes(1)
       expect(onLose).not.toHaveBeenCalled()
       cleanup()
     }
   })
 
-  it('marks are free and queens that lead nowhere cost lives until the game is lost once', () => {
+  it.each(CONFIG_IDS)('%s: marks are free and queens that lead nowhere cost lives until the game is lost once', id => {
     vi.useFakeTimers()
-    const id = 'gauss', d: Difficulty = 3, seed = 4
+    const d: Difficulty = 3, seed = 4
     const p = makePuzzle(id, CONFIGS[id], d, seed)
     const onWin = vi.fn(), onLose = vi.fn()
     const { container } = render(createElement(QueensGame, { configId: id, difficulty: d, seed, onWin, onLose }))
-    const bad = Array.from({ length: p.n * p.n }, (_, c) => c).filter(c => !p.givens.includes(c) && !extendable(p, [...p.givens, c]))
+    const bad = Array.from({ length: p.n * p.n }, (_, c) => c).filter(c => !p.givens.includes(c) && !p.blocked.includes(c) && !extendable(p, [...p.givens, c]))
     expect(bad.length).toBeGreaterThan(livesFor(d))
     fireEvent.click(container.querySelector('[data-tool="mark"]')!)
     for (const c of bad) fireEvent.click(container.querySelector(`[data-cell="${c}"]`)!)
@@ -104,12 +178,17 @@ describe('Eight Queens — component', () => {
     expect(onWin).not.toHaveBeenCalled()
   })
 
-  it('the clock running out loses once at D3', () => {
+  it('the clock runs out after 2½ minutes at D3 and 3 at D4, losing once', () => {
     vi.useFakeTimers()
-    const onWin = vi.fn(), onLose = vi.fn()
-    render(createElement(QueensGame, { configId: 'versailles', difficulty: 3, seed: 1, onWin, onLose }))
-    act(() => { vi.advanceTimersByTime(300_000) })
-    act(() => { vi.advanceTimersByTime(2000) })
-    expect(onLose).toHaveBeenCalledTimes(1)
+    for (const d of [3, 4] as Difficulty[]) {
+      const onWin = vi.fn(), onLose = vi.fn()
+      render(createElement(QueensGame, { configId: 'versailles', difficulty: d, seed: 1, onWin, onLose }))
+      act(() => { vi.advanceTimersByTime((timerFor(d) - 5) * 1000) })
+      expect(onLose).not.toHaveBeenCalled()
+      act(() => { vi.advanceTimersByTime(10_000) })
+      act(() => { vi.advanceTimersByTime(2000) })
+      expect(onLose).toHaveBeenCalledTimes(1)
+      cleanup()
+    }
   })
 })

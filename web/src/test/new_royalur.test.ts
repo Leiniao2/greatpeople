@@ -5,7 +5,8 @@ import { createElement } from 'react'
 import { render, screen, fireEvent, act, cleanup } from '@testing-library/react'
 import RoyalUrGame, {
   CONFIGS, CONFIG_IDS, HOME, ROLL_PROBS, initialState, rollDice, legalMoves, applyMove, passTurn, winner,
-  aiMove, searchMove, setupFor, type UrRules, type UrState, type Player,
+  aiMove, searchMove, setupFor, rulesFor, startFor, midgameState, goalOf, isShared, HEAD_START_SQUARE,
+  type UrRules, type UrState, type Player,
 } from '@/components/minigames/RoyalUrGame'
 import { mulberry32 } from '@/components/minigames/_shared'
 import type { Difficulty } from '@/games/types'
@@ -18,9 +19,9 @@ const tos = (s: UrState, roll: number, rules: UrRules = FINKEL) => legalMoves(s,
 
 describe('engine', () => {
   it('starts with every piece waiting; D1 gives a head start, D4 lets the AI throw first', () => {
-    expect(initialState(FINKEL)).toEqual(st([0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]))
+    expect(initialState(FINKEL)).toEqual({ ...st([0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]), caps: [0, 0] })
     const d1 = initialState(FINKEL, setupFor(1))
-    expect(d1.pos[0].filter(p => p === HOME)).toHaveLength(1)
+    expect(d1.pos[0].filter(p => p === HEAD_START_SQUARE)).toHaveLength(1)
     expect(initialState(FINKEL, setupFor(4)).turn).toBe(1)
   })
   it('enters pieces along the route and moves the distance thrown', () => {
@@ -86,21 +87,24 @@ describe('engine', () => {
 })
 
 /** Play one game: the human side uses `human`, the AI side plays at `diff`. Returns the winner. */
-function playGame(rules: UrRules, human: (s: UrState, roll: number) => ReturnType<typeof searchMove>, diff: Difficulty, seed: number): Player {
+function playGame(cfg: string, human: (s: UrState, roll: number, rules: UrRules) => ReturnType<typeof searchMove>, diff: Difficulty, seed: number): { winner: Player; throws: number } {
+  const rules = rulesFor(cfg, diff)
   const dice = mulberry32(seed), airng = mulberry32(seed ^ 0x9e3779b9)
-  let s = initialState(rules, setupFor(diff))
+  let s = startFor(cfg, diff, seed)
+  let throws = 0
   for (let turn = 0; turn < 5000; turn++) {
-    const w = winner(s)
-    if (w !== null) return w
+    const w = winner(s, rules)
+    if (w !== null) return { winner: w, throws }
     const roll = rollDice(dice).total
-    const m = s.turn === 0 ? human(s, roll) : aiMove(s, roll, diff, airng, rules)
+    if (s.turn === 0) throws++
+    const m = s.turn === 0 ? human(s, roll, rules) : aiMove(s, roll, diff, airng, rules)
     if (!m) { s = passTurn(s); continue }
     expect(legalMoves(s, roll, rules)).toContainEqual(m)
     s = applyMove(s, m, rules).state
   }
   throw new Error('game did not finish')
 }
-const strong = (rules: UrRules) => (s: UrState, roll: number) => searchMove(s, roll, rules, 3)
+const strong = (s: UrState, roll: number, rules: UrRules) => searchMove(s, roll, rules, 2)
 
 describe('AI', () => {
   it('returns a legal move within the time budget at every difficulty', () => {
@@ -122,32 +126,82 @@ describe('AI', () => {
     expect(searchMove(cap, 2, FINKEL, 2)).toEqual({ from: 5, to: 7, capture: true })
     expect(searchMove(me, 3, FINKEL, 3)?.to).toBe(8) // heads for the safe rosette
   })
-  it('a strong player beats the D1 AI in most seeded games and the D4 AI at least sometimes', () => {
-    const rates: Record<string, number> = {}
-    for (const [cfg, n] of [['finkel', 30], ['quick', 60]] as const) {
-      const rules = CONFIGS[cfg].rules
-      for (const d of [1, 4] as Difficulty[]) {
-        let wins = 0
-        for (let i = 0; i < n; i++) if (playGame(rules, strong(rules), d, 1000 + i) === 0) wins++
-        rates[`${cfg} D${d}`] = wins / n
+  it('every config × difficulty is won by a strong player in a good share of seeded games, and short', () => {
+    // Time budget: a player throw plus the computer's reply is ~5 s, so the
+    // median game must stay within ~18 of the player's throws at D1 (≈ 1.5 min)
+    // and ~32 at D4 (≈ 3 min).
+    const N = 30
+    const rows: string[] = []
+    for (const cfg of CONFIG_IDS) for (const d of DIFFS) {
+      let wins = 0
+      const throws: number[] = []
+      for (let i = 0; i < N; i++) {
+        const r = playGame(cfg, strong, d, 1000 + i)
+        if (r.winner === 0) wins++
+        throws.push(r.throws)
       }
+      throws.sort((a, b) => a - b)
+      const median = throws[N >> 1]
+      rows.push(`${cfg} D${d}: ${Math.round((wins / N) * 100)}% · median ${median} throws`)
+      expect(wins / N, `${cfg} D${d} win rate`).toBeGreaterThan(d === 1 ? 0.55 : 0.2)
+      expect(median, `${cfg} D${d} median throws`).toBeLessThanOrEqual(d === 1 ? 22 : 32)
     }
-    console.log('royalur strong-player win rates', rates)
-    expect(rates['finkel D1']).toBeGreaterThan(0.7)
-    expect(rates['quick D1']).toBeGreaterThan(0.6)
-    expect(rates['finkel D4']).toBeGreaterThan(0.15)
-    expect(rates['quick D4']).toBeGreaterThan(0.15)
-  }, 60_000)
-  it('a weak (random) player still loses to the D4 AI most of the time, so the game is losable', () => {
-    const rules = FINKEL, rng = mulberry32(5)
-    let losses = 0
-    for (let i = 0; i < 20; i++) {
-      const random = (s: UrState, roll: number) => { const ms = legalMoves(s, roll, rules); return ms.length ? ms[Math.floor(rng() * ms.length)] : null }
-      if (playGame(rules, random, 4, 500 + i) === 1) losses++
+    console.log('royalur strong player:', rows.join(' | '))
+  }, 120_000)
+  it('a weak (random) player still loses to the D4 AI most of the time, so every config is losable', () => {
+    const rng = mulberry32(5)
+    const random = (s: UrState, roll: number, rules: UrRules) => { const ms = legalMoves(s, roll, rules); return ms.length ? ms[Math.floor(rng() * ms.length)] : null }
+    for (const cfg of CONFIG_IDS) {
+      let losses = 0
+      for (let i = 0; i < 20; i++) if (playGame(cfg, random, 4, 500 + i).winner === 1) losses++
+      expect(losses, cfg).toBeGreaterThan(12)
     }
-    console.log('royalur random player losses vs D4:', `${losses}/20`)
-    expect(losses).toBeGreaterThan(12)
   }, 60_000)
+})
+
+describe('variants and time budget', () => {
+  it('each config is a distinct rule set', () => {
+    expect(CONFIG_IDS).toEqual(expect.arrayContaining(['finkel', 'blitz', 'quick', 'raid']))
+    const sig = CONFIG_IDS.map(id => { const r = rulesFor(id, 2); return JSON.stringify([r.safeCentral, r.captureBonus, goalOf(r) < r.pieces, !!r.raid, !!CONFIGS[id].midgame]) })
+    expect(new Set(sig).size).toBe(CONFIG_IDS.length)
+  })
+  it('goals per difficulty stay small: never a full seven-piece race', () => {
+    for (const id of CONFIG_IDS) for (const d of DIFFS) {
+      const r = rulesFor(id, d)
+      if (r.raid) expect(r.raid, `${id}@${d} raid`).toBeLessThanOrEqual(3)
+      else if (CONFIGS[id].midgame) expect(goalOf(r), `${id}@${d} mid-game pieces`).toBeLessThanOrEqual(d === 1 ? 2 : 3)
+      else expect(goalOf(r), `${id}@${d} goal from an empty board`).toBeLessThanOrEqual(d === 1 ? 1 : 2)
+    }
+  })
+  it('first to bear off the goal wins, even with pieces left', () => {
+    const rules = rulesFor('finkel', 2) // 2 of 7
+    expect(winner(st([15, 15, 0, 0, 0, 0, 0], [3, 0, 0, 0, 0, 0, 0]), rules)).toBe(0)
+    expect(winner(st([15, 0, 0, 0, 0, 0, 0], [3, 0, 0, 0, 0, 0, 0]), rules)).toBe(null)
+  })
+  it('a raid is won by captures', () => {
+    const rules = rulesFor('raid', 1)
+    expect(rules.raid).toBe(2)
+    expect(rules.safeCentral).toBe(false)
+    let s: UrState = { pos: [[3, 0, 0, 0, 0], [6, 0, 0, 0, 0]], turn: 0, caps: [1, 0] }
+    const m = legalMoves(s, 3, rules).find(x => x.capture)!
+    s = applyMove(s, m, rules).state
+    expect(s.caps).toEqual([2, 0])
+    expect(winner(s, rules)).toBe(0)
+  })
+  it("the Guards' game starts mid-game: fair, seeded, no clashes", () => {
+    for (const d of DIFFS) for (let seed = 1; seed < 40; seed++) {
+      const r = rulesFor('quick', d)
+      const s = startFor('quick', d, seed)
+      expect(s).toEqual(startFor('quick', d, seed))
+      expect(s.pos[0]).toHaveLength(r.pieces)
+      expect(s.pos.flat().every(p => p >= 1 && p < HOME)).toBe(true)
+      expect(s.pos[0].some(p => isShared(p) && s.pos[1].includes(p))).toBe(false)
+      const sum = (a: number[]) => a.reduce((x, y) => x + y, 0)
+      if (d === 1) expect(sum(s.pos[0])).toBeGreaterThan(sum(s.pos[1]))
+      else expect(sum(s.pos[0])).toBe(sum(s.pos[1]))
+    }
+    expect(midgameState(rulesFor('quick', 2), 1)).not.toEqual(midgameState(rulesFor('quick', 2), 2))
+  })
 })
 
 describe('RoyalUrGame UI', () => {

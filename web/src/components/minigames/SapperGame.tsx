@@ -3,55 +3,79 @@ import type { MinigameProps, Difficulty } from '@/games/types'
 import { mulberry32, hashString, resolveConfig, scale, useGameOutcome, OutcomeBanner } from './_shared'
 
 // Sapper: Minesweeper in front of a Vauban fortress. Dig out every safe square
-// of ground; numbers count the counter-mines in the eight squares around.
+// of ground; numbers count the counter-mines in a square's "reach".
 //
-//   D1   8×8   ~14% mines
-//   D2  10×10  ~16%
-//   D3  12×12  ~18.5%
-//   D4  16×16  ~20.5% (expert density)
+//   D1   8×8   ~14% mines   (~9 mines, about a minute)
+//   D2   9×9   ~15%
+//   D3  10×10  ~16.5%
+//   D4  12×12  ~18%         (~26 mines, two to three minutes)
+//
+// Each config is a different rule for what a number counts:
+//   king    the eight squares around (classic)
+//   orth    only the four squares sharing a side — the sapper's straight galleries
+//   knight  the squares a chess knight's move away
+//   ring    the squares exactly two steps out (the ring around the 3×3 block)
 //
 // The field is laid only when the first square is opened: that square and its
-// neighbours are always clear, and a board is accepted only when the exported
+// reach are always clear, and a board is accepted only when the exported
 // logical solver can clear it from there without ever guessing. Some configs
 // cut the field to the shape of the fortress (octagon, star-fort notches).
 //
 // Tap to dig; long-press, right-click or the flag toggle to flag. Tapping an
-// open number whose flags are all placed digs its other neighbours.
+// open number shows its reach; with its flags all placed it digs the rest.
 
 type Shape = 'square' | 'octagon' | 'bastion'
+export type Reach = 'king' | 'orth' | 'knight' | 'ring'
 
 interface SapperConfig {
   title: string
   intro: string
   fact: string
   shape: Shape
+  reach: Reach
 }
 
 export const CONFIGS: Record<string, SapperConfig> = {
   'maastricht-1673': {
     title: 'The Siege of Maastricht, 1673',
-    intro: 'Vauban’s sappers dig towards the walls, but the defenders have sown the glacis with counter-mines. Open every safe square; the numbers count mines in the eight squares around.',
+    intro: 'Vauban’s sappers dig towards the walls, but the defenders have sown the glacis with counter-mines. Open every safe square; each number counts the mines in the eight squares around it.',
     fact: 'At Maastricht in 1673 Vauban first used his system of parallel trenches, letting attackers approach under cover; the city fell in 13 days. The musketeer d’Artagnan was killed in the assault.',
     shape: 'square',
+    reach: 'king',
   },
   'lille-citadel': {
     title: 'The Queen of Citadels',
-    intro: 'Survey the ground before Lille’s star fort, notched by its bastions. Open every safe square without setting off a mine.',
+    intro: 'Before Lille’s star fort the listening galleries run dead straight: each number counts mines only in the four squares sharing a side — never the diagonals.',
     fact: 'Vauban built the pentagonal citadel of Lille in 1667–1670 for Louis XIV; it was so admired it became known as “the queen of citadels” and is still used by the French army.',
     shape: 'bastion',
+    reach: 'orth',
   },
   'namur-1692': {
     title: 'Namur, 1692',
-    intro: 'Vauban faces Coehoorn, the Dutch master of fortification. Clear a path through the mined approaches — and never guess.',
+    intro: 'Coehoorn, the Dutch master, laid his mines on a crooked pattern: each number counts the mines a chess knight’s move away (two squares one way, one the other). Tap a number to see its reach.',
     fact: 'In 1692 Vauban besieged Namur, whose fort was defended by Menno van Coehoorn, the “Dutch Vauban.” Vauban took it; three years later Coehoorn helped retake Namur for the Grand Alliance.',
     shape: 'square',
+    reach: 'knight',
   },
   'neuf-brisach': {
     title: 'Neuf-Brisach',
-    intro: 'Mark out the octagonal ideal town on the Rhine. Open every safe square of the site; flag the old mines.',
+    intro: 'Vauban’s octagonal town is ringed by moats: each number counts the mines exactly two squares out — the ring around its 3×3 block, not the squares touching it. Tap a number to see its ring.',
     fact: 'Neuf-Brisach, begun in 1698, was Vauban’s last and most perfect design: an octagonal fortified town on the Rhine. In 2008 it joined eleven other Vauban sites on UNESCO’s World Heritage List.',
     shape: 'octagon',
+    reach: 'ring',
   },
+}
+
+/** Offsets each rule counts. */
+export const REACH: Record<Reach, [number, number][]> = {
+  king: [[-1, -1], [-1, 0], [-1, 1], [0, -1], [0, 1], [1, -1], [1, 0], [1, 1]],
+  orth: [[-1, 0], [1, 0], [0, -1], [0, 1]],
+  knight: [[-2, -1], [-2, 1], [-1, -2], [-1, 2], [1, -2], [1, 2], [2, -1], [2, 1]],
+  ring: (() => {
+    const out: [number, number][] = []
+    for (let dr = -2; dr <= 2; dr++) for (let dc = -2; dc <= 2; dc++) if (Math.max(Math.abs(dr), Math.abs(dc)) === 2) out.push([dr, dc])
+    return out
+  })(),
 }
 
 // ── Board ──────────────────────────────────────────────────────────────────────
@@ -65,7 +89,7 @@ export interface Field {
   nbrs: number[][]
 }
 
-export function makeField(n: number, shape: Shape): Field {
+export function makeField(n: number, shape: Shape, reach: Reach = 'king'): Field {
   const inside = Array.from({ length: n * n }, (_, i) => {
     const r = Math.floor(i / n), c = i % n
     if (shape === 'octagon') {
@@ -87,8 +111,7 @@ export function makeField(n: number, shape: Shape): Field {
     if (!ok) return []
     const r = Math.floor(i / n), c = i % n
     const out: number[] = []
-    for (let dr = -1; dr <= 1; dr++) for (let dc = -1; dc <= 1; dc++) {
-      if (!dr && !dc) continue
+    for (const [dr, dc] of REACH[reach]) {
       const rr = r + dr, cc = c + dc
       if (rr < 0 || cc < 0 || rr >= n || cc >= n) continue
       if (inside[rr * n + cc]) out.push(rr * n + cc)
@@ -193,19 +216,21 @@ export interface Tier { n: number; density: number }
 
 export function tierFor(difficulty: Difficulty): Tier {
   return {
-    n: scale(difficulty, [8, 10, 12, 16]),
-    density: scale(difficulty, [0.14, 0.16, 0.185, 0.205]),
+    n: scale(difficulty, [8, 9, 10, 12]),
+    density: scale(difficulty, [0.14, 0.15, 0.165, 0.18]),
   }
 }
 
 export interface Layout { field: Field; mines: boolean[]; counts: number[]; mineCount: number }
 
+export type Rules = Pick<SapperConfig, 'shape' | 'reach'>
+
 /** Mines for a field opened first at `start`, always solvable by logic from there. */
-export function generate(shape: Shape, difficulty: Difficulty, seed: number, start: number): Layout {
+export function generate(rules: Rules, difficulty: Difficulty, seed: number, start: number): Layout {
   const { n, density } = tierFor(difficulty)
-  const field = makeField(n, shape)
+  const field = makeField(n, rules.shape, rules.reach)
   if (!field.inside[start]) start = field.inside.indexOf(true)
-  const rng = mulberry32(seed ^ Math.imul(start + 1, 0x9e3779b1) ^ hashString(shape))
+  const rng = mulberry32(seed ^ Math.imul(start + 1, 0x9e3779b1) ^ hashString(rules.shape + rules.reach))
   const clear = new Set([start, ...field.nbrs[start]])
   const pool: number[] = []
   field.inside.forEach((ok, i) => { if (ok && !clear.has(i)) pool.push(i) })
@@ -223,17 +248,38 @@ export function generate(shape: Shape, difficulty: Difficulty, seed: number, sta
 
 // ── Component ──────────────────────────────────────────────────────────────────
 
+export const REACH_LABEL: Record<Reach, string> = {
+  king: 'the 8 squares around',
+  orth: 'only the 4 squares sharing a side',
+  knight: 'the squares a knight’s move away',
+  ring: 'the ring two squares out',
+}
+
+/** A 5×5 key showing which squares a number counts. */
+function ReachDiagram({ reach }: { reach: Reach }) {
+  const on = new Set(REACH[reach].map(([dr, dc]) => (dr + 2) * 5 + dc + 2))
+  return (
+    <div className="mt-1 ml-auto grid grid-cols-5 gap-px w-[34px]" aria-label={`numbers count ${REACH_LABEL[reach]}`} data-testid="sap-reach">
+      {Array.from({ length: 25 }, (_, k) => (
+        <span key={k} className={`aspect-square rounded-[1px] ${k === 12 ? 'bg-ink' : on.has(k) ? 'bg-sky-500' : 'bg-line'}`} />
+      ))}
+    </div>
+  )
+}
+
 const NUM_COLOURS = ['', 'text-blue-700', 'text-emerald-700', 'text-red-600', 'text-indigo-800', 'text-amber-800', 'text-teal-700', 'text-ink', 'text-muted']
 
 export default function SapperGame({ configId, difficulty, seed, params, onWin, onLose }: MinigameProps) {
   const config = resolveConfig(CONFIGS, configId, params, 'maastricht-1673')
   const { n, density } = tierFor(difficulty)
-  const field = useMemo(() => makeField(n, config.shape), [n, config.shape])
+  const field = useMemo(() => makeField(n, config.shape, config.reach), [n, config.shape, config.reach])
   const insideCount = field.inside.filter(Boolean).length
   const [layout, setLayout] = useState<Layout | null>(null)
   const [state, setState] = useState<Uint8Array>(() => new Uint8Array(n * n)) // 0 hidden, 1 open, 2 flag
   const [flagMode, setFlagMode] = useState(false)
   const [boom, setBoom] = useState<number | null>(null)
+  // An open number the player tapped: its reach is outlined.
+  const [peek, setPeek] = useState<number | null>(null)
   const { outcome, settled, win, lose } = useGameOutcome({ onWin, onLose })
   const press = useRef<{ i: number; timer: ReturnType<typeof setTimeout> | null; long: boolean } | null>(null)
 
@@ -283,19 +329,21 @@ export default function SapperGame({ configId, difficulty, seed, params, onWin, 
     if (settled || !field.inside[i]) return
     if (state[i] === 2) return
     let lay = layout
-    if (!lay) { lay = generate(config.shape, difficulty, seed, i); setLayout(lay) }
+    if (!lay) { lay = generate(config, difficulty, seed, i); setLayout(lay) }
     if (state[i] === 1) {
       // Chord: dig every unflagged neighbour once the flags match the number.
       const ns = lay.field.nbrs[i]
       const f = ns.filter(k => state[k] === 2).length
-      if (lay.counts[i] === 0 || f !== lay.counts[i]) return
+      setPeek(p => (p === i ? null : i))
+      if (lay.counts[i] === 0 || f !== lay.counts[i] || !ns.some(k => state[k] === 0)) return
       const { next, hit } = openCells(lay, state, ns.filter(k => state[k] === 0))
       finish(lay, next, hit)
       return
     }
+    setPeek(null)
     const { next, hit } = openCells(lay, state, [i])
     finish(lay, next, hit)
-  }, [settled, field, state, layout, config.shape, difficulty, seed, openCells, finish])
+  }, [settled, field, state, layout, config, difficulty, seed, openCells, finish])
 
   const tap = (i: number) => (flagMode && state[i] !== 1 ? toggleFlag(i) : dig(i))
 
@@ -316,6 +364,7 @@ export default function SapperGame({ configId, difficulty, seed, params, onWin, 
   useEffect(() => () => cancelPress(), [])
 
   const fontPx = n <= 8 ? 18 : n <= 10 ? 15 : n <= 12 ? 13 : 11
+  const peekSet = useMemo(() => new Set(peek === null ? [] : field.nbrs[peek]), [peek, field])
 
   return (
     <div className="flex flex-col gap-3 bg-paper-2 rounded-xl p-3 sm:p-4">
@@ -327,6 +376,7 @@ export default function SapperGame({ configId, difficulty, seed, params, onWin, 
         <div className="shrink-0 text-right text-[10px] text-muted">
           <p className="font-bold text-ink-2">{n}×{n}</p>
           <p data-testid="sap-mines">💣 {mineCount - flags}</p>
+          <ReachDiagram reach={config.reach} />
         </div>
       </div>
 
@@ -344,7 +394,7 @@ export default function SapperGame({ configId, difficulty, seed, params, onWin, 
             let cls = 'bg-[#8fa25c] hover:bg-[#9db06a] shadow-[inset_0_-2px_0_rgba(0,0,0,.25)]'
             if (s === 1) {
               cls = 'bg-[#e9dcb8]'
-              if (count) body = <span className={`font-black ${NUM_COLOURS[count]}`}>{count}</span>
+              if (count) body = <span className={`font-black ${NUM_COLOURS[Math.min(count, 8)]}`}>{count}</span>
             } else if (showMine) {
               cls = boom === i ? 'bg-red-500' : 'bg-[#cbbd96]'
               body = <span>💣</span>
@@ -357,7 +407,8 @@ export default function SapperGame({ configId, difficulty, seed, params, onWin, 
                 onPointerDown={onPointerDown(i)} onPointerLeave={cancelPress} onClick={onClick(i)}
                 onContextMenu={e => { e.preventDefault(); if (press.current?.long) return; cancelPress(); press.current = null; toggleFlag(i) }}
                 disabled={settled}
-                className={`aspect-square rounded-[3px] flex items-center justify-center leading-none ${cls}`}
+                data-peek={peekSet.has(i) ? 'true' : undefined}
+                className={`aspect-square rounded-[3px] flex items-center justify-center leading-none ${cls} ${peekSet.has(i) ? 'ring-2 ring-inset ring-sky-400' : ''} ${peek === i ? 'ring-2 ring-inset ring-sky-700' : ''}`}
                 style={{ fontSize: fontPx, touchAction: 'manipulation' }}>
                 {body}
               </button>
@@ -379,7 +430,7 @@ export default function SapperGame({ configId, difficulty, seed, params, onWin, 
         </div>
       )}
       <p className="text-muted/80 text-[10px] text-center">
-        {settled ? '' : layout ? 'Long-press or right-click to flag. Tap a number with its flags placed to dig around it.' : 'Your first square is always safe — and the field never needs a guess.'}
+        {settled ? '' : layout ? `Numbers count ${REACH_LABEL[config.reach]}. Long-press or right-click to flag. Tap a number to see its reach; with its flags placed it digs the rest.` : 'Your first square is always safe — and the field never needs a guess.'}
       </p>
 
       <OutcomeBanner outcome={outcome} detail={config.fact} winTitle="The approach is clear!" loseTitle="A counter-mine went off" />
