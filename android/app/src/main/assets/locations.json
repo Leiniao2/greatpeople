@@ -698,17 +698,6 @@
       ]
     },
     {
-      "name": "Taipei",
-      "era": "Information",
-      "imageKey": "information_tokyo",
-      "countries": [
-        "Taiwan"
-      ],
-      "buildings": [
-        "Enterprise Quarter"
-      ]
-    },
-    {
       "name": "Sydney",
       "era": "Information",
       "imageKey": "information_sydney",

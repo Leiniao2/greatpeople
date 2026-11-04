@@ -11,6 +11,7 @@ import { cardBackUrl, followerUrl, locationImageUrl, scenarioImageUrl } from '@/
 import EraIcon from '@/components/EraIcon'
 import {
   ALL_GP_CARDS, STATS, STAT_LABELS, ACHIEVEMENT_SPECS, getAchievementThreshold, followerFromId,
+  FOLLOWER_IDENTITY_MATCH_BONUS,
   type GameAction,
 } from './engine'
 
@@ -36,17 +37,30 @@ export const ERA_TEXT: Record<string, string> = {
 
 // ─── Utilities ────────────────────────────────────────────────────────────────
 
+/** The small "i" on a card face that opens its detail view. */
+function InfoDot({ onClick }: { onClick: () => void }) {
+  return (
+    <div
+      role="button"
+      aria-label="Card details"
+      onClick={e => { e.stopPropagation(); onClick() }}
+      className="absolute top-0.5 right-0.5 w-4 h-4 rounded-full bg-ink/70 flex items-center justify-center text-[8px] text-paper/90 cursor-pointer z-10 hover:bg-ink/70"
+    >i</div>
+  )
+}
+
 interface CompactCardProps {
   card: OnboardCard
   isCurrentPlayer: boolean
   isSelected: boolean
   onClick: () => void
   onInfo?: (card: Card, ticks?: number) => void
+  onFollowerInfo?: (follower: FollowerCard) => void
   gpMap: Record<string, Card>
   followerTemplates: Record<string, FollowerCard>
 }
 
-function CompactCard({ card, isCurrentPlayer, isSelected, onClick, onInfo, gpMap, followerTemplates }: CompactCardProps) {
+function CompactCard({ card, isCurrentPlayer, isSelected, onClick, onInfo, onFollowerInfo, gpMap, followerTemplates }: CompactCardProps) {
   const gp = card.type === 'gp' ? gpMap[card.cardId] : null
   const follower = card.type === 'follower' ? followerTemplates[card.cardId] : null
 
@@ -97,13 +111,7 @@ function CompactCard({ card, isCurrentPlayer, isSelected, onClick, onInfo, gpMap
               className="w-full h-full object-cover object-top"
               onError={e => { (e.target as HTMLImageElement).style.display = 'none' }}
             />
-            {onInfo && (
-              <div
-                role="button"
-                onClick={e => { e.stopPropagation(); onInfo(gp, card.achievementTicks) }}
-                className="absolute top-0.5 right-0.5 w-4 h-4 rounded-full bg-ink/70 flex items-center justify-center text-[8px] text-paper/90 cursor-pointer z-10 hover:bg-ink/70"
-              >i</div>
-            )}
+            {onInfo && <InfoDot onClick={() => onInfo(gp, card.achievementTicks)} />}
           </div>
           <div className="w-full bg-black/75 px-0.5 py-0.5 shrink-0">
             <span className="text-[7px] text-ink leading-none truncate block">{gp.figureName.split(' ').pop()}</span>
@@ -121,10 +129,11 @@ function CompactCard({ card, isCurrentPlayer, isSelected, onClick, onInfo, gpMap
               className="w-full h-full object-cover object-center"
               onError={e => { (e.target as HTMLImageElement).style.display = 'none' }}
             />
+            {onFollowerInfo && <InfoDot onClick={() => onFollowerInfo(follower)} />}
           </div>
           <div className="w-full bg-ink/70 px-0.5 py-0.5 shrink-0">
             <span className="text-[7px] text-indigo-200 leading-none truncate block">{follower.name}</span>
-            <span className="text-[6px] text-indigo-400">+3 {STAT_LABELS[follower.stat].slice(0, 3)}</span>
+            <span className="text-[6px] text-indigo-400">+{follower.bonus} {STAT_LABELS[follower.stat].slice(0, 3)}</span>
           </div>
         </>
       ) : null}
@@ -141,7 +150,7 @@ interface HandCardProps {
   type: 'gp' | 'event' | 'follower'
   isSelected: boolean
   onClick: () => void
-  onInfo?: (card: Card) => void
+  onInfo?: () => void
   gpMap: Record<string, Card>
   eventCard?: EventCard
   followerCard?: FollowerCard
@@ -169,13 +178,7 @@ function HandCard({ cardId, type, isSelected, onClick, onInfo, gpMap, eventCard,
               className="w-full h-full object-cover object-top"
               onError={e => { (e.target as HTMLImageElement).style.display = 'none' }}
             />
-            {onInfo && (
-              <div
-                role="button"
-                onClick={e => { e.stopPropagation(); onInfo(gp) }}
-                className="absolute top-0.5 right-0.5 w-4 h-4 rounded-full bg-ink/70 flex items-center justify-center text-[8px] text-paper/90 cursor-pointer z-10 hover:bg-ink/70"
-              >i</div>
-            )}
+            {onInfo && <InfoDot onClick={onInfo} />}
             <div className="absolute inset-x-0 bottom-0 h-5 bg-gradient-to-t from-black/60 to-transparent" />
           </div>
           <div className="w-full bg-ink/70 px-1 py-0.5 shrink-0">
@@ -195,6 +198,7 @@ function HandCard({ cardId, type, isSelected, onClick, onInfo, gpMap, eventCard,
             onError={e => { (e.target as HTMLImageElement).style.display = 'none' }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-black/40" />
+          {onInfo && <InfoDot onClick={onInfo} />}
           <span className="relative text-[8px] text-purple-200 uppercase tracking-wide">Event</span>
           <span className="relative text-[9px] text-paper font-semibold leading-tight text-center drop-shadow">{eventCard.name}</span>
           <span className="relative text-[8px] text-purple-200 text-center">{eventCard.stat ? STAT_LABELS[eventCard.stat].slice(0, 3) : 'Hazard'}</span>
@@ -209,11 +213,12 @@ function HandCard({ cardId, type, isSelected, onClick, onInfo, gpMap, eventCard,
               className="w-full h-full object-cover object-center"
               onError={e => { (e.target as HTMLImageElement).style.display = 'none' }}
             />
+            {onInfo && <InfoDot onClick={onInfo} />}
             <div className="absolute inset-x-0 bottom-0 h-5 bg-gradient-to-t from-black/60 to-transparent" />
           </div>
           <div className="w-full bg-ink/70 px-1 py-0.5 shrink-0">
             <div className="text-[8px] text-indigo-200 font-semibold leading-tight truncate">{followerCard.name}</div>
-            <div className="text-[8px] text-indigo-400">+3 {STAT_LABELS[followerCard.stat].slice(0, 3)}</div>
+            <div className="text-[8px] text-indigo-400">+{followerCard.bonus} {STAT_LABELS[followerCard.stat].slice(0, 3)}</div>
           </div>
         </>
       )}
@@ -221,28 +226,37 @@ function HandCard({ cardId, type, isSelected, onClick, onInfo, gpMap, eventCard,
   )
 }
 
-// ─── Card Detail Modal ────────────────────────────────────────────────────────
+// ─── Card Detail Modals ───────────────────────────────────────────────────────
 
-function CardDetailModal({ card, achievementTicks, onClose }: { card: Card; achievementTicks?: number; onClose: () => void }) {
-  const achSpec = ACHIEVEMENT_SPECS[card.figureName]
-  const ticks = achievementTicks ?? 0
-  const threshold = achSpec?.threshold ?? 3
+export type CardDetail =
+  | { kind: 'gp'; card: Card; ticks?: number }
+  | { kind: 'follower'; follower: FollowerCard }
+  | { kind: 'event'; event: EventCard }
 
+/** Shared frame for every card's detail view: picture with the title over it, then the body. */
+function DetailShell({ imageUrl, imageFit = 'object-top', title, subtitle, onClose, children }: {
+  imageUrl: string
+  imageFit?: string
+  title: string
+  subtitle: React.ReactNode
+  onClose: () => void
+  children: React.ReactNode
+}) {
   return (
     <div
       className="fixed inset-0 z-[100] flex items-center justify-center bg-ink/70 p-4"
       onClick={onClose}
     >
       <div
-        className="relative bg-panel border border-line rounded-2xl overflow-hidden w-full max-w-xs shadow-2xl"
+        className="relative bg-panel border border-line rounded-2xl overflow-hidden w-full max-w-xs shadow-2xl font-bold"
         onClick={e => e.stopPropagation()}
       >
-        {/* Portrait with name overlay */}
+        {/* Picture with name overlay */}
         <div className="relative w-full h-48 bg-paper-2">
           <img
-            src={card.portraitUrl}
-            alt={card.figureName}
-            className="w-full h-full object-cover object-top"
+            src={imageUrl}
+            alt={title}
+            className={`w-full h-full object-cover ${imageFit}`}
             onError={e => { (e.target as HTMLImageElement).style.display = 'none' }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
@@ -251,55 +265,130 @@ function CardDetailModal({ card, achievementTicks, onClose }: { card: Card; achi
             className="absolute top-3 right-3 w-8 h-8 rounded-full bg-ink/50 border border-line flex items-center justify-center text-paper/80 hover:text-paper text-sm transition-colors"
           >✕</button>
           <div className="absolute bottom-0 left-0 right-0 px-4 pb-3">
-            <h2 className="text-paper text-lg font-bold leading-tight">{card.figureName}</h2>
-            <p className={`text-sm font-medium ${ERA_TEXT[card.era] ?? 'text-muted'}`}>{card.era}</p>
+            <h2 className="text-paper text-lg leading-tight">{title}</h2>
+            {subtitle}
           </div>
         </div>
 
         <div className="px-4 pt-3 pb-4 space-y-3 max-h-[60vh] overflow-y-auto">
-
-          {/* Stats grid */}
-          <div className="grid grid-cols-2 gap-1.5">
-            {STATS.map(stat => {
-              const val = card[stat]
-              const highlight = val >= 80 ? 'text-accent' : val >= 60 ? 'text-ink-2' : 'text-muted'
-              return (
-                <div key={stat} className="flex items-center justify-between bg-panel rounded-lg px-2.5 py-1.5">
-                  <span className="text-muted text-[11px]">{STAT_LABELS[stat]}</span>
-                  <span className={`text-sm font-bold ${highlight}`}>{val}</span>
-                </div>
-              )
-            })}
-          </div>
-
-          {/* Trait */}
-          {card.trait && (
-            <div className="bg-accent/[0.07] border border-accent/20 rounded-xl px-3 py-2.5">
-              <p className="text-[10px] text-accent/70 uppercase tracking-widest font-semibold mb-1">Trait</p>
-              <p className="text-ink-2 text-xs leading-relaxed">{card.trait}</p>
-            </div>
-          )}
-
-          {/* Achievement */}
-          {card.achievement && (
-            <div className="bg-violet-500/[0.07] border border-violet-500/20 rounded-xl px-3 py-2.5">
-              <div className="flex items-center justify-between mb-1">
-                <p className="text-[10px] text-violet-400/70 uppercase tracking-widest font-semibold">Achievement</p>
-                {achievementTicks !== undefined && (
-                  <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${ticks >= threshold ? 'bg-accent text-accent-fg' : 'bg-panel text-muted'}`}>
-                    {ticks} / {threshold}
-                  </span>
-                )}
-              </div>
-              <p className="text-violet-200/90 text-xs leading-relaxed">{card.achievement}</p>
-              {achievementTicks !== undefined && ticks >= threshold && (
-                <p className="text-accent text-[10px] font-bold mt-1.5">★ Ready to claim!</p>
-              )}
-            </div>
-          )}
+          {children}
         </div>
       </div>
     </div>
+  )
+}
+
+function DescriptionBox({ text }: { text: string }) {
+  return (
+    <div className="bg-accent/[0.07] border border-accent/20 rounded-xl px-3 py-2.5">
+      <p className="text-[10px] text-accent/70 uppercase tracking-widest mb-1">Description</p>
+      <p className="text-ink-2 text-xs leading-relaxed">{text}</p>
+    </div>
+  )
+}
+
+const EVENT_TYPE_LABEL: Record<EventType, string> = {
+  local_event: 'Local Event',
+  local_survival: 'Local Survival',
+  global_competition: 'Global Competition',
+  natural_hazard: 'Natural Hazard',
+}
+
+function EventDetailModal({ event, onClose }: { event: EventCard; onClose: () => void }) {
+  return (
+    <DetailShell
+      imageUrl={scenarioImageUrl(event.name, event.stat)}
+      imageFit="object-center"
+      title={event.name}
+      subtitle={<p className="text-sm text-purple-200">{EVENT_TYPE_LABEL[event.type]}</p>}
+      onClose={onClose}
+    >
+      <div className="flex items-center justify-between bg-panel rounded-lg px-2.5 py-1.5">
+        <span className="text-muted text-[11px]">Tests</span>
+        <span className="text-sm text-ink-2">{event.stat ? STAT_LABELS[event.stat] : 'Weakest stat'}</span>
+      </div>
+      <DescriptionBox text={event.description} />
+    </DetailShell>
+  )
+}
+
+function FollowerDetailModal({ follower, onClose }: { follower: FollowerCard; onClose: () => void }) {
+  const stat = STAT_LABELS[follower.stat]
+  return (
+    <DetailShell
+      imageUrl={followerUrl(follower.imageKey)}
+      imageFit="object-center"
+      title={follower.name}
+      subtitle={<p className="text-sm text-indigo-200">Follower</p>}
+      onClose={onClose}
+    >
+      <div className="flex items-center justify-between bg-panel rounded-lg px-2.5 py-1.5">
+        <span className="text-muted text-[11px]">{stat}</span>
+        <span className="text-sm text-accent">+{follower.bonus}</span>
+      </div>
+      <DescriptionBox
+        text={`Place at a location where you have a Great Person to add +${follower.bonus} ${stat} to your total there. If one of your Great People at that location is a ${follower.name}, it adds +${FOLLOWER_IDENTITY_MATCH_BONUS} instead.`}
+      />
+    </DetailShell>
+  )
+}
+
+function CardDetailModal({ card, achievementTicks, onClose }: { card: Card; achievementTicks?: number; onClose: () => void }) {
+  const achSpec = ACHIEVEMENT_SPECS[card.figureName]
+  const ticks = achievementTicks ?? 0
+  const threshold = achSpec?.threshold ?? 3
+
+  return (
+    <DetailShell
+      imageUrl={card.portraitUrl}
+      title={card.figureName}
+      subtitle={<p className={`text-sm ${ERA_TEXT[card.era] ?? 'text-muted'}`}>{card.era}</p>}
+      onClose={onClose}
+    >
+
+      {/* Stats grid */}
+      <div className="grid grid-cols-2 gap-1.5">
+        {STATS.map(stat => {
+          const val = card[stat]
+          const highlight = val >= 80 ? 'text-accent' : val >= 60 ? 'text-ink-2' : 'text-muted'
+          return (
+            <div key={stat} className="flex items-center justify-between bg-panel rounded-lg px-2.5 py-1.5">
+              <span className="text-muted text-[11px]">{STAT_LABELS[stat]}</span>
+              <span className={`text-sm font-bold ${highlight}`}>{val}</span>
+            </div>
+          )
+        })}
+      </div>
+
+      {/* Trait */}
+      {card.trait && (
+        <div className="bg-accent/[0.07] border border-accent/20 rounded-xl px-3 py-2.5">
+          <p className="text-[10px] text-accent/70 uppercase tracking-widest mb-1">Trait</p>
+          <p className="text-ink-2 text-xs leading-relaxed">{card.trait}</p>
+        </div>
+      )}
+
+      {/* Achievement */}
+      {card.achievement && (
+        <div className="bg-violet-800/10 border border-violet-800/40 rounded-xl px-3 py-2.5">
+          <div className="flex items-center justify-between mb-1">
+            <p className="text-[10px] text-violet-800 uppercase tracking-widest">Achievement</p>
+            {achievementTicks !== undefined && (
+              <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${ticks >= threshold ? 'bg-accent text-accent-fg' : 'bg-panel text-muted'}`}>
+                {ticks} / {threshold}
+              </span>
+            )}
+          </div>
+          <p className="text-violet-900 text-xs leading-relaxed">{card.achievement}</p>
+          {achievementTicks !== undefined && ticks >= threshold && (
+            <p className="text-accent text-[10px] font-bold mt-1.5">★ Ready to claim!</p>
+          )}
+        </div>
+      )}
+
+      {/* Description */}
+      {card.lore && <DescriptionBox text={card.lore} />}
+    </DetailShell>
   )
 }
 
@@ -576,7 +665,7 @@ export function BattleGame({ gameState, dispatch, onExit, embedded = false, bann
   const [attackKill, setAttackKill] = useState(false)
   const [showRewardDialog, setShowRewardDialog] = useState(false)
   const [globalCompWinner] = useState<string | null>(null)
-  const [cardDetail, setCardDetail] = useState<{ card: Card; ticks?: number } | null>(null)
+  const [cardDetail, setCardDetail] = useState<CardDetail | null>(null)
   const [showRules, setShowRules] = useState(false)
   // Hot-seat: shown between human turns so previous player can't see next player's hand
   const [awaitingHandoff, setAwaitingHandoff] = useState(false)
@@ -992,7 +1081,8 @@ export function BattleGame({ gameState, dispatch, onExit, embedded = false, bann
                             isCurrentPlayer={p.id === currentPlayer.id}
                             isSelected={selection.onboardInstanceId === oc.instanceId}
                             onClick={() => handleOnboardCardTap(oc, loc.id)}
-                            onInfo={(c, ticks) => setCardDetail({ card: c, ticks })}
+                            onInfo={(c, ticks) => setCardDetail({ kind: 'gp', card: c, ticks })}
+                            onFollowerInfo={f => setCardDetail({ kind: 'follower', follower: f })}
                             gpMap={gpMap}
                             followerTemplates={followerMap}
                           />
@@ -1044,7 +1134,7 @@ export function BattleGame({ gameState, dispatch, onExit, embedded = false, bann
                 type="gp"
                 isSelected={selection.handCardId === id}
                 onClick={() => handleHandCardTap(id, 'gp', i)}
-                onInfo={(c) => setCardDetail({ card: c })}
+                onInfo={() => gpMap[id] && setCardDetail({ kind: 'gp', card: gpMap[id] })}
                 gpMap={gpMap}
               />
             ))}
@@ -1055,6 +1145,7 @@ export function BattleGame({ gameState, dispatch, onExit, embedded = false, bann
                 type="event"
                 isSelected={selection.handCardIdx === i && selection.mode === 'start-event'}
                 onClick={() => handleHandCardTap(ev.id, 'event', i)}
+                onInfo={() => setCardDetail({ kind: 'event', event: ev })}
                 gpMap={gpMap}
                 eventCard={ev}
               />
@@ -1066,6 +1157,7 @@ export function BattleGame({ gameState, dispatch, onExit, embedded = false, bann
                 type="follower"
                 isSelected={selection.handFollowerId === f.id}
                 onClick={() => handleHandCardTap(f.id, 'follower', i, f.id)}
+                onInfo={() => setCardDetail({ kind: 'follower', follower: f })}
                 gpMap={gpMap}
                 followerCard={f}
               />
@@ -1260,7 +1352,9 @@ export function BattleGame({ gameState, dispatch, onExit, embedded = false, bann
       )}
 
       {/* Card detail modal */}
-      {cardDetail && <CardDetailModal card={cardDetail.card} achievementTicks={cardDetail.ticks} onClose={() => setCardDetail(null)} />}
+      {cardDetail?.kind === 'gp' && <CardDetailModal card={cardDetail.card} achievementTicks={cardDetail.ticks} onClose={() => setCardDetail(null)} />}
+      {cardDetail?.kind === 'follower' && <FollowerDetailModal follower={cardDetail.follower} onClose={() => setCardDetail(null)} />}
+      {cardDetail?.kind === 'event' && <EventDetailModal event={cardDetail.event} onClose={() => setCardDetail(null)} />}
 
       {/* Hot-seat handoff screen — covers everything until the next player confirms */}
       {awaitingHandoff && (() => {

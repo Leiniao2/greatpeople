@@ -1139,24 +1139,6 @@
     "trait": "**Silicon Delta** — Once per round, the owning player may convert 1 wealth into 2 technique points while a GP is present here."
   },
   {
-    "id": "information-taipei",
-    "name": "Taipei",
-    "era": "Information",
-    "imageKey": "information_tokyo",
-    "countries": [
-      "Taiwan"
-    ],
-    "buildings": [
-      "Enterprise Quarter"
-    ],
-    "capacity": 2,
-    "bonuses": {
-      "technique": 2,
-      "intelligence": 1
-    },
-    "trait": "**Semiconductor Hub** — GP with the Scientist or Entrepreneur identity here gain +1 technique each round from the global chip supply chain."
-  },
-  {
     "id": "information-sydney",
     "name": "Sydney",
     "era": "Information",
