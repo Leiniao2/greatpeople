@@ -174,7 +174,7 @@ Repository map (paths relative to the repo root, which is your working directory
 
 Your task:
 1. Read the change report below. For each change decide whether the engine must change. Documentation-only edits (notes, wording, status bookkeeping) need no code change: say so.
-2. Implement the behavioural changes in web/src/battle/engine.ts (and web/src/types/index.ts if types must change). Keep the existing code style. Prefer small, local edits over rewrites. engine.ts also contains player-facing rules text (event card descriptions in makeEventDeck/makeHazardDeck) and BattleGame.tsx an in-game rules panel; the lesson texts in web/src/battle/lessons.ts and scripts/add-fight-lessons.mjs describe the same rules; keep that text consistent with the new behaviour.
+2. Implement the behavioural changes in web/src/battle/engine.ts (and web/src/types/index.ts if types must change). Keep the existing code style. Prefer small, local edits over rewrites. engine.ts also contains player-facing rules text (event card descriptions in makeEventDeck/makeHazardDeck) and BattleGame.tsx an in-game rules panel; the lesson texts in web/src/battle/lessons.ts and scripts/add-fight-lessons.mjs describe the same rules; keep that text consistent with the new behaviour. add-fight-lessons.mjs skips stories that already have a lesson, so lesson text it generated earlier is baked into data/stories/**/*.json: when a rule the lessons describe changes, update that baked text with an exact string replacement (you may edit those story files), then run \`node scripts/build-stories.mjs\` and \`bash scripts/sync-assets.sh\` to rebuild and sync the story bundles.
 3. Keep the mirrors in step: update ENGINE_CONSTANTS / IMPLEMENTED_TRAITS / ACHIEVEMENT_SPECS in tools/fight-studio/src/lib/engineTraits.ts and the formulas in tools/fight-studio/src/lib/engine.ts so Fight Studio's analysis matches the engine.
 4. In docs/fight_rules.json, update the affected rows' codeBehaviour, codeSource and status to describe the new engine behaviour (set status to "implemented" when doc and code now agree). Do not reformat the file; keep 2-space JSON.
 5. Run \`npx tsc --noEmit\` inside web/ and inside tools/fight-studio/, and fix any errors you introduced. Run \`npx vitest run\` inside web/ if you changed anything the tests cover.
@@ -392,7 +392,7 @@ async function startJob(report: string, instruction: string, mode: Job['mode'], 
 
   const allowed = [
     'Read', 'Edit', 'Write', 'MultiEdit', 'Grep', 'Glob', 'LS',
-    'Bash(npx tsc:*)', 'Bash(npx vitest:*)', 'Bash(npm run typecheck:*)', 'Bash(npm test:*)', 'Bash(git diff:*)', 'Bash(git status:*)',
+    'Bash(npx tsc:*)', 'Bash(npx vitest:*)', 'Bash(node scripts/build-stories.mjs:*)', 'Bash(bash scripts/sync-assets.sh:*)', 'Bash(npm run typecheck:*)', 'Bash(npm test:*)', 'Bash(git diff:*)', 'Bash(git status:*)',
   ]
   const child = spawn('claude', [
     '-p', prompt,
