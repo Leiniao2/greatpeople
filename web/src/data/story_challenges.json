@@ -305,7 +305,7 @@
     "challenges": [
       {
         "type": "minigame",
-        "game": "snake",
+        "game": "packtrain",
         "configId": "nineveh-tablets",
         "seed": 33329,
         "instruction": "The king's agents ride for Babylon, Nippur and Uruk with a list in hand. Bring back only the tablets Ashurbanipal has asked for.",
@@ -3060,10 +3060,10 @@
       },
       {
         "type": "minigame",
-        "game": "snake",
+        "game": "packtrain",
         "configId": "sahara",
         "seed": 89878,
-        "instruction": "Years later he crosses the Sahara to the Mali Empire. Lead the salt caravan south and keep your line clear of the rising dunes.",
+        "instruction": "Years later he crosses the Sahara to the Mali Empire. Lead the salt caravan south, well to well; each well can be drunk dry only once.",
         "fact": "Ibn Battuta left Tangier in 1325 intending only to make the hajj to Mecca. He was 21 years old. The journey expanded as his curiosity grew — he kept finding reasons not to return home, following trade routes, accepting appointments, and exploring rumors of distant courts. He finally returned to Morocco 29 years later and immediately began planning further travels.",
         "id": "the-great-journey:1",
         "stage": "trial",
@@ -4276,7 +4276,7 @@
       },
       {
         "type": "minigame",
-        "game": "snake",
+        "game": "packtrain",
         "configId": "pochteca",
         "seed": 18936,
         "instruction": "The empire falls, but the markets Cortés marvelled at were stocked by merchants who walked. Lead the porters' line to every load the Tlatelolco market has ordered.",
@@ -4352,7 +4352,7 @@
       },
       {
         "type": "minigame",
-        "game": "snake",
+        "game": "packtrain",
         "configId": "quito-gold",
         "seed": 50673,
         "instruction": "Quito will burn rather than become a Spanish trophy — but first its treasure must go. Lead the llama train to each load before the Spanish arrive, then on into the mountains.",
