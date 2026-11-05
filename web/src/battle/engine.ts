@@ -1103,13 +1103,23 @@ export function recordDeaths(state: GameState, players: PlayerState[], deaths: {
 }
 
 /**
- * Followers serve a Great Person: when a player's last Great Person in a city
- * dies, that player's Followers there are discarded with them. Event cards
- * (in play or in hand) are untouched.
+ * Followers serve a Great Person: when a player's last Great Person in play
+ * (on the board or in hand) dies, all of that player's Followers, in hand and
+ * on the board, are discarded. Event cards stay. Call after recordDeaths and
+ * before successors are chosen.
  */
-export function dropLeaderlessFollowers(cards: OnboardCard[], bereaved: Iterable<string>): OnboardCard[] {
-  const leaderless = new Set([...bereaved].filter(pid => !cards.some(c => c.type === 'gp' && c.playerId === pid)))
-  return leaderless.size ? cards.filter(c => !(c.type === 'follower' && leaderless.has(c.playerId))) : cards
+export function dropLeaderlessFollowers(
+  locations: LocationState[], players: PlayerState[], deaths: { playerId: string }[],
+): { locations: LocationState[]; players: PlayerState[] } {
+  const leaderless = new Set(deaths.map(d => d.playerId).filter(pid =>
+    !players.find(p => p.id === pid)?.gpHand.length
+    && !locations.some(l => l.cards.some(c => c.type === 'gp' && c.playerId === pid))))
+  if (!leaderless.size) return { locations, players }
+  const isTheirs = (c: OnboardCard) => c.type === 'follower' && leaderless.has(c.playerId)
+  return {
+    locations: locations.map(l => (l.cards.some(isTheirs) ? { ...l, cards: l.cards.filter(c => !isTheirs(c)) } : l)),
+    players: players.map(p => (leaderless.has(p.id) ? { ...p, followerHand: [] } : p)),
+  }
 }
 
 function gpDeaths(removed: OnboardCard[]): { playerId: string; cardId: string }[] {
@@ -1158,13 +1168,12 @@ export function advanceYear(state: GameState, opts: { fastForward?: boolean } = 
     }
   }
   const dead = new Set(deaths.map(d => `${d.playerId}:${d.cardId}`))
-  let locations = state.locations.map(loc => {
-    const died = loc.cards.filter(c => c.type === 'gp' && dead.has(`${c.playerId}:${c.cardId}`))
-    if (!died.length) return loc
-    const cards = loc.cards.filter(c => !died.includes(c))
-    return { ...loc, cards: dropLeaderlessFollowers(cards, died.map(c => c.playerId)) }
-  })
+  let locations = state.locations.map(loc => ({
+    ...loc,
+    cards: loc.cards.filter(c => !(c.type === 'gp' && dead.has(`${c.playerId}:${c.cardId}`))),
+  }))
   let players = recordDeaths({ ...state, year }, state.players, deaths)
+  ;({ locations, players } = dropLeaderlessFollowers(locations, players, deaths))
 
   // Income legacies pay on every `every`-th year of the game.
   let eventDeck = state.eventDeck
@@ -1694,11 +1703,12 @@ function baseReducer(state: GameState, action: GameAction): GameState {
         if (action.kill) {
           newLocations = newLocations.map(l =>
             l.id === locationId
-              ? { ...l, cards: dropLeaderlessFollowers(l.cards.filter(c => c.instanceId !== loserInstanceId), loserCard.type === 'gp' ? [loserCard.playerId] : []) }
+              ? { ...l, cards: l.cards.filter(c => c.instanceId !== loserInstanceId) }
               : l
           )
-          // A Great Person killed in play dies (their Followers here go with them if they were the last): on the timeline its owner chooses a successor.
+          // A Great Person killed in play dies: on the timeline its owner chooses a successor.
           newPlayers = recordDeaths(state, newPlayers, gpDeaths([loserCard]))
+          ;({ locations: newLocations, players: newPlayers } = dropLeaderlessFollowers(newLocations, newPlayers, gpDeaths([loserCard])))
           // Winning a fight earns no legacy by itself: each card has its own achievement.
         } else {
           // Retrieve to hand
@@ -1977,6 +1987,7 @@ function baseReducer(state: GameState, action: GameAction): GameState {
 
         // Great People lost to survivals and hazards die.
         newPlayers = recordDeaths(state, newPlayers, gpDeaths(eliminated))
+        ;({ locations: newLocations, players: newPlayers } = dropLeaderlessFollowers(newLocations, newPlayers, gpDeaths(eliminated)))
 
         // Now and then the whole world competes without anyone calling it.
         if (state.setup.timeline && !state.setup.noHazards && !newGlobalComp && Math.random() < GLOBAL_COMPETITION_CHANCE) {
