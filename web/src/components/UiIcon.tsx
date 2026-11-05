@@ -1,10 +1,12 @@
 import type { SVGProps } from 'react'
 
 /**
- * Line-drawn interface icons (tabs, menus, Arcade categories), drawn as SVG
- * instead of text symbols so they look the same on every device: iOS draws
- * some symbols as grey emoji tiles and older phones lack others entirely.
- * Stroke follows `currentColor`, like EraIcon.
+ * Interface icons (tabs, menus, Arcade categories, Fight modes).  By default
+ * each is a painted medallion made with Google Flow (data/images/icons →
+ * web/public/icons/icon_<name>.webp, also bundled in the apps), so the web
+ * and the native screens share one look.  `line` draws the SVG outline
+ * instead, for tiny inline chips where a painting would be a blur; it
+ * follows `currentColor`, like EraIcon.
  */
 const UI_PATHS = {
   // lightning bolt
@@ -31,7 +33,11 @@ const UI_PATHS = {
   explore:    'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z M15.5 8.5l-2 5-5 2 2-5 5-2z',
 } as const
 
-export type UiIconName = keyof typeof UI_PATHS
+/** Medallions with no line drawing; `line` falls back to the painting. */
+type PaintedOnly = 'casual' | 'ranked' | 'computer'
+export type UiIconName = keyof typeof UI_PATHS | PaintedOnly
+
+export const uiIconUrl = (name: UiIconName) => `/icons/icon_${name}.webp`
 
 interface UiIconProps extends Omit<SVGProps<SVGSVGElement>, 'className'> {
   name: UiIconName
@@ -39,9 +45,17 @@ interface UiIconProps extends Omit<SVGProps<SVGSVGElement>, 'className'> {
   className?: string
   /** Accessible name; omit when a visible label sits next to the icon. */
   label?: string
+  /** Draw the line icon instead of the painted medallion. */
+  line?: boolean
 }
 
-export default function UiIcon({ name, className = 'w-[1em] h-[1em]', label, ...rest }: UiIconProps) {
+export default function UiIcon({ name, className = 'w-[1em] h-[1em]', label, line = false, ...rest }: UiIconProps) {
+  if (!line || !(name in UI_PATHS)) {
+    return (
+      <img src={uiIconUrl(name)} alt={label ?? ''} aria-hidden={label ? undefined : true} draggable={false}
+        className={`inline-block shrink-0 rounded-full object-cover select-none ${className}`} />
+    )
+  }
   return (
     <svg
       viewBox="0 0 24 24"
@@ -56,7 +70,7 @@ export default function UiIcon({ name, className = 'w-[1em] h-[1em]', label, ...
       aria-hidden={label ? undefined : true}
       {...rest}>
       {label && <title>{label}</title>}
-      <path d={UI_PATHS[name]} />
+      <path d={UI_PATHS[name as keyof typeof UI_PATHS]} />
     </svg>
   )
 }

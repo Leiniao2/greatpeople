@@ -1,5 +1,9 @@
 package com.greatpeople.card.ui.screens
 
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
+import coil.compose.AsyncImage
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -18,17 +22,18 @@ private val Amber = Color(0xFFF59E0B)
 private val BackgroundColor = Color(0xFF080812)
 
 private data class ModeItem(
+    /** Painted medallion in assets/icons (icon_<key>.webp), shared with the web. */
     val icon: String,
     val name: String,
     val subtitle: String,
 )
 
 private val modes = listOf(
-    ModeItem("⚡", "EPIC",       "Unlock stories, earn cards"),
-    ModeItem("♛", "COLLECTION", "Your card gallery"),
-    ModeItem("⚔", "FIGHT",      "Compete with others"),
-    ModeItem("🎮", "ARCADE",     "120 mini challenges, play freely"),
-    ModeItem("◉", "PROFILE",    "Your account & stats"),
+    ModeItem("epic",       "EPIC",       "Unlock stories, earn cards"),
+    ModeItem("collection", "COLLECTION", "Your card gallery"),
+    ModeItem("fight",      "FIGHT",      "Compete with others"),
+    ModeItem("arcade",     "ARCADE",     "Game ladders, A1 to D6"),
+    ModeItem("profile",    "PROFILE",    "Your account & stats"),
 )
 
 @Composable
@@ -156,17 +161,12 @@ private fun HomeModeButton(mode: ModeItem, onClick: () -> Unit) {
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(14.dp),
     ) {
-        // Icon box
-        Surface(
-            modifier = Modifier.size(44.dp),
-            shape = RoundedCornerShape(12.dp),
-            color = Amber.copy(alpha = 0.12f),
-            border = androidx.compose.foundation.BorderStroke(1.dp, Amber.copy(alpha = 0.20f)),
-        ) {
-            Box(contentAlignment = Alignment.Center) {
-                Text(mode.icon, fontSize = 20.sp)
-            }
-        }
+        AsyncImage(
+            model = "file:///android_asset/icons/icon_${mode.icon}.webp",
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier.size(48.dp).clip(CircleShape),
+        )
 
         // Labels
         Column(

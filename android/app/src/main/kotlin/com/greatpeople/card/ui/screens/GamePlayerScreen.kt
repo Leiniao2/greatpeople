@@ -81,6 +81,7 @@ object PlayUrls {
     fun story(slug: String, token: String?) = embed("/play/story/$slug", token)
     fun challenge(id: String, token: String?) = embed("/play/challenge/$id", token)
     fun battle(token: String?) = embed("/play/battle", token)
+    fun arcade(token: String?) = embed("/play/arcade", token)
     private fun embed(path: String, token: String?): String {
         val base = BuildConfig.WEB_BASE_URL.trimEnd('/')
         val fragment = token?.let { "#token=" + android.net.Uri.encode(it) } ?: "#guest=1"
