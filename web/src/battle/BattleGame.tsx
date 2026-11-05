@@ -797,6 +797,7 @@ function RulesModal({ onClose }: { onClose: () => void }) {
               <li>Whatever era history opens in, you start by <span className="text-ink font-semibold">picking one Great Person from three</span>. You hold one Great Person at a time: that is your <span className="text-ink font-semibold">slot</span>.</li>
               <li>Some legacies (First Empire, Kingmaker, New World Patronage, Mother of Russia) add a slot. Each new slot lets you pick another Great Person, who founds a lineage of their own.</li>
               <li>When a Great Person dies of old age or is killed, choose a <span className="text-ink font-semibold">successor</span> born later than the current year. The computer does the same.</li>
+              <li>Followers serve a Great Person: when your last Great Person in a city dies, your Followers there go with them. Event cards stay.</li>
               <li><span className="text-ink font-semibold">Retire</span> a Great Person at any time on your turn. They leave play, but their successor only comes at their real death year.</li>
               <li>When none of your Great People is in their career, time skips ahead and the computer plays out those years.</li>
             </ul>
