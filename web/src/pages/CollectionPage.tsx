@@ -9,6 +9,7 @@ import { locationImageUrl, portraitUrl } from '@/data/images'
 import PageLoader from '@/components/PageLoader'
 import EraIcon from '@/components/EraIcon'
 import ArtGallery, { ARTWORKS } from '@/components/ArtGallery'
+import { FIGHT_REWARD_POOL } from '@/battle/rewards'
 
 // ── GP cards ─────────────────────────────────────────────────────────────────
 
@@ -119,7 +120,7 @@ function CollectionContent() {
         <div className="relative z-20 flex items-center justify-between px-6 py-2.5
                         bg-accent/10 border-b border-accent/20">
           <p className="text-accent/80 text-xs">
-            Complete stories in Epic mode to unlock cards
+            Complete stories in Epic mode or win fights to unlock cards
           </p>
           <button
             onClick={() => { exitGuestMode(); navigate('/login') }}
@@ -252,6 +253,8 @@ function CollectionContent() {
   )
 }
 
+const FIGHT_REWARD_KEYS = new Set(FIGHT_REWARD_POOL.map(c => c.portraitKey ?? c.id))
+
 // ── GP card grid item ─────────────────────────────────────────────────────────
 
 function CardItem({ card, owned, onClick }: { card: Card; owned: boolean; onClick: () => void }) {
@@ -279,7 +282,7 @@ function CardItem({ card, owned, onClick }: { card: Card; owned: boolean; onClic
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-1">
             <span className="text-2xl">🔒</span>
             <p className="text-paper/85 text-[9px] text-center px-2 leading-tight">
-              Complete the story in Epic mode
+              {FIGHT_REWARD_KEYS.has(card.portraitKey ?? card.id) ? 'Win a fight' : 'Complete the story in Epic mode'}
             </p>
           </div>
         )}

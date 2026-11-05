@@ -3,12 +3,14 @@ import { isEmbedded, postToNative } from '@/bridge/native'
 import UiIcon, { type UiIconName } from '@/components/UiIcon'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '@/hooks/useAuth'
-import type { GameState, GameSetup, EraMode, PlayerMode, MatchType } from '@/types'
+import type { Card, GameState, GameSetup, EraMode, PlayerMode, MatchType } from '@/types'
 import { cardBackUrl, followerUrl } from '@/data/images'
 import PageLoader from '@/components/PageLoader'
 import EraIcon from '@/components/EraIcon'
 import { ERAS, FOLLOWER_TEMPLATES, initGame, gameReducer, type GameAction } from '@/battle/engine'
 import { BattleGame } from '@/battle/BattleGame'
+import { humanWon, pickFightReward } from '@/battle/rewards'
+import { useStoryProgress } from '@/hooks/useStoryProgress'
 
 // The Battle tab: mode picker, lobby and the full-screen board.  The rules
 // live in @/battle/engine, the board in @/battle/BattleGame.
@@ -262,14 +264,24 @@ function BattleContent() {
   const [, setTick] = useState(0)
   const forceUpdate = useCallback(() => setTick(t => t + 1), [])
 
+  /** The card this game's win unlocked; set once, when the game ends with a human winner. */
+  const [reward, setReward] = useState<Card | null>(null)
+
   const dispatchWithInit = useCallback((action: GameAction) => {
     if (!gameStateRef.current) return
+    const wasOver = gameStateRef.current.phase === 'ended'
     gameStateRef.current = gameReducer(gameStateRef.current, action)
+    if (!wasOver && humanWon(gameStateRef.current)) {
+      const { doc, unlock } = useStoryProgress.getState()
+      const card = pickFightReward(doc.unlockedCards)
+      if (card) { unlock(card.portraitKey ?? card.id); setReward(card) }
+    }
     forceUpdate()
   }, [forceUpdate])
 
   const handleStartGameFinal = useCallback((setup: GameSetup) => {
     gameStateRef.current = initGame(setup)
+    setReward(null)
     setPagePhase('game')
     forceUpdate()
   }, [forceUpdate])
@@ -375,7 +387,8 @@ function BattleContent() {
       <BattleGame
         gameState={gameStateRef.current}
         dispatch={dispatchWithInit}
-        onExit={() => { gameStateRef.current = null; setPagePhase('home') }}
+        reward={reward}
+        onExit={() => { gameStateRef.current = null; setReward(null); setPagePhase('home') }}
       />
     )
   }

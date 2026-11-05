@@ -773,6 +773,8 @@ export interface BattleGameProps {
   embedded?: boolean
   /** Rendered between the header and the board; the fight lessons put their coach here. */
   banner?: React.ReactNode
+  /** The Great Person this win added to the collection, shown on the end screen. */
+  reward?: Card | null
 }
 
 function RulesModal({ onClose }: { onClose: () => void }) {
@@ -840,7 +842,7 @@ function RulesModal({ onClose }: { onClose: () => void }) {
   )
 }
 
-export function BattleGame({ gameState, dispatch, onExit, embedded = false, banner }: BattleGameProps) {
+export function BattleGame({ gameState, dispatch, onExit, embedded = false, banner, reward }: BattleGameProps) {
   const [selection, setSelection] = useState<Selection>({ mode: 'none' })
   const [attackKill, setAttackKill] = useState(false)
   const [cardDetail, setCardDetail] = useState<CardDetail | null>(null)
@@ -1164,6 +1166,19 @@ export function BattleGame({ gameState, dispatch, onExit, embedded = false, bann
               </div>
             ))}
           </div>
+          {reward && (
+            <div className="flex items-center gap-4 bg-paper-2 border border-accent/40 rounded-2xl p-3 mb-6 text-left">
+              <img src={reward.portraitUrl} alt={reward.figureName}
+                className="w-16 h-20 rounded-xl object-cover object-top border border-accent/60 shrink-0" />
+              <div className="min-w-0">
+                <p className="text-accent/80 text-[10px] uppercase tracking-widest font-semibold">New card unlocked</p>
+                <p className="text-ink font-bold">{reward.figureName}</p>
+                <div className="flex items-center gap-1.5 text-muted text-xs mt-0.5">
+                  <EraIcon era={reward.era} className="w-3.5 h-3.5" /> {reward.era} · added to your collection
+                </div>
+              </div>
+            </div>
+          )}
           <button onClick={onExit}
             className="w-full py-3.5 rounded-xl font-bold text-sm text-accent-fg bg-accent hover:bg-accent-hover transition-all shadow-lg shadow-accent/25">
             Play Again
