@@ -36,15 +36,18 @@ export function postToNative(msg: BridgeMessage): boolean {
 /**
  * The native app passes its JWT in the URL fragment (`#token=…`), which is
  * never sent to the server. Store it and strip it from the address bar.
+ * A guest in the native app is passed as `#guest=1` instead; returns true
+ * when the page should enter guest mode.
  */
-export function adoptTokenFromFragment(): void {
+export function adoptTokenFromFragment(): boolean {
   try {
     const hash = window.location.hash.replace(/^#/, '')
-    if (!hash) return
-    const token = new URLSearchParams(hash).get('token')
-    if (token) {
-      localStorage.setItem('access_token', token)
-      window.history.replaceState(null, '', window.location.pathname + window.location.search)
-    }
-  } catch { /* storage unavailable */ }
+    if (!hash) return false
+    const params = new URLSearchParams(hash)
+    const token = params.get('token')
+    const guest = params.get('guest') === '1'
+    if (token) localStorage.setItem('access_token', token)
+    if (token || guest) window.history.replaceState(null, '', window.location.pathname + window.location.search)
+    return !token && guest
+  } catch { return false /* storage unavailable */ }
 }

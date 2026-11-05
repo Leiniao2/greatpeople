@@ -45,6 +45,7 @@ export default function App() {
         {/* Full-screen play routes, also used inside the native apps' WebViews */}
         <Route path="/play/story/:slug" element={<PrivateRoute><PlayStoryPage /></PrivateRoute>} />
         <Route path="/play/challenge/:id" element={<PrivateRoute><PlayChallengePage /></PrivateRoute>} />
+        <Route path="/play/battle" element={<PrivateRoute><BattlePage /></PrivateRoute>} />
 
         {/* Dev-only harness for playing any minigame engine directly */}
         {GameLabPage && <Route path="/lab/:game?/:configId?" element={<GameLabPage />} />}

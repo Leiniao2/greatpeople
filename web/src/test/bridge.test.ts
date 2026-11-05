@@ -30,4 +30,17 @@ describe('native bridge', () => {
     expect(window.location.search).toBe('?embed=1')
     expect(isEmbedded()).toBe(true)
   })
+
+  it('a native guest arrives as #guest=1 and is told to enter guest mode', () => {
+    window.history.replaceState(null, '', '/play/battle?embed=1#guest=1')
+    expect(adoptTokenFromFragment()).toBe(true)
+    expect(localStorage.getItem('access_token')).toBeNull()
+    expect(window.location.hash).toBe('')
+  })
+
+  it('a token wins over the guest flag', () => {
+    window.history.replaceState(null, '', '/play/battle?embed=1#token=t.o.k&guest=1')
+    expect(adoptTokenFromFragment()).toBe(false)
+    expect(localStorage.getItem('access_token')).toBe('t.o.k')
+  })
 })
