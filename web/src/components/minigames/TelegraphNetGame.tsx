@@ -33,6 +33,8 @@ export interface TelegraphConfig {
   intro: string
   fact: string
   mode: Mode
+  /** Story override for the city labels (short, about 4 letters). For a single line the first and last are its ends. */
+  cityNames?: string[]
 }
 
 export const CONFIGS: Record<string, TelegraphConfig> = {
@@ -270,7 +272,7 @@ export function makeNet(configId: string, config: TelegraphConfig, d: Difficulty
     const mountains: Net['mountains'] = []
     if (mode === 'mst') {
       nodes = scatterIn(R, rng, [8, 8, 92, 82], [], 20)
-      names = NAMES.mst.slice(0, R); required = nodes.map(() => true)
+      names = (config.cityNames ?? NAMES.mst).slice(0, R); required = nodes.map(() => true)
     } else if (mode === 'sea') {
       const west = Math.ceil(R / 2), east = R - west
       const wp = scatterIn(west, rng, [6, 8, 30, 82], [], 17)
@@ -282,7 +284,8 @@ export function makeNet(configId: string, config: TelegraphConfig, d: Difficulty
     } else if (mode === 'chain') {
       const mid = scatterIn(R - 2, rng, [18, 8, 82, 82], [], 19)
       nodes = [{ x: 7, y: 15 + rng() * 60 }, ...mid.sort((a, b) => a.x - b.x), { x: 93, y: 15 + rng() * 60 }]
-      names = NAMES.chain.slice(0, R - 1).concat('Calc'); names[0] = 'Lon'
+      const pool = config.cityNames ?? NAMES.chain
+      names = pool.slice(0, R - 1).concat(pool[pool.length - 1])
       required = nodes.map(() => true)
       ends = [0, R - 1]
     } else {
@@ -337,7 +340,8 @@ export const wireCost = (net: Net, chosen: readonly string[]) => net.links.filte
 
 export default function TelegraphNetGame({ configId, difficulty, seed, params, onWin, onLose }: MinigameProps) {
   const config = resolveConfig(CONFIGS, configId, params, 'morse')
-  const net = useMemo(() => makeNet(configId, config, difficulty, seed), [configId, config, difficulty, seed])
+  // Story params make a fresh config object every render; key the board on what shapes it.
+  const net = useMemo(() => makeNet(configId, config, difficulty, seed), [configId, config.mode, config.cityNames?.join('|'), difficulty, seed]) // eslint-disable-line react-hooks/exhaustive-deps
   const { outcome, settled, win, lose } = useGameOutcome({ onWin, onLose })
   const [chosen, setChosen] = useState<string[]>([])
   const [towers, setTowers] = useState<number[]>([])

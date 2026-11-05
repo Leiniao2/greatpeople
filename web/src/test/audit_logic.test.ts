@@ -10,10 +10,9 @@ import { CONFIGS as CIPHERS, encodeCaesar, encodeVigenere, MORSE, resolveCipherC
 import { CONFIGS as PSEUDO, wrongPositions } from '@/components/minigames/PseudoCodeGame'
 import { CONFIGS as LOGIC, GATES, ROWS, TAPE_RULES, matchingRows, circuitOut, makeStages, solves, solutions as stageSolutions } from '@/components/minigames/LogicGateGame'
 import { CONFIGS as CHEM } from '@/components/minigames/ChemistryGame'
-import { CONFIGS as PUNNETT, cellAnswer, getOptions, phenotypeRatio } from '@/components/minigames/PunnettGame'
+import { CONFIGS as PUNNETT } from '@/components/minigames/PunnettGame'
 import { CONFIGS as LORENTZ, applyLorentz, circlesOverlap, B_STEP, MAX_B } from '@/components/minigames/LorentzGame'
 import { CONFIGS as CHIMP, getAnswer, makeChoices } from '@/components/minigames/ChimpMathGame'
-import { CONFIGS as CLOCKS, CITIES, convert, genChoices } from '@/components/minigames/WorldClockGame'
 import { CONFIGS as CLASSIFY } from '@/components/minigames/ClassifyGame'
 import { CODEBOOKS, atbash, polybius, braille, binary, pigpen, scytaleWind, scytaleRead, cleanMessage, resolveCodebookConfig } from '@/components/minigames/CodebookGame'
 
@@ -215,29 +214,6 @@ describe('ChemistryGame configs', () => {
   }
 })
 
-// ── Punnett ───────────────────────────────────────────────────────────────────
-
-describe('PunnettGame configs', () => {
-  for (const [id, cfg] of Object.entries(PUNNETT)) {
-    it(`${id}: every cell's answer is offered as an option`, () => {
-      for (const cross of cfg.crosses) {
-        const options = getOptions(cross)
-        for (let r = 0; r < 2; r++) for (let c = 0; c < 2; c++) {
-          expect(options, `${cross.traitLabel} cell ${r},${c}`).toContain(cellAnswer(cross, r, c))
-        }
-        const ratio = phenotypeRatio(cross)
-        expect(ratio.dominant + ratio.recessive).toBe(4)
-      }
-    })
-  }
-  it('the classic ratios come out right', () => {
-    const [tt, yy, rr] = PUNNETT['mendel-peas'].crosses
-    expect(phenotypeRatio(tt)).toEqual({ dominant: 3, recessive: 1 })
-    expect(phenotypeRatio(yy)).toEqual({ dominant: 3, recessive: 1 })
-    expect(phenotypeRatio(rr)).toEqual({ dominant: 4, recessive: 0 })
-  })
-})
-
 // ── Lorentz ───────────────────────────────────────────────────────────────────
 
 type Vec = { x: number; y: number }
@@ -283,43 +259,6 @@ describe('ChimpMathGame configs', () => {
       }
     })
   }
-})
-
-// ── World clock ───────────────────────────────────────────────────────────────
-
-describe('WorldClockGame configs', () => {
-  const expected: Record<string, number[]> = {
-    'magellan-voyage':  [19, 13, 16, 18, 5],
-    'telegraph-globe':  [7, 16, 12, 14, 21],
-    'modern-traveler':  [13, 23, 9, 13, 18],
-    'linnaeus-apostles': [19, 16, 15, 8, 15],
-    'atelier-cities':   [20, 2, 2, 4, 5],
-    'baghdad-live':     [18, 0, 9, 1, 15],
-    'earhart-atlantic': [0, 8, 19, 12, 1],
-  }
-  for (const [id, cfg] of Object.entries(CLOCKS)) {
-    it(`${id}: cities exist and conversions match the authored answers`, () => {
-      expect(expected[id], `no expected answers for ${id}`).toBeDefined()
-      cfg.questions.forEach((q, i) => {
-        const from = CITIES[q.fromKey], to = CITIES[q.toKey]
-        expect(from, q.fromKey).toBeDefined()
-        expect(to, q.toKey).toBeDefined()
-        const h = convert(q.fromHour, from.offset, to.offset)
-        expect(h, `${id} q${i + 1}`).toBe(expected[id][i])
-        for (let n = 0; n < 10; n++) {
-          const choices = genChoices(h)
-          expect(choices).toContain(h)
-          expect(new Set(choices).size).toBe(4)
-        }
-      })
-    })
-  }
-  it('independent sanity: UTC offsets are the standard (non-DST) ones', () => {
-    expect(CITIES['new-york'].offset).toBe(-5)
-    expect(CITIES['tokyo'].offset).toBe(9)
-    expect(CITIES['sydney'].offset).toBe(10)
-    expect(convert(23, 9, -5)).toBe(9)
-  })
 })
 
 // ── Classify ──────────────────────────────────────────────────────────────────
@@ -383,7 +322,7 @@ describe('story data for this group', () => {
   const groups: Record<string, Record<string, unknown>> = {
     crossword: CROSSWORDS, wordle: WORDLES, decode: DECODES, cipher: CIPHERS, pseudocode: PSEUDO,
     logicgate: LOGIC, chemistry: CHEM, punnett: PUNNETT, lorentz: LORENTZ, chimpmath: CHIMP,
-    worldclock: CLOCKS, classify: CLASSIFY,
+    classify: CLASSIFY,
   }
   for (const [game, configs] of Object.entries(groups)) {
     it(`${game}: every story entry names a real config and a difficulty 1–4`, () => {

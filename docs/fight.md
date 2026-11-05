@@ -10,7 +10,7 @@ Game could be configured All era or Single era. The Single era game only uses lo
 
 Every game starts at a real year (see §9, Real history). A Single era game opens on its era: the year its earliest-born Great Person was born. An All era game opens on a start era (random unless chosen) and moves forward through history from there.
 
-Each player is dealt 3 Great People (fewer, equal for everyone, when a small era cannot give a full table 3 each), 2 Event cards and 8 Follower cards. The Great People dealt are the earliest-born of the pool from the opening year on, shuffled between the players, so the table starts as contemporaries. Each of them founds a lineage (§9). All cards start as hand cards.
+Whatever era history opens in, the first screen asks each player to pick one Great Person from 3 candidates (fewer, equal for everyone, when a small era cannot offer a full table 3 each); the computer takes its strongest. The candidates are the earliest-born of the pool from the opening year on, shuffled between the players, so the table starts as contemporaries. Each player also gets 2 Event cards and 8 Follower cards. A player holds one Great Person at a time, their Great Person slot; slot legacies (First Empire, Kingmaker, New World Patronage, Mother of Russia) and the global competition prize add slots, and each new slot is filled with a pick from people born later, founding a lineage of its own (§9). All cards start as hand cards.
 
 All Locations cards will be revealed at the begining of the game round and set on table.
 

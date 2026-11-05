@@ -76,6 +76,15 @@ fun LoginScreen(
         if (state is AuthUiState.Success) onLoginSuccess()
     }
 
+    // The account picked before is still on the phone: sign in with it
+    // silently instead of asking again (explicit sign-out forgets it).
+    LaunchedEffect(Unit) {
+        if (GoogleSignIn.getLastSignedInAccount(context) == null) return@LaunchedEffect
+        googleSignInClient.silentSignIn().addOnSuccessListener { account ->
+            account.idToken?.let { viewModel.googleLogin(it, account.email) }
+        }
+    }
+
     Column(
         modifier = Modifier.fillMaxSize().padding(24.dp),
         verticalArrangement = Arrangement.Center,

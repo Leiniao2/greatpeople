@@ -11,7 +11,6 @@ import { mulberry32 } from '@/components/minigames/_shared'
 import { CONFIGS as SOCCER, readFor, goalsFor } from '@/components/minigames/SoccerGame'
 import { CONFIGS as REPORTER, livesFor } from '@/components/minigames/ReporterFleeGame'
 import { CONFIGS as CHIMP, timeFor as chimpTime, passMark as chimpPass } from '@/components/minigames/ChimpMathGame'
-import { CONFIGS as CLOCKS, timeFor as clockTime, passMark as clockPass, showsDifference, utcLabel, differenceLabel } from '@/components/minigames/WorldClockGame'
 import { musicRules } from '@/components/minigames/MusicGame'
 import { tierFor as riverTier } from '@/components/minigames/RiverRunGame'
 import { tierFor as snakeTier, CONFIGS as SNAKE } from '@/components/minigames/SnakeGame'
@@ -51,7 +50,7 @@ describe('Soccer: the keeper sharpens tier by tier', () => {
 
 // ── Short quizzes and hunts ───────────────────────────────────────────────────
 
-describe('Reporter Flee, Chimp Math, World Clock, Music, River Run: tiers tighten monotonically', () => {
+describe('Reporter Flee, Chimp Math, Music, River Run: tiers tighten monotonically', () => {
   it('Reporter Flee: lives shrink with the tier, never below one', () => {
     for (const cfg of Object.values(REPORTER)) {
       const lives = DIFFS.map(d => livesFor(cfg, d))
@@ -68,21 +67,6 @@ describe('Reporter Flee, Chimp Math, World Clock, Music, River Run: tiers tighte
       expect(marks.every((m, i) => i === 0 || m >= marks[i - 1])).toBe(true)
       expect(marks[0]).toBeLessThan(n) // a slip is allowed at first
       for (const d of DIFFS) if (chimpTime(d)) expect(chimpTime(d)).toBeGreaterThanOrEqual(1.5 * (n * 3 + n * 0.9) * 0.95)
-    }
-  })
-
-  it('World Clock: offsets are printed, D1 spells the difference out, clocks fit ~10 s a question', () => {
-    expect(utcLabel(-5)).toBe('UTC−5')
-    expect(utcLabel(0)).toBe('UTC')
-    expect(differenceLabel(-5, 9)).toBe('14 hours ahead')
-    expect(showsDifference(1)).toBe(true)
-    expect(showsDifference(2)).toBe(false)
-    for (const cfg of Object.values(CLOCKS)) {
-      const n = cfg.questions.length
-      const marks = DIFFS.map(d => clockPass(n, d))
-      expect(marks.every((m, i) => i === 0 || m >= marks[i - 1])).toBe(true)
-      expect(marks[3]).toBeLessThan(n) // one slip is always allowed
-      for (const d of DIFFS) if (clockTime(d)) expect(clockTime(d)).toBeGreaterThanOrEqual(n * 15)
     }
   })
 

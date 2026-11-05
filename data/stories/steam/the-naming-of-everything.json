@@ -112,10 +112,18 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "worldclock",
-            "configId": "linnaeus-apostles",
-            "instruction": "Linnaeus's students carry his system to every continent. Work out the hour where each of his 'apostles' is collecting, so the letters home can be dated.",
-            "fact": "Linnaeus sent some seventeen students — his 'apostles' — round the world: Osbeck to China, Hasselquist to the Levant, Forsskål to Arabia, Solander with Cook to Australia, Thunberg to Japan. Several died on the road, but the specimens they sent back made Linnaean names the common language of naturalists everywhere."
+            "game": "tradewinds",
+            "configId": "monsoon",
+            "instruction": "Linnaeus's student Pehr Osbeck sails as chaplain on a Swedish East Indiaman, collecting plants for his teacher. Bring the ship into Canton on the summer monsoon and home again on the winter one, specimens and all.",
+            "fact": "Linnaeus sent some seventeen students — his 'apostles' — round the world: Osbeck to China, Hasselquist to the Levant, Forsskål to Arabia, Solander with Cook to Australia, Thunberg to Japan. Several died on the road, but the specimens they sent back made Linnaean names the common language of naturalists everywhere.",
+            "params": {
+              "title": "Osbeck Sails for Canton, 1751",
+              "intro": "Sail from Java Head to Canton on the south-west monsoon, then back on the north-east monsoon with the specimens. The wind reverses on the marked day: wait in port for it.",
+              "portNames": [
+                "Canton",
+                "Java Head"
+              ]
+            }
           }
         },
         {

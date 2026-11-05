@@ -853,11 +853,10 @@
         "wins": 1
       },
       "effect": {
-        "kind": "income",
-        "card": "follower",
-        "every": 3
+        "kind": "slots",
+        "count": 1
       },
-      "flavour": "The world's first standing army: 5,400 men ate daily before him."
+      "flavour": "He bound Sumer and Akkad into one realm, ruled through governors of his own choosing."
     },
     "years": "c. 2334–2279 BC",
     "born": -2334,
@@ -1872,11 +1871,10 @@
         "wins": 1
       },
       "effect": {
-        "kind": "income",
-        "card": "follower",
-        "every": 4
+        "kind": "slots",
+        "count": 1
       },
-      "flavour": "Royal patronage sent explorers and settlers across the ocean."
+      "flavour": "Her court took in Columbus, scholars and soldiers of fortune alike."
     },
     "years": "1451–1504",
     "born": 1451,
@@ -1994,12 +1992,10 @@
         "wins": 1
       },
       "effect": {
-        "kind": "contest",
-        "stat": "politics",
-        "amount": 3,
-        "context": "attack"
+        "kind": "slots",
+        "count": 1
       },
-      "flavour": "The Arthashastra: statecraft as an offensive weapon."
+      "flavour": "He found Chandragupta and made him an emperor."
     },
     "years": "c. 350–275 BC",
     "born": -350,
@@ -2645,12 +2641,10 @@
         "wins": 1
       },
       "effect": {
-        "kind": "contest",
-        "stat": "politics",
-        "amount": 3,
-        "context": "any"
+        "kind": "slots",
+        "count": 1
       },
-      "flavour": "Mother of Russia: thirty-four years of enlightened absolutism."
+      "flavour": "She filled St Petersburg with the minds of Europe, Diderot and Euler among them."
     },
     "years": "1729–1796",
     "born": 1729,

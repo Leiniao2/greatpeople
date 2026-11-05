@@ -15,7 +15,7 @@ import type {
   PlayerState, GameState, GameSetup,
   StatKey, EventType, EraMode,
   CardContrib, CombatSide, CombatSummary, EventPlayerResult, GameSummary,
-  LegacyContext, LegacyEffect, LifeStatus, TurnActions,
+  LegacyContext, LegacyEffect, LifeStatus, TurnActions, PendingSuccessor,
 } from '@/types'
 import cardsJson from '@/data/cards.json'
 import locationsJson from '@/data/locations.json'
@@ -243,8 +243,10 @@ export const YEARS_PER_ROUND = 1
 export const DEFAULT_CAREER_AGE = 18
 /** Prodigy legacies cannot start a career before this age. */
 export const MIN_CAREER_AGE = 4
-/** Great People each player starts with; every one founds a lineage of successors. */
-export const STARTING_LINEAGES = 3
+/** Great People a player holds at once when the game opens; slot legacies add more. */
+export const BASE_GP_SLOTS = 1
+/** Candidates offered for the opening pick, whatever era history opens in. */
+export const OPENING_CHOICES = 3
 /** Candidates offered when a Great Person dies (before successor legacies). */
 export const SUCCESSOR_CHOICES = 3
 export const LEGACY_SLOTS = 2
@@ -263,12 +265,13 @@ export function legacyEffects(player: PlayerState | undefined): LegacyEffect[] {
   return player.activeLegacies.map(id => getGPCard(id)?.legacy.effect).filter((e): e is LegacyEffect => !!e)
 }
 
-function sumEffect(player: PlayerState | undefined, kind: 'longevity' | 'prodigy' | 'successors'): number {
+function sumEffect(player: PlayerState | undefined, kind: 'longevity' | 'prodigy' | 'successors' | 'slots'): number {
   let n = 0
   for (const e of legacyEffects(player)) {
     if (e.kind === 'longevity' && kind === 'longevity') n += e.years
     if (e.kind === 'prodigy' && kind === 'prodigy') n += e.years
     if (e.kind === 'successors' && kind === 'successors') n += e.count
+    if (e.kind === 'slots' && kind === 'slots') n += e.count
   }
   return n
 }
@@ -277,6 +280,17 @@ function sumEffect(player: PlayerState | undefined, kind: 'longevity' | 'prodigy
 export function careerStartYear(card: Card, owner?: PlayerState): number {
   const age = Math.max(MIN_CAREER_AGE, (card.careerAge ?? DEFAULT_CAREER_AGE) - sumEffect(owner, 'prodigy'))
   return card.born + age
+}
+
+/** How many Great People (lineages) this player may hold at once. */
+export function gpSlots(player: PlayerState | undefined): number {
+  return BASE_GP_SLOTS + (player?.extraSlots ?? 0) + sumEffect(player, 'slots')
+}
+
+/** Lineages a player holds now: Great People in hand, retired or on the board, and choices still owed. */
+export function lineageCount(state: GameState, p: PlayerState): number {
+  const onBoard = state.locations.reduce((n, loc) => n + loc.cards.filter(c => c.type === 'gp' && c.playerId === p.id).length, 0)
+  return p.gpHand.length + p.retired.length + onBoard + p.pendingSuccessors.length
 }
 
 /** Last year a card is alive, for this owner (longevity legacies extend it). */
@@ -308,6 +322,8 @@ export function claimedGP(state: GameState): Set<string> {
 export function successorOptions(state: GameState, playerId: string): string[] {
   const p = state.players.find(x => x.id === playerId)
   const taken = claimedGP(state)
+  const fixed = p?.pendingSuccessors[0]?.options
+  if (fixed) return fixed.filter(id => !taken.has(id))
   const n = SUCCESSOR_CHOICES + sumEffect(p, 'successors')
   return gpPool(state.setup.eraMode, state.setup.singleEra)
     .filter(c => !taken.has(c.id) && c.born > state.year)
@@ -392,6 +408,7 @@ export function describeLegacyEffect(e: LegacyEffect): string {
     case 'longevity': return `Your Great People live ${e.years} years longer.`
     case 'prodigy': return `Your Great People start their careers ${e.years} years earlier.`
     case 'successors': return `+${e.count} choice whenever you pick a successor.`
+    case 'slots': return `+${e.count} Great Person slot: hold ${e.count === 1 ? 'one more Great Person' : `${e.count} more Great People`} at once.`
     case 'income': return `Every ${e.every} years you gain ${e.card === 'event' ? 'an Event card' : 'a Follower'}.`
   }
 }
@@ -653,25 +670,19 @@ export function eraStartYear(era: string, pool: Card[] = ALL_GP_CARDS): number {
   return born.length ? Math.min(...born) : Math.min(...pool.map(c => c.born))
 }
 
-/**
- * Every Battle-tab game starts at a real year.  A single-era game opens on its
- * era; an all-era game on setup.startEra (random when not given).  Each player
- * is dealt STARTING_LINEAGES Great People from the earliest-born of the pool
- * from that year on, so the table starts as contemporaries; the game year is
- * the earliest of their births and time skips ahead until someone's career
- * begins.
- */
 export interface OpeningDeal {
   startEra: string
   startYear: number
-  /** Great People per player, in seat order. */
-  hands: string[][]
+  /** The candidates each player picks their first Great Person from, in seat order. */
+  offers: string[][]
 }
 
 /**
- * The opening of a timeline game: the era it opens on, the year, and each
- * player's starting Great People — the earliest-born of the pool from that
- * era on, shuffled between the players, so the table starts as contemporaries.
+ * The opening of a timeline game: the era it opens on, the year, and the
+ * OPENING_CHOICES candidates each player picks one Great Person from.  They
+ * are the earliest-born of the pool from that era on, shuffled between the
+ * players, so the table starts as contemporaries; nobody is offered a card
+ * someone else is offered.
  */
 export function openingDeal(setup: GameSetup, playerCount: number): OpeningDeal {
   const pool = gpPool(setup.eraMode, setup.singleEra)
@@ -680,12 +691,12 @@ export function openingDeal(setup: GameSetup, playerCount: number): OpeningDeal 
     : setup.startEra && ERAS.includes(setup.startEra) ? setup.startEra : ERAS[Math.floor(Math.random() * ERAS.length)]
   const opening = eraStartYear(startEra, pool)
   const upcoming = pool.filter(c => c.born >= opening).sort((a, b) => a.born - b.born || a.figureName.localeCompare(b.figureName))
-  // Small eras cannot give a full table three lineages each: deal smaller, equal hands.
-  const handSize = Math.max(1, Math.min(STARTING_LINEAGES, Math.floor(upcoming.length / Math.max(1, playerCount))))
-  const dealt = shuffle(upcoming.slice(0, handSize * playerCount).map(c => c.id))
-  const hands = Array.from({ length: playerCount }, (_, i) => dealt.slice(i * handSize, (i + 1) * handSize))
+  // Small eras cannot offer a full table three candidates each: offer fewer, equally.
+  const perPlayer = Math.max(1, Math.min(OPENING_CHOICES, Math.floor(upcoming.length / Math.max(1, playerCount))))
+  const dealt = shuffle(upcoming.slice(0, perPlayer * playerCount).map(c => c.id))
+  const offers = Array.from({ length: playerCount }, (_, i) => dealt.slice(i * perPlayer, (i + 1) * perPlayer))
   const startYear = Math.min(...dealt.map(id => getGPCard(id)!.born), opening)
-  return { startEra, startYear, hands }
+  return { startEra, startYear, offers }
 }
 
 /**
@@ -704,12 +715,16 @@ export function initGame(setup: GameSetup): GameState {
       : []),
   ]
 
-  const { startEra, startYear, hands } = openingDeal(setup, allPlayerNames.length)
+  const { startEra, startYear, offers } = openingDeal(setup, allPlayerNames.length)
   setup.startEra = startEra
-  const players: PlayerState[] = allPlayerNames.map((name, i) => newPlayer(
-    `player-${i}`, name, setup.playerMode === 'pvc' && i >= setup.playerNames.length,
-    { gpHand: hands[i], eventHand: eventDeck.splice(0, 2), followerHand: followerDeck.splice(0, 8) },
-  ))
+  // Everyone opens with one slot: the first screen is picking its Great Person.
+  const players: PlayerState[] = allPlayerNames.map((name, i) => ({
+    ...newPlayer(
+      `player-${i}`, name, setup.playerMode === 'pvc' && i >= setup.playerNames.length,
+      { gpHand: [], eventHand: eventDeck.splice(0, 2), followerHand: followerDeck.splice(0, 8) },
+    ),
+    pendingSuccessors: [{ predecessor: null, year: startYear, reason: 'start' as const, options: offers[i] }],
+  }))
 
   const locationTemplates = pickLocations(setup.eraMode, setup.singleEra)
   const emptyLocations: LocationState[] = locationTemplates.map((lt, i) => ({
@@ -1078,9 +1093,43 @@ function cpuPickSuccessor(options: string[]): string {
   }, options[0])
 }
 
+function choiceLine(name: string, pick: string, pending: { predecessor: string | null; reason?: 'start' | 'slot' }): string {
+  const born = `born ${formatYear(getGPCard(pick)?.born ?? 0)}`
+  if (pending.reason === 'start') return `${name} opens history with ${figure(pick)} (${born}).`
+  if (pending.reason === 'slot') return `${name} fills a new Great Person slot with ${figure(pick)} (${born}).`
+  return `${name} chose ${figure(pick)} (${born})${pending.predecessor ? ` to succeed ${figure(pending.predecessor)}` : ''}.`
+}
+
+/**
+ * Keep every player's lineages in step with their Great Person slots: a slot
+ * that opens (a slot legacy put into effect, the competition prize) owes a
+ * new pick; with fewer slots than lineages, successions still owed lapse.
+ */
+function reconcileSlots(state: GameState): GameState {
+  if (!state.setup.timeline) return state
+  let changed = false
+  const players = state.players.map(p => {
+    let next = p
+    // The opening pick is never dropped.
+    while (lineageCount(state, next) > gpSlots(next) && next.pendingSuccessors.some(x => x.reason !== 'start')) {
+      const i = next.pendingSuccessors.map(x => x.reason !== 'start').lastIndexOf(true)
+      next = { ...next, pendingSuccessors: next.pendingSuccessors.filter((_, j) => j !== i) }
+    }
+    while (lineageCount(state, next) < gpSlots(next)) {
+      const owed: PendingSuccessor = { predecessor: null, year: state.year, reason: 'slot' }
+      const probe = { ...next, pendingSuccessors: [owed] }
+      if (!successorOptions({ ...state, players: state.players.map(x => (x.id === p.id ? probe : x)) }, p.id).length) break
+      next = { ...next, pendingSuccessors: [...next.pendingSuccessors, owed] }
+    }
+    if (next !== p) changed = true
+    return next
+  })
+  return changed ? { ...state, players } : state
+}
+
 /** CPU players choose successors and fill empty legacy slots at once; successions with no candidate left end their lineage. */
 function resolveChoices(state: GameState): GameState {
-  let s = state
+  let s = reconcileSlots(state)
   const log: string[] = []
   for (let i = 0; i < s.players.length; i++) {
     let p = s.players[i]
@@ -1092,7 +1141,7 @@ function resolveChoices(state: GameState): GameState {
         p = { ...p, pendingSuccessors: p.pendingSuccessors.slice(1) }
       } else if (p.isComputer) {
         const pick = cpuPickSuccessor(options)
-        log.push(`${p.name} chose ${figure(pick)} (born ${formatYear(getGPCard(pick)!.born)})${pending.predecessor ? ` to succeed ${figure(pending.predecessor)}` : ''}.`)
+        log.push(choiceLine(p.name, pick, pending))
         p = { ...p, gpHand: [...p.gpHand, pick], pendingSuccessors: p.pendingSuccessors.slice(1) }
       } else break
       s = { ...s, players: s.players.map((x, j) => (j === i ? p : x)) }
@@ -1179,6 +1228,7 @@ export function fastForward(state: GameState, rand: () => number = Math.random):
     round: s.round + skipped,
     turnActions: freshTurnActions(),
     pendingSummary: s.pendingSummary ?? summary,
+    summaryQueue: s.pendingSummary ? [...(s.summaryQueue ?? []), summary] : s.summaryQueue,
     log: [`Time passes: ${formatYear(fromYear)} → ${formatYear(s.year)} (${skipped} years).`, ...lines.slice(-4).reverse(), ...s.log].slice(0, 20),
   }
 }
@@ -1615,7 +1665,8 @@ function baseReducer(state: GameState, action: GameAction): GameState {
       let newYear = state.year
       const logEntries: string[] = []
 
-      let roundSummary: GameSummary | null = null
+      // Every contest resolved at the end of the round gets its own report, in order.
+      const roundSummaries: GameSummary[] = []
 
       if (isNewRound) {
         newRound = state.round + 1
@@ -1647,7 +1698,7 @@ function baseReducer(state: GameState, action: GameAction): GameState {
           compResults.sort((a, b) => b.total - a.total)
           const winnerName = newPlayers.find(p => p.id === bestPlayerId)?.name
           if (bestPlayerId) logEntries.push(`Global competition resolved! Winner: ${winnerName} (${STAT_LABELS[stat]}: ${bestTotal})`)
-          roundSummary = {
+          roundSummaries.push({
             kind: 'event',
             eventName: newGlobalComp.name,
             eventType: 'global_competition',
@@ -1656,7 +1707,7 @@ function baseReducer(state: GameState, action: GameAction): GameState {
             threshold: 0,
             results: compResults,
             winnerName,
-          }
+          })
           newGlobalComp = null
         }
 
@@ -1691,11 +1742,11 @@ function baseReducer(state: GameState, action: GameAction): GameState {
               }
             }
 
-            if (!roundSummary && results.length > 0) {
-              roundSummary = {
+            if (results.length > 0) {
+              roundSummaries.push({
                 kind: 'event', eventName: event.name, eventType: event.type,
                 stat: stat ?? undefined, locationName: loc.name, threshold, results,
-              }
+              })
             }
           }
 
@@ -1746,11 +1797,11 @@ function baseReducer(state: GameState, action: GameAction): GameState {
               }
             }
 
-            if (!roundSummary && results.length > 0) {
-              roundSummary = {
+            if (results.length > 0) {
+              roundSummaries.push({
                 kind: 'event', eventName: event.name, eventType: event.type,
                 locationName: loc.name, threshold: HAZARD_MIN, results,
-              }
+              })
             }
           }
 
@@ -1800,13 +1851,16 @@ function baseReducer(state: GameState, action: GameAction): GameState {
         followerDeck: newFollowerDeck,
         winner,
         phase: winner ? 'ended' : 'playing',
-        pendingSummary: roundSummary,
+        pendingSummary: roundSummaries[0] ?? null,
+        summaryQueue: roundSummaries.slice(1),
         log: [...logEntries, `${state.setup.timeline ? formatYear(newYear) : `Round ${newRound}`}: ${state.players[nextIdx].name}'s turn.`, ...state.log].slice(0, 20),
       }
     }
 
-    case 'DISMISS_SUMMARY':
-      return { ...state, pendingSummary: null }
+    case 'DISMISS_SUMMARY': {
+      const [next, ...rest] = state.summaryQueue ?? []
+      return { ...state, pendingSummary: next ?? null, summaryQueue: rest }
+    }
 
     case 'GLOBAL_COMP_REWARD': {
       const { playerId, rewardType } = action
@@ -1819,9 +1873,10 @@ function baseReducer(state: GameState, action: GameAction): GameState {
       let newPlayers = state.players
 
       if (rewardType === 'gp' && state.setup.timeline) {
-        // On the timeline the prize is a new lineage: choose a Great Person born later.
+        // On the timeline the prize is one more Great Person slot for good;
+        // settling then asks for the Great Person to fill it.
         newPlayers = newPlayers.map((p, i) =>
-          i === playerIdx ? { ...p, pendingSuccessors: [...p.pendingSuccessors, { predecessor: null, year: state.year }] } : p
+          i === playerIdx ? { ...p, extraSlots: (p.extraSlots ?? 0) + 1 } : p
         )
       } else if (rewardType === 'gp') {
         const card = newGpDeck.shift()
@@ -1910,7 +1965,7 @@ function baseReducer(state: GameState, action: GameAction): GameState {
         players: state.players.map((p, i) =>
           i === playerIdx ? { ...p, gpHand: [...p.gpHand, action.cardId], pendingSuccessors: p.pendingSuccessors.slice(1) } : p
         ),
-        log: [`${player.name} chose ${card?.figureName ?? 'a successor'} (born ${formatYear(card?.born ?? state.year)})${pending.predecessor ? ` to succeed ${figure(pending.predecessor)}` : ''}.`, ...state.log.slice(0, 19)],
+        log: [card ? choiceLine(player.name, card.id, pending) : `${player.name} chose a successor.`, ...state.log.slice(0, 19)],
       }
     }
 

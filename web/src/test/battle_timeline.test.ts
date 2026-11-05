@@ -6,6 +6,7 @@ import {
   ALL_GP_CARDS, CITY_STATE_CHANCE, CITY_STATE_YEARS, LEGACY_SLOTS, STATS, SUCCESSOR_CHOICES, TIMELINE_END_YEAR,
   careerStartYear, deathYear, describeLegacyEffect, freshTurnActions, gameReducer, getGPCard, hasHazardShield,
   initGame, initScriptedGame, legacyContest, lifeStatus, makeEventCard, rollCityStates, settle, successorOptions,
+  BASE_GP_SLOTS, gpSlots, lineageCount,
   type GameAction,
 } from '@/battle/engine'
 
@@ -13,7 +14,11 @@ afterEach(() => { vi.restoreAllMocks() })
 
 const card = (id: string) => getGPCard(id)!
 
-/** A quiet two-player timeline game (you vs one CPU) at `year`, with no city states and an empty board. */
+/**
+ * A quiet two-player timeline game (you vs one CPU) at `year`, with no city
+ * states and an empty board.  Each player has a Great Person slot for every
+ * card they are handed, so successions are owed as in a full table.
+ */
 function game(year: number, human: string[], cpu: string[] = []): GameState {
   const gs = initGame({
     mode: 'scenario', matchType: 'pvc', playerMode: 'pvc', eraMode: 'all', startEra: 'Renaissance',
@@ -27,6 +32,7 @@ function game(year: number, human: string[], cpu: string[] = []): GameState {
     players: gs.players.map((p, i) => ({
       ...p, gpHand: i === 0 ? human : cpu, archive: [], retired: [], pendingSuccessors: [],
       legacies: [], activeLegacies: [], winningPoints: 0,
+      extraSlots: Math.max(0, (i === 0 ? human : cpu).length - 1),
     })),
   }
 }
@@ -127,7 +133,7 @@ describe('death and succession', () => {
     const pool = ['titian', 'magellan', 'isabel_i', 'manuel_i', 'gutenberg', 'montezuma_ii', 'tlacaelel']
     const attacker = strongest(pool, 'strength')
     const victim = weakest(pool.filter(id => id !== attacker), 'strength')
-    let gs = game(1500, [], ['bayinnaung'])
+    let gs = game(1500, [], ['bayinnaung', victim])
     gs = place(gs, 0, 0, attacker)
     gs = place(gs, 0, 1, victim)
     gs = { ...gs, locations: gs.locations.map((l, i) => (i === 0 ? { ...l, activeEvent: makeEventCard('strength', 'local_event', 'ev'), eventRoundsLeft: 99 } : l)) }
@@ -184,7 +190,7 @@ describe('time skips', () => {
 
   it('does not skip while a human still has to choose a successor', () => {
     let gs = game(1600, ['bernini'], ['borromini'])
-    gs = { ...gs, players: gs.players.map((p, i) => (i === 0 ? { ...p, pendingSuccessors: [{ predecessor: 'magellan', year: 1600 }] } : p)) }
+    gs = { ...gs, players: gs.players.map((p, i) => (i === 0 ? { ...p, extraSlots: 1, pendingSuccessors: [{ predecessor: 'magellan', year: 1600 }] } : p)) }
     const settled = settle(gs)
     expect(settled.year).toBe(1600)
   })
@@ -355,7 +361,7 @@ describe('the Epic lessons keep the timeless rules', () => {
 
 describe('card data for the timeline', () => {
   it('every Great Person has a life, a career start and a legacy the engine understands', () => {
-    const kinds = new Set(['contest', 'follower', 'hazard_shield', 'longevity', 'prodigy', 'successors', 'income'])
+    const kinds = new Set(['contest', 'follower', 'hazard_shield', 'longevity', 'prodigy', 'successors', 'slots', 'income'])
     for (const c of ALL_GP_CARDS) {
       expect(Number.isInteger(c.born), c.id).toBe(true)
       if (c.died !== null) expect(c.died, c.id).toBeGreaterThan(c.born)
@@ -383,7 +389,8 @@ describe('a whole game', () => {
         const me = gs.players[0]
         if (me.pendingSuccessors.length) {
           const options = successorOptions(gs, me.id)
-          for (const id of options) expect(card(id).born).toBeGreaterThan(gs.year)
+          // The opening pick is among contemporaries; every later pick is born after now.
+          if (me.pendingSuccessors[0].reason !== 'start') for (const id of options) expect(card(id).born).toBeGreaterThan(gs.year)
           gs = gameReducer(gs, { type: 'CHOOSE_SUCCESSOR', playerId: me.id, cardId: options[0] })
           continue
         }
@@ -399,5 +406,77 @@ describe('a whole game', () => {
       expect(gs.phase, `${era} game did not finish`).toBe('ended')
       expect(gs.winner).not.toBeNull()
     }
+  })
+})
+
+describe('Great Person slots', () => {
+  it('everyone holds one Great Person when history opens', () => {
+    expect(BASE_GP_SLOTS).toBe(1)
+    const gs = initGame({ mode: 'scenario', matchType: 'pvc', playerMode: 'pvc', eraMode: 'all', startEra: 'Steam', playerNames: ['You'], numComputers: 2 })
+    for (const p of gs.players) expect(lineageCount(gs, p), p.name).toBe(1)
+  })
+
+  it('a slot legacy put into effect opens a pick for a new lineage, chosen from people born later', () => {
+    let gs = game(1600, ['bernini'])
+    gs = place(gs, 0, 0, 'bernini')
+    gs = { ...gs, players: gs.players.map((p, i) => (i === 0 ? { ...p, legacies: ['yekaterina'] } : p)) }
+    expect(gpSlots(gs.players[0])).toBe(1)
+    gs = gameReducer(gs, { type: 'SET_LEGACY', cardId: 'yekaterina', active: true })
+    expect(gpSlots(gs.players[0])).toBe(2)
+    const me = gs.players[0]
+    expect(me.pendingSuccessors).toEqual([expect.objectContaining({ predecessor: null, reason: 'slot' })])
+    const options = successorOptions(gs, me.id)
+    expect(options.length).toBeGreaterThan(0)
+    for (const id of options) expect(card(id).born).toBeGreaterThan(gs.year)
+    gs = gameReducer(gs, { type: 'CHOOSE_SUCCESSOR', playerId: me.id, cardId: options[0] })
+    expect(gs.players[0].gpHand).toContain(options[0])
+    expect(lineageCount(gs, gs.players[0])).toBe(2)
+  })
+
+  it('without the slot, a second lineage is not succeeded when its Great Person dies', () => {
+    // Two Great People but one slot: Magellan dies in 1521 and nobody replaces him.
+    let gs = game(1521, ['titian', 'magellan'])
+    gs = { ...gs, players: gs.players.map((p, i) => (i === 0 ? { ...p, extraSlots: 0 } : p)) }
+    gs = place(gs, 0, 0, 'titian')
+    gs = endRound(gs)
+    expect(gs.players[0].archive).toContain('magellan')
+    expect(gs.players[0].pendingSuccessors).toHaveLength(0)
+    expect(lineageCount(gs, gs.players[0])).toBe(1)
+  })
+
+  it('the global competition prize is a Great Person slot for good', () => {
+    let gs = game(1600, ['bernini'])
+    gs = gameReducer(gs, { type: 'GLOBAL_COMP_REWARD', playerId: 'player-0', rewardType: 'gp' })
+    expect(gs.players[0].extraSlots).toBe(1)
+    expect(gpSlots(gs.players[0])).toBe(2)
+    expect(gs.players[0].pendingSuccessors).toEqual([expect.objectContaining({ reason: 'slot' })])
+  })
+
+  it('four legacies open a slot, and the rules text says so', () => {
+    const slotCards = ALL_GP_CARDS.filter(c => c.legacy.effect.kind === 'slots').map(c => c.figureName).sort()
+    expect(slotCards).toEqual(['Catherine the Great', 'Chanakya', 'Isabel I of Castile', 'Sargon I'])
+    expect(describeLegacyEffect({ kind: 'slots', count: 1 })).toMatch(/slot/)
+  })
+})
+
+describe('reports for every contest', () => {
+  it('each survival check at the end of a round gets its own report, one after another', () => {
+    let gs = game(1600, ['bernini', 'titian'], ['borromini', 'magellan'])
+    gs = { ...gs, year: 1640 }
+    gs = place(gs, 0, 0, 'bernini')
+    gs = place(gs, 1, 1, 'borromini')
+    gs = {
+      ...gs,
+      locations: gs.locations.map((l, i) => (i < 2 ? { ...l, activeEvent: makeEventCard('culture', 'local_survival', `ev${i}`), eventRoundsLeft: 3 } : l)),
+    }
+    gs = endRound(gs)
+    expect(gs.pendingSummary?.kind).toBe('event')
+    const first = gs.pendingSummary
+    expect(gs.summaryQueue).toHaveLength(1)
+    gs = gameReducer(gs, { type: 'DISMISS_SUMMARY' })
+    expect(gs.pendingSummary?.kind).toBe('event')
+    expect(gs.pendingSummary).not.toBe(first)
+    gs = gameReducer(gs, { type: 'DISMISS_SUMMARY' })
+    expect(gs.pendingSummary).toBeNull()
   })
 })

@@ -101,10 +101,26 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "worldclock",
-            "configId": "baghdad-live",
-            "instruction": "The whole world is watching the same broadcast at the same moment. Work out what time Arnett's live reports reach each city.",
-            "fact": "Live television journalism from a war zone required split-second decisions: what to broadcast, how to frame it, what to leave out. Arnett's reporting from Baghdad was criticised by the US military as too sympathetic to Iraq and praised by journalists as the only independent witness in the city. Both sides were watching the same broadcast."
+            "game": "telegraphnet",
+            "configId": "indo",
+            "instruction": "Months before the bombing, CNN has paid for its own 'four-wire', a telephone circuit out of Baghdad that needs no operator to patch it through. Lay it west to Amman through every exchange on the desert road, one unbroken line.",
+            "fact": "Live television journalism from a war zone required split-second decisions: what to broadcast, how to frame it, what to leave out. Arnett's reporting from Baghdad was criticised by the US military as too sympathetic to Iraq and praised by journalists as the only independent witness in the city. Both sides were watching the same broadcast.",
+            "params": {
+              "title": "The Four-Wire, 1991",
+              "intro": "Run one single line from Baghdad to Amman through every exchange (no branches), using the least wire. When the bombs cut every other line, this one must still carry the broadcast out.",
+              "cityNames": [
+                "Bagh",
+                "Fall",
+                "Ram",
+                "Hit",
+                "Had",
+                "Rutb",
+                "Treb",
+                "Ruw",
+                "Zarq",
+                "Amm"
+              ]
+            }
           }
         },
         {

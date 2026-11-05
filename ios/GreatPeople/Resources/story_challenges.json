@@ -4711,10 +4711,18 @@
       },
       {
         "type": "minigame",
-        "game": "worldclock",
-        "configId": "linnaeus-apostles",
-        "instruction": "Linnaeus's students carry his system to every continent. Work out the hour where each of his 'apostles' is collecting, so the letters home can be dated.",
+        "game": "tradewinds",
+        "configId": "monsoon",
+        "instruction": "Linnaeus's student Pehr Osbeck sails as chaplain on a Swedish East Indiaman, collecting plants for his teacher. Bring the ship into Canton on the summer monsoon and home again on the winter one, specimens and all.",
         "fact": "Linnaeus sent some seventeen students — his 'apostles' — round the world: Osbeck to China, Hasselquist to the Levant, Forsskål to Arabia, Solander with Cook to Australia, Thunberg to Japan. Several died on the road, but the specimens they sent back made Linnaean names the common language of naturalists everywhere.",
+        "params": {
+          "title": "Osbeck Sails for Canton, 1751",
+          "intro": "Sail from Java Head to Canton on the south-west monsoon, then back on the north-east monsoon with the specimens. The wind reverses on the marked day: wait in port for it.",
+          "portNames": [
+            "Canton",
+            "Java Head"
+          ]
+        },
         "id": "the-naming-of-everything:4",
         "stage": "legacy",
         "difficulty": 4
@@ -5806,8 +5814,8 @@
         "type": "minigame",
         "game": "punnett",
         "configId": "mendel-peas",
-        "instruction": "Map Mendel's crosses on a Punnett square — the grid Reginald Punnett drew in 1905 to explain them — and predict which pea offspring will be smooth and which wrinkled.",
-        "fact": "A Punnett square maps out all possible genetic combinations from two parents. When Mendel crossed smooth-seeded (Ss) plants together, the square predicts 25% SS, 50% Ss, and 25% ss offspring — 75% smooth, 25% wrinkled. The 3:1 ratio that baffled naturalists for centuries was hiding in plain arithmetic.",
+        "instruction": "Breed peas the way Mendel did, crossing plants or letting one pollinate itself. Plan each cross on a Punnett square, the grid Reginald Punnett drew in 1905 to explain results like Mendel's, before you spend a season on it.",
+        "fact": "A Punnett square maps out all possible genetic combinations from two parents. When Mendel crossed round-seeded (Rr) plants together, the square predicts 25% RR, 50% Rr and 25% rr offspring: 75% round, 25% wrinkled. The 3:1 ratio that baffled naturalists for centuries was hiding in plain arithmetic.",
         "id": "garden-of-genetics:3",
         "stage": "mastery",
         "difficulty": 3
@@ -6322,11 +6330,20 @@
     "challenges": [
       {
         "type": "minigame",
-        "game": "worldclock",
-        "configId": "earhart-atlantic",
+        "game": "tradewinds",
+        "configId": "viking-fog",
         "seed": 2174,
-        "instruction": "Earhart takes off from Harbour Grace as the sun goes down and will fly into the sunrise. Work out the hour on each side of the ocean.",
+        "instruction": "Earhart takes off from Harbour Grace as the sun goes down. Her altimeter fails and she flies into cloud and storm: hold a true course east by compass and the stars to make landfall in Ireland.",
         "fact": "Earhart flew a single-engine Lockheed Vega 5B, painted red with gold trim. The same aeroplane now hangs in the Smithsonian's National Air and Space Museum in Washington.",
+        "params": {
+          "title": "Blind over the Atlantic, 1932",
+          "rule": "Cloud bends your heading",
+          "intro": "Fly east from Newfoundland to Ireland. In cloud you cannot see the sea or the stars, and a heading set blind drifts one point off. Climbing out for a star fix holds your heading true, but ice forms on the wings: you have only a few.",
+          "portNames": [
+            "Ireland"
+          ],
+          "craft": "plane"
+        },
         "id": "wings-over-the-atlantic:0",
         "stage": "origins",
         "difficulty": 1
@@ -7490,7 +7507,7 @@
         "game": "punnett",
         "configId": "chimp-blood",
         "seed": 4897,
-        "instruction": "On the lecture circuit Jane makes the case that chimpanzees are our close kin — down to their blood groups. Work out how a chimpanzee's blood group passes from parents to young.",
+        "instruction": "On the lecture circuit Jane makes the case that chimpanzees are our close kin, down to their blood groups and whether they can taste the bitter chemical PTC. Follow those genes from parents to young through a zoo colony.",
         "fact": "In 1986 Goodall helped organise the 'Understanding Chimpanzees' conference in Chicago. Reports there of vanishing forests and of chimpanzees hunted for meat and sold as pets turned her from field scientist into campaigner; since then she has travelled some 300 days a year.",
         "id": "among-the-chimpanzees:3",
         "stage": "mastery",
@@ -7595,10 +7612,60 @@
       },
       {
         "type": "minigame",
-        "game": "worldclock",
-        "configId": "atelier-cities",
-        "instruction": "Robuchon's kitchens now run on three continents, and he calls them all. Work out the time in each city before the phone rings.",
+        "game": "bazaar",
+        "configId": "kaifeng-night",
+        "instruction": "However many kitchens he runs, Robuchon still chooses his produce himself. Before dawn at Rungis, the great wholesale market of Paris, buy what the kitchen needs as prices fall, but before the other chefs clear the stalls.",
         "fact": "When Robuchon died in 2018, his restaurants around the world held 31 Michelin stars between them — more than any other chef.",
+        "params": {
+          "title": "Rungis Before Dawn",
+          "intro": "Buy the day’s produce at Rungis. Every hour, prices fall. But when a crowd of chefs gathers at a stall it is about to sell out. Wait for bargains, but buy before the crowd does, or before the market closes.",
+          "currency": "francs",
+          "setName": "menu",
+          "goods": [
+            {
+              "name": "Truffle",
+              "icon": "🍄"
+            },
+            {
+              "name": "Turbot",
+              "icon": "🐟"
+            },
+            {
+              "name": "Butter",
+              "icon": "🧈"
+            },
+            {
+              "name": "Potatoes",
+              "icon": "🥔"
+            },
+            {
+              "name": "Bresse chicken",
+              "icon": "🐔"
+            },
+            {
+              "name": "Langoustines",
+              "icon": "🦐"
+            }
+          ],
+          "names": [
+            "Marcel",
+            "Jeannot",
+            "Mère Brazier",
+            "Big Louis",
+            "Dédé",
+            "Madame Roux",
+            "Pierrot",
+            "Bernard",
+            "Lulu",
+            "Gaston",
+            "Old Henri",
+            "Josette",
+            "Fifi",
+            "Raymond",
+            "Claudette"
+          ],
+          "waitMsg": "Another hour passes at Rungis. Prices fall."
+        },
         "id": "the-chef-of-the-century:3",
         "stage": "legacy",
         "difficulty": 4
@@ -7692,10 +7759,26 @@
       },
       {
         "type": "minigame",
-        "game": "worldclock",
-        "configId": "baghdad-live",
-        "instruction": "The whole world is watching the same broadcast at the same moment. Work out what time Arnett's live reports reach each city.",
+        "game": "telegraphnet",
+        "configId": "indo",
+        "instruction": "Months before the bombing, CNN has paid for its own 'four-wire', a telephone circuit out of Baghdad that needs no operator to patch it through. Lay it west to Amman through every exchange on the desert road, one unbroken line.",
         "fact": "Live television journalism from a war zone required split-second decisions: what to broadcast, how to frame it, what to leave out. Arnett's reporting from Baghdad was criticised by the US military as too sympathetic to Iraq and praised by journalists as the only independent witness in the city. Both sides were watching the same broadcast.",
+        "params": {
+          "title": "The Four-Wire, 1991",
+          "intro": "Run one single line from Baghdad to Amman through every exchange (no branches), using the least wire. When the bombs cut every other line, this one must still carry the broadcast out.",
+          "cityNames": [
+            "Bagh",
+            "Fall",
+            "Ram",
+            "Hit",
+            "Had",
+            "Rutb",
+            "Treb",
+            "Ruw",
+            "Zarq",
+            "Amm"
+          ]
+        },
         "id": "voice-from-baghdad:3",
         "stage": "legacy",
         "difficulty": 4
