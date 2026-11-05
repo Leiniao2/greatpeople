@@ -1102,6 +1102,16 @@ export function recordDeaths(state: GameState, players: PlayerState[], deaths: {
   })
 }
 
+/**
+ * Followers serve a Great Person: when a player's last Great Person in a city
+ * dies, that player's Followers there are discarded with them. Event cards
+ * (in play or in hand) are untouched.
+ */
+export function dropLeaderlessFollowers(cards: OnboardCard[], bereaved: Iterable<string>): OnboardCard[] {
+  const leaderless = new Set([...bereaved].filter(pid => !cards.some(c => c.type === 'gp' && c.playerId === pid)))
+  return leaderless.size ? cards.filter(c => !(c.type === 'follower' && leaderless.has(c.playerId))) : cards
+}
+
 function gpDeaths(removed: OnboardCard[]): { playerId: string; cardId: string }[] {
   return removed.filter(c => c.type === 'gp').map(c => ({ playerId: c.playerId, cardId: c.cardId }))
 }
@@ -1148,10 +1158,12 @@ export function advanceYear(state: GameState, opts: { fastForward?: boolean } = 
     }
   }
   const dead = new Set(deaths.map(d => `${d.playerId}:${d.cardId}`))
-  let locations = state.locations.map(loc => ({
-    ...loc,
-    cards: loc.cards.filter(c => !(c.type === 'gp' && dead.has(`${c.playerId}:${c.cardId}`))),
-  }))
+  let locations = state.locations.map(loc => {
+    const died = loc.cards.filter(c => c.type === 'gp' && dead.has(`${c.playerId}:${c.cardId}`))
+    if (!died.length) return loc
+    const cards = loc.cards.filter(c => !died.includes(c))
+    return { ...loc, cards: dropLeaderlessFollowers(cards, died.map(c => c.playerId)) }
+  })
   let players = recordDeaths({ ...state, year }, state.players, deaths)
 
   // Income legacies pay on every `every`-th year of the game.
@@ -1682,10 +1694,10 @@ function baseReducer(state: GameState, action: GameAction): GameState {
         if (action.kill) {
           newLocations = newLocations.map(l =>
             l.id === locationId
-              ? { ...l, cards: l.cards.filter(c => c.instanceId !== loserInstanceId) }
+              ? { ...l, cards: dropLeaderlessFollowers(l.cards.filter(c => c.instanceId !== loserInstanceId), loserCard.type === 'gp' ? [loserCard.playerId] : []) }
               : l
           )
-          // A Great Person killed in play dies: on the timeline its owner chooses a successor.
+          // A Great Person killed in play dies (their Followers here go with them if they were the last): on the timeline its owner chooses a successor.
           newPlayers = recordDeaths(state, newPlayers, gpDeaths([loserCard]))
           // Winning a fight earns no legacy by itself: each card has its own achievement.
         } else {
