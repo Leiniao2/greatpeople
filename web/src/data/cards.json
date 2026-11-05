@@ -3285,5 +3285,2655 @@
     "died": 1487,
     "id": "tlacaelel",
     "portraitUrl": "/portraits/portrait_tlacaelel.jpeg"
+  },
+  {
+    "id": "djoser",
+    "figureName": "Djoser",
+    "era": "Ancient",
+    "gender": "male",
+    "identities": [
+      "Sovereign"
+    ],
+    "portraitKey": "djoser",
+    "politics": 6,
+    "strength": 4,
+    "culture": 5,
+    "wealth": 6,
+    "intelligence": 3,
+    "technique": 2,
+    "belief": 6,
+    "reputation": 8,
+    "lore": "The god-king who first built in stone.",
+    "trait": "Step Pyramid — While an allied Architect (GP or Follower) is at this location, this card gains +3 reputation.",
+    "achievement": "House of Eternity — End your turn with an allied Architect and an allied Priest or Monastic in this card's city.",
+    "legacy": {
+      "name": "The Step Pyramid",
+      "unlock": {
+        "stat": "reputation",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "reputation",
+        "amount": 2,
+        "context": "any"
+      },
+      "flavour": "The first pyramid still stands at Saqqara."
+    },
+    "years": "c. 2700–2649 BC",
+    "born": -2700,
+    "died": -2649,
+    "countries": [
+      "Egypt"
+    ]
+  },
+  {
+    "id": "sneferu",
+    "figureName": "Sneferu",
+    "era": "Ancient",
+    "gender": "male",
+    "identities": [
+      "Sovereign",
+      "Architect"
+    ],
+    "portraitKey": "sneferu",
+    "politics": 4,
+    "strength": 4,
+    "culture": 4,
+    "wealth": 6,
+    "intelligence": 3,
+    "technique": 7,
+    "belief": 4,
+    "reputation": 8,
+    "lore": "He built pyramid after pyramid until one came out true.",
+    "trait": "Bent Pyramid — This card gains +1 technique for each allied Follower at this location (at most +4).",
+    "achievement": "Red Pyramid — End 3 years in a row in the same city with at least 2 allied Followers there.",
+    "legacy": {
+      "name": "Pyramids of Dahshur",
+      "unlock": {
+        "stat": "reputation",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "income",
+        "card": "follower",
+        "every": 5
+      },
+      "flavour": "Three pyramids took the labour of a whole nation."
+    },
+    "years": "c. 2640–2589 BC",
+    "born": -2640,
+    "died": -2589,
+    "countries": [
+      "Egypt"
+    ]
+  },
+  {
+    "id": "puabi",
+    "figureName": "Puabi",
+    "era": "Ancient",
+    "gender": "female",
+    "identities": [
+      "Sovereign",
+      "Noble"
+    ],
+    "portraitKey": "puabi",
+    "politics": 5,
+    "strength": 3,
+    "culture": 8,
+    "wealth": 10,
+    "intelligence": 3,
+    "technique": 5,
+    "belief": 6,
+    "reputation": 4,
+    "lore": "Queen of Ur, buried in gold with her whole court.",
+    "trait": "Royal Tomb — While another allied Great Person is at this location, this card gains +3 wealth.",
+    "achievement": "Great Death Pit — Another allied Great Person dies in this card's city.",
+    "legacy": {
+      "name": "The Queen's Lyre",
+      "unlock": {
+        "stat": "wealth",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "culture",
+        "amount": 2,
+        "context": "any"
+      },
+      "flavour": "Her bull-headed golden lyre still plays in museums."
+    },
+    "years": "c. 2620–2580 BC",
+    "born": -2620,
+    "died": -2580,
+    "countries": [
+      "Mesopotamia"
+    ]
+  },
+  {
+    "id": "meskalamdug",
+    "figureName": "Meskalamdug",
+    "era": "Ancient",
+    "gender": "male",
+    "identities": [
+      "Warrior"
+    ],
+    "portraitKey": "meskalamdug",
+    "politics": 3,
+    "strength": 10,
+    "culture": 3,
+    "wealth": 7,
+    "intelligence": 2,
+    "technique": 5,
+    "belief": 3,
+    "reputation": 4,
+    "lore": "The hero of the royal tombs of Ur, crowned in a golden helmet.",
+    "trait": "Golden Helmet — While an allied Sovereign is at this location, this card gains +3 strength.",
+    "achievement": "Hero of Ur — Win 2 fights in strength.",
+    "legacy": {
+      "name": "The Golden Helmet",
+      "unlock": {
+        "stat": "strength",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "strength",
+        "amount": 3,
+        "context": "defend"
+      },
+      "flavour": "Beaten from one sheet of gold, it shows every lock of his hair."
+    },
+    "years": "c. 2620–2580 BC",
+    "born": -2620,
+    "died": -2580,
+    "countries": [
+      "Mesopotamia"
+    ]
+  },
+  {
+    "id": "ku_baba",
+    "figureName": "Ku-Baba",
+    "era": "Ancient",
+    "gender": "female",
+    "identities": [
+      "Merchant"
+    ],
+    "portraitKey": "ku_baba",
+    "politics": 6,
+    "strength": 4,
+    "culture": 5,
+    "wealth": 10,
+    "intelligence": 4,
+    "technique": 4,
+    "belief": 3,
+    "reputation": 5,
+    "lore": "The tavern keeper who became queen of Kish.",
+    "trait": "Alewife Queen — This card gains +1 politics for each allied Follower at this location (at most +4).",
+    "achievement": "House of Kish — End your turn with 3 or more allied Followers in this card's city.",
+    "legacy": {
+      "name": "Third Dynasty of Kish",
+      "unlock": {
+        "stat": "wealth",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "successors",
+        "count": 1
+      },
+      "flavour": "The Sumerian King List gives her a dynasty of her own."
+    },
+    "years": "c. 2510–2440 BC",
+    "born": -2510,
+    "died": -2440,
+    "countries": [
+      "Mesopotamia"
+    ]
+  },
+  {
+    "id": "eannatum",
+    "figureName": "Eannatum",
+    "era": "Ancient",
+    "gender": "male",
+    "identities": [
+      "General"
+    ],
+    "portraitKey": "eannatum",
+    "politics": 5,
+    "strength": 10,
+    "culture": 2,
+    "wealth": 3,
+    "intelligence": 3,
+    "technique": 6,
+    "belief": 4,
+    "reputation": 5,
+    "lore": "Victor of the Stele of the Vultures, first of the empire builders.",
+    "trait": "Phalanx — While at least 2 allied Soldiers, Warriors or Generals (GP or Follower) are at this location, this card gains +3 strength.",
+    "achievement": "Stele of the Vultures — Win a fight in strength while you have more cards than your rival in the city.",
+    "legacy": {
+      "name": "Stele of the Vultures",
+      "unlock": {
+        "stat": "strength",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "follower",
+        "stat": "strength",
+        "amount": 2
+      },
+      "flavour": "His shield wall is carved in stone, vultures overhead."
+    },
+    "years": "c. 2490–2425 BC",
+    "born": -2490,
+    "died": -2425,
+    "countries": [
+      "Mesopotamia"
+    ]
+  },
+  {
+    "id": "ur_nanshe",
+    "figureName": "Ur-Nanshe",
+    "era": "Ancient",
+    "gender": "male",
+    "identities": [
+      "Architect"
+    ],
+    "portraitKey": "ur_nanshe",
+    "politics": 4,
+    "strength": 5,
+    "culture": 5,
+    "wealth": 6,
+    "intelligence": 3,
+    "technique": 9,
+    "belief": 7,
+    "reputation": 2,
+    "lore": "Founder of Lagash, who carried the temple bricks on his own head.",
+    "trait": "Brick Bearer — While this card is the only allied Great Person at this location, it gains +2 technique and +2 belief.",
+    "achievement": "Canals of Lagash — End 2 years in a row holding the most technique in this card's city.",
+    "legacy": {
+      "name": "House of Lagash",
+      "unlock": {
+        "stat": "technique",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "successors",
+        "count": 1
+      },
+      "flavour": "His dynasty ruled Lagash for five generations."
+    },
+    "years": "c. 2520–2465 BC",
+    "born": -2520,
+    "died": -2465,
+    "countries": [
+      "Mesopotamia"
+    ]
+  },
+  {
+    "id": "emperor_yao",
+    "figureName": "Emperor Yao",
+    "era": "Ancient",
+    "gender": "male",
+    "identities": [
+      "Astronomer",
+      "Philosopher"
+    ],
+    "portraitKey": "emperor_yao",
+    "politics": 6,
+    "strength": 3,
+    "culture": 5,
+    "wealth": 4,
+    "intelligence": 6,
+    "technique": 5,
+    "belief": 5,
+    "reputation": 10,
+    "lore": "The sage-king who gave his throne to the worthiest, not to his son.",
+    "trait": "Calendar of Yao — While an allied Astronomer or Educator is at this location, this card gains +3 reputation.",
+    "achievement": "Sage King — Win the global competition while this card is on the board.",
+    "legacy": {
+      "name": "Shun the Worthy",
+      "unlock": {
+        "stat": "reputation",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "successors",
+        "count": 1
+      },
+      "flavour": "Yao passed his throne to Shun, the ablest man he could find."
+    },
+    "years": "c. 2377–2255 BC (traditional)",
+    "born": -2377,
+    "died": -2255,
+    "countries": [
+      "China"
+    ]
+  },
+  {
+    "id": "harkhuf",
+    "figureName": "Harkhuf",
+    "era": "Ancient",
+    "gender": "male",
+    "identities": [
+      "Explorer",
+      "Merchant"
+    ],
+    "portraitKey": "harkhuf",
+    "politics": 3,
+    "strength": 5,
+    "culture": 3,
+    "wealth": 9,
+    "intelligence": 4,
+    "technique": 5,
+    "belief": 3,
+    "reputation": 4,
+    "lore": "Caravan master who brought the wonders of Nubia home to a boy pharaoh.",
+    "trait": "Road to Yam — While an allied Merchant or Explorer is at this location, this card gains +3 wealth.",
+    "achievement": "Gifts for the Boy King — End your turn with an allied Sovereign and an allied Merchant or Explorer in this card's city.",
+    "legacy": {
+      "name": "Four Expeditions",
+      "unlock": {
+        "stat": "wealth",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "wealth",
+        "amount": 2,
+        "context": "any"
+      },
+      "flavour": "His tomb at Aswan lists every load of ebony, incense and ivory."
+    },
+    "years": "c. 2310–2250 BC",
+    "born": -2310,
+    "died": -2250,
+    "countries": [
+      "Egypt"
+    ]
+  },
+  {
+    "id": "enheduanna",
+    "figureName": "Enheduanna",
+    "era": "Ancient",
+    "gender": "female",
+    "identities": [
+      "Priest",
+      "Writer"
+    ],
+    "portraitKey": "enheduanna",
+    "politics": 5,
+    "strength": 3,
+    "culture": 9,
+    "wealth": 4,
+    "intelligence": 5,
+    "technique": 3,
+    "belief": 11,
+    "reputation": 4,
+    "lore": "The world's first named author, high priestess of the moon god.",
+    "trait": "Hymns to Inanna — While an allied Writer or Priest is at this location, this card gains +2 culture and +2 belief.",
+    "achievement": "Exaltation of Inanna — Survive a scenario in this card's city that a rival fails.",
+    "legacy": {
+      "name": "The Temple Hymns",
+      "unlock": {
+        "stat": "belief",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "income",
+        "card": "event",
+        "every": 5
+      },
+      "flavour": "Scribes copied her hymns for five hundred years."
+    },
+    "years": "c. 2300–2250 BC",
+    "born": -2300,
+    "died": -2250,
+    "countries": [
+      "Mesopotamia"
+    ]
+  },
+  {
+    "id": "mursili_i",
+    "figureName": "Mursili I",
+    "era": "Ancient",
+    "gender": "male",
+    "identities": [
+      "General"
+    ],
+    "portraitKey": "mursili_i",
+    "politics": 5,
+    "strength": 10,
+    "culture": 2,
+    "wealth": 5,
+    "intelligence": 2,
+    "technique": 6,
+    "belief": 3,
+    "reputation": 3,
+    "lore": "The Hittite king who marched a thousand miles to sack Babylon.",
+    "trait": "March on Babylon — While a rival Great Person is at this location, this card gains +2 strength.",
+    "achievement": "Sack of Babylon — Kill a rival Great Person in a fight in a city where this is your only card.",
+    "legacy": {
+      "name": "Hittite Chariots",
+      "unlock": {
+        "stat": "strength",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "strength",
+        "amount": 3,
+        "context": "attack"
+      },
+      "flavour": "Babylon fell to him, and Hammurabi’s dynasty with it."
+    },
+    "years": "c. 1620–1590 BC",
+    "born": -1620,
+    "died": -1590,
+    "countries": [
+      "Turkey"
+    ]
+  },
+  {
+    "id": "yi_yin",
+    "figureName": "Yi Yin",
+    "era": "Ancient",
+    "gender": "male",
+    "identities": [
+      "Gourmet",
+      "Statesman"
+    ],
+    "portraitKey": "yi_yin",
+    "politics": 7,
+    "strength": 4,
+    "culture": 5,
+    "wealth": 5,
+    "intelligence": 6,
+    "technique": 9,
+    "belief": 3,
+    "reputation": 3,
+    "lore": "A cook who reasoned a dynasty into being over a bowl of soup.",
+    "trait": "Cauldron Counsel — While an allied Sovereign is at this location, this card gains +3 politics.",
+    "achievement": "Regent of Shang — End 3 years in a row in the same city as an allied Sovereign.",
+    "legacy": {
+      "name": "The Five Flavours",
+      "unlock": {
+        "stat": "technique",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "follower",
+        "stat": "technique",
+        "amount": 2
+      },
+      "flavour": "Chinese cooks still honour him as the father of their craft."
+    },
+    "years": "c. 1648–1549 BC",
+    "born": -1648,
+    "died": -1549,
+    "countries": [
+      "China"
+    ]
+  },
+  {
+    "id": "nedjeh",
+    "figureName": "Nedjeh",
+    "era": "Ancient",
+    "gender": "male",
+    "identities": [
+      "Sovereign",
+      "Merchant"
+    ],
+    "portraitKey": "nedjeh",
+    "politics": 5,
+    "strength": 6,
+    "culture": 2,
+    "wealth": 10,
+    "intelligence": 2,
+    "technique": 4,
+    "belief": 4,
+    "reputation": 5,
+    "lore": "Ruler of Kerma, whose Nubian gold was the envy of Egypt.",
+    "trait": "Gold of Kush — While a rival Great Person from Egypt is at this location, this card gains +3 strength.",
+    "achievement": "Western Deffufa — End your turn with 15 or more wealth of your own in this card's city.",
+    "legacy": {
+      "name": "Kerma Gold",
+      "unlock": {
+        "stat": "wealth",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "income",
+        "card": "follower",
+        "every": 5
+      },
+      "flavour": "Kush outlasted the Hyksos and rivalled Egypt for a century."
+    },
+    "years": "c. 1640–1580 BC",
+    "born": -1640,
+    "died": -1580,
+    "countries": [
+      "Sudan"
+    ]
+  },
+  {
+    "id": "queen_tiye",
+    "figureName": "Queen Tiye",
+    "era": "Ancient",
+    "gender": "female",
+    "identities": [
+      "Noble",
+      "Statesman"
+    ],
+    "portraitKey": "queen_tiye",
+    "politics": 10,
+    "strength": 3,
+    "culture": 6,
+    "wealth": 6,
+    "intelligence": 6,
+    "technique": 3,
+    "belief": 5,
+    "reputation": 5,
+    "lore": "The commoner-born queen to whom foreign kings wrote directly.",
+    "trait": "Great Royal Wife — While an allied Sovereign is at this location, this card gains +3 politics.",
+    "achievement": "Amarna Letters — End your turn with allied cards in 3 or more cities, an allied Statesman in one of the others.",
+    "legacy": {
+      "name": "Royal Correspondence",
+      "unlock": {
+        "stat": "politics",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "politics",
+        "amount": 2,
+        "context": "any"
+      },
+      "flavour": "Mitanni’s king begged her to keep the peace after her husband died."
+    },
+    "years": "c. 1398–1338 BC",
+    "born": -1398,
+    "died": -1338,
+    "countries": [
+      "Egypt"
+    ]
+  },
+  {
+    "id": "tushratta",
+    "figureName": "Tushratta",
+    "era": "Ancient",
+    "gender": "male",
+    "identities": [
+      "Statesman"
+    ],
+    "portraitKey": "tushratta",
+    "politics": 6,
+    "strength": 5,
+    "culture": 3,
+    "wealth": 6,
+    "intelligence": 3,
+    "technique": 3,
+    "belief": 4,
+    "reputation": 8,
+    "lore": "King of Mitanni, who traded princesses and gold for peace with Egypt.",
+    "trait": "Brother Kings — While a rival Sovereign is at this location, this card gains +2 politics and +2 reputation.",
+    "achievement": "Gifts for Pharaoh — Win a fight, survival or competition in reputation or politics.",
+    "legacy": {
+      "name": "Mitanni Horses",
+      "unlock": {
+        "stat": "reputation",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "follower",
+        "stat": "reputation",
+        "amount": 2
+      },
+      "flavour": "His horse trainer Kikkuli wrote the oldest manual of chariot horses."
+    },
+    "years": "c. 1400–1350 BC",
+    "born": -1400,
+    "died": -1350,
+    "countries": [
+      "Syria"
+    ]
+  },
+  {
+    "id": "suppiluliuma_i",
+    "figureName": "Suppiluliuma I",
+    "era": "Ancient",
+    "gender": "male",
+    "identities": [
+      "General"
+    ],
+    "portraitKey": "suppiluliuma_i",
+    "politics": 8,
+    "strength": 9,
+    "culture": 2,
+    "wealth": 5,
+    "intelligence": 3,
+    "technique": 5,
+    "belief": 3,
+    "reputation": 6,
+    "lore": "The Hittite great king who swallowed Mitanni and was asked for a prince by Egypt.",
+    "trait": "Great King — This card gains +2 strength for each rival Great Person at this location (at most +4).",
+    "achievement": "Empire of Hatti — Win fights in 3 different cities.",
+    "legacy": {
+      "name": "Empire of Hatti",
+      "unlock": {
+        "stat": "strength",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "strength",
+        "amount": 2,
+        "context": "any"
+      },
+      "flavour": "From Anatolia to Syria, his treaties held the Bronze Age together."
+    },
+    "years": "c. 1395–1322 BC",
+    "born": -1395,
+    "died": -1322,
+    "countries": [
+      "Turkey"
+    ]
+  },
+  {
+    "id": "gyges",
+    "figureName": "Gyges",
+    "era": "Ancient",
+    "gender": "male",
+    "identities": [
+      "Spy"
+    ],
+    "portraitKey": "gyges",
+    "politics": 5,
+    "strength": 5,
+    "culture": 3,
+    "wealth": 10,
+    "intelligence": 4,
+    "technique": 4,
+    "belief": 2,
+    "reputation": 3,
+    "lore": "The shepherd-king of Lydia whose ring, said Plato, made him invisible.",
+    "trait": "Ring of Gyges — While this card is the only allied card at this location, it gains +3 wealth and +2 intelligence.",
+    "achievement": "The Invisible King — Win a fight in this card's city while it is hidden.",
+    "legacy": {
+      "name": "Electrum of Sardis",
+      "unlock": {
+        "stat": "wealth",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "wealth",
+        "amount": 3,
+        "context": "any"
+      },
+      "flavour": "Lydia soon struck the world’s first coins."
+    },
+    "years": "c. 700–644 BC",
+    "born": -700,
+    "died": -644,
+    "countries": [
+      "Turkey"
+    ]
+  },
+  {
+    "id": "guan_zhong",
+    "figureName": "Guan Zhong",
+    "era": "Ancient",
+    "gender": "male",
+    "identities": [
+      "Economist",
+      "Statesman"
+    ],
+    "portraitKey": "guan_zhong",
+    "politics": 9,
+    "strength": 3,
+    "culture": 4,
+    "wealth": 11,
+    "intelligence": 7,
+    "technique": 4,
+    "belief": 2,
+    "reputation": 4,
+    "lore": "Chancellor who made Qi rich with salt, iron and order.",
+    "trait": "Salt and Iron — While an allied Merchant or Banker is at this location, this card gains +3 wealth.",
+    "achievement": "Hegemon of Qi — End your turn with an allied Sovereign in this card's city and the most wealth there.",
+    "legacy": {
+      "name": "Granaries of Qi",
+      "unlock": {
+        "stat": "wealth",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "income",
+        "card": "follower",
+        "every": 5
+      },
+      "flavour": "When granaries are full, he said, people know good manners."
+    },
+    "years": "c. 720–645 BC",
+    "born": -720,
+    "died": -645,
+    "countries": [
+      "China"
+    ]
+  },
+  {
+    "id": "cyrus_the_great",
+    "figureName": "Cyrus the Great",
+    "era": "Ancient",
+    "gender": "male",
+    "identities": [
+      "Sovereign",
+      "General"
+    ],
+    "portraitKey": "cyrus_the_great",
+    "politics": 6,
+    "strength": 7,
+    "culture": 5,
+    "wealth": 5,
+    "intelligence": 4,
+    "technique": 3,
+    "belief": 5,
+    "reputation": 9,
+    "lore": "King of kings, who let the exiles of Babylon go home.",
+    "trait": "Cylinder of Cyrus — This card gains +1 reputation for each different country among the Great People at this location.",
+    "achievement": "Babylon Opens Its Gates — Win a fight in politics or reputation against a rival Sovereign.",
+    "legacy": {
+      "name": "Royal Road",
+      "unlock": {
+        "stat": "reputation",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "locations",
+        "count": 1
+      },
+      "flavour": "Persian couriers crossed his empire in nine days."
+    },
+    "years": "c. 600–530 BC",
+    "born": -600,
+    "died": -530,
+    "countries": [
+      "Persia"
+    ]
+  },
+  {
+    "id": "confucius",
+    "figureName": "Confucius",
+    "era": "Ancient",
+    "gender": "male",
+    "identities": [
+      "Philosopher",
+      "Educator"
+    ],
+    "portraitKey": "confucius",
+    "politics": 5,
+    "strength": 3,
+    "culture": 8,
+    "wealth": 2,
+    "intelligence": 7,
+    "technique": 3,
+    "belief": 9,
+    "reputation": 3,
+    "lore": "The teacher whose sayings shaped two thousand years of East Asia.",
+    "trait": "Analects — This card gains +1 intelligence and +1 belief for each allied Educator, Philosopher or Writer at this location (at most +3).",
+    "achievement": "Seventy-Two Disciples — End your turn with 3 allied Educators, Philosophers or Writers in this card's city.",
+    "legacy": {
+      "name": "The Analects",
+      "unlock": {
+        "stat": "belief",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "successors",
+        "count": 1
+      },
+      "flavour": "His disciples wrote down his words, and their students kept going."
+    },
+    "years": "551–479 BC",
+    "born": -551,
+    "died": -479,
+    "countries": [
+      "China"
+    ]
+  },
+  {
+    "id": "tomyris",
+    "figureName": "Tomyris",
+    "era": "Ancient",
+    "gender": "female",
+    "identities": [
+      "Sovereign",
+      "Warrior"
+    ],
+    "portraitKey": "tomyris",
+    "politics": 5,
+    "strength": 10,
+    "culture": 2,
+    "wealth": 4,
+    "intelligence": 3,
+    "technique": 6,
+    "belief": 4,
+    "reputation": 3,
+    "lore": "The steppe queen who defeated Cyrus the Great.",
+    "trait": "Massagetae Archers — While a rival Sovereign is at this location, this card gains +3 strength.",
+    "achievement": "Fall of Cyrus — Win a fight in strength against a rival Sovereign Great Person.",
+    "legacy": {
+      "name": "Queen of the Steppe",
+      "unlock": {
+        "stat": "strength",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "strength",
+        "amount": 3,
+        "context": "defend"
+      },
+      "flavour": "Herodotus thought her war the fiercest ever fought."
+    },
+    "years": "c. 570–520 BC",
+    "born": -570,
+    "died": -520,
+    "countries": [
+      "Kazakhstan"
+    ]
+  },
+  {
+    "id": "chandragupta_maurya",
+    "figureName": "Chandragupta Maurya",
+    "era": "Classical",
+    "gender": "male",
+    "identities": [
+      "Sovereign"
+    ],
+    "portraitKey": "chandragupta_maurya",
+    "politics": 9,
+    "strength": 7,
+    "culture": 4,
+    "wealth": 6,
+    "intelligence": 3,
+    "technique": 4,
+    "belief": 6,
+    "reputation": 5,
+    "lore": "Founded India's first great empire, then gave it up to become a monk.",
+    "trait": "Kautilya's Student — While Chanakya or an allied Philosopher is at this location, this card gains +3 politics.",
+    "achievement": "Mauryan Empire — End your turn with allied cards in 3 or more cities and an allied Philosopher or Statesman in this card's city.",
+    "legacy": {
+      "name": "Mauryan Empire",
+      "unlock": {
+        "stat": "politics",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "follower",
+        "stat": "politics",
+        "amount": 2
+      },
+      "flavour": "His grandson Ashoka inherited half a continent."
+    },
+    "years": "c. 340–297 BC",
+    "born": -340,
+    "died": -297,
+    "countries": [
+      "India"
+    ]
+  },
+  {
+    "id": "epicurus",
+    "figureName": "Epicurus",
+    "era": "Classical",
+    "gender": "male",
+    "identities": [
+      "Philosopher"
+    ],
+    "portraitKey": "epicurus",
+    "politics": 2,
+    "strength": 3,
+    "culture": 8,
+    "wealth": 4,
+    "intelligence": 8,
+    "technique": 3,
+    "belief": 9,
+    "reputation": 5,
+    "lore": "Taught that a quiet garden among friends is the good life.",
+    "trait": "The Garden — While no rival card is at this location, this card gains +3 belief.",
+    "achievement": "Ataraxia — End 3 years in a row in the same city with no fight there.",
+    "legacy": {
+      "name": "The Garden School",
+      "unlock": {
+        "stat": "belief",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "longevity",
+        "years": 10
+      },
+      "flavour": "His school in Athens met for six hundred years."
+    },
+    "years": "341–270 BC",
+    "born": -341,
+    "died": -270,
+    "countries": [
+      "Greece"
+    ]
+  },
+  {
+    "id": "julius_caesar",
+    "figureName": "Julius Caesar",
+    "era": "Classical",
+    "gender": "male",
+    "identities": [
+      "General",
+      "Statesman"
+    ],
+    "portraitKey": "julius_caesar",
+    "politics": 8,
+    "strength": 7,
+    "culture": 3,
+    "wealth": 5,
+    "intelligence": 4,
+    "technique": 4,
+    "belief": 3,
+    "reputation": 10,
+    "lore": "He came, he saw, he conquered, and was stabbed for it.",
+    "trait": "Legions of Gaul — While at least 2 allied Soldiers or Generals (GP or Follower) are at this location, this card gains +2 strength and +2 reputation.",
+    "achievement": "Veni, Vidi, Vici — Move this card into a city and win a fight there as the attacker in the same turn.",
+    "legacy": {
+      "name": "Crossing the Rubicon",
+      "unlock": {
+        "stat": "reputation",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "reputation",
+        "amount": 3,
+        "context": "attack"
+      },
+      "flavour": "The die was cast, and the Republic ended with it."
+    },
+    "years": "100–44 BC",
+    "born": -100,
+    "died": -44,
+    "countries": [
+      "Rome"
+    ]
+  },
+  {
+    "id": "cleopatra_vii",
+    "figureName": "Cleopatra VII",
+    "era": "Classical",
+    "gender": "female",
+    "identities": [
+      "Sovereign",
+      "Scientist"
+    ],
+    "portraitKey": "cleopatra_vii",
+    "politics": 9,
+    "strength": 3,
+    "culture": 5,
+    "wealth": 7,
+    "intelligence": 7,
+    "technique": 3,
+    "belief": 5,
+    "reputation": 5,
+    "lore": "The last pharaoh, who spoke nine languages and bent Rome's generals to her plans.",
+    "trait": "Queen of Kings — While a rival General is at this location, this card gains +3 politics.",
+    "achievement": "Alliance with Rome — End your turn in a city with a Great Person from Rome.",
+    "legacy": {
+      "name": "Library of Alexandria",
+      "unlock": {
+        "stat": "politics",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "intelligence",
+        "amount": 2,
+        "context": "competition"
+      },
+      "flavour": "She wrote on medicine and cosmetics and read in every language of her court."
+    },
+    "years": "69–30 BC",
+    "born": -69,
+    "died": -30,
+    "countries": [
+      "Egypt"
+    ]
+  },
+  {
+    "id": "vercingetorix",
+    "figureName": "Vercingetorix",
+    "era": "Classical",
+    "gender": "male",
+    "identities": [
+      "Warrior"
+    ],
+    "portraitKey": "vercingetorix",
+    "politics": 6,
+    "strength": 9,
+    "culture": 2,
+    "wealth": 2,
+    "intelligence": 2,
+    "technique": 6,
+    "belief": 6,
+    "reputation": 3,
+    "lore": "United the tribes of Gaul against Caesar at Alesia.",
+    "trait": "Alesia — While a rival Great Person from Rome is at this location, this card gains +3 strength.",
+    "achievement": "Gergovia — Win a fight as the defender while a rival General is in this card's city.",
+    "legacy": {
+      "name": "Revolt of the Gauls",
+      "unlock": {
+        "stat": "strength",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "strength",
+        "amount": 2,
+        "context": "defend"
+      },
+      "flavour": "At Gergovia he beat Caesar himself."
+    },
+    "years": "c. 82–46 BC",
+    "born": -82,
+    "died": -46,
+    "countries": [
+      "France"
+    ]
+  },
+  {
+    "id": "shapur_i",
+    "figureName": "Shapur I",
+    "era": "Classical",
+    "gender": "male",
+    "identities": [
+      "General"
+    ],
+    "portraitKey": "shapur_i",
+    "politics": 5,
+    "strength": 7,
+    "culture": 3,
+    "wealth": 4,
+    "intelligence": 3,
+    "technique": 4,
+    "belief": 3,
+    "reputation": 8,
+    "lore": "The Sasanian king who took a Roman emperor alive.",
+    "trait": "Triumph over Valerian — While a rival Sovereign is at this location, this card gains +2 strength and +2 reputation.",
+    "achievement": "Captive Emperor — Win a fight against a rival Great Person without killing them.",
+    "legacy": {
+      "name": "Naqsh-e Rostam",
+      "unlock": {
+        "stat": "reputation",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "reputation",
+        "amount": 2,
+        "context": "any"
+      },
+      "flavour": "His triumph is carved in the cliffs beside the tombs of Darius."
+    },
+    "years": "c. 215–270",
+    "born": 215,
+    "died": 270,
+    "countries": [
+      "Persia"
+    ]
+  },
+  {
+    "id": "zenobia",
+    "figureName": "Zenobia",
+    "era": "Classical",
+    "gender": "female",
+    "identities": [
+      "Sovereign",
+      "Warrior"
+    ],
+    "portraitKey": "zenobia",
+    "politics": 9,
+    "strength": 6,
+    "culture": 5,
+    "wealth": 6,
+    "intelligence": 3,
+    "technique": 3,
+    "belief": 3,
+    "reputation": 5,
+    "lore": "Palmyra's queen, who seized half of Rome's East.",
+    "trait": "Queen of the East — While this card is the only allied Great Person at this location, it gains +2 politics and +2 strength.",
+    "achievement": "Palmyrene Empire — End your turn with the most cards in 2 or more cities.",
+    "legacy": {
+      "name": "Palmyra",
+      "unlock": {
+        "stat": "politics",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "income",
+        "card": "follower",
+        "every": 5
+      },
+      "flavour": "Caravans of the Silk Road paid her tolls."
+    },
+    "years": "c. 240–274",
+    "born": 240,
+    "died": 274,
+    "countries": [
+      "Syria"
+    ]
+  },
+  {
+    "id": "plotinus",
+    "figureName": "Plotinus",
+    "era": "Classical",
+    "gender": "male",
+    "identities": [
+      "Philosopher"
+    ],
+    "portraitKey": "plotinus",
+    "politics": 2,
+    "strength": 2,
+    "culture": 6,
+    "wealth": 2,
+    "intelligence": 9,
+    "technique": 2,
+    "belief": 10,
+    "reputation": 3,
+    "lore": "Taught that everything flows from the One.",
+    "trait": "The One — While no other Great Person is at this location, this card gains +3 belief.",
+    "achievement": "Ascent of the Soul — Survive scenarios in this card's city 2 times.",
+    "legacy": {
+      "name": "The Enneads",
+      "unlock": {
+        "stat": "belief",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "successors",
+        "count": 1
+      },
+      "flavour": "His student Porphyry arranged his lectures into six books of nine."
+    },
+    "years": "204–270",
+    "born": 204,
+    "died": 270,
+    "countries": [
+      "Rome",
+      "Egypt"
+    ]
+  },
+  {
+    "id": "theodoric_the_great",
+    "figureName": "Theodoric the Great",
+    "era": "Classical",
+    "gender": "male",
+    "identities": [
+      "General",
+      "Lawyer"
+    ],
+    "portraitKey": "theodoric_the_great",
+    "politics": 9,
+    "strength": 7,
+    "culture": 5,
+    "wealth": 5,
+    "intelligence": 3,
+    "technique": 4,
+    "belief": 4,
+    "reputation": 5,
+    "lore": "The Goth who ruled Italy better than its last emperors.",
+    "trait": "Edict of Theodoric — While a rival card is at this location, this card gains +1 politics for each allied Follower (at most +3).",
+    "achievement": "Goths and Romans — End your turn in this card's city with an allied Great Person from another country.",
+    "legacy": {
+      "name": "Mausoleum of Ravenna",
+      "unlock": {
+        "stat": "politics",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "longevity",
+        "years": 10
+      },
+      "flavour": "His tomb is capped with a single stone of three hundred tonnes."
+    },
+    "years": "454–526",
+    "born": 454,
+    "died": 526,
+    "countries": [
+      "Italy"
+    ]
+  },
+  {
+    "id": "zu_chongzhi",
+    "figureName": "Zu Chongzhi",
+    "era": "Classical",
+    "gender": "male",
+    "identities": [
+      "Mathematician",
+      "Engineer"
+    ],
+    "portraitKey": "zu_chongzhi",
+    "politics": 2,
+    "strength": 3,
+    "culture": 5,
+    "wealth": 3,
+    "intelligence": 9,
+    "technique": 10,
+    "belief": 3,
+    "reputation": 2,
+    "lore": "Worked out pi to seven digits a thousand years ahead of Europe.",
+    "trait": "Zu's Ratio — While an allied Astronomer or Mathematician is at this location, this card gains +3 technique.",
+    "achievement": "Daming Calendar — End 2 years in a row with an allied Astronomer in this card's city.",
+    "legacy": {
+      "name": "South-Pointing Chariot",
+      "unlock": {
+        "stat": "technique",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "hazard_shield"
+      },
+      "flavour": "His chariot pointed south whichever way it turned."
+    },
+    "years": "429–500",
+    "born": 429,
+    "died": 500,
+    "countries": [
+      "China"
+    ]
+  },
+  {
+    "id": "saint_genevieve",
+    "figureName": "Saint Genevieve",
+    "era": "Classical",
+    "gender": "female",
+    "identities": [
+      "Monastic"
+    ],
+    "portraitKey": "saint_genevieve",
+    "politics": 4,
+    "strength": 3,
+    "culture": 5,
+    "wealth": 2,
+    "intelligence": 3,
+    "technique": 3,
+    "belief": 10,
+    "reputation": 6,
+    "lore": "The nun whose faith kept Paris from fleeing Attila.",
+    "trait": "Patron of Paris — While at least 2 allied Followers are at this location, this card gains +3 belief.",
+    "achievement": "Attila Turns Away — Survive a scenario in this card's city with no other allied Great Person there.",
+    "legacy": {
+      "name": "Patron of Paris",
+      "unlock": {
+        "stat": "belief",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "belief",
+        "amount": 3,
+        "context": "survival"
+      },
+      "flavour": "Paris still carries her relics through the streets in times of danger."
+    },
+    "years": "c. 419–502",
+    "born": 419,
+    "died": 502,
+    "countries": [
+      "France"
+    ]
+  },
+  {
+    "id": "empress_theodora",
+    "figureName": "Empress Theodora",
+    "era": "Medieval",
+    "gender": "female",
+    "identities": [
+      "Actor",
+      "Statesman"
+    ],
+    "portraitKey": "empress_theodora",
+    "politics": 7,
+    "strength": 3,
+    "culture": 6,
+    "wealth": 6,
+    "intelligence": 5,
+    "technique": 3,
+    "belief": 4,
+    "reputation": 10,
+    "lore": "From actress to empress, she refused to flee the Nika riots.",
+    "trait": "Royal Purple — While your cards are outnumbered at this location, this card gains +3 politics.",
+    "achievement": "Nika Riots — Win a fight as the defender while your rival has more cards in the city.",
+    "legacy": {
+      "name": "A Fine Burial Shroud",
+      "unlock": {
+        "stat": "reputation",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "politics",
+        "amount": 3,
+        "context": "defend"
+      },
+      "flavour": "\"Royal purple makes a fine burial shroud,\" she told the men who wanted to run."
+    },
+    "years": "c. 497–548",
+    "born": 497,
+    "died": 548,
+    "countries": [
+      "Rome"
+    ]
+  },
+  {
+    "id": "queen_seondeok",
+    "figureName": "Queen Seondeok",
+    "era": "Medieval",
+    "gender": "female",
+    "identities": [
+      "Sovereign",
+      "Astronomer"
+    ],
+    "portraitKey": "queen_seondeok",
+    "politics": 6,
+    "strength": 3,
+    "culture": 6,
+    "wealth": 5,
+    "intelligence": 9,
+    "technique": 3,
+    "belief": 4,
+    "reputation": 3,
+    "lore": "Silla's first reigning queen, who raised Asia's oldest standing observatory.",
+    "trait": "Cheomseongdae — While an allied Astronomer or Scientist is at this location, this card gains +3 intelligence.",
+    "achievement": "Three Prophecies — Win the global competition in intelligence.",
+    "legacy": {
+      "name": "Cheomseongdae",
+      "unlock": {
+        "stat": "intelligence",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "intelligence",
+        "amount": 2,
+        "context": "any"
+      },
+      "flavour": "The stone tower still stands in Gyeongju."
+    },
+    "years": "c. 606–647",
+    "born": 606,
+    "died": 647,
+    "countries": [
+      "Korea"
+    ]
+  },
+  {
+    "id": "xuanzang",
+    "figureName": "Xuanzang",
+    "era": "Medieval",
+    "gender": "male",
+    "identities": [
+      "Explorer",
+      "Monastic"
+    ],
+    "portraitKey": "xuanzang",
+    "politics": 2,
+    "strength": 4,
+    "culture": 5,
+    "wealth": 2,
+    "intelligence": 6,
+    "technique": 3,
+    "belief": 10,
+    "reputation": 4,
+    "lore": "Walked to India and back to bring home the true scriptures.",
+    "trait": "Journey to the West — This card gains +1 belief for each other city where you have cards (at most +3).",
+    "achievement": "Seventeen Years Abroad — End your turn with this card in 4 different cities over the game.",
+    "legacy": {
+      "name": "Great Tang Records",
+      "unlock": {
+        "stat": "belief",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "locations",
+        "count": 1
+      },
+      "flavour": "His travel book is still the best guide to seventh-century India."
+    },
+    "years": "602–664",
+    "born": 602,
+    "died": 664,
+    "countries": [
+      "China"
+    ]
+  },
+  {
+    "id": "brahmagupta",
+    "figureName": "Brahmagupta",
+    "era": "Medieval",
+    "gender": "male",
+    "identities": [
+      "Mathematician",
+      "Astronomer"
+    ],
+    "portraitKey": "brahmagupta",
+    "politics": 2,
+    "strength": 3,
+    "culture": 5,
+    "wealth": 4,
+    "intelligence": 10,
+    "technique": 6,
+    "belief": 4,
+    "reputation": 2,
+    "lore": "The first to write down the rules of zero.",
+    "trait": "Zero — While this card has no allied Followers at this location, it gains +3 intelligence.",
+    "achievement": "Brahmasphutasiddhanta — End your turn with an allied Astronomer and an allied Mathematician in this card's city.",
+    "legacy": {
+      "name": "The Rules of Zero",
+      "unlock": {
+        "stat": "intelligence",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "income",
+        "card": "event",
+        "every": 5
+      },
+      "flavour": "Zero plus zero is zero, he wrote, and a debt minus zero is a debt."
+    },
+    "years": "c. 598–668",
+    "born": 598,
+    "died": 668,
+    "countries": [
+      "India"
+    ]
+  },
+  {
+    "id": "charlemagne",
+    "figureName": "Charlemagne",
+    "era": "Medieval",
+    "gender": "male",
+    "identities": [
+      "Sovereign"
+    ],
+    "portraitKey": "charlemagne",
+    "politics": 8,
+    "strength": 6,
+    "culture": 4,
+    "wealth": 5,
+    "intelligence": 3,
+    "technique": 2,
+    "belief": 6,
+    "reputation": 10,
+    "lore": "Father of Europe, crowned emperor in Rome on Christmas Day 800.",
+    "trait": "Paladins — This card gains +1 strength and +1 reputation for each allied Warrior, Soldier or General at this location (at most +3).",
+    "achievement": "Carolingian Renaissance — End your turn with an allied Monastic or Educator and an allied Warrior or General in this card's city.",
+    "legacy": {
+      "name": "Holy Roman Empire",
+      "unlock": {
+        "stat": "reputation",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "successors",
+        "count": 1
+      },
+      "flavour": "His empire split three ways, and became France and Germany."
+    },
+    "years": "748–814",
+    "born": 748,
+    "died": 814,
+    "countries": [
+      "France",
+      "Germany"
+    ]
+  },
+  {
+    "id": "jabir_ibn_hayyan",
+    "figureName": "Jabir ibn Hayyan",
+    "era": "Medieval",
+    "gender": "male",
+    "identities": [
+      "Scientist",
+      "Doctor"
+    ],
+    "portraitKey": "jabir_ibn_hayyan",
+    "politics": 1,
+    "strength": 3,
+    "culture": 3,
+    "wealth": 5,
+    "intelligence": 8,
+    "technique": 10,
+    "belief": 5,
+    "reputation": 2,
+    "lore": "The alchemist whose laboratory work founded chemistry.",
+    "trait": "Alembic — This card gains +2 technique for each allied Scientist or Doctor at this location (at most +4).",
+    "achievement": "Distillation — Survive a scenario in technique or intelligence in this card's city.",
+    "legacy": {
+      "name": "Book of Seventy",
+      "unlock": {
+        "stat": "technique",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "follower",
+        "stat": "technique",
+        "amount": 2
+      },
+      "flavour": "Europe learned chemistry from translations signed \"Geber\"."
+    },
+    "years": "c. 721–815",
+    "born": 721,
+    "died": 815,
+    "countries": [
+      "Iraq"
+    ]
+  },
+  {
+    "id": "murasaki_shikibu",
+    "figureName": "Murasaki Shikibu",
+    "era": "Medieval",
+    "gender": "female",
+    "identities": [
+      "Writer",
+      "Noble"
+    ],
+    "portraitKey": "murasaki_shikibu",
+    "politics": 4,
+    "strength": 2,
+    "culture": 12,
+    "wealth": 5,
+    "intelligence": 7,
+    "technique": 3,
+    "belief": 4,
+    "reputation": 5,
+    "lore": "Wrote The Tale of Genji, often called the world's first novel.",
+    "trait": "Tale of Genji — While an allied Noble or Writer is at this location, this card gains +3 culture.",
+    "achievement": "Fifty-Four Chapters — End 3 years in a row in the same city as an allied Noble or Sovereign.",
+    "legacy": {
+      "name": "The Tale of Genji",
+      "unlock": {
+        "stat": "culture",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "income",
+        "card": "event",
+        "every": 4
+      },
+      "flavour": "Readers in Kyoto passed her chapters hand to hand as she wrote them."
+    },
+    "years": "c. 973–1014",
+    "born": 973,
+    "died": 1014,
+    "countries": [
+      "Japan"
+    ]
+  },
+  {
+    "id": "avicenna",
+    "figureName": "Avicenna",
+    "era": "Medieval",
+    "gender": "male",
+    "identities": [
+      "Doctor",
+      "Philosopher"
+    ],
+    "portraitKey": "avicenna",
+    "politics": 3,
+    "strength": 3,
+    "culture": 6,
+    "wealth": 5,
+    "intelligence": 10,
+    "technique": 6,
+    "belief": 5,
+    "reputation": 3,
+    "lore": "His Canon of Medicine was taught for six hundred years.",
+    "trait": "Canon of Medicine — This card gains +1 intelligence for each allied Follower at this location (at most +3).",
+    "achievement": "Physician to Emirs — End your turn with an allied Sovereign and an allied Doctor in this card's city.",
+    "legacy": {
+      "name": "The Canon of Medicine",
+      "unlock": {
+        "stat": "intelligence",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "longevity",
+        "years": 12
+      },
+      "flavour": "European universities set his Canon until the 1600s."
+    },
+    "years": "980–1037",
+    "born": 980,
+    "died": 1037,
+    "countries": [
+      "Uzbekistan",
+      "Persia"
+    ]
+  },
+  {
+    "id": "leif_erikson",
+    "figureName": "Leif Erikson",
+    "era": "Medieval",
+    "gender": "male",
+    "identities": [
+      "Explorer"
+    ],
+    "portraitKey": "leif_erikson",
+    "politics": 3,
+    "strength": 8,
+    "culture": 2,
+    "wealth": 4,
+    "intelligence": 4,
+    "technique": 9,
+    "belief": 4,
+    "reputation": 3,
+    "lore": "Reached America five hundred years before Columbus.",
+    "trait": "Vinland — While no rival card is at this location, this card gains +3 technique.",
+    "achievement": "Landfall — Move this card into a city with no other cards and end your turn there.",
+    "legacy": {
+      "name": "Leif the Lucky",
+      "unlock": {
+        "stat": "technique",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "locations",
+        "count": 1
+      },
+      "flavour": "He found grapes, salmon and timber on the far side of the ocean."
+    },
+    "years": "c. 970–1020",
+    "born": 970,
+    "died": 1020,
+    "countries": [
+      "Norway",
+      "Iceland"
+    ]
+  },
+  {
+    "id": "hildegard_of_bingen",
+    "figureName": "Hildegard of Bingen",
+    "era": "Medieval",
+    "gender": "female",
+    "identities": [
+      "Monastic",
+      "Musician"
+    ],
+    "portraitKey": "hildegard_of_bingen",
+    "politics": 4,
+    "strength": 2,
+    "culture": 9,
+    "wealth": 2,
+    "intelligence": 7,
+    "technique": 4,
+    "belief": 10,
+    "reputation": 4,
+    "lore": "Abbess, composer, healer and visionary.",
+    "trait": "Living Light — This card gains +1 belief and +1 culture for each allied Monastic or Musician at this location (at most +3).",
+    "achievement": "Ordo Virtutum — End your turn with an allied Musician and an allied Doctor or Naturalist in this card's city.",
+    "legacy": {
+      "name": "Physica",
+      "unlock": {
+        "stat": "belief",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "longevity",
+        "years": 10
+      },
+      "flavour": "Her book of herbs and stones was used in German medicine for centuries."
+    },
+    "years": "1098–1179",
+    "born": 1098,
+    "died": 1179,
+    "countries": [
+      "Germany"
+    ]
+  },
+  {
+    "id": "jayavarman_vii",
+    "figureName": "Jayavarman VII",
+    "era": "Medieval",
+    "gender": "male",
+    "identities": [
+      "Architect",
+      "Doctor"
+    ],
+    "portraitKey": "jayavarman_vii",
+    "politics": 5,
+    "strength": 5,
+    "culture": 5,
+    "wealth": 6,
+    "intelligence": 3,
+    "technique": 9,
+    "belief": 5,
+    "reputation": 2,
+    "lore": "Built the Bayon and a hundred and two hospitals.",
+    "trait": "Smiling Faces — While at least 2 allied Followers are at this location, this card gains +3 technique.",
+    "achievement": "Hundred and Two Hospitals — End your turn with an allied Architect, Engineer or Doctor in 3 different cities.",
+    "legacy": {
+      "name": "Angkor Thom",
+      "unlock": {
+        "stat": "technique",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "income",
+        "card": "follower",
+        "every": 4
+      },
+      "flavour": "\"The suffering of the people is the suffering of the king,\" his hospitals read."
+    },
+    "years": "c. 1122–1218",
+    "born": 1122,
+    "died": 1218,
+    "countries": [
+      "Cambodia"
+    ]
+  },
+  {
+    "id": "averroes",
+    "figureName": "Averroes",
+    "era": "Medieval",
+    "gender": "male",
+    "identities": [
+      "Philosopher",
+      "Lawyer"
+    ],
+    "portraitKey": "averroes",
+    "politics": 5,
+    "strength": 2,
+    "culture": 7,
+    "wealth": 4,
+    "intelligence": 10,
+    "technique": 4,
+    "belief": 5,
+    "reputation": 4,
+    "lore": "The Commentator, who gave Aristotle back to Europe.",
+    "trait": "The Commentator — While a rival Philosopher or Priest is at this location, this card gains +3 intelligence.",
+    "achievement": "Decisive Treatise — Win a fight in intelligence or belief as the defender.",
+    "legacy": {
+      "name": "Aristotle Restored",
+      "unlock": {
+        "stat": "intelligence",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "successors",
+        "count": 1
+      },
+      "flavour": "Dante placed him among the great philosophers of Limbo."
+    },
+    "years": "1126–1198",
+    "born": 1126,
+    "died": 1198,
+    "countries": [
+      "Spain",
+      "Morocco"
+    ]
+  },
+  {
+    "id": "fibonacci",
+    "figureName": "Fibonacci",
+    "era": "Medieval",
+    "gender": "male",
+    "identities": [
+      "Mathematician",
+      "Merchant"
+    ],
+    "portraitKey": "fibonacci",
+    "politics": 3,
+    "strength": 3,
+    "culture": 5,
+    "wealth": 9,
+    "intelligence": 8,
+    "technique": 6,
+    "belief": 3,
+    "reputation": 3,
+    "lore": "Brought Hindu–Arabic numerals to Europe's merchants.",
+    "trait": "Liber Abaci — While an allied Mathematician or Merchant is at this location, this card gains +3 wealth.",
+    "achievement": "Rabbit Sequence — End three turns in a row with 1, then 2, then 3 allied Followers in this card's city.",
+    "legacy": {
+      "name": "Liber Abaci",
+      "unlock": {
+        "stat": "wealth",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "wealth",
+        "amount": 2,
+        "context": "competition"
+      },
+      "flavour": "Italian bankers switched from Roman numerals within a century."
+    },
+    "years": "c. 1170–1250",
+    "born": 1170,
+    "died": 1250,
+    "countries": [
+      "Italy"
+    ]
+  },
+  {
+    "id": "sundiata_keita",
+    "figureName": "Sundiata Keita",
+    "era": "Medieval",
+    "gender": "male",
+    "identities": [
+      "Sovereign",
+      "Warrior"
+    ],
+    "portraitKey": "sundiata_keita",
+    "politics": 7,
+    "strength": 7,
+    "culture": 5,
+    "wealth": 6,
+    "intelligence": 2,
+    "technique": 3,
+    "belief": 5,
+    "reputation": 9,
+    "lore": "The Lion of Mali, still sung by griots today.",
+    "trait": "Lion of Mali — While an allied Writer or Musician is at this location, this card gains +3 reputation.",
+    "achievement": "Battle of Kirina — Win a fight in strength or reputation against a rival Sovereign.",
+    "legacy": {
+      "name": "Kouroukan Fouga",
+      "unlock": {
+        "stat": "reputation",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "follower",
+        "stat": "reputation",
+        "amount": 2
+      },
+      "flavour": "The assembly of Mali swore to his charter of the realm."
+    },
+    "years": "c. 1217–1255",
+    "born": 1217,
+    "died": 1255,
+    "countries": [
+      "Mali"
+    ]
+  },
+  {
+    "id": "tomoe_gozen",
+    "figureName": "Tomoe Gozen",
+    "era": "Medieval",
+    "gender": "female",
+    "identities": [
+      "Warrior"
+    ],
+    "portraitKey": "tomoe_gozen",
+    "politics": 2,
+    "strength": 9,
+    "culture": 3,
+    "wealth": 2,
+    "intelligence": 3,
+    "technique": 10,
+    "belief": 4,
+    "reputation": 3,
+    "lore": "A samurai and archer, said to be worth a thousand warriors.",
+    "trait": "Worth a Thousand — While your cards are outnumbered at this location, this card gains +3 technique.",
+    "achievement": "Battle of Awazu — Win a fight in strength or technique as the attacker while a rival General is in the city.",
+    "legacy": {
+      "name": "Onna-musha",
+      "unlock": {
+        "stat": "technique",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "technique",
+        "amount": 3,
+        "context": "attack"
+      },
+      "flavour": "The Tale of the Heike gives her its most famous charge."
+    },
+    "years": "c. 1157–1247",
+    "born": 1157,
+    "died": 1247,
+    "countries": [
+      "Japan"
+    ]
+  },
+  {
+    "id": "ibn_khaldun",
+    "figureName": "Ibn Khaldun",
+    "era": "Medieval",
+    "gender": "male",
+    "identities": [
+      "Economist",
+      "Writer"
+    ],
+    "portraitKey": "ibn_khaldun",
+    "politics": 9,
+    "strength": 3,
+    "culture": 5,
+    "wealth": 7,
+    "intelligence": 7,
+    "technique": 2,
+    "belief": 3,
+    "reputation": 3,
+    "lore": "Founded the study of how societies rise and fall.",
+    "trait": "Asabiyyah — This card gains +1 politics for each other allied card at this location (at most +4).",
+    "achievement": "Muqaddimah — See 2 Great People die in this card's city.",
+    "legacy": {
+      "name": "The Muqaddimah",
+      "unlock": {
+        "stat": "politics",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "income",
+        "card": "event",
+        "every": 5
+      },
+      "flavour": "He met Timur outside Damascus and lived to write about it."
+    },
+    "years": "1332–1406",
+    "born": 1332,
+    "died": 1406,
+    "countries": [
+      "Tunisia"
+    ]
+  },
+  {
+    "id": "timur",
+    "figureName": "Timur",
+    "era": "Medieval",
+    "gender": "male",
+    "identities": [
+      "General"
+    ],
+    "portraitKey": "timur",
+    "politics": 6,
+    "strength": 10,
+    "culture": 5,
+    "wealth": 6,
+    "intelligence": 3,
+    "technique": 4,
+    "belief": 2,
+    "reputation": 3,
+    "lore": "The lame conqueror who rebuilt Samarkand in blue tile.",
+    "trait": "Iron Will — While at least 2 rival cards are at this location, this card gains +3 strength.",
+    "achievement": "Samarkand — Win 3 fights as the attacker.",
+    "legacy": {
+      "name": "The Registan",
+      "unlock": {
+        "stat": "strength",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "strength",
+        "amount": 3,
+        "context": "attack"
+      },
+      "flavour": "He carried craftsmen home from every city he took."
+    },
+    "years": "1336–1405",
+    "born": 1336,
+    "died": 1405,
+    "countries": [
+      "Uzbekistan"
+    ]
+  },
+  {
+    "id": "hafez",
+    "figureName": "Hafez",
+    "era": "Medieval",
+    "gender": "male",
+    "identities": [
+      "Writer"
+    ],
+    "portraitKey": "hafez",
+    "politics": 2,
+    "strength": 3,
+    "culture": 12,
+    "wealth": 3,
+    "intelligence": 6,
+    "technique": 3,
+    "belief": 7,
+    "reputation": 5,
+    "lore": "Persia's beloved poet; families still open his book to tell their fortune.",
+    "trait": "Divan — While an allied Musician or Gourmet is at this location, this card gains +3 culture.",
+    "achievement": "Fal-e Hafez — Win the global competition in culture or belief.",
+    "legacy": {
+      "name": "The Divan",
+      "unlock": {
+        "stat": "culture",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "prodigy",
+        "years": 5
+      },
+      "flavour": "He knew the whole Quran by heart as a boy, hence his name."
+    },
+    "years": "c. 1315–1390",
+    "born": 1315,
+    "died": 1390,
+    "countries": [
+      "Persia"
+    ]
+  },
+  {
+    "id": "cosimo_de_medici",
+    "figureName": "Cosimo de' Medici",
+    "era": "Renaissance",
+    "gender": "male",
+    "identities": [
+      "Banker",
+      "Statesman"
+    ],
+    "portraitKey": "cosimo_de_medici",
+    "politics": 8,
+    "strength": 3,
+    "culture": 7,
+    "wealth": 10,
+    "intelligence": 5,
+    "technique": 3,
+    "belief": 3,
+    "reputation": 3,
+    "lore": "The banker who quietly ran Florence and paid for its Renaissance.",
+    "trait": "Medici Bank — This card gains +2 wealth for each other city where you have cards (at most +4).",
+    "achievement": "Patron of the Arts — End your turn with an allied Artist and an allied Architect in this card's city.",
+    "legacy": {
+      "name": "Medici Patronage",
+      "unlock": {
+        "stat": "wealth",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "income",
+        "card": "follower",
+        "every": 4
+      },
+      "flavour": "He paid for Brunelleschi, Donatello and the Platonic Academy."
+    },
+    "years": "1389–1464",
+    "born": 1389,
+    "died": 1464,
+    "countries": [
+      "Italy"
+    ]
+  },
+  {
+    "id": "zara_yaqob",
+    "figureName": "Zara Yaqob",
+    "era": "Renaissance",
+    "gender": "male",
+    "identities": [
+      "Priest",
+      "Writer"
+    ],
+    "portraitKey": "zara_yaqob",
+    "politics": 6,
+    "strength": 5,
+    "culture": 5,
+    "wealth": 5,
+    "intelligence": 5,
+    "technique": 3,
+    "belief": 9,
+    "reputation": 4,
+    "lore": "Ethiopian emperor who reformed the church and wrote its books.",
+    "trait": "Book of Light — While an allied Priest or Monastic is at this location, this card gains +3 belief.",
+    "achievement": "Council of Debre Mitmaq — End your turn with 2 allied Priests or Prophets in this card's city.",
+    "legacy": {
+      "name": "Debre Berhan",
+      "unlock": {
+        "stat": "belief",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "longevity",
+        "years": 8
+      },
+      "flavour": "He founded the Mountain of Light after a sign in the sky."
+    },
+    "years": "1399–1468",
+    "born": 1399,
+    "died": 1468,
+    "countries": [
+      "Ethiopia"
+    ]
+  },
+  {
+    "id": "peter_the_great",
+    "figureName": "Peter the Great",
+    "era": "Steam",
+    "gender": "male",
+    "identities": [
+      "Engineer",
+      "General"
+    ],
+    "portraitKey": "peter_the_great",
+    "politics": 7,
+    "strength": 6,
+    "culture": 2,
+    "wealth": 4,
+    "intelligence": 4,
+    "technique": 8,
+    "belief": 2,
+    "reputation": 3,
+    "lore": "The giant tsar who worked in a shipyard to drag Russia west.",
+    "trait": "Grand Embassy — While an allied Engineer or Explorer is at this location, this card gains +3 technique.",
+    "achievement": "Shipyard of Saardam — End 2 years in a row with an allied Engineer in this card's city.",
+    "legacy": {
+      "name": "Saint Petersburg",
+      "unlock": {
+        "stat": "technique",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "technique",
+        "amount": 2,
+        "context": "any"
+      },
+      "flavour": "He built a capital on a swamp and called it a window on Europe."
+    },
+    "years": "1672–1725",
+    "born": 1672,
+    "died": 1725,
+    "countries": [
+      "Russia"
+    ]
+  },
+  {
+    "id": "osei_tutu",
+    "figureName": "Osei Tutu",
+    "era": "Steam",
+    "gender": "male",
+    "identities": [
+      "Sovereign",
+      "General"
+    ],
+    "portraitKey": "osei_tutu",
+    "politics": 6,
+    "strength": 7,
+    "culture": 4,
+    "wealth": 6,
+    "intelligence": 2,
+    "technique": 3,
+    "belief": 6,
+    "reputation": 8,
+    "lore": "Founded Asante; its Golden Stool came down from the sky.",
+    "trait": "Golden Stool — While at least 2 allied Followers are at this location, this card gains +3 reputation.",
+    "achievement": "Union of Asante — End your turn with at least 2 of your cards in each of 3 cities.",
+    "legacy": {
+      "name": "The Golden Stool",
+      "unlock": {
+        "stat": "reputation",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "successors",
+        "count": 1
+      },
+      "flavour": "No one sits on it; it holds the soul of the nation."
+    },
+    "years": "c. 1660–1717",
+    "born": 1660,
+    "died": 1717,
+    "countries": [
+      "Ghana"
+    ]
+  },
+  {
+    "id": "harriet_tubman",
+    "figureName": "Harriet Tubman",
+    "era": "Electricity",
+    "gender": "female",
+    "identities": [
+      "Spy",
+      "Soldier"
+    ],
+    "portraitKey": "harriet_tubman",
+    "politics": 4,
+    "strength": 6,
+    "culture": 2,
+    "wealth": 1,
+    "intelligence": 4,
+    "technique": 5,
+    "belief": 10,
+    "reputation": 4,
+    "lore": "Escaped slavery, then went back again and again to free others.",
+    "trait": "Conductor — While your cards are outnumbered at this location, this card gains +3 belief.",
+    "achievement": "Never Lost a Passenger — Move this card and an allied Follower in the same turn, 3 times.",
+    "legacy": {
+      "name": "Underground Railroad",
+      "unlock": {
+        "stat": "belief",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "income",
+        "card": "follower",
+        "every": 4
+      },
+      "flavour": "At Combahee River she led a raid that freed over seven hundred people."
+    },
+    "years": "c. 1822–1913",
+    "born": 1822,
+    "died": 1913,
+    "countries": [
+      "United States"
+    ]
+  },
+  {
+    "id": "nikola_tesla",
+    "figureName": "Nikola Tesla",
+    "era": "Electricity",
+    "gender": "male",
+    "identities": [
+      "Engineer",
+      "Scientist"
+    ],
+    "portraitKey": "nikola_tesla",
+    "politics": 1,
+    "strength": 3,
+    "culture": 5,
+    "wealth": 2,
+    "intelligence": 8,
+    "technique": 10,
+    "belief": 3,
+    "reputation": 4,
+    "lore": "Lit the world with alternating current, and died nearly penniless.",
+    "trait": "Alternating Current — While no allied Merchant or Banker is at this location, this card gains +3 technique.",
+    "achievement": "War of the Currents — Win the global competition in technique.",
+    "legacy": {
+      "name": "The Tesla Coil",
+      "unlock": {
+        "stat": "technique",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "technique",
+        "amount": 3,
+        "context": "competition"
+      },
+      "flavour": "Every power grid on Earth runs on his alternating current."
+    },
+    "years": "1856–1943",
+    "born": 1856,
+    "died": 1943,
+    "countries": [
+      "Serbia",
+      "United States"
+    ]
+  },
+  {
+    "id": "jose_rizal",
+    "figureName": "José Rizal",
+    "era": "Electricity",
+    "gender": "male",
+    "identities": [
+      "Writer",
+      "Doctor"
+    ],
+    "portraitKey": "jose_rizal",
+    "politics": 8,
+    "strength": 3,
+    "culture": 7,
+    "wealth": 2,
+    "intelligence": 7,
+    "technique": 4,
+    "belief": 5,
+    "reputation": 5,
+    "lore": "His novels woke a nation; his execution sparked a revolution.",
+    "trait": "Noli Me Tángere — While a rival Sovereign is at this location, this card gains +3 politics.",
+    "achievement": "La Liga Filipina — End your turn with 3 allied Followers in this card's city while a rival card is there.",
+    "legacy": {
+      "name": "Mi Último Adiós",
+      "unlock": {
+        "stat": "politics",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "successors",
+        "count": 1
+      },
+      "flavour": "He wrote his farewell poem the night before his execution."
+    },
+    "years": "1861–1896",
+    "born": 1861,
+    "died": 1896,
+    "countries": [
+      "Philippines"
+    ]
+  },
+  {
+    "id": "marie_curie",
+    "figureName": "Marie Curie",
+    "era": "Electricity",
+    "gender": "female",
+    "identities": [
+      "Scientist"
+    ],
+    "portraitKey": "marie_curie",
+    "politics": 2,
+    "strength": 3,
+    "culture": 4,
+    "wealth": 2,
+    "intelligence": 11,
+    "technique": 7,
+    "belief": 4,
+    "reputation": 4,
+    "lore": "The only person to win Nobel Prizes in two different sciences.",
+    "trait": "Radium — While an allied Scientist is at this location, this card gains +2 intelligence and +2 technique.",
+    "achievement": "Two Nobel Prizes — Win the global competition twice in intelligence or technique.",
+    "legacy": {
+      "name": "Radioactivity",
+      "unlock": {
+        "stat": "intelligence",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "intelligence",
+        "amount": 3,
+        "context": "any"
+      },
+      "flavour": "Her notebooks are still too radioactive to handle without protection."
+    },
+    "years": "1867–1934",
+    "born": 1867,
+    "died": 1934,
+    "countries": [
+      "Poland",
+      "France"
+    ]
+  },
+  {
+    "id": "alberto_santos_dumont",
+    "figureName": "Alberto Santos-Dumont",
+    "era": "Electricity",
+    "gender": "male",
+    "identities": [
+      "Explorer",
+      "Engineer"
+    ],
+    "portraitKey": "alberto_santos_dumont",
+    "politics": 1,
+    "strength": 4,
+    "culture": 5,
+    "wealth": 8,
+    "intelligence": 5,
+    "technique": 10,
+    "belief": 3,
+    "reputation": 6,
+    "lore": "Flew round the Eiffel Tower and gave his inventions away for free.",
+    "trait": "14-bis — While this card is the only card at this location, it gains +3 technique.",
+    "achievement": "Round the Eiffel Tower — Move this card in 3 different turns.",
+    "legacy": {
+      "name": "Demoiselle",
+      "unlock": {
+        "stat": "technique",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "hazard_shield"
+      },
+      "flavour": "He published the plans of his little plane so anyone could build one."
+    },
+    "years": "1873–1932",
+    "born": 1873,
+    "died": 1932,
+    "countries": [
+      "Brazil"
+    ]
+  },
+  {
+    "id": "frida_kahlo",
+    "figureName": "Frida Kahlo",
+    "era": "Electricity",
+    "gender": "female",
+    "identities": [
+      "Artist"
+    ],
+    "portraitKey": "frida_kahlo",
+    "politics": 4,
+    "strength": 3,
+    "culture": 12,
+    "wealth": 4,
+    "intelligence": 4,
+    "technique": 6,
+    "belief": 5,
+    "reputation": 5,
+    "lore": "Painted her pain and her Mexico in fearless colour.",
+    "trait": "Self-Portrait — While this card is the only allied card at this location, it gains +3 culture.",
+    "achievement": "The Two Fridas — End your turn in a city with another female Great Person.",
+    "legacy": {
+      "name": "Casa Azul",
+      "unlock": {
+        "stat": "culture",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "follower",
+        "stat": "culture",
+        "amount": 2
+      },
+      "flavour": "Her Blue House in Coyoacán is now her museum."
+    },
+    "years": "1907–1954",
+    "born": 1907,
+    "died": 1954,
+    "countries": [
+      "Mexico"
+    ]
+  },
+  {
+    "id": "hedy_lamarr",
+    "figureName": "Hedy Lamarr",
+    "era": "Information",
+    "gender": "female",
+    "identities": [
+      "Actor",
+      "Engineer"
+    ],
+    "portraitKey": "hedy_lamarr",
+    "politics": 1,
+    "strength": 3,
+    "culture": 8,
+    "wealth": 5,
+    "intelligence": 7,
+    "technique": 9,
+    "belief": 2,
+    "reputation": 6,
+    "lore": "Hollywood star who co-invented frequency hopping.",
+    "trait": "Frequency Hopping — While an allied Musician is at this location, this card gains +2 technique and +2 culture.",
+    "achievement": "Secret Communication — Win a fight in technique in this card's city while it is hidden.",
+    "legacy": {
+      "name": "Spread Spectrum",
+      "unlock": {
+        "stat": "technique",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "income",
+        "card": "event",
+        "every": 4
+      },
+      "flavour": "Her 1942 patent sits behind today’s Wi-Fi and Bluetooth."
+    },
+    "years": "1914–2000",
+    "born": 1914,
+    "died": 2000,
+    "countries": [
+      "Austria",
+      "United States"
+    ]
+  },
+  {
+    "id": "nelson_mandela",
+    "figureName": "Nelson Mandela",
+    "era": "Information",
+    "gender": "male",
+    "identities": [
+      "Statesman",
+      "Lawyer"
+    ],
+    "portraitKey": "nelson_mandela",
+    "politics": 7,
+    "strength": 4,
+    "culture": 5,
+    "wealth": 2,
+    "intelligence": 5,
+    "technique": 2,
+    "belief": 8,
+    "reputation": 11,
+    "lore": "Twenty-seven years in prison, then he forgave and led.",
+    "trait": "Long Walk to Freedom — While your cards are outnumbered at this location, this card gains +3 reputation.",
+    "achievement": "Rainbow Nation — End your turn in a city with Great People from 3 different countries, one of them a rival's.",
+    "legacy": {
+      "name": "Truth and Reconciliation",
+      "unlock": {
+        "stat": "reputation",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "reputation",
+        "amount": 3,
+        "context": "defend"
+      },
+      "flavour": "He invited his jailer to his inauguration."
+    },
+    "years": "1918–2013",
+    "born": 1918,
+    "died": 2013,
+    "countries": [
+      "South Africa"
+    ]
+  },
+  {
+    "id": "yuri_gagarin",
+    "figureName": "Yuri Gagarin",
+    "era": "Information",
+    "gender": "male",
+    "identities": [
+      "Explorer",
+      "Soldier"
+    ],
+    "portraitKey": "yuri_gagarin",
+    "politics": 3,
+    "strength": 7,
+    "culture": 2,
+    "wealth": 2,
+    "intelligence": 6,
+    "technique": 8,
+    "belief": 3,
+    "reputation": 10,
+    "lore": "The first human in space: 108 minutes around the Earth.",
+    "trait": "Poyekhali! — While this card is the only allied Great Person at this location, it gains +3 reputation.",
+    "achievement": "Vostok 1 — Survive a natural hazard in this card's city.",
+    "legacy": {
+      "name": "First in Space",
+      "unlock": {
+        "stat": "reputation",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "prodigy",
+        "years": 5
+      },
+      "flavour": "He was twenty-seven when Vostok 1 lifted off."
+    },
+    "years": "1934–1968",
+    "born": 1934,
+    "died": 1968,
+    "countries": [
+      "Russia"
+    ]
+  },
+  {
+    "id": "wangari_maathai",
+    "figureName": "Wangari Maathai",
+    "era": "Information",
+    "gender": "female",
+    "identities": [
+      "Naturalist",
+      "Statesman"
+    ],
+    "portraitKey": "wangari_maathai",
+    "politics": 6,
+    "strength": 4,
+    "culture": 5,
+    "wealth": 2,
+    "intelligence": 4,
+    "technique": 3,
+    "belief": 9,
+    "reputation": 5,
+    "lore": "Planted thirty million trees and won the Nobel Peace Prize.",
+    "trait": "Green Belt — This card gains +1 belief for each allied Follower at this location (at most +4).",
+    "achievement": "Plant a Tree — Place an allied Follower in this card's city in 3 different years.",
+    "legacy": {
+      "name": "Thirty Million Trees",
+      "unlock": {
+        "stat": "belief",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "income",
+        "card": "follower",
+        "every": 5
+      },
+      "flavour": "The women of the Green Belt Movement were paid a few shillings a seedling."
+    },
+    "years": "1940–2011",
+    "born": 1940,
+    "died": 2011,
+    "countries": [
+      "Kenya"
+    ]
+  },
+  {
+    "id": "pele",
+    "figureName": "Pelé",
+    "era": "Information",
+    "gender": "male",
+    "identities": [
+      "Athlete"
+    ],
+    "portraitKey": "pele",
+    "politics": 2,
+    "strength": 9,
+    "culture": 5,
+    "wealth": 5,
+    "intelligence": 2,
+    "technique": 8,
+    "belief": 3,
+    "reputation": 7,
+    "lore": "Three World Cups and over a thousand goals: the King of football.",
+    "trait": "O Rei — While an allied Athlete is at this location, this card gains +2 strength and +2 technique.",
+    "achievement": "Joga Bonito — Win 3 fights in strength or technique.",
+    "legacy": {
+      "name": "The Thousandth Goal",
+      "unlock": {
+        "stat": "strength",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "prodigy",
+        "years": 6
+      },
+      "flavour": "He won his first World Cup at seventeen."
+    },
+    "years": "1940–2022",
+    "born": 1940,
+    "died": 2022,
+    "countries": [
+      "Brazil"
+    ],
+    "careerAge": 16
   }
 ]

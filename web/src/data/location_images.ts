@@ -14,7 +14,7 @@
 import fallbacksJson from '@/data/location_image_fallbacks.json'
 
 const FALLBACKS: Record<string, string> = Object.fromEntries(
-  Object.entries(fallbacksJson.fallbacks).map(([key, { image }]) => [key, image]),
+  Object.entries(fallbacksJson.fallbacks as Record<string, { image: string }>).map(([key, { image }]) => [key, image]),
 )
 
 /** Image key actually rendered for a card, after substitution. */

@@ -1,0 +1,15 @@
+{
+  "images": [
+    {
+      "filename": "portrait_cosimo_de_medici.webp",
+      "idiom": "universal"
+    }
+  ],
+  "info": {
+    "author": "xcode",
+    "version": 1
+  },
+  "properties": {
+    "template-rendering-intent": "original"
+  }
+}

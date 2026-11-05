@@ -1,0 +1,15 @@
+{
+  "images": [
+    {
+      "filename": "portrait_mursili_i.webp",
+      "idiom": "universal"
+    }
+  ],
+  "info": {
+    "author": "xcode",
+    "version": 1
+  },
+  "properties": {
+    "template-rendering-intent": "original"
+  }
+}
