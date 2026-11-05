@@ -7,9 +7,11 @@ import App from './App'
 import { adoptTokenFromFragment } from './bridge/native'
 import { useAuth } from './hooks/useAuth'
 
-// A native app opening /play/… passes its session as #token=… (or #guest=1);
-// it must be in storage before the auth store reads it.
+// A native app opening /play/… passes its session as #token=… (or #guest=1).
+// The auth store read storage when it was imported, before this ran, so
+// tell it about the adopted session.
 if (adoptTokenFromFragment()) useAuth.getState().enterGuestMode()
+else if (localStorage.getItem('access_token')) useAuth.setState({ isLoggedIn: true })
 
 const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID as string | undefined
 
