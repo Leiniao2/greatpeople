@@ -20,7 +20,23 @@
     "lore": "The soul force that moved an empire.",
     "trait": "Mahatma — While on the field, all Conflict scenarios are negated (do not take effect).",
     "achievement": "Satyagraha — Win a defence while none of this card's allied GP or Followers performed any action (move, retrieve, deploy, attack) in the same round.",
+    "legacy": {
+      "name": "Satyagraha",
+      "unlock": {
+        "stat": "belief",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "any",
+        "amount": 3,
+        "context": "defend"
+      },
+      "flavour": "Non-violent resistance outlasts every attacker."
+    },
     "years": "1869–1948",
+    "born": 1869,
+    "died": 1948,
     "countries": [
       "India"
     ]
@@ -45,7 +61,22 @@
     "lore": "She dressed the world in modernity.",
     "trait": "Women's Fashion — All female Followers at this location gain +2 to their primary stat.",
     "achievement": "Chanel No. 5 — Have this card spend a turn with at least 1 allied Nat (GP or Follower) and 2 allied female (GP or Follower) at the same location.",
+    "legacy": {
+      "name": "Chanel No. 5",
+      "unlock": {
+        "stat": "culture",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "income",
+        "card": "follower",
+        "every": 4
+      },
+      "flavour": "Maison Chanel keeps recruiting seamstresses and muses."
+    },
     "years": "1883–1971",
+    "born": 1883,
+    "died": 1971,
     "countries": [
       "France"
     ]
@@ -71,7 +102,22 @@
     "lore": "A revolution forged from peasant to chairman.",
     "trait": "The Long March — When being killed, this card can automatically get retrieved to its Player's hand instead.",
     "achievement": "Cultural Revolution — Have a non-allied Mus, Art, Act, or Wri GP or Follower removed from the board after a Censorship scenario ends.",
+    "legacy": {
+      "name": "Cultural Revolution",
+      "unlock": {
+        "stat": "politics",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "follower",
+        "stat": "any",
+        "amount": 1
+      },
+      "flavour": "Mass mobilisation: the crowd itself becomes the weapon."
+    },
     "years": "1893–1976",
+    "born": 1893,
+    "died": 1976,
     "countries": [
       "China"
     ]
@@ -96,7 +142,23 @@
     "lore": "The last great general of Rome.",
     "trait": "Reconquest — While outnumbered at this location (more opponent cards than allied), this card gains +2 to all stats.",
     "achievement": "Reconquest — Win a combat attack while having fewer total allied cards at this location than the opponent.",
+    "legacy": {
+      "name": "Reconquest",
+      "unlock": {
+        "stat": "strength",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "strength",
+        "amount": 3,
+        "context": "attack"
+      },
+      "flavour": "Justinian's general retook Africa and Italy against the odds."
+    },
     "years": "505–565 AD",
+    "born": 505,
+    "died": 565,
     "countries": [
       "Rome"
     ]
@@ -122,7 +184,21 @@
     "lore": "Deified by two civilizations for mastery of stone and medicine.",
     "trait": "Grand Architect — Once per match, permanently grant +5 to all stats of one other allied Great Person at this location. The bonus persists even if this card later moves or is archived.",
     "achievement": "Pyramid — Have at least 1 allied Arc and 1 allied Eng or Sci (GP or Follower) at this location at the same time.",
+    "legacy": {
+      "name": "Pyramid",
+      "unlock": {
+        "stat": "technique",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "longevity",
+        "years": 15
+      },
+      "flavour": "The healer-architect was worshipped as a god of medicine."
+    },
     "years": "c. 2650–2600 BC",
+    "born": -2650,
+    "died": -2600,
     "countries": [
       "Egypt"
     ]
@@ -148,7 +224,22 @@
     "lore": "He turned leaves and water into philosophy.",
     "trait": "Tea Ceremony — If this card is the only Great Person at this location, all its stats gain +5.",
     "achievement": "The Classic of Tea — Have this card be the only GP at a location for 3 consecutive rounds.",
+    "legacy": {
+      "name": "The Classic of Tea",
+      "unlock": {
+        "stat": "culture",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "income",
+        "card": "event",
+        "every": 6
+      },
+      "flavour": "Tea houses become places where news and plots are born."
+    },
     "years": "733–804 AD",
+    "born": 733,
+    "died": 804,
     "countries": [
       "China"
     ]
@@ -174,7 +265,23 @@
     "lore": "He built the machine that broke the unbreakable.",
     "trait": "Artificial Intelligence — Gains the highest stat of the last allied Great Person that was Archived.",
     "achievement": "Turing Test — Use this card's Artificial Intelligence trait to survive a Survival Scenario that the card could not have survived without it.",
+    "legacy": {
+      "name": "Turing Test",
+      "unlock": {
+        "stat": "intelligence",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "intelligence",
+        "amount": 3,
+        "context": "any"
+      },
+      "flavour": "The Bombe and the universal machine out-think any rival."
+    },
     "years": "1912–1954",
+    "born": 1912,
+    "died": 1954,
     "countries": [
       "United Kingdom"
     ]
@@ -199,7 +306,23 @@
     "lore": "A bullet for a nation's soul.",
     "trait": "Assassination — If this card was private and becomes public this turn, it may attack regardless of whether a Conflict scenario is active, targeting a player with only 1 GP at this location. This attack kills the target GP.",
     "achievement": "Korea Commemoration — Have at least one Korean location on the board occupied exclusively by Korean GP (no GP from other countries).",
+    "legacy": {
+      "name": "Korea Commemoration",
+      "unlock": {
+        "stat": "strength",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "politics",
+        "amount": 3,
+        "context": "attack"
+      },
+      "flavour": "The shot at Harbin struck at the heart of an empire."
+    },
     "years": "1879–1910",
+    "born": 1879,
+    "died": 1910,
     "countries": [
       "Korea"
     ]
@@ -225,7 +348,23 @@
     "lore": "His fortune shaped an era, for better and worse.",
     "trait": "The Syndicate — Once per round, this card earns one additional Achievement Tick whenever any other allied Great Person on the field earns one.",
     "achievement": "The Syndicate — Have at least 3 allied Ban or Mer (GP or Follower) across all locations at the same time.",
+    "legacy": {
+      "name": "The Syndicate",
+      "unlock": {
+        "stat": "wealth",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "wealth",
+        "amount": 3,
+        "context": "any"
+      },
+      "flavour": "A banking syndicate that financed half of American industry."
+    },
     "years": "1855–1937",
+    "born": 1855,
+    "died": 1937,
     "countries": [
       "United States"
     ]
@@ -250,7 +389,23 @@
     "lore": "Grace in every frame, humanity in every cause.",
     "trait": "Humanitarian Presence — While this card is face-up on the field, once per round the player may redirect one opponent event targeting any allied card at any location to have no effect.",
     "achievement": "UNICEF — Have this card spend a turn at the same location as at least 1 allied Doc or Mon (GP or Follower) while no conflict scenario is active.",
+    "legacy": {
+      "name": "UNICEF",
+      "unlock": {
+        "stat": "reputation",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "reputation",
+        "amount": 3,
+        "context": "any"
+      },
+      "flavour": "UNICEF's ambassador lent her name to every cause she touched."
+    },
     "years": "1929–1993",
+    "born": 1929,
+    "died": 1993,
     "countries": [
       "Belgium",
       "United Kingdom"
@@ -277,7 +432,22 @@
     "lore": "She played from the heart when the world told her to stand aside.",
     "trait": "Musical Bond — If there is exactly one male Musician (Great Person or Follower) at this location, both this card and that card gain +3 to all stats.",
     "achievement": "Lieder Album — Have this card at the same location as exactly one allied male Mus GP or Follower for 2 consecutive rounds.",
+    "legacy": {
+      "name": "Lieder Album",
+      "unlock": {
+        "stat": "culture",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "prodigy",
+        "years": 6
+      },
+      "flavour": "A concert pianist at nine who trained the next generation of prodigies."
+    },
     "years": "1819–1896",
+    "born": 1819,
+    "died": 1896,
+    "careerAge": 9,
     "countries": [
       "Germany"
     ]
@@ -302,7 +472,23 @@
     "lore": "He handed the world a ruler and said: begin.",
     "trait": "Geometric Deduction — The special effects of this card's current location also apply to all other locations on the field.",
     "achievement": "Elements — Have allied GP and Followers distributed across every location currently on the board, with an equal number at each.",
+    "legacy": {
+      "name": "Elements",
+      "unlock": {
+        "stat": "intelligence",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "intelligence",
+        "amount": 3,
+        "context": "competition"
+      },
+      "flavour": "The Elements was the textbook every competitor learned from."
+    },
     "years": "c. 300 BC",
+    "born": -325,
+    "died": -265,
     "countries": [
       "Greece"
     ]
@@ -328,7 +514,21 @@
     "lore": "In a monastery garden, he found the code of life.",
     "trait": "Heredity Laws — When this card is Archived, the player may grant +10 to any one stat of the next Great Person they deploy.",
     "achievement": "Pea Garden — Have at least 2 allied Nat (GP or Follower) at this location at the same time.",
+    "legacy": {
+      "name": "Pea Garden",
+      "unlock": {
+        "stat": "intelligence",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "successors",
+        "count": 1
+      },
+      "flavour": "The laws of inheritance: each generation can be chosen more wisely."
+    },
     "years": "1822–1884",
+    "born": 1822,
+    "died": 1884,
     "countries": [
       "Austria"
     ]
@@ -353,7 +553,24 @@
     "lore": "She rode in her father's armor and shook the walls of legend.",
     "trait": "Gender Disguise — All Great Person traits related to Gender on the field are disabled.",
     "achievement": "Join Army for Father — Win a Battlefield defence with at least one allied Sol GP or Follower at the same location.",
+    "legacy": {
+      "name": "Join Army for Father",
+      "unlock": {
+        "stat": "strength",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "strength",
+        "amount": 3,
+        "context": "defend"
+      },
+      "flavour": "Twelve years in the army defending her father and her home."
+    },
     "years": "c. 386–534 AD",
+    "born": 412,
+    "died": 480,
+    "careerAge": 17,
     "countries": [
       "China"
     ]
@@ -378,7 +595,24 @@
     "lore": "He carried Beethoven's shadow and carved his own light.",
     "trait": "Perfectionism — If the sum of a specific stat of all allied cards at this location is ≥ 25, gain +3 to that stat; otherwise −3.",
     "achievement": "Hungarian Dances — Have this card at the same location as at least 1 allied Mus and 1 allied Wri (GP or Follower) at the same time.",
+    "legacy": {
+      "name": "Hungarian Dances",
+      "unlock": {
+        "stat": "culture",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "culture",
+        "amount": 2,
+        "context": "any"
+      },
+      "flavour": "The Hungarian Dances carried his culture into every hall."
+    },
     "years": "1833–1897",
+    "born": 1833,
+    "died": 1897,
+    "careerAge": 10,
     "countries": [
       "Germany"
     ]
@@ -403,7 +637,23 @@
     "lore": "The greatest knight of the realm, undone by the greatest love.",
     "trait": "Oath of Valor — While this card has never moved since deployment, it wins all stat ties. If it ever moves, it permanently loses this ability for the rest of the match.",
     "achievement": "The Grail Quest — Have this card at the same location as 2 or more allied Sol (GP or Follower), none of which moved this turn.",
+    "legacy": {
+      "name": "The Grail Quest",
+      "unlock": {
+        "stat": "strength",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "any",
+        "amount": 2,
+        "context": "attack"
+      },
+      "flavour": "The first knight of the Round Table always rides at the front."
+    },
     "years": "Arthurian legend",
+    "born": 470,
+    "died": 540,
     "countries": [
       "France"
     ]
@@ -428,7 +678,23 @@
     "lore": "Sorrow and beauty, distilled into verse.",
     "trait": "Delicate Restraint — While this card is on board, you may deploy an unlimited number of Wri, Art, Mus, or Act Followers per turn.",
     "achievement": "Sheng Sheng Man — Have every player deploy exactly 2 cards (GP or Follower total) to this location at the same time.",
+    "legacy": {
+      "name": "Sheng Sheng Man",
+      "unlock": {
+        "stat": "culture",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "culture",
+        "amount": 3,
+        "context": "survival"
+      },
+      "flavour": "Her ci poems survived war, exile and the loss of her library."
+    },
     "years": "1084–c.1155",
+    "born": 1084,
+    "died": 1155,
     "countries": [
       "China"
     ]
@@ -454,7 +720,22 @@
     "lore": "A kingdom inherited, a revolution unleashed.",
     "trait": "Locksmith — All non-allied GP and Followers at the same location cannot move to another location or be retrieved by their player.",
     "achievement": "Guillotine — Have more than 1 GP or Follower killed at this location in the same turn while Louis XVI is present.",
+    "legacy": {
+      "name": "Guillotine",
+      "unlock": {
+        "stat": "politics",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "income",
+        "card": "event",
+        "every": 5
+      },
+      "flavour": "Summoning the Estates-General set events in motion."
+    },
     "years": "1754–1793",
+    "born": 1754,
+    "died": 1793,
     "countries": [
       "France"
     ]
@@ -479,7 +760,24 @@
     "lore": "She wore the crown of Versailles until the crowd came for it.",
     "trait": "Madame Déficit — All GP at the same location as this card get −3 Wealth.",
     "achievement": "Queen's Designer — Have an Art or Mer GP at this location get archived in the same turn.",
+    "legacy": {
+      "name": "Queen's Designer",
+      "unlock": {
+        "stat": "wealth",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "wealth",
+        "amount": 3,
+        "context": "competition"
+      },
+      "flavour": "Versailles set the fashion that the whole of Europe competed with."
+    },
     "years": "1755–1793",
+    "born": 1755,
+    "died": 1793,
+    "careerAge": 14,
     "countries": [
       "Austria",
       "France"
@@ -505,7 +803,24 @@
     "lore": "The sword and the mind — both perfected.",
     "trait": "Niten Ichi-ryu — Can attack twice per turn.",
     "achievement": "Undefeated — Win 2 attacks in the same turn using this card.",
+    "legacy": {
+      "name": "Undefeated",
+      "unlock": {
+        "stat": "strength",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "strength",
+        "amount": 2,
+        "context": "any"
+      },
+      "flavour": "The Book of Five Rings teaches strategy for every duel."
+    },
     "years": "1584–1645",
+    "born": 1584,
+    "died": 1645,
+    "careerAge": 13,
     "countries": [
       "Japan"
     ]
@@ -531,7 +846,22 @@
     "lore": "He built the world's first empire from nothing but will.",
     "trait": "First Empire — When this card defeats an opponent in combat, it gains an additional Achievement Tick.",
     "achievement": "First Empire — Have allied GP or Followers deployed to at least 4 different locations at the same time.",
+    "legacy": {
+      "name": "First Empire",
+      "unlock": {
+        "stat": "politics",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "income",
+        "card": "follower",
+        "every": 3
+      },
+      "flavour": "The world's first standing army: 5,400 men ate daily before him."
+    },
     "years": "c. 2334–2279 BC",
+    "born": -2334,
+    "died": -2279,
     "countries": [
       "Mesopotamia"
     ]
@@ -557,7 +887,21 @@
     "lore": "Two-thirds god, one-third man — he built the walls of Uruk and sought the secret of eternal life.",
     "trait": "Epic of Gilgamesh — After this card wins 3 rounds at this location, it gains +10 to all stats for the rest of the game.",
     "achievement": "Two-Thirds Divine — Have this card and Enkidu at the same location at the same time.",
+    "legacy": {
+      "name": "Two-Thirds Divine",
+      "unlock": {
+        "stat": "strength",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "longevity",
+        "years": 20
+      },
+      "flavour": "He sought immortality; his story, at least, lives on."
+    },
     "years": "c. 2700 BCE",
+    "born": -2700,
+    "died": -2640,
     "countries": [
       "Mesopotamia"
     ]
@@ -582,7 +926,23 @@
     "lore": "Born of clay and wildness, he became the greatest friend a king ever had.",
     "trait": "Forest Wildman — A Location with Forest feature provides +2 Strength and +2 Technique to this card and all Allied GP and Followers at it.",
     "achievement": "Gilgamesh Epic — This card and another Sumer GP card move from a Mesopotamia location to another Mesopotamia location together in the same turn.",
+    "legacy": {
+      "name": "Gilgamesh Epic",
+      "unlock": {
+        "stat": "strength",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "strength",
+        "amount": 2,
+        "context": "defend"
+      },
+      "flavour": "The wild man's strength guards his friend."
+    },
     "years": "c. 2700 BCE",
+    "born": -2700,
+    "died": -2675,
     "countries": [
       "Mesopotamia"
     ]
@@ -607,7 +967,22 @@
     "lore": "Under his hand, Athens became the school of Hellas.",
     "trait": "Athenian Democracy — Gains an additional +1 to all stats for each allied Follower at this location.",
     "achievement": "Funeral Oration — Have an allied GP killed at this location by an opponent in the same turn.",
+    "legacy": {
+      "name": "Funeral Oration",
+      "unlock": {
+        "stat": "politics",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "follower",
+        "stat": "politics",
+        "amount": 2
+      },
+      "flavour": "Athens' golden age turned every citizen into a statesman."
+    },
     "years": "c. 495–429 BCE",
+    "born": -495,
+    "died": -429,
     "countries": [
       "Greece"
     ]
@@ -632,7 +1007,23 @@
     "lore": "She taught the greatest minds of Athens — including Socrates himself.",
     "trait": "Voice Behind the Throne — This card cannot be directly attacked. Any scenario that would eliminate an allied Great Person here may instead eliminate one allied Follower of the player's choice.",
     "achievement": "School of Athens — Have this card at the same location as at least 2 allied Phi (GP or Follower) at the same time.",
+    "legacy": {
+      "name": "School of Athens",
+      "unlock": {
+        "stat": "intelligence",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "politics",
+        "amount": 2,
+        "context": "any"
+      },
+      "flavour": "Her salon schooled the orators of Athens."
+    },
     "years": "c. 470–400 BCE",
+    "born": -470,
+    "died": -400,
     "countries": [
       "Greece"
     ]
@@ -658,7 +1049,23 @@
     "lore": "King of Sparta, twice exiled, twice restored — a king who chose peace over glory.",
     "trait": "The Recalled King — Whenever this card would be eliminated, retrieve it to hand instead. It may then be immediately redeployed to any location for free.",
     "achievement": "Thirty Years' Peace — Have this card draw 2 different rounds (combat or event) during the same game.",
+    "legacy": {
+      "name": "Thirty Years' Peace",
+      "unlock": {
+        "stat": "politics",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "any",
+        "amount": 2,
+        "context": "defend"
+      },
+      "flavour": "The Thirty Years' Peace kept Sparta's borders safe."
+    },
     "years": "c. 480–409 BCE",
+    "born": -480,
+    "died": -409,
     "countries": [
       "Greece"
     ]
@@ -684,7 +1091,23 @@
     "lore": "The greatest orator of Rome — words were his sword and shield.",
     "trait": "Consul's Veto — Once per match, cancel any single opponent action at this location — deployment, move, event, or attack. The action is void and any costs are refunded.",
     "achievement": "Philippics — Use the Consul's Veto trait and have at least 1 allied Sta (GP or Follower) at this location in the same turn.",
+    "legacy": {
+      "name": "Philippics",
+      "unlock": {
+        "stat": "politics",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "politics",
+        "amount": 3,
+        "context": "defend"
+      },
+      "flavour": "The Philippics defended the Republic against tyranny."
+    },
     "years": "106–43 BCE",
+    "born": -106,
+    "died": -43,
     "countries": [
       "Rome"
     ]
@@ -710,7 +1133,23 @@
     "lore": "He first declared the sun is not a god, but a burning stone larger than all of Greece.",
     "trait": "Mind Over Matter — Once per match, when this card would be eliminated, discard 2 Follower cards instead to keep it on the field with +5 to all stats.",
     "achievement": "Nous — Have this card at the same location as at least 2 allied Phi or Sci (GP or Follower) at the same time.",
+    "legacy": {
+      "name": "Nous",
+      "unlock": {
+        "stat": "intelligence",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "intelligence",
+        "amount": 2,
+        "context": "survival"
+      },
+      "flavour": "Explaining eclipses and meteors took the terror out of the sky."
+    },
     "years": "c. 500–428 BCE",
+    "born": -500,
+    "died": -428,
     "countries": [
       "Greece"
     ]
@@ -736,7 +1175,23 @@
     "lore": "He proved motion was impossible — and the world has never stopped arguing.",
     "trait": "The Paradox — Once per match, declare the current scenario a draw: neither side wins, no Achievement Ticks are awarded, and both cards remain on the field.",
     "achievement": "Achilles and the Tortoise — Use the Paradox trait and have this card remain at the same location without moving for 3 consecutive rounds.",
+    "legacy": {
+      "name": "Achilles and the Tortoise",
+      "unlock": {
+        "stat": "intelligence",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "intelligence",
+        "amount": 2,
+        "context": "defend"
+      },
+      "flavour": "Paradoxes that no attacker could refute."
+    },
     "years": "c. 490–430 BCE",
+    "born": -490,
+    "died": -430,
     "countries": [
       "Greece"
     ]
@@ -762,7 +1217,23 @@
     "lore": "He gave us algebra and the algorithm — the invisible foundation of every computer ever built.",
     "trait": "Algebraic Induction — This card gains all numerical stat bonuses currently received by other revealed Great Persons on the field.",
     "achievement": "Algebra — Have allied GP and Followers on board whose base stats together include every integer from 1 to 25.",
+    "legacy": {
+      "name": "Algebra",
+      "unlock": {
+        "stat": "technique",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "technique",
+        "amount": 3,
+        "context": "any"
+      },
+      "flavour": "Algebra and the algorithm became the tools of every engineer."
+    },
     "years": "c. 780–850 CE",
+    "born": 780,
+    "died": 850,
     "countries": [
       "Persia"
     ]
@@ -787,7 +1258,21 @@
     "lore": "The Prophet of Light painted his gospels in vivid color across three continents.",
     "trait": "Two Lights — This card is immune to all Survival Scenario effects. While allied Great Persons of two or more different eras share this location, all allied cards here gain +3 to all stats.",
     "achievement": "Light and Dark — Have allied GP or Followers from at least 2 different eras at this location at the same time.",
+    "legacy": {
+      "name": "Light and Dark",
+      "unlock": {
+        "stat": "belief",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "successors",
+        "count": 1
+      },
+      "flavour": "Manichaeism spread from Rome to China through chosen disciples."
+    },
     "years": "c. 216–274 CE",
+    "born": 216,
+    "died": 274,
     "countries": [
       "Persia"
     ]
@@ -812,7 +1297,21 @@
     "lore": "His brush turned the Renaissance into fire and flesh — the last great master standing.",
     "trait": "The Portraitist — Get the trait of the Allied Great People if there is only one at the same location.",
     "achievement": "Self-Portrait — Have at least 1 allied archived GP whose trait this card has inherited.",
+    "legacy": {
+      "name": "Self-Portrait",
+      "unlock": {
+        "stat": "culture",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "longevity",
+        "years": 10
+      },
+      "flavour": "Painting masterpieces into his late eighties."
+    },
     "years": "c. 1488–1576",
+    "born": 1488,
+    "died": 1576,
     "countries": [
       "Italy"
     ]
@@ -837,7 +1336,23 @@
     "lore": "He proved the world was round by sailing its circumference — and died before he saw it complete.",
     "trait": "Long-distance Voyage — This card and all Allied GP get extra +1 on all stats in a Global Competition.",
     "achievement": "Circumnavigation — Visit all the locations on the board in public continuously (without being turned into private, being retrieved or being killed).",
+    "legacy": {
+      "name": "Circumnavigation",
+      "unlock": {
+        "stat": "technique",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "any",
+        "amount": 2,
+        "context": "competition"
+      },
+      "flavour": "The first circumnavigation opened a world-wide contest."
+    },
     "years": "1480–1521",
+    "born": 1480,
+    "died": 1521,
     "countries": [
       "Portugal",
       "Spain"
@@ -864,7 +1379,23 @@
     "lore": "She left the convent walls to cradle the dying in Calcutta's gutters — and sparked a worldwide movement of radical compassion.",
     "trait": "Called to Serve — Once per match, voluntarily archive this card to return up to 3 allied Followers that were eliminated from any location back to the player's hand.",
     "achievement": "Houses of the Dying — Have at least 2 allied Mon (GP or Follower) at this location at the same time.",
+    "legacy": {
+      "name": "Houses of the Dying",
+      "unlock": {
+        "stat": "belief",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "any",
+        "amount": 3,
+        "context": "survival"
+      },
+      "flavour": "The Houses of the Dying kept the forgotten alive."
+    },
     "years": "1910–1997",
+    "born": 1910,
+    "died": 1997,
     "countries": [
       "Albania",
       "India"
@@ -890,7 +1421,22 @@
     "lore": "He named the world — every living thing classified by his elegant two-word system.",
     "trait": "Systema Naturae — Once per match, swap any two allied Great Persons' locations as a free action. Both relocated cards count as freshly deployed for that round.",
     "achievement": "Systema Naturae — Have at least 4 different identity types of allied Followers at this location at the same time.",
+    "legacy": {
+      "name": "Systema Naturae",
+      "unlock": {
+        "stat": "intelligence",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "follower",
+        "stat": "intelligence",
+        "amount": 2
+      },
+      "flavour": "His \"apostles\" collected specimens on every continent."
+    },
     "years": "1707–1778",
+    "born": 1707,
+    "died": 1778,
     "countries": [
       "Sweden"
     ]
@@ -915,7 +1461,23 @@
     "lore": "His music spoke what words could not — joy and madness in the same key.",
     "trait": "Fantasia — Cards at this location are immune to Survival Scenario effects in the first round this card is deployed or moved here; this card cannot terminate the Survival Scenario.",
     "achievement": "Marriage of Love — Have this card spend a turn with only 1 allied female Mus (GP or Follower) at the same location, both performing no actions.",
+    "legacy": {
+      "name": "Marriage of Love",
+      "unlock": {
+        "stat": "culture",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "culture",
+        "amount": 2,
+        "context": "defend"
+      },
+      "flavour": "The Neue Zeitschrift für Musik championed his circle against critics."
+    },
     "years": "1810–1856",
+    "born": 1810,
+    "died": 1856,
     "countries": [
       "Germany"
     ]
@@ -940,7 +1502,23 @@
     "lore": "He gave Einstein the mathematics to prove relativity — and modestly called it Einstein's theory.",
     "trait": "Lorentz Transformation — All Great Person traits related to Era or Location on the field are disabled.",
     "achievement": "Lorentz Force — Have a GP on the board get force-retrieved without being attacked.",
+    "legacy": {
+      "name": "Lorentz Force",
+      "unlock": {
+        "stat": "intelligence",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "technique",
+        "amount": 2,
+        "context": "defend"
+      },
+      "flavour": "The Lorentz force pushes back on any moving charge."
+    },
     "years": "1853–1928",
+    "born": 1853,
+    "died": 1928,
     "countries": [
       "Netherlands"
     ]
@@ -965,7 +1543,20 @@
     "lore": "She aimed for the horizon and flew straight through every barrier in her path.",
     "trait": "The Lady Lindy — This card is immune to all Survival Scenario effects; it always survives regardless of stat thresholds.",
     "achievement": "First Solo Atlantic — Have this card survive a natural hazard scenario at a location where no other allied GP or Follower is present.",
+    "legacy": {
+      "name": "First Solo Atlantic",
+      "unlock": {
+        "stat": "technique",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "hazard_shield"
+      },
+      "flavour": "She flew solo across the Atlantic through ice and storm."
+    },
     "years": "1897–1937",
+    "born": 1897,
+    "died": 1937,
     "countries": [
       "United States"
     ]
@@ -990,7 +1581,22 @@
     "lore": "He invented the language of film — montage as a weapon of art and revolution.",
     "trait": "Dialectical Montage — Once per match, play two event cards simultaneously from your hand at this location. Both effects resolve in the order you choose.",
     "achievement": "Battleship Potemkin — Play 2 event cards at this location in the same turn.",
+    "legacy": {
+      "name": "Battleship Potemkin",
+      "unlock": {
+        "stat": "culture",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "income",
+        "card": "event",
+        "every": 4
+      },
+      "flavour": "Montage: every cut sets a new scene in motion."
+    },
     "years": "1898–1948",
+    "born": 1898,
+    "died": 1948,
     "countries": [
       "Russia"
     ]
@@ -1016,7 +1622,23 @@
     "lore": "He stood on top of the world — and then spent decades helping the people who lived there.",
     "trait": "First Ascent — When this card wins an attack, it gains 2 Achievement Ticks instead of 1.",
     "achievement": "Summit — Have this card and Tenzing Norgay at the same location at the same time.",
+    "legacy": {
+      "name": "Summit",
+      "unlock": {
+        "stat": "strength",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "strength",
+        "amount": 3,
+        "context": "survival"
+      },
+      "flavour": "Survived the death zone of Everest and the Antarctic crossing."
+    },
     "years": "1919–2008",
+    "born": 1919,
+    "died": 2008,
     "countries": [
       "New Zealand"
     ]
@@ -1042,7 +1664,20 @@
     "lore": "He knew every ridge and crevice of Everest — and chose to climb it side by side.",
     "trait": "Mountain Guide — Once per turn, move one other allied Great Person to this location as a free action (does not consume that card's move).",
     "achievement": "Together — Have this card and Edmund Hillary at the same location at the same time.",
+    "legacy": {
+      "name": "Together",
+      "unlock": {
+        "stat": "strength",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "hazard_shield"
+      },
+      "flavour": "The Sherpa who knew the mountain weather better than anyone."
+    },
     "years": "1914–1986",
+    "born": 1914,
+    "died": 1986,
     "countries": [
       "Nepal",
       "India"
@@ -1068,7 +1703,23 @@
     "lore": "He modernized Japan in a generation — and paid the ultimate price for empire.",
     "trait": "Meiji Architect — Once per match, declare this location's era to be any era of your choice for one round.",
     "achievement": "Meiji Constitution — Have at least 1 allied Sta and 1 allied Eng or Sci (GP or Follower) at this location at the same time.",
+    "legacy": {
+      "name": "Meiji Constitution",
+      "unlock": {
+        "stat": "politics",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "politics",
+        "amount": 2,
+        "context": "any"
+      },
+      "flavour": "The Meiji Constitution framed modern Japanese politics."
+    },
     "years": "1841–1909",
+    "born": 1841,
+    "died": 1909,
     "countries": [
       "Japan"
     ]
@@ -1093,7 +1744,22 @@
     "lore": "The King of Pop — the most famous entertainer in human history.",
     "trait": "King of Pop — While at a location, all players may deploy an unlimited number of Follower cards to this same location.",
     "achievement": "Moon Walk — Have this card spend a turn with at least 1 allied Ast (GP or Follower) and 1 allied Mus (GP or Follower) at the same location.",
+    "legacy": {
+      "name": "Moon Walk",
+      "unlock": {
+        "stat": "culture",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "prodigy",
+        "years": 8
+      },
+      "flavour": "Lead singer of the Jackson 5 at six."
+    },
     "years": "1958–2009",
+    "born": 1958,
+    "died": 2009,
+    "careerAge": 6,
     "countries": [
       "United States"
     ]
@@ -1118,7 +1784,21 @@
     "lore": "He turned the stage into a philosopher's lecture hall.",
     "trait": "Paradoxical Wit — Once per match, negate all trait-based stat bonuses of all cards at this location for one round.",
     "achievement": "Pygmalion — Have this card at the same location as at least 1 allied Act and 1 allied Wri (GP or Follower) at the same time.",
+    "legacy": {
+      "name": "Pygmalion",
+      "unlock": {
+        "stat": "culture",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "longevity",
+        "years": 12
+      },
+      "flavour": "Writing plays into his nineties."
+    },
     "years": "1856–1950",
+    "born": 1856,
+    "died": 1950,
     "countries": [
       "Ireland",
       "United Kingdom"
@@ -1144,7 +1824,23 @@
     "lore": "In a role he was born to play, he gave America its conscience.",
     "trait": "Standing for Justice — All events played by opponents at this location must be declared publicly before resolving. The player may discard one Follower to negate any such event.",
     "achievement": "To Kill a Mockingbird — Have this card at the same location as at least 1 allied Law (GP or Follower) while a Conflict scenario is active.",
+    "legacy": {
+      "name": "To Kill a Mockingbird",
+      "unlock": {
+        "stat": "belief",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "reputation",
+        "amount": 2,
+        "context": "defend"
+      },
+      "flavour": "Atticus Finch: the actor who stood up for the accused."
+    },
     "years": "1916–2003",
+    "born": 1916,
+    "died": 2003,
     "countries": [
       "United States"
     ]
@@ -1169,7 +1865,22 @@
     "lore": "She united a kingdom, funded a new world, and reshaped history.",
     "trait": "Royal Decree — Once per match, remove all Followers of one chosen opponent from any one location on the field. This card must then move to that location.",
     "achievement": "New World Patronage — Have at least 1 allied Exp (GP or Follower) at this location while it is your turn.",
+    "legacy": {
+      "name": "New World Patronage",
+      "unlock": {
+        "stat": "belief",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "income",
+        "card": "follower",
+        "every": 4
+      },
+      "flavour": "Royal patronage sent explorers and settlers across the ocean."
+    },
     "years": "1451–1504",
+    "born": 1451,
+    "died": 1504,
     "countries": [
       "Spain"
     ]
@@ -1195,7 +1906,23 @@
     "lore": "Under his reign, Portugal held the key to the world's treasure chest.",
     "trait": "Maritime Empire — Whenever this card moves to a new location, the player may bring any number of allied Followers from the previous location to the new one at no cost.",
     "achievement": "Spice Routes — Have allied GP or Followers at 3 or more different locations simultaneously, each from a different era.",
+    "legacy": {
+      "name": "Spice Routes",
+      "unlock": {
+        "stat": "wealth",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "wealth",
+        "amount": 2,
+        "context": "any"
+      },
+      "flavour": "The spice routes made Lisbon the richest port in Europe."
+    },
     "years": "1469–1521",
+    "born": 1469,
+    "died": 1521,
     "countries": [
       "Portugal"
     ]
@@ -1220,7 +1947,21 @@
     "lore": "The warrior-king who built the world's first great library.",
     "trait": "Library of Nineveh — Once per match, look at the top 3 cards of any one pile; rearrange them in any order.",
     "achievement": "Conqueror-Scholar — Have this card at the same location as an allied Sch (Scholar) GP while this location is under your control.",
+    "legacy": {
+      "name": "Conqueror-Scholar",
+      "unlock": {
+        "stat": "politics",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "successors",
+        "count": 1
+      },
+      "flavour": "The Library of Nineveh preserved the deeds of those who came before."
+    },
     "years": "c. 685–627 BC",
+    "born": -685,
+    "died": -627,
     "countries": [
       "Iraq"
     ]
@@ -1246,7 +1987,23 @@
     "lore": "The architect of empires — his Arthashastra mapped every lever of power.",
     "trait": "Arthashastra — Whenever an opponent deploys a card, this player may reveal a card from hand; if it shares an identity with the deployed card, that opponent's card gets −2 to all checks this round.",
     "achievement": "Kingmaker — Have this card allied with a Sovereign GP at the same location while winning a Diplomacy scenario.",
+    "legacy": {
+      "name": "Kingmaker",
+      "unlock": {
+        "stat": "intelligence",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "politics",
+        "amount": 3,
+        "context": "attack"
+      },
+      "flavour": "The Arthashastra: statecraft as an offensive weapon."
+    },
     "years": "c. 350–275 BC",
+    "born": -350,
+    "died": -275,
     "countries": [
       "India"
     ]
@@ -1271,7 +2028,24 @@
     "lore": "His feet rewrote the rules of what a human body could do.",
     "trait": "Hand of God — Once per match, this card may convert a failed Conflict attempt into a draw instead of a loss.",
     "achievement": "Goal of the Century — Have this card succeed in a Conflict scenario against an opponent with 2 or more Followers at that location.",
+    "legacy": {
+      "name": "Goal of the Century",
+      "unlock": {
+        "stat": "reputation",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "reputation",
+        "amount": 3,
+        "context": "attack"
+      },
+      "flavour": "The Goal of the Century and the Hand of God."
+    },
     "years": "1960–2020",
+    "born": 1960,
+    "died": 2020,
+    "careerAge": 15,
     "countries": [
       "Argentina"
     ]
@@ -1297,7 +2071,22 @@
     "lore": "A silkworm fell into her cup — and she wove civilization's finest thread.",
     "trait": "Silk Secret — All allied Mch (Merchant) GP or Followers at this location gain +3 to wealth checks.",
     "achievement": "Sericulture — Have this card at the same location as at least 1 allied Mch (Merchant) and 1 allied Nat (Naturalist) GP or Follower simultaneously.",
+    "legacy": {
+      "name": "Sericulture",
+      "unlock": {
+        "stat": "wealth",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "income",
+        "card": "follower",
+        "every": 5
+      },
+      "flavour": "Sericulture: every village took up the silk trade."
+    },
     "years": "c. 2700 BC",
+    "born": -2720,
+    "died": -2640,
     "countries": [
       "China"
     ]
@@ -1323,7 +2112,21 @@
     "lore": "He held the first title of physician — carved in wood at the dawn of medicine.",
     "trait": "First Physician — Once per match, when any GP at this location would be eliminated, this card may prevent that elimination.",
     "achievement": "Ancient Healing — Have this card at the same location as 2 or more allied GP cards that are not Doctors.",
+    "legacy": {
+      "name": "Ancient Healing",
+      "unlock": {
+        "stat": "technique",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "longevity",
+        "years": 10
+      },
+      "flavour": "Chief of dentists and physicians to the pharaoh."
+    },
     "years": "c. 2700–2600 BC",
+    "born": -2690,
+    "died": -2630,
     "countries": [
       "Egypt"
     ]
@@ -1348,7 +2151,21 @@
     "lore": "No vestige of a beginning, no prospect of an end — he read time in stone.",
     "trait": "Deep Time — Each round this card stays at the same location without acting, it gains +1 to all stat checks (max +3).",
     "achievement": "Geological Survey — Have this card remain at the same location for 3 consecutive rounds without being moved.",
+    "legacy": {
+      "name": "Geological Survey",
+      "unlock": {
+        "stat": "intelligence",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "longevity",
+        "years": 8
+      },
+      "flavour": "Deep time: \"no vestige of a beginning, no prospect of an end.\""
+    },
     "years": "1726–1797",
+    "born": 1726,
+    "died": 1797,
     "countries": [
       "United Kingdom"
     ]
@@ -1374,7 +2191,23 @@
     "lore": "She sat with chimpanzees and taught the world what it means to be human.",
     "trait": "Primates Expert — A Location with Jungle feature provides +2 Technique and +2 Intelligence to this card and all Allied GP and Followers at it.",
     "achievement": "Chimpanzee Feeding Stations — At a location with Jungle feature, this GP ends a Survival.",
-    "years": "1934–",
+    "legacy": {
+      "name": "Chimpanzee Feeding Stations",
+      "unlock": {
+        "stat": "reputation",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "any",
+        "amount": 2,
+        "context": "survival"
+      },
+      "flavour": "Gombe's chimpanzees survived because she stayed."
+    },
+    "years": "1934–2025",
+    "born": 1934,
+    "died": 2025,
     "countries": [
       "United Kingdom"
     ]
@@ -1399,7 +2232,23 @@
     "lore": "He turned clay into an empire — and pottery into prestige.",
     "trait": "Industrialist Potter — Each round this card earns wealth, all allied Mch (Merchant) GP or Followers at any location gain +2 to wealth checks.",
     "achievement": "Wedgwood Blue — Have this card at a location where the combined technique of allied GP totals 30 or more.",
+    "legacy": {
+      "name": "Wedgwood Blue",
+      "unlock": {
+        "stat": "wealth",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "technique",
+        "amount": 2,
+        "context": "competition"
+      },
+      "flavour": "Jasperware won every exhibition it entered."
+    },
     "years": "1730–1795",
+    "born": 1730,
+    "died": 1795,
     "countries": [
       "United Kingdom"
     ]
@@ -1424,7 +2273,23 @@
     "lore": "More Michelin stars than any chef in history — perfection plated, always.",
     "trait": "Chef de la Cuisine — Allied Gou (Gourmet) GP or Followers at this location gain +3 to technique checks and +2 to wealth checks.",
     "achievement": "L'Atelier — Have this card at a location with 3 or more Followers deployed by the same player.",
+    "legacy": {
+      "name": "L'Atelier",
+      "unlock": {
+        "stat": "technique",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "technique",
+        "amount": 2,
+        "context": "any"
+      },
+      "flavour": "Thirty-two Michelin stars of pure technique."
+    },
     "years": "1945–2018",
+    "born": 1945,
+    "died": 2018,
     "countries": [
       "France"
     ]
@@ -1449,7 +2314,21 @@
     "lore": "He stopped the cycle of blood — the first king to rule by written law, not murder.",
     "trait": "Edict of Succession — Once per match, prevent the forced removal of any one allied card from the field.",
     "achievement": "Law of the Land — Win a Diplomacy scenario while this card is at the same location as an allied Sta (Statesman) GP.",
+    "legacy": {
+      "name": "Law of the Land",
+      "unlock": {
+        "stat": "belief",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "successors",
+        "count": 1
+      },
+      "flavour": "The Edict of Telepinu fixed the rules of royal succession."
+    },
     "years": "c. 1620–1590 BC",
+    "born": -1620,
+    "died": -1590,
     "countries": [
       "Turkey"
     ]
@@ -1474,7 +2353,23 @@
     "lore": "The great hero who renounced the world to conquer the self.",
     "trait": "Ahimsa — While this card is on the field, allied Followers cannot be used in Conflict actions but gain +3 to all non-Conflict checks.",
     "achievement": "Nirvana — Have this card at the same location as at least 2 allied Monastic or Prophet GP or Followers while winning a non-Conflict scenario.",
+    "legacy": {
+      "name": "Nirvana",
+      "unlock": {
+        "stat": "belief",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "belief",
+        "amount": 3,
+        "context": "any"
+      },
+      "flavour": "Jainism: non-violence held with unshakeable belief."
+    },
     "years": "c. 599–527 BC",
+    "born": -599,
+    "died": -527,
     "countries": [
       "India"
     ]
@@ -1500,7 +2395,23 @@
     "lore": "He tracked the stars and seasons — his tomb paintings still teach us how Egyptians lived.",
     "trait": "Star Chart — At the start of each round, the player may look at the top card of the event deck before deciding their action.",
     "achievement": "Astronomical Record — Have this card at the same location as 2 different Sch (Scholar) GP or Followers simultaneously.",
+    "legacy": {
+      "name": "Astronomical Record",
+      "unlock": {
+        "stat": "politics",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "intelligence",
+        "amount": 2,
+        "context": "competition"
+      },
+      "flavour": "Astronomical records that set the calendar for all."
+    },
     "years": "c. 1425–1375 BC",
+    "born": -1425,
+    "died": -1375,
     "countries": [
       "Egypt"
     ]
@@ -1525,7 +2436,23 @@
     "lore": "He carved the world's longest funerary text — a library etched in stone for eternity.",
     "trait": "Sacred Texts — All allied Mon (Monastic) and Prs (Priest) GP or Followers at this location gain +2 to belief checks.",
     "achievement": "High Priest — Have this card at a location with at least 2 allied Monastic or Priest cards while winning a Diplomacy scenario.",
+    "legacy": {
+      "name": "High Priest",
+      "unlock": {
+        "stat": "belief",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "belief",
+        "amount": 2,
+        "context": "survival"
+      },
+      "flavour": "Tomb texts to see the soul safely through the underworld."
+    },
     "years": "c. 680–640 BC",
+    "born": -680,
+    "died": -640,
     "countries": [
       "Egypt"
     ]
@@ -1550,7 +2477,21 @@
     "lore": "Lady Overseer of Female Physicians — history's first known female doctor.",
     "trait": "Lady of Medicine — Once per match, when any female GP at this location would be eliminated, this card may prevent that elimination.",
     "achievement": "Medical Overseer — Have this card at the same location as 2 or more allied female GP or Followers.",
+    "legacy": {
+      "name": "Medical Overseer",
+      "unlock": {
+        "stat": "intelligence",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "longevity",
+        "years": 8
+      },
+      "flavour": "Overseer of the women physicians of Egypt."
+    },
     "years": "c. 2500–2450 BC",
+    "born": -2500,
+    "died": -2450,
     "countries": [
       "Egypt"
     ]
@@ -1575,7 +2516,23 @@
     "lore": "He broadcast from Baghdad while the bombs fell — the voice from inside the storm.",
     "trait": "On the Ground — Whenever a Conflict scenario resolves at this location, this player draws 1 extra card from the event deck.",
     "achievement": "War Correspondent — Have this card present at the same location as a Conflict scenario resolution 3 times in a match.",
+    "legacy": {
+      "name": "War Correspondent",
+      "unlock": {
+        "stat": "reputation",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "reputation",
+        "amount": 2,
+        "context": "any"
+      },
+      "flavour": "Live from Baghdad: the reporter everyone trusted."
+    },
     "years": "1934–",
+    "born": 1934,
+    "died": null,
     "countries": [
       "New Zealand"
     ]
@@ -1600,7 +2557,23 @@
     "lore": "He put a thousand songs in your pocket and a computer in your hand.",
     "trait": "Think Different — Once per match, this card may ignore one card effect that targets it.",
     "achievement": "One More Thing — Have this card at a location where the combined technique of allied GP exceeds that of any opponent's GP at the same location.",
+    "legacy": {
+      "name": "One More Thing",
+      "unlock": {
+        "stat": "wealth",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "technique",
+        "amount": 3,
+        "context": "competition"
+      },
+      "flavour": "\"One more thing\" won every launch."
+    },
     "years": "1955–2011",
+    "born": 1955,
+    "died": 2011,
     "countries": [
       "United States"
     ]
@@ -1625,7 +2598,22 @@
     "lore": "He sang the world's first Sanskrit epic and set the hero's journey in verse.",
     "trait": "Adi Kavi — Allied Wri (Writer) GP or Followers at this location gain +3 to culture checks; the first time this card is attacked each match, negate the attack.",
     "achievement": "Epic Verse — Have this card at the same location as 2 or more allied Wri (Writer) or Phi (Philosopher) GP or Followers.",
+    "legacy": {
+      "name": "Epic Verse",
+      "unlock": {
+        "stat": "belief",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "income",
+        "card": "event",
+        "every": 5
+      },
+      "flavour": "The Ramayana gives every age a new story to act out."
+    },
     "years": "c. 500–400 BC",
+    "born": -480,
+    "died": -400,
     "countries": [
       "India"
     ]
@@ -1650,7 +2638,23 @@
     "lore": "She seized an empire, expanded it beyond imagination, and ruled it with an iron intellect.",
     "trait": "Enlightened Empress — While this card is on the field, allied Sov (Sovereign) and Sta (Statesman) GP gain +2 to politics checks.",
     "achievement": "Mother of Russia — Have this card as the only GP at a location while allied GP are simultaneously present at 2 other locations.",
+    "legacy": {
+      "name": "Mother of Russia",
+      "unlock": {
+        "stat": "politics",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "politics",
+        "amount": 3,
+        "context": "any"
+      },
+      "flavour": "Mother of Russia: thirty-four years of enlightened absolutism."
+    },
     "years": "1729–1796",
+    "born": 1729,
+    "died": 1796,
     "countries": [
       "Russia"
     ]
@@ -1678,7 +2682,23 @@
     "lore": "She negotiated with kings and conquered kingdoms — never surrendering to empire.",
     "trait": "Queen of Ndongo — When this card defends against a Conflict, the attacking player must first discard an Event card, or the attack is cancelled.",
     "achievement": "Resilient Throne — Have this card's location survive three consecutive Rounds without losing a Conflict.",
+    "legacy": {
+      "name": "Resilient Throne",
+      "unlock": {
+        "stat": "politics",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "any",
+        "amount": 2,
+        "context": "defend"
+      },
+      "flavour": "Four decades holding Ndongo and Matamba against Portugal."
+    },
     "years": "1583–1663",
+    "born": 1583,
+    "died": 1663,
     "id": "anna_nzinga",
     "portraitUrl": "/portraits/portrait_anna_nzinga.jpeg"
   },
@@ -1705,7 +2725,23 @@
     "lore": "From the steppes of Asia, his cavalry swept across the world's largest empire.",
     "trait": "Golden Horde — When this card attacks, it may bring 1 allied Warrior or Soldier at the same location to join the attack for free.",
     "achievement": "Conquest March — Have this card successfully attack 3 different locations in a single game.",
+    "legacy": {
+      "name": "Conquest March",
+      "unlock": {
+        "stat": "strength",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "strength",
+        "amount": 3,
+        "context": "attack"
+      },
+      "flavour": "The Golden Horde rode from the Volga to the Danube."
+    },
     "years": "1207–1255",
+    "born": 1207,
+    "died": 1255,
     "id": "batu_khan",
     "portraitUrl": "/portraits/portrait_batu_khan.jpeg"
   },
@@ -1732,7 +2768,22 @@
     "lore": "He built the greatest empire Southeast Asia had ever known — through war and wisdom alike.",
     "trait": "Toungoo Expansion — When this card moves, it may immediately deploy 1 Follower from hand at the destination for free.",
     "achievement": "Unified Realm — Have this card and 2 allied GP at the same location for 3 consecutive turns.",
+    "legacy": {
+      "name": "Unified Realm",
+      "unlock": {
+        "stat": "strength",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "follower",
+        "stat": "strength",
+        "amount": 2
+      },
+      "flavour": "The largest empire in Southeast Asian history, built by levies."
+    },
     "years": "1516–1581",
+    "born": 1516,
+    "died": 1581,
     "id": "bayinnaung",
     "portraitUrl": "/portraits/portrait_bayinnaung.jpeg"
   },
@@ -1759,7 +2810,22 @@
     "lore": "He pressed clay into ceramic type, and from his hands the world began to read.",
     "trait": "Movable Type — Once per game, this card may copy 1 achievement from any card in the GP discard pile.",
     "achievement": "Print Run — Have this card in play while an allied Writer or Educator GP resolves an achievement in the same round.",
+    "legacy": {
+      "name": "Print Run",
+      "unlock": {
+        "stat": "intelligence",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "income",
+        "card": "event",
+        "every": 4
+      },
+      "flavour": "Movable type: every print run spreads news."
+    },
     "years": "c. 990–1051",
+    "born": 990,
+    "died": 1051,
     "id": "bi_sheng",
     "portraitUrl": "/portraits/portrait_bi_sheng.jpeg"
   },
@@ -1786,7 +2852,23 @@
     "lore": "He bent stone to the rules of the infinite — curves where others saw only walls.",
     "trait": "Infinite Spiral — When this card is at a location with a Bernini card, both cards gain +3 Culture.",
     "achievement": "Roman Baroque — Have this card at an Italy location while another Architect GP is also present.",
+    "legacy": {
+      "name": "Roman Baroque",
+      "unlock": {
+        "stat": "technique",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "culture",
+        "amount": 2,
+        "context": "survival"
+      },
+      "flavour": "San Carlo's walls still stand in their impossible curves."
+    },
     "years": "1599–1667",
+    "born": 1599,
+    "died": 1667,
     "id": "borromini",
     "portraitUrl": "/portraits/portrait_borromini.jpeg"
   },
@@ -1813,7 +2895,22 @@
     "lore": "He turned marble into breath, giving stone the warmth of living skin.",
     "trait": "Papal Sculptor — While at a Rome location, this card gains +4 Reputation and its achievements trigger on 1 fewer turn.",
     "achievement": "St. Peter's Colonnade — Have this card's location have the highest Culture total on the board for 2 consecutive turns.",
+    "legacy": {
+      "name": "St. Peter's Colonnade",
+      "unlock": {
+        "stat": "culture",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "prodigy",
+        "years": 5
+      },
+      "flavour": "A sculptor praised by the pope at the age of ten."
+    },
     "years": "1598–1680",
+    "born": 1598,
+    "died": 1680,
+    "careerAge": 12,
     "id": "bernini",
     "portraitUrl": "/portraits/portrait_bernini.jpeg"
   },
@@ -1840,7 +2937,23 @@
     "lore": "He walked 75,000 miles across three continents — every step written into the Rihla.",
     "trait": "Rihla — This card may move freely each turn without spending an action. At each new location, draw 1 Event card.",
     "achievement": "Seven Seas — Have this card visit 5 different locations over the course of a game.",
+    "legacy": {
+      "name": "Seven Seas",
+      "unlock": {
+        "stat": "culture",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "culture",
+        "amount": 3,
+        "context": "competition"
+      },
+      "flavour": "117,000 km of travels made him the voice of the known world."
+    },
     "years": "1304–1368/1369",
+    "born": 1304,
+    "died": 1369,
     "id": "ibn_battuta",
     "portraitUrl": "/portraits/portrait_ibn_battuta.jpeg"
   },
@@ -1867,7 +2980,22 @@
     "lore": "He pressed ink to paper and printed a revolution — one page at a time.",
     "trait": "Printing Press — When any allied Writer or Educator resolves an achievement, this card also gains 1 Winning Point.",
     "achievement": "Bible of 42 Lines — Have this card in play at a location while 2 allied Writers or Educators are also present.",
+    "legacy": {
+      "name": "Bible of 42 Lines",
+      "unlock": {
+        "stat": "technique",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "income",
+        "card": "event",
+        "every": 3
+      },
+      "flavour": "The printing press: news, pamphlets and bibles for everyone."
+    },
     "years": "c. 1400–1468",
+    "born": 1400,
+    "died": 1468,
     "id": "gutenberg",
     "portraitUrl": "/portraits/portrait_gutenberg.jpeg"
   },
@@ -1894,7 +3022,23 @@
     "lore": "With 13 ships he faced 333 — and won. The turtle ship cut through the Japanese fleet like iron.",
     "trait": "Turtle Ship — When this card defends at a water or coastal location, its Strength is doubled.",
     "achievement": "Battle of Myeongnyang — Win a Conflict while outnumbered (fewer allied cards than the opponent at this location).",
+    "legacy": {
+      "name": "Battle of Myeongnyang",
+      "unlock": {
+        "stat": "strength",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "strength",
+        "amount": 3,
+        "context": "defend"
+      },
+      "flavour": "Thirteen ships held the strait at Myeongnyang."
+    },
     "years": "1545–1598",
+    "born": 1545,
+    "died": 1598,
     "id": "lee_sun_sin",
     "portraitUrl": "/portraits/portrait_lee_sun_sin.jpeg"
   },
@@ -1921,7 +3065,22 @@
     "lore": "He ruled the greatest empire of the Americas — until the world he knew ended in fire and betrayal.",
     "trait": "Sun King — While this card is in play, all Belief-based actions cost enemy players 1 extra action to perform.",
     "achievement": "Tenochtitlan — Have this card at the same location as 3 Followers for 2 consecutive turns.",
+    "legacy": {
+      "name": "Tenochtitlan",
+      "unlock": {
+        "stat": "politics",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "follower",
+        "stat": "any",
+        "amount": 1
+      },
+      "flavour": "Tribute from hundreds of city-states filled Tenochtitlan."
+    },
     "years": "1466–1520",
+    "born": 1466,
+    "died": 1520,
     "id": "montezuma_ii",
     "portraitUrl": "/portraits/portrait_montezuma_ii.jpeg"
   },
@@ -1948,7 +3107,23 @@
     "lore": "He mastered Western perspective from Jesuit missionaries and turned it into imperial porcelain.",
     "trait": "Jingdezhen Kilns — Wealth-based Followers at this card's location gain +3 Technique.",
     "achievement": "Shiyue — Have this card in play while 2 allied Artist or Merchant GP are at the same location.",
+    "legacy": {
+      "name": "Shiyue",
+      "unlock": {
+        "stat": "technique",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "culture",
+        "amount": 2,
+        "context": "any"
+      },
+      "flavour": "Famille-rose porcelain and the first treatise on perspective in China."
+    },
     "years": "1671–1738",
+    "born": 1671,
+    "died": 1738,
     "id": "nian_xiyao",
     "portraitUrl": "/portraits/portrait_nian_xiyao.jpeg"
   },
@@ -1975,7 +3150,22 @@
     "lore": "He ruled Palenque for 68 years and built temples that encoded the mathematics of time.",
     "trait": "Temple of Inscriptions — When this card is in play, all Belief-based events at its location deal only half damage (rounded down).",
     "achievement": "Palenque — Have this card deploy a Follower at the same location 3 times.",
+    "legacy": {
+      "name": "Palenque",
+      "unlock": {
+        "stat": "politics",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "prodigy",
+        "years": 4
+      },
+      "flavour": "Crowned king of Palenque at twelve."
+    },
     "years": "603–683",
+    "born": 603,
+    "died": 683,
+    "careerAge": 12,
     "id": "pakal",
     "portraitUrl": "/portraits/portrait_pakal.jpeg"
   },
@@ -2002,7 +3192,23 @@
     "lore": "He burned Quito rather than surrender it — the last fire of a free Inca world.",
     "trait": "Scorched Earth — When this card's location is about to be captured, destroy all Followers there. The enemy gains no Winning Points from that capture.",
     "achievement": "Last Stand — Win a Conflict against a Sovereign GP while this card has no Followers at its location.",
+    "legacy": {
+      "name": "Last Stand",
+      "unlock": {
+        "stat": "strength",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "any",
+        "amount": 2,
+        "context": "defend"
+      },
+      "flavour": "The last Inca general defended Quito to the end."
+    },
     "years": "?–1535",
+    "born": 1490,
+    "died": 1535,
     "id": "ruminahui",
     "portraitUrl": "/portraits/portrait_ruminahui.jpeg"
   },
@@ -2029,7 +3235,23 @@
     "lore": "He died at Dan-no-Ura with poems sewn into his armor — a warrior who chose beauty as his final shield.",
     "trait": "Warrior-Poet — When this card is killed, reveal the top card of your GP deck. If it is a Writer or Artist, deploy it immediately for free.",
     "achievement": "Twilight Verse — Have this card survive a Conflict while having 0 Followers at its location.",
+    "legacy": {
+      "name": "Twilight Verse",
+      "unlock": {
+        "stat": "culture",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "contest",
+        "stat": "culture",
+        "amount": 3,
+        "context": "defend"
+      },
+      "flavour": "He fell at Ichi-no-Tani with a poem tied to his quiver."
+    },
     "years": "1144–1184",
+    "born": 1144,
+    "died": 1184,
     "id": "taira_no_tadanori",
     "portraitUrl": "/portraits/portrait_taira_no_tadanori.jpeg"
   },
@@ -2056,7 +3278,21 @@
     "lore": "Behind three emperors, he rewrote Aztec history — shaping a civilization's soul from the shadows.",
     "trait": "Cihuacoatl — Once per game, this card may change the outcome of any non-combat event at its location to a success.",
     "achievement": "Shadow Throne — Have this card's location win 2 consecutive Conflicts without this card being the attacker.",
+    "legacy": {
+      "name": "Shadow Throne",
+      "unlock": {
+        "stat": "wealth",
+        "wins": 1
+      },
+      "effect": {
+        "kind": "longevity",
+        "years": 12
+      },
+      "flavour": "Advised three emperors over sixty years from behind the throne."
+    },
     "years": "c. 1397–1487",
+    "born": 1397,
+    "died": 1487,
     "id": "tlacaelel",
     "portraitUrl": "/portraits/portrait_tlacaelel.jpeg"
   }

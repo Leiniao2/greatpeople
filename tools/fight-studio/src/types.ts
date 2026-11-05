@@ -17,8 +17,16 @@ export interface Card {
   lore: string
   portraitKey: string
   years: string
+  /** Birth year (negative = BC). */
+  born: number
+  /** Death year, or null while living. */
+  died: number | null
+  /** Career start age; 18 when omitted. */
+  careerAge?: number
   trait: string
+  /** How the legacy is earned, in words (kept under this name for the mobile apps). */
   achievement: string
+  legacy: Legacy
   politics: number
   strength: number
   culture: number
@@ -27,6 +35,28 @@ export interface Card {
   technique: number
   belief: number
   reputation: number
+}
+
+export type LegacyContext = 'attack' | 'defend' | 'survival' | 'competition' | 'any'
+export const LEGACY_CONTEXTS: LegacyContext[] = ['attack', 'defend', 'survival', 'competition', 'any']
+
+/** Mirrors web/src/types LegacyEffect: the engine applies each kind generically from the data. */
+export type LegacyEffect =
+  | { kind: 'contest'; stat: StatKey | 'any'; amount: number; context: LegacyContext }
+  | { kind: 'follower'; stat: StatKey | 'any'; amount: number }
+  | { kind: 'hazard_shield' }
+  | { kind: 'longevity'; years: number }
+  | { kind: 'prodigy'; years: number }
+  | { kind: 'successors'; count: number }
+  | { kind: 'income'; card: 'event' | 'follower'; every: number }
+export type LegacyKind = LegacyEffect['kind']
+export const LEGACY_KINDS: LegacyKind[] = ['contest', 'follower', 'hazard_shield', 'longevity', 'prodigy', 'successors', 'income']
+
+export interface Legacy {
+  name: string
+  unlock: { stat: StatKey; wins: number }
+  effect: LegacyEffect
+  flavour?: string
 }
 
 export interface FollowerTemplate {

@@ -9,7 +9,8 @@ export const ENGINE_SOURCE = 'web/src/battle/engine.ts'
 
 export const ENGINE_CONSTANTS = {
   locationsPerGame: 7,
-  startingGP: 4,
+  /** Timeline games: Great People dealt per player (each founds a lineage); the timeless Epic lessons are scripted. */
+  startingGP: 3,
   startingEvents: 2,
   startingFollowers: 8,
   followerDeckCopies: 3,
@@ -17,13 +18,23 @@ export const ENGINE_CONSTANTS = {
   followerIdentityMatchBonus: 4,
   localSurvivalThreshold: 5,
   hazardMinStatThreshold: 5,
-  hazardChancePerRound: 0.2,
   winningPointsToWin: 5,
-  defaultAchievementTicks: 3,
-  mappedAchievementTicks: 1,
   worthyOpponentMinStat: 5,
   localEventRounds: 99,
   globalCompetitionRounds: 1,
+  // Timeline (initGame, advanceYear, settle)
+  yearsPerRound: 1,
+  defaultCareerAge: 18,
+  minCareerAge: 4,
+  successorChoices: 3,
+  legacySlots: 2,
+  timelineEndYear: 2030,
+  fastForwardCpuWinChance: 0.05,
+  // City states (rollCityStates): replaces the old 20 % random hazard
+  cityStateChance: 0.3,
+  cityStateYearsLocalEvent: 3,
+  cityStateYearsLocalSurvival: 2,
+  cityStateYearsHazard: 1,
 }
 
 export const DOC_CONSTANTS = {
@@ -126,8 +137,8 @@ export const IMPLEMENTED_TRAITS: Record<string, ImplementedTrait> = {
   },
 }
 
-/** Source: ACHIEVEMENT_SPECS. Figures listed here need 1 tick; all others need 3. */
-export const ACHIEVEMENT_SPECS: Record<string, StatKey> = {
+/** Legacy unlocks now live in data/cards.json (legacy.unlock); the engine's ACHIEVEMENT_SPECS is derived from them. This is the pre-timeline table, kept only for reference. */
+export const LEGACY_ACHIEVEMENT_SPECS: Record<string, StatKey> = {
   'Mohandas Gandhi': 'belief', 'Coco Chanel': 'culture', 'Mao Zedong': 'politics', 'Belisarius': 'strength',
   'Imhotep': 'technique', 'Lu Yu': 'culture', 'Alan Turing': 'intelligence', 'Andrew Mellon': 'wealth',
   'Audrey Hepburn': 'reputation', 'Clara Schumann': 'culture', 'Euclid': 'intelligence', 'Hua Mulan': 'strength',
@@ -154,12 +165,12 @@ export const SOURCE_INVENTORY: { path: string; role: string; kind: 'doc' | 'data
   { path: 'docs/great-people-card.md', role: 'Card attributes (eras, 32 identities, 8 stats, trait, achievement), follower and location attributes, building lists per era. Also an OLDER 3-stat battle design.', kind: 'doc' },
   { path: 'docs/era.md', role: 'Era year ranges.', kind: 'doc' },
   { path: 'docs/fight_rules.json', role: 'Rules registry maintained by this tool: doc text vs engine behaviour, status, notes.', kind: 'doc' },
-  { path: 'data/cards.json', role: '80 Great People: 8 stats (1–12), identities, era, gender, trait text, achievement text. Source of truth, synced to web/iOS/Android.', kind: 'data' },
+  { path: 'data/cards.json', role: '80 Great People: 8 stats (1–12), identities, era, gender, life years (born/died/careerAge), trait text, legacy (unlock stat + wins, effect, flavour) and the achievement text that describes how it is earned. Source of truth, synced to web/iOS/Android.', kind: 'data' },
   { path: 'data/demo_cards.json', role: 'Demo deck with the same 80 figures on a 1–24 stat scale (used by collection demos, not battle).', kind: 'data' },
   { path: 'data/followers.json', role: '32 follower templates: identity → stat, bonus 2.', kind: 'data' },
   { path: 'data/location_cards.json', role: '142 location cards: buildings, capacity, per-stat bonuses, trait text (web only).', kind: 'data' },
   { path: 'data/locations.json', role: '140 locations (name, era, countries, buildings) used to lay out the board.', kind: 'data' },
-  { path: 'web/src/battle/engine.ts', role: 'The only battle engine: decks, reducer (deploy/move/attack/events/achievements), trait bonuses, scripted lesson setup.', kind: 'code' },
+  { path: 'web/src/battle/engine.ts', role: 'The only battle engine: decks, reducer (deploy/move/attack/events/legacies), the timeline (years, careers, deaths, successors, retirement, time skips), legacy effects, city states, trait bonuses, scripted lesson setup.', kind: 'code' },
   { path: 'web/src/battle/BattleGame.tsx', role: 'The board UI and the CPU AI, shared by the Battle tab and the Epic fight lessons.', kind: 'code' },
   { path: 'web/src/battle/lessons.ts', role: 'Fight-lesson curriculum: seven tiers of scripted boards, goals and the coach.', kind: 'code' },
   { path: 'web/src/types/index.ts', role: 'Battle state types (GameState, EventCard, OnboardCard, summaries).', kind: 'code' },

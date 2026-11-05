@@ -12,9 +12,9 @@ import ArtGallery, { ARTWORKS } from '@/components/ArtGallery'
 
 // ── GP cards ─────────────────────────────────────────────────────────────────
 
-const ALL_CARDS: Card[] = cardsJson.map(c => ({
+const ALL_CARDS: Card[] = (cardsJson as unknown as Omit<Card, 'portraitUrl'>[]).map(c => ({
   ...c,
-  portraitUrl: portraitUrl(c.portraitKey),
+  portraitUrl: portraitUrl(c.portraitKey ?? c.id),
 }))
 
 // ── Location cards ────────────────────────────────────────────────────────────

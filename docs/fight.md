@@ -6,9 +6,11 @@ The battle supported Player vs Player up to 5 people and Player vs Computer also
 
 ## 1. Game Setup.
 
-Game could be configured All era or Single era. The All era game locations card and great people card are distributed without era limitation. The Single era game only uses location cards and great people cards from the chosen era; because an era has only 10-15 great people, a large table deals fewer great people per player (equal for everyone, at most 4).
+Game could be configured All era or Single era. The Single era game only uses location cards and great people cards from the chosen era. The All era game draws locations from every era and Great People from the whole of history, starting at the era it opens on.
 
-Each battle starts with 4 Great People card, 2 Event cards, and 8 Follower cards distributed to each player. All cards are started as hand cards.
+Every game starts at a real year (see §9, Real history). A Single era game opens on its era: the year its earliest-born Great Person was born. An All era game opens on a start era (random unless chosen) and moves forward through history from there.
+
+Each player is dealt 3 Great People (fewer, equal for everyone, when a small era cannot give a full table 3 each), 2 Event cards and 8 Follower cards. The Great People dealt are the earliest-born of the pool from the opening year on, shuffled between the players, so the table starts as contemporaries. Each of them founds a lineage (§9). All cards start as hand cards.
 
 All Locations cards will be revealed at the begining of the game round and set on table.
 
@@ -16,7 +18,7 @@ The board will look like a table, with column displayed as different locations. 
 
 ## 2. Game Objective.
 
-Each Great People card will do some achievement, if he/she satisifies the achievement, player will get a winning point. At the end of the game, player with the highest winning points will win.
+Each Great People card has a Legacy (§10). When a Great Person completes the achievement that unlocks it, the player claims the legacy and gets a winning point. At the end of the game, player with the highest winning points will win.
 
 ## 3. Turn based action.
 
@@ -27,12 +29,14 @@ Each Player could do several actions in a turn.
 ### C. A Player could move a Great People Card / Follower Card from a location to another.
 ### D. A Player could start an event on the location he/she is on. Some event is global but most are local only happens on the location.
 ### E. A Player could retrieve a Great People Card / Follower card back to hand.
-### F. A Player could claim one of the Great People on board completed his/her achievement, thus get 1 winning point.
+### F. A Player could claim the legacy of one of the Great People on board who completed his/her achievement, thus get 1 winning point and the legacy (§10). Each legacy can be claimed once per player.
 ### G. A Player could attack the other Player if both some of their cards are within the same location, this only happened in local events.
 ### H. A Player could end a local event that happening on this city 
 ### I. A Player could update the public or private status of a card
+### J. A Player could retire one of his/her Great People (in hand or on board) at any time on his/her turn (§9).
+### K. A Player could switch one earned legacy into or out of a legacy slot (§10).
 
-Each Player could do only 1 time A and 1 time B each turn, but can do any number of C, D, E, F or I (though each Great People and Follower only 1 time). 
+Each Player could do only 1 time A, 1 time B and 1 time K each turn, but can do any number of C, D, E, F, I or J (though each Great People and Follower only 1 time). Only a Great Person in his/her career (§9) can be brought on board. 
 Also if a Great People or Follower just get on board, he/she cannot do C/D/E/F/I.
 Each Player could do G any times.
 A round is each player play 1 turn.
@@ -69,10 +73,10 @@ Local Survival: Any player in this location with corresponding point (all GP and
 
 Special Survival: Any player in this location with total point (all GP and followers together) less than 100 will be killed and moved to discard pile.
 
-Special Survival is random happened, not bring onboard by player. 
-In real card game, when someone get a scenario card from supply deck he/she has to place it in a location that he/she has most cards in (if there is a tie then it is the first location).
-But in programmable game, this random decision is just done by the computer.
-Special Survival always last 1 round.
+Special Survival is random happened, not bring onboard by player. It always lasts 1 round.
+
+City states: besides natural hazards, a city can fall into any local scenario by itself. At the start of every year, each location with no scenario has a 30% chance to enter a random one: a local event (lasts 3 years), a local survival (2 years) or a natural hazard (1 year), each type equally likely. Scenarios started by players keep running until they are ended or replaced. Global competitions are only ever started by players.
+In real card game, the city state is drawn from the supply deck for every empty location; in programmable game the computer rolls it.
 
 Global Competition: All players involved in this. These scenario always last for 1 round.
 By the end of this round, whoever player has the highest total value of the stat (for the specific stat, culture e.g.) over the board (that are public)
@@ -82,9 +86,8 @@ The Scenario card will keep working until it is replaced by another event or som
 
 ## 6. Getting new Great People card
 
-Besided getting new card by winning global competition, there are other mechanisms to get new Great people card.
-When a Great People completed his/her achievement, he/she could choose to be archived to the archive folder at any time (must be in public when archived).
-Once a Great People get archived, the player who owns it could get a new Great People card.
+New Great People only arrive as successors (§9). When a Great Person dies, the player chooses a successor born later than the current year. Winning a global competition with the Great Person reward founds a new lineage: the player chooses a Great Person born later than the current year, in the same way.
+Claiming a legacy no longer brings a new Great People card (the Epic fight lessons, which are not on the timeline, keep the old rule of drawing one).
 
 ## 7. Turn Order
 
@@ -108,13 +111,50 @@ Manual Scenario Termination: A Great Person can end a scenario if they possess t
 
 Initiate New Scenario: Players could start a new scenario if he/she has the scenario card.
 
-Achievement Check: Determine if a Great Person has completed an achievement to earn Winning Points.
+Achievement Check: Determine if a Great Person has completed an achievement; claiming it earns the legacy and a Winning Point.
 
-Archive: Great Persons who have completed their achievements are Archived and leave the field.
+New Year: after every player has played, the year advances by 1: Great People who outlived their death year die, empty cities may fall into a city state, and income legacies pay out.
 
 ## 8. When to End a game
 
 If there is a player that gets 5 winning points, the game ends.
 
-(Rarely happens) If there is only 1 player left with GP card (either on hand or on board), the game ends.
+If history reaches the year 2030, the game ends and the player with the most winning points wins.
+
+If there is only 1 player left with a Great Person now or to come (in hand, on board, retired, or a successor still to choose), the game ends. If no human player has one left, the game ends and the player with the most winning points wins. Ties go to the player with more legacies, then to seat order.
+
+## 9. Real history
+
+One round is one year, in every era.
+
+Every Great Person card carries a birth year, a death year (none for someone still living, who lives until the timeline ends in 2030) and a career start age (18 unless stated; prodigies start earlier, e.g. Michael Jackson at 6, Clara Schumann at 9, Johannes Brahms at 10, Pakal the Great and Gian Lorenzo Bernini at 12, Miyamoto Musashi at 13, Marie Antoinette at 14, Diego Maradona at 15, Hua Mulan at 17).
+
+- A Great Person enters the game in the year he/she was born. Before the career start the card stays in hand and cannot be brought on board.
+- A Great Person in his/her career can be played normally.
+- When a Great Person outlives his/her death year, he/she dies of old age, wherever he/she is (hand, board or retirement). A Great Person killed in play (by an attack with Kill on, a local survival or a natural hazard) dies too.
+- When a Great Person dies, his/her lineage continues: the player chooses a successor from the Great People nobody has claimed yet who are born later than the current year. The 3 nearest by birth are offered (more with successor legacies). The computer chooses the strongest of its options at once. If no one born later remains, the lineage ends.
+- Retire: a player may retire any of his/her Great People at any time on his/her turn. A retired Great Person leaves play for good but does not die: the successor is only chosen when the retired Great Person reaches his/her real death year.
+- Time skip: whenever no human player has a Great Person in his/her career (everyone is dead, retired, not yet born or too young) and no human still has a successor to choose, time jumps ahead year by year until a human Great Person's career begins. During the skipped years Great People age, die and are succeeded, running scenarios wear off, and the computer's Great People on board play out their lives quickly: each has a 5% chance per year to win a fight towards its legacy, and claims it when unlocked. The skipped years are summarised when play resumes.
+
+## 10. Legacy
+
+Each Great People card has a Legacy in place of its old Achievement. A legacy has:
+
+- a name (the achievement's name, e.g. Gandhi's Satyagraha);
+- how it is earned: the achievement text on the card, and the rule the game checks: win a number of fights (1 for every card at present) in the legacy's stat — attack and kill an enemy Great Person in a local event of that stat, whose own value in that stat is at least 5;
+- an effect, designed from the figure's history (e.g. Satyagraha: +3 to your total whenever you defend; Imhotep's Pyramid: your Great People live 15 years longer; Amelia Earhart's First Solo Atlantic: your cards ignore natural hazards).
+
+Effects are one of these kinds:
+
+| Kind | Effect |
+|---|---|
+| contest | +N to your total in contests of a stat (or any stat), when attacking, defending, in survival checks (local survivals and hazards), in global competitions, or in every contest |
+| follower | each of your Followers (of a stat, or any) that counts in a contest adds +N more |
+| hazard shield | your cards ignore natural hazards |
+| longevity | your Great People live N years longer |
+| prodigy | your Great People start their careers N years earlier (never before age 4) |
+| successors | +N choices whenever you pick a successor |
+| income | every N years you gain an Event card or a Follower |
+
+A claimed legacy belongs to the player for the rest of the game, even after the Great Person who earned it dies. A player has 2 legacy slots: only the legacies in slots are in effect. A newly earned legacy fills a free slot; once both are full, the player can switch one legacy in or out per turn, so not every legacy can be in effect at once. Each legacy can be claimed once per player.
 

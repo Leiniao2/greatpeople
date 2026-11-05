@@ -88,8 +88,12 @@ export function buildChangeReport(before: FileContents, after: FileContents): { 
     if (b.figureName !== c.figureName) { textLines.push(`- card ${c.id} renamed ${q(b.figureName)} → ${q(c.figureName)} (the engine keys traits and achievements by figureName)`); behavioural = true }
     const ids = b.identities.join(',') !== c.identities.join(',')
     const statDelta = STATS.filter(s => b[s] !== c[s]).map(s => `${s} ${b[s]}→${c[s]}`)
-    if (statDelta.length || ids || b.era !== c.era || b.gender !== c.gender) {
-      dataLines.push(`- ${c.figureName}: ${[...statDelta, ids ? `identities ${b.identities.join('/')}→${c.identities.join('/')}` : '', b.era !== c.era ? `era ${b.era}→${c.era}` : '', b.gender !== c.gender ? `gender ${b.gender}→${c.gender}` : ''].filter(Boolean).join(', ')}`)
+    // Life years and legacies are data too: the engine reads born/died/careerAge and legacy.unlock/effect directly.
+    const life = b.born !== c.born || b.died !== c.died || b.careerAge !== c.careerAge
+      ? `life ${b.born}–${b.died ?? 'living'} (career ${b.careerAge ?? 18}) → ${c.born}–${c.died ?? 'living'} (career ${c.careerAge ?? 18})` : ''
+    const legacy = JSON.stringify(b.legacy) !== JSON.stringify(c.legacy) ? `legacy ${JSON.stringify(b.legacy)} → ${JSON.stringify(c.legacy)}` : ''
+    if (statDelta.length || ids || b.era !== c.era || b.gender !== c.gender || life || legacy) {
+      dataLines.push(`- ${c.figureName}: ${[...statDelta, ids ? `identities ${b.identities.join('/')}→${c.identities.join('/')}` : '', b.era !== c.era ? `era ${b.era}→${c.era}` : '', b.gender !== c.gender ? `gender ${b.gender}→${c.gender}` : '', life, legacy].filter(Boolean).join(', ')}`)
     }
   }
   for (const b of before.cards) if (!after.cards.some(c => c.id === b.id)) { textLines.push(`- REMOVED card ${b.figureName}`); behavioural = true }

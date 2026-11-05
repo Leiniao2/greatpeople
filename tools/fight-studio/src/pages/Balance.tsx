@@ -1,8 +1,8 @@
 import { useMemo, useState } from 'react'
 import { useStore } from '../lib/store'
-import { groupMeans, powerDeltas, powerTable, statSummaries, statTotal } from '../lib/engine'
+import { birthGaps, careerCoverage, careerYears, formatYear, groupMeans, powerDeltas, powerTable, statSummaries, statTotal } from '../lib/engine'
 import { DOC_CONSTANTS, ENGINE_CONSTANTS, IMPLEMENTED_TRAITS } from '../lib/engineTraits'
-import { ERAS, STATS, STAT_LABEL, type StatKey } from '../types'
+import { ERAS, LEGACY_CONTEXTS, LEGACY_KINDS, STATS, STAT_LABEL, type StatKey } from '../types'
 import { Columns, HBars, Heatmap, Strip, Viz } from '../charts'
 
 const SHORT: Record<StatKey, string> = { politics: 'Pol', strength: 'Str', culture: 'Cul', wealth: 'Wea', intelligence: 'Int', technique: 'Tec', belief: 'Bel', reputation: 'Rep' }
@@ -44,7 +44,14 @@ export default function Balance() {
   }, [cards])
   // Achievement reachability: mapped cards' win rate against worthy opponents.
   const achRows = power.filter(p => p.achievementStat).sort((a, b) => (a.achievementWinRate ?? 0) - (b.achievementWinRate ?? 0))
-  const unmapped = power.filter(p => !p.achievementStat)
+  const hardUnlocks = power.filter(p => (p.achievementWinRate ?? 0) < 0.4)
+  // Legacy mix and the timeline.
+  const kindCounts = LEGACY_KINDS.map(k => ({ label: k, value: cards.filter(c => c.legacy.effect.kind === k).length }))
+  const contextCounts = LEGACY_CONTEXTS.map(k => ({ label: k, value: cards.filter(c => c.legacy.effect.kind === 'contest' && c.legacy.effect.context === k).length }))
+  const coverage = useMemo(() => careerCoverage(cards, 100), [cards])
+  const emptyCenturies = coverage.filter(b => b.active === 0).length
+  const gaps = useMemo(() => birthGaps(cards).slice(0, 12), [cards])
+  const shortCareers = useMemo(() => [...cards].sort((a, b) => careerYears(a) - careerYears(b)).slice(0, 15), [cards])
   // Trait impact: implemented numeric magnitudes.
   const traitRows = Object.values(IMPLEMENTED_TRAITS).map(t => ({ label: t.figure, value: Math.abs(t.magnitude), tip: `${t.figure}: ${t.engine}` })).sort((a, b) => b.value - a.value)
 
@@ -87,7 +94,8 @@ export default function Balance() {
         <div className="kpi"><div className="v">{(summaries.reduce((a, s) => a + s.mean, 0) / 8).toFixed(2)}</div><div className="l">mean stat value</div></div>
         <div className="kpi"><div className="v">{Math.min(...cards.map(statTotal))}–{Math.max(...cards.map(statTotal))}</div><div className="l">card total range</div></div>
         <div className="kpi warn"><div className="v">{hazardFails.length}</div><div className="l">cards die alone to a hazard (min &lt; {hazard})</div></div>
-        <div className="kpi warn"><div className="v">{unmapped.length}</div><div className="l">cards whose achievement is unreachable (unmapped)</div></div>
+        <div className="kpi warn"><div className="v">{hardUnlocks.length}</div><div className="l">legacies whose unlock stat wins under 40 % of 1v1 fights vs worthy rivals</div></div>
+        <div className="kpi warn"><div className="v">{emptyCenturies}</div><div className="l">centuries with no Great Person in their career (time always skips them)</div></div>
       </div>
 
       <h3>Stat distribution</h3>
@@ -145,19 +153,35 @@ export default function Balance() {
         </Viz>
       </div>
 
-      <h3>Achievement reachability (engine rules)</h3>
+      <h3>Legacies</h3>
       <div className="row">
-        <Viz title="Hardest achievements" sub="Win rate of the card in its mapped stat against 'worthy' opponents (≥ 5 in that stat); low = the card rarely earns its point">
-          <HBars rows={achRows.slice(0, 25).map(p => ({ label: p.figure, value: p.achievementWinRate ?? 0, tip: `${p.figure}: ${STAT_LABEL[p.achievementStat!]} ${pct(p.achievementWinRate ?? 0)}` }))} format={pct} max={1} width={430} />
+        <Viz title="Hardest legacies to unlock" sub="Win rate of the card in its unlock stat against 'worthy' opponents (≥ 5 in that stat); low = the card rarely earns its legacy and point">
+          <HBars rows={achRows.slice(0, 25).map(p => ({ label: p.figure, value: p.achievementWinRate ?? 0, tip: `${p.figure}: ${STAT_LABEL[p.achievementStat!]} ×${p.achievementTicks} · ${pct(p.achievementWinRate ?? 0)}` }))} format={pct} max={1} width={430} />
         </Viz>
-        <Viz title="Easiest achievements">
-          <HBars rows={[...achRows].reverse().slice(0, 25).map(p => ({ label: p.figure, value: p.achievementWinRate ?? 0, tip: `${p.figure}: ${STAT_LABEL[p.achievementStat!]} ${pct(p.achievementWinRate ?? 0)}` }))} format={pct} max={1} width={430} />
+        <Viz title="Easiest legacies to unlock">
+          <HBars rows={[...achRows].reverse().slice(0, 25).map(p => ({ label: p.figure, value: p.achievementWinRate ?? 0, tip: `${p.figure}: ${STAT_LABEL[p.achievementStat!]} ×${p.achievementTicks} · ${pct(p.achievementWinRate ?? 0)}` }))} format={pct} max={1} width={430} />
         </Viz>
-        <div className="card" style={{ flex: '1 1 300px' }}>
-          <h4>Unreachable ({unmapped.length})</h4>
-          <p className="small">Not in ACHIEVEMENT_SPECS, so the tick code never fires:</p>
-          <p className="small">{unmapped.map(p => p.figure).join(', ')}</p>
-        </div>
+        <Viz title="Legacy effect kinds" sub={`How the ${cards.length} legacies are spread over the engine's effect kinds; only ${ENGINE_CONSTANTS.legacySlots} are in effect per player at a time`}>
+          <HBars rows={kindCounts} width={360} />
+        </Viz>
+        <Viz title="Contest legacies by context" sub="Where the bonus applies: attacking, defending, survival checks, global competitions, or every contest">
+          <HBars rows={contextCounts} width={360} />
+        </Viz>
+      </div>
+
+      <h3>Timeline</h3>
+      <div className="row">
+        <Viz title="Great People in their careers, per century" sub={`Each column is 100 years from ${formatYear(coverage[0]?.from ?? 0)}; empty columns are years no lineage can be played in, so the game skips through them`}>
+          <Columns values={coverage.map(b => b.active)} labels={coverage.map(b => (b.from % 500 === 0 ? formatYear(b.from) : ''))} width={900} />
+        </Viz>
+      </div>
+      <div className="row">
+        <Viz title="Longest gaps between births" sub="A lineage whose Great Person dies before such a gap waits (time-skips) until the next birth; that successor still needs 18 years to start a career">
+          <HBars rows={gaps.map(g => ({ label: `${g.after} → ${g.before}`, value: g.years, tip: `${formatYear(g.from)} → ${formatYear(g.to)}` }))} width={520} />
+        </Viz>
+        <Viz title="Shortest careers" sub="Playable years from career start to death; short careers mean frequent successions">
+          <HBars rows={shortCareers.map(c => ({ label: c.figureName, value: careerYears(c), tip: `${c.figureName}: ${formatYear(c.born)}–${c.died == null ? 'living' : formatYear(c.died)}, career age ${c.careerAge ?? 18}` }))} width={430} />
+        </Viz>
       </div>
 
       <h3>Trait impact (engine-implemented only)</h3>

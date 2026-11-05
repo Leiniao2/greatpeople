@@ -30,6 +30,8 @@ function BattleLobby({ matchType, onStart, onBack }: LobbyProps) {
 
   const [eraMode, setEraMode] = useState<EraMode>('all')
   const [singleEra, setSingleEra] = useState('Ancient')
+  /** All-era games: the era history opens on ('random' picks one). */
+  const [startEra, setStartEra] = useState('random')
   // PvP needs at least 2 humans; PvC is always 1 human vs N CPUs
   const [numHumans, setNumHumans] = useState(isPvC ? 1 : 2)
   const [numComputers, setNumComputers] = useState(1)
@@ -141,8 +143,27 @@ function BattleLobby({ matchType, onStart, onBack }: LobbyProps) {
               </button>
             ))}
           </div>
+          {eraMode === 'all' && (
+            <div>
+              <p className="text-[11px] text-muted mb-1.5">Start in</p>
+              <div className="grid grid-cols-8 gap-1.5">
+                <button onClick={() => setStartEra('random')} title="Random era"
+                  className={`py-1.5 rounded-lg text-xs font-medium transition-all border ${startEra === 'random' ? 'bg-accent/15 border-accent/50 text-accent' : 'border-line text-muted hover:border-line-2'}`}>?</button>
+                {ERAS.map(era => (
+                  <button key={era} onClick={() => setStartEra(era)} title={era}
+                    className={`py-1.5 rounded-lg text-xs font-medium transition-all border flex items-center justify-center
+                      ${startEra === era ? 'bg-accent/15 border-accent/50 text-accent' : 'border-line text-muted hover:border-line-2'}`}>
+                    <EraIcon era={era} className="w-5 h-5" />
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+          <p className="text-[11px] text-muted mt-2 leading-snug">
+            Real history: one round is one year. Great People arrive when they are born, play from their career start and die in their real year; then you choose a successor born later.
+          </p>
           {eraMode === 'single' && (
-            <div className="grid grid-cols-7 gap-1.5">
+            <div className="grid grid-cols-7 gap-1.5 mt-2">
               {ERAS.map(era => (
                 <button key={era} onClick={() => setSingleEra(era)} title={era}
                   className={`py-1.5 rounded-lg text-xs font-medium transition-all border flex items-center justify-center
@@ -165,6 +186,7 @@ function BattleLobby({ matchType, onStart, onBack }: LobbyProps) {
               playerMode,
               eraMode,
               singleEra: eraMode === 'single' ? singleEra : undefined,
+              startEra: eraMode === 'all' && startEra !== 'random' ? startEra : undefined,
               playerNames: playerNames.slice(0, isPvC ? 1 : numHumans),
               numComputers: isPvC ? numComputers : 0,
             })

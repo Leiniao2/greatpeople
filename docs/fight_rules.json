@@ -14,23 +14,23 @@
     "id": "setup-era",
     "category": "Setup",
     "title": "All-era / single-era",
-    "docText": "All-era games draw locations and GP without era limit; single-era restricts.",
+    "docText": "Single era games use only that era's locations and Great People and open on the era's first birth. All era games draw from all of history and open on a start era (random unless chosen).",
     "docSource": "docs/fight.md §1",
-    "codeBehaviour": "eraMode 'all' picks 7 locations across eras; 'single' filters to the chosen era. GP deck is never filtered by era in either mode.",
-    "codeSource": "web/src/battle/engine.ts pickLocations / initGame",
-    "status": "partial",
-    "notes": "Single-era mode still deals GP from every era."
+    "codeBehaviour": "openingDeal: single era opens on eraStartYear(singleEra) with gpPool filtered to the era; all era opens on setup.startEra (random from ERAS when not given) and deals from Great People born on or after that era's first birth. Locations: 'all' picks 7 across eras, 'single' the chosen era.",
+    "codeSource": "web/src/battle/engine.ts openingDeal, eraStartYear, gpPool, pickLocations",
+    "status": "implemented",
+    "notes": "The lobby does not yet offer a start-era picker for all-era games; it is random."
   },
   {
     "id": "setup-hand",
     "category": "Setup",
     "title": "Starting hand",
-    "docText": "4 Great People, 2 Event cards, 8 Follower cards per player, all in hand.",
+    "docText": "Each player is dealt 3 Great People (fewer, equal for everyone, in a small era), 2 Event cards and 8 Followers. The Great People are the earliest-born of the pool from the opening year, so the table starts as contemporaries.",
     "docSource": "docs/fight.md §1",
-    "codeBehaviour": "gpHand = 4, eventHand = 2, followerHand = 8.",
-    "codeSource": "web/src/battle/engine.ts initGame",
+    "codeBehaviour": "openingDeal: handSize = min(STARTING_LINEAGES = 3, floor(upcoming / players)), dealt from the earliest-born, shuffled; eventHand = 2, followerHand = 8. No GP draw pile (gpDeck is empty on the timeline).",
+    "codeSource": "web/src/battle/engine.ts openingDeal, initGame",
     "status": "implemented",
-    "notes": ""
+    "notes": "Was 4 random Great People plus a draw pile before the timeline."
   },
   {
     "id": "setup-locations",
@@ -68,22 +68,22 @@
   {
     "id": "setup-start-hazard",
     "category": "Setup",
-    "title": "Hazard at game start",
-    "docText": "Not specified.",
+    "title": "City states at game start",
+    "docText": "When history opens, each city can already be in a state of its own (same 30% roll as every new year).",
     "docSource": "—",
-    "codeBehaviour": "One random natural hazard is placed on a random location at game start, lasting 1 round.",
-    "codeSource": "web/src/battle/engine.ts initGame",
-    "status": "unspecified",
+    "codeBehaviour": "initGame runs rollCityStates on the empty locations (unless setup.noHazards). Replaces the single random hazard placed at game start.",
+    "codeSource": "web/src/battle/engine.ts initGame, rollCityStates",
+    "status": "implemented",
     "notes": ""
   },
   {
     "id": "obj-points",
     "category": "Objective",
     "title": "Winning points",
-    "docText": "Each completed GP achievement = 1 winning point. Highest total wins.",
+    "docText": "Completing the achievement that unlocks a Great Person's legacy gives the legacy and 1 winning point.",
     "docSource": "docs/fight.md §2",
-    "codeBehaviour": "CLAIM_ACHIEVEMENT grants +1 winningPoints when achievementTicks ≥ threshold.",
-    "codeSource": "web/src/battle/engine.ts CLAIM_ACHIEVEMENT",
+    "codeBehaviour": "CLAIM_ACHIEVEMENT: public GP with achievementTicks ≥ legacy.unlock.wins and not already in player.legacies → +1 winningPoints, legacy added (earnLegacy), fills a free slot.",
+    "codeSource": "web/src/battle/engine.ts CLAIM_ACHIEVEMENT, earnLegacy",
     "status": "implemented",
     "notes": ""
   },
@@ -91,21 +91,87 @@
     "id": "obj-end",
     "category": "Game end",
     "title": "5 points ends the game",
-    "docText": "Game ends when a player reaches 5 winning points, or only 1 player still has GP cards.",
+    "docText": "5 winning points; or history reaches 2030; or only one player has a Great Person now or to come; or no human has one left (most points wins, ties to more legacies then seat order).",
     "docSource": "docs/fight.md §8",
-    "codeBehaviour": "checkWinCondition: winningPoints ≥ 5, or exactly one player with GP in hand or on board.",
-    "codeSource": "web/src/battle/engine.ts checkWinCondition",
+    "codeBehaviour": "checkWinCondition: ≥5 points; on the timeline also year ≥ TIMELINE_END_YEAR (2030) → leader(); exactly one player with hasFuture → that player; no human with hasFuture → leader(). Timeless games keep \"one player with GP in hand or on board\".",
+    "codeSource": "web/src/battle/engine.ts checkWinCondition, hasFuture, leader",
     "status": "implemented",
-    "notes": "Server match model also uses _WINS_NEEDED = 5 but for a different game (see server-model)."
+    "notes": ""
+  },
+  {
+    "id": "time-year",
+    "category": "Timeline",
+    "title": "One round is one year",
+    "docText": "One round is one year in every era. Every game starts at a real year.",
+    "docSource": "docs/fight.md §9",
+    "codeBehaviour": "GameState.year advances by YEARS_PER_ROUND (1) in END_TURN when a new round starts (advanceYear). The header shows the year.",
+    "codeSource": "web/src/battle/engine.ts advanceYear, END_TURN",
+    "status": "implemented",
+    "notes": ""
+  },
+  {
+    "id": "time-career",
+    "category": "Timeline",
+    "title": "Birth and career start",
+    "docText": "A Great Person enters the game in the year he/she was born and can be played from the career start: age 18, earlier for prodigies (careerAge on the card).",
+    "docSource": "docs/fight.md §9",
+    "codeBehaviour": "lifeStatus: unborn (year < born), youth (year < careerStartYear), active; careerStartYear = born + max(MIN_CAREER_AGE 4, careerAge ?? 18 − prodigy legacies).",
+    "codeSource": "web/src/battle/engine.ts lifeStatus, careerStartYear; data/cards.json born/careerAge",
+    "status": "implemented",
+    "notes": ""
+  },
+  {
+    "id": "time-death",
+    "category": "Timeline",
+    "title": "Natural death",
+    "docText": "A Great Person who outlives his/her death year dies wherever he/she is (hand, board or retirement). Living people live until the timeline ends.",
+    "docSource": "docs/fight.md §9",
+    "codeBehaviour": "advanceYear: deathYear(card, owner) < new year → removed from board/hand/retired, recordDeaths. deathYear = (died ?? 2030) + longevity legacies.",
+    "codeSource": "web/src/battle/engine.ts advanceYear, deathYear",
+    "status": "implemented",
+    "notes": ""
+  },
+  {
+    "id": "time-successor",
+    "category": "Timeline",
+    "title": "Successor born later",
+    "docText": "When a Great Person dies (old age or killed in play) the player chooses a successor born later than the current year from the unclaimed Great People; the 3 nearest by birth are offered. The computer does the same.",
+    "docSource": "docs/fight.md §9",
+    "codeBehaviour": "pendingSuccessors queued by recordDeaths; successorOptions = unclaimed pool with born > year, nearest first, SUCCESSOR_CHOICES (3) + successor legacies; CHOOSE_SUCCESSOR for humans; resolveChoices picks the highest stat total for CPUs; no options → the lineage ends.",
+    "codeSource": "web/src/battle/engine.ts successorOptions, CHOOSE_SUCCESSOR, resolveChoices",
+    "status": "implemented",
+    "notes": "Choices are presented in a modal on the board."
+  },
+  {
+    "id": "time-retire",
+    "category": "Timeline",
+    "title": "Retirement",
+    "docText": "A player may retire a Great Person at any time on his/her turn. Retirement is not death: the successor waits for the real death year.",
+    "docSource": "docs/fight.md §9",
+    "codeBehaviour": "RETIRE_GP (current player, GP on board or in hand in youth/career) → PlayerState.retired. advanceYear kills retired GPs at their death year, which queues the successor.",
+    "codeSource": "web/src/battle/engine.ts RETIRE_GP, advanceYear",
+    "status": "implemented",
+    "notes": ""
+  },
+  {
+    "id": "time-skip",
+    "category": "Timeline",
+    "title": "Time skip",
+    "docText": "When no human player has a Great Person in his/her career (and none owes a successor choice), time jumps ahead until one does; the computer plays out those years quickly.",
+    "docSource": "docs/fight.md §9",
+    "codeBehaviour": "settle → shouldFastForward → fastForward: advanceYear({fastForward}) per year (deaths, successions, states wear off, no new city states), CPU GPs on board win a legacy fight with FAST_FORWARD_CPU_WIN_CHANCE (5 %) per year and claim it; ends on a human career, a pending human choice, game end or 2030. Shows a time-skip summary.",
+    "codeSource": "web/src/battle/engine.ts settle, shouldFastForward, fastForward",
+    "status": "implemented",
+    "notes": "Also applies at game start, when every human Great Person is still too young."
   },
   {
     "id": "turn-deploy",
     "category": "Turn actions",
     "title": "A. Deploy a Great Person",
-    "docText": "Once per turn, place a GP from hand to a location; choose public or private.",
+    "docText": "Once per turn, place a GP from hand to a location; choose public or private. Only a Great Person in his/her career can be brought on board.",
     "docSource": "docs/fight.md §3 A, §4",
-    "codeBehaviour": "DEPLOY_GP: once per turn (turnActions.deployedGP), isPublic chosen, card flagged justDeployed.",
-    "codeSource": "web/src/battle/engine.ts DEPLOY_GP",
+    "codeBehaviour": "DEPLOY_GP: once per turn (turnActions.deployedGP), isPublic chosen, card flagged justDeployed. On the timeline DEPLOY_GP is rejected unless lifeStatus is active (born + careerAge reached, not dead or retired).",
+    "codeSource": "web/src/battle/engine.ts DEPLOY_GP, lifeStatus",
     "status": "implemented",
     "notes": ""
   },
@@ -156,13 +222,13 @@
   {
     "id": "turn-claim",
     "category": "Turn actions",
-    "title": "F. Claim achievement",
-    "docText": "Claim that a GP on board completed its achievement → 1 winning point.",
+    "title": "F. Claim a legacy",
+    "docText": "Claim the legacy of a Great Person on board who completed the achievement: 1 winning point and the legacy. Once per legacy per player.",
     "docSource": "docs/fight.md §3 F",
-    "codeBehaviour": "CLAIM_ACHIEVEMENT requires the card public and ticks ≥ threshold; grants +1 point AND immediately draws a new GP card to hand; ticks reset to 0 and the GP stays on board.",
+    "codeBehaviour": "CLAIM_ACHIEVEMENT requires the card public, ticks ≥ legacy.unlock.wins and the legacy not yet earned; grants +1 point and the legacy. On the timeline no new GP is drawn; the timeless Epic lessons still draw one.",
     "codeSource": "web/src/battle/engine.ts CLAIM_ACHIEVEMENT",
-    "status": "partial",
-    "notes": "Doc: archiving is a separate, optional step that yields the new GP (§6). Code merges both and never archives."
+    "status": "implemented",
+    "notes": "The board button is labelled Claim Legacy."
   },
   {
     "id": "turn-attack",
@@ -313,7 +379,7 @@
     "title": "Local survival threshold",
     "docText": "Any player at this location whose total for the stat (GP + followers) is below 10 is killed and discarded.",
     "docSource": "docs/fight.md §5",
-    "codeBehaviour": "Threshold is 5: a player survives when total ≥ 5. Resolved at the start of each new round while the event stays active.",
+    "codeBehaviour": "Threshold is 5: a player survives when total ≥ 5. Resolved at the start of each new round while the event stays active. Active survival-context legacies add to each side; Great People lost to a survival die (successor on the timeline).",
     "codeSource": "web/src/battle/engine.ts END_TURN local_survival (threshold = 5)",
     "status": "conflict",
     "notes": "iOS/Android rules dialogs say 10. Card stats range 1–12, so a single GP survives at 5 only with a decent stat."
@@ -335,7 +401,7 @@
     "title": "Special survival (hazard)",
     "docText": "Flood/Blizzard/Storm/Earthquake/Fire/Tsunami/Pandemic/Drought. Any player with total points (all stats, GP + followers) below 100 is killed. Random, lasts 1 round, placed where the drawer has most cards.",
     "docSource": "docs/fight.md §5",
-    "codeBehaviour": "Per player: sum each of the 8 stats across their cards at the location; if the MINIMUM stat total < 5 they are discarded. 20% chance per new round, placed on the location with the most cards. Lasts 1 round. Hazard type has no effect.",
+    "codeBehaviour": "Per player: sum each of the 8 stats across their cards at the location; if the MINIMUM stat total < 5 they are discarded. 20% chance per new round, placed on the location with the most cards. Lasts 1 round. Hazard type has no effect. Active survival-context legacies add to the minimum; a hazard-shield legacy makes the player immune. Great People lost die (successor on the timeline). The old 20 % random hazard per round is replaced by city states.",
     "codeSource": "web/src/battle/engine.ts END_TURN natural_hazard (HAZARD_MIN = 5)",
     "status": "conflict",
     "notes": "iOS/Android rules text says 'total stats below 100'. Three different rules exist."
@@ -346,7 +412,7 @@
     "title": "Global competition",
     "docText": "All players involved; lasts 1 round; highest total of the stat over all PUBLIC cards on the board wins 2 events, 4 followers or 1 GP.",
     "docSource": "docs/fight.md §5",
-    "codeBehaviour": "Sums base stat of public GP only (followers, traits and location bonuses ignored). Winner picks reward: 2 events / 4 followers / 1 GP.",
+    "codeBehaviour": "Sums base stat of public GP only (followers, traits and location bonuses ignored). Winner picks reward: 2 events / 4 followers / 1 GP. Competition-context legacies add to the player's total. On the timeline the Great Person reward founds a new lineage (a successor choice born after the current year).",
     "codeSource": "web/src/battle/engine.ts END_TURN globalCompetition / GLOBAL_COMP_REWARD",
     "status": "partial",
     "notes": "Followers excluded in code; doc says all cards."
@@ -363,6 +429,17 @@
     "notes": ""
   },
   {
+    "id": "city-states",
+    "category": "City states",
+    "title": "Cities fall into states by themselves",
+    "docText": "Each year, a location with no scenario has a 30 % chance to enter a random local event (3 years), local survival (2 years) or natural hazard (1 year).",
+    "docSource": "docs/fight.md §5",
+    "codeBehaviour": "rollCityStates at every new year (advanceYear, or END_TURN in timeless games) and at initGame, unless setup.noHazards; CITY_STATE_CHANCE 0.3; randomCityState picks uniformly from 8 local events, 8 local survivals and 8 hazards; origin \"city\", durations CITY_STATE_YEARS. Not rolled during time skips.",
+    "codeSource": "web/src/battle/engine.ts rollCityStates, randomCityState",
+    "status": "implemented",
+    "notes": "The Epic lessons set noHazards, so their boards stay as scripted."
+  },
+  {
     "id": "scn-gandhi",
     "category": "Scenarios",
     "title": "Trait-driven scenario negation",
@@ -376,13 +453,13 @@
   {
     "id": "acq-archive",
     "category": "Acquiring cards",
-    "title": "Archive to draw a new GP",
-    "docText": "A GP that completed its achievement may be archived (while public); owner then draws a new GP.",
+    "title": "Succession replaces archiving",
+    "docText": "New Great People only arrive as successors: when a Great Person dies the player chooses one born later than the current year.",
     "docSource": "docs/fight.md §6",
-    "codeBehaviour": "No ARCHIVE action. PlayerState.archive exists but is never written. New GP is drawn on claim instead.",
-    "codeSource": "web/src/battle/engine.ts CLAIM_ACHIEVEMENT",
-    "status": "partial",
-    "notes": "Turing / Bi Sheng / Gutenberg traits that key off 'last archived GP' cannot work without archiving."
+    "codeBehaviour": "recordDeaths moves dead GPs to PlayerState.archive and queues pendingSuccessors; CHOOSE_SUCCESSOR picks from successorOptions; CPUs choose at once in settle/resolveChoices.",
+    "codeSource": "web/src/battle/engine.ts recordDeaths, successorOptions, CHOOSE_SUCCESSOR, resolveChoices",
+    "status": "implemented",
+    "notes": "There is still no voluntary \"archive to draw\" action; retirement (time-line) is the voluntary exit."
   },
   {
     "id": "acq-global",
@@ -390,7 +467,7 @@
     "title": "Global competition reward",
     "docText": "Winner of a global competition gets 2 event cards, 4 follower cards or 1 GP card.",
     "docSource": "docs/fight.md §5, §6",
-    "codeBehaviour": "GLOBAL_COMP_REWARD draws exactly those amounts from the respective decks.",
+    "codeBehaviour": "GLOBAL_COMP_REWARD: 2 events or 4 followers from the decks; the GP reward is a new lineage on the timeline (pending successor) and a deck draw in timeless games.",
     "codeSource": "web/src/battle/engine.ts GLOBAL_COMP_REWARD",
     "status": "implemented",
     "notes": ""
@@ -431,13 +508,35 @@
   {
     "id": "ach-text",
     "category": "Achievements",
-    "title": "Achievement conditions",
-    "docText": "Each GP has a named achievement with a specific in-game condition (see card text).",
+    "title": "Achievement conditions (legacy unlock)",
+    "docText": "Each card's achievement text says how its legacy is earned.",
     "docSource": "data/cards.json",
-    "codeBehaviour": "None of the textual conditions are evaluated. Instead: a GP earns 1 'tick' when it attacks and KILLS an enemy GP in a conflict whose stat equals the GP's ACHIEVEMENT_SPECS stat and the victim has ≥ 5 in that stat. Threshold 1 tick for the 47 mapped figures, 3 ticks for the other 33.",
-    "codeSource": "web/src/battle/engine.ts ACHIEVEMENT_SPECS / ATTACK",
-    "status": "conflict",
-    "notes": "Every achievement is effectively 'kill one worthy GP in your stat'. Defensive, positional and cooperative achievements are impossible."
+    "codeBehaviour": "None of the textual conditions are evaluated. The engine checks legacy.unlock: a GP earns 1 tick when it attacks and kills an enemy GP in a local event of the unlock stat whose own value in that stat is ≥ 5; claim at unlock.wins ticks (1 for every card). Every card now has an unlock stat (previously 33 cards had none and were unreachable).",
+    "codeSource": "data/cards.json legacy.unlock; web/src/battle/engine.ts ACHIEVEMENT_SPECS (derived), ATTACK",
+    "status": "partial",
+    "notes": "Unlock stats come from the old ACHIEVEMENT_SPECS where one existed, otherwise the card's highest stat."
+  },
+  {
+    "id": "legacy-slots",
+    "category": "Legacy",
+    "title": "Legacy slots",
+    "docText": "Claimed legacies are kept for the rest of the game; only those in the 2 legacy slots are in effect. One switch per turn.",
+    "docSource": "docs/fight.md §10",
+    "codeBehaviour": "PlayerState.legacies / activeLegacies; earnLegacy fills a free slot; SET_LEGACY once per turn (turnActions.legacyChanged), LEGACY_SLOTS = 2; CPUs fill free slots automatically.",
+    "codeSource": "web/src/battle/engine.ts SET_LEGACY, earnLegacy, resolveChoices",
+    "status": "implemented",
+    "notes": ""
+  },
+  {
+    "id": "legacy-effects",
+    "category": "Legacy",
+    "title": "Legacy effects",
+    "docText": "Each legacy has a historically themed effect of one of 7 kinds: contest, follower, hazard shield, longevity, prodigy, successors, income.",
+    "docSource": "docs/fight.md §10",
+    "codeBehaviour": "legacyContest adds contest/follower bonuses in ATTACK (attack/defend), survivals and hazards (survival), global competitions (competition) and shows them as legacy rows in summaries; hasHazardShield; deathYear (longevity); careerStartYear (prodigy); successorOptions (successors); advanceYear (income).",
+    "codeSource": "web/src/battle/engine.ts legacyContest, hasHazardShield, describeLegacyEffect",
+    "status": "implemented",
+    "notes": "Effects are data (data/cards.json legacy.effect); editing them in Fight Studio needs no engine change."
   },
   {
     "id": "ach-stats-scale",
