@@ -183,7 +183,7 @@ private fun CardItem(card: Card, owned: Boolean = true, onClick: () -> Unit = {}
 private fun EmptyState(modifier: Modifier = Modifier) {
     Column(modifier = modifier, horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(8.dp)) {
-        Text("♛", style = MaterialTheme.typography.displayMedium)
+        MedallionIcon("collection", 72.dp)
         Text("No cards yet", style = MaterialTheme.typography.titleMedium)
         Text("Win battles to earn cards", style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant)

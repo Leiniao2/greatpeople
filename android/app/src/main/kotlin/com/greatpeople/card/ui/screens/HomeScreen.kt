@@ -1,9 +1,5 @@
 package com.greatpeople.card.ui.screens
 
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
-import coil.compose.AsyncImage
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -92,16 +88,7 @@ fun HomeScreen(
                 verticalArrangement = Arrangement.spacedBy(8.dp),
                 modifier = Modifier.padding(bottom = 40.dp),
             ) {
-                Surface(
-                    modifier = Modifier.size(64.dp),
-                    shape = RoundedCornerShape(16.dp),
-                    color = Amber.copy(alpha = 0.12f),
-                    border = androidx.compose.foundation.BorderStroke(1.dp, Amber.copy(alpha = 0.25f)),
-                ) {
-                    Box(contentAlignment = Alignment.Center) {
-                        Text("⚡", fontSize = 28.sp)
-                    }
-                }
+                MedallionIcon("collection", 72.dp)
 
                 Text(
                     "GREAT PEOPLE",
@@ -161,12 +148,7 @@ private fun HomeModeButton(mode: ModeItem, onClick: () -> Unit) {
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(14.dp),
     ) {
-        AsyncImage(
-            model = "file:///android_asset/icons/icon_${mode.icon}.webp",
-            contentDescription = null,
-            contentScale = ContentScale.Crop,
-            modifier = Modifier.size(48.dp).clip(CircleShape),
-        )
+        MedallionIcon(mode.icon, 48.dp)
 
         // Labels
         Column(

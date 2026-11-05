@@ -269,7 +269,7 @@ private fun EraPage(
                         horizontalAlignment = Alignment.CenterHorizontally,
                         modifier = Modifier.fillMaxWidth(),
                     ) {
-                        Text("🏆", fontSize = 28.sp)
+                        MedallionIcon("ranked", 56.dp)
                         Text(
                             "All Eras Complete!",
                             color = Amber,

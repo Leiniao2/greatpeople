@@ -81,7 +81,7 @@ fun LoginScreen(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text("♛", style = MaterialTheme.typography.displaySmall)
+        MedallionIcon("collection", 72.dp)
         Spacer(Modifier.height(4.dp))
         Text("Great People", style = MaterialTheme.typography.headlineLarge)
         Text("Collect · Battle · Conquer",
