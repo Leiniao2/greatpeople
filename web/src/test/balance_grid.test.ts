@@ -106,12 +106,12 @@ describe('ice slide balance', () => {
 })
 
 describe('jigsaw balance', () => {
-  it('the green glow for placed pieces stops at D3', () => {
-    expect(DIFFS.map(d => jigsawTier(d).showCorrect)).toEqual([true, true, false, false])
+  it('the picture on the board fades out as the tiers rise, and the board renders at every tier', () => {
+    expect(DIFFS.map(d => jigsawTier(d).ghost > 0)).toEqual([true, true, false, false])
     for (const d of DIFFS) {
-      const { container, unmount } = render(createElement(JigsawGame, { configId: 'venetian-master', difficulty: d, seed: 1, onWin: () => {}, onLose: () => {} }))
-      const glowing = container.querySelectorAll('.border-emerald-500\\/50').length
-      if (d >= 3) expect(glowing, `d${d}`).toBe(0)
+      const { getByTestId, unmount } = render(createElement(JigsawGame, { configId: 'venetian-master', difficulty: d, seed: 1, onWin: () => {}, onLose: () => {} }))
+      const t = jigsawTier(d)
+      expect(getByTestId('jigsaw-count').textContent).toBe(`0/${t.cols * t.rows} placed`)
       unmount()
     }
   })

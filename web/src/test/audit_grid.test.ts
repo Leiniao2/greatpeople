@@ -10,6 +10,7 @@ import { CONFIGS as BRIDGE, checkWin as bridgeWin, isBlocked } from '@/component
 import { CONFIGS as PIPELINE, floodFill, getOpenings } from '@/components/minigames/PipelineGame'
 import { CONFIGS as MIRROR, traceLight } from '@/components/minigames/MirrorGame'
 import { CONFIGS as JIGSAW } from '@/components/minigames/JigsawGame'
+import { BOARD_H as JIGSAW_BOARD_H, TIERS as jigsawTiers, fits as jigsawFits, homeOf as jigsawHome, makePuzzle as makeJigsaw, piecePath as jigsawPath, sides as jigsawSides } from '@/components/minigames/jigsaw/model'
 import { generate as generateSudoku, countSolutions } from '@/components/minigames/SudokuGame'
 
 const DIFFS: Difficulty[] = [1, 2, 3, 4]
@@ -336,15 +337,51 @@ describe('mirrors', () => {
 
 // ── Jigsaw ─────────────────────────────────────────────────────────────────────
 
+const PAINTINGS = Object.keys(import.meta.glob('../../public/paintings/*.webp'))
+
 describe('jigsaw', () => {
-  for (const [id, cfg] of Object.entries(JIGSAW)) {
-    it(`${id}: pieces are unique and fill whole rows`, () => {
-      const ids = cfg.pieces.map(p => p.id)
-      expect(new Set(ids).size).toBe(ids.length)
-      expect(cfg.pieces.length).toBeGreaterThan(1)
-      expect(cfg.pieces.length % cfg.cols, `${id} fills ${cfg.cols} columns`).toBe(0)
+  const seeds = [1, 7, 42, 2026, 99991]
+  it('every config is a real picture that ships with the game', () => {
+    for (const [id, cfg] of Object.entries(JIGSAW)) {
+      expect(PAINTINGS, id).toContain(`../../public/paintings/${cfg.image}.webp`)
+    }
+  })
+
+  for (const d of DIFFS) {
+    it(`D${d}: seams interlock, every piece starts off the board and only fits at home, upright`, () => {
+      for (const seed of seeds) {
+        const p = makeJigsaw(d, seed)
+        expect(p.pieces).toHaveLength(p.cols * p.rows)
+        for (const piece of p.pieces) {
+          const [top, right, bottom, left] = jigsawSides(p, piece.row, piece.col)
+          // Neighbours meet tab to blank; the border is flat.
+          if (piece.row === 0) expect(top).toBe(0); else expect(top).toBe(-jigsawSides(p, piece.row - 1, piece.col)[2])
+          if (piece.col === 0) expect(left).toBe(0); else expect(left).toBe(-jigsawSides(p, piece.row, piece.col - 1)[1])
+          if (piece.row === p.rows - 1) expect(bottom).toBe(0)
+          if (piece.col === p.cols - 1) expect(right).toBe(0)
+          expect(piece.placed).toBe(false)
+          expect(piece.y + p.cellH / 2, 'starts on the table').toBeGreaterThan(JIGSAW_BOARD_H)
+          const home = jigsawHome(p, piece)
+          expect(jigsawFits(p, piece, piece.x, piece.y), 'not solved where it lies').toBe(false)
+          expect(jigsawFits(p, { ...piece, rot: 0 }, home.x, home.y), 'fits at home').toBe(true)
+          if (p.tier.rotate) expect(piece.rot, 'lies turned').toBeGreaterThan(0)
+          else expect(piece.rot).toBe(0)
+          // Turned, or one cell off, it does not fit.
+          expect(jigsawFits(p, { ...piece, rot: 1 }, home.x, home.y)).toBe(false)
+          expect(jigsawFits(p, { ...piece, rot: 0 }, home.x + p.cellW, home.y)).toBe(false)
+          expect(jigsawPath(p, piece.row, piece.col)).toMatch(/^M 0 0 .* Z$/)
+        }
+      }
     })
   }
+
+  it('more pieces, less help as the tiers rise', () => {
+    const t = DIFFS.map(d => jigsawTiers[d])
+    const counts = t.map(x => x.cols * x.rows)
+    for (let i = 1; i < 4; i++) expect(counts[i]).toBeGreaterThan(counts[i - 1])
+    expect(t.map(x => x.ghost > 0)).toEqual([true, true, false, false])
+    expect(t.map(x => x.rotate)).toEqual([false, false, false, true])
+  })
 })
 
 // ── Sudoku ─────────────────────────────────────────────────────────────────────

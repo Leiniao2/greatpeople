@@ -751,5 +751,44 @@
     "key": "zoroastrianism_faravahar",
     "title": "Faravahar",
     "subtitle": "Zoroastrianism"
+  },
+  {
+    "folder": "paintings",
+    "key": "leonardo_the_last_supper",
+    "title": "The Last Supper",
+    "subtitle": "Leonardo da Vinci, 1498"
+  },
+  {
+    "folder": "paintings",
+    "key": "mani_light_and_darkness",
+    "title": "Light and Darkness",
+    "subtitle": "After a Manichaean book painting, Kocho",
+    "cards": [
+      "mani"
+    ]
+  },
+  {
+    "folder": "paintings",
+    "key": "hutton_jedburgh_unconformity",
+    "title": "The Unconformity at Jedburgh",
+    "subtitle": "After John Clerk of Eldin, 1787",
+    "cards": [
+      "james_hutton"
+    ]
+  },
+  {
+    "folder": "paintings",
+    "key": "tiffany_fifth_avenue_dawn",
+    "title": "Breakfast at Tiffany's",
+    "subtitle": "Fifth Avenue, 1961",
+    "cards": [
+      "audrey_hepburn"
+    ]
+  },
+  {
+    "folder": "paintings",
+    "key": "tiffany_wisteria_window",
+    "title": "Wisteria Window",
+    "subtitle": "In the style of Louis Comfort Tiffany, c. 1905"
   }
 ]
