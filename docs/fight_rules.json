@@ -135,7 +135,7 @@
     "id": "time-successor",
     "category": "Timeline",
     "title": "Successor born later",
-    "docText": "When a Great Person dies (old age or killed in play) the player chooses a successor born later than the current year from the unclaimed Great People; the 3 nearest by birth are offered. The computer does the same.",
+    "docText": "When a Great Person dies (old age or killed in play) the player chooses a successor born later than the current year from the unclaimed Great People; the 3 nearest by birth are offered. The computer does the same. When a player's last Great Person in a city dies, their Followers there are discarded too; Event cards stay.",
     "docSource": "docs/fight.md §9",
     "codeBehaviour": "pendingSuccessors queued by recordDeaths; successorOptions = unclaimed pool with born > year, nearest first, SUCCESSOR_CHOICES (3) + successor legacies; CHOOSE_SUCCESSOR for humans; resolveChoices picks the highest stat total for CPUs; no options → the lineage ends. A death is succeeded only while the player has a free Great Person slot (reconcileSlots trims choices beyond gpSlots).",
     "codeSource": "web/src/battle/engine.ts successorOptions, CHOOSE_SUCCESSOR, resolveChoices",
