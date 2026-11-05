@@ -53,4 +53,11 @@ describe('native bridge', () => {
     expect(adoptTokenFromFragment()).toBe(false)
     expect(localStorage.getItem('access_token')).toBe('t.o.k')
   })
+
+  it('stores the refresh token the app passes along with the session', () => {
+    window.history.replaceState(null, '', '/play/arcade?embed=1#token=a.b.c&refresh=r.e.f')
+    adoptTokenFromFragment()
+    expect(localStorage.getItem('access_token')).toBe('a.b.c')
+    expect(localStorage.getItem('refresh_token')).toBe('r.e.f')
+  })
 })

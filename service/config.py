@@ -1,4 +1,5 @@
 import os
+from datetime import timedelta
 from google.cloud import secretmanager
 
 
@@ -12,6 +13,10 @@ def _get_secret(secret_id: str) -> str:
 
 class Config:
     JWT_ALGORITHM = 'HS256'
+    # Clients renew the access token with the refresh token (POST /auth/refresh),
+    # so a session lasts as long as the refresh token: weeks, not 15 minutes.
+    JWT_ACCESS_TOKEN_EXPIRES = timedelta(hours=12)
+    JWT_REFRESH_TOKEN_EXPIRES = timedelta(days=90)
     CORS_ORIGINS = os.environ.get('CORS_ORIGINS', '*')
 
     @classmethod

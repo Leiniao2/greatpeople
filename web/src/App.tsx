@@ -1,6 +1,7 @@
 import { Suspense, lazy, useEffect } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { useAuth } from '@/hooks/useAuth'
+import { isEmbedded, postToNative } from '@/bridge/native'
 import { useStoryProgress } from '@/hooks/useStoryProgress'
 import LoadingScreen from '@/components/LoadingScreen'
 import LoginPage from '@/pages/LoginPage'
@@ -21,7 +22,10 @@ const GameLabPage       = import.meta.env.DEV ? lazy(() => import('@/pages/GameL
 
 function PrivateRoute({ children }: { children: React.ReactNode }) {
   const { isLoggedIn, isGuest } = useAuth()
-  return (isLoggedIn || isGuest) ? <>{children}</> : <Navigate to="/login" replace />
+  if (isLoggedIn || isGuest) return <>{children}</>
+  // Inside the app, sign in natively (with the phone's account), not on the web login.
+  if (isEmbedded() && postToNative({ type: 'signedOut' })) return null
+  return <Navigate to="/login" replace />
 }
 
 export default function App() {

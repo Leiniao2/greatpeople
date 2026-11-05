@@ -10,7 +10,11 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import okhttp3.Authenticator
 import okhttp3.Interceptor
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.Request
+import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -34,8 +38,32 @@ object AppModule {
             }
             chain.proceed(request)
         }
+        // Access tokens expire; trade the refresh token for a new one and
+        // replay the request, so a session lasts as long as the refresh token.
+        val refreshClient = OkHttpClient()
+        val renewer = Authenticator { _, response ->
+            val prefs = context.getSharedPreferences("auth", Context.MODE_PRIVATE)
+            val refresh = prefs.getString("refresh_token", null)
+            if (refresh == null || response.request.header("X-Renewed") != null) return@Authenticator null
+            val call = Request.Builder()
+                .url(BuildConfig.API_BASE_URL.trimEnd('/') + "/auth/refresh")
+                .header("Authorization", "Bearer $refresh")
+                .post("".toRequestBody("application/json".toMediaType()))
+                .build()
+            val token = runCatching {
+                refreshClient.newCall(call).execute().use { r ->
+                    if (r.isSuccessful) org.json.JSONObject(r.body!!.string()).getString("accessToken") else null
+                }
+            }.getOrNull() ?: return@Authenticator null
+            prefs.edit().putString("access_token", token).apply()
+            response.request.newBuilder()
+                .header("Authorization", "Bearer $token")
+                .header("X-Renewed", "1")
+                .build()
+        }
         return OkHttpClient.Builder()
             .addInterceptor(authInterceptor)
+            .authenticator(renewer)
             .addInterceptor(HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY })
             .build()
     }
