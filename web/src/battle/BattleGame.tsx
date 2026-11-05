@@ -14,7 +14,7 @@ import {
   ALL_GP_CARDS, STATS, STAT_LABELS, ACHIEVEMENT_SPECS, getAchievementThreshold, followerFromId,
   FOLLOWER_IDENTITY_MATCH_BONUS, LEGACY_SLOTS, CITY_STATE_CHANCE, DEFAULT_CAREER_AGE,
   careerStartYear, deathYear, describeLegacyEffect, formatYear, getGPCard, lifeStatus, successorOptions,
-  gpSlots, lineageCount, LOCATION_CARD_MAP,
+  gpSlots, lineageCount, LOCATION_CARD_MAP, GLOBAL_COMPETITION_CHANCE, REWARD_EVENTS, REWARD_FOLLOWERS,
   type GameAction,
 } from './engine'
 
@@ -794,8 +794,9 @@ function RulesModal({ onClose }: { onClose: () => void }) {
             <ul className="space-y-1.5 text-ink-2 leading-relaxed">
               <li>One round is <span className="text-ink font-semibold">one year</span> in every era. The game opens on a real year.</li>
               <li>A Great Person appears in the year they were born and can be played from their <span className="text-ink font-semibold">career start</span> (age {DEFAULT_CAREER_AGE}, earlier for prodigies such as Michael Jackson).</li>
+              <li>The board holds <span className="text-ink font-semibold">4 cities of the current age</span>. When history moves into a new age, every city becomes one of the new age; cards on it stay. City legacies (Circumnavigation, Seven Seas) add a city for everyone.</li>
               <li>Whatever era history opens in, you start by <span className="text-ink font-semibold">picking one Great Person from three</span>. You hold one Great Person at a time: that is your <span className="text-ink font-semibold">slot</span>.</li>
-              <li>Some legacies (First Empire, Kingmaker, New World Patronage, Mother of Russia) and the global competition prize add a slot. Each new slot lets you pick another Great Person, who founds a lineage of their own.</li>
+              <li>Some legacies (First Empire, Kingmaker, New World Patronage, Mother of Russia) add a slot. Each new slot lets you pick another Great Person, who founds a lineage of their own.</li>
               <li>When a Great Person dies of old age or is killed, choose a <span className="text-ink font-semibold">successor</span> born later than the current year. The computer does the same.</li>
               <li><span className="text-ink font-semibold">Retire</span> a Great Person at any time on your turn. They leave play, but their successor only comes at their real death year.</li>
               <li>When none of your Great People is in their career, time skips ahead and the computer plays out those years.</li>
@@ -816,9 +817,9 @@ function RulesModal({ onClose }: { onClose: () => void }) {
           <section>
             <p className="text-[10px] font-bold text-accent uppercase tracking-widest mb-1.5">Events and city states</p>
             <ul className="space-y-1.5 text-ink-2 leading-relaxed">
-              <li><span className="text-ink font-semibold">⚔ Local Event</span> — Compare your total stat vs. rivals. Winner may attack the loser's card.</li>
-              <li><span className="text-ink font-semibold">☠ Local Survival</span> — Each round, a player whose cards here total less than 5 in that stat loses them.</li>
-              <li><span className="text-ink font-semibold">🏆 Global Competition</span> — Player with the highest total stat across all public cards earns a prize bundle.</li>
+              <li><span className="text-ink font-semibold">⚔ Local Event</span> — Attacks are allowed here. Compare your side's total in the stat with your rival's; the winner of a fight, attacker or defender, takes a prize: 2 Followers or 1 Event card.</li>
+              <li><span className="text-ink font-semibold">☠ Local Survival</span> — Each year, a player whose cards here total less than 5 in that stat loses them. Survive while a rival here is swept away and you win the survival: 2 Followers or 1 Event card.</li>
+              <li><span className="text-ink font-semibold">🏆 Global Competition</span> — At the end of the year, the highest total of public Great People across the board wins a double prize: 4 Followers or 2 Event cards. Besides the cards players start, each year has a {Math.round(GLOBAL_COMPETITION_CHANCE * 100)}% chance that one breaks out by itself.</li>
               <li><span className="text-ink font-semibold">🌊 Natural Hazard</span> — A player whose weakest stat here totals less than 5 loses their cards here.</li>
               <li>Each year a city with no state has a {Math.round(CITY_STATE_CHANCE * 100)}% chance to fall into a random event, survival or hazard of its own for a few years.</li>
             </ul>
@@ -842,8 +843,6 @@ function RulesModal({ onClose }: { onClose: () => void }) {
 export function BattleGame({ gameState, dispatch, onExit, embedded = false, banner }: BattleGameProps) {
   const [selection, setSelection] = useState<Selection>({ mode: 'none' })
   const [attackKill, setAttackKill] = useState(false)
-  const [showRewardDialog, setShowRewardDialog] = useState(false)
-  const [globalCompWinner] = useState<string | null>(null)
   const [cardDetail, setCardDetail] = useState<CardDetail | null>(null)
   const [showRules, setShowRules] = useState(false)
   // Hot-seat: shown between human turns so previous player can't see next player's hand
@@ -1231,6 +1230,13 @@ export function BattleGame({ gameState, dispatch, onExit, embedded = false, bann
         </div>
       )}
       {banner}
+      {gameState.globalCompetitionActive && (
+        <div className="relative z-10 px-3 py-1 bg-purple-900/10 border-b border-purple-900/20 text-center shrink-0">
+          <p className="text-[11px] text-purple-900">
+            🏆 <span className="font-semibold">Global competition in {STAT_LABELS[gameState.globalCompetitionActive.stat!]}</span>: decided at the end of this year on public Great People across the board. Double prize.
+          </p>
+        </div>
+      )}
 
       {/* Landscape phones: board and hand on the left, actions on the right. */}
       <div className="flex flex-col flex-1 min-h-0 land:flex-row">
@@ -1594,31 +1600,6 @@ export function BattleGame({ gameState, dispatch, onExit, embedded = false, bann
           </button>
         </div>
 
-        {/* Global competition reward dialog */}
-        {showRewardDialog && globalCompWinner && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-ink/70 p-6">
-            <div className="bg-paper-2 border border-line rounded-2xl p-6 max-w-xs w-full shadow-2xl">
-              <h3 className="font-display text-lg font-bold text-ink uppercase mb-2 text-center">Global Competition!</h3>
-              <p className="text-muted text-sm text-center mb-4">
-                {gameState.players.find(p => p.id === globalCompWinner)?.name} wins! Choose a reward:
-              </p>
-              <div className="space-y-2">
-                <button onClick={() => { dispatch({ type: 'GLOBAL_COMP_REWARD', playerId: globalCompWinner, rewardType: 'events' }); setShowRewardDialog(false) }}
-                  className="w-full py-2.5 rounded-xl text-sm font-semibold border border-purple-500/40 text-purple-300 hover:bg-purple-500/10 transition-all">
-                  2 Event Cards
-                </button>
-                <button onClick={() => { dispatch({ type: 'GLOBAL_COMP_REWARD', playerId: globalCompWinner, rewardType: 'followers' }); setShowRewardDialog(false) }}
-                  className="w-full py-2.5 rounded-xl text-sm font-semibold border border-indigo-500/40 text-indigo-300 hover:bg-indigo-500/10 transition-all">
-                  4 Follower Cards
-                </button>
-                <button onClick={() => { dispatch({ type: 'GLOBAL_COMP_REWARD', playerId: globalCompWinner, rewardType: 'gp' }); setShowRewardDialog(false) }}
-                  className="w-full py-2.5 rounded-xl text-sm font-semibold border border-accent/40 text-accent hover:bg-accent/10 transition-all">
-                  1 Great Person Card
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
       </div>
       </div>
 
@@ -1634,6 +1615,38 @@ export function BattleGame({ gameState, dispatch, onExit, embedded = false, bann
           onDismiss={() => dispatch({ type: 'DISMISS_SUMMARY' })}
         />
       )}
+
+      {/* A prize to take: Followers or Event cards */}
+      {(() => {
+        const reward = (gameState.pendingRewards ?? []).find(r => !gameState.players.find(p => p.id === r.playerId)?.isComputer)
+        if (!reward || gameState.pendingSummary || choosing || awaitingHandoff) return null
+        const who = gameState.players.find(p => p.id === reward.playerId)!
+        const nf = REWARD_FOLLOWERS * reward.size, ne = REWARD_EVENTS * reward.size
+        const pick = (p: 'followers' | 'events') => dispatch({ type: 'CHOOSE_REWARD', playerId: who.id, pick: p })
+        return (
+          <div className="fixed inset-0 z-[158] flex items-center justify-center bg-ink/70 p-4">
+            <div className="bg-panel border border-line rounded-2xl w-full max-w-sm shadow-2xl overflow-hidden">
+              <div className="bg-accent/10 border-b border-line px-4 py-3 text-center">
+                <div className="text-lg">{reward.size === 2 ? '🏆' : '🎖'}</div>
+                <h3 className="font-bold text-ink text-sm uppercase tracking-wide">{reward.size === 2 ? 'Double prize' : 'Prize'}{gameState.players.filter(p => !p.isComputer).length > 1 ? ` for ${who.name}` : ''}</h3>
+                <p className="text-muted text-xs mt-0.5">You {reward.reason}. Take one:</p>
+              </div>
+              <div className="p-3 grid grid-cols-2 gap-2">
+                <button onClick={() => pick('followers')} disabled={!gameState.followerDeck.length}
+                  className="py-4 rounded-xl border border-line hover:border-accent/60 hover:bg-accent/5 transition-all disabled:opacity-40">
+                  <div className="text-2xl font-bold text-ink">{nf}</div>
+                  <div className="text-xs text-muted">Followers</div>
+                </button>
+                <button onClick={() => pick('events')} disabled={!gameState.eventDeck.length}
+                  className="py-4 rounded-xl border border-line hover:border-accent/60 hover:bg-accent/5 transition-all disabled:opacity-40">
+                  <div className="text-2xl font-bold text-ink">{ne}</div>
+                  <div className="text-xs text-muted">Event card{ne === 1 ? '' : 's'}</div>
+                </button>
+              </div>
+            </div>
+          </div>
+        )
+      })()}
 
       {/* A Great Person to choose: the opening pick, a new slot, or a successor */}
       {choosing && !gameState.pendingSummary && !awaitingHandoff && (() => {

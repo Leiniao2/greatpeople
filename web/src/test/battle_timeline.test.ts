@@ -6,7 +6,8 @@ import {
   ALL_GP_CARDS, CITY_STATE_CHANCE, CITY_STATE_YEARS, LEGACY_SLOTS, STATS, SUCCESSOR_CHOICES, TIMELINE_END_YEAR,
   careerStartYear, deathYear, describeLegacyEffect, freshTurnActions, gameReducer, getGPCard, hasHazardShield,
   initGame, initScriptedGame, legacyContest, lifeStatus, makeEventCard, rollCityStates, settle, successorOptions,
-  BASE_GP_SLOTS, gpSlots, lineageCount,
+  BASE_GP_SLOTS, gpSlots, lineageCount, GLOBAL_COMPETITION_CHANCE,
+  BASE_LOCATIONS, ERAS, alignLocations, eraForYear, eraStartYear, locationTarget,
   type GameAction,
 } from '@/battle/engine'
 
@@ -361,7 +362,7 @@ describe('the Epic lessons keep the timeless rules', () => {
 
 describe('card data for the timeline', () => {
   it('every Great Person has a life, a career start and a legacy the engine understands', () => {
-    const kinds = new Set(['contest', 'follower', 'hazard_shield', 'longevity', 'prodigy', 'successors', 'slots', 'income'])
+    const kinds = new Set(['contest', 'follower', 'hazard_shield', 'longevity', 'prodigy', 'successors', 'slots', 'locations', 'income'])
     for (const c of ALL_GP_CARDS) {
       expect(Number.isInteger(c.born), c.id).toBe(true)
       if (c.died !== null) expect(c.died, c.id).toBeGreaterThan(c.born)
@@ -444,12 +445,11 @@ describe('Great Person slots', () => {
     expect(lineageCount(gs, gs.players[0])).toBe(1)
   })
 
-  it('the global competition prize is a Great Person slot for good', () => {
+  it('the global competition never opens a Great Person slot', () => {
     let gs = game(1600, ['bernini'])
     gs = gameReducer(gs, { type: 'GLOBAL_COMP_REWARD', playerId: 'player-0', rewardType: 'gp' })
-    expect(gs.players[0].extraSlots).toBe(1)
-    expect(gpSlots(gs.players[0])).toBe(2)
-    expect(gs.players[0].pendingSuccessors).toEqual([expect.objectContaining({ reason: 'slot' })])
+    expect(gpSlots(gs.players[0])).toBe(1)
+    expect(gs.players[0].pendingSuccessors).toHaveLength(0)
   })
 
   it('four legacies open a slot, and the rules text says so', () => {
@@ -478,5 +478,146 @@ describe('reports for every contest', () => {
     expect(gs.pendingSummary).not.toBe(first)
     gs = gameReducer(gs, { type: 'DISMISS_SUMMARY' })
     expect(gs.pendingSummary).toBeNull()
+  })
+})
+
+describe('prizes for winning contests', () => {
+  /** You and the computer face each other at the first city in a running local event. */
+  function standoff(stat: StatKey, mine: string, theirs: string) {
+    let gs = game(1640, [mine], [theirs])
+    gs = place(gs, 0, 0, mine)
+    gs = place(gs, 0, 1, theirs)
+    return { ...gs, locations: gs.locations.map((l, i) => (i === 0 ? { ...l, activeEvent: makeEventCard(stat, 'local_event', 'ev'), eventRoundsLeft: 99 } : l)) }
+  }
+  const stronger = (a: string, b: string, stat: StatKey) => card(a)[stat] > card(b)[stat]
+
+  it('winning an attack earns a prize of 2 Followers or 1 Event card, and nothing toward a legacy', () => {
+    const [a, b] = stronger('bernini', 'borromini', 'culture') ? ['bernini', 'borromini'] : ['borromini', 'bernini']
+    let gs = standoff('culture', a, b)
+    const followers = gs.players[0].followerHand.length, events = gs.players[0].eventHand.length
+    gs = gameReducer(gs, { type: 'ATTACK', myInstanceId: `${a}-0`, theirInstanceId: `${b}-1`, kill: false })
+    expect(gs.pendingSummary?.kind === 'combat' && gs.pendingSummary.result).toBe('attacker')
+    expect(gs.pendingRewards).toEqual([expect.objectContaining({ playerId: 'player-0', size: 1 })])
+    const took = gameReducer(gs, { type: 'CHOOSE_REWARD', playerId: 'player-0', pick: 'followers' })
+    expect(took.players[0].followerHand.length).toBe(followers + 2)
+    expect(took.pendingRewards).toHaveLength(0)
+    const tookEvent = gameReducer(gs, { type: 'CHOOSE_REWARD', playerId: 'player-0', pick: 'events' })
+    expect(tookEvent.players[0].eventHand.length).toBe(events + 1)
+  })
+
+  it('a computer that holds off an attack takes its prize at once', () => {
+    const [weak, strong] = stronger('bernini', 'borromini', 'culture') ? ['borromini', 'bernini'] : ['bernini', 'borromini']
+    let gs = standoff('culture', weak, strong)
+    const before = gs.players[1].eventHand.length + gs.players[1].followerHand.length
+    gs = gameReducer(gs, { type: 'ATTACK', myInstanceId: `${weak}-0`, theirInstanceId: `${strong}-1`, kill: false })
+    expect(gs.pendingSummary?.kind === 'combat' && gs.pendingSummary.result).toBe('defender')
+    expect(gs.pendingRewards ?? []).toHaveLength(0)
+    expect(gs.players[1].eventHand.length + gs.players[1].followerHand.length).toBeGreaterThan(before)
+  })
+
+  it('surviving while a rival is swept away wins the survival', () => {
+    // A survival in your strongest stat at a city you hold with a follower; the rival's weak card fails.
+    let gs = game(1640, ['bernini'], ['borromini'])
+    const stat = (['culture', 'technique', 'reputation', 'wealth'] as StatKey[]).find(k => card('bernini')[k] >= 5 && card('borromini')[k] < 5)
+    if (!stat) return
+    gs = place(gs, 0, 0, 'bernini')
+    gs = place(gs, 0, 1, 'borromini')
+    gs = { ...gs, locations: gs.locations.map((l, i) => (i === 0 ? { ...l, activeEvent: makeEventCard(stat, 'local_survival', 'sv'), eventRoundsLeft: 3 } : l)) }
+    gs = endRound(gs)
+    expect(gs.pendingRewards).toEqual([expect.objectContaining({ playerId: 'player-0', size: 1 })])
+  })
+
+  it('the global competition winner takes a double prize: 4 Followers or 2 Event cards', () => {
+    let gs = game(1640, ['bernini'], ['borromini'])
+    gs = place(gs, 0, 0, 'bernini')
+    gs = place(gs, 1, 1, 'borromini')
+    const stat = (['culture', 'technique', 'reputation'] as StatKey[]).find(k => card('bernini')[k] !== card('borromini')[k])!
+    const winner = card('bernini')[stat] > card('borromini')[stat] ? 0 : 1
+    gs = { ...gs, globalCompetitionActive: makeEventCard(stat, 'global_competition', 'gc') }
+    gs = endRound(gs)
+    if (winner === 0) {
+      expect(gs.pendingRewards).toEqual([expect.objectContaining({ playerId: 'player-0', size: 2 })])
+      const n = gs.players[0].followerHand.length
+      gs = gameReducer(gs, { type: 'CHOOSE_REWARD', playerId: 'player-0', pick: 'followers' })
+      expect(gs.players[0].followerHand.length).toBe(n + 4)
+    } else {
+      expect(gs.pendingRewards ?? []).toHaveLength(0)
+    }
+  })
+
+  it('a global competition breaks out by itself in 5% of years', () => {
+    expect(GLOBAL_COMPETITION_CHANCE).toBe(0.05)
+    let gs = game(1640, ['bernini'], ['borromini'])
+    gs = { ...gs, setup: { ...gs.setup, noHazards: false } }
+    vi.spyOn(Math, 'random').mockReturnValue(0.01)
+    const hit = endRound(gs)
+    expect(hit.globalCompetitionActive?.type).toBe('global_competition')
+    vi.spyOn(Math, 'random').mockReturnValue(0.5)
+    expect(endRound(gs).globalCompetitionActive).toBeNull()
+  })
+})
+
+describe('cities follow the age', () => {
+  it('a new game opens on four cities of the age it starts in', () => {
+    expect(BASE_LOCATIONS).toBe(4)
+    for (const era of ERAS) {
+      const gs = initGame({ mode: 'scenario', matchType: 'pvc', playerMode: 'pvc', eraMode: 'all', startEra: era, playerNames: ['You'], numComputers: 1 })
+      expect(gs.locations, era).toHaveLength(4)
+      for (const l of gs.locations) expect(l.era, `${era}: ${l.name}`).toBe(era)
+      expect(new Set(gs.locations.map(l => l.name)).size).toBe(4)
+    }
+  })
+
+  it('each age opens with the birth of its first Great Person', () => {
+    for (const era of ERAS) {
+      expect(eraForYear(eraStartYear(era))).toBe(era)
+      if (era !== ERAS[0]) expect(eraForYear(eraStartYear(era) - 1)).not.toBe(era)
+    }
+  })
+
+  it('when the age changes every city becomes one of the new age, and its cards stay', () => {
+    const steam = eraStartYear('Steam')
+    let gs = game(steam - 1, ['bernini'], ['borromini'])
+    gs = { ...gs, locations: gs.locations.map(l => ({ ...l, era: 'Renaissance' })) }
+    gs = place(gs, 0, 0, 'bernini')
+    const before = gs.locations[0].cards
+    gs = alignLocations({ ...gs, year: steam })
+    for (const l of gs.locations) expect(l.era).toBe('Steam')
+    expect(gs.locations[0].cards).toEqual(before)
+    expect(new Set(gs.locations.map(l => l.name)).size).toBe(gs.locations.length)
+  })
+
+  it('a city legacy adds a city for everyone; set aside, the extra city leaves once it is empty', () => {
+    let gs = game(1600, ['bernini'], ['borromini'])
+    gs = alignLocations(gs)
+    expect(gs.locations).toHaveLength(4)
+    gs = { ...gs, players: gs.players.map((p, i) => (i === 1 ? { ...p, legacies: ['magellan'], activeLegacies: ['magellan'] } : p)) }
+    expect(locationTarget(gs)).toBe(5)
+    gs = alignLocations(gs)
+    expect(gs.locations).toHaveLength(5)
+    expect(gs.locations[4].era).toBe(gs.locations[0].era)
+    // Set aside, the board shrinks back by an empty city; the one with a card stays.
+    gs = place(gs, 4, 0, 'bernini')
+    const occupied = gs.locations[4].name
+    gs = { ...gs, players: gs.players.map((p, i) => (i === 1 ? { ...p, activeLegacies: [] } : p)) }
+    const shrunk = alignLocations(gs)
+    expect(shrunk.locations).toHaveLength(4)
+    expect(shrunk.locations.map(l => l.name)).toContain(occupied)
+    // With every city occupied, it waits until one empties.
+    const full = { ...gs, locations: gs.locations.map(l => ({ ...l, cards: l.cards.length ? l.cards : [{ ...gs.locations[4].cards[0], instanceId: `x-${l.id}` }] })) }
+    expect(alignLocations(full).locations).toHaveLength(5)
+  })
+
+  it('a whole game always shows cities of the current age', () => {
+    for (const era of ['Renaissance', 'Electricity']) {
+      let gs = initGame({ mode: 'scenario', matchType: 'pvc', playerMode: 'pvc', eraMode: 'all', startEra: era, playerNames: ['You'], numComputers: 1 })
+      for (let steps = 0; gs.phase === 'playing' && steps < 4000; steps++) {
+        const me = gs.players[0]
+        if (me.pendingSuccessors.length) { gs = gameReducer(gs, { type: 'CHOOSE_SUCCESSOR', playerId: me.id, cardId: successorOptions(gs, me.id)[0] }); continue }
+        if (gs.pendingRewards?.length) { gs = gameReducer(gs, { type: 'CHOOSE_REWARD', playerId: gs.pendingRewards[0].playerId, pick: 'followers' }); continue }
+        gs = gameReducer(gs, { type: 'END_TURN' })
+        for (const l of gs.locations) expect(l.era, `${gs.year}: ${l.name}`).toBe(eraForYear(gs.year))
+      }
+    }
   })
 })

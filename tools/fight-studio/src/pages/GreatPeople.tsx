@@ -209,6 +209,9 @@ function Detail({ card, power, idea, setCard, onClose, identities }: {
           {e.kind === 'successors' && (
             <> +<input type="number" min={1} value={Number(e.count)} onChange={ev => setEffect({ count: Number(ev.target.value) })} style={{ width: 48 }} /> choices</>
           )}
+          {e.kind === 'locations' && (
+            <> +<input type="number" min={1} value={Number(e.count)} onChange={ev => setEffect({ count: Math.max(1, Number(ev.target.value)) })} style={{ width: 48 }} /> cities on the board</>
+          )}
           {e.kind === 'slots' && (
             <> +<input type="number" min={1} value={Number(e.count)} onChange={ev => setEffect({ count: Math.max(1, Number(ev.target.value)) })} style={{ width: 48 }} /> Great Person slots</>
           )}

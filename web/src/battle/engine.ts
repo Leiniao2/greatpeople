@@ -15,7 +15,7 @@ import type {
   PlayerState, GameState, GameSetup,
   StatKey, EventType, EraMode,
   CardContrib, CombatSide, CombatSummary, EventPlayerResult, GameSummary,
-  LegacyContext, LegacyEffect, LifeStatus, TurnActions, PendingSuccessor,
+  LegacyContext, LegacyEffect, LifeStatus, TurnActions, PendingSuccessor, PendingReward,
 } from '@/types'
 import cardsJson from '@/data/cards.json'
 import locationsJson from '@/data/locations.json'
@@ -122,6 +122,45 @@ export const CITY_STATE_YEARS: Record<Exclude<EventType, 'global_competition'>, 
   local_survival: 2,
   natural_hazard: 1,
 }
+/** Chance each new year that a global competition breaks out on its own. */
+export const GLOBAL_COMPETITION_CHANCE = 0.05
+/** A contest prize: this many Followers, or this many Event cards, times the reward's size. */
+export const REWARD_FOLLOWERS = 2
+export const REWARD_EVENTS = 1
+
+/** Queue a prize for a contest's winner; the player picks Followers or Events. */
+export function grantReward(state: GameState, playerId: string, size: 1 | 2, reason: string): GameState {
+  return { ...state, pendingRewards: [...(state.pendingRewards ?? []), { playerId, size, reason }] }
+}
+
+/** Take the oldest prize owed to a player: REWARD_FOLLOWERS or REWARD_EVENTS (times its size) from the decks. */
+export function takeReward(state: GameState, playerId: string, pick: 'followers' | 'events'): GameState {
+  const rewards = state.pendingRewards ?? []
+  const i = rewards.findIndex(r => r.playerId === playerId)
+  if (i < 0) return state
+  const r = rewards[i]
+  const n = (pick === 'followers' ? REWARD_FOLLOWERS : REWARD_EVENTS) * r.size
+  const deck = pick === 'followers' ? state.followerDeck : state.eventDeck
+  const got = deck.slice(0, n)
+  const player = state.players.find(p => p.id === playerId)
+  return {
+    ...state,
+    pendingRewards: rewards.filter((_, j) => j !== i),
+    followerDeck: pick === 'followers' ? state.followerDeck.slice(got.length) : state.followerDeck,
+    eventDeck: pick === 'events' ? state.eventDeck.slice(got.length) : state.eventDeck,
+    players: state.players.map(p => p.id !== playerId ? p
+      : pick === 'followers'
+        ? { ...p, followerHand: [...p.followerHand, ...(got as FollowerCard[])] }
+        : { ...p, eventHand: [...p.eventHand, ...(got as EventCard[])] }),
+    log: [`${player?.name ?? 'A player'} took ${got.length} ${pick === 'followers' ? 'Follower' : 'Event card'}${got.length === 1 ? '' : 's'} (${r.reason}).`, ...state.log].slice(0, 20),
+  }
+}
+
+/** What the computer takes: an Event card while it holds fewer than two, otherwise Followers. */
+function cpuRewardPick(p: PlayerState): 'followers' | 'events' {
+  return p.eventHand.length < 2 ? 'events' : 'followers'
+}
+
 /** Rounds a player-started local event or survival lasts (until someone ends it). */
 export const PLAYER_EVENT_ROUNDS = 99
 
@@ -193,27 +232,84 @@ export function uid(): string {
   return Math.random().toString(36).slice(2, 9)
 }
 
-export const NUM_LOCATIONS = 7
+/** Cities on the board when a game opens; city legacies add more. */
+export const BASE_LOCATIONS = 4
 /** A follower whose identity matches an allied GP at its location adds this instead of its own bonus. */
 export const FOLLOWER_IDENTITY_MATCH_BONUS = 4
 
-export function pickLocations(eraMode: EraMode, singleEra?: string): LocationTemplate[] {
-  if (eraMode === 'single' && singleEra) {
-    const pool = LOCATION_POOL.filter(l => l.era === singleEra)
-    return shuffle(pool).slice(0, NUM_LOCATIONS)
+/** `count` different cities of one era, at random. */
+export function pickLocations(era: string, count: number = BASE_LOCATIONS, exclude: string[] = []): LocationTemplate[] {
+  return shuffle(LOCATION_POOL.filter(l => l.era === era && !exclude.includes(l.name))).slice(0, count)
+}
+
+/**
+ * The age a year belongs to: an era opens with the birth of its earliest
+ * Great Person (the year a game set in that era opens on) and lasts until
+ * the next one opens.
+ */
+export function eraForYear(year: number): string {
+  let era = ERAS[0]
+  for (const e of ERAS) if (eraStartYear(e) <= year) era = e
+  return era
+}
+
+/** The age the board's cities belong to now. */
+export function boardEra(state: GameState): string {
+  return state.setup.eraMode === 'single' && state.setup.singleEra ? state.setup.singleEra : eraForYear(state.year)
+}
+
+/** Cities the board holds now: BASE_LOCATIONS plus every city legacy in effect, whoever holds it. */
+export function locationTarget(state: GameState): number {
+  let n = BASE_LOCATIONS
+  for (const p of state.players) for (const e of legacyEffects(p)) if (e.kind === 'locations') n += e.count
+  return n
+}
+
+function cityFrom(t: LocationTemplate, id: string): LocationState {
+  return { id, name: t.name, era: t.era, imageKey: t.imageKey, countries: t.countries, cards: [], activeEvent: null, eventRoundsLeft: 0 }
+}
+
+/**
+ * Keep the board in step with history: when the age changes every city
+ * becomes one of the new age (cards and running states stay where they
+ * are), and the number of cities follows the city legacies in effect.  A
+ * city only leaves the board once nothing stands on it.
+ */
+export function alignLocations(state: GameState): GameState {
+  if (!state.setup.timeline) return state
+  const era = boardEra(state)
+  let locations = state.locations
+  const lines: string[] = []
+  if (locations.some(l => l.era !== era)) {
+    const keep = locations.filter(l => l.era === era).map(l => l.name)
+    const fresh = pickLocations(era, locations.length, keep)
+    let k = 0
+    const renamed: string[] = []
+    locations = locations.map(l => {
+      if (l.era === era) return l
+      const t = fresh[k++]
+      if (!t) return l
+      renamed.push(`${l.name} → ${t.name}`)
+      return { ...l, name: t.name, era: t.era, imageKey: t.imageKey, countries: t.countries }
+    })
+    if (renamed.length) lines.push(`The ${era} age begins: ${renamed.join(', ')}.`)
   }
-  // All-era: guarantee 1 location per era, then fill remaining slots randomly
-  const guaranteed: LocationTemplate[] = []
-  const extras: LocationTemplate[] = []
-  for (const era of ERAS) {
-    const pool = shuffle(LOCATION_POOL.filter(l => l.era === era))
-    if (pool.length > 0) {
-      guaranteed.push(pool[0])
-      extras.push(...pool.slice(1))
-    }
+  const target = locationTarget(state)
+  if (locations.length < target) {
+    const add = pickLocations(era, target - locations.length, locations.map(l => l.name))
+    const next = Math.max(-1, ...locations.map(l => Number(l.id.replace(/\D/g, '')) || 0)) + 1
+    locations = [...locations, ...add.map((t, i) => cityFrom(t, `loc-${next + i}`))]
+    if (add.length) lines.push(`${add.map(t => t.name).join(', ')} ${add.length === 1 ? 'joins' : 'join'} the board.`)
   }
-  const combined = [...guaranteed, ...shuffle(extras)]
-  return combined.slice(0, NUM_LOCATIONS)
+  while (locations.length > target) {
+    // Drop the newest city with nothing on it; otherwise wait until one empties.
+    const i = locations.map(l => !l.cards.length && !l.activeEvent).lastIndexOf(true)
+    if (i < 0) break
+    lines.push(`${locations[i].name} leaves the board.`)
+    locations = locations.filter((_, j) => j !== i)
+  }
+  if (locations === state.locations) return state
+  return { ...state, locations, log: [...lines.reverse(), ...state.log].slice(0, 20) }
 }
 
 export function getGPCard(id: string): Card | undefined {
@@ -245,6 +341,9 @@ export const DEFAULT_CAREER_AGE = 18
 export const MIN_CAREER_AGE = 4
 /** Great People a player holds at once when the game opens; slot legacies add more. */
 export const BASE_GP_SLOTS = 1
+/** Each player opens with one Event card and one Follower; contest prizes bring more. */
+export const STARTING_EVENTS = 1
+export const STARTING_FOLLOWERS = 1
 /** Candidates offered for the opening pick, whatever era history opens in. */
 export const OPENING_CHOICES = 3
 /** Candidates offered when a Great Person dies (before successor legacies). */
@@ -409,6 +508,7 @@ export function describeLegacyEffect(e: LegacyEffect): string {
     case 'prodigy': return `Your Great People start their careers ${e.years} years earlier.`
     case 'successors': return `+${e.count} choice whenever you pick a successor.`
     case 'slots': return `+${e.count} Great Person slot: hold ${e.count === 1 ? 'one more Great Person' : `${e.count} more Great People`} at once.`
+    case 'locations': return `+${e.count} ${e.count === 1 ? 'city' : 'cities'} on the board for every player while this legacy is in effect.`
     case 'income': return `Every ${e.every} years you gain ${e.card === 'event' ? 'an Event card' : 'a Follower'}.`
   }
 }
@@ -721,12 +821,13 @@ export function initGame(setup: GameSetup): GameState {
   const players: PlayerState[] = allPlayerNames.map((name, i) => ({
     ...newPlayer(
       `player-${i}`, name, setup.playerMode === 'pvc' && i >= setup.playerNames.length,
-      { gpHand: [], eventHand: eventDeck.splice(0, 2), followerHand: followerDeck.splice(0, 8) },
+      { gpHand: [], eventHand: eventDeck.splice(0, STARTING_EVENTS), followerHand: followerDeck.splice(0, STARTING_FOLLOWERS) },
     ),
     pendingSuccessors: [{ predecessor: null, year: startYear, reason: 'start' as const, options: offers[i] }],
   }))
 
-  const locationTemplates = pickLocations(setup.eraMode, setup.singleEra)
+  // The board opens with cities of the age history opens in.
+  const locationTemplates = pickLocations(setup.eraMode === 'single' && setup.singleEra ? setup.singleEra : startEra)
   const emptyLocations: LocationState[] = locationTemplates.map((lt, i) => ({
     id: `loc-${i}`,
     name: lt.name,
@@ -927,6 +1028,7 @@ export type GameAction =
   | { type: 'RETIRE_GP'; cardId: string }
   /** Resolve the oldest pending succession of a (human) player with one of successorOptions(). */
   | { type: 'CHOOSE_SUCCESSOR'; playerId: string; cardId: string }
+  | { type: 'CHOOSE_REWARD'; playerId: string; pick: 'followers' | 'events' }
   /** Put an earned legacy into a slot, or take it out. One change per turn. */
   | { type: 'SET_LEGACY'; cardId: string; active: boolean }
 
@@ -1128,6 +1230,16 @@ function reconcileSlots(state: GameState): GameState {
 }
 
 /** CPU players choose successors and fill empty legacy slots at once; successions with no candidate left end their lineage. */
+/** Computer players take their prizes at once. */
+function resolveCpuRewards(state: GameState): GameState {
+  let s = state
+  for (const r of state.pendingRewards ?? []) {
+    const p = s.players.find(x => x.id === r.playerId)
+    if (p?.isComputer) s = takeReward(s, p.id, cpuRewardPick(p))
+  }
+  return s
+}
+
 function resolveChoices(state: GameState): GameState {
   let s = reconcileSlots(state)
   const log: string[] = []
@@ -1236,10 +1348,11 @@ export function fastForward(state: GameState, rand: () => number = Math.random):
 /** Everything that happens on its own after an action: CPU choices, time skips and the end of the game. */
 export function settle(state: GameState): GameState {
   if (state.phase !== 'playing') return state
-  let s = state
+  let s = resolveCpuRewards(state)
   if (s.setup.timeline) {
     s = resolveChoices(s)
     if (shouldFastForward(s)) s = fastForward(s)
+    s = alignLocations(s)
   }
   if (s.phase !== 'playing') return s
   const winner = checkWinCondition(s)
@@ -1614,13 +1727,16 @@ function baseReducer(state: GameState, action: GameAction): GameState {
         locationAbility: locationAbilityText(loc.name, loc.era, stat),
       }
 
-      return {
+      const fought: GameState = {
         ...state,
         players: newPlayers,
         locations: newLocations,
         pendingSummary: combatSummary,
         log: [`Attack: ${attackerName} vs ${defenderName}. ${resultMsg}`, ...state.log.slice(0, 19)],
       }
+      // Winning the fight, attacking or defending, earns a prize.
+      const winnerId = myWon ? player.id : theirWon ? theirCard.playerId : null
+      return winnerId ? grantReward(fought, winnerId, 1, `${myWon ? 'won the attack' : 'held off an attack'} at ${loc.name}`) : fought
     }
 
     case 'TOGGLE_VISIBILITY': {
@@ -1667,6 +1783,7 @@ function baseReducer(state: GameState, action: GameAction): GameState {
 
       // Every contest resolved at the end of the round gets its own report, in order.
       const roundSummaries: GameSummary[] = []
+      const roundRewards: PendingReward[] = []
 
       if (isNewRound) {
         newRound = state.round + 1
@@ -1697,7 +1814,10 @@ function baseReducer(state: GameState, action: GameAction): GameState {
           }
           compResults.sort((a, b) => b.total - a.total)
           const winnerName = newPlayers.find(p => p.id === bestPlayerId)?.name
-          if (bestPlayerId) logEntries.push(`Global competition resolved! Winner: ${winnerName} (${STAT_LABELS[stat]}: ${bestTotal})`)
+          if (bestPlayerId) {
+            logEntries.push(`Global competition resolved! Winner: ${winnerName} (${STAT_LABELS[stat]}: ${bestTotal})`)
+            roundRewards.push({ playerId: bestPlayerId, size: 2, reason: `won the global competition in ${STAT_LABELS[stat]}` })
+          }
           roundSummaries.push({
             kind: 'event',
             eventName: newGlobalComp.name,
@@ -1747,6 +1867,13 @@ function baseReducer(state: GameState, action: GameAction): GameState {
                 kind: 'event', eventName: event.name, eventType: event.type,
                 stat: stat ?? undefined, locationName: loc.name, threshold, results,
               })
+            }
+            // Surviving while a rival here is swept away wins the survival.
+            if (results.some(r => !r.survived)) {
+              for (const pid of involvedPlayers) {
+                const name = newPlayers.find(p => p.id === pid)?.name
+                if (results.find(r => r.playerName === name)?.survived) roundRewards.push({ playerId: pid, size: 1, reason: `won the survival at ${loc.name}` })
+              }
             }
           }
 
@@ -1817,6 +1944,13 @@ function baseReducer(state: GameState, action: GameAction): GameState {
         // Great People lost to survivals and hazards die.
         newPlayers = recordDeaths(state, newPlayers, gpDeaths(eliminated))
 
+        // Now and then the whole world competes without anyone calling it.
+        if (state.setup.timeline && !state.setup.noHazards && !newGlobalComp && Math.random() < GLOBAL_COMPETITION_CHANCE) {
+          const stat = STATS[Math.floor(Math.random() * STATS.length)]
+          newGlobalComp = { ...makeEventCard(stat, 'global_competition', `world-${stat}-${uid()}`), origin: 'city' }
+          logEntries.push(`A global competition in ${STAT_LABELS[stat]} breaks out: it is decided at the end of this year, on public Great People only.`)
+        }
+
         // A new year: on the timeline people age, die and are born, and empty
         // cities may fall into a random state (also in timeless games unless
         // random states are off, as in the Epic lessons).
@@ -1853,6 +1987,7 @@ function baseReducer(state: GameState, action: GameAction): GameState {
         phase: winner ? 'ended' : 'playing',
         pendingSummary: roundSummaries[0] ?? null,
         summaryQueue: roundSummaries.slice(1),
+        pendingRewards: [...(state.pendingRewards ?? []), ...roundRewards],
         log: [...logEntries, `${state.setup.timeline ? formatYear(newYear) : `Round ${newRound}`}: ${state.players[nextIdx].name}'s turn.`, ...state.log].slice(0, 20),
       }
     }
@@ -1873,11 +2008,8 @@ function baseReducer(state: GameState, action: GameAction): GameState {
       let newPlayers = state.players
 
       if (rewardType === 'gp' && state.setup.timeline) {
-        // On the timeline the prize is one more Great Person slot for good;
-        // settling then asks for the Great Person to fill it.
-        newPlayers = newPlayers.map((p, i) =>
-          i === playerIdx ? { ...p, extraSlots: (p.extraSlots ?? 0) + 1 } : p
-        )
+        // Great Person slots come only from legacies: no prize on the timeline.
+        return state
       } else if (rewardType === 'gp') {
         const card = newGpDeck.shift()
         if (card) {
@@ -1952,6 +2084,9 @@ function baseReducer(state: GameState, action: GameAction): GameState {
         log: [`${player.name} retired ${card?.figureName ?? 'a Great Person'}; a successor follows at their death in ${formatYear(card ? deathYear(card, player) : state.year)}.`, ...state.log.slice(0, 19)],
       }
     }
+
+    case 'CHOOSE_REWARD':
+      return takeReward(state, action.playerId, action.pick)
 
     case 'CHOOSE_SUCCESSOR': {
       const playerIdx = state.players.findIndex(p => p.id === action.playerId)

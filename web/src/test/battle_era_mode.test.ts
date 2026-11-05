@@ -81,6 +81,11 @@ describe('all-era fights', () => {
       // The computer has already made its pick, and holds one Great Person.
       expect(cpu.pendingSuccessors).toHaveLength(0)
       expect(cpu.gpHand).toHaveLength(1)
+      // Everyone opens with one Event card and one Follower.
+      for (const p of gs.players) {
+        expect(p.eventHand, `${era} ${p.name}`).toHaveLength(1)
+        expect(p.followerHand, `${era} ${p.name}`).toHaveLength(1)
+      }
       // Nothing happens until the pick is made: history waits on the opening year.
       expect(gs.year).toBe(gs.startYear)
     }
