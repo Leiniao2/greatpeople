@@ -4,7 +4,7 @@ import { describe, it, expect, vi, afterEach } from 'vitest'
 import type { GameState, OnboardCard, StatKey } from '@/types'
 import {
   ALL_GP_CARDS, CITY_STATE_CHANCE, CITY_STATE_YEARS, LEGACY_SLOTS, STATS, SUCCESSOR_CHOICES, TIMELINE_END_YEAR,
-  careerStartYear, deathYear, describeLegacyEffect, freshTurnActions, gameReducer, getGPCard, hasHazardShield,
+  careerStartYear, deathYear, followerFromId, describeLegacyEffect, freshTurnActions, gameReducer, getGPCard, hasHazardShield,
   initGame, initScriptedGame, legacyContest, lifeStatus, makeEventCard, rollCityStates, settle, successorOptions,
   BASE_GP_SLOTS, gpSlots, lineageCount, GLOBAL_COMPETITION_CHANCE,
   BASE_LOCATIONS, ERAS, alignLocations, eraForYear, eraStartYear, locationTarget,
@@ -146,46 +146,56 @@ describe('death and succession', () => {
 
   // Followers serve a Great Person; Event cards do not.
   const follower = (gs: GameState, loc: number, playerIdx: number, n: number) =>
-    place(gs, loc, playerIdx, `follower-sovereign-${n}`, { type: 'follower', instanceId: `f${n}-${playerIdx}` })
-  const followersAt = (gs: GameState, loc: number, playerIdx: number) =>
-    gs.locations[loc].cards.filter(c => c.type === 'follower' && c.playerId === gs.players[playerIdx].id)
+    place(gs, loc, playerIdx, `follower-Sovereign-${n}`, { type: 'follower', instanceId: `f${n}-${playerIdx}` })
+  const boardFollowers = (gs: GameState, playerIdx: number) =>
+    gs.locations.flatMap(l => l.cards.filter(c => c.type === 'follower' && c.playerId === gs.players[playerIdx].id))
+  const withHands = (gs: GameState, playerIdx: number) => ({
+    ...gs,
+    players: gs.players.map((p, i) => (i === playerIdx
+      ? { ...p, followerHand: [followerFromId('follower-Sovereign-9')!], eventHand: [makeEventCard('culture', 'local_event', 'kept')] }
+      : p)),
+  })
 
-  it("a Great Person's death takes their Followers in that city, but not their Event cards", () => {
-    // Magellan dies in 1521 alone in city 0; Titian, alive, holds city 1.
-    let gs = game(1521, ['titian', 'magellan'], ['isabel_i'])
+  it("when a player's last Great Person dies, all their Followers go, in hand and on the board; Event cards stay", () => {
+    // Magellan, the human's only Great Person, dies in 1521.
+    let gs = game(1521, ['magellan'], ['isabel_i'])
     gs = place(gs, 0, 0, 'magellan')
     gs = follower(gs, 0, 0, 1)
-    gs = follower(gs, 0, 0, 2)
-    gs = place(gs, 1, 0, 'titian')
-    gs = follower(gs, 1, 0, 3)
-    const ev = makeEventCard('culture', 'local_event', 'kept')
-    gs = { ...gs, players: gs.players.map((p, i) => (i === 0 ? { ...p, eventHand: [ev] } : p)) }
+    gs = follower(gs, 1, 0, 2)
+    gs = withHands(gs, 0)
     gs = endRound(gs)
     expect(gs.players[0].archive).toContain('magellan')
-    expect(followersAt(gs, 0, 0)).toHaveLength(0)
-    expect(followersAt(gs, 1, 0)).toHaveLength(1)
+    expect(boardFollowers(gs, 0)).toHaveLength(0)
+    expect(gs.players[0].followerHand).toHaveLength(0)
     expect(gs.players[0].eventHand.map(e => e.id)).toContain('kept')
   })
 
-  it('Followers stay while another of their Great People holds the city', () => {
-    let gs = game(1521, ['titian', 'magellan'], ['isabel_i'])
-    gs = place(gs, 0, 0, 'magellan')
-    gs = place(gs, 0, 0, 'titian')
-    gs = follower(gs, 0, 0, 1)
-    gs = endRound(gs)
-    expect(gs.players[0].archive).toContain('magellan')
-    expect(followersAt(gs, 0, 0)).toHaveLength(1)
+  it('Followers stay while the player still has another Great Person, even in another city or in hand', () => {
+    for (const keepOnBoard of [true, false]) {
+      let gs = game(1521, ['titian', 'magellan'], ['isabel_i'])
+      gs = place(gs, 0, 0, 'magellan')
+      if (keepOnBoard) gs = place(gs, 1, 0, 'titian')
+      gs = follower(gs, 0, 0, 1)
+      gs = withHands(gs, 0)
+      gs = endRound(gs)
+      expect(gs.players[0].archive).toContain('magellan')
+      expect(boardFollowers(gs, 0)).toHaveLength(1)
+      expect(gs.players[0].followerHand).toHaveLength(1)
+    }
   })
 
-  it('a Great Person killed in a fight takes their Followers in that city too', () => {
-    let gs = game(1500, [], ['bayinnaung', 'gutenberg'])
+  it("the computer loses its Followers too, though it picks a successor at once", () => {
+    let gs = game(1500, [], ['gutenberg'])
     gs = place(gs, 0, 0, 'magellan')
     gs = place(gs, 0, 1, 'gutenberg')
-    gs = follower(gs, 0, 1, 1)
+    gs = follower(gs, 1, 1, 1)
+    gs = withHands(gs, 1)
     gs = { ...gs, locations: gs.locations.map((l, i) => (i === 0 ? { ...l, activeEvent: makeEventCard('strength', 'local_event', 'ev'), eventRoundsLeft: 99 } : l)) }
     gs = gameReducer(gs, { type: 'ATTACK', myInstanceId: 'magellan-0', theirInstanceId: 'gutenberg-1', kill: true })
     expect(gs.players[1].archive).toContain('gutenberg')
-    expect(followersAt(gs, 0, 1)).toHaveLength(0)
+    expect(boardFollowers(gs, 1)).toHaveLength(0)
+    expect(gs.players[1].followerHand).toHaveLength(0)
+    expect(gs.players[1].eventHand.map(e => e.id)).toContain('kept')
     expect(gs.locations[0].activeEvent?.id).toBe('ev')
   })
 })

@@ -150,7 +150,7 @@ private struct BattleRulesView: View {
             ("One year per round", "Every round is one year, in every era. The game opens on a real year."),
             ("Careers", "A Great Person arrives in the year they were born and can be played from their career start (age 18, earlier for prodigies)."),
             ("Successors", "When a Great Person dies of old age or is killed, choose a successor born later than the current year."),
-            ("Followers", "Followers serve a Great Person: when your last Great Person in a city dies, your Followers there go with them. Event cards stay."),
+            ("Followers", "Followers serve a Great Person: when your last Great Person dies, all your Followers, in hand and on the board, are discarded. Event cards stay."),
             ("Retire", "Retire a Great Person at any time on your turn. Their successor still comes at their real death year."),
             ("Time skips", "When none of your Great People is in their career, time jumps ahead and the computer plays those years out."),
         ]),
