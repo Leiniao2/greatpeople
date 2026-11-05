@@ -25,12 +25,12 @@
     "id": "setup-hand",
     "category": "Setup",
     "title": "Starting hand",
-    "docText": "Each player is dealt 3 Great People (fewer, equal for everyone, in a small era), 2 Event cards and 8 Followers. The Great People are the earliest-born of the pool from the opening year, so the table starts as contemporaries.",
+    "docText": "Whatever era history opens in, each player first picks one Great Person from 3 candidates (fewer, equal for everyone, in a small era); the computer picks its strongest. Everyone also gets 2 Event cards and 8 Followers. The candidates are the earliest-born of the pool from the opening year, dealt so no two players are offered the same card, so the table starts as contemporaries.",
     "docSource": "docs/fight.md §1",
-    "codeBehaviour": "openingDeal: handSize = min(STARTING_LINEAGES = 3, floor(upcoming / players)), dealt from the earliest-born, shuffled; eventHand = 2, followerHand = 8. No GP draw pile (gpDeck is empty on the timeline).",
+    "codeBehaviour": "openingDeal: offers of min(OPENING_CHOICES = 3, floor(upcoming / players)) each, dealt from the earliest-born, shuffled; initGame leaves gpHand empty and queues one pending choice { reason: 'start', options }; CHOOSE_SUCCESSOR takes the pick; the year waits until every human has picked. eventHand = 2, followerHand = 8. No GP draw pile on the timeline.",
     "codeSource": "web/src/battle/engine.ts openingDeal, initGame",
     "status": "implemented",
-    "notes": "Was 4 random Great People plus a draw pile before the timeline."
+    "notes": "Was 3 Great People dealt outright (2026-11-04), and 4 random Great People plus a draw pile before the timeline."
   },
   {
     "id": "setup-locations",
@@ -137,10 +137,21 @@
     "title": "Successor born later",
     "docText": "When a Great Person dies (old age or killed in play) the player chooses a successor born later than the current year from the unclaimed Great People; the 3 nearest by birth are offered. The computer does the same.",
     "docSource": "docs/fight.md §9",
-    "codeBehaviour": "pendingSuccessors queued by recordDeaths; successorOptions = unclaimed pool with born > year, nearest first, SUCCESSOR_CHOICES (3) + successor legacies; CHOOSE_SUCCESSOR for humans; resolveChoices picks the highest stat total for CPUs; no options → the lineage ends.",
+    "codeBehaviour": "pendingSuccessors queued by recordDeaths; successorOptions = unclaimed pool with born > year, nearest first, SUCCESSOR_CHOICES (3) + successor legacies; CHOOSE_SUCCESSOR for humans; resolveChoices picks the highest stat total for CPUs; no options → the lineage ends. A death is succeeded only while the player has a free Great Person slot (reconcileSlots trims choices beyond gpSlots).",
     "codeSource": "web/src/battle/engine.ts successorOptions, CHOOSE_SUCCESSOR, resolveChoices",
     "status": "implemented",
     "notes": "Choices are presented in a modal on the board."
+  },
+  {
+    "id": "time-slots",
+    "category": "Timeline",
+    "title": "Great Person slots",
+    "docText": "A player holds one Great Person (one lineage) at a time. Slot legacies (First Empire, Kingmaker, New World Patronage, Mother of Russia: +1 each) and the global competition prize add slots; each new slot asks for a pick from people born later, who founds a lineage of their own. Setting a slot legacy aside means the next death in an extra lineage is not succeeded.",
+    "docSource": "user request 2026-11-04",
+    "codeBehaviour": "gpSlots = BASE_GP_SLOTS (1) + extraSlots + slots legacies; lineageCount = hand + retired + board GPs + choices owed; reconcileSlots (in resolveChoices, every settle) queues { reason: 'slot' } picks while lineages < slots and candidates exist, and drops owed successions while lineages > slots.",
+    "codeSource": "web/src/battle/engine.ts gpSlots, lineageCount, reconcileSlots",
+    "status": "implemented",
+    "notes": ""
   },
   {
     "id": "time-retire",
@@ -467,7 +478,7 @@
     "title": "Global competition reward",
     "docText": "Winner of a global competition gets 2 event cards, 4 follower cards or 1 GP card.",
     "docSource": "docs/fight.md §5, §6",
-    "codeBehaviour": "GLOBAL_COMP_REWARD: 2 events or 4 followers from the decks; the GP reward is a new lineage on the timeline (pending successor) and a deck draw in timeless games.",
+    "codeBehaviour": "GLOBAL_COMP_REWARD: 2 events or 4 followers from the decks; the GP reward is one more Great Person slot for good on the timeline (extraSlots + 1, then a pick to fill it) and a deck draw in timeless games.",
     "codeSource": "web/src/battle/engine.ts GLOBAL_COMP_REWARD",
     "status": "implemented",
     "notes": ""

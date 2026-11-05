@@ -72,6 +72,8 @@ export type LegacyEffect =
   | { kind: 'longevity'; years: number }
   | { kind: 'prodigy'; years: number }
   | { kind: 'successors'; count: number }
+  /** More Great People held at once: each slot founds a lineage of its own. */
+  | { kind: 'slots'; count: number }
   | { kind: 'income'; card: 'event' | 'follower'; every: number }
 
 /** A Great Person's legacy: earned once by winning `unlock.wins` fights in `unlock.stat`, then kept by the player for the rest of the game. */
@@ -144,12 +146,18 @@ export interface PlayerState {
   legacies: string[]
   /** The earned legacies currently in effect (at most the number of legacy slots). */
   activeLegacies: string[]
+  /** Great Person slots won outside legacies (the global competition prize). */
+  extraSlots?: number
 }
 
 export interface PendingSuccessor {
-  /** The Great Person who died, or null for a lineage granted by a reward. */
+  /** The Great Person who died, or null for a new lineage (the opening pick or a new slot). */
   predecessor: string | null
   year: number
+  /** Why the choice is owed; a missing reason means a succession. */
+  reason?: 'start' | 'slot'
+  /** A fixed set of candidates (the opening pick); otherwise those born after the current year. */
+  options?: string[]
 }
 
 /** Life stage of a Great Person at the current year. */
@@ -262,4 +270,6 @@ export interface GameState {
   log: string[]
   globalCompetitionActive: EventCard | null
   pendingSummary: GameSummary | null
+  /** Further contests resolved at the same moment, shown one after another. */
+  summaryQueue?: GameSummary[]
 }

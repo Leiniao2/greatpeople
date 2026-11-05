@@ -160,7 +160,7 @@ function BattleLobby({ matchType, onStart, onBack }: LobbyProps) {
             </div>
           )}
           <p className="text-[11px] text-muted mt-2 leading-snug">
-            Real history: one round is one year. Great People arrive when they are born, play from their career start and die in their real year; then you choose a successor born later.
+            Real history: one round is one year. You open by picking one Great Person from three; they play from their career start and die in their real year, then you choose a successor born later. Some legacies open more Great Person slots.
           </p>
           {eraMode === 'single' && (
             <div className="grid grid-cols-7 gap-1.5 mt-2">

@@ -209,6 +209,9 @@ function Detail({ card, power, idea, setCard, onClose, identities }: {
           {e.kind === 'successors' && (
             <> +<input type="number" min={1} value={Number(e.count)} onChange={ev => setEffect({ count: Number(ev.target.value) })} style={{ width: 48 }} /> choices</>
           )}
+          {e.kind === 'slots' && (
+            <> +<input type="number" min={1} value={Number(e.count)} onChange={ev => setEffect({ count: Math.max(1, Number(ev.target.value)) })} style={{ width: 48 }} /> Great Person slots</>
+          )}
           {e.kind === 'income' && (
             <> <select value={String(e.card)} onChange={ev => setEffect({ card: ev.target.value })}><option value="event">event</option><option value="follower">follower</option></select>
               {' '}every <input type="number" min={1} value={Number(e.every)} onChange={ev => setEffect({ every: Math.max(1, Number(ev.target.value)) })} style={{ width: 48 }} /> years</>

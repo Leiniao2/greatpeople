@@ -48,9 +48,10 @@ export type LegacyEffect =
   | { kind: 'longevity'; years: number }
   | { kind: 'prodigy'; years: number }
   | { kind: 'successors'; count: number }
+  | { kind: 'slots'; count: number }
   | { kind: 'income'; card: 'event' | 'follower'; every: number }
 export type LegacyKind = LegacyEffect['kind']
-export const LEGACY_KINDS: LegacyKind[] = ['contest', 'follower', 'hazard_shield', 'longevity', 'prodigy', 'successors', 'income']
+export const LEGACY_KINDS: LegacyKind[] = ['contest', 'follower', 'hazard_shield', 'longevity', 'prodigy', 'successors', 'slots', 'income']
 
 export interface Legacy {
   name: string

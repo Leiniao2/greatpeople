@@ -13,6 +13,7 @@ import {
   ALL_GP_CARDS, STATS, STAT_LABELS, ACHIEVEMENT_SPECS, getAchievementThreshold, followerFromId,
   FOLLOWER_IDENTITY_MATCH_BONUS, LEGACY_SLOTS, CITY_STATE_CHANCE, DEFAULT_CAREER_AGE,
   careerStartYear, deathYear, describeLegacyEffect, formatYear, getGPCard, lifeStatus, successorOptions,
+  gpSlots, lineageCount,
   type GameAction,
 } from './engine'
 
@@ -679,6 +680,8 @@ function RulesModal({ onClose }: { onClose: () => void }) {
             <ul className="space-y-1.5 text-ink-2 leading-relaxed">
               <li>One round is <span className="text-ink font-semibold">one year</span> in every era. The game opens on a real year.</li>
               <li>A Great Person appears in the year they were born and can be played from their <span className="text-ink font-semibold">career start</span> (age {DEFAULT_CAREER_AGE}, earlier for prodigies such as Michael Jackson).</li>
+              <li>Whatever era history opens in, you start by <span className="text-ink font-semibold">picking one Great Person from three</span>. You hold one Great Person at a time: that is your <span className="text-ink font-semibold">slot</span>.</li>
+              <li>Some legacies (First Empire, Kingmaker, New World Patronage, Mother of Russia) and the global competition prize add a slot. Each new slot lets you pick another Great Person, who founds a lineage of their own.</li>
               <li>When a Great Person dies of old age or is killed, choose a <span className="text-ink font-semibold">successor</span> born later than the current year. The computer does the same.</li>
               <li><span className="text-ink font-semibold">Retire</span> a Great Person at any time on your turn. They leave play, but their successor only comes at their real death year.</li>
               <li>When none of your Great People is in their career, time skips ahead and the computer plays out those years.</li>
@@ -1146,12 +1149,7 @@ export function BattleGame({ gameState, dispatch, onExit, embedded = false, bann
                 {/* Location name */}
                 <div className="relative mb-1">
                   <p className={`text-[10px] font-bold truncate ${ERA_TEXT[loc.era] ?? 'text-ink-2'}`}>{loc.name}</p>
-                  <div className="flex items-center gap-1 flex-wrap">
-                    <EraIcon era={loc.era} className="w-3 h-3 text-muted/80" />
-                    {loc.countries && loc.countries.length > 0 && (
-                      <p className="text-[9px] text-muted">{loc.countries.join(', ')}</p>
-                    )}
-                  </div>
+                  <EraIcon era={loc.era} className="w-3 h-3 text-muted/80" />
                 </div>
 
                 {/* Active event badge */}
@@ -1258,7 +1256,10 @@ export function BattleGame({ gameState, dispatch, onExit, embedded = false, bann
               {currentPlayer.archive.length > 0 && <>Passed away: {currentPlayer.archive.map(figureName).join(', ')}.</>}
             </p>
           )}
-          <p className="text-[10px] text-muted/80 uppercase tracking-widest mb-1.5 text-center">Your Hand</p>
+          <p className="text-[10px] text-muted/80 uppercase tracking-widest mb-1.5 text-center">
+            Your Hand
+            {isTimeline && <span className="ml-2 normal-case tracking-normal text-muted" title="Great People you hold at once; slot legacies add more.">· Great People {Math.min(lineageCount(gameState, currentPlayer), gpSlots(currentPlayer))}/{gpSlots(currentPlayer)} slots</span>}
+          </p>
           <div className="overflow-x-auto pb-1">
           <div className="flex gap-1.5 w-max min-w-full justify-center mx-auto">
             {currentPlayer.gpHand.map((id, i) => (
@@ -1502,6 +1503,11 @@ export function BattleGame({ gameState, dispatch, onExit, embedded = false, bann
       </div>
 
       {/* Battle / event summary modal */}
+      {gameState.pendingSummary && (gameState.summaryQueue?.length ?? 0) > 0 && (
+        <div className="fixed top-3 left-1/2 -translate-x-1/2 z-[151] px-3 py-1 rounded-full bg-panel border border-line text-[11px] text-ink-2 shadow">
+          {gameState.summaryQueue!.length} more {gameState.summaryQueue!.length === 1 ? 'report' : 'reports'} after this one
+        </div>
+      )}
       {gameState.pendingSummary && (
         <SummaryModal
           summary={gameState.pendingSummary}
@@ -1509,26 +1515,54 @@ export function BattleGame({ gameState, dispatch, onExit, embedded = false, bann
         />
       )}
 
-      {/* Successor choice for a human player whose Great Person died */}
+      {/* A Great Person to choose: the opening pick, a new slot, or a successor */}
       {choosing && !gameState.pendingSummary && !awaitingHandoff && (() => {
         const pending = choosing.pendingSuccessors[0]
         const options = successorOptions(gameState, choosing.id)
+        const opening = pending.reason === 'start'
+        const title = opening ? 'Choose your first Great Person'
+          : pending.reason === 'slot' ? 'A new Great Person slot'
+          : 'Choose a successor'
+        const subtitle = opening
+          ? `History opens in ${formatYear(gameState.year)}. You hold one Great Person at a time; legacies can open more slots.`
+          : pending.reason === 'slot'
+            ? `Pick a Great Person born after ${formatYear(gameState.year)} to fill it; they found a lineage of their own.`
+            : `${pending.predecessor ? `${figureName(pending.predecessor)} has died. ` : ''}Choose someone born after ${formatYear(gameState.year)}.`
         return (
-          <div className="fixed inset-0 z-[160] flex items-center justify-center bg-ink/70 p-4">
-            <div className="bg-panel border border-line rounded-2xl w-full max-w-md shadow-2xl overflow-hidden">
-              <div className="bg-accent/10 border-b border-line px-4 py-3 text-center">
-                <h3 className="font-bold text-ink text-sm uppercase tracking-wide">{choosing.name}: choose a successor</h3>
-                <p className="text-muted text-xs mt-0.5">
-                  {pending.predecessor ? `${figureName(pending.predecessor)} has died.` : 'A new lineage.'} Choose someone born after {formatYear(gameState.year)}.
-                </p>
+          <div className={`fixed inset-0 z-[160] flex items-center justify-center p-4 ${opening ? 'bg-paper' : 'bg-ink/70'}`}>
+            <div className={`w-full ${opening ? 'max-w-3xl' : 'max-w-md bg-panel border border-line rounded-2xl shadow-2xl overflow-hidden'}`}>
+              <div className={`px-4 py-3 text-center ${opening ? '' : 'bg-accent/10 border-b border-line'}`}>
+                {gameState.players.filter(p => !p.isComputer).length > 1 && (
+                  <p className="text-[10px] text-muted uppercase tracking-widest">{choosing.name}</p>
+                )}
+                <h3 className={`font-bold text-ink uppercase tracking-wide ${opening ? 'font-display text-xl' : 'text-sm'}`}>{title}</h3>
+                <p className="text-muted text-xs mt-0.5">{subtitle}</p>
               </div>
-              <div className="p-3 grid grid-cols-1 gap-2 max-h-[60vh] overflow-y-auto">
+              <div className={opening
+                ? 'grid grid-cols-1 sm:grid-cols-3 land:grid-cols-3 gap-3 p-2 max-h-[75vh] overflow-y-auto'
+                : 'p-3 grid grid-cols-1 gap-2 max-h-[60vh] overflow-y-auto'}>
                 {options.map(id => {
                   const c = gpMap[id]
                   if (!c) return null
                   const total = STATS.reduce((sum, k) => sum + c[k], 0)
+                  const choose = () => dispatch({ type: 'CHOOSE_SUCCESSOR', playerId: choosing.id, cardId: id })
+                  if (opening) {
+                    const top = [...STATS].sort((x, y) => c[y] - c[x]).slice(0, 3)
+                    return (
+                      <button key={id} onClick={choose}
+                        className="flex sm:flex-col land:flex-col text-left rounded-2xl border border-line bg-panel hover:border-accent/60 hover:shadow-lg transition-all overflow-hidden">
+                        <img src={c.portraitUrl} alt="" className="w-24 sm:w-full land:w-full h-auto sm:h-40 land:h-28 object-cover object-top shrink-0" />
+                        <div className="p-2.5 min-w-0">
+                          <p className="text-sm font-bold text-ink truncate">{c.figureName}</p>
+                          <p className="text-[11px] text-muted">{c.era} · born {formatYear(c.born)} · career {formatYear(careerStartYear(c, choosing))}</p>
+                          <p className="text-[11px] text-ink-2 mt-1">{top.map(k => `${STAT_LABELS[k]} ${c[k]}`).join(' · ')}</p>
+                          <p className="text-[11px] text-violet-900 mt-1 leading-snug">Legacy {c.legacy.name}: {describeLegacyEffect(c.legacy.effect)}</p>
+                        </div>
+                      </button>
+                    )
+                  }
                   return (
-                    <button key={id} onClick={() => dispatch({ type: 'CHOOSE_SUCCESSOR', playerId: choosing.id, cardId: id })}
+                    <button key={id} onClick={choose}
                       className="flex items-center gap-3 text-left p-2 rounded-xl border border-line hover:border-accent/60 hover:bg-accent/5 transition-all">
                       <img src={c.portraitUrl} alt="" className="w-12 h-12 rounded-lg object-cover object-top shrink-0" />
                       <div className="min-w-0 flex-1">
