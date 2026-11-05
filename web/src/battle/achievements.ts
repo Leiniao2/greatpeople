@@ -98,6 +98,13 @@ function statAt(loc: LocationState, stat: StatKey, look: Lookups, pid?: string, 
   return n
 }
 
+/** Whether I hold more of a stat in my card's city than every rival there. */
+function topAt(c: Ctx, stat: StatKey): boolean {
+  const mine = statAt(c.loc, stat, c.look, c.owner.id)
+  return mine > 0 && [...new Set(c.loc.cards.map(x => x.playerId))]
+    .every(p => p === c.owner.id || statAt(c.loc, stat, c.look, p) < mine)
+}
+
 /** A contest I won with my card's city involved: a fight, a survival, or the competition. */
 function wonContest(ev: AchievementEvent, c: Ctx, opts: { stat?: StatKey; conflict?: boolean } = {}): boolean {
   if (ev.kind === 'fight') {
@@ -145,7 +152,7 @@ const onRound = (ev: AchievementEvent) => ev.kind === 'round'
 const acted = (ev: AchievementEvent, oc: OnboardCard) =>
   ev.kind === 'turn' && (ev.actions.movedCards.includes(oc.instanceId) || ev.actions.actedCards.includes(oc.instanceId))
 
-// ── The 80 achievements, by card id ──────────────────────────────────────────
+// ── The achievements, by card id ──────────────────────────────────────────
 
 export const ACHIEVEMENTS: Record<string, Rule> = {
   gandhi: (ev, c) => ev.kind === 'fight' && ev.defender.playerId === c.owner.id && mySide(ev, c) === 'won'
@@ -317,6 +324,84 @@ export const ACHIEVEMENTS: Record<string, Rule> = {
     c.memo.row = 0
     return false
   },
+  // ── Added 2026-11-05: 65 Great People so every career has 3+ contemporaries ──
+  djoser: (ev, c) => onTurn(ev, c) && alliesWith(c, 'Architect') >= 1 && alliesWith(c, 'Priest', 'Monastic') >= 1,
+  sneferu: (ev, c) => onRound(ev) && streak(c, 'build', stayed(c) && allies(c).filter(x => x.type === 'follower').length >= 2, 3),
+  puabi: (ev, c) => ev.kind === 'death' && atMyCity(c, ev.locId) && ev.playerId === c.owner.id && ev.cardId !== c.me.cardId,
+  meskalamdug: (ev, c) => ev.kind === 'fight' && ev.stat === 'strength' && mySide(ev, c) === 'won' && tally(c, 'wins', 2),
+  ku_baba: (ev, c) => onTurn(ev, c) && allies(c).filter(x => x.type === 'follower').length >= 3,
+  eannatum: (ev, c) => ev.kind === 'fight' && ev.stat === 'strength' && mySide(ev, c) === 'won' && count(ev.before, c.owner.id) > count(ev.before, rivalOf(ev, c)),
+  ur_nanshe: (ev, c) => onRound(ev) && streak(c, 'top', topAt(c, 'technique'), 2),
+  emperor_yao: (ev, c) => ev.kind === 'competition' && ev.winnerId === c.owner.id,
+  harkhuf: (ev, c) => onTurn(ev, c) && alliesWith(c, 'Sovereign') >= 1 && alliesWith(c, 'Merchant', 'Explorer') >= 1,
+  enheduanna: (ev, c) => ev.kind === 'survival' && wonContest(ev, c),
+  mursili_i: (ev, c) => ev.kind === 'fight' && ev.kill && mySide(ev, c) === 'won' && count(ev.before, c.owner.id) === 1,
+  yi_yin: (ev, c) => onRound(ev) && streak(c, 'regent', alliesWith(c, 'Sovereign') >= 1, 3),
+  nedjeh: (ev, c) => onTurn(ev, c) && statAt(c.loc, 'wealth', c.look, c.owner.id) >= 15,
+  queen_tiye: (ev, c) => onTurn(ev, c) && myCities(c).length >= 3 && c.state.locations.some(l => l.id !== c.loc.id && l.cards.some(x => x.playerId === c.owner.id && is(x, c.look, 'Statesman'))),
+  tushratta: (ev, c) => wonContest(ev, c, { stat: 'reputation' }) || wonContest(ev, c, { stat: 'politics' }),
+  suppiluliuma_i: (ev, c) => ev.kind === 'fight' && mySide(ev, c) === 'won' && collect(c, 'cities', ev.locId, 3),
+  gyges: (ev, c) => ev.kind === 'fight' && mySide(ev, c) === 'won' && !c.me.isPublic,
+  guan_zhong: (ev, c) => onTurn(ev, c) && alliesWith(c, 'Sovereign') >= 1 && topAt(c, 'wealth'),
+  cyrus_the_great: (ev, c) => ev.kind === 'fight' && (ev.stat === 'politics' || ev.stat === 'reputation') && mySide(ev, c) === 'won' && [ev.attacker, ev.defender].some(x => x.playerId !== c.owner.id && is(x, c.look, 'Sovereign')),
+  confucius: (ev, c) => onTurn(ev, c) && alliesWith(c, 'Educator', 'Philosopher', 'Writer') >= 3,
+  tomyris: (ev, c) => ev.kind === 'fight' && ev.stat === 'strength' && mySide(ev, c) === 'won' && [ev.attacker, ev.defender].some(x => x.playerId !== c.owner.id && x.type === 'gp' && is(x, c.look, 'Sovereign')),
+  chandragupta_maurya: (ev, c) => onTurn(ev, c) && myCities(c).length >= 3 && alliesWith(c, 'Philosopher', 'Statesman') >= 1,
+  epicurus: (ev, c) => {
+    if (ev.kind === 'fight' && ev.locId === c.loc.id) { c.memo.fought = true; return false }
+    if (!onRound(ev)) return false
+    const calm = stayed(c) && !c.memo.fought
+    c.memo.fought = false
+    return streak(c, 'calm', calm, 3)
+  },
+  julius_caesar: (ev, c) => ev.kind === 'fight' && ev.attacker.instanceId === c.me.instanceId && mySide(ev, c) === 'won' && c.state.turnActions.movedCards.includes(c.me.instanceId),
+  cleopatra_vii: (ev, c) => onTurn(ev, c) && others(c).some(x => x.type === 'gp' && (c.look.gp[x.cardId]?.countries ?? []).includes('Rome')),
+  vercingetorix: (ev, c) => ev.kind === 'fight' && ev.defender.playerId === c.owner.id && mySide(ev, c) === 'won' && ev.before.some(x => x.playerId !== c.owner.id && is(x, c.look, 'General')),
+  shapur_i: (ev, c) => ev.kind === 'fight' && !ev.kill && mySide(ev, c) === 'won' && [ev.attacker, ev.defender].some(x => x.playerId !== c.owner.id && x.type === 'gp'),
+  zenobia: (ev, c) => onTurn(ev, c) && c.state.locations.filter(l => { const n = count(l.cards, c.owner.id); return n > 0 && l.cards.every(x => count(l.cards, x.playerId) < n || x.playerId === c.owner.id) }).length >= 2,
+  plotinus: (ev, c) => ev.kind === 'survival' && atMyCity(c, ev.locId) && !!ev.results.find(r => r.playerId === c.owner.id)?.survived && tally(c, 'survived', 2),
+  theodoric_the_great: (ev, c) => onTurn(ev, c) && allies(c).some(x => x.type === 'gp' && !(c.look.gp[x.cardId]?.countries ?? []).some(k => (c.look.gp[c.me.cardId]?.countries ?? []).includes(k))),
+  zu_chongzhi: (ev, c) => onRound(ev) && streak(c, 'calendar', alliesWith(c, 'Astronomer') >= 1, 2),
+  saint_genevieve: (ev, c) => ev.kind === 'survival' && atMyCity(c, ev.locId) && !!ev.results.find(r => r.playerId === c.owner.id)?.survived && !allies(c).some(x => x.type === 'gp'),
+  empress_theodora: (ev, c) => ev.kind === 'fight' && ev.defender.playerId === c.owner.id && mySide(ev, c) === 'won' && count(ev.before, c.owner.id) < count(ev.before, rivalOf(ev, c)),
+  queen_seondeok: (ev, c) => ev.kind === 'competition' && ev.winnerId === c.owner.id && ev.stat === 'intelligence',
+  xuanzang: (ev, c) => onTurn(ev, c) && collect(c, 'cities', c.loc.name, 4),
+  brahmagupta: (ev, c) => onTurn(ev, c) && alliesWith(c, 'Astronomer') >= 1 && alliesWith(c, 'Mathematician') >= 1,
+  charlemagne: (ev, c) => onTurn(ev, c) && alliesWith(c, 'Monastic', 'Educator') >= 1 && alliesWith(c, 'Warrior', 'General') >= 1,
+  jabir_ibn_hayyan: (ev, c) => ev.kind === 'survival' && atMyCity(c, ev.locId) && (ev.stat === 'technique' || ev.stat === 'intelligence') && !!ev.results.find(r => r.playerId === c.owner.id)?.survived,
+  murasaki_shikibu: (ev, c) => onRound(ev) && streak(c, 'court', alliesWith(c, 'Noble', 'Sovereign') >= 1, 3),
+  avicenna: (ev, c) => onTurn(ev, c) && alliesWith(c, 'Sovereign') >= 1 && alliesWith(c, 'Doctor') >= 1,
+  leif_erikson: (ev, c) => ev.kind === 'turn' && ev.playerId === c.owner.id && ev.actions.movedCards.includes(c.me.instanceId) && others(c).length === 0,
+  hildegard_of_bingen: (ev, c) => onTurn(ev, c) && alliesWith(c, 'Musician') >= 1 && alliesWith(c, 'Doctor', 'Naturalist') >= 1,
+  jayavarman_vii: (ev, c) => onTurn(ev, c) && c.state.locations.filter(l => l.cards.some(x => x.playerId === c.owner.id && x.instanceId !== c.me.instanceId && is(x, c.look, 'Architect', 'Engineer', 'Doctor'))).length >= 3,
+  averroes: (ev, c) => ev.kind === 'fight' && (ev.stat === 'intelligence' || ev.stat === 'belief') && ev.defender.playerId === c.owner.id && mySide(ev, c) === 'won',
+  fibonacci: (ev, c) => {
+    if (!onTurn(ev, c)) return false
+    const n = allies(c).filter(x => x.type === 'follower').length
+    const seq = (c.memo.seq as number) ?? 0
+    c.memo.seq = n === seq + 1 ? n : n === 1 ? 1 : 0
+    return (c.memo.seq as number) >= 3
+  },
+  sundiata_keita: (ev, c) => ev.kind === 'fight' && (ev.stat === 'strength' || ev.stat === 'reputation') && mySide(ev, c) === 'won' && [ev.attacker, ev.defender].some(x => x.playerId !== c.owner.id && is(x, c.look, 'Sovereign')),
+  tomoe_gozen: (ev, c) => ev.kind === 'fight' && (ev.stat === 'strength' || ev.stat === 'technique') && ev.attacker.instanceId === c.me.instanceId && mySide(ev, c) === 'won' && ev.before.some(x => x.playerId !== c.owner.id && is(x, c.look, 'General')),
+  ibn_khaldun: (ev, c) => ev.kind === 'death' && atMyCity(c, ev.locId) && ev.cardId !== c.me.cardId && tally(c, 'deaths', 2),
+  timur: (ev, c) => ev.kind === 'fight' && ev.attacker.instanceId === c.me.instanceId && mySide(ev, c) === 'won' && tally(c, 'wins', 3),
+  hafez: (ev, c) => ev.kind === 'competition' && ev.winnerId === c.owner.id && (ev.stat === 'culture' || ev.stat === 'belief'),
+  cosimo_de_medici: (ev, c) => onTurn(ev, c) && alliesWith(c, 'Artist') >= 1 && alliesWith(c, 'Architect') >= 1,
+  zara_yaqob: (ev, c) => onTurn(ev, c) && alliesWith(c, 'Priest', 'Prophet') >= 2,
+  peter_the_great: (ev, c) => onRound(ev) && streak(c, 'shipyard', alliesWith(c, 'Engineer') >= 1, 2),
+  osei_tutu: (ev, c) => onTurn(ev, c) && c.state.locations.filter(l => count(l.cards, c.owner.id) >= 2).length >= 3,
+  harriet_tubman: (ev, c) => ev.kind === 'turn' && ev.playerId === c.owner.id && ev.actions.movedCards.includes(c.me.instanceId) && allies(c).some(x => x.type === 'follower' && ev.actions.movedCards.includes(x.instanceId)) && tally(c, 'runs', 3),
+  nikola_tesla: (ev, c) => ev.kind === 'competition' && ev.winnerId === c.owner.id && ev.stat === 'technique',
+  jose_rizal: (ev, c) => onTurn(ev, c) && allies(c).filter(x => x.type === 'follower').length >= 3 && others(c).some(x => x.playerId !== c.owner.id),
+  marie_curie: (ev, c) => ev.kind === 'competition' && ev.winnerId === c.owner.id && (ev.stat === 'intelligence' || ev.stat === 'technique') && tally(c, 'prizes', 2),
+  alberto_santos_dumont: (ev, c) => ev.kind === 'turn' && ev.playerId === c.owner.id && ev.actions.movedCards.includes(c.me.instanceId) && tally(c, 'flights', 3),
+  frida_kahlo: (ev, c) => onTurn(ev, c) && others(c).some(x => female(x, c.look)),
+  hedy_lamarr: (ev, c) => ev.kind === 'fight' && ev.stat === 'technique' && mySide(ev, c) === 'won' && !c.me.isPublic,
+  nelson_mandela: (ev, c) => onTurn(ev, c) && c.loc.cards.some(x => x.type === 'gp' && x.playerId !== c.owner.id) && new Set(c.loc.cards.filter(x => x.type === 'gp').flatMap(x => c.look.gp[x.cardId]?.countries ?? [])).size >= 3,
+  yuri_gagarin: (ev, c) => ev.kind === 'survival' && ev.hazard && atMyCity(c, ev.locId) && !!ev.results.find(r => r.playerId === c.owner.id)?.survived,
+  wangari_maathai: (ev, c) => ev.kind === 'follower' && ev.playerId === c.owner.id && atMyCity(c, ev.locId) && collect(c, 'years', String(c.state.year), 3),
+  pele: (ev, c) => ev.kind === 'fight' && (ev.stat === 'strength' || ev.stat === 'technique') && mySide(ev, c) === 'won' && tally(c, 'goals', 3),
 }
 
 const STAT_KEYS: StatKey[] = ['politics', 'strength', 'culture', 'wealth', 'intelligence', 'technique', 'belief', 'reputation']

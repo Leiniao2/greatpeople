@@ -540,6 +540,17 @@ export function traitBonusForGP(
     .map(c => gpMap[c.cardId])
     .filter((g): g is Card => !!g)
 
+  // Allied cards here (Great People or Followers) with any of these identities, this card excluded.
+  const alliedWith = (...names: string[]) =>
+    alliedFollowers.filter(f => names.includes(f.name)).length
+    + alliedGPCards.filter(g => g.id !== gp.id && g.identities.some(i => names.includes(i))).length
+  const rivalGPs = opponentCards
+    .filter(c => c.type === 'gp')
+    .map(c => gpMap[c.cardId])
+    .filter((g): g is Card => !!g)
+  const outnumbered = opponentCards.length > alliedCards.length
+  const myCityCount = allLocations.filter(loc => loc.cards.some(c => c.playerId === playerId)).length
+
   switch (gp.figureName) {
     case 'Belisarius':
       if (opponentCards.length > alliedCards.length && (stat === 'strength' || stat === 'politics'))
@@ -631,6 +642,266 @@ export function traitBonusForGP(
       if (hasOpponentEvent && stat === 'reputation') bonus += 3
       break
     }
+
+    case 'Djoser':
+      if (stat === 'reputation' && alliedWith('Architect') >= 1) bonus += 3
+      break
+
+    case 'Sneferu':
+      if (stat === 'technique') bonus += Math.min(4, alliedFollowers.length)
+      break
+
+    case 'Puabi':
+      if (stat === 'wealth' && alliedGPCards.some(g => g.id !== gp.id)) bonus += 3
+      break
+
+    case 'Meskalamdug':
+      if (stat === 'strength' && alliedWith('Sovereign') >= 1) bonus += 3
+      break
+
+    case 'Ku-Baba':
+      if (stat === 'politics') bonus += Math.min(4, alliedFollowers.length)
+      break
+
+    case 'Eannatum':
+      if (stat === 'strength' && alliedWith('Soldier', 'Warrior', 'General') >= 2) bonus += 3
+      break
+
+    case 'Ur-Nanshe':
+      if ((stat === 'technique' || stat === 'belief') && alliedGPCards.every(g => g.id === gp.id)) bonus += 2
+      break
+
+    case 'Emperor Yao':
+      if (stat === 'reputation' && alliedWith('Astronomer', 'Educator') >= 1) bonus += 3
+      break
+
+    case 'Harkhuf':
+      if (stat === 'wealth' && alliedWith('Merchant', 'Explorer') >= 1) bonus += 3
+      break
+
+    case 'Enheduanna':
+      if ((stat === 'culture' || stat === 'belief') && alliedWith('Writer', 'Priest') >= 1) bonus += 2
+      break
+
+    case 'Mursili I':
+      if (stat === 'strength' && rivalGPs.length > 0) bonus += 2
+      break
+
+    case 'Yi Yin':
+      if (stat === 'politics' && alliedWith('Sovereign') >= 1) bonus += 3
+      break
+
+    case 'Nedjeh':
+      if (stat === 'strength' && rivalGPs.some(g => g.countries?.includes('Egypt'))) bonus += 3
+      break
+
+    case 'Queen Tiye':
+      if (stat === 'politics' && alliedWith('Sovereign') >= 1) bonus += 3
+      break
+
+    case 'Tushratta':
+      if ((stat === 'politics' || stat === 'reputation') && rivalGPs.some(g => g.identities.includes('Sovereign'))) bonus += 2
+      break
+
+    case 'Suppiluliuma I':
+      if (stat === 'strength') bonus += Math.min(4, 2 * rivalGPs.length)
+      break
+
+    case 'Gyges':
+      if (alliedCards.length === 1) { if (stat === 'wealth') bonus += 3; if (stat === 'intelligence') bonus += 2 }
+      break
+
+    case 'Guan Zhong':
+      if (stat === 'wealth' && alliedWith('Merchant', 'Banker') >= 1) bonus += 3
+      break
+
+    case 'Cyrus the Great':
+      if (stat === 'reputation') bonus += new Set(locationCards.filter(c => c.type === 'gp').flatMap(c => gpMap[c.cardId]?.countries ?? [])).size
+      break
+
+    case 'Confucius':
+      if (stat === 'intelligence' || stat === 'belief') bonus += Math.min(3, alliedWith('Educator', 'Philosopher', 'Writer'))
+      break
+
+    case 'Tomyris':
+      if (stat === 'strength' && rivalGPs.some(g => g.identities.includes('Sovereign'))) bonus += 3
+      break
+
+    case 'Chandragupta Maurya':
+      if (stat === 'politics' && (alliedWith('Philosopher') >= 1 || locationCards.some(c => c.cardId === 'chanakya'))) bonus += 3
+      break
+
+    case 'Epicurus':
+      if (stat === 'belief' && opponentCards.length === 0) bonus += 3
+      break
+
+    case 'Julius Caesar':
+      if ((stat === 'strength' || stat === 'reputation') && alliedWith('Soldier', 'General') >= 2) bonus += 2
+      break
+
+    case 'Cleopatra VII':
+      if (stat === 'politics' && rivalGPs.some(g => g.identities.includes('General'))) bonus += 3
+      break
+
+    case 'Vercingetorix':
+      if (stat === 'strength' && rivalGPs.some(g => g.countries?.includes('Rome'))) bonus += 3
+      break
+
+    case 'Shapur I':
+      if ((stat === 'strength' || stat === 'reputation') && rivalGPs.some(g => g.identities.includes('Sovereign'))) bonus += 2
+      break
+
+    case 'Zenobia':
+      if ((stat === 'politics' || stat === 'strength') && alliedGPCards.every(g => g.id === gp.id)) bonus += 2
+      break
+
+    case 'Plotinus':
+      if (stat === 'belief' && locationCards.every(c => c.type !== 'gp' || c.cardId === gp.id)) bonus += 3
+      break
+
+    case 'Theodoric the Great':
+      if (stat === 'politics' && opponentCards.length > 0) bonus += Math.min(3, alliedFollowers.length)
+      break
+
+    case 'Zu Chongzhi':
+      if (stat === 'technique' && alliedWith('Astronomer', 'Mathematician') >= 1) bonus += 3
+      break
+
+    case 'Saint Genevieve':
+      if (stat === 'belief' && alliedFollowers.length >= 2) bonus += 3
+      break
+
+    case 'Empress Theodora':
+      if (stat === 'politics' && outnumbered) bonus += 3
+      break
+
+    case 'Queen Seondeok':
+      if (stat === 'intelligence' && alliedWith('Astronomer', 'Scientist') >= 1) bonus += 3
+      break
+
+    case 'Xuanzang':
+      if (stat === 'belief') bonus += Math.min(3, myCityCount - 1)
+      break
+
+    case 'Brahmagupta':
+      if (stat === 'intelligence' && alliedFollowers.length === 0) bonus += 3
+      break
+
+    case 'Charlemagne':
+      if (stat === 'strength' || stat === 'reputation') bonus += Math.min(3, alliedWith('Warrior', 'Soldier', 'General'))
+      break
+
+    case 'Jabir ibn Hayyan':
+      if (stat === 'technique') bonus += Math.min(4, 2 * alliedWith('Scientist', 'Doctor'))
+      break
+
+    case 'Murasaki Shikibu':
+      if (stat === 'culture' && alliedWith('Noble', 'Writer') >= 1) bonus += 3
+      break
+
+    case 'Avicenna':
+      if (stat === 'intelligence') bonus += Math.min(3, alliedFollowers.length)
+      break
+
+    case 'Leif Erikson':
+      if (stat === 'technique' && opponentCards.length === 0) bonus += 3
+      break
+
+    case 'Hildegard of Bingen':
+      if (stat === 'belief' || stat === 'culture') bonus += Math.min(3, alliedWith('Monastic', 'Musician'))
+      break
+
+    case 'Jayavarman VII':
+      if (stat === 'technique' && alliedFollowers.length >= 2) bonus += 3
+      break
+
+    case 'Averroes':
+      if (stat === 'intelligence' && opponentCards.some(c => c.type === 'gp' ? gpMap[c.cardId]?.identities.some(i => i === 'Philosopher' || i === 'Priest') : ['Philosopher', 'Priest'].includes(followerMap[c.cardId]?.name ?? ''))) bonus += 3
+      break
+
+    case 'Fibonacci':
+      if (stat === 'wealth' && alliedWith('Mathematician', 'Merchant') >= 1) bonus += 3
+      break
+
+    case 'Sundiata Keita':
+      if (stat === 'reputation' && alliedWith('Writer', 'Musician') >= 1) bonus += 3
+      break
+
+    case 'Tomoe Gozen':
+      if (stat === 'technique' && outnumbered) bonus += 3
+      break
+
+    case 'Ibn Khaldun':
+      if (stat === 'politics') bonus += Math.min(4, alliedCards.length - 1)
+      break
+
+    case 'Timur':
+      if (stat === 'strength' && opponentCards.length >= 2) bonus += 3
+      break
+
+    case 'Hafez':
+      if (stat === 'culture' && alliedWith('Musician', 'Gourmet') >= 1) bonus += 3
+      break
+
+    case 'Cosimo de\' Medici':
+      if (stat === 'wealth') bonus += Math.min(4, 2 * (myCityCount - 1))
+      break
+
+    case 'Zara Yaqob':
+      if (stat === 'belief' && alliedWith('Priest', 'Monastic') >= 1) bonus += 3
+      break
+
+    case 'Peter the Great':
+      if (stat === 'technique' && alliedWith('Engineer', 'Explorer') >= 1) bonus += 3
+      break
+
+    case 'Osei Tutu':
+      if (stat === 'reputation' && alliedFollowers.length >= 2) bonus += 3
+      break
+
+    case 'Harriet Tubman':
+      if (stat === 'belief' && outnumbered) bonus += 3
+      break
+
+    case 'Nikola Tesla':
+      if (stat === 'technique' && alliedWith('Merchant', 'Banker') === 0) bonus += 3
+      break
+
+    case 'José Rizal':
+      if (stat === 'politics' && rivalGPs.some(g => g.identities.includes('Sovereign'))) bonus += 3
+      break
+
+    case 'Marie Curie':
+      if ((stat === 'intelligence' || stat === 'technique') && alliedWith('Scientist') >= 1) bonus += 2
+      break
+
+    case 'Alberto Santos-Dumont':
+      if (stat === 'technique' && locationCards.length === 1) bonus += 3
+      break
+
+    case 'Frida Kahlo':
+      if (stat === 'culture' && alliedCards.length === 1) bonus += 3
+      break
+
+    case 'Hedy Lamarr':
+      if ((stat === 'technique' || stat === 'culture') && alliedWith('Musician') >= 1) bonus += 2
+      break
+
+    case 'Nelson Mandela':
+      if (stat === 'reputation' && outnumbered) bonus += 3
+      break
+
+    case 'Yuri Gagarin':
+      if (stat === 'reputation' && alliedGPCards.every(g => g.id === gp.id)) bonus += 3
+      break
+
+    case 'Wangari Maathai':
+      if (stat === 'belief') bonus += Math.min(4, alliedFollowers.length)
+      break
+
+    case 'Pelé':
+      if ((stat === 'strength' || stat === 'technique') && alliedWith('Athlete') >= 1) bonus += 2
+      break
   }
 
   return bonus
