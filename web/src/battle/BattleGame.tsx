@@ -3,6 +3,7 @@
 // with a lesson goal and a coach (see `embedded`).
 
 import { useEffect, useCallback, useState, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import type {
   Card, FollowerCard, EventCard, OnboardCard, LocationState,
   GameState, EventType, CardContrib, GameSummary, LifeStatus, PlayerState,
@@ -13,7 +14,7 @@ import {
   ALL_GP_CARDS, STATS, STAT_LABELS, ACHIEVEMENT_SPECS, getAchievementThreshold, followerFromId,
   FOLLOWER_IDENTITY_MATCH_BONUS, LEGACY_SLOTS, CITY_STATE_CHANCE, DEFAULT_CAREER_AGE,
   careerStartYear, deathYear, describeLegacyEffect, formatYear, getGPCard, lifeStatus, successorOptions,
-  gpSlots, lineageCount,
+  gpSlots, lineageCount, LOCATION_CARD_MAP,
   type GameAction,
 } from './engine'
 
@@ -244,27 +245,33 @@ export type CardDetail =
   | { kind: 'gp'; card: Card; ticks?: number; ownerId?: string }
   | { kind: 'follower'; follower: FollowerCard }
   | { kind: 'event'; event: EventCard }
+  | { kind: 'location'; locationId: string }
 
 /** Shared frame for every card's detail view: picture with the title over it, then the body. */
-function DetailShell({ imageUrl, imageFit = 'object-top', title, subtitle, onClose, children }: {
+function DetailShell({ imageUrl, imageFit = 'object-top', title, subtitle, onClose, aside, children }: {
   imageUrl: string
   imageFit?: string
   title: string
   subtitle: React.ReactNode
   onClose: () => void
+  /** Sits under the picture on a landscape phone (left column); tops the body otherwise. */
+  aside?: React.ReactNode
   children: React.ReactNode
 }) {
-  return (
+  // Portalled to <body> so the app's tab bar (and the board's own layers) never sit on top.
+  return createPortal(
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-ink/70 p-4"
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-ink/70 p-4 land:p-2"
       onClick={onClose}
     >
       <div
-        className="relative bg-panel border border-line rounded-2xl overflow-hidden w-full max-w-xs shadow-2xl font-bold"
+        className="relative bg-panel border border-line rounded-2xl overflow-hidden w-full max-w-xs shadow-2xl font-bold
+          land:max-w-2xl land:flex land:h-[calc(100dvh-1rem)] land:max-h-[26rem]"
         onClick={e => e.stopPropagation()}
       >
+        <div className="land:w-[44%] land:shrink-0 land:flex land:flex-col land:min-h-0 land:overflow-y-auto land:border-r land:border-line">
         {/* Picture with name overlay */}
-        <div className="relative w-full h-48 bg-paper-2">
+        <div className="relative w-full h-48 bg-paper-2 land:h-auto land:flex-1 land:min-h-[5rem]">
           <img
             src={imageUrl}
             alt={title}
@@ -281,12 +288,16 @@ function DetailShell({ imageUrl, imageFit = 'object-top', title, subtitle, onClo
             {subtitle}
           </div>
         </div>
+        {aside && <div className="hidden land:block px-3 py-2 space-y-2 shrink-0">{aside}</div>}
+        </div>
 
-        <div className="px-4 pt-3 pb-4 space-y-3 max-h-[60vh] overflow-y-auto">
+        <div className="px-4 pt-3 pb-4 space-y-3 max-h-[60vh] overflow-y-auto land:max-h-none land:flex-1 land:min-h-0 land:px-3 land:pt-2.5">
+          {aside && <div className="space-y-3 land:hidden">{aside}</div>}
           {children}
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   )
 }
 
@@ -359,8 +370,7 @@ function CardDetailModal({ card, achievementTicks, owner, earned, onClose }: {
       title={card.figureName}
       subtitle={<p className={`text-sm ${ERA_TEXT[card.era] ?? 'text-muted'}`}>{card.era} · {formatYear(card.born)}–{card.died == null ? 'living' : formatYear(card.died)}</p>}
       onClose={onClose}
-    >
-
+      aside={<>
       {/* Stats grid */}
       <div className="grid grid-cols-2 gap-1.5">
         {STATS.map(stat => {
@@ -375,6 +385,13 @@ function CardDetailModal({ card, achievementTicks, owner, earned, onClose }: {
         })}
       </div>
 
+      {/* Life on the timeline */}
+      <div className="bg-panel rounded-xl px-3 py-2 text-[11px] text-ink-2 leading-relaxed">
+        Born {formatYear(card.born)} · career from {formatYear(career)} (age {career - card.born}{(card.careerAge ?? DEFAULT_CAREER_AGE) !== DEFAULT_CAREER_AGE ? ', an early start' : ''})
+        {' '}· {card.died == null ? 'still living' : `dies ${formatYear(deathYear(card, owner))}`}
+      </div>
+      </>}
+    >
       {/* Trait */}
       {card.trait && (
         <div className="bg-accent/[0.07] border border-accent/20 rounded-xl px-3 py-2.5">
@@ -383,11 +400,6 @@ function CardDetailModal({ card, achievementTicks, owner, earned, onClose }: {
         </div>
       )}
 
-      {/* Life on the timeline */}
-      <div className="bg-panel rounded-xl px-3 py-2 text-[11px] text-ink-2 leading-relaxed">
-        Born {formatYear(card.born)} · career from {formatYear(career)} (age {career - card.born}{(card.careerAge ?? DEFAULT_CAREER_AGE) !== DEFAULT_CAREER_AGE ? ', an early start' : ''})
-        {' '}· {card.died == null ? 'still living' : `dies ${formatYear(deathYear(card, owner))}`}
-      </div>
 
       {/* Legacy (in place of the old achievement) */}
       <div className="bg-violet-800/10 border border-violet-800/40 rounded-xl px-3 py-2.5 space-y-1">
@@ -414,6 +426,108 @@ function CardDetailModal({ card, achievementTicks, owner, earned, onClose }: {
 
       {/* Description */}
       {card.lore && <DescriptionBox text={card.lore} />}
+    </DetailShell>
+  )
+}
+
+const EVENT_BADGE: Record<EventType, string> = {
+  local_event: 'bg-orange-500/80',
+  local_survival: 'bg-red-600/80',
+  global_competition: 'bg-purple-600/80',
+  natural_hazard: 'bg-yellow-600/80',
+}
+
+function LocationDetailModal({ loc, players, viewerId, gpMap, followerMap, onCardInfo, onClose }: {
+  loc: LocationState
+  players: PlayerState[]
+  viewerId: string
+  gpMap: Record<string, Card>
+  followerMap: Record<string, FollowerCard>
+  onCardInfo: (oc: OnboardCard) => void
+  onClose: () => void
+}) {
+  const data = LOCATION_CARD_MAP[`${loc.era}-${loc.name}`]
+  const bonuses = STATS.filter(st => (data?.bonuses[st] ?? 0) > 0)
+  const ability = data?.trait?.match(/\*\*(.*?)\*\*/)?.[1]
+  const ev = loc.activeEvent
+  return (
+    <DetailShell
+      imageUrl={locationImageUrl(loc.imageKey) ?? ''}
+      imageFit="object-center"
+      title={loc.name}
+      subtitle={<p className="text-sm text-paper/80">{loc.era}{loc.countries?.length ? ` · ${loc.countries.join(', ')}` : ''}</p>}
+      onClose={onClose}
+      aside={
+        <div className="space-y-1.5">
+          <p className="text-[10px] text-muted uppercase tracking-widest">City bonus{ability ? ` · ${ability}` : ''}</p>
+          {bonuses.length ? bonuses.map(st => (
+            <div key={st} className="flex items-center justify-between bg-panel rounded-lg px-2.5 py-1.5">
+              <span className="text-muted text-[11px]">{STAT_LABELS[st]}</span>
+              <span className="text-sm text-accent">+{data!.bonuses[st]} per GP</span>
+            </div>
+          )) : <p className="text-[11px] text-muted">No stat bonus.</p>}
+          {bonuses.length > 0 && (
+            <p className="text-[10px] text-muted leading-relaxed">Each of your Great People here adds this to your total in a contest of that stat.</p>
+          )}
+        </div>
+      }
+    >
+      {/* What the city is going through */}
+      {ev ? (
+        <div className="bg-panel rounded-xl px-3 py-2.5 space-y-1">
+          <div className="flex items-center gap-1.5 flex-wrap">
+            <span className={`text-[10px] text-paper px-1.5 py-0.5 rounded ${EVENT_BADGE[ev.type]}`}>{EVENT_TYPE_LABEL[ev.type]}</span>
+            <span className="text-xs text-ink">{ev.name}</span>
+            <span className="text-[10px] text-muted">· tests {ev.stat ? STAT_LABELS[ev.stat] : 'the weakest stat'}</span>
+          </div>
+          <p className="text-[11px] text-muted">
+            {ev.origin === 'city'
+              ? `The city fell into this by itself · ${loc.eventRoundsLeft} year${loc.eventRoundsLeft === 1 ? '' : 's'} left`
+              : 'Started by a player · runs until it is ended or replaced'}
+          </p>
+          <p className="text-ink-2 text-xs leading-relaxed">{ev.description}</p>
+        </div>
+      ) : (
+        <div className="bg-panel rounded-xl px-3 py-2.5 text-[11px] text-muted leading-relaxed">
+          Calm. Each year an empty city has a {Math.round(CITY_STATE_CHANCE * 100)}% chance to fall into a state by itself.
+        </div>
+      )}
+
+      {/* Who is here */}
+      <div className="space-y-2">
+        <p className="text-[10px] text-muted uppercase tracking-widest">Here now</p>
+        {players.map((p, pidx) => {
+          const cards = loc.cards.filter(c => c.playerId === p.id)
+          const color = PLAYER_COLORS[pidx % 5]
+          return (
+            <div key={p.id} className="flex items-start gap-2">
+              <span className={`mt-1 w-2 h-2 rounded-full shrink-0 ${color.dot}`} />
+              <div className="min-w-0 flex-1">
+                <p className={`text-[11px] ${color.text}`}>{p.name}</p>
+                {cards.length === 0 ? <p className="text-[11px] text-muted/70 italic">nobody</p> : (
+                  <div className="flex flex-wrap gap-1 mt-0.5">
+                    {cards.map(oc => {
+                      const seen = oc.isPublic || oc.playerId === viewerId
+                      const gp = oc.type === 'gp' ? gpMap[oc.cardId] : undefined
+                      const f = oc.type === 'follower' ? followerMap[oc.cardId] : undefined
+                      const label = !seen ? 'Face-down card'
+                        : gp ? gp.figureName
+                        : f ? `${f.name} +${f.bonus} ${STAT_LABELS[f.stat]}` : 'Card'
+                      return (
+                        <button key={oc.instanceId} disabled={!seen || (!gp && !f)}
+                          onClick={() => onCardInfo(oc)}
+                          className={`text-[11px] px-1.5 py-0.5 rounded border ${seen ? 'border-line bg-paper-2 text-ink-2 hover:border-accent/50' : 'border-dashed border-line text-muted'}`}>
+                          {oc.type === 'gp' ? '👤 ' : ''}{label}
+                        </button>
+                      )
+                    })}
+                  </div>
+                )}
+              </div>
+            </div>
+          )
+        })}
+      </div>
     </DetailShell>
   )
 }
@@ -1147,9 +1261,15 @@ export function BattleGame({ gameState, dispatch, onExit, embedded = false, bann
                   </div>
                 )}
                 {/* Location name */}
-                <div className="relative mb-1">
+                <div className="relative mb-1 pr-5">
                   <p className={`text-[10px] font-bold truncate ${ERA_TEXT[loc.era] ?? 'text-ink-2'}`}>{loc.name}</p>
                   <EraIcon era={loc.era} className="w-3 h-3 text-muted/80" />
+                  <button
+                    aria-label={`About ${loc.name}`}
+                    onClick={e => { e.stopPropagation(); setCardDetail({ kind: 'location', locationId: loc.id }) }}
+                    className="absolute -top-0.5 -right-0.5 w-5 h-5 rounded-full bg-paper/80 border border-line text-[10px] text-ink-2 flex items-center justify-center hover:border-accent/60">
+                    i
+                  </button>
                 </div>
 
                 {/* Active event badge */}
@@ -1587,6 +1707,16 @@ export function BattleGame({ gameState, dispatch, onExit, embedded = false, bann
       })()}
       {cardDetail?.kind === 'follower' && <FollowerDetailModal follower={cardDetail.follower} onClose={() => setCardDetail(null)} />}
       {cardDetail?.kind === 'event' && <EventDetailModal event={cardDetail.event} onClose={() => setCardDetail(null)} />}
+      {cardDetail?.kind === 'location' && (() => {
+        const loc = gameState.locations.find(l => l.id === cardDetail.locationId)
+        if (!loc) return null
+        return <LocationDetailModal loc={loc} players={gameState.players} viewerId={currentPlayer.id}
+          gpMap={gpMap} followerMap={followerMap} onClose={() => setCardDetail(null)}
+          onCardInfo={oc => {
+            if (oc.type === 'gp' && gpMap[oc.cardId]) setCardDetail({ kind: 'gp', card: gpMap[oc.cardId], ticks: oc.achievementTicks, ownerId: oc.playerId })
+            else if (oc.type === 'follower' && followerMap[oc.cardId]) setCardDetail({ kind: 'follower', follower: followerMap[oc.cardId] })
+          }} />
+      })()}
 
       {/* Hot-seat handoff screen — covers everything until the next player confirms */}
       {awaitingHandoff && (() => {
