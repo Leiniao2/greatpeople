@@ -2,6 +2,7 @@ package com.greatpeople.card.ui.screens
 
 import android.annotation.SuppressLint
 import android.graphics.Color as AndroidColor
+import android.view.ViewGroup
 import android.webkit.JavascriptInterface
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -57,6 +58,10 @@ fun GamePlayerScreen(
             modifier = Modifier.fillMaxSize(),
             factory = { context ->
                 WebView(context).apply {
+                    // AndroidView defaults to WRAP_CONTENT, and a wrap-content
+                    // WebView resolves CSS vh/dvh to 0, collapsing every
+                    // full-height layout (the Fight board in particular).
+                    layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
                     settings.javaScriptEnabled = true
                     settings.domStorageEnabled = true
                     settings.mediaPlaybackRequiresUserGesture = false

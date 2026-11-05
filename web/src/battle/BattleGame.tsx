@@ -1071,8 +1071,8 @@ export function BattleGame({ gameState, dispatch, onExit, embedded = false, bann
 
       {/* Header */}
       <div className="relative z-10 px-4 py-2 land:py-1 flex items-center gap-3 border-b border-line bg-black/20 shrink-0">
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2 mb-1">
+        <div className="flex-1 min-w-0 land:flex land:items-center land:gap-3">
+          <div className="flex items-center gap-2 mb-1 land:mb-0 shrink-0">
             <span className="text-[10px] text-muted uppercase tracking-widest shrink-0">
               {isTimeline ? <><span className="text-ink font-bold">{formatYear(gameState.year)}</span> · Year {gameState.year - gameState.startYear + 1}</> : <>Round {gameState.round}</>}
             </span>
@@ -1081,7 +1081,7 @@ export function BattleGame({ gameState, dispatch, onExit, embedded = false, bann
               {currentPlayer.name}{currentPlayer.isComputer ? ' (CPU)' : "'s Turn"}
             </span>
           </div>
-          <div className="flex gap-1.5 flex-wrap justify-center">
+          <div className="flex gap-1.5 flex-wrap justify-center land:justify-start">
             {gameState.players.map((p, idx) => {
               const color = PLAYER_COLORS[idx % 5]
               const isActive = idx === gameState.currentPlayerIdx
@@ -1131,7 +1131,7 @@ export function BattleGame({ gameState, dispatch, onExit, embedded = false, bann
               <div
                 key={loc.id}
                 onClick={() => handleLocationTap(loc.id)}
-                className={`relative rounded-xl border p-2 w-40 cursor-pointer transition-all duration-150 overflow-hidden
+                className={`relative rounded-xl border p-2 w-40 land:w-32 land:p-1.5 cursor-pointer transition-all duration-150 overflow-hidden
                   ${ERA_COLORS[loc.era] ?? 'bg-paper-2 border-line'}
                   ${isLocationTarget ? 'border-accent/60 ring-1 ring-accent/30' : ''}`}
               >
@@ -1529,9 +1529,9 @@ export function BattleGame({ gameState, dispatch, onExit, embedded = false, bann
             ? `Pick a Great Person born after ${formatYear(gameState.year)} to fill it; they found a lineage of their own.`
             : `${pending.predecessor ? `${figureName(pending.predecessor)} has died. ` : ''}Choose someone born after ${formatYear(gameState.year)}.`
         return (
-          <div className={`fixed inset-0 z-[160] flex items-center justify-center p-4 ${opening ? 'bg-paper' : 'bg-ink/70'}`}>
-            <div className={`w-full ${opening ? 'max-w-3xl' : 'max-w-md bg-panel border border-line rounded-2xl shadow-2xl overflow-hidden'}`}>
-              <div className={`px-4 py-3 text-center ${opening ? '' : 'bg-accent/10 border-b border-line'}`}>
+          <div className={`fixed inset-0 z-[160] flex items-center justify-center p-4 land:p-2 ${opening ? 'bg-paper' : 'bg-ink/70'}`}>
+            <div className={`w-full land:max-h-full land:flex land:flex-col ${opening ? 'max-w-3xl' : 'max-w-md bg-panel border border-line rounded-2xl shadow-2xl overflow-hidden'}`}>
+              <div className={`px-4 py-3 land:py-1.5 text-center shrink-0 ${opening ? '' : 'bg-accent/10 border-b border-line'}`}>
                 {gameState.players.filter(p => !p.isComputer).length > 1 && (
                   <p className="text-[10px] text-muted uppercase tracking-widest">{choosing.name}</p>
                 )}
@@ -1539,8 +1539,8 @@ export function BattleGame({ gameState, dispatch, onExit, embedded = false, bann
                 <p className="text-muted text-xs mt-0.5">{subtitle}</p>
               </div>
               <div className={opening
-                ? 'grid grid-cols-1 sm:grid-cols-3 land:grid-cols-3 gap-3 p-2 max-h-[75vh] overflow-y-auto'
-                : 'p-3 grid grid-cols-1 gap-2 max-h-[60vh] overflow-y-auto'}>
+                ? 'grid grid-cols-1 sm:grid-cols-3 land:grid-cols-3 gap-3 land:gap-2 p-2 max-h-[75vh] land:max-h-none land:min-h-0 overflow-y-auto'
+                : 'p-3 grid grid-cols-1 gap-2 max-h-[60vh] land:max-h-none land:min-h-0 overflow-y-auto'}>
                 {options.map(id => {
                   const c = gpMap[id]
                   if (!c) return null
@@ -1551,7 +1551,7 @@ export function BattleGame({ gameState, dispatch, onExit, embedded = false, bann
                     return (
                       <button key={id} onClick={choose}
                         className="flex sm:flex-col land:flex-col text-left rounded-2xl border border-line bg-panel hover:border-accent/60 hover:shadow-lg transition-all overflow-hidden">
-                        <img src={c.portraitUrl} alt="" className="w-24 sm:w-full land:w-full h-auto sm:h-40 land:h-28 object-cover object-top shrink-0" />
+                        <img src={c.portraitUrl} alt="" className="w-24 sm:w-full land:w-full h-auto sm:h-40 land:h-24 object-cover object-top shrink-0" />
                         <div className="p-2.5 min-w-0">
                           <p className="text-sm font-bold text-ink truncate">{c.figureName}</p>
                           <p className="text-[11px] text-muted">{c.era} · born {formatYear(c.born)} · career {formatYear(careerStartYear(c, choosing))}</p>
