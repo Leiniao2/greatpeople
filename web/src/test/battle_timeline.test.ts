@@ -143,6 +143,51 @@ describe('death and succession', () => {
     // The computer's successor is already chosen.
     expect(gs.players[1].gpHand.length).toBeGreaterThan(1)
   })
+
+  // Followers serve a Great Person; Event cards do not.
+  const follower = (gs: GameState, loc: number, playerIdx: number, n: number) =>
+    place(gs, loc, playerIdx, `follower-sovereign-${n}`, { type: 'follower', instanceId: `f${n}-${playerIdx}` })
+  const followersAt = (gs: GameState, loc: number, playerIdx: number) =>
+    gs.locations[loc].cards.filter(c => c.type === 'follower' && c.playerId === gs.players[playerIdx].id)
+
+  it("a Great Person's death takes their Followers in that city, but not their Event cards", () => {
+    // Magellan dies in 1521 alone in city 0; Titian, alive, holds city 1.
+    let gs = game(1521, ['titian', 'magellan'], ['isabel_i'])
+    gs = place(gs, 0, 0, 'magellan')
+    gs = follower(gs, 0, 0, 1)
+    gs = follower(gs, 0, 0, 2)
+    gs = place(gs, 1, 0, 'titian')
+    gs = follower(gs, 1, 0, 3)
+    const ev = makeEventCard('culture', 'local_event', 'kept')
+    gs = { ...gs, players: gs.players.map((p, i) => (i === 0 ? { ...p, eventHand: [ev] } : p)) }
+    gs = endRound(gs)
+    expect(gs.players[0].archive).toContain('magellan')
+    expect(followersAt(gs, 0, 0)).toHaveLength(0)
+    expect(followersAt(gs, 1, 0)).toHaveLength(1)
+    expect(gs.players[0].eventHand.map(e => e.id)).toContain('kept')
+  })
+
+  it('Followers stay while another of their Great People holds the city', () => {
+    let gs = game(1521, ['titian', 'magellan'], ['isabel_i'])
+    gs = place(gs, 0, 0, 'magellan')
+    gs = place(gs, 0, 0, 'titian')
+    gs = follower(gs, 0, 0, 1)
+    gs = endRound(gs)
+    expect(gs.players[0].archive).toContain('magellan')
+    expect(followersAt(gs, 0, 0)).toHaveLength(1)
+  })
+
+  it('a Great Person killed in a fight takes their Followers in that city too', () => {
+    let gs = game(1500, [], ['bayinnaung', 'gutenberg'])
+    gs = place(gs, 0, 0, 'magellan')
+    gs = place(gs, 0, 1, 'gutenberg')
+    gs = follower(gs, 0, 1, 1)
+    gs = { ...gs, locations: gs.locations.map((l, i) => (i === 0 ? { ...l, activeEvent: makeEventCard('strength', 'local_event', 'ev'), eventRoundsLeft: 99 } : l)) }
+    gs = gameReducer(gs, { type: 'ATTACK', myInstanceId: 'magellan-0', theirInstanceId: 'gutenberg-1', kill: true })
+    expect(gs.players[1].archive).toContain('gutenberg')
+    expect(followersAt(gs, 0, 1)).toHaveLength(0)
+    expect(gs.locations[0].activeEvent?.id).toBe('ev')
+  })
 })
 
 describe('successions with nobody left', () => {
