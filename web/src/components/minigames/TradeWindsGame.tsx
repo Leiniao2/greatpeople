@@ -60,6 +60,32 @@ interface TradeWindsConfig {
   fact: string
   mode: Mode
   polar: PolarKind
+  /** Story overrides: the ports' names in visiting order, and a plane in place of a ship. */
+  portNames?: string[]
+  craft?: Craft
+}
+
+export type Craft = 'ship' | 'plane'
+
+/** What the board calls things; a plane flies the same winds by the hour. */
+export const CRAFT_WORDS: Record<Craft, {
+  icon: string; wait: string; stores: string; storesOut: string; stuck: string
+  sight: string; sighted: string; fogHint: string; help: string; slack: string; win: string; lose: string
+}> = {
+  ship: {
+    icon: '⛵', wait: '⚓ Heave to', stores: 'Supplies', storesOut: 'Supplies ran out at sea',
+    stuck: 'No wind can bring you to port before the supplies run out',
+    sight: 'Sunstone', sighted: 'Sighted', fogHint: ' In fog a heading drifts unless you sight the sun first.',
+    help: 'Arrows show where the wind blows. Pick a heading: the number is how far the wind takes you this day. Into the wind the sails go slack.',
+    slack: 'slack', win: 'Safe in port!', lose: 'Lost at sea',
+  },
+  plane: {
+    icon: '✈️', wait: '↻ Circle', stores: 'Fuel', storesOut: 'The tanks ran dry over the sea',
+    stuck: 'No wind can bring you to land before the fuel runs out',
+    sight: 'Star fix', sighted: 'Fixed', fogHint: ' In cloud a heading drifts unless you climb out and take a star fix first.',
+    help: 'Arrows show where the wind blows. Pick a heading: the number is how far you fly this hour. Straight into the wind you barely move.',
+    slack: 'stalled', win: 'Landed!', lose: 'Lost over the ocean',
+  },
 }
 
 export const CONFIGS: Record<string, TradeWindsConfig> = {
@@ -481,6 +507,8 @@ function Arrow({ x, y, dir, len, color, width = 1.6 }: { x: number; y: number; d
 export default function TradeWindsGame({ configId, difficulty, seed, params, onWin, onLose }: MinigameProps) {
   const cfg = resolveConfig(CONFIGS, configId, params, 'monsoon')
   const level = useMemo(() => generate(cfg, difficulty, seed), [cfg.mode, cfg.polar, difficulty, seed]) // eslint-disable-line react-hooks/exhaustive-deps
+  const words = CRAFT_WORDS[cfg.craft ?? 'ship']
+  const names = level.names.map((n, i) => cfg.portNames?.[i] ?? n)
   const [state, setState] = useState<State>(() => initialState(level))
   const [trail, setTrail] = useState<number[]>([level.start])
   const [sighting, setSighting] = useState(false)
@@ -501,8 +529,8 @@ export default function TradeWindsGame({ configId, difficulty, seed, params, onW
     live.current = { ...cur, state: next }
     setState(next); setTrail(t => [...t, next.pos]); setSighting(false)
     if (isWon(level, next)) { live.current.settled = true; win(); return }
-    if (next.turn >= level.budget) { live.current.settled = true; lose('Supplies ran out at sea'); return }
-    if (!solve(level, next, level.budget, false)) { live.current.settled = true; lose('No wind can bring you to port before the supplies run out') }
+    if (next.turn >= level.budget) { live.current.settled = true; lose(words.storesOut); return }
+    if (!solve(level, next, level.budget, false)) { live.current.settled = true; lose(words.stuck) }
   }
 
   const sail = (h: number) => act(sighting ? h + 8 : h)
@@ -525,8 +553,8 @@ export default function TradeWindsGame({ configId, difficulty, seed, params, onW
         </div>
         <div className="shrink-0 text-right text-[10px] text-muted tabular-nums">
           <p data-testid="tw-port" className="font-bold text-ink-2">⚓ {Math.min(state.target, level.ports.length)} / {level.ports.length}</p>
-          <p data-testid="tw-supplies" className={left <= 2 ? 'text-red-600 font-bold' : ''}>Supplies {left}</p>
-          {level.sunstones > 0 && <p data-testid="tw-sunstones">Sunstone {level.sunstones - state.sun}</p>}
+          <p data-testid="tw-supplies" className={left <= 2 ? 'text-red-600 font-bold' : ''}>{words.stores} {left}</p>
+          {level.sunstones > 0 && <p data-testid="tw-sunstones">{words.sight} {level.sunstones - state.sun}</p>}
         </div>
       </div>
 
@@ -585,14 +613,14 @@ export default function TradeWindsGame({ configId, difficulty, seed, params, onW
         })}
         {(() => {
           const [cx, cy] = center(state.pos)
-          return <text data-testid="tw-ship" x={cx} y={cy + 6} textAnchor="middle" fontSize={17}>⛵</text>
+          return <text data-testid="tw-ship" x={cx} y={cy + 6} textAnchor="middle" fontSize={17}>{words.icon}</text>
         })()}
       </svg>
 
       <p data-testid="tw-wind" className="text-[11px] text-center text-ink-2 -mt-1">
         {here.str > 0 ? `Wind here from the ${DIR_NAMES[(here.dir + 4) % 8]}, force ${here.str}` : 'Becalmed: only the current moves you'}
         {inFog ? ' · in fog' : ''}
-        {target !== undefined && !settled ? ` · next: ${level.names[state.target]} (${state.target + 1})` : ''}
+        {target !== undefined && !settled ? ` · next: ${names[state.target]} (${state.target + 1})` : ''}
       </p>
 
       {!settled && (
@@ -601,7 +629,7 @@ export default function TradeWindsGame({ configId, difficulty, seed, params, onW
             {COMPASS.flat().map(h => {
               if (h < 0) return (
                 <button key="wait" type="button" data-testid="tw-wait" onClick={() => act(-1)}
-                  className="h-12 rounded-lg border bg-panel border-line text-[10px] font-bold text-ink-2">⚓ Heave to</button>
+                  className="h-12 rounded-lg border bg-panel border-line text-[10px] font-bold text-ink-2">{words.wait}</button>
               )
               const real = inFog && !sighting ? -1 : h
               const sp = real >= 0 ? speedAt(level, state.pos, state.turn, real) : -1
@@ -609,7 +637,7 @@ export default function TradeWindsGame({ configId, difficulty, seed, params, onW
                 <button key={h} type="button" data-testid={`tw-h-${h}`} onClick={() => sail(h)} aria-label={`sail ${DIR_NAMES[h]}`}
                   className={`h-12 rounded-lg border text-sm font-bold leading-tight
                     ${sp === 0 ? 'bg-paper border-line text-muted/60' : 'bg-panel border-line text-ink hover:border-accent/50'}`}>
-                  {GLYPH[h]}<br /><span className="text-[9px] font-normal">{sp < 0 ? '?' : sp === 0 ? 'slack' : `${sp} cell${sp > 1 ? 's' : ''}`}</span>
+                  {GLYPH[h]}<br /><span className="text-[9px] font-normal">{sp < 0 ? '?' : sp === 0 ? words.slack : `${sp} cell${sp > 1 ? 's' : ''}`}</span>
                 </button>
               )
             })}
@@ -618,17 +646,17 @@ export default function TradeWindsGame({ configId, difficulty, seed, params, onW
             <button type="button" data-testid="tw-sun" disabled={!canSight} onClick={() => setSighting(v => !v)}
               className={`h-12 w-20 rounded-lg border text-[10px] font-bold disabled:opacity-40
                 ${sighting ? 'bg-amber-300 border-amber-500 text-ink' : 'bg-panel border-line text-ink-2'}`}>
-              ☀ {sighting ? 'Sighted' : 'Sunstone'}
+              ☀ {sighting ? words.sighted : words.sight}
             </button>
           )}
         </div>
       )}
       <p className="text-muted text-[10px] text-center -mt-1">
-        {settled ? '' : 'Arrows show where the wind blows. Pick a heading: the number is how far the wind takes you this day. Into the wind the sails go slack.'}
-        {!settled && level.sunstones > 0 && ' In fog a heading drifts unless you sight the sun first.'}
+        {settled ? '' : words.help}
+        {!settled && level.sunstones > 0 && words.fogHint}
       </p>
 
-      <OutcomeBanner outcome={outcome} detail={cfg.fact} winTitle="Safe in port!" loseTitle={reason ?? 'Lost at sea'} />
+      <OutcomeBanner outcome={outcome} detail={cfg.fact} winTitle={words.win} loseTitle={reason ?? words.lose} />
     </div>
   )
 }

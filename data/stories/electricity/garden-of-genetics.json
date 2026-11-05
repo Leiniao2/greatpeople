@@ -91,8 +91,8 @@
             "type": "minigame",
             "game": "punnett",
             "configId": "mendel-peas",
-            "instruction": "Map Mendel's crosses on a Punnett square — the grid Reginald Punnett drew in 1905 to explain them — and predict which pea offspring will be smooth and which wrinkled.",
-            "fact": "A Punnett square maps out all possible genetic combinations from two parents. When Mendel crossed smooth-seeded (Ss) plants together, the square predicts 25% SS, 50% Ss, and 25% ss offspring — 75% smooth, 25% wrinkled. The 3:1 ratio that baffled naturalists for centuries was hiding in plain arithmetic."
+            "instruction": "Breed peas the way Mendel did, crossing plants or letting one pollinate itself. Plan each cross on a Punnett square, the grid Reginald Punnett drew in 1905 to explain results like Mendel's, before you spend a season on it.",
+            "fact": "A Punnett square maps out all possible genetic combinations from two parents. When Mendel crossed round-seeded (Rr) plants together, the square predicts 25% RR, 50% Rr and 25% rr offspring: 75% round, 25% wrinkled. The 3:1 ratio that baffled naturalists for centuries was hiding in plain arithmetic."
           }
         }
       ]

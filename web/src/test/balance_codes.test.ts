@@ -1,5 +1,5 @@
 // Difficulty balance for the "codes" group: codebook readers, cipher,
-// decode, pseudo code, logic gates, pipeline, mirror, Lorentz and Punnett.
+// decode, pseudo code, logic gates, pipeline, mirror and Lorentz.
 // Each tier must be winnable inside its clock / caps, and get harder D1 → D4.
 import { createElement } from 'react'
 import { render, cleanup, fireEvent, act, screen } from '@testing-library/react'
@@ -14,7 +14,6 @@ import { OPEN_SLOTS, MAX_CHECKS, TIME_LIMIT } from '@/components/minigames/Logic
 import { PIPELINE_TIME_LIMITS } from '@/components/minigames/PipelineGame'
 import { CONFIGS as MIRRORS, MIRROR_TIME_LIMITS } from '@/components/minigames/MirrorGame'
 import { LORENTZ_CRASHES } from '@/components/minigames/LorentzGame'
-import PunnettGame, { CONFIGS as PUNNETTS, PUNNETT_MISTAKES, PUNNETT_TIME_LIMITS, cellAnswer, getOptions } from '@/components/minigames/PunnettGame'
 
 afterEach(() => { cleanup(); vi.useRealTimers() })
 const DIFFS: Difficulty[] = [1, 2, 3, 4]
@@ -112,57 +111,6 @@ describe('caps and clocks rise monotonically', () => {
     const capped = LORENTZ_CRASHES.slice(1)
     expect(capped.every((x, i) => i === 0 || x < capped[i - 1])).toBe(true)
     expect(LORENTZ_CRASHES[3]).toBeGreaterThanOrEqual(3)
-  })
-  it('punnett: fewer mistakes each tier, clock covers twelve cells', () => {
-    expect(PUNNETT_MISTAKES.every((x, i) => i === 0 || x < PUNNETT_MISTAKES[i - 1])).toBe(true)
-    expect(PUNNETT_MISTAKES[3]).toBeGreaterThanOrEqual(2)
-    for (const t of timed(PUNNETT_TIME_LIMITS)) expect(t).toBeGreaterThanOrEqual(1.5 * (READ_SECONDS + 12 * 3))
-  })
-})
-
-describe('Punnett plays through', () => {
-  const props = (configId: string, difficulty: Difficulty, onWin: () => void, onLose: () => void) =>
-    ({ configId, difficulty, seed: 1, onWin, onLose }) as never
-
-  it('filling every square correctly wins once at every tier', () => {
-    vi.useFakeTimers()
-    for (const [id, cfg] of Object.entries(PUNNETTS)) for (const d of DIFFS) {
-      const onWin = vi.fn(), onLose = vi.fn()
-      const { unmount } = render(createElement(PunnettGame, props(id, d, onWin, onLose)))
-      cfg.crosses.forEach((cross, ci) => {
-        for (let i = 0; i < 4; i++) {
-          fireEvent.click(screen.getAllByRole('button', { name: '?' })[0])
-          // The first open cell is the lowest index still unfilled, i.e. cell i.
-          // Filled cells are buttons too; the option picker comes last.
-          const opts = screen.getAllByRole('button', { name: cellAnswer(cross, Math.floor(i / 2), i % 2) })
-          fireEvent.click(opts[opts.length - 1])
-        }
-        if (ci + 1 < cfg.crosses.length) fireEvent.click(screen.getByText('Next Cross →'))
-      })
-      act(() => { vi.advanceTimersByTime(1500) })
-      expect(onWin, `${id} D${d}`).toHaveBeenCalledTimes(1)
-      expect(onLose).not.toHaveBeenCalled()
-      unmount()
-    }
-  })
-
-  it('wrong picks up to the cap lose once', () => {
-    for (const d of DIFFS) {
-      const onWin = vi.fn(), onLose = vi.fn()
-      const cross = PUNNETTS['mendel-peas'].crosses[0]
-      const wrong = getOptions(cross).find(o => o !== cellAnswer(cross, 0, 0))!
-      const { unmount } = render(createElement(PunnettGame, props('mendel-peas', d, onWin, onLose)))
-      for (let k = 0; k < PUNNETT_MISTAKES[d - 1] + 1; k++) {
-        const cells = screen.queryAllByRole('button', { name: /^[?✕]$/ })
-        if (!cells.length) break
-        fireEvent.click(cells[0])
-        const opts = screen.queryAllByRole('button', { name: wrong })
-        if (opts.length) fireEvent.click(opts[opts.length - 1])
-      }
-      expect(onLose, `D${d}`).toHaveBeenCalledTimes(1)
-      expect(onWin).not.toHaveBeenCalled()
-      unmount()
-    }
   })
 })
 

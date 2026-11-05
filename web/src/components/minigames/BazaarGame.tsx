@@ -60,6 +60,8 @@ export interface BazaarConfig {
   /** Opening ask ÷ lowest price. */
   markup: [number, number]
   awning: string
+  /** Story override for the line shown when the player waits a turn. */
+  waitMsg?: string
 }
 
 export const CONFIGS: Record<string, BazaarConfig> = {
@@ -582,7 +584,7 @@ export default function BazaarGame({ configId, difficulty, seed, params, onWin, 
       const s = r.state.ms[a.m]
       setMsg(reactText(lv, cur, a.m, s.hist[s.hist.length - 1]))
       if (s.status === 'open') setOffer(o => Math.min(o, s.ask, r.state.purse))
-    } else setMsg(lv.market === 'night' ? 'The watchman beats the next watch. Prices fall.' : 'You wait and watch the market.')
+    } else setMsg(cfg.waitMsg ?? (lv.market === 'night' ? 'The watchman beats the next watch. Prices fall.' : 'You wait and watch the market.'))
     const out = status(lv, r.state)
     if (out.state === 'won') { live.current.settled = true; win() }
     else if (out.state === 'lost') { live.current.settled = true; lose(out.reason) }

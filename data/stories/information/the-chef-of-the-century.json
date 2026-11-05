@@ -101,10 +101,60 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "worldclock",
-            "configId": "atelier-cities",
-            "instruction": "Robuchon's kitchens now run on three continents, and he calls them all. Work out the time in each city before the phone rings.",
-            "fact": "When Robuchon died in 2018, his restaurants around the world held 31 Michelin stars between them — more than any other chef."
+            "game": "bazaar",
+            "configId": "kaifeng-night",
+            "instruction": "However many kitchens he runs, Robuchon still chooses his produce himself. Before dawn at Rungis, the great wholesale market of Paris, buy what the kitchen needs as prices fall, but before the other chefs clear the stalls.",
+            "fact": "When Robuchon died in 2018, his restaurants around the world held 31 Michelin stars between them — more than any other chef.",
+            "params": {
+              "title": "Rungis Before Dawn",
+              "intro": "Buy the day’s produce at Rungis. Every hour, prices fall. But when a crowd of chefs gathers at a stall it is about to sell out. Wait for bargains, but buy before the crowd does, or before the market closes.",
+              "currency": "francs",
+              "setName": "menu",
+              "goods": [
+                {
+                  "name": "Truffle",
+                  "icon": "🍄"
+                },
+                {
+                  "name": "Turbot",
+                  "icon": "🐟"
+                },
+                {
+                  "name": "Butter",
+                  "icon": "🧈"
+                },
+                {
+                  "name": "Potatoes",
+                  "icon": "🥔"
+                },
+                {
+                  "name": "Bresse chicken",
+                  "icon": "🐔"
+                },
+                {
+                  "name": "Langoustines",
+                  "icon": "🦐"
+                }
+              ],
+              "names": [
+                "Marcel",
+                "Jeannot",
+                "Mère Brazier",
+                "Big Louis",
+                "Dédé",
+                "Madame Roux",
+                "Pierrot",
+                "Bernard",
+                "Lulu",
+                "Gaston",
+                "Old Henri",
+                "Josette",
+                "Fifi",
+                "Raymond",
+                "Claudette"
+              ],
+              "waitMsg": "Another hour passes at Rungis. Prices fall."
+            }
           }
         },
         {

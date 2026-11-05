@@ -60,7 +60,6 @@ export const GAMES = {
   soccer:       def('Soccer',        'Explore',  () => import('@/components/minigames/SoccerGame'), true),
   reporterflee: def('Reporter Flee', 'Explore',  () => import('@/components/minigames/ReporterFleeGame'), true),
   chimpmath:    def('Chimp Math',    'Puzzle',   () => import('@/components/minigames/ChimpMathGame'), true),
-  worldclock:   def('World Clock',   'Puzzle',   () => import('@/components/minigames/WorldClockGame'), true),
   // ── The card game itself: scripted lessons that close every Epic story
   fight:        def('Fight',         'Strategy', () => import('@/components/minigames/FightGame'), true),
   // ── New engines (growth-arc redesign)

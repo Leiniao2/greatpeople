@@ -28,11 +28,20 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "worldclock",
-            "configId": "earhart-atlantic",
+            "game": "tradewinds",
+            "configId": "viking-fog",
             "seed": 2174,
-            "instruction": "Earhart takes off from Harbour Grace as the sun goes down and will fly into the sunrise. Work out the hour on each side of the ocean.",
-            "fact": "Earhart flew a single-engine Lockheed Vega 5B, painted red with gold trim. The same aeroplane now hangs in the Smithsonian's National Air and Space Museum in Washington."
+            "instruction": "Earhart takes off from Harbour Grace as the sun goes down. Her altimeter fails and she flies into cloud and storm: hold a true course east by compass and the stars to make landfall in Ireland.",
+            "fact": "Earhart flew a single-engine Lockheed Vega 5B, painted red with gold trim. The same aeroplane now hangs in the Smithsonian's National Air and Space Museum in Washington.",
+            "params": {
+              "title": "Blind over the Atlantic, 1932",
+              "rule": "Cloud bends your heading",
+              "intro": "Fly east from Newfoundland to Ireland. In cloud you cannot see the sea or the stars, and a heading set blind drifts one point off. Climbing out for a star fix holds your heading true, but ice forms on the wings: you have only a few.",
+              "portNames": [
+                "Ireland"
+              ],
+              "craft": "plane"
+            }
           }
         }
       ]

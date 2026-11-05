@@ -324,7 +324,11 @@
   "category": "Puzzle",
   "configs": [
    "mendel-peas",
-   "blood-types"
+   "punnett-combs",
+   "yellow-mice",
+   "manx-cats",
+   "morgan-flies",
+   "chimp-blood"
   ]
  },
  "wordle": {
@@ -533,15 +537,6 @@
    "nim-learns",
    "kanzi-counts",
    "jane-goodall-chimps"
-  ]
- },
- "worldclock": {
-  "label": "World Clock",
-  "category": "Puzzle",
-  "configs": [
-   "magellan-voyage",
-   "telegraph-globe",
-   "modern-traveler"
   ]
  },
  "fight": {
