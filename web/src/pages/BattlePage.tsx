@@ -66,7 +66,7 @@ function BattleLobby({ matchType, onStart, onBack }: LobbyProps) {
         <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full bg-accent/8 blur-[140px]" />
       </div>
 
-      <div className="relative z-10 px-5 py-5 flex items-center gap-3 border-b border-line">
+      <div className="relative z-10 px-5 py-5 land:py-2 flex items-center gap-3 border-b border-line">
         <button onClick={onBack} className="text-muted hover:text-ink-2 text-sm transition-colors">← Back</button>
         <div>
           <h1 className="font-display text-xl font-bold tracking-[0.1em] text-ink uppercase">{label.title}</h1>
@@ -74,7 +74,9 @@ function BattleLobby({ matchType, onStart, onBack }: LobbyProps) {
         </div>
       </div>
 
-      <div className="relative z-10 flex-1 px-5 py-6 space-y-6 max-w-lg mx-auto w-full">
+      {/* Landscape phones: player settings left, era right, Start under the settings. */}
+      <div className="relative z-10 flex-1 px-5 py-6 space-y-6 max-w-lg mx-auto w-full
+        land:max-w-3xl land:grid land:grid-cols-2 land:content-start land:gap-x-8 land:gap-y-3 land:space-y-0 land:py-3">
 
         {isPvC ? (
           /* PvC: fixed 1 human, variable CPUs */
@@ -130,7 +132,7 @@ function BattleLobby({ matchType, onStart, onBack }: LobbyProps) {
         )}
 
         {/* Era Mode */}
-        <div>
+        <div className="land:col-start-2 land:row-start-1 land:row-span-3">
           <p className="text-xs text-muted uppercase tracking-widest mb-3">Era</p>
           <div className="grid grid-cols-2 gap-2 mb-3">
             {(['all', 'single'] as const).map(m => (
@@ -192,7 +194,7 @@ function BattleLobby({ matchType, onStart, onBack }: LobbyProps) {
             })
           }}
           disabled={!canStart}
-          className="w-full py-3.5 rounded-xl font-bold text-sm tracking-wide text-ink
+          className="land:col-start-1 land:self-end w-full py-3.5 land:py-2.5 rounded-xl font-bold text-sm tracking-wide text-ink
             bg-accent hover:bg-accent-hover active:bg-accent-hover disabled:opacity-40 disabled:cursor-not-allowed
             shadow-lg shadow-accent/25 transition-all duration-200">
           Start Game
@@ -280,7 +282,7 @@ function BattleContent() {
           <div className="absolute bottom-1/3 right-1/3 w-[500px] h-[500px] rounded-full bg-accent/8 blur-[140px]" />
         </div>
 
-        <div className="relative z-10 px-6 py-6 flex items-center gap-4 border-b border-line">
+        <div className="relative z-10 px-6 py-6 land:py-2 flex items-center gap-4 border-b border-line">
           <button onClick={() => (isEmbedded() ? postToNative({ type: 'close' }) : navigate('/home'))}
             className="text-muted hover:text-ink-2 transition-colors text-sm">
             ← Home
@@ -288,9 +290,10 @@ function BattleContent() {
           <h1 className="font-display text-xl font-bold tracking-[0.1em] text-ink uppercase">Fight Arena</h1>
         </div>
 
-        <div className="relative z-10 flex-1 flex flex-col items-center justify-center p-6 gap-8">
+        {/* Landscape phones: the title beside the modes. */}
+        <div className="relative z-10 flex-1 flex flex-col items-center justify-center p-6 gap-8 land:flex-row land:flex-wrap land:content-center land:gap-x-12 land:gap-y-2 land:p-3">
           <div className="text-center">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-4"
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-4 land:mb-2"
               style={{ background: 'rgba(99,102,241,0.12)', border: '1px solid rgba(99,102,241,0.25)' }}>
               <UiIcon name="fight" className="w-14 h-14" />
             </div>
@@ -298,7 +301,7 @@ function BattleContent() {
             <p className="text-muted/80 text-sm">Deploy Great People across history's greatest cities</p>
           </div>
 
-          <div className="w-full max-w-sm space-y-3">
+          <div className="w-full max-w-sm space-y-3 land:space-y-2">
             {MATCH_MODES.map(m => {
               const locked = isGuest && m.type !== 'pvc'
               return (
@@ -308,7 +311,7 @@ function BattleContent() {
                     if (locked) { setShowGuestPrompt(true); return }
                     setSelectedMatchType(m.type); setPagePhase('lobby')
                   }}
-                  className={`w-full flex items-center gap-4 px-5 py-4 rounded-2xl border bg-panel transition-all duration-200 text-left
+                  className={`w-full flex items-center gap-4 px-5 py-4 land:py-2.5 rounded-2xl border bg-panel transition-all duration-200 text-left
                     ${locked ? 'border-line opacity-50' : m.border}`}>
                   <UiIcon name={m.icon} className="w-11 h-11" />
                   <div className="flex-1">
@@ -325,7 +328,7 @@ function BattleContent() {
           </div>
 
           {isGuest && (
-            <p className="text-xs text-muted/80 text-center max-w-xs">
+            <p className="text-xs text-muted/80 text-center max-w-xs land:basis-full land:max-w-none">
               Sign in to unlock Casual & Ranked matches
             </p>
           )}
