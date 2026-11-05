@@ -1,5 +1,6 @@
 import { useCallback, useState, useRef } from 'react'
 import { isEmbedded, postToNative } from '@/bridge/native'
+import UiIcon, { type UiIconName } from '@/components/UiIcon'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '@/hooks/useAuth'
 import type { GameState, GameSetup, EraMode, PlayerMode, MatchType } from '@/types'
@@ -183,10 +184,10 @@ function BattleLobby({ matchType, onStart, onBack }: LobbyProps) {
 
 type PagePhase = 'home' | 'lobby' | 'game'
 
-const MATCH_MODES: { type: MatchType; icon: string; title: string; desc: string; accent: string; border: string }[] = [
+const MATCH_MODES: { type: MatchType; icon: UiIconName; title: string; desc: string; accent: string; border: string }[] = [
   {
     type:   'casual',
-    icon:   '🤝',
+    icon:   'casual',
     title:  'Casual',
     desc:   'Play vs Human — friendly match, no stakes',
     accent: 'text-emerald-400',
@@ -194,7 +195,7 @@ const MATCH_MODES: { type: MatchType; icon: string; title: string; desc: string;
   },
   {
     type:   'ranked',
-    icon:   '🏆',
+    icon:   'ranked',
     title:  'Ranked',
     desc:   'Play vs Human — competitive, climb the ladder',
     accent: 'text-accent',
@@ -202,7 +203,7 @@ const MATCH_MODES: { type: MatchType; icon: string; title: string; desc: string;
   },
   {
     type:   'pvc',
-    icon:   '🤖',
+    icon:   'computer',
     title:  'vs Computer',
     desc:   'Fight AI opponents — sharpen your strategy',
     accent: 'text-indigo-400',
@@ -269,7 +270,7 @@ function BattleContent() {
           <div className="text-center">
             <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-4"
               style={{ background: 'rgba(99,102,241,0.12)', border: '1px solid rgba(99,102,241,0.25)' }}>
-              <span className="text-4xl select-none">⚔</span>
+              <UiIcon name="fight" className="w-14 h-14" />
             </div>
             <h2 className="font-display text-2xl font-bold tracking-wide text-ink uppercase mb-1">Choose your Battle</h2>
             <p className="text-muted/80 text-sm">Deploy Great People across history's greatest cities</p>
@@ -287,7 +288,7 @@ function BattleContent() {
                   }}
                   className={`w-full flex items-center gap-4 px-5 py-4 rounded-2xl border bg-panel transition-all duration-200 text-left
                     ${locked ? 'border-line opacity-50' : m.border}`}>
-                  <span className="text-3xl shrink-0">{m.icon}</span>
+                  <UiIcon name={m.icon} className="w-11 h-11" />
                   <div className="flex-1">
                     <p className={`text-base font-bold tracking-wide ${locked ? 'text-muted' : m.accent}`}>{m.title}</p>
                     <p className="text-xs text-muted mt-0.5">{m.desc}</p>

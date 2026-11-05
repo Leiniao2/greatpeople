@@ -53,6 +53,9 @@ const FOLDERS = {
   symbols:      { width: 600, mobile: false },
   // Minigame art (web/src/games/art.ts); web only.
   games:        { width: 1024, mobile: false },
+  // Painted medallion icons for modes and categories (web/src/components/UiIcon.tsx),
+  // cropped square; also bundled in the apps for their native screens.
+  icons:        { width: 192, mobile: true, square: true },
 }
 const QUALITY = 80
 
@@ -69,8 +72,9 @@ async function isStale(src, out) {
   }
 }
 
-async function encode(src, width) {
-  return sharp(src).resize({ width, withoutEnlargement: true }).webp({ quality: QUALITY, effort: 6 }).toBuffer()
+async function encode(src, width, square = false) {
+  const resize = square ? { width, height: width, fit: 'cover', position: 'centre' } : { width, withoutEnlargement: true }
+  return sharp(src).resize(resize).webp({ quality: QUALITY, effort: 6 }).toBuffer()
 }
 
 async function writeIfStale(src, out, width, buf) {
@@ -93,7 +97,7 @@ async function removeJpegs(dir) {
 async function main() {
   let converted = 0, skipped = 0, bytesIn = 0, bytesOut = 0
 
-  for (const [folder, { width, mobile }] of Object.entries(FOLDERS)) {
+  for (const [folder, { width, mobile, square }] of Object.entries(FOLDERS)) {
     const srcDir = path.join(SRC, folder)
     const files = (await fs.readdir(srcDir)).filter(f => /\.(jpe?g|png)$/i.test(f)).sort()
 
@@ -112,7 +116,7 @@ async function main() {
       for (const t of targets) if (await isStale(src, t)) stale.push(t)
       if (stale.length === 0) { skipped++; continue }
 
-      const buf = await encode(src, width)
+      const buf = await encode(src, width, square)
       for (const t of stale) await writeIfStale(src, t, width, buf)
 
       if (mobile) {

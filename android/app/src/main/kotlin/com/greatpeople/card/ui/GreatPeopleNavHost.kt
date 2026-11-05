@@ -16,7 +16,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.platform.LocalContext
 import com.greatpeople.card.ui.screens.GamePlayerScreen
 import com.greatpeople.card.ui.screens.PlayUrls
-import com.greatpeople.card.ui.screens.ArcadeScreen
 import com.greatpeople.card.ui.screens.CardDetailScreen
 import com.greatpeople.card.ui.screens.CollectionScreen
 import com.greatpeople.card.ui.screens.EpicScreen
@@ -110,10 +109,13 @@ fun GreatPeopleNavHost() {
                 )
             }
 
+            // The Arcade is the web one (per-game A1–D6 ladders), full screen.
             composable(Screen.Arcade.route) {
-                ArcadeScreen(
-                    onPlayChallenge = { id -> navController.navigate(Screen.PlayChallenge.route(id)) },
-                    onBack = { navController.popBackStack() },
+                val context = LocalContext.current
+                GamePlayerScreen(
+                    url = PlayUrls.arcade(if (isGuest) null else context.accessToken()),
+                    onMessage = { msg -> if (msg.type == "close") navController.popBackStack() },
+                    onClose = { navController.popBackStack() },
                 )
             }
 

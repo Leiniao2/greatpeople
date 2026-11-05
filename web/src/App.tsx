@@ -46,6 +46,7 @@ export default function App() {
         <Route path="/play/story/:slug" element={<PrivateRoute><PlayStoryPage /></PrivateRoute>} />
         <Route path="/play/challenge/:id" element={<PrivateRoute><PlayChallengePage /></PrivateRoute>} />
         <Route path="/play/battle" element={<PrivateRoute><BattlePage /></PrivateRoute>} />
+        <Route path="/play/arcade" element={<PrivateRoute><MiniChallengePage /></PrivateRoute>} />
 
         {/* Dev-only harness for playing any minigame engine directly */}
         {GameLabPage && <Route path="/lab/:game?/:configId?" element={<GameLabPage />} />}

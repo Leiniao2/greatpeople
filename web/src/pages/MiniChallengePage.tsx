@@ -1,5 +1,6 @@
 import { useState, useMemo, useCallback, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { isEmbedded, postToNative } from '@/bridge/native'
 import ChallengeRenderer from '@/games/ChallengeRenderer'
 import ResultPanel from '@/games/ResultPanel'
 import { GAMES, type Category, type GameKey } from '@/games/registry'
@@ -136,7 +137,7 @@ function TrackCard({ game, progress, onOpen, onContinue }: {
     <div className="flex flex-col gap-2 p-3.5 rounded-2xl bg-panel border border-line hover:border-line-2 transition-all">
       <button onClick={onOpen} className="flex items-center justify-between gap-2 text-left">
         <span className="flex items-center gap-2 min-w-0">
-          <UiIcon name={cat.icon} className={`${cat.color} w-4 h-4`} />
+          <UiIcon name={cat.icon} className="w-7 h-7" />
           <span className="text-ink font-semibold text-sm truncate">{GAMES[game].label}</span>
         </span>
         <span className="text-[10px] text-muted shrink-0">
@@ -215,7 +216,7 @@ export default function MiniChallengePage() {
     <div className="min-h-screen bg-paper flex flex-col">
       <div className="sticky top-0 z-30 bg-paper/95 backdrop-blur-md border-b border-line">
         <div className="flex items-center gap-3 px-4 py-3">
-          <button onClick={() => (openGame ? setOpenGame(null) : navigate('/home'))}
+          <button onClick={() => (openGame ? setOpenGame(null) : isEmbedded() ? postToNative({ type: 'close' }) : navigate('/home'))}
             className="w-9 h-9 flex items-center justify-center rounded-xl bg-panel text-muted hover:text-ink hover:bg-panel-2 transition-all">
             ←
           </button>
@@ -236,7 +237,7 @@ export default function MiniChallengePage() {
                 <button key={cat.key} onClick={() => setActiveCategory(cat.key)}
                   className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap border transition-all shrink-0
                     ${active ? `${cat.bg} ${cat.color} ${cat.border}` : 'bg-panel border-line text-muted hover:border-line-2 hover:text-ink-2'}`}>
-                  <UiIcon name={cat.icon} className="w-3.5 h-3.5" />
+                  <UiIcon name={cat.icon} line className="w-3.5 h-3.5" />
                   <span>{cat.label}</span>
                   <span className={`text-[9px] ${active ? 'opacity-70' : 'opacity-40'}`}>{count}</span>
                 </button>
@@ -254,7 +255,7 @@ export default function MiniChallengePage() {
           {sections.map(section => (
             <section key={section.key} className="mb-5">
               <h2 className={`flex items-center gap-2 px-1 mb-2 text-xs font-bold uppercase tracking-widest ${section.color}`}>
-                <UiIcon name={section.icon} className="w-4 h-4" />{section.label}
+                <UiIcon name={section.icon} line className="w-4 h-4" />{section.label}
                 <span className="text-muted/70 font-normal normal-case tracking-normal">· {section.games.length} tracks</span>
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
