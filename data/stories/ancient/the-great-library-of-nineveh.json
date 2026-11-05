@@ -28,7 +28,7 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "snake",
+            "game": "packtrain",
             "configId": "nineveh-tablets",
             "seed": 33329,
             "instruction": "The king's agents ride for Babylon, Nippur and Uruk with a list in hand. Bring back only the tablets Ashurbanipal has asked for.",

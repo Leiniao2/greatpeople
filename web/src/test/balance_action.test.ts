@@ -13,7 +13,6 @@ import { CONFIGS as REPORTER, livesFor } from '@/components/minigames/ReporterFl
 import { CONFIGS as CHIMP, timeFor as chimpTime, passMark as chimpPass } from '@/components/minigames/ChimpMathGame'
 import { musicRules } from '@/components/minigames/MusicGame'
 import { tierFor as riverTier } from '@/components/minigames/RiverRunGame'
-import { tierFor as snakeTier, CONFIGS as SNAKE } from '@/components/minigames/SnakeGame'
 import { rhythmRules, buildChart, newRun, hitLane, sweepMisses, verdict, CONFIGS as RHYTHM } from '@/components/minigames/RhythmGame'
 import * as RU from '@/components/minigames/RoundUpGame'
 import * as FS from '@/components/minigames/FieldSurveyGame'
@@ -84,13 +83,6 @@ describe('Reporter Flee, Chimp Math, Music, River Run: tiers tighten monotonical
     expect(ms[2]).toBeGreaterThan(ms[3])
   })
 
-  it('Caravan Trail: the pace floor stays humane on a phone (≥ 120 ms a step)', () => {
-    for (const cfg of Object.values(SNAKE)) {
-      const floors = DIFFS.map(d => snakeTier(cfg, d).minMs)
-      expect(Math.min(...floors)).toBeGreaterThanOrEqual(120)
-      expect(nonIncreasing(floors)).toBe(true)
-    }
-  })
 })
 
 // ── Rhythm: a jittery phone player ────────────────────────────────────────────

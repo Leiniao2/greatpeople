@@ -91,7 +91,7 @@ export const GAMES = {
   campaign:     def('Campaign Trail','Strategy', () => import('@/components/minigames/CampaignGame'), true),
   // ── Wave 1 of the new game types (docs/game-catalog.md)
   sokoban:      def('Stone Haulers',     'Puzzle',   () => import('@/components/minigames/SokobanGame'), true),
-  snake:        def('Caravan Trail',     'Explore',  () => import('@/components/minigames/SnakeGame'), true),
+  packtrain:    def('Pack Train',        'Explore',  () => import('@/components/minigames/PackTrainGame'), true),
   tradeboard:   def('Merchant Board',    'Strategy', () => import('@/components/minigames/TradeBoardGame'), true),
   ferry:        def('River Crossing',    'Puzzle',   () => import('@/components/minigames/FerryGame'), true),
   hanoi:        def('Temple Disks',      'Puzzle',   () => import('@/components/minigames/HanoiGame'), true),

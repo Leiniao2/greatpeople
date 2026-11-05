@@ -70,9 +70,9 @@
           "challenge": {
             "type": "minigame",
             "game": "painting",
-            "configId": "envoys-report",
+            "configId": "mexica-codex",
             "seed": 47589,
-            "instruction": "Strangers have landed on the coast in floating houses. Montezuma's envoys bring their report painted on cloth — paint the ships as they saw them.",
+            "instruction": "Strangers have landed on the coast in floating houses. Montezuma's envoys bring their report in paint, as Mexica scribes always had. Restore a page those scribes painted twenty years later: the founding of Tenochtitlan.",
             "fact": "The story that Montezuma mistook Cortés for Quetzalcoatl appears in later accounts heavily influenced by Spanish interpreters and indigenous collaborators with reasons to justify the conquest. Modern historians believe Montezuma was an experienced and politically sophisticated ruler who recognized the Spanish as dangerous strangers — not gods. He attempted to manage the threat diplomatically before it overwhelmed him."
           }
         },
@@ -116,7 +116,7 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "snake",
+            "game": "packtrain",
             "configId": "pochteca",
             "seed": 18936,
             "instruction": "The empire falls, but the markets Cortés marvelled at were stocked by merchants who walked. Lead the porters' line to every load the Tlatelolco market has ordered.",

@@ -57,7 +57,7 @@ const GAME_FIT = {
   braille: [[S, E], 'read the raised dots'], telegraph: [[S, E], 'tap out the Morse message'],
   binary: [[E, I], 'decode the bits'], fight: [ANY, 'win the fight'],
   // wave 1
-  sokoban: [[A, C, M], 'haul the stones onto their marks'], snake: [[A, C, M, R], 'lead the caravan to every load'],
+  sokoban: [[A, C, M], 'haul the stones onto their marks'], packtrain: [[A, C, M, R], 'bring every load to market'],
   tradeboard: [[M, R, S], 'outtrade the rival merchants'], ferry: [[M, R], 'get everyone safely across'],
   hanoi: [[A, C, S], 'move the stack of disks'], tangram: [[A, M, R], 'fit the seven pieces to the shape'],
   nonogram: [ANY, 'reveal the picture from its clues'], sapper: [[R, S, E], 'clear the field without a blast'],

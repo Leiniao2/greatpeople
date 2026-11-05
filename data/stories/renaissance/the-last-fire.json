@@ -69,7 +69,7 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "snake",
+            "game": "packtrain",
             "configId": "quito-gold",
             "seed": 50673,
             "instruction": "Quito will burn rather than become a Spanish trophy — but first its treasure must go. Lead the llama train to each load before the Spanish arrive, then on into the mountains.",

@@ -47,10 +47,10 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "snake",
+            "game": "packtrain",
             "configId": "sahara",
             "seed": 89878,
-            "instruction": "Years later he crosses the Sahara to the Mali Empire. Lead the salt caravan south and keep your line clear of the rising dunes.",
+            "instruction": "Years later he crosses the Sahara to the Mali Empire. Lead the salt caravan south, well to well; each well can be drunk dry only once.",
             "fact": "Ibn Battuta left Tangier in 1325 intending only to make the hajj to Mecca. He was 21 years old. The journey expanded as his curiosity grew — he kept finding reasons not to return home, following trade routes, accepting appointments, and exploring rumors of distant courts. He finally returned to Morocco 29 years later and immediately began planning further travels."
           }
         }
