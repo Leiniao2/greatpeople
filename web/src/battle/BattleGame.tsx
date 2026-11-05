@@ -1058,7 +1058,7 @@ export function BattleGame({ gameState, dispatch, onExit, embedded = false, bann
   }
 
   return (
-    <div className={`relative bg-paper flex flex-col overflow-hidden select-none ${embedded ? '' : 'min-h-screen'}`}>
+    <div className={`relative bg-paper flex flex-col overflow-hidden select-none ${embedded ? '' : 'min-h-screen land:h-[100dvh] land:min-h-0'}`}>
       {!embedded && (
         <div className="pointer-events-none fixed inset-0">
           <div className="absolute top-1/3 left-1/4 w-96 h-96 rounded-full bg-line/40 blur-[120px]" />
@@ -1067,7 +1067,7 @@ export function BattleGame({ gameState, dispatch, onExit, embedded = false, bann
       )}
 
       {/* Header */}
-      <div className="relative z-10 px-4 py-2 flex items-center gap-3 border-b border-line bg-black/20 shrink-0">
+      <div className="relative z-10 px-4 py-2 land:py-1 flex items-center gap-3 border-b border-line bg-black/20 shrink-0">
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-1">
             <span className="text-[10px] text-muted uppercase tracking-widest shrink-0">
@@ -1100,8 +1100,24 @@ export function BattleGame({ gameState, dispatch, onExit, embedded = false, bann
         </div>
       </div>
       {showRules && <RulesModal onClose={() => setShowRules(false)} />}
+      {/* The board is laid out for a phone held sideways. */}
+      {!embedded && (
+        <div className="hidden phone-portrait:flex fixed inset-0 z-[300] bg-paper flex-col items-center justify-center gap-4 p-8 text-center">
+          <svg width="72" height="72" viewBox="0 0 72 72" aria-hidden="true" className="text-accent animate-pulse">
+            <rect x="24" y="10" width="24" height="44" rx="4" fill="none" stroke="currentColor" strokeWidth="3" opacity="0.35" />
+            <rect x="10" y="34" width="52" height="26" rx="4" fill="none" stroke="currentColor" strokeWidth="3" />
+            <path d="M52 14 a14 14 0 0 1 8 14" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+            <path d="M56 26 l4 3 l3 -4" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+          <p className="font-display text-lg font-bold text-ink uppercase tracking-wide">Turn your phone sideways</p>
+          <p className="text-sm text-muted max-w-xs">The Fight Arena is played in landscape, so every city and your whole hand fit on screen.</p>
+        </div>
+      )}
       {banner}
 
+      {/* Landscape phones: board and hand on the left, actions on the right. */}
+      <div className="flex flex-col flex-1 min-h-0 land:flex-row">
+      <div className="flex flex-col min-w-0 land:flex-1 land:overflow-y-auto">
       {/* Board: Locations */}
       <div className="relative z-10 flex-shrink-0 overflow-x-auto py-2 px-3 border-b border-line">
         <div className="flex gap-2 justify-center min-w-full w-max mx-auto">
@@ -1243,7 +1259,8 @@ export function BattleGame({ gameState, dispatch, onExit, embedded = false, bann
             </p>
           )}
           <p className="text-[10px] text-muted/80 uppercase tracking-widest mb-1.5 text-center">Your Hand</p>
-          <div className="flex gap-1.5 overflow-x-auto pb-1 justify-center">
+          <div className="overflow-x-auto pb-1">
+          <div className="flex gap-1.5 w-max min-w-full justify-center mx-auto">
             {currentPlayer.gpHand.map((id, i) => (
               <HandCard
                 key={id}
@@ -1285,11 +1302,14 @@ export function BattleGame({ gameState, dispatch, onExit, embedded = false, bann
               <p className="text-muted/60 text-xs italic py-6 px-2">No cards in hand</p>
             )}
           </div>
+          </div>
         </div>
       )}
 
+      </div>
+
       {/* Action Buttons */}
-      <div className="relative z-10 flex-1 px-3 py-3 flex flex-col gap-2 max-w-lg mx-auto w-full">
+      <div className="relative z-10 flex-1 px-3 py-3 flex flex-col gap-2 max-w-lg mx-auto w-full land:flex-none land:w-60 land:max-w-none land:mx-0 land:px-2 land:py-2 land:gap-1.5 land:border-l land:border-line land:overflow-y-auto">
         {/* Kill toggle (for attacks) */}
         {selection.mode === 'select-onboard' && selectedOnboard?.playerId === currentPlayer.id && (
           <div className="flex items-center gap-2 mb-1">
@@ -1478,6 +1498,7 @@ export function BattleGame({ gameState, dispatch, onExit, embedded = false, bann
             </div>
           </div>
         )}
+      </div>
       </div>
 
       {/* Battle / event summary modal */}

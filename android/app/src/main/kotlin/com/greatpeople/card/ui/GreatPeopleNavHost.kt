@@ -14,6 +14,11 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.runtime.DisposableEffect
+import android.app.Activity
+import android.content.Context
+import android.content.ContextWrapper
+import android.content.pm.ActivityInfo
 import com.greatpeople.card.ui.screens.GamePlayerScreen
 import com.greatpeople.card.ui.screens.PlayUrls
 import com.greatpeople.card.ui.screens.CardDetailScreen
@@ -169,9 +174,15 @@ fun GreatPeopleNavHost() {
                 }
             }
 
-            // The Fight Arena is the web game, full screen in a WebView.
+            // The Fight Arena is the web game, full screen in a WebView, played
+            // in landscape; the rest of the app stays portrait.
             composable(Screen.Battle.route) {
                 val context = LocalContext.current
+                DisposableEffect(Unit) {
+                    val activity = context.findActivity()
+                    activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
+                    onDispose { activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT }
+                }
                 GamePlayerScreen(
                     url = PlayUrls.battle(if (isGuest) null else context.accessToken()),
                     onMessage = { msg -> if (msg.type == "close") navController.popBackStack() },
@@ -199,4 +210,11 @@ fun GreatPeopleNavHost() {
             }
         }
     }
+}
+
+/** The Activity behind a Compose context, unwrapping any ContextWrapper. */
+private tailrec fun Context.findActivity(): Activity? = when (this) {
+    is Activity -> this
+    is ContextWrapper -> baseContext.findActivity()
+    else -> null
 }
