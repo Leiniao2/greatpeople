@@ -42,12 +42,17 @@ export function postToNative(msg: BridgeMessage): boolean {
 export function adoptTokenFromFragment(): boolean {
   try {
     const hash = window.location.hash.replace(/^#/, '')
-    if (!hash) return false
+    // The fragment is stripped once read, so a reload inside the app (a new
+    // deploy, a rotation) would otherwise drop a guest onto the web login.
+    if (!hash) return isEmbedded() && sessionStorage.getItem(GUEST_KEY) === '1'
     const params = new URLSearchParams(hash)
     const token = params.get('token')
     const guest = params.get('guest') === '1'
-    if (token) localStorage.setItem('access_token', token)
+    if (token) { localStorage.setItem('access_token', token); sessionStorage.removeItem(GUEST_KEY) }
+    else if (guest) sessionStorage.setItem(GUEST_KEY, '1')
     if (token || guest) window.history.replaceState(null, '', window.location.pathname + window.location.search)
     return !token && guest
   } catch { return false /* storage unavailable */ }
 }
+
+const GUEST_KEY = 'gp_native_guest'

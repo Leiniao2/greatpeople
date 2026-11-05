@@ -3,6 +3,13 @@ export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      // A phone held sideways: short and wide.  The Fight Arena switches to
+      // a two-column board here.
+      screens: {
+        land: { raw: '(orientation: landscape) and (max-height: 540px)' },
+        // A phone held upright, where the arena asks to be turned sideways.
+        'phone-portrait': { raw: '(orientation: portrait) and (max-width: 540px)' },
+      },
       // "Parchment & Ink" palette — aged paper, dark ink, oxblood seal.
       colors: {
         paper:    { DEFAULT: '#f3ecdc', 2: '#eadfc8' },
