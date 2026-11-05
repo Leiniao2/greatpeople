@@ -5,10 +5,11 @@ import { BrowserRouter } from 'react-router-dom'
 import { GoogleOAuthProvider } from '@react-oauth/google'
 import App from './App'
 import { adoptTokenFromFragment } from './bridge/native'
+import { useAuth } from './hooks/useAuth'
 
-// A native app opening /play/… passes its session as #token=…; it must be in
-// storage before the auth store reads it.
-adoptTokenFromFragment()
+// A native app opening /play/… passes its session as #token=… (or #guest=1);
+// it must be in storage before the auth store reads it.
+if (adoptTokenFromFragment()) useAuth.getState().enterGuestMode()
 
 const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID as string | undefined
 

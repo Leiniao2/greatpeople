@@ -72,13 +72,18 @@ fun GamePlayerScreen(
     }
 }
 
-/** Play-route URLs; the session token rides in the fragment, never in the request line. */
+/**
+ * Play-route URLs; the session token rides in the fragment, never in the
+ * request line. Without a token (guest mode) the page is told to play as a
+ * guest instead of bouncing to the web login.
+ */
 object PlayUrls {
     fun story(slug: String, token: String?) = embed("/play/story/$slug", token)
     fun challenge(id: String, token: String?) = embed("/play/challenge/$id", token)
+    fun battle(token: String?) = embed("/play/battle", token)
     private fun embed(path: String, token: String?): String {
         val base = BuildConfig.WEB_BASE_URL.trimEnd('/')
-        val fragment = token?.let { "#token=" + android.net.Uri.encode(it) } ?: ""
+        val fragment = token?.let { "#token=" + android.net.Uri.encode(it) } ?: "#guest=1"
         return "$base$path?embed=1$fragment"
     }
 }

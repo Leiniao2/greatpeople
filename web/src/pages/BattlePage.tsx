@@ -1,4 +1,5 @@
 import { useCallback, useState, useRef } from 'react'
+import { isEmbedded, postToNative } from '@/bridge/native'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '@/hooks/useAuth'
 import type { GameState, GameSetup, EraMode, PlayerMode, MatchType } from '@/types'
@@ -257,7 +258,7 @@ function BattleContent() {
         </div>
 
         <div className="relative z-10 px-6 py-6 flex items-center gap-4 border-b border-line">
-          <button onClick={() => navigate('/home')}
+          <button onClick={() => (isEmbedded() ? postToNative({ type: 'close' }) : navigate('/home'))}
             className="text-muted hover:text-ink-2 transition-colors text-sm">
             ← Home
           </button>

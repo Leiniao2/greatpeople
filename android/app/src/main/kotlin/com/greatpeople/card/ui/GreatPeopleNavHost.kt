@@ -17,7 +17,6 @@ import androidx.compose.ui.platform.LocalContext
 import com.greatpeople.card.ui.screens.GamePlayerScreen
 import com.greatpeople.card.ui.screens.PlayUrls
 import com.greatpeople.card.ui.screens.ArcadeScreen
-import com.greatpeople.card.ui.screens.BattleScreen
 import com.greatpeople.card.ui.screens.CardDetailScreen
 import com.greatpeople.card.ui.screens.CollectionScreen
 import com.greatpeople.card.ui.screens.EpicScreen
@@ -47,17 +46,26 @@ sealed class Screen(val route: String) {
 private fun android.content.Context.accessToken(): String? =
     getSharedPreferences("auth", android.content.Context.MODE_PRIVATE).getString("access_token", null)
 
+/** Forget the session here and in the embedded web app's storage. */
+private fun android.content.Context.signOut() {
+    getSharedPreferences("auth", android.content.Context.MODE_PRIVATE).edit().remove("access_token").apply()
+    android.webkit.WebStorage.getInstance().deleteAllData()
+}
+
 @Composable
 fun GreatPeopleNavHost() {
     val navController = rememberNavController()
     var isGuest by remember { mutableStateOf(false) }
+    val appContext = LocalContext.current
+    // A saved session skips the login screen; sign-out clears it.
+    val startRoute = remember { if (appContext.accessToken() != null) Screen.Home.route else Screen.Login.route }
 
     Scaffold(
         containerColor = Color(0xFF080812),
     ) { padding ->
         NavHost(
             navController = navController,
-            startDestination = Screen.Login.route,
+            startDestination = startRoute,
             modifier = Modifier.padding(padding),
         ) {
             composable(Screen.Login.route) {
@@ -159,16 +167,13 @@ fun GreatPeopleNavHost() {
                 }
             }
 
+            // The Fight Arena is the web game, full screen in a WebView.
             composable(Screen.Battle.route) {
-                BattleScreen(
-                    isGuest = isGuest,
-                    onBack = { navController.popBackStack() },
-                    onSignIn = {
-                        isGuest = false
-                        navController.navigate(Screen.Login.route) {
-                            popUpTo(0) { inclusive = true }
-                        }
-                    },
+                val context = LocalContext.current
+                GamePlayerScreen(
+                    url = PlayUrls.battle(if (isGuest) null else context.accessToken()),
+                    onMessage = { msg -> if (msg.type == "close") navController.popBackStack() },
+                    onClose = { navController.popBackStack() },
                 )
             }
 
@@ -183,6 +188,7 @@ fun GreatPeopleNavHost() {
                     },
                     onSignOut = {
                         isGuest = false
+                        appContext.signOut()
                         navController.navigate(Screen.Login.route) {
                             popUpTo(0) { inclusive = true }
                         }
