@@ -74,6 +74,8 @@ export type LegacyEffect =
   | { kind: 'successors'; count: number }
   /** More Great People held at once: each slot founds a lineage of its own. */
   | { kind: 'slots'; count: number }
+  /** More cities on the board, for every player, while the legacy is in effect. */
+  | { kind: 'locations'; count: number }
   | { kind: 'income'; card: 'event' | 'follower'; every: number }
 
 /** A Great Person's legacy: earned once by winning `unlock.wins` fights in `unlock.stat`, then kept by the player for the rest of the game. */
@@ -272,4 +274,17 @@ export interface GameState {
   pendingSummary: GameSummary | null
   /** Further contests resolved at the same moment, shown one after another. */
   summaryQueue?: GameSummary[]
+  /** Prizes won and not yet taken, oldest first (see PendingReward). */
+  pendingRewards?: PendingReward[]
+}
+
+/**
+ * A prize for winning a contest: the winner takes 2 Followers or 1 Event
+ * card, times `size` (2 for the global competition).
+ */
+export interface PendingReward {
+  playerId: string
+  size: 1 | 2
+  /** What was won, for the reward pop-up ("Won the attack at Rome"). */
+  reason: string
 }

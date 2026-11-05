@@ -10,9 +10,9 @@ Game could be configured All era or Single era. The Single era game only uses lo
 
 Every game starts at a real year (see §9, Real history). A Single era game opens on its era: the year its earliest-born Great Person was born. An All era game opens on a start era (random unless chosen) and moves forward through history from there.
 
-Whatever era history opens in, the first screen asks each player to pick one Great Person from 3 candidates (fewer, equal for everyone, when a small era cannot offer a full table 3 each); the computer takes its strongest. The candidates are the earliest-born of the pool from the opening year on, shuffled between the players, so the table starts as contemporaries. Each player also gets 2 Event cards and 8 Follower cards. A player holds one Great Person at a time, their Great Person slot; slot legacies (First Empire, Kingmaker, New World Patronage, Mother of Russia) and the global competition prize add slots, and each new slot is filled with a pick from people born later, founding a lineage of its own (§9). All cards start as hand cards.
+Whatever era history opens in, the first screen asks each player to pick one Great Person from 3 candidates (fewer, equal for everyone, when a small era cannot offer a full table 3 each); the computer takes its strongest. The candidates are the earliest-born of the pool from the opening year on, shuffled between the players, so the table starts as contemporaries. Each player also gets 1 Event card and 1 Follower card (contest prizes bring more). A player holds one Great Person at a time, their Great Person slot; slot legacies (First Empire, Kingmaker, New World Patronage, Mother of Russia) add slots, and each new slot is filled with a pick from people born later, founding a lineage of its own (§9). All cards start as hand cards.
 
-All Locations cards will be revealed at the begining of the game round and set on table.
+The board opens on 4 Location cards (cities) of the age history opens in, revealed and set on the table. The cities always belong to the current age: when history moves into a new age (an age opens with the birth of its first Great Person), every city becomes one of the new age, and the cards and running states on it stay. City legacies (Circumnavigation, Seven Seas) add a city for every player while in effect; set aside, the board shrinks back as soon as a city is empty.
 
 The board will look like a table, with column displayed as different locations. rows displayed as different players.
 
@@ -86,7 +86,7 @@ The Scenario card will keep working until it is replaced by another event or som
 
 ## 6. Getting new Great People card
 
-New Great People only arrive as successors (§9). When a Great Person dies, the player chooses a successor born later than the current year. Winning a global competition with the Great Person reward founds a new lineage: the player chooses a Great Person born later than the current year, in the same way.
+New Great People only arrive as successors (§9). When a Great Person dies, the player chooses a successor born later than the current year. A slot legacy founds a new lineage the same way. Contests pay in cards, not people: winning a fight in a Local Event (attacking or defending) or a Local Survival (surviving while a rival there is swept away) earns 2 Followers or 1 Event card, and the Global Competition doubles it to 4 Followers or 2 Event cards. Each new year has a 5% chance that a global competition breaks out by itself.
 Claiming a legacy no longer brings a new Great People card (the Epic fight lessons, which are not on the timeline, keep the old rule of drawing one).
 
 ## 7. Turn Order

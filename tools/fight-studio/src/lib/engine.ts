@@ -308,6 +308,7 @@ export function describeLegacyEffect(e: LegacyEffect): string {
     case 'prodigy': return `Your Great People start their careers ${e.years} years earlier.`
     case 'successors': return `+${e.count} choice whenever you pick a successor.`
     case 'slots': return `+${e.count} Great Person slot: hold ${e.count === 1 ? 'one more Great Person' : `${e.count} more Great People`} at once.`
+    case 'locations': return `+${e.count} ${e.count === 1 ? 'city' : 'cities'} on the board for every player while this legacy is in effect.`
     case 'income': return `Every ${e.every} years you gain ${e.card === 'event' ? 'an Event card' : 'a Follower'}.`
   }
 }
@@ -322,6 +323,7 @@ export function defaultEffect(kind: LegacyEffect['kind']): LegacyEffect {
     case 'prodigy': return { kind, years: 4 }
     case 'successors': return { kind, count: 1 }
     case 'slots': return { kind, count: 1 }
+    case 'locations': return { kind, count: 1 }
     case 'income': return { kind, card: 'event', every: 5 }
   }
 }

@@ -1342,12 +1342,10 @@
         "wins": 1
       },
       "effect": {
-        "kind": "contest",
-        "stat": "any",
-        "amount": 2,
-        "context": "competition"
+        "kind": "locations",
+        "count": 1
       },
-      "flavour": "The first circumnavigation opened a world-wide contest."
+      "flavour": "His fleet was the first to sail around the whole world, joining oceans no one had linked before."
     },
     "years": "1480–1521",
     "born": 1480,
@@ -2938,12 +2936,10 @@
         "wins": 1
       },
       "effect": {
-        "kind": "contest",
-        "stat": "culture",
-        "amount": 3,
-        "context": "competition"
+        "kind": "locations",
+        "count": 1
       },
-      "flavour": "117,000 km of travels made him the voice of the known world."
+      "flavour": "Thirty years on the road from Tangier to China: more of the known world than anyone had seen."
     },
     "years": "1304–1368/1369",
     "born": 1304,
