@@ -9,7 +9,7 @@ import { CONFIGS as MUSEUM, bestScore, targetScore } from '@/components/minigame
 import ChemistryGame, { CONFIGS as CHEM, verdicts, hiddenFormula } from '@/components/minigames/ChemistryGame'
 import { CONFIGS as DEBATE, debateTargets } from '@/components/minigames/DebateGame'
 import { CONFIGS as COLORMIX, mixRGB, colourDist, toleranceAt } from '@/components/minigames/ColorMixGame'
-import PaintingGame, { CONFIGS as PAINTING } from '@/components/minigames/PaintingGame'
+import { CONFIGS as PAINTING, optionsFor as paintingOptions, tierFor as paintingTier } from '@/components/minigames/PaintingGame'
 import { CONFIGS as STARCHART, altitudeCount, sightTolerance, latitudeTolerance } from '@/components/minigames/StarChartGame'
 
 const DIFFS: Difficulty[] = [1, 2, 3, 4]
@@ -129,18 +129,18 @@ describe('Color Mix', () => {
 })
 
 describe('Painting', () => {
-  it('marks a wrong region at D1–D2 but not from D3', () => {
-    const cfg = PAINTING['spring-garden']
-    const region = cfg.regions[0]
-    const wrong = cfg.palette.find(p => p.color !== region.targetColor)!
-    for (const d of DIFFS) {
-      render(createElement(PaintingGame, { configId: 'spring-garden', difficulty: d, seed: 1, onWin: () => {}, onLose: () => {} }))
-      fireEvent.click(screen.getByLabelText(wrong.name))
-      const btn = screen.getAllByText(region.label).map(el => el.closest('button')!).find(b => b?.className.includes('px-2.5'))!
-      fireEvent.click(btn)
-      expect(btn.className.includes('border-red-500'), `D${d}`).toBe(d <= 2)
-      cleanup()
+  it('more items, more pigments and fewer misses as the tiers rise; wrong pigments close in at D3', () => {
+    const t = DIFFS.map(d => paintingTier(d))
+    for (let i = 1; i < 4; i++) {
+      expect(t[i].items).toBeGreaterThanOrEqual(t[i - 1].items)
+      expect(t[i].options).toBeGreaterThan(t[i - 1].options)
+      expect(t[i].misses).toBeLessThanOrEqual(t[i - 1].misses)
     }
+    const mantle = PAINTING['titian-canvas'].items[0]
+    const nearest = (d: Difficulty) => Math.min(...paintingOptions(mantle, d, 3)
+      .filter(p => p.name !== mantle.pigment.name)
+      .map(p => Math.hypot(...[1, 3, 5].map(k => parseInt(p.hex.slice(k, k + 2), 16) - parseInt(mantle.pigment.hex.slice(k, k + 2), 16)))))
+    expect(nearest(4)).toBeLessThan(nearest(1))
   })
 })
 

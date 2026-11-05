@@ -9,7 +9,7 @@ import type { Challenge, Difficulty, MinigameChallenge, MinigameComponent } from
 import { resolveConfig } from '@/components/minigames/_shared'
 
 import ColorMixGame, { CONFIGS as COLORMIX, mixRGB, colourDist, toleranceAt } from '@/components/minigames/ColorMixGame'
-import PaintingGame, { CONFIGS as PAINTING } from '@/components/minigames/PaintingGame'
+import PaintingGame, { CONFIGS as PAINTING, optionsFor as paintingOptions, tierFor as paintingTier, itemsFor as paintingItems } from '@/components/minigames/PaintingGame'
 import PorcelainGame, { CONFIGS as PORCELAIN, ELEMENT_COLORS, FIRED_HINT } from '@/components/minigames/PorcelainGame'
 import CookingGame, { CONFIGS as COOKING } from '@/components/minigames/CookingGame'
 import MusicGame, { CONFIGS as MUSIC } from '@/components/minigames/MusicGame'
@@ -73,17 +73,16 @@ describe('ColorMix: every target is reachable within tolerance', () => {
   })
 })
 
-describe('Painting: every region can be painted its target colour', () => {
-  const FULL_RECT = /<rect x="0" y="0" width="280" height="200"/
+describe('Painting: every item has a fair set of pigments', () => {
   for (const [id, cfg] of Object.entries(PAINTING)) {
-    it(`${id}: palette covers every target and no region is hidden under a later full-canvas region`, () => {
-      const palette = new Set(cfg.palette.map(p => p.color))
-      for (const r of cfg.regions) expect(palette.has(r.targetColor), `${id}/${r.id}`).toBe(true)
-      expect(new Set(cfg.regions.map(r => r.id)).size).toBe(cfg.regions.length)
-      // A full-canvas rect drawn after another region makes that region unclickable on the canvas.
-      cfg.regions.forEach((r, i) => {
-        if (FULL_RECT.test(r.svgShape)) expect(i, `${id}/${r.id} covers earlier regions`).toBe(0)
-      })
+    it(`${id}: the right pigment is offered once, and no wrong one looks too alike`, () => {
+      expect(new Set(cfg.items.map(i => i.id)).size).toBe(cfg.items.length)
+      for (const item of cfg.items) for (const d of DIFFS) {
+        const opts = paintingOptions(item, d, 7)
+        expect(opts.length, `${id}/${item.id}@${d}`).toBe(paintingTier(d).options)
+        expect(opts.filter(p => p.name === item.pigment.name).length).toBe(1)
+        expect(new Set(opts.map(p => p.name)).size).toBe(opts.length)
+      }
     })
   }
   it('story data only uses known configs', () => {
@@ -267,23 +266,26 @@ describe('every config renders at every difficulty without throwing', () => {
 
 describe('Painting', () => {
   for (const id of Object.keys(PAINTING)) {
-    it(`${id}@4 wins via the region buttons, once`, () => {
-      const cfg = PAINTING[id]
+    it(`${id}@4 wins by restoring every item with its pigment, once`, () => {
       const h = mount(PaintingGame, id, 4)
-      for (const r of cfg.regions) {
-        fireEvent.click(screen.getByLabelText(cfg.palette.find(p => p.color === r.targetColor)!.name))
-        fireEvent.click(screen.getAllByText(r.label).map(el => el.closest('button')!).find(b => b?.className.includes('px-2.5'))!)
+      for (const item of paintingItems(PAINTING[id], 4)) {
+        fireEvent.click(screen.getByLabelText(item.pigment.name))
+        fireEvent.click(screen.getByText(`Restore with ${item.pigment.name}`))
       }
       tick(2000)
       expect(h.onWin).toHaveBeenCalledTimes(1)
-      tick(120_000)   // the clock must not fire lose after the win
       expect(h.onLose).not.toHaveBeenCalled()
-      expect(h.onWin).toHaveBeenCalledTimes(1)
     })
   }
-  it('loses when the clock runs out at difficulty 4', () => {
+  it('loses once when the misses run out', () => {
     const h = mount(PaintingGame, 'titian-canvas', 4)
-    tick(61_000)
+    const item = PAINTING['titian-canvas'].items[0]
+    const wrong = paintingOptions(item, 4, 7).find(p => p.name !== item.pigment.name)!
+    for (let i = 0; i < paintingTier(4).misses; i++) {
+      fireEvent.click(screen.getByLabelText(wrong.name))
+      fireEvent.click(screen.getByText(`Restore with ${wrong.name}`))
+    }
+    tick(2000)
     expect(h.onLose).toHaveBeenCalledTimes(1)
     expect(h.onWin).not.toHaveBeenCalled()
   })

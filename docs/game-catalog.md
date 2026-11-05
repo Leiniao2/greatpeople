@@ -7,7 +7,7 @@ Built in waves of 20; tick a box when the game is in the registry.
 
 ## Wave 1 — classic mechanics with a historical skin
 - [x] `sokoban` — Stone Haulers — push blocks onto marks in a grid (Sokoban) — hauling limestone to the Giza ramps
-- [x] `snake` — Caravan Trail — steer a growing caravan, collect goods, avoid your own tail and dunes (Snake) — Silk Road camel trains
+- [x] `packtrain` — Pack Train — tap-to-step route puzzle: collect every load and reach the market on limited supplies (wrong loads, one-use wells, spoiling goods); replaced the real-time Snake — Silk Road camel trains
 - [x] `tradeboard` — Merchant Board — roll dice round a board, buy ports, charge tolls, manage cash vs AI rivals (Monopoly-style) — Venice / Hanseatic ports
 - [x] `tangram` — Tangram — fit seven pieces to a silhouette — Song/Qing China
 - [x] `nonogram` — Picture Logic — fill a grid from row/column clues to reveal an artefact (nonogram)

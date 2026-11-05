@@ -75,9 +75,9 @@
           "challenge": {
             "type": "minigame",
             "game": "painting",
-            "configId": "musashi-dojo",
+            "configId": "wind-thunder",
             "seed": 39675,
-            "instruction": "Earth, Water, Fire, Wind, Void: Musashi sees his strategy in everything, and he paints as he fights. Paint the dojo where the Way is practised.",
+            "instruction": "Earth, Water, Fire, Wind, Void: Musashi sees his strategy in everything, and he paints as he fights. In Kyoto his contemporary Tawaraya Sōtatsu painted the gods of wind and thunder on gold. Restore their colours.",
             "fact": "Musashi arrived late for his duel with Kojiro on Ganryūjima island (1612), having carved a practice sword from a boat oar on the way. He killed Kojiro with one strike — the psychological warfare of his lateness was as devastating as the blow."
           }
         }

@@ -1,651 +1,410 @@
-import { useRef, useState } from 'react'
-import type { MinigameProps } from '@/games/types'
-import { scale, useGameTimer, TimerBar } from './_shared'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import type { MinigameProps, Difficulty } from '@/games/types'
+import { gameArtUrl, type GameArtKey } from '@/games/art'
+import { mulberry32, resolveConfig, scale, useGameOutcome, OutcomeBanner } from './_shared'
 
-interface Region {
+// Painting: restore a real masterpiece.  A photograph of the work is shown
+// with one or more items washed out to grey (the Virgin's mantle, the
+// turban, the eagle on the cactus).  Pick the pigment for each: the item is
+// repainted live in that colour, keeping the painting's own light and shade,
+// and committing the right one brings back the original paint.
+//
+// An item is found in the photo by a rough outline plus a colour rule (hue
+// range, saturation and brightness bounds), so the mask follows the folds
+// of the cloth rather than a drawn shape.
+//
+//   D1  2 items, 3 pigments to choose from (far apart), 3 misses allowed
+//   D2  2 items, 4 pigments, 2 misses
+//   D3  3 items, 5 pigments, closer colours, 2 misses
+//   D4  3 items, 6 pigments, the closest colours, 1 miss
+//
+// (Paintings with fewer items use all they have.)
+
+export interface Pigment { name: string; hex: string }
+
+/** Historical pigments; every item's wrong options are drawn from here. */
+export const PIGMENTS: Pigment[] = [
+  { name: 'Ultramarine', hex: '#2b4aa0' },
+  { name: 'Azurite', hex: '#3d6e9e' },
+  { name: 'Indigo', hex: '#2e3a5c' },
+  { name: 'Smalt', hex: '#6a6fc0' },
+  { name: 'Maya blue', hex: '#5f9b9b' },
+  { name: 'Verdigris', hex: '#3d8c7a' },
+  { name: 'Malachite', hex: '#3f8a4f' },
+  { name: 'Green earth', hex: '#7a8456' },
+  { name: 'Vermilion', hex: '#d0402a' },
+  { name: 'Red lake', hex: '#9a2e3a' },
+  { name: 'Red ochre', hex: '#9c4f30' },
+  { name: 'Cochineal', hex: '#a3214a' },
+  { name: 'Tyrian purple', hex: '#6b2a5a' },
+  { name: 'Lead-tin yellow', hex: '#e0c25a' },
+  { name: 'Yellow ochre', hex: '#b8893c' },
+  { name: 'Orpiment', hex: '#e3a82c' },
+  { name: 'Gold leaf', hex: '#c9a35f' },
+  { name: 'Raw umber', hex: '#6b5434' },
+]
+
+export interface PaintItem {
   id: string
   label: string
-  targetColor: string
-  // SVG path or shape descriptor
-  svgShape: string
+  /** The right pigment; its swatch colour approximates the paint in the photo. */
+  pigment: Pigment
+  /** Rough outline, as fractions of the image width and height. */
+  poly: [number, number][]
+  /** Hue range in degrees (wraps when lo > hi) and HSV bounds that pick the item's pixels. */
+  hue: [number, number]
+  minSat?: number
+  minVal?: number
+  maxVal?: number
+  fact: string
 }
 
 interface PaintingConfig {
   title: string
-  instruction: string
-  viewBox: string
-  regions: Region[]
-  palette: { color: string; name: string }[]
+  credit: string
+  art: GameArtKey
+  intro: string
+  items: PaintItem[]
+  fact: string
 }
 
 export const CONFIGS: Record<string, PaintingConfig> = {
-  'egyptian-sunset': {
-    title: 'Desert at Dusk',
-    instruction: 'Paint the Egyptian sunset scene with the correct colors.',
-    viewBox: '0 0 280 200',
-    regions: [
-      { id: 'sky',     label: 'Sky',          targetColor: '#7c3aed', svgShape: '<rect x="0" y="0" width="280" height="100" rx="0"/>' },
-      { id: 'sun',     label: 'Setting Sun',  targetColor: '#f59e0b', svgShape: '<circle cx="140" cy="90" r="30"/>' },
-      { id: 'pyramid', label: 'Pyramid',       targetColor: '#92400e', svgShape: '<polygon points="140,30 60,160 220,160"/>' },
-      { id: 'desert',  label: 'Desert Sand',  targetColor: '#d97706', svgShape: '<rect x="0" y="160" width="280" height="40" rx="0"/>' },
+  'titian-canvas': {
+    title: 'Assumption of the Virgin',
+    credit: 'Titian, 1516–18 · Frari, Venice',
+    art: 'painting_titian_assumption',
+    intro: 'The Virgin rises above the apostles. Restore the colours of her clothes.',
+    items: [
+      { id: 'mantle', label: 'The Virgin’s mantle', pigment: { name: 'Ultramarine', hex: '#2b4aa0' },
+        poly: [[0.28, 0.31], [0.62, 0.31], [0.62, 0.36], [0.5, 0.42], [0.42, 0.48], [0.3, 0.48], [0.28, 0.44]], hue: [205, 265], minSat: 0.2,
+        fact: 'Ultramarine was ground from lapis lazuli mined in Badakhshan, in today’s Afghanistan, and could cost more than gold. Patrons’ contracts often reserved it for the Virgin’s mantle.' },
+      { id: 'dress', label: 'The Virgin’s dress', pigment: { name: 'Vermilion', hex: '#c23a28' },
+        poly: [[0.3, 0.28], [0.66, 0.3], [0.62, 0.42], [0.62, 0.53], [0.38, 0.53], [0.36, 0.46], [0.3, 0.36]], hue: [340, 22], minSat: 0.5,
+        fact: 'Titian built his reds from vermilion, a mercury sulphide, deepened with glazes of red lake — a dye made from insects such as kermes.' },
+      { id: 'apostle', label: 'The apostle’s cloak', pigment: { name: 'Vermilion', hex: '#c23a28' },
+        poly: [[0.52, 0.63], [0.82, 0.66], [0.82, 0.93], [0.55, 0.93]], hue: [355, 28], minSat: 0.5,
+        fact: 'The red of the apostle below answers the Virgin’s dress above, tying the earthly and heavenly halves of the altarpiece together.' },
     ],
-    palette: [
-      { color: '#7c3aed', name: 'Violet' },
-      { color: '#f59e0b', name: 'Amber' },
-      { color: '#92400e', name: 'Brown' },
-      { color: '#d97706', name: 'Sand' },
-    ],
+    fact: 'The Assumption, nearly seven metres tall, was Titian’s first great public commission. The friars of the Frari are said to have doubted its bold colour and movement until an imperial envoy offered to buy it.',
   },
-  'ocean-voyage': {
-    title: 'Ocean Voyage',
-    instruction: "Color the ocean scene from Magellan's voyage around the world.",
-    viewBox: '0 0 280 200',
-    regions: [
-      { id: 'sky',  label: 'Sky',     targetColor: '#0ea5e9', svgShape: '<rect x="0" y="0" width="280" height="100"/>' },
-      { id: 'sea',  label: 'Sea',     targetColor: '#1e40af', svgShape: '<rect x="0" y="100" width="280" height="100"/>' },
-      { id: 'sail', label: 'Sail',    targetColor: '#f8fafc', svgShape: '<polygon points="140,20 115,110 165,110"/>' },
-      { id: 'hull', label: 'Hull',    targetColor: '#92400e', svgShape: '<rect x="105" y="110" width="70" height="20" rx="4"/>' },
+  'pearl-earring': {
+    title: 'Girl with a Pearl Earring',
+    credit: 'Johannes Vermeer, c. 1665 · Mauritshuis, The Hague',
+    art: 'painting_vermeer_pearl',
+    intro: 'The girl turns towards us out of the dark. Restore her turban and jacket.',
+    items: [
+      { id: 'turban', label: 'The turban', pigment: { name: 'Ultramarine', hex: '#5a7aa8' },
+        poly: [[0.32, 0.2], [0.6, 0.16], [0.76, 0.3], [0.78, 0.5], [0.62, 0.5], [0.5, 0.42], [0.33, 0.32]], hue: [190, 250], minSat: 0.1,
+        fact: 'Vermeer used natural ultramarine lavishly, even in places other painters would use cheaper blues, although he was often in debt.' },
+      { id: 'tail', label: 'The fall of the turban', pigment: { name: 'Lead-tin yellow', hex: '#d1b06a' },
+        poly: [[0.5, 0.11], [0.78, 0.12], [0.98, 0.75], [0.85, 0.8], [0.75, 0.6], [0.7, 0.35], [0.6, 0.18]], hue: [25, 60], minSat: 0.2, minVal: 0.35,
+        fact: 'Lead-tin yellow was a favourite of Dutch painters. It fell out of use in the 1700s and was forgotten until researchers identified it again in the 20th century.' },
+      { id: 'jacket', label: 'The jacket', pigment: { name: 'Yellow ochre', hex: '#9c8549' },
+        poly: [[0.3, 0.6], [0.75, 0.58], [0.85, 0.8], [0.9, 1], [0.28, 1]], hue: [20, 70], minSat: 0.25,
+        fact: 'The jacket is painted in earth pigments — ochres and umbers dug from the ground — the cheapest colours on a 17th-century palette.' },
     ],
-    palette: [
-      { color: '#0ea5e9', name: 'Sky Blue' },
-      { color: '#1e40af', name: 'Deep Blue' },
-      { color: '#f8fafc', name: 'White' },
-      { color: '#92400e', name: 'Brown' },
-    ],
+    fact: 'Girl with a Pearl Earring is a tronie, a study of a face or a character, not a portrait of a known sitter. Nobody knows who modelled for it.',
   },
-  'spring-garden': {
-    title: 'Botanical Garden',
-    instruction: "Paint Linnaeus's Uppsala botanical garden with natural colors.",
-    viewBox: '0 0 280 200',
-    regions: [
-      { id: 'sky',    label: 'Sky',           targetColor: '#7dd3fc', svgShape: '<rect x="0" y="0" width="280" height="100"/>' },
-      { id: 'grass',  label: 'Grass',         targetColor: '#16a34a', svgShape: '<rect x="0" y="100" width="280" height="100"/>' },
-      { id: 'petals', label: 'Flower Petals', targetColor: '#f43f5e', svgShape: '<circle cx="140" cy="95" r="28"/>' },
-      { id: 'center', label: 'Flower Center', targetColor: '#fbbf24', svgShape: '<circle cx="140" cy="95" r="12"/>' },
+  'sistine-madonna': {
+    title: 'Sistine Madonna',
+    credit: 'Raphael, 1512 · Gemäldegalerie Alte Meister, Dresden',
+    art: 'painting_raphael_sistine',
+    intro: 'The curtains open on the Madonna and Child. Restore her dress and the curtains.',
+    items: [
+      { id: 'dress', label: 'The Madonna’s dress', pigment: { name: 'Red lake', hex: '#a03a3e' },
+        poly: [[0.44, 0.18], [0.64, 0.2], [0.64, 0.34], [0.5, 0.33], [0.45, 0.3], [0.36, 0.52], [0.58, 0.72], [0.38, 0.72]], hue: [330, 20], minSat: 0.3,
+        fact: 'Red lakes were made by fixing a dye — from kermes insects, madder root or, after 1520, American cochineal — onto a chalky powder so it could be used as paint.' },
+      { id: 'curtain', label: 'The curtains', pigment: { name: 'Verdigris', hex: '#4f6a2a' },
+        poly: [[0, 0], [1, 0], [1, 0.62], [0.9, 0.62], [0.9, 0.25], [0.62, 0.08], [0.38, 0.08], [0.1, 0.25], [0.04, 0.4], [0, 0.4]], hue: [50, 150], minSat: 0.15, minVal: 0.03,
+        fact: 'Renaissance greens were often glazes of copper green (verdigris), made by hanging copper plates over vinegar. Copper greens darken and brown with age, which is why so many old curtains and landscapes look olive today.' },
     ],
-    palette: [
-      { color: '#7dd3fc', name: 'Light Blue' },
-      { color: '#16a34a', name: 'Green' },
-      { color: '#f43f5e', name: 'Rose' },
-      { color: '#fbbf24', name: 'Yellow' },
-    ],
+    fact: 'The two bored cherubs at the bottom of the Sistine Madonna have become far more famous than the painting itself, printed on everything from stamps to umbrellas.',
   },
-  'venetian-palette': {
-    title: "Titian's Canvas",
-    instruction: "Mix Titian's famous warm palette for a Renaissance portrait.",
-    viewBox: '0 0 280 200',
-    regions: [
-      { id: 'bg',     label: 'Background', targetColor: '#1e1b4b', svgShape: '<rect x="0" y="0" width="280" height="200"/>' },
-      { id: 'robe',   label: 'Robe',       targetColor: '#dc2626', svgShape: '<polygon points="140,60 80,200 200,200"/>' },
-      { id: 'face',   label: 'Face',       targetColor: '#fcd34d', svgShape: '<ellipse cx="140" cy="60" rx="35" ry="40"/>' },
-      { id: 'shadow', label: 'Shadow',     targetColor: '#7f1d1d', svgShape: '<polygon points="140,100 100,200 140,200"/>' },
+  'birth-of-venus': {
+    title: 'The Birth of Venus',
+    credit: 'Sandro Botticelli, c. 1485 · Uffizi, Florence',
+    art: 'painting_botticelli_venus',
+    intro: 'Venus comes ashore on her shell. Restore the cloak held out to her, and her hair.',
+    items: [
+      { id: 'cloak', label: 'The flowered cloak', pigment: { name: 'Rose (red lake and white)', hex: '#c27a6a' },
+        poly: [[0.6, 0.12], [0.8, 0.12], [0.98, 0.5], [0.98, 0.72], [0.74, 0.8], [0.66, 0.5], [0.62, 0.3]], hue: [330, 25], minSat: 0.22,
+        fact: 'Botticelli painted the Birth of Venus in tempera, pigment bound with egg, on canvas, which was still unusual in Florence in the 1480s.' },
+      { id: 'hair', label: 'Venus’s hair', pigment: { name: 'Gold and ochre', hex: '#b8742a' },
+        poly: [[0.48, 0.06], [0.62, 0.06], [0.62, 0.62], [0.5, 0.62], [0.48, 0.3]], hue: [12, 38], minSat: 0.62,
+        fact: 'Venus’s hair is touched with real gold, which still catches the light in the Uffizi.' },
     ],
-    palette: [
-      { color: '#1e1b4b', name: 'Indigo' },
-      { color: '#dc2626', name: 'Crimson' },
-      { color: '#fcd34d', name: 'Gold' },
-      { color: '#7f1d1d', name: 'Dark Red' },
-    ],
-  },
-  'japanese-blossom': {
-    title: 'Cherry Blossom',
-    instruction: "Paint the traditional Japanese cherry blossom scene for Lu Yu's tea garden.",
-    viewBox: '0 0 280 200',
-    regions: [
-      { id: 'sky',      label: 'Sky',         targetColor: '#fce7f3', svgShape: '<rect x="0" y="0" width="280" height="200"/>' },
-      { id: 'trunk',    label: 'Tree Trunk',  targetColor: '#44403c', svgShape: '<rect x="125" y="80" width="30" height="120" rx="6"/>' },
-      { id: 'blossoms', label: 'Blossoms',    targetColor: '#f9a8d4', svgShape: '<ellipse cx="140" cy="70" rx="80" ry="55"/>' },
-      { id: 'ground',   label: 'Ground',      targetColor: '#4ade80', svgShape: '<rect x="0" y="175" width="280" height="25"/>' },
-    ],
-    palette: [
-      { color: '#fce7f3', name: 'Blush' },
-      { color: '#44403c', name: 'Dark Brown' },
-      { color: '#f9a8d4', name: 'Pink' },
-      { color: '#4ade80', name: 'Green' },
-    ],
-  },
-  'night-sky': {
-    title: 'Night Sky Navigation',
-    instruction: 'Color the night sky as navigators saw it crossing the Pacific.',
-    viewBox: '0 0 280 200',
-    regions: [
-      { id: 'sky',     label: 'Night Sky',    targetColor: '#0f172a', svgShape: '<rect x="0" y="0" width="280" height="150"/>' },
-      { id: 'moon',    label: 'Moon',         targetColor: '#e2e8f0', svgShape: '<circle cx="200" cy="50" r="25"/>' },
-      { id: 'stars',   label: 'Stars',        targetColor: '#fbbf24', svgShape: '<polygon points="140,30 143,40 154,40 145,47 148,57 140,50 132,57 135,47 126,40 137,40"/>' },
-      { id: 'ocean',   label: 'Ocean',        targetColor: '#1e3a5f', svgShape: '<rect x="0" y="150" width="280" height="50"/>' },
-    ],
-    palette: [
-      { color: '#0f172a', name: 'Midnight' },
-      { color: '#e2e8f0', name: 'Silver' },
-      { color: '#fbbf24', name: 'Gold' },
-      { color: '#1e3a5f', name: 'Deep Navy' },
-    ],
-  },
-  'roman-forum': {
-    title: 'The Roman Forum',
-    instruction: 'Paint the Forum where Cicero gave his great speeches.',
-    viewBox: '0 0 280 200',
-    regions: [
-      { id: 'sky',     label: 'Sky',       targetColor: '#7dd3fc', svgShape: '<rect x="0" y="0" width="280" height="100"/>' },
-      { id: 'columns', label: 'Columns',   targetColor: '#e2e8f0', svgShape: '<rect x="50" y="40" width="180" height="120" rx="2"/>' },
-      { id: 'ground',  label: 'Pavement',  targetColor: '#a8a29e', svgShape: '<rect x="0" y="160" width="280" height="40"/>' },
-      { id: 'shadow',  label: 'Shadows',   targetColor: '#64748b', svgShape: '<polygon points="50,160 80,100 230,100 230,160"/>' },
-    ],
-    palette: [
-      { color: '#7dd3fc', name: 'Sky Blue' },
-      { color: '#e2e8f0', name: 'Marble White' },
-      { color: '#a8a29e', name: 'Stone' },
-      { color: '#64748b', name: 'Slate' },
-    ],
-  },
-  'film-still': {
-    title: 'Cinema Composition',
-    instruction: "Color Eisenstein's iconic film frame using the rules of montage.",
-    viewBox: '0 0 280 200',
-    regions: [
-      { id: 'bg',      label: 'Background', targetColor: '#1c1917', svgShape: '<rect x="0" y="0" width="280" height="200"/>' },
-      { id: 'figure',  label: 'Figure',     targetColor: '#44403c', svgShape: '<ellipse cx="100" cy="100" rx="40" ry="70"/>' },
-      { id: 'light',   label: 'Light Beam', targetColor: '#fbbf24', svgShape: '<polygon points="280,60 280,140 150,100"/>' },
-      { id: 'ground',  label: 'Ground',     targetColor: '#292524', svgShape: '<rect x="0" y="150" width="280" height="50"/>' },
-    ],
-    palette: [
-      { color: '#1c1917', name: 'Black' },
-      { color: '#44403c', name: 'Dark Brown' },
-      { color: '#fbbf24', name: 'Yellow' },
-      { color: '#292524', name: 'Charcoal' },
-    ],
-  },
-  'mesopotamia': {
-    title: "Sargon's Akkad",
-    instruction: "Paint the Akkadian empire — ziggurat towers rising above the desert rivers.",
-    viewBox: '0 0 280 200',
-    regions: [
-      { id: 'sky',      label: 'Sky',      targetColor: '#60a5fa', svgShape: '<rect x="0" y="0" width="280" height="80"/>' },
-      { id: 'ziggurat', label: 'Ziggurat', targetColor: '#92400e', svgShape: '<polygon points="140,20 90,80 190,80 200,120 80,120 70,160 210,160"/>' },
-      { id: 'river',    label: 'River',    targetColor: '#1e40af', svgShape: '<rect x="0" y="160" width="280" height="24"/>' },
-      { id: 'desert',   label: 'Desert',   targetColor: '#d97706', svgShape: '<rect x="0" y="80" width="280" height="80"/>' },
-    ],
-    palette: [
-      { color: '#60a5fa', name: 'Sky Blue' },
-      { color: '#92400e', name: 'Brick' },
-      { color: '#1e40af', name: 'River' },
-      { color: '#d97706', name: 'Sand' },
-    ],
-  },
-  'imhotep-temple': {
-    title: 'Healing Temple',
-    instruction: "Paint Imhotep's healing temple — where medicine and the divine were one.",
-    viewBox: '0 0 280 200',
-    regions: [
-      { id: 'sky',     label: 'Sky',     targetColor: '#7dd3fc', svgShape: '<rect x="0" y="0" width="280" height="90"/>' },
-      { id: 'columns', label: 'Columns', targetColor: '#e2e8f0', svgShape: '<rect x="60" y="30" width="30" height="120" rx="4"/><rect x="130" y="30" width="30" height="120" rx="4"/><rect x="200" y="30" width="30" height="120" rx="4"/>' },
-      { id: 'herbs',   label: 'Herbs',   targetColor: '#16a34a', svgShape: '<ellipse cx="140" cy="165" rx="60" ry="20"/>' },
-      { id: 'floor',   label: 'Floor',   targetColor: '#a8a29e', svgShape: '<rect x="0" y="150" width="280" height="50"/>' },
-    ],
-    palette: [
-      { color: '#7dd3fc', name: 'Sky' },
-      { color: '#e2e8f0', name: 'Marble' },
-      { color: '#16a34a', name: 'Green' },
-      { color: '#a8a29e', name: 'Stone' },
-    ],
-  },
-  'olympia-scene': {
-    title: 'Ancient Olympia',
-    instruction: "Paint the sacred site of Olympia where Pericles' Greeks competed.",
-    viewBox: '0 0 280 200',
-    regions: [
-      { id: 'sky',     label: 'Sky',     targetColor: '#7dd3fc', svgShape: '<rect x="0" y="0" width="280" height="90"/>' },
-      { id: 'hills',   label: 'Hills',   targetColor: '#16a34a', svgShape: '<polygon points="0,90 80,50 160,80 240,45 280,90"/>' },
-      { id: 'ground',  label: 'Ground',  targetColor: '#d97706', svgShape: '<rect x="0" y="140" width="280" height="60"/>' },
-      { id: 'columns', label: 'Columns', targetColor: '#e2e8f0', svgShape: '<rect x="60" y="90" width="20" height="50" rx="2"/><rect x="130" y="90" width="20" height="50" rx="2"/><rect x="200" y="90" width="20" height="50" rx="2"/>' },
-    ],
-    palette: [
-      { color: '#7dd3fc', name: 'Sky' },
-      { color: '#16a34a', name: 'Olive' },
-      { color: '#d97706', name: 'Earth' },
-      { color: '#e2e8f0', name: 'Marble' },
-    ],
-  },
-  'mulan-forest': {
-    title: 'Northern China',
-    instruction: "Paint the snow-covered northern landscape Hua Mulan rode through.",
-    viewBox: '0 0 280 200',
-    regions: [
-      { id: 'sky',   label: 'Sky',   targetColor: '#bfdbfe', svgShape: '<rect x="0" y="0" width="280" height="100"/>' },
-      { id: 'snow',  label: 'Snow',  targetColor: '#f8fafc', svgShape: '<rect x="0" y="140" width="280" height="60"/>' },
-      { id: 'pines', label: 'Pines', targetColor: '#166534', svgShape: '<polygon points="80,100 60,140 100,140"/><polygon points="200,90 175,140 225,140"/>' },
-      { id: 'path',  label: 'Path',  targetColor: '#78716c', svgShape: '<rect x="120" y="100" width="40" height="100"/>' },
-    ],
-    palette: [
-      { color: '#bfdbfe', name: 'Winter Sky' },
-      { color: '#f8fafc', name: 'Snow' },
-      { color: '#166534', name: 'Pine' },
-      { color: '#78716c', name: 'Path' },
-    ],
-  },
-  'musashi-dojo': {
-    title: "Musashi's Dojo",
-    instruction: "Paint the Japanese dojo where Miyamoto Musashi trained in the way of the sword.",
-    viewBox: '0 0 280 200',
-    regions: [
-      { id: 'sky',   label: 'Night Sky', targetColor: '#0f172a', svgShape: '<rect x="0" y="0" width="280" height="80"/>' },
-      { id: 'floor', label: 'Wood Floor', targetColor: '#78716c', svgShape: '<rect x="0" y="140" width="280" height="60"/>' },
-      { id: 'wall',  label: 'Wall',      targetColor: '#44403c', svgShape: '<rect x="0" y="80" width="280" height="60"/>' },
-      { id: 'sword', label: 'Sword',     targetColor: '#e2e8f0', svgShape: '<rect x="132" y="20" width="6" height="160" rx="3"/>' },
-    ],
-    palette: [
-      { color: '#0f172a', name: 'Night' },
-      { color: '#78716c', name: 'Wood' },
-      { color: '#44403c', name: 'Shadow' },
-      { color: '#e2e8f0', name: 'Steel' },
-    ],
-  },
-  'envoys-report': {
-    title: "The Envoys' Painted Report, 1519",
-    instruction: "Paint the strangers as Montezuma's envoys painted them on cloth for the tlatoani: the sea, the shore, and the floating houses with their white wings.",
-    viewBox: '0 0 280 200',
-    regions: [
-      { id: 'sky',   label: 'Sky',          targetColor: '#93c5fd', svgShape: '<rect x="0" y="0" width="280" height="90"/>' },
-      { id: 'sea',   label: 'Sea',          targetColor: '#1d4ed8', svgShape: '<rect x="0" y="90" width="280" height="80"/>' },
-      { id: 'shore', label: 'Shore',        targetColor: '#e9c46a', svgShape: '<rect x="0" y="170" width="280" height="30"/>' },
-      { id: 'hull',  label: 'Floating House', targetColor: '#78350f', svgShape: '<polygon points="90,120 200,120 185,145 105,145"/>' },
-      { id: 'sail',  label: 'White Wings',  targetColor: '#f8fafc', svgShape: '<polygon points="140,30 112,115 168,115"/>' },
-    ],
-    palette: [
-      { color: '#93c5fd', name: 'Sky Blue' },
-      { color: '#1d4ed8', name: 'Deep Water' },
-      { color: '#e9c46a', name: 'Sand' },
-      { color: '#78350f', name: 'Dark Wood' },
-      { color: '#f8fafc', name: 'Cotton White' },
-    ],
+    fact: 'The Birth of Venus shows Zephyr, the west wind, blowing Venus ashore while a Hora of spring waits with a cloak. A life-size pagan goddess was a bold subject for Florence in the 1480s.',
   },
   'mexica-codex': {
-    title: "The New History of the Mexica",
-    instruction: "Paint the page of the new official history: the eagle on the cactus in the lake, where Huitzilopochtli told the Mexica to found their city, under his sun.",
-    viewBox: '0 0 280 200',
-    regions: [
-      { id: 'page',   label: 'Deerskin Page', targetColor: '#f3e2bf', svgShape: '<rect x="0" y="0" width="280" height="200"/>' },
-      { id: 'sun',    label: 'Sun',           targetColor: '#eab308', svgShape: '<circle cx="225" cy="45" r="28"/>' },
-      { id: 'lake',   label: 'Lake',          targetColor: '#2a9d8f', svgShape: '<rect x="20" y="150" width="240" height="36" rx="6"/>' },
-      { id: 'cactus', label: 'Nopal Cactus',  targetColor: '#3f7d3a', svgShape: '<polygon points="130,150 130,105 112,105 112,88 130,88 130,70 150,70 150,95 168,95 168,112 150,112 150,150"/>' },
-      { id: 'eagle',  label: 'Eagle',         targetColor: '#7c4a1e', svgShape: '<polygon points="118,70 138,38 158,52 186,36 172,62 152,70"/>' },
+    title: 'The Founding of Tenochtitlan',
+    credit: 'Codex Mendoza, folio 2r, c. 1541 · Bodleian Library, Oxford',
+    art: 'painting_codex_mendoza_2r',
+    intro: 'Mexica painters drew the founding of their city: the eagle on the cactus in the lake. Restore the page.',
+    items: [
+      { id: 'water', label: 'The lake and its canals', pigment: { name: 'Maya blue', hex: '#5f9b9b' },
+        poly: [[0.13, 0.09], [0.85, 0.09], [0.85, 0.68], [0.13, 0.68]], hue: [150, 210], minSat: 0.15,
+        fact: 'The blue-green of Mesoamerican painting was often Maya blue, indigo dye locked into a clay. It is so stable that it has survived centuries of tropical damp.' },
+      { id: 'eagle', label: 'The eagle', pigment: { name: 'Raw umber', hex: '#6b4a35' },
+        poly: [[0.35, 0.23], [0.58, 0.23], [0.58, 0.37], [0.35, 0.37]], hue: [0, 45], minSat: 0.25, maxVal: 0.8,
+        fact: 'By Mexica tradition, the god Huitzilopochtli told his people to settle where they saw an eagle perched on a cactus. The emblem is on Mexico’s flag today.' },
+      { id: 'cactus', label: 'The cactus', pigment: { name: 'Green earth', hex: '#5c7350' },
+        poly: [[0.4, 0.33], [0.56, 0.33], [0.56, 0.45], [0.4, 0.45]], hue: [60, 180], minSat: 0.1, minVal: 0.05,
+        fact: 'The city’s name comes from tenochtli, the prickly-pear cactus growing from a rock: Tenochtitlan, “place of the cactus on the rock”.' },
     ],
-    palette: [
-      { color: '#f3e2bf', name: 'Deerskin' },
-      { color: '#eab308', name: 'Gold' },
-      { color: '#2a9d8f', name: 'Jade Water' },
-      { color: '#3f7d3a', name: 'Green' },
-      { color: '#7c4a1e', name: 'Eagle Brown' },
-    ],
+    fact: 'The Codex Mendoza was painted by Mexica scribes around 1541 for the Spanish viceroy, to be sent to Charles V. French pirates captured the ship, and the book ended up in Oxford.',
   },
-  'gutenberg-workshop': {
-    title: "Gutenberg's Workshop",
-    instruction: "Paint the medieval print shop where Gutenberg changed the world.",
-    viewBox: '0 0 280 200',
-    regions: [
-      { id: 'wall',  label: 'Stone Wall', targetColor: '#78716c', svgShape: '<rect x="0" y="0" width="280" height="200"/>' },
-      { id: 'press', label: 'Press Wood', targetColor: '#92400e', svgShape: '<rect x="80" y="40" width="120" height="100" rx="4"/>' },
-      { id: 'paper', label: 'Paper',      targetColor: '#fef9c3', svgShape: '<rect x="100" y="60" width="80" height="60" rx="2"/>' },
-      { id: 'ink',   label: 'Ink Tray',  targetColor: '#1e293b', svgShape: '<rect x="30" y="150" width="60" height="20" rx="4"/>' },
+  'wind-thunder': {
+    title: 'Wind God and Thunder God',
+    credit: 'Tawaraya Sōtatsu, 17th century · Kennin-ji, Kyoto',
+    art: 'painting_sotatsu_wind_thunder',
+    intro: 'Raijin beats his drums on the left screen; Fūjin opens his bag of winds on the right. Restore the wind god and the gold.',
+    items: [
+      { id: 'fujin', label: 'Fūjin, the wind god', pigment: { name: 'Malachite', hex: '#6b6233' },
+        poly: [[0.77, 0.2], [0.95, 0.2], [0.97, 0.45], [0.9, 0.62], [0.78, 0.62], [0.75, 0.45]], hue: [15, 55], minSat: 0.35, maxVal: 0.5, minVal: 0.22,
+        fact: 'Sōtatsu painted Fūjin green and Raijin white. The green is a copper pigment, which has darkened towards olive over four centuries.' },
+      { id: 'gold', label: 'The gold ground', pigment: { name: 'Gold leaf', hex: '#c9a35f' },
+        poly: [[0.02, 0.05], [0.49, 0.05], [0.49, 0.95], [0.02, 0.95]], hue: [30, 60], minSat: 0.3, minVal: 0.45,
+        fact: 'The ground is gold leaf, squares of beaten gold laid edge to edge. Their seams make the faint grid you can see across the screens.' },
     ],
-    palette: [
-      { color: '#78716c', name: 'Stone' },
-      { color: '#92400e', name: 'Oak' },
-      { color: '#fef9c3', name: 'Parchment' },
-      { color: '#1e293b', name: 'Ink' },
-    ],
-  },
-  'teresa-chapel': {
-    title: "Teresa's Chapel",
-    instruction: "Paint the Gothic chapel of Teresa of Ávila — where faith meets mystical light.",
-    viewBox: '0 0 280 200',
-    regions: [
-      { id: 'stone', label: 'Stone Wall',    targetColor: '#78716c', svgShape: '<rect x="0" y="0" width="280" height="200"/>' },
-      { id: 'sky',   label: 'Stained Glass', targetColor: '#7c3aed', svgShape: '<ellipse cx="140" cy="40" rx="50" ry="40"/>' },
-      { id: 'glow',  label: 'Candle Glow',  targetColor: '#f59e0b', svgShape: '<circle cx="140" cy="130" r="20"/>' },
-      { id: 'floor', label: 'Dark Wood',    targetColor: '#44403c', svgShape: '<rect x="0" y="160" width="280" height="40"/>' },
-    ],
-    palette: [
-      { color: '#7c3aed', name: 'Violet Glass' },
-      { color: '#78716c', name: 'Stone' },
-      { color: '#f59e0b', name: 'Candle' },
-      { color: '#44403c', name: 'Dark Wood' },
-    ],
-  },
-  'luther-door': {
-    title: "Wittenberg Church",
-    instruction: "Paint the Wittenberg church door where Luther nailed his 95 Theses.",
-    viewBox: '0 0 280 200',
-    regions: [
-      { id: 'sky',   label: 'Autumn Sky', targetColor: '#60a5fa', svgShape: '<rect x="0" y="0" width="280" height="80"/>' },
-      { id: 'wall',  label: 'Limestone',  targetColor: '#e2e8f0', svgShape: '<rect x="0" y="80" width="280" height="120"/>' },
-      { id: 'door',  label: 'Oak Door',   targetColor: '#92400e', svgShape: '<rect x="100" y="60" width="80" height="140" rx="6"/>' },
-      { id: 'ground',label: 'Cobblestone',targetColor: '#a8a29e', svgShape: '<rect x="0" y="170" width="280" height="30"/>' },
-    ],
-    palette: [
-      { color: '#60a5fa', name: 'Autumn Sky' },
-      { color: '#e2e8f0', name: 'Limestone' },
-      { color: '#92400e', name: 'Oak Door' },
-      { color: '#a8a29e', name: 'Cobblestone' },
-    ],
-  },
-  'versailles-hall': {
-    title: 'Hall of Mirrors',
-    instruction: "Paint the Hall of Mirrors at Versailles — Louis XVI's gilded world.",
-    viewBox: '0 0 280 200',
-    regions: [
-      { id: 'ceiling', label: 'Ceiling',      targetColor: '#fbbf24', svgShape: '<rect x="0" y="0" width="280" height="60"/>' },
-      { id: 'mirrors', label: 'Mirror Wall',  targetColor: '#e2e8f0', svgShape: '<rect x="0" y="60" width="40" height="100"/><rect x="240" y="60" width="40" height="100"/>' },
-      { id: 'floor',   label: 'Parquet',      targetColor: '#d97706', svgShape: '<rect x="0" y="160" width="280" height="40"/>' },
-      { id: 'light',   label: 'Sky Light',    targetColor: '#7dd3fc', svgShape: '<rect x="40" y="60" width="200" height="100"/>' },
-    ],
-    palette: [
-      { color: '#fbbf24', name: 'Gold' },
-      { color: '#e2e8f0', name: 'Silver Mirror' },
-      { color: '#d97706', name: 'Parquet' },
-      { color: '#7dd3fc', name: 'Sky Light' },
-    ],
-  },
-  'brahms-vienna': {
-    title: 'Vienna Concert Hall',
-    instruction: "Paint the Viennese concert hall where Brahms premiered his symphonies.",
-    viewBox: '0 0 280 200',
-    regions: [
-      { id: 'ceiling', label: 'Gilded Ceiling', targetColor: '#92400e', svgShape: '<rect x="0" y="0" width="280" height="60"/>' },
-      { id: 'walls',   label: 'Warm Walls',     targetColor: '#d97706', svgShape: '<rect x="0" y="60" width="280" height="80"/>' },
-      { id: 'stage',   label: 'Dark Stage',     targetColor: '#1c1917', svgShape: '<rect x="60" y="100" width="160" height="60"/>' },
-      { id: 'seats',   label: 'Crimson Seats',  targetColor: '#7f1d1d', svgShape: '<rect x="0" y="140" width="280" height="60"/>' },
-    ],
-    palette: [
-      { color: '#92400e', name: 'Gilded Ceiling' },
-      { color: '#d97706', name: 'Warm Wall' },
-      { color: '#1c1917', name: 'Dark Stage' },
-      { color: '#7f1d1d', name: 'Crimson Seats' },
-    ],
-  },
-  'clara-recital': {
-    title: 'Piano Salon',
-    instruction: "Paint the elegant salon where Clara Schumann performed before royalty.",
-    viewBox: '0 0 280 200',
-    regions: [
-      { id: 'curtain', label: 'Velvet Curtain', targetColor: '#7c3aed', svgShape: '<rect x="0" y="0" width="60" height="200"/><rect x="220" y="0" width="60" height="200"/>' },
-      { id: 'piano',   label: 'Piano',          targetColor: '#1c1917', svgShape: '<rect x="80" y="80" width="120" height="60" rx="8"/>' },
-      { id: 'candles', label: 'Candlelight',    targetColor: '#fbbf24', svgShape: '<circle cx="80" cy="60" r="12"/><circle cx="200" cy="60" r="12"/>' },
-      { id: 'floor',   label: 'Rosewood Floor', targetColor: '#92400e', svgShape: '<rect x="0" y="160" width="280" height="40"/>' },
-    ],
-    palette: [
-      { color: '#7c3aed', name: 'Velvet' },
-      { color: '#1c1917', name: 'Ebony' },
-      { color: '#fbbf24', name: 'Candlelight' },
-      { color: '#92400e', name: 'Rosewood' },
-    ],
-  },
-  'chanel-atelier': {
-    title: "Chanel's Atelier",
-    instruction: "Paint the Paris fashion atelier where Chanel revolutionised style.",
-    viewBox: '0 0 280 200',
-    regions: [
-      { id: 'wall',   label: 'White Wall',    targetColor: '#f8fafc', svgShape: '<rect x="0" y="0" width="280" height="200"/>' },
-      { id: 'dress',  label: 'Black Dress',   targetColor: '#1c1917', svgShape: '<polygon points="140,30 100,200 180,200"/>' },
-      { id: 'mirror', label: 'Silver Mirror', targetColor: '#e2e8f0', svgShape: '<rect x="200" y="20" width="60" height="120" rx="4"/>' },
-      { id: 'floor',  label: 'Grey Floor',    targetColor: '#d1d5db', svgShape: '<rect x="0" y="170" width="280" height="30"/>' },
-    ],
-    palette: [
-      { color: '#f8fafc', name: 'White Wall' },
-      { color: '#1c1917', name: 'Black Dress' },
-      { color: '#e2e8f0', name: 'Silver Mirror' },
-      { color: '#d1d5db', name: 'Grey Floor' },
-    ],
-  },
-  'mani-shrine': {
-    title: 'Manichaean Temple',
-    instruction: "Paint Mani's sacred shrine — where light triumphs over darkness.",
-    viewBox: '0 0 280 200',
-    regions: [
-      { id: 'sky',    label: 'Darkness',     targetColor: '#0f172a', svgShape: '<rect x="0" y="0" width="280" height="200"/>' },
-      { id: 'wall',   label: 'Violet Shrine',targetColor: '#7c3aed', svgShape: '<rect x="40" y="60" width="200" height="100" rx="8"/>' },
-      { id: 'fire',   label: 'Sacred Fire',  targetColor: '#f59e0b', svgShape: '<ellipse cx="140" cy="100" rx="30" ry="50"/>' },
-      { id: 'shadow', label: 'Shadow',       targetColor: '#292524', svgShape: '<rect x="0" y="160" width="280" height="40"/>' },
-    ],
-    palette: [
-      { color: '#0f172a', name: 'Darkness' },
-      { color: '#f59e0b', name: 'Sacred Fire' },
-      { color: '#7c3aed', name: 'Violet Shrine' },
-      { color: '#292524', name: 'Shadow' },
-    ],
-  },
-  'titian-canvas': {
-    title: "Titian's Venetian Studio",
-    instruction: "Recreate Titian's Venetian palette — the deep indigo backgrounds and crimson robes that made him famous.",
-    viewBox: '0 0 280 200',
-    regions: [
-      { id: 'bg',     label: 'Background', targetColor: '#1e1b4b', svgShape: '<rect x="0" y="0" width="280" height="200"/>' },
-      { id: 'robe',   label: 'Crimson Robe',targetColor: '#dc2626', svgShape: '<polygon points="140,60 80,200 200,200"/>' },
-      { id: 'skin',   label: 'Golden Skin', targetColor: '#fcd34d', svgShape: '<ellipse cx="140" cy="60" rx="35" ry="40"/>' },
-      { id: 'shadow', label: 'Dark Red',    targetColor: '#7f1d1d', svgShape: '<polygon points="140,100 100,200 140,200"/>' },
-    ],
-    palette: [
-      { color: '#1e1b4b', name: 'Indigo Dark' },
-      { color: '#dc2626', name: 'Crimson' },
-      { color: '#fcd34d', name: 'Gold' },
-      { color: '#7f1d1d', name: 'Dark Red' },
-    ],
-  },
-  'new-world-coast': {
-    title: 'Caribbean Coast',
-    instruction: "Paint the Caribbean coast Columbus sighted — the 'New World' that changed history.",
-    viewBox: '0 0 280 200',
-    regions: [
-      { id: 'sky',    label: 'Tropical Sky',    targetColor: '#60a5fa', svgShape: '<rect x="0" y="0" width="280" height="80"/>' },
-      { id: 'sea',    label: 'Caribbean Sea',   targetColor: '#0ea5e9', svgShape: '<rect x="0" y="80" width="280" height="80"/>' },
-      { id: 'jungle', label: 'Jungle',          targetColor: '#166534', svgShape: '<polygon points="0,80 0,160 80,80"/><polygon points="280,80 280,160 200,80"/>' },
-      { id: 'beach',  label: 'Sandy Beach',     targetColor: '#fbbf24', svgShape: '<ellipse cx="140" cy="160" rx="120" ry="20"/>' },
-    ],
-    palette: [
-      { color: '#60a5fa', name: 'Tropical Sky' },
-      { color: '#0ea5e9', name: 'Caribbean Sea' },
-      { color: '#166534', name: 'Jungle' },
-      { color: '#fbbf24', name: 'Sand' },
-    ],
-  },
-  'shaw-theater': {
-    title: "Shaw's Stage",
-    instruction: "Paint the Edwardian theater where Shaw's plays challenged convention.",
-    viewBox: '0 0 280 200',
-    regions: [
-      { id: 'curtains',  label: 'Curtains',   targetColor: '#7f1d1d', svgShape: '<rect x="0" y="0" width="70" height="200"/><rect x="210" y="0" width="70" height="200"/>' },
-      { id: 'backdrop',  label: 'Backdrop',   targetColor: '#1e1b4b', svgShape: '<rect x="70" y="0" width="140" height="130"/>' },
-      { id: 'spotlight', label: 'Spotlight',  targetColor: '#f59e0b', svgShape: '<ellipse cx="140" cy="100" rx="45" ry="35"/>' },
-      { id: 'stage',     label: 'Stage',      targetColor: '#44403c', svgShape: '<rect x="70" y="130" width="140" height="70"/>' },
-    ],
-    palette: [
-      { color: '#7f1d1d', name: 'Crimson Curtain' },
-      { color: '#1e1b4b', name: 'Night Backdrop' },
-      { color: '#f59e0b', name: 'Spotlight' },
-      { color: '#44403c', name: 'Oak Stage' },
-    ],
-  },
-  'peck-courtroom': {
-    title: "Maycomb Courthouse",
-    instruction: "Paint the Alabama courtroom where Atticus Finch stood for justice.",
-    viewBox: '0 0 280 200',
-    regions: [
-      { id: 'paneling', label: 'Wood Paneling', targetColor: '#92400e', svgShape: '<rect x="0" y="0" width="280" height="200"/>' },
-      { id: 'windows',  label: 'Windows',       targetColor: '#bfdbfe', svgShape: '<rect x="20" y="20" width="50" height="70" rx="4"/><rect x="210" y="20" width="50" height="70" rx="4"/>' },
-      { id: 'desk',     label: "Judge's Bench",  targetColor: '#1c1917', svgShape: '<rect x="60" y="110" width="160" height="40" rx="4"/>' },
-      { id: 'floor',    label: 'Stone Floor',   targetColor: '#a8a29e', svgShape: '<rect x="0" y="150" width="280" height="50"/>' },
-    ],
-    palette: [
-      { color: '#92400e', name: 'Oak' },
-      { color: '#bfdbfe', name: 'Window Light' },
-      { color: '#1c1917', name: 'Dark Wood' },
-      { color: '#a8a29e', name: 'Stone' },
-    ],
-  },
-  'isabel-court': {
-    title: "Court of Castile",
-    instruction: "Paint the Moorish-Gothic palace where Isabel held her royal court.",
-    viewBox: '0 0 280 200',
-    regions: [
-      { id: 'arches', label: 'Golden Arches', targetColor: '#d97706', svgShape: '<rect x="0" y="0" width="280" height="80"/><polygon points="70,80 70,40 110,40 110,80"/><polygon points="140,80 140,40 180,40 180,80"/>' },
-      { id: 'walls',  label: 'Stone Walls',   targetColor: '#a8a29e', svgShape: '<rect x="0" y="80" width="280" height="80"/>' },
-      { id: 'throne', label: 'Throne',        targetColor: '#dc2626', svgShape: '<polygon points="140,60 115,160 165,160"/>' },
-      { id: 'shadow', label: 'Shadows',       targetColor: '#292524', svgShape: '<rect x="0" y="160" width="280" height="40"/>' },
-    ],
-    palette: [
-      { color: '#d97706', name: 'Gold' },
-      { color: '#a8a29e', name: 'Stone' },
-      { color: '#dc2626', name: 'Crimson' },
-      { color: '#292524', name: 'Shadow' },
-    ],
-  },
-  'lisbon-harbor': {
-    title: "Lisbon Harbor",
-    instruction: "Paint the Tagus estuary as Manuel's caravels set sail for the spice routes.",
-    viewBox: '0 0 280 200',
-    regions: [
-      { id: 'sky',  label: 'Morning Sky', targetColor: '#60a5fa', svgShape: '<rect x="0" y="0" width="280" height="100"/>' },
-      { id: 'sea',  label: 'River',       targetColor: '#1e40af', svgShape: '<rect x="0" y="100" width="280" height="100"/>' },
-      { id: 'sail', label: 'Sail',        targetColor: '#f8fafc', svgShape: '<polygon points="140,20 115,110 165,110"/>' },
-      { id: 'hull', label: 'Hull',        targetColor: '#92400e', svgShape: '<rect x="105" y="110" width="70" height="22" rx="4"/>' },
-    ],
-    palette: [
-      { color: '#60a5fa', name: 'Morning Sky' },
-      { color: '#1e40af', name: 'Tagus River' },
-      { color: '#f8fafc', name: 'White Sail' },
-      { color: '#92400e', name: 'Oak Hull' },
-    ],
+    fact: 'Sōtatsu worked in Kyoto in the same decades that Musashi wandered Japan. His gods leave almost the whole of each screen empty gold, a boldness later painters copied for generations.',
   },
 }
 
-export default function PaintingGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
-  // D1 names every paint and marks each region right or wrong as it is
-  // painted.  D2 hides the paint names (match by eye).  From D3 a region
-  // no longer says whether it is right — only the count once all are
-  // painted — and a clock runs.
-  const timeLimit = scale(difficulty, [0, 0, 90, 60])
-  const showNames = difficulty === 1
-  const markRegions = difficulty <= 2
-  const config = CONFIGS[configId] ?? CONFIGS['spring-garden']
-  const [filled, setFilled] = useState<Record<string, string>>({})
-  const [selectedColor, setSelectedColor] = useState<string>(config.palette[0].color)
-  const [won, setWon] = useState(false)
-  // Batched ticks can expire the clock more than once; report the loss a single time.
-  const lost = useRef(false)
-  const timer = useGameTimer({ seconds: timeLimit, running: !won, onExpire: () => { if (!lost.current) { lost.current = true; onLose('out of time') } } })
+export const CONFIG_IDS = Object.keys(CONFIGS)
 
-  const handleRegionClick = (regionId: string) => {
-    if (won) return
-    const next = { ...filled, [regionId]: selectedColor }
-    setFilled(next)
-    const allCorrect = config.regions.every(r => next[r.id] === r.targetColor)
-    if (allCorrect) {
-      setWon(true)
-      setTimeout(onWin, 500)
+// ── Rules ──────────────────────────────────────────────────────────────────────
+
+export interface Tier { items: number; options: number; misses: number }
+
+export function tierFor(d: Difficulty): Tier {
+  return { items: scale(d, [2, 2, 3, 3]), options: scale(d, [3, 4, 5, 6]), misses: scale(d, [3, 2, 2, 1]) }
+}
+
+const rgb = (hex: string) => [1, 3, 5].map(i => parseInt(hex.slice(i, i + 2), 16)) as [number, number, number]
+const colourDistance = (a: string, b: string) => {
+  const [r1, g1, b1] = rgb(a), [r2, g2, b2] = rgb(b)
+  return Math.hypot(r1 - r2, g1 - g2, b1 - b2)
+}
+
+/** Wrong pigments too close to the right one would be unfair to tell apart. */
+export const MIN_DISTANCE = 45
+
+/**
+ * The pigments offered for an item: the right one plus wrong ones, far from
+ * it at D1 and closest at D4, shuffled by the seed.
+ */
+export function optionsFor(item: PaintItem, d: Difficulty, seed: number): Pigment[] {
+  const n = tierFor(d).options - 1
+  const pool = PIGMENTS
+    .filter(p => p.name !== item.pigment.name && colourDistance(p.hex, item.pigment.hex) >= MIN_DISTANCE)
+    .sort((a, b) => colourDistance(a.hex, item.pigment.hex) - colourDistance(b.hex, item.pigment.hex))
+  // D3–D4 take the nearest; D1–D2 skip past the nearest third of the pool.
+  const start = d >= 3 ? 0 : Math.floor(pool.length / 3)
+  const wrong = pool.slice(start, start + n)
+  const out = [item.pigment, ...wrong]
+  const rng = mulberry32(seed)
+  for (let i = out.length - 1; i > 0; i--) { const j = Math.floor(rng() * (i + 1)); [out[i], out[j]] = [out[j], out[i]] }
+  return out
+}
+
+export const itemsFor = (cfg: PaintingConfig, d: Difficulty) => cfg.items.slice(0, Math.min(cfg.items.length, tierFor(d).items))
+
+// ── Masks and recolouring (canvas) ─────────────────────────────────────────────
+
+function hsv(r: number, g: number, b: number): [number, number, number] {
+  const mx = Math.max(r, g, b), mn = Math.min(r, g, b), d = mx - mn
+  let h = 0
+  if (d) h = mx === r ? ((g - b) / d) % 6 : mx === g ? (b - r) / d + 2 : (r - g) / d + 4
+  return [(h * 60 + 360) % 360, mx ? d / mx : 0, mx / 255]
+}
+
+function inPoly(x: number, y: number, poly: [number, number][]) {
+  let inside = false
+  for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
+    const [xi, yi] = poly[i], [xj, yj] = poly[j]
+    if ((yi > y) !== (yj > y) && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) inside = !inside
+  }
+  return inside
+}
+
+const hueIn = (h: number, [lo, hi]: [number, number]) => (lo <= hi ? h >= lo && h <= hi : h >= lo || h <= hi)
+
+/** Pixel indices of the item in the image. */
+export function itemMask(px: Uint8ClampedArray, w: number, h: number, item: PaintItem): Uint32Array {
+  const out: number[] = []
+  const xs = item.poly.map(p => p[0]), ys = item.poly.map(p => p[1])
+  const x0 = Math.max(0, Math.floor(Math.min(...xs) * w)), x1 = Math.min(w, Math.ceil(Math.max(...xs) * w))
+  const y0 = Math.max(0, Math.floor(Math.min(...ys) * h)), y1 = Math.min(h, Math.ceil(Math.max(...ys) * h))
+  for (let y = y0; y < y1; y++) for (let x = x0; x < x1; x++) {
+    if (!inPoly(x / w, y / h, item.poly)) continue
+    const o = (y * w + x) * 4
+    const [hu, s, v] = hsv(px[o], px[o + 1], px[o + 2])
+    if (!hueIn(hu, item.hue) || s < (item.minSat ?? 0.25) || v < (item.minVal ?? 0.08) || v > (item.maxVal ?? 1)) continue
+    out.push(y * w + x)
+  }
+  return Uint32Array.from(out)
+}
+
+function hslOf(hex: string): [number, number] {
+  const [r, g, b] = rgb(hex).map(v => v / 255)
+  const mx = Math.max(r, g, b), mn = Math.min(r, g, b), l = (mx + mn) / 2, d = mx - mn
+  if (!d) return [0, 0]
+  const s = d / (1 - Math.abs(2 * l - 1))
+  let h = mx === r ? ((g - b) / d) % 6 : mx === g ? (b - r) / d + 2 : (r - g) / d + 4
+  h = (h * 60 + 360) % 360
+  return [h, s]
+}
+
+function hslToRgb(h: number, s: number, l: number): [number, number, number] {
+  const c = (1 - Math.abs(2 * l - 1)) * s, x = c * (1 - Math.abs(((h / 60) % 2) - 1)), m = l - c / 2
+  const [r, g, b] = h < 60 ? [c, x, 0] : h < 120 ? [x, c, 0] : h < 180 ? [0, c, x] : h < 240 ? [0, x, c] : h < 300 ? [x, 0, c] : [c, 0, x]
+  return [(r + m) * 255, (g + m) * 255, (b + m) * 255]
+}
+
+/** Paint `mask` of `src` into `dst`: grey when `hex` is null, else that hue and saturation at the pixel's own lightness. */
+function paintMask(src: Uint8ClampedArray, dst: Uint8ClampedArray, mask: Uint32Array, hex: string | null) {
+  const [h, s] = hex ? hslOf(hex) : [0, 0]
+  for (let k = 0; k < mask.length; k++) {
+    const o = mask[k] * 4
+    const r = src[o], g = src[o + 1], b = src[o + 2]
+    if (!hex) {
+      const y = 0.3 * r + 0.59 * g + 0.11 * b
+      dst[o] = dst[o + 1] = dst[o + 2] = y
+      continue
     }
+    const l = (Math.max(r, g, b) + Math.min(r, g, b)) / 510
+    const [nr, ng, nb] = hslToRgb(h, s, l)
+    dst[o] = nr; dst[o + 1] = ng; dst[o + 2] = nb
   }
+}
 
-  const regionColor = (r: Region) => filled[r.id] ?? '#334155'
+// ── Component ──────────────────────────────────────────────────────────────────
 
-  const buildSvg = () => {
-    const shapes = config.regions.map(r => {
-      const color = regionColor(r)
-      const target = r.targetColor
-      const isFilled = !!filled[r.id]
-      const isCorrect = filled[r.id] === target
-      const stroke = isFilled && (markRegions || won) ? (isCorrect ? '#34d399' : '#f87171') : isFilled ? '#e2e8f0' : '#475569'
-      const sw = isFilled ? 2 : 1
-      // Inject fill and stroke into the shape
-      const shape = r.svgShape.replace(/\/>/, ` fill="${color}" stroke="${stroke}" stroke-width="${sw}" style="cursor:pointer"/>`).replace(/<(\w+)/, `<$1 data-id="${r.id}" `)
-      return `<g class="region-${r.id}">${shape}</g>`
-    }).join('')
-    return `<svg viewBox="${config.viewBox}" xmlns="http://www.w3.org/2000/svg" width="100%" height="200">${shapes}</svg>`
+export default function PaintingGame({ configId, difficulty, seed, params, onWin, onLose }: MinigameProps) {
+  const cfg = resolveConfig(CONFIGS, configId, params, 'titian-canvas')
+  const tier = tierFor(difficulty)
+  const items = useMemo(() => itemsFor(cfg, difficulty), [cfg, difficulty])
+  const options = useMemo(() => items.map((it, i) => optionsFor(it, difficulty, seed + i * 101)), [items, difficulty, seed])
+  const { outcome, settled, win, lose } = useGameOutcome({ onWin, onLose })
+
+  const [active, setActive] = useState(0)
+  const [restored, setRestored] = useState<boolean[]>(() => items.map(() => false))
+  const [preview, setPreview] = useState<Pigment | null>(null)
+  const [missesLeft, setMissesLeft] = useState(tier.misses)
+  const [note, setNote] = useState<{ ok: boolean; text: string } | null>(null)
+
+  // Pixels: the original photo and one mask per item, built once the image loads.
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const glowRef = useRef<HTMLCanvasElement>(null)
+  const pixels = useRef<{ w: number; h: number; src: Uint8ClampedArray; masks: Uint32Array[] } | null>(null)
+  const [loaded, setLoaded] = useState(false)
+
+  useEffect(() => {
+    const img = new Image()
+    img.onload = () => {
+      const w = img.naturalWidth, h = img.naturalHeight
+      const off = document.createElement('canvas')
+      off.width = w; off.height = h
+      const ctx = off.getContext('2d', { willReadFrequently: true })
+      if (!ctx) return
+      ctx.drawImage(img, 0, 0)
+      const src = ctx.getImageData(0, 0, w, h).data
+      pixels.current = { w, h, src, masks: items.map(it => itemMask(src, w, h, it)) }
+      setLoaded(true)
+    }
+    img.src = gameArtUrl(cfg.art)
+    return () => { img.onload = null }
+  }, [cfg.art, items])
+
+  // Redraw: restored items in their original paint, the others grey, the active one in the previewed pigment.
+  useEffect(() => {
+    const p = pixels.current, canvas = canvasRef.current, glow = glowRef.current
+    if (!loaded || !p || !canvas || !glow) return
+    canvas.width = glow.width = p.w
+    canvas.height = glow.height = p.h
+    const ctx = canvas.getContext('2d'), gctx = glow.getContext('2d')
+    if (!ctx || !gctx) return
+    const out = new ImageData(new Uint8ClampedArray(p.src), p.w, p.h)
+    items.forEach((_, i) => {
+      if (restored[i]) return
+      paintMask(p.src, out.data, p.masks[i], i === active && preview ? preview.hex : null)
+    })
+    ctx.putImageData(out, 0, 0)
+    // A soft highlight over the item being restored.
+    const g = gctx.createImageData(p.w, p.h)
+    if (!settled && !restored[active]) for (const k of p.masks[active]) { g.data[k * 4] = g.data[k * 4 + 1] = 255; g.data[k * 4 + 2] = 220; g.data[k * 4 + 3] = 110 }
+    gctx.putImageData(g, 0, 0)
+  }, [loaded, items, restored, active, preview, settled])
+
+  const item = items[active]
+  const done = restored.every(Boolean)
+
+  const commit = () => {
+    if (settled || !preview || restored[active]) return
+    if (preview.name === item.pigment.name) {
+      const next = restored.map((r, i) => r || i === active)
+      setRestored(next)
+      setPreview(null)
+      setNote({ ok: true, text: item.fact })
+      if (next.every(Boolean)) { win(); return }
+      setActive(next.findIndex(r => !r))
+      return
+    }
+    setNote({ ok: false, text: `Not ${preview.name} — look at the light and shade around it again.` })
+    setPreview(null)
+    if (missesLeft <= 1) { setMissesLeft(0); lose('the restoration went wrong'); return }
+    setMissesLeft(m => m - 1)
   }
-
-  const allFilled = config.regions.every(r => filled[r.id])
-  const correctCount = config.regions.filter(r => filled[r.id] === r.targetColor).length
 
   return (
-    <div className="flex flex-col gap-3 bg-paper-2 rounded-xl p-3">
-      {timer.active && <div className="w-full"><TimerBar remaining={timer.remaining} total={timer.total} /></div>}
-      <p className="text-accent/80 text-[10px] font-bold uppercase tracking-widest">{config.title}</p>
-      <p className="text-muted text-xs">{config.instruction}</p>
-
-      {/* Canvas */}
-      <div
-        className="rounded-xl overflow-hidden border border-line bg-paper-2"
-        onClick={(e) => {
-          if (won) return
-          const target = e.target as SVGElement
-          const regionId = target.closest('[data-id]')?.getAttribute('data-id')
-          if (regionId) handleRegionClick(regionId)
-        }}
-        dangerouslySetInnerHTML={{ __html: buildSvg() }}
-      />
-
-      {/* Region labels */}
-      <div className="flex flex-wrap gap-1.5 justify-center">
-        {config.regions.map(r => {
-          const isFilled = !!filled[r.id] && (markRegions || won)
-          const isCorrect = filled[r.id] === r.targetColor
-          return (
-            <button
-              key={r.id}
-              onClick={() => handleRegionClick(r.id)}
-              className={`px-2.5 py-1 rounded-lg text-[10px] font-semibold border transition-all ${
-                isCorrect ? 'border-emerald-500/50 text-emerald-300 bg-emerald-500/10'
-                  : isFilled ? 'border-red-500/40 text-red-300 bg-red-500/10'
-                  : 'border-line text-muted bg-panel-2 hover:border-accent/40'
-              }`}
-            >
-              <span
-                className="inline-block w-2 h-2 rounded-full mr-1"
-                style={{ background: regionColor(r) }}
-              />
-              {r.label}
-            </button>
-          )
-        })}
+    <div className="flex flex-col gap-3 bg-paper-2 rounded-xl p-3 select-none">
+      <div className="flex items-start justify-between gap-3">
+        <div className="min-w-0">
+          <p className="text-accent/80 text-[10px] font-bold uppercase tracking-widest">{cfg.title}</p>
+          <p className="text-muted/80 text-[10px] italic">{cfg.credit}</p>
+          <p className="text-muted text-xs leading-relaxed mt-1">{cfg.intro}</p>
+        </div>
+        <p className="shrink-0 text-[10px] text-muted text-right leading-relaxed">
+          Item <b className="text-ink">{Math.min(active + 1, items.length)}</b>/{items.length}<br />
+          Misses left <b className={missesLeft <= 1 ? 'text-red-700' : 'text-ink'}>{missesLeft}</b>
+        </p>
       </div>
 
-      {/* Palette */}
-      <div>
-        <p className="text-muted text-[10px] mb-1.5">Select color, then tap a region:</p>
-        <div className="flex flex-wrap gap-2">
-          {config.palette.map(p => (
-            <button
-              key={p.color}
-              onClick={() => setSelectedColor(p.color)}
-              title={showNames ? p.name : undefined}
-              aria-label={p.name}
-              className={`w-8 h-8 rounded-lg border-2 transition-all ${
-                selectedColor === p.color ? 'border-white scale-110 shadow-lg' : 'border-transparent hover:scale-105'
-              }`}
-              style={{ background: p.color }}
-            />
-          ))}
-        </div>
-        {selectedColor && showNames && (
-          <p className="text-muted text-[10px] mt-1">
-            Selected: <span className="text-ink">{config.palette.find(p => p.color === selectedColor)?.name}</span>
+      <div className="relative self-center w-full max-w-md rounded-lg overflow-hidden border border-line bg-ink/80"
+        style={{ minHeight: loaded ? undefined : 200 }}>
+        <canvas ref={canvasRef} className={`block w-full h-auto max-h-[55vh] object-contain ${loaded ? '' : 'hidden'}`} aria-label={cfg.title} />
+        <canvas ref={glowRef} className={`pointer-events-none absolute inset-0 w-full h-full object-contain animate-pulse ${loaded ? '' : 'hidden'}`} />
+        {!loaded && <p className="absolute inset-0 flex items-center justify-center text-paper/70 text-xs">Unrolling the canvas…</p>}
+      </div>
+
+      {!done && !settled && (
+        <>
+          <p className="text-center text-sm text-ink">
+            Restore <b>{item.label}</b>
+            {preview && <span className="text-muted"> · trying {preview.name}</span>}
           </p>
-        )}
-      </div>
-
-      {/* Progress */}
-      {allFilled && !won && (
-        <div className="text-center text-muted text-xs">
-          {correctCount} / {config.regions.length} correct
-          {correctCount < config.regions.length && ' — try adjusting some colors'}
-        </div>
+          <div className="flex flex-wrap justify-center gap-2">
+            {options[active].map(p => (
+              <button key={p.name} onClick={() => { setPreview(p); setNote(null) }} aria-label={p.name}
+                className={`flex flex-col items-center gap-1 w-[4.5rem] p-1.5 rounded-lg border transition-all active:scale-95
+                  ${preview?.name === p.name ? 'border-accent bg-panel shadow' : 'border-line bg-panel-2 hover:border-accent/50'}`}>
+                <span className="w-8 h-8 rounded-full border border-ink/20 shadow-inner" style={{ background: p.hex }} />
+                <span className="text-[9px] leading-tight text-ink-2 text-center">{p.name}</span>
+              </button>
+            ))}
+          </div>
+          <button onClick={commit} disabled={!preview}
+            className="self-center px-5 py-2 rounded-xl text-sm font-bold bg-accent text-accent-fg disabled:opacity-40 transition-opacity">
+            {preview ? `Restore with ${preview.name}` : 'Tap a pigment to try it'}
+          </button>
+        </>
       )}
 
-      {won && (
-        <p className="text-center text-emerald-400 font-bold text-sm py-1">Masterpiece complete! 🎨</p>
+      {note && !settled && (
+        <p className={`text-[11px] text-center leading-relaxed ${note.ok ? 'text-emerald-800' : 'text-red-800'}`}>{note.text}</p>
       )}
+
+      <OutcomeBanner outcome={outcome} detail={done ? `${item.fact} ${cfg.fact}` : cfg.fact} winTitle="Restored!" loseTitle="The restoration went wrong" />
     </div>
   )
 }
-
-// Every hand-authored config id; the registry test renders each one.
-export const CONFIG_IDS = Object.keys(CONFIGS)

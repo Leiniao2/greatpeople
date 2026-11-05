@@ -60,6 +60,14 @@ export const GAME_ART = {
   logic_shannon:  'Bell Labs relay switching room, 1930s',
   logic_turing:   'Bletchley Park bombe machine, rotating drums',
   logic_lovelace: "Babbage's Analytical Engine with punched cards",
+  // Painting — public-domain photographs of the real works (Wikimedia Commons),
+  // not generated: the game restores their original colours.
+  painting_titian_assumption:    'Titian, Assumption of the Virgin, 1516–18, Frari, Venice',
+  painting_vermeer_pearl:        'Johannes Vermeer, Girl with a Pearl Earring, c. 1665, Mauritshuis',
+  painting_raphael_sistine:      'Raphael, Sistine Madonna, 1512, Gemäldegalerie Alte Meister, Dresden',
+  painting_botticelli_venus:     'Sandro Botticelli, The Birth of Venus, c. 1485, Uffizi',
+  painting_codex_mendoza_2r:     'Codex Mendoza, folio 2r, c. 1541, Bodleian Library',
+  painting_sotatsu_wind_thunder: 'Tawaraya Sōtatsu, Wind God and Thunder God screens, 17th century, Kennin-ji',
 } as const
 
 export type GameArtKey = keyof typeof GAME_ART
