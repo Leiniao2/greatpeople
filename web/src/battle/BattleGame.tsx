@@ -415,8 +415,7 @@ function CardDetailModal({ card, achievementTicks, owner, earned, onClose }: {
         </div>
         <p className="text-violet-900 text-xs leading-relaxed"><span className="font-semibold">Effect:</span> {describeLegacyEffect(card.legacy.effect)}</p>
         <p className="text-violet-900/80 text-[11px] leading-relaxed">
-          <span className="font-semibold">Earned by:</span> winning {threshold} {STAT_LABELS[card.legacy.unlock.stat]} fight{threshold > 1 ? 's' : ''} against a worthy rival
-          {card.achievement ? ` (${card.achievement.split(' — ')[1] ?? card.achievement})` : ''}.
+          <span className="font-semibold">Earned by:</span> {card.achievement.split(' — ')[1] ?? card.achievement}
         </p>
         {card.legacy.flavour && <p className="text-violet-900/70 text-[11px] italic">{card.legacy.flavour}</p>}
         {!earned && achievementTicks !== undefined && ticks >= threshold && (
@@ -826,7 +825,7 @@ function RulesModal({ onClose }: { onClose: () => void }) {
           </section>
           <section>
             <p className="text-[10px] font-bold text-accent uppercase tracking-widest mb-1.5">Legacies</p>
-            <p className="text-ink-2 leading-relaxed">A Great Person's legacy is earned by winning fights in its stat (shown on the card). You keep every legacy for the rest of the game, even after that person dies, but only {LEGACY_SLOTS} are in effect at once.</p>
+            <p className="text-ink-2 leading-relaxed">Each Great Person earns their legacy through <span className="text-ink font-semibold">their own achievement</span>, written on their card (tap ⓘ): for example Imhotep needs an allied Architect and an Engineer or Scientist in his city. Winning fights does not earn a legacy by itself. When a Great Person achieves it, make them public and Claim Legacy. You keep every legacy for the rest of the game, even after that person dies, but only {LEGACY_SLOTS} are in effect at once.</p>
           </section>
         </div>
         <div className="px-4 pb-4 pt-1">

@@ -19,7 +19,7 @@
     "reputation": 9,
     "lore": "The soul force that moved an empire.",
     "trait": "Mahatma — While on the field, all Conflict scenarios are negated (do not take effect).",
-    "achievement": "Satyagraha — Win a defence while none of this card's allied GP or Followers performed any action (move, retrieve, deploy, attack) in the same round.",
+    "achievement": "Satyagraha — Win a defence in a year in which you have not deployed, moved, attacked, retrieved or placed a Follower.",
     "legacy": {
       "name": "Satyagraha",
       "unlock": {
@@ -60,7 +60,7 @@
     "reputation": 3,
     "lore": "She dressed the world in modernity.",
     "trait": "Women's Fashion — All female Followers at this location gain +2 to their primary stat.",
-    "achievement": "Chanel No. 5 — Have this card spend a turn with at least 1 allied Nat (GP or Follower) and 2 allied female (GP or Follower) at the same location.",
+    "achievement": "Chanel No. 5 — Spend a turn in a city with at least 1 allied Naturalist and 2 allied Artists or Merchants (GP or Follower).",
     "legacy": {
       "name": "Chanel No. 5",
       "unlock": {
@@ -101,7 +101,7 @@
     "reputation": 11,
     "lore": "A revolution forged from peasant to chairman.",
     "trait": "The Long March — When being killed, this card can automatically get retrieved to its Player's hand instead.",
-    "achievement": "Cultural Revolution — Have a non-allied Mus, Art, Act, or Wri GP or Follower removed from the board after a Censorship scenario ends.",
+    "achievement": "Cultural Revolution — A rival's Musician, Artist, Actor or Writer (GP or Follower) is swept away by a Censorship survival while this card is on the board.",
     "legacy": {
       "name": "Cultural Revolution",
       "unlock": {
@@ -223,7 +223,7 @@
     "reputation": 1,
     "lore": "He turned leaves and water into philosophy.",
     "trait": "Tea Ceremony — If this card is the only Great Person at this location, all its stats gain +5.",
-    "achievement": "The Classic of Tea — Have this card be the only GP at a location for 3 consecutive rounds.",
+    "achievement": "The Classic of Tea — Be the only Great Person in a city for 3 years in a row.",
     "legacy": {
       "name": "The Classic of Tea",
       "unlock": {
@@ -264,7 +264,7 @@
     "reputation": 8,
     "lore": "He built the machine that broke the unbreakable.",
     "trait": "Artificial Intelligence — Gains the highest stat of the last allied Great Person that was Archived.",
-    "achievement": "Turing Test — Use this card's Artificial Intelligence trait to survive a Survival Scenario that the card could not have survived without it.",
+    "achievement": "Turing Test — Survive a Survival that your side here would have failed without this card's own stat.",
     "legacy": {
       "name": "Turing Test",
       "unlock": {
@@ -305,7 +305,7 @@
     "reputation": 4,
     "lore": "A bullet for a nation's soul.",
     "trait": "Assassination — If this card was private and becomes public this turn, it may attack regardless of whether a Conflict scenario is active, targeting a player with only 1 GP at this location. This attack kills the target GP.",
-    "achievement": "Korea Commemoration — Have at least one Korean location on the board occupied exclusively by Korean GP (no GP from other countries).",
+    "achievement": "Korea Commemoration — Spend a turn in a city where every Great Person is Korean while a rival still has a Follower there.",
     "legacy": {
       "name": "Korea Commemoration",
       "unlock": {
@@ -388,7 +388,7 @@
     "reputation": 8,
     "lore": "Grace in every frame, humanity in every cause.",
     "trait": "Humanitarian Presence — While this card is face-up on the field, once per round the player may redirect one opponent event targeting any allied card at any location to have no effect.",
-    "achievement": "UNICEF — Have this card spend a turn at the same location as at least 1 allied Doc or Mon (GP or Follower) while no conflict scenario is active.",
+    "achievement": "UNICEF — Spend a turn in a city with at least 1 allied Doctor or Monastic (GP or Follower) while no Local Event is running there.",
     "legacy": {
       "name": "UNICEF",
       "unlock": {
@@ -431,7 +431,7 @@
     "reputation": 6,
     "lore": "She played from the heart when the world told her to stand aside.",
     "trait": "Musical Bond — If there is exactly one male Musician (Great Person or Follower) at this location, both this card and that card gain +3 to all stats.",
-    "achievement": "Lieder Album — Have this card at the same location as exactly one allied male Mus GP or Follower for 2 consecutive rounds.",
+    "achievement": "Lieder Album — Have this card in a city with exactly one allied Musician (GP or Follower) for 2 years in a row.",
     "legacy": {
       "name": "Lieder Album",
       "unlock": {
@@ -552,7 +552,7 @@
     "reputation": 8,
     "lore": "She rode in her father's armor and shook the walls of legend.",
     "trait": "Gender Disguise — All Great Person traits related to Gender on the field are disabled.",
-    "achievement": "Join Army for Father — Win a Battlefield defence with at least one allied Sol GP or Follower at the same location.",
+    "achievement": "Join Army for Father — Win a defence in a Strength Local Event (Battlefield) with an allied Soldier, Warrior or General (GP or Follower) here.",
     "legacy": {
       "name": "Join Army for Father",
       "unlock": {
@@ -636,7 +636,7 @@
     "reputation": 6,
     "lore": "The greatest knight of the realm, undone by the greatest love.",
     "trait": "Oath of Valor — While this card has never moved since deployment, it wins all stat ties. If it ever moves, it permanently loses this ability for the rest of the match.",
-    "achievement": "The Grail Quest — Have this card at the same location as 2 or more allied Sol (GP or Follower), none of which moved this turn.",
+    "achievement": "The Grail Quest — Spend a turn in a city with 2 or more allied Soldiers, Warriors or Generals (GP or Follower), none of which moved or acted this turn.",
     "legacy": {
       "name": "The Grail Quest",
       "unlock": {
@@ -677,7 +677,7 @@
     "reputation": 2,
     "lore": "Sorrow and beauty, distilled into verse.",
     "trait": "Delicate Restraint — While this card is on board, you may deploy an unlimited number of Wri, Art, Mus, or Act Followers per turn.",
-    "achievement": "Sheng Sheng Man — Have every player deploy exactly 2 cards (GP or Follower total) to this location at the same time.",
+    "achievement": "Sheng Sheng Man — Spend a turn in a city where every player present (at least two) has exactly 2 cards.",
     "legacy": {
       "name": "Sheng Sheng Man",
       "unlock": {
@@ -719,7 +719,7 @@
     "reputation": 1,
     "lore": "A kingdom inherited, a revolution unleashed.",
     "trait": "Locksmith — All non-allied GP and Followers at the same location cannot move to another location or be retrieved by their player.",
-    "achievement": "Guillotine — Have more than 1 GP or Follower killed at this location in the same turn while Louis XVI is present.",
+    "achievement": "Guillotine — Have 2 or more Great People killed in this card's city in the same turn.",
     "legacy": {
       "name": "Guillotine",
       "unlock": {
@@ -759,7 +759,7 @@
     "reputation": 7,
     "lore": "She wore the crown of Versailles until the crowd came for it.",
     "trait": "Madame Déficit — All GP at the same location as this card get −3 Wealth.",
-    "achievement": "Queen's Designer — Have an Art or Mer GP at this location get archived in the same turn.",
+    "achievement": "Queen's Designer — Have an Artist or Merchant Great Person die in this card's city.",
     "legacy": {
       "name": "Queen's Designer",
       "unlock": {
@@ -924,7 +924,7 @@
     "reputation": 4,
     "lore": "Born of clay and wildness, he became the greatest friend a king ever had.",
     "trait": "Forest Wildman — A Location with Forest feature provides +2 Strength and +2 Technique to this card and all Allied GP and Followers at it.",
-    "achievement": "Gilgamesh Epic — This card and another Sumer GP card move from a Mesopotamia location to another Mesopotamia location together in the same turn.",
+    "achievement": "Gilgamesh Epic — Move this card and another allied card into the same city in one turn.",
     "legacy": {
       "name": "Gilgamesh Epic",
       "unlock": {
@@ -965,7 +965,7 @@
     "reputation": 7,
     "lore": "Under his hand, Athens became the school of Hellas.",
     "trait": "Athenian Democracy — Gains an additional +1 to all stats for each allied Follower at this location.",
-    "achievement": "Funeral Oration — Have an allied GP killed at this location by an opponent in the same turn.",
+    "achievement": "Funeral Oration — Have an allied Great Person killed by a rival in this card's city.",
     "legacy": {
       "name": "Funeral Oration",
       "unlock": {
@@ -1047,7 +1047,7 @@
     "reputation": 3,
     "lore": "King of Sparta, twice exiled, twice restored — a king who chose peace over glory.",
     "trait": "The Recalled King — Whenever this card would be eliminated, retrieve it to hand instead. It may then be immediately redeployed to any location for free.",
-    "achievement": "Thirty Years' Peace — Have this card draw 2 different rounds (combat or event) during the same game.",
+    "achievement": "Thirty Years' Peace — Draw 2 fights in this card's city over the game.",
     "legacy": {
       "name": "Thirty Years' Peace",
       "unlock": {
@@ -1089,7 +1089,7 @@
     "reputation": 7,
     "lore": "The greatest orator of Rome — words were his sword and shield.",
     "trait": "Consul's Veto — Once per match, cancel any single opponent action at this location — deployment, move, event, or attack. The action is void and any costs are refunded.",
-    "achievement": "Philippics — Use the Consul's Veto trait and have at least 1 allied Sta (GP or Follower) at this location in the same turn.",
+    "achievement": "Philippics — Win a defence in a Politics Local Event with at least 1 allied Statesman (GP or Follower) here.",
     "legacy": {
       "name": "Philippics",
       "unlock": {
@@ -1173,7 +1173,7 @@
     "reputation": 3,
     "lore": "He proved motion was impossible — and the world has never stopped arguing.",
     "trait": "The Paradox — Once per match, declare the current scenario a draw: neither side wins, no Achievement Ticks are awarded, and both cards remain on the field.",
-    "achievement": "Achilles and the Tortoise — Use the Paradox trait and have this card remain at the same location without moving for 3 consecutive rounds.",
+    "achievement": "Achilles and the Tortoise — Stay in the same city without moving for 3 years in a row while a scenario is running there.",
     "legacy": {
       "name": "Achilles and the Tortoise",
       "unlock": {
@@ -1215,7 +1215,7 @@
     "reputation": 1,
     "lore": "He gave us algebra and the algorithm — the invisible foundation of every computer ever built.",
     "trait": "Algebraic Induction — This card gains all numerical stat bonuses currently received by other revealed Great Persons on the field.",
-    "achievement": "Algebra — Have allied GP and Followers on board whose base stats together include every integer from 1 to 25.",
+    "achievement": "Algebra — Have your Great People and Followers on the board show every number from 1 to 5 among their base stats and bonuses.",
     "legacy": {
       "name": "Algebra",
       "unlock": {
@@ -1295,7 +1295,7 @@
     "reputation": 8,
     "lore": "His brush turned the Renaissance into fire and flesh — the last great master standing.",
     "trait": "The Portraitist — Get the trait of the Allied Great People if there is only one at the same location.",
-    "achievement": "Self-Portrait — Have at least 1 allied archived GP whose trait this card has inherited.",
+    "achievement": "Self-Portrait — Lose an allied Great Person while this card is on the board; their art lives on in his studio.",
     "legacy": {
       "name": "Self-Portrait",
       "unlock": {
@@ -1334,7 +1334,7 @@
     "reputation": 5,
     "lore": "He proved the world was round by sailing its circumference — and died before he saw it complete.",
     "trait": "Long-distance Voyage — This card and all Allied GP get extra +1 on all stats in a Global Competition.",
-    "achievement": "Circumnavigation — Visit all the locations on the board in public continuously (without being turned into private, being retrieved or being killed).",
+    "achievement": "Circumnavigation — Visit every city on the board while public the whole way (without being hidden, retrieved or killed).",
     "legacy": {
       "name": "Circumnavigation",
       "unlock": {
@@ -1457,7 +1457,7 @@
     "reputation": 8,
     "lore": "His music spoke what words could not — joy and madness in the same key.",
     "trait": "Fantasia — Cards at this location are immune to Survival Scenario effects in the first round this card is deployed or moved here; this card cannot terminate the Survival Scenario.",
-    "achievement": "Marriage of Love — Have this card spend a turn with only 1 allied female Mus (GP or Follower) at the same location, both performing no actions.",
+    "achievement": "Marriage of Love — Spend a turn in a city with only one other allied card, a Musician (GP or Follower), neither of you acting that turn.",
     "legacy": {
       "name": "Marriage of Love",
       "unlock": {
@@ -1498,7 +1498,7 @@
     "reputation": 3,
     "lore": "He gave Einstein the mathematics to prove relativity — and modestly called it Einstein's theory.",
     "trait": "Lorentz Transformation — All Great Person traits related to Era or Location on the field are disabled.",
-    "achievement": "Lorentz Force — Have a GP on the board get force-retrieved without being attacked.",
+    "achievement": "Lorentz Force — A Great Person in this card's city is sent back to hand by a lost fight (Kill mode off).",
     "legacy": {
       "name": "Lorentz Force",
       "unlock": {
@@ -1539,7 +1539,7 @@
     "reputation": 6,
     "lore": "She aimed for the horizon and flew straight through every barrier in her path.",
     "trait": "The Lady Lindy — This card is immune to all Survival Scenario effects; it always survives regardless of stat thresholds.",
-    "achievement": "First Solo Atlantic — Have this card survive a natural hazard scenario at a location where no other allied GP or Follower is present.",
+    "achievement": "First Solo Atlantic — Survive a natural hazard in a city where you have no other card.",
     "legacy": {
       "name": "First Solo Atlantic",
       "unlock": {
@@ -1577,7 +1577,7 @@
     "reputation": 7,
     "lore": "He invented the language of film — montage as a weapon of art and revolution.",
     "trait": "Dialectical Montage — Once per match, play two event cards simultaneously from your hand at this location. Both effects resolve in the order you choose.",
-    "achievement": "Battleship Potemkin — Play 2 event cards at this location in the same turn.",
+    "achievement": "Battleship Potemkin — Start 2 Event cards in this card's city over the game.",
     "legacy": {
       "name": "Battleship Potemkin",
       "unlock": {
@@ -1740,7 +1740,7 @@
     "reputation": 8,
     "lore": "The King of Pop — the most famous entertainer in human history.",
     "trait": "King of Pop — While at a location, all players may deploy an unlimited number of Follower cards to this same location.",
-    "achievement": "Moon Walk — Have this card spend a turn with at least 1 allied Ast (GP or Follower) and 1 allied Mus (GP or Follower) at the same location.",
+    "achievement": "Moon Walk — Spend a turn in a city with at least 1 allied Astronomer and 1 allied Musician (GP or Follower).",
     "legacy": {
       "name": "Moon Walk",
       "unlock": {
@@ -1820,7 +1820,7 @@
     "reputation": 5,
     "lore": "In a role he was born to play, he gave America its conscience.",
     "trait": "Standing for Justice — All events played by opponents at this location must be declared publicly before resolving. The player may discard one Follower to negate any such event.",
-    "achievement": "To Kill a Mockingbird — Have this card at the same location as at least 1 allied Law (GP or Follower) while a Conflict scenario is active.",
+    "achievement": "To Kill a Mockingbird — Spend a turn in a city with at least 1 allied Lawyer (GP or Follower) while a Local Event is running there.",
     "legacy": {
       "name": "To Kill a Mockingbird",
       "unlock": {
@@ -1901,7 +1901,7 @@
     "reputation": 1,
     "lore": "Under his reign, Portugal held the key to the world's treasure chest.",
     "trait": "Maritime Empire — Whenever this card moves to a new location, the player may bring any number of allied Followers from the previous location to the new one at no cost.",
-    "achievement": "Spice Routes — Have allied GP or Followers at 3 or more different locations simultaneously, each from a different era.",
+    "achievement": "Spice Routes — Have allied cards in 3 or more different cities at the same time.",
     "legacy": {
       "name": "Spice Routes",
       "unlock": {
@@ -1942,7 +1942,7 @@
     "reputation": 4,
     "lore": "The warrior-king who built the world's first great library.",
     "trait": "Library of Nineveh — Once per match, look at the top 3 cards of any one pile; rearrange them in any order.",
-    "achievement": "Conqueror-Scholar — Have this card at the same location as an allied Sch (Scholar) GP while this location is under your control.",
+    "achievement": "Conqueror-Scholar — Spend a turn in a city you hold (more cards than any rival) with an allied scholar: Educator, Philosopher, Scientist, Mathematician or Astronomer (GP or Follower).",
     "legacy": {
       "name": "Conqueror-Scholar",
       "unlock": {
@@ -1982,7 +1982,7 @@
     "reputation": 4,
     "lore": "The architect of empires — his Arthashastra mapped every lever of power.",
     "trait": "Arthashastra — Whenever an opponent deploys a card, this player may reveal a card from hand; if it shares an identity with the deployed card, that opponent's card gets −2 to all checks this round.",
-    "achievement": "Kingmaker — Have this card allied with a Sovereign GP at the same location while winning a Diplomacy scenario.",
+    "achievement": "Kingmaker — Win a Politics contest here (a fight, or a survival a rival fails) with an allied Sovereign (GP or Follower) in this city.",
     "legacy": {
       "name": "Kingmaker",
       "unlock": {
@@ -2021,7 +2021,7 @@
     "reputation": 9,
     "lore": "His feet rewrote the rules of what a human body could do.",
     "trait": "Hand of God — Once per match, this card may convert a failed Conflict attempt into a draw instead of a loss.",
-    "achievement": "Goal of the Century — Have this card succeed in a Conflict scenario against an opponent with 2 or more Followers at that location.",
+    "achievement": "Goal of the Century — Win a fight in a Local Event against a rival with 2 or more Followers in that city.",
     "legacy": {
       "name": "Goal of the Century",
       "unlock": {
@@ -2105,7 +2105,7 @@
     "reputation": 1,
     "lore": "He held the first title of physician — carved in wood at the dawn of medicine.",
     "trait": "First Physician — Once per match, when any GP at this location would be eliminated, this card may prevent that elimination.",
-    "achievement": "Ancient Healing — Have this card at the same location as 2 or more allied GP cards that are not Doctors.",
+    "achievement": "Ancient Healing — Spend a turn in a city with 2 or more allied cards (GP or Follower) that are not Doctors.",
     "legacy": {
       "name": "Ancient Healing",
       "unlock": {
@@ -2144,7 +2144,7 @@
     "reputation": 3,
     "lore": "No vestige of a beginning, no prospect of an end — he read time in stone.",
     "trait": "Deep Time — Each round this card stays at the same location without acting, it gains +1 to all stat checks (max +3).",
-    "achievement": "Geological Survey — Have this card remain at the same location for 3 consecutive rounds without being moved.",
+    "achievement": "Geological Survey — Stay in the same city without moving for 3 years in a row.",
     "legacy": {
       "name": "Geological Survey",
       "unlock": {
@@ -2184,7 +2184,7 @@
     "reputation": 7,
     "lore": "She sat with chimpanzees and taught the world what it means to be human.",
     "trait": "Primates Expert — A Location with Jungle feature provides +2 Technique and +2 Intelligence to this card and all Allied GP and Followers at it.",
-    "achievement": "Chimpanzee Feeding Stations — At a location with Jungle feature, this GP ends a Survival.",
+    "achievement": "Chimpanzee Feeding Stations — End a Local Survival in this card's city.",
     "legacy": {
       "name": "Chimpanzee Feeding Stations",
       "unlock": {
@@ -2225,7 +2225,7 @@
     "reputation": 2,
     "lore": "He turned clay into an empire — and pottery into prestige.",
     "trait": "Industrialist Potter — Each round this card earns wealth, all allied Mch (Merchant) GP or Followers at any location gain +2 to wealth checks.",
-    "achievement": "Wedgwood Blue — Have this card at a location where the combined technique of allied GP totals 30 or more.",
+    "achievement": "Wedgwood Blue — Have an allied Technique total of 15 or more in this card's city (Great People plus Technique Followers).",
     "legacy": {
       "name": "Wedgwood Blue",
       "unlock": {
@@ -2266,7 +2266,7 @@
     "reputation": 5,
     "lore": "More Michelin stars than any chef in history — perfection plated, always.",
     "trait": "Chef de la Cuisine — Allied Gou (Gourmet) GP or Followers at this location gain +3 to technique checks and +2 to wealth checks.",
-    "achievement": "L'Atelier — Have this card at a location with 3 or more Followers deployed by the same player.",
+    "achievement": "L'Atelier — Spend a turn in a city where one player has 3 or more Followers.",
     "legacy": {
       "name": "L'Atelier",
       "unlock": {
@@ -2307,7 +2307,7 @@
     "reputation": 4,
     "lore": "He stopped the cycle of blood — the first king to rule by written law, not murder.",
     "trait": "Edict of Succession — Once per match, prevent the forced removal of any one allied card from the field.",
-    "achievement": "Law of the Land — Win a Diplomacy scenario while this card is at the same location as an allied Sta (Statesman) GP.",
+    "achievement": "Law of the Land — Win a Politics contest here (a fight, or a survival a rival fails) with an allied Statesman (GP or Follower) in this city.",
     "legacy": {
       "name": "Law of the Land",
       "unlock": {
@@ -2346,7 +2346,7 @@
     "reputation": 7,
     "lore": "The great hero who renounced the world to conquer the self.",
     "trait": "Ahimsa — While this card is on the field, allied Followers cannot be used in Conflict actions but gain +3 to all non-Conflict checks.",
-    "achievement": "Nirvana — Have this card at the same location as at least 2 allied Monastic or Prophet GP or Followers while winning a non-Conflict scenario.",
+    "achievement": "Nirvana — Win a survival here (a rival fails, you pass) or the Global Competition with at least 2 allied Monastics or Prophets in this city.",
     "legacy": {
       "name": "Nirvana",
       "unlock": {
@@ -2388,7 +2388,7 @@
     "reputation": 1,
     "lore": "He tracked the stars and seasons — his tomb paintings still teach us how Egyptians lived.",
     "trait": "Star Chart — At the start of each round, the player may look at the top card of the event deck before deciding their action.",
-    "achievement": "Astronomical Record — Have this card at the same location as 2 different Sch (Scholar) GP or Followers simultaneously.",
+    "achievement": "Astronomical Record — Spend a turn in a city with 2 other scholars of any player: Educator, Philosopher, Scientist, Mathematician or Astronomer.",
     "legacy": {
       "name": "Astronomical Record",
       "unlock": {
@@ -2429,7 +2429,7 @@
     "reputation": 3,
     "lore": "He carved the world's longest funerary text — a library etched in stone for eternity.",
     "trait": "Sacred Texts — All allied Mon (Monastic) and Prs (Priest) GP or Followers at this location gain +2 to belief checks.",
-    "achievement": "High Priest — Have this card at a location with at least 2 allied Monastic or Priest cards while winning a Diplomacy scenario.",
+    "achievement": "High Priest — Win a Politics contest here (a fight, or a survival a rival fails) with at least 2 allied Monastics or Priests in this city.",
     "legacy": {
       "name": "High Priest",
       "unlock": {
@@ -2470,7 +2470,7 @@
     "reputation": 1,
     "lore": "Lady Overseer of Female Physicians — history's first known female doctor.",
     "trait": "Lady of Medicine — Once per match, when any female GP at this location would be eliminated, this card may prevent that elimination.",
-    "achievement": "Medical Overseer — Have this card at the same location as 2 or more allied female GP or Followers.",
+    "achievement": "Medical Overseer — Spend a turn in a city with 2 or more allied female Great People or Doctors (GP or Follower).",
     "legacy": {
       "name": "Medical Overseer",
       "unlock": {
@@ -2509,7 +2509,7 @@
     "reputation": 6,
     "lore": "He broadcast from Baghdad while the bombs fell — the voice from inside the storm.",
     "trait": "On the Ground — Whenever a Conflict scenario resolves at this location, this player draws 1 extra card from the event deck.",
-    "achievement": "War Correspondent — Have this card present at the same location as a Conflict scenario resolution 3 times in a match.",
+    "achievement": "War Correspondent — Be in the city of 3 fights over the game.",
     "legacy": {
       "name": "War Correspondent",
       "unlock": {
@@ -2550,7 +2550,7 @@
     "reputation": 7,
     "lore": "He put a thousand songs in your pocket and a computer in your hand.",
     "trait": "Think Different — Once per match, this card may ignore one card effect that targets it.",
-    "achievement": "One More Thing — Have this card at a location where the combined technique of allied GP exceeds that of any opponent's GP at the same location.",
+    "achievement": "One More Thing — Spend a turn in a city where your Great People's Technique beats every rival's Great People there.",
     "legacy": {
       "name": "One More Thing",
       "unlock": {
@@ -2631,7 +2631,7 @@
     "reputation": 4,
     "lore": "She seized an empire, expanded it beyond imagination, and ruled it with an iron intellect.",
     "trait": "Enlightened Empress — While this card is on the field, allied Sov (Sovereign) and Sta (Statesman) GP gain +2 to politics checks.",
-    "achievement": "Mother of Russia — Have this card as the only GP at a location while allied GP are simultaneously present at 2 other locations.",
+    "achievement": "Mother of Russia — Be the only Great Person in a city while you also have cards in 2 other cities.",
     "legacy": {
       "name": "Mother of Russia",
       "unlock": {
@@ -2673,7 +2673,7 @@
     "reputation": 6,
     "lore": "She negotiated with kings and conquered kingdoms — never surrendering to empire.",
     "trait": "Queen of Ndongo — When this card defends against a Conflict, the attacking player must first discard an Event card, or the attack is cancelled.",
-    "achievement": "Resilient Throne — Have this card's location survive three consecutive Rounds without losing a Conflict.",
+    "achievement": "Resilient Throne — Hold the same city for 3 years in a row without losing a fight there.",
     "legacy": {
       "name": "Resilient Throne",
       "unlock": {
@@ -2759,7 +2759,7 @@
     "reputation": 6,
     "lore": "He built the greatest empire Southeast Asia had ever known — through war and wisdom alike.",
     "trait": "Toungoo Expansion — When this card moves, it may immediately deploy 1 Follower from hand at the destination for free.",
-    "achievement": "Unified Realm — Have this card and 2 allied GP at the same location for 3 consecutive turns.",
+    "achievement": "Unified Realm — Have this card and 2 allied cards (GP or Follower) in the same city for 3 years in a row.",
     "legacy": {
       "name": "Unified Realm",
       "unlock": {
@@ -2801,7 +2801,7 @@
     "reputation": 5,
     "lore": "He pressed clay into ceramic type, and from his hands the world began to read.",
     "trait": "Movable Type — Once per game, this card may copy 1 achievement from any card in the GP discard pile.",
-    "achievement": "Print Run — Have this card in play while an allied Writer or Educator GP resolves an achievement in the same round.",
+    "achievement": "Print Run — Have an allied Writer or Educator Great Person claim their legacy while this card is on the board.",
     "legacy": {
       "name": "Print Run",
       "unlock": {
@@ -2843,7 +2843,7 @@
     "reputation": 5,
     "lore": "He bent stone to the rules of the infinite — curves where others saw only walls.",
     "trait": "Infinite Spiral — When this card is at a location with a Bernini card, both cards gain +3 Culture.",
-    "achievement": "Roman Baroque — Have this card at an Italy location while another Architect GP is also present.",
+    "achievement": "Roman Baroque — Spend a turn in a city with another Architect (any player, GP or Follower).",
     "legacy": {
       "name": "Roman Baroque",
       "unlock": {
@@ -2886,7 +2886,7 @@
     "reputation": 7,
     "lore": "He turned marble into breath, giving stone the warmth of living skin.",
     "trait": "Papal Sculptor — While at a Rome location, this card gains +4 Reputation and its achievements trigger on 1 fewer turn.",
-    "achievement": "St. Peter's Colonnade — Have this card's location have the highest Culture total on the board for 2 consecutive turns.",
+    "achievement": "St. Peter's Colonnade — Have the highest Culture total of any city on the board in this card's city for 2 years in a row.",
     "legacy": {
       "name": "St. Peter's Colonnade",
       "unlock": {
@@ -2928,7 +2928,7 @@
     "reputation": 6,
     "lore": "He walked 75,000 miles across three continents — every step written into the Rihla.",
     "trait": "Rihla — This card may move freely each turn without spending an action. At each new location, draw 1 Event card.",
-    "achievement": "Seven Seas — Have this card visit 5 different locations over the course of a game.",
+    "achievement": "Seven Seas — Spend turns in 5 different cities over the game.",
     "legacy": {
       "name": "Seven Seas",
       "unlock": {
@@ -3011,7 +3011,7 @@
     "reputation": 6,
     "lore": "With 13 ships he faced 333 — and won. The turtle ship cut through the Japanese fleet like iron.",
     "trait": "Turtle Ship — When this card defends at a water or coastal location, its Strength is doubled.",
-    "achievement": "Battle of Myeongnyang — Win a Conflict while outnumbered (fewer allied cards than the opponent at this location).",
+    "achievement": "Battle of Myeongnyang — Win a fight in a Local Event while outnumbered (fewer allied cards than the rival in that city).",
     "legacy": {
       "name": "Battle of Myeongnyang",
       "unlock": {
@@ -3054,7 +3054,7 @@
     "reputation": 6,
     "lore": "He ruled the greatest empire of the Americas — until the world he knew ended in fire and betrayal.",
     "trait": "Sun King — While this card is in play, all Belief-based actions cost enemy players 1 extra action to perform.",
-    "achievement": "Tenochtitlan — Have this card at the same location as 3 Followers for 2 consecutive turns.",
+    "achievement": "Tenochtitlan — Have 3 or more Followers of any player in this card's city for 2 years in a row.",
     "legacy": {
       "name": "Tenochtitlan",
       "unlock": {
@@ -3096,7 +3096,7 @@
     "reputation": 2,
     "lore": "He mastered Western perspective from Jesuit missionaries and turned it into imperial porcelain.",
     "trait": "Jingdezhen Kilns — Wealth-based Followers at this card's location gain +3 Technique.",
-    "achievement": "Shiyue — Have this card in play while 2 allied Artist or Merchant GP are at the same location.",
+    "achievement": "Shiyue — Spend a turn in a city with 2 allied Artists or Merchants (GP or Follower).",
     "legacy": {
       "name": "Shiyue",
       "unlock": {
@@ -3139,7 +3139,7 @@
     "reputation": 5,
     "lore": "He ruled Palenque for 68 years and built temples that encoded the mathematics of time.",
     "trait": "Temple of Inscriptions — When this card is in play, all Belief-based events at its location deal only half damage (rounded down).",
-    "achievement": "Palenque — Have this card deploy a Follower at the same location 3 times.",
+    "achievement": "Palenque — Place a Follower in this card's city 3 times.",
     "legacy": {
       "name": "Palenque",
       "unlock": {
@@ -3181,7 +3181,7 @@
     "reputation": 5,
     "lore": "He burned Quito rather than surrender it — the last fire of a free Inca world.",
     "trait": "Scorched Earth — When this card's location is about to be captured, destroy all Followers there. The enemy gains no Winning Points from that capture.",
-    "achievement": "Last Stand — Win a Conflict against a Sovereign GP while this card has no Followers at its location.",
+    "achievement": "Last Stand — Win a fight against a rival Sovereign Great Person while you have no Followers in this city.",
     "legacy": {
       "name": "Last Stand",
       "unlock": {
@@ -3224,7 +3224,7 @@
     "reputation": 5,
     "lore": "He died at Dan-no-Ura with poems sewn into his armor — a warrior who chose beauty as his final shield.",
     "trait": "Warrior-Poet — When this card is killed, reveal the top card of your GP deck. If it is a Writer or Artist, deploy it immediately for free.",
-    "achievement": "Twilight Verse — Have this card survive a Conflict while having 0 Followers at its location.",
+    "achievement": "Twilight Verse — Come through a fight in this card's city (win or draw) while you have no Followers there.",
     "legacy": {
       "name": "Twilight Verse",
       "unlock": {
@@ -3267,7 +3267,7 @@
     "reputation": 5,
     "lore": "Behind three emperors, he rewrote Aztec history — shaping a civilization's soul from the shadows.",
     "trait": "Cihuacoatl — Once per game, this card may change the outcome of any non-combat event at its location to a success.",
-    "achievement": "Shadow Throne — Have this card's location win 2 consecutive Conflicts without this card being the attacker.",
+    "achievement": "Shadow Throne — Win 2 fights in a row in this card's city without this card being the attacker.",
     "legacy": {
       "name": "Shadow Throne",
       "unlock": {
