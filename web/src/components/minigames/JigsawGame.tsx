@@ -1,266 +1,272 @@
-import { useState, useMemo } from 'react'
+import { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react'
 import type { MinigameProps, Difficulty } from '@/games/types'
-import { scale, useGameTimer, TimerBar } from './_shared'
+import { artworkUrl } from '@/data/images'
+import { OutcomeBanner, TimerBar, useGameOutcome, useGameTimer } from './_shared'
+import {
+  BOARD_H, BOARD_W, GAP, TABLE_H, TABLE_SCALE, TIERS, fits, homeOf, makePuzzle, onTable, piecePath, tabReach,
+  type PieceState,
+} from './jigsaw/model'
 
-interface Piece { id: string; emoji: string; label: string; color: string }
+// Jigsaw: a real painting cut into interlocking pieces.  Drag each piece from
+// the table onto the board; it snaps in only at its own place and the right
+// way up (at the top tier pieces lie turned: tap one to turn it).
 
 interface JigsawConfig {
   title: string
   artist: string
   era: string
-  pieces: Piece[]
-  cols: number
+  /** The picture, from web/public/paintings (data/images/paintings). */
+  image: string
   fact: string
 }
 
 export const CONFIGS: Record<string, JigsawConfig> = {
   'venetian-master': {
-    title: 'Assumption of the Virgin',
-    artist: 'Titian',
-    era: 'Venice, 1518',
-    pieces: [
-      { id: 'p1', emoji: '☁️', label: 'Heaven Above',    color: 'from-sky-800 to-sky-950'       },
-      { id: 'p2', emoji: '😇', label: 'God the Father',  color: 'from-amber-700 to-amber-950'   },
-      { id: 'p3', emoji: '✨', label: 'Golden Glow',     color: 'from-yellow-700 to-yellow-900' },
-      { id: 'p4', emoji: '👼', label: 'Cherubs',         color: 'from-rose-800 to-rose-950'     },
-      { id: 'p5', emoji: '🙏', label: 'Mary Ascending',  color: 'from-blue-700 to-blue-950'     },
-      { id: 'p6', emoji: '👼', label: 'More Cherubs',    color: 'from-pink-800 to-pink-950'     },
-      { id: 'p7', emoji: '😮', label: 'Apostle Left',    color: 'from-emerald-800 to-emerald-950'},
-      { id: 'p8', emoji: '🤲', label: 'Apostle Centre',  color: 'from-teal-800 to-teal-950'     },
-      { id: 'p9', emoji: '😯', label: 'Apostle Right',   color: 'from-indigo-800 to-indigo-950' },
-    ],
-    cols: 3,
+    title: 'Assumption of the Virgin', artist: 'Titian', era: 'Venice, 1518',
+    image: 'titian_assumption_of_the_virgin',
     fact: 'Titian\'s Assumption (1518) in the Frari Basilica, Venice, was revolutionary — ten metres of soaring colour and movement that broke every convention of Renaissance altarpiece painting.',
   },
   'mani-picture-book': {
-    title: 'The Picture Book',
-    artist: 'Mani',
-    era: 'Persia, 3rd century CE',
-    pieces: [
-      { id: 'p1', emoji: '☀️', label: 'Realm of Light',    color: 'from-yellow-600 to-amber-900'   },
-      { id: 'p2', emoji: '✨', label: 'Father of Greatness', color: 'from-amber-600 to-amber-900'  },
-      { id: 'p3', emoji: '🌙', label: 'Ship of the Moon',  color: 'from-sky-700 to-sky-950'       },
-      { id: 'p4', emoji: '🕊️', label: 'The Messenger',     color: 'from-indigo-700 to-indigo-950' },
-      { id: 'p5', emoji: '🔥', label: 'Column of Glory',   color: 'from-orange-700 to-orange-950' },
-      { id: 'p6', emoji: '👤', label: 'The Primal Man',    color: 'from-rose-800 to-rose-950'     },
-      { id: 'p7', emoji: '🌿', label: 'Light in the Plants', color: 'from-emerald-800 to-emerald-950'},
-      { id: 'p8', emoji: '🙏', label: 'The Elect',         color: 'from-teal-800 to-teal-950'     },
-      { id: 'p9', emoji: '🌑', label: 'Realm of Darkness', color: 'from-slate-800 to-slate-950'   },
-    ],
-    cols: 3,
+    title: 'The Picture Book', artist: 'Mani', era: 'Persia, 3rd century CE',
+    image: 'mani_light_and_darkness',
     fact: 'Mani set out his teaching in pictures as well as words: his Picture Book, the Ardahang, showed the war of Light and Darkness for those who could not read, and Persian tradition remembered him as "Mani the Painter". Fragments of Manichaean book painting survive from Kocho near Turfan.',
   },
   'starry-night': {
-    title: 'The Starry Night',
-    artist: 'Vincent van Gogh',
-    era: 'Saint-Rémy, 1889',
-    pieces: [
-      { id: 'p1', emoji: '🌙', label: 'Crescent Moon',   color: 'from-yellow-700 to-yellow-900' },
-      { id: 'p2', emoji: '⭐', label: 'Bright Star',     color: 'from-yellow-600 to-amber-900'  },
-      { id: 'p3', emoji: '🌀', label: 'Swirl A',         color: 'from-blue-700 to-blue-900'     },
-      { id: 'p4', emoji: '🌀', label: 'Swirl B',         color: 'from-indigo-700 to-indigo-900' },
-      { id: 'p5', emoji: '🌲', label: 'Cypress Top',     color: 'from-emerald-800 to-emerald-950'},
-      { id: 'p6', emoji: '🌲', label: 'Cypress Base',    color: 'from-green-900 to-green-950'   },
-      { id: 'p7', emoji: '🏘️', label: 'Village Rooftops',color: 'from-slate-700 to-slate-900'  },
-      { id: 'p8', emoji: '⛪', label: 'Church Steeple',  color: 'from-slate-600 to-slate-800'   },
-      { id: 'p9', emoji: '🏔️', label: 'Rolling Hills',  color: 'from-blue-800 to-blue-950'     },
-    ],
-    cols: 3,
+    title: 'The Starry Night', artist: 'Vincent van Gogh', era: 'Saint-Rémy, 1889',
+    image: 'van_gogh_the_starry_night',
     fact: 'Van Gogh painted The Starry Night in June 1889 while at the Saint-Paul-de-Mausole asylum. The swirling sky reflects turbulent emotion; the calm village below, perhaps peace.',
   },
   'mona-lisa': {
-    title: 'Mona Lisa',
-    artist: 'Leonardo da Vinci',
-    era: 'Florence, 1503–1519',
-    pieces: [
-      { id: 'p1', emoji: '🌄', label: 'Sky & Bridge L',  color: 'from-sky-800 to-sky-950'       },
-      { id: 'p2', emoji: '🌉', label: 'Winding Road',    color: 'from-stone-700 to-stone-900'   },
-      { id: 'p3', emoji: '🌄', label: 'Sky & Bridge R',  color: 'from-blue-800 to-blue-950'     },
-      { id: 'p4', emoji: '😐', label: 'Enigmatic Smile', color: 'from-amber-700 to-amber-950'   },
-      { id: 'p5', emoji: '👘', label: 'Folded Hands',    color: 'from-slate-700 to-slate-900'   },
-      { id: 'p6', emoji: '🏞️', label: 'Landscape',      color: 'from-teal-800 to-teal-950'     },
-    ],
-    cols: 3,
+    title: 'Mona Lisa', artist: 'Leonardo da Vinci', era: 'Florence, 1503–1519',
+    image: 'leonardo_mona_lisa',
     fact: 'The Mona Lisa\'s blurred background uses "sfumato" — a hazy layering technique da Vinci perfected, dissolving edges into smoke. X-ray scans reveal three different earlier compositions beneath the final paint.',
   },
   'girl-pearl': {
-    title: 'Girl with a Pearl Earring',
-    artist: 'Johannes Vermeer',
-    era: 'Delft, c. 1665',
-    pieces: [
-      { id: 'p1', emoji: '⬛', label: 'Dark Background', color: 'from-slate-900 to-black'        },
-      { id: 'p2', emoji: '🎀', label: 'Blue-Yellow Turban',color:'from-blue-700 to-yellow-800'  },
-      { id: 'p3', emoji: '👁️', label: 'Glancing Eyes',  color: 'from-amber-800 to-amber-950'   },
-      { id: 'p4', emoji: '💎', label: 'Pearl Earring',   color: 'from-slate-300 to-slate-600'   },
-      { id: 'p5', emoji: '👄', label: 'Parted Lips',     color: 'from-rose-800 to-rose-950'     },
-      { id: 'p6', emoji: '✨', label: 'Light on Skin',   color: 'from-orange-700 to-orange-900' },
-    ],
-    cols: 3,
+    title: 'Girl with a Pearl Earring', artist: 'Johannes Vermeer', era: 'Delft, c. 1665',
+    image: 'vermeer_girl_with_a_pearl_earring',
     fact: '"Girl with a Pearl Earring" (c. 1665) is called the "Mona Lisa of the North." The sitter\'s identity is unknown; the earring may be glass, not pearl — and its latch is missing in the painting.',
   },
   'last-supper': {
-    title: 'The Last Supper',
-    artist: 'Leonardo da Vinci',
-    era: 'Milan, 1495–1498',
-    pieces: [
-      { id: 'p1', emoji: '🪟', label: 'Window Left',    color: 'from-sky-800 to-sky-900'        },
-      { id: 'p2', emoji: '😤', label: 'Bartholomew',    color: 'from-purple-800 to-purple-900'  },
-      { id: 'p3', emoji: '🗣️', label: 'Andrew',         color: 'from-indigo-800 to-indigo-900' },
-      { id: 'p4', emoji: '🤔', label: 'Peter',          color: 'from-blue-800 to-blue-900'      },
-      { id: 'p5', emoji: '😮', label: 'Judas',          color: 'from-amber-800 to-amber-900'    },
-      { id: 'p6', emoji: '✋', label: 'John',            color: 'from-rose-800 to-rose-900'      },
-      { id: 'p7', emoji: '☝️', label: 'Jesus',          color: 'from-emerald-700 to-emerald-900'},
-      { id: 'p8', emoji: '👆', label: 'Thomas',         color: 'from-teal-800 to-teal-900'      },
-      { id: 'p9', emoji: '🎭', label: 'James Major',    color: 'from-cyan-800 to-cyan-900'      },
-      { id: 'p10',emoji: '😯', label: 'Philip',         color: 'from-lime-800 to-lime-900'      },
-      { id: 'p11',emoji: '🙋', label: 'Matthew',        color: 'from-green-800 to-green-900'    },
-      { id: 'p12',emoji: '🪟', label: 'Window Right',   color: 'from-sky-700 to-sky-900'        },
-    ],
-    cols: 4,
+    title: 'The Last Supper', artist: 'Leonardo da Vinci', era: 'Milan, 1495–1498',
+    image: 'leonardo_the_last_supper',
     fact: 'Da Vinci painted The Last Supper on a dining-room wall in Milan (1495–98), depicting the moment Christ announces a betrayal. He used tempera on plaster instead of true fresco — causing it to deteriorate within decades.',
   },
   'tiffany-window': {
-    title: "Breakfast at Tiffany's",
-    artist: 'Blake Edwards, with Audrey Hepburn',
-    era: 'Fifth Avenue, New York, 1961',
-    pieces: [
-      { id: 'p1', emoji: '🌅', label: 'Dawn Sky',        color: 'from-rose-800 to-rose-950'      },
-      { id: 'p2', emoji: '💎', label: 'Tiffany & Co.',   color: 'from-teal-700 to-teal-900'      },
-      { id: 'p3', emoji: '🏙️', label: 'Fifth Avenue',    color: 'from-slate-700 to-slate-900'    },
-      { id: 'p4', emoji: '🚕', label: 'Yellow Cab',      color: 'from-yellow-700 to-yellow-900'  },
-      { id: 'p5', emoji: '👗', label: 'Black Givenchy',  color: 'from-zinc-800 to-zinc-950'      },
-      { id: 'p6', emoji: '🪟', label: 'Shop Window',     color: 'from-cyan-800 to-cyan-950'      },
-      { id: 'p7', emoji: '📿', label: 'Pearls',          color: 'from-stone-600 to-stone-800'    },
-      { id: 'p8', emoji: '🥐', label: 'Danish Pastry',   color: 'from-amber-700 to-amber-900'    },
-      { id: 'p9', emoji: '☕', label: 'Paper Coffee Cup', color: 'from-orange-800 to-orange-950'  },
-    ],
-    cols: 3,
+    title: "Breakfast at Tiffany's", artist: 'Blake Edwards, with Audrey Hepburn', era: 'Fifth Avenue, New York, 1961',
+    image: 'tiffany_fifth_avenue_dawn',
     fact: "Breakfast at Tiffany's (1961) opens at dawn on an empty Fifth Avenue: Holly Golightly steps out of a cab in a black Givenchy gown and pearls and eats a pastry from a paper bag while gazing into Tiffany's windows, as 'Moon River' plays.",
   },
   'jedburgh-unconformity': {
-    title: 'The Unconformity at Jedburgh',
-    artist: 'John Clerk of Eldin, for James Hutton',
-    era: 'Jed Water, Scotland, 1787',
-    pieces: [
-      { id: 'p1', emoji: '☁️', label: 'Border Sky',          color: 'from-sky-800 to-sky-950'         },
-      { id: 'p2', emoji: '🛤️', label: 'Road Above',          color: 'from-stone-600 to-stone-800'     },
-      { id: 'p3', emoji: '🌳', label: 'Trees on the Bank',   color: 'from-emerald-800 to-emerald-950' },
-      { id: 'p4', emoji: '🟥', label: 'Flat Red Sandstone',  color: 'from-red-800 to-red-950'         },
-      { id: 'p5', emoji: '🪨', label: 'Rubble at the Join',  color: 'from-amber-800 to-amber-950'     },
-      { id: 'p6', emoji: '🟫', label: 'Sandstone Beds',      color: 'from-orange-800 to-orange-950'   },
-      { id: 'p7', emoji: '📏', label: 'Upright Greywacke',   color: 'from-slate-600 to-slate-800'     },
-      { id: 'p8', emoji: '🧱', label: 'Tilted Strata',       color: 'from-zinc-600 to-zinc-800'       },
-      { id: 'p9', emoji: '🌊', label: 'The Jed Water',       color: 'from-blue-800 to-blue-950'       },
-    ],
-    cols: 3,
+    title: 'The Unconformity at Jedburgh', artist: 'John Clerk of Eldin, for James Hutton', era: 'Jed Water, Scotland, 1787',
+    image: 'hutton_jedburgh_unconformity',
     fact: 'In 1787 Hutton found an unconformity on the Jed Water near Jedburgh: flat red sandstone lying across upright layers of older greywacke. His friend John Clerk of Eldin drew it, and the engraving appeared in the first volume of Hutton’s Theory of the Earth (1795).',
+  },
+  'great-wave': {
+    title: 'The Great Wave off Kanagawa', artist: 'Katsushika Hokusai', era: 'Edo, c. 1831',
+    image: 'hokusai_the_great_wave_off_kanagawa',
+    fact: 'The Great Wave is a woodblock print, so thousands of copies were pulled from Hokusai\'s blocks. Its deep sea blue is Prussian blue, a pigment imported from Europe that was new and fashionable in Japan at the time.',
+  },
+  'creation-of-adam': {
+    title: 'The Creation of Adam', artist: 'Michelangelo', era: 'Sistine Chapel, Rome, 1508–1512',
+    image: 'michelangelo_the_creation_of_adam',
+    fact: 'Michelangelo painted the Sistine Chapel ceiling between 1508 and 1512, standing on a scaffold of his own design rather than lying on his back, and complained in a poem of the paint dripping onto his face.',
+  },
+  'school-of-athens': {
+    title: 'The School of Athens', artist: 'Raphael', era: 'Vatican, 1509–1511',
+    image: 'raphael_the_school_of_athens',
+    fact: 'Raphael is thought to have given Plato the face of Leonardo da Vinci, and he painted himself among the crowd at the right edge, one of the few figures looking straight out of the picture.',
+  },
+  'birth-of-venus': {
+    title: 'The Birth of Venus', artist: 'Sandro Botticelli', era: 'Florence, c. 1485',
+    image: 'botticelli_the_birth_of_venus',
+    fact: 'Botticelli painted The Birth of Venus on canvas, still unusual in 1480s Florence, where large pictures were painted on wooden panels. It has hung in the Uffizi since 1815.',
+  },
+  'qingming-scroll': {
+    title: 'Along the River During the Qingming Festival', artist: 'Zhang Zeduan', era: 'Kaifeng, early 12th century',
+    image: 'zhang_zeduan_along_the_river_qingming',
+    fact: 'The Qingming scroll is more than five metres long and shows over 800 people, boats, shops and a crowded arched bridge. A handscroll is unrolled a little at a time, so it is read like a journey along the river.',
+  },
+  'wisteria-window': {
+    title: 'Wisteria Window', artist: 'In the style of Louis Comfort Tiffany', era: 'New York, c. 1905',
+    image: 'tiffany_wisteria_window',
+    fact: 'Louis Comfort Tiffany patented "favrile" glass in 1894: colour was swirled through the molten glass itself rather than painted on, so his windows needed almost no paint, only lead lines between the pieces.',
+  },
+  'palace-garden': {
+    title: 'Palace Garden in Perspective', artist: 'Nian Xiyao', era: 'Beijing, Qing dynasty',
+    image: 'nian_xiyao_palace_garden_perspective',
+    fact: 'Nian Xiyao learned Western linear perspective from the Jesuit painter Giuseppe Castiglione and published Shixue (1729, revised 1735), the first book in Chinese on the vanishing point.',
   },
 }
 
-function shuffle<T>(arr: T[]): T[] {
-  const a = [...arr]
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]]
-  }
-  return a
-}
+export const CONFIG_IDS = Object.keys(CONFIGS)
 
-// Difficulty: a piece in its right place glows green at D1–D2; from D3 only
-// the count of misplaced pieces is shown, so the order has to be reasoned out
-// from the labels and the count.  (With the glow every tier was a minute of
-// trial swaps, clock or not.)
-//
-//   D1  glow, no clock   D2  glow, 1:00   D3  count only, 2:30   D4  count only, 2:00
-export const tierFor = (difficulty: Difficulty) => ({
-  showCorrect: difficulty <= 2,
-  seconds: scale(difficulty, [0, 60, 150, 120]),
-})
+export const tierFor = (difficulty: Difficulty) => TIERS[difficulty]
 
-export default function JigsawGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
-  const tier = tierFor(difficulty)
-  const [won, setWon] = useState(false)
-  // Higher difficulties put the puzzle on a clock.
-  const timer = useGameTimer({ seconds: tier.seconds, running: !won, onExpire: () => onLose('out of time') })
+const VIEW_H = BOARD_H + GAP + TABLE_H
 
+export default function JigsawGame({ configId, difficulty, seed, onWin, onLose }: MinigameProps) {
   const config = CONFIGS[configId] ?? CONFIGS['venetian-master']
-  const correctOrder = useMemo(() => config.pieces.map(p => p.id), [config])
-  const [board, setBoard] = useState<string[]>(() => {
-    // The win is only checked on a swap, so never start already solved.
-    for (let attempt = 0; attempt < 20; attempt++) {
-      const b = shuffle(correctOrder)
-      if (b.some((id, i) => id !== correctOrder[i])) return b
-    }
-    return [...correctOrder.slice(1), correctOrder[0]]
-  })
-  const [selected, setSelected] = useState<number | null>(null)
+  const src = artworkUrl('paintings', config.image)
+  const puzzle = useMemo(() => makePuzzle(difficulty, seed), [difficulty, seed])
+  const tier = puzzle.tier
+  const uid = useId().replace(/[^a-zA-Z0-9]/g, '')
+  const [pieces, setPieces] = useState<PieceState[]>(puzzle.pieces)
+  // Drawing order: the last piece touched lies on top.
+  const [order, setOrder] = useState<number[]>(() => puzzle.pieces.map(p => p.id))
+  const [ready, setReady] = useState(false)
+  const [peeking, setPeeking] = useState(false)
+  const [peeksLeft, setPeeksLeft] = useState(tier.peeks)
+  const { outcome, win, lose } = useGameOutcome({ onWin, onLose, delayMs: 1600 })
+  const timer = useGameTimer({ seconds: tier.seconds, running: ready && !outcome, onExpire: () => lose('out of time') })
 
-  const pieceMap = useMemo(() => Object.fromEntries(config.pieces.map(p => [p.id, p])), [config])
+  useEffect(() => {
+    const img = new Image()
+    img.onload = () => setReady(true)
+    img.onerror = () => setReady(true)
+    img.src = src
+  }, [src])
 
-  const handleClick = (idx: number) => {
-    if (won) return
-    if (selected === null) { setSelected(idx); return }
-    if (selected === idx) { setSelected(null); return }
-    const next = [...board]
-    ;[next[selected], next[idx]] = [next[idx], next[selected]]
-    setBoard(next)
-    setSelected(null)
-    if (next.every((id, i) => id === correctOrder[i])) {
-      setWon(true)
-      setTimeout(onWin, 900)
-    }
+  const svgRef = useRef<SVGSVGElement>(null)
+  const drag = useRef<{ id: number; dx: number; dy: number; startX: number; startY: number; moved: boolean } | null>(null)
+  const [dragging, setDragging] = useState<number | null>(null)
+
+  // Pointer position in board units (the SVG keeps its aspect, so a plain scale).
+  const toSvg = (e: React.PointerEvent) => {
+    const r = svgRef.current!.getBoundingClientRect()
+    const k = r.width ? BOARD_W / r.width : 1
+    return { x: (e.clientX - r.left) * k, y: (e.clientY - r.top) * k }
   }
 
-  const wrongCount = board.filter((id, i) => id !== correctOrder[i]).length
+  const onDown = (e: React.PointerEvent, piece: PieceState) => {
+    if (outcome || piece.placed) return
+    e.preventDefault()
+    try { (e.target as Element).setPointerCapture?.(e.pointerId) } catch { /* the pointer is already gone */ }
+    const p = toSvg(e)
+    const k = onTable(puzzle, piece) ? TABLE_SCALE : 1
+    const cx = piece.x + puzzle.cellW / 2, cy = piece.y + puzzle.cellH / 2
+    drag.current = { id: piece.id, dx: (p.x - cx) / k + puzzle.cellW / 2, dy: (p.y - cy) / k + puzzle.cellH / 2, startX: p.x, startY: p.y, moved: false }
+    setOrder(o => [...o.filter(i => i !== piece.id), piece.id])
+  }
+
+  const onMove = (e: React.PointerEvent) => {
+    const d = drag.current
+    if (!d) return
+    const p = toSvg(e)
+    if (Math.hypot(p.x - d.startX, p.y - d.startY) > 12) d.moved = true
+    if (!d.moved) return
+    setDragging(d.id)
+    const x = Math.max(-puzzle.cellW / 2, Math.min(BOARD_W - puzzle.cellW / 2, p.x - d.dx))
+    const y = Math.max(-puzzle.cellH / 2, Math.min(VIEW_H - puzzle.cellH / 2, p.y - d.dy))
+    setPieces(ps => ps.map(q => (q.id === d.id ? { ...q, x, y } : q)))
+  }
+
+  const onUp = useCallback(() => {
+    const d = drag.current
+    drag.current = null
+    setDragging(null)
+    if (!d) return
+    setPieces(ps => {
+      const next = ps.map(q => {
+        if (q.id !== d.id) return q
+        // A tap turns a piece at the top tier.
+        if (!d.moved) return tier.rotate ? { ...q, rot: (q.rot + 1) % 4 } : q
+        if (fits(puzzle, q, q.x, q.y)) return { ...q, ...homeOf(puzzle, q), placed: true }
+        return q
+      })
+      return next
+    })
+  }, [puzzle, tier.rotate])
+
+  useEffect(() => { if (pieces.every(q => q.placed)) win() }, [pieces, win])
+
+  const placed = pieces.filter(p => p.placed).length
+  const reach = tabReach(puzzle)
+  const { cellW: w, cellH: h } = puzzle
+  const byId = useMemo(() => Object.fromEntries(pieces.map(p => [p.id, p])), [pieces])
+  const drawOrder = [...order].sort((a, b) => Number(byId[b].placed) - Number(byId[a].placed))
+
+  const peek = () => {
+    if (peeking || peeksLeft <= 0) return
+    setPeeking(true)
+    setPeeksLeft(n => n - 1)
+    setTimeout(() => setPeeking(false), 2500)
+  }
 
   return (
-    <div className="flex flex-col gap-4">
-      {timer.active && <div className="w-full"><TimerBar remaining={timer.remaining} total={timer.total} /></div>}
-      <div className="text-center">
-        <p className="text-accent font-bold text-sm">{config.title}</p>
-        <p className="text-muted text-xs">{config.artist} · {config.era}</p>
-        <p className="text-muted text-xs mt-1">Tap two pieces to swap them · {wrongCount} piece{wrongCount !== 1 ? 's' : ''} out of place</p>
-      </div>
-
-      <div className="grid gap-1.5" style={{ gridTemplateColumns: `repeat(${config.cols}, 1fr)` }}>
-        {board.map((pieceId, idx) => {
-          const piece = pieceMap[pieceId]
-          const isCorrect = tier.showCorrect && pieceId === correctOrder[idx]
-          const isSelected = selected === idx
-          return (
-            <button
-              key={idx}
-              onClick={() => handleClick(idx)}
-              className={[
-                'relative aspect-square rounded-xl border-2 flex flex-col items-center justify-center gap-0.5',
-                `bg-gradient-to-br ${piece.color}`,
-                'transition-all duration-200',
-                isSelected
-                  ? 'border-accent scale-105 shadow-lg shadow-accent/30'
-                  : isCorrect && !won
-                  ? 'border-emerald-500/50'
-                  : won
-                  ? 'border-emerald-400/80'
-                  : 'border-line hover:border-line-2',
-              ].join(' ')}
-            >
-              <span className="text-xl leading-none select-none">{piece.emoji}</span>
-              <span className="text-[8px] text-ink/60 text-center leading-tight px-1 select-none">{piece.label}</span>
-              <span className="absolute bottom-0.5 right-1 text-[7px] text-ink/25 select-none">{idx + 1}</span>
-            </button>
-          )
-        })}
-      </div>
-
-      {won && (
-        <div className="p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-xl text-center">
-          <p className="text-emerald-400 font-bold text-sm">Masterpiece Restored!</p>
-          <p className="text-muted text-xs mt-1 leading-relaxed">{config.fact}</p>
+    <div className="flex flex-col gap-2">
+      {timer.active && <TimerBar remaining={timer.remaining} total={timer.total} />}
+      <div className="flex items-end justify-between gap-2 px-1">
+        <div className="min-w-0">
+          <p className="text-accent font-bold text-sm truncate">{config.title}</p>
+          <p className="text-muted text-[11px] truncate">{config.artist} · {config.era}</p>
         </div>
-      )}
+        <div className="flex items-center gap-2 shrink-0">
+          <span className="text-[11px] text-muted" data-testid="jigsaw-count">{placed}/{pieces.length} placed</span>
+          {tier.peeks > 0 && (
+            <button onClick={peek} disabled={peeking || peeksLeft <= 0 || !!outcome}
+              className="text-[11px] px-2.5 py-1 rounded-lg border border-line bg-panel text-ink-2 disabled:opacity-40">
+              Peek{Number.isFinite(peeksLeft) ? ` (${peeksLeft})` : ''}
+            </button>
+          )}
+        </div>
+      </div>
+
+      <div className="rounded-xl border border-line overflow-hidden bg-[#3b2f22]">
+        {!ready ? (
+          <div className="aspect-[16/17] flex items-center justify-center text-paper/70 text-xs">Unpacking the puzzle…</div>
+        ) : (
+          <svg ref={svgRef} viewBox={`0 0 ${BOARD_W} ${placed === pieces.length ? BOARD_H : VIEW_H}`} className="w-full h-auto block select-none"
+            style={{ touchAction: 'none' }} onPointerMove={onMove} onPointerUp={onUp} onPointerCancel={onUp}>
+            <defs>
+              {pieces.map(p => (
+                <clipPath key={p.id} id={`${uid}-c${p.id}`}><path d={piecePath(puzzle, p.row, p.col)} /></clipPath>
+              ))}
+              <pattern id={`${uid}-wood`} width="80" height="80" patternUnits="userSpaceOnUse">
+                <rect width="80" height="80" fill="#4a3a29" />
+                <path d="M0 20 Q40 10 80 22 M0 55 Q40 48 80 60" stroke="#3f3122" strokeWidth="6" fill="none" />
+              </pattern>
+            </defs>
+
+            {/* The table and the board */}
+            <rect x={0} y={0} width={BOARD_W} height={VIEW_H} fill={`url(#${uid}-wood)`} />
+            <rect x={0} y={0} width={BOARD_W} height={BOARD_H} fill="#efe6d2" />
+            {tier.ghost > 0 && <image href={src} x={0} y={0} width={BOARD_W} height={BOARD_H} preserveAspectRatio="xMidYMid slice" opacity={tier.ghost} style={{ filter: 'grayscale(0.6)' }} />}
+            {tier.grid && Array.from({ length: puzzle.cols - 1 }, (_, i) => (
+              <line key={`v${i}`} x1={(i + 1) * w} y1={0} x2={(i + 1) * w} y2={BOARD_H} stroke="#00000022" strokeWidth={2} />
+            ))}
+            {tier.grid && Array.from({ length: puzzle.rows - 1 }, (_, i) => (
+              <line key={`h${i}`} x1={0} y1={(i + 1) * h} x2={BOARD_W} y2={(i + 1) * h} stroke="#00000022" strokeWidth={2} />
+            ))}
+            <rect x={1} y={1} width={BOARD_W - 2} height={BOARD_H - 2} fill="none" stroke="#2a2117" strokeWidth={3} />
+
+            {drawOrder.map(id => {
+              const p = byId[id]
+              const d = piecePath(puzzle, p.row, p.col)
+              return (
+                <g key={id} transform={`translate(${p.x + w / 2} ${p.y + h / 2}) scale(${onTable(puzzle, p) && dragging !== id ? TABLE_SCALE : 1}) rotate(${p.rot * 90}) translate(${-w / 2} ${-h / 2})`}
+                  onPointerDown={e => onDown(e, p)} style={{ cursor: p.placed ? 'default' : 'grab' }}
+                  data-testid={`piece-${id}`}>
+                  {!p.placed && <path d={d} transform="translate(6 8)" fill="#00000055" />}
+                  <image href={src} x={-p.col * w} y={-p.row * h} width={BOARD_W} height={BOARD_H}
+                    preserveAspectRatio="xMidYMid slice" clipPath={`url(#${uid}-c${id})`} />
+                  <path d={d} fill="none" stroke={p.placed ? '#00000026' : '#1d150c'} strokeWidth={p.placed ? 1.5 : 3} />
+                  {!p.placed && <path d={d} fill="none" stroke="#ffffff40" strokeWidth={1.5} transform="translate(-1.5 -1.5)" />}
+                  {/* A generous invisible hit area, as fingers are wider than tabs. */}
+                  {!p.placed && <rect x={-reach / 2} y={-reach / 2} width={w + reach} height={h + reach} fill="transparent" />}
+                </g>
+              )
+            })}
+
+            {peeking && <image href={src} x={0} y={0} width={BOARD_W} height={BOARD_H} preserveAspectRatio="xMidYMid slice" opacity={0.92} pointerEvents="none" />}
+          </svg>
+        )}
+      </div>
+
+      <p className="text-[11px] text-muted text-center">
+        Drag each piece onto the board; it locks in at its own place{tier.rotate ? ' once it is the right way up. Tap a piece to turn it.' : '.'}
+      </p>
+
+      <OutcomeBanner outcome={outcome} detail={config.fact} winTitle={`${config.title} is whole again!`} />
     </div>
   )
 }
-
-// Every hand-authored config id; the registry test renders each one.
-export const CONFIG_IDS = Object.keys(CONFIGS)
