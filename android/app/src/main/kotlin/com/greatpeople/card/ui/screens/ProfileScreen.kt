@@ -76,16 +76,7 @@ private fun GuestContent(onSignIn: () -> Unit) {
         verticalArrangement = Arrangement.spacedBy(16.dp),
         modifier = Modifier.padding(32.dp),
     ) {
-        Surface(
-            modifier = Modifier.size(80.dp),
-            shape = RoundedCornerShape(20.dp),
-            color = Amber.copy(alpha = 0.12f),
-            border = androidx.compose.foundation.BorderStroke(1.dp, Amber.copy(alpha = 0.25f)),
-        ) {
-            Box(contentAlignment = Alignment.Center) {
-                Text("◉", style = MaterialTheme.typography.displaySmall)
-            }
-        }
+        MedallionIcon("profile", 80.dp)
         Text("Browsing as Guest",
             style = MaterialTheme.typography.headlineSmall,
             color = Color.White, fontWeight = FontWeight.Bold)
