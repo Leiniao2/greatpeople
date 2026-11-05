@@ -18,7 +18,7 @@ The board will look like a table, with column displayed as different locations. 
 
 ## 2. Game Objective.
 
-Each Great People card has a Legacy (§10). When a Great Person completes the achievement that unlocks it, the player claims the legacy and gets a winning point. At the end of the game, player with the highest winning points will win.
+Each Great People card has a Legacy (§10). When a Great Person completes the achievement that unlocks it, the player claims the legacy. There is no points race: the game runs to the end of history, and the player with the most legacies wins.
 
 ## 3. Turn based action.
 
@@ -29,7 +29,7 @@ Each Player could do several actions in a turn.
 ### C. A Player could move a Great People Card / Follower Card from a location to another.
 ### D. A Player could start an event on the location he/she is on. Some event is global but most are local only happens on the location.
 ### E. A Player could retrieve a Great People Card / Follower card back to hand.
-### F. A Player could claim the legacy of one of the Great People on board who completed his/her achievement, thus get 1 winning point and the legacy (§10). Each legacy can be claimed once per player.
+### F. A Player could claim the legacy of one of the Great People on board who completed his/her achievement, thus get the legacy (§10). Each legacy can be claimed once per player.
 ### G. A Player could attack the other Player if both some of their cards are within the same location, this only happened in local events.
 ### H. A Player could end a local event that happening on this city 
 ### I. A Player could update the public or private status of a card
@@ -111,17 +111,17 @@ Manual Scenario Termination: A Great Person can end a scenario if they possess t
 
 Initiate New Scenario: Players could start a new scenario if he/she has the scenario card.
 
-Achievement Check: Determine if a Great Person has completed an achievement; claiming it earns the legacy and a Winning Point.
+Achievement Check: Determine if a Great Person has completed an achievement; claiming it earns the legacy.
 
 New Year: after every player has played, the year advances by 1: Great People who outlived their death year die, empty cities may fall into a city state, and income legacies pay out.
 
 ## 8. When to End a game
 
-If there is a player that gets 5 winning points, the game ends.
+The game runs to the end of history: the year 2030, or sooner when no player has a Great Person now or to come (in hand, on board, retired, or a successor still to choose). Then the player with the most legacies wins; a tie goes to seat order.
 
-If history reaches the year 2030, the game ends and the player with the most winning points wins.
+There is no early win by points. A player whose lineages have all ended keeps his/her legacies and waits: while the other players still have Great People, play goes on, and if no human player has a Great Person left, the computer plays history out quickly (§9, time skip) before the legacies are compared.
 
-If there is only 1 player left with a Great Person now or to come (in hand, on board, retired, or a successor still to choose), the game ends. If no human player has one left, the game ends and the player with the most winning points wins. Ties go to the player with more legacies, then to seat order.
+(The Epic fight lessons, which are not on the timeline, still end when a player reaches 5 winning points.)
 
 ## 9. Real history
 
@@ -156,5 +156,5 @@ Effects are one of these kinds:
 | successors | +N choices whenever you pick a successor |
 | income | every N years you gain an Event card or a Follower |
 
-A claimed legacy belongs to the player for the rest of the game, even after the Great Person who earned it dies. A player has 2 legacy slots: only the legacies in slots are in effect. A newly earned legacy fills a free slot; once both are full, the player can switch one legacy in or out per turn, so not every legacy can be in effect at once. Each legacy can be claimed once per player.
+A claimed legacy counts towards victory (§8) and belongs to the player for the rest of the game, even after the Great Person who earned it dies. A player has 2 legacy slots: only the legacies in slots are in effect. A newly earned legacy fills a free slot; once both are full, the player can switch one legacy in or out per turn, so not every legacy can be in effect at once. Each legacy can be claimed once per player.
 

@@ -935,23 +935,22 @@ export function buildLookups(state: GameState) {
   return { gpMap, followerMap }
 }
 
-/** The player ahead on points (legacies break ties, then seat order). */
+/** The player with the most legacies (ties go to seat order). */
 export function leader(state: GameState): string {
-  return [...state.players].sort((a, b) => b.winningPoints - a.winningPoints || b.legacies.length - a.legacies.length)[0].id
+  return [...state.players].sort((a, b) => b.legacies.length - a.legacies.length)[0].id
 }
 
 export function checkWinCondition(state: GameState): string | null {
-  // 5 winning points
+  if (state.setup.timeline) {
+    // No points race: the game runs to the end of history (or until no
+    // lineage is left anywhere) and the most legacies wins.
+    if (state.year >= TIMELINE_END_YEAR) return leader(state)
+    if (!state.players.some(p => hasFuture(state, p))) return leader(state)
+    return null
+  }
+  // Timeless games (the Epic lessons): 5 winning points
   for (const p of state.players) {
     if (p.winningPoints >= 5) return p.id
-  }
-  if (state.setup.timeline) {
-    // History ran out, or no human has a Great Person left now or to come.
-    if (state.year >= TIMELINE_END_YEAR) return leader(state)
-    const alive = state.players.filter(p => hasFuture(state, p))
-    if (alive.length === 1 && state.players.length > 1) return alive[0].id
-    if (!state.players.some(p => !p.isComputer && hasFuture(state, p))) return leader(state)
-    return null
   }
   // Only 1 player has GP cards
   const playersWithGP = state.players.filter(p => {
@@ -1122,14 +1121,18 @@ function resolveChoices(state: GameState): GameState {
   return log.length ? { ...s, log: [...log.reverse(), ...s.log].slice(0, 20) } : s
 }
 
-/** Time skips ahead while no human player has a Great Person in their career (and none of them owes a successor choice). */
+/**
+ * Time skips ahead while no human player has a Great Person in their career
+ * (and none of them owes a successor choice). Humans whose lineages have all
+ * ended watch the computer play history out to its end the same way.
+ */
 export function shouldFastForward(state: GameState): boolean {
   if (!state.setup.timeline || state.phase !== 'playing') return false
   const humans = state.players.filter(p => !p.isComputer)
   if (!humans.length) return false
   if (humans.some(p => p.pendingSuccessors.length > 0)) return false
   if (humans.some(p => hasActiveGP(state, p))) return false
-  return humans.some(p => hasFuture(state, p)) && state.year < TIMELINE_END_YEAR
+  return state.players.some(p => hasFuture(state, p)) && state.year < TIMELINE_END_YEAR
 }
 
 /** One skipped year of CPU progress: CPU Great People on the board may win a fight towards their legacy and claim it. */
@@ -1145,7 +1148,7 @@ function cpuSkippedYear(state: GameState, rand: () => number, lines: string[]): 
       const ticks = c.achievementTicks + 1
       if (card && ticks >= card.legacy.unlock.wins) {
         players = players.map(p => (p.id === owner.id ? earnLegacy(p, c.cardId) : p))
-        lines.push(`${owner.name}'s ${card.figureName} earned the legacy ${card.legacy.name} (+1 point).`)
+        lines.push(`${owner.name}'s ${card.figureName} earned the legacy ${card.legacy.name}.`)
         return { ...c, achievementTicks: 0 }
       }
       return { ...c, achievementTicks: ticks }
@@ -1429,7 +1432,7 @@ function baseReducer(state: GameState, action: GameAction): GameState {
         locations: newLocations,
         gpDeck: newGpDeck,
         turnActions: { ...state.turnActions, actedCards: [...state.turnActions.actedCards, action.instanceId] },
-        log: [`${player.name}'s ${card?.figureName ?? 'Great Person'} earned the legacy ${card?.legacy.name ?? ''}! +1 winning point.`, ...state.log.slice(0, 19)],
+        log: [`${player.name}'s ${card?.figureName ?? 'Great Person'} earned the legacy ${card?.legacy.name ?? ''}!`, ...state.log.slice(0, 19)],
       }
     }
 

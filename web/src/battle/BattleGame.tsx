@@ -672,7 +672,7 @@ function RulesModal({ onClose }: { onClose: () => void }) {
         <div className="p-4 space-y-4 max-h-[70vh] overflow-y-auto text-sm">
           <section>
             <p className="text-[10px] font-bold text-accent uppercase tracking-widest mb-1.5">Objective</p>
-            <p className="text-ink-2 leading-relaxed">First player to earn <span className="text-accent font-bold">5 Victory Points</span> wins. Each legacy you earn is worth 1 point. If history reaches {formatYear(2030)} or no one has a Great Person left, the most points wins.</p>
+            <p className="text-ink-2 leading-relaxed">There is no points race: the game runs to <span className="text-accent font-bold">the end of history</span> ({formatYear(2030)}, or sooner if every lineage has ended), and the player with <span className="text-accent font-bold">the most legacies</span> wins. If all your lineages end first, the computer plays history out and the legacies are compared then.</p>
           </section>
           <section>
             <p className="text-[10px] font-bold text-accent uppercase tracking-widest mb-1.5">Real history</p>
@@ -768,6 +768,8 @@ export function BattleGame({ gameState, dispatch, onExit, embedded = false, bann
   const deployableHand = currentPlayer.gpHand.filter(id => lifeStatus(gameState, currentPlayer.id, id) === 'active')
   const canDeployGP = !gameState.turnActions.deployedGP && deployableHand.length > 0
   const isTimeline = !!gameState.setup.timeline
+  /** Timeline games are decided by legacies at the end of history; the timeless lessons by points. */
+  const score = (p: PlayerState) => (isTimeline ? p.legacies.length : p.winningPoints)
   const statusLabel = (p: PlayerState, id: string): string => {
     const card = gpMap[id]
     const st = lifeStatus(gameState, p.id, id)
@@ -1037,11 +1039,11 @@ export function BattleGame({ gameState, dispatch, onExit, embedded = false, bann
           <h2 className="font-display text-3xl font-bold tracking-wide text-ink uppercase mb-2">Game Over!</h2>
           <p className="text-accent text-xl font-bold mb-6">{winner?.name} wins!</p>
           <div className="bg-paper-2 border border-line rounded-2xl p-4 mb-6">
-            {gameState.players.sort((a, b) => b.winningPoints - a.winningPoints).map(p => (
+            {[...gameState.players].sort((a, b) => score(b) - score(a)).map(p => (
               <div key={p.id} className="flex items-center justify-between py-1.5 border-b border-line last:border-0">
                 <span className="text-ink-2 text-sm">{p.name}</span>
                 <span className={`font-bold text-sm ${p.id === gameState.winner ? 'text-accent' : 'text-muted'}`}>
-                  {p.winningPoints} pts
+                  {score(p)} {isTimeline ? `legac${score(p) === 1 ? 'y' : 'ies'}` : 'pts'}
                 </span>
               </div>
             ))}
@@ -1086,7 +1088,7 @@ export function BattleGame({ gameState, dispatch, onExit, embedded = false, bann
                     ${isActive ? `${color.bg} ${color.border} border` : 'opacity-50'}`}>
                   <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${color.dot}`} />
                   <span className={`font-medium ${color.text}`}>{p.name.split(' ')[0]}</span>
-                  <span className={`font-bold ${color.text}`}>{p.winningPoints}★</span>
+                  <span className={`font-bold ${color.text}`} title={isTimeline ? 'Legacies earned' : 'Winning points'}>{score(p)}{isTimeline ? ' 🏛' : '★'}</span>
                 </div>
               )
             })}
@@ -1546,7 +1548,7 @@ export function BattleGame({ gameState, dispatch, onExit, embedded = false, bann
               <h2 className={`text-3xl font-bold mb-1 ${color.text}`}>{player.name}</h2>
               <div className="flex items-center justify-center gap-1 mb-8">
                 <span className={`w-2 h-2 rounded-full ${color.dot}`} />
-                <span className="text-muted text-sm">{player.winningPoints} winning point{player.winningPoints !== 1 ? 's' : ''}</span>
+                <span className="text-muted text-sm">{isTimeline ? `${score(player)} legac${score(player) === 1 ? 'y' : 'ies'}` : `${player.winningPoints} winning point${player.winningPoints !== 1 ? 's' : ''}`}</span>
               </div>
               <p className="text-muted/80 text-xs mb-6 leading-relaxed">
                 Hand the device to this player.<br />Others look away.

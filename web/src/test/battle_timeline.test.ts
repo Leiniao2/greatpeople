@@ -316,13 +316,32 @@ describe('city states', () => {
 })
 
 describe('end of the game', () => {
-  it('ends when history reaches the end of the timeline', () => {
+  it('runs to the end of history and the most legacies wins', () => {
     let gs = game(TIMELINE_END_YEAR - 1, ['peter_arnett'], ['jane_goodall'])
-    gs = { ...gs, players: gs.players.map((p, i) => (i === 0 ? { ...p, winningPoints: 2 } : p)) }
+    gs = { ...gs, players: gs.players.map((p, i) => (i === 0 ? { ...p, legacies: ['gandhi'] } : { ...p, legacies: ['euclid', 'titian'] })) }
     gs = place(gs, 0, 0, 'peter_arnett')
     gs = endRound(gs)
     expect(gs.phase).toBe('ended')
-    expect(gs.winner).toBe('player-0')
+    expect(gs.winner).toBe('player-1')
+  })
+
+  it('five points no longer end a timeline game', () => {
+    let gs = game(1510, ['titian'], ['magellan'])
+    gs = place(gs, 0, 0, 'titian')
+    gs = { ...gs, players: gs.players.map((p, i) => (i === 0 ? { ...p, winningPoints: 7, legacies: ['a', 'b', 'c', 'd', 'e', 'f', 'g'] } : p)) }
+    gs = endRound(gs)
+    expect(gs.phase).toBe('playing')
+  })
+
+  it('when a human has no lineage left, the computer plays history out and legacies decide', () => {
+    let gs = game(1990, [], ['steve_jobs'])
+    gs = place(gs, 0, 1, 'steve_jobs')
+    gs = { ...gs, players: gs.players.map((p, i) => (i === 0 ? { ...p, legacies: ['gandhi', 'euclid'] } : p)) }
+    const done = settle(gs)
+    expect(done.phase).toBe('ended')
+    // Jobs dies in 2011 and nobody born later is left for the CPU, or history reaches its end.
+    expect(done.year).toBeGreaterThan(1990)
+    expect(done.winner).toBe(done.players[1].legacies.length > 2 ? 'player-1' : 'player-0')
   })
 })
 

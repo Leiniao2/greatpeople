@@ -79,22 +79,22 @@
   {
     "id": "obj-points",
     "category": "Objective",
-    "title": "Winning points",
-    "docText": "Completing the achievement that unlocks a Great Person's legacy gives the legacy and 1 winning point.",
+    "title": "Legacies decide the game",
+    "docText": "Completing the achievement that unlocks a Great Person's legacy gives the legacy. The most legacies at the end of history wins; there is no points race.",
     "docSource": "docs/fight.md §2",
-    "codeBehaviour": "CLAIM_ACHIEVEMENT: public GP with achievementTicks ≥ legacy.unlock.wins and not already in player.legacies → +1 winningPoints, legacy added (earnLegacy), fills a free slot.",
-    "codeSource": "web/src/battle/engine.ts CLAIM_ACHIEVEMENT, earnLegacy",
+    "codeBehaviour": "CLAIM_ACHIEVEMENT: public GP with achievementTicks ≥ legacy.unlock.wins and not already in player.legacies → legacy added (earnLegacy, which also still increments winningPoints for the timeless lessons), fills a free slot. leader() ranks by legacies.length.",
+    "codeSource": "web/src/battle/engine.ts CLAIM_ACHIEVEMENT, earnLegacy, leader",
     "status": "implemented",
-    "notes": ""
+    "notes": "The board shows legacies (🏛) instead of points in timeline games."
   },
   {
     "id": "obj-end",
     "category": "Game end",
-    "title": "5 points ends the game",
-    "docText": "5 winning points; or history reaches 2030; or only one player has a Great Person now or to come; or no human has one left (most points wins, ties to more legacies then seat order).",
+    "title": "End of history",
+    "docText": "The game runs to 2030, or until no player has a Great Person now or to come; the most legacies wins (ties: seat order). No early win by points. Humans without lineages watch the computer play history out.",
     "docSource": "docs/fight.md §8",
-    "codeBehaviour": "checkWinCondition: ≥5 points; on the timeline also year ≥ TIMELINE_END_YEAR (2030) → leader(); exactly one player with hasFuture → that player; no human with hasFuture → leader(). Timeless games keep \"one player with GP in hand or on board\".",
-    "codeSource": "web/src/battle/engine.ts checkWinCondition, hasFuture, leader",
+    "codeBehaviour": "checkWinCondition (timeline): year ≥ TIMELINE_END_YEAR (2030) or no player with hasFuture → leader() by legacies. shouldFastForward also runs when no human has a Great Person left but a CPU does, so the CPU plays out to the end. Timeless games (Epic lessons) keep the 5-point win and \"one player with GP\".",
+    "codeSource": "web/src/battle/engine.ts checkWinCondition, leader, shouldFastForward",
     "status": "implemented",
     "notes": ""
   },
@@ -555,10 +555,10 @@
     "title": "iOS/Android rules dialogs",
     "docText": "Not applicable (apps show a summary).",
     "docSource": "ios .../Battle/BattleView.swift, android .../BattleScreen.kt",
-    "codeBehaviour": "Both show: Local Survival discards cards below 10; Natural Hazard discards below 100; events triggered where you have a GP. Neither app runs the engine (online match placeholder only).",
-    "codeSource": "BattleRulesView / BATTLE_RULES",
-    "status": "conflict",
-    "notes": "Mobile text follows fight.md numbers; web engine uses 5 / min-stat 5."
+    "codeBehaviour": "iOS BattleRulesView lists the timeline rules: end of history decided by legacies, careers, successors, retirement, time skips, legacy slots, survival and hazard below 5, 30 % city states. Android has no rules dialog: it opens the web Fight Arena.",
+    "codeSource": "ios/GreatPeople/Features/Battle/BattleView.swift BattleRulesView",
+    "status": "implemented",
+    "notes": "Updated 2026-11-04."
   },
   {
     "id": "server-model",

@@ -44,7 +44,7 @@ Constants (all hard-coded in `engine.ts`):
 | Natural hazard | minimum over the 8 per-stat totals ≥ 5 survives; arrives as a city state (below); 1 round; hazard-shield legacies make a player immune | all-stat total below 100 dies |
 | Global competition | sum of public GP base stats only; 1 round; reward 2 events / 4 followers / 1 GP | all public cards; same rewards |
 | Legacy unlock | 1 "tick" when the GP kills an enemy GP (≥ 5 in the unlock stat) in a local event of its `legacy.unlock.stat`; claim at `unlock.wins` ticks (1 for every card) for +1 point and the legacy | achievement text per card |
-| Winning | 5 points; or 2030; or last player with a Great Person now or to come; or no human left (most points) | same |
+| Winning | no points race: at 2030, or when no player has a Great Person now or to come, the most legacies wins (humans out of lineages watch the CPU play out history) | same |
 | Time | 1 round = 1 year; opens on a real year; skips while no human GP is in their career | same (§9) |
 | Lives | born, died (null = living), careerAge (default 18) per card; death of old age; successor born later (3 nearest offered) | same (§9) |
 | Retirement | RETIRE_GP; successor at the real death year | same (§9) |
@@ -59,7 +59,7 @@ Great People tab of the tool.
 
 ## 3. Findings
 
-0. **Real history (2026-11-04).** Fights now run on a timeline: one round per year, births, careers, deaths, successors born later, retirement and time skips; achievements unlock legacies (2 slots); cities fall into random states (30 %). All of it is in `fight.md` §9–10, the registry (Timeline, Legacy, City states rows) and `web/src/test/battle_timeline.test.ts`. Simulated naive games last about 245 played years from the Ancient opening down to about 26 from the Information opening, and most end when lineages run out of later-born successors; see the Balance tab's Timeline section.
+0. **Real history (2026-11-04).** Fights now run on a timeline: one round per year, births, careers, deaths, successors born later, retirement and time skips; achievements unlock legacies (2 slots) and the most legacies at the end of history wins; cities fall into random states (30 %). All of it is in `fight.md` §9–10, the registry (Timeline, Legacy, City states rows) and `web/src/test/battle_timeline.test.ts`. Simulated naive games last about 245 played years from the Ancient opening down to about 26 from the Information opening, and most end when lineages run out of later-born successors; see the Balance tab's Timeline section.
 1. **Three survival rules exist.** Doc and mobile dialogs: stat total below 10 dies. Engine: below 5. Hazard: doc and mobile say all-stat total below 100; engine says minimum per-stat total below 5.
 2. **No achievement text is evaluated as written.** Every legacy unlocks on "kill a worthy enemy GP in the unlock stat" (now set for all 80 cards, so none is unreachable any more). Defensive, positional and cooperative achievements are impossible; 33 cards cannot earn a point at all.
 3. **Only 13 of 80 traits have an effect**, 12 of them different from the card text.

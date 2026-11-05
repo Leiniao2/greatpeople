@@ -65,7 +65,7 @@ export default function Overview() {
             <li><b>Fights run on real history.</b> One round is one year; Great People are born, start their careers (18, earlier for prodigies), die in their real years and are succeeded by someone born later. Time skips while no human has a Great Person in their career.</li>
             <li><b>Achievements unlock legacies.</b> Every card's legacy has a structured unlock (win N fights in a stat) and an effect from 7 kinds the engine applies generically; 2 legacy slots are in effect at a time. The achievement text is richer than the unlock the engine checks.</li>
             <li><b>Cities change on their own.</b> Each year an empty city has a 30 % chance of a random local event, survival or hazard (replacing the old 20 % random hazard).</li>
-            <li><b>Mobile rules dialogs are stale.</b> iOS/Android still say survival below 10 and hazards below 100; the rulebook and engine use 5 and the minimum per-stat total below 5.</li>
+            <li><b>Legacies decide the game.</b> No points race: the game runs to the end of history (2030, or until every lineage has ended) and the most legacies wins. The iOS rules sheet says the same; Android opens the web arena.</li>
             <li><b>Only 13 of 80 traits do anything</b>, and 12 of those 13 do something other than their card text (e.g. Marie Antoinette gets +8 wealth instead of giving everyone −3).</li>
             <li><b>Archiving is replaced by succession</b>; claiming a legacy no longer draws a new GP (the timeless Epic lessons still do).</li>
             <li><b>Attack visibility rules are unenforced</b>: private cards can attack and are counted; only the two cards involved get revealed.</li>

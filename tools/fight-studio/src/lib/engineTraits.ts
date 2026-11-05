@@ -18,7 +18,8 @@ export const ENGINE_CONSTANTS = {
   followerIdentityMatchBonus: 4,
   localSurvivalThreshold: 5,
   hazardMinStatThreshold: 5,
-  winningPointsToWin: 5,
+  /** Timeline games: no points race, the most legacies at the end of history wins. Timeless lessons: 5 points. */
+  lessonWinningPoints: 5,
   worthyOpponentMinStat: 5,
   localEventRounds: 99,
   globalCompetitionRounds: 1,
