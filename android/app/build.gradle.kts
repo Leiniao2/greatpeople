@@ -19,6 +19,21 @@ android {
         versionName = "1.0.0"
     }
 
+    // One shared key for the "device" build, so every machine signs it the same
+    // way and Google sign-in (which checks the SHA-1) works for all of them.
+    // The keystore stays out of the repo; point at it from ~/.gradle/gradle.properties.
+    val deviceKeystore = (findProperty("GP_DEVICE_KEYSTORE") as String?)?.let { file(it) }?.takeIf { it.exists() }
+    signingConfigs {
+        if (deviceKeystore != null) {
+            create("device") {
+                storeFile = deviceKeystore
+                storePassword = findProperty("GP_DEVICE_KEYSTORE_PASSWORD") as String?
+                keyAlias = findProperty("GP_DEVICE_KEY_ALIAS") as String?
+                keyPassword = findProperty("GP_DEVICE_KEY_PASSWORD") as String?
+            }
+        }
+    }
+
     buildTypes {
         // The web app whose play routes the app embeds, and the API it calls.
         debug {
@@ -36,6 +51,12 @@ android {
             initWith(getByName("debug"))
             applicationIdSuffix = ".device"
             matchingFallbacks += listOf("debug")
+            if (deviceKeystore != null) {
+                signingConfig = signingConfigs.getByName("device")
+            } else {
+                logger.warn("GP_DEVICE_KEYSTORE not set: the device build is signed with this machine's own " +
+                    "debug key, so Google sign-in will fail with code 10. See android/README.md.")
+            }
             buildConfigField("String", "WEB_BASE_URL", "\"https://greatpeople-109767033732.us-central1.run.app\"")
             buildConfigField("String", "API_BASE_URL", "\"https://greatpeople-109767033732.us-central1.run.app/\"")
         }
