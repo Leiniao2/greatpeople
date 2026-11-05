@@ -141,7 +141,7 @@ Every Great Person card carries a birth year, a death year (none for someone sti
 Each Great People card has a Legacy in place of its old Achievement. A legacy has:
 
 - a name (the achievement's name, e.g. Gandhi's Satyagraha);
-- how it is earned: the achievement text on the card, and the rule the game checks: win a number of fights (1 for every card at present) in the legacy's stat — attack and kill an enemy Great Person in a local event of that stat, whose own value in that stat is at least 5;
+- how it is earned: the achievement on the card. Each Great Person has their own condition (for example allies of certain identities in their city, a fight won while outnumbered, three years in the same city), checked by the game after every action and at the end of every turn and year. Winning a fight earns no legacy by itself. A Great Person who meets their condition is ready: make them public and claim the legacy.
 - an effect, designed from the figure's history (e.g. Satyagraha: +3 to your total whenever you defend; Imhotep's Pyramid: your Great People live 15 years longer; Amelia Earhart's First Solo Atlantic: your cards ignore natural hazards).
 
 Effects are one of these kinds:

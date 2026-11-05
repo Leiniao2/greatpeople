@@ -531,12 +531,12 @@
     "id": "ach-text",
     "category": "Achievements",
     "title": "Achievement conditions (legacy unlock)",
-    "docText": "Each card's achievement text says how its legacy is earned.",
+    "docText": "Each Great Person earns their legacy through their own achievement, the condition on their card (cards.json achievement). Winning a fight earns no legacy by itself.",
     "docSource": "data/cards.json",
-    "codeBehaviour": "None of the textual conditions are evaluated. The engine checks legacy.unlock: a GP earns 1 tick when it attacks and kills an enemy GP in a local event of the unlock stat whose own value in that stat is ≥ 5; claim at unlock.wins ticks (1 for every card). Every card now has an unlock stat (previously 33 cards had none and were unreachable).",
-    "codeSource": "data/cards.json legacy.unlock; web/src/battle/engine.ts ACHIEVEMENT_SPECS (derived), ATTACK",
-    "status": "partial",
-    "notes": "Unlock stats come from the old ACHIEVEMENT_SPECS where one existed, otherwise the card's highest stat."
+    "codeBehaviour": "web/src/battle/achievements.ts: one rule per card id (80). The reducer records AchievementEvents (turn end, year end, fight, survival/hazard, death, scenario ended, follower placed, event started, legacy claimed, competition); gameReducer runs them past every Great Person on the board still to earn their legacy (runAchievements) and marks achievers ready (achievementTicks = unlock). Streaks and tallies live in PlayerState.achievementMemo. 57 card texts were rewritten on 2026-11-04 to match a workable rule (no Censorship/Diplomacy mechanics, stats only go to 12, cities follow the age).",
+    "codeSource": "web/src/battle/achievements.ts ACHIEVEMENTS, runAchievements; engine.ts gameReducer, checkAchievements",
+    "status": "implemented",
+    "notes": "Until 2026-11-04 the text was not evaluated: one kill in the legacy's stat unlocked it. The time-skip rule that let CPU cards win legacies at random is gone."
   },
   {
     "id": "legacy-slots",

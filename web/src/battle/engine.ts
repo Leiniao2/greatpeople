@@ -22,6 +22,7 @@ import locationsJson from '@/data/locations.json'
 import locationCardsJson from '@/data/location_cards.json'
 import followersJson from '@/data/followers.json'
 import { portraitUrl } from '@/data/images'
+import { runAchievements, type AchievementEvent } from './achievements'
 
 // ─── Static Card Data ─────────────────────────────────────────────────────────
 
@@ -127,6 +128,11 @@ export const GLOBAL_COMPETITION_CHANCE = 0.05
 /** A contest prize: this many Followers, or this many Event cards, times the reward's size. */
 export const REWARD_FOLLOWERS = 2
 export const REWARD_EVENTS = 1
+
+/** Record what happened for the achievements; gameReducer checks them after the action. */
+export function emit(state: GameState, ...events: AchievementEvent[]): GameState {
+  return events.length ? { ...state, achievementEvents: [...(state.achievementEvents ?? []), ...events] } : state
+}
 
 /** Queue a prize for a contest's winner; the player picks Followers or Events. */
 export function grantReward(state: GameState, playerId: string, size: 1 | 2, reason: string): GameState {
@@ -351,8 +357,6 @@ export const SUCCESSOR_CHOICES = 3
 export const LEGACY_SLOTS = 2
 /** The timeline ends here; living people never die naturally before it. */
 export const TIMELINE_END_YEAR = 2030
-/** While time skips ahead, each CPU Great Person on the board wins a fight towards its legacy with this chance per year. */
-export const FAST_FORWARD_CPU_WIN_CHANCE = 0.05
 
 export function formatYear(year: number): string {
   if (year < 0) return `${-year} BC`
@@ -1181,7 +1185,11 @@ export function advanceYear(state: GameState, opts: { fastForward?: boolean } = 
     lines.push(...rolled.lines)
   }
 
-  return { state: { ...state, year, players, locations, eventDeck, followerDeck }, lines }
+  const deathEvents: AchievementEvent[] = deaths.map(d => ({
+    kind: 'death', playerId: d.playerId, cardId: d.cardId,
+    locId: state.locations.find(l => l.cards.some(c => c.type === 'gp' && c.playerId === d.playerId && c.cardId === d.cardId))?.id ?? null,
+  }))
+  return { state: emit({ ...state, year, players, locations, eventDeck, followerDeck }, ...deathEvents), lines }
 }
 
 // ─── Settling: CPU choices, dead ends and time skips ─────────────────────────
@@ -1296,27 +1304,14 @@ export function shouldFastForward(state: GameState): boolean {
   return state.players.some(p => hasFuture(state, p)) && state.year < TIMELINE_END_YEAR
 }
 
-/** One skipped year of CPU progress: CPU Great People on the board may win a fight towards their legacy and claim it. */
-function cpuSkippedYear(state: GameState, rand: () => number, lines: string[]): GameState {
-  let players = state.players
-  const locations = state.locations.map(loc => ({
-    ...loc,
-    cards: loc.cards.map(c => {
-      const owner = players.find(p => p.id === c.playerId)
-      if (c.type !== 'gp' || !owner?.isComputer || owner.legacies.includes(c.cardId)) return c
-      if (rand() >= FAST_FORWARD_CPU_WIN_CHANCE) return c
-      const card = getGPCard(c.cardId)
-      const ticks = c.achievementTicks + 1
-      if (card && ticks >= card.legacy.unlock.wins) {
-        players = players.map(p => (p.id === owner.id ? earnLegacy(p, c.cardId) : p))
-        lines.push(`${owner.name}'s ${card.figureName} earned the legacy ${card.legacy.name}.`)
-        return { ...c, achievementTicks: 0 }
-      }
-      return { ...c, achievementTicks: ticks }
-    }),
-  }))
-  return { ...state, players, locations }
+/**
+ * One skipped year of CPU progress.  Legacies come only from each card's own
+ * achievement now, so nothing is won off screen; kept as a hook for skipped-year rules.
+ */
+function cpuSkippedYear(state: GameState, _rand: () => number, _lines: string[]): GameState {
+  return state
 }
+
 
 export function fastForward(state: GameState, rand: () => number = Math.random): GameState {
   const fromYear = state.year
@@ -1359,10 +1354,39 @@ export function settle(state: GameState): GameState {
   return winner ? { ...s, winner, phase: 'ended' } : s
 }
 
+/** Actions that count as acting this year (Gandhi's achievement). */
+const ACTING = new Set<GameAction['type']>(['DEPLOY_GP', 'ADD_FOLLOWER', 'MOVE_CARD', 'ATTACK', 'RETRIEVE_CARD'])
+
 export function gameReducer(state: GameState, action: GameAction): GameState {
-  const next = baseReducer(state, action)
+  let next = baseReducer(state, action)
   if (next === state || action.type === 'DISMISS_SUMMARY') return next
-  return settle(next)
+  const me = state.players[state.currentPlayerIdx]?.id
+  if (me && ACTING.has(action.type) && !(next.roundActed ?? []).includes(me)) next = { ...next, roundActed: [...(next.roundActed ?? []), me] }
+  if (action.type === 'ADD_FOLLOWER') next = emit(next, { kind: 'follower', locId: action.locationId, playerId: me })
+  if (action.type === 'START_EVENT') next = emit(next, { kind: 'event', locId: action.locationId, playerId: me })
+  if (action.type === 'END_SCENARIO') {
+    const ended = state.locations.find(l => l.id === action.locationId)?.activeEvent
+    if (ended) next = emit(next, { kind: 'ended', locId: action.locationId, event: ended, playerId: me })
+  }
+  if (action.type === 'CLAIM_ACHIEVEMENT') {
+    const claimed = state.locations.flatMap(l => l.cards).find(c => c.instanceId === action.instanceId)
+    if (claimed) next = emit(next, { kind: 'claim', playerId: me, cardId: claimed.cardId })
+  }
+  return checkAchievements(settle(checkAchievements(next)))
+}
+
+/** Run the recorded events past every Great Person's own achievement, then clear them. */
+function checkAchievements(state: GameState): GameState {
+  const events = state.achievementEvents ?? []
+  if (!events.length) return state
+  const { gpMap, followerMap } = buildLookups(state)
+  // Followers swept off the board are in no hand any more: rebuild them from their ids.
+  for (const ev of events) {
+    const cards = ev.kind === 'fight' ? [...ev.before, ev.attacker, ev.defender] : ev.kind === 'survival' ? ev.before : []
+    for (const c of cards) if (c.type === 'follower' && !followerMap[c.cardId]) { const f = followerFromId(c.cardId); if (f) followerMap[c.cardId] = f }
+  }
+  return runAchievements({ ...state, achievementEvents: [] }, events, { gp: gpMap, follower: followerMap },
+    id => getAchievementThreshold(getGPCard(id)?.figureName ?? ''))
 }
 
 function baseReducer(state: GameState, action: GameAction): GameState {
@@ -1663,24 +1687,7 @@ function baseReducer(state: GameState, action: GameAction): GameState {
           )
           // A Great Person killed in play dies: on the timeline its owner chooses a successor.
           newPlayers = recordDeaths(state, newPlayers, gpDeaths([loserCard]))
-          // Achievement tick: awarded once when the winning GP defeats a worthy opponent
-          // (opponent GP must have the achievement stat >= 5 to count as a meaningful victory)
-          if (myWon && myCard.type === 'gp' && loserCard.type === 'gp') {
-            const attackerGP = gpMap[myCard.cardId]
-            const defenderGP = gpMap[loserCard.cardId]
-            const achSpec = attackerGP ? ACHIEVEMENT_SPECS[attackerGP.figureName] : null
-            const worthyOpponent = achSpec && defenderGP && defenderGP[achSpec.stat] >= 5
-            if (achSpec?.stat === stat && worthyOpponent) {
-              newLocations = newLocations.map(l => ({
-                ...l,
-                cards: l.cards.map(c =>
-                  c.instanceId === action.myInstanceId
-                    ? { ...c, achievementTicks: c.achievementTicks + 1 }
-                    : c
-                ),
-              }))
-            }
-          }
+          // Winning a fight earns no legacy by itself: each card has its own achievement.
         } else {
           // Retrieve to hand
           newLocations = newLocations.map(l =>
@@ -1736,7 +1743,13 @@ function baseReducer(state: GameState, action: GameAction): GameState {
       }
       // Winning the fight, attacking or defending, earns a prize.
       const winnerId = myWon ? player.id : theirWon ? theirCard.playerId : null
-      return winnerId ? grantReward(fought, winnerId, 1, `${myWon ? 'won the attack' : 'held off an attack'} at ${loc.name}`) : fought
+      const events: AchievementEvent[] = [{
+        kind: 'fight', locId: loc.id, stat, kill: action.kill, attacker: myCard, defender: theirCard,
+        result: myWon ? 'attacker' : theirWon ? 'defender' : 'draw', before: loc.cards,
+      }]
+      if (action.kill && loserCard?.type === 'gp') events.push({ kind: 'death', locId: loc.id, playerId: loserCard.playerId, cardId: loserCard.cardId, killerId: loserCard.playerId === player.id ? theirCard.playerId : player.id })
+      const reported = emit(fought, ...events)
+      return winnerId ? grantReward(reported, winnerId, 1, `${myWon ? 'won the attack' : 'held off an attack'} at ${loc.name}`) : reported
     }
 
     case 'TOGGLE_VISIBILITY': {
@@ -1784,6 +1797,8 @@ function baseReducer(state: GameState, action: GameAction): GameState {
       // Every contest resolved at the end of the round gets its own report, in order.
       const roundSummaries: GameSummary[] = []
       const roundRewards: PendingReward[] = []
+      const roundEvents: AchievementEvent[] = []
+      const idOf = (name: string) => newPlayers.find(p => p.name === name)?.id ?? name
 
       if (isNewRound) {
         newRound = state.round + 1
@@ -1817,6 +1832,7 @@ function baseReducer(state: GameState, action: GameAction): GameState {
           if (bestPlayerId) {
             logEntries.push(`Global competition resolved! Winner: ${winnerName} (${STAT_LABELS[stat]}: ${bestTotal})`)
             roundRewards.push({ playerId: bestPlayerId, size: 2, reason: `won the global competition in ${STAT_LABELS[stat]}` })
+            roundEvents.push({ kind: 'competition', winnerId: bestPlayerId, stat })
           }
           roundSummaries.push({
             kind: 'event',
@@ -1857,6 +1873,7 @@ function baseReducer(state: GameState, action: GameAction): GameState {
               results.push(result)
               if (!result.survived) {
                 eliminated.push(...updatedCards.filter(c => c.playerId === pid))
+                for (const c of updatedCards) if (c.playerId === pid && c.type === 'gp') roundEvents.push({ kind: 'death', locId: loc.id, playerId: pid, cardId: c.cardId })
                 updatedCards = updatedCards.filter(c => c.playerId !== pid)
                 logEntries.push(`Local survival: ${pName}'s cards in ${loc.name} discarded`)
               }
@@ -1867,6 +1884,8 @@ function baseReducer(state: GameState, action: GameAction): GameState {
                 kind: 'event', eventName: event.name, eventType: event.type,
                 stat: stat ?? undefined, locationName: loc.name, threshold, results,
               })
+              roundEvents.push({ kind: 'survival', locId: loc.id, eventName: event.name, hazard: false, stat, threshold, before: loc.cards,
+                results: results.map(r => ({ playerId: idOf(r.playerName), total: r.total, survived: r.survived })) })
             }
             // Surviving while a rival here is swept away wins the survival.
             if (results.some(r => !r.survived)) {
@@ -1919,6 +1938,7 @@ function baseReducer(state: GameState, action: GameAction): GameState {
 
               if (!survived) {
                 eliminated.push(...updatedCards.filter(c => c.playerId === pid))
+                for (const c of updatedCards) if (c.playerId === pid && c.type === 'gp') roundEvents.push({ kind: 'death', locId: loc.id, playerId: pid, cardId: c.cardId })
                 updatedCards = updatedCards.filter(c => c.playerId !== pid)
                 logEntries.push(`Natural hazard: ${pName}'s cards in ${loc.name} discarded`)
               }
@@ -1929,6 +1949,8 @@ function baseReducer(state: GameState, action: GameAction): GameState {
                 kind: 'event', eventName: event.name, eventType: event.type,
                 locationName: loc.name, threshold: HAZARD_MIN, results,
               })
+              roundEvents.push({ kind: 'survival', locId: loc.id, eventName: event.name, hazard: true, stat: null, threshold: HAZARD_MIN, before: loc.cards,
+                results: results.map(r => ({ playerId: idOf(r.playerName), total: r.total, survived: r.survived })) })
             }
           }
 
@@ -1962,6 +1984,7 @@ function baseReducer(state: GameState, action: GameAction): GameState {
           newFollowerDeck = ticked.state.followerDeck
           logEntries.push(...ticked.lines)
           newYear = ticked.state.year
+          roundEvents.push(...(ticked.state.achievementEvents ?? []).slice((state.achievementEvents ?? []).length))
         } else if (!state.setup.noHazards) {
           const rolled = rollCityStates(newLocations)
           newLocations = rolled.locations
@@ -1988,6 +2011,13 @@ function baseReducer(state: GameState, action: GameAction): GameState {
         pendingSummary: roundSummaries[0] ?? null,
         summaryQueue: roundSummaries.slice(1),
         pendingRewards: [...(state.pendingRewards ?? []), ...roundRewards],
+        achievementEvents: [
+          ...(state.achievementEvents ?? []),
+          { kind: 'turn', playerId: state.players[state.currentPlayerIdx].id, actions: state.turnActions },
+          ...roundEvents,
+          ...(isNewRound ? [{ kind: 'round' } as AchievementEvent] : []),
+        ],
+        roundActed: isNewRound ? [] : state.roundActed,
         log: [...logEntries, `${state.setup.timeline ? formatYear(newYear) : `Round ${newRound}`}: ${state.players[nextIdx].name}'s turn.`, ...state.log].slice(0, 20),
       }
     }

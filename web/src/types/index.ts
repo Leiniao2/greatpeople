@@ -1,3 +1,4 @@
+import type { AchievementEvent } from '@/battle/achievements'
 export interface Card {
   id: string
   figureName: string
@@ -150,6 +151,8 @@ export interface PlayerState {
   activeLegacies: string[]
   /** Great Person slots won outside legacies (the global competition prize). */
   extraSlots?: number
+  /** Achievement progress per card id (streaks, cities visited). */
+  achievementMemo?: Record<string, Record<string, unknown>>
 }
 
 export interface PendingSuccessor {
@@ -276,6 +279,10 @@ export interface GameState {
   summaryQueue?: GameSummary[]
   /** Prizes won and not yet taken, oldest first (see PendingReward). */
   pendingRewards?: PendingReward[]
+  /** What happened in the last action, for the achievements (consumed by gameReducer). */
+  achievementEvents?: AchievementEvent[]
+  /** Players who acted (deploy, follower, move, attack, retrieve) this year. */
+  roundActed?: string[]
 }
 
 /**
