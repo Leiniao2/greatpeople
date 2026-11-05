@@ -39,6 +39,7 @@ class AuthViewModel @Inject constructor(
                 val resp = apiService.login(LoginRequest(email, password))
                 prefs.edit()
                     .putString("access_token", resp.accessToken)
+                    .putString("refresh_token", resp.refreshToken)
                     .putString("user_email", email)
                     .apply()
                 _state.value = AuthUiState.Success
@@ -55,6 +56,7 @@ class AuthViewModel @Inject constructor(
                 val resp = apiService.register(RegisterRequest(email, password, displayName))
                 prefs.edit()
                     .putString("access_token", resp.accessToken)
+                    .putString("refresh_token", resp.refreshToken)
                     .putString("user_email", email)
                     .apply()
                 _state.value = AuthUiState.Success
@@ -71,6 +73,7 @@ class AuthViewModel @Inject constructor(
                 val resp = apiService.googleLogin(GoogleLoginRequest(idToken))
                 prefs.edit()
                     .putString("access_token", resp.accessToken)
+                    .putString("refresh_token", resp.refreshToken)
                     .also { if (email != null) it.putString("user_email", email) }
                     .apply()
                 _state.value = AuthUiState.Success

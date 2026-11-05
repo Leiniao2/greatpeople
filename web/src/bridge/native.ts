@@ -12,6 +12,7 @@ export type BridgeMessage =
   | { type: 'storyComplete'; slug: string; unlockKey: string | null }
   | { type: 'challengeComplete'; id: string }
   | { type: 'close' }
+  | { type: 'signedOut' }
   | { type: 'progress'; doc: ProgressDoc }
 
 interface NativeWindow {
@@ -34,8 +35,8 @@ export function postToNative(msg: BridgeMessage): boolean {
 }
 
 /**
- * The native app passes its JWT in the URL fragment (`#token=…`), which is
- * never sent to the server. Store it and strip it from the address bar.
+ * The native app passes its JWT in the URL fragment (`#token=…&refresh=…`),
+ * which is never sent to the server. Store it and strip it from the address bar.
  * A guest in the native app is passed as `#guest=1` instead; returns true
  * when the page should enter guest mode.
  */
@@ -47,8 +48,10 @@ export function adoptTokenFromFragment(): boolean {
     if (!hash) return isEmbedded() && sessionStorage.getItem(GUEST_KEY) === '1'
     const params = new URLSearchParams(hash)
     const token = params.get('token')
+    const refresh = params.get('refresh')
     const guest = params.get('guest') === '1'
     if (token) { localStorage.setItem('access_token', token); sessionStorage.removeItem(GUEST_KEY) }
+    if (token && refresh) localStorage.setItem('refresh_token', refresh)
     else if (guest) sessionStorage.setItem(GUEST_KEY, '1')
     if (token || guest) window.history.replaceState(null, '', window.location.pathname + window.location.search)
     return !token && guest

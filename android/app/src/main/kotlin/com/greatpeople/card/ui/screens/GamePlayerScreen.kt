@@ -78,13 +78,19 @@ fun GamePlayerScreen(
  * guest instead of bouncing to the web login.
  */
 object PlayUrls {
-    fun story(slug: String, token: String?) = embed("/play/story/$slug", token)
-    fun challenge(id: String, token: String?) = embed("/play/challenge/$id", token)
-    fun battle(token: String?) = embed("/play/battle", token)
-    fun arcade(token: String?) = embed("/play/arcade", token)
-    private fun embed(path: String, token: String?): String {
+    fun story(slug: String, session: Session?) = embed("/play/story/$slug", session)
+    fun challenge(id: String, session: Session?) = embed("/play/challenge/$id", session)
+    fun battle(session: Session?) = embed("/play/battle", session)
+    fun arcade(session: Session?) = embed("/play/arcade", session)
+    private fun embed(path: String, session: Session?): String {
         val base = BuildConfig.WEB_BASE_URL.trimEnd('/')
-        val fragment = token?.let { "#token=" + android.net.Uri.encode(it) } ?: "#guest=1"
+        val fragment = session?.let { s ->
+            "#token=" + android.net.Uri.encode(s.token) +
+                (s.refresh?.let { "&refresh=" + android.net.Uri.encode(it) } ?: "")
+        } ?: "#guest=1"
         return "$base$path?embed=1$fragment"
     }
 }
+
+/** The signed-in session handed to the web player; the page renews it with [refresh]. */
+data class Session(val token: String, val refresh: String?)

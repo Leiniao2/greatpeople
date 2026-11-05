@@ -16,7 +16,10 @@ interface AuthState {
   exitGuestMode: () => void
 }
 
-const storeToken = (token: string) => localStorage.setItem('access_token', token)
+const storeTokens = ({ accessToken, refreshToken }: { accessToken: string; refreshToken?: string }) => {
+  localStorage.setItem('access_token', accessToken)
+  if (refreshToken) localStorage.setItem('refresh_token', refreshToken)
+}
 const storeEmail = (email: string) => localStorage.setItem('user_email', email)
 const storedEmail = localStorage.getItem('user_email')
 
@@ -31,8 +34,7 @@ export const useAuth = create<AuthState>((set) => ({
 
   login: async (email, password) => {
     try {
-      const { accessToken } = await authApi.login(email, password)
-      storeToken(accessToken)
+      storeTokens(await authApi.login(email, password))
     } catch (err) {
       // Allow admin login even if backend is unavailable.  Anyone else gets
       // the original error, so the caller can tell a rejected password from
@@ -45,8 +47,7 @@ export const useAuth = create<AuthState>((set) => ({
 
   register: async (email, password, _displayName) => {
     try {
-      const { accessToken } = await authApi.register(email, password, _displayName)
-      storeToken(accessToken)
+      storeTokens(await authApi.register(email, password, _displayName))
     } catch (err) {
       if (email !== ADMIN_EMAIL) throw err
     }
@@ -55,8 +56,7 @@ export const useAuth = create<AuthState>((set) => ({
   },
 
   ssoLogin: async (provider, accessToken) => {
-    const { accessToken: jwt } = await authApi.ssoLogin(provider, accessToken)
-    storeToken(jwt)
+    storeTokens(await authApi.ssoLogin(provider, accessToken))
 
     // The SSO response carries tokens only, so ask the API who this is.
     // Without it email and isAdmin stay unset and the collection reports
@@ -76,6 +76,7 @@ export const useAuth = create<AuthState>((set) => ({
   logout: async () => {
     try { await authApi.logout() } catch { /* ignore */ }
     localStorage.removeItem('access_token')
+    localStorage.removeItem('refresh_token')
     localStorage.removeItem('user_email')
     set({ isLoggedIn: false, email: null, isAdmin: false })
   },

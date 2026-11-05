@@ -21,6 +21,9 @@ import android.content.ContextWrapper
 import android.content.pm.ActivityInfo
 import com.greatpeople.card.ui.screens.GamePlayerScreen
 import com.greatpeople.card.ui.screens.PlayUrls
+import com.greatpeople.card.ui.screens.Session
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.greatpeople.card.ui.screens.CardDetailScreen
 import com.greatpeople.card.ui.screens.CollectionScreen
 import com.greatpeople.card.ui.screens.EpicScreen
@@ -47,13 +50,24 @@ sealed class Screen(val route: String) {
     }
 }
 
-private fun android.content.Context.accessToken(): String? =
-    getSharedPreferences("auth", android.content.Context.MODE_PRIVATE).getString("access_token", null)
+private fun android.content.Context.authPrefs() =
+    getSharedPreferences("auth", android.content.Context.MODE_PRIVATE)
 
-/** Forget the session here and in the embedded web app's storage. */
-private fun android.content.Context.signOut() {
-    getSharedPreferences("auth", android.content.Context.MODE_PRIVATE).edit().remove("access_token").apply()
+private fun android.content.Context.accessToken(): String? = authPrefs().getString("access_token", null)
+
+/** The saved session for the web player, or null when signed out. */
+private fun android.content.Context.session(): Session? =
+    accessToken()?.let { Session(it, authPrefs().getString("refresh_token", null)) }
+
+/**
+ * Forget the session here and in the embedded web app's storage. An explicit
+ * sign-out also forgets the Google account, so the login screen doesn't sign
+ * straight back in with it; an expired session keeps it for a silent sign-in.
+ */
+private fun android.content.Context.signOut(forgetGoogle: Boolean) {
+    authPrefs().edit().remove("access_token").remove("refresh_token").apply()
     android.webkit.WebStorage.getInstance().deleteAllData()
+    if (forgetGoogle) GoogleSignIn.getClient(this, GoogleSignInOptions.DEFAULT_SIGN_IN).signOut()
 }
 
 @Composable
@@ -63,6 +77,12 @@ fun GreatPeopleNavHost() {
     val appContext = LocalContext.current
     // A saved session skips the login screen; sign-out clears it.
     val startRoute = remember { if (appContext.accessToken() != null) Screen.Home.route else Screen.Login.route }
+    // The web player found the session expired: sign in again natively,
+    // where the phone's Google account is picked up without a prompt.
+    val sessionEnded = {
+        appContext.signOut(forgetGoogle = false)
+        navController.navigate(Screen.Login.route) { popUpTo(0) { inclusive = true } }
+    }
 
     Scaffold(
         containerColor = Color(0xFF080812),
@@ -118,8 +138,8 @@ fun GreatPeopleNavHost() {
             composable(Screen.Arcade.route) {
                 val context = LocalContext.current
                 GamePlayerScreen(
-                    url = PlayUrls.arcade(if (isGuest) null else context.accessToken()),
-                    onMessage = { msg -> if (msg.type == "close") navController.popBackStack() },
+                    url = PlayUrls.arcade(if (isGuest) null else context.session()),
+                    onMessage = { msg -> if (msg.type == "signedOut") sessionEnded() else if (msg.type == "close") navController.popBackStack() },
                     onClose = { navController.popBackStack() },
                 )
             }
@@ -145,11 +165,12 @@ fun GreatPeopleNavHost() {
                 val context = LocalContext.current
                 val slug = entry.arguments?.getString("slug") ?: return@composable
                 GamePlayerScreen(
-                    url = PlayUrls.story(slug, context.accessToken()),
+                    url = PlayUrls.story(slug, context.session()),
                     onMessage = { msg ->
                         when (msg.type) {
                             "storyComplete" -> navController.previousBackStackEntry?.savedStateHandle?.set("storyCompleted", msg.slug ?: slug)
                             "close" -> navController.popBackStack()
+                            "signedOut" -> sessionEnded()
                         }
                     },
                     onClose = { navController.popBackStack() },
@@ -160,8 +181,8 @@ fun GreatPeopleNavHost() {
                 val context = LocalContext.current
                 val id = entry.arguments?.getString("id") ?: return@composable
                 GamePlayerScreen(
-                    url = PlayUrls.challenge(id, context.accessToken()),
-                    onMessage = { msg -> if (msg.type == "close" || msg.type == "challengeComplete") navController.popBackStack() },
+                    url = PlayUrls.challenge(id, context.session()),
+                    onMessage = { msg -> if (msg.type == "signedOut") sessionEnded() else if (msg.type == "close" || msg.type == "challengeComplete") navController.popBackStack() },
                     onClose = { navController.popBackStack() },
                 )
             }
@@ -184,8 +205,8 @@ fun GreatPeopleNavHost() {
                     onDispose { activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT }
                 }
                 GamePlayerScreen(
-                    url = PlayUrls.battle(if (isGuest) null else context.accessToken()),
-                    onMessage = { msg -> if (msg.type == "close") navController.popBackStack() },
+                    url = PlayUrls.battle(if (isGuest) null else context.session()),
+                    onMessage = { msg -> if (msg.type == "signedOut") sessionEnded() else if (msg.type == "close") navController.popBackStack() },
                     onClose = { navController.popBackStack() },
                 )
             }
@@ -201,7 +222,7 @@ fun GreatPeopleNavHost() {
                     },
                     onSignOut = {
                         isGuest = false
-                        appContext.signOut()
+                        appContext.signOut(forgetGoogle = true)
                         navController.navigate(Screen.Login.route) {
                             popUpTo(0) { inclusive = true }
                         }
