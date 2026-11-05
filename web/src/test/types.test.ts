@@ -21,8 +21,11 @@ function makeCard(overrides: Partial<Card> = {}): Card {
     lore: 'Some lore',
     portraitUrl: '',
     years: '2000–2024',
+    born: 2000,
+    died: 2024,
     trait: '',
     achievement: '',
+    legacy: { name: 'Test', unlock: { stat: 'culture', wins: 1 }, effect: { kind: 'longevity', years: 5 } },
     politics: 50,
     strength: 50,
     culture: 50,
@@ -209,6 +212,7 @@ describe('PlayerState type shape', () => {
       id: 'u1', name: 'Alice', isComputer: false,
       gpHand: ['card1'], eventHand: [], followerHand: [],
       archive: [], winningPoints: 3,
+      retired: [], pendingSuccessors: [], legacies: [], activeLegacies: [],
     }
     expect(p.gpHand).toContain('card1')
     expect(p.winningPoints).toBe(3)
@@ -220,6 +224,7 @@ describe('PlayerState type shape', () => {
       id: 'ai', name: 'Computer', isComputer: true,
       gpHand: [], eventHand: [], followerHand: [],
       archive: [], winningPoints: 0,
+      retired: [], pendingSuccessors: [], legacies: [], activeLegacies: [],
     }
     expect(p.isComputer).toBe(true)
   })

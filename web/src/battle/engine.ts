@@ -2,12 +2,20 @@
 // reducer.  Pure TypeScript with no React, so the Battle tab, the fight
 // lessons at the end of every Epic story and the tests all drive the same
 // rules.  The board UI lives in ./BattleGame.tsx.
+//
+// Battle-tab games run on a real timeline (setup.timeline): one round is one
+// year, Great People are born, start their careers, retire and die in their
+// historical years, and every death is followed by a successor born later.
+// Achievements unlock legacies that the player keeps for the rest of the game
+// and switches into a limited number of legacy slots.  The scripted Epic
+// lessons (initScriptedGame) keep the timeless rules.
 
 import type {
   Card, FollowerCard, EventCard, OnboardCard, LocationState,
   PlayerState, GameState, GameSetup,
   StatKey, EventType, EraMode,
   CardContrib, CombatSide, CombatSummary, EventPlayerResult, GameSummary,
+  LegacyContext, LegacyEffect, LifeStatus, TurnActions,
 } from '@/types'
 import cardsJson from '@/data/cards.json'
 import locationsJson from '@/data/locations.json'
@@ -17,9 +25,9 @@ import { portraitUrl } from '@/data/images'
 
 // ─── Static Card Data ─────────────────────────────────────────────────────────
 
-export const ALL_GP_CARDS: Card[] = cardsJson.map(c => ({
+export const ALL_GP_CARDS: Card[] = (cardsJson as unknown as Omit<Card, 'portraitUrl'>[]).map(c => ({
   ...c,
-  portraitUrl: portraitUrl(c.portraitKey),
+  portraitUrl: portraitUrl(c.portraitKey ?? c.id),
 }))
 
 export const FOLLOWER_TEMPLATES: Omit<FollowerCard, 'id'>[] = followersJson as Omit<FollowerCard, 'id'>[]
@@ -101,6 +109,45 @@ export function makeHazardDeck(): EventCard[] {
   }))
 }
 
+// ─── City states ──────────────────────────────────────────────────────────────
+//
+// Each new year, every location with no state of its own falls into a random
+// one (a local event, a local survival or a natural hazard) with this chance.
+// These city states last a few years; states started by players last until
+// someone ends them.
+
+export const CITY_STATE_CHANCE = 0.3
+export const CITY_STATE_YEARS: Record<Exclude<EventType, 'global_competition'>, number> = {
+  local_event: 3,
+  local_survival: 2,
+  natural_hazard: 1,
+}
+/** Rounds a player-started local event or survival lasts (until someone ends it). */
+export const PLAYER_EVENT_ROUNDS = 99
+
+export function randomCityState(rand: () => number = Math.random): EventCard {
+  const pick = Math.floor(rand() * (STATS.length * 2 + HAZARD_TYPES.length))
+  if (pick < STATS.length * 2) {
+    const stat = STATS[pick % STATS.length]
+    const kind = pick < STATS.length ? 'local_event' : 'local_survival'
+    return { ...makeEventCard(stat, kind, `city-${stat}-${kind}-${uid()}`), origin: 'city' }
+  }
+  const hazard = makeHazardDeck()[pick - STATS.length * 2]
+  return { ...hazard, id: `city-${hazard.id}-${uid()}`, origin: 'city' }
+}
+
+/** Give each location without a state a CITY_STATE_CHANCE of entering a random one. */
+export function rollCityStates(locations: LocationState[], rand: () => number = Math.random): { locations: LocationState[]; lines: string[] } {
+  const lines: string[] = []
+  const next = locations.map(loc => {
+    if (loc.activeEvent || rand() >= CITY_STATE_CHANCE) return loc
+    const ev = randomCityState(rand)
+    lines.push(`${loc.name} falls into ${ev.name.replace(/^Natural Hazard: /, '')}.`)
+    return { ...loc, activeEvent: ev, eventRoundsLeft: CITY_STATE_YEARS[ev.type as keyof typeof CITY_STATE_YEARS] }
+  })
+  return { locations: next, lines }
+}
+
 // ─── Location Data ────────────────────────────────────────────────────────────
 
 export interface LocationCardData {
@@ -173,62 +220,180 @@ export function getGPCard(id: string): Card | undefined {
   return ALL_GP_CARDS.find(c => c.id === id)
 }
 
-// ─── Achievement specs: which stat + how many wins to earn a point ────────────
+// ─── Legacy unlocks: which stat + how many wins to earn a legacy ───────────────
+//
+// Every card's legacy.unlock (data/cards.json) says which stat its fights must
+// be won in and how many wins it takes; ACHIEVEMENT_SPECS is that table keyed
+// by figure name for the board UI and the lessons.
 
 export interface AchievementSpec { stat: StatKey; threshold: number }
 
-export const ACHIEVEMENT_SPECS: Record<string, AchievementSpec> = {
-  'Mohandas Gandhi':      { stat: 'belief',        threshold: 1 },
-  'Coco Chanel':          { stat: 'culture',        threshold: 1 },
-  'Mao Zedong':           { stat: 'politics',       threshold: 1 },
-  'Belisarius':           { stat: 'strength',       threshold: 1 },
-  'Imhotep':              { stat: 'technique',      threshold: 1 },
-  'Lu Yu':                { stat: 'culture',        threshold: 1 },
-  'Alan Turing':          { stat: 'intelligence',   threshold: 1 },
-  'Andrew Mellon':        { stat: 'wealth',         threshold: 1 },
-  'Audrey Hepburn':       { stat: 'reputation',     threshold: 1 },
-  'Clara Schumann':       { stat: 'culture',        threshold: 1 },
-  'Euclid':               { stat: 'intelligence',   threshold: 1 },
-  'Hua Mulan':            { stat: 'strength',       threshold: 1 },
-  'Johannes Brahms':      { stat: 'culture',        threshold: 1 },
-  'Lancelot':             { stat: 'strength',       threshold: 1 },
-  'Li Qingzhao':          { stat: 'culture',        threshold: 1 },
-  'Marie Antoinette':     { stat: 'wealth',         threshold: 1 },
-  'Miyamoto Musashi':     { stat: 'strength',       threshold: 1 },
-  'Sargon I':             { stat: 'politics',       threshold: 1 },
-  'Gilgamesh':            { stat: 'strength',       threshold: 1 },
-  'Enkidu':               { stat: 'strength',       threshold: 1 },
-  'Pericles':             { stat: 'politics',       threshold: 1 },
-  'Aspasia':              { stat: 'intelligence',   threshold: 1 },
-  'Pleistoanax':          { stat: 'politics',       threshold: 1 },
-  'Cicero':               { stat: 'politics',       threshold: 1 },
-  'Anaxagoras':           { stat: 'intelligence',   threshold: 1 },
-  'Zeno of Elea':         { stat: 'intelligence',   threshold: 1 },
-  'Al-Khwarizmi':         { stat: 'technique',      threshold: 1 },
-  'Mani':                 { stat: 'belief',         threshold: 1 },
-  'Titian':               { stat: 'culture',        threshold: 1 },
-  'Magellan':             { stat: 'technique',      threshold: 1 },
-  'Mother Teresa':        { stat: 'belief',         threshold: 1 },
-  'Carl Linnaeus':        { stat: 'intelligence',   threshold: 1 },
-  'Robert Schumann':      { stat: 'culture',        threshold: 1 },
-  'Hendrik Lorentz':      { stat: 'intelligence',   threshold: 1 },
-  'Amelia Earhart':       { stat: 'technique',      threshold: 1 },
-  'Sergei Eisenstein':    { stat: 'culture',        threshold: 1 },
-  'Edmund Hillary':       { stat: 'strength',       threshold: 1 },
-  'Tenzing Norgay':       { stat: 'strength',       threshold: 1 },
-  'Itō Hirobumi':         { stat: 'politics',       threshold: 1 },
-  'Michael Jackson':      { stat: 'culture',        threshold: 1 },
-  'George Bernard Shaw':  { stat: 'culture',        threshold: 1 },
-  'Gregory Peck':         { stat: 'belief',         threshold: 1 },
-  'Isabel I of Castile':  { stat: 'belief',         threshold: 1 },
-  'Manuel I of Portugal': { stat: 'wealth',         threshold: 1 },
-  'An Jung-geun':         { stat: 'strength',       threshold: 1 },
-  'Gregor Mendel':        { stat: 'intelligence',   threshold: 1 },
-  'Louis XVI':            { stat: 'politics',       threshold: 1 },
-}
+export const ACHIEVEMENT_SPECS: Record<string, AchievementSpec> = Object.fromEntries(
+  ALL_GP_CARDS.map(c => [c.figureName, { stat: c.legacy.unlock.stat, threshold: c.legacy.unlock.wins }]),
+)
 
 export function getAchievementThreshold(figureName: string): number {
-  return ACHIEVEMENT_SPECS[figureName]?.threshold ?? 3
+  return ACHIEVEMENT_SPECS[figureName]?.threshold ?? 1
+}
+
+// ─── Timeline: years, careers, deaths, successors ────────────────────────────
+
+/** A round is one year in every era. */
+export const YEARS_PER_ROUND = 1
+export const DEFAULT_CAREER_AGE = 18
+/** Prodigy legacies cannot start a career before this age. */
+export const MIN_CAREER_AGE = 4
+/** Great People each player starts with; every one founds a lineage of successors. */
+export const STARTING_LINEAGES = 3
+/** Candidates offered when a Great Person dies (before successor legacies). */
+export const SUCCESSOR_CHOICES = 3
+export const LEGACY_SLOTS = 2
+/** The timeline ends here; living people never die naturally before it. */
+export const TIMELINE_END_YEAR = 2030
+/** While time skips ahead, each CPU Great Person on the board wins a fight towards its legacy with this chance per year. */
+export const FAST_FORWARD_CPU_WIN_CHANCE = 0.05
+
+export function formatYear(year: number): string {
+  if (year < 0) return `${-year} BC`
+  return year < 1000 ? `${year} AD` : `${year}`
+}
+
+export function legacyEffects(player: PlayerState | undefined): LegacyEffect[] {
+  if (!player) return []
+  return player.activeLegacies.map(id => getGPCard(id)?.legacy.effect).filter((e): e is LegacyEffect => !!e)
+}
+
+function sumEffect(player: PlayerState | undefined, kind: 'longevity' | 'prodigy' | 'successors'): number {
+  let n = 0
+  for (const e of legacyEffects(player)) {
+    if (e.kind === 'longevity' && kind === 'longevity') n += e.years
+    if (e.kind === 'prodigy' && kind === 'prodigy') n += e.years
+    if (e.kind === 'successors' && kind === 'successors') n += e.count
+  }
+  return n
+}
+
+/** First year a card can be played, for this owner (prodigy legacies start careers earlier). */
+export function careerStartYear(card: Card, owner?: PlayerState): number {
+  const age = Math.max(MIN_CAREER_AGE, (card.careerAge ?? DEFAULT_CAREER_AGE) - sumEffect(owner, 'prodigy'))
+  return card.born + age
+}
+
+/** Last year a card is alive, for this owner (longevity legacies extend it). */
+export function deathYear(card: Card, owner?: PlayerState): number {
+  return (card.died ?? TIMELINE_END_YEAR) + sumEffect(owner, 'longevity')
+}
+
+export function lifeStatus(state: GameState, playerId: string, cardId: string): LifeStatus {
+  if (!state.setup.timeline) return 'active'
+  const p = state.players.find(x => x.id === playerId)
+  if (p?.archive.includes(cardId)) return 'dead'
+  if (p?.retired.includes(cardId)) return 'retired'
+  const card = getGPCard(cardId)
+  if (!card) return 'dead'
+  if (state.year < card.born) return 'unborn'
+  if (state.year < careerStartYear(card, p)) return 'youth'
+  return 'active'
+}
+
+/** Every Great Person some player holds, held, retired or lost: none of them can be a successor. */
+export function claimedGP(state: GameState): Set<string> {
+  const ids = new Set<string>()
+  for (const p of state.players) for (const id of [...p.gpHand, ...p.archive, ...p.retired]) ids.add(id)
+  for (const loc of state.locations) for (const c of loc.cards) if (c.type === 'gp') ids.add(c.cardId)
+  return ids
+}
+
+/** The successors a player may choose now: unclaimed Great People born after the current year, nearest first. */
+export function successorOptions(state: GameState, playerId: string): string[] {
+  const p = state.players.find(x => x.id === playerId)
+  const taken = claimedGP(state)
+  const n = SUCCESSOR_CHOICES + sumEffect(p, 'successors')
+  return gpPool(state.setup.eraMode, state.setup.singleEra)
+    .filter(c => !taken.has(c.id) && c.born > state.year)
+    .sort((a, b) => a.born - b.born || a.figureName.localeCompare(b.figureName))
+    .slice(0, n)
+    .map(c => c.id)
+}
+
+/** Whether this player still has a Great Person now or to come. */
+export function hasFuture(state: GameState, p: PlayerState): boolean {
+  if (p.gpHand.length > 0 || p.retired.length > 0 || p.pendingSuccessors.length > 0) return true
+  return state.locations.some(loc => loc.cards.some(c => c.type === 'gp' && c.playerId === p.id))
+}
+
+/** Whether this player has a Great Person in their career, on the board or in hand. */
+export function hasActiveGP(state: GameState, p: PlayerState): boolean {
+  if (state.locations.some(loc => loc.cards.some(c => c.type === 'gp' && c.playerId === p.id))) return true
+  return p.gpHand.some(id => lifeStatus(state, p.id, id) === 'active')
+}
+
+// ─── Legacy effects in contests ──────────────────────────────────────────────
+
+/**
+ * Bonus a player's active legacies add to one side of a contest. `stat` is the
+ * contest's stat (null for natural hazards, which test every stat); followers
+ * count only when the contest happens at a location (`locationCards`).
+ */
+export function legacyContest(
+  state: GameState,
+  playerId: string,
+  stat: StatKey | null,
+  context: Exclude<LegacyContext, 'any'>,
+  locationCards?: OnboardCard[],
+  followerMap?: Record<string, FollowerCard>,
+): { total: number; rows: CardContrib[] } {
+  const p = state.players.find(x => x.id === playerId)
+  const rows: CardContrib[] = []
+  let total = 0
+  for (const id of p?.activeLegacies ?? []) {
+    const legacy = getGPCard(id)?.legacy
+    if (!legacy) continue
+    const e = legacy.effect
+    let bonus = 0
+    if (e.kind === 'contest' && (e.stat === 'any' || e.stat === stat) && (e.context === 'any' || e.context === context)) {
+      bonus = e.amount
+    } else if (e.kind === 'follower' && locationCards && followerMap) {
+      const n = locationCards.filter(c => {
+        if (c.playerId !== playerId || c.type !== 'follower') return false
+        const f = followerMap[c.cardId]
+        return !!f && (stat === null || f.stat === stat) && (e.stat === 'any' || e.stat === f.stat)
+      }).length
+      bonus = n * e.amount
+    }
+    if (bonus) {
+      total += bonus
+      rows.push({ type: 'legacy', name: `${legacy.name} (legacy)`, baseStat: 0, traitBonus: bonus, followerBonus: 0, locationBonus: 0 })
+    }
+  }
+  return { total, rows }
+}
+
+export function hasHazardShield(state: GameState, playerId: string): string | null {
+  const p = state.players.find(x => x.id === playerId)
+  for (const id of p?.activeLegacies ?? []) {
+    const legacy = getGPCard(id)?.legacy
+    if (legacy?.effect.kind === 'hazard_shield') return legacy.name
+  }
+  return null
+}
+
+const CONTEXT_WORDS: Record<LegacyContext, string> = {
+  attack: 'when you attack', defend: 'when you defend', survival: 'in survival checks (survivals and hazards)',
+  competition: 'in global competitions', any: 'in every contest',
+}
+
+/** Plain-language rule text for a legacy effect (cards, rules panel, docs). */
+export function describeLegacyEffect(e: LegacyEffect): string {
+  switch (e.kind) {
+    case 'contest': return `+${e.amount} ${e.stat === 'any' ? 'to your total' : STAT_LABELS[e.stat]} ${CONTEXT_WORDS[e.context]}.`
+    case 'follower': return `Each of your ${e.stat === 'any' ? '' : STAT_LABELS[e.stat] + ' '}Followers that counts in a contest adds +${e.amount} more.`
+    case 'hazard_shield': return 'Your cards ignore natural hazards.'
+    case 'longevity': return `Your Great People live ${e.years} years longer.`
+    case 'prodigy': return `Your Great People start their careers ${e.years} years earlier.`
+    case 'successors': return `+${e.count} choice whenever you pick a successor.`
+    case 'income': return `Every ${e.every} years you gain ${e.card === 'event' ? 'an Event card' : 'a Follower'}.`
+  }
 }
 
 // ─── Trait bonuses: per-GP stat modifier based on board state ─────────────────
@@ -471,8 +636,64 @@ export function gpPool(eraMode: EraMode, singleEra?: string): Card[] {
   return ALL_GP_CARDS
 }
 
+function newPlayer(id: string, name: string, isComputer: boolean, hand: Pick<PlayerState, 'gpHand' | 'eventHand' | 'followerHand'>): PlayerState {
+  return {
+    id, name, isComputer, ...hand,
+    archive: [], winningPoints: 0, retired: [], pendingSuccessors: [], legacies: [], activeLegacies: [],
+  }
+}
+
+export function freshTurnActions(): TurnActions {
+  return { deployedGP: false, addedFollower: false, movedCards: [], actedCards: [] }
+}
+
+/** The year an era opens on: its earliest-born Great Person in the pool. */
+export function eraStartYear(era: string, pool: Card[] = ALL_GP_CARDS): number {
+  const born = pool.filter(c => c.era === era).map(c => c.born)
+  return born.length ? Math.min(...born) : Math.min(...pool.map(c => c.born))
+}
+
+/**
+ * Every Battle-tab game starts at a real year.  A single-era game opens on its
+ * era; an all-era game on setup.startEra (random when not given).  Each player
+ * is dealt STARTING_LINEAGES Great People from the earliest-born of the pool
+ * from that year on, so the table starts as contemporaries; the game year is
+ * the earliest of their births and time skips ahead until someone's career
+ * begins.
+ */
+export interface OpeningDeal {
+  startEra: string
+  startYear: number
+  /** Great People per player, in seat order. */
+  hands: string[][]
+}
+
+/**
+ * The opening of a timeline game: the era it opens on, the year, and each
+ * player's starting Great People — the earliest-born of the pool from that
+ * era on, shuffled between the players, so the table starts as contemporaries.
+ */
+export function openingDeal(setup: GameSetup, playerCount: number): OpeningDeal {
+  const pool = gpPool(setup.eraMode, setup.singleEra)
+  const startEra = setup.eraMode === 'single' && setup.singleEra
+    ? setup.singleEra
+    : setup.startEra && ERAS.includes(setup.startEra) ? setup.startEra : ERAS[Math.floor(Math.random() * ERAS.length)]
+  const opening = eraStartYear(startEra, pool)
+  const upcoming = pool.filter(c => c.born >= opening).sort((a, b) => a.born - b.born || a.figureName.localeCompare(b.figureName))
+  // Small eras cannot give a full table three lineages each: deal smaller, equal hands.
+  const handSize = Math.max(1, Math.min(STARTING_LINEAGES, Math.floor(upcoming.length / Math.max(1, playerCount))))
+  const dealt = shuffle(upcoming.slice(0, handSize * playerCount).map(c => c.id))
+  const hands = Array.from({ length: playerCount }, (_, i) => dealt.slice(i * handSize, (i + 1) * handSize))
+  const startYear = Math.min(...dealt.map(id => getGPCard(id)!.born), opening)
+  return { startEra, startYear, hands }
+}
+
+/**
+ * Every Battle-tab game starts at a real year (see openingDeal) and runs on
+ * the timeline; time skips ahead at once until someone's career begins.
+ */
 export function initGame(setup: GameSetup): GameState {
-  const gpDeck = shuffle(gpPool(setup.eraMode, setup.singleEra).map(c => c.id))
+  setup = { ...setup, timeline: true }
   const eventDeck = makeEventDeck()
   const followerDeck = makeFollowerDeck()
 
@@ -483,31 +704,15 @@ export function initGame(setup: GameSetup): GameState {
       : []),
   ]
 
-  // An era has only 10-15 Great People, so a full single-era table deals
-  // smaller, equal hands rather than leaving later players short.
-  const handSize = Math.min(STARTING_GP_HAND, Math.floor(gpDeck.length / Math.max(1, allPlayerNames.length)))
-  let deckCursor = 0
-  const players: PlayerState[] = allPlayerNames.map((name, i) => {
-    const gpHand = gpDeck.slice(deckCursor, deckCursor + handSize)
-    deckCursor += handSize
-    const eventHand = eventDeck.splice(0, 2)
-    const followerHand = followerDeck.splice(0, 8)
-    return {
-      id: `player-${i}`,
-      name,
-      isComputer: setup.playerMode === 'pvc' && i >= setup.playerNames.length,
-      gpHand,
-      eventHand,
-      followerHand,
-      archive: [],
-      winningPoints: 0,
-    }
-  })
+  const { startEra, startYear, hands } = openingDeal(setup, allPlayerNames.length)
+  setup.startEra = startEra
+  const players: PlayerState[] = allPlayerNames.map((name, i) => newPlayer(
+    `player-${i}`, name, setup.playerMode === 'pvc' && i >= setup.playerNames.length,
+    { gpHand: hands[i], eventHand: eventDeck.splice(0, 2), followerHand: followerDeck.splice(0, 8) },
+  ))
 
-  const remainingGP = gpDeck.slice(deckCursor)
   const locationTemplates = pickLocations(setup.eraMode, setup.singleEra)
-
-  const locations: LocationState[] = locationTemplates.map((lt, i) => ({
+  const emptyLocations: LocationState[] = locationTemplates.map((lt, i) => ({
     id: `loc-${i}`,
     name: lt.name,
     era: lt.era,
@@ -517,32 +722,29 @@ export function initGame(setup: GameSetup): GameState {
     activeEvent: null,
     eventRoundsLeft: 0,
   }))
+  // Cities may already be in a state of their own when history opens.
+  const { locations } = setup.noHazards ? { locations: emptyLocations } : rollCityStates(emptyLocations)
 
-  // Natural hazards: randomly place 1 at game start
-  const hazardEventDeck = makeHazardDeck()
-  if (hazardEventDeck.length > 0 && locations.length > 0) {
-    const hazard = hazardEventDeck[0]
-    const targetIdx = Math.floor(Math.random() * locations.length)
-    locations[targetIdx].activeEvent = hazard
-    locations[targetIdx].eventRoundsLeft = 1
-  }
-
-  return {
+  const state: GameState = {
     setup,
     phase: 'playing',
     players,
     locations,
     currentPlayerIdx: 0,
     round: 1,
-    turnActions: { deployedGP: false, addedFollower: false, movedCards: [], actedCards: [] },
-    gpDeck: remainingGP,
+    year: startYear,
+    startYear,
+    turnActions: freshTurnActions(),
+    // The timeline has no draw pile: new Great People only arrive as successors.
+    gpDeck: [],
     eventDeck,
     followerDeck,
     winner: null,
-    log: ['Game started! Good luck to all players.'],
+    log: [`History opens in ${formatYear(startYear)} (${startEra}). One round is one year.`],
     globalCompetitionActive: null,
     pendingSummary: null,
   }
+  return settle(state)
 }
 
 // ─── Scripted games ───────────────────────────────────────────────────────────
@@ -620,8 +822,8 @@ export function initScriptedGame(script: FightScript): GameState {
   })
 
   const players: PlayerState[] = [
-    { id: 'player-0', name: script.playerName ?? 'You', isComputer: false, archive: [], winningPoints: 0, ...hand(script.player) },
-    { id: 'player-1', name: script.cpuName ?? 'Rival', isComputer: true, archive: [], winningPoints: 0, ...hand(script.cpu) },
+    newPlayer('player-0', script.playerName ?? 'You', false, hand(script.player)),
+    newPlayer('player-1', script.cpuName ?? 'Rival', true, hand(script.cpu)),
   ]
 
   const templates = script.locations.map(key => findLocation(key) ?? LOCATION_POOL[0])
@@ -656,7 +858,7 @@ export function initScriptedGame(script: FightScript): GameState {
     const loc = locations[e.location]
     if (!loc) continue
     loc.activeEvent = makeEventCard(e.stat, e.kind, `event-${e.stat}-${e.kind}-${eventCounter++}`)
-    loc.eventRoundsLeft = e.kind === 'global_competition' ? 1 : 99
+    loc.eventRoundsLeft = e.kind === 'global_competition' ? 1 : PLAYER_EVENT_ROUNDS
   }
   const globalCompetitionActive = locations.find(l => l.activeEvent?.type === 'global_competition')?.activeEvent ?? null
 
@@ -668,7 +870,7 @@ export function initScriptedGame(script: FightScript): GameState {
 
   const setup: GameSetup = {
     mode: 'scenario', matchType: 'pvc', playerMode: 'pvc', eraMode: 'all',
-    playerNames: [players[0].name], numComputers: 1, noHazards: !script.hazards,
+    playerNames: [players[0].name], numComputers: 1, noHazards: !script.hazards, timeline: false,
   }
 
   return {
@@ -678,7 +880,9 @@ export function initScriptedGame(script: FightScript): GameState {
     locations,
     currentPlayerIdx: 0,
     round: 1,
-    turnActions: { deployedGP: false, addedFollower: false, movedCards: [], actedCards: [] },
+    year: 0,
+    startYear: 0,
+    turnActions: freshTurnActions(),
     gpDeck,
     eventDeck: makeEventDeck(),
     followerDeck: makeFollowerDeck(),
@@ -704,6 +908,12 @@ export type GameAction =
   | { type: 'END_TURN' }
   | { type: 'GLOBAL_COMP_REWARD'; playerId: string; rewardType: 'events' | 'followers' | 'gp' }
   | { type: 'DISMISS_SUMMARY' }
+  /** Take one of your Great People out of play for good; the successor still waits for their real death year. */
+  | { type: 'RETIRE_GP'; cardId: string }
+  /** Resolve the oldest pending succession of a (human) player with one of successorOptions(). */
+  | { type: 'CHOOSE_SUCCESSOR'; playerId: string; cardId: string }
+  /** Put an earned legacy into a slot, or take it out. One change per turn. */
+  | { type: 'SET_LEGACY'; cardId: string; active: boolean }
 
 export function buildLookups(state: GameState) {
   const gpMap: Record<string, Card> = {}
@@ -725,8 +935,20 @@ export function buildLookups(state: GameState) {
   return { gpMap, followerMap }
 }
 
+/** The player with the most legacies (ties go to seat order). */
+export function leader(state: GameState): string {
+  return [...state.players].sort((a, b) => b.legacies.length - a.legacies.length)[0].id
+}
+
 export function checkWinCondition(state: GameState): string | null {
-  // 5 winning points
+  if (state.setup.timeline) {
+    // No points race: the game runs to the end of history (or until no
+    // lineage is left anywhere) and the most legacies wins.
+    if (state.year >= TIMELINE_END_YEAR) return leader(state)
+    if (!state.players.some(p => hasFuture(state, p))) return leader(state)
+    return null
+  }
+  // Timeless games (the Epic lessons): 5 winning points
   for (const p of state.players) {
     if (p.winningPoints >= 5) return p.id
   }
@@ -741,7 +963,246 @@ export function checkWinCondition(state: GameState): string | null {
   return null
 }
 
+/** Move Great People who died (killed in play or of old age) into their owner's archive and, on the timeline, queue a successor. */
+export function recordDeaths(state: GameState, players: PlayerState[], deaths: { playerId: string; cardId: string }[]): PlayerState[] {
+  if (!deaths.length) return players
+  return players.map(p => {
+    const mine = deaths.filter(d => d.playerId === p.id).map(d => d.cardId).filter(id => !p.archive.includes(id))
+    if (!mine.length) return p
+    return {
+      ...p,
+      gpHand: p.gpHand.filter(id => !mine.includes(id)),
+      retired: p.retired.filter(id => !mine.includes(id)),
+      archive: [...p.archive, ...mine],
+      pendingSuccessors: state.setup.timeline
+        ? [...p.pendingSuccessors, ...mine.map(id => ({ predecessor: id, year: state.year }))]
+        : p.pendingSuccessors,
+    }
+  })
+}
+
+function gpDeaths(removed: OnboardCard[]): { playerId: string; cardId: string }[] {
+  return removed.filter(c => c.type === 'gp').map(c => ({ playerId: c.playerId, cardId: c.cardId }))
+}
+
+function figure(id: string): string {
+  return getGPCard(id)?.figureName ?? id
+}
+
+/** Earn a legacy: +1 winning point, the legacy is kept for the rest of the game and fills a free slot. */
+function earnLegacy(p: PlayerState, cardId: string): PlayerState {
+  const legacies = [...p.legacies, cardId]
+  const activeLegacies = p.activeLegacies.length < LEGACY_SLOTS ? [...p.activeLegacies, cardId] : p.activeLegacies
+  return { ...p, winningPoints: p.winningPoints + 1, legacies, activeLegacies }
+}
+
+// ─── The year tick ───────────────────────────────────────────────────────────
+
+/**
+ * Advance the timeline by one year: Great People who outlived their death
+ * year die (on the board, in hand or in retirement) and queue a successor,
+ * income legacies pay out and, outside a time skip, empty cities may fall
+ * into a random state.
+ */
+export function advanceYear(state: GameState, opts: { fastForward?: boolean } = {}): { state: GameState; lines: string[] } {
+  const year = state.year + YEARS_PER_ROUND
+  const lines: string[] = []
+  const deaths: { playerId: string; cardId: string }[] = []
+  for (const p of state.players) {
+    const owned = [
+      ...p.gpHand, ...p.retired,
+      ...state.locations.flatMap(l => l.cards.filter(c => c.type === 'gp' && c.playerId === p.id).map(c => c.cardId)),
+    ]
+    for (const id of owned) {
+      const card = getGPCard(id)
+      if (!card) continue
+      if (deathYear(card, p) < year) {
+        deaths.push({ playerId: p.id, cardId: id })
+        lines.push(`${card.figureName} (${p.name}) died in ${formatYear(year - 1)}, aged ${year - 1 - card.born}.`)
+      } else if (card.born === year) {
+        lines.push(`${card.figureName} (${p.name}) is born.`)
+      } else if (careerStartYear(card, p) === year && !p.retired.includes(id)) {
+        lines.push(`${card.figureName} (${p.name}) begins their career.`)
+      }
+    }
+  }
+  const dead = new Set(deaths.map(d => `${d.playerId}:${d.cardId}`))
+  let locations = state.locations.map(loc => ({
+    ...loc,
+    cards: loc.cards.filter(c => !(c.type === 'gp' && dead.has(`${c.playerId}:${c.cardId}`))),
+  }))
+  let players = recordDeaths({ ...state, year }, state.players, deaths)
+
+  // Income legacies pay on every `every`-th year of the game.
+  let eventDeck = state.eventDeck
+  let followerDeck = state.followerDeck
+  players = players.map(p => {
+    let next = p
+    for (const e of legacyEffects(p)) {
+      if (e.kind !== 'income' || (year - state.startYear) % e.every !== 0) continue
+      if (e.card === 'event' && eventDeck.length) {
+        next = { ...next, eventHand: [...next.eventHand, eventDeck[0]] }
+        eventDeck = eventDeck.slice(1)
+      } else if (e.card === 'follower' && followerDeck.length) {
+        next = { ...next, followerHand: [...next.followerHand, followerDeck[0]] }
+        followerDeck = followerDeck.slice(1)
+      }
+    }
+    return next
+  })
+
+  if (opts.fastForward) {
+    // Nobody is playing these years: running states simply wear off.
+    locations = locations.map(loc => {
+      if (!loc.activeEvent) return loc
+      const left = Math.max(0, loc.eventRoundsLeft - 1)
+      return { ...loc, activeEvent: left === 0 ? null : loc.activeEvent, eventRoundsLeft: left }
+    })
+  } else if (!state.setup.noHazards) {
+    const rolled = rollCityStates(locations)
+    locations = rolled.locations
+    lines.push(...rolled.lines)
+  }
+
+  return { state: { ...state, year, players, locations, eventDeck, followerDeck }, lines }
+}
+
+// ─── Settling: CPU choices, dead ends and time skips ─────────────────────────
+
+function cpuPickSuccessor(options: string[]): string {
+  return options.reduce((best, id) => {
+    const a = getGPCard(id), b = getGPCard(best)
+    if (!a || !b) return best
+    const total = (c: Card) => STATS.reduce((sum, k) => sum + c[k], 0)
+    return total(a) > total(b) ? id : best
+  }, options[0])
+}
+
+/** CPU players choose successors and fill empty legacy slots at once; successions with no candidate left end their lineage. */
+function resolveChoices(state: GameState): GameState {
+  let s = state
+  const log: string[] = []
+  for (let i = 0; i < s.players.length; i++) {
+    let p = s.players[i]
+    while (p.pendingSuccessors.length) {
+      const options = successorOptions(s, p.id)
+      const pending = p.pendingSuccessors[0]
+      if (!options.length) {
+        log.push(`No one born after ${formatYear(s.year)} remains to succeed ${pending.predecessor ? figure(pending.predecessor) : 'this lineage'}; ${p.name}'s lineage ends.`)
+        p = { ...p, pendingSuccessors: p.pendingSuccessors.slice(1) }
+      } else if (p.isComputer) {
+        const pick = cpuPickSuccessor(options)
+        log.push(`${p.name} chose ${figure(pick)} (born ${formatYear(getGPCard(pick)!.born)})${pending.predecessor ? ` to succeed ${figure(pending.predecessor)}` : ''}.`)
+        p = { ...p, gpHand: [...p.gpHand, pick], pendingSuccessors: p.pendingSuccessors.slice(1) }
+      } else break
+      s = { ...s, players: s.players.map((x, j) => (j === i ? p : x)) }
+    }
+    if (p.isComputer && p.activeLegacies.length < LEGACY_SLOTS) {
+      const free = p.legacies.filter(id => !p.activeLegacies.includes(id))
+      if (free.length) {
+        p = { ...p, activeLegacies: [...p.activeLegacies, ...free].slice(0, LEGACY_SLOTS) }
+        s = { ...s, players: s.players.map((x, j) => (j === i ? p : x)) }
+      }
+    }
+  }
+  // A computer choosing after a human may have taken the human's last candidates: end those lineages too.
+  s = {
+    ...s,
+    players: s.players.map(p => {
+      let next = p
+      while (next.pendingSuccessors.length && !successorOptions({ ...s, players: s.players.map(x => (x.id === p.id ? next : x)) }, p.id).length) {
+        const pending = next.pendingSuccessors[0]
+        log.push(`No one born after ${formatYear(s.year)} remains to succeed ${pending.predecessor ? figure(pending.predecessor) : 'this lineage'}; ${p.name}'s lineage ends.`)
+        next = { ...next, pendingSuccessors: next.pendingSuccessors.slice(1) }
+      }
+      return next
+    }),
+  }
+  return log.length ? { ...s, log: [...log.reverse(), ...s.log].slice(0, 20) } : s
+}
+
+/**
+ * Time skips ahead while no human player has a Great Person in their career
+ * (and none of them owes a successor choice). Humans whose lineages have all
+ * ended watch the computer play history out to its end the same way.
+ */
+export function shouldFastForward(state: GameState): boolean {
+  if (!state.setup.timeline || state.phase !== 'playing') return false
+  const humans = state.players.filter(p => !p.isComputer)
+  if (!humans.length) return false
+  if (humans.some(p => p.pendingSuccessors.length > 0)) return false
+  if (humans.some(p => hasActiveGP(state, p))) return false
+  return state.players.some(p => hasFuture(state, p)) && state.year < TIMELINE_END_YEAR
+}
+
+/** One skipped year of CPU progress: CPU Great People on the board may win a fight towards their legacy and claim it. */
+function cpuSkippedYear(state: GameState, rand: () => number, lines: string[]): GameState {
+  let players = state.players
+  const locations = state.locations.map(loc => ({
+    ...loc,
+    cards: loc.cards.map(c => {
+      const owner = players.find(p => p.id === c.playerId)
+      if (c.type !== 'gp' || !owner?.isComputer || owner.legacies.includes(c.cardId)) return c
+      if (rand() >= FAST_FORWARD_CPU_WIN_CHANCE) return c
+      const card = getGPCard(c.cardId)
+      const ticks = c.achievementTicks + 1
+      if (card && ticks >= card.legacy.unlock.wins) {
+        players = players.map(p => (p.id === owner.id ? earnLegacy(p, c.cardId) : p))
+        lines.push(`${owner.name}'s ${card.figureName} earned the legacy ${card.legacy.name}.`)
+        return { ...c, achievementTicks: 0 }
+      }
+      return { ...c, achievementTicks: ticks }
+    }),
+  }))
+  return { ...state, players, locations }
+}
+
+export function fastForward(state: GameState, rand: () => number = Math.random): GameState {
+  const fromYear = state.year
+  const lines: string[] = []
+  let s = state
+  while (shouldFastForward(s)) {
+    const r = advanceYear(s, { fastForward: true })
+    s = r.state
+    lines.push(...r.lines)
+    s = cpuSkippedYear(s, rand, lines)
+    s = resolveChoices(s)
+    const winner = checkWinCondition(s)
+    if (winner) { s = { ...s, winner, phase: 'ended' }; break }
+  }
+  if (s.year === fromYear) return s
+  const skipped = s.year - fromYear
+  const summary: GameSummary = { kind: 'timeskip', fromYear, toYear: s.year, lines: lines.slice(-14) }
+  return {
+    ...s,
+    currentPlayerIdx: 0,
+    round: s.round + skipped,
+    turnActions: freshTurnActions(),
+    pendingSummary: s.pendingSummary ?? summary,
+    log: [`Time passes: ${formatYear(fromYear)} → ${formatYear(s.year)} (${skipped} years).`, ...lines.slice(-4).reverse(), ...s.log].slice(0, 20),
+  }
+}
+
+/** Everything that happens on its own after an action: CPU choices, time skips and the end of the game. */
+export function settle(state: GameState): GameState {
+  if (state.phase !== 'playing') return state
+  let s = state
+  if (s.setup.timeline) {
+    s = resolveChoices(s)
+    if (shouldFastForward(s)) s = fastForward(s)
+  }
+  if (s.phase !== 'playing') return s
+  const winner = checkWinCondition(s)
+  return winner ? { ...s, winner, phase: 'ended' } : s
+}
+
 export function gameReducer(state: GameState, action: GameAction): GameState {
+  const next = baseReducer(state, action)
+  if (next === state || action.type === 'DISMISS_SUMMARY') return next
+  return settle(next)
+}
+
+function baseReducer(state: GameState, action: GameAction): GameState {
   const currentPlayer = state.players[state.currentPlayerIdx]
 
   switch (action.type) {
@@ -750,6 +1211,8 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
       const playerIdx = state.currentPlayerIdx
       const player = state.players[playerIdx]
       if (!player.gpHand.includes(action.cardId)) return state
+      // On the timeline only a Great Person in their career can take the stage.
+      if (lifeStatus(state, player.id, action.cardId) !== 'active') return state
 
       const newCard: OnboardCard = {
         instanceId: uid(),
@@ -874,7 +1337,7 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
       const isGlobal = eventCard.type === 'global_competition'
       const newLocations = state.locations.map(loc =>
         loc.id === action.locationId
-          ? { ...loc, activeEvent: eventCard, eventRoundsLeft: isGlobal ? 1 : 99 }
+          ? { ...loc, activeEvent: { ...eventCard, origin: 'player' as const }, eventRoundsLeft: isGlobal ? 1 : PLAYER_EVENT_ROUNDS }
           : loc
       )
       if (isGlobal) globalCompetitionActive = eventCard
@@ -936,46 +1399,40 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
       const player = state.players[playerIdx]
       if (state.turnActions.actedCards.includes(action.instanceId)) return state
 
-      // Find the card on board
-      let found = false
-      let gpName = ''
+      // A public Great Person whose fights reached its legacy's unlock; each legacy is earned once.
+      let claimed: OnboardCard | null = null
       const newLocations = state.locations.map(loc => ({
         ...loc,
         cards: loc.cards.map(c => {
-          if (c.instanceId === action.instanceId && c.playerId === player.id && c.type === 'gp' && c.isPublic) {
-            const figure = getGPCard(c.cardId)?.figureName ?? ''
-            const threshold = getAchievementThreshold(figure)
-            if (c.achievementTicks >= threshold) {
-              found = true
-              gpName = figure || 'Card'
-              return { ...c, achievementTicks: 0 }
-            }
+          if (c.instanceId === action.instanceId && c.playerId === player.id && c.type === 'gp' && c.isPublic
+            && !player.legacies.includes(c.cardId)
+            && c.achievementTicks >= getAchievementThreshold(getGPCard(c.cardId)?.figureName ?? '')) {
+            claimed = c
+            return { ...c, achievementTicks: 0 }
           }
           return c
         }),
       }))
+      if (!claimed) return state
+      const cardId = (claimed as OnboardCard).cardId
+      const card = getGPCard(cardId)
 
-      if (!found) return state
-
-      // Give player a new GP card from deck
+      // The timeless lessons keep the old reward of a fresh Great Person from the deck.
       const newGpDeck = [...state.gpDeck]
-      const newGpCard = newGpDeck.shift()
-      const newPlayers = state.players.map((p, i) =>
-        i === playerIdx
-          ? { ...p, winningPoints: p.winningPoints + 1, gpHand: newGpCard ? [...p.gpHand, newGpCard] : p.gpHand }
-          : p
-      )
+      const drawn = state.setup.timeline ? undefined : newGpDeck.shift()
+      const newPlayers = state.players.map((p, i) => {
+        if (i !== playerIdx) return p
+        const earned = earnLegacy(p, cardId)
+        return drawn ? { ...earned, gpHand: [...earned.gpHand, drawn] } : earned
+      })
 
-      const winner = checkWinCondition({ ...state, players: newPlayers })
       return {
         ...state,
         players: newPlayers,
         locations: newLocations,
         gpDeck: newGpDeck,
-        winner,
-        phase: winner ? 'ended' : 'playing',
         turnActions: { ...state.turnActions, actedCards: [...state.turnActions.actedCards, action.instanceId] },
-        log: [`${player.name} claimed achievement with ${gpName}! +1 winning point.`, ...state.log.slice(0, 19)],
+        log: [`${player.name}'s ${card?.figureName ?? 'Great Person'} earned the legacy ${card?.legacy.name ?? ''}!`, ...state.log.slice(0, 19)],
       }
     }
 
@@ -1007,8 +1464,10 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
       const stat = loc.activeEvent.stat!
       const { gpMap, followerMap } = buildLookups(state)
 
-      const myTotal = computeLocationTotal(loc.cards, player.id, stat, gpMap, followerMap, state.locations, loc.name, loc.era)
-      const theirTotal = computeLocationTotal(loc.cards, theirCard.playerId, stat, gpMap, followerMap, state.locations, loc.name, loc.era)
+      const myLegacy = legacyContest(state, player.id, stat, 'attack', loc.cards, followerMap)
+      const theirLegacy = legacyContest(state, theirCard.playerId, stat, 'defend', loc.cards, followerMap)
+      const myTotal = computeLocationTotal(loc.cards, player.id, stat, gpMap, followerMap, state.locations, loc.name, loc.era) + myLegacy.total
+      const theirTotal = computeLocationTotal(loc.cards, theirCard.playerId, stat, gpMap, followerMap, state.locations, loc.name, loc.era) + theirLegacy.total
 
       const myWon = myTotal > theirTotal
       const theirWon = theirTotal > myTotal
@@ -1039,6 +1498,8 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
               ? { ...l, cards: l.cards.filter(c => c.instanceId !== loserInstanceId) }
               : l
           )
+          // A Great Person killed in play dies: on the timeline its owner chooses a successor.
+          newPlayers = recordDeaths(state, newPlayers, gpDeaths([loserCard]))
           // Achievement tick: awarded once when the winning GP defeats a worthy opponent
           // (opponent GP must have the achievement stat >= 5 to count as a meaningful victory)
           if (myWon && myCard.type === 'gp' && loserCard.type === 'gp') {
@@ -1088,8 +1549,10 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
 
       // Build combat summary
       const defenderPlayer = state.players.find(p => p.id === theirCard.playerId)
-      const attackerSide = computeSide(loc.cards, player.id, player.name, stat, gpMap, followerMap, state.locations, loc.name, loc.era)
-      const defenderSide = computeSide(loc.cards, theirCard.playerId, defenderPlayer?.name ?? 'Opponent', stat, gpMap, followerMap, state.locations, loc.name, loc.era)
+      const attackerBase = computeSide(loc.cards, player.id, player.name, stat, gpMap, followerMap, state.locations, loc.name, loc.era)
+      const defenderBase = computeSide(loc.cards, theirCard.playerId, defenderPlayer?.name ?? 'Opponent', stat, gpMap, followerMap, state.locations, loc.name, loc.era)
+      const attackerSide = { ...attackerBase, cards: [...attackerBase.cards, ...myLegacy.rows], total: attackerBase.total + myLegacy.total }
+      const defenderSide = { ...defenderBase, cards: [...defenderBase.cards, ...theirLegacy.rows], total: defenderBase.total + theirLegacy.total }
       const combatSummary: CombatSummary = {
         kind: 'combat',
         locationName: loc.name,
@@ -1149,6 +1612,7 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
       let newEventDeck = state.eventDeck
       let newFollowerDeck = state.followerDeck
       let newGpDeck = state.gpDeck
+      let newYear = state.year
       const logEntries: string[] = []
 
       let roundSummary: GameSummary | null = null
@@ -1174,6 +1638,9 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
                 }
               }
             }
+            const legacy = legacyContest(state, p.id, stat, 'competition')
+            total += legacy.total
+            cards.push(...legacy.rows)
             compResults.push({ playerName: p.name, total, threshold: 0, survived: true, cards })
             if (total > bestTotal) { bestTotal = total; bestPlayerId = p.id }
           }
@@ -1194,6 +1661,7 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
         }
 
         // Resolve local survival and hazard events
+        const eliminated: OnboardCard[] = []
         newLocations = newLocations.map(loc => {
           if (!loc.activeEvent) return loc
           const event = loc.activeEvent
@@ -1211,9 +1679,13 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
 
             for (const pid of involvedPlayers) {
               const pName = newPlayers.find(p => p.id === pid)?.name ?? pid
-              const result = computeEventSide(updatedCards, pid, pName, stat, threshold, gpMap, followerMap, state.locations)
+              const base = computeEventSide(updatedCards, pid, pName, stat, threshold, gpMap, followerMap, state.locations)
+              const legacy = legacyContest(state, pid, stat, 'survival', updatedCards, followerMap)
+              const total = base.total + legacy.total
+              const result = { ...base, total, survived: total >= threshold, cards: [...base.cards, ...legacy.rows] }
               results.push(result)
               if (!result.survived) {
+                eliminated.push(...updatedCards.filter(c => c.playerId === pid))
                 updatedCards = updatedCards.filter(c => c.playerId !== pid)
                 logEntries.push(`Local survival: ${pName}'s cards in ${loc.name} discarded`)
               }
@@ -1259,11 +1731,16 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
                 }
               }
 
-              const minStatTotal = Math.min(...STATS.map(s => statTotals[s]))
-              const survived = minStatTotal >= HAZARD_MIN
+              const legacy = legacyContest(state, pid, null, 'survival', updatedCards, followerMap)
+              const shield = hasHazardShield(state, pid)
+              if (shield) cards.push({ type: 'legacy', name: `${shield} (legacy): immune to hazards`, baseStat: 0, traitBonus: 0, followerBonus: 0, locationBonus: 0 })
+              cards.push(...legacy.rows)
+              const minStatTotal = Math.min(...STATS.map(s => statTotals[s])) + legacy.total
+              const survived = !!shield || minStatTotal >= HAZARD_MIN
               results.push({ playerName: pName, total: minStatTotal, threshold: HAZARD_MIN, survived, cards })
 
               if (!survived) {
+                eliminated.push(...updatedCards.filter(c => c.playerId === pid))
                 updatedCards = updatedCards.filter(c => c.playerId !== pid)
                 logEntries.push(`Natural hazard: ${pName}'s cards in ${loc.name} discarded`)
               }
@@ -1286,24 +1763,24 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
           }
         })
 
-        // Random natural hazard: 20% chance per new round
-        if (!state.setup.noHazards && Math.random() < 0.2) {
-          const hazardEvents = makeHazardDeck()
-          if (hazardEvents.length > 0) {
-            const hazard = hazardEvents[Math.floor(Math.random() * hazardEvents.length)]
-            const eligibleLocs = newLocations.filter(l => l.cards.length > 0)
-            if (eligibleLocs.length > 0) {
-              const targetLoc = eligibleLocs.reduce((best, loc) => {
-                const bestCount = best.cards.length
-                const locCount = loc.cards.length
-                return locCount > bestCount ? loc : best
-              }, eligibleLocs[0])
-              newLocations = newLocations.map(l =>
-                l.id === targetLoc.id ? { ...l, activeEvent: hazard, eventRoundsLeft: 1 } : l
-              )
-              logEntries.push(`Natural hazard event: ${hazard.name} in ${targetLoc.name}!`)
-            }
-          }
+        // Great People lost to survivals and hazards die.
+        newPlayers = recordDeaths(state, newPlayers, gpDeaths(eliminated))
+
+        // A new year: on the timeline people age, die and are born, and empty
+        // cities may fall into a random state (also in timeless games unless
+        // random states are off, as in the Epic lessons).
+        if (state.setup.timeline) {
+          const ticked = advanceYear({ ...state, players: newPlayers, locations: newLocations, eventDeck: newEventDeck, followerDeck: newFollowerDeck })
+          newPlayers = ticked.state.players
+          newLocations = ticked.state.locations
+          newEventDeck = ticked.state.eventDeck
+          newFollowerDeck = ticked.state.followerDeck
+          logEntries.push(...ticked.lines)
+          newYear = ticked.state.year
+        } else if (!state.setup.noHazards) {
+          const rolled = rollCityStates(newLocations)
+          newLocations = rolled.locations
+          logEntries.push(...rolled.lines)
         }
       }
 
@@ -1315,7 +1792,8 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
         locations: newLocations,
         currentPlayerIdx: nextIdx,
         round: newRound,
-        turnActions: { deployedGP: false, addedFollower: false, movedCards: [], actedCards: [] },
+        year: newYear,
+        turnActions: freshTurnActions(),
         globalCompetitionActive: newGlobalComp,
         gpDeck: newGpDeck,
         eventDeck: newEventDeck,
@@ -1323,7 +1801,7 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
         winner,
         phase: winner ? 'ended' : 'playing',
         pendingSummary: roundSummary,
-        log: [...logEntries, `Round ${newRound}: ${state.players[nextIdx].name}'s turn.`, ...state.log.slice(0, 19)],
+        log: [...logEntries, `${state.setup.timeline ? formatYear(newYear) : `Round ${newRound}`}: ${state.players[nextIdx].name}'s turn.`, ...state.log].slice(0, 20),
       }
     }
 
@@ -1340,7 +1818,12 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
       let newFollowerDeck = [...state.followerDeck]
       let newPlayers = state.players
 
-      if (rewardType === 'gp') {
+      if (rewardType === 'gp' && state.setup.timeline) {
+        // On the timeline the prize is a new lineage: choose a Great Person born later.
+        newPlayers = newPlayers.map((p, i) =>
+          i === playerIdx ? { ...p, pendingSuccessors: [...p.pendingSuccessors, { predecessor: null, year: state.year }] } : p
+        )
+      } else if (rewardType === 'gp') {
         const card = newGpDeck.shift()
         if (card) {
           newPlayers = newPlayers.map((p, i) =>
@@ -1393,6 +1876,60 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
         locations: newLocations,
         turnActions: { ...state.turnActions, actedCards: [...state.turnActions.actedCards, actionKey] },
         log: [`${player.name} ended scenario: ${eventName}.`, ...state.log.slice(0, 19)],
+      }
+    }
+
+    case 'RETIRE_GP': {
+      if (!state.setup.timeline) return state
+      const playerIdx = state.currentPlayerIdx
+      const player = state.players[playerIdx]
+      const status = lifeStatus(state, player.id, action.cardId)
+      const onBoard = state.locations.some(l => l.cards.some(c => c.type === 'gp' && c.playerId === player.id && c.cardId === action.cardId))
+      const inHand = player.gpHand.includes(action.cardId)
+      if (!onBoard && !(inHand && (status === 'active' || status === 'youth'))) return state
+      const card = getGPCard(action.cardId)
+      return {
+        ...state,
+        locations: state.locations.map(l => ({ ...l, cards: l.cards.filter(c => !(c.type === 'gp' && c.playerId === player.id && c.cardId === action.cardId)) })),
+        players: state.players.map((p, i) =>
+          i === playerIdx ? { ...p, gpHand: p.gpHand.filter(id => id !== action.cardId), retired: [...p.retired, action.cardId] } : p
+        ),
+        log: [`${player.name} retired ${card?.figureName ?? 'a Great Person'}; a successor follows at their death in ${formatYear(card ? deathYear(card, player) : state.year)}.`, ...state.log.slice(0, 19)],
+      }
+    }
+
+    case 'CHOOSE_SUCCESSOR': {
+      const playerIdx = state.players.findIndex(p => p.id === action.playerId)
+      const player = state.players[playerIdx]
+      if (!player || !player.pendingSuccessors.length) return state
+      if (!successorOptions(state, player.id).includes(action.cardId)) return state
+      const pending = player.pendingSuccessors[0]
+      const card = getGPCard(action.cardId)
+      return {
+        ...state,
+        players: state.players.map((p, i) =>
+          i === playerIdx ? { ...p, gpHand: [...p.gpHand, action.cardId], pendingSuccessors: p.pendingSuccessors.slice(1) } : p
+        ),
+        log: [`${player.name} chose ${card?.figureName ?? 'a successor'} (born ${formatYear(card?.born ?? state.year)})${pending.predecessor ? ` to succeed ${figure(pending.predecessor)}` : ''}.`, ...state.log.slice(0, 19)],
+      }
+    }
+
+    case 'SET_LEGACY': {
+      const playerIdx = state.currentPlayerIdx
+      const player = state.players[playerIdx]
+      if (state.turnActions.legacyChanged || !player.legacies.includes(action.cardId)) return state
+      const isActive = player.activeLegacies.includes(action.cardId)
+      if (action.active === isActive) return state
+      if (action.active && player.activeLegacies.length >= LEGACY_SLOTS) return state
+      const activeLegacies = action.active
+        ? [...player.activeLegacies, action.cardId]
+        : player.activeLegacies.filter(id => id !== action.cardId)
+      const name = getGPCard(action.cardId)?.legacy.name ?? 'legacy'
+      return {
+        ...state,
+        players: state.players.map((p, i) => (i === playerIdx ? { ...p, activeLegacies } : p)),
+        turnActions: { ...state.turnActions, legacyChanged: true },
+        log: [`${player.name} ${action.active ? 'took up' : 'set aside'} the legacy ${name}.`, ...state.log.slice(0, 19)],
       }
     }
 

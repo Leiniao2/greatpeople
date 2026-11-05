@@ -1,6 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom'
 import type { Card } from '@/types'
 import EraIcon from '@/components/EraIcon'
+import { STAT_LABELS, describeLegacyEffect } from '@/battle/engine'
 
 const ACCENT = '#9b2c23'
 const GLOW = 'from-paper-2'
@@ -90,9 +91,13 @@ export default function CardDetailPage() {
             <InfoSection label="Trait" text={card.trait} accent={ACCENT} />
           )}
 
-          {/* Achievement */}
-          {card.achievement && (
-            <InfoSection label="Achievement" text={card.achievement} accent={ACCENT} />
+          {/* Legacy: how it is earned and what it does in the fight game */}
+          {card.legacy && (
+            <InfoSection
+              label={`Legacy · ${card.legacy.name}`}
+              text={`${describeLegacyEffect(card.legacy.effect)} Earned by winning ${card.legacy.unlock.wins} ${STAT_LABELS[card.legacy.unlock.stat]} fight${card.legacy.unlock.wins > 1 ? 's' : ''}${card.achievement ? ` (${card.achievement.split(' — ')[1] ?? card.achievement})` : ''}.${card.legacy.flavour ? ` ${card.legacy.flavour}` : ''}`}
+              accent={ACCENT}
+            />
           )}
 
           {/* Stats — 4×2 grid */}

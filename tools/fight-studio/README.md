@@ -27,10 +27,10 @@ Desktop browsers only; there is no mobile layout. `npm run typecheck` runs
 | Overview | Source inventory, headline findings, engine constants, git status of `data/` and `docs/` | everything | – |
 | Rules registry | One row per rule: doc text vs engine behaviour, status (implemented / partial / conflict / missing / unspecified), notes. Add, edit, delete rows. | `docs/fight_rules.json` | same |
 | Docs | Markdown editor with preview for the three design docs | `docs/fight.md`, `docs/great-people-trait-idea.md`, `docs/great-people-card.md` | same |
-| Great People | Sortable, filterable table; edit stats, identities, era, gender, trait and achievement in place. Detail panel compares card text, engine behaviour and the idea doc. | `data/cards.json` | same |
+| Great People | Sortable, filterable table; edit stats, identities, era, gender and trait in place, with life years (born, died, career start) and legacy columns. The detail panel edits life years and the legacy (name, unlock stat and wins, effect kind and parameters, flavour, how-earned text) and compares card text, engine behaviour and the idea doc. Life years and legacies are data: the engine reads them directly. | `data/cards.json` | same |
 | Followers | Edit stat and bonus; identity coverage (how many GPs unlock the +3 identity bonus) | `data/followers.json` | same |
 | Locations | Edit per-stat bonuses, capacity and trait text; bonus heatmap by era; flags cards not in `locations.json` | `data/location_cards.json`, `data/locations.json` | `location_cards.json` |
-| Balance | Stat histograms, power ranking, top-10 concentration, era / gender / identity heatmaps, survival and hazard risk with adjustable thresholds, achievement reachability, trait impact, and an "effect of unsaved edits" table | current in-memory data | – |
+| Balance | Stat histograms, power ranking, top-10 concentration, era / gender / identity heatmaps, survival and hazard risk with adjustable thresholds, legacy unlock difficulty and effect mix, the timeline (Great People in career per century, longest gaps between births, shortest careers), trait impact, and an "effect of unsaved edits" table | current in-memory data | – |
 | Simulator | Two sides (GPs + followers) at one location; per-stat conflict totals with trait / location / follower breakdown, survival and hazard outcomes | current in-memory data | – |
 | Engine sync | Jobs that hand rule/trait changes to Claude Code to update the engine; live log, summary, diff, typecheck, revert; ad-hoc instructions | `/api/jobs` | engine files (via the agent) |
 

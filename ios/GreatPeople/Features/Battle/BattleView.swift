@@ -144,6 +144,172 @@ private struct BattleRulesView: View {
 
     private let sections: [RuleSection] = [
         .init(title: "Objective", items: [
+            ("", "There is no points race. The game runs to the end of history (2030, or sooner if every lineage has ended) and the player with the most Legacies wins."),
+        ]),
+        .init(title: "Real History", items: [
+            ("One year per round", "Every round is one year, in every era. The game opens on a real year."),
+            ("Careers", "A Great Person arrives in the year they were born and can be played from their career start (age 18, earlier for prodigies)."),
+            ("Successors", "When a Great Person dies of old age or is killed, choose a successor born later than the current year."),
+            ("Retire", "Retire a Great Person at any time on your turn. Their successor still comes at their real death year."),
+            ("Time skips", "When none of your Great People is in their career, time jumps ahead and the computer plays those years out."),
+        ]),
+        .init(title: "On Your Turn", items: [
+            ("Deploy", "Play one Great Person in their career from your hand to any location."),
+            ("Add Follower", "Place a follower at a location where you have a Great Person."),
+            ("Move", "Relocate one of your cards to a different location."),
+            ("Trigger Event", "Start an event at a location where you have a Great Person that was not deployed this turn."),
+            ("Attack", "During a Local Event, challenge a rival's card."),
+            ("Retrieve", "Return one of your cards from the board to your hand."),
+            ("Legacy", "Switch one Legacy into or out of your 2 Legacy slots."),
+        ]),
+        .init(title: "Events and City States", items: [
+            ("⚔ Local Event", "Compare your total stat vs. rivals. Winner may attack the loser's card."),
+            ("☠ Local Survival", "Each round, a player whose cards here total less than 5 in that stat loses them."),
+            ("🏆 Global Competition", "Player with the highest total stat across all public cards earns a prize."),
+            ("🌊 Natural Hazard", "A player whose weakest stat here totals less than 5 loses their cards here."),
+            ("🏙 City States", "Each year a city with no state has a 30% chance to fall into a random event, survival or hazard of its own for a few years."),
+        ]),
+        .init(title: "Legacies", items: [
+            ("", "Each Great Person's Legacy is earned by winning a fight in its stat (shown on the card). You keep every Legacy for the rest of the game, even after that person dies, but only 2 are in effect at once."),
+        ]),
+    ]
+
+    var body: some View {
+        NavigationStack {
+            ZStack {
+                Color.gpBackground.ignoresSafeArea()
+                Circle().fill(Color.gpIndigo.opacity(0.08)).frame(width: 500, height: 500)
+                    .blur(radius: 120).offset(x: -80, y: -100)
+
+                if ws.isConnected, let matchId {
+                    activeMatchView(matchId: matchId)
+                } else {
+                    modeSelectionView
+                }
+            }
+            .navigationTitle("Fight")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbarColorScheme(.dark, for: .navigationBar)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button { showRules = true } label: {
+                        Image(systemName: "book.closed")
+                            .font(.system(size: 16))
+                            .foregroundColor(.gpAmber)
+                    }
+                }
+            }
+            .sheet(isPresented: $showGuestPrompt) {
+                GuestPromptView(onSignIn: {
+                    showGuestPrompt = false
+                    authStore.exitGuestMode()
+                })
+                .presentationDetents([.medium])
+            }
+            .sheet(isPresented: $showRules) {
+                BattleRulesView()
+                    .presentationDetents([.large])
+            }
+        }
+    }
+
+    // ── Mode selection ────────────────────────────────────────────────────────
+
+    private var modeSelectionView: some View {
+        VStack(spacing: 24) {
+            VStack(spacing: 8) {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 20)
+                        .fill(Color.gpIndigo.opacity(0.12))
+                        .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.gpIndigo.opacity(0.25), lineWidth: 1))
+                        .frame(width: 72, height: 72)
+                    Text("⚔").font(.system(size: 36))
+                }
+                Text("FIGHT ARENA")
+                    .font(.system(.title2, design: .serif).weight(.bold))
+                    .tracking(4).foregroundColor(.white)
+                Text("Deploy Great People across history")
+                    .font(.subheadline).foregroundColor(.gpSlate400)
+            }
+
+            VStack(spacing: 12) {
+                ModeCard(icon: "🤝", title: "Casual",      subtitle: "vs Human · Friendly",    accent: Color(hex: "#34d399"), locked: authStore.isGuest) { tapMode() }
+                ModeCard(icon: "🏆", title: "Ranked",      subtitle: "vs Human · Competitive", accent: Color.gpAmber,         locked: authStore.isGuest) { tapMode() }
+                ModeCard(icon: "🤖", title: "vs Computer", subtitle: "Fight AI opponents",      accent: Color.gpIndigo,        locked: false)             { findMatch() }
+            }
+
+            if authStore.isGuest {
+                Text("Sign in to unlock Casual & Ranked matches")
+                    .font(.caption).foregroundColor(.gpSlate400)
+            }
+        }
+        .padding(24)
+    }
+
+    private func tapMode() {
+        if authStore.isGuest {
+            showGuestPrompt = true
+        } else {
+            finding = true
+        }
+    }
+
+    private func findMatch() {
+        finding = true
+    }
+
+    // ── Active match ──────────────────────────────────────────────────────────
+
+    private func activeMatchView(matchId: String) -> some View {
+        VStack(spacing: 24) {
+            Text("Match Active")
+                .font(.system(.title3, design: .serif).weight(.bold))
+                .tracking(3).foregroundColor(.white)
+
+            HStack(spacing: 0) {
+                VStack(spacing: 4) {
+                    Text("YOU").font(.system(size: 10).weight(.semibold)).tracking(2).foregroundColor(.gpSlate400)
+                    Text("0").font(.system(size: 52).weight(.bold)).foregroundColor(.gpAmber)
+                }.frame(maxWidth: .infinity)
+                Text("VS").font(.subheadline).foregroundColor(.gpSlate600).frame(maxWidth: .infinity)
+                VStack(spacing: 4) {
+                    Text("OPP").font(.system(size: 10).weight(.semibold)).tracking(2).foregroundColor(.gpSlate400)
+                    Text("0").font(.system(size: 52).weight(.bold)).foregroundColor(.gpIndigo)
+                }.frame(maxWidth: .infinity)
+            }
+            .padding(24)
+            .background(Color.white.opacity(0.03))
+            .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.gpOutline, lineWidth: 1))
+            .clipShape(RoundedRectangle(cornerRadius: 20))
+
+            if let msg = ws.lastMessage {
+                Text(msg.event).font(.caption).foregroundColor(.gpSlate400)
+            }
+
+            Button("Forfeit Match", role: .destructive) { ws.disconnect() }
+                .font(.subheadline.weight(.semibold))
+                .frame(maxWidth: .infinity).padding(.vertical, 14)
+                .background(Color.red.opacity(0.1))
+                .foregroundColor(Color(red: 0.98, green: 0.5, blue: 0.45))
+                .overlay(RoundedRectangle(cornerRadius: 14).stroke(Color.red.opacity(0.25), lineWidth: 1))
+                .clipShape(RoundedRectangle(cornerRadius: 14))
+        }
+        .padding(24)
+    }
+}
+
+// ── Rules sheet ───────────────────────────────────────────────────────────────
+
+private struct BattleRulesView: View {
+    @Environment(\.dismiss) private var dismiss
+
+    private struct RuleSection {
+        let title: String
+        let items: [(head: String, body: String)]
+    }
+
+    private let sections: [RuleSection] = [
+        .init(title: "Objective", items: [
             ("", "First player to earn 5 Victory Points wins the game."),
         ]),
         .init(title: "On Your Turn", items: [

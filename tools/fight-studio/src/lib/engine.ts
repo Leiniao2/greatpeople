@@ -3,8 +3,8 @@
  * (traitBonusForGP, computeLocationTotal, survival/hazard checks), plus the
  * balance analytics built on them. Pure functions over the editable data.
  */
-import { STATS, type Card, type FollowerTemplate, type LocationCard, type StatKey } from '../types'
-import { ACHIEVEMENT_SPECS, ENGINE_CONSTANTS } from './engineTraits'
+import { STATS, STAT_LABEL, type Card, type FollowerTemplate, type LegacyContext, type LegacyEffect, type LocationCard, type StatKey } from '../types'
+import { ENGINE_CONSTANTS } from './engineTraits'
 
 // ─── Board context for trait evaluation ──────────────────────────────────────
 
@@ -202,7 +202,7 @@ export function powerTable(cards: Card[], survivalThreshold = ENGINE_CONSTANTS.l
     const bestStat = STATS.reduce((b, s) => (c[s] > c[b] ? s : b), STATS[0])
     const minStat = Math.min(...STATS.map(s => c[s]))
     const survivalFails = STATS.filter(s => c[s] < survivalThreshold)
-    const achievementStat = ACHIEVEMENT_SPECS[c.figureName] ?? null
+    const achievementStat = c.legacy?.unlock.stat ?? null
     let achievementWinRate: number | null = null
     if (achievementStat) {
       const worthy = cards.filter(o => o.id !== c.id && o[achievementStat] >= ENGINE_CONSTANTS.worthyOpponentMinStat)
@@ -213,7 +213,7 @@ export function powerTable(cards: Card[], survivalThreshold = ENGINE_CONSTANTS.l
     return {
       id: c.id, figure: c.figureName, era: c.era, total: statTotal(c), winRate, power, bestStat, minStat,
       survivalFails, achievementStat,
-      achievementTicks: achievementStat ? ENGINE_CONSTANTS.mappedAchievementTicks : ENGINE_CONSTANTS.defaultAchievementTicks,
+      achievementTicks: c.legacy?.unlock.wins ?? 1,
       achievementWinRate,
     }
   })
@@ -272,4 +272,77 @@ export function powerDeltas(before: Card[], after: Card[]): { id: string; figure
     })
     .filter(r => Math.abs(r.delta) > 1e-9 || changedIds.has(r.id))
     .sort((a, b) => Math.abs(b.delta) - Math.abs(a.delta))
+}
+
+// ─── Timeline and legacies (mirrors web/src/battle/engine.ts) ───────────────
+
+export function formatYear(year: number): string {
+  if (year < 0) return `${-year} BC`
+  return year < 1000 ? `${year} AD` : `${year}`
+}
+
+export function careerStart(c: Card): number {
+  return c.born + (c.careerAge ?? ENGINE_CONSTANTS.defaultCareerAge)
+}
+
+export function lifeEnd(c: Card): number {
+  return c.died ?? ENGINE_CONSTANTS.timelineEndYear
+}
+
+/** Years a card can be played (career start to death). */
+export function careerYears(c: Card): number {
+  return Math.max(0, lifeEnd(c) - careerStart(c) + 1)
+}
+
+const CONTEXT_WORDS: Record<LegacyContext, string> = {
+  attack: 'when you attack', defend: 'when you defend', survival: 'in survival checks (survivals and hazards)',
+  competition: 'in global competitions', any: 'in every contest',
+}
+
+export function describeLegacyEffect(e: LegacyEffect): string {
+  switch (e.kind) {
+    case 'contest': return `+${e.amount} ${e.stat === 'any' ? 'to your total' : STAT_LABEL[e.stat]} ${CONTEXT_WORDS[e.context]}.`
+    case 'follower': return `Each of your ${e.stat === 'any' ? '' : STAT_LABEL[e.stat] + ' '}Followers that counts in a contest adds +${e.amount} more.`
+    case 'hazard_shield': return 'Your cards ignore natural hazards.'
+    case 'longevity': return `Your Great People live ${e.years} years longer.`
+    case 'prodigy': return `Your Great People start their careers ${e.years} years earlier.`
+    case 'successors': return `+${e.count} choice whenever you pick a successor.`
+    case 'income': return `Every ${e.every} years you gain ${e.card === 'event' ? 'an Event card' : 'a Follower'}.`
+  }
+}
+
+/** A default effect of each kind, for switching kinds in the editor. */
+export function defaultEffect(kind: LegacyEffect['kind']): LegacyEffect {
+  switch (kind) {
+    case 'contest': return { kind, stat: 'any', amount: 2, context: 'any' }
+    case 'follower': return { kind, stat: 'any', amount: 1 }
+    case 'hazard_shield': return { kind }
+    case 'longevity': return { kind, years: 10 }
+    case 'prodigy': return { kind, years: 4 }
+    case 'successors': return { kind, count: 1 }
+    case 'income': return { kind, card: 'event', every: 5 }
+  }
+}
+
+/** How many Great People are in their careers in each `bucket`-year slice of history. */
+export function careerCoverage(cards: Card[], bucket = 100): { from: number; active: number; names: string[] }[] {
+  if (!cards.length) return []
+  const start = Math.floor(Math.min(...cards.map(careerStart)) / bucket) * bucket
+  const end = Math.min(ENGINE_CONSTANTS.timelineEndYear, Math.max(...cards.map(lifeEnd)))
+  const out: { from: number; active: number; names: string[] }[] = []
+  for (let y = start; y <= end; y += bucket) {
+    const names = cards.filter(c => careerStart(c) < y + bucket && lifeEnd(c) >= y).map(c => c.figureName)
+    out.push({ from: y, active: names.length, names })
+  }
+  return out
+}
+
+/** Gaps between consecutive births: long gaps are long time skips when a lineage needs a successor. */
+export function birthGaps(cards: Card[]): { after: string; before: string; from: number; to: number; years: number }[] {
+  const sorted = [...cards].sort((a, b) => a.born - b.born)
+  const gaps = []
+  for (let i = 1; i < sorted.length; i++) {
+    gaps.push({ after: sorted[i - 1].figureName, before: sorted[i].figureName, from: sorted[i - 1].born, to: sorted[i].born, years: sorted[i].born - sorted[i - 1].born })
+  }
+  return gaps.sort((a, b) => b.years - a.years)
 }
