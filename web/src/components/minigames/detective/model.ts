@@ -1,30 +1,71 @@
-// Detective: the model.  A case is generated from a seed: who killed each
-// victim, how, and at what hour; then a set of true clues that, read
-// together, leave exactly one culprit and one method per victim.  Clues sit
-// in leads (a body to examine, a place to search, a suspect to question) and
-// the player has fewer hours than there are leads.
+// Detective: the model.  A case is built from a seed in three layers:
 //
-// The truth space per victim is suspect × method × hour, limited by means
-// (a suspect can only use a method they have access to).  Every clue rules
-// out part of it:
-//   trace   a mark on the body (or its absence) rules out methods
-//   window  the examiner's time of death rules out hours
-//   alibi   a witness places a suspect elsewhere for some hours
-//   mark    a witness saw the killer's hand or height; rules out suspects
-//   herring true colour that rules out nothing
-// `generate` rejects any case that is not fair: the full clue set must give a
-// unique answer, no single lead may give it, and some set of leads within the
-// hours must.
+//   the trick    which of the case's authored tricks was used, and by whom
+//                (a suspect with the means for it); its traces replace the
+//                plain look of the scene objects it touched, and from D3 one
+//                stray trace of another trick is planted as a decoy
+//   the alibis   where everyone says they were in the hour of the crime;
+//                honest suspects sometimes vouch for each other, and from D2
+//                the killer claims the company of someone who was elsewhere
+//   the lies     the killer's cover story (authored with the trick) clashes
+//                with one scene clue; the false alibi clashes with another
+//                suspect's statement
+//
+// The player examines the scene, puts the questions, presses the statements
+// that cannot be squared with the evidence, and finally names the killer,
+// the method and (from D3) the trick.  Every case is fair: the killer alone
+// lies, each lie is contradicted by something the player can find, and the
+// body always shows the method.
 
 import type { Difficulty } from '@/games/types'
 import { hashString, mulberry32, randInt, shuffle, pick, type Rng } from '../_shared'
-import {
-  CASES, METHOD_TRACES, TRACE_TEXT, TRAITS, TRAIT_SEEN,
-  type CaseDef, type Feature, type MethodId, type TraitDim,
-} from './cases'
+import { CASES, type CaseDef, type Glyph, type MethodId } from './cases'
 
 export { CASES }
 export const HOURS = 6
+
+export interface Tier {
+  suspects: number
+  /** The killer also claims a false alibi. */
+  falseAlibi: boolean
+  /** Stray traces of other tricks planted in the scene. */
+  decoys: number
+  /** Wrong presses allowed before the suspects stop talking. */
+  patience: number
+  /** Tell the player how many clues the scene holds. */
+  countClues: boolean
+  /** The accusation must also name the trick. */
+  nameTrick: boolean
+  seconds: number
+}
+
+export const TIERS: Record<Difficulty, Tier> = {
+  1: { suspects: 3, falseAlibi: false, decoys: 0, patience: 3, countClues: true,  nameTrick: false, seconds: 0 },
+  2: { suspects: 4, falseAlibi: true,  decoys: 0, patience: 3, countClues: true,  nameTrick: false, seconds: 0 },
+  3: { suspects: 5, falseAlibi: true,  decoys: 1, patience: 2, countClues: false, nameTrick: true,  seconds: 360 },
+  4: { suspects: 6, falseAlibi: true,  decoys: 2, patience: 2, countClues: false, nameTrick: true,  seconds: 300 },
+}
+
+export interface SceneObject {
+  id: string
+  glyph: Glyph
+  x: number
+  y: number
+  size: number
+  name: string
+  /** What a close look shows. */
+  look: string
+  /** The look is a trace of the trick (or a planted decoy), not the plain object. */
+  clue: boolean
+}
+
+export type Evidence = { kind: 'object'; id: string } | { kind: 'statement'; s: number; q: number }
+
+export interface Statement {
+  text: string
+  /** Set on the killer's lies: what contradicts it, and why. */
+  lie?: { clash: Evidence; why: string }
+}
 
 export interface Suspect {
   name: string
@@ -32,23 +73,7 @@ export interface Suspect {
   profile: string
   /** Indices into Case.methods. */
   means: number[]
-  traits: Record<TraitDim, string>
 }
-
-export type Clue =
-  | { k: 'trace'; v: number; f: Feature; present: boolean }
-  | { k: 'window'; v: number; from: number; to: number }
-  | { k: 'alibi'; s: number; from: number; to: number }
-  | { k: 'mark'; v: number; dim: TraitDim; value: string }
-  | { k: 'herring' }
-
-export interface Lead {
-  kind: 'body' | 'place' | 'question'
-  name: string
-  clues: { clue: Clue; text: string }[]
-}
-
-export interface Truth { s: number; m: number; h: number }
 
 export interface Case {
   configId: string
@@ -56,250 +81,145 @@ export interface Case {
   setting: string
   intro: string
   fact: string
-  hours: string[]
+  victim: { name: string; role: string; foundAt: string }
+  palette: CaseDef['palette']
+  scene: SceneObject[]
+  /** Ids of the scene objects whose look is a clue. */
+  clueIds: string[]
   suspects: Suspect[]
   methods: { id: MethodId; label: string }[]
-  victims: { name: string; role: string; foundAt: string }[]
-  leads: Lead[]
-  truth: Truth[]
-  /** Leads the player may open. */
-  budget: number
-  /** Fewest leads that settle the case. */
-  minLeads: number
-  seconds: number
+  /** The alibi question first, then the case questions. */
+  questions: string[]
+  /** statements[s][q] */
+  statements: Statement[][]
+  tricks: { id: string; label: string; how: string }[]
+  truth: { s: number; m: number; trick: number; hour: number }
+  tier: Tier
 }
 
-export const TIERS: Record<Difficulty, { suspects: number; methods: number; victims: number; minLeads: number; slack: number; seconds: number; extras: number }> = {
-  1: { suspects: 4, methods: 4, victims: 1, minLeads: 2, slack: 2, seconds: 0, extras: 1 },
-  2: { suspects: 5, methods: 5, victims: 1, minLeads: 3, slack: 2, seconds: 0, extras: 1 },
-  3: { suspects: 5, methods: 5, victims: 2, minLeads: 3, slack: 2, seconds: 480, extras: 2 },
-  4: { suspects: 6, methods: 6, victims: 2, minLeads: 4, slack: 1, seconds: 420, extras: 2 },
+/** True when the evidence contradicts the statement. */
+export function contradicts(c: Case, s: number, q: number, ev: Evidence): boolean {
+  const lie = c.statements[s]?.[q]?.lie
+  if (!lie) return false
+  const a = lie.clash
+  return a.kind === ev.kind && (a.kind === 'object' ? a.id === (ev as { id: string }).id
+    : a.s === (ev as { s: number }).s && a.q === (ev as { q: number }).q)
 }
 
-// ── Solving ──────────────────────────────────────────────────────────────────
+export interface Accusation { s: number; m: number; trick?: number }
 
-type Shape = Pick<Case, 'suspects' | 'methods' | 'victims'>
-
-const cellCount = (c: Shape) => c.suspects.length * c.methods.length * HOURS
-const cellIndex = (c: Shape, s: number, m: number, h: number) => (s * c.methods.length + m) * HOURS + h
-
-/** Does this clue rule out "suspect s killed victim v with method m at hour h"? */
-export function rulesOut(c: Shape, clue: Clue, v: number, s: number, m: number, h: number): boolean {
-  switch (clue.k) {
-    case 'trace': return clue.v === v && METHOD_TRACES[c.methods[m].id].includes(clue.f) !== clue.present
-    case 'window': return clue.v === v && (h < clue.from || h > clue.to)
-    case 'alibi': return clue.s === s && h >= clue.from && h <= clue.to
-    case 'mark': return clue.v === v && c.suspects[s].traits[clue.dim] !== clue.value
-    case 'herring': return false
-  }
+export function isCorrect(c: Case, a: Accusation): boolean {
+  if (a.s !== c.truth.s || a.m !== c.truth.m) return false
+  return !c.tier.nameTrick || a.trick === c.truth.trick
 }
 
-/** Per victim, a flag per (suspect, method, hour) cell: true = still possible. */
-export function possible(c: Shape, clues: Clue[]): boolean[][] {
-  return c.victims.map((_, v) => {
-    const out = new Array<boolean>(cellCount(c)).fill(false)
-    c.suspects.forEach((sp, s) => {
-      for (const m of sp.means) for (let h = 0; h < HOURS; h++) {
-        out[cellIndex(c, s, m, h)] = !clues.some(cl => rulesOut(c, cl, v, s, m, h))
-      }
-    })
-    return out
-  })
+export function solution(c: Case): string {
+  const t = c.tricks[c.truth.trick]
+  return `${c.suspects[c.truth.s].name} killed ${c.victim.name} with the ${c.methods[c.truth.m].label.toLowerCase()}. ${t.how}`
 }
-
-/** Per victim, the (suspect, method) pairs still open, as "s:m". */
-export function openPairs(c: Shape, clues: Clue[]): string[][] {
-  return possible(c, clues).map(cells => {
-    const pairs = new Set<string>()
-    cells.forEach((ok, i) => {
-      if (!ok) return
-      const sm = Math.floor(i / HOURS)
-      pairs.add(`${Math.floor(sm / c.methods.length)}:${sm % c.methods.length}`)
-    })
-    return [...pairs]
-  })
-}
-
-export const isSettled = (c: Shape, clues: Clue[]) => openPairs(c, clues).every(p => p.length === 1)
-
-export const cluesOf = (leads: Lead[], picked: Iterable<number>) => [...picked].flatMap(i => leads[i].clues.map(x => x.clue))
-
-/** Size of the smallest set of leads that settles the case (Infinity if none). */
-export function minimalLeads(c: Shape, leads: Lead[]): { size: number; leads: number[] } {
-  const n = leads.length
-  const order = Array.from({ length: 1 << n }, (_, mask) => mask)
-    .sort((a, b) => popcount(a) - popcount(b))
-  for (const mask of order) {
-    const picked = Array.from({ length: n }, (_, i) => i).filter(i => mask & (1 << i))
-    if (isSettled(c, cluesOf(leads, picked))) return { size: picked.length, leads: picked }
-  }
-  return { size: Infinity, leads: [] }
-}
-
-function popcount(x: number) { let k = 0; while (x) { x &= x - 1; k++ } return k }
 
 // ── Generation ───────────────────────────────────────────────────────────────
 
-const DIMS = Object.keys(TRAITS) as TraitDim[]
-
 function attempt(configId: string, def: CaseDef, d: Difficulty, rng: Rng): Case | null {
   const tier = TIERS[d]
-  const methodIds = shuffle(Object.keys(def.methods) as MethodId[], rng).slice(0, tier.methods)
-  const methods = methodIds.map(id => ({ id, label: def.methods[id]! }))
-  const suspects: Suspect[] = shuffle(def.suspects, rng).slice(0, tier.suspects).map(sd => ({
-    name: sd.name, role: sd.role, profile: sd.profile,
-    means: sd.means.map(id => methodIds.indexOf(id)).filter(i => i >= 0).sort((a, b) => a - b),
-    traits: {
-      hand: TRAITS.hand[rng() < 0.4 ? 0 : 1],
-      height: TRAITS.height[rng() < 0.5 ? 0 : 1],
-    },
+  const methodIds = Object.keys(def.methods) as MethodId[]
+  const methods = methodIds.map(id => ({ id, label: def.methods[id] }))
+
+  // Cast, trick and killer.
+  const castIdx = shuffle(def.suspects.map((_, i) => i), rng).slice(0, tier.suspects)
+  const cast = castIdx.map(i => def.suspects[i])
+  const trickIdx = randInt(rng, 0, def.tricks.length - 1)
+  const trick = def.tricks[trickIdx]
+  const able = cast.map((_, i) => i).filter(i => cast[i].means.includes(trick.method))
+  if (!able.length) return null
+  const killer = pick(able, rng)
+  const hour = randInt(rng, 1, HOURS - 2)
+
+  // Scene: the trick's traces, then decoys from other tricks on untouched objects.
+  const looks = new Map<string, string>()
+  for (const [id, text] of Object.entries(trick.traces)) looks.set(id, text)
+  if (!looks.has('body') || !looks.has(trick.lie.clashes)) return null
+  const others = shuffle(def.tricks.filter((t, i) => i !== trickIdx && t.method !== trick.method), rng)
+  let planted = 0
+  for (const t of others) {
+    if (planted >= tier.decoys) break
+    const spare = shuffle(Object.entries(t.traces).filter(([id]) => id !== 'body' && !looks.has(id)), rng)
+    if (!spare.length) continue
+    looks.set(spare[0][0], spare[0][1])
+    planted++
+  }
+  if (planted < tier.decoys) return null
+  const scene: SceneObject[] = def.scene.map(o => ({
+    id: o.id, glyph: o.glyph, x: o.x, y: o.y, size: o.size ?? 1, name: o.name,
+    look: looks.get(o.id) ?? o.plain, clue: looks.has(o.id),
   }))
-  if (suspects.some(s => !s.means.length)) return null
-  const victims = def.victims.slice(0, tier.victims)
-  const shape: Shape = { suspects, methods, victims }
+  if ([...looks.keys()].some(id => !def.scene.some(o => o.id === id))) return null
 
-  // The truth.  One person cannot be in two places within the same two hours.
-  const truth: Truth[] = []
-  for (let v = 0; v < victims.length; v++) {
-    const s = randInt(rng, 0, suspects.length - 1)
-    const h = randInt(rng, 0, HOURS - 1)
-    if (truth.some(t => t.s === s && Math.abs(t.h - h) < 2)) return null
-    truth.push({ s, m: pick(suspects[s].means, rng), h })
+  // Alibis for the hour of the crime.  Honest suspects pair up now and then;
+  // the killer, from D2, borrows the company of someone who was elsewhere.
+  const honest = cast.map((_, i) => i).filter(i => i !== killer)
+  const where = new Map<number, { place: string; with?: number }>()
+  const pool = shuffle(honest, rng)
+  // Spread the honest suspects over the places before any place repeats.
+  let free = shuffle(def.places, rng)
+  const nextPlace = () => { if (!free.length) free = shuffle(def.places, rng); return free.pop()! }
+  while (pool.length) {
+    const a = pool.pop()!
+    const place = nextPlace()
+    if (pool.length && rng() < 0.5) {
+      const b = pool.pop()!
+      where.set(a, { place, with: b }); where.set(b, { place, with: a })
+    } else where.set(a, { place })
   }
-  const crimeHours = (s: number) => truth.filter(t => t.s === s).map(t => t.h)
-
-  const clues: Clue[] = truth.map((t, v) => {
-    const from = Math.max(0, t.h - randInt(rng, 0, 1)), to = Math.min(HOURS - 1, t.h + randInt(rng, 0, 1))
-    return { k: 'window', v, from, to } as Clue
-  })
-  const has = (c: Clue) => clues.some(x => JSON.stringify(x) === JSON.stringify(c))
-
-  const alibiFor = (s: number, hs: number[], stretch: boolean): Clue | null => {
-    if (!hs.length) return null
-    let from = Math.min(...hs), to = Math.max(...hs)
-    if (stretch) { from = Math.max(0, from - randInt(rng, 0, 1)); to = Math.min(HOURS - 1, to + randInt(rng, 0, 1)) }
-    const clash = (a: number, b: number) => crimeHours(s).some(h => h >= a && h <= b)
-    if (clash(from, to)) { from = Math.min(...hs); to = Math.max(...hs) }
-    return clash(from, to) ? null : { k: 'alibi', s, from, to }
+  const alone = honest.filter(i => where.get(i)!.with === undefined)
+  let falseWith: number | undefined
+  if (tier.falseAlibi) {
+    if (!alone.length) return null
+    falseWith = pick(alone, rng)
   }
+  const killerPlace = falseWith === undefined ? pick(def.places, rng)
+    : pick(def.places.filter(p => p !== where.get(falseWith!)!.place), rng)
+  where.set(killer, { place: killerPlace, with: falseWith })
 
-  // Rule out wrong answers one at a time until each victim has one left.
-  for (let guard = 0; guard < 60; guard++) {
-    const cells = possible(shape, clues)
-    const open = openPairs(shape, clues)
-    const v = open.findIndex(p => p.length > 1)
-    if (v < 0) break
-    const t = truth[v]
-    const wrong = open[v].map(p => p.split(':').map(Number)).filter(([s, m]) => s !== t.s || m !== t.m)
-    const [s, m] = pick(wrong, rng)
-    const options: Clue[] = []
-    if (m !== t.m) {
-      const a = METHOD_TRACES[methods[m].id], b = METHOD_TRACES[methods[t.m].id]
-      for (const f of [...a, ...b]) if (a.includes(f) !== b.includes(f)) options.push({ k: 'trace', v, f, present: b.includes(f) })
-    }
-    if (s !== t.s) {
-      for (const dim of DIMS) {
-        const value = suspects[t.s].traits[dim]
-        if (suspects[s].traits[dim] !== value) options.push({ k: 'mark', v, dim, value })
+  const span = `between ${def.hours[hour]} and ${def.hours[hour + 1]}`
+  const questions = [`Where were you ${span}?`, ...def.questions]
+  const alibiText = (i: number) => {
+    const w = where.get(i)!
+    return w.with === undefined ? `At the ${w.place}, on my own.` : `At the ${w.place}, with ${cast[w.with].name}.`
+  }
+  const statements: Statement[][] = cast.map((sp, i) => {
+    const row: Statement[] = [{ text: alibiText(i) }, ...sp.answers.map(text => ({ text }))]
+    if (i === killer) {
+      if (falseWith !== undefined) row[0].lie = {
+        clash: { kind: 'statement', s: falseWith, q: 0 },
+        why: `${cast[falseWith].name} says they were at the ${where.get(falseWith)!.place} on their own.`,
       }
-      const hs = Array.from({ length: HOURS }, (_, h) => h).filter(h => cells[v][cellIndex(shape, s, m, h)])
-      const al = alibiFor(s, hs, true)
-      if (al) options.push(al, al) // weighted: alibis make the best reading
+      row[trick.lie.q + 1] = { text: trick.lie.text, lie: { clash: { kind: 'object', id: trick.lie.clashes }, why: trick.lie.why } }
     }
-    const fresh = options.filter(o => !has(o))
-    if (!fresh.length) return null
-    clues.push(pick(fresh, rng))
-  }
-  if (!isSettled(shape, clues)) return null
-
-  // A few true clues that are not needed, so there is more than one road in.
-  for (let i = 0; i < tier.extras; i++) {
-    const s = randInt(rng, 0, suspects.length - 1)
-    const h = randInt(rng, 0, HOURS - 2)
-    const al = alibiFor(s, [h, h + 1], false)
-    if (al && !has(al)) clues.push(al)
-  }
-
-  // Deal the clues into leads.
-  const leads: Lead[] = [
-    ...victims.map(vd => ({ kind: 'body' as const, name: `the body of ${vd.name}`, clues: [] as Lead['clues'] })),
-    ...def.places.map(p => ({ kind: 'place' as const, name: `the ${p.name}`, clues: [] as Lead['clues'] })),
-    ...suspects.map(sp => ({ kind: 'question' as const, name: sp.name, clues: [] as Lead['clues'] })),
-  ]
-  const nV = victims.length, nP = def.places.length
-  const place = (i: number) => nV + i
-  const question = (s: number) => nV + nP + s
-  const say = (lead: number, clue: Clue, text: string) => leads[lead].clues.push({ clue, text })
-  const span = (a: number, b: number) => (a === b ? `at ${def.hours[a]}` : `from ${def.hours[a]} to ${def.hours[b]}`)
-
-  for (const clue of clues) {
-    if (clue.k === 'trace') say(clue.v, clue, TRACE_TEXT[clue.f][clue.present ? 0 : 1])
-    else if (clue.k === 'window') {
-      const when = clue.from === clue.to ? `at about ${def.hours[clue.from]}` : `between ${def.hours[clue.from]} and ${def.hours[clue.to]}`
-      say(clue.v, clue, `${cap(def.examiner)} judges that ${victims[clue.v].name} died ${when}.`)
-    } else if (clue.k === 'mark') {
-      const p = randInt(rng, 0, nP - 1)
-      say(place(p), clue, `${def.places[p].witness}: "I glimpsed whoever left ${victims[clue.v].name}: ${TRAIT_SEEN[clue.value]}."`)
-    } else if (clue.k === 'alibi') {
-      const where = def.places[randInt(rng, 0, nP - 1)]
-      const others = suspects.map((_, i) => i).filter(i => i !== clue.s)
-      // Half from the witness at the place, half from another suspect.
-      if (rng() < 0.5) {
-        const p = def.places.indexOf(where)
-        say(place(p), clue, `${where.witness}: "${suspects[clue.s].name} was here in the ${where.name} ${span(clue.from, clue.to)}."`)
-      } else {
-        const x = pick(others, rng)
-        say(question(x), clue, `${suspects[x].name}: "I saw ${suspects[clue.s].name} in the ${where.name} ${span(clue.from, clue.to)}."`)
-      }
-    }
-  }
-  const herrings = shuffle(def.herrings, rng)
-  let hi = 0
-  leads.forEach((lead, i) => {
-    if (lead.clues.length && rng() < 0.7) return
-    const text = lead.kind === 'question'
-      ? `${lead.name}: "${pick(QUIET, rng)}"`
-      : herrings[hi++ % herrings.length]
-    if (lead.kind !== 'question' || !lead.clues.length) say(i, { k: 'herring' }, text)
+    return row
   })
-  leads.forEach(l => { l.clues = shuffle(l.clues, rng) })
 
-  // Fairness.
-  const pairs = suspects.reduce((n, sp) => n + sp.means.length, 0)
-  if (pairs < 6) return null
-  if (!isSettled(shape, cluesOf(leads, leads.map((_, i) => i)))) return null
-  const min = minimalLeads(shape, leads)
-  if (min.size < tier.minLeads) return null
-  const budget = Math.min(min.size + tier.slack, leads.length - 2)
-  if (budget < min.size) return null
+  const suspects: Suspect[] = cast.map(sp => ({
+    name: sp.name, role: sp.role, profile: sp.profile,
+    means: sp.means.map(id => methodIds.indexOf(id)).filter(i => i >= 0).sort((a, b) => a - b),
+  }))
 
   return {
     configId, title: def.title, setting: def.setting, intro: def.intro, fact: def.fact,
-    hours: def.hours, suspects, methods, victims, leads, truth,
-    budget, minLeads: min.size, seconds: tier.seconds,
+    victim: def.victim, palette: def.palette, scene, clueIds: scene.filter(o => o.clue).map(o => o.id),
+    suspects, methods, questions, statements,
+    tricks: def.tricks.map(t => ({ id: t.id, label: t.label, how: t.how })),
+    truth: { s: killer, m: methodIds.indexOf(trick.method), trick: trickIdx, hour },
+    tier,
   }
 }
-
-const QUIET = [
-  'I was asleep and heard nothing.',
-  'I keep to myself. Ask the others.',
-  'It was a quiet night, as far as I know.',
-  'I have nothing to say that would help you.',
-]
-
-const cap = (s: string) => s[0].toUpperCase() + s.slice(1)
 
 export function generate(configId: string, difficulty: Difficulty, seed: number): Case {
   const id = CASES[configId] ? configId : Object.keys(CASES)[0]
   const def = CASES[id]
-  for (let k = 0; k < 4000; k++) {
+  for (let k = 0; k < 400; k++) {
     const c = attempt(id, def, difficulty, mulberry32(hashString(`${id}:${difficulty}:${seed}:${k}`)))
     if (c) return c
   }
   throw new Error(`detective: no fair case for ${id} D${difficulty} seed ${seed}`)
-}
-
-/** Did the accusation name the right culprit and method for every victim? */
-export function isCorrect(c: Case, accused: { s: number; m: number }[]): boolean {
-  return c.truth.every((t, v) => accused[v]?.s === t.s && accused[v]?.m === t.m)
 }

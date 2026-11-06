@@ -1,164 +1,189 @@
-// Detective: every config × difficulty × seed makes a fair case (the full clue
-// set settles it, no single lead does, a set within the hours does, and the
-// start leaves many suspects); every clue is true of the hidden answer; the
-// Arcade ladder is all different cases; the component wins and loses once.
+// Detective: every config × difficulty × seed is a fair case (the killer has
+// the means, the body and every trick trace are in the scene, each lie is
+// contradicted by evidence the player can reach, honest suspects never lie,
+// decoys never point at the truth); the Arcade ladder varies; the component
+// can be played to a win and to each kind of loss.
 import { createElement } from 'react'
 import { render, cleanup, fireEvent, act, screen } from '@testing-library/react'
 import { describe, it, expect, afterEach, vi } from 'vitest'
 import DetectiveGame, { CONFIG_IDS } from '@/components/minigames/DetectiveGame'
-import {
-  generate, rulesOut, openPairs, isSettled, cluesOf, minimalLeads, isCorrect, TIERS, HOURS, type Case, type Clue,
-} from '@/components/minigames/detective/model'
-import { METHOD_TRACES } from '@/components/minigames/detective/cases'
-import { difficultyForLevel, levelFor, LEVELS_PER_TRACK } from '@/games/arcade'
+import { generate, contradicts, isCorrect, TIERS, HOURS, type Case } from '@/components/minigames/detective/model'
+import { CASES } from '@/components/minigames/detective/cases'
+import { levelFor, LEVELS_PER_TRACK } from '@/games/arcade'
 import type { Difficulty } from '@/games/types'
 
 afterEach(() => { cleanup(); vi.useRealTimers() })
 const DIFFS: Difficulty[] = [1, 2, 3, 4]
 const SEEDS = [1, 2, 3, 7, 42, 1006, 99991]
 
-const allClues = (c: Case) => cluesOf(c.leads, c.leads.map((_, i) => i))
-
-describe('detective rules', () => {
-  const shape = {
-    suspects: [
-      { name: 'A', role: '', profile: '', means: [0, 1], traits: { hand: 'left-handed', height: 'tall' } },
-      { name: 'B', role: '', profile: '', means: [1], traits: { hand: 'right-handed', height: 'tall' } },
-    ],
-    methods: [{ id: 'poison' as const, label: 'Poison' }, { id: 'blade' as const, label: 'Knife' }],
-    victims: [{ name: 'V', role: '', foundAt: '' }],
+describe('detective case data', () => {
+  for (const [id, def] of Object.entries(CASES)) {
+    it(`${id} is well formed`, () => {
+      expect(def.hours).toHaveLength(HOURS)
+      expect(def.scene.some(o => o.id === 'body')).toBe(true)
+      expect(new Set(def.scene.map(o => o.id)).size).toBe(def.scene.length)
+      expect(def.suspects.length).toBeGreaterThanOrEqual(6)
+      for (const sp of def.suspects) expect(sp.answers, sp.name).toHaveLength(def.questions.length)
+      for (const t of def.tricks) {
+        expect(t.traces.body, `${id}/${t.id} body trace`).toBeTruthy()
+        for (const obj of Object.keys(t.traces)) expect(def.scene.some(o => o.id === obj), `${id}/${t.id} trace ${obj}`).toBe(true)
+        expect(t.traces[t.lie.clashes], `${id}/${t.id} lie clashes with a trace`).toBeTruthy()
+        expect(t.lie.q).toBeLessThan(def.questions.length)
+        expect(def.suspects.some(s => s.means.includes(t.method)), `${id}/${t.id} someone has the means`).toBe(true)
+        expect(def.methods[t.method]).toBeTruthy()
+      }
+      // Every trick has a different method, so the body always tells them apart.
+      expect(new Set(def.tricks.map(t => t.method)).size).toBe(def.tricks.length)
+    })
   }
-
-  it('traces rule out methods, windows hours, alibis a suspect at those hours, marks by trait', () => {
-    expect(rulesOut(shape, { k: 'trace', v: 0, f: 'blood', present: true }, 0, 0, 0, 2)).toBe(true)   // poison: no blood
-    expect(rulesOut(shape, { k: 'trace', v: 0, f: 'blood', present: true }, 0, 0, 1, 2)).toBe(false)
-    expect(rulesOut(shape, { k: 'window', v: 0, from: 2, to: 3 }, 0, 0, 0, 4)).toBe(true)
-    expect(rulesOut(shape, { k: 'alibi', s: 1, from: 1, to: 3 }, 0, 1, 1, 2)).toBe(true)
-    expect(rulesOut(shape, { k: 'alibi', s: 1, from: 1, to: 3 }, 0, 1, 1, 4)).toBe(false)
-    expect(rulesOut(shape, { k: 'mark', v: 0, dim: 'hand', value: 'left-handed' }, 0, 1, 1, 0)).toBe(true)
-    expect(rulesOut(shape, { k: 'herring' }, 0, 0, 0, 0)).toBe(false)
-  })
-
-  it('means limit the pairs; clues combine to a single answer', () => {
-    expect(openPairs(shape, [])[0].sort()).toEqual(['0:0', '0:1', '1:1'])
-    const clues: Clue[] = [
-      { k: 'window', v: 0, from: 2, to: 2 },
-      { k: 'alibi', s: 1, from: 1, to: 3 },
-      { k: 'trace', v: 0, f: 'vomit', present: false },
-    ]
-    expect(isSettled(shape, clues.slice(0, 2))).toBe(false)
-    expect(openPairs(shape, clues)[0]).toEqual(['0:1'])
-  })
-
-  it('every method leaves a different set of traces', () => {
-    const sets = Object.values(METHOD_TRACES).map(f => [...f].sort().join(','))
-    expect(new Set(sets).size).toBe(sets.length)
-  })
 })
 
 describe('detective cases are fair', () => {
   for (const id of CONFIG_IDS) for (const d of DIFFS) {
     it(`${id} D${d}`, () => {
+      const tier = TIERS[d]
       for (const seed of SEEDS) {
         const c = generate(id, d, seed)
         const tag = `${id} D${d} s${seed}`
-        expect(c.victims.length, tag).toBe(TIERS[d].victims)
-        expect(c.suspects.length, tag).toBe(TIERS[d].suspects)
-        // The hidden answer survives every clue, and so does its hour.
-        for (const clue of allClues(c)) c.truth.forEach((t, v) =>
-          expect(rulesOut(c, clue, v, t.s, t.m, t.h), `${tag} ${JSON.stringify(clue)}`).toBe(false))
-        c.truth.forEach(t => expect(c.suspects[t.s].means, tag).toContain(t.m))
-        // Every clue together settles it, on the right answer.
-        const pairs = openPairs(c, allClues(c))
-        c.truth.forEach((t, v) => expect(pairs[v], tag).toEqual([`${t.s}:${t.m}`]))
-        // Not guessable at the start, no lead alone settles it, the hours suffice.
-        expect(openPairs(c, [])[0].length, tag).toBeGreaterThanOrEqual(6)
-        c.leads.forEach((_, i) => expect(isSettled(c, cluesOf(c.leads, [i])), `${tag} lead ${i}`).toBe(false))
-        const min = minimalLeads(c, c.leads)
-        expect(min.size, tag).toBe(c.minLeads)
-        expect(min.size, tag).toBeGreaterThanOrEqual(TIERS[d].minLeads)
-        expect(c.budget, tag).toBeGreaterThanOrEqual(min.size)
-        expect(c.budget, tag).toBeLessThan(c.leads.length)       // you cannot open everything
-        expect(c.leads.every(l => l.clues.length > 0), tag).toBe(true)
-        // A person is never in two crimes within two hours.
-        if (c.truth.length === 2 && c.truth[0].s === c.truth[1].s) expect(Math.abs(c.truth[0].h - c.truth[1].h), tag).toBeGreaterThanOrEqual(2)
-        expect(c.truth.every(t => t.h >= 0 && t.h < HOURS), tag).toBe(true)
+        expect(c.suspects.length, tag).toBe(tier.suspects)
+        expect(c.suspects[c.truth.s].means, tag).toContain(c.truth.m)
+        const trick = CASES[id].tricks[c.truth.trick]
+        expect(c.methods[c.truth.m].id, tag).toBe(trick.method)
+        // The scene shows every trace of the trick as a clue, plus exactly the decoys.
+        for (const [obj, text] of Object.entries(trick.traces)) {
+          const o = c.scene.find(x => x.id === obj)!
+          expect(o.clue, `${tag} ${obj}`).toBe(true)
+          expect(o.look, `${tag} ${obj}`).toBe(text)
+        }
+        expect(c.clueIds.length, tag).toBe(Object.keys(trick.traces).length + tier.decoys)
+        // Decoys never touch the body, and the body names the true method only.
+        expect(c.scene.find(o => o.id === 'body')!.look, tag).toBe(trick.traces.body)
+        // Only the killer lies; the killer lies about the trick, and from D2 about the alibi.
+        c.statements.forEach((row, s) => row.forEach((st, q) => {
+          if (s !== c.truth.s) expect(st.lie, `${tag} ${s}:${q}`).toBeUndefined()
+        }))
+        const lies = c.statements[c.truth.s].map((st, q) => ({ st, q })).filter(x => x.st.lie)
+        expect(lies.length, tag).toBe(tier.falseAlibi ? 2 : 1)
+        for (const { st, q } of lies) {
+          const clash = st.lie!.clash
+          if (clash.kind === 'object') {
+            expect(c.clueIds, `${tag} q${q}`).toContain(clash.id)
+            expect(contradicts(c, c.truth.s, q, clash), tag).toBe(true)
+          } else {
+            expect(clash.s, tag).not.toBe(c.truth.s)
+            expect(clash.q, tag).toBe(0)
+            // The borrowed companion was alone somewhere else.
+            expect(c.statements[clash.s][0].text, tag).toMatch(/on my own/)
+            expect(c.statements[clash.s][0].text, tag).not.toContain(c.statements[c.truth.s][0].text.split(',')[0])
+            expect(c.statements[c.truth.s][0].text, tag).toContain(c.suspects[clash.s].name)
+          }
+        }
+        // Honest alibis are consistent: anyone named as company names you back, at the same place.
+        c.statements.forEach((row, s) => {
+          if (s === c.truth.s) return
+          const m = row[0].text.match(/^At the (.+), with (.+)\.$/)
+          if (!m) return
+          const other = c.suspects.findIndex(sp => sp.name === m[2])
+          expect(other, tag).toBeGreaterThanOrEqual(0)
+          expect(c.statements[other][0].text, tag).toBe(`At the ${m[1]}, with ${c.suspects[s].name}.`)
+        })
+        // Wrong evidence never counts.
+        expect(contradicts(c, c.truth.s, trick.lie.q + 1, { kind: 'object', id: 'body' }) && trick.lie.clashes !== 'body', tag).toBe(false)
+        expect(isCorrect(c, { s: c.truth.s, m: c.truth.m, trick: c.truth.trick }), tag).toBe(true)
+        expect(isCorrect(c, { s: (c.truth.s + 1) % c.suspects.length, m: c.truth.m, trick: c.truth.trick }), tag).toBe(false)
+        if (tier.nameTrick) expect(isCorrect(c, { s: c.truth.s, m: c.truth.m, trick: (c.truth.trick + 1) % c.tricks.length }), tag).toBe(false)
       }
     })
   }
 
-  it('the same seed gives the same case; seeds vary the answer', () => {
-    expect(JSON.stringify(generate('globe-1599', 2, 5))).toBe(JSON.stringify(generate('globe-1599', 2, 5)))
-    const answers = new Set(Array.from({ length: 20 }, (_, i) => JSON.stringify(generate('venice-1750', 2, i).truth)))
-    expect(answers.size).toBeGreaterThan(8)
-  })
-
-  it('the 24 Arcade levels are all different cases', () => {
-    const sigs = new Set<string>()
+  it('the Arcade ladder varies killer and trick', () => {
+    const seen = new Set<string>()
+    const tricks = new Set<string>()
     for (let i = 0; i < LEVELS_PER_TRACK; i++) {
-      const l = levelFor('detective', CONFIG_IDS, i)
-      expect(l.difficulty).toBe(difficultyForLevel(i))
-      const c = generate(l.configId, l.difficulty, l.seed)
-      sigs.add(JSON.stringify([c.configId, c.truth, c.leads.map(x => x.clues.map(y => y.text))]))
+      const lv = levelFor('detective', CONFIG_IDS, i)
+      const c = generate(lv.configId, lv.difficulty, lv.seed)
+      seen.add(`${lv.configId}:${c.suspects[c.truth.s].name}:${c.truth.trick}`)
+      tricks.add(`${lv.configId}:${c.truth.trick}`)
     }
-    expect(sigs.size).toBe(LEVELS_PER_TRACK)
-  })
-
-  it('isCorrect needs every victim right', () => {
-    const c = generate('mayfair-1893', 3, 4)
-    expect(isCorrect(c, c.truth)).toBe(true)
-    expect(isCorrect(c, [c.truth[0], { s: c.truth[1].s, m: (c.truth[1].m + 1) % c.methods.length }])).toBe(false)
+    expect(seen.size).toBeGreaterThanOrEqual(18)
+    expect(tricks.size).toBeGreaterThanOrEqual(12)
   })
 })
 
 describe('detective component', () => {
-  const play = (configId: string, d: Difficulty, seed: number, right: boolean) => {
-    vi.useFakeTimers()
+  const play = (d: Difficulty, seed = 3) => {
     const onWin = vi.fn(), onLose = vi.fn()
-    render(createElement(DetectiveGame, { configId, difficulty: d, seed, onWin, onLose }))
-    const c = generate(configId, d, seed)
-    const min = minimalLeads(c, c.leads)
-    const VERB = { body: 'Examine', place: 'Search', question: 'Question' } as const
-    for (const i of min.leads) fireEvent.click(screen.getByLabelText(`${VERB[c.leads[i].kind]} ${c.leads[i].name}`))
-    expect(screen.getByLabelText(`Hours left: ${c.budget - min.size} of ${c.budget}`)).toBeTruthy()
-    // Notebook grid crosses toggle.
-    const t0 = c.truth[0]
-    const other = c.suspects.findIndex((_, s) => s !== t0.s)
-    const cell = screen.getByLabelText(`Rule out ${c.suspects[other].name} with ${c.methods[c.suspects[other].means[0]].label} for ${c.victims[0].name}`)
-    fireEvent.click(cell)
-    expect(cell.getAttribute('aria-pressed')).toBe('true')
-    c.truth.forEach((t, v) => {
-      const s = right || v > 0 ? t.s : other
-      fireEvent.click(screen.getByLabelText(`Culprit for ${c.victims[v].name}: ${c.suspects[s].name}`))
-      fireEvent.click(screen.getByLabelText(`Method for ${c.victims[v].name}: ${c.methods[t.m].label}`))
-    })
-    const accuse = screen.getByLabelText('Make the accusation')
-    fireEvent.click(accuse)
-    fireEvent.click(accuse)
-    act(() => { vi.advanceTimersByTime(5000) })
-    return { onWin, onLose }
+    const c: Case = generate(CONFIG_IDS[0], d, seed)
+    render(createElement(DetectiveGame, { configId: CONFIG_IDS[0], difficulty: d, seed, onWin, onLose }))
+    return { c, onWin, onLose }
   }
+  const click = (label: string | RegExp) => fireEvent.click(screen.getByLabelText(label))
+  const tab = (name: string) => fireEvent.click(screen.getByRole('tab', { name: new RegExp(name) }))
 
-  it('the right accusation wins once', () => {
-    const { onWin, onLose } = play('song-1247', 3, 11, true)
+  it('finds clues, exposes both lies and closes the case', () => {
+    vi.useFakeTimers()
+    const { c, onWin, onLose } = play(2)
+    for (const id of c.clueIds) click(`Examine ${c.scene.find(o => o.id === id)!.name}`)
+    expect(screen.getByRole('tab', { name: /Scene/ }).textContent).toContain(`${c.clueIds.length}/${c.clueIds.length}`)
+    tab('Questions')
+    const killer = c.suspects[c.truth.s]
+    // The false alibi, pressed with the companion's own answer.
+    const alibi = c.statements[c.truth.s][0].lie!.clash as { s: number }
+    click(`${killer.name}'s answer`)
+    click(`Press with ${c.suspects[alibi.s].name}'s answer`)
+    expect(screen.getAllByText('LIE').length).toBe(1)
+    // The cover story, pressed with the clue it clashes with.
+    const trick = CASES[CONFIG_IDS[0]].tricks[c.truth.trick]
+    fireEvent.click(screen.getByRole('tab', { name: c.questions[trick.lie.q + 1] }))
+    click(`${killer.name}'s answer`)
+    click(`Press with ${c.scene.find(o => o.id === trick.lie.clashes)!.name}`)
+    expect(screen.getAllByText('LIE').length).toBe(1)
+    tab('Accuse')
+    click(`Culprit: ${killer.name}`)
+    click(`Method: ${c.methods[c.truth.m].label}`)
+    click('Make the accusation')
+    expect(screen.getByText(/Case closed/)).toBeTruthy()
+    act(() => { vi.advanceTimersByTime(2000) })
     expect(onWin).toHaveBeenCalledTimes(1)
     expect(onLose).not.toHaveBeenCalled()
   })
 
-  it('a wrong accusation loses once and names the truth', () => {
-    const { onWin, onLose } = play('sleeper-1869', 1, 2, false)
+  it('a wrong accusation loses and tells the truth', () => {
+    vi.useFakeTimers()
+    const { c, onWin, onLose } = play(1)
+    tab('Accuse')
+    click(`Culprit: ${c.suspects[(c.truth.s + 1) % c.suspects.length].name}`)
+    click(`Method: ${c.methods[c.truth.m].label}`)
+    click('Make the accusation')
+    expect(screen.getByText(/Wrong: not so/)).toBeTruthy()
+    act(() => { vi.advanceTimersByTime(2000) })
     expect(onLose).toHaveBeenCalledTimes(1)
     expect(onWin).not.toHaveBeenCalled()
-    expect(String(onLose.mock.calls[0][0])).toMatch(/killed/)
   })
 
-  it('leads stop opening when the hours run out', () => {
-    render(createElement(DetectiveGame, { configId: 'globe-1599', difficulty: 1, seed: 3, onWin: () => {}, onLose: () => {} }))
-    const c = generate('globe-1599', 1, 3)
-    const buttons = screen.getAllByRole('button').filter(b => /^(Examine|Search|Question) /.test(b.getAttribute('aria-label') ?? ''))
-    expect(buttons.length).toBe(c.leads.length)
-    buttons.forEach(b => fireEvent.click(b))
-    expect(screen.getByLabelText(`Hours left: 0 of ${c.budget}`)).toBeTruthy()
-    expect(buttons.filter(b => (b as HTMLButtonElement).disabled).length).toBe(c.leads.length)
+  it('pressing an honest answer costs patience, and the suspects stop talking when it is gone', () => {
+    vi.useFakeTimers()
+    const { c, onLose } = play(1)
+    tab('Questions')
+    const honest = c.suspects.findIndex((_, s) => s !== c.truth.s)
+    const other = c.suspects.findIndex((_, s) => s !== honest)
+    click(`${c.suspects[honest].name}'s answer`)
+    for (let i = 0; i < c.tier.patience; i++) {
+      click(`Press with ${c.suspects[other].name}'s answer`)
+      act(() => { vi.advanceTimersByTime(500) })
+    }
+    expect(screen.getByText(/stopped talking/)).toBeTruthy()
+    act(() => { vi.advanceTimersByTime(2000) })
+    expect(onLose).toHaveBeenCalledTimes(1)
+  })
+
+  it('from D3 the accusation needs the trick as well', () => {
+    const { c } = play(3)
+    tab('Accuse')
+    click(`Culprit: ${c.suspects[c.truth.s].name}`)
+    click(`Method: ${c.methods[c.truth.m].label}`)
+    expect((screen.getByLabelText('Make the accusation') as HTMLButtonElement).disabled).toBe(true)
+    click(`Trick: ${c.tricks[c.truth.trick].label}`)
+    expect((screen.getByLabelText('Make the accusation') as HTMLButtonElement).disabled).toBe(false)
   })
 })
