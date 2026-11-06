@@ -78,9 +78,9 @@
           "challenge": {
             "type": "minigame",
             "game": "chemistry",
-            "configId": "spice-route",
+            "configId": "lime-juice",
             "seed": 63571,
-            "instruction": "Without their captain, the survivors reach Tidore and its cloves at last. Load the flagship's hold with the mix of spices that will pay for everything they have lost.",
+            "instruction": "At Tidore the survivors could buy fresh fruit at last, after scurvy had killed many of them on the Pacific crossing. Titrate a lime’s juice with alkali and stop at the endpoint to measure its citric acid.",
             "fact": "At Tidore in November 1521 the two surviving ships, Trinidad and Victoria, took on cloves. The Trinidad sprang a leak and stayed behind for repairs; only the Victoria, under Juan Sebastián Elcano, sailed on west for Spain."
           }
         }

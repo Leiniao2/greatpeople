@@ -2528,15 +2528,10 @@
     "challenges": [
       {
         "type": "minigame",
-        "game": "alchemy",
-        "configId": "wuxing",
-        "params": {
-          "title": "Lu Yu’s Brazier",
-          "intro": "Lu Yu’s brazier held wind, fire and water in balance. No recipe book here — only the cycle. Two things of one phase kindle the next phase. A thing fed by its mother phase grows one level. Pairs across the star clash and cost two attempts.",
-          "fact": "In the Classic of Tea Lu Yu describes his cast-metal brazier: its windows bore the trigrams for wind, fire and water, because wind kindles fire and fire boils water, and one leg carried the words “its body balances the Five Phases and drives off a hundred ills”."
-        },
+        "game": "chemistry",
+        "configId": "brazier",
         "seed": 89213,
-        "instruction": "Water, flame and vessel must agree before the tea is made. Work the Five Phases as Lu Yu’s brazier did: wind kindles fire, and fire boils water.",
+        "instruction": "Lu Yu burned only charcoal, and gave his brazier three vents to draw the wind. Balance the reactions of the fire: every atom of carbon and oxygen that goes in must come out again.",
         "fact": "Lu Yu's Cha Jing (Classic of Tea, c. 760 CE) has 10 chapters covering tea's origins, tools for processing, making, drinking, and the history of tea. It transformed tea from a medicinal herb into a cultural art form.",
         "id": "tea-ceremony:0",
         "stage": "origins",
@@ -2555,8 +2550,8 @@
       {
         "type": "minigame",
         "game": "chemistry",
-        "configId": "tea-blend",
-        "instruction": "Lu Yu measured every cup. Combine the ingredients in the proportions shown, and leave out what belongs under the kettle, not in the bowl.",
+        "configId": "spring-water",
+        "instruction": "Lu Yu ranked mountain springs above rivers and wells. Test a spring as water chemists do: titrate its dissolved bicarbonate with dilute acid and stop exactly at the endpoint.",
         "fact": "Lu Yu says to season the water with a little salt at the first boil, to add the powdered tea at the second, and that one sheng of water makes five bowls. Too much water, he warns, and the flavour turns thin.",
         "id": "tea-ceremony:2",
         "stage": "mastery",
@@ -2943,8 +2938,8 @@
       {
         "type": "minigame",
         "game": "chemistry",
-        "configId": "bi-sheng-plate",
-        "instruction": "Two plates double the speed: while one prints, the other is set. Mix the resin, wax and paper ash that will hold the type on the second plate.",
+        "configId": "clay-type",
+        "instruction": "Fire turns soft clay into type that will not soften again. Balance the reactions of Bi Sheng’s kiln and plate: the same atoms must leave as went in.",
         "fact": "Despite its ingenuity, Bi Sheng's clay type did not replace woodblock printing, which remained dominant in China for centuries. Chinese has tens of thousands of characters, making movable type logistically complex — a single print job might require thousands of individual pieces. Woodblock printing remained faster for short texts. Movable type proved more revolutionary in alphabetic languages like Korean and later European languages.",
         "id": "characters-of-clay:1",
         "stage": "trial",
@@ -2992,14 +2987,9 @@
       {
         "type": "minigame",
         "game": "alchemy",
-        "configId": "wuxing",
-        "params": {
-          "title": "The Five Phases of the Type",
-          "intro": "Earth, fire, wood and metal made Bi Sheng’s type. No recipe book here — only the cycle. Two things of one phase kindle the next phase. A thing fed by its mother phase grows one level. Pairs across the star clash and cost two attempts.",
-          "fact": "Song scholars described the world through the Five Phases — Wood, Fire, Earth, Metal, Water — each generating the next. Bi Sheng’s type drew on them all: clay of the earth, hardened by fire, held on an iron plate in pine resin, and inked for printing."
-        },
+        "configId": "wet-copper",
         "seed": 52183,
-        "instruction": "The oldest writing material became a printing tool. Work the Five Phases to reach the target, as clay and fire became Bi Sheng’s type.",
+        "instruction": "Shen Kuo, who recorded Bi Sheng’s type, also recorded a spring that turned iron pans to copper. Use the reactivity series to make the salt you are asked for.",
         "fact": "Writing had been recorded on clay tablets since Mesopotamia in 3500 BCE. Bi Sheng's great insight was that clay — the oldest writing substrate in human history — could itself become the tool for mass reproduction of text. He connected the ancient world of clay and the modern world of print in a single creative act.",
         "id": "characters-of-clay:4",
         "stage": "legacy",
@@ -3642,9 +3632,9 @@
       {
         "type": "minigame",
         "game": "chemistry",
-        "configId": "spice-route",
+        "configId": "lime-juice",
         "seed": 63571,
-        "instruction": "Without their captain, the survivors reach Tidore and its cloves at last. Load the flagship's hold with the mix of spices that will pay for everything they have lost.",
+        "instruction": "At Tidore the survivors could buy fresh fruit at last, after scurvy had killed many of them on the Pacific crossing. Titrate a lime’s juice with alkali and stop at the endpoint to measure its citric acid.",
         "fact": "At Tidore in November 1521 the two surviving ships, Trinidad and Victoria, took on cloves. The Trinidad sprang a leak and stayed behind for repairs; only the Victoria, under Juan Sebastián Elcano, sailed on west for Spain.",
         "id": "around-the-world:2",
         "stage": "mastery",
@@ -5779,10 +5769,10 @@
     "challenges": [
       {
         "type": "minigame",
-        "game": "chemistry",
-        "configId": "mendel-cross",
+        "game": "punnett",
+        "configId": "mendel-peas",
         "seed": 92214,
-        "instruction": "Cross two round-seeded hybrids and the wrinkled seeds come back. Mix round and wrinkled in the proportion Mendel counted in the next generation.",
+        "instruction": "Cross two round-seeded hybrids and the wrinkled seeds come back. Breed the peas and find the proportion Mendel counted in the next generation.",
         "fact": "Mendel chose pea plants (Pisum sativum) with extraordinary care. They had clearly distinguishable traits — smooth or wrinkled seeds, yellow or green pods, tall or short stems — that produced consistent, countable offspring. Over eight years, he tracked 29,000 plants and applied mathematics to biology for the first time.",
         "id": "garden-of-genetics:0",
         "stage": "origins",

@@ -197,23 +197,6 @@ describe('LogicGateGame configs', () => {
   })
 })
 
-// ── Chemistry ─────────────────────────────────────────────────────────────────
-
-describe('ChemistryGame configs', () => {
-  for (const [id, cfg] of Object.entries(CHEM)) {
-    it(`${id}: the solution is reachable with the ingredient caps`, () => {
-      const symbols = new Set(cfg.ingredients.map(i => i.symbol))
-      expect(symbols.size).toBe(cfg.ingredients.length)
-      for (const [sym, need] of Object.entries(cfg.solution)) {
-        const ing = cfg.ingredients.find(i => i.symbol === sym)
-        expect(ing, `${sym} is not an ingredient`).toBeDefined()
-        expect(need).toBeGreaterThan(0)
-        expect(need).toBeLessThanOrEqual(ing!.max)
-      }
-    })
-  }
-})
-
 // ── Lorentz ───────────────────────────────────────────────────────────────────
 
 type Vec = { x: number; y: number }

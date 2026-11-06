@@ -35,7 +35,8 @@ Built in waves of 20; tick a box when the game is in the registry.
 - [x] `pendulum` — Pendulum Clock — tune length to keep time — Huygens
 - [x] `orbit` — Orbits — launch a body into a stable orbit — Kepler / Newton
 - [x] `optics` — Lenses — place lenses to focus light on a target — Galileo's telescope
-- [x] `alchemy` — Elements — combine elements to discover new ones — Jabir ibn Hayyan
+- [x] `alchemy` — Elements — real reactions on a bench: Jabir's acids and distillation (no transmutation), the reactivity series of Song China's wet copper, Lavoisier's conserved stock, Mendeleev's gaps — Jabir ibn Hayyan, Shen Kuo, Lavoisier, Mendeleev
+- [x] `chemistry` — Chemistry — balance real equations (exact atom count, smallest whole numbers) or titrate a real sample to its indicator endpoint (pH from the charge balance); replaced the recipe-ratio guessing game — Bi Sheng, Lu Yu, Magellan's limes, Lavoisier, Glauber
 - [x] `surveyor` — Triangulation — measure a distance by angles — the Great Trigonometrical Survey
 - [x] `irrigation` — Nile Basins — open sluices to water fields before the flood ebbs
 - [x] `rotation` — Crop Rotation — plan four-field rotations for best yield — Townshend

@@ -3,32 +3,40 @@ import type { MinigameProps, Difficulty } from '@/games/types'
 import { mulberry32, hashString, shuffle, pick, resolveConfig, scale, useGameOutcome, OutcomeBanner, type Rng } from './_shared'
 
 // Elements: combine two things on a bench to make a third, toward a target.
+// Every reaction on every bench is real chemistry.
 //
-// Four books, four rule systems (not just four name lists):
-//   jabir      Little-Alchemy discovery. Things you make stay on the bench
-//              for ever. A recipe scroll lists the steps, shuffled and partly
-//              smudged at higher tiers, with decoy recipes mixed in.
-//   wuxing     No recipes at all — a rule. Two things of one phase kindle the
-//              next phase; a phase fed by its mother grows a level; pairs on
-//              the overcoming cycle clash and cost two attempts.
-//   lavoisier  Conservation of mass. The bench is a limited stock: every
-//              reaction consumes its reagents, and some compounds must be
-//              heated apart to free what is locked inside them.
-//   mendeleev  The periodic table with gaps. Two elements that flank a gap
-//              (above and below, or left and right) predict it; some gaps can
-//              only be reached through other gaps.
+// Four benches, four rule systems (not just four name lists):
+//   jabir       The medieval laboratory. Combine two substances, or put one
+//               in the furnace or the alembic. What you make stays on the
+//               bench. A scroll lists the steps, shuffled and partly smudged
+//               at higher tiers, with decoy recipes mixed in.
+//   reactivity  No recipes at all, only the reactivity series. A metal pushes
+//               a less reactive one out of its salt; metals above hydrogen
+//               dissolve in dilute oil of vitriol giving hydrogen; hydrogen
+//               takes the oxygen from hot copper or lead oxide; heat drives
+//               carbon dioxide out of a carbonate. Every reaction uses up its
+//               reagents.
+//   lavoisier   Conservation of mass. The bench is a limited stock: every
+//               reaction consumes its reagents, and some compounds must be
+//               heated apart to free what is locked inside them.
+//   mendeleev   The periodic table with gaps. Two elements that flank a gap
+//               (above and below, or left and right) predict it; some gaps can
+//               only be reached through other gaps.
 //
-// Every action uses one attempt (a clash uses two). The budget is the solver's
-// shortest chain plus slack; the game is lost the moment the target can no
-// longer be reached in the attempts left (checked exactly by BFS).
+// Every action uses one attempt. The budget is the solver's shortest chain
+// plus slack; the game is lost the moment the target can no longer be
+// reached in the attempts left (checked exactly by BFS).
 //
 //   tier  chain   slack  hints  scroll                         ≈ time
 //   D1    2       +4     2      in order, all shown            ~1 min
 //   D2    3       +3     1      shuffled, 1 decoy              ~1.5 min
 //   D3    4       +3     0      shuffled, 1 decoy, ⅓ smudged   ~2 min
 //   D4    5–6     +2     0      shuffled, 2 decoys, ½ smudged  ~3 min
+//
+// Reactivity chains stop at four real steps, so that bench runs 2 / 3 / 3–4 / 4
+// with slack 4 / 3 / 2 / 1.
 
-export type Kind = 'jabir' | 'wuxing' | 'lavoisier' | 'mendeleev'
+export type Kind = 'jabir' | 'reactivity' | 'lavoisier' | 'mendeleev'
 
 interface AlchemyConfig {
   title: string
@@ -40,15 +48,15 @@ interface AlchemyConfig {
 export const CONFIGS: Record<string, AlchemyConfig> = {
   jabir: {
     title: 'Jabir’s Laboratory, Kufa',
-    intro: 'Combine two substances to discover a third. Everything you make stays on your bench. The scroll lists the steps — but at higher tiers it is shuffled, smudged and padded with false leads.',
-    fact: 'Jabir ibn Hayyan (8th century) taught that every metal is a blend of sulfur and mercury; the Jabirian corpus describes distillation, crystallisation and acids such as aqua regia.',
+    intro: 'Combine two substances, or put one in the furnace or the alembic, to make a new one. Everything you make stays on your bench. The scroll lists the steps — but at higher tiers it is shuffled, smudged and padded with false leads.',
+    fact: 'The Jabirian writings (8th–10th century) describe distillation, crystallisation and sublimation in detail. Later Latin works signed “Geber” give the first clear recipes for aqua fortis (nitric acid) and aqua regia, the mixture with sal ammoniac that dissolves gold.',
     kind: 'jabir',
   },
-  wuxing: {
-    title: 'The Five Phases, Han China',
-    intro: 'No recipe book here — only the cycle. Two things of one phase kindle the next phase. A thing fed by its mother phase grows one level. Pairs across the star clash and cost two attempts.',
-    fact: 'Wuxing — Wood, Fire, Earth, Metal, Water — was systematised by Zou Yan in the 3rd century BC; each phase generates the next and overcomes the one two steps on.',
-    kind: 'wuxing',
+  'wet-copper': {
+    title: 'Wet Copper, Song China',
+    intro: 'No recipe book here — only the reactivity series. A metal pushes a less reactive metal out of its salt. Metals above hydrogen dissolve in oil of vitriol and give off hydrogen. Hydrogen takes the oxygen from hot copper or lead oxide. Heat drives CO₂ out of a carbonate. Every reaction uses up what goes in.',
+    fact: 'Shen Kuo’s Dream Pool Essays (1088) tell of a bitter spring whose water, boiled down, gives blue vitriol (copper sulfate), and of an iron pan that turned to copper when the water was boiled in it. Iron is more reactive than copper and takes its place in the salt. Song officials made copper this way on a large scale from the 11th century.',
+    kind: 'reactivity',
   },
   lavoisier: {
     title: 'Lavoisier’s Balance, Paris 1789',
@@ -68,7 +76,7 @@ export const CONFIG_IDS = Object.keys(CONFIGS)
 
 // ── Books ─────────────────────────────────────────────────────────────────────
 
-export interface Item { id: string; name: string; icon: string; phase?: number; level?: number; weight?: number; row?: number; col?: number }
+export interface Item { id: string; name: string; icon: string; weight?: number; row?: number; col?: number }
 /** A combination (a + b) or, with no `b`, heating `a` apart. */
 export interface Recipe { a: string; b?: string; out: string[] }
 export interface Book { kind: Kind; mode: 'set' | 'stock'; items: Record<string, Item>; recipes: Recipe[]; harmful: Set<string> }
@@ -84,74 +92,80 @@ function itemsOf(list: [string, string, string][]): Record<string, Item> {
 const rx = (list: [string, string, string | string[]][]): Recipe[] =>
   list.map(([a, b, o]) => ({ a, b: b || undefined, out: Array.isArray(o) ? o : [o] }))
 
+// Real substances of the medieval laboratory, with their old names. Two
+// tools take part like reagents: the furnace (roasting, calcining) and the
+// alembic (distilling); water leaches green vitriol out of weathered
+// pyrite. There is no transmutation of metals here.
 const JABIR: Book = {
   kind: 'jabir', mode: 'set', harmful: new Set(),
   items: itemsOf([
-    ['fire', 'Fire', '🔥'], ['water', 'Water', '💧'], ['earth', 'Earth', '🟤'], ['air', 'Air', '🌬️'],
-    ['steam', 'Steam', '♨️'], ['mud', 'Mud', '🟫'], ['lava', 'Lava', '🌋'], ['cloud', 'Cloud', '☁️'],
-    ['smoke', 'Smoke', '💨'], ['dust', 'Dust', '🌫️'], ['sea', 'Sea', '🌊'], ['sun', 'Sun', '☀️'],
-    ['stone', 'Stone', '🪨'], ['brick', 'Brick', '🧱'], ['sand', 'Sand', '🏜️'], ['glass', 'Glass', '🫙'],
-    ['salt', 'Salt', '🧂'], ['sulfur', 'Sulfur', '🟡'], ['mercury', 'Mercury', '☿'], ['cinnabar', 'Cinnabar', '🔴'],
-    ['ore', 'Ore', '⛏️'], ['lead', 'Lead', '⚫'], ['tin', 'Tin', '🥫'], ['silver', 'Silver', '🥈'],
-    ['gold', 'Gold', '🥇'], ['alembic', 'Alembic', '⚗️'], ['vitriol', 'Oil of Vitriol', '🧪'], ['saltpetre', 'Saltpetre', '❄️'],
-    ['aquafortis', 'Aqua Fortis', '🟠'], ['aquaregia', 'Aqua Regia', '🟨'], ['athanor', 'Athanor', '🏺'], ['rain', 'Rain', '🌧️'],
-    ['potable', 'Potable Gold', '🏆'], ['stonephil', 'Philosophers’ Stone', '💎'], ['rainbow', 'Rainbow', '🌈'],
+    ['furnace', 'Furnace', '🔥'], ['alembic', 'Alembic', '⚗️'], ['water', 'Water', '💧'], ['pyrite', 'Pyrite', '🪨'],
+    ['wine', 'Wine', '🍷'], ['vinegar', 'Vinegar', '🫗'], ['salt', 'Common Salt', '🧂'], ['saltpetre', 'Saltpetre', '❄️'],
+    ['greenvit', 'Green Vitriol', '💚'], ['salammoniac', 'Sal Ammoniac', '🤍'], ['sulfur', 'Sulfur', '🟡'], ['mercury', 'Mercury', '☿'],
+    ['lead', 'Lead', '⚫'], ['copper', 'Copper', '🟤'], ['silver', 'Silver', '🥈'], ['gold', 'Gold', '🥇'], ['tin', 'Tin', '🥫'],
+    ['spirit', 'Spirit of Wine', '🍶'], ['strongvinegar', 'Distilled Vinegar', '🧴'], ['vitriol', 'Oil of Vitriol', '🧪'], ['colcothar', 'Colcothar', '🟥'],
+    ['aquafortis', 'Aqua Fortis', '🟠'], ['spiritsalt', 'Spirit of Salt', '💨'], ['glauber', 'Glauber’s Salt', '🧊'], ['aquaregia', 'Aqua Regia', '🟨'],
+    ['goldsol', 'Gold Dissolved', '✨'], ['purple', 'Purple of Cassius', '🟣'], ['lunar', 'Lunar Caustic', '⚪'], ['hornsilver', 'Horn Silver', '🦴'],
+    ['coppernitrate', 'Copper Nitrate', '🔷'], ['nitrous', 'Nitrous Fumes', '🟫'], ['bluevit', 'Blue Vitriol', '🔵'], ['sulfurfumes', 'Sulfur Fumes', '🌫️'],
+    ['cinnabar', 'Cinnabar', '🔴'], ['mercurycalx', 'Red Calx of Mercury', '🔺'], ['litharge', 'Litharge', '🟧'], ['sugarlead', 'Sugar of Lead', '🍬'],
+    ['verdigris', 'Verdigris', '🟩'], ['whitelead', 'White Lead', '⬜'],
   ]),
   recipes: rx([
-    ['fire', 'water', 'steam'], ['earth', 'water', 'mud'], ['fire', 'earth', 'lava'], ['air', 'water', 'cloud'],
-    ['air', 'fire', 'smoke'], ['air', 'earth', 'dust'], ['water', 'water', 'sea'], ['fire', 'fire', 'sun'],
-    ['earth', 'earth', 'stone'], ['lava', 'water', 'stone'], ['mud', 'fire', 'brick'], ['stone', 'water', 'sand'],
-    ['sand', 'fire', 'glass'], ['sea', 'sun', 'salt'], ['smoke', 'earth', 'sulfur'], ['steam', 'earth', 'mercury'],
-    ['sulfur', 'mercury', 'cinnabar'], ['stone', 'fire', 'ore'], ['ore', 'sulfur', 'lead'], ['ore', 'mercury', 'tin'],
-    ['lead', 'mercury', 'silver'], ['cinnabar', 'silver', 'gold'], ['glass', 'steam', 'alembic'], ['alembic', 'sulfur', 'vitriol'],
-    ['dust', 'salt', 'saltpetre'], ['saltpetre', 'vitriol', 'aquafortis'], ['aquafortis', 'salt', 'aquaregia'],
-    ['brick', 'fire', 'athanor'], ['cloud', 'water', 'rain'], ['aquaregia', 'gold', 'potable'], ['athanor', 'cinnabar', 'stonephil'],
-    ['rain', 'sun', 'rainbow'], ['tin', 'sulfur', 'silver'],
+    ['wine', 'alembic', 'spirit'], ['vinegar', 'alembic', 'strongvinegar'],
+    ['pyrite', 'water', 'greenvit'], ['greenvit', 'furnace', ['vitriol', 'colcothar']],
+    ['saltpetre', 'vitriol', 'aquafortis'], ['salt', 'vitriol', ['spiritsalt', 'glauber']],
+    ['aquafortis', 'salammoniac', 'aquaregia'], ['aquafortis', 'spiritsalt', 'aquaregia'],
+    ['aquaregia', 'gold', 'goldsol'], ['goldsol', 'tin', 'purple'],
+    ['aquafortis', 'silver', 'lunar'], ['lunar', 'salt', 'hornsilver'],
+    ['aquafortis', 'copper', ['coppernitrate', 'nitrous']], ['vitriol', 'copper', ['bluevit', 'sulfurfumes']],
+    ['mercury', 'sulfur', 'cinnabar'], ['cinnabar', 'furnace', ['mercury', 'sulfurfumes']], ['sulfur', 'furnace', 'sulfurfumes'],
+    ['mercury', 'furnace', 'mercurycalx'], ['lead', 'furnace', 'litharge'],
+    ['litharge', 'vinegar', 'sugarlead'], ['litharge', 'strongvinegar', 'sugarlead'],
+    ['copper', 'vinegar', 'verdigris'], ['lead', 'vinegar', 'whitelead'],
   ]),
 }
-const JABIR_BASE = ['fire', 'water', 'earth', 'air']
-const JABIR_GIFTS = ['', 'sulfur', 'mercury', 'salt', 'ore', 'glass', 'stone', 'cinnabar', 'alembic']
+const JABIR_TOOLS = ['furnace', 'alembic', 'water']
+const JABIR_RAW = ['wine', 'vinegar', 'salt', 'saltpetre', 'pyrite', 'salammoniac', 'sulfur', 'mercury', 'lead', 'copper', 'silver', 'gold', 'tin']
 
-export const PHASES = ['Wood', 'Fire', 'Earth', 'Metal', 'Water']
-const PHASE_ITEMS: [string, string][][] = [
-  [['Wood', '🪵'], ['Sapling', '🌱'], ['Bamboo', '🎋'], ['Pine', '🌲']],
-  [['Fire', '🔥'], ['Ember', '🕯️'], ['Lamp', '🪔'], ['Sun', '☀️']],
-  [['Earth', '🟤'], ['Clay', '🏺'], ['Pottery', '🍶'], ['Mountain', '⛰️']],
-  [['Metal', '⚙️'], ['Ore', '⛏️'], ['Bronze', '🥉'], ['Bell', '🔔']],
-  [['Water', '💧'], ['Dew', '💦'], ['Rain', '🌧️'], ['River', '🌊']],
-]
-export const wxId = (phase: number, level: number) => `wx${phase}${level}`
-const gen = (p: number) => (p + 1) % 5
+// The reactivity series, most reactive first. Salts that cannot form in water
+// are left out (lead sulfate is insoluble and coats the metal; tin nitrate
+// does not keep), so those displacements simply do not happen.
+export const SERIES = ['Mg', 'Zn', 'Fe', 'Sn', 'Pb', 'Cu', 'Hg']
+const METAL_NAME: Record<string, string> = { Mg: 'Magnesium', Zn: 'Zinc', Fe: 'Iron', Sn: 'Tin', Pb: 'Lead', Cu: 'Copper', Hg: 'Mercury' }
+const SULFATES = ['Mg', 'Zn', 'Fe', 'Sn', 'Cu', 'Hg']
+const NITRATES = ['Mg', 'Zn', 'Fe', 'Pb', 'Cu', 'Hg']
+/** Metals that dissolve in dilute acid (above hydrogen; lead stops at a skin of sulfate). */
+const ABOVE_H = ['Mg', 'Zn', 'Fe', 'Sn']
+const sub = (f: string) => f.replace(/\d/g, d => '₀₁₂₃₄₅₆₇₈₉'[Number(d)])
 
-function buildWuxing(): Book {
+function buildReactivity(): Book {
   const items: Record<string, Item> = {}
-  for (let p = 0; p < 5; p++) for (let l = 0; l < 4; l++) {
-    const id = wxId(p, l)
-    items[id] = { id, name: PHASE_ITEMS[p][l][0], icon: PHASE_ITEMS[p][l][1], phase: p, level: l }
-  }
+  const add = (id: string, name: string) => { items[id] = { id, name, icon: sub(id) } }
+  for (const m of SERIES) add(m, METAL_NAME[m])
+  for (const m of SULFATES) add(`${m}SO4`, `${METAL_NAME[m]} sulfate`)
+  for (const m of NITRATES) add(`${m}(NO3)2`, `${METAL_NAME[m]} nitrate`)
+  add('H2SO4', 'Oil of vitriol (dilute)'); add('H2', 'Hydrogen'); add('H2O', 'Water'); add('CO2', 'Carbon dioxide')
+  for (const m of ['Cu', 'Pb', 'Zn']) { add(`${m}O`, `${METAL_NAME[m]} oxide`); add(`${m}CO3`, `${METAL_NAME[m]} carbonate`) }
+  items.CuSO4.name = 'Blue vitriol (copper sulfate)'
   const recipes: Recipe[] = []
-  const harmful = new Set<string>()
-  const ids = Object.keys(items)
-  for (let i = 0; i < ids.length; i++) for (let j = i; j < ids.length; j++) {
-    const x = items[ids[i]], y = items[ids[j]]
-    const px = x.phase!, py = y.phase!, lx = x.level!, ly = y.level!
-    if (px === py) recipes.push({ a: x.id, b: y.id, out: [wxId(gen(px), Math.min(lx, ly))] })
-    else if (gen(px) === py || gen(py) === px) {
-      const child = gen(px) === py ? py : px
-      const lv = Math.max(lx, ly) + 1
-      if (lv <= 3) recipes.push({ a: x.id, b: y.id, out: [wxId(child, lv)] })
-    } else harmful.add(pairKey(x.id, y.id))
+  for (const [anion, metals] of [['SO4', SULFATES], ['(NO3)2', NITRATES]] as const) {
+    for (const m of metals) for (const n of metals) {
+      if (SERIES.indexOf(m) < SERIES.indexOf(n)) recipes.push({ a: m, b: `${n}${anion}`, out: [`${m}${anion}`, n] })
+    }
   }
-  return { kind: 'wuxing', mode: 'set', items, recipes, harmful }
+  for (const m of ABOVE_H) recipes.push({ a: m, b: 'H2SO4', out: [`${m}SO4`, 'H2'] })
+  for (const m of ['Cu', 'Pb']) recipes.push({ a: 'H2', b: `${m}O`, out: [m, 'H2O'] })
+  for (const m of ['Cu', 'Pb', 'Zn']) recipes.push({ a: `${m}CO3`, out: [`${m}O`, 'CO2'] })
+  return { kind: 'reactivity', mode: 'stock', items, recipes, harmful: new Set() }
 }
-const WUXING = buildWuxing()
+const REACTIVITY = buildReactivity()
 
 const LAVOISIER: Book = {
   kind: 'lavoisier', mode: 'stock', harmful: new Set(),
   items: itemsOf([
     ['h', 'Hydrogen', '🎈'], ['o', 'Oxygen', '🫧'], ['c', 'Charcoal', '⬛'], ['s', 'Sulfur', '🟡'],
     ['hg', 'Mercury', '☿'], ['fe', 'Iron', '🔩'], ['az', 'Azote', '🌀'], ['lime', 'Lime', '⚪'],
-    ['potash', 'Potash', '🧂'], ['sugar', 'Sugar', '🍬'], ['air', 'Air', '🌬️'],
+    ['potash', 'Potash', '🧂'], ['air', 'Air', '🌬️'],
     ['water', 'Water', '💧'], ['fixed', 'Fixed Air', '☁️'], ['sfume', 'Sulfur Fumes', '💨'], ['vitriol', 'Oil of Vitriol', '🧪'],
     ['hgcalx', 'Mercury Calx', '🔴'], ['fecalx', 'Iron Calx', '🟥'], ['chalk', 'Chalk', '🪨'], ['soda', 'Soda Water', '🥤'],
     ['green', 'Green Vitriol', '💚'], ['gypsum', 'Gypsum', '🤍'], ['nitrous', 'Nitrous Air', '🟠'], ['fortis', 'Aqua Fortis', '⚗️'],
@@ -159,11 +173,11 @@ const LAVOISIER: Book = {
   ]),
   recipes: rx([
     ['h', 'o', 'water'], ['c', 'o', 'fixed'], ['s', 'o', 'sfume'], ['sfume', 'water', 'vitriol'],
-    ['hg', 'o', 'hgcalx'], ['hgcalx', '', ['hg', 'o']], ['fe', 'o', 'fecalx'], ['fe', 'water', ['fecalx', 'h']],
+    ['hg', 'o', 'hgcalx'], ['hg', 'air', ['hgcalx', 'az']], ['hgcalx', '', ['hg', 'o']], ['fe', 'o', 'fecalx'], ['fe', 'water', ['fecalx', 'h']],
     ['fecalx', 'c', ['fe', 'fixed']], ['fixed', 'lime', 'chalk'], ['chalk', '', ['lime', 'fixed']], ['fixed', 'water', 'soda'],
-    ['vitriol', 'fe', ['green', 'h']], ['vitriol', 'chalk', ['gypsum', 'fixed']], ['air', '', ['o', 'az']], ['az', 'o', 'nitrous'],
-    ['nitrous', 'water', 'fortis'], ['fortis', 'potash', 'saltpetre'], ['sugar', '', ['spirit', 'fixed']], ['spirit', 'o', ['water', 'fixed']],
-    ['h', 'az', 'alkali'], ['alkali', 'fixed', 'salvol'],
+    ['vitriol', 'fe', ['green', 'h']], ['vitriol', 'chalk', ['gypsum', 'fixed']], ['az', 'o', 'nitrous'],
+    ['nitrous', 'water', 'fortis'], ['fortis', 'potash', 'saltpetre'], ['spirit', 'o', ['water', 'fixed']],
+    ['alkali', 'fixed', 'salvol'],
   ]),
 }
 
@@ -191,7 +205,7 @@ function buildTable(): Book {
 }
 const MENDELEEV = buildTable()
 
-export const BOOKS: Record<Kind, Book> = { jabir: JABIR, wuxing: WUXING, lavoisier: LAVOISIER, mendeleev: MENDELEEV }
+export const BOOKS: Record<Kind, Book> = { jabir: JABIR, reactivity: REACTIVITY, lavoisier: LAVOISIER, mendeleev: MENDELEEV }
 
 // ── Rules ─────────────────────────────────────────────────────────────────────
 
@@ -311,11 +325,14 @@ export function solve(p: Pick<Puzzle, 'book' | 'index' | 'target' | 'relevant' |
 
 export interface Tier { lo: number; hi: number; slack: number; hints: number; decoys: number; mask: number; shuffled: boolean; gaps: number }
 
-export function tierFor(d: Difficulty): Tier {
+export function tierFor(d: Difficulty, kind?: Kind): Tier {
+  // A displacement is transitive (zinc frees copper as well as iron does), so
+  // reactivity chains top out at four real steps; its D4 is tighter instead.
+  const capped = kind === 'reactivity'
   return {
-    lo: scale(d, [2, 3, 4, 5]),
-    hi: scale(d, [2, 3, 4, 6]),
-    slack: scale(d, [4, 3, 3, 2]),
+    lo: capped ? scale(d, [2, 3, 3, 4]) : scale(d, [2, 3, 4, 5]),
+    hi: capped ? scale(d, [2, 3, 4, 4]) : scale(d, [2, 3, 4, 6]),
+    slack: capped ? scale(d, [4, 3, 2, 1]) : scale(d, [4, 3, 3, 2]),
     hints: scale(d, [2, 1, 0, 0]),
     decoys: scale(d, [0, 1, 1, 2]),
     mask: scale(d, [0, 0, 0.34, 0.5]),
@@ -341,22 +358,24 @@ const toState = (ids: string[]): State => {
 function candidate(kind: Kind, tier: Tier, rng: Rng): { start: State; target: string; gaps?: string[] } | null {
   const book = BOOKS[kind]
   if (kind === 'jabir') {
-    const gift = pick(JABIR_GIFTS, rng)
-    const start = toState([...JABIR_BASE, ...(gift ? [gift] : [])])
-    const target = pick(Object.keys(book.items).filter(i => !start[i]), rng)
+    // The tools and a handful of raw materials; aim for something they can make.
+    const raws = shuffle(JABIR_RAW, rng).slice(0, 4 + Math.floor(rng() * 4))
+    const start = toState([...JABIR_TOOLS, ...raws])
+    const target = pick(Object.keys(book.items).filter(i => !start[i] && !JABIR_RAW.includes(i)), rng)
     return { start, target }
   }
-  if (kind === 'wuxing') {
-    const n = tier.lo <= 3 ? 3 : 2
-    const phases = shuffle([0, 1, 2, 3, 4], rng).slice(0, n)
-    const start = toState(phases.map(p => wxId(p, rng() < 0.5 ? 0 : 1)))
-    const target = pick(Object.keys(book.items).filter(i => !start[i]), rng)
-    return { start, target }
-  }
-  if (kind === 'lavoisier') {
-    const products = [...new Set(book.recipes.filter(r => r.b !== undefined).flatMap(r => r.out))]
-    const atoms = Object.keys(book.items).filter(i => !book.recipes.some(r => r.b !== undefined && r.out.includes(i)))
-    const target = pick(products.filter(p => !atoms.includes(p)), rng)
+  if (book.mode === 'stock') {
+    // Work backwards from the target: undo random reactions that could have
+    // made what is held, so the stock is exactly enough (plus a decoy).
+    const madeByPair = (i: string) => book.recipes.some(r => r.b !== undefined && r.out.includes(i))
+    const atoms = Object.keys(book.items).filter(i => !madeByPair(i))
+    // Reactivity aims at a particular salt: any more reactive metal could
+    // free a metal in one step, but only the right metal makes its own salt.
+    const targets = kind === 'reactivity'
+      ? Object.keys(book.items).filter(i => /^[A-Z][a-z]?(SO4|\(NO3\)2)$/.test(i))
+      : Object.keys(book.items).filter(i => madeByPair(i))
+    const decoyPool = kind === 'reactivity' ? Object.keys(book.items).filter(i => SERIES.includes(i) || /SO4$|NO3|CO3/.test(i)) : atoms
+    const target = pick(targets, rng)
     const s: State = { [target]: 1 }
     const steps = tier.lo + Math.floor(rng() * 3)
     for (let k = 0; k < steps; k++) {
@@ -371,7 +390,7 @@ function candidate(kind: Kind, tier: Tier, rng: Rng): { start: State; target: st
       pick(options, rng)()
     }
     if (s[target] > 0) return null
-    if (tier.decoys) { const d = pick(atoms, rng); s[d] = (s[d] ?? 0) + 1 }
+    if (tier.decoys) { const d = pick(decoyPool.filter(i => i !== target), rng); s[d] = (s[d] ?? 0) + 1 }
     for (const k of Object.keys(s)) if (!s[k]) delete s[k]
     return { start: s, target }
   }
@@ -432,7 +451,7 @@ function candidate(kind: Kind, tier: Tier, rng: Rng): { start: State; target: st
 }
 
 function makeScroll(f: Frame, solution: Move[], tier: Tier, rng: Rng): ScrollEntry[] {
-  if (f.book.kind === 'wuxing' || f.book.kind === 'mendeleev') return []
+  if (f.book.kind === 'reactivity' || f.book.kind === 'mendeleev') return []
   const used = new Set<Recipe>()
   const entries: ScrollEntry[] = []
   for (const m of solution) {
@@ -452,10 +471,10 @@ function makeScroll(f: Frame, solution: Move[], tier: Tier, rng: Rng): ScrollEnt
   return tier.shuffled ? shuffle(entries, rng) : entries
 }
 
-const KIND_SALT: Record<Kind, number> = { jabir: 11, wuxing: 23, lavoisier: 37, mendeleev: 51 }
+const KIND_SALT: Record<Kind, number> = { jabir: 11, reactivity: 23, lavoisier: 37, mendeleev: 51 }
 
 export function generate(kind: Kind, difficulty: Difficulty, seed: number): Puzzle {
-  const tier = tierFor(difficulty)
+  const tier = tierFor(difficulty, kind)
   const rng = mulberry32((seed ^ hashString(`alchemy:${kind}:${difficulty}`)) + KIND_SALT[kind])
   let best: { f: Frame; sol: Move[]; gaps: string[]; dist: number } | null = null
   for (let attempt = 0; attempt < 400; attempt++) {
@@ -468,9 +487,9 @@ export function generate(kind: Kind, difficulty: Difficulty, seed: number): Puzz
     if (!best || dist < best.dist) best = { f, sol, gaps: c.gaps ?? [], dist }
     if (dist === 0) break
   }
-  // The Jabir bench with nothing extra always reaches Sulfur in two.
+  // Pyrite and saltpetre always reach aqua fortis in three.
   if (!best) {
-    const f = frame(JABIR, toState(JABIR_BASE), 'sulfur')
+    const f = frame(JABIR, toState([...JABIR_TOOLS, 'pyrite', 'saltpetre']), 'aquafortis')
     best = { f, sol: solve(f, f.start)!, gaps: [], dist: 0 }
   }
   const { f, sol } = best
@@ -487,56 +506,27 @@ export function generate(kind: Kind, difficulty: Difficulty, seed: number): Puzz
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
-const PHASE_STYLE = [
-  'border-emerald-500/70 bg-emerald-500/10',
-  'border-red-500/70 bg-red-500/10',
-  'border-amber-500/70 bg-amber-500/10',
-  'border-slate-400/80 bg-slate-400/10',
-  'border-sky-500/70 bg-sky-500/10',
-]
-const PHASE_FILL = ['#10b981', '#ef4444', '#f59e0b', '#94a3b8', '#0ea5e9']
-
-function CycleDiagram() {
-  const pts = PHASES.map((_, i) => {
-    const t = -Math.PI / 2 + (i * 2 * Math.PI) / 5
-    return [60 + 42 * Math.cos(t), 56 + 42 * Math.sin(t)]
-  })
+function SeriesStrip() {
   return (
-    <svg viewBox="0 0 120 112" className="w-28 h-28 shrink-0" aria-label="the five-phase cycle">
-      <defs>
-        <marker id="wx-arrow" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="5" markerHeight="5" orient="auto">
-          <path d="M0,0 L6,3 L0,6 z" fill="currentColor" />
-        </marker>
-      </defs>
-      {pts.map(([x, y], i) => {
-        const [x2, y2] = pts[(i + 2) % 5]
-        return <line key={`o${i}`} x1={x} y1={y} x2={x2} y2={y2} stroke="#ef4444" strokeOpacity={0.45} strokeDasharray="3 3" />
-      })}
-      {pts.map(([x, y], i) => {
-        const [x2, y2] = pts[(i + 1) % 5]
-        const mx = x + (x2 - x) * 0.78, my = y + (y2 - y) * 0.78
-        const sx = x + (x2 - x) * 0.22, sy = y + (y2 - y) * 0.22
-        return <line key={`g${i}`} x1={sx} y1={sy} x2={mx} y2={my} stroke="currentColor" strokeWidth={1.5} markerEnd="url(#wx-arrow)" className="text-ink-2" />
-      })}
-      {pts.map(([x, y], i) => (
-        <g key={i}>
-          <circle cx={x} cy={y} r={11} fill={PHASE_FILL[i]} fillOpacity={0.25} stroke={PHASE_FILL[i]} />
-          <text x={x} y={y + 3} textAnchor="middle" fontSize="8" fontWeight="bold" fill="currentColor" className="text-ink">{PHASES[i]}</text>
-        </g>
-      ))}
-    </svg>
+    <div className="p-2 rounded-xl border border-line bg-panel text-[11px] text-ink-2 leading-snug" data-testid="alc-series">
+      <p className="text-[10px] uppercase tracking-wider text-muted mb-1">Reactivity series · most reactive first</p>
+      <p className="font-bold text-ink tracking-wide">Mg › Zn › Fe › Sn › Pb › <span className="text-muted">(H)</span> › Cu › Hg</p>
+      <ul className="mt-1 flex flex-col gap-0.5">
+        <li>A metal + the salt of a metal to its <b>right</b> → its own salt + that metal.</li>
+        <li>A metal left of (H) + oil of vitriol → its sulfate + hydrogen.</li>
+        <li>Hydrogen + copper or lead oxide → the metal + water. Heat a carbonate → oxide + CO₂.</li>
+      </ul>
+    </div>
   )
 }
 
 function Chip({ item, count, stock, selected, onClick, disabled }: { item: Item; count: number; stock: boolean; selected: number; onClick: () => void; disabled: boolean }) {
-  const phase = item.phase !== undefined ? PHASE_STYLE[item.phase] : 'border-line bg-panel'
   return (
     <button type="button" data-item={item.id} data-count={count} onClick={onClick} disabled={disabled}
       className={`relative min-h-11 px-2.5 py-1.5 rounded-lg border-2 text-xs font-bold text-ink flex items-center gap-1.5 active:scale-95 transition
-        ${phase} ${selected ? 'ring-2 ring-accent ring-offset-1' : ''} ${disabled ? 'opacity-40' : ''}`}>
+        border-line bg-panel ${selected ? 'ring-2 ring-accent ring-offset-1' : ''} ${disabled ? 'opacity-40' : ''}`}>
       <span className="text-base leading-none">{item.icon}</span>
       <span>{item.name}</span>
-      {item.level !== undefined && <span className="text-[9px] text-muted">{'●'.repeat(item.level + 1)}</span>}
       {stock && <span className="ml-0.5 px-1 rounded bg-paper text-[10px] tabular-nums text-ink-2">×{count}</span>}
     </button>
   )
@@ -689,16 +679,7 @@ export default function AlchemyGame({ configId, difficulty, seed, params, onWin,
 
       <p data-testid="alc-msg" className="min-h-4 text-xs text-ink-2">{hint ? `✦ Try ${hint.b === undefined ? `heating ${name(hint.a)}` : `${name(hint.a)} + ${name(hint.b)}`}` : msg}</p>
 
-      {book.kind === 'wuxing' && (
-        <div className="flex items-center gap-2 p-2 rounded-xl border border-line bg-panel text-[11px] text-ink-2 leading-snug">
-          <CycleDiagram />
-          <ul className="flex flex-col gap-1">
-            <li><b>Same phase</b> → the next phase, at the lower level.</li>
-            <li><b>Mother + child</b> (arrow) → the child, one level up (max ●●●●).</li>
-            <li className="text-red-600"><b>Across the star</b> clash: −2 attempts.</li>
-          </ul>
-        </div>
-      )}
+      {book.kind === 'reactivity' && <SeriesStrip />}
 
       {puzzle.scroll.length > 0 && (
         <div className="p-2 rounded-xl border border-line bg-paper">
