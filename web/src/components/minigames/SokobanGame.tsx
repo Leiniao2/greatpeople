@@ -1221,6 +1221,15 @@ export default function SokobanGame({ configId, difficulty, seed, params, onWin,
         </div>
       </div>
 
+      {!settled && (
+        <div className="flex items-center justify-between gap-3 w-full max-w-[420px] mx-auto">
+          <button type="button" onClick={undo} disabled={!history.length} data-testid="soko-undo"
+            className="h-8 px-3 rounded-lg border bg-panel border-line text-ink-2 text-xs font-bold disabled:opacity-40">↶ Undo</button>
+          <button type="button" onClick={restart} data-testid="soko-restart"
+            className="h-8 px-3 rounded-lg border bg-panel border-line text-ink-2 text-xs font-bold">⟲ Restart</button>
+        </div>
+      )}
+
       <div className="w-full max-w-[420px] mx-auto select-none rounded-lg overflow-hidden border-2 border-ink-2 shadow-md"
         style={{ touchAction: 'none' }} onPointerDown={onPointerDown} onPointerUp={onPointerUp}>
         <div className="grid" style={{ gridTemplateColumns: `repeat(${level.w}, 1fr)` }}>
@@ -1259,8 +1268,8 @@ export default function SokobanGame({ configId, difficulty, seed, params, onWin,
       )}
 
       {!settled && (
-        <div className="flex items-center justify-between gap-3 w-full max-w-[420px] mx-auto">
-          <div className="grid grid-cols-3 gap-1 w-[132px]">
+        <div className="flex items-center justify-center gap-4 w-full max-w-[420px] mx-auto">
+          <div className="grid grid-cols-3 gap-1 w-[150px]">
             <span />
             <PadButton label="up" onClick={() => step('U')}>▲</PadButton>
             <span />
@@ -1268,18 +1277,12 @@ export default function SokobanGame({ configId, difficulty, seed, params, onWin,
             <PadButton label="down" onClick={() => step('D')}>▼</PadButton>
             <PadButton label="right" onClick={() => step('R')}>▶</PadButton>
           </div>
-          <div className="flex flex-col gap-1.5 flex-1">
-            {variant === 'lever' && (
-              <button type="button" onClick={toggleLever} disabled={!pulls} data-testid="soko-lever" aria-pressed={armed}
-                className={`h-10 rounded-lg border text-xs font-bold disabled:opacity-40 ${armed ? 'bg-accent text-accent-fg border-accent' : 'bg-panel border-line text-ink-2'}`}>
-                {armed ? 'Lever armed — step away from a block' : `🪵 Lever (${pulls} left)`}
-              </button>
-            )}
-            <button type="button" onClick={undo} disabled={!history.length}
-              className="h-10 rounded-lg border bg-panel border-line text-ink-2 text-xs font-bold disabled:opacity-40">↶ Undo</button>
-            <button type="button" onClick={restart}
-              className="h-10 rounded-lg border bg-panel border-line text-ink-2 text-xs font-bold">⟲ Restart</button>
-          </div>
+          {variant === 'lever' && (
+            <button type="button" onClick={toggleLever} disabled={!pulls} data-testid="soko-lever" aria-pressed={armed}
+              className={`h-12 flex-1 max-w-[180px] rounded-lg border text-xs font-bold disabled:opacity-40 ${armed ? 'bg-accent text-accent-fg border-accent' : 'bg-panel border-line text-ink-2'}`}>
+              {armed ? 'Lever armed — step away from a block' : `🪵 Lever (${pulls} left)`}
+            </button>
+          )}
         </div>
       )}
       <p className="text-muted/80 text-[10px] text-center">
@@ -1294,6 +1297,6 @@ export default function SokobanGame({ configId, difficulty, seed, params, onWin,
 function PadButton({ label, onClick, children }: { label: string; onClick: () => void; children: React.ReactNode }) {
   return (
     <button type="button" aria-label={label} onClick={onClick}
-      className="h-10 rounded-lg border bg-panel border-line text-ink font-bold active:bg-accent/20">{children}</button>
+      className="h-12 rounded-lg border bg-panel border-line text-ink font-bold active:bg-accent/20">{children}</button>
   )
 }
