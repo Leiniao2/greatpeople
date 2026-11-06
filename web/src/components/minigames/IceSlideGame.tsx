@@ -1,12 +1,16 @@
-import { useState, useEffect, useCallback, useMemo } from 'react'
-import type { MinigameProps, Difficulty } from '@/games/types'
-import { scale, useGameTimer, TimerBar, mulberry32, hashString } from './_shared'
+import { useState, useEffect, useCallback, useMemo, useRef } from 'react'
+import type { MinigameProps } from '@/games/types'
+import { useGameTimer, TimerBar, storyText } from './_shared'
+import { TIERS, timeLimitFor, yardFor, analyse, parseGrid, slide, type Dir } from './iceslide/model'
 
-// Grid legend: '#'=wall '.'=ice 'S'=start 'E'=exit 'B'=blocker stone
+export { TIERS, timeLimitFor, yardFor, analyse, parseGrid, slide, slidePos, generate } from './iceslide/model'
+export type { Tier, Dir, Grid } from './iceslide/model'
+
+// A config is the story dressing of a yard: the yard itself is generated from
+// the seed and scaled by the difficulty (see iceslide/model.ts).
 interface Config {
   title: string
   question: string
-  grid: string[]
   fact: string
 }
 
@@ -14,388 +18,135 @@ export const CONFIGS: Record<string, Config> = {
   'enkidu-ice': {
     title: 'Cedar Forest Path',
     question: 'Enkidu slides through the frozen cedar forest. Reach the exit.',
-    grid: [
-      '#########',
-      '#S......#',
-      '#.#.###.#',
-      '#...B...#',
-      '#.###.#.#',
-      '#.....B.#',
-      '#.#.#...#',
-      '#......E#',
-      '#########',
-    ],
     fact: "Enkidu, raised by animals in the wild, became Gilgamesh's equal and closest companion — together they journeyed to the Cedar Forest to slay the monster Humbaba.",
   },
   'mashu-passes': {
     title: 'The Passes of Mashu',
     question: 'Gilgamesh crosses the frozen mountain passes toward Mashu, where the sun goes down. On the ice you cannot stop until a rock stops you — reach the mouth of the mountain.',
-    grid: [
-      '#########',
-      '#S......#',
-      '#.#.###.#',
-      '#...B...#',
-      '#.###.#.#',
-      '#.....B.#',
-      '#.#.#...#',
-      '#......E#',
-      '#########',
-    ],
     fact: 'Grieving for Enkidu, Gilgamesh roamed the wild in a lion skin in search of Utnapishtim, the one man the gods had made immortal. He entered the twin-peaked mountain Mashu and walked the path of the sun — twelve double-hours in utter darkness — before coming out into a garden of jewelled trees.',
   },
   'lycaeum-ice': {
     title: 'Winter on Mount Lycaeum',
     question: 'Snow has frozen the Arcadian slopes. Slide from the exile\'s house down to the precinct of Zeus — once you start, you cannot stop until a rock stops you.',
-    grid: [
-      '#########',
-      '#S......#',
-      '#.#.###.#',
-      '#...B...#',
-      '#.###.#.#',
-      '#.....B.#',
-      '#.#.#...#',
-      '#......E#',
-      '#########',
-    ],
     fact: 'Thucydides says Pleistoanax spent his exile on Mount Lycaeum in Arcadia, living in a house built half inside the sacred precinct of Zeus, so afraid was he of the Spartans.',
   },
   'pyramid-ice': {
     title: 'Pyramid Corridors',
     question: 'Slide through the icy pyramid passages to find the exit.',
-    grid: [
-      '########',
-      '#S.B...#',
-      '#.#....#',
-      '#...##.#',
-      '#B.....#',
-      '#..#.B.#',
-      '#....#.#',
-      '#.....E#',
-      '########',
-    ],
     fact: "The internal passages of the Great Pyramid were designed with deliberate complexity — angled shafts, false doors, and sealed chambers to protect the pharaoh's journey to the afterlife.",
   },
   'meiji-ice': {
     title: 'Meiji Labyrinth',
     question: 'Navigate the reformer\'s path through the maze of old and new Japan.',
-    grid: [
-      '##########',
-      '#S...B...#',
-      '#.##.###.#',
-      '#.B......#',
-      '##.#.##.##',
-      '#..B..B..#',
-      '#.###.##.#',
-      '#........#',
-      '#.##.###.#',
-      '#.......E#',
-      '##########',
-    ],
     fact: "Itō Hirobumi navigated impossible contradictions — preserving imperial tradition while importing Western law, industry, and constitutional government in the span of a single generation.",
   },
   'versailles-sleigh': {
     title: 'Sleighs on the Grand Canal',
     question: 'The Dauphine’s sleigh glides across the frozen park of Versailles. A sleigh cannot stop until it meets a bank or a statue — reach the far landing.',
-    grid: [
-      '##########',
-      '#...B...S#',
-      '#.###.##.#',
-      '#......B.#',
-      '##.##.#.##',
-      '#..B..B..#',
-      '#.##.###.#',
-      '#........#',
-      '#.###.##.#',
-      '#E.......#',
-      '##########',
-    ],
     fact: 'In the hard winter of 1776 Marie Antoinette revived the Viennese fashion for sleighing: gilded sleighs with bells and plumes ran through the park of Versailles and even the streets of Paris, where critics saw one more Austrian extravagance.',
   },
   'mulan-ice': {
     title: 'Battle on the Ice',
     question: 'Hua Mulan charges across the frozen battlefield. Reach the far end.',
-    grid: [
-      '#######',
-      '#S....#',
-      '#.##B.#',
-      '#.....#',
-      '#B.##.#',
-      '#..B..#',
-      '#.##..#',
-      '#....E#',
-      '#######',
-    ],
     fact: "Hua Mulan disguised herself as a man to take her elderly father's place in military conscription — serving for twelve years before her identity was discovered.",
   },
   'turing-ice': {
     title: 'Logic Grid',
     question: 'Navigate the ice logic puzzle — each path is determined by rules.',
-    grid: [
-      '##########',
-      '#S..B....#',
-      '#.#..###.#',
-      '#....B...#',
-      '#.##..##.#',
-      '#B.......#',
-      '#..###.#.#',
-      '#.B....B.#',
-      '#..###...#',
-      '#.......E#',
-      '##########',
-    ],
     fact: "Turing's mathematical logic treated computation as a mechanical process of following strict rules — just as ice physics forces the slider to follow deterministic paths.",
   },
   'long-march-ice': {
     title: 'The Long March',
     question: 'Lead the forces through treacherous mountain passes.',
-    grid: [
-      '#########',
-      '#S......#',
-      '#.###.#.#',
-      '#.B...B.#',
-      '#.#.###.#',
-      '#.......#',
-      '#B.#.##.#',
-      '#..B....#',
-      '#.###.#.#',
-      '#......E#',
-      '#########',
-    ],
     fact: "The Long March covered 9,000 km through mountains, swamps, and enemy territory — a strategic retreat that became the founding myth of the Chinese Communist Party.",
   },
   'knights-ice': {
     title: 'Frozen Castle',
     question: "Lancelot slides across the castle's iced-over courtyard.",
-    grid: [
-      '#######',
-      '#S..B.#',
-      '#.##..#',
-      '#.....#',
-      '#.B.#.#',
-      '#.#...#',
-      '#..B..#',
-      '#....E#',
-      '#######',
-    ],
     fact: "Medieval knights trained extensively in winter conditions — ice and mud were constant battlefield hazards that required both horse and rider to adapt their tactics.",
   },
   'cicero-ice': {
     title: 'Senate Corridors',
     question: 'Cicero must navigate the frozen senate halls to make his speech.',
-    grid: [
-      '########',
-      '#S.B...#',
-      '#.#.##.#',
-      '#..B...#',
-      '#.##.#.#',
-      '#......#',
-      '#B.##B.#',
-      '#......#',
-      '#..##..#',
-      '#.....E#',
-      '########',
-    ],
     fact: "Cicero's Catilinarian Orations required navigating the treacherous politics of the late Roman Republic — where every step in the Senate was calculated.",
   },
   'batu-ice': {
     title: 'Steppe Crossing',
     question: 'Batu Khan rides across the frozen steppe to outflank the enemy.',
-    grid: [
-      '########',
-      '#S.....#',
-      '#.#.##.#',
-      '#..B...#',
-      '#B.#...#',
-      '#..B.#.#',
-      '#.##...#',
-      '#.....E#',
-      '########',
-    ],
     fact: "Mongol cavalry could cover 100 miles per day on the frozen steppe — their speed in winter was a strategic advantage that repeatedly caught European armies off guard.",
   },
   'taira-ice': {
     title: 'Frozen Coast',
     question: 'Taira no Tadanori slides across the icy coast before battle.',
-    grid: [
-      '#######',
-      '#S....#',
-      '#..#B.#',
-      '#B....#',
-      '#.##..#',
-      '#..B..#',
-      '#....B#',
-      '#....E#',
-      '#######',
-    ],
     fact: "The Battle of Dan-no-Ura was fought on the sea — the Taira clan's final stand on the waters of the Shimonoseki Strait, where the tide itself turned against them.",
   },
 }
 
-type Dir = 'up' | 'down' | 'left' | 'right'
-
-export function parseGrid(lines: string[]) {
-  const grid = lines.map(l => l.split(''))
-  let sr = 0, sc = 0
-  for (let r = 0; r < grid.length; r++)
-    for (let c = 0; c < grid[r].length; c++)
-      if (grid[r][c] === 'S') { sr = r; sc = c }
-  return { grid, sr, sc }
+const KEYS: Record<string, Dir> = {
+  ArrowUp: 'up', w: 'up', ArrowDown: 'down', s: 'down', ArrowLeft: 'left', a: 'left', ArrowRight: 'right', d: 'right',
 }
 
-export function slidePos(grid: string[][], r: number, c: number, dir: Dir): [number, number] {
-  const dr = dir === 'up' ? -1 : dir === 'down' ? 1 : 0
-  const dc = dir === 'left' ? -1 : dir === 'right' ? 1 : 0
-  let nr = r + dr, nc = c + dc
-  while (
-    nr >= 0 && nr < grid.length &&
-    nc >= 0 && nc < grid[0].length &&
-    grid[nr][nc] !== '#' && grid[nr][nc] !== 'B'
-  ) { r = nr; c = nc; nr = r + dr; nc = c + dc }
-  return [r, c]
-}
-
-// ── Difficulty ────────────────────────────────────────────────────────────────
-//
-// Most authored yards were two slides long at every difficulty.  The fewest
-// slides to the exit now sets the tier:
-//
-//   D1  3–4 slides   no clock      D2  5–6 slides   no clock
-//   D3  7–8 slides   2:00          D4  9–11 slides  2:00
-//
-// An authored yard is used when it falls in the band; otherwise the seed lays
-// stones (and the start and exit) on the yard's own walls until the shortest
-// route does.  Every stop the player can reach can still reach the exit, so
-// no slide ever traps the player.
-
-export const BANDS: readonly { lo: number; hi: number }[] = [
-  { lo: 3, hi: 4 }, { lo: 5, hi: 6 }, { lo: 7, hi: 8 }, { lo: 9, hi: 11 },
-]
-export const timeLimitFor = (d: Difficulty) => scale(d, [0, 0, 120, 120])
-
-const DIRS: Dir[] = ['up', 'down', 'left', 'right']
-
-/** Fewest slides from the start to the exit, or -1; also -1 if some reachable stop is a trap. */
-export function analyse(lines: string[]): { optimal: number; trapFree: boolean } {
-  const { grid, sr, sc } = parseGrid(lines)
-  const key = (r: number, c: number) => r * 64 + c
-  const dist = new Map<number, number>([[key(sr, sc), 0]])
-  const edges = new Map<number, number[]>()
-  const queue: [number, number][] = [[sr, sc]]
-  let optimal = -1
-  for (let h = 0; h < queue.length; h++) {
-    const [r, c] = queue[h]
-    const k = key(r, c), out: number[] = []
-    if (grid[r][c] === 'E') { if (optimal < 0) optimal = dist.get(k)!; edges.set(k, out); continue }
-    for (const dir of DIRS) {
-      const [nr, nc] = slidePos(grid, r, c, dir)
-      const nk = key(nr, nc)
-      if (nk === k) continue
-      out.push(nk)
-      if (!dist.has(nk)) { dist.set(nk, dist.get(k)! + 1); queue.push([nr, nc]) }
-    }
-    edges.set(k, out)
-  }
-  if (optimal < 0) return { optimal: -1, trapFree: false }
-  // Every reachable stop must still reach the exit: search backwards from it.
-  const back = new Map<number, number[]>()
-  for (const [k, out] of edges) for (const nk of out) back.set(nk, [...(back.get(nk) ?? []), k])
-  const exits = [...edges.keys()].filter(k => grid[Math.floor(k / 64)][k % 64] === 'E')
-  const good = new Set(exits), stack = [...exits]
-  while (stack.length) { const k = stack.pop()!; for (const pk of back.get(k) ?? []) if (!good.has(pk)) { good.add(pk); stack.push(pk) } }
-  return { optimal, trapFree: [...edges.keys()].every(k => good.has(k)) }
-}
-
-/** The yard played at a difficulty (an authored one when it fits the band). */
-export function yardFor(configId: string, difficulty: Difficulty, seed: number): string[] {
-  const cfg = CONFIGS[configId] ?? CONFIGS['enkidu-ice']
-  const band = BANDS[difficulty - 1]
-  const fits = (lines: string[]) => { const a = analyse(lines); return a.trapFree && a.optimal >= band.lo && a.optimal <= band.hi }
-  if (fits(cfg.grid)) return cfg.grid
-  const rng = mulberry32(hashString(`ice:${configId}:${difficulty}:${seed}`))
-  const walls = cfg.grid.map(l => l.replace(/[SEB]/g, '.').split(''))
-  const ice: [number, number][] = []
-  walls.forEach((row, r) => row.forEach((ch, c) => { if (ch === '.') ice.push([r, c]) }))
-  let best: string[] | null = null, bestGap = Infinity
-  for (let attempt = 0; attempt < 400; attempt++) {
-    const g = walls.map(row => [...row])
-    const cells = [...ice]
-    for (let i = cells.length - 1; i > 0; i--) { const j = Math.floor(rng() * (i + 1)); [cells[i], cells[j]] = [cells[j], cells[i]] }
-    const stones = Math.round(ice.length * (0.12 + rng() * 0.1))
-    for (const [r, c] of cells.slice(0, stones)) g[r][c] = 'B'
-    const [sr, sc] = cells[stones]
-    g[sr][sc] = 'S'
-    // Exit: the reachable stop whose distance best fits the band.
-    const lines0 = g.map(row => row.join(''))
-    const stops = reachableStops(lines0)
-    for (const [k, d] of stops) {
-      if (d < 2 || d > band.hi + 1) continue
-      if (d < band.lo && bestGap <= band.lo - d) continue
-      const er = Math.floor(k / 64), ec = k % 64
-      const trial = g.map(row => [...row]); trial[er][ec] = 'E'
-      const lines = trial.map(row => row.join(''))
-      const a = analyse(lines)
-      if (!a.trapFree) continue
-      if (a.optimal >= band.lo && a.optimal <= band.hi) return lines
-      // A small yard may not reach the band: keep the closest, never the authored 2-slider.
-      const gap = a.optimal < band.lo ? band.lo - a.optimal : a.optimal - band.hi
-      if (gap < bestGap) { best = lines; bestGap = gap }
-    }
-  }
-  return best ?? cfg.grid
-}
-
-/** Every stop reachable from the start, with its slide distance (key r·64 + c). */
-function reachableStops(lines: string[]): Map<number, number> {
-  const { grid, sr, sc } = parseGrid(lines)
-  const dist = new Map<number, number>([[sr * 64 + sc, 0]])
-  const queue: [number, number][] = [[sr, sc]]
-  for (let h = 0; h < queue.length; h++) {
-    const [r, c] = queue[h]
-    for (const dir of DIRS) {
-      const [nr, nc] = slidePos(grid, r, c, dir)
-      const nk = nr * 64 + nc
-      if (!dist.has(nk)) { dist.set(nk, dist.get(r * 64 + c)! + 1); queue.push([nr, nc]) }
-    }
-  }
-  return dist
-}
-
-export default function IceSlideGame({ configId, difficulty, seed, onWin, onLose }: MinigameProps) {
-  const cfg = CONFIGS[configId] ?? CONFIGS['enkidu-ice']
+export default function IceSlideGame({ configId, difficulty, seed, params, onWin, onLose }: MinigameProps) {
+  const base = CONFIGS[configId] ?? CONFIGS['enkidu-ice']
+  const story = storyText(params)
+  const cfg = { title: story.title ?? base.title, question: story.intro ?? base.question, fact: story.fact ?? base.fact }
+  const tier = TIERS[difficulty]
   const yard = useMemo(() => yardFor(configId, difficulty, seed ?? 0), [configId, difficulty, seed])
   const { grid, sr, sc } = useMemo(() => parseGrid(yard), [yard])
+  const par = useMemo(() => analyse(yard).optimal, [yard])
 
-  const [pos, setPos] = useState<[number, number]>([sr, sc])
-  const [won, setWon] = useState(false)
-  // Higher difficulties put the puzzle on a clock.
-  const timer = useGameTimer({ seconds: timeLimitFor(difficulty), running: !won, onExpire: () => onLose('out of time') })
-  const [trail, setTrail] = useState<Set<string>>(new Set([`${sr},${sc}`]))
+  // One run: where the slider is, every cell it has crossed, and how it ended.
+  interface Run { pos: [number, number]; trail: Set<string>; slides: number; won: boolean; broke: string | null }
+  const fresh = useCallback((): Run => ({ pos: [sr, sc], trail: new Set([`${sr},${sc}`]), slides: 0, won: false, broke: null }), [sr, sc])
+  const [run, setRun] = useState<Run>(fresh)
+  const { pos, trail, slides, won, broke } = run
+  const over = won || broke !== null
+  const timer = useGameTimer({ seconds: timeLimitFor(difficulty), running: !over, onExpire: () => onLose('out of time') })
 
+  // A pure update: React may call it twice in development.
   const move = useCallback((dir: Dir) => {
-    if (won) return
-    setPos(([r, c]) => {
-      const [nr, nc] = slidePos(grid, r, c, dir)
-      if (nr === r && nc === c) return [r, c]
-      setTrail(t => new Set([...t, `${nr},${nc}`]))
-      if (grid[nr][nc] === 'E') { setWon(true); setTimeout(onWin, 700) }
-      return [nr, nc]
+    setRun(cur => {
+      if (cur.won || cur.broke) return cur
+      const [r, c] = cur.pos
+      const s = slide(grid, r, c, dir)
+      if (s.r === r && s.c === c) return cur
+      return {
+        pos: [s.r, s.c],
+        trail: new Set([...cur.trail, ...s.path.map(([pr, pc]) => `${pr},${pc}`)]),
+        slides: cur.slides + 1,
+        won: !s.fell && grid[s.r][s.c] === 'E',
+        broke: s.fell ? `${s.r},${s.c}` : null,
+      }
     })
-  }, [won, grid, onWin])
+  }, [grid])
 
   useEffect(() => {
-    const h = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowUp'    || e.key === 'w') { e.preventDefault(); move('up') }
-      if (e.key === 'ArrowDown'  || e.key === 's') { e.preventDefault(); move('down') }
-      if (e.key === 'ArrowLeft'  || e.key === 'a') { e.preventDefault(); move('left') }
-      if (e.key === 'ArrowRight' || e.key === 'd') { e.preventDefault(); move('right') }
-    }
+    if (won) { const t = setTimeout(onWin, 700); return () => clearTimeout(t) }
+    if (broke) { const t = setTimeout(() => onLose('fell through thin ice'), 900); return () => clearTimeout(t) }
+  }, [won, broke, onWin, onLose])
+
+  const restart = () => setRun(cur => (cur.won || cur.broke ? cur : { ...fresh(), slides: cur.slides }))
+
+  useEffect(() => {
+    const h = (e: KeyboardEvent) => { const d = KEYS[e.key]; if (d) { e.preventDefault(); move(d) } }
     window.addEventListener('keydown', h)
     return () => window.removeEventListener('keydown', h)
   }, [move])
 
+  // Swipe on the board slides in that direction.
+  const touch = useRef<[number, number] | null>(null)
+  const onTouchStart = (e: React.TouchEvent) => { touch.current = [e.touches[0].clientX, e.touches[0].clientY] }
+  const onTouchEnd = (e: React.TouchEvent) => {
+    if (!touch.current) return
+    const dx = e.changedTouches[0].clientX - touch.current[0], dy = e.changedTouches[0].clientY - touch.current[1]
+    touch.current = null
+    if (Math.max(Math.abs(dx), Math.abs(dy)) < 24) return
+    move(Math.abs(dx) > Math.abs(dy) ? (dx > 0 ? 'right' : 'left') : (dy > 0 ? 'down' : 'up'))
+  }
+
   const [row, col] = pos
   const cols = grid[0].length
-  const cellPx = Math.min(38, Math.floor(320 / cols))
+  const cellPx = Math.max(16, Math.min(30, Math.floor(344 / cols)))
 
   return (
     <div className="flex flex-col gap-3 bg-paper-2 rounded-xl p-3">
@@ -403,31 +154,40 @@ export default function IceSlideGame({ configId, difficulty, seed, onWin, onLose
       <p className="text-cyan-400/80 text-[10px] font-bold uppercase tracking-widest">{cfg.title}</p>
       <p className="text-ink text-sm font-medium leading-snug">{cfg.question}</p>
 
-      <div className="flex justify-center">
+      <div className="flex items-center justify-between text-[10px] text-muted">
+        <span>Slides <span className="text-ink font-bold">{slides}</span> · fewest {par}</span>
+        <button onClick={restart} disabled={over} className="px-2 py-1 rounded bg-panel text-ink disabled:opacity-40">↺ Back to start</button>
+      </div>
+
+      <div className="flex justify-center touch-none" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
         <div className="inline-grid border border-line rounded-lg overflow-hidden"
           style={{ gridTemplateColumns: `repeat(${cols}, ${cellPx}px)` }}>
           {grid.map((rowArr, r) => rowArr.map((cell, c) => {
+            const k = `${r},${c}`
             const isPlayer = r === row && c === col
             const isWall = cell === '#'
             const isBlock = cell === 'B'
+            const isThin = cell === 'O'
             const isExit = cell === 'E'
-            const isTrail = trail.has(`${r},${c}`) && !isPlayer && !isWall
+            const isTrail = trail.has(k) && !isPlayer && !isWall && !isThin
 
             let bg = 'bg-sky-950/60'
             if (isWall) bg = 'bg-line'
             if (isBlock) bg = 'bg-line-2'
+            if (isThin) bg = broke === k ? 'bg-sky-950' : 'bg-sky-200/20'
             if (isExit) bg = won ? 'bg-emerald-500/50' : 'bg-emerald-900/30'
             if (isTrail) bg = 'bg-cyan-900/40'
 
             return (
-              <div key={`${r},${c}`}
+              <div key={k}
                 style={{ width: cellPx, height: cellPx }}
                 className={`${bg} flex items-center justify-center`}>
                 {isBlock && <div className="w-2/3 h-2/3 rounded bg-slate-400/70" />}
+                {isThin && <span className={`text-[9px] font-bold ${broke === k ? 'text-sky-300' : 'text-sky-300/70'}`}>{broke === k ? '◌' : '✕'}</span>}
                 {isExit && <div className={`text-[9px] font-bold ${won ? 'text-emerald-300' : 'text-emerald-600'}`}>▣</div>}
                 {isTrail && <div className="w-1 h-1 rounded-full bg-cyan-500/50" />}
                 {isPlayer && (
-                  <div className={`w-3/5 h-3/5 rounded-full shadow-[0_0_6px_rgba(251,191,36,0.9)] ${won ? 'bg-emerald-400' : 'bg-accent'}`} />
+                  <div className={`w-3/5 h-3/5 rounded-full shadow-[0_0_6px_rgba(251,191,36,0.9)] ${won ? 'bg-emerald-400' : broke ? 'bg-sky-700' : 'bg-accent'}`} />
                 )}
               </div>
             )
@@ -449,7 +209,9 @@ export default function IceSlideGame({ configId, difficulty, seed, onWin, onLose
       <p className="text-muted text-[10px] text-center">
         {won
           ? <span className="text-emerald-400 font-bold">Exit reached!</span>
-          : 'Slide — you move until hitting a wall ■ or stone ▪'}
+          : broke
+            ? <span className="text-sky-300 font-bold">The thin ice gave way.</span>
+            : <>Slide — you stop only at a wall ■ or stone ▪, and only a stop on ▣ wins.{tier.holes > 0 && ' Thin ice ✕ breaks under you.'}</>}
       </p>
 
       {won && (

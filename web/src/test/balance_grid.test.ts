@@ -8,7 +8,7 @@ import type { Difficulty } from '@/games/types'
 import { generate as genSudoku, unitsOf, tierFor as sudokuTier, type Board } from '@/components/minigames/SudokuGame'
 import { CONFIG_IDS as SL_IDS, CONFIGS as SL, scrambleFor, optimalMoves, TIERS as SL_TIERS } from '@/components/minigames/SlidingPuzzle'
 import { CONFIG_IDS as KL_IDS, CONFIGS as KL, startFor, solvePath, DEPTHS, timeLimitFor as klotskiTime } from '@/components/minigames/KlotskiGame'
-import { CONFIG_IDS as ICE_IDS, CONFIGS as ICE, yardFor, analyse, BANDS } from '@/components/minigames/IceSlideGame'
+import { CONFIG_IDS as ICE_IDS, yardFor, analyse, TIERS as ICE_TIERS } from '@/components/minigames/IceSlideGame'
 import JigsawGame, { tierFor as jigsawTier } from '@/components/minigames/JigsawGame'
 import WordleGame, { CONFIGS as WORDS, tierFor as wordleTier } from '@/components/minigames/WordleGame'
 import KnightsTourGame, { CONFIGS as KT, CONFIG_IDS as KT_IDS, makeTour, nextMoves, findTour, rescueLength, undosFor, hintsFor } from '@/components/minigames/KnightsTourGame'
@@ -90,18 +90,25 @@ describe('klotski balance', () => {
 })
 
 describe('ice slide balance', () => {
-  it('every yard is trap-free and needs the tier’s number of slides', () => {
-    for (const id of ICE_IDS) for (const d of DIFFS) for (let seed = 1; seed <= 4; seed++) {
-      const a = analyse(yardFor(id, d, seed))
-      expect(a.trapFree, `${id} d${d} s${seed}`).toBe(true)
-      // The smallest yards top out at 8 slides at D4.
-      expect(a.optimal, `${id} d${d} s${seed}`).toBeGreaterThanOrEqual(d === 4 ? 8 : BANDS[d - 1].lo)
-      expect(a.optimal, `${id} d${d} s${seed}`).toBeLessThanOrEqual(BANDS[d - 1].hi)
+  it('every yard is the tier’s size, trap-free, branching, and needs the tier’s number of slides', () => {
+    for (const id of ICE_IDS) for (const d of DIFFS) for (let seed = 1; seed <= 3; seed++) {
+      const tier = ICE_TIERS[d]
+      const yard = yardFor(id, d, seed)
+      const tag = `${id} d${d} s${seed}`
+      expect(yard.length, tag).toBe(tier.rows)
+      expect(yard.every(line => line.length === tier.cols), tag).toBe(true)
+      const holes = yard.join('').split('O').length - 1
+      expect(holes, tag).toBe(tier.holes)
+      const a = analyse(yard)
+      expect(a.trapFree, tag).toBe(true)
+      expect(a.optimal, tag).toBeGreaterThanOrEqual(tier.slides[0])
+      expect(a.optimal, tag).toBeLessThanOrEqual(tier.slides[1])
+      expect(a.stops, tag).toBeGreaterThanOrEqual(tier.minBranching * a.optimal)
     }
-    // Authored yards that fit are kept, with their walls.
-    expect(yardFor('pyramid-ice', 2, 1)).toEqual(ICE['pyramid-ice'].grid)
-    const y = yardFor('enkidu-ice', 3, 1)
-    y.forEach((line, r) => [...line].forEach((ch, c) => expect(ch === '#', `${r},${c}`).toBe(ICE['enkidu-ice'].grid[r][c] === '#')))
+    // Bigger yards and longer routes as the tiers rise; the clock only from D3.
+    expect(DIFFS.map(d => ICE_TIERS[d].rows * ICE_TIERS[d].cols)).toEqual([144, 196, 225, 323])
+    expect(DIFFS.map(d => ICE_TIERS[d].slides[0])).toEqual([7, 10, 13, 16])
+    expect(DIFFS.map(d => ICE_TIERS[d].seconds > 0)).toEqual([false, false, true, true])
   })
 })
 
