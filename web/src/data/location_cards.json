@@ -416,9 +416,8 @@
       "Greece"
     ],
     "buildings": [
-      "Academy",
       "Theatre",
-      "Agora"
+      "Library"
     ],
     "capacity": 2,
     "bonuses": {
