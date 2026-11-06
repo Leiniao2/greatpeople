@@ -6,7 +6,7 @@
   "figure": "Ashurbanipal",
   "portraitKey": "ashurbanipal",
   "tagline": "He gathered the world's knowledge before the world knew it was worth keeping.",
-  "locationImage": "ancient_uruk",
+  "locationImage": "ancient_nineveh",
   "lives": 3,
   "stages": [
     {
@@ -152,7 +152,7 @@
               "hero": "ashurbanipal",
               "stat": "politics",
               "locations": [
-                "ancient_uruk",
+                "ancient_nineveh",
                 "ancient_memphis",
                 "ancient_stonehenge"
               ],

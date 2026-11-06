@@ -376,7 +376,7 @@
           "hero": "ashurbanipal",
           "stat": "politics",
           "locations": [
-            "ancient_uruk",
+            "ancient_nineveh",
             "ancient_memphis",
             "ancient_stonehenge"
           ],
@@ -675,7 +675,7 @@
           "hero": "king_telepinu",
           "stat": "belief",
           "locations": [
-            "ancient_uruk",
+            "ancient_hattusa",
             "ancient_memphis",
             "ancient_stonehenge"
           ],
@@ -2492,7 +2492,7 @@
           "hero": "al_khwarizmi",
           "stat": "intelligence",
           "locations": [
-            "renaissance_baghdad",
+            "medieval_baghdad",
             "medieval_krakow",
             "medieval_changan"
           ],
@@ -6573,7 +6573,7 @@
           "hero": "mao_zedong",
           "stat": "politics",
           "locations": [
-            "electricity_hongkong",
+            "electricity_beijing",
             "electricity_moscow",
             "electricity_london"
           ],
