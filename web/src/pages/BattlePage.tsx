@@ -3,13 +3,13 @@ import { isEmbedded, postToNative } from '@/bridge/native'
 import UiIcon, { type UiIconName } from '@/components/UiIcon'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '@/hooks/useAuth'
-import type { Card, GameState, GameSetup, EraMode, PlayerMode, MatchType } from '@/types'
+import type { Card, CpuLevel, GameState, GameSetup, EraMode, PlayerMode, MatchType } from '@/types'
 import { cardBackUrl, followerUrl } from '@/data/images'
 import PageLoader from '@/components/PageLoader'
 import EraIcon from '@/components/EraIcon'
-import { ERAS, FOLLOWER_TEMPLATES, initGame, gameReducer, type GameAction } from '@/battle/engine'
+import { ERAS, FOLLOWER_TEMPLATES, FREE_PLAY_ROUNDS, initGame, gameReducer, type GameAction } from '@/battle/engine'
 import { BattleGame } from '@/battle/BattleGame'
-import { humanWon, pickFightReward } from '@/battle/rewards'
+import { humanWon, ownedCardIds, pickFightReward, welcomeCard } from '@/battle/rewards'
 import { useStoryProgress } from '@/hooks/useStoryProgress'
 
 // The Battle tab: mode picker, lobby and the full-screen board.  The rules
@@ -34,6 +34,9 @@ function BattleLobby({ matchType, onStart, onBack }: LobbyProps) {
   const [singleEra, setSingleEra] = useState('Ancient')
   /** All-era games: the era history opens on ('random' picks one). */
   const [startEra, setStartEra] = useState('random')
+  /** Free play (the default) or real history. */
+  const [historical, setHistorical] = useState(false)
+  const [cpuLevel, setCpuLevel] = useState<CpuLevel>('normal')
   // PvP needs at least 2 humans; PvC is always 1 human vs N CPUs
   const [numHumans, setNumHumans] = useState(isPvC ? 1 : 2)
   const [numComputers, setNumComputers] = useState(1)
@@ -107,6 +110,19 @@ function BattleLobby({ matchType, onStart, onBack }: LobbyProps) {
                 {numComputers === 1 ? '1 CPU opponent' : `${numComputers} CPU opponents`} · {totalPlayers} players total
               </p>
             </div>
+            <div>
+              <p className="text-xs text-muted uppercase tracking-widest mb-2">Computer Difficulty</p>
+              <div className="grid grid-cols-3 gap-2">
+                {CPU_LEVELS.map(l => (
+                  <button key={l.key} onClick={() => setCpuLevel(l.key)}
+                    className={`py-2 rounded-xl text-sm font-semibold transition-all border
+                      ${cpuLevel === l.key ? 'bg-accent/15 border-accent/50 text-accent' : 'border-line text-muted hover:border-line-2'}`}>
+                    {l.label}
+                  </button>
+                ))}
+              </div>
+              <p className="text-[11px] text-muted mt-1.5 leading-snug">{CPU_LEVELS.find(l => l.key === cpuLevel)!.blurb}</p>
+            </div>
           </>
         ) : (
           /* PvP: 2–5 human players */
@@ -135,6 +151,16 @@ function BattleLobby({ matchType, onStart, onBack }: LobbyProps) {
 
         {/* Era Mode */}
         <div className="land:col-start-2 land:row-start-1 land:row-span-3">
+          <p className="text-xs text-muted uppercase tracking-widest mb-2">Game</p>
+          <div className="grid grid-cols-2 gap-2 mb-3">
+            {([false, true] as const).map(h => (
+              <button key={String(h)} onClick={() => setHistorical(h)}
+                className={`py-2 rounded-xl text-sm font-semibold transition-all border
+                  ${historical === h ? 'bg-accent/15 border-accent/50 text-accent' : 'border-line text-muted hover:border-line-2'}`}>
+                {h ? 'Historical' : 'Free Play'}
+              </button>
+            ))}
+          </div>
           <p className="text-xs text-muted uppercase tracking-widest mb-3">Era</p>
           <div className="grid grid-cols-2 gap-2 mb-3">
             {(['all', 'single'] as const).map(m => (
@@ -164,7 +190,8 @@ function BattleLobby({ matchType, onStart, onBack }: LobbyProps) {
             </div>
           )}
           <p className="text-[11px] text-muted mt-2 leading-snug">
-            Real history: one round is one year. You open by picking one Great Person from three; they play from their career start and die in their real year, then you choose a successor born later. Some legacies open more Great Person slots.
+            {historical ? <>Real history: one round is one year. You open by picking one Great Person from three; they play from their career start and die in their real year, then you choose a successor born later. Some legacies open more Great Person slots. You play only Great People from your collection.</>
+              : <>No dates: open with one of your own Great People, pick another of yours (up to three to choose from) when they fall, each once a game. {FREE_PLAY_ROUNDS} rounds or until someone runs out; the most legacies wins.</>}
           </p>
           {eraMode === 'single' && (
             <div className="grid grid-cols-7 gap-1.5 mt-2">
@@ -193,6 +220,8 @@ function BattleLobby({ matchType, onStart, onBack }: LobbyProps) {
               startEra: eraMode === 'all' && startEra !== 'random' ? startEra : undefined,
               playerNames: playerNames.slice(0, isPvC ? 1 : numHumans),
               numComputers: isPvC ? numComputers : 0,
+              freePlay: !historical,
+              cpuLevel: isPvC ? cpuLevel : undefined,
             })
           }}
           disabled={!canStart}
@@ -205,6 +234,12 @@ function BattleLobby({ matchType, onStart, onBack }: LobbyProps) {
     </div>
   )
 }
+
+const CPU_LEVELS: { key: CpuLevel; label: string; blurb: string }[] = [
+  { key: 'easy', label: 'Easy', blurb: 'Takes the weaker Great People and never starts a fight.' },
+  { key: 'normal', label: 'Normal', blurb: 'Takes the stronger Great People and attacks when clearly ahead.' },
+  { key: 'hard', label: 'Hard', blurb: 'Gets the strongest Great People, opens fights where it leads, attacks hidden cards and kills.' },
+]
 
 // ─── Player Colors ────────────────────────────────────────────────────────────
 
@@ -279,8 +314,21 @@ function BattleContent() {
     forceUpdate()
   }, [forceUpdate])
 
+  /** A free card given at the start of this game (see welcomeCard). */
+  const [gift, setGift] = useState<Card | null>(null)
+
   const handleStartGameFinal = useCallback((setup: GameSetup) => {
+    // Against the computer you bring your own collection (everything for the
+    // admin account); a first fight of an era with none of its cards gives one.
+    let given: Card | null = null
+    if (setup.playerMode === 'pvc' && !useAuth.getState().isAdmin) {
+      const { doc, unlock } = useStoryProgress.getState()
+      given = welcomeCard(doc.unlockedCards, setup.eraMode === 'single' ? setup.singleEra ?? null : null)
+      if (given) unlock(given.portraitKey ?? given.id)
+      setup = { ...setup, owned: ownedCardIds(useStoryProgress.getState().doc.unlockedCards) }
+    }
     gameStateRef.current = initGame(setup)
+    setGift(given)
     setReward(null)
     setPagePhase('game')
     forceUpdate()
@@ -388,7 +436,18 @@ function BattleContent() {
         gameState={gameStateRef.current}
         dispatch={dispatchWithInit}
         reward={reward}
-        onExit={() => { gameStateRef.current = null; setReward(null); setPagePhase('home') }}
+        banner={gift && (
+          <div className="fixed inset-0 z-[170] flex items-center justify-center p-4 bg-ink/70">
+            <div className="w-full max-w-xs bg-panel border border-line rounded-2xl shadow-2xl p-4 text-center">
+              <p className="text-[10px] text-accent uppercase tracking-widest font-bold">A Great Person joins you</p>
+              <img src={gift.portraitUrl} alt={gift.figureName} className="w-28 h-28 mx-auto my-3 rounded-xl object-cover object-top" />
+              <p className="text-ink font-bold">{gift.figureName}</p>
+              <p className="text-[11px] text-muted mt-1 leading-snug">You had no Great Person for this fight, so {gift.figureName} ({gift.era}) is now in your collection.</p>
+              <button onClick={() => setGift(null)} className="mt-3 w-full py-2 rounded-xl text-sm font-bold bg-accent text-accent-fg">Continue</button>
+            </div>
+          </div>
+        )}
+        onExit={() => { gameStateRef.current = null; setReward(null); setGift(null); setPagePhase('home') }}
       />
     )
   }

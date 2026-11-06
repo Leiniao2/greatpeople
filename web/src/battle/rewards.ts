@@ -37,3 +37,25 @@ export function pickFightReward(owned: readonly string[], rand: () => number = M
   if (!left.length) return null
   return left[Math.floor(rand() * left.length)]
 }
+
+const ALL_CARDS = cardsJson as unknown as Omit<Card, 'portraitUrl'>[]
+const keyOf = (c: { id: string; portraitKey?: string | null }) => c.portraitKey ?? c.id
+
+/** Card ids for a collection of portrait keys. */
+export function ownedCardIds(owned: readonly string[]): string[] {
+  const have = new Set(owned)
+  return ALL_CARDS.filter(c => have.has(keyOf(c))).map(c => c.id)
+}
+
+/**
+ * Fights bring only cards you own.  A player who owns no Great Person of the
+ * game's era (single-era game) or none at all (all-era game) gets one
+ * fight-only card of it free; null when they need none (or none is left).
+ */
+export function welcomeCard(owned: readonly string[], era: string | null, rand: () => number = Math.random): Card | null {
+  const have = new Set(owned)
+  const inGame = (c: { era: string }) => !era || c.era === era
+  if (ALL_CARDS.some(c => inGame(c) && have.has(keyOf(c)))) return null
+  const left = FIGHT_REWARD_POOL.filter(c => inGame(c) && !have.has(keyOf(c)))
+  return left.length ? left[Math.floor(rand() * left.length)] : null
+}
