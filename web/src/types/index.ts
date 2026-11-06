@@ -107,6 +107,8 @@ export interface EventCard {
   description: string
   /** 'city': the location fell into this state by itself (no player started it). */
   origin?: 'player' | 'city'
+  /** Local survival: players who have already taken the prize for surviving it. */
+  rewarded?: string[]
 }
 
 export interface OnboardCard {

@@ -2140,7 +2140,7 @@ function baseReducer(state: GameState, action: GameAction): GameState {
         const eliminated: OnboardCard[] = []
         newLocations = newLocations.map(loc => {
           if (!loc.activeEvent) return loc
-          const event = loc.activeEvent
+          let event = loc.activeEvent
           let updatedCards = [...loc.cards]
           const { gpMap, followerMap } = buildLookups({ ...state, locations: newLocations })
           const playerGroups = Array.from(new Set(updatedCards.map(c => c.playerId)))
@@ -2176,13 +2176,16 @@ function baseReducer(state: GameState, action: GameAction): GameState {
               roundEvents.push({ kind: 'survival', locId: loc.id, eventName: event.name, hazard: false, stat, threshold, before: loc.cards,
                 results: results.map(r => ({ playerId: idOf(r.playerName), total: r.total, survived: r.survived })) })
             }
-            // Surviving while a rival here is swept away wins the survival.
-            if (results.some(r => !r.survived)) {
-              for (const pid of involvedPlayers) {
-                const name = newPlayers.find(p => p.id === pid)?.name
-                if (results.find(r => r.playerName === name)?.survived) roundRewards.push({ playerId: pid, size: 1, reason: `won the survival at ${loc.name}` })
-              }
+            // Surviving is winning: every player who comes through takes the
+            // prize, once per survival however many years it lasts.
+            const rewarded = new Set(event.rewarded ?? [])
+            for (const pid of involvedPlayers) {
+              const name = newPlayers.find(p => p.id === pid)?.name
+              if (rewarded.has(pid) || !results.find(r => r.playerName === name)?.survived) continue
+              roundRewards.push({ playerId: pid, size: 1, reason: `won the survival at ${loc.name}` })
+              rewarded.add(pid)
             }
+            event = { ...event, rewarded: [...rewarded] }
           }
 
           if (event.type === 'natural_hazard' && involvedPlayers.length > 0) {

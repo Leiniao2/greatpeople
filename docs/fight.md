@@ -86,7 +86,7 @@ The Scenario card will keep working until it is replaced by another event or som
 
 ## 6. Getting new Great People card
 
-New Great People only arrive as successors (§9). When a Great Person dies, the player chooses a successor born later than the current year. A slot legacy founds a new lineage the same way. Contests pay in cards, not people: winning a fight in a Local Event (attacking or defending) or a Local Survival (surviving while a rival there is swept away) earns 2 Followers or 1 Event card, and the Global Competition doubles it to 4 Followers or 2 Event cards. Each new year has a 5% chance that a global competition breaks out by itself.
+New Great People only arrive as successors (§9). When a Great Person dies, the player chooses a successor born later than the current year. A slot legacy founds a new lineage the same way. Contests pay in cards, not people: winning a fight in a Local Event (attacking or defending) or a Local Survival (every player who survives it wins, once per survival) earns 2 Followers or 1 Event card, and the Global Competition doubles it to 4 Followers or 2 Event cards. Each new year has a 5% chance that a global competition breaks out by itself.
 Claiming a legacy no longer brings a new Great People card (the Epic fight lessons, which are not on the timeline, keep the old rule of drawing one).
 
 ## 7. Turn Order

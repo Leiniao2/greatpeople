@@ -487,9 +487,9 @@
     "id": "acq-contest-prizes",
     "category": "Acquisition",
     "title": "Contest prizes",
-    "docText": "Winning a fight in a Local Event, attacking or defending, or surviving a Local Survival while a rival there is swept away, earns a prize: 2 Followers or 1 Event card. The Global Competition doubles it. Each new year has a 5% chance that a global competition breaks out by itself; it is decided at the end of that year.",
+    "docText": "Winning a fight in a Local Event, attacking or defending, or surviving a Local Survival (every player who comes through wins it, once per survival), earns a prize: 2 Followers or 1 Event card. The Global Competition doubles it. Each new year has a 5% chance that a global competition breaks out by itself; it is decided at the end of that year.",
     "docSource": "user request 2026-11-04",
-    "codeBehaviour": "grantReward queues { playerId, size, reason } in pendingRewards from ATTACK (winner), END_TURN survival resolution (survivors when someone failed) and the competition (size 2); takeReward serves CHOOSE_REWARD; settle resolves computer prizes. END_TURN rolls GLOBAL_COMPETITION_CHANCE = 0.05 per new year (timeline, hazards on) for a random-stat competition.",
+    "codeBehaviour": "grantReward queues { playerId, size, reason } in pendingRewards from ATTACK (winner), END_TURN survival resolution (every survivor, once per survival via EventCard.rewarded) and the competition (size 2); takeReward serves CHOOSE_REWARD; settle resolves computer prizes. END_TURN rolls GLOBAL_COMPETITION_CHANCE = 0.05 per new year (timeline, hazards on) for a random-stat competition.",
     "codeSource": "web/src/battle/engine.ts grantReward, takeReward, END_TURN",
     "status": "implemented",
     "notes": ""
