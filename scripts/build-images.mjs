@@ -53,6 +53,8 @@ const FOLDERS = {
   symbols:      { width: 600, mobile: false },
   // Minigame art (web/src/games/art.ts); web only.
   games:        { width: 1024, mobile: false },
+  // Classify item cards (web/src/games/classifyArt.ts); shown small, web only.
+  classify:     { width: 480, mobile: false },
   // Museum exhibits (web/src/components/minigames/museum/catalogue.ts), cropped square; web only.
   exhibits:     { width: 480, mobile: false, square: true },
   // Distinguish look-alikes (web/src/components/minigames/distinguish/pairs.ts); web only.

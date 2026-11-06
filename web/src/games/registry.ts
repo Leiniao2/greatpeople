@@ -142,6 +142,11 @@ export const GAMES = {
   xiangqi:      def('Xiangqi Mates'     , 'Strategy', () => import('@/components/minigames/XiangqiGame'), true),
   castrum:      def('Roman Camp'        , 'Puzzle'  , () => import('@/components/minigames/CastrumGame'), true),
   shipyard:     def('Shipyard'          , 'Puzzle'  , () => import('@/components/minigames/ShipyardGame'), true),
+  // ── Wave 5: owner's picks
+  golddig:      def('Gold Dig'          , 'Puzzle'  , () => import('@/components/minigames/GoldDigGame'), true),
+  detective:    def('Detective'         , 'Story'   , () => import('@/components/minigames/DetectiveGame'), true),
+  climb:        def('Summit Climb'      , 'Explore' , () => import('@/components/minigames/ClimbGame'), true),
+  pingpong:     def('Ping-Pong'         , 'Explore' , () => import('@/components/minigames/PingPongGame'), true),
 } satisfies Record<string, GameDef>
 
 export type GameKey = keyof typeof GAMES
