@@ -47,8 +47,8 @@
           "challenge": {
             "type": "minigame",
             "game": "chemistry",
-            "configId": "bi-sheng-plate",
-            "instruction": "Two plates double the speed: while one prints, the other is set. Mix the resin, wax and paper ash that will hold the type on the second plate.",
+            "configId": "clay-type",
+            "instruction": "Fire turns soft clay into type that will not soften again. Balance the reactions of Bi Sheng’s kiln and plate: the same atoms must leave as went in.",
             "fact": "Despite its ingenuity, Bi Sheng's clay type did not replace woodblock printing, which remained dominant in China for centuries. Chinese has tens of thousands of characters, making movable type logistically complex — a single print job might require thousands of individual pieces. Woodblock printing remained faster for short texts. Movable type proved more revolutionary in alphabetic languages like Korean and later European languages."
           }
         }
@@ -122,14 +122,9 @@
           "challenge": {
             "type": "minigame",
             "game": "alchemy",
-            "configId": "wuxing",
-            "params": {
-              "title": "The Five Phases of the Type",
-              "intro": "Earth, fire, wood and metal made Bi Sheng’s type. No recipe book here — only the cycle. Two things of one phase kindle the next phase. A thing fed by its mother phase grows one level. Pairs across the star clash and cost two attempts.",
-              "fact": "Song scholars described the world through the Five Phases — Wood, Fire, Earth, Metal, Water — each generating the next. Bi Sheng’s type drew on them all: clay of the earth, hardened by fire, held on an iron plate in pine resin, and inked for printing."
-            },
+            "configId": "wet-copper",
             "seed": 52183,
-            "instruction": "The oldest writing material became a printing tool. Work the Five Phases to reach the target, as clay and fire became Bi Sheng’s type.",
+            "instruction": "Shen Kuo, who recorded Bi Sheng’s type, also recorded a spring that turned iron pans to copper. Use the reactivity series to make the salt you are asked for.",
             "fact": "Writing had been recorded on clay tablets since Mesopotamia in 3500 BCE. Bi Sheng's great insight was that clay — the oldest writing substrate in human history — could itself become the tool for mass reproduction of text. He connected the ancient world of clay and the modern world of print in a single creative act."
           }
         },

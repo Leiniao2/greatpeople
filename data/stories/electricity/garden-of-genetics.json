@@ -28,10 +28,10 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "chemistry",
-            "configId": "mendel-cross",
+            "game": "punnett",
+            "configId": "mendel-peas",
             "seed": 92214,
-            "instruction": "Cross two round-seeded hybrids and the wrinkled seeds come back. Mix round and wrinkled in the proportion Mendel counted in the next generation.",
+            "instruction": "Cross two round-seeded hybrids and the wrinkled seeds come back. Breed the peas and find the proportion Mendel counted in the next generation.",
             "fact": "Mendel chose pea plants (Pisum sativum) with extraordinary care. They had clearly distinguishable traits — smooth or wrinkled seeds, yellow or green pods, tall or short stems — that produced consistent, countable offspring. Over eight years, he tracked 29,000 plants and applied mathematics to biology for the first time."
           }
         }

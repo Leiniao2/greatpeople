@@ -28,15 +28,10 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "alchemy",
-            "configId": "wuxing",
-            "params": {
-              "title": "Lu Yu’s Brazier",
-              "intro": "Lu Yu’s brazier held wind, fire and water in balance. No recipe book here — only the cycle. Two things of one phase kindle the next phase. A thing fed by its mother phase grows one level. Pairs across the star clash and cost two attempts.",
-              "fact": "In the Classic of Tea Lu Yu describes his cast-metal brazier: its windows bore the trigrams for wind, fire and water, because wind kindles fire and fire boils water, and one leg carried the words “its body balances the Five Phases and drives off a hundred ills”."
-            },
+            "game": "chemistry",
+            "configId": "brazier",
             "seed": 89213,
-            "instruction": "Water, flame and vessel must agree before the tea is made. Work the Five Phases as Lu Yu’s brazier did: wind kindles fire, and fire boils water.",
+            "instruction": "Lu Yu burned only charcoal, and gave his brazier three vents to draw the wind. Balance the reactions of the fire: every atom of carbon and oxygen that goes in must come out again.",
             "fact": "Lu Yu's Cha Jing (Classic of Tea, c. 760 CE) has 10 chapters covering tea's origins, tools for processing, making, drinking, and the history of tea. It transformed tea from a medicinal herb into a cultural art form."
           }
         }
@@ -79,8 +74,8 @@
           "challenge": {
             "type": "minigame",
             "game": "chemistry",
-            "configId": "tea-blend",
-            "instruction": "Lu Yu measured every cup. Combine the ingredients in the proportions shown, and leave out what belongs under the kettle, not in the bowl.",
+            "configId": "spring-water",
+            "instruction": "Lu Yu ranked mountain springs above rivers and wells. Test a spring as water chemists do: titrate its dissolved bicarbonate with dilute acid and stop exactly at the endpoint.",
             "fact": "Lu Yu says to season the water with a little salt at the first boil, to add the powdered tea at the second, and that one sheng of water makes five bowls. Too much water, he warns, and the flavour turns thin."
           }
         }

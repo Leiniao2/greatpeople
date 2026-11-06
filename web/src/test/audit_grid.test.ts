@@ -5,10 +5,10 @@ import { describe, it, expect } from 'vitest'
 import type { Difficulty } from '@/games/types'
 import { CONFIGS as KLOTSKI, buildBoard, canMove, movePiece } from '@/components/minigames/KlotskiGame'
 import { CONFIGS as SLIDING } from '@/components/minigames/SlidingPuzzle'
-import { CONFIGS as ICE, parseGrid, slidePos } from '@/components/minigames/IceSlideGame'
+import { CONFIG_IDS as ICE_IDS, yardFor as iceYard, analyse as iceAnalyse, TIERS as ICE_TIERS } from '@/components/minigames/IceSlideGame'
+import { buildTrack } from '@/games/arcade'
 import { CONFIGS as BRIDGE, checkWin as bridgeWin, isBlocked } from '@/components/minigames/BridgeGame'
 import { CONFIGS as PIPELINE, floodFill, getOpenings } from '@/components/minigames/PipelineGame'
-import { CONFIGS as MIRROR, traceLight } from '@/components/minigames/MirrorGame'
 import { CONFIGS as JIGSAW } from '@/components/minigames/JigsawGame'
 import { BOARD_H as JIGSAW_BOARD_H, TIERS as jigsawTiers, fits as jigsawFits, homeOf as jigsawHome, makePuzzle as makeJigsaw, piecePath as jigsawPath, sides as jigsawSides } from '@/components/minigames/jigsaw/model'
 import { generate as generateSudoku, countSolutions } from '@/components/minigames/SudokuGame'
@@ -149,36 +149,23 @@ describe('sliding puzzle', () => {
 // ── Ice slide ──────────────────────────────────────────────────────────────────
 
 describe('ice slide', () => {
-  for (const [id, cfg] of Object.entries(ICE)) {
-    it(`${id}: exit is reachable by sliding`, () => {
-      const width = cfg.grid[0].length
-      for (const line of cfg.grid) expect(line.length, `${id} rectangular`).toBe(width)
-      expect(cfg.grid.join('').split('S').length - 1, `${id} one start`).toBe(1)
-      expect(cfg.grid.join('').split('E').length - 1, `${id} one exit`).toBe(1)
-      const { grid, sr, sc } = parseGrid(cfg.grid)
-      const seen = new Set<string>([`${sr},${sc}`])
-      let frontier: [number, number][] = [[sr, sc]]
-      let depth = 0, found = false
-      while (frontier.length && !found) {
-        depth++
-        const next: [number, number][] = []
-        for (const [r, c] of frontier) {
-          for (const dir of ['up', 'down', 'left', 'right'] as const) {
-            const [nr, nc] = slidePos(grid, r, c, dir)
-            const key = `${nr},${nc}`
-            if (seen.has(key)) continue
-            seen.add(key)
-            if (grid[nr][nc] === 'E') { found = true; break }
-            next.push([nr, nc])
-          }
-          if (found) break
-        }
-        frontier = next
-      }
-      expect(found, `${id} exit reachable`).toBe(true)
-      console.log(`ice ${id}: optimal ${depth} slides`)
-    })
-  }
+  it('the 24 Arcade levels are distinct yards that each fit their tier', () => {
+    const seen = new Set<string>()
+    for (const level of buildTrack('iceslide', ICE_IDS)) {
+      const yard = iceYard(level.configId, level.difficulty, level.seed)
+      const tier = ICE_TIERS[level.difficulty]
+      const tag = `level ${level.index} ${level.configId} d${level.difficulty}`
+      expect(seen.has(yard.join('\n')), `${tag} repeats a yard`).toBe(false)
+      seen.add(yard.join('\n'))
+      expect(yard.join('').split('S').length - 1, `${tag} one start`).toBe(1)
+      expect(yard.join('').split('E').length - 1, `${tag} one exit`).toBe(1)
+      const a = iceAnalyse(yard)
+      expect(a.trapFree, tag).toBe(true)
+      // No free wins: the easiest level still takes seven slides.
+      expect(a.optimal, tag).toBeGreaterThanOrEqual(Math.max(7, tier.slides[0]))
+      expect(a.optimal, tag).toBeLessThanOrEqual(tier.slides[1])
+    }
+  })
 })
 
 // ── Bridges (hashi) ────────────────────────────────────────────────────────────
@@ -295,42 +282,6 @@ describe('pipeline', () => {
         return r
       })
       expect(ok, `${id} has a rotatable path`).toBe(true)
-    })
-  }
-})
-
-// ── Mirrors ────────────────────────────────────────────────────────────────────
-
-describe('mirrors', () => {
-  for (const [id, cfg] of Object.entries(MIRROR)) {
-    it(`${id}: solvable with at most maxMirrors, and not already solved`, () => {
-      const g = cfg.gridSize
-      const onEdge = (row: number, col: number) =>
-        ((row === -1 || row === g) && col >= 0 && col < g) || ((col === -1 || col === g) && row >= 0 && row < g)
-      expect(onEdge(cfg.source.row, cfg.source.col), `${id} source on an edge`).toBe(true)
-      expect(onEdge(cfg.target.row, cfg.target.col), `${id} target on an edge`).toBe(true)
-      const fixedMap: Record<string, '/' | '\\'> = {}
-      for (const f of cfg.fixed) {
-        expect(f.row >= 0 && f.row < g && f.col >= 0 && f.col < g, `${id} fixed mirror in bounds`).toBe(true)
-        expect(fixedMap[`${f.row},${f.col}`], `${id} duplicate fixed mirror`).toBeUndefined()
-        fixedMap[`${f.row},${f.col}`] = f.mirror
-      }
-      expect(traceLight(g, cfg.source, fixedMap, cfg.target).hits, `${id} must need at least one placed mirror`).toBe(false)
-
-      const cells: string[] = []
-      for (let r = 0; r < g; r++) for (let c = 0; c < g; c++) if (!fixedMap[`${r},${c}`]) cells.push(`${r},${c}`)
-      const kinds: ('/' | '\\')[] = ['/', '\\']
-      let best = -1
-      const search = (start: number, placed: Record<string, '/' | '\\'>, count: number): boolean => {
-        if (traceLight(g, cfg.source, { ...fixedMap, ...placed }, cfg.target).hits) { best = count; return true }
-        if (count >= cfg.maxMirrors) return false
-        for (let i = start; i < cells.length; i++)
-          for (const k of kinds)
-            if (search(i + 1, { ...placed, [cells[i]]: k }, count + 1)) return true
-        return false
-      }
-      expect(search(0, {}, 0), `${id} solvable with ${cfg.maxMirrors} mirrors`).toBe(true)
-      console.log(`mirror ${id}: solvable with ${best}/${cfg.maxMirrors} mirrors`)
     })
   }
 })

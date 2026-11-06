@@ -6,7 +6,7 @@ import { createElement } from 'react'
 import { render, cleanup, fireEvent, act as rtlAct, screen } from '@testing-library/react'
 import { describe, it, expect, afterEach, vi } from 'vitest'
 import AlchemyGame, {
-  CONFIGS, CONFIG_IDS, BOOKS, generate, solve, act, isWon, tierFor, wxId, pairKey, relevantFor,
+  CONFIGS, CONFIG_IDS, BOOKS, generate, solve, act, isWon, tierFor, relevantFor,
   type Puzzle, type State,
 } from '@/components/minigames/AlchemyGame'
 import type { Difficulty } from '@/games/types'
@@ -38,15 +38,30 @@ describe('alchemy books and rules', () => {
     }
   })
 
-  it('wuxing: same phase kindles the next, mother feeds child, overcoming clashes', () => {
-    const p = { book: BOOKS.wuxing, index: generate('wuxing', 1, 1).index }
-    const s: State = { [wxId(0, 1)]: 1, [wxId(1, 0)]: 1, [wxId(2, 2)]: 1 }
-    expect(act(p, s, wxId(0, 1), wxId(0, 1)).out).toEqual([wxId(1, 1)])
-    expect(act(p, s, wxId(0, 1), wxId(1, 0)).out).toEqual([wxId(1, 2)])
-    const clash = act(p, s, wxId(0, 1), wxId(2, 2))
-    expect(clash.kind).toBe('harmful')
-    expect(clash.cost).toBe(2)
-    expect(BOOKS.wuxing.harmful.has(pairKey(wxId(3, 0), wxId(0, 3)))).toBe(true)
+  it('reactivity: a metal displaces only a less reactive one; acid and hydrogen follow the series', () => {
+    const p = { book: BOOKS.reactivity, index: generate('reactivity', 1, 1).index }
+    // Shen Kuo's wet copper: iron in blue vitriol.
+    const wet = act(p, { Fe: 1, CuSO4: 1 }, 'Fe', 'CuSO4')
+    expect(wet.kind).toBe('new')
+    expect(wet.state).toMatchObject({ Fe: 0, CuSO4: 0, FeSO4: 1, Cu: 1 })
+    // Copper cannot push iron out.
+    expect(act(p, { Cu: 1, FeSO4: 1 }, 'Cu', 'FeSO4').kind).toBe('fail')
+    // Lead sulfate is insoluble, so lead does not displace copper from its sulfate.
+    expect(act(p, { Pb: 1, CuSO4: 1 }, 'Pb', 'CuSO4').kind).toBe('fail')
+    expect(act(p, { Zn: 1, H2SO4: 1 }, 'Zn', 'H2SO4').out).toEqual(['ZnSO4', 'H2'])
+    expect(act(p, { Cu: 1, H2SO4: 1 }, 'Cu', 'H2SO4').kind).toBe('fail')
+    expect(act(p, { H2: 1, CuO: 1 }, 'H2', 'CuO').out).toEqual(['Cu', 'H2O'])
+    expect(act(p, { H2: 1, ZnO: 1 }, 'H2', 'ZnO').kind).toBe('fail')
+    expect(act(p, { CuCO3: 1 }, 'CuCO3').out).toEqual(['CuO', 'CO2'])
+  })
+
+  it('jabir: no transmutation; metals are never made from other substances', () => {
+    const metals = ['lead', 'copper', 'silver', 'gold', 'tin']
+    for (const r of BOOKS.jabir.recipes) {
+      for (const m of metals) expect(r.out, `${r.a}+${r.b}`).not.toContain(m)
+    }
+    // Mercury only comes back out of its own ore.
+    expect(BOOKS.jabir.recipes.filter(r => r.out.includes('mercury')).every(r => [r.a, r.b].includes('cinnabar'))).toBe(true)
   })
 
   it('lavoisier: reactions consume stock and heating splits a calx', () => {
@@ -73,7 +88,7 @@ describe('alchemy books and rules', () => {
   it('every config × difficulty × seed is winnable within its band and budget', () => {
     let worst = 0
     for (const id of CONFIG_IDS) for (const d of DIFFS) {
-      const t = tierFor(d)
+      const t = tierFor(d, CONFIGS[id].kind)
       const targets = new Set<string>()
       let inBand = 0
       for (const seed of SEEDS) {
@@ -114,7 +129,7 @@ describe('alchemy books and rules', () => {
       expect(needed.length).toBe(new Set(p.solution.map(m => `${m.a}|${m.b}`)).size)
       if (d === 1) expect(p.scroll.every(e => !e.mask && !e.decoy)).toBe(true)
     }
-    expect(relevantFor(BOOKS.jabir, 'gold').has('sulfur')).toBe(true)
+    expect(relevantFor(BOOKS.jabir, 'purple').has('gold')).toBe(true)
   })
 })
 
