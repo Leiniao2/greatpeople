@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type { Difficulty, MinigameProps } from '@/games/types'
 import { hashString, mulberry32, resolveConfig, scale, useGameOutcome, OutcomeBanner } from './_shared'
 
-// Coin Mint: a 2048-style sliding merge.  Every swipe slides all the coins on
+// 2048 (game key `mint`): a sliding merge.  Every swipe slides all the coins on
 // the tray as far as they go; two equal coins that meet are struck into one
 // coin of the next denomination.  The ladder climbs through the history of a
 // currency, and the challenge is won by minting the target coin.  It is lost
@@ -34,8 +34,6 @@ export interface MintConfig {
   fact: string
   /** Denomination names, tier 1 (the "2") upwards. */
   coins: string[]
-  /** Metal hues per tier band, light → dark. */
-  palette?: 'mediterranean' | 'china' | 'britain'
   /** The rule twist this config plays. */
   twist: MintTwist
   /** One line explaining the twist. */
@@ -50,7 +48,6 @@ export const CONFIGS: Record<string, MintConfig> = {
     intro: 'Strike electrum nuggets into staters, drachmae and denarii.',
     fact: 'The kingdom of Lydia struck the first known coins, of electrum, in the late 7th century BCE. The “Lydian stone”, a black touchstone, let merchants test gold by the streak it left.',
     coins: ['Electrum', 'Hekte', 'Stater', 'Croesid', 'Daric', 'Obol', 'Drachma', 'Tetradrachm', 'Denarius', 'Solidus', 'Hyperpyron', 'Florin'],
-    palette: 'mediterranean',
     twist: 'wild',
     twistText: 'Touchstones: a black Lydian touchstone merges with any coin and lifts it one tier — but two touchstones will not merge. Save them for the coin that needs them.',
     special: 'Touchstone',
@@ -60,7 +57,6 @@ export const CONFIGS: Record<string, MintConfig> = {
     intro: 'Merge cowrie shells into spade and knife money, then cash coins and paper jiaozi.',
     fact: 'Shells served as money in Shang China; the round Ban Liang of Qin Shi Huang set the square-holed shape for two thousand years. Forgers were such a problem that Han law punished private minting with death.',
     coins: ['Cowrie', 'Bronze cowrie', 'Spade money', 'Knife money', 'Ban liang', 'Wu zhu', 'Kaiyuan', 'Jiaozi', 'Silver tael', 'Gold ingot', 'Sycee', 'Dragon dollar'],
-    palette: 'china',
     twist: 'lead',
     twistText: 'Counterfeits: iron forgeries turn up in the tray. They never merge with real coins — slide two forgeries together and they melt away.',
     special: 'Forgery',
@@ -70,7 +66,6 @@ export const CONFIGS: Record<string, MintConfig> = {
     intro: 'Strike farthings and pennies into shillings, crowns and pounds.',
     fact: 'The first gold sovereign was struck for Henry VII in 1489; the modern sovereign of 1817, with Pistrucci’s St George, is still minted today.',
     coins: ['Farthing', 'Halfpenny', 'Penny', 'Groat', 'Shilling', 'Florin', 'Half crown', 'Crown', 'Pound', 'Sovereign', 'Five pounds', 'Britannia'],
-    palette: 'britain',
     twist: 'blocked',
     twistText: 'Broken dies: cracked dies block squares of the tray for good. Coins stop against them, and you must build your chain around them.',
     special: 'Broken die',
@@ -80,7 +75,6 @@ export const CONFIGS: Record<string, MintConfig> = {
     intro: 'Strike bronze quadrantes and asses into silver denarii and the gold aureus.',
     fact: 'Rome’s mint stood beside the temple of Juno Moneta on the Capitoline Hill — the origin of the words “money” and “mint”.',
     coins: ['Quadrans', 'Semis', 'As', 'Dupondius', 'Sestertius', 'Quinarius', 'Denarius', 'Antoninianus', 'Aureus', 'Solidus', 'Medallion', 'Talent'],
-    palette: 'mediterranean',
     twist: 'tilt',
     twistText: 'Tilted tray: the tray leans toward you, so coins can be swiped left, right and down — never up. Keep your big coins on the bottom row.',
   },
@@ -89,7 +83,6 @@ export const CONFIGS: Record<string, MintConfig> = {
     intro: 'Measure out a remedy: pour small parts of the hekat together, doubling each time, until the dose the patient needs is ready.',
     fact: 'Egyptian scribes split the hekat, the measure for grain, by halving: ½, ¼, ⅛ and on down to 1/64, each written with its own sign — signs long linked to the Eye of Horus. Prescriptions in the medical papyri give their ingredients as fractions of a measure in just this way.',
     coins: ['1/64 hekat', '1/32 hekat', '1/16 hekat', '⅛ hekat', '¼ hekat', '½ hekat', 'Hekat', 'Double hekat', 'Four hekat', 'Eight hekat', 'Khar sack', 'Temple store'],
-    palette: 'mediterranean',
     twist: 'tilt',
     twistText: 'Tilted bench: the dispensary bench leans toward you, so measures can be swiped left, right and down — never up. Keep the large measures on the bottom row.',
   },
@@ -98,7 +91,6 @@ export const CONFIGS: Record<string, MintConfig> = {
     intro: 'The law sets every penalty in weighed silver. Join the small weights into shekels, and the shekels into ever larger sums, until the fine is paid in full.',
     fact: 'The Hittites had no coins: payments were weighed out in silver by the shekel and the mina. The Hittite Laws set compensation in silver for most offences rather than blood for blood, and the Edict of Telepinu rules that a prince who kills pays with his own head — but his house and his children are not to be harmed.',
     coins: ['⅛ shekel', '¼ shekel', '½ shekel', 'Shekel', '2 shekels', '4 shekels', '8 shekels', '16 shekels', '32 shekels', '64 shekels', 'Silver bar', 'Royal treasury'],
-    palette: 'britain',
     twist: 'blocked',
     twistText: 'Cracked weights: false weights are found on the scale and taken off it for good. Weights stop against them, and you must build your sum around them.',
     special: 'Cracked weight',
@@ -389,11 +381,23 @@ export const tilesToGrid = (tiles: readonly Tile[], n: number, walls: readonly n
 
 // ── Component ───────────────────────────────────────────────────────────────
 
-const BANDS: Record<NonNullable<MintConfig['palette']>, [string, string][]> = {
-  mediterranean: [['#f3e3a8', '#b8963a'], ['#e3d38e', '#a5832a'], ['#d9c27a', '#93701f'], ['#cfd6db', '#7d8a93'], ['#bfc7cd', '#6c7880'], ['#e8e8ea', '#8d8f96'], ['#dfe3e6', '#7b848b'], ['#c9ced2', '#646d74'], ['#d5d9dc', '#5c656c'], ['#ffd65a', '#b07d00'], ['#ffcf40', '#9b6a00'], ['#ffe08a', '#a77800']],
-  china: [['#f6efe3', '#c2ae8c'], ['#e9c79a', '#9c6b33'], ['#cf9a63', '#7c4a1f'], ['#c38a55', '#6e3f17'], ['#b9844e', '#5f3613'], ['#b07a45', '#55300f'], ['#a8723f', '#4c2a0c'], ['#f1e4c2', '#a68f5c'], ['#e6e7ea', '#878a92'], ['#ffd65a', '#b07d00'], ['#ffcf40', '#9b6a00'], ['#ffe08a', '#a77800']],
-  britain: [['#d8a27a', '#8a4f28'], ['#cf9468', '#7d431f'], ['#c7875a', '#713a18'], ['#e6e7ea', '#8b8e95'], ['#dcdee2', '#7d8088'], ['#d2d5d9', '#70747c'], ['#c8cbd0', '#636770'], ['#f1e2b0', '#a68b3c'], ['#f5d872', '#a98000'], ['#ffd65a', '#b07d00'], ['#ffcf40', '#9b6a00'], ['#ffe08a', '#a77800']],
-}
+// One hue per denomination, light → dark for the coin's shading, plus the
+// ink that reads on it.  Neighbouring tiers are far apart on the wheel so a
+// glance tells a 32 from a 64.
+const HUES: [string, string, string][] = [
+  ['#fff3b0', '#e0b94a', '#3b2a05'], // 2    pale gold
+  ['#ffd089', '#e68a1c', '#3b2105'], // 4    orange
+  ['#ff9d76', '#e2512a', '#ffffff'], // 8    coral
+  ['#ff7b9c', '#d41e55', '#ffffff'], // 16   rose
+  ['#d89cff', '#8a2be2', '#ffffff'], // 32   violet
+  ['#8fb8ff', '#2458d6', '#ffffff'], // 64   blue
+  ['#7fe3e8', '#0f9aa8', '#082d31'], // 128  teal
+  ['#9af0a8', '#1f9e44', '#07300f'], // 256  green
+  ['#e2f58a', '#8aa800', '#2a3300'], // 512  lime
+  ['#ffe066', '#c99700', '#3b2a05'], // 1024 gold
+  ['#fff1c4', '#d2a52a', '#3b2a05'], // 2048 bright gold
+  ['#ffffff', '#b9bec7', '#1f2937'], // 4096 platinum
+]
 
 const CSS = `
 @keyframes mint-spawn { from { transform: scale(0) } to { transform: scale(1) } }
@@ -481,12 +485,11 @@ export default function MintGame({ configId, difficulty, seed, params, onWin, on
     move(Math.abs(dx) > Math.abs(dy) ? (dx > 0 ? 'right' : 'left') : (dy > 0 ? 'down' : 'up'))
   }
 
-  const bands = BANDS[config.palette ?? 'mediterranean']
   const renderTile = (t: Tile, ghost: boolean) => {
     const r = Math.floor(t.pos / n), c = t.pos % n
-    const special = t.v < 0
-    const [hi, lo] = t.v === LEAD ? ['#6b6f75', '#2f3236'] : t.v === WILD ? ['#4a4a4a', '#0d0d0d'] : bands[Math.min(t.v, bands.length) - 1]
+    const [hi, lo, ink] = t.v === LEAD ? ['#6b6f75', '#2f3236', '#ffffff'] : t.v === WILD ? ['#4a4a4a', '#0d0d0d', '#ffffff'] : HUES[Math.min(t.v, HUES.length) - 1]
     const isTarget = t.v >= target
+    const value = t.v === WILD ? '+1' : t.v === LEAD ? '✕' : String(1 << t.v)
     return (
       <div
         key={t.id}
@@ -501,12 +504,14 @@ export default function MintGame({ configId, difficulty, seed, params, onWin, on
           style={{
             background: `radial-gradient(circle at 35% 30%, ${hi}, ${lo})`,
             borderColor: lo,
+            color: ink,
             animation: t.born === 'spawn' ? 'mint-spawn 160ms ease-out 100ms both' : t.born === 'merge' ? 'mint-pop 200ms ease-out 90ms both' : undefined,
             containerType: 'inline-size',
           }}
         >
-          <span className={`font-bold leading-none ${special ? 'text-white' : 'text-[#2a1d0c]'}`} style={{ fontSize: 'clamp(7px, 15cqw, 13px)' }}>{coinName(t.v)}</span>
-          <span className={`tabular-nums leading-none mt-0.5 ${special ? 'text-white/70' : 'text-[#2a1d0c]/70'}`} style={{ fontSize: 'clamp(7px, 13cqw, 11px)' }}>{t.v === WILD ? '+1' : t.v === LEAD ? '✕' : 1 << t.v}</span>
+          {/* The value is the label; the denomination's name is the footnote. */}
+          <span className="font-black leading-none tabular-nums" style={{ fontSize: `clamp(14px, ${value.length > 3 ? 26 : 34}cqw, 32px)`, textShadow: '0 1px 2px rgba(0,0,0,.25)' }}>{value}</span>
+          <span className="font-semibold leading-none mt-1 opacity-85 px-1 truncate max-w-full" style={{ fontSize: 'clamp(7px, 11cqw, 11px)' }}>{coinName(t.v)}</span>
         </div>
       </div>
     )

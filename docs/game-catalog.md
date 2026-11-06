@@ -15,7 +15,7 @@ Built in waves of 20; tick a box when the game is in the registry.
 - [x] `lamplighter` — Lamplighter — toggle lamps and neighbours until all are lit (Lights Out) — gaslit Victorian London
 - [x] `hanoi` — Temple Disks — move a stack of discs between three pegs (Tower of Hanoi) — Lucas's 1883 Brahma legend
 - [x] `pairs` — Archive Pairs — memory card matching of portraits and their works — the Library of Alexandria
-- [x] `mint` — Coin Mint — slide and merge coins of equal value up the denominations (2048) — Lydian electrum to the solidus
+- [x] `mint` — 2048 — slide and merge coins of equal value up the denominations — Lydian electrum to the solidus
 - [x] `ferry` — River Crossing — get everyone across without leaving a bad pair alone — Alcuin of York's 800 CE puzzles
 - [x] `morris` — Nine Men's Morris — place and move to form mills vs AI — Roman and medieval boards
 - [x] `mancala` — Oware — sow seeds and capture vs AI — West African mancala

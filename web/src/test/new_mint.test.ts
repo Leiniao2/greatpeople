@@ -18,7 +18,7 @@ const levelOf = (id: string, d: Difficulty, seed: number) => {
   return { ts, rules: rulesFor(CONFIGS[id].twist, d, ts) }
 }
 
-describe('Coin Mint — engine', () => {
+describe('2048 — engine', () => {
   it('configs have facts, enough denominations, and each is a distinct twist', () => {
     expect(CONFIG_IDS.length).toBeGreaterThanOrEqual(4)
     // The base configs are each their own twist; story-themed configs reuse one of them.
@@ -87,7 +87,7 @@ describe('Coin Mint — engine', () => {
   }, 120_000)
 })
 
-describe('Coin Mint — variants', () => {
+describe('2048 — variants', () => {
   it('wild (Lydia): a touchstone lifts any coin a tier; two touchstones never merge', () => {
     expect(mergeOf(WILD, 5)).toBe(6)
     expect(mergeOf(3, WILD)).toBe(4)
@@ -134,7 +134,7 @@ describe('Coin Mint — variants', () => {
   })
 })
 
-describe('Coin Mint — component', () => {
+describe('2048 — component', () => {
   it('renders every config at every difficulty with its twist', () => {
     for (const id of CONFIG_IDS) for (const d of DIFFS) {
       const { container, getByTestId } = render(createElement(MintGame, { configId: id, difficulty: d, seed: 4, onWin: () => {}, onLose: () => {} }))
