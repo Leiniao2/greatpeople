@@ -108,7 +108,7 @@ In terms of Building
 
 #### Electricity
 ##### Politics: Palace, Parliament, Intelligence Agency, Prison
-##### Strength: Barracks, Military Academy, Fortress, Gym
+##### Strength: Barracks, Military Academy, Fortress, Gym, Base Camp
 ##### Culture: Theatre, Gallery, Concert Hall, Museum
 ##### Wealth: Mint, Bank, Stock Exchange, Enterprise Quarter
 ##### Technique: Infrastructure, Factory, Hospital, Port
@@ -118,7 +118,7 @@ In terms of Building
 
 #### Information
 ##### Politics: Parliament, Intelligence Agency, Prison, Forum
-##### Strength: Barracks, Military Academy, Gym, Observatory
+##### Strength: Barracks, Military Academy, Gym, Observatory, Base Camp
 ##### Culture: Theatre, Concert Hall, Museum, Castle
 ##### Wealth: Bank, Stock Exchange, Enterprise Quarter, Monastry
 ##### Technique: Infrastructure, Factory, Port, Plantation

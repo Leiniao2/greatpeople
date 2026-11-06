@@ -1017,6 +1017,18 @@
       ]
     },
     {
+      "name": "Athens",
+      "era": "Classical",
+      "imageKey": "ancient_athens",
+      "countries": [
+        "Greece"
+      ],
+      "buildings": [
+        "Theatre",
+        "Library"
+      ]
+    },
+    {
       "name": "Timbuktu",
       "era": "Medieval",
       "imageKey": "medieval_timbuktu",
@@ -1619,6 +1631,18 @@
       "buildings": [
         "Port",
         "Arena"
+      ]
+    },
+    {
+      "name": "Mt. Everest",
+      "era": "Information",
+      "imageKey": "electricity_mt_everest",
+      "countries": [
+        "Nepal",
+        "China"
+      ],
+      "buildings": [
+        "Base Camp"
       ]
     }
   ]
