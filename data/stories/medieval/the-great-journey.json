@@ -116,7 +116,7 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "decode",
+            "game": "cipher",
             "configId": "rihla-title",
             "instruction": "In Fez the scholar Ibn Juzayy writes the travels down and gives the book its title. Decode the words letter by letter.",
             "fact": "The Arabic language was Ibn Battuta's greatest asset. Across the vast arc from Morocco to China, he could walk into any mosque and find educated men who shared his language, his faith, and his legal tradition. The Islamic world of the 14th century was in many ways more unified than any political empire — held together by shared scripture, shared law, and shared script."

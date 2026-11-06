@@ -130,7 +130,7 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "atbash",
+            "game": "cipher",
             "configId": "jain-teaching",
             "params": {
               "plaintext": "NO CREATOR ONLY KARMA"

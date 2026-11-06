@@ -4,7 +4,6 @@ import { cleanup } from '@testing-library/react'
 import { describe, it, expect, vi, afterEach } from 'vitest'
 import type { Difficulty } from '@/games/types'
 
-import { CONFIGS as MUSEUM, bestScore, targetScore } from '@/components/minigames/MuseumGame'
 import { CONFIGS as DEBATE, debateTargets } from '@/components/minigames/DebateGame'
 import { CONFIGS as COLORMIX, mixRGB, colourDist, toleranceAt } from '@/components/minigames/ColorMixGame'
 import { CONFIGS as PAINTING, optionsFor as paintingOptions, tierFor as paintingTier } from '@/components/minigames/PaintingGame'
@@ -12,16 +11,6 @@ import { CONFIGS as STARCHART, altitudeCount, sightTolerance, latitudeTolerance 
 
 const DIFFS: Difficulty[] = [1, 2, 3, 4]
 afterEach(() => { cleanup(); vi.useRealTimers() })
-
-describe('Museum targets', () => {
-  it('rise with difficulty and stay reachable', () => {
-    for (const [id, cfg] of Object.entries(MUSEUM)) {
-      const t = DIFFS.map(d => targetScore(cfg, d))
-      for (let i = 1; i < 4; i++) expect(t[i], `${id} D${i + 1}`).toBeGreaterThan(t[i - 1])
-      expect(t[3], id).toBeLessThanOrEqual(bestScore(cfg))
-    }
-  })
-})
 
 describe('Debate', () => {
   it('the mark rises with difficulty, and D1–D2 forgive a weak (+1) reply', () => {

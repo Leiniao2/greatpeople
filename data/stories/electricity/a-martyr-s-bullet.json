@@ -96,7 +96,7 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "telegraph",
+            "game": "cipher",
             "seed": 1019,
             "fact": "Ahn Jung-geun was executed by Japan in 1910. In Korea he is a national hero; in China, a statue stands at Harbin station where the assassination occurred. In Japan he is officially considered a criminal. The same act reads entirely differently across national histories.",
             "configId": "harbin-wire",

@@ -1,5 +1,5 @@
-// Difficulty balance for the "codes" group: codebook readers, cipher,
-// decode, pseudo code, logic gates, pipeline, mirror and Lorentz.
+// Difficulty balance for the "codes" group: Codebreaker (codebook readers,
+// shift ciphers, substitution), pseudo code, logic gates, pipeline, mirror and Lorentz.
 // Each tier must be winnable inside its clock / caps, and get harder D1 → D4.
 import { createElement } from 'react'
 import { render, cleanup, fireEvent, act, screen } from '@testing-library/react'
@@ -126,7 +126,7 @@ describe('blind checks from tier 3', () => {
 
   it('scytale: live at D1–D2, hidden until checked at D3–D4, and the right rod wins', () => {
     vi.useFakeTimers()
-    const Scytale = CODEBOOKS.scytale.default
+    const Scytale = CODEBOOKS.scytale.Game
     for (const [id, cfg] of Object.entries(CODEBOOKS.scytale.CONFIGS)) for (const d of DIFFS) {
       const seed = 7
       const onWin = vi.fn(), onLose = vi.fn()
@@ -144,7 +144,7 @@ describe('blind checks from tier 3', () => {
 
   it('scytale D4: a wrong check shows that rod, counts, and the cap loses', () => {
     vi.useFakeTimers()
-    const Scytale = CODEBOOKS.scytale.default
+    const Scytale = CODEBOOKS.scytale.Game
     const id = 'spartan-rod', seed = 7
     const rows = rodFor(CODEBOOKS.scytale.CONFIGS[id].plaintext, seed)
     const onWin = vi.fn(), onLose = vi.fn()

@@ -116,7 +116,7 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "binary",
+            "game": "cipher",
             "configId": "nobel-telex",
             "seed": 80262,
             "instruction": "News of the Nobel Prize reaches Calcutta by telex. Read the lamps to learn in whose name Teresa accepts it.",

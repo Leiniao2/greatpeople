@@ -56,7 +56,7 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "telegraph",
+            "game": "cipher",
             "configId": "leakey-cable",
             "seed": 1014,
             "instruction": "Jane has cabled Louis Leakey about David Greybeard and his twig. Read Leakey's reply as it comes down the line.",
@@ -130,7 +130,7 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "binary",
+            "game": "cipher",
             "configId": "gombe-archive",
             "instruction": "Sixty years of Gombe notebooks now live inside a computer. Read Jane's message to the next generation, lamp by lamp.",
             "fact": "Goodall gave the Gombe chimpanzees names instead of numbers, which shocked the scientists of the day. Her study, begun in 1960, is now the longest-running field study of any wild animal, and her Roots & Shoots programme runs in more than 60 countries."

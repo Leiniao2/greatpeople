@@ -69,7 +69,7 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "pigpen",
+            "game": "cipher",
             "configId": "masonic-grid",
             "params": {
               "plaintext": "GUTENBERG DIED NEARLY BROKE"
@@ -109,7 +109,7 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "scytale",
+            "game": "cipher",
             "configId": "printed-plutarch",
             "seed": 25236,
             "instruction": "Every book and every newspaper owes him a debt — even the ancients' secrets are in print now. Wind the strip on the right rod and read what his invention means.",

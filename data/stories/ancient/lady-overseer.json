@@ -56,7 +56,7 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "atbash",
+            "game": "cipher",
             "configId": "saqqara-mirror",
             "params": {
               "plaintext": "PESESHET OVERSEES THE DOCTORS"

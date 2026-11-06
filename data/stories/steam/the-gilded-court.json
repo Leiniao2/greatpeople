@@ -34,7 +34,7 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "pigpen",
+            "game": "cipher",
             "seed": 1001,
             "fact": "Louis XVI became king at nineteen on 10 May 1774, when his grandfather Louis XV died of smallpox, inheriting a state close to bankruptcy. He was a skilled locksmith and a passionate map-maker — a careful craftsman in a role that demanded bold political vision.",
             "configId": "masonic-grid",

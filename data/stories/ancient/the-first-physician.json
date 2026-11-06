@@ -118,7 +118,7 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "atbash",
+            "game": "cipher",
             "configId": "saqqara-mirror",
             "params": {
               "plaintext": "HESY RA CHIEF OF DENTISTS"

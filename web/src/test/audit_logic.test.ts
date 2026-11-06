@@ -6,7 +6,7 @@ import type { Challenge, MinigameChallenge } from '@/games/types'
 import { CONFIGS as CROSSWORDS } from '@/components/minigames/CrosswordGame'
 import { CONFIGS as WORDLES, WORD_LENGTH } from '@/components/minigames/WordleGame'
 import { CONFIGS as DECODES, makeCipher, makeDecipherMap, DECODE_TIME_LIMITS } from '@/components/minigames/DecodeGame'
-import { CONFIGS as CIPHERS, encodeCaesar, encodeVigenere, MORSE, resolveCipherConfig } from '@/components/minigames/CipherGame'
+import { CONFIGS as CIPHERS, encodeCaesar, encodeVigenere, MORSE, resolveCipherConfig, SYSTEM_OF, CONFIG_IDS as CODEBREAKER_IDS } from '@/components/minigames/CipherGame'
 import { CONFIGS as PSEUDO, wrongPositions } from '@/components/minigames/PseudoCodeGame'
 import { CONFIGS as LOGIC, GATES, ROWS, TAPE_RULES, matchingRows, circuitOut, makeStages, solves, solutions as stageSolutions } from '@/components/minigames/LogicGateGame'
 import { CONFIGS as CHEM } from '@/components/minigames/ChemistryGame'
@@ -124,7 +124,7 @@ describe('CipherGame configs', () => {
     for (const ch of cfg.plaintext.replace(/ /g, '')) expect(MORSE[ch], ch).toBeDefined()
   })
   it('story entries resolve to a decodable message (empty plaintext overrides fall back)', () => {
-    for (const ch of storyEntries('cipher')) {
+    for (const ch of storyEntries('cipher').filter(c => CIPHERS[c.configId ?? ''])) {
       const cfg = resolveCipherConfig(ch.configId, ch.params)
       expect(cfg.plaintext, `${ch.id}`).toMatch(/[A-Z]/i)
       if (cfg.mode === 'morse') for (const c of cfg.plaintext.toUpperCase().replace(/ /g, '')) expect(MORSE[c], `${ch.id}: ${c}`).toBeDefined()
@@ -287,9 +287,9 @@ describe('Codebook systems', () => {
     }
   })
   it('story entries resolve to a non-empty message', () => {
-    for (const [game, mod] of Object.entries(CODEBOOKS)) {
-      for (const ch of storyEntries(game)) {
-        expect(mod.CONFIGS[ch.configId ?? ''], `${ch.id}: ${game}/${ch.configId}`).toBeDefined()
+    for (const [system, mod] of Object.entries(CODEBOOKS)) {
+      for (const ch of storyEntries('cipher').filter(c => SYSTEM_OF[c.configId ?? ''] === system)) {
+        expect(mod.CONFIGS[ch.configId ?? ''], `${ch.id}: ${system}/${ch.configId}`).toBeDefined()
         const cfg = resolveCodebookConfig(mod.CONFIGS, ch.configId, ch.params)
         expect(cfg.plaintext, ch.id).toMatch(/^[A-Z]+( [A-Z]+)*$/)
         expect(cfg.plaintext.replace(/ /g, '').length, `${ch.id} is long enough to wind`).toBeGreaterThanOrEqual(9)
@@ -303,7 +303,7 @@ describe('Codebook systems', () => {
 
 describe('story data for this group', () => {
   const groups: Record<string, Record<string, unknown>> = {
-    crossword: CROSSWORDS, wordle: WORDLES, decode: DECODES, cipher: CIPHERS, pseudocode: PSEUDO,
+    crossword: CROSSWORDS, wordle: WORDLES, cipher: Object.fromEntries(CODEBREAKER_IDS.map(id => [id, SYSTEM_OF[id]])), pseudocode: PSEUDO,
     logicgate: LOGIC, chemistry: CHEM, punnett: PUNNETT, lorentz: LORENTZ, chimpmath: CHIMP,
     classify: CLASSIFY,
   }

@@ -28,7 +28,7 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "pigpen",
+            "game": "cipher",
             "configId": "peterhof-dawn",
             "seed": 96044,
             "instruction": "Peterhof, before dawn: Alexei Orlov has ridden through the night with a note from the Guards. Read the grid code — it tells Catherine whether this is the morning she takes Russia.",
@@ -121,7 +121,7 @@
             "seed": 1014,
             "fact": "Catherine bought whole collections at once — Gotzkowsky's 225 paintings in 1764, Count Brühl's in 1769, Crozat's in 1772, Walpole's in 1779 — and wrote that it was not love of art but greed. Her Hermitage opened to the public in 1852 and today holds over three million objects.",
             "configId": "catherine-hermitage",
-            "instruction": "Catherine retreats to her 'hermitage' beside the Winter Palace, where the pictures she buys by the hundred wait to be hung. Place each masterpiece in the room that shows it best."
+            "instruction": "Catherine retreats to her 'hermitage' beside the Winter Palace, where the pictures she buys by the hundred wait to be hung. Hang them so each room holds three pieces that belong together."
           }
         },
         {

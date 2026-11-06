@@ -118,7 +118,7 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "scytale",
+            "game": "cipher",
             "configId": "azteca-banner",
             "seed": 63894,
             "instruction": "Six minutes from the end of the final, Burruchaga scores from Diego's pass. In the stands a furled banner is waiting — wind it on the right pole and read what Argentina is about to become.",

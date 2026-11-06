@@ -134,7 +134,7 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "decode",
+            "game": "cipher",
             "configId": "morris-cable",
             "instruction": "A runner is already on his way down to Namche with The Times's coded message. Decode it — the news must reach London before anyone else hears.",
             "fact": "James Morris of The Times sent the news in a pre-arranged code: 'Snow conditions bad. Advanced base abandoned yesterday. Awaiting improvement' meant that Hillary and Tenzing had reached the top. It reached London on the eve of Queen Elizabeth II's coronation, and the paper broke the story on coronation morning, 2 June 1953."

@@ -96,7 +96,7 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "pigpen",
+            "game": "cipher",
             "configId": "tadanori-quiver",
             "seed": 29122,
             "instruction": "Tadanori’s killer unties a paper from the fallen warrior’s quiver. Read the poem shape by shape and learn whose life he has taken.",
@@ -118,7 +118,7 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "scytale",
+            "game": "cipher",
             "configId": "shunzei-scroll",
             "seed": 51046,
             "instruction": "Years later Shunzei unrolls the scroll Tadanori left at his gate. Find the roller that lines up the words and read how the anthology will name him.",

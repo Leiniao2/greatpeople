@@ -92,7 +92,7 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "braille",
+            "game": "cipher",
             "seed": 1001,
             "fact": "In 1839 Clara toured Paris without her father. That summer she and Robert went to court in Leipzig to marry without Wieck's consent; the judges ruled for them in August 1840.",
             "configId": "paris-1839",
@@ -174,7 +174,7 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "telegraph",
+            "game": "cipher",
             "configId": "endenich-telegram",
             "seed": 25160,
             "instruction": "In July 1856 a telegram comes from Endenich. Read the dots and dashes and learn what Clara must do.",

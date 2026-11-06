@@ -1,6 +1,11 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import type { MinigameProps } from '@/games/types'
 import { scale, useGameTimer, TimerBar } from './_shared'
+
+// Substitution: the Codebreaker system (CipherGame picks it by config id)
+// where every letter stands for another, scrambled from the config id.  Tap
+// a cipher letter and assign its plain letter; lower tiers give a few of
+// the commonest away, higher ones put the message on a clock.
 
 // ── Config ─────────────────────────────────────────────────────────────────────
 
@@ -102,6 +107,8 @@ export default function DecodeGame({ configId, difficulty, onWin, onLose }: Mini
   // which cipher letter is currently selected
   const [selected, setSelected] = useState<string | null>(null)
   const [won, setWon] = useState(false)
+  // Set the moment the last letter lands, so taps during the win pause cannot win twice.
+  const solved = useRef(false)
   // The clock stops once the message is read, so a late expiry cannot undo a win.
   const timer = useGameTimer({ seconds: timeLimit, running: !won, onExpire: () => onLose('out of time') })
 
@@ -114,18 +121,17 @@ export default function DecodeGame({ configId, difficulty, onWin, onLose }: Mini
   }, [uniqueCipherLetters, decipherMap])
 
   const assign = useCallback((plainLetter: string) => {
-    if (!selected || won) return
-    setAssignments(prev => {
-      const next = { ...prev, [selected]: plainLetter }
-      if (checkWin(next)) {
-        setTimeout(() => {
-          setWon(true)
-          setTimeout(() => onWin(), 800)
-        }, 300)
-      }
-      return next
-    })
-  }, [selected, won, checkWin, onWin])
+    if (!selected || won || solved.current) return
+    const next = { ...assignments, [selected]: plainLetter }
+    setAssignments(next)
+    if (checkWin(next)) {
+      solved.current = true
+      setTimeout(() => {
+        setWon(true)
+        setTimeout(() => onWin(), 800)
+      }, 300)
+    }
+  }, [selected, won, assignments, checkWin, onWin])
 
   const handleKeydown = useCallback((e: KeyboardEvent) => {
     if (won) return
@@ -335,6 +341,3 @@ export default function DecodeGame({ configId, difficulty, onWin, onLose }: Mini
     </div>
   )
 }
-
-// Every hand-authored config id; the registry test renders each one.
-export const CONFIG_IDS = Object.keys(CONFIGS)

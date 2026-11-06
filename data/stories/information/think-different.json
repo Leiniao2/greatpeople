@@ -94,7 +94,7 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "binary",
+            "game": "cipher",
             "configId": "mac-bitmap",
             "instruction": "Technology and art are not separate things — the Mac proved it with letters made of dots. Read the lamps to spell out the campaign that brought Apple back.",
             "fact": "Jobs dropped out of Reed College in 1972 but kept auditing classes — including a calligraphy course by Lloyd Reynolds. That course taught him about serif and sans-serif typefaces, proportional spacing, and typographic beauty. Ten years later, the Macintosh became the first computer with multiple typefaces. 'If I had never dropped in on that course, every Mac would have had the same boring font.'"

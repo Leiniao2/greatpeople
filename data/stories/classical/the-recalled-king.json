@@ -84,7 +84,7 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "scytale",
+            "game": "cipher",
             "configId": "ephors-recall",
             "seed": 23310,
             "instruction": "At last the ephors send for him. A leather strip arrives on Mount Lycaeum — find the rod that makes it read.",

@@ -66,7 +66,7 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "decode",
+            "game": "cipher",
             "configId": "cipher-al",
             "instruction": "A coded message has arrived from the House of Wisdom. Decode it letter by letter.",
             "fact": "Al-Khwarizmi's mathematical texts were written in a kind of symbolic code that unlocked the logic of the universe — algebra as a language of hidden structure."

@@ -349,7 +349,7 @@
       },
       {
         "type": "minigame",
-        "game": "polybius",
+        "game": "cipher",
         "configId": "nineveh-sign-list",
         "seed": 44329,
         "instruction": "Copy it carefully. Check each sign of the Gilgamesh tablet against the scribes' sign list and read out its famous first line.",
@@ -561,7 +561,7 @@
       },
       {
         "type": "minigame",
-        "game": "atbash",
+        "game": "cipher",
         "configId": "saqqara-mirror",
         "params": {
           "plaintext": "HESY RA CHIEF OF DENTISTS"
@@ -766,7 +766,7 @@
       },
       {
         "type": "minigame",
-        "game": "atbash",
+        "game": "cipher",
         "configId": "jain-teaching",
         "params": {
           "plaintext": "NO CREATOR ONLY KARMA"
@@ -1024,7 +1024,7 @@
       },
       {
         "type": "minigame",
-        "game": "atbash",
+        "game": "cipher",
         "configId": "saqqara-mirror",
         "params": {
           "plaintext": "PESESHET OVERSEES THE DOCTORS"
@@ -1657,7 +1657,7 @@
       },
       {
         "type": "minigame",
-        "game": "polybius",
+        "game": "cipher",
         "configId": "mani-last-words",
         "seed": 1008,
         "instruction": "Kartir has turned the king against him, and Mani lies in chains. Read his last message to the church as his disciples signal it, letter by letter.",
@@ -1935,7 +1935,7 @@
       },
       {
         "type": "minigame",
-        "game": "polybius",
+        "game": "cipher",
         "configId": "arthashastra-spies",
         "seed": 1013,
         "instruction": "Chanakya sends Chandragupta his first lesson in the code his spies use, each letter a pair of numbers. Find every letter on the square.",
@@ -1946,7 +1946,7 @@
       },
       {
         "type": "minigame",
-        "game": "atbash",
+        "game": "cipher",
         "configId": "upadha-test",
         "seed": 83212,
         "instruction": "To learn which ministers can be trusted, Chanakya has a letter of treason planted on one of them. Read it in its folded alphabet, as the minister will.",
@@ -2156,7 +2156,7 @@
       },
       {
         "type": "minigame",
-        "game": "scytale",
+        "game": "cipher",
         "configId": "ephors-recall",
         "seed": 23310,
         "instruction": "At last the ephors send for him. A leather strip arrives on Mount Lycaeum — find the rod that makes it read.",
@@ -2434,7 +2434,7 @@
       },
       {
         "type": "minigame",
-        "game": "decode",
+        "game": "cipher",
         "configId": "cipher-al",
         "instruction": "A coded message has arrived from the House of Wisdom. Decode it letter by letter.",
         "fact": "Al-Khwarizmi's mathematical texts were written in a kind of symbolic code that unlocked the logic of the universe — algebra as a language of hidden structure.",
@@ -3093,7 +3093,7 @@
       },
       {
         "type": "minigame",
-        "game": "decode",
+        "game": "cipher",
         "configId": "rihla-title",
         "instruction": "In Fez the scholar Ibn Juzayy writes the travels down and gives the book its title. Decode the words letter by letter.",
         "fact": "The Arabic language was Ibn Battuta's greatest asset. Across the vast arc from Morocco to China, he could walk into any mosque and find educated men who shared his language, his faith, and his legal tradition. The Islamic world of the 14th century was in many ways more unified than any political empire — held together by shared scripture, shared law, and shared script.",
@@ -3308,7 +3308,7 @@
       },
       {
         "type": "minigame",
-        "game": "pigpen",
+        "game": "cipher",
         "configId": "tadanori-quiver",
         "seed": 29122,
         "instruction": "Tadanori’s killer unties a paper from the fallen warrior’s quiver. Read the poem shape by shape and learn whose life he has taken.",
@@ -3319,7 +3319,7 @@
       },
       {
         "type": "minigame",
-        "game": "scytale",
+        "game": "cipher",
         "configId": "shunzei-scroll",
         "seed": 51046,
         "instruction": "Years later Shunzei unrolls the scroll Tadanori left at his gate. Find the roller that lines up the words and read how the anthology will name him.",
@@ -3548,7 +3548,7 @@
         "type": "minigame",
         "game": "museum",
         "configId": "uffizi-gallery",
-        "instruction": "You are the new curator of the Uffizi. Assign each Renaissance masterpiece to the room where it earns the greatest bonus and hit the target score.",
+        "instruction": "You are the new curator of the Uffizi. Hang every masterpiece so each room shares one region, one era or one kind of work.",
         "fact": "The Uffizi Gallery in Florence holds the finest concentration of Renaissance masterpieces in the world — Botticelli's Venus, da Vinci's Annunciation, and Titian's Venus of Urbino under one roof.",
         "id": "the-colors-of-venice:7",
         "stage": "legacy",
@@ -4025,7 +4025,7 @@
       },
       {
         "type": "minigame",
-        "game": "pigpen",
+        "game": "cipher",
         "configId": "masonic-grid",
         "params": {
           "plaintext": "GUTENBERG DIED NEARLY BROKE"
@@ -4050,7 +4050,7 @@
       },
       {
         "type": "minigame",
-        "game": "scytale",
+        "game": "cipher",
         "configId": "printed-plutarch",
         "seed": 25236,
         "instruction": "Every book and every newspaper owes him a debt — even the ancients' secrets are in print now. Wind the strip on the right rod and read what his invention means.",
@@ -4104,7 +4104,7 @@
     "challenges": [
       {
         "type": "minigame",
-        "game": "polybius",
+        "game": "cipher",
         "configId": "bongsu-beacons",
         "seed": 1010,
         "instruction": "In 1592 the beacon fires blaze along the coast: the Japanese have landed. Read the alarm as it runs from tower to tower — each letter a row and a column of the square.",
@@ -4558,7 +4558,7 @@
       },
       {
         "type": "minigame",
-        "game": "braille",
+        "game": "cipher",
         "seed": 1001,
         "fact": "In 1839 Clara toured Paris without her father. That summer she and Robert went to court in Leipzig to marry without Wieck's consent; the judges ruled for them in August 1840.",
         "configId": "paris-1839",
@@ -4590,7 +4590,7 @@
       },
       {
         "type": "minigame",
-        "game": "telegraph",
+        "game": "cipher",
         "configId": "endenich-telegram",
         "seed": 25160,
         "instruction": "In July 1856 a telegram comes from Endenich. Read the dots and dashes and learn what Clara must do.",
@@ -4762,7 +4762,7 @@
     "challenges": [
       {
         "type": "minigame",
-        "game": "pigpen",
+        "game": "cipher",
         "seed": 1001,
         "fact": "Louis XVI became king at nineteen on 10 May 1774, when his grandfather Louis XV died of smallpox, inheriting a state close to bankruptcy. He was a skilled locksmith and a passionate map-maker — a careful craftsman in a role that demanded bold political vision.",
         "configId": "masonic-grid",
@@ -5046,7 +5046,7 @@
     "challenges": [
       {
         "type": "minigame",
-        "game": "pigpen",
+        "game": "cipher",
         "configId": "peterhof-dawn",
         "seed": 96044,
         "instruction": "Peterhof, before dawn: Alexei Orlov has ridden through the night with a note from the Guards. Read the grid code — it tells Catherine whether this is the morning she takes Russia.",
@@ -5092,7 +5092,7 @@
         "seed": 1014,
         "fact": "Catherine bought whole collections at once — Gotzkowsky's 225 paintings in 1764, Count Brühl's in 1769, Crozat's in 1772, Walpole's in 1779 — and wrote that it was not love of art but greed. Her Hermitage opened to the public in 1852 and today holds over three million objects.",
         "configId": "catherine-hermitage",
-        "instruction": "Catherine retreats to her 'hermitage' beside the Winter Palace, where the pictures she buys by the hundred wait to be hung. Place each masterpiece in the room that shows it best.",
+        "instruction": "Catherine retreats to her 'hermitage' beside the Winter Palace, where the pictures she buys by the hundred wait to be hung. Hang them so each room holds three pieces that belong together.",
         "id": "the-empress-seizes-power:4",
         "stage": "legacy",
         "difficulty": 4
@@ -5451,7 +5451,7 @@
         "seed": 1022,
         "fact": "Apollo and Daphne (1622–1625) shows the moment Daphne transforms into a laurel tree to escape Apollo — her fingers becoming branches, bark creeping up her legs. Bernini carved this in marble when he was in his mid-twenties. Viewers reported that the finished work looked impossible, as if he had found a way to capture a single instant of motion in stone.",
         "configId": "galleria-borghese",
-        "instruction": "Cardinal Scipione Borghese has filled his villa with the young Bernini's marbles. Place each work in the room that shows it best, with Apollo and Daphne where it can astonish.",
+        "instruction": "Cardinal Scipione Borghese has filled his villa with the young Bernini's marbles. Give every room three works that share one theme, and find Apollo and Daphne its company.",
         "id": "marble-into-breath:0",
         "stage": "origins",
         "difficulty": 1
@@ -5683,7 +5683,7 @@
       },
       {
         "type": "minigame",
-        "game": "telegraph",
+        "game": "cipher",
         "seed": 1001,
         "fact": "The Salt March of 1930 transformed Gandhi from a respected Indian leader into a global symbol. When he picked up a pinch of salt on the Dandi beach, he broke British law — and the world was watching. Within weeks, 60,000 Indians had been arrested for the same act of defiance.",
         "configId": "dandi-dispatch",
@@ -6534,7 +6534,7 @@
       },
       {
         "type": "minigame",
-        "game": "decode",
+        "game": "cipher",
         "configId": "mao-code",
         "seed": 93596,
         "instruction": "Orders for the breakout travel in code across the Red Army's columns. Decode the dispatch from the Jiangxi Soviet.",
@@ -6642,7 +6642,7 @@
       },
       {
         "type": "minigame",
-        "game": "telegraph",
+        "game": "cipher",
         "seed": 1019,
         "fact": "Ahn Jung-geun was executed by Japan in 1910. In Korea he is a national hero; in China, a statue stands at Harbin station where the assassination occurred. In Japan he is officially considered a criminal. The same act reads entirely differently across national histories.",
         "configId": "harbin-wire",
@@ -6923,7 +6923,7 @@
       },
       {
         "type": "minigame",
-        "game": "braille",
+        "game": "cipher",
         "seed": 1025,
         "fact": "Shaw explicitly wrote that Eliza marries Freddy Eynsford-Hill, not Higgins. He was furious when stage productions implied a romance. His epilogue spells out that Higgins is too self-absorbed for love. The musical My Fair Lady contradicts Shaw's own ending.",
         "configId": "shaw-epilogue",
@@ -7015,7 +7015,7 @@
       },
       {
         "type": "minigame",
-        "game": "binary",
+        "game": "cipher",
         "configId": "nobel-telex",
         "seed": 80262,
         "instruction": "News of the Nobel Prize reaches Calcutta by telex. Read the lamps to learn in whose name Teresa accepts it.",
@@ -7103,7 +7103,7 @@
       },
       {
         "type": "minigame",
-        "game": "decode",
+        "game": "cipher",
         "configId": "morris-cable",
         "instruction": "A runner is already on his way down to Namche with The Times's coded message. Decode it — the news must reach London before anyone else hears.",
         "fact": "James Morris of The Times sent the news in a pre-arranged code: 'Snow conditions bad. Advanced base abandoned yesterday. Awaiting improvement' meant that Hillary and Tenzing had reached the top. It reached London on the eve of Queen Elizabeth II's coronation, and the paper broke the story on coronation morning, 2 June 1953.",
@@ -7213,7 +7213,7 @@
         "type": "minigame",
         "game": "museum",
         "configId": "louvre-arrangement",
-        "instruction": "In Funny Face Audrey sweeps down the Louvre's grand staircase beneath the Winged Victory. Hang the masterpieces in the wings where they shine brightest and open the doors.",
+        "instruction": "In Funny Face Audrey sweeps down the Louvre's grand staircase beneath the Winged Victory. Hang the treasures so every gallery tells one story, then open the doors.",
         "fact": "In Funny Face (1957) Hepburn runs down the Daru staircase of the Louvre past the Winged Victory of Samothrace, a red chiffon scarf streaming behind her, while Fred Astaire's photographer shouts 'Take the picture!'",
         "id": "breakfast-at-tiffany-s:4",
         "stage": "legacy",
@@ -7406,7 +7406,7 @@
       },
       {
         "type": "minigame",
-        "game": "scytale",
+        "game": "cipher",
         "configId": "azteca-banner",
         "seed": 63894,
         "instruction": "Six minutes from the end of the final, Burruchaga scores from Diego's pass. In the stands a furled banner is waiting — wind it on the right pole and read what Argentina is about to become.",
@@ -7472,7 +7472,7 @@
       },
       {
         "type": "minigame",
-        "game": "telegraph",
+        "game": "cipher",
         "configId": "leakey-cable",
         "seed": 1014,
         "instruction": "Jane has cabled Louis Leakey about David Greybeard and his twig. Read Leakey's reply as it comes down the line.",
@@ -7516,7 +7516,7 @@
       },
       {
         "type": "minigame",
-        "game": "binary",
+        "game": "cipher",
         "configId": "gombe-archive",
         "instruction": "Sixty years of Gombe notebooks now live inside a computer. Read Jane's message to the next generation, lamp by lamp.",
         "fact": "Goodall gave the Gombe chimpanzees names instead of numbers, which shocked the scientists of the day. Her study, begun in 1960, is now the longest-running field study of any wild animal, and her Roots & Shoots programme runs in more than 60 countries.",
@@ -7728,7 +7728,7 @@
       },
       {
         "type": "minigame",
-        "game": "binary",
+        "game": "cipher",
         "configId": "ap-telex",
         "seed": 1020,
         "instruction": "Arnett learned to stay put in Vietnam, filing for the AP while others left. Read one of his Saigon dispatches off the teleprinter, lamp by lamp.",
@@ -7862,7 +7862,7 @@
       },
       {
         "type": "minigame",
-        "game": "binary",
+        "game": "cipher",
         "configId": "mac-bitmap",
         "instruction": "Technology and art are not separate things — the Mac proved it with letters made of dots. Read the lamps to spell out the campaign that brought Apple back.",
         "fact": "Jobs dropped out of Reed College in 1972 but kept auditing classes — including a calligraphy course by Lloyd Reynolds. That course taught him about serif and sans-serif typefaces, proportional spacing, and typographic beauty. Ten years later, the Macintosh became the first computer with multiple typefaces. 'If I had never dropped in on that course, every Mac would have had the same boring font.'",
