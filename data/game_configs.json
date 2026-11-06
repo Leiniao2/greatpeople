@@ -356,20 +356,6 @@
    "aviate"
   ]
  },
- "decode": {
-  "label": "Decode",
-  "category": "Puzzle",
-  "configs": [
-   "enigma-msg",
-   "cipher-al",
-   "cicero-code",
-   "belisarius-msg",
-   "sargon-code",
-   "mulan-code",
-   "mao-code",
-   "turing-dispatch"
-  ]
- },
  "wargame": {
   "label": "Wargame",
   "category": "Strategy",
@@ -562,14 +548,108 @@
   ]
  },
  "cipher": {
-  "label": "Cipher",
+  "label": "Codebreaker",
   "category": "Puzzle",
   "configs": [
+   "jain-teaching",
    "caesar-gaul",
-   "al-kindi-frequency",
+   "mac-bitmap",
+   "nineveh-sign-list",
+   "endenich-telegram",
+   "masonic-grid",
+   "ephors-recall",
+   "mirror-tablet",
+   "paris-1839",
+   "fae-motto",
+   "morse-telegraph",
+   "five-lamps",
+   "mulan-code",
+   "greek-torches",
+   "signal-lamp",
+   "spartan-rod",
+   "peterhof-dawn",
+   "bletchley-crib",
+   "raised-dots",
+   "enigma-msg",
    "vigenere-cabinet",
-   "morse-telegraph"
-  ]
+   "bongsu-beacons",
+   "azteca-banner",
+   "al-kindi-frequency",
+   "cipher-al",
+   "saqqara-mirror",
+   "cicero-code",
+   "harbin-wire",
+   "belisarius-msg",
+   "gombe-archive",
+   "sargon-code",
+   "philippics-warning",
+   "mao-code",
+   "arthashastra-spies",
+   "morris-cable",
+   "printed-plutarch",
+   "turing-dispatch",
+   "tadanori-quiver",
+   "rihla-title",
+   "dandi-dispatch",
+   "upadha-test",
+   "nobel-telex",
+   "hand-of-god-quote",
+   "shaw-epilogue",
+   "mani-last-words",
+   "leakey-cable",
+   "shunzei-scroll",
+   "ap-telex"
+  ],
+  "systems": {
+   "jain-teaching": "atbash",
+   "caesar-gaul": "caesar",
+   "mac-bitmap": "binary",
+   "nineveh-sign-list": "polybius",
+   "endenich-telegram": "telegraph",
+   "masonic-grid": "pigpen",
+   "ephors-recall": "scytale",
+   "mirror-tablet": "atbash",
+   "paris-1839": "braille",
+   "fae-motto": "caesar",
+   "morse-telegraph": "morse",
+   "five-lamps": "binary",
+   "mulan-code": "substitution",
+   "greek-torches": "polybius",
+   "signal-lamp": "telegraph",
+   "spartan-rod": "scytale",
+   "peterhof-dawn": "pigpen",
+   "bletchley-crib": "caesar",
+   "raised-dots": "braille",
+   "enigma-msg": "substitution",
+   "vigenere-cabinet": "vigenere",
+   "bongsu-beacons": "polybius",
+   "azteca-banner": "scytale",
+   "al-kindi-frequency": "caesar",
+   "cipher-al": "substitution",
+   "saqqara-mirror": "atbash",
+   "cicero-code": "substitution",
+   "harbin-wire": "telegraph",
+   "belisarius-msg": "substitution",
+   "gombe-archive": "binary",
+   "sargon-code": "substitution",
+   "philippics-warning": "caesar",
+   "mao-code": "substitution",
+   "arthashastra-spies": "polybius",
+   "morris-cable": "substitution",
+   "printed-plutarch": "scytale",
+   "turing-dispatch": "substitution",
+   "tadanori-quiver": "pigpen",
+   "rihla-title": "substitution",
+   "dandi-dispatch": "telegraph",
+   "upadha-test": "atbash",
+   "nobel-telex": "binary",
+   "hand-of-god-quote": "caesar",
+   "shaw-epilogue": "braille",
+   "mani-last-words": "polybius",
+   "leakey-cable": "telegraph",
+   "shunzei-scroll": "scytale",
+   "ap-telex": "binary"
+  }
  },
  "debate": {
   "label": "Debate",
@@ -644,55 +724,6 @@
    "beethoven-motif",
    "court-drums",
    "hildegard-chant"
-  ]
- },
- "atbash": {
-  "label": "Atbash",
-  "category": "Puzzle",
-  "configs": [
-   "mirror-tablet"
-  ]
- },
- "polybius": {
-  "label": "Polybius Square",
-  "category": "Puzzle",
-  "configs": [
-   "greek-torches"
-  ]
- },
- "scytale": {
-  "label": "Scytale",
-  "category": "Puzzle",
-  "configs": [
-   "spartan-rod"
-  ]
- },
- "pigpen": {
-  "label": "Pigpen",
-  "category": "Puzzle",
-  "configs": [
-   "masonic-grid"
-  ]
- },
- "braille": {
-  "label": "Braille",
-  "category": "Puzzle",
-  "configs": [
-   "raised-dots"
-  ]
- },
- "telegraph": {
-  "label": "Telegraph",
-  "category": "Puzzle",
-  "configs": [
-   "signal-lamp"
-  ]
- },
- "binary": {
-  "label": "Binary",
-  "category": "Puzzle",
-  "configs": [
-   "five-lamps"
   ]
  },
  "roundup": {

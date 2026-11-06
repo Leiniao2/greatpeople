@@ -42,10 +42,10 @@ describe('Railway — every level is winnable and sized', () => {
       if (L.mode === 'transsib') {
         expect(curves(L.cols, L.solution[0])).toBe(L.optimum)
         expect(fewestCurves(L, L.lines[0].from, L.lines[0].to).turns).toBe(L.optimum)
-        expect(L.towns.length).toBe([1, 2, 2, 3][d - 1])
+        expect(L.towns.length).toBe([2, 2, 3, 4][d - 1])
       }
       if (L.mode === 'underground') {
-        expect(L.lines.length).toBe([2, 3, 3, 4][d - 1])
+        expect(L.lines.length).toBe([3, 3, 4, 4][d - 1])
         for (const x of L.interchanges) expect(L.solution.filter(p => p.includes(x)).length).toBeGreaterThanOrEqual(2)
       }
     }

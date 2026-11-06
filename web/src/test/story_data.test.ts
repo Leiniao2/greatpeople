@@ -6,6 +6,7 @@ import storyConfigs from '@/data/story_configs.json'
 import storyChallenges from '@/data/story_challenges.json'
 import storyScripts from '@/data/story_scripts.json'
 import { GAMES } from '@/games/registry'
+import { SYSTEM_OF } from '@/components/minigames/CipherGame'
 import { QUIZ_TYPES, STAGES, type Challenge } from '@/games/types'
 
 const ERAS = ['Ancient', 'Classical', 'Medieval', 'Renaissance', 'Steam', 'Electricity', 'Information']
@@ -104,9 +105,11 @@ describe('story data — challenges', () => {
 
   it('no game type is used more than 4 times in Epic (fight lessons aside)', () => {
     // scripts/rebalance-epic.mjs keeps this; it tightens to 3 as more types arrive.
+    // Codebreaker counts per system, as each plays as its own mechanic.
     const count: Record<string, number> = {}
     for (const { ch } of all) {
-      const key = ch.type === 'minigame' ? ch.game : ch.type
+      const key = ch.type !== 'minigame' ? ch.type
+        : ch.game === 'cipher' ? `cipher:${SYSTEM_OF[ch.configId ?? ''] ?? 'caesar'}` : ch.game
       if (key !== 'fight') count[key] = (count[key] ?? 0) + 1
     }
     const over = Object.entries(count).filter(([, n]) => n > 4)

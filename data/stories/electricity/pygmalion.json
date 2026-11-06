@@ -107,7 +107,7 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "braille",
+            "game": "cipher",
             "seed": 1025,
             "fact": "Shaw explicitly wrote that Eliza marries Freddy Eynsford-Hill, not Higgins. He was furious when stage productions implied a romance. His epilogue spells out that Higgins is too self-absorbed for love. The musical My Fair Lady contradicts Shaw's own ending.",
             "configId": "shaw-epilogue",

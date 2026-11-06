@@ -5,6 +5,12 @@ Goal: about 80 new game types so Epic can cap each type at 3 challenges
 for every type. Each entry: registry key — name — mechanic — historical frame.
 Built in waves of 20; tick a box when the game is in the registry.
 
+Merged: the nine decode-a-message games (`decode`, `cipher` and the seven
+Codebook games `atbash`, `polybius`, `scytale`, `pigpen`, `braille`,
+`telegraph`, `binary`) are now one type, `cipher` — Codebreaker. The config
+id picks the system, each with its own mechanic; Epic's per-type cap counts
+Codebreaker per system.
+
 ## Wave 1 — classic mechanics with a historical skin
 - [x] `sokoban` — Stone Haulers — push blocks onto marks in a grid (Sokoban) — hauling limestone to the Giza ramps
 - [x] `packtrain` — Pack Train — tap-to-step route puzzle: collect every load and reach the market on limited supplies (wrong loads, one-use wells, spoiling goods); replaced the real-time Snake — Silk Road camel trains

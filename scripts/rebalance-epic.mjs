@@ -10,6 +10,10 @@
 // instruction naming the story's figure. Rebuilt challenges carry
 // `"rebalanced": true` so hand-written replacements can find them.
 //
+// Codebreaker (`cipher`) holds many systems with their own mechanics, so
+// its challenges count per system ("cipher:atbash", "cipher:caesar" …),
+// read from the `systems` map in data/game_configs.json.
+//
 // Needs data/game_configs.json (every game's CONFIG_IDS, dumped from the
 // components). Re-running is safe: it only moves what is over the cap.
 //
@@ -43,7 +47,7 @@ const GAME_FIT = {
   klotski: [[A, C, M], 'free the general from the blocks'], lorentz: [[E, I], 'steer the particle onto target'],
   porcelain: [[M, R, S], 'glaze each panel correctly'], trade: [[M, R, S], 'trade your way to the target'],
   punnett: [[S, E, I], 'breed the right offspring'], wordle: [ANY, 'guess the word'],
-  decode: [ANY, 'decode the message'], wargame: [[C, M, R], 'outmanoeuvre the enemy'],
+  wargame: [[C, M, R], 'outmanoeuvre the enemy'],
   auction: [[R, S, E], 'win the lots you need'], pseudocode: [[E, I], 'put the program in order'],
   iceslide: [ANY, 'slide across the ice to the exit'], bridge: [ANY, 'link the islands with bridges'],
   compose: [[R, S, E], 'arrange the movements'], weapondeploy: [[C, M, R], 'deploy the defences'],
@@ -52,10 +56,14 @@ const GAME_FIT = {
   storysort: [ANY, 'put the episodes in order'], battlearena: [[A, C, M], 'win the duel'],
   soccer: [[E, I], 'score from the spot'], reporterflee: [[E, I], 'get the story out alive'],
   chimpmath: [[E, I], 'match the chimps at counting'],
-  atbash: [[A, C], 'read the Atbash cipher'], polybius: [[C, M], 'signal with the Polybius square'],
-  scytale: [[C], 'wind the scytale and read it'], pigpen: [[M, R, S], 'crack the pigpen cipher'],
-  braille: [[S, E], 'read the raised dots'], telegraph: [[S, E], 'tap out the Morse message'],
-  binary: [[E, I], 'decode the bits'], fight: [ANY, 'win the fight'],
+  fight: [ANY, 'win the fight'],
+  // Codebreaker, one entry per system
+  'cipher:substitution': [ANY, 'decode the message'], 'cipher:caesar': [ANY, 'break the cipher'],
+  'cipher:vigenere': [[R, S], 'find the keyword'], 'cipher:morse': [[S, E], 'key the message in Morse'],
+  'cipher:atbash': [[A, C], 'read the Atbash cipher'], 'cipher:polybius': [[C, M], 'signal with the Polybius square'],
+  'cipher:scytale': [[C], 'wind the scytale and read it'], 'cipher:pigpen': [[M, R, S], 'crack the pigpen cipher'],
+  'cipher:braille': [[S, E], 'read the raised dots'], 'cipher:telegraph': [[S, E], 'tap out the Morse message'],
+  'cipher:binary': [[E, I], 'decode the bits'],
   // wave 1
   sokoban: [[A, C, M], 'haul the stones onto their marks'], packtrain: [[A, C, M, R], 'bring every load to market'],
   tradeboard: [[M, R, S], 'outtrade the rival merchants'], ferry: [[M, R], 'get everyone safely across'],
@@ -79,7 +87,7 @@ const GAME_FIT = {
   telegraphnet: [[S, E], 'connect the cities by wire'], postroute: [[C, M, R, S], 'plan the post round'],
   konigsberg: [[R, S], 'walk every bridge once'], assembly: [[S, E, I], 'run the line to target'],
   // era engines
-  expedition: [ANY, 'plan the expedition route'], cipher: [ANY, 'break the cipher'],
+  expedition: [ANY, 'plan the expedition route'],
   debate: [[C, R, S, E], 'win the argument with evidence'], siege: [[A, C, M, R], 'hold the walls against the waves'],
   typeset: [[R, S], 'set the type before the press runs'], caravan: [[A, M, R], 'turn a profit along the route'],
   starchart: [[A, C, M, R], 'read the stars'], logicgate: [[E, I], 'wire the gates to the truth table'],
@@ -94,6 +102,15 @@ const h = s => { let x = 2166136261; for (const ch of s) { x ^= ch.charCodeAt(0)
 
 async function main() {
   const configs = JSON.parse(await fs.readFile(path.join(ROOT, 'data', 'game_configs.json'), 'utf8'))
+  // A counted type: the game key, or "cipher:<system>" for Codebreaker.
+  const typeOf = ch => ch.type !== 'minigame' ? ch.type
+    : ch.game === 'cipher' ? `cipher:${configs.cipher?.systems?.[ch.configId] ?? 'caesar'}` : ch.game
+  const gameOf = t => t.split(':')[0]
+  const configsOf = t => {
+    const [game, system] = t.split(':')
+    const ids = configs[game]?.configs ?? []
+    return system ? ids.filter(id => configs[game].systems?.[id] === system) : ids
+  }
   const stories = []
   for (const era of await fs.readdir(SRC)) {
     const dir = path.join(SRC, era)
@@ -108,7 +125,7 @@ async function main() {
   for (const s of stories) for (const st of s.story.stages) st.scenes.forEach((sc, i) => {
     if (sc.type !== 'challenge') return
     const ch = sc.challenge
-    all.push({ s, stage: st, i, ch, game: ch.type === 'minigame' ? ch.game : ch.type })
+    all.push({ s, stage: st, i, ch, game: typeOf(ch) })
   })
   const counted = all.filter(x => !EXEMPT.has(x.game))
   const count = {}
@@ -141,7 +158,7 @@ async function main() {
     storyGames.get(k).add(x.game)
   }
 
-  const candidates = Object.keys(GAME_FIT).filter(g => !EXEMPT.has(g) && configs[g]?.configs?.length)
+  const candidates = Object.keys(GAME_FIT).filter(g => !EXEMPT.has(g) && configsOf(g).length)
   let moved = 0
   const stuck = []
   for (const x of toMove) {
@@ -152,7 +169,7 @@ async function main() {
       .sort((a, b) => (count[a] ?? 0) - (count[b] ?? 0) || h(x.s.story.slug + a + x.i) - h(x.s.story.slug + b + x.i))[0]
     const g = pick(true) ?? pick(false)
     if (!g) { stuck.push(`${x.s.story.slug}:${x.game}`); continue }
-    const ids = configs[g].configs
+    const ids = configsOf(g)
     const used = usedCfg[g] ??= new Set()
     const configId = ids.find(id => !used.has(id)) ?? ids[h(x.s.story.slug + g) % ids.length]
     used.add(configId)
@@ -161,7 +178,7 @@ async function main() {
       type: 'challenge',
       challenge: {
         type: 'minigame',
-        game: g,
+        game: gameOf(g),
         configId,
         seed: h(`${x.s.story.slug}:${g}:${x.i}`) % 100000,
         instruction: `${figure}: ${GAME_FIT[g][1]}.`,

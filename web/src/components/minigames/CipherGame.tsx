@@ -1,13 +1,23 @@
 import { useMemo, useState } from 'react'
 import type { Difficulty, MinigameProps } from '@/games/types'
 import { mulberry32, resolveConfig, scale, useGameOutcome, OutcomeBanner, useGameTimer, TimerBar } from './_shared'
+import { CODEBOOKS, MORSE, type CodebookKey } from './CodebookGame'
+import DecodeGame, { CONFIGS as SUBSTITUTIONS } from './DecodeGame'
 
-// Cipher: recover a message.  Three modes share one component:
-//   caesar   – every letter shifted by the same amount; turn the wheel
-//   vigenere – shifted by a repeating keyword; set each key letter
-//   morse    – tap the dots and dashes for each letter
-// Difficulty sets the attempt cap and timer, and from tier 3 removes the
-// frequency hint (caesar/vigenère) or the Morse reference card.
+export { MORSE }
+
+// Codebreaker: recover a hidden message.  Every way of hiding one is a
+// system of this single game, and the config id picks the system, each
+// with its own look and mechanic:
+//   caesar       – every letter shifted by the same amount; turn the wheel
+//   vigenere     – shifted by a repeating keyword; set each key letter
+//   morse        – tap the dots and dashes for each letter
+//   substitution – a scrambled alphabet; assign each cipher letter (DecodeGame)
+//   atbash, polybius, pigpen, braille, telegraph, binary, scytale – the
+//                  historical codebooks (CodebookGame)
+// The three shift modes live here.  Difficulty sets the attempt cap and
+// timer, and from tier 3 removes the frequency hint (caesar/vigenère) or
+// the Morse reference card.
 
 type Mode = 'caesar' | 'vigenere' | 'morse'
 
@@ -82,11 +92,6 @@ export const CONFIGS: Record<string, CipherConfig> = {
 }
 
 const A = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-export const MORSE: Record<string, string> = {
-  A: '.-', B: '-...', C: '-.-.', D: '-..', E: '.', F: '..-.', G: '--.', H: '....', I: '..', J: '.---',
-  K: '-.-', L: '.-..', M: '--', N: '-.', O: '---', P: '.--.', Q: '--.-', R: '.-.', S: '...', T: '-',
-  U: '..-', V: '...-', W: '.--', X: '-..-', Y: '-.--', Z: '--..',
-}
 
 const shiftChar = (ch: string, k: number) => {
   const i = A.indexOf(ch)
@@ -148,7 +153,7 @@ export function cipherTier(mode: Mode, difficulty: Difficulty, plaintext: string
   }
 }
 
-export default function CipherGame({ configId, difficulty, seed, params, onWin, onLose }: MinigameProps) {
+function ShiftGame({ configId, difficulty, seed, params, onWin, onLose }: MinigameProps) {
   const cfg = resolveCipherConfig(configId, params)
   const { maxAttempts, showHints, timeLimit, blind = false } = cipherTier(cfg.mode, difficulty, cfg.plaintext)
   const { outcome, settled, win, lose } = useGameOutcome({ onWin, onLose, delayMs: 900 })
@@ -340,5 +345,49 @@ function MorseKey({ plain, showHints, disabled, onCheck, onWrong }: {
   )
 }
 
-// Every hand-authored config id; the registry test renders each one.
-export const CONFIG_IDS = Object.keys(CONFIGS)
+// ── Systems ────────────────────────────────────────────────────────────────────
+
+export type CipherSystem = Mode | 'substitution' | CodebookKey
+
+/** Which system each config belongs to; config ids are unique across all of them. */
+export const SYSTEM_OF: Record<string, CipherSystem> = Object.fromEntries([
+  ...Object.entries(CONFIGS).map(([id, c]): [string, CipherSystem] => [id, c.mode]),
+  ...Object.keys(SUBSTITUTIONS).map((id): [string, CipherSystem] => [id, 'substitution']),
+  ...(Object.keys(CODEBOOKS) as CodebookKey[]).flatMap(sys =>
+    Object.keys(CODEBOOKS[sys].CONFIGS).map((id): [string, CipherSystem] => [id, sys])),
+])
+
+/** The component that plays a system; unknown ids fall back to the shift game's default. */
+function gameFor(configId: string | undefined) {
+  const sys = configId ? SYSTEM_OF[configId] : undefined
+  if (sys === 'substitution') return DecodeGame
+  if (sys && sys in CODEBOOKS) return CODEBOOKS[sys as CodebookKey].Game
+  return ShiftGame
+}
+
+export default function CipherGame(props: MinigameProps) {
+  const Game = gameFor(props.configId)
+  return <Game {...props} />
+}
+
+// Every hand-authored config id, in Arcade order: the track plays the first
+// 24, so no two neighbours share a system, the easy readers (atbash, caesar
+// with a live wheel, binary with numbered keys) open the ladder, and the
+// systems with depth to them (substitution, vigenère, frequency analysis)
+// gather in the last tier.  The rest follow for story use, still alternating.
+// The registry test renders each one.
+export const CONFIG_IDS = [
+  // A: D1
+  'jain-teaching', 'caesar-gaul', 'mac-bitmap', 'nineveh-sign-list', 'endenich-telegram', 'masonic-grid',
+  // B: D2
+  'ephors-recall', 'mirror-tablet', 'paris-1839', 'fae-motto', 'morse-telegraph', 'five-lamps',
+  // C: D3
+  'mulan-code', 'greek-torches', 'signal-lamp', 'spartan-rod', 'peterhof-dawn', 'bletchley-crib',
+  // D: D4
+  'raised-dots', 'enigma-msg', 'vigenere-cabinet', 'bongsu-beacons', 'azteca-banner', 'al-kindi-frequency',
+  // Story-only beyond the 24 levels
+  'cipher-al', 'saqqara-mirror', 'cicero-code', 'harbin-wire', 'belisarius-msg', 'gombe-archive',
+  'sargon-code', 'philippics-warning', 'mao-code', 'arthashastra-spies', 'morris-cable', 'printed-plutarch',
+  'turing-dispatch', 'tadanori-quiver', 'rihla-title', 'dandi-dispatch', 'upadha-test', 'nobel-telex',
+  'hand-of-god-quote', 'shaw-epilogue', 'mani-last-words', 'leakey-cable', 'shunzei-scroll', 'ap-telex',
+]

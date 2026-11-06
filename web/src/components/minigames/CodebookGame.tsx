@@ -1,12 +1,12 @@
 import { useEffect, useMemo, useState, type ReactNode } from 'react'
 import type { Difficulty, MinigameComponent, MinigameProps } from '@/games/types'
 import { mulberry32, resolveConfig, scale, useGameOutcome, OutcomeBanner, useGameTimer, TimerBar } from './_shared'
-import { MORSE } from './CipherGame'
 
 // Codebook: historical ways of writing a message other than a shifted
-// alphabet.  Each system is its own game in the registry, with its own
-// look, but most share one loop: the message appears as symbols, the
-// player reads the current symbol off the key and taps the letter.
+// alphabet.  These are systems of the Codebreaker game (CipherGame picks
+// one by config id); each keeps its own look, but most share one loop: the
+// message appears as symbols, the player reads the current symbol off the
+// key and taps the letter.
 //   atbash    – the alphabet folded in half, A↔Z
 //   polybius  – each letter as a row/column pair; tap the square itself
 //   pigpen    – letters as the shape of their cell in a grid
@@ -24,6 +24,13 @@ interface CodebookConfig {
 }
 
 const A = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+/** International Morse; the telegraph reader and Codebreaker's Morse key share it. */
+export const MORSE: Record<string, string> = {
+  A: '.-', B: '-...', C: '-.-.', D: '-..', E: '.', F: '..-.', G: '--.', H: '....', I: '..', J: '.---',
+  K: '-.-', L: '.-..', M: '--', N: '-.', O: '---', P: '.--.', Q: '--.-', R: '.-.', S: '...', T: '-',
+  U: '..-', V: '...-', W: '.--', X: '-..-', Y: '-.--', Z: '--..',
+}
 
 /** Upper-case, letters and single spaces only. */
 export function cleanMessage(text: string): string {
@@ -654,17 +661,22 @@ function ScytaleGame({ configId, difficulty, seed, params, onWin, onLose }: Mini
   )
 }
 
-// ── Registry entries ──────────────────────────────────────────────────────────
+// ── Systems, for the Codebreaker dispatcher ───────────────────────────────────
 
-type Entry = { default: MinigameComponent; CONFIG_IDS: string[]; CONFIGS: Record<string, CodebookConfig>; pace?: [number, number] }
-const entry = (sys: System): Entry => ({ default: makeReader(sys), CONFIG_IDS: Object.keys(sys.configs), CONFIGS: sys.configs, pace: sys.pace })
+export interface Codebook {
+  Game: MinigameComponent
+  CONFIGS: Record<string, CodebookConfig>
+  /** Letter-by-letter readers only; scytale is one dial. */
+  pace?: [number, number]
+}
+const reader = (sys: System): Codebook => ({ Game: makeReader(sys), CONFIGS: sys.configs, pace: sys.pace })
 
-export const CODEBOOKS: Record<CodebookKey, Entry> = {
-  atbash: entry(SYSTEMS.atbash),
-  polybius: entry(SYSTEMS.polybius),
-  pigpen: entry(SYSTEMS.pigpen),
-  braille: entry(SYSTEMS.braille),
-  telegraph: entry(SYSTEMS.telegraph),
-  binary: entry(SYSTEMS.binary),
-  scytale: { default: ScytaleGame, CONFIG_IDS: Object.keys(SCYTALE_CONFIGS), CONFIGS: SCYTALE_CONFIGS },
+export const CODEBOOKS: Record<CodebookKey, Codebook> = {
+  atbash: reader(SYSTEMS.atbash),
+  polybius: reader(SYSTEMS.polybius),
+  pigpen: reader(SYSTEMS.pigpen),
+  braille: reader(SYSTEMS.braille),
+  telegraph: reader(SYSTEMS.telegraph),
+  binary: reader(SYSTEMS.binary),
+  scytale: { Game: ScytaleGame, CONFIGS: SCYTALE_CONFIGS },
 }

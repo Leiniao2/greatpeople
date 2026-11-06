@@ -119,7 +119,7 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "polybius",
+            "game": "cipher",
             "configId": "nineveh-sign-list",
             "seed": 44329,
             "instruction": "Copy it carefully. Check each sign of the Gilgamesh tablet against the scribes' sign list and read out its famous first line.",

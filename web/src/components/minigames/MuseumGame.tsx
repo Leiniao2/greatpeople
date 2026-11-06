@@ -1,326 +1,215 @@
-import { useState, useMemo, useCallback } from 'react'
-import type { Difficulty, MinigameProps } from '@/games/types'
-import { scale } from './_shared'
+import { useCallback, useEffect, useMemo, useState } from 'react'
+import type { MinigameProps } from '@/games/types'
+import { resolveConfig, storyText, useGameOutcome, OutcomeBanner, useGameTimer, TimerBar } from './_shared'
+import { EXHIBIT_BY_ID, ERA_BANDS, eraOf } from './museum/catalogue'
+import { generate, isSolved, roomName, roomState, shownTheme, themeLabel, type Puzzle } from './museum/model'
 
-type ArtType = 'portrait' | 'landscape' | 'sculpture' | 'ancient' | 'modern' | 'abstract'
+// Museum: hang every exhibit so each room of three shares a region, an era
+// or a kind of object.  Rules and generation live in ./museum/model.ts; each
+// config is a real museum whose own pieces lead the first room.
 
-interface Artwork { id: string; title: string; artist: string; type: ArtType; emoji: string; baseValue: number }
-interface Room { id: string; name: string; emoji: string; bonusTypes: ArtType[]; mult: number; hint: string; color: string }
-// winScore is the authored target; play now uses targetScore() (a share of the best hanging per tier).
-interface MuseumConfig { title: string; museum: string; artworks: Artwork[]; rooms: Room[]; winScore: number; fact: string }
+interface MuseumConfig {
+  title: string
+  museum: string
+  intro: string
+  /** Exhibits this museum is known for; one of them sets the first room. */
+  featured: string[]
+  fact: string
+}
 
 export const CONFIGS: Record<string, MuseumConfig> = {
   'louvre-arrangement': {
     title: 'Curate the Louvre',
     museum: 'Musée du Louvre, Paris',
-    artworks: [
-      { id: 'mona',     title: 'Mona Lisa',          artist: 'da Vinci',   type: 'portrait',   emoji: '🖼️', baseValue: 100 },
-      { id: 'winged',   title: 'Winged Victory',      artist: 'Unknown',    type: 'sculpture',  emoji: '🗿', baseValue: 80  },
-      { id: 'venus',    title: 'Venus de Milo',       artist: 'Unknown',    type: 'sculpture',  emoji: '🏛️', baseValue: 90  },
-      { id: 'lacemaker',title: 'The Lacemaker',       artist: 'Vermeer',    type: 'portrait',   emoji: '🪡', baseValue: 70  },
-      { id: 'liberty',  title: 'Liberty Leading',     artist: 'Delacroix',  type: 'modern',     emoji: '🚩', baseValue: 85  },
-      { id: 'shepherd', title: 'Arcadian Shepherds',  artist: 'Poussin',    type: 'landscape',  emoji: '🌄', baseValue: 60  },
-    ],
-    rooms: [
-      { id: 'denon',     name: 'Denon Wing',      emoji: '👑', bonusTypes: ['portrait'],             mult: 1.9, hint: '+90% for portraits',          color: 'from-violet-900' },
-      { id: 'sully',     name: 'Sully Wing',       emoji: '🏺', bonusTypes: ['sculpture', 'ancient'], mult: 1.8, hint: '+80% for sculpture & ancient', color: 'from-amber-900'  },
-      { id: 'richelieu', name: 'Richelieu Wing',   emoji: '🌿', bonusTypes: ['landscape'],            mult: 1.7, hint: '+70% for landscapes',          color: 'from-emerald-900'},
-      { id: 'modern',    name: 'Modern Gallery',   emoji: '🔴', bonusTypes: ['modern', 'abstract'],   mult: 1.8, hint: '+80% for modern & abstract',   color: 'from-rose-900'   },
-    ],
-    winScore: 400,
-    fact: 'The Louvre is the world\'s most-visited museum with over 9 million annual visitors. Its I. M. Pei glass pyramid, built in 1989, nearly caused a public revolt — now it\'s iconic.',
+    intro: 'The Louvre’s keepers are rehanging the galleries. Give each room three pieces that belong together.',
+    featured: ['mona_lisa', 'venus_milo', 'liberty', 'hammurabi', 'lamassu'],
+    fact: 'The Louvre is the world’s most-visited museum. It opened in 1793 in the former royal palace, and I. M. Pei’s glass pyramid was added in 1989.',
   },
   'catherine-hermitage': {
     title: "Hang Catherine's Hermitage",
     museum: 'The Hermitage, St Petersburg',
-    artworks: [
-      { id: 'prodigal', title: 'Return of the Prodigal Son', artist: 'Rembrandt',              type: 'portrait',  emoji: '🙏', baseValue: 100 },
-      { id: 'danae',    title: 'Danaë',                      artist: 'Rembrandt',              type: 'portrait',  emoji: '🖼️', baseValue: 90  },
-      { id: 'judith',   title: 'Judith',                     artist: 'Giorgione',              type: 'portrait',  emoji: '🗡️', baseValue: 80  },
-      { id: 'voltaire', title: 'Voltaire Seated',            artist: 'Houdon',                 type: 'sculpture', emoji: '🗿', baseValue: 85  },
-      { id: 'marbles',  title: 'Roman Marbles',              artist: 'Lyde Browne collection', type: 'ancient',   emoji: '🏛️', baseValue: 70  },
-    ],
-    rooms: [
-      { id: 'small',    name: 'Small Hermitage',  emoji: '🌿', bonusTypes: ['portrait'],  mult: 1.8, hint: '+80% for paintings',  color: 'from-emerald-900' },
-      { id: 'large',    name: 'Large Hermitage',  emoji: '👑', bonusTypes: ['portrait'],  mult: 1.7, hint: '+70% for paintings',  color: 'from-violet-900'  },
-      { id: 'sculpture',name: 'Sculpture Hall',   emoji: '🗿', bonusTypes: ['sculpture'], mult: 1.8, hint: '+80% for sculpture',  color: 'from-stone-800'   },
-      { id: 'antique',  name: 'Antiquities Room', emoji: '🏺', bonusTypes: ['ancient'],   mult: 1.9, hint: '+90% for antiquities', color: 'from-amber-900'   },
-    ],
-    winScore: 580,
-    fact: 'Catherine bought her first 225 paintings from the Berlin merchant Johann Ernst Gotzkowsky in 1764, the year the Hermitage counts as its founding. The Crozat collection (1772) brought Rembrandt’s Danaë and Giorgione’s Judith; Sir Robert Walpole’s pictures from Houghton Hall followed in 1779.',
+    intro: 'Catherine’s purchases arrive by the cartload. Hang them so every room of her hermitage has one theme.',
+    featured: ['night_watch', 'pearl_earring', 'birth_venus', 'sevres_vase'],
+    fact: 'Catherine bought her first 225 paintings from the Berlin merchant Johann Ernst Gotzkowsky in 1764, the year the Hermitage counts as its founding. The Crozat collection (1772) and Sir Robert Walpole’s pictures (1779) followed.',
   },
   'british-museum': {
     title: 'Arrange the British Museum',
     museum: 'British Museum, London',
-    artworks: [
-      { id: 'rosetta', title: 'Rosetta Stone',      artist: 'Egypt, 196 BCE',  type: 'ancient',   emoji: '🪨', baseValue: 95  },
-      { id: 'elgin',   title: 'Elgin Marbles',      artist: 'Pheidias',        type: 'sculpture', emoji: '🏛️', baseValue: 90  },
-      { id: 'sutton',  title: 'Sutton Hoo Helmet',  artist: 'Anglo-Saxon',     type: 'ancient',   emoji: '⛑️', baseValue: 75  },
-      { id: 'lewis',   title: 'Lewis Chessmen',      artist: 'Medieval Norse',  type: 'sculpture', emoji: '♟️', baseValue: 60  },
-      { id: 'wave',    title: 'The Great Wave',      artist: 'Hokusai',         type: 'modern',    emoji: '🌊', baseValue: 80  },
-      { id: 'lindow',  title: 'Lindow Man',          artist: 'Iron Age',        type: 'ancient',   emoji: '🦴', baseValue: 65  },
-    ],
-    rooms: [
-      { id: 'egypt',    name: 'Egyptian Hall',     emoji: '🐪', bonusTypes: ['ancient'],             mult: 1.9, hint: '+90% for ancient works',          color: 'from-amber-800'  },
-      { id: 'greece',   name: 'Greek & Rome',      emoji: '🏛️', bonusTypes: ['sculpture'],           mult: 1.8, hint: '+80% for sculptures',             color: 'from-slate-800'  },
-      { id: 'asia',     name: 'Asia Gallery',      emoji: '🗼', bonusTypes: ['modern'],              mult: 1.7, hint: '+70% for modern works',            color: 'from-red-900'    },
-      { id: 'medieval', name: 'Medieval Europe',   emoji: '⚔️', bonusTypes: ['ancient', 'sculpture'],mult: 1.6, hint: '+60% for ancient & sculpture',   color: 'from-indigo-900' },
-    ],
-    winScore: 370,
-    fact: 'The British Museum holds over 8 million objects spanning 2 million years of human history. Founded in 1753, it was the world\'s first national public museum.',
+    intro: 'New cases are ready in Bloomsbury. Each room must tell one story: one region, one era or one kind of object.',
+    featured: ['rosetta', 'sutton_hoo', 'lewis_chessmen', 'standard_ur', 'benin_plaque'],
+    fact: 'The British Museum opened in 1759, the first national public museum in the world, built on the 71,000 objects of the physician Sir Hans Sloane.',
   },
   'uffizi-gallery': {
     title: 'Curate the Uffizi Gallery',
     museum: 'Uffizi Gallery, Florence',
-    artworks: [
-      { id: 'birth',   title: 'Birth of Venus',     artist: 'Botticelli',   type: 'portrait',   emoji: '🐚', baseValue: 100 },
-      { id: 'spring',  title: 'Primavera',           artist: 'Botticelli',   type: 'landscape',  emoji: '🌸', baseValue: 95  },
-      { id: 'annun',   title: 'Annunciation',        artist: 'da Vinci',     type: 'portrait',   emoji: '🕊️', baseValue: 90  },
-      { id: 'tondo',   title: 'Doni Tondo',          artist: 'Michelangelo', type: 'portrait',   emoji: '👶', baseValue: 85  },
-      { id: 'venus2',  title: 'Venus of Urbino',     artist: 'Titian',       type: 'portrait',   emoji: '💛', baseValue: 80  },
-      { id: 'medusa',  title: 'Medusa',              artist: 'Caravaggio',   type: 'modern',     emoji: '🐍', baseValue: 70  },
-    ],
-    rooms: [
-      { id: 'botticelli', name: 'Botticelli Rooms',    emoji: '🌺', bonusTypes: ['portrait', 'landscape'], mult: 1.9, hint: '+90% for portraits & landscapes', color: 'from-rose-900'   },
-      { id: 'renaissance',name: 'Renaissance Hall',    emoji: '🎨', bonusTypes: ['portrait'],               mult: 1.7, hint: '+70% for portraits',              color: 'from-violet-900' },
-      { id: 'sculpture',  name: 'Sculpture Corridor',  emoji: '🗿', bonusTypes: ['sculpture'],              mult: 1.8, hint: '+80% for sculptures',             color: 'from-stone-800'  },
-      { id: 'baroque',    name: 'Baroque Gallery',     emoji: '🕯️', bonusTypes: ['modern', 'abstract'],     mult: 1.8, hint: '+80% for modern & baroque',     color: 'from-slate-800'  },
-    ],
-    winScore: 430,
-    fact: 'The Uffizi was designed by Vasari in 1560 as government offices ("uffizi") for Cosimo de\' Medici. The Medici art collection began moving there in 1581, making it the world\'s oldest art museum.',
+    intro: 'The Medici offices are becoming a gallery. Group the treasures so each room hangs together.',
+    featured: ['birth_venus', 'maiolica', 'codex_leicester', 'david'],
+    fact: 'The Uffizi was built from 1560 as offices (uffizi) for the Medici. Anna Maria Luisa de’ Medici left the family collection to Florence in 1737 on condition it never leave the city.',
   },
   'galleria-borghese': {
     title: 'Cardinal Scipione’s Villa',
     museum: 'Villa Borghese, Rome',
-    artworks: [
-      { id: 'apollo',     title: 'Apollo and Daphne',       artist: 'Bernini', type: 'sculpture', emoji: '🌿', baseValue: 100 },
-      { id: 'proserpina', title: 'The Rape of Proserpina',  artist: 'Bernini', type: 'sculpture', emoji: '🔱', baseValue: 95  },
-      { id: 'david',      title: 'David',                   artist: 'Bernini', type: 'sculpture', emoji: '🪨', baseValue: 90  },
-      { id: 'aeneas',     title: 'Aeneas and Anchises',     artist: 'Bernini', type: 'sculpture', emoji: '🔥', baseValue: 75  },
-      { id: 'selfport',   title: 'Self-Portrait',           artist: 'Bernini', type: 'portrait',  emoji: '🖌️', baseValue: 70  },
-      { id: 'sacred',     title: 'Sacred and Profane Love', artist: 'Titian',  type: 'landscape', emoji: '⛲', baseValue: 85  },
-    ],
-    rooms: [
-      { id: 'emperors', name: 'Hall of the Emperors', emoji: '🏛️', bonusTypes: ['sculpture'],             mult: 1.9, hint: '+90% for sculpture',              color: 'from-stone-800'  },
-      { id: 'salone',   name: 'Great Salon',          emoji: '🗿', bonusTypes: ['sculpture', 'ancient'],  mult: 1.8, hint: '+80% for sculpture & antiquities', color: 'from-amber-900'  },
-      { id: 'pictures', name: 'Picture Gallery',      emoji: '🖼️', bonusTypes: ['portrait'],              mult: 1.8, hint: '+80% for portraits',              color: 'from-violet-900' },
-      { id: 'loggia',   name: 'Garden Loggia',        emoji: '🌳', bonusTypes: ['landscape'],             mult: 1.6, hint: '+60% for landscapes',             color: 'from-emerald-900'},
-    ],
-    winScore: 540,
-    fact: 'Cardinal Scipione Borghese, nephew of Pope Paul V, commissioned the young Bernini’s great marbles for his villa on the Pincian hill: Aeneas and Anchises (1618–19), The Rape of Proserpina (1621–22), Apollo and Daphne (1622–25) and David (1623–24). All four stand today in the Galleria Borghese.',
+    intro: 'Cardinal Scipione Borghese is filling his villa. Place each work so every room has a single theme.',
+    featured: ['apollo_daphne', 'david', 'maiolica'],
+    fact: 'Cardinal Scipione Borghese commissioned the young Bernini’s great marbles for his villa on the Pincian hill, among them Apollo and Daphne (1622–25). They stand today in the Galleria Borghese.',
+  },
+  'palace-museum': {
+    title: 'The Forbidden City Collection',
+    museum: 'Palace Museum, Beijing',
+    intro: 'The emperors’ storerooms are opening to the public. Set out each hall around one theme.',
+    featured: ['qingming', 'ming_vase', 'ding', 'jade_suit'],
+    fact: 'The Palace Museum opened in the Forbidden City in 1925, a year after the last emperor, Puyi, was expelled. It holds about 1.8 million objects, among them Along the River During the Qingming Festival.',
+  },
+  'tokyo-national': {
+    title: 'Tokyo National Museum',
+    museum: 'Tokyo National Museum, Ueno',
+    intro: 'Japan’s oldest museum is laying out a survey of art from around the world. Give each room one theme.',
+    featured: ['great_wave', 'samurai_armour', 'jomon_pot', 'genji_scroll'],
+    fact: 'The Tokyo National Museum grew out of an exhibition held at the Yushima Seidō in 1872 and is the oldest museum in Japan.',
+  },
+  'anthropology-mexico': {
+    title: 'Museum of Anthropology',
+    museum: 'Museo Nacional de Antropología, Mexico City',
+    intro: 'Under the great stone umbrella, the halls are being arranged. Each room shows one region, one era or one kind of object.',
+    featured: ['sun_stone', 'olmec_head', 'moche_vessel', 'turquoise_serpent'],
+    fact: 'The Museo Nacional de Antropología opened in 1964. The Aztec Sun Stone, found in Mexico City’s main square in 1790, is its most famous piece.',
+  },
+  'cairo-museum': {
+    title: 'The Egyptian Museum',
+    museum: 'Egyptian Museum, Cairo',
+    intro: 'The treasures of the Valley of the Kings have arrived. Lay them out with pieces from the world’s museums, one theme to a room.',
+    featured: ['tut_mask', 'fayum', 'crystal_ewer', 'rosetta'],
+    fact: 'Howard Carter found Tutankhamun’s tomb in the Valley of the Kings in November 1922. Its gold mask has been in Cairo ever since.',
   },
 }
 
-/** Best total over every way of hanging one artwork per room. */
-export function bestScore(cfg: MuseumConfig): number {
-  let best = 0
-  const used = new Set<string>()
-  const go = (ri: number, total: number) => {
-    if (ri === cfg.rooms.length) { best = Math.max(best, total); return }
-    const room = cfg.rooms[ri]
-    for (const art of cfg.artworks) {
-      if (used.has(art.id)) continue
-      used.add(art.id)
-      go(ri + 1, total + Math.round(art.baseValue * (room.bonusTypes.includes(art.type) ? room.mult : 1)))
-      used.delete(art.id)
-    }
-  }
-  go(0, 0)
-  return best
+export const CONFIG_IDS = Object.keys(CONFIGS)
+
+const ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI']
+export const exhibitArtUrl = (id: string) => `/exhibits/${id}.webp`
+
+function ExhibitImage({ id, className }: { id: string; className?: string }) {
+  const [broken, setBroken] = useState(false)
+  if (broken) return <div className={`${className} bg-panel-2`} />
+  return <img src={exhibitArtUrl(id)} alt="" draggable={false} className={`${className} object-cover`} onError={() => setBroken(true)} />
 }
 
-/**
- * The score to beat.  The live score bar lets the player rearrange freely,
- * so difficulty is how close to the best hanging they must get: D1 asks for
- * the obvious bonus matches, D4 for (nearly) the optimum.
- */
-export const targetScore = (cfg: MuseumConfig, difficulty: Difficulty) =>
-  Math.round(bestScore(cfg) * scale(difficulty, [0.8, 0.88, 0.94, 0.98]))
+const emptyRooms = (pz: Puzzle) => pz.themes.map(() => Array<string | null>(pz.slots).fill(null))
 
-export default function MuseumGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
-  const maxAttempts = scale(difficulty, [3, 3, 2, 2])
-  const [attempts, setAttempts] = useState(0)
+export default function MuseumGame({ configId, difficulty, seed, params, onWin, onLose }: MinigameProps) {
+  const config = { ...resolveConfig(CONFIGS, configId, undefined, 'louvre-arrangement'), ...storyText(params) }
+  const pz = useMemo(() => generate(difficulty, seed, { featured: config.featured }), [difficulty, seed, config.featured])
+  const [rooms, setRooms] = useState<(string | null)[][]>(() => emptyRooms(pz))
+  const [sel, setSel] = useState<string | null>(null)
+  const { outcome, settled, win, lose } = useGameOutcome({ onWin, onLose })
+  const timer = useGameTimer({ seconds: pz.seconds, running: !settled, onExpire: () => lose('The doors opened before the rooms were ready') })
 
-  const cfg = CONFIGS[configId] ?? CONFIGS['louvre-arrangement']
-  const winScore = useMemo(() => targetScore(cfg, difficulty), [cfg, difficulty])
+  useEffect(() => { setRooms(emptyRooms(pz)); setSel(null) }, [pz])
 
-  const [assignments, setAssignments] = useState<Record<string, string | null>>(
-    () => Object.fromEntries(cfg.rooms.map(r => [r.id, null]))
-  )
-  const [selected, setSelected] = useState<string | null>(null)
-  const [submitted, setSubmitted] = useState(false)
-  const [won, setWon] = useState(false)
+  const filled = useMemo(() => rooms.map(r => r.filter((x): x is string => !!x)), [rooms])
+  const placed = useMemo(() => new Set(filled.flat()), [filled])
+  const solved = isSolved(pz, filled)
+  useEffect(() => { if (solved && !settled) win() }, [solved, settled, win])
 
-  const artMap = useMemo(() => Object.fromEntries(cfg.artworks.map(a => [a.id, a])), [cfg])
-  const assignedIds = useMemo(() => Object.values(assignments).filter(Boolean) as string[], [assignments])
+  const clickSlot = useCallback((r: number, s: number) => {
+    if (settled) return
+    const here = rooms[r][s]
+    setRooms(prev => {
+      const next = prev.map(row => row.map(x => (x === sel ? null : x)))
+      next[r][s] = sel
+      return next
+    })
+    // Whatever was hanging there comes back into your hands.
+    setSel(here && here !== sel ? here : null)
+  }, [rooms, sel, settled])
 
-  const score = useMemo(() => {
-    let total = 0
-    for (const room of cfg.rooms) {
-      const aId = assignments[room.id]
-      if (!aId) continue
-      const art = artMap[aId]
-      const mult = room.bonusTypes.includes(art.type) ? room.mult : 1.0
-      total += Math.round(art.baseValue * mult)
-    }
-    return total
-  }, [assignments, cfg.rooms, artMap])
-
-  const allFilled = cfg.rooms.every(r => assignments[r.id])
-
-  const clickRoom = useCallback((roomId: string) => {
-    if (submitted) return
-    if (selected) {
-      const prev = assignments[roomId]
-      setAssignments(a => ({ ...a, [roomId]: selected }))
-      setSelected(prev)  // pick up what was displaced (null = deselect)
-    } else if (assignments[roomId]) {
-      setSelected(assignments[roomId])
-      setAssignments(a => ({ ...a, [roomId]: null }))
-    }
-  }, [submitted, selected, assignments])
-
-  const submit = () => {
-    if (!allFilled) return
-    setSubmitted(true)
-    if (score >= winScore) { setWon(true); setTimeout(onWin, 800) }
-    else {
-      const n = attempts + 1
-      setAttempts(n)
-      if (n >= maxAttempts) setTimeout(() => onLose('score too low'), 800)
-    }
-  }
-
-  const reset = () => {
-    setAssignments(Object.fromEntries(cfg.rooms.map(r => [r.id, null])))
-    setSelected(null); setSubmitted(false); setWon(false)
-  }
+  const tray = pz.exhibits.filter(id => !placed.has(id))
+  const goal = pz.hidden
+    ? 'The rooms have no names yet. Each room of three must share a region, an era or a kind of object, and no two rooms may tell the same story.'
+    : 'Fill every room with three exhibits that fit its theme. Some pieces fit two rooms: choose where each one is needed.'
 
   return (
-    <div className="flex flex-col gap-3">
-      <div className="text-center">
-        <p className="text-accent font-bold text-sm">{cfg.title}</p>
-        <p className="text-muted text-xs">{cfg.museum}</p>
-        <p className="text-muted text-xs mt-0.5">Target: {winScore} pts — match artworks to rooms for maximum bonus</p>
-      </div>
-
-      {/* Score bar */}
-      <div className="flex items-center gap-2 text-xs">
-        <span className="text-muted">Score:</span>
-        <div className="flex-1 h-1.5 bg-panel rounded-full overflow-hidden">
-          <div
-            className="h-full rounded-full transition-all"
-            style={{
-              width: `${Math.min((score / winScore) * 100, 100)}%`,
-              background: score >= winScore ? '#10b981' : '#f59e0b',
-            }}
-          />
+    <div className="flex flex-col gap-3 bg-paper-2 rounded-xl p-3 sm:p-4">
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <p className="text-accent text-[10px] font-bold uppercase tracking-widest">{config.title}</p>
+          <p className="text-muted text-[10px]">{config.museum}</p>
+          <p className="text-muted text-xs leading-relaxed mt-1">{config.intro}</p>
         </div>
-        <span className={`font-bold font-mono ${score >= winScore ? 'text-emerald-700' : 'text-accent'}`}>{score}</span>
+        <p className="shrink-0 text-[10px] font-bold text-ink-2">D{difficulty}</p>
       </div>
+      <p className="text-ink-2 text-xs leading-relaxed" data-testid="museum-goal">{goal}</p>
+      <div className="flex flex-wrap gap-1 text-[10px]">
+        {ERA_BANDS.map(b => (
+          <span key={b.era} className="px-1.5 py-0.5 rounded-md bg-panel border border-line text-muted">
+            <b className="text-ink-2">{b.era}</b> {b.label}
+          </span>
+        ))}
+      </div>
+      {timer.active && !settled && <TimerBar remaining={timer.remaining} total={timer.total} />}
 
-      {/* Rooms */}
-      <div className="grid grid-cols-2 gap-2">
-        {cfg.rooms.map(room => {
-          const aId = assignments[room.id]
-          const art = aId ? artMap[aId] : null
-          const bonus = art ? room.bonusTypes.includes(art.type) : false
-          const roomScore = art ? Math.round(art.baseValue * (bonus ? room.mult : 1.0)) : 0
-          const canDrop = !!selected && !aId
+      <div className="grid gap-2 sm:grid-cols-2">
+        {rooms.map((row, r) => {
+          const state = roomState(pz, r, filled[r])
+          const theme = shownTheme(pz, r, filled[r])
+          const name = pz.hidden ? `Room ${ROMAN[r]}` : roomName(pz.themes[r])
           return (
-            <button key={room.id} onClick={() => clickRoom(room.id)}
-              className={[
-                'flex flex-col gap-1.5 p-3 rounded-xl border text-left transition-all',
-                `bg-gradient-to-br ${room.color} to-slate-950`,
-                art
-                  ? bonus ? 'border-emerald-500/50' : 'border-line-2'
-                  : canDrop ? 'border-accent/60 bg-accent/5' : 'border-line hover:border-line-2',
-              ].join(' ')}
-            >
-              <div className="flex items-center gap-1.5">
-                <span className="text-base">{room.emoji}</span>
-                <span className="text-white text-xs font-bold leading-tight">{room.name}</span>
+            <div key={r} data-room={r} data-state={state}
+              className={`rounded-xl border p-2 transition-colors ${
+                state === 'good' ? 'border-emerald-500/60 bg-emerald-500/5' : state === 'bad' ? 'border-red-500/50 bg-red-500/5' : 'border-line bg-panel'}`}>
+              <div className="flex items-center justify-between gap-2 mb-1.5">
+                <p className="text-ink text-xs font-bold">{name}</p>
+                <p className={`text-[10px] ${state === 'good' ? 'text-emerald-700' : state === 'bad' ? 'text-red-700' : 'text-muted'}`}>
+                  {state === 'good' && theme ? `✓ ${themeLabel(theme)}`
+                    : state === 'bad' ? (pz.hidden ? '✗ nothing in common' : '✗ does not fit')
+                    : `${filled[r].length}/${pz.slots}`}
+                </p>
               </div>
-              <p className="text-white/70 text-[10px] leading-tight">{room.hint}</p>
-              {art ? (
-                <div className={`flex items-center gap-1.5 px-2 py-1 rounded-lg bg-panel ${bonus ? 'ring-1 ring-emerald-500/60' : ''}`}>
-                  <span className="text-base">{art.emoji}</span>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-[11px] font-bold text-ink truncate">{art.title}</p>
-                    <p className="text-[10px] text-muted">{bonus ? `✓ bonus: ${roomScore} pts` : `${roomScore} pts`}</p>
-                  </div>
-                </div>
-              ) : (
-                <div className={`h-8 flex items-center justify-center rounded-lg border border-dashed ${canDrop ? 'border-accent/50 bg-accent/10' : 'border-line'}`}>
-                  <span className={`text-[10px] ${canDrop ? 'text-accent' : 'text-muted/80'}`}>
-                    {canDrop ? 'tap to place' : 'empty'}
-                  </span>
-                </div>
-              )}
-            </button>
+              <div className="grid grid-cols-3 gap-1.5">
+                {row.map((id, s) => (
+                  <button key={s} data-slot={`${r}:${s}`} onClick={() => clickSlot(r, s)} disabled={settled}
+                    className={`relative aspect-square rounded-lg overflow-hidden border ${
+                      id ? 'border-line-2' : sel ? 'border-accent/60 border-dashed bg-accent/10' : 'border-line border-dashed'}`}>
+                    {id ? (
+                      <>
+                        <ExhibitImage id={id} className="absolute inset-0 w-full h-full" />
+                        <span className="absolute inset-x-0 bottom-0 bg-black/60 text-white text-[9px] leading-tight px-1 py-0.5 truncate">{EXHIBIT_BY_ID[id].title}</span>
+                      </>
+                    ) : <span className="text-[10px] text-muted">{sel ? 'hang here' : ''}</span>}
+                  </button>
+                ))}
+              </div>
+            </div>
           )
         })}
       </div>
 
-      {/* Artwork pool */}
-      <div>
-        <p className="text-muted text-[10px] mb-1.5">
-          {selected ? `Selected: ${artMap[selected]?.title} — tap a room to place it` : 'Tap an artwork to select it, then tap a room:'}
-        </p>
-        <div className="flex flex-wrap gap-1.5">
-          {cfg.artworks.map(art => {
-            const isAssigned = assignedIds.includes(art.id)
-            const isSel = selected === art.id
-            return (
-              <button key={art.id} onClick={() => {
-                if (submitted || isAssigned) return
-                setSelected(isSel ? null : art.id)
-              }}
-                disabled={isAssigned}
-                className={[
-                  'flex items-center gap-1.5 px-2 py-1.5 rounded-xl border text-xs transition-all',
-                  isAssigned ? 'opacity-30 cursor-default border-line bg-panel' :
-                  isSel      ? 'border-accent bg-accent/20 text-ink-2 shadow-md shadow-accent/20' :
-                               'border-line bg-panel text-ink-2 hover:border-line-2',
-                ].join(' ')}
-              >
-                <span className="text-base">{art.emoji}</span>
-                <div>
-                  <p className="font-bold leading-tight">{art.title}</p>
-                  <p className="text-muted text-[9px]">{art.baseValue} base · {art.type}</p>
-                </div>
-              </button>
-            )
-          })}
+      {tray.length > 0 && (
+        <div>
+          <p className="text-muted text-[10px] mb-1.5">
+            {sel ? `Holding ${EXHIBIT_BY_ID[sel].title}: tap a frame to hang it` : 'Tap an exhibit, then tap a frame. Tap a hung piece to take it down.'}
+          </p>
+          <div className="grid grid-cols-3 sm:grid-cols-4 gap-1.5">
+            {tray.map(id => {
+              const e = EXHIBIT_BY_ID[id]
+              return (
+                <button key={id} data-exhibit={id} disabled={settled} onClick={() => setSel(sel === id ? null : id)}
+                  className={`flex flex-col rounded-lg overflow-hidden border text-left transition-all ${
+                    sel === id ? 'border-accent ring-2 ring-accent/40' : 'border-line hover:border-line-2'} bg-panel`}>
+                  <ExhibitImage id={id} className="w-full aspect-square" />
+                  <div className="px-1 py-0.5">
+                    <p className="text-[10px] font-bold text-ink leading-tight">{e.title}</p>
+                    <p className="text-[9px] text-muted leading-tight">{e.date} · {e.region}</p>
+                    <p className="text-[9px] text-muted leading-tight">{e.kind}{pz.showEra ? ` · ${eraOf(e.year)}` : ''}</p>
+                  </div>
+                </button>
+              )
+            })}
+          </div>
         </div>
-      </div>
-
-      {/* Submit */}
-      {!submitted && (
-        <button onClick={submit} disabled={!allFilled}
-          className="w-full py-2.5 bg-accent/20 border border-accent/40 text-accent text-sm font-bold rounded-xl hover:bg-accent/30 transition-all disabled:opacity-40">
-          {allFilled ? 'Open Museum Doors!' : `${cfg.rooms.filter(r => !assignments[r.id]).length} room${cfg.rooms.filter(r => !assignments[r.id]).length !== 1 ? 's' : ''} still empty`}
-        </button>
       )}
 
-      {submitted && won && (
-        <div className="p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-xl">
-          <p className="text-emerald-700 font-bold text-sm text-center">Masterful Curation! Score: {score} pts</p>
-          <p className="text-muted text-xs mt-1.5 leading-relaxed">{cfg.fact}</p>
-        </div>
-      )}
-      {submitted && !won && (
-        <div className="p-3 bg-red-500/10 border border-red-500/30 rounded-xl text-center">
-          <p className="text-red-700 font-bold text-sm">Score: {score} — need {winScore}</p>
-          <p className="text-muted text-xs mt-0.5">Try matching artwork types to room specialities.</p>
-          <button onClick={reset} className="mt-2 px-4 py-1.5 bg-panel text-ink-2 text-xs rounded-lg hover:bg-panel-2 transition-all">
-            Rearrange
-          </button>
-        </div>
-      )}
+      <OutcomeBanner outcome={outcome} detail={config.fact} winTitle="The doors open on a perfect hanging" loseTitle="The rooms were not ready" />
     </div>
   )
 }
-
-// Every hand-authored config id; the registry test renders each one.
-export const CONFIG_IDS = Object.keys(CONFIGS)

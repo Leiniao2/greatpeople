@@ -78,7 +78,7 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "polybius",
+            "game": "cipher",
             "configId": "arthashastra-spies",
             "seed": 1013,
             "instruction": "Chanakya sends Chandragupta his first lesson in the code his spies use, each letter a pair of numbers. Find every letter on the square.",
@@ -102,7 +102,7 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "atbash",
+            "game": "cipher",
             "configId": "upadha-test",
             "seed": 83212,
             "instruction": "To learn which ministers can be trusted, Chanakya has a letter of treason planted on one of them. Read it in its folded alphabet, as the minister will.",

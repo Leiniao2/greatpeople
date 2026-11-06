@@ -78,7 +78,7 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "polybius",
+            "game": "cipher",
             "configId": "mani-last-words",
             "seed": 1008,
             "instruction": "Kartir has turned the king against him, and Mani lies in chains. Read his last message to the church as his disciples signal it, letter by letter.",

@@ -25,7 +25,7 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "polybius",
+            "game": "cipher",
             "configId": "bongsu-beacons",
             "seed": 1010,
             "instruction": "In 1592 the beacon fires blaze along the coast: the Japanese have landed. Read the alarm as it runs from tower to tower — each letter a row and a column of the square.",

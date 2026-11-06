@@ -22,8 +22,8 @@ import { hashString, mulberry32, resolveConfig, scale, shuffle, useGameOutcome, 
 //
 // Time budget: about two seconds a jump.  D1 boards have 18–26 squares to
 // visit (about a minute, with Warnsdorff's onward-move counts shown) and no
-// level has more than 40 (≈ 1½–2½ minutes) — a full 8×8 knight's tour (64
-// jumps) is too long.  Undos shrink with difficulty (6, 5, 4, 3); D1 has free
+// level has more than 32 (about a minute and a half) — a full 8×8 knight's
+// tour (64 jumps) is far too long.  Undos shrink with difficulty (6, 5, 4, 3); D1 has free
 // hints, D2 two, D3–D4 one.  An undo from a dead end goes back to the last
 // square the tour can still be finished from — dead ends show up long after
 // the jump that caused them, so one-step undos alone rarely rescued a tour.
@@ -58,10 +58,10 @@ export const CONFIGS: Record<string, TourConfig> = {
     intro: 'Euler prized the re-entrant tour. Visit every square once — and finish a knight’s move from where you began (the ringed square).',
     fact: 'Euler’s 1759 memoir to the Berlin Academy gave the first mathematical study of knight’s tours, including closed tours that end a knight’s move from the start.',
     tiers: [
+      { rows: 5, cols: 6, start: 'any', blocked: 6 },
       { rows: 5, cols: 6, start: 'any', blocked: 4 },
+      { rows: 5, cols: 6, start: 'any', blocked: 2 },
       { rows: 5, cols: 6, start: 'any', blocked: 0 },
-      { rows: 6, cols: 6, start: 'any', blocked: 2 },
-      { rows: 6, cols: 6, start: 'any', blocked: 0 },
     ],
   },
   'al-adli': {
@@ -72,9 +72,9 @@ export const CONFIGS: Record<string, TourConfig> = {
     fact: 'The oldest known knight’s tours appear in Arabic shatranj manuscripts of the 9th century, attributed to masters such as al-Adli and as-Suli.',
     tiers: [
       { rows: 5, cols: 5, start: 'corner', blocked: 0, waypoints: 2 },
+      { rows: 5, cols: 5, start: 'corner', blocked: 0, waypoints: 3 },
       { rows: 5, cols: 6, start: 'any', blocked: 0, waypoints: 3 },
-      { rows: 6, cols: 6, start: 'any', blocked: 0, waypoints: 3 },
-      { rows: 6, cols: 6, start: 'any', blocked: 0, waypoints: 4 },
+      { rows: 5, cols: 6, start: 'any', blocked: 0, waypoints: 4 },
     ],
   },
   'lucena-1497': {
@@ -85,9 +85,9 @@ export const CONFIGS: Record<string, TourConfig> = {
     fact: 'Luis Ramírez de Lucena’s Repetición de amores y arte de ajedrez (Salamanca, c. 1497), dedicated to Prince Juan, son of Isabel and Ferdinand, is the oldest surviving printed chess book — and one of the first to teach the new game in which the queen sweeps the whole board.',
     tiers: [
       { rows: 5, cols: 5, start: 'corner', blocked: 0, waypoints: 2 },
+      { rows: 5, cols: 5, start: 'corner', blocked: 0, waypoints: 3 },
       { rows: 5, cols: 6, start: 'any', blocked: 0, waypoints: 3 },
-      { rows: 6, cols: 6, start: 'any', blocked: 0, waypoints: 3 },
-      { rows: 6, cols: 6, start: 'any', blocked: 0, waypoints: 4 },
+      { rows: 5, cols: 6, start: 'any', blocked: 0, waypoints: 4 },
     ],
   },
   'janggi-horse': {
@@ -97,10 +97,10 @@ export const CONFIGS: Record<string, TourConfig> = {
     intro: 'In janggi the horse moves one point straight and one aslant — the knight’s move. Visit every point once, and finish a horse’s move from where you began (the ringed square), like a patrol that comes home.',
     fact: 'Janggi, Korean chess, grew from Chinese xiangqi and was played in Joseon Korea by scholars and soldiers alike. Its horse moves one point orthogonally and then one diagonally, though unlike the European knight it can be blocked by a piece in the way.',
     tiers: [
+      { rows: 5, cols: 6, start: 'any', blocked: 6 },
       { rows: 5, cols: 6, start: 'any', blocked: 4 },
+      { rows: 5, cols: 6, start: 'any', blocked: 2 },
       { rows: 5, cols: 6, start: 'any', blocked: 0 },
-      { rows: 6, cols: 6, start: 'any', blocked: 2 },
-      { rows: 6, cols: 6, start: 'any', blocked: 0 },
     ],
   },
   turk: {
@@ -111,9 +111,9 @@ export const CONFIGS: Record<string, TourConfig> = {
     fact: 'Wolfgang von Kempelen’s Turk (1770) amazed audiences by completing knight’s tours; it was really a hidden chess master working the arm.',
     tiers: [
       { rows: 5, cols: 5, start: 'any', blocked: 3 },
-      { rows: 5, cols: 6, start: 'any', blocked: 3 },
-      { rows: 6, cols: 6, start: 'any', blocked: 4 },
-      { rows: 6, cols: 7, start: 'any', blocked: 4 },
+      { rows: 5, cols: 5, start: 'any', blocked: 2 },
+      { rows: 5, cols: 6, start: 'any', blocked: 4 },
+      { rows: 6, cols: 6, start: 'any', blocked: 6 },
     ],
   },
   tamerlane: {
@@ -124,9 +124,9 @@ export const CONFIGS: Record<string, TourConfig> = {
     fact: 'Tamerlane chess, played at the court of Timur in the 14th century on a 10×11 board, added the camel, giraffe, war engines and more to the shatranj army. The camel’s (3,1) leap keeps it forever on one colour, like a bishop.',
     tiers: [
       { rows: 6, cols: 6, start: 'any', blocked: 0 },
+      { rows: 6, cols: 8, start: 'any', blocked: 0 },
       { rows: 7, cols: 7, start: 'any', blocked: 0 },
       { rows: 8, cols: 8, start: 'any', blocked: 0 },
-      { rows: 8, cols: 10, start: 'any', blocked: 0 },
     ],
   },
 }

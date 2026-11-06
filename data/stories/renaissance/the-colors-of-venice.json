@@ -137,7 +137,7 @@
             "type": "minigame",
             "game": "museum",
             "configId": "uffizi-gallery",
-            "instruction": "You are the new curator of the Uffizi. Assign each Renaissance masterpiece to the room where it earns the greatest bonus and hit the target score.",
+            "instruction": "You are the new curator of the Uffizi. Hang every masterpiece so each room shares one region, one era or one kind of work.",
             "fact": "The Uffizi Gallery in Florence holds the finest concentration of Renaissance masterpieces in the world — Botticelli's Venus, da Vinci's Annunciation, and Titian's Venus of Urbino under one roof."
           }
         },

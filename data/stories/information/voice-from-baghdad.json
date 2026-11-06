@@ -56,7 +56,7 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "binary",
+            "game": "cipher",
             "configId": "ap-telex",
             "seed": 1020,
             "instruction": "Arnett learned to stay put in Vietnam, filing for the AP while others left. Read one of his Saigon dispatches off the teleprinter, lamp by lamp.",

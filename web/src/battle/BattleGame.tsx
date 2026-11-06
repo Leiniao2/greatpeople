@@ -6,7 +6,7 @@ import { useEffect, useCallback, useState, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import type {
   Card, FollowerCard, EventCard, OnboardCard, LocationState,
-  GameState, EventType, CardContrib, GameSummary, LifeStatus, PlayerState,
+  GameState, EventType, CardContrib, GameSummary, LifeStatus, PlayerState, StatKey,
 } from '@/types'
 import { cardBackUrl, followerUrl, locationImageUrl, scenarioImageUrl } from '@/data/images'
 import EraIcon from '@/components/EraIcon'
@@ -14,7 +14,7 @@ import {
   ALL_GP_CARDS, STATS, STAT_LABELS, ACHIEVEMENT_SPECS, getAchievementThreshold, followerFromId,
   FOLLOWER_IDENTITY_MATCH_BONUS, LEGACY_SLOTS, CITY_STATE_CHANCE, DEFAULT_CAREER_AGE,
   careerStartYear, deathYear, describeLegacyEffect, formatYear, getGPCard, lifeStatus, successorOptions,
-  gpSlots, lineageCount, LOCATION_CARD_MAP, GLOBAL_COMPETITION_CHANCE, REWARD_EVENTS, REWARD_FOLLOWERS,
+  gpSlots, lineageCount, computeLocationTotal, FREE_PLAY_ROUNDS, isFreePlay, LOCATION_CARD_MAP, GLOBAL_COMPETITION_CHANCE, REWARD_EVENTS, REWARD_FOLLOWERS,
   type GameAction,
 } from './engine'
 import { achievementProgress } from './achievements'
@@ -783,7 +783,7 @@ export interface BattleGameProps {
   reward?: Card | null
 }
 
-function RulesModal({ onClose }: { onClose: () => void }) {
+function RulesModal({ onClose, freePlay }: { onClose: () => void; freePlay: boolean }) {
   return (
     <div className="fixed inset-0 z-[200] flex items-end sm:items-center justify-center bg-ink/70 p-4" onClick={onClose}>
       <div className="bg-panel border border-line rounded-2xl w-full max-w-sm shadow-2xl overflow-hidden" onClick={e => e.stopPropagation()}>
@@ -794,8 +794,24 @@ function RulesModal({ onClose }: { onClose: () => void }) {
         <div className="p-4 space-y-4 max-h-[70vh] overflow-y-auto text-sm">
           <section>
             <p className="text-[10px] font-bold text-accent uppercase tracking-widest mb-1.5">Objective</p>
+            {freePlay ? (
+              <p className="text-ink-2 leading-relaxed">Free play: the game lasts <span className="text-accent font-bold">{FREE_PLAY_ROUNDS} rounds</span>, or ends sooner when a player has no Great Person left, and the player with <span className="text-accent font-bold">the most legacies</span> wins.</p>
+            ) : (
             <p className="text-ink-2 leading-relaxed">There is no points race: the game runs to <span className="text-accent font-bold">the end of history</span> ({formatYear(2030)}, or sooner if every lineage has ended), and the player with <span className="text-accent font-bold">the most legacies</span> wins. If all your lineages end first, the computer plays history out and the legacies are compared then.</p>
+            )}
           </section>
+          {freePlay && (
+          <section>
+            <p className="text-[10px] font-bold text-accent uppercase tracking-widest mb-1.5">Free play</p>
+            <ul className="space-y-1.5 text-ink-2 leading-relaxed">
+              <li>No dates: nobody is born, ages or dies of old age. A Great Person leaves play only when <span className="text-ink font-semibold">killed</span> (in a fight, a survival or a hazard) or <span className="text-ink font-semibold">retired</span>.</li>
+              <li>You open by picking one Great Person from up to three <span className="text-ink font-semibold">from your collection</span>. When they leave play, pick the next from up to three more of your own.</li>
+              <li>Each Great Person plays at most once a game, for anyone. Run out of Great People and the game ends.</li>
+              <li>Followers serve a Great Person: when your last Great Person dies, all your Followers, in hand and on the board, are discarded. Event cards stay.</li>
+            </ul>
+          </section>
+          )}
+          {!freePlay && (
           <section>
             <p className="text-[10px] font-bold text-accent uppercase tracking-widest mb-1.5">Real history</p>
             <ul className="space-y-1.5 text-ink-2 leading-relaxed">
@@ -808,8 +824,10 @@ function RulesModal({ onClose }: { onClose: () => void }) {
               <li>Followers serve a Great Person: when your last Great Person dies, all your Followers, in hand and on the board, are discarded. Event cards stay.</li>
               <li><span className="text-ink font-semibold">Retire</span> a Great Person at any time on your turn. They leave play, but their successor only comes at their real death year.</li>
               <li>When none of your Great People is in their career, time skips ahead and the computer plays out those years.</li>
+              <li>You may only bring in Great People from <span className="text-ink font-semibold">your collection</span>.</li>
             </ul>
           </section>
+          )}
           <section>
             <p className="text-[10px] font-bold text-accent uppercase tracking-widest mb-1.5">On Your Turn</p>
             <ul className="space-y-1.5 text-ink-2 leading-relaxed">
@@ -999,6 +1017,45 @@ export function BattleGame({ gameState, dispatch, onExit, embedded = false, bann
           }, locsWithGP[0])
 
           dispatch({ type: 'ADD_FOLLOWER', followerId: follower.id, locationId: locWithGP.id, instanceId: follower.id })
+        }
+      }
+
+      // 2b. Pressure (normal and hard computers): open a local event where it
+      //     leads in that stat, then attack rival cards in events it would win.
+      //     The hard computer needs a smaller lead, also hits hidden cards,
+      //     kills and attacks twice; the easy one never starts a fight.
+      const level = gameState.setup.cpuLevel ?? 'normal'
+      if (level !== 'easy') {
+        const me = currentPlayer.id
+        const lead = level === 'hard' ? 1 : 3
+        const total = (loc: LocationState, pid: string, stat: StatKey) =>
+          computeLocationTotal(loc.cards, pid, stat, gpMap, followerMap, gameState.locations, loc.name, loc.era)
+        const rivals = (loc: LocationState) => [...new Set(loc.cards.filter(c => c.playerId !== me).map(c => c.playerId))]
+        const ahead = (loc: LocationState, stat: StatKey, pid: string) => total(loc, me, stat) >= total(loc, pid, stat) + lead
+        const opened: Record<string, StatKey> = {}
+        const evIdx = currentPlayer.eventHand.findIndex(e => e.type === 'local_event' && e.stat)
+        if (evIdx >= 0 && (level === 'hard' || Math.random() < 0.6)) {
+          const stat = currentPlayer.eventHand[evIdx].stat!
+          const spot = gameState.locations.find(loc => !loc.activeEvent
+            && loc.cards.some(c => c.type === 'gp' && c.playerId === me && !c.justDeployed)
+            && rivals(loc).length > 0 && rivals(loc).every(pid => ahead(loc, stat, pid)))
+          if (spot) {
+            dispatch({ type: 'START_EVENT', eventCardIdx: evIdx, locationId: spot.id })
+            opened[spot.id] = stat
+          }
+        }
+        let attacks = level === 'hard' ? 2 : 1
+        for (const loc of gameState.locations) {
+          if (!attacks) break
+          const stat = opened[loc.id] ?? (loc.activeEvent?.type === 'local_event' ? loc.activeEvent.stat : undefined)
+          const mine = loc.cards.find(c => c.type === 'gp' && c.playerId === me)
+          if (!stat || !mine) continue
+          const target = loc.cards
+            .filter(c => c.playerId !== me && (level === 'hard' || c.isPublic) && ahead(loc, stat, c.playerId))
+            .sort((a, b) => Number(b.type === 'gp') - Number(a.type === 'gp'))[0]
+          if (!target) continue
+          dispatch({ type: 'ATTACK', myInstanceId: mine.instanceId, theirInstanceId: target.instanceId, kill: level === 'hard' })
+          attacks--
         }
       }
 
@@ -1199,7 +1256,8 @@ export function BattleGame({ gameState, dispatch, onExit, embedded = false, bann
         <div className="flex-1 min-w-0 land:flex land:items-center land:gap-3">
           <div className="flex items-center gap-2 mb-1 land:mb-0 shrink-0">
             <span className="text-[10px] text-muted uppercase tracking-widest shrink-0">
-              {isTimeline ? <><span className="text-ink font-bold">{formatYear(gameState.year)}</span> · Year {gameState.year - gameState.startYear + 1}</> : <>Round {gameState.round}</>}
+              {isFreePlay(gameState) ? <>Round <span className="text-ink font-bold">{Math.min(gameState.round, FREE_PLAY_ROUNDS)}</span> / {FREE_PLAY_ROUNDS}</>
+                : isTimeline ? <><span className="text-ink font-bold">{formatYear(gameState.year)}</span> · Year {gameState.year - gameState.startYear + 1}</> : <>Round {gameState.round}</>}
             </span>
             <span className="text-ink/20">·</span>
             <span className={`text-xs font-bold truncate ${PLAYER_COLORS[gameState.currentPlayerIdx % 5].text}`}>
@@ -1227,7 +1285,7 @@ export function BattleGame({ gameState, dispatch, onExit, embedded = false, bann
           {!embedded && <button onClick={onExit} className="text-muted/80 hover:text-muted text-xs transition-colors px-2">Exit</button>}
         </div>
       </div>
-      {showRules && <RulesModal onClose={() => setShowRules(false)} />}
+      {showRules && <RulesModal freePlay={isFreePlay(gameState)} onClose={() => setShowRules(false)} />}
       {/* The board is laid out for a phone held sideways. */}
       {!embedded && (
         <div className="hidden phone-portrait:flex fixed inset-0 z-[300] bg-paper flex-col items-center justify-center gap-4 p-8 text-center">
@@ -1669,7 +1727,12 @@ export function BattleGame({ gameState, dispatch, onExit, embedded = false, bann
         const title = opening ? 'Choose your first Great Person'
           : pending.reason === 'slot' ? 'A new Great Person slot'
           : 'Choose a successor'
-        const subtitle = opening
+        const free = isFreePlay(gameState)
+        const subtitle = free
+          ? opening
+            ? `From your collection. ${FREE_PLAY_ROUNDS} rounds; when your Great Person falls you pick the next from the ones you own.`
+            : `${pending.predecessor ? `${figureName(pending.predecessor)} has left play. ` : ''}Choose one of your own Great People; each plays once a game.`
+          : opening
           ? `History opens in ${formatYear(gameState.year)}. You hold one Great Person at a time; legacies can open more slots.`
           : pending.reason === 'slot'
             ? `Pick a Great Person born after ${formatYear(gameState.year)} to fill it; they found a lineage of their own.`
@@ -1700,7 +1763,7 @@ export function BattleGame({ gameState, dispatch, onExit, embedded = false, bann
                         <img src={c.portraitUrl} alt="" className="w-24 sm:w-full land:w-full h-auto sm:h-40 land:h-24 object-cover object-top shrink-0" />
                         <div className="p-2.5 min-w-0">
                           <p className="text-sm font-bold text-ink truncate">{c.figureName}</p>
-                          <p className="text-[11px] text-muted">{c.era} · born {formatYear(c.born)} · career {formatYear(careerStartYear(c, choosing))}</p>
+                          <p className="text-[11px] text-muted">{c.era}{free ? ` · stats ${total}` : ` · born ${formatYear(c.born)} · career ${formatYear(careerStartYear(c, choosing))}`}</p>
                           <p className="text-[11px] text-ink-2 mt-1">{top.map(k => `${STAT_LABELS[k]} ${c[k]}`).join(' · ')}</p>
                           <p className="text-[11px] text-violet-900 mt-1 leading-snug">Legacy {c.legacy.name}: {describeLegacyEffect(c.legacy.effect)}</p>
                         </div>
@@ -1713,7 +1776,7 @@ export function BattleGame({ gameState, dispatch, onExit, embedded = false, bann
                       <img src={c.portraitUrl} alt="" className="w-12 h-12 rounded-lg object-cover object-top shrink-0" />
                       <div className="min-w-0 flex-1">
                         <p className="text-sm font-semibold text-ink truncate">{c.figureName}</p>
-                        <p className="text-[11px] text-muted">{c.era} · born {formatYear(c.born)} · career {formatYear(careerStartYear(c, choosing))} · stats {total}</p>
+                        <p className="text-[11px] text-muted">{c.era}{free ? '' : ` · born ${formatYear(c.born)} · career ${formatYear(careerStartYear(c, choosing))}`} · stats {total}</p>
                         <p className="text-[11px] text-violet-900 truncate">Legacy {c.legacy.name}: {describeLegacyEffect(c.legacy.effect)}</p>
                       </div>
                     </button>

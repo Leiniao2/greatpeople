@@ -43,7 +43,6 @@ export const GAMES = {
   trade:        def('Trade',         'Strategy', () => import('@/components/minigames/TradeGame'), true),
   punnett:      def('Punnett Square','Puzzle',   () => import('@/components/minigames/PunnettGame'), true),
   wordle:       def('Wordle',        'Puzzle',   () => import('@/components/minigames/WordleGame'), true),
-  decode:       def('Decode',        'Puzzle',   () => import('@/components/minigames/DecodeGame'), true),
   wargame:      def('Wargame',       'Strategy', () => import('@/components/minigames/WargameGame'), true),
   auction:      def('Auction',       'Strategy', () => import('@/components/minigames/AuctionGame'), true),
   pseudocode:   def('Pseudo Code',   'Puzzle',   () => import('@/components/minigames/PseudoCodeGame'), true),
@@ -51,7 +50,8 @@ export const GAMES = {
   bridge:       def('Bridges',       'Puzzle',   () => import('@/components/minigames/BridgeGame'), true),
   compose:      def('Compose',       'Creative', () => import('@/components/minigames/ComposeMusicGame'), true),
   weapondeploy: def('Weapon Deploy', 'Strategy', () => import('@/components/minigames/WeaponDeployGame'), true),
-  museum:       def('Museum',        'Story',    () => import('@/components/minigames/MuseumGame'), true),
+  museum:       def('Museum',        'Puzzle',   () => import('@/components/minigames/MuseumGame'), true),
+  distinguish:  def('Distinguish',   'Explore',  () => import('@/components/minigames/DistinguishGame'), true),
   jigsaw:       def('Jigsaw',        'Puzzle',   () => import('@/components/minigames/JigsawGame'), true),
   pipeline:     def('Pipeline',      'Puzzle',   () => import('@/components/minigames/PipelineGame'), true),
   colormix:     def('Color Mix',     'Creative', () => import('@/components/minigames/ColorMixGame'), true),
@@ -64,7 +64,8 @@ export const GAMES = {
   fight:        def('Fight',         'Strategy', () => import('@/components/minigames/FightGame'), true),
   // ── New engines (growth-arc redesign)
   expedition:   def('Expedition',    'Strategy', () => import('@/components/minigames/ExpeditionGame'), true),
-  cipher:       def('Cipher',        'Puzzle',   () => import('@/components/minigames/CipherGame'), true),
+  // Every decode-a-message system (shifts, substitution, the historical codebooks) in one game
+  cipher:       def('Codebreaker',   'Puzzle',   () => import('@/components/minigames/CipherGame'), true),
   debate:       def('Debate',        'Story',    () => import('@/components/minigames/DebateGame'), true),
   siege:        def('Siege',         'Strategy', () => import('@/components/minigames/SiegeGame'), true),
   typeset:      def('Typeset',       'Creative', () => import('@/components/minigames/TypesetGame'), true),
@@ -73,14 +74,7 @@ export const GAMES = {
   logicgate:    def('Logic Gates',   'Puzzle',   () => import('@/components/minigames/LogicGateGame'), true),
   archbuild:    def('Arch Builder',  'Creative', () => import('@/components/minigames/ArchBuildGame'), true),
   rhythm:       def('Rhythm',        'Creative', () => import('@/components/minigames/RhythmGame'), true),
-  // ── Codebook: historical codes, one game per system
-  atbash:       def('Atbash',        'Puzzle',   () => import('@/components/minigames/CodebookGame').then(m => m.CODEBOOKS.atbash), true),
-  polybius:     def('Polybius Square','Puzzle',  () => import('@/components/minigames/CodebookGame').then(m => m.CODEBOOKS.polybius), true),
-  scytale:      def('Scytale',       'Puzzle',   () => import('@/components/minigames/CodebookGame').then(m => m.CODEBOOKS.scytale), true),
-  pigpen:       def('Pigpen',        'Puzzle',   () => import('@/components/minigames/CodebookGame').then(m => m.CODEBOOKS.pigpen), true),
-  braille:      def('Braille',       'Puzzle',   () => import('@/components/minigames/CodebookGame').then(m => m.CODEBOOKS.braille), true),
-  telegraph:    def('Telegraph',     'Puzzle',   () => import('@/components/minigames/CodebookGame').then(m => m.CODEBOOKS.telegraph), true),
-  binary:       def('Binary',        'Puzzle',   () => import('@/components/minigames/CodebookGame').then(m => m.CODEBOOKS.binary), true),
+  melody:       def('Next Phrase',   'Creative', () => import('@/components/minigames/MelodyGame'), true),
   // ── Outdoor games
   roundup:      def('Round-Up',      'Strategy', () => import('@/components/minigames/RoundUpGame'), true),
   fieldsurvey:  def('Field Survey',  'Explore',  () => import('@/components/minigames/FieldSurveyGame'), true),

@@ -55,7 +55,7 @@
           "type": "challenge",
           "challenge": {
             "type": "minigame",
-            "game": "decode",
+            "game": "cipher",
             "configId": "mao-code",
             "seed": 93596,
             "instruction": "Orders for the breakout travel in code across the Red Army's columns. Decode the dispatch from the Jiangxi Soviet.",
