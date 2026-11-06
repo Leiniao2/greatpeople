@@ -1,11 +1,12 @@
 // Lenses (optics bench): every config × difficulty × seed plants a working
 // solution within the size budget, the empty bench never wins, no single
-// piece shortcuts a multi-piece puzzle, and the component wins/loses once.
+// piece shortcuts a multi-piece puzzle, and the component shows the light live,
+// wins as soon as it is true and loses only when the clock runs out.
 import { createElement } from 'react'
 import { render, cleanup, fireEvent, act } from '@testing-library/react'
 import { describe, it, expect, afterEach, vi } from 'vitest'
 import OpticsGame, {
-  CONFIGS, CONFIG_IDS, CHECKS, generate, evaluate, placePiece, allowedSlots, rowsFor, traceAll,
+  CONFIGS, CONFIG_IDS, SECONDS, generate, evaluate, placePiece, allowedSlots, rowsFor, traceAll,
   type Placement, type Puzzle,
 } from '@/components/minigames/OpticsGame'
 import type { Difficulty } from '@/games/types'
@@ -34,7 +35,7 @@ describe('optics logic', () => {
         expect(evaluate(pz, pz.planted).ok, tag).toBe(true)
         expect(evaluate(pz, {}).ok, `${tag} empty`).toBe(false)
         // Budget for a 1–3 minute challenge.
-        expect(pz.checks).toBe(CHECKS[d - 1])
+        expect(pz.seconds).toBe(SECONDS[d - 1])
         expect(pz.tray.length, tag).toBeLessThanOrEqual([3, 5, 7, 8][d - 1])
         expect(Object.keys(pz.planted).length, tag).toBeLessThanOrEqual(5)
         expect(pz.S, tag).toBeLessThanOrEqual(12)
@@ -120,15 +121,27 @@ describe('optics component', () => {
     }
   })
 
-  it('placing the planted solution and lighting wins once', () => {
+  it('draws the light live, before any piece is submitted', () => {
+    const pz = generate('galileo', 1, 7)
+    const { container } = render(createElement(OpticsGame, { configId: 'galileo-telescope', difficulty: 1, seed: 7, onWin: () => {}, onLose: () => {} }))
+    expect(container.querySelectorAll('polyline').length).toBe(pz.beam!.length)
+    expect(container.querySelector('[data-action="light"]')).toBeNull()
+    const [pid, pos] = Object.entries(pz.planted)[0]
+    fireEvent.click(q(container, `[data-tray="${pid}"]`))
+    fireEvent.click(q(container, `[data-cell="${pos.slot}:${pos.row}"]`))
+    // One lens alone bends the beam, and the live hint says why it is not done yet.
+    const bent = [...container.querySelectorAll('polyline')].some(l => (l.getAttribute('points') ?? '').split(' ').length > 2)
+    expect(bent).toBe(true)
+    expect(q(container, '[data-testid="opt-why"]').textContent).toMatch(/parallel|pupil|upside/)
+  })
+
+  it('placing the planted solution wins once, with no button to press', () => {
     vi.useFakeTimers()
     for (const id of CONFIG_IDS) for (const d of DIFFS) {
       const onWin = vi.fn(), onLose = vi.fn()
       const { container, unmount } = render(createElement(OpticsGame, { configId: id, difficulty: d, seed: 11, onWin, onLose }))
       const pz = generate(CONFIGS[id].kind, d, 11)
-      fireEvent.click(q(container, '[data-action="light"]')) // one wasted lighting on an empty bench
       playPlanted(container, pz)
-      fireEvent.click(q(container, '[data-action="light"]'))
       act(() => { vi.advanceTimersByTime(1000) })
       expect(onWin, `${id} d${d}`).toHaveBeenCalledTimes(1)
       expect(onLose).not.toHaveBeenCalled()
@@ -136,12 +149,14 @@ describe('optics component', () => {
     }
   })
 
-  it('using up every lighting on a wrong bench loses once', () => {
+  it('running out of time on a wrong bench loses once', () => {
     vi.useFakeTimers()
     for (const id of CONFIG_IDS) for (const d of DIFFS) {
       const onWin = vi.fn(), onLose = vi.fn()
-      const { container, unmount } = render(createElement(OpticsGame, { configId: id, difficulty: d, seed: 4, onWin, onLose }))
-      for (let k = 0; k < CHECKS[d - 1]; k++) fireEvent.click(q(container, '[data-action="light"]'))
+      const { unmount } = render(createElement(OpticsGame, { configId: id, difficulty: d, seed: 4, onWin, onLose }))
+      act(() => { vi.advanceTimersByTime((SECONDS[d - 1] - 1) * 1000) })
+      expect(onLose, `${id} d${d} early`).not.toHaveBeenCalled()
+      act(() => { vi.advanceTimersByTime(2000) })
       act(() => { vi.advanceTimersByTime(1000) })
       expect(onLose, `${id} d${d}`).toHaveBeenCalledTimes(1)
       expect(onWin).not.toHaveBeenCalled()
