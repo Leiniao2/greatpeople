@@ -229,7 +229,8 @@ const ACHIEVES: [string, () => boolean][] = [
   }],
   ['gyges', () => { const s = scene('gyges', [], ['Spy']); s.me.isPublic = false; return fire(s, fight(s, { stat: 'wealth', theirs: card(s, 'Spy') })) }],
   ['guan_zhong', () => fire(scene('guan_zhong', ['Sovereign'], ['Spy']), turn())],
-  ['cyrus_the_great', () => { const s = scene('cyrus_the_great', [], ['tomyris']); return fire(s, fight(s, { stat: 'reputation', theirs: card(s, 'tomyris') })) }],
+  // Tomyris is a General now, so a Sovereign stands in as the rival.
+  ['cyrus_the_great', () => { const s = scene('cyrus_the_great', [], ['chandragupta_maurya']); return fire(s, fight(s, { stat: 'reputation', theirs: card(s, 'chandragupta_maurya') })) }],
   ['confucius', () => fire(scene('confucius', ['Educator', 'Philosopher', 'Writer']), turn())],
   ['tomyris', () => { const s = scene('tomyris', [], ['cyrus_the_great']); return fire(s, fight(s, { stat: 'strength', theirs: card(s, 'cyrus_the_great'), attack: false })) }],
   ['chandragupta_maurya', () => fire(scene('chandragupta_maurya', ['Statesman'], [], [city(1, ['Spy']), city(2, ['Spy'])]), turn())],
