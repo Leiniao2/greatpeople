@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, type ReactNode } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '@/hooks/useAuth'
 import { useUnlockedCards } from '@/hooks/useUnlockedCards'
@@ -7,7 +7,8 @@ import cardsJson from '@/data/cards.json'
 import locationCardsJson from '@/data/location_cards.json'
 import { locationImageUrl, portraitUrl } from '@/data/images'
 import PageLoader from '@/components/PageLoader'
-import EraIcon from '@/components/EraIcon'
+import EraIcon, { ERA_NAMES } from '@/components/EraIcon'
+import IdentityIcon, { IDENTITY_NAMES } from '@/components/IdentityIcon'
 import ArtGallery, { ARTWORKS } from '@/components/ArtGallery'
 import { FIGHT_REWARD_POOL } from '@/battle/rewards'
 
@@ -71,6 +72,106 @@ const BUILDING_ICONS: Record<string, string> = {
   'Fine Dining': '🍷', 'Concert Hall': '🎵', Salon: '💬',
 }
 
+// ── Filtering and grouping ────────────────────────────────────────────────────
+
+type StatusFilter = 'all' | 'claimed' | 'unclaimed'
+type GroupBy = 'none' | 'status' | 'age' | 'identity'
+
+const GROUP_OPTIONS: { value: GroupBy; label: string }[] = [
+  { value: 'none',     label: 'None' },
+  { value: 'status',   label: 'Claimed' },
+  { value: 'age',      label: 'Age' },
+  { value: 'identity', label: 'Identity' },
+]
+
+interface CardGroup {
+  key: string
+  label: string
+  cards: Card[]
+}
+
+function toggle(set: ReadonlySet<string>, value: string): Set<string> {
+  const next = new Set(set)
+  if (next.has(value)) next.delete(value)
+  else next.add(value)
+  return next
+}
+
+/**
+ * Splits the visible cards into sections, in age order or follower-deck order.
+ * A card with several identities appears under each of them; while identities
+ * are being filtered, only the selected ones get a section.
+ */
+function groupCards(
+  cards: Card[],
+  groupBy: GroupBy,
+  isOwned: (card: Card) => boolean,
+  selectedIdentities: ReadonlySet<string>,
+): CardGroup[] {
+  const sections = (keys: string[], matches: (card: Card, key: string) => boolean) =>
+    keys
+      .map(key => ({ key, label: key, cards: cards.filter(c => matches(c, key)) }))
+      .filter(g => g.cards.length > 0)
+
+  switch (groupBy) {
+    case 'none':
+      return [{ key: 'all', label: 'All cards', cards }]
+    case 'status':
+      return [
+        { key: 'claimed',   label: 'Claimed',   cards: cards.filter(isOwned) },
+        { key: 'unclaimed', label: 'Unclaimed', cards: cards.filter(c => !isOwned(c)) },
+      ].filter(g => g.cards.length > 0)
+    case 'age':
+      return sections(ERA_NAMES, (c, era) => c.era === era)
+    case 'identity': {
+      const keys = selectedIdentities.size > 0
+        ? IDENTITY_NAMES.filter(i => selectedIdentities.has(i))
+        : IDENTITY_NAMES
+      return sections(keys, (c, identity) => c.identities.includes(identity))
+    }
+  }
+}
+
+function Chip({ active, onClick, children }: { active: boolean; onClick: () => void; children: ReactNode }) {
+  return (
+    <button
+      onClick={onClick}
+      aria-pressed={active}
+      className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all duration-200
+        ${active
+          ? 'bg-panel text-ink border border-line-2'
+          : 'bg-panel text-muted border border-line hover:border-line-2 hover:text-ink-2'
+        }`}>
+      {children}
+    </button>
+  )
+}
+
+/** An icon-only filter button; the name lives in the tooltip and for screen readers. */
+function IconToggle({ label, active, dimmed, onClick, children }: {
+  label: string
+  active: boolean
+  /** Fade unselected buttons once something in the row is selected. */
+  dimmed: boolean
+  onClick: () => void
+  children: ReactNode
+}) {
+  return (
+    <button
+      onClick={onClick}
+      aria-pressed={active}
+      aria-label={label}
+      title={label}
+      className={`shrink-0 p-1 rounded-full border transition-all duration-200
+        ${active
+          ? 'border-accent bg-accent/15 text-accent ring-1 ring-accent/40'
+          : `border-line bg-panel text-muted hover:border-line-2 hover:text-ink-2 ${dimmed ? 'opacity-45 hover:opacity-100' : ''}`
+        }`}>
+      {children}
+    </button>
+  )
+}
+
 // ── Main page ─────────────────────────────────────────────────────────────────
 
 // The grid shows every portrait at once, so decode them all before revealing
@@ -90,7 +191,10 @@ function CollectionContent() {
   const { isGuest, isAdmin, exitGuestMode } = useAuth()
   const { unlocked } = useUnlockedCards()
   const [tab, setTab] = useState<'gp' | 'location' | 'gallery'>('gp')
-  const [filter, setFilter] = useState<'all' | 'owned' | 'locked'>('all')
+  const [status, setStatus] = useState<StatusFilter>('all')
+  const [eras, setEras] = useState<ReadonlySet<string>>(new Set())
+  const [identities, setIdentities] = useState<ReadonlySet<string>>(new Set())
+  const [groupBy, setGroupBy] = useState<GroupBy>('none')
   const [selectedLocation, setSelectedLocation] = useState<LocationCard | null>(null)
 
   const isOwned = (card: Card) => {
@@ -98,13 +202,20 @@ function CollectionContent() {
     return unlocked.includes(card.portraitKey ?? '')
   }
 
+  // Within one dimension any selected value matches; across dimensions all must.
   const filteredGP = ALL_CARDS.filter(card => {
-    if (filter === 'owned') return isOwned(card)
-    if (filter === 'locked') return !isOwned(card)
+    if (status === 'claimed' && !isOwned(card)) return false
+    if (status === 'unclaimed' && isOwned(card)) return false
+    if (eras.size > 0 && !eras.has(card.era)) return false
+    if (identities.size > 0 && !card.identities.some(i => identities.has(i))) return false
     return true
   })
 
-  const ownedCount = isAdmin ? ALL_CARDS.length : unlocked.length
+  const groups = groupCards(filteredGP, groupBy, isOwned, identities)
+  const filtersActive = status !== 'all' || eras.size > 0 || identities.size > 0
+  const clearFilters = () => { setStatus('all'); setEras(new Set()); setIdentities(new Set()) }
+
+  const ownedCount = ALL_CARDS.filter(isOwned).length
 
   return (
     <div className="relative min-h-screen bg-paper overflow-hidden">
@@ -189,39 +300,107 @@ function CollectionContent() {
         {/* GP tab */}
         {tab === 'gp' && (
           <>
-            {/* Filter tabs */}
-            <div className="flex gap-2 mb-6">
-              {(['all', 'owned', 'locked'] as const).map(f => (
-                <button
-                  key={f}
-                  onClick={() => setFilter(f)}
-                  className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all duration-200
-                    ${filter === f
-                      ? 'bg-panel text-ink border border-line-2'
-                      : 'bg-panel text-muted border border-line hover:border-line-2 hover:text-ink-2'
-                    }`}>
-                  {f === 'all' ? 'All' : f === 'owned' ? `Owned (${ownedCount})` : `Locked (${ALL_CARDS.length - ownedCount})`}
-                </button>
-              ))}
+            <div className="flex flex-col gap-3 mb-6">
+              {/* Status filter and grouping */}
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <div className="flex flex-wrap gap-2">
+                  {(['all', 'claimed', 'unclaimed'] as const).map(s => (
+                    <Chip key={s} active={status === s} onClick={() => setStatus(s)}>
+                      {s === 'all' ? 'All'
+                        : s === 'claimed' ? `Claimed (${ownedCount})`
+                        : `Unclaimed (${ALL_CARDS.length - ownedCount})`}
+                    </Chip>
+                  ))}
+                </div>
+                <div className="flex items-center gap-1.5" role="group" aria-label="Group by">
+                  <span className="text-[10px] uppercase tracking-widest text-muted mr-1">Group</span>
+                  {GROUP_OPTIONS.map(g => (
+                    <Chip key={g.value} active={groupBy === g.value} onClick={() => setGroupBy(g.value)}>
+                      {g.label}
+                    </Chip>
+                  ))}
+                </div>
+              </div>
+
+              {/* Age filter */}
+              <div className="flex flex-wrap gap-1.5" role="group" aria-label="Filter by age">
+                {ERA_NAMES.map(era => (
+                  <IconToggle
+                    key={era}
+                    label={era}
+                    active={eras.has(era)}
+                    dimmed={eras.size > 0}
+                    onClick={() => setEras(toggle(eras, era))}>
+                    <EraIcon era={era} className="w-5 h-5" />
+                  </IconToggle>
+                ))}
+              </div>
+
+              {/* Identity filter: one row that scrolls on narrow screens */}
+              <div className="flex gap-1.5 overflow-x-auto md:flex-wrap md:overflow-visible pb-1 -mb-1"
+                   role="group" aria-label="Filter by identity">
+                {IDENTITY_NAMES.map(identity => (
+                  <IconToggle
+                    key={identity}
+                    label={identity}
+                    active={identities.has(identity)}
+                    dimmed={identities.size > 0}
+                    onClick={() => setIdentities(toggle(identities, identity))}>
+                    <IdentityIcon identity={identity} className="w-7 h-7" />
+                  </IconToggle>
+                ))}
+              </div>
+
+              {filtersActive && (
+                <div className="flex items-center gap-3 text-xs text-muted">
+                  <span>{filteredGP.length} of {ALL_CARDS.length} cards</span>
+                  <button onClick={clearFilters} className="text-accent font-semibold hover:underline">
+                    Clear filters
+                  </button>
+                </div>
+              )}
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-              {filteredGP.map((card) => (
-                <CardItem
-                  key={card.id}
-                  card={card}
-                  owned={isOwned(card)}
-                  onClick={() => isOwned(card) ? navigate(`/card/${card.id}`, { state: { card } }) : undefined}
-                />
+            <div className="flex flex-col gap-8">
+              {groups.map(group => (
+                <section key={group.key} aria-label={group.label}>
+                  {groupBy !== 'none' && (
+                    <h2 className="flex items-center gap-2 mb-3 pb-2 border-b border-line" title={group.label}>
+                      {groupBy === 'age' && <EraIcon era={group.key} className="w-6 h-6 text-ink-2" />}
+                      {groupBy === 'identity' && <IdentityIcon identity={group.key} className="w-8 h-8" />}
+                      {groupBy === 'status' && (
+                        <span className="text-sm font-semibold text-ink-2">{group.label}</span>
+                      )}
+                      <span className="text-xs text-muted">{group.cards.length}</span>
+                    </h2>
+                  )}
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                    {group.cards.map((card) => (
+                      <CardItem
+                        key={card.id}
+                        card={card}
+                        owned={isOwned(card)}
+                        onClick={() => isOwned(card) ? navigate(`/card/${card.id}`, { state: { card } }) : undefined}
+                      />
+                    ))}
+                  </div>
+                </section>
               ))}
             </div>
 
             {filteredGP.length === 0 && (
               <div className="flex flex-col items-center justify-center h-48 gap-3">
                 <p className="text-muted text-sm">
-                  {filter === 'owned' ? 'No cards unlocked yet.' : 'All cards are unlocked!'}
+                  {eras.size > 0 || identities.size > 0
+                    ? 'No cards match these filters.'
+                    : status === 'claimed' ? 'No cards unlocked yet.' : 'All cards are unlocked!'}
                 </p>
-                {filter === 'owned' && (
+                {eras.size > 0 || identities.size > 0 ? (
+                  <button onClick={clearFilters}
+                    className="px-5 py-2 rounded-xl bg-panel border border-line text-ink-2 font-semibold text-sm hover:border-accent/40 transition-all">
+                    Clear filters
+                  </button>
+                ) : status === 'claimed' && (
                   <button onClick={() => navigate('/epic')}
                     className="px-5 py-2 rounded-xl bg-accent text-accent-fg font-bold text-sm hover:bg-accent-hover transition-all">
                     Play Epic Stories →
@@ -295,10 +474,8 @@ function CardItem({ card, owned, onClick }: { card: Card; owned: boolean; onClic
         <EraIcon era={card.era} className={`w-3.5 h-3.5 ${owned ? 'text-muted' : 'text-muted/60'}`} />
         {owned && card.identities.length > 0 && (
           <div className="flex flex-wrap gap-1 mt-1">
-            {card.identities.slice(0, 2).map(id => (
-              <span key={id} className="text-[9px] px-1.5 py-0.5 rounded-full border border-accent/30 text-accent/70">
-                {id}
-              </span>
+            {card.identities.map(id => (
+              <IdentityIcon key={id} identity={id} className="w-5 h-5" />
             ))}
           </div>
         )}
