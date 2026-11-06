@@ -56,12 +56,12 @@ describe("Knight's Tour — every level is winnable", () => {
       expect(isComplete(tour, solution), `${id}@${d}#${s}`).toBe(true)
     }
   }, 60_000)
-  it('fits the time budget: 18–26 squares at D1 (~1 min), never more than 32 (~1½ min)', () => {
-    const maxSquares = [26, 26, 30, 32]
+  it('fits the time budget: 12–14 squares at D1, never more than 17', () => {
+    const maxSquares = [14, 14, 16, 17]
     for (const id of CONFIG_IDS) for (const d of DIFFS) for (const s of SEEDS) {
       const { tour } = makeTour(id, CONFIGS[id], d, s)
       expect(openSquares(tour), `${id}@${d}`).toBeLessThanOrEqual(maxSquares[d - 1])
-      if (d === 1) expect(openSquares(tour), `${id}@1`).toBeGreaterThanOrEqual(18)
+      if (d === 1) expect(openSquares(tour), `${id}@1`).toBeGreaterThanOrEqual(12)
     }
     // Harder levels never get smaller.
     for (const id of CONFIG_IDS) {
