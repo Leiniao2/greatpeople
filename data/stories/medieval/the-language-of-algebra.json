@@ -6,7 +6,7 @@
   "figure": "Al-Khwarizmi",
   "portraitKey": "al_khwarizmi",
   "tagline": "A mathematician in Baghdad creates the tool that will run every computer.",
-  "locationImage": "renaissance_baghdad",
+  "locationImage": "medieval_baghdad",
   "lives": 3,
   "stages": [
     {
@@ -154,7 +154,7 @@
               "hero": "al_khwarizmi",
               "stat": "intelligence",
               "locations": [
-                "renaissance_baghdad",
+                "medieval_baghdad",
                 "medieval_krakow",
                 "medieval_changan"
               ],

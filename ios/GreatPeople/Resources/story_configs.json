@@ -121,7 +121,7 @@
     "figure": "Ashurbanipal",
     "portraitKey": "ashurbanipal",
     "tagline": "He gathered the world's knowledge before the world knew it was worth keeping.",
-    "locationImage": "ancient_uruk",
+    "locationImage": "ancient_nineveh",
     "lives": 3,
     "challengeCount": 7,
     "stages": [
@@ -232,7 +232,7 @@
     "figure": "King Telepinu",
     "portraitKey": "king_telepinu",
     "tagline": "The Hittite king who broke the cycle of royal murder with a single document.",
-    "locationImage": "ancient_uruk",
+    "locationImage": "ancient_hattusa",
     "lives": 3,
     "challengeCount": 6,
     "stages": [
@@ -828,7 +828,7 @@
     "figure": "Al-Khwarizmi",
     "portraitKey": "al_khwarizmi",
     "tagline": "A mathematician in Baghdad creates the tool that will run every computer.",
-    "locationImage": "renaissance_baghdad",
+    "locationImage": "medieval_baghdad",
     "lives": 3,
     "challengeCount": 7,
     "stages": [
@@ -2260,7 +2260,7 @@
     "figure": "Mao Zedong",
     "portraitKey": "mao_zedong",
     "tagline": "A revolution born in starvation, hardened in philosophy, written in history.",
-    "locationImage": "electricity_hongkong",
+    "locationImage": "electricity_beijing",
     "lives": 3,
     "challengeCount": 5,
     "stages": [

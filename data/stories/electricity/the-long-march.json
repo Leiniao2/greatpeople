@@ -6,7 +6,7 @@
   "figure": "Mao Zedong",
   "portraitKey": "mao_zedong",
   "tagline": "A revolution born in starvation, hardened in philosophy, written in history.",
-  "locationImage": "electricity_hongkong",
+  "locationImage": "electricity_beijing",
   "lives": 3,
   "stages": [
     {
@@ -124,7 +124,7 @@
               "hero": "mao_zedong",
               "stat": "politics",
               "locations": [
-                "electricity_hongkong",
+                "electricity_beijing",
                 "electricity_moscow",
                 "electricity_london"
               ],

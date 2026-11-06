@@ -6,7 +6,7 @@
   "figure": "King Telepinu",
   "portraitKey": "king_telepinu",
   "tagline": "The Hittite king who broke the cycle of royal murder with a single document.",
-  "locationImage": "ancient_uruk",
+  "locationImage": "ancient_hattusa",
   "lives": 3,
   "stages": [
     {
@@ -140,7 +140,7 @@
               "hero": "king_telepinu",
               "stat": "belief",
               "locations": [
-                "ancient_uruk",
+                "ancient_hattusa",
                 "ancient_memphis",
                 "ancient_stonehenge"
               ],

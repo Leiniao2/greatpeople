@@ -38,6 +38,19 @@ describe('image assets', () => {
     expect(missing).toEqual([])
   })
 
+  it('gives every location card a picture of its own', () => {
+    // Rome in 200 AD and Rome in 1550 are different places: no card borrows another's art.
+    const owner = new Map<string, string>()
+    const shared: string[] = []
+    for (const c of locationCards as { id: string; imageKey?: string }[]) {
+      if (!c.imageKey) continue
+      const key = resolveLocationImageKey(c.imageKey)
+      if (owner.has(key)) shared.push(`${c.id} and ${owner.get(key)} share ${key}`)
+      else owner.set(key, c.id)
+    }
+    expect(shared).toEqual([])
+  })
+
   it('has a WebP for every artwork in the manifest', () => {
     const missing = artworks.map(a => `${a.folder}/${a.key}`).filter(p => !exists(`${p}.webp`))
     expect(missing).toEqual([])

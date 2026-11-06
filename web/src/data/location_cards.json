@@ -160,7 +160,7 @@
     "id": "ancient-ur",
     "name": "Ur",
     "era": "Ancient",
-    "imageKey": "ancient_memphis",
+    "imageKey": "ancient_ur",
     "countries": [
       "Iraq"
     ],
@@ -175,7 +175,7 @@
     "id": "ancient-babylon",
     "name": "Babylon",
     "era": "Ancient",
-    "imageKey": "ancient_memphis",
+    "imageKey": "ancient_babylon",
     "countries": [
       "Iraq"
     ],
@@ -191,7 +191,7 @@
     "id": "ancient-hattusa",
     "name": "Hattusa",
     "era": "Ancient",
-    "imageKey": "classical_petra",
+    "imageKey": "ancient_hattusa",
     "countries": [
       "Turkey"
     ],
@@ -209,7 +209,7 @@
     "id": "ancient-nineveh",
     "name": "Nineveh",
     "era": "Ancient",
-    "imageKey": "ancient_nippur",
+    "imageKey": "ancient_nineveh",
     "countries": [
       "Iraq"
     ],
@@ -225,7 +225,7 @@
     "id": "ancient-ashur",
     "name": "Ashur",
     "era": "Ancient",
-    "imageKey": "ancient_nippur",
+    "imageKey": "ancient_ashur",
     "countries": [
       "Iraq"
     ],
@@ -374,7 +374,7 @@
     "id": "classical-persepolis",
     "name": "Persepolis",
     "era": "Classical",
-    "imageKey": "classical_petra",
+    "imageKey": "classical_persepolis",
     "countries": [
       "Iran"
     ],
@@ -392,7 +392,7 @@
     "id": "classical-jerusalem",
     "name": "Jerusalem",
     "era": "Classical",
-    "imageKey": "medieval_jerusalem",
+    "imageKey": "classical_jerusalem",
     "countries": [
       "Israel",
       "Palestine"
@@ -499,7 +499,7 @@
     "id": "medieval-baghdad",
     "name": "Baghdad",
     "era": "Medieval",
-    "imageKey": "renaissance_baghdad",
+    "imageKey": "medieval_baghdad",
     "countries": [
       "Iraq"
     ],
@@ -515,7 +515,7 @@
     "id": "medieval-qaraqorum",
     "name": "Qaraqorum",
     "era": "Medieval",
-    "imageKey": "medieval_changan",
+    "imageKey": "medieval_qaraqorum",
     "countries": [
       "Mongolia"
     ],
@@ -605,7 +605,7 @@
     "id": "renaissance-rome",
     "name": "Rome",
     "era": "Renaissance",
-    "imageKey": "classical_rome",
+    "imageKey": "renaissance_rome",
     "countries": [
       "Italy"
     ],
@@ -660,7 +660,7 @@
     "id": "renaissance-gao",
     "name": "Gao",
     "era": "Renaissance",
-    "imageKey": "renaissance_baghdad",
+    "imageKey": "renaissance_gao",
     "countries": [
       "Mali"
     ],
@@ -694,7 +694,7 @@
     "id": "renaissance-malacca",
     "name": "Malacca",
     "era": "Renaissance",
-    "imageKey": "renaissance_genoa",
+    "imageKey": "renaissance_malacca",
     "countries": [
       "Malaysia"
     ],
@@ -753,7 +753,7 @@
     "id": "steam-paris",
     "name": "Paris",
     "era": "Steam",
-    "imageKey": "electricity_paris",
+    "imageKey": "steam_paris",
     "countries": [
       "France"
     ],
@@ -808,7 +808,7 @@
     "id": "steam-beijing",
     "name": "Beijing",
     "era": "Steam",
-    "imageKey": "electricity_hongkong",
+    "imageKey": "steam_beijing",
     "countries": [
       "China"
     ],
@@ -826,7 +826,7 @@
     "id": "steam-delhi",
     "name": "Delhi",
     "era": "Steam",
-    "imageKey": "electricity_delhi",
+    "imageKey": "steam_delhi",
     "countries": [
       "India"
     ],
@@ -881,7 +881,7 @@
     "id": "electricity-kiev",
     "name": "Kiev",
     "era": "Electricity",
-    "imageKey": "electricity_london",
+    "imageKey": "electricity_kiev",
     "countries": [
       "Ukraine"
     ],
@@ -958,7 +958,7 @@
     "id": "electricity-beijing",
     "name": "Beijing",
     "era": "Electricity",
-    "imageKey": "electricity_hongkong",
+    "imageKey": "electricity_beijing",
     "countries": [
       "China"
     ],
@@ -1012,7 +1012,7 @@
     "id": "electricity-new-york",
     "name": "New York",
     "era": "Electricity",
-    "imageKey": "electricity_london",
+    "imageKey": "electricity_new_york",
     "countries": [
       "United States"
     ],
@@ -1032,7 +1032,7 @@
     "id": "electricity-tehran",
     "name": "Tehran",
     "era": "Electricity",
-    "imageKey": "medieval_damascus",
+    "imageKey": "electricity_tehran",
     "countries": [
       "Iran"
     ],
@@ -1048,7 +1048,7 @@
     "id": "electricity-jakarta",
     "name": "Jakarta",
     "era": "Electricity",
-    "imageKey": "electricity_hongkong",
+    "imageKey": "electricity_jakarta",
     "countries": [
       "Indonesia"
     ],
@@ -1066,7 +1066,7 @@
     "id": "electricity-buenos-aires",
     "name": "Buenos Aires",
     "era": "Electricity",
-    "imageKey": "electricity_paris",
+    "imageKey": "electricity_buenos_aires",
     "countries": [
       "Argentina"
     ],
@@ -1215,7 +1215,7 @@
     "id": "information-los-angeles",
     "name": "Los Angeles",
     "era": "Information",
-    "imageKey": "information_sanjose",
+    "imageKey": "information_los_angeles",
     "countries": [
       "United States"
     ],
@@ -1233,7 +1233,7 @@
     "id": "information-vancouver",
     "name": "Vancouver",
     "era": "Information",
-    "imageKey": "information_sydney",
+    "imageKey": "information_vancouver",
     "countries": [
       "Canada"
     ],

@@ -88,7 +88,7 @@ Economics
 
 ## Wave 5 — the owner's picks
 - [x] `golddig` — Gold Dig — crack a stone field with a few hammers, picks and dynamite; cracked stone reads the distance to the nearest gold, and from D2 dynamite shatters gold — Sutter's Mill, Klondike, Welcome Stranger, Witwatersrand, Wadi Hammamat
-- [x] `detective` — Detective — spend limited hours on bodies, places and interviews, cross out a suspect × method grid, then accuse; two victims from D3 — Globe 1599, Venice 1750, Song Ci 1247, sleeper car 1869, Mayfair 1893
+- [x] `detective` — Detective — find the trick: examine a drawn scene for traces, put questions to everyone and press the statements that clash with a clue or another answer, then accuse who, with what and (from D3) by which trick; one liar, patience lamps, decoy traces from D3 — Globe 1599, Venice 1750, Song Ci 1247, sleeper car 1869, Mayfair 1893
 - [x] `climb` — Summit Climb — climber-centred rock face that scrolls up to the real summit; stamina, overhangs, ice, ledges, crumbling holds, pitons and falls to the last anchor — Mont Blanc, Matterhorn, Eiger, Annapurna, Everest
 - [x] `pingpong` — Ping-Pong — real-time rally against a computer whose speed, reaction and aim rise by tier; bat position aims, bat motion spins — parlour gossima, London 1926, Nagoya 1971, Seoul 1988, Sydney 2000
 
