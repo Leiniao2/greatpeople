@@ -2,12 +2,13 @@ import { useEffect, useMemo, useState } from 'react'
 import type { MinigameProps } from '@/games/types'
 import { OutcomeBanner, TimerBar, hashString, useGameOutcome, useGameTimer } from './_shared'
 import {
-  THEMES, TIERS, TOOLS, crackable, digStatus, makeLevel, reading, startDig, strike, zone,
+  THEMES, TIERS, TOOLS, crackable, digStatus, makeLevel, startDig, strike, zone,
   type Action, type Cell, type Dir, type Tool,
 } from './golddig/model'
 
-// Gold Dig: crack the stone with a few tools and follow the trace readings
-// to the hidden vein.  Each level is generated from its seed; see ./golddig/model.
+// Gold Dig: crack the stone with a few tools; each cracked cell shows gold or
+// empty rock.  Nuggets span several cells, so a find is worth following.
+// Each level is generated from its seed; see ./golddig/model.
 
 export const CONFIG_IDS = Object.keys(THEMES)
 
@@ -18,8 +19,6 @@ const U = 34
 const TOOL_LABEL: Record<Tool, string> = { hammer: 'Hammer', pick: 'Pick', dynamite: 'Dynamite' }
 const TOOL_NOTE: Record<Tool, string> = { hammer: '1 cell', pick: '3 in a line', dynamite: '3 × 3' }
 
-/** Warm when close to gold, cool when far. */
-const heat = (d: number) => ['#facc15', '#f97316', '#fb923c', '#fcd34d', '#a3e635', '#67e8f9', '#93c5fd'][Math.min(d, 6)] ?? '#94a3b8'
 
 function ToolIcon({ tool }: { tool: Tool }) {
   if (tool === 'hammer') return (
@@ -51,7 +50,11 @@ function stoneLines(cell: Cell, x: number, y: number) {
   return `M${x + a} ${y + 5} L${x + b} ${y + 13} L${x + c} ${y + 16} M${x + U - 6} ${y + a + 10} L${x + U - 13} ${y + b + 12}`
 }
 
-function Nugget({ x, y, lost }: { x: number; y: number; lost: boolean }) {
+/**
+ * One cell of a nugget.  Sides that touch more gold of the same nugget are
+ * drawn flush to the cell edge, so a dug-out nugget reads as one lump.
+ */
+function Nugget({ x, y, lost, join }: { x: number; y: number; lost: boolean; join: { u: boolean; d: boolean; l: boolean; r: boolean } }) {
   const cx = x + U / 2, cy = y + U / 2
   if (lost) return (
     <g>
@@ -59,12 +62,15 @@ function Nugget({ x, y, lost }: { x: number; y: number; lost: boolean }) {
       <path d={`M${x + 6} ${y + 6} L${x + U - 6} ${y + U - 6} M${x + U - 6} ${y + 6} L${x + 6} ${y + U - 6}`} stroke="#ef4444" strokeWidth="2" />
     </g>
   )
+  const m = 5
+  const x0 = join.l ? x : x + m, x1 = join.r ? x + U : x + U - m
+  const y0 = join.u ? y : y + m, y1 = join.d ? y + U : y + U - m
   return (
     <g>
-      <path d={`M${cx - 11} ${cy + 2} L${cx - 6} ${cy - 8} L${cx + 4} ${cy - 10} L${cx + 11} ${cy - 2} L${cx + 8} ${cy + 8} L${cx - 4} ${cy + 10} Z`}
-        fill="#facc15" stroke="#a16207" strokeWidth="1.5" strokeLinejoin="round" />
-      <path d={`M${cx - 5} ${cy - 4} L${cx + 1} ${cy - 6}`} stroke="#fef9c3" strokeWidth="2" strokeLinecap="round" />
-      <path d={`M${cx + 6} ${cy + 1} l1.5 -3.5 l1.5 3.5 l3.5 1.5 l-3.5 1.5 l-1.5 3.5 l-1.5 -3.5 l-3.5 -1.5 Z`} fill="#fffbeb" transform={`translate(-2 -9)`} />
+      <rect x={x0} y={y0} width={x1 - x0} height={y1 - y0} rx={join.u || join.d || join.l || join.r ? 3 : 8}
+        fill="#facc15" stroke="#a16207" strokeWidth={1} />
+      <path d={`M${cx - 6} ${cy - 3} L${cx} ${cy - 6}`} stroke="#fef9c3" strokeWidth="2" strokeLinecap="round" />
+      <circle cx={cx + 5} cy={cy + 4} r={1.6} fill="#ca8a04" opacity={0.7} />
     </g>
   )
 }
@@ -89,6 +95,8 @@ export default function GoldDigGame({ configId, difficulty, seed, onWin, onLose 
 
   const granite = useMemo(() => new Set(lv.granite), [lv])
   const gold = useMemo(() => new Set(lv.gold), [lv])
+  const nuggetOf = useMemo(() => { const m = new Map<Cell, number>(); lv.nuggets.forEach((cells, i) => cells.forEach(k => m.set(k, i))); return m }, [lv])
+  const sameNugget = (k: Cell, j: Cell) => nuggetOf.has(k) && nuggetOf.get(k) === nuggetOf.get(j) && !!dig.cracked[j]
   const action = (cell: Cell): Action => ({ tool, cell, dir: tool === 'pick' ? dir : undefined })
   const preview = aim !== null && !outcome ? new Set(zone(n, action(aim))) : null
   const willCrack = aim !== null && !outcome ? new Set(crackable(lv, dig.cracked, action(aim), granite)) : null
@@ -107,7 +115,6 @@ export default function GoldDigGame({ configId, difficulty, seed, onWin, onLose 
   }
   const choose = (t: Tool) => { setTool(t); setNote('') }
 
-  const sketchW = Math.max(...lv.shape.map(p => p[1])) + 1, sketchH = Math.max(...lv.shape.map(p => p[0])) + 1
   const reveal = outcome === 'lost'
 
   return (
@@ -118,18 +125,10 @@ export default function GoldDigGame({ configId, difficulty, seed, onWin, onLose 
         <p className="text-muted text-xs leading-snug">{theme.blurb}</p>
       </div>
 
-      <div className="flex items-center gap-3 text-[11px] text-muted">
-        <div className="flex flex-col items-center">
-          <svg viewBox={`0 0 ${sketchW * 12 + 4} ${sketchH * 12 + 4}`} style={{ width: sketchW * 12 + 4, height: sketchH * 12 + 4 }} aria-label="Assayer's sketch of the vein">
-            {lv.shape.map(([r, c]) => (
-              <rect key={`${r},${c}`} x={c * 12 + 2} y={r * 12 + 2} width={11} height={11} rx={2} fill="#facc15" stroke="#a16207" strokeWidth={1} />
-            ))}
-          </svg>
-        </div>
-        <div className="leading-snug">
-          <p>Assayer's sketch: the vein is {lv.gold.length} cells{lv.turns ? ', and may lie turned' : ''}.</p>
-          <p>Gold found: <b className="text-accent">{s.found}/{lv.gold.length}</b></p>
-        </div>
+      <div className="text-center text-[11px] text-muted leading-snug">
+        <p>The assayer reckons on {lv.nuggets.length} nuggets, {lv.gold.length} cells of gold in all.</p>
+        <p>Gold dug out: <b className="text-accent">{s.found}/{lv.target}</b>
+          {s.lost > 0 && <span className="text-red-500"> · {s.lost} shattered</span>}</p>
       </div>
 
       <div className="rounded-xl border border-line overflow-hidden w-full" style={{ background: '#1c1917', maxWidth: 440 }}>
@@ -148,7 +147,7 @@ export default function GoldDigGame({ configId, difficulty, seed, onWin, onLose 
             const isGold = gold.has(k)
             const g = granite.has(k)
             const label = open
-              ? (isGold ? `Gold ${r + 1},${c + 1}` : `Trace ${reading(lv, k)} at ${r + 1},${c + 1}`)
+              ? (isGold ? `Gold ${r + 1},${c + 1}` : `Empty ${r + 1},${c + 1}`)
               : `${g ? 'Granite' : 'Stone'} ${r + 1},${c + 1}`
             return (
               <g key={k} onClick={() => tap(k)} aria-label={label} role="gridcell" style={{ cursor: outcome ? 'default' : 'pointer' }}>
@@ -156,8 +155,11 @@ export default function GoldDigGame({ configId, difficulty, seed, onWin, onLose 
                   <>
                     <rect x={x} y={y} width={U} height={U} fill="#292524" stroke="#1c1917" />
                     {isGold
-                      ? <Nugget x={x} y={y} lost={dig.shattered.includes(k)} />
-                      : <text x={x + U / 2} y={y + U / 2 + 6} textAnchor="middle" fontSize={16} fontWeight={700} fill={heat(reading(lv, k))}>{reading(lv, k)}</text>}
+                      ? <Nugget x={x} y={y} lost={dig.shattered.includes(k)} join={{
+                          u: r > 0 && sameNugget(k, k - n), d: r < n - 1 && sameNugget(k, k + n),
+                          l: c > 0 && sameNugget(k, k - 1), r: c < n - 1 && sameNugget(k, k + 1),
+                        }} />
+                      : <circle cx={x + U / 2} cy={y + U / 2} r={2} fill="#57534e" />}
                   </>
                 ) : (
                   <>
@@ -202,13 +204,13 @@ export default function GoldDigGame({ configId, difficulty, seed, onWin, onLose 
 
       {note && <p className="text-[11px] text-red-500">{note}</p>}
       <p className="text-center text-[11px] text-muted px-3 leading-snug">
-        Tap a cell to aim, tap it again (or Strike) to crack. A number is the distance to the nearest gold, counting diagonal steps as one.
-        {lv.shatter ? ' Dynamite shatters any gold it reaches; a trace of 2 or more means a blast centred there is safe.' : ''}
+        Tap a cell to aim, tap it again (or Strike) to crack. Cracked rock shows gold or nothing; nuggets run across several cells, so follow a find.
+        {lv.shatter ? ' Dynamite shatters any gold it reaches, and shattered gold is lost.' : ''}
         {lv.granite.length ? ' Granite holds no gold, and only dynamite cracks it.' : ''}
       </p>
 
       <OutcomeBanner outcome={outcome} detail={theme.fact}
-        winTitle="Strike! The whole vein is out." loseTitle={reason ? `Not this time: ${reason}.` : 'Not this time'} />
+        winTitle="Strike! The assayer's weight is dug out." loseTitle={reason ? `Not this time: ${reason}.` : 'Not this time'} />
     </div>
   )
 }
