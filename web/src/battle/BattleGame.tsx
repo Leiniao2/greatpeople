@@ -826,7 +826,7 @@ function RulesModal({ onClose }: { onClose: () => void }) {
             <p className="text-[10px] font-bold text-accent uppercase tracking-widest mb-1.5">Events and city states</p>
             <ul className="space-y-1.5 text-ink-2 leading-relaxed">
               <li><span className="text-ink font-semibold">⚔ Local Event</span> — Attacks are allowed here. Compare your side's total in the stat with your rival's; the winner of a fight, attacker or defender, takes a prize: 2 Followers or 1 Event card.</li>
-              <li><span className="text-ink font-semibold">☠ Local Survival</span> — Each year, a player whose cards here total less than 5 in that stat loses them. Survive while a rival here is swept away and you win the survival: 2 Followers or 1 Event card.</li>
+              <li><span className="text-ink font-semibold">☠ Local Survival</span> — Each year, a player whose cards here total less than 5 in that stat loses them. Come through it and you win the survival: 2 Followers or 1 Event card, once per survival.</li>
               <li><span className="text-ink font-semibold">🏆 Global Competition</span> — At the end of the year, the highest total of public Great People across the board wins a double prize: 4 Followers or 2 Event cards. Besides the cards players start, each year has a {Math.round(GLOBAL_COMPETITION_CHANCE * 100)}% chance that one breaks out by itself.</li>
               <li><span className="text-ink font-semibold">🌊 Natural Hazard</span> — A player whose weakest stat here totals less than 5 loses their cards here.</li>
               <li>Each year a city with no state has a {Math.round(CITY_STATE_CHANCE * 100)}% chance to fall into a random event, survival or hazard of its own for a few years.</li>

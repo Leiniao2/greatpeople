@@ -570,6 +570,18 @@ describe('prizes for winning contests', () => {
     expect(gs.players[1].eventHand.length + gs.players[1].followerHand.length).toBeGreaterThan(before)
   })
 
+  it('surviving a survival on your own wins it, once per survival', () => {
+    let gs = game(1640, ['bernini'], [])
+    const stat = (['culture', 'technique', 'reputation', 'wealth'] as StatKey[]).find(k => card('bernini')[k] >= 5)!
+    gs = place(gs, 0, 0, 'bernini')
+    gs = { ...gs, locations: gs.locations.map((l, i) => (i === 0 ? { ...l, activeEvent: makeEventCard(stat, 'local_survival', 'sv'), eventRoundsLeft: 3 } : l)) }
+    gs = endRound(gs)
+    expect(gs.pendingRewards).toEqual([expect.objectContaining({ playerId: 'player-0', size: 1 })])
+    gs = gameReducer(gs, { type: 'CHOOSE_REWARD', playerId: 'player-0', pick: 'followers' })
+    gs = endRound(gs)
+    expect(gs.pendingRewards ?? [], 'the same survival pays once').toHaveLength(0)
+  })
+
   it('surviving while a rival is swept away wins the survival', () => {
     // A survival in your strongest stat at a city you hold with a follower; the rival's weak card fails.
     let gs = game(1640, ['bernini'], ['borromini'])

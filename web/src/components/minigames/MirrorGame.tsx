@@ -1,578 +1,172 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useMemo, useState, useEffect } from 'react'
 import type { MinigameProps } from '@/games/types'
-import { scale, useGameTimer, TimerBar } from './_shared'
+import { OutcomeBanner, TimerBar, useGameOutcome, useGameTimer } from './_shared'
+import { THEMES, TIERS, makePuzzle, status, type Cell, type Hand, type Piece } from './mirror/model'
 
-// ── Types ──────────────────────────────────────────────────────────────────────
+// Mirror: place mirrors and prisms so the beam lights every star and no
+// sensor.  Stone blocks stop the beam, fixed pieces cannot be moved, and a
+// prism splits the beam into two, one to each side.
+// Each level is generated from its seed; see ./mirror/model.
 
-type Dir = 'right' | 'left' | 'up' | 'down'
-type MirrorChar = '/' | '\\'
+export const CONFIG_IDS = Object.keys(THEMES)
 
-interface Source {
-  row: number
-  col: number // -1 = enters from left, gridSize = enters from right, etc.
-  dir: Dir
-}
+/** Seconds per tier (0: no clock). */
+export const MIRROR_TIME_LIMITS = ([1, 2, 3, 4] as const).map(d => TIERS[d].seconds)
 
-interface Target {
-  row: number  // -1 = exits top, gridSize = exits bottom
-  col: number  // -1 = exits left, gridSize = exits right
-}
+const U = 40
+const BEAM = '#fbbf24'
+const WON = '#34d399'
 
-interface FixedMirror {
-  row: number
-  col: number
-  mirror: MirrorChar
-}
-
-type MirrorKey = 'mendel' | 'euclid' | 'digital' | 'plato' | 'anaxagoras' | 'al-khwarizmi' | 'lorentz'
-  | 'newton-prism' | 'huygens' | 'foucault' | 'archimedes-mirror' | 'snell'
-  | 'maya-light' | 'ptolemy-lens' | 'al-biruni-ray' | 'viking-aurora' | 'mongol-signal' | 'aztec-sun'
-  | 'legnica-mohi' | 'cornaro-chapel'
-
-interface MirrorConfig {
-  title: string
-  instruction: string
-  gridSize: number
-  source: Source
-  target: Target
-  fixed: FixedMirror[]
-  maxMirrors: number
-}
-
-export const CONFIGS: Record<MirrorKey, MirrorConfig> = {
-  mendel: {
-    title: "Mendel's Pea Garden",
-    instruction: "Redirect the light beam to separate Mendel's genetic traits!",
-    gridSize: 5,
-    source: { row: 2, col: -1, dir: 'right' },
-    target: { row: 0, col: 5 },
-    fixed: [{ row: 2, col: 2, mirror: '/' }],
-    maxMirrors: 2,
-  },
-  euclid: {
-    title: "Euclid's Reflection Law",
-    instruction: "Prove Euclid's law of reflection — light always bounces at equal angles!",
-    gridSize: 5,
-    source: { row: 0, col: -1, dir: 'right' },
-    target: { row: 4, col: 5 },
-    fixed: [{ row: 0, col: 2, mirror: '\\' }],
-    maxMirrors: 2,
-  },
-  digital: {
-    title: 'Fiber Optic Network',
-    instruction: 'Route the data signal through fiber optic cables to reach the server!',
-    gridSize: 5,
-    source: { row: 5, col: 0, dir: 'up' },
-    target: { row: -1, col: 4 },
-    fixed: [{ row: 3, col: 0, mirror: '/' }],
-    maxMirrors: 2,
-  },
-  plato: {
-    title: "Plato's Cave",
-    instruction: "In Plato's Cave, shadows are cast by a hidden light. Redirect the beam to reach the cave wall.",
-    gridSize: 5,
-    source: { row: 4, col: -1, dir: 'right' },
-    target: { row: 0, col: 5 },
-    fixed: [{ row: 4, col: 1, mirror: '/' }],
-    maxMirrors: 2,
-  },
-  anaxagoras: {
-    title: 'The Fiery Rock',
-    instruction: "Anaxagoras claimed the sun is a fiery rock — not a god. Direct its light to prove your theory.",
-    gridSize: 5,
-    source: { row: -1, col: 2, dir: 'down' },
-    target: { row: 5, col: 4 },
-    fixed: [{ row: 1, col: 2, mirror: '\\' }],
-    maxMirrors: 2,
-  },
-  'al-khwarizmi': {
-    title: 'House of Wisdom',
-    instruction: "Baghdad's House of Wisdom studied optics. Route the light beam through the library to the lens.",
-    gridSize: 5,
-    source: { row: 0, col: -1, dir: 'right' },
-    target: { row: 4, col: 5 },
-    fixed: [{ row: 0, col: 3, mirror: '\\' }, { row: 2, col: 3, mirror: '/' }],
-    maxMirrors: 2,  // the beam leaves the grid at (2,-1); it takes two placed mirrors to bring it to (4,5)
-  },
-  lorentz: {
-    title: 'Speed of Light',
-    instruction: "Lorentz showed light's path changes with velocity. Guide the beam to demonstrate time dilation.",
-    gridSize: 6,
-    source: { row: -1, col: 0, dir: 'down' },
-    target: { row: 6, col: 5 },
-    fixed: [{ row: 1, col: 0, mirror: '\\' }, { row: 1, col: 4, mirror: '/' }],
-    maxMirrors: 2,
-  },
-  'newton-prism': {
-    title: "Newton's Prism",
-    instruction: "White light splits into a spectrum when it bends. Route the beam through two deflections to reach the far corner.",
-    gridSize: 7,
-    source: { row: -1, col: 0, dir: 'down' },
-    target: { row: 7, col: 6 },
-    fixed: [{ row: 2, col: 0, mirror: '\\' }, { row: 2, col: 4, mirror: '/' }],
-    maxMirrors: 2,
-  },
-  huygens: {
-    title: "Huygens' Wave Front",
-    instruction: "Each point on a wave front is itself a source. Use one mirror to guide the beam across three reflections to the exit.",
-    gridSize: 7,
-    source: { row: 6, col: -1, dir: 'right' },
-    target: { row: 0, col: 7 },
-    fixed: [
-      { row: 6, col: 2, mirror: '/' },
-      { row: 2, col: 2, mirror: '/' },
-      { row: 2, col: 5, mirror: '/' },
-    ],
-    maxMirrors: 1,
-  },
-  foucault: {
-    title: "Foucault's Rotating Mirror",
-    instruction: "Foucault measured the speed of light using a spinning mirror. With only one mirror to place, route the beam through four reflections to exit right.",
-    gridSize: 7,
-    source: { row: -1, col: 0, dir: 'down' },
-    target: { row: 3, col: 7 },
-    fixed: [
-      { row: 5, col: 0, mirror: '\\' },
-      { row: 5, col: 4, mirror: '/' },
-      { row: 0, col: 4, mirror: '\\' },
-      { row: 0, col: 1, mirror: '/' },
-    ],
-    maxMirrors: 1,
-  },
-  'archimedes-mirror': {
-    title: "Archimedes' Burning Mirrors",
-    instruction: "Archimedes focused sunlight to set ships ablaze. Thread the beam through the mirror array — two placements, five bounces.",
-    gridSize: 8,
-    source: { row: -1, col: 2, dir: 'down' },
-    target: { row: 5, col: 8 },
-    fixed: [
-      { row: 3, col: 2, mirror: '\\' },
-      { row: 3, col: 5, mirror: '/' },
-      { row: 0, col: 5, mirror: '\\' },
-    ],
-    maxMirrors: 2,
-  },
-  snell: {
-    title: "Snell's Law",
-    instruction: "Light bends precisely when crossing between media. One mirror is all you have — trace the full four-bounce path to the target.",
-    gridSize: 8,
-    source: { row: -1, col: 3, dir: 'down' },
-    target: { row: 8, col: 7 },
-    fixed: [
-      { row: 2, col: 3, mirror: '/' },
-      { row: 2, col: 0, mirror: '\\' },
-      { row: 0, col: 0, mirror: '/' },
-    ],
-    maxMirrors: 1,
-  },
-  'maya-light': {
-    title: 'Maya Solstice Observatory',
-    instruction: "Chichen Itza was built so sunlight hits the altar on the solstice. One mirror completes the optical path — place it to reach the target.",
-    gridSize: 7,
-    source: { row: -1, col: 3, dir: 'down' },
-    target: { row: 7, col: 2 },
-    fixed: [
-      { row: 2, col: 3, mirror: '\\' },
-      { row: 2, col: 6, mirror: '/' },
-      { row: 0, col: 6, mirror: '\\' },
-    ],
-    maxMirrors: 1,
-  },
-  'ptolemy-lens': {
-    title: "Ptolemy's Optics",
-    instruction: "Ptolemy catalogued the angles of refraction. Three fixed mirrors set the path — you supply the one that completes it.",
-    gridSize: 7,
-    source: { row: -1, col: 3, dir: 'down' },
-    target: { row: 2, col: 7 },
-    fixed: [
-      { row: 5, col: 3, mirror: '\\' },
-      { row: 2, col: 6, mirror: '/' },
-    ],
-    maxMirrors: 1,
-  },
-  'al-biruni-ray': {
-    title: "Al-Bīrūnī's Camera Obscura",
-    instruction: "Al-Bīrūnī built a light chamber to study the angles of incidence. Guide the beam through four reflections using just one placed mirror.",
-    gridSize: 8,
-    source: { row: 8, col: 0, dir: 'up' },
-    target: { row: 8, col: 3 },
-    fixed: [
-      { row: 4, col: 0, mirror: '/' },
-      { row: 4, col: 7, mirror: '\\' },
-      { row: 7, col: 7, mirror: '/' },
-    ],
-    maxMirrors: 1,
-  },
-  'viking-aurora': {
-    title: 'Viking Sólarsteinn',
-    instruction: "Norse navigators used a sunstone (sólarsteinn) to find the sun through clouds by polarised light. Chart the beam's four-bounce path — one mirror.",
-    gridSize: 7,
-    source: { row: 6, col: -1, dir: 'right' },
-    target: { row: 4, col: -1 },
-    fixed: [
-      { row: 6, col: 2, mirror: '/' },
-      { row: 0, col: 2, mirror: '/' },
-      { row: 0, col: 5, mirror: '\\' },
-    ],
-    maxMirrors: 1,
-  },
-  'mongol-signal': {
-    title: 'Mongol Fire Relay',
-    instruction: "Mongol armies used fire signals to send messages 100 miles in hours. One mirror redirects the beam across five bounces to the distant beacon.",
-    gridSize: 8,
-    source: { row: 3, col: -1, dir: 'right' },
-    target: { row: 5, col: 8 },
-    fixed: [
-      { row: 3, col: 5, mirror: '/' },
-      { row: 0, col: 5, mirror: '\\' },
-      { row: 0, col: 2, mirror: '/' },
-    ],
-    maxMirrors: 1,
-  },
-  'legnica-mohi': {
-    title: 'Two Armies, One Plan — 1241',
-    instruction: "Batu's northern wing in Poland and his main army in Hungary must strike in step. One mirror bends the signal through five bounces to the far camp.",
-    gridSize: 8,
-    source: { row: 3, col: -1, dir: 'right' },
-    target: { row: 5, col: 8 },
-    fixed: [
-      { row: 3, col: 5, mirror: '/' },
-      { row: 0, col: 5, mirror: '\\' },
-      { row: 0, col: 2, mirror: '/' },
-    ],
-    maxMirrors: 1,
-  },
-  'aztec-sun': {
-    title: 'Aztec Sun Temple',
-    instruction: "The Aztec calendar stone was used to track the sun's path. Two fixed mirrors guide the beam — place the third to reach the far altar.",
-    gridSize: 7,
-    source: { row: -1, col: 0, dir: 'down' },
-    target: { row: 2, col: 7 },
-    fixed: [
-      { row: 3, col: 0, mirror: '\\' },
-      { row: 3, col: 4, mirror: '/' },
-    ],
-    maxMirrors: 1,
-  },
-  'cornaro-chapel': {
-    title: 'The Hidden Window',
-    instruction: "Daylight falls from a window hidden above the altar of the Cornaro Chapel. Two fixed reflections carry it in — place the last so the light lands on St Teresa and the angel.",
-    gridSize: 7,
-    source: { row: -1, col: 0, dir: 'down' },
-    target: { row: 2, col: 7 },
-    fixed: [
-      { row: 3, col: 0, mirror: '\\' },
-      { row: 3, col: 4, mirror: '/' },
-    ],
-    maxMirrors: 1,
-  },
-}
-
-// ── Light tracing ──────────────────────────────────────────────────────────────
-
-function reflect(dir: Dir, mirror: MirrorChar): Dir {
-  if (mirror === '/') {
-    const map: Record<Dir, Dir> = { right: 'up', up: 'right', left: 'down', down: 'left' }
-    return map[dir]
-  } else {
-    const map: Record<Dir, Dir> = { right: 'down', down: 'right', left: 'up', up: 'left' }
-    return map[dir]
+function PieceGlyph({ piece, x, y, mine }: { piece: Piece; x: number; y: number; mine: boolean }) {
+  const m = U * 0.36
+  const stroke = mine ? '#e2e8f0' : '#94a3b8'
+  if (piece === '#') {
+    return <rect x={x - U / 2 + 3} y={y - U / 2 + 3} width={U - 6} height={U - 6} rx={5} fill="#57534e" stroke="#292524" strokeWidth={2} />
   }
-}
-
-function dirDelta(dir: Dir): [number, number] {
-  switch (dir) {
-    case 'right': return [0, 1]
-    case 'left':  return [0, -1]
-    case 'up':    return [-1, 0]
-    case 'down':  return [1, 0]
+  if (piece === 'P') {
+    return (
+      <g>
+        <polygon points={`${x},${y - m} ${x + m},${y + m * 0.8} ${x - m},${y + m * 0.8}`}
+          fill={mine ? 'rgba(125,211,252,0.35)' : 'rgba(148,163,184,0.3)'} stroke={mine ? '#7dd3fc' : stroke} strokeWidth={2} strokeLinejoin="round" />
+        {!mine && <circle cx={x} cy={y + m * 0.3} r={2} fill={stroke} />}
+      </g>
+    )
   }
-}
-
-interface TraceResult {
-  lit: Set<string>
-  exitRow: number
-  exitCol: number
-  hits: boolean
-}
-
-export function traceLight(
-  gridSize: number,
-  source: Source,
-  mirrors: Record<string, MirrorChar>,
-  target: Target,
-): TraceResult {
-  const lit = new Set<string>()
-  let r = source.row
-  let c = source.col
-  let dir = source.dir
-  const seen = new Set<string>()
-
-  // Step into the grid first
-  const [dr, dc] = dirDelta(dir)
-  r += dr
-  c += dc
-
-  let exitRow = -999
-  let exitCol = -999
-  const MAX_STEPS = 200
-
-  for (let step = 0; step < MAX_STEPS; step++) {
-    // Out of bounds => this is the exit
-    if (r < 0 || r >= gridSize || c < 0 || c >= gridSize) {
-      exitRow = r
-      exitCol = c
-      break
-    }
-
-    const key = `${r},${c}`
-    // Cycle detection
-    const stateKey = `${r},${c},${dir}`
-    if (seen.has(stateKey)) break
-    seen.add(stateKey)
-
-    lit.add(key)
-
-    // Check for mirror at this cell
-    const m = mirrors[key]
-    if (m) {
-      dir = reflect(dir, m)
-    }
-
-    const [ndr, ndc] = dirDelta(dir)
-    r += ndr
-    c += ndc
-  }
-
-  const hits = exitRow === target.row && exitCol === target.col
-  return { lit, exitRow, exitCol, hits }
-}
-
-// ── Component ──────────────────────────────────────────────────────────────────
-
-
-/** Seconds per tier: one or two mirrors on a live beam take a competent player 20–40 s. */
-export const MIRROR_TIME_LIMITS = [0, 120, 90, 60] as const
-
-export default function MirrorGame({ configId, difficulty, onWin, onLose }: MinigameProps) {
-  // Higher difficulties put the puzzle on a clock.
-  const timeLimit = scale(difficulty, MIRROR_TIME_LIMITS)
-
-  const config = CONFIGS[configId as MirrorKey] ?? CONFIGS['mendel']
-  const { gridSize, source, target, fixed, maxMirrors } = config
-
-  // Build fixed mirror lookup
-  const fixedMap: Record<string, MirrorChar> = {}
-  fixed.forEach(f => { fixedMap[`${f.row},${f.col}`] = f.mirror })
-
-  const [playerMirrors, setPlayerMirrors] = useState<Record<string, MirrorChar>>({})
-  const [won, setWon] = useState(false)
-  // The clock stops once the beam lands, so a late expiry cannot undo a win.
-  const timer = useGameTimer({ seconds: timeLimit, running: !won, onExpire: () => onLose('out of time') })
-
-  const allMirrors = { ...fixedMap, ...playerMirrors }
-
-  const { lit, hits } = traceLight(gridSize, source, allMirrors, target)
-
-  // Win detection
-  useEffect(() => {
-    if (hits && !won) {
-      setWon(true)
-      setTimeout(() => onWin(), 1000)
-    }
-  }, [hits, won, onWin])
-
-  const handleCellClick = useCallback((r: number, c: number) => {
-    if (won) return
-    const key = `${r},${c}`
-    if (fixedMap[key]) return // Can't modify fixed mirrors
-
-    setPlayerMirrors(prev => {
-      const current = prev[key]
-      const next = { ...prev }
-      if (!current) {
-        if (Object.keys(prev).length >= maxMirrors) return prev // max reached
-        next[key] = '/'
-      } else if (current === '/') {
-        next[key] = '\\'
-      } else {
-        delete next[key]
-      }
-      return next
-    })
-  }, [won, fixedMap, maxMirrors])
-
-  const playerMirrorCount = Object.keys(playerMirrors).length
-  // Fit the board and its edge row on a 390 px phone (about 340 px of room).
-  const CELL = Math.min(56, Math.floor(340 / (gridSize + 2)))
-
-  // Direction arrow for source indicator
-  const sourceArrow = { right: '→', left: '←', up: '↑', down: '↓' }[source.dir]
-
-  // Determine source/target edge positions for edge indicators
-  // Source enters from: col=-1 → left edge of row, col=gridSize → right edge, row=-1 → top, row=gridSize → bottom
-  const getEdgeIndicator = (row: number, col: number) => {
-    // Edge cell outside grid
-    if (col === -1) return { gridRow: row, gridCol: -1, side: 'left' }
-    if (col === gridSize) return { gridRow: row, gridCol: gridSize, side: 'right' }
-    if (row === -1) return { gridRow: -1, gridCol: col, side: 'top' }
-    if (row === gridSize) return { gridRow: gridSize, gridCol: col, side: 'bottom' }
-    return null
-  }
-
-  const sourceEdge = getEdgeIndicator(source.row, source.col)
-  const targetEdge = getEdgeIndicator(target.row, target.col)
-
+  const [x1, y1, x2, y2] = piece === '/' ? [x - m, y + m, x + m, y - m] : [x - m, y - m, x + m, y + m]
   return (
-    <div className="flex flex-col items-center gap-3">
-      {timer.active && <div className="w-full"><TimerBar remaining={timer.remaining} total={timer.total} /></div>}
-      {/* Header */}
-      <div className="text-center px-2">
-        <p className="text-accent font-bold text-sm">{config.title}</p>
-        <p className="text-muted text-xs leading-relaxed">{config.instruction}</p>
-      </div>
-
-      {/* Mirror counter */}
-      <div className="flex items-center gap-3 text-xs text-muted">
-        <span>Mirrors placed: <span className="text-accent font-bold">{playerMirrorCount} / {maxMirrors}</span></span>
-        <span className="text-muted/80">|</span>
-        <span className="text-muted">Click cell to cycle / → \ → empty</span>
-      </div>
-
-      {/* Grid with edge indicators */}
-      <div
-        className="relative"
-        style={{
-          width: (gridSize + 2) * CELL,
-          height: (gridSize + 2) * CELL,
-        }}>
-        {/* Grid area offset by 1 cell for edge indicators */}
-        <div
-          className="absolute rounded-xl overflow-hidden border border-line"
-          style={{
-            left: CELL,
-            top: CELL,
-            width: gridSize * CELL,
-            height: gridSize * CELL,
-            display: 'grid',
-            gridTemplateColumns: `repeat(${gridSize}, ${CELL}px)`,
-            gridTemplateRows: `repeat(${gridSize}, ${CELL}px)`,
-            background: '#0f0f1e',
-          }}>
-          {Array.from({ length: gridSize }, (_, r) =>
-            Array.from({ length: gridSize }, (_, c) => {
-              const key = `${r},${c}`
-              const isFixed = !!fixedMap[key]
-              const mirror = allMirrors[key]
-              const isLit = lit.has(key)
-              const isPlayer = !!playerMirrors[key]
-
-              return (
-                <div
-                  key={key}
-                  onClick={() => handleCellClick(r, c)}
-                  style={{ width: CELL, height: CELL }}
-                  className={`relative flex items-center justify-center border border-line
-                    transition-all duration-200 cursor-pointer
-                    ${isFixed
-                      ? 'bg-accent/30 cursor-default'
-                      : isPlayer
-                      ? 'bg-panel-2 hover:bg-line'
-                      : 'bg-paper-2 hover:bg-panel-2'
-                    }
-                    ${isLit && !won ? 'bg-accent/20 border-accent/30' : ''}
-                    ${isLit && won ? 'bg-emerald-400/30 border-emerald-400/40' : ''}
-                  `}>
-                  {/* Light beam overlay */}
-                  {isLit && (
-                    <div className={`absolute inset-0 transition-all duration-300
-                      ${won
-                        ? 'bg-emerald-400/20 animate-pulse'
-                        : 'bg-accent/15'
-                      }`} />
-                  )}
-
-                  {/* Mirror glyph */}
-                  {mirror && (
-                    <span className={`relative z-10 text-xl font-bold select-none
-                      ${isFixed ? 'text-accent' : 'text-ink-2'}
-                      ${isLit ? (won ? 'text-emerald-300' : 'text-ink-2') : ''}
-                    `}>
-                      {mirror}
-                    </span>
-                  )}
-
-                  {/* Fixed indicator dot */}
-                  {isFixed && !mirror && (
-                    <div className="w-2 h-2 rounded-full bg-accent/40" />
-                  )}
-                </div>
-              )
-            })
-          )}
-        </div>
-
-        {/* Source indicator */}
-        {sourceEdge && (
-          <div
-            className="absolute flex items-center justify-center"
-            style={{
-              left: (sourceEdge.gridCol + 1) * CELL,
-              top: (sourceEdge.gridRow + 1) * CELL,
-              width: CELL,
-              height: CELL,
-            }}>
-            <div className="w-8 h-8 rounded-full bg-accent/20 border border-accent/50
-                            flex items-center justify-center text-accent text-lg font-bold">
-              {sourceArrow}
-            </div>
-          </div>
-        )}
-
-        {/* Target indicator */}
-        {targetEdge && (
-          <div
-            className="absolute flex items-center justify-center"
-            style={{
-              left: (targetEdge.gridCol + 1) * CELL,
-              top: (targetEdge.gridRow + 1) * CELL,
-              width: CELL,
-              height: CELL,
-            }}>
-            <div className={`w-8 h-8 rounded-full border-2 flex items-center justify-center text-base
-                            transition-all duration-300
-              ${hits
-                ? 'bg-emerald-400/30 border-emerald-400 shadow-[0_0_12px_rgba(52,211,153,0.6)] animate-pulse'
-                : 'bg-panel-2 border-line-2 text-muted'
-              }`}>
-              ★
-            </div>
-          </div>
-        )}
-      </div>
-
-      {/* Legend */}
-      <div className="flex gap-4 text-[10px] text-muted">
-        <span className="flex items-center gap-1">
-          <span className="text-accent font-bold text-xs">/\</span> your mirrors
-        </span>
-        <span className="flex items-center gap-1">
-          <span className="text-accent font-bold text-xs">/</span>
-          <span className="text-amber-900 text-xs">▪</span> fixed
-        </span>
-        <span className="flex items-center gap-1">
-          <span className="bg-accent/30 w-3 h-3 rounded-sm inline-block" /> lit beam
-        </span>
-      </div>
-
-      {won && (
-        <div className="text-emerald-400 font-bold text-sm animate-pulse text-center">
-          Light reaches the target!
-        </div>
-      )}
-    </div>
+    <g>
+      <line x1={x1} y1={y1} x2={x2} y2={y2} stroke={stroke} strokeWidth={mine ? 5 : 4} strokeLinecap="round" />
+      {!mine && <circle cx={x} cy={y} r={2.5} fill="#0f172a" stroke={stroke} strokeWidth={1} />}
+    </g>
   )
 }
 
-// Every hand-authored config id; the registry test renders each one.
-export const CONFIG_IDS = Object.keys(CONFIGS)
+export default function MirrorGame({ configId, difficulty, seed, onWin, onLose }: MinigameProps) {
+  const puzzle = useMemo(() => makePuzzle(configId, difficulty, seed), [configId, difficulty, seed])
+  const theme = THEMES[puzzle.theme]
+  const n = puzzle.size
+  const [placed, setPlaced] = useState<Record<Cell, Piece>>({})
+  const [tool, setTool] = useState<Hand>('mirror')
+  const { outcome, reason, win, lose } = useGameOutcome({ onWin, onLose, delayMs: 1200 })
+  const timer = useGameTimer({ seconds: puzzle.seconds, running: !outcome, onExpire: () => lose('out of time') })
+
+  const s = status(puzzle, placed)
+  const won = outcome === 'won'
+  useEffect(() => { if (s.solved && !outcome) win() }, [s.solved, outcome, win])
+
+  const used: Record<Hand, number> = { mirror: 0, prism: 0 }
+  for (const k in placed) used[placed[k] === 'P' ? 'prism' : 'mirror']++
+  const left = (h: Hand) => puzzle.hand[h] - used[h]
+  const targets = new Set(puzzle.targets), sensors = new Set(puzzle.sensors)
+
+  const tap = (cell: Cell) => {
+    if (outcome || puzzle.fixed[cell] || targets.has(cell) || sensors.has(cell)) return
+    setPlaced(prev => {
+      const next = { ...prev }
+      const cur = prev[cell]
+      if (cur === '/') next[cell] = '\\'
+      else if (cur) delete next[cell]
+      else if (left(tool) > 0) next[cell] = tool === 'prism' ? 'P' : '/'
+      else if (left(tool === 'mirror' ? 'prism' : 'mirror') > 0) next[cell] = tool === 'mirror' ? 'P' : '/'
+      return next
+    })
+  }
+
+  const cx = (c: number) => (c + 1.5) * U
+  const cy = (r: number) => (r + 1.5) * U
+  const vb = (n + 2) * U
+  const src = puzzle.source
+  const arrow = ['▲', '▶', '▼', '◀'][src.dir] // the way the beam travels
+
+  return (
+    <div className="flex flex-col items-center gap-2">
+      {timer.active && <div className="w-full"><TimerBar remaining={timer.remaining} total={timer.total} /></div>}
+      <div className="text-center px-2">
+        <p className="text-accent font-bold text-sm">{theme.title}</p>
+        <p className="text-muted text-xs leading-snug">{theme.blurb}</p>
+      </div>
+
+      <div className="rounded-xl border border-line overflow-hidden w-full" style={{ background: '#0b1220', maxWidth: 420 }}>
+        <svg viewBox={`0 0 ${vb} ${vb}`} className="w-full h-auto block select-none" role="grid" aria-label="Mirror board">
+          {Array.from({ length: n * n }, (_, k) => {
+            const r = Math.floor(k / n), c = k % n
+            return (
+              <rect key={k} x={(c + 1) * U} y={(r + 1) * U} width={U} height={U}
+                fill={(r + c) % 2 ? '#111a2e' : '#0f172a'} stroke="#1e293b" strokeWidth={1}
+                onClick={() => tap(k)} aria-label={`Cell ${r + 1},${c + 1}`}
+                style={{ cursor: 'pointer' }} />
+            )
+          })}
+
+          {s.trace.segs.map(([r1, c1, r2, c2], i) => (
+            <line key={i} x1={cx(c1)} y1={cy(r1)} x2={cx(c2)} y2={cy(r2)}
+              stroke={won ? WON : BEAM} strokeWidth={4} strokeLinecap="round" opacity={0.85}
+              style={{ filter: `drop-shadow(0 0 3px ${won ? WON : BEAM})`, pointerEvents: 'none' }} />
+          ))}
+
+          {puzzle.targets.map(k => {
+            const on = !!s.trace.lit[k]
+            return (
+              <text key={`t${k}`} x={cx(k % n)} y={cy(Math.floor(k / n)) + 8} textAnchor="middle" fontSize={24}
+                fill={on ? (won ? WON : '#fde047') : '#475569'} style={{ pointerEvents: 'none' }}>★</text>
+            )
+          })}
+          {puzzle.sensors.map(k => {
+            const on = !!s.trace.lit[k]
+            const x = cx(k % n), y = cy(Math.floor(k / n))
+            return (
+              <g key={`s${k}`} style={{ pointerEvents: 'none' }}>
+                <circle cx={x} cy={y} r={U * 0.3} fill={on ? 'rgba(239,68,68,0.45)' : 'rgba(30,41,59,0.9)'} stroke={on ? '#ef4444' : '#64748b'} strokeWidth={2} />
+                <circle cx={x} cy={y} r={U * 0.11} fill={on ? '#fecaca' : '#64748b'} />
+              </g>
+            )
+          })}
+
+          {Object.entries(puzzle.fixed).map(([k, piece]) => (
+            <g key={`f${k}`} style={{ pointerEvents: 'none' }}>
+              <PieceGlyph piece={piece} x={cx(+k % n)} y={cy(Math.floor(+k / n))} mine={false} />
+            </g>
+          ))}
+          {Object.entries(placed).map(([k, piece]) => (
+            <g key={`p${k}`} style={{ pointerEvents: 'none' }}>
+              <PieceGlyph piece={piece} x={cx(+k % n)} y={cy(Math.floor(+k / n))} mine />
+            </g>
+          ))}
+
+          <g style={{ pointerEvents: 'none' }}>
+            <circle cx={cx(src.col)} cy={cy(src.row)} r={U * 0.36} fill="rgba(251,191,36,0.25)" stroke={BEAM} strokeWidth={2} />
+            <text x={cx(src.col)} y={cy(src.row) + 6} textAnchor="middle" fontSize={16} fill={BEAM}>{arrow}</text>
+          </g>
+        </svg>
+      </div>
+
+      <div className="flex gap-2 justify-center">
+        {(['mirror', 'prism'] as Hand[]).filter(h => puzzle.hand[h] > 0).map(h => (
+          <button key={h} onClick={() => setTool(h)} disabled={!!outcome}
+            aria-label={`${h === 'mirror' ? 'Mirror' : 'Prism'}: ${left(h)} left`}
+            className={`px-3 py-1.5 rounded-lg border-2 text-xs font-bold transition-all
+              ${tool === h ? 'border-accent bg-accent/20 text-accent' : 'border-line text-muted'}`}>
+            {h === 'mirror' ? '╱ Mirror' : '△ Prism'} × {left(h)}
+          </button>
+        ))}
+        <button onClick={() => setPlaced({})} disabled={!!outcome || !Object.keys(placed).length}
+          className="px-3 py-1.5 rounded-lg border border-line text-xs text-muted disabled:opacity-40">Clear</button>
+      </div>
+
+      <div className="flex justify-center gap-4 text-[11px] text-muted">
+        <span>Stars lit: <b className="text-accent">{s.lit}/{puzzle.targets.length}</b></span>
+        {puzzle.sensors.length > 0 && (
+          <span>Sensors dark: <b className={s.burnt ? 'text-red-500' : 'text-accent'}>{puzzle.sensors.length - s.burnt}/{puzzle.sensors.length}</b></span>
+        )}
+      </div>
+      <p className="text-center text-[11px] text-muted px-3 leading-snug">
+        Tap a cell to place the chosen piece; tap a mirror to turn it, again to lift it.
+        {puzzle.hand.prism > 0 || Object.values(puzzle.fixed).includes('P') ? ' A prism splits the beam to both sides.' : ''}
+        {' '}Stone stops light; pieces with a dot are fixed.
+      </p>
+
+      <OutcomeBanner outcome={outcome} detail="Every star is lit and every sensor dark."
+        winTitle="The light lands where it should." loseTitle={reason ? `Not this time: ${reason}.` : 'Not this time'} />
+    </div>
+  )
+}

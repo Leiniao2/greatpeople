@@ -5895,45 +5895,5 @@
     "countries": [
       "Kenya"
     ]
-  },
-  {
-    "id": "pele",
-    "figureName": "Pelé",
-    "era": "Information",
-    "gender": "male",
-    "identities": [
-      "Athlete"
-    ],
-    "portraitKey": "pele",
-    "politics": 2,
-    "strength": 9,
-    "culture": 5,
-    "wealth": 5,
-    "intelligence": 2,
-    "technique": 8,
-    "belief": 3,
-    "reputation": 7,
-    "lore": "Three World Cups and over a thousand goals: the King of football.",
-    "trait": "O Rei — While an allied Athlete is at this location, this card gains +2 strength and +2 technique.",
-    "achievement": "Joga Bonito — Win 3 fights in strength or technique.",
-    "legacy": {
-      "name": "The Thousandth Goal",
-      "unlock": {
-        "stat": "strength",
-        "wins": 1
-      },
-      "effect": {
-        "kind": "prodigy",
-        "years": 6
-      },
-      "flavour": "He won his first World Cup at seventeen."
-    },
-    "years": "1940–2022",
-    "born": 1940,
-    "died": 2022,
-    "countries": [
-      "Brazil"
-    ],
-    "careerAge": 16
   }
 ]

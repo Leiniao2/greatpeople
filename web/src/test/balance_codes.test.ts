@@ -12,7 +12,8 @@ import { CONFIGS as DECODES, DECODE_REVEALS, DECODE_TIME_LIMITS, makeCipher, rev
 import { PSEUDO_ATTEMPTS } from '@/components/minigames/PseudoCodeGame'
 import { OPEN_SLOTS, MAX_CHECKS, TIME_LIMIT } from '@/components/minigames/LogicGateGame'
 import { PIPELINE_TIME_LIMITS } from '@/components/minigames/PipelineGame'
-import { CONFIGS as MIRRORS, MIRROR_TIME_LIMITS } from '@/components/minigames/MirrorGame'
+import { MIRROR_TIME_LIMITS } from '@/components/minigames/MirrorGame'
+import { TIERS as MIRROR_TIERS } from '@/components/minigames/mirror/model'
 import { LORENTZ_CRASHES } from '@/components/minigames/LorentzGame'
 
 afterEach(() => { cleanup(); vi.useRealTimers() })
@@ -97,14 +98,10 @@ describe('caps and clocks rise monotonically', () => {
     expect(nonIncreasing(timed(PIPELINE_TIME_LIMITS))).toBe(true)
     expect(nonIncreasing(timed(MIRROR_TIME_LIMITS))).toBe(true)
     expect(PIPELINE_TIME_LIMITS[3]).toBeGreaterThanOrEqual(90)
-    expect(MIRROR_TIME_LIMITS[3]).toBeGreaterThanOrEqual(60)
+    expect(MIRROR_TIME_LIMITS[3]).toBeGreaterThanOrEqual(240)
   })
   it('mirror boards fit a 390 px phone', () => {
-    for (const cfg of Object.values(MIRRORS)) {
-      const cell = Math.min(56, Math.floor(340 / (cfg.gridSize + 2)))
-      expect((cfg.gridSize + 2) * cell).toBeLessThanOrEqual(340)
-      expect(cell).toBeGreaterThanOrEqual(30)
-    }
+    for (const t of Object.values(MIRROR_TIERS)) expect(t.size).toBeLessThanOrEqual(8)
   })
   it('lorentz: unlimited at D1, at least three flights at D4', () => {
     expect(LORENTZ_CRASHES[0]).toBe(0)

@@ -401,7 +401,6 @@ export const ACHIEVEMENTS: Record<string, Rule> = {
   nelson_mandela: (ev, c) => onTurn(ev, c) && c.loc.cards.some(x => x.type === 'gp' && x.playerId !== c.owner.id) && new Set(c.loc.cards.filter(x => x.type === 'gp').flatMap(x => c.look.gp[x.cardId]?.countries ?? [])).size >= 3,
   yuri_gagarin: (ev, c) => ev.kind === 'survival' && ev.hazard && atMyCity(c, ev.locId) && !!ev.results.find(r => r.playerId === c.owner.id)?.survived,
   wangari_maathai: (ev, c) => ev.kind === 'follower' && ev.playerId === c.owner.id && atMyCity(c, ev.locId) && collect(c, 'years', String(c.state.year), 3),
-  pele: (ev, c) => ev.kind === 'fight' && (ev.stat === 'strength' || ev.stat === 'technique') && mySide(ev, c) === 'won' && tally(c, 'goals', 3),
 }
 
 /** Progress towards an achievement that builds up over turns, for the card badge (e.g. "2/4"); null when none. */

@@ -1,4 +1,21 @@
-# Portrait prompts for the 65 new Great People
+# Portrait prompts for the new Great People
+
+**Current (2026-11-05, second pass):** the close, centred repaints below still
+showed the Great Person too small next to the owner's own Flow portraits. 54 of
+them were regenerated in the owner's Flow project ("5月08日 09:43") with the
+owner's plain prompt, Nano Banana 2.1, no Agent and no reference image:
+
+> Generate a image of <Name> that is good for board game resource, just like the
+> style of Gandhi we just generated, 1920(w) * 1080(h), no border, no text
+
+For little-known people a short descriptor follows the name (for example
+"Nedjeh, king of Kerma in ancient Nubia"). Of the two results the one with the
+larger figure was kept, downloaded as 2K and saved at 1920×1080. Frida Kahlo,
+Marie Curie, Hedy Lamarr, José Rizal, Yuri Gagarin, Nelson Mandela, Timur,
+Gyges, Jabir ibn Hayyan and Meskalamdug were left as they were. Pelé was removed
+from the roster.
+
+## Earlier pass: framing prompts
 
 The 65 portraits added in `7cd922a` were painted as busy scenes, and in most of
 them the Great Person is a small figure among a crowd. The hand-made portraits
@@ -69,7 +86,6 @@ Cards crop the middle of the image, so the person must stand in the centre.
 | `nedjeh` | Nedjeh, first king of Kerma in Kush, around 1650 BC. Powerful man with dark skin, a gold-and-feather headdress, heavy gold necklaces and a leopard-skin cloak, holding an ivory sceptre. Behind him, blurred: the great mud-brick Western Deffufa of Kerma and cattle with long horns. |
 | `nikola_tesla` | Nikola Tesla, inventor, 1890s. Tall gaunt man with centre-parted black hair and a thin moustache, a dark three-piece suit and a white wing collar, holding a glowing glass bulb without wires. Behind him, blurred: a Tesla coil throwing violet sparks in a dim laboratory. |
 | `osei_tutu` | Osei Tutu, founder of the Ashanti Empire, around 1700. Dignified king in vivid kente cloth, heavy gold jewellery and a gold-studded crown, one hand resting on the Golden Stool beside him. Behind him, blurred: a ceremonial umbrella and the thatched palace of Kumasi. |
-| `pele` | Pelé, Brazilian footballer, 1970. Smiling athlete in the yellow Brazil shirt with green trim and number 10, holding a leather football at his hip. Behind him, blurred: a packed stadium under floodlights and a green pitch. |
 | `peter_the_great` | Peter the Great, Tsar of Russia, around 1700. Very tall young man with a small moustache and dark shoulder-length hair, a green Preobrazhensky coat with gold buttons and a white cravat, holding shipwright's dividers. Behind him, blurred: a ship's hull on the stocks and the Neva river. |
 | `plotinus` | Plotinus, Neoplatonist philosopher, 3rd century. Ascetic older man with a long grey beard and a simple pale toga, eyes lifted, one hand raised toward a soft beam of light. Behind him, blurred: a Roman colonnade and a hazy sunlit sky. |
 | `puabi` | Queen Puabi of Ur, around 2600 BC. Regal woman wearing her famous headdress of gold leaves, rings and flowers, a cape of carnelian and lapis beads, holding a gold cup. Behind her, blurred: a mud-brick ziggurat and a golden bull-headed lyre. |
