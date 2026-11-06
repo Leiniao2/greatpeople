@@ -1,14 +1,14 @@
-import { useMemo, useState, useCallback, type ReactElement } from 'react'
+import { useEffect, useMemo, useState, useCallback, type ReactElement } from 'react'
 import type { MinigameProps, Difficulty } from '@/games/types'
-import { mulberry32, hashString, resolveConfig, scale, useGameOutcome, OutcomeBanner, shuffle, pick, randInt, type Rng } from './_shared'
+import { mulberry32, hashString, resolveConfig, scale, useGameOutcome, useGameTimer, TimerBar, OutcomeBanner, shuffle, pick, randInt, type Rng } from './_shared'
 
 // Lenses: an optical bench in paraxial optics.
 //
 // Light runs left to right along a bench of numbered slots. The player takes
 // pieces from a small tray (lenses, prisms, holes in a wall, lantern rings,
-// the lamp itself), drops them into slots, and "lights the lamp" to trace the
-// rays. Only a few lightings are allowed; each one draws where the light went,
-// so the player learns from the last attempt. Rays follow thin-lens rules: a
+// the lamp itself) and drops them into slots. The lamp is always lit: the rays
+// are traced live on every move, and the puzzle is won the moment the light
+// does what the goal asks; the clock is the only way to lose. Rays follow thin-lens rules: a
 // ray at height y with slope t leaves a lens of focal length f with slope
 // t − y/f; a prism adds a colour-dependent bend; a ring adds a fixed bend
 // towards the axis inside its band; a wall passes light only through holes.
@@ -22,11 +22,11 @@ import { mulberry32, hashString, resolveConfig, scale, useGameOutcome, OutcomeBa
 //   alhazen-camera     pinhole images (inverted) · candles at two depths · lens-holes · two images
 //   fresnel-lighthouse lens + prism rings collimate a lamp · D3–4 place the lamp too
 //
-//   tier  lightings  tray     expected
-//   D1    4          2–3      ≈ 1 min
-//   D2    4          3–5      ≈ 1.5 min
-//   D3    3          3–6      ≈ 2 min
-//   D4    3          4–8      ≈ 2.5–3 min
+//   tier  clock   tray     expected
+//   D1    2:00    2–3      ≈ 1 min
+//   D2    2:30    3–5      ≈ 1.5 min
+//   D3    3:00    3–6      ≈ 2 min
+//   D4    3:30    4–8      ≈ 2.5–3 min
 
 export type Kind = 'galileo' | 'newton' | 'alhazen' | 'fresnel'
 
@@ -115,9 +115,9 @@ export interface Puzzle {
   blocked: number[]
   marks: Mark[]
   tol: number
-  checks: number
+  /** Seconds on the clock. */
+  seconds: number
   focalHints: boolean
-  preview: boolean
   goal: string
   // galileo
   beam?: number[]
@@ -338,7 +338,7 @@ export function evaluate(pz: Puzzle, pl: Placement): Verdict {
 
 // ── Generators ─────────────────────────────────────────────────────────────────
 
-export const CHECKS: readonly [number, number, number, number] = [4, 4, 3, 3]
+export const SECONDS: readonly [number, number, number, number] = [120, 150, 180, 210]
 
 function finish(pz: Omit<Puzzle, 'tray' | 'planted'>, planted: { piece: Omit<Piece, 'id'>; place: Place }[], decoys: Omit<Piece, 'id'>[], rng: Rng): Puzzle {
   const all = shuffle([...planted.map(p => ({ piece: p.piece, place: p.place as Place | null })), ...decoys.map(d => ({ piece: d, place: null }))], rng)
@@ -378,7 +378,7 @@ function genGalileo(d: Difficulty, rng: Rng): Puzzle {
   }
   return finish({
     kind: 'galileo', difficulty: d, S, endX: S + 1, xmin: -0.6, blocked, marks: [], tol: 0.02,
-    checks: CHECKS[d - 1], focalHints: d <= 2, preview: d <= 2, beam, pupil,
+    seconds: SECONDS[d - 1], focalHints: d <= 2, beam, pupil,
     goal: d <= 2
       ? `Two lenses, spaced so the beam leaves parallel, upright and inside the pupil (±${pupil}). Tip: a concave lens f₂ placed f₁ − |f₂| behind a convex f₁ does it.`
       : `Narrow the beam to the pupil (±${pupil}) — that takes enough magnification (f₁ ÷ |f₂|). Parallel and upright too.${blocked.length ? ' Some slots of the tube are blocked.' : ''}`,
@@ -391,7 +391,7 @@ function genGalileo(d: Difficulty, rng: Rng): Puzzle {
 const colourD = (key: string) => COLOURS.find(c => c.key === key)!.d
 
 function genNewton(d: Difficulty, rng: Rng): Puzzle {
-  const base = { kind: 'newton' as const, difficulty: d, xmin: -0.6, checks: CHECKS[d - 1], focalHints: d <= 2, preview: false }
+  const base = { kind: 'newton' as const, difficulty: d, xmin: -0.6, seconds: SECONDS[d - 1], focalHints: d <= 2 }
   for (let guard = 0; guard < 400; guard++) {
     if (d === 1) {
       const S = 9, end = 10
@@ -404,7 +404,7 @@ function genNewton(d: Difficulty, rng: Rng): Puzzle {
       return finish({
         ...base, S, endX: end, blocked: [], tol: 0.12, y0, mode: 'split',
         marks: COLOURS.map((c, i) => ({ key: c.key, y: ys[i], colour: c.hex, label: c.key })),
-        goal: 'Split the sunbeam: red, green and violet must each land on their own mark on the screen. Tap a placed prism to flip it.',
+        goal: 'Split the sunbeam: red, green and violet must each land on their own mark on the screen. Select a placed prism and press Flip to turn it over.',
       }, [{ piece: { kind: 'prism', s }, place: { slot: p, row: 0, o } }], [{ kind: 'prism', s: 3 - s }, { kind: 'lens', f: pick([2, 3, -2], rng) }].slice(0, 1) as Omit<Piece, 'id'>[], rng)
     }
     if (d === 2) {
@@ -510,7 +510,7 @@ function genAlhazen(d: Difficulty, rng: Rng): Puzzle {
     ][d - 1]
     const pz = finish({
       kind: 'alhazen', difficulty: d, S, endX: L, xmin: Math.min(...points.map(pt => pt.x)) - 0.8, blocked: [], marks, tol: 0.2,
-      checks: CHECKS[d - 1], focalHints: false, preview: false, points, goal,
+      seconds: SECONDS[d - 1], focalHints: false, points, goal,
     }, planted, decoys, rng)
     if (!evaluate(pz, pz.planted).ok) continue
     // The decoy hole must not also work in place of the planted one.
@@ -544,7 +544,7 @@ function genFresnel(d: Difficulty, rng: Rng): Puzzle {
   if (d >= 3) decoys.push({ kind: 'ring', b: bend(1.5, p2) })
   return finish({
     kind: 'fresnel', difficulty: d, S, endX: F + 3, xmin: -0.6, blocked: [], marks: [], tol: 0.01,
-    checks: CHECKS[d - 1], focalHints: d <= 2, preview: d <= 2,
+    seconds: SECONDS[d - 1], focalHints: d <= 2,
     frame: F, zones: Z, lampX: lampFixed ? 0 : null, rayHeights: heights,
     goal: lampFixed
       ? `Every ray must leave the lantern parallel. The lens works only if the lamp sits at its focus; a ring at height h must bend by h ÷ (lamp distance).`
@@ -584,9 +584,12 @@ export default function OpticsGame({ configId, difficulty, seed, params, onWin, 
   const pz = useMemo(() => generate(config.kind, difficulty, seed), [config.kind, difficulty, seed])
   const [pl, setPl] = useState<Placement>({})
   const [sel, setSel] = useState<string | null>(null)
-  const [left, setLeft] = useState(pz.checks)
-  const [last, setLast] = useState<Verdict | null>(null)
   const { outcome, reason, settled, win, lose } = useGameOutcome({ onWin, onLose })
+
+  // The lamp is always lit: trace the light on every change and win as soon as it is true.
+  const verdict = useMemo(() => evaluate(pz, pl), [pz, pl])
+  const timer = useGameTimer({ seconds: pz.seconds, running: !settled, onExpire: () => lose(verdict.why || 'The light never found its mark') })
+  useEffect(() => { if (verdict.ok && !settled) win() }, [verdict.ok, settled, win])
 
   const sx = (x: number) => 14 + ((x - pz.xmin) / (pz.endX + 0.4 - pz.xmin)) * (W - 28)
   const sy = (y: number) => H / 2 - 4 - y * 25
@@ -609,19 +612,8 @@ export default function OpticsGame({ configId, difficulty, seed, params, onWin, 
     setPl(cur => { const n = { ...cur }; delete n[sel]; return n })
   }, [sel, settled])
 
-  const light = useCallback(() => {
-    if (settled || left <= 0) return
-    const v = evaluate(pz, pl)
-    setLast(v)
-    const l = left - 1
-    setLeft(l)
-    if (v.ok) win()
-    else if (l === 0) lose(v.why || 'The light never found its mark')
-  }, [settled, left, pz, pl, win, lose])
-
-  // Faint preview of the incoming light (low tiers, fresnel lamp fan only).
-  const previewRays = pz.preview && pz.kind === 'fresnel' && !last ? traceAll(pz, {}) : []
-  const rays = last?.rays ?? []
+  const rays = verdict.rays
+  const placedAny = Object.keys(pl).length > 0
 
   const renderPiece = (p: Piece) => {
     const pos = pl[p.id]
@@ -696,10 +688,10 @@ export default function OpticsGame({ configId, difficulty, seed, params, onWin, 
         </div>
         <div className="shrink-0 text-right text-[10px] text-muted">
           <p className="font-bold text-ink-2">D{difficulty}</p>
-          <p data-testid="opt-left" className={`font-bold tabular-nums ${left <= 1 ? 'text-red-600' : 'text-accent'}`}>✺ {left} left</p>
         </div>
       </div>
       <p className="text-ink-2 text-xs leading-relaxed" data-testid="opt-goal">{pz.goal}</p>
+      {timer.active && !settled && <div className="w-full"><TimerBar remaining={timer.remaining} total={timer.total} /></div>}
 
       <div className="w-full max-w-[430px] mx-auto rounded-xl border border-line overflow-hidden" style={{ background: 'radial-gradient(circle at 30% 40%, #1e2540 0%, #0b0e18 80%)' }}>
         <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-auto block select-none" role="img" aria-label="optical bench">
@@ -753,7 +745,6 @@ export default function OpticsGame({ configId, difficulty, seed, params, onWin, 
           ))}
 
           {/* rays */}
-          {previewRays.map(r => <polyline key={`pv${r.key}`} points={r.pts.map(([x, y]) => `${sx(x)},${sy(y)}`).join(' ')} fill="none" stroke={r.colour} strokeOpacity={0.3} strokeDasharray="2 3" strokeWidth={1} />)}
           {rays.map(r => (
             <g key={r.key}>
               <polyline points={r.pts.map(([x, y]) => `${sx(x)},${sy(Math.max(-5, Math.min(5, y)))}`).join(' ')} fill="none" stroke={r.colour} strokeOpacity={0.9} strokeWidth={1.3} />
@@ -779,20 +770,16 @@ export default function OpticsGame({ configId, difficulty, seed, params, onWin, 
         })}
       </div>
 
-      {!settled && (
+      {!settled && sel && pl[sel] && (
         <div className="flex gap-1.5">
-          {selPiece?.kind === 'prism' && pl[selPiece.id] && (
+          {selPiece?.kind === 'prism' && (
             <button type="button" data-action="flip" onClick={flip} className="h-9 px-3 rounded-lg border border-line bg-panel text-xs font-bold text-ink-2">↕ Flip</button>
           )}
-          {sel && pl[sel] && (
-            <button type="button" data-action="remove" onClick={remove} className="h-9 px-3 rounded-lg border border-line bg-panel text-xs font-bold text-ink-2">✕ Remove</button>
-          )}
-          <button type="button" data-action="light" onClick={light}
-            className="flex-1 h-9 rounded-lg bg-accent text-accent-fg text-xs font-bold">✺ Light the lamp ({left})</button>
+          <button type="button" data-action="remove" onClick={remove} className="h-9 px-3 rounded-lg border border-line bg-panel text-xs font-bold text-ink-2">✕ Remove</button>
         </div>
       )}
-      {!settled && <p className="text-muted text-[10px] -mt-1">{sel ? 'Tap a highlighted spot on the bench to place it.' : 'Tap a piece, then a spot on the bench.'}</p>}
-      {last && !last.ok && !settled && <p className="text-red-600 text-[11px] font-bold">{last.why}</p>}
+      {!settled && <p className="text-muted text-[10px] -mt-1">{sel ? 'Tap a highlighted spot on the bench to place it — the light follows as you move it.' : 'Tap a piece, then a spot on the bench. The lamp is lit: watch where the light goes.'}</p>}
+      {!settled && placedAny && verdict.why && <p data-testid="opt-why" className="text-red-600 text-[11px] font-bold">{verdict.why}</p>}
 
       <OutcomeBanner outcome={outcome} detail={config.fact} winTitle="The light is true!" loseTitle={reason ?? 'The light went astray'} />
     </div>
