@@ -86,8 +86,23 @@ struct CardDetailView: View {
                             InfoSection(label: "Trait", text: card.trait, color: tierColor)
                         }
 
-                        // Achievement
-                        if !card.achievement.isEmpty {
+                        // Legacy: its effect in the Fight game and this card's own way to earn it
+                        if let legacy = loadLegacy(cardId: card.id) {
+                            VStack(alignment: .leading, spacing: 8) {
+                                InfoSection(label: "Legacy · \(legacy.name)", text: "Effect: \(legacy.effect)", color: tierColor)
+                                InfoSection(label: "How to earn it", text: legacy.howToEarn, color: tierColor)
+                                Text("Each Great Person has their own achievement; winning a fight does not earn a legacy by itself. Once it is met in a fight, make the card public and claim the legacy.")
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                                if !legacy.flavour.isEmpty {
+                                    Text(legacy.flavour).font(.caption).italic().foregroundStyle(.secondary)
+                                }
+                            }
+                            .padding(14)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .background(tierColor.opacity(0.07))
+                            .clipShape(RoundedRectangle(cornerRadius: 14))
+                        } else if !card.achievement.isEmpty {
                             InfoSection(label: "Achievement", text: card.achievement, color: tierColor)
                         }
 

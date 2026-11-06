@@ -10,6 +10,9 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.LocalContext
+import com.greatpeople.card.data.loadLegacy
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -27,6 +30,7 @@ import com.greatpeople.card.ui.theme.GPBackground
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CardDetailScreen(card: Card, onBack: () -> Unit) {
+    val context = LocalContext.current
     val tierColor = Color(0xFFF59E0B)
 
     Scaffold(
@@ -143,8 +147,32 @@ fun CardDetailScreen(card: Card, onBack: () -> Unit) {
                     InfoSection("Trait", card.trait, tierColor)
                 }
 
-                // Achievement
-                if (card.achievement.isNotEmpty()) {
+                // Legacy: its effect in the Fight game and this card's own way to earn it
+                val legacy = remember(card.id) { loadLegacy(context, card.id) }
+                if (legacy != null) {
+                    Surface(
+                        color = tierColor.copy(alpha = 0.07f),
+                        shape = RoundedCornerShape(14.dp),
+                        border = androidx.compose.foundation.BorderStroke(1.dp, tierColor.copy(alpha = 0.3f)),
+                    ) {
+                        Column(Modifier.fillMaxWidth().padding(14.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                            InfoSection("Legacy · ${legacy.name}", "Effect: ${legacy.effect}", tierColor)
+                            if (legacy.howToEarn.isNotEmpty()) InfoSection("How to earn it", legacy.howToEarn, tierColor)
+                            Text(
+                                "Each Great Person has their own achievement; winning a fight does not earn a legacy by itself. " +
+                                    "Once it is met in a fight, make the card public and claim the legacy.",
+                                style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            )
+                            if (legacy.flavour.isNotEmpty()) Text(
+                                legacy.flavour,
+                                style = MaterialTheme.typography.bodySmall,
+                                fontStyle = FontStyle.Italic,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            )
+                        }
+                    }
+                } else if (card.achievement.isNotEmpty()) {
                     InfoSection("Achievement", card.achievement, tierColor)
                 }
 

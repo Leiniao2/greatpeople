@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom'
 import type { Card } from '@/types'
 import EraIcon from '@/components/EraIcon'
-import { STAT_LABELS, describeLegacyEffect } from '@/battle/engine'
+import { describeLegacyEffect } from '@/battle/engine'
 
 const ACCENT = '#9b2c23'
 const GLOW = 'from-paper-2'
@@ -91,13 +91,25 @@ export default function CardDetailPage() {
             <InfoSection label="Trait" text={card.trait} accent={ACCENT} />
           )}
 
-          {/* Legacy: how it is earned and what it does in the fight game */}
+          {/* Legacy: what it does in the fight game and this card's own way to earn it */}
           {card.legacy && (
-            <InfoSection
-              label={`Legacy · ${card.legacy.name}`}
-              text={`${describeLegacyEffect(card.legacy.effect)} Earned by winning ${card.legacy.unlock.wins} ${STAT_LABELS[card.legacy.unlock.stat]} fight${card.legacy.unlock.wins > 1 ? 's' : ''}${card.achievement ? ` (${card.achievement.split(' — ')[1] ?? card.achievement})` : ''}.${card.legacy.flavour ? ` ${card.legacy.flavour}` : ''}`}
-              accent={ACCENT}
-            />
+            <div className="space-y-2 rounded-2xl border px-4 py-3" style={{ borderColor: `${ACCENT}40`, background: `${ACCENT}0d` }}>
+              <p className="text-[10px] font-bold uppercase tracking-[0.2em]" style={{ color: ACCENT }}>
+                Legacy · {card.legacy.name}
+              </p>
+              <p className="text-ink-2 text-sm leading-relaxed">
+                <span className="font-semibold text-ink">Effect: </span>{describeLegacyEffect(card.legacy.effect)}
+              </p>
+              {card.achievement && (
+                <p className="text-ink-2 text-sm leading-relaxed">
+                  <span className="font-semibold text-ink">How to earn it: </span>{card.achievement.split(' — ')[1] ?? card.achievement}
+                </p>
+              )}
+              <p className="text-muted text-xs leading-relaxed">
+                Each Great Person has their own achievement; winning a fight does not earn a legacy by itself. Once it is met in a fight, make the card public and claim the legacy. It stays yours for the rest of the game.
+              </p>
+              {card.legacy.flavour && <p className="text-muted text-xs italic leading-relaxed">{card.legacy.flavour}</p>}
+            </div>
           )}
 
           {/* Stats — 4×2 grid */}
