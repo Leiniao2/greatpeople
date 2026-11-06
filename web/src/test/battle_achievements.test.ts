@@ -2,7 +2,7 @@
 // card's `achievement` text); winning a fight earns nothing by itself.
 import { describe, it, expect } from 'vitest'
 import type { GameState, OnboardCard } from '@/types'
-import { ACHIEVEMENTS } from '@/battle/achievements'
+import { ACHIEVEMENTS, achievementProgress } from '@/battle/achievements'
 import {
   ALL_GP_CARDS, freshTurnActions, gameReducer, getGPCard, initGame, makeEventCard, type GameAction,
 } from '@/battle/engine'
@@ -146,14 +146,40 @@ describe('own achievements', () => {
     gs = gameReducer(gs, { type: 'END_TURN' })
     gs = { ...gs, currentPlayerIdx: 0, turnActions: freshTurnActions() }
     const id = onBoard(gs, 'edmund_hillary').instanceId
-    // Hidden cards cannot claim: go public first.
-    expect(gameReducer(gs, { type: 'CLAIM_ACHIEVEMENT', instanceId: id }).players[0].legacies).toEqual([])
-    gs = gameReducer(gs, { type: 'TOGGLE_VISIBILITY', instanceId: id })
-    gs = { ...gs, turnActions: freshTurnActions() }
+    // A hidden card claims too, and claiming reveals it.
     gs = gameReducer(gs, { type: 'CLAIM_ACHIEVEMENT', instanceId: id })
     expect(gs.players[0].legacies).toEqual(['edmund_hillary'])
+    expect(onBoard(gs, 'edmund_hillary').isPublic).toBe(true)
     expect(ticks(gs, 'edmund_hillary')).toBe(0)
     gs = gameReducer(gs, { type: 'END_TURN' })
     expect(ticks(gs, 'edmund_hillary'), 'an earned legacy is not earned again').toBe(0)
+  })
+
+  it('Magellan: every city while public, progress on the card; claiming a hidden card reveals it', () => {
+    let gs = game(1505, ['magellan'], [])
+    gs = put(gs, 0, 0, 'magellan')
+    const n = gs.locations.length
+    for (let i = 0; i < n; i++) {
+      if (i > 0) gs = gameReducer(gs, { type: 'MOVE_CARD', instanceId: onBoard(gs, 'magellan').instanceId, toLocationId: gs.locations[i].id })
+      gs = gameReducer(gs, { type: 'END_TURN' })
+      gs = { ...gs, currentPlayerIdx: 0, turnActions: freshTurnActions(), pendingSummary: null, summaryQueue: [] }
+      if (i < n - 1) expect(achievementProgress(gs, onBoard(gs, 'magellan'))).toBe(`${i + 1}/${n}`)
+    }
+    expect(ticks(gs, 'magellan')).toBe(1)
+    gs = gameReducer(gs, { type: 'TOGGLE_VISIBILITY', instanceId: onBoard(gs, 'magellan').instanceId })
+    expect(onBoard(gs, 'magellan').isPublic).toBe(false)
+    gs = gameReducer(gs, { type: 'CLAIM_ACHIEVEMENT', instanceId: onBoard(gs, 'magellan').instanceId })
+    expect(gs.players[0].legacies).toContain('magellan')
+    expect(onBoard(gs, 'magellan').isPublic).toBe(true)
+  })
+
+  it('Magellan: a turn ended hidden starts the voyage over', () => {
+    let gs = game(1505, ['magellan'], [])
+    gs = put(gs, 0, 0, 'magellan')
+    gs = endRound(gs)
+    expect(achievementProgress(gs, onBoard(gs, 'magellan'))).toBe(`1/${gs.locations.length}`)
+    gs = run(gs, { type: 'TOGGLE_VISIBILITY', instanceId: onBoard(gs, 'magellan').instanceId }, { type: 'END_TURN' }, { type: 'END_TURN' })
+    gs = run(gs, { type: 'TOGGLE_VISIBILITY', instanceId: onBoard(gs, 'magellan').instanceId })
+    expect(achievementProgress(gs, onBoard(gs, 'magellan'))).toBe(`0/${gs.locations.length}`)
   })
 })

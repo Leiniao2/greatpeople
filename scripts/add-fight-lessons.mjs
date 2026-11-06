@@ -88,11 +88,11 @@ const SCENES = {
   hidden: {
     dialog: 'Two face-down cards: one at {loc0}, one at {loc1}. We cannot see who they are until we attack, and an attack reveals every card at the location. The {event} already runs at {loc0}; you hold a card to start one at {loc1}.',
     instruction: 'Fight lesson 5 · Face Down. Win two attacks: fight at {loc0} where the {event} is running, then carry the fight to {loc1} by starting your own event there.',
-    fact: 'A card on the board can be public (face up) or private (face down). A private card hides its identity and stats from rivals until an attack reveals every card at that location. Your own cards deploy face down; Toggle Public when being seen helps you.',
+    fact: 'A card on the board can be public (face up) or private (face down). A private card hides its identity and stats from rivals until an attack reveals every card at that location. Your own cards deploy face down; Go Public when being seen helps you.',
   },
   competition: {
     dialog: 'This time the whole board is judged at once. Deploy {ally0}, {ally1} and me, turn us public, then declare the {competitionEvent}: the highest public {stat} on the board when the round ends takes the prize.',
-    instruction: 'Fight lesson 6 · Global Competition. Deploy your Great People, Toggle Public on each, then start the {competitionEvent} and End Turn to win the round with the highest public {stat} on the board.',
+    instruction: 'Fight lesson 6 · Global Competition. Deploy your Great People, Go Public on each, then start the {competitionEvent} and End Turn to win the round with the highest public {stat} on the board.',
     fact: 'A Global Competition counts every public Great Person on the whole board; followers and face-down cards add nothing. It lasts one round, and the strongest player draws a reward: event cards, followers or a new Great Person.',
   },
   conquest: {

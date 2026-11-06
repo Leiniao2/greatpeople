@@ -143,7 +143,7 @@ const TIERS: Record<LessonTier, TierDef> = {
   },
   hidden: {
     title: 'Face Down',
-    teaches: 'A card can stand on the board face down. Rivals cannot see who it is until an attack reveals every card at the location. Your own cards start face down too: Toggle Public when being seen helps you.',
+    teaches: 'A card can stand on the board face down. Rivals cannot see who it is until an attack reveals every card at the location. Your own cards start face down too: Go Public when being seen helps you.',
     maxRounds: 7,
     goal: () => ({ kind: 'win_attacks', count: 2 }),
     goalText: (_, n) => `The rival has two face-down cards at ${n.loc[0]} and ${n.loc[1]}. Win two attacks; the ${n.event} already runs at ${n.loc[0]}, and you hold a card to start one at ${n.loc[1]}.`,
@@ -358,7 +358,7 @@ export function coachHint(state: GameState, lesson: Lesson): string {
     const ev = me.eventHand[0]
     if (ev.type === 'global_competition') {
       const hidden = state.locations.flatMap(mine).filter(c => c.type === 'gp' && !c.isPublic && !c.justDeployed && !ta.actedCards.includes(`vis-${c.instanceId}`))
-      if (hidden.length > 0) return `Only public cards count in a competition. Tap ${name(hidden[0].cardId)} on the board and press Toggle Public.`
+      if (hidden.length > 0) return `Only public cards count in a competition. Tap ${name(hidden[0].cardId)} on the board and press Go Public.`
       const ready = state.locations.find(l => settled(l) && !l.activeEvent)
       if (ready && me.gpHand.length === 0) return `Start the ${ev.name}: tap the event card, then tap ${ready.name}. Then End Turn; the round's totals decide.`
       if (!ready) return 'A Great Person cannot start an event on the turn they arrive. End Turn and come back.'

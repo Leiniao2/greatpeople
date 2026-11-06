@@ -82,7 +82,7 @@
     "title": "Legacies decide the game",
     "docText": "Completing the achievement that unlocks a Great Person's legacy gives the legacy. The most legacies at the end of history wins; there is no points race.",
     "docSource": "docs/fight.md §2",
-    "codeBehaviour": "CLAIM_ACHIEVEMENT: public GP with achievementTicks ≥ legacy.unlock.wins and not already in player.legacies → legacy added (earnLegacy, which also still increments winningPoints for the timeless lessons), fills a free slot. leader() ranks by legacies.length.",
+    "codeBehaviour": "CLAIM_ACHIEVEMENT: GP (hidden or public; claiming flips it public) with achievementTicks ≥ legacy.unlock.wins and not already in player.legacies → legacy added (earnLegacy, which also still increments winningPoints for the timeless lessons), fills a free slot. leader() ranks by legacies.length.",
     "codeSource": "web/src/battle/engine.ts CLAIM_ACHIEVEMENT, earnLegacy, leader",
     "status": "implemented",
     "notes": "The board shows legacies (🏛) instead of points in timeline games."
@@ -236,7 +236,7 @@
     "title": "F. Claim a legacy",
     "docText": "Claim the legacy of a Great Person on board who completed the achievement: 1 winning point and the legacy. Once per legacy per player.",
     "docSource": "docs/fight.md §3 F",
-    "codeBehaviour": "CLAIM_ACHIEVEMENT requires the card public, ticks ≥ legacy.unlock.wins and the legacy not yet earned; grants +1 point and the legacy. On the timeline no new GP is drawn; the timeless Epic lessons still draw one.",
+    "codeBehaviour": "CLAIM_ACHIEVEMENT flips the card public; requires ticks ≥ legacy.unlock.wins and the legacy not yet earned; grants +1 point and the legacy. On the timeline no new GP is drawn; the timeless Epic lessons still draw one.",
     "codeSource": "web/src/battle/engine.ts CLAIM_ACHIEVEMENT",
     "status": "implemented",
     "notes": "The board button is labelled Claim Legacy."
