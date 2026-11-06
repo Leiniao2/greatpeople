@@ -13,7 +13,7 @@
 import type {
   Card, FollowerCard, EventCard, OnboardCard, LocationState,
   PlayerState, GameState, GameSetup,
-  StatKey, EventType, EraMode,
+  StatKey, EventType, EraMode, CpuLevel,
   CardContrib, CombatSide, CombatSummary, EventPlayerResult, GameSummary,
   LegacyContext, LegacyEffect, LifeStatus, TurnActions, PendingSuccessor, PendingReward,
 } from '@/types'
@@ -261,7 +261,9 @@ export function eraForYear(year: number): string {
 
 /** The age the board's cities belong to now. */
 export function boardEra(state: GameState): string {
-  return state.setup.eraMode === 'single' && state.setup.singleEra ? state.setup.singleEra : eraForYear(state.year)
+  if (state.setup.eraMode === 'single' && state.setup.singleEra) return state.setup.singleEra
+  // Free play has no dates: the board stays in the age it opened in.
+  return isFreePlay(state) && state.setup.startEra ? state.setup.startEra : eraForYear(state.year)
 }
 
 /** Cities the board holds now: BASE_LOCATIONS plus every city legacy in effect, whoever holds it. */
@@ -357,6 +359,51 @@ export const SUCCESSOR_CHOICES = 3
 export const LEGACY_SLOTS = 2
 /** The timeline ends here; living people never die naturally before it. */
 export const TIMELINE_END_YEAR = 2030
+/** Free play lasts this many rounds. */
+export const FREE_PLAY_ROUNDS = 20
+/** On real history the hard computer weighs this many candidates for each pick. */
+const HARD_CHOICES = 5
+
+export const isFreePlay = (state: { setup: GameSetup }) => !!state.setup.freePlay
+const statTotal = (c: Card) => STATS.reduce((sum, k) => sum + c[k], 0)
+
+/** A stable pseudo-random rank for a card: the same while one choice is owed, fresh for the next. */
+function drawRank(seed: number, salt: string, id: string): number {
+  let h = 2166136261 ^ seed
+  for (const ch of `${salt}|${id}`) h = Math.imul(h ^ ch.charCodeAt(0), 16777619)
+  return h >>> 0
+}
+
+/** The Great People a player may bring into play: human players only the ones they own. */
+export function playablePool(setup: GameSetup, isComputer: boolean): Card[] {
+  const pool = gpPool(setup.eraMode, setup.singleEra)
+  if (isComputer || !setup.owned) return pool
+  const own = new Set(setup.owned)
+  return pool.filter(c => own.has(c.id))
+}
+
+/** Free play: the computer leaves the humans' own cards for them while it has others. */
+function cpuCandidates(setup: GameSetup, cards: Card[]): Card[] {
+  if (!setup.owned) return cards
+  const own = new Set(setup.owned)
+  const spare = cards.filter(c => !own.has(c.id))
+  return spare.length ? spare : cards
+}
+
+/** Free play candidates in draw order: shuffled for this choice, strongest first for the hard computer. */
+function drawOrder(setup: GameSetup, cards: Card[], salt: string, isComputer: boolean): Card[] {
+  if (isComputer && setup.cpuLevel === 'hard') return [...cards].sort((a, b) => statTotal(b) - statTotal(a) || a.id.localeCompare(b.id))
+  const seed = setup.seed ?? 0
+  return [...cards].sort((a, b) => drawRank(seed, salt, a.id) - drawRank(seed, salt, b.id))
+}
+
+/** How a computer picks from its candidates: the easy one takes the weakest, the others the strongest. */
+export function cpuPick(level: CpuLevel | undefined, options: string[]): string {
+  const cards = options.map(id => getGPCard(id)).filter((c): c is Card => !!c)
+  if (!cards.length) return options[0]
+  const sorted = [...cards].sort((a, b) => statTotal(b) - statTotal(a))
+  return (level === 'easy' ? sorted[sorted.length - 1] : sorted[0]).id
+}
 
 export function formatYear(year: number): string {
   if (year < 0) return `${-year} BC`
@@ -406,6 +453,7 @@ export function lifeStatus(state: GameState, playerId: string, cardId: string): 
   const p = state.players.find(x => x.id === playerId)
   if (p?.archive.includes(cardId)) return 'dead'
   if (p?.retired.includes(cardId)) return 'retired'
+  if (isFreePlay(state)) return 'active'
   const card = getGPCard(cardId)
   if (!card) return 'dead'
   if (state.year < card.born) return 'unborn'
@@ -421,15 +469,26 @@ export function claimedGP(state: GameState): Set<string> {
   return ids
 }
 
-/** The successors a player may choose now: unclaimed Great People born after the current year, nearest first. */
+/**
+ * The successors a player may choose now, from the Great People nobody has
+ * claimed (human players: only their own).  On real history: those born
+ * after the current year, nearest first.  In free play: a shuffled few.
+ */
 export function successorOptions(state: GameState, playerId: string): string[] {
   const p = state.players.find(x => x.id === playerId)
   const taken = claimedGP(state)
   const fixed = p?.pendingSuccessors[0]?.options
   if (fixed) return fixed.filter(id => !taken.has(id))
-  const n = SUCCESSOR_CHOICES + sumEffect(p, 'successors')
-  return gpPool(state.setup.eraMode, state.setup.singleEra)
-    .filter(c => !taken.has(c.id) && c.born > state.year)
+  const cpu = !!p?.isComputer
+  let n = SUCCESSOR_CHOICES + sumEffect(p, 'successors')
+  if (cpu && state.setup.cpuLevel === 'hard') n = Math.max(n, HARD_CHOICES)
+  const free = playablePool(state.setup, cpu).filter(c => !taken.has(c.id))
+  if (isFreePlay(state)) {
+    const salt = `${playerId}:${p ? p.archive.length + p.retired.length : 0}`
+    return drawOrder(state.setup, cpu ? cpuCandidates(state.setup, free) : free, salt, cpu).slice(0, n).map(c => c.id)
+  }
+  const later = free.filter(c => c.born > state.year)
+  return (cpu ? cpuCandidates(state.setup, later) : later)
     .sort((a, b) => a.born - b.born || a.figureName.localeCompare(b.figureName))
     .slice(0, n)
     .map(c => c.id)
@@ -1050,24 +1109,66 @@ export interface OpeningDeal {
 
 /**
  * The opening of a timeline game: the era it opens on, the year, and the
- * OPENING_CHOICES candidates each player picks one Great Person from.  They
- * are the earliest-born of the pool from that era on, shuffled between the
- * players, so the table starts as contemporaries; nobody is offered a card
- * someone else is offered.
+ * OPENING_CHOICES candidates each player picks their first Great Person from
+ * (`isComputer` by seat; human players are offered only cards they own).
+ *
+ * Real history: the earliest-born of the pool from that era on, so the table
+ * starts as contemporaries; nobody is offered a card someone else is offered.
+ * Free play: a shuffled few for each player (the hard computer gets the
+ * strongest), and the year only names the age.
  */
-export function openingDeal(setup: GameSetup, playerCount: number): OpeningDeal {
+export function openingDeal(setup: GameSetup, playerCount: number, isComputer: boolean[] = []): OpeningDeal {
   const pool = gpPool(setup.eraMode, setup.singleEra)
+  const humanPool = playablePool(setup, false)
   const startEra = setup.eraMode === 'single' && setup.singleEra
     ? setup.singleEra
-    : setup.startEra && ERAS.includes(setup.startEra) ? setup.startEra : ERAS[Math.floor(Math.random() * ERAS.length)]
+    : setup.startEra && ERAS.includes(setup.startEra) ? setup.startEra : randomStartEra(setup, humanPool)
   const opening = eraStartYear(startEra, pool)
+  const seats = Array.from({ length: playerCount }, (_, i) => !!isComputer[i])
+
+  if (setup.freePlay) {
+    const dealt = new Set<string>()
+    const offers = seats.map(() => [] as string[])
+    // Humans first, so the computer leaves their cards alone.
+    for (const i of [...seats.keys()].sort((a, b) => Number(seats[a]) - Number(seats[b]))) {
+      const free = playablePool(setup, seats[i]).filter(c => !dealt.has(c.id))
+      const order = drawOrder(setup, seats[i] ? cpuCandidates(setup, free) : free, `open:${i}`, seats[i])
+      offers[i] = order.slice(0, OPENING_CHOICES).map(c => c.id)
+      offers[i].forEach(id => dealt.add(id))
+    }
+    return { startEra, startYear: opening, offers }
+  }
+
   const upcoming = pool.filter(c => c.born >= opening).sort((a, b) => a.born - b.born || a.figureName.localeCompare(b.figureName))
-  // Small eras cannot offer a full table three candidates each: offer fewer, equally.
-  const perPlayer = Math.max(1, Math.min(OPENING_CHOICES, Math.floor(upcoming.length / Math.max(1, playerCount))))
-  const dealt = shuffle(upcoming.slice(0, perPlayer * playerCount).map(c => c.id))
-  const offers = Array.from({ length: playerCount }, (_, i) => dealt.slice(i * perPlayer, (i + 1) * perPlayer))
-  const startYear = Math.min(...dealt.map(id => getGPCard(id)!.born), opening)
-  return { startEra, startYear, offers }
+  if (!setup.owned) {
+    // Small eras cannot offer a full table three candidates each: offer fewer, equally.
+    const perPlayer = Math.max(1, Math.min(OPENING_CHOICES, Math.floor(upcoming.length / Math.max(1, playerCount))))
+    const dealt = shuffle(upcoming.slice(0, perPlayer * playerCount).map(c => c.id))
+    const offers = Array.from({ length: playerCount }, (_, i) => dealt.slice(i * perPlayer, (i + 1) * perPlayer))
+    const startYear = Math.min(...dealt.map(id => getGPCard(id)!.born), opening)
+    return { startEra, startYear, offers }
+  }
+  // Human players hold collections: each is offered the earliest of their own
+  // cards, the computer the earliest of the rest.
+  const own = new Set(setup.owned)
+  const dealt = new Set<string>()
+  const offers = seats.map(() => [] as string[])
+  for (const i of [...seats.keys()].sort((a, b) => Number(seats[a]) - Number(seats[b]))) {
+    const pick = upcoming.filter(c => !dealt.has(c.id) && (seats[i] ? !own.has(c.id) : own.has(c.id))).slice(0, OPENING_CHOICES)
+    offers[i] = pick.map(c => c.id)
+    offers[i].forEach(id => dealt.add(id))
+  }
+  const born = [...dealt].map(id => getGPCard(id)!.born)
+  return { startEra, startYear: Math.min(...born, opening), offers }
+}
+
+/** A random era to open on; with collections, one where every human has a card to play. */
+function randomStartEra(setup: GameSetup, humanPool: Card[]): string {
+  const playable = !setup.owned ? ERAS
+    : setup.freePlay ? ERAS
+    : ERAS.filter(e => humanPool.some(c => c.born >= eraStartYear(e)))
+  const eras = playable.length ? playable : ERAS
+  return eras[Math.floor(Math.random() * eras.length)]
 }
 
 /**
@@ -1086,7 +1187,9 @@ export function initGame(setup: GameSetup): GameState {
       : []),
   ]
 
-  const { startEra, startYear, offers } = openingDeal(setup, allPlayerNames.length)
+  setup.seed ??= Math.floor(Math.random() * 2 ** 31)
+  const seats = allPlayerNames.map((_, i) => setup.playerMode === 'pvc' && i >= setup.playerNames.length)
+  const { startEra, startYear, offers } = openingDeal(setup, allPlayerNames.length, seats)
   setup.startEra = startEra
   // Everyone opens with one slot: the first screen is picking its Great Person.
   const players: PlayerState[] = allPlayerNames.map((name, i) => ({
@@ -1127,7 +1230,9 @@ export function initGame(setup: GameSetup): GameState {
     eventDeck,
     followerDeck,
     winner: null,
-    log: [`History opens in ${formatYear(startYear)} (${startEra}). One round is one year.`],
+    log: [setup.freePlay
+      ? `Free play in the ${startEra} age: ${FREE_PLAY_ROUNDS} rounds, and the most legacies wins.`
+      : `History opens in ${formatYear(startYear)} (${startEra}). One round is one year.`],
     globalCompetitionActive: null,
     pendingSummary: null,
   }
@@ -1329,6 +1434,12 @@ export function leader(state: GameState): string {
 }
 
 export function checkWinCondition(state: GameState): string | null {
+  if (state.setup.timeline && isFreePlay(state)) {
+    // A fixed number of rounds, or until someone has no Great Person left.
+    if (state.round > FREE_PLAY_ROUNDS) return leader(state)
+    if (state.players.some(p => !hasFuture(state, p))) return leader(state)
+    return null
+  }
   if (state.setup.timeline) {
     // No points race: the game runs to the end of history (or until no
     // lineage is left anywhere) and the most legacies wins.
@@ -1416,7 +1527,8 @@ export function advanceYear(state: GameState, opts: { fastForward?: boolean } = 
   const year = state.year + YEARS_PER_ROUND
   const lines: string[] = []
   const deaths: { playerId: string; cardId: string }[] = []
-  for (const p of state.players) {
+  // Free play has no dates: nobody is born, ages or dies of old age.
+  for (const p of isFreePlay(state) ? [] : state.players) {
     const owned = [
       ...p.gpHand, ...p.retired,
       ...state.locations.flatMap(l => l.cards.filter(c => c.type === 'gp' && c.playerId === p.id).map(c => c.cardId)),
@@ -1482,16 +1594,16 @@ export function advanceYear(state: GameState, opts: { fastForward?: boolean } = 
 
 // ─── Settling: CPU choices, dead ends and time skips ─────────────────────────
 
-function cpuPickSuccessor(options: string[]): string {
-  return options.reduce((best, id) => {
-    const a = getGPCard(id), b = getGPCard(best)
-    if (!a || !b) return best
-    const total = (c: Card) => STATS.reduce((sum, k) => sum + c[k], 0)
-    return total(a) > total(b) ? id : best
-  }, options[0])
+function endLine(state: GameState, name: string, predecessor: string | null): string {
+  if (isFreePlay(state)) return `${name} has no Great Person left to bring in.`
+  return `No one born after ${formatYear(state.year)} remains to succeed ${predecessor ? figure(predecessor) : 'this lineage'}; ${name}'s lineage ends.`
 }
 
-function choiceLine(name: string, pick: string, pending: { predecessor: string | null; reason?: 'start' | 'slot' }): string {
+function choiceLine(name: string, pick: string, pending: { predecessor: string | null; reason?: 'start' | 'slot' }, free = false): string {
+  if (free) {
+    if (pending.reason === 'start') return `${name} starts with ${figure(pick)}.`
+    return `${name} brings in ${figure(pick)}${pending.predecessor ? ` after ${figure(pending.predecessor)}` : ''}.`
+  }
   const born = `born ${formatYear(getGPCard(pick)?.born ?? 0)}`
   if (pending.reason === 'start') return `${name} opens history with ${figure(pick)} (${born}).`
   if (pending.reason === 'slot') return `${name} fills a new Great Person slot with ${figure(pick)} (${born}).`
@@ -1545,11 +1657,11 @@ function resolveChoices(state: GameState): GameState {
       const options = successorOptions(s, p.id)
       const pending = p.pendingSuccessors[0]
       if (!options.length) {
-        log.push(`No one born after ${formatYear(s.year)} remains to succeed ${pending.predecessor ? figure(pending.predecessor) : 'this lineage'}; ${p.name}'s lineage ends.`)
+        log.push(endLine(s, p.name, pending.predecessor))
         p = { ...p, pendingSuccessors: p.pendingSuccessors.slice(1) }
       } else if (p.isComputer) {
-        const pick = cpuPickSuccessor(options)
-        log.push(choiceLine(p.name, pick, pending))
+        const pick = cpuPick(s.setup.cpuLevel, options)
+        log.push(choiceLine(p.name, pick, pending, isFreePlay(s)))
         p = { ...p, gpHand: [...p.gpHand, pick], pendingSuccessors: p.pendingSuccessors.slice(1) }
       } else break
       s = { ...s, players: s.players.map((x, j) => (j === i ? p : x)) }
@@ -1569,7 +1681,7 @@ function resolveChoices(state: GameState): GameState {
       let next = p
       while (next.pendingSuccessors.length && !successorOptions({ ...s, players: s.players.map(x => (x.id === p.id ? next : x)) }, p.id).length) {
         const pending = next.pendingSuccessors[0]
-        log.push(`No one born after ${formatYear(s.year)} remains to succeed ${pending.predecessor ? figure(pending.predecessor) : 'this lineage'}; ${p.name}'s lineage ends.`)
+        log.push(endLine(s, p.name, pending.predecessor))
         next = { ...next, pendingSuccessors: next.pendingSuccessors.slice(1) }
       }
       return next
@@ -2311,7 +2423,7 @@ function baseReducer(state: GameState, action: GameAction): GameState {
           ...(isNewRound ? [{ kind: 'round' } as AchievementEvent] : []),
         ],
         roundActed: isNewRound ? [] : state.roundActed,
-        log: [...logEntries, `${state.setup.timeline ? formatYear(newYear) : `Round ${newRound}`}: ${state.players[nextIdx].name}'s turn.`, ...state.log].slice(0, 20),
+        log: [...logEntries, `${state.setup.timeline && !isFreePlay(state) ? formatYear(newYear) : `Round ${newRound}`}: ${state.players[nextIdx].name}'s turn.`, ...state.log].slice(0, 20),
       }
     }
 
@@ -2398,9 +2510,24 @@ function baseReducer(state: GameState, action: GameAction): GameState {
       const inHand = player.gpHand.includes(action.cardId)
       if (!onBoard && !(inHand && (status === 'active' || status === 'youth'))) return state
       const card = getGPCard(action.cardId)
+      const locations = state.locations.map(l => ({ ...l, cards: l.cards.filter(c => !(c.type === 'gp' && c.playerId === player.id && c.cardId === action.cardId)) }))
+      if (isFreePlay(state)) {
+        // No death year to wait for: they leave play and a successor is chosen now.
+        return {
+          ...state,
+          locations,
+          players: state.players.map((p, i) =>
+            i === playerIdx ? {
+              ...p, gpHand: p.gpHand.filter(id => id !== action.cardId), archive: [...p.archive, action.cardId],
+              pendingSuccessors: [...p.pendingSuccessors, { predecessor: action.cardId, year: state.year }],
+            } : p
+          ),
+          log: [`${player.name} retired ${card?.figureName ?? 'a Great Person'}; a successor follows now.`, ...state.log.slice(0, 19)],
+        }
+      }
       return {
         ...state,
-        locations: state.locations.map(l => ({ ...l, cards: l.cards.filter(c => !(c.type === 'gp' && c.playerId === player.id && c.cardId === action.cardId)) })),
+        locations,
         players: state.players.map((p, i) =>
           i === playerIdx ? { ...p, gpHand: p.gpHand.filter(id => id !== action.cardId), retired: [...p.retired, action.cardId] } : p
         ),
@@ -2423,7 +2550,7 @@ function baseReducer(state: GameState, action: GameAction): GameState {
         players: state.players.map((p, i) =>
           i === playerIdx ? { ...p, gpHand: [...p.gpHand, action.cardId], pendingSuccessors: p.pendingSuccessors.slice(1) } : p
         ),
-        log: [card ? choiceLine(player.name, card.id, pending) : `${player.name} chose a successor.`, ...state.log.slice(0, 19)],
+        log: [card ? choiceLine(player.name, card.id, pending, isFreePlay(state)) : `${player.name} chose a successor.`, ...state.log.slice(0, 19)],
       }
     }
 

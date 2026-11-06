@@ -5,7 +5,8 @@ import { THEMES, TIERS, makePuzzle, status, type Cell, type Hand, type Piece } f
 
 // Mirror: place mirrors and prisms so the beam lights every star and no
 // sensor.  Stone blocks stop the beam, fixed pieces cannot be moved, and a
-// prism splits the beam into two, one to each side.
+// prism splits the beam into two, one to each side.  Fog hides its cells
+// until the beam first lights them; they stay in view after that.
 // Each level is generated from its seed; see ./mirror/model.
 
 export const CONFIG_IDS = Object.keys(THEMES)
@@ -59,8 +60,17 @@ export default function MirrorGame({ configId, difficulty, seed, onWin, onLose }
   const left = (h: Hand) => puzzle.hand[h] - used[h]
   const targets = new Set(puzzle.targets), sensors = new Set(puzzle.sensors)
 
+  // Fogged cells the beam has lit at some point.
+  const fog = useMemo(() => new Set(puzzle.fog), [puzzle])
+  const [cleared, setCleared] = useState<Set<Cell>>(() => new Set())
+  const newlyLit = puzzle.fog.filter(k => s.trace.lit[k] && !cleared.has(k))
+  useEffect(() => {
+    if (newlyLit.length) setCleared(prev => new Set([...prev, ...newlyLit]))
+  }, [newlyLit.join(',')]) // eslint-disable-line react-hooks/exhaustive-deps
+  const hidden = (k: Cell) => fog.has(k) && !cleared.has(k) && !s.trace.lit[k]
+
   const tap = (cell: Cell) => {
-    if (outcome || puzzle.fixed[cell] || targets.has(cell) || sensors.has(cell)) return
+    if (outcome || hidden(cell) || puzzle.fixed[cell] || targets.has(cell) || sensors.has(cell)) return
     setPlaced(prev => {
       const next = { ...prev }
       const cur = prev[cell]
@@ -104,14 +114,14 @@ export default function MirrorGame({ configId, difficulty, seed, onWin, onLose }
               style={{ filter: `drop-shadow(0 0 3px ${won ? WON : BEAM})`, pointerEvents: 'none' }} />
           ))}
 
-          {puzzle.targets.map(k => {
+          {puzzle.targets.filter(k => !hidden(k)).map(k => {
             const on = !!s.trace.lit[k]
             return (
               <text key={`t${k}`} x={cx(k % n)} y={cy(Math.floor(k / n)) + 8} textAnchor="middle" fontSize={24}
                 fill={on ? (won ? WON : '#fde047') : '#475569'} style={{ pointerEvents: 'none' }}>★</text>
             )
           })}
-          {puzzle.sensors.map(k => {
+          {puzzle.sensors.filter(k => !hidden(k)).map(k => {
             const on = !!s.trace.lit[k]
             const x = cx(k % n), y = cy(Math.floor(k / n))
             return (
@@ -122,7 +132,7 @@ export default function MirrorGame({ configId, difficulty, seed, onWin, onLose }
             )
           })}
 
-          {Object.entries(puzzle.fixed).map(([k, piece]) => (
+          {Object.entries(puzzle.fixed).filter(([k]) => !hidden(+k)).map(([k, piece]) => (
             <g key={`f${k}`} style={{ pointerEvents: 'none' }}>
               <PieceGlyph piece={piece} x={cx(+k % n)} y={cy(Math.floor(+k / n))} mine={false} />
             </g>
@@ -130,6 +140,13 @@ export default function MirrorGame({ configId, difficulty, seed, onWin, onLose }
           {Object.entries(placed).map(([k, piece]) => (
             <g key={`p${k}`} style={{ pointerEvents: 'none' }}>
               <PieceGlyph piece={piece} x={cx(+k % n)} y={cy(Math.floor(+k / n))} mine />
+            </g>
+          ))}
+
+          {puzzle.fog.filter(hidden).map(k => (
+            <g key={`fog${k}`} style={{ pointerEvents: 'none' }} data-fog={k}>
+              <rect x={(k % n + 1) * U} y={(Math.floor(k / n) + 1) * U} width={U} height={U} fill="#475569" stroke="#64748b" strokeWidth={1} />
+              <text x={cx(k % n)} y={cy(Math.floor(k / n)) + 6} textAnchor="middle" fontSize={16} fill="#cbd5e1" opacity={0.7}>?</text>
             </g>
           ))}
 
@@ -163,6 +180,7 @@ export default function MirrorGame({ configId, difficulty, seed, onWin, onLose }
         Tap a cell to place the chosen piece; tap a mirror to turn it, again to lift it.
         {puzzle.hand.prism > 0 || Object.values(puzzle.fixed).includes('P') ? ' A prism splits the beam to both sides.' : ''}
         {' '}Stone stops light; pieces with a dot are fixed.
+        {puzzle.fog.length > 0 ? ' Fog (?) hides stone, pieces, stars or sensors until your beam lights it.' : ''}
       </p>
 
       <OutcomeBanner outcome={outcome} detail="Every star is lit and every sensor dark."

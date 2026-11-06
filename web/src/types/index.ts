@@ -198,7 +198,22 @@ export interface GameSetup {
   timeline?: boolean
   /** All-era games: the era whose start the game opens on (random when omitted). */
   startEra?: string
+  /**
+   * Free play (the Battle tab's default): no dates, nobody ages or is born;
+   * a Great Person leaves play only when killed or retired, the game lasts
+   * FREE_PLAY_ROUNDS rounds or until a player has no Great Person left, and
+   * the most legacies wins.  Without it the game runs on real history.
+   */
+  freePlay?: boolean
+  /** Card ids the human players own; they may only bring these into play. Omitted: every card. */
+  owned?: string[]
+  /** How strong and how bold the computer players are. */
+  cpuLevel?: CpuLevel
+  /** Fixes the free-play shuffles for this game (set by initGame). */
+  seed?: number
 }
+
+export type CpuLevel = 'easy' | 'normal' | 'hard'
 
 // ── Combat / event summary (shown in modal after resolution) ─────────────────
 

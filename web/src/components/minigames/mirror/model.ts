@@ -3,7 +3,9 @@
 //   · stone blocks, which stop the beam dead;
 //   · fixed mirrors and prisms, which you cannot move;
 //   · targets (★), which must all be lit, and the beam passes through them;
-//   · sensors (◉), which must stay dark, and the beam passes through those too.
+//   · sensors (◉), which must stay dark, and the beam passes through those too;
+//   · fog (from D2), patches whose cells stay unknown until the beam lights
+//     them: there may be stone, a fixed piece, a star or a sensor inside.
 // A mirror turns the beam a quarter turn; a prism splits it into two beams,
 // one to each side, and neither carries on straight.
 //
@@ -110,20 +112,23 @@ export interface Tier {
   blocks: [number, number]
   fixedMirrors: [number, number]
   fixedPrisms: [number, number]
+  /** Fog patches, and the side of each (square) patch. */
+  fog: [number, number]
+  fogSide: [number, number]
   /** At most this many placements may solve the puzzle. */
   maxSolutions: number
   seconds: number
 }
 
-//   D1  6×6, two mirrors, one star
-//   D2  7×7, three pieces (sometimes a prism), two stars, a sensor
-//   D3  7×7, three or four pieces with a prism, two or three stars, sensors, one answer
-//   D4  8×8, three mirrors and a prism, three stars, three or four sensors, one answer, a clock
+//   D1  7×7, three pieces (sometimes a prism), two stars, sensors, plenty of stone
+//   D2  7×7, three or four pieces with a prism, a fog patch, one answer, a clock
+//   D3  8×8, four pieces with a prism, three stars, two fog patches, one answer
+//   D4  8×8, four or five pieces, three or four stars, four or five sensors, three fog patches
 export const TIERS: Record<Difficulty, Tier> = {
-  1: { size: 6, mirrors: [2, 2], prisms: [0, 0], targets: [1, 1], sensors: [0, 1], blocks: [2, 4], fixedMirrors: [1, 2], fixedPrisms: [0, 0], maxSolutions: 2, seconds: 0 },
-  2: { size: 7, mirrors: [2, 3], prisms: [0, 1], targets: [2, 2], sensors: [1, 2], blocks: [3, 5], fixedMirrors: [1, 3], fixedPrisms: [0, 1], maxSolutions: 2, seconds: 0 },
-  3: { size: 7, mirrors: [2, 3], prisms: [1, 1], targets: [2, 3], sensors: [2, 3], blocks: [4, 7], fixedMirrors: [2, 3], fixedPrisms: [0, 1], maxSolutions: 1, seconds: 360 },
-  4: { size: 8, mirrors: [3, 3], prisms: [1, 1], targets: [3, 3], sensors: [3, 4], blocks: [5, 8], fixedMirrors: [2, 4], fixedPrisms: [1, 1], maxSolutions: 1, seconds: 300 },
+  1: { size: 7, mirrors: [2, 3], prisms: [0, 1], targets: [2, 2], sensors: [1, 2], blocks: [5, 7], fixedMirrors: [1, 3], fixedPrisms: [0, 1], fog: [0, 0], fogSide: [2, 2], maxSolutions: 2, seconds: 0 },
+  2: { size: 7, mirrors: [2, 3], prisms: [1, 1], targets: [2, 3], sensors: [2, 3], blocks: [6, 9], fixedMirrors: [2, 3], fixedPrisms: [0, 1], fog: [1, 1], fogSide: [2, 3], maxSolutions: 1, seconds: 360 },
+  3: { size: 8, mirrors: [3, 3], prisms: [1, 1], targets: [3, 3], sensors: [3, 4], blocks: [8, 11], fixedMirrors: [2, 4], fixedPrisms: [1, 1], fog: [2, 2], fogSide: [2, 3], maxSolutions: 1, seconds: 330 },
+  4: { size: 8, mirrors: [3, 4], prisms: [1, 1], targets: [3, 4], sensors: [4, 5], blocks: [10, 13], fixedMirrors: [3, 4], fixedPrisms: [1, 1], fog: [3, 3], fogSide: [2, 3], maxSolutions: 1, seconds: 300 },
 }
 
 // ── Puzzle ──────────────────────────────────────────────────────────────────
@@ -138,6 +143,8 @@ export interface Puzzle {
   fixed: Record<Cell, Piece>
   targets: Cell[]
   sensors: Cell[]
+  /** Fogged cells: unknown until the beam first lights them. */
+  fog: Cell[]
   hand: Record<Hand, number>
   /** Every placement that solves it (player pieces only, as `key=piece` lists). */
   solutions: Record<Cell, Piece>[]
@@ -232,7 +239,7 @@ function tryPuzzle(rng: Rng, themeKey: ThemeKey, d: Difficulty): Puzzle | null {
   for (let i = randInt(rng, ...tier.fixedPrisms); i > 0; i--) fixed[free.pop()!] = 'P'
 
   const hand: Record<Hand, number> = { mirror: randInt(rng, ...tier.mirrors), prism: randInt(rng, ...tier.prisms) }
-  if (d >= 2 && hand.mirror + hand.prism < 3) hand.mirror++
+  if (hand.mirror + hand.prism < 3) hand.mirror++
 
   // Lay one answer down along the beam, piece by piece.
   const placed: Record<Cell, Piece> = {}
@@ -277,7 +284,35 @@ function tryPuzzle(rng: Rng, themeKey: ThemeKey, d: Difficulty): Puzzle | null {
   if (!solutions.length || solutions.length > tier.maxSolutions) return null
   const total = hand.mirror + hand.prism
   if (solutions.some(s => Object.keys(s).length < total)) return null
-  return { ...p, theme: themeKey, difficulty: d, solutions, seconds: tier.seconds }
+  const fog = fogFor(rng, tier, p, sol, base)
+  if (!fog) return null
+  return { ...p, fog, theme: themeKey, difficulty: d, solutions, seconds: tier.seconds }
+}
+
+/**
+ * Square fog patches that hide what matters: each covers part of the answer's
+ * beam and at most one cell of the beam as it comes in (so you can see where
+ * to start), and from two patches on they hide at least one star.
+ */
+function fogFor(rng: Rng, tier: Tier, p: Board, sol: Trace, base: Trace): Cell[] | null {
+  const n = p.size
+  const want = randInt(rng, ...tier.fog)
+  const fog = new Set<Cell>()
+  let patches = 0
+  for (let tries = 0; patches < want; tries++) {
+    if (tries >= 80) return null
+    const side = randInt(rng, ...tier.fogSide)
+    const r0 = randInt(rng, 0, n - side), c0 = randInt(rng, 0, n - side)
+    const cells: Cell[] = []
+    for (let r = r0; r < r0 + side; r++) for (let c = c0; c < c0 + side; c++) cells.push(r * n + c)
+    if (cells.some(k => fog.has(k))) continue
+    // Some of the answer's path, little of the bare beam.
+    if (!cells.some(k => sol.lit[k] && !base.lit[k]) || cells.filter(k => base.lit[k]).length > 1) continue
+    cells.forEach(k => fog.add(k))
+    patches++
+  }
+  if (want >= 2 && !p.targets.some(k => fog.has(k))) return null
+  return [...fog].sort((x, y) => x - y)
 }
 
 export function makePuzzle(configId: string, difficulty: Difficulty, seed: number): Puzzle {
@@ -290,6 +325,20 @@ export function makePuzzle(configId: string, difficulty: Difficulty, seed: numbe
   // Practically unreachable; fall back to an easier tier rather than fail.
   if (difficulty > 1) return makePuzzle(configId, (difficulty - 1) as Difficulty, seed)
   throw new Error(`no mirror puzzle for ${configId}`)
+}
+
+/** An order to lay an answer in so that each piece lands where the beam already reaches. */
+export function layingOrder(p: Board, sol: Record<Cell, Piece>): Cell[] {
+  const left = Object.keys(sol).map(Number), placed: Record<Cell, Piece> = {}, order: Cell[] = []
+  while (left.length) {
+    const lit = trace(p.size, p.source, { ...p.fixed, ...placed }).lit
+    const i = left.findIndex(k => lit[k])
+    if (i < 0) break
+    const [k] = left.splice(i, 1)
+    placed[k] = sol[k]
+    order.push(k)
+  }
+  return order
 }
 
 /** A short fingerprint of the board, used by tests to check variety. */
