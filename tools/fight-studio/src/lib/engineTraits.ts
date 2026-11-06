@@ -166,7 +166,7 @@ export const SOURCE_INVENTORY: { path: string; role: string; kind: 'doc' | 'data
   { path: 'docs/great-people-card.md', role: 'Card attributes (eras, 32 identities, 8 stats, trait, achievement), follower and location attributes, building lists per era. Also an OLDER 3-stat battle design.', kind: 'doc' },
   { path: 'docs/era.md', role: 'Era year ranges.', kind: 'doc' },
   { path: 'docs/fight_rules.json', role: 'Rules registry maintained by this tool: doc text vs engine behaviour, status, notes.', kind: 'doc' },
-  { path: 'data/cards.json', role: '145 Great People: 8 stats (1–12), identities, era, gender, life years (born/died/careerAge), trait text, legacy (unlock stat + wins, effect, flavour) and the achievement text that describes how it is earned. Source of truth, synced to web/iOS/Android.', kind: 'data' },
+  { path: 'data/cards.json', role: '144 Great People: 8 stats (1–12), identities, era, gender, life years (born/died/careerAge), trait text, legacy (unlock stat + wins, effect, flavour) and the achievement text that describes how it is earned. Source of truth, synced to web/iOS/Android.', kind: 'data' },
   { path: 'data/demo_cards.json', role: 'Demo deck with the same 80 figures on a 1–24 stat scale (used by collection demos, not battle).', kind: 'data' },
   { path: 'data/followers.json', role: '32 follower templates: identity → stat, bonus 2.', kind: 'data' },
   { path: 'data/location_cards.json', role: '142 location cards: buildings, capacity, per-stat bonuses, trait text (web only).', kind: 'data' },

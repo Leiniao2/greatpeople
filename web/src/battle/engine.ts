@@ -898,10 +898,6 @@ export function traitBonusForGP(
     case 'Wangari Maathai':
       if (stat === 'belief') bonus += Math.min(4, alliedFollowers.length)
       break
-
-    case 'Pelé':
-      if ((stat === 'strength' || stat === 'technique') && alliedWith('Athlete') >= 1) bonus += 2
-      break
   }
 
   return bonus

@@ -1,4 +1,4 @@
-// The 65 Great People added on 2026-11-05 so that every career overlaps at
+// The 64 Great People added on 2026-11-05 so that every career overlaps at
 // least three others.  Checks the roster rule itself, then that every new
 // trait and every new achievement can actually fire.
 import { describe, it, expect } from 'vitest'
@@ -15,15 +15,15 @@ const NEW = [
   'murasaki_shikibu', 'avicenna', 'leif_erikson', 'hildegard_of_bingen', 'jayavarman_vii', 'averroes', 'fibonacci',
   'sundiata_keita', 'tomoe_gozen', 'ibn_khaldun', 'timur', 'hafez', 'cosimo_de_medici', 'zara_yaqob',
   'peter_the_great', 'osei_tutu', 'harriet_tubman', 'nikola_tesla', 'jose_rizal', 'marie_curie',
-  'alberto_santos_dumont', 'frida_kahlo', 'hedy_lamarr', 'nelson_mandela', 'yuri_gagarin', 'wangari_maathai', 'pele',
+  'alberto_santos_dumont', 'frida_kahlo', 'hedy_lamarr', 'nelson_mandela', 'yuri_gagarin', 'wangari_maathai',
 ]
 
 const GP: Record<string, Card> = Object.fromEntries(ALL_GP_CARDS.map(c => [c.id, c]))
 
 describe('contemporaries', () => {
-  it('adds all 65 new Great People', () => {
+  it('adds all 64 new Great People', () => {
     for (const id of NEW) expect(GP[id], id).toBeDefined()
-    expect(ALL_GP_CARDS.length).toBe(145)
+    expect(ALL_GP_CARDS.length).toBe(144)
   })
 
   it('every Great Person shares their career with at least three others', () => {
@@ -135,7 +135,6 @@ const TRAITS: [string, StatKey, number, string[]?, string[]?, number?][] = [
   ['nelson_mandela', 'reputation', 3, [], ['Soldier', 'Soldier']],
   ['yuri_gagarin', 'reputation', 3],
   ['wangari_maathai', 'belief', 3, ['Writer', 'Writer', 'Writer']],
-  ['pele', 'strength', 2, ['Athlete']],
 ]
 
 describe('new traits', () => {
@@ -293,7 +292,6 @@ const ACHIEVES: [string, () => boolean][] = [
     const s = scene('wangari_maathai')
     return [1990, 1991, 1992].map(y => { s.state.year = y; return fire(s, { kind: 'follower', locId: 'loc0', playerId: 'p0' }) }).pop()!
   }],
-  ['pele', () => { const s = scene('pele', [], ['Athlete']); const f = fight(s, { stat: 'strength', theirs: card(s, 'Athlete') }); return fire(s, f, f, f) }],
 ]
 
 describe('new achievements', () => {
