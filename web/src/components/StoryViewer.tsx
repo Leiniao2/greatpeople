@@ -71,19 +71,14 @@ function useTypewriter(text: string, speed = 22) {
 
 // ── Challenge wrapper with fail state ─────────────────────────────────────────
 
-function ChallengeWrapper({ challenge, attempt, livesLeft, onPass, onFail }: {
+function ChallengeWrapper({ challenge, attempt, onPass, onFail }: {
   challenge: Challenge
   /** Attempts already made at this challenge; a new one reshuffles and shows the hint. */
   attempt: number
-  livesLeft: number
   onPass: () => void
   onFail: () => void
 }) {
-  const [result, setResult] = useState<boolean | null>(null)
   const seed = useMemo(() => hashString(`${challenge.id ?? challenge.fact}:${attempt}`), [challenge, attempt])
-
-  const handleWin = () => setResult(true)
-  const handleLose = () => { setResult(false); setTimeout(onFail, 1200) }
 
   return (
     <div className="flex flex-col gap-3">
@@ -93,27 +88,54 @@ function ChallengeWrapper({ challenge, attempt, livesLeft, onPass, onFail }: {
         </p>
       )}
 
-      <ChallengeRenderer challenge={challenge} seed={seed} onWin={handleWin} onLose={handleLose} />
+      <ChallengeRenderer challenge={challenge} seed={seed} onWin={onPass} onLose={() => onFail()} />
+    </div>
+  )
+}
 
-      {result === true && (
-        <div className="p-3 rounded-xl border text-xs leading-relaxed bg-emerald-500/10 border-emerald-500/30 text-emerald-800">
-          <span className="font-bold mr-1">✓ Correct!</span>
-          {challenge.fact}
-        </div>
-      )}
-      {result === false && (
-        <div className="p-3 rounded-xl border text-xs leading-relaxed bg-red-500/10 border-red-500/30 text-red-800">
-          <span className="font-bold">✗ Not this time.</span>
-          {livesLeft > 1 ? ' Try again…' : ' That was your last life.'}
-        </div>
-      )}
+// ── Challenge result pop-up ────────────────────────────────────────────────────
 
-      {result && (
-        <button onClick={onPass}
-          className="py-2.5 rounded-xl bg-accent hover:bg-accent-hover text-accent-fg font-bold text-sm transition-all">
-          Continue →
-        </button>
-      )}
+/**
+ * Shown over the screen as soon as a challenge is won or a life is lost, so
+ * the way on never sits below a tall game where a phone has to scroll to it.
+ * Anchored to the bottom on phones, within reach of a thumb.
+ */
+function ChallengeResultPopup({ won, fact, livesLeft, total, isLast, onNext, onLeave }: {
+  won: boolean
+  fact: string
+  livesLeft: number
+  total: number
+  isLast: boolean
+  onNext: () => void
+  onLeave: () => void
+}) {
+  return (
+    <div className="fixed inset-0 z-[55] flex items-end sm:items-center justify-center bg-ink/50 backdrop-blur-[2px] animate-fade-in p-4"
+      style={{ paddingBottom: 'max(1rem, env(safe-area-inset-bottom))' }} role="dialog" aria-label={won ? 'Challenge passed' : 'Challenge failed'}>
+      <div className="w-full max-w-sm bg-paper-2 border border-line rounded-2xl shadow-2xl p-5 flex flex-col gap-3 text-center">
+        <span className="text-4xl leading-none">{won ? '🏆' : '💔'}</span>
+        <p className={`font-display text-xl font-bold ${won ? 'text-emerald-800' : 'text-red-800'}`}>
+          {won ? 'Challenge passed!' : 'Not this time'}
+        </p>
+        {won
+          ? fact && <p className="text-muted text-xs leading-relaxed max-h-40 overflow-y-auto">{fact}</p>
+          : (
+            <div className="flex flex-col items-center gap-1.5">
+              <LivesBar left={livesLeft} total={total} />
+              <p className="text-muted text-xs">{livesLeft === 1 ? 'One life left.' : `${livesLeft} lives left.`} Try again with a fresh puzzle.</p>
+            </div>
+          )}
+        <div className="flex flex-col gap-2 mt-1">
+          <button onClick={onNext}
+            className="w-full py-3 rounded-xl bg-accent text-accent-fg font-bold text-sm hover:bg-accent-hover transition-all">
+            {won ? (isLast ? 'Finish the story →' : 'Next challenge →') : '↻ Try again'}
+          </button>
+          <button onClick={onLeave}
+            className="w-full py-2.5 rounded-xl bg-panel border border-line text-ink-2 font-semibold text-sm hover:border-accent/40 hover:text-accent transition-all">
+            Leave this Epic
+          </button>
+        </div>
+      </div>
     </div>
   )
 }
@@ -309,15 +331,6 @@ function StageProgress({ stageIdx, stageCount, label }: { stageIdx: number; stag
   )
 }
 
-function LifeLostOverlay({ left, total }: { left: number; total: number }) {
-  return (
-    <div className="fixed inset-0 z-[55] flex flex-col items-center justify-center bg-red-900/40 backdrop-blur-[2px] animate-fade-in pointer-events-none">
-      <p className="text-paper font-bold text-2xl drop-shadow mb-3">Life lost</p>
-      <div className="scale-150"><LivesBar left={left} total={total} /></div>
-    </div>
-  )
-}
-
 function OutOfLivesOverlay({ stageLabel, onRetry, onQuit }: { stageLabel: string; onRetry: () => void; onQuit: () => void }) {
   return (
     <div className="fixed inset-0 z-[55] flex flex-col items-center justify-center bg-ink/80 backdrop-blur-sm animate-fade-in">
@@ -384,7 +397,8 @@ export default function StoryViewer({ eraName, storyTitle, figureName, portraitK
 
   const [sceneIdx, setSceneIdx] = useState(() => stageStarts[Math.min(startStage, stageStarts.length - 1)] ?? 0)
   const [livesLeft, setLivesLeft] = useState(lives)
-  const [lifeLost, setLifeLost] = useState(false)
+  // The pop-up after a challenge: passed, or failed with a life to spare.
+  const [result, setResult] = useState<'won' | 'lost' | null>(null)
   const [failing, setFailing] = useState(false)
   const [storyComplete, setStoryComplete] = useState(false)
   const [cardUnlock, setCardUnlock] = useState(false)
@@ -422,22 +436,25 @@ export default function StoryViewer({ eraName, storyTitle, figureName, portraitK
     }
   }, [sceneIdx, currentScene, challenges, advanceScene])
 
-  const handleChallengePass = () => advanceScene()
+  const handleChallengePass = () => setResult('won')
 
-  // A lost life retries the same challenge with a fresh seed; the last one
-  // sends the player back to the start of the stage.
+  // A lost life offers a retry of the same challenge with a fresh seed; the
+  // last one sends the player back to the start of the stage.
   const handleChallengeFail = () => {
     if (livesLeft > 1) {
       setLivesLeft(l => l - 1)
-      setLifeLost(true)
-      setTimeout(() => {
-        setLifeLost(false)
-        setAttempts(prev => ({ ...prev, [sceneIdx]: (prev[sceneIdx] ?? 0) + 1 }))
-      }, 1200)
+      setResult('lost')
     } else {
       setLivesLeft(0)
       setFailing(true)
     }
+  }
+
+  const handleResultNext = () => {
+    const r = result
+    setResult(null)
+    if (r === 'won') advanceScene()
+    else setAttempts(prev => ({ ...prev, [sceneIdx]: (prev[sceneIdx] ?? 0) + 1 }))
   }
 
   const handleRetryStage = () => {
@@ -573,7 +590,6 @@ export default function StoryViewer({ eraName, storyTitle, figureName, portraitK
                 key={`${sceneIdx}-${attempts[sceneIdx] ?? 0}`}
                 challenge={challenge}
                 attempt={attempts[sceneIdx] ?? 0}
-                livesLeft={livesLeft}
                 onPass={handleChallengePass}
                 onFail={handleChallengeFail}
               />
@@ -583,7 +599,17 @@ export default function StoryViewer({ eraName, storyTitle, figureName, portraitK
       </div>
 
       {/* Life lost / out of lives */}
-      {lifeLost && <LifeLostOverlay left={livesLeft} total={lives} />}
+      {result && currentScene?.type === 'challenge' && (
+        <ChallengeResultPopup
+          won={result === 'won'}
+          fact={challenges[currentScene.index]?.fact ?? ''}
+          livesLeft={livesLeft}
+          total={lives}
+          isLast={passedCount + 1 >= totalChallenges}
+          onNext={handleResultNext}
+          onLeave={onClose}
+        />
+      )}
       {failing && <OutOfLivesOverlay stageLabel={stageLabel} onRetry={handleRetryStage} onQuit={onClose} />}
 
       {/* Story complete screen */}
