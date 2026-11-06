@@ -3,6 +3,8 @@
 // win the player most likely wants the next challenge; after a loss, a
 // replay comes first, then moving on, then leaving.
 
+import type { Card } from '@/types'
+
 interface Props {
   outcome: 'won' | 'lost'
   fact?: string
@@ -14,9 +16,11 @@ interface Props {
   nextLabel?: string
   /** Optional line under the headline, e.g. stars earned. */
   badge?: string
+  /** A Great Person this win unlocked, shown with its portrait. */
+  reward?: Card | null
 }
 
-export default function ResultPanel({ outcome, fact, onReplay, onNext, onBack, backLabel = 'Back to Arcade', nextLabel = 'Next challenge →', badge }: Props) {
+export default function ResultPanel({ outcome, fact, onReplay, onNext, onBack, backLabel = 'Back to Arcade', nextLabel = 'Next challenge →', badge, reward }: Props) {
   const won = outcome === 'won'
   const primary = 'w-full py-3 rounded-xl bg-accent text-accent-fg font-bold text-sm hover:bg-accent-hover transition-all'
   const secondary = 'w-full py-2.5 rounded-xl bg-panel border border-line text-ink-2 font-semibold text-sm hover:border-accent/40 hover:text-accent transition-all'
@@ -32,6 +36,7 @@ export default function ResultPanel({ outcome, fact, onReplay, onNext, onBack, b
         </p>
         {badge && <p className="text-accent text-lg tracking-widest">{badge}</p>}
         {won && fact && <p className="text-muted text-xs leading-relaxed">{fact}</p>}
+        {won && reward && <RewardCard card={reward} />}
         {!won && <p className="text-muted text-xs">Have another go, move on, or head back.</p>}
 
         <div className="flex flex-col gap-2 mt-1">
@@ -49,6 +54,20 @@ export default function ResultPanel({ outcome, fact, onReplay, onNext, onBack, b
             </>
           )}
         </div>
+      </div>
+    </div>
+  )
+}
+
+/** "New Great Person": the portrait, name and era of a card just unlocked. */
+export function RewardCard({ card, label = 'New Great Person' }: { card: Card; label?: string }) {
+  return (
+    <div data-testid="reward-card" className="flex items-center gap-3 p-2.5 rounded-xl border border-accent/40 bg-accent/10 text-left">
+      <img src={card.portraitUrl} alt={card.figureName} className="w-12 h-14 rounded-lg object-cover object-top shrink-0" />
+      <div className="min-w-0">
+        <p className="text-[10px] uppercase tracking-widest text-accent font-bold">{label}</p>
+        <p className="text-ink font-bold text-sm truncate">{card.figureName}</p>
+        <p className="text-muted text-[11px]">{card.era} · added to your collection</p>
       </div>
     </div>
   )

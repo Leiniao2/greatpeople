@@ -3,10 +3,11 @@ import storyConfigs from '@/data/story_configs.json'
 import { portraitUrl } from '@/data/images'
 import type { Card, GameState } from '@/types'
 
-// Fight rewards: every fight a human player wins unlocks one random Great
-// Person the player doesn't own yet.  Only Great People without an Epic
-// story are given this way; story figures (and story bonus cards) are still
-// earned by finishing their story.
+// Rewards: every fight a human player wins, and every Arcade track finished
+// (all its levels cleared), unlocks one random Great Person the player
+// doesn't own yet.  Only Great People without an Epic story are given this
+// way; story figures (and story bonus cards) are still earned by finishing
+// their story.
 
 const STORY_KEYS = new Set(
   (storyConfigs as { portraitKey?: string | null; bonusCard?: { portraitKey?: string } }[])
@@ -18,6 +19,9 @@ const STORY_KEYS = new Set(
 export const FIGHT_REWARD_POOL: Card[] = (cardsJson as unknown as Omit<Card, 'portraitUrl'>[])
   .filter(c => !STORY_KEYS.has(c.portraitKey ?? c.id))
   .map(c => ({ ...c, portraitUrl: portraitUrl(c.portraitKey ?? c.id) }))
+
+/** A reward card by portrait key (for showing what a finished track gave). */
+export const rewardCard = (key: string): Card | undefined => FIGHT_REWARD_POOL.find(c => (c.portraitKey ?? c.id) === key)
 
 /** True when the game is over and a human player won it. */
 export function humanWon(state: GameState): boolean {

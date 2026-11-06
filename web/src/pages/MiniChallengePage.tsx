@@ -2,16 +2,20 @@ import { useState, useMemo, useCallback, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { isEmbedded, postToNative } from '@/bridge/native'
 import ChallengeRenderer from '@/games/ChallengeRenderer'
-import ResultPanel from '@/games/ResultPanel'
+import ResultPanel, { RewardCard } from '@/games/ResultPanel'
 import { GAMES, type Category, type GameKey } from '@/games/registry'
 import { ARCADE_TRACKS, LEVELS_PER_TRACK, buildTrack, levelChallenge, levelCode, starsForAttempts, type ArcadeLevel } from '@/games/arcade'
 import { useStoryProgress } from '@/hooks/useStoryProgress'
 import type { ArcadeProgress } from '@/api/progress'
 import UiIcon, { type UiIconName } from '@/components/UiIcon'
+import { pickFightReward, rewardCard } from '@/battle/rewards'
+import type { Card } from '@/types'
 
 // The Arcade is a set of ladders, one per game type, grouped by category.
 // Each ladder is LEVELS_PER_TRACK generated levels of rising difficulty;
 // clearing a level unlocks the next and offers to play it straight away.
+// Finishing a whole track (every level cleared) unlocks one random Great
+// Person, once per track.
 
 type CategoryKey = 'All' | Category
 
@@ -29,6 +33,17 @@ const TIERS = ['A', 'B', 'C', 'D']
 
 const EMPTY: ArcadeProgress = { cleared: 0, stars: [] }
 const totalStars = (p: ArcadeProgress) => p.stars.reduce((a, b) => a + (b ?? 0), 0)
+
+/** Give a finished track its Great Person, once. Null if not finished, already given, or nothing is left to give. */
+export function grantTrackReward(game: string): Card | null {
+  const { doc, rewardArcadeTrack } = useStoryProgress.getState()
+  const p = doc.arcade?.[game]
+  if (!p || p.cleared < LEVELS_PER_TRACK || p.reward) return null
+  const card = pickFightReward(doc.unlockedCards)
+  if (!card) return null
+  rewardArcadeTrack(game, card.portraitKey ?? card.id)
+  return card
+}
 
 /** Loads a game's config ids and builds its ladder. */
 function useTrack(game: GameKey | null): ArcadeLevel[] | null {
@@ -58,6 +73,7 @@ function LevelPlayer({ track, index, progress, onLevel, onClose }: {
   const [fails, setFails] = useState(0)
   const [attempt, setAttempt] = useState(0)
   const [earned, setEarned] = useState(0)
+  const [reward, setReward] = useState<Card | null>(null)
   const cat = catFor(level.game)
   // A replay reshuffles; the first attempt plays the level's own seed.
   const challenge = useMemo(() => {
@@ -69,6 +85,7 @@ function LevelPlayer({ track, index, progress, onLevel, onClose }: {
     const stars = starsForAttempts(fails)
     setEarned(stars)
     clearArcadeLevel(level.game, level.index, stars)
+    setReward(grantTrackReward(level.game))
     setOutcome('won')
   }, [fails, level, clearArcadeLevel])
   const handleLose = useCallback(() => { setFails(f => f + 1); setOutcome('lost') }, [])
@@ -105,6 +122,7 @@ function LevelPlayer({ track, index, progress, onLevel, onClose }: {
           outcome={outcome}
           badge={outcome === 'won' ? '★'.repeat(earned) + '☆'.repeat(3 - earned) : undefined}
           fact={outcome === 'won' && !hasNext ? `Track complete — all ${track.length} levels cleared.` : undefined}
+          reward={reward}
           onReplay={replay}
           onNext={nextOpen ? () => onLevel(index + 1) : undefined}
           nextLabel={`${levelCode(index + 1)} →`}
@@ -133,6 +151,9 @@ function TrackCard({ game, progress, onOpen, onContinue }: {
 }) {
   const cat = catFor(game)
   const complete = progress.cleared >= LEVELS_PER_TRACK
+  const given = progress.reward ? rewardCard(progress.reward) : undefined
+  // Tracks finished before rewards existed can claim theirs here.
+  const claimable = complete && !progress.reward && !!pickFightReward(useStoryProgress.getState().doc.unlockedCards)
   return (
     <div className="flex flex-col gap-2 p-3.5 rounded-2xl bg-panel border border-line hover:border-line-2 transition-all">
       <button onClick={onOpen} className="flex items-center justify-between gap-2 text-left">
@@ -145,6 +166,13 @@ function TrackCard({ game, progress, onOpen, onContinue }: {
         </span>
       </button>
       <ProgressBar progress={progress} />
+      {given && <RewardCard card={given} label="Track reward" />}
+      {claimable && (
+        <button onClick={() => grantTrackReward(game)} data-testid="claim-reward"
+          className="py-1.5 rounded-xl border border-accent/50 bg-accent/10 text-accent text-xs font-bold">
+          🎁 Track complete: claim a Great Person
+        </button>
+      )}
       <div className="flex items-center justify-between gap-2">
         <button onClick={onOpen} className="text-muted text-[10px] hover:text-ink">All levels</button>
         <button onClick={onContinue}

@@ -28,9 +28,11 @@ export function mergeProgress(a: ProgressDoc, b: ProgressDoc): ProgressDoc {
     const cur = arcade[game]
     if (!cur) { arcade[game] = p; continue }
     const n = Math.max(cur.stars.length, p.stars.length)
+    const reward = cur.reward ?? p.reward
     arcade[game] = {
       cleared: Math.max(cur.cleared, p.cleared),
       stars: Array.from({ length: n }, (_, i) => Math.max(cur.stars[i] ?? 0, p.stars[i] ?? 0)),
+      ...(reward ? { reward } : {}),
     }
   }
   const times = [a.updatedAt, b.updatedAt].filter((t): t is string => !!t).sort()
@@ -74,6 +76,8 @@ interface ProgressState {
   unlock: (portraitKey: string) => void
   /** Record a cleared arcade level, keeping the best stars. */
   clearArcadeLevel: (game: string, index: number, stars: number) => void
+  /** Unlock the Great Person a finished track gives and record it, so each track gives one only. */
+  rewardArcadeTrack: (game: string, portraitKey: string) => void
   /** Fetch the server copy, merge it in, and push the result. Safe to call when signed out. */
   pullAndMerge: () => Promise<void>
 }
@@ -123,7 +127,17 @@ export const useStoryProgress = create<ProgressState>((set, get) => {
       for (let i = 0; i < nextStars.length; i++) nextStars[i] ??= 0
       update(doc => ({
         ...doc,
-        arcade: { ...(doc.arcade ?? {}), [game]: { cleared: Math.max(cur.cleared, index + 1), stars: nextStars } },
+        arcade: { ...(doc.arcade ?? {}), [game]: { ...cur, cleared: Math.max(cur.cleared, index + 1), stars: nextStars } },
+      }))
+    },
+
+    rewardArcadeTrack: (game, key) => {
+      const cur = get().doc.arcade?.[game]
+      if (!cur || cur.reward) return
+      update(doc => ({
+        ...doc,
+        unlockedCards: doc.unlockedCards.includes(key) ? doc.unlockedCards : [...doc.unlockedCards, key],
+        arcade: { ...(doc.arcade ?? {}), [game]: { ...cur, reward: key } },
       }))
     },
 

@@ -12,6 +12,8 @@ export interface ArcadeProgress {
   cleared: number
   /** Best stars (1–3) per level index; 0 = not cleared. */
   stars: number[]
+  /** Portrait key of the Great Person the finished track gave, once. */
+  reward?: string
 }
 
 export interface ProgressDoc {
