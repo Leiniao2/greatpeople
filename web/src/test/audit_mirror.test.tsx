@@ -6,7 +6,7 @@ import { render, screen, fireEvent } from '@testing-library/react'
 import { buildTrack } from '@/games/arcade'
 import type { Difficulty } from '@/games/types'
 import MirrorGame, { CONFIG_IDS } from '@/components/minigames/MirrorGame'
-import { TIERS, fingerprint, makePuzzle, solve, status, trace, type Source } from '@/components/minigames/mirror/model'
+import { TIERS, fingerprint, layingOrder, makePuzzle, solve, status, trace, type Source } from '@/components/minigames/mirror/model'
 
 const D: Difficulty[] = [1, 2, 3, 4]
 const seeds = Array.from({ length: 12 }, (_, i) => 4001 + i * 7919)
@@ -45,11 +45,18 @@ describe('mirror puzzles', () => {
         expect(p.solutions.length, tag).toBeGreaterThan(0)
         expect(p.solutions.length, tag).toBeLessThanOrEqual(tier.maxSolutions)
         const total = p.hand.mirror + p.hand.prism
-        if (d >= 2) expect(total, tag).toBeGreaterThanOrEqual(3)
-        if (d >= 3) expect(p.hand.prism, `${tag} uses a prism`).toBeGreaterThan(0)
+        expect(total, tag).toBeGreaterThanOrEqual(d >= 3 ? 4 : 3)
+        if (d >= 2) expect(p.hand.prism, `${tag} uses a prism`).toBeGreaterThan(0)
+        expect(Object.values(p.fixed).filter(x => x === '#').length, `${tag} stone`).toBeGreaterThanOrEqual(tier.blocks[0])
+        // Fog from D2: it covers part of the answer's path, and from D3 a star.
+        const fog = new Set(p.fog)
+        expect(fog.size, tag).toBeGreaterThanOrEqual(tier.fog[0] * tier.fogSide[0] ** 2)
+        if (d >= 2) expect(p.solutions.some(sol => [...fog].some(k => status(p, sol).trace.lit[k])), tag).toBe(true)
+        if (d >= 3) expect(p.targets.some(k => fog.has(k)), `${tag} hides a star`).toBe(true)
         for (const sol of p.solutions) {
           expect(status(p, sol).solved, tag).toBe(true)
           expect(Object.keys(sol).length, `${tag} needs every piece`).toBe(total)
+          expect(layingOrder(p, sol).length, `${tag} can be laid through the fog`).toBe(total)
         }
         // Not solved before you start, nor with a piece fewer.
         expect(status(p, {}).solved, tag).toBe(false)
@@ -68,7 +75,11 @@ describe('mirror puzzles', () => {
     const pieces = (i: number) => puzzles[i].hand.mirror + puzzles[i].hand.prism
     const avg = (ids: number[], f: (i: number) => number) => ids.reduce((a, i) => a + f(i), 0) / ids.length
     const first = [0, 1, 2, 3, 4, 5], last = [18, 19, 20, 21, 22, 23]
-    expect(avg(last, pieces)).toBeGreaterThan(avg(first, pieces) + 1.5)
+    expect(avg(last, pieces)).toBeGreaterThan(avg(first, pieces) + 1)
+    // Stone and fog carry the rest of the climb.
+    const stone = (i: number) => Object.values(puzzles[i].fixed).filter(x => x === '#').length
+    expect(avg(last, stone)).toBeGreaterThan(avg(first, stone) + 4)
+    expect(avg(last, i => puzzles[i].fog.length)).toBeGreaterThan(avg(first, i => puzzles[i].fog.length) + 10)
     expect(avg(last, i => puzzles[i].targets.length + puzzles[i].sensors.length))
       .toBeGreaterThan(avg(first, i => puzzles[i].targets.length + puzzles[i].sensors.length) + 3)
   }, 120000)
@@ -77,13 +88,38 @@ describe('mirror puzzles', () => {
     const p = makePuzzle('newton-prism', 3, 777)
     render(<MirrorGame configId="newton-prism" difficulty={3} seed={777} onWin={() => {}} onLose={() => {}} />)
     const sol = p.solutions[0]
-    for (const [k, piece] of Object.entries(sol)) {
-      const cell = +k
+    for (const cell of layingOrder(p, sol)) {
+      const piece = sol[cell]
       const label = `Cell ${Math.floor(cell / p.size) + 1},${cell % p.size + 1}`
       fireEvent.click(screen.getByLabelText(piece === 'P' ? /^Prism:/ : /^Mirror:/))
       fireEvent.click(screen.getByLabelText(label))
       if (piece === '\\') fireEvent.click(screen.getByLabelText(label))
     }
     expect(screen.getByText(/The light lands where it should/)).toBeTruthy()
+  })
+
+  it('fog hides what is inside until the beam lights it, and stays cleared', () => {
+    const p = makePuzzle('newton-prism', 3, 777)
+    const { container } = render(<MirrorGame configId="newton-prism" difficulty={3} seed={777} onWin={() => {}} onLose={() => {}} />)
+    const bare = status(p, {}).trace.lit
+    const fogged = () => [...container.querySelectorAll('[data-fog]')].map(e => +e.getAttribute('data-fog')!)
+    expect(fogged().length, 'fog on the board').toBeGreaterThan(0)
+    expect(fogged().every(k => !bare[k]), 'lit fog is cleared').toBe(true)
+    // A fogged cell cannot take a piece.
+    const k = fogged()[0]
+    fireEvent.click(screen.getByLabelText(`Cell ${Math.floor(k / p.size) + 1},${k % p.size + 1}`))
+    expect(screen.getByLabelText(/^Mirror:/).getAttribute('aria-label')).toBe(`Mirror: ${p.hand.mirror} left`)
+    // Placing the answer clears the fog along its beam for good, even after Clear.
+    const sol = p.solutions[0]
+    expect(layingOrder(p, sol).length, 'the answer can be laid along the beam').toBe(Object.keys(sol).length)
+    for (const cell of layingOrder(p, sol)) {
+      const piece = sol[cell]
+      const label = `Cell ${Math.floor(cell / p.size) + 1},${cell % p.size + 1}`
+      fireEvent.click(screen.getByLabelText(piece === 'P' ? /^Prism:/ : /^Mirror:/))
+      fireEvent.click(screen.getByLabelText(label))
+      if (piece === '\\') fireEvent.click(screen.getByLabelText(label))
+    }
+    const lit = status(p, sol).trace.lit
+    expect(fogged().some(c => lit[c])).toBe(false)
   })
 })
