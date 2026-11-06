@@ -33,9 +33,56 @@ async function reachQuiz() {
 
 async function answerWrong() {
   fireEvent.click(screen.getByText(wrongOption))
-  expect(screen.getByText(/Not this time/)).toBeInTheDocument()
   await settle()
+  // The pop-up appears unless that was the last life.
+  if (screen.queryByText('Not this time')) {
+    expect(screen.getByText('Leave this Epic')).toBeInTheDocument()
+    fireEvent.click(screen.getByText('↻ Try again'))
+    await settle()
+  }
 }
+
+describe('StoryViewer result pop-up', () => {
+  beforeEach(() => vi.useFakeTimers())
+  afterEach(() => { cleanup(); vi.useRealTimers() })
+
+  it('a pass shows a pop-up with the fact, the next challenge and a way out', async () => {
+    const onClose = vi.fn()
+    render(<StoryViewer eraName={entry.era} storyTitle={entry.story} figureName={null} portraitKey={null}
+      lives={3} onComplete={() => {}} onClose={onClose} />)
+    await reachQuiz()
+    fireEvent.click(screen.getByText(quiz.options[quiz.answer]))
+    await settle()
+    const dialog = screen.getByRole('dialog', { name: 'Challenge passed' })
+    expect(dialog).toHaveTextContent(quiz.fact)
+    fireEvent.click(screen.getByText('Leave this Epic'))
+    expect(onClose).toHaveBeenCalledTimes(1)
+  })
+
+  it('next challenge closes the pop-up and moves the story on', async () => {
+    render(<StoryViewer eraName={entry.era} storyTitle={entry.story} figureName={null} portraitKey={null}
+      lives={3} onComplete={() => {}} onClose={() => {}} />)
+    await reachQuiz()
+    fireEvent.click(screen.getByText(quiz.options[quiz.answer]))
+    await settle()
+    fireEvent.click(screen.getByText(/Next challenge →|Finish the story →/))
+    await settle()
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+    expect(screen.queryByText(quiz.question)).not.toBeInTheDocument()
+  })
+
+  it('a lost life offers a retry or leaving', async () => {
+    const onClose = vi.fn()
+    render(<StoryViewer eraName={entry.era} storyTitle={entry.story} figureName={null} portraitKey={null}
+      lives={3} onComplete={() => {}} onClose={onClose} />)
+    await reachQuiz()
+    fireEvent.click(screen.getByText(wrongOption))
+    await settle()
+    expect(screen.getByRole('dialog', { name: 'Challenge failed' })).toHaveTextContent('2 lives left')
+    fireEvent.click(screen.getByText('Leave this Epic'))
+    expect(onClose).toHaveBeenCalledTimes(1)
+  })
+})
 
 describe('StoryViewer lives', () => {
   beforeEach(() => vi.useFakeTimers())
