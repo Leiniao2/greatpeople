@@ -2,6 +2,7 @@ import { createElement } from 'react'
 import { render, cleanup, fireEvent, act } from '@testing-library/react'
 import { describe, it, expect, afterEach, vi } from 'vitest'
 import type { Difficulty } from '@/games/types'
+import { SLIP_ART } from '@/components/minigames/pairs/art'
 import PairsGame, {
   CONFIGS, CONFIG_IDS, makeDeck, perfectMemory, perfectBound, mistakeBudget, pairsFor, layoutFor, timerFor, peeksFor, flashMsFor,
   FRAGILE_FLIPS, MISS_MS,
@@ -194,5 +195,29 @@ describe('Archive Pairs — component', () => {
     act(() => { vi.advanceTimersByTime(2000) })
     expect(onLose).toHaveBeenCalledTimes(1)
     expect(onWin).not.toHaveBeenCalled()
+  })
+})
+
+describe('pairs pictures', () => {
+  const PAINTED = new Set(Object.keys(import.meta.glob('../../public/pairs/*.webp')).map(p => p.split('/').pop()!.replace('.webp', '')))
+  const PORTRAITS = new Set(Object.keys(import.meta.glob('../../public/portraits/*.webp')).map(p => p.split('/').pop()!.replace('.webp', '')))
+
+  it('every slip in every config has a picture on disk', () => {
+    for (const [id, cfg] of Object.entries(CONFIGS)) for (const pair of cfg.pairs) for (const text of pair) {
+      const art = SLIP_ART[text]
+      expect(art, `${id}: ${text}`).toBeDefined()
+      if (art.card) expect(PORTRAITS.has(`portrait_${art.card}`), `${text} portrait`).toBe(true)
+      else expect(PAINTED.has(art.key), `${text} painting`).toBe(true)
+    }
+  })
+
+  it('face-up slips show their picture and caption', () => {
+    vi.useFakeTimers()
+    const { container } = render(createElement(PairsGame, { configId: 'ancient', difficulty: 1, seed: 2, onWin: () => {}, onLose: () => {} }))
+    fireEvent.click(container.querySelector('[data-tile="0"]')!)
+    const tile = container.querySelector('[data-tile="0"]')!
+    const img = tile.querySelector('img')!
+    expect(img.getAttribute('src')).toMatch(/^\/(pairs|portraits)\//)
+    expect(tile.textContent!.length).toBeGreaterThan(1)
   })
 })

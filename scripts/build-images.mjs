@@ -59,6 +59,8 @@ const FOLDERS = {
   exhibits:     { width: 480, mobile: false, square: true },
   // Distinguish look-alikes (web/src/components/minigames/distinguish/pairs.ts); web only.
   distinguish:  { width: 640, mobile: false },
+  // Archive Pairs slips (web/src/components/minigames/pairs/art.ts); web only.
+  pairs:        { width: 360, mobile: false },
   // Painted medallion icons for modes and categories (web/src/components/UiIcon.tsx),
   // cropped square; also bundled in the apps for their native screens.
   icons:        { width: 192, mobile: true, square: true },

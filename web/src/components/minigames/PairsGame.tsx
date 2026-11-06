@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { Difficulty, MinigameProps } from '@/games/types'
+import { slipArtUrl } from './pairs/art'
 import { hashString, mulberry32, resolveConfig, scale, shuffle, useGameOutcome, useGameTimer, OutcomeBanner, TimerBar } from './_shared'
 
 // Archive Pairs: a memory game in the reading room of a great library.  Every
@@ -220,6 +221,14 @@ export function perfectMemory(deck: Tile[], variant: PairsVariant = 'swap'): { m
 /** @deprecated the classic name: perfect memory under the default rules. */
 export const perfectMemoryMistakes = (deck: Tile[]) => perfectMemory(deck)
 
+/** A slip's painted picture; falls back to plain paper if the file is missing. */
+function SlipPicture({ text }: { text: string }) {
+  const [broken, setBroken] = useState(false)
+  const url = slipArtUrl(text)
+  if (!url || broken) return <span className="absolute inset-0 bg-paper" />
+  return <img src={url} alt="" draggable={false} loading="lazy" onError={() => setBroken(true)} className="absolute inset-0 w-full h-full object-cover" />
+}
+
 export default function PairsGame({ configId, difficulty, seed, params, onWin, onLose }: MinigameProps) {
   const config = resolveConfig(CONFIGS, configId, params, 'ancient')
   const variant = config.variant ?? 'swap'
@@ -334,7 +343,7 @@ export default function PairsGame({ configId, difficulty, seed, params, onWin, o
     later(() => setPeeking(false), PEEK_MS)
   }
 
-  const textSize = cols >= 6 ? 'text-[9px]' : 'text-[11px]'
+  const textSize = cols >= 6 ? 'text-[8px]' : 'text-[10px]'
 
   return (
     <div className="flex flex-col gap-3 bg-paper-2 rounded-xl p-3 select-none">
@@ -397,12 +406,15 @@ export default function PairsGame({ configId, difficulty, seed, params, onWin, o
                 </span>
                 {/* Face. */}
                 <span
-                  className={`absolute inset-0 rounded-lg border-2 flex flex-col items-center justify-center gap-0.5 p-1 text-center [backface-visibility:hidden] [transform:rotateY(180deg)]
+                  className={`absolute inset-0 rounded-lg border-2 overflow-hidden flex flex-col [backface-visibility:hidden] [transform:rotateY(180deg)]
                     ${t.kind === 'person' ? 'bg-paper border-accent' : 'bg-paper-2 border-line'}
-                    ${done ? 'opacity-70 ring-2 ring-emerald-500/60' : ''} ${wrong ? 'ring-2 ring-red-500/70' : ''}`}
+                    ${done ? 'opacity-80 ring-2 ring-emerald-500/60' : ''} ${wrong ? 'ring-2 ring-red-500/70' : ''}`}
                 >
-                  <span className="text-[8px] uppercase tracking-wider text-muted">{t.kind === 'person' ? '✒ person' : '❧ work'}</span>
-                  <span className={`${textSize} leading-tight font-semibold text-ink break-words hyphens-auto`}>{t.text}</span>
+                  <SlipPicture text={t.text} />
+                  <span className={`absolute top-0.5 left-0.5 px-1 rounded text-[8px] leading-tight font-bold ${t.kind === 'person' ? 'bg-accent text-accent-fg' : 'bg-ink/70 text-paper'}`}>
+                    {t.kind === 'person' ? '✒' : '❧'}
+                  </span>
+                  <span className={`absolute inset-x-0 bottom-0 bg-paper/90 px-0.5 py-0.5 text-center ${textSize} leading-tight font-semibold text-ink break-words hyphens-auto`}>{t.text}</span>
                 </span>
               </span>
             </button>
