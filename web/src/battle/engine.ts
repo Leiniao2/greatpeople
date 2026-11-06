@@ -1878,16 +1878,16 @@ function baseReducer(state: GameState, action: GameAction): GameState {
       const player = state.players[playerIdx]
       if (state.turnActions.actedCards.includes(action.instanceId)) return state
 
-      // A public Great Person whose fights reached its legacy's unlock; each legacy is earned once.
+      // A Great Person who met their achievement; claiming reveals them. Each legacy is earned once.
       let claimed: OnboardCard | null = null
       const newLocations = state.locations.map(loc => ({
         ...loc,
         cards: loc.cards.map(c => {
-          if (c.instanceId === action.instanceId && c.playerId === player.id && c.type === 'gp' && c.isPublic
+          if (c.instanceId === action.instanceId && c.playerId === player.id && c.type === 'gp'
             && !player.legacies.includes(c.cardId)
             && c.achievementTicks >= getAchievementThreshold(getGPCard(c.cardId)?.figureName ?? '')) {
             claimed = c
-            return { ...c, achievementTicks: 0 }
+            return { ...c, achievementTicks: 0, isPublic: true }
           }
           return c
         }),

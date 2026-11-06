@@ -17,6 +17,7 @@ import {
   gpSlots, lineageCount, LOCATION_CARD_MAP, GLOBAL_COMPETITION_CHANCE, REWARD_EVENTS, REWARD_FOLLOWERS,
   type GameAction,
 } from './engine'
+import { achievementProgress } from './achievements'
 
 export const ERA_COLORS: Record<string, string> = {
   Ancient:     'bg-yellow-200/70 border-yellow-600/50',
@@ -58,6 +59,8 @@ interface CompactCardProps {
   card: OnboardCard
   isCurrentPlayer: boolean
   isSelected: boolean
+  /** Progress towards an achievement built up over turns (Magellan's cities). */
+  progress?: string | null
   onClick: () => void
   onInfo?: (card: Card, ticks?: number) => void
   onFollowerInfo?: (follower: FollowerCard) => void
@@ -65,7 +68,7 @@ interface CompactCardProps {
   followerTemplates: Record<string, FollowerCard>
 }
 
-function CompactCard({ card, isCurrentPlayer, isSelected, onClick, onInfo, onFollowerInfo, gpMap, followerTemplates }: CompactCardProps) {
+function CompactCard({ card, isCurrentPlayer, isSelected, progress, onClick, onInfo, onFollowerInfo, gpMap, followerTemplates }: CompactCardProps) {
   const gp = card.type === 'gp' ? gpMap[card.cardId] : null
   const follower = card.type === 'follower' ? followerTemplates[card.cardId] : null
 
@@ -88,6 +91,9 @@ function CompactCard({ card, isCurrentPlayer, isSelected, onClick, onInfo, onFol
     >
       {card.justDeployed && (
         <span className="absolute top-0.5 right-0.5 z-10 w-2 h-2 rounded-full bg-accent border border-black" />
+      )}
+      {card.achievementTicks === 0 && progress && (
+        <span className="absolute top-0.5 left-0.5 z-10 text-[7px] font-bold rounded px-0.5 bg-ink/50 text-accent">{progress}</span>
       )}
       {card.achievementTicks > 0 && (() => {
         const threshold = gp ? getAchievementThreshold(gp.figureName) : 3
@@ -144,7 +150,7 @@ function CompactCard({ card, isCurrentPlayer, isSelected, onClick, onInfo, onFol
       ) : null}
 
       {!isPrivate && !card.isPublic && gp && (
-        <span className="absolute bottom-4 left-0.5 text-[6px] text-paper/80 bg-ink/50 rounded px-0.5">priv</span>
+        <span className="absolute bottom-4 left-0.5 text-[6px] text-paper/80 bg-ink/50 rounded px-0.5">hidden</span>
       )}
     </button>
   )
@@ -828,7 +834,7 @@ function RulesModal({ onClose }: { onClose: () => void }) {
           </section>
           <section>
             <p className="text-[10px] font-bold text-accent uppercase tracking-widest mb-1.5">Legacies</p>
-            <p className="text-ink-2 leading-relaxed">Each Great Person earns their legacy through <span className="text-ink font-semibold">their own achievement</span>, written on their card (tap ⓘ): for example Imhotep needs an allied Architect and an Engineer or Scientist in his city. Winning fights does not earn a legacy by itself. When a Great Person achieves it, make them public and Claim Legacy. You keep every legacy for the rest of the game, even after that person dies, but only {LEGACY_SLOTS} are in effect at once.</p>
+            <p className="text-ink-2 leading-relaxed">Each Great Person earns their legacy through <span className="text-ink font-semibold">their own achievement</span>, written on their card (tap ⓘ): for example Imhotep needs an allied Architect and an Engineer or Scientist in his city. Winning fights does not earn a legacy by itself. When a Great Person achieves it, Claim Legacy (claiming reveals them). You keep every legacy for the rest of the game, even after that person dies, but only {LEGACY_SLOTS} are in effect at once.</p>
           </section>
         </div>
         <div className="px-4 pb-4 pt-1">
@@ -907,7 +913,6 @@ export function BattleGame({ gameState, dispatch, onExit, embedded = false, bann
     && selectedOnboard.playerId === currentPlayer.id
     && !currentPlayer.legacies.includes(selectedOnboard.cardId)
     && selectedOnboard.achievementTicks >= getAchievementThreshold(gpMap[selectedOnboard.cardId]?.figureName ?? '')
-    && selectedOnboard.isPublic
     && !gameState.turnActions.actedCards.includes(selectedOnboard.instanceId)
 
   const canRetrieve = selectedOnboard
@@ -1009,21 +1014,14 @@ export function BattleGame({ gameState, dispatch, onExit, embedded = false, bann
           if (!gp) continue
           const threshold = getAchievementThreshold(gp.figureName)
 
-          // Priority 1: must go public to claim achievement at or near threshold
-          if (!oc.isPublic && oc.achievementTicks >= threshold - 1) {
-            dispatch({ type: 'TOGGLE_VISIBILITY', instanceId: oc.instanceId })
-            toggled = true
-            break
-          }
-
-          // Priority 2: trait-preferred-public card that is still private — reveal with some probability
+          // Priority 1: trait-preferred-public card that is still private — reveal with some probability
           if (!oc.isPublic && PUBLIC_TRAIT_FIGURES.has(gp.figureName) && Math.random() < 0.55) {
             dispatch({ type: 'TOGGLE_VISIBILITY', instanceId: oc.instanceId })
             toggled = true
             break
           }
 
-          // Priority 3: strong card (>420 total) in a contested location — go public to use event combat
+          // Priority 2: strong card (>420 total) in a contested location — go public to use event combat
           if (!oc.isPublic) {
             const total = STATS.reduce((s, k) => s + gp[k], 0)
             const hasEvent = loc.activeEvent?.type === 'local_event'
@@ -1036,7 +1034,7 @@ export function BattleGame({ gameState, dispatch, onExit, embedded = false, bann
             }
           }
 
-          // Priority 4: already public but private-trait card with no pending achievement — hide again
+          // Priority 3: already public but private-trait card with no pending achievement — hide again
           if (oc.isPublic && PRIVATE_TRAIT_FIGURES.has(gp.figureName) && oc.achievementTicks < threshold - 1 && Math.random() < 0.4) {
             dispatch({ type: 'TOGGLE_VISIBILITY', instanceId: oc.instanceId })
             toggled = true
@@ -1045,13 +1043,12 @@ export function BattleGame({ gameState, dispatch, onExit, embedded = false, bann
         }
       }
 
-      // 4. Claim achievement for any ready public GP
+      // 4. Claim achievement for any ready GP (claiming reveals it)
       for (const loc of gameState.locations) {
         for (const oc of loc.cards) {
           if (
             oc.type === 'gp' &&
             oc.playerId === currentPlayer.id &&
-            oc.isPublic &&
             oc.achievementTicks >= getAchievementThreshold(gpMap[oc.cardId]?.figureName ?? '') &&
             !currentPlayer.legacies.includes(oc.cardId) &&
             !gameState.turnActions.actedCards.includes(oc.instanceId)
@@ -1324,6 +1321,7 @@ export function BattleGame({ gameState, dispatch, onExit, embedded = false, bann
                             card={oc}
                             isCurrentPlayer={p.id === currentPlayer.id}
                             isSelected={selection.onboardInstanceId === oc.instanceId}
+                            progress={achievementProgress(gameState, oc)}
                             onClick={() => handleOnboardCardTap(oc, loc.id)}
                             onInfo={(c, ticks) => setCardDetail({ kind: 'gp', card: c, ticks, ownerId: oc.playerId })}
                             onFollowerInfo={f => setCardDetail({ kind: 'follower', follower: f })}
@@ -1570,7 +1568,7 @@ export function BattleGame({ gameState, dispatch, onExit, embedded = false, bann
               bg-paper-2 border-line text-ink-2
               disabled:opacity-30 disabled:cursor-not-allowed
               hover:border-line-2">
-            Toggle Public
+            {selectedOnboard && !selectedOnboard.isPublic ? 'Go Public' : 'Go Hidden'}
           </button>
 
           {/* End Scenario: available when selected onboard GP is at a location with a local event */}

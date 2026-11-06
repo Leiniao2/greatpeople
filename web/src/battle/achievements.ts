@@ -6,7 +6,7 @@
 // action gameReducer runs them past each Great Person on the board whose
 // legacy is still to earn.  A Great Person who meets their condition is
 // marked ready (achievementTicks reaches the unlock), and the owner claims
-// the legacy as before (Claim Legacy, with the card public).
+// the legacy as before (Claim Legacy, which reveals the card).
 
 import type {
   Card, EventCard, FollowerCard, GameState, LocationState, OnboardCard, PlayerState, StatKey, TurnActions,
@@ -404,6 +404,14 @@ export const ACHIEVEMENTS: Record<string, Rule> = {
   pele: (ev, c) => ev.kind === 'fight' && (ev.stat === 'strength' || ev.stat === 'technique') && mySide(ev, c) === 'won' && tally(c, 'goals', 3),
 }
 
+/** Progress towards an achievement that builds up over turns, for the card badge (e.g. "2/4"); null when none. */
+export function achievementProgress(state: GameState, oc: OnboardCard): string | null {
+  if (oc.type !== 'gp' || oc.cardId !== 'magellan' || !oc.isPublic) return null
+  const memo = state.players.find(p => p.id === oc.playerId)?.achievementMemo?.[oc.cardId]
+  const visited = memo?.instance === oc.instanceId ? ((memo.visited as string[]) ?? []) : []
+  return `${visited.length}/${state.locations.length}`
+}
+
 const STAT_KEYS: StatKey[] = ['politics', 'strength', 'culture', 'wealth', 'intelligence', 'technique', 'belief', 'reputation']
 
 /**
@@ -434,7 +442,7 @@ export function runAchievements(
         const memo = byPlayer[me.cardId] = { ...(byPlayer[me.cardId] ?? {}) }
         if (rule(ev, { state, owner, me, loc, look, memo })) {
           ready.add(me.instanceId)
-          lines.push(`${owner.name}'s ${look.gp[me.cardId]?.figureName ?? 'Great Person'} achieved ${look.gp[me.cardId]?.legacy.name ?? 'their legacy'}: claim it while public.`)
+          lines.push(`${owner.name}'s ${look.gp[me.cardId]?.figureName ?? 'Great Person'} achieved ${look.gp[me.cardId]?.legacy.name ?? 'their legacy'}: claim it.`)
         }
       }
     }

@@ -4640,7 +4640,7 @@
           ]
         },
         "instruction": "Fight lesson 5 · Face Down. Win two attacks: fight at London where the Art Critique is running, then carry the fight to Moscow by starting your own event there.",
-        "fact": "A card on the board can be public (face up) or private (face down). A private card hides its identity and stats from rivals until an attack reveals every card at that location. Your own cards deploy face down; Toggle Public when being seen helps you.",
+        "fact": "A card on the board can be public (face up) or private (face down). A private card hides its identity and stats from rivals until an attack reveals every card at that location. Your own cards deploy face down; Go Public when being seen helps you.",
         "id": "fantasia-and-keys:7",
         "stage": "legacy",
         "difficulty": 4
@@ -4748,7 +4748,7 @@
           ]
         },
         "instruction": "Fight lesson 5 · Face Down. Win two attacks: fight at Genoa where the Argument is running, then carry the fight to St Petersburg by starting your own event there.",
-        "fact": "A card on the board can be public (face up) or private (face down). A private card hides its identity and stats from rivals until an attack reveals every card at that location. Your own cards deploy face down; Toggle Public when being seen helps you.",
+        "fact": "A card on the board can be public (face up) or private (face down). A private card hides its identity and stats from rivals until an attack reveals every card at that location. Your own cards deploy face down; Go Public when being seen helps you.",
         "id": "the-naming-of-everything:5",
         "stage": "legacy",
         "difficulty": 4
@@ -4837,7 +4837,7 @@
           ]
         },
         "instruction": "Fight lesson 5 · Face Down. Win two attacks: fight at Paris where the Business War is running, then carry the fight to St Petersburg by starting your own event there.",
-        "fact": "A card on the board can be public (face up) or private (face down). A private card hides its identity and stats from rivals until an attack reveals every card at that location. Your own cards deploy face down; Toggle Public when being seen helps you.",
+        "fact": "A card on the board can be public (face up) or private (face down). A private card hides its identity and stats from rivals until an attack reveals every card at that location. Your own cards deploy face down; Go Public when being seen helps you.",
         "id": "the-gilded-court:4",
         "stage": "legacy",
         "difficulty": 4
@@ -4935,7 +4935,7 @@
           ]
         },
         "instruction": "Fight lesson 5 · Face Down. Win two attacks: fight at London where the Argument is running, then carry the fight to St Petersburg by starting your own event there.",
-        "fact": "A card on the board can be public (face up) or private (face down). A private card hides its identity and stats from rivals until an attack reveals every card at that location. Your own cards deploy face down; Toggle Public when being seen helps you.",
+        "fact": "A card on the board can be public (face up) or private (face down). A private card hides its identity and stats from rivals until an attack reveals every card at that location. Your own cards deploy face down; Go Public when being seen helps you.",
         "id": "deep-time:5",
         "stage": "legacy",
         "difficulty": 4
@@ -5032,7 +5032,7 @@
           ]
         },
         "instruction": "Fight lesson 5 · Face Down. Win two attacks: fight at Boston where the Business War is running, then carry the fight to St Petersburg by starting your own event there.",
-        "fact": "A card on the board can be public (face up) or private (face down). A private card hides its identity and stats from rivals until an attack reveals every card at that location. Your own cards deploy face down; Toggle Public when being seen helps you.",
+        "fact": "A card on the board can be public (face up) or private (face down). A private card hides its identity and stats from rivals until an attack reveals every card at that location. Your own cards deploy face down; Go Public when being seen helps you.",
         "id": "the-potter-s-empire:5",
         "stage": "legacy",
         "difficulty": 4
@@ -5128,7 +5128,7 @@
           ]
         },
         "instruction": "Fight lesson 5 · Face Down. Win two attacks: fight at Amsterdam where the Coup is running, then carry the fight to St Petersburg by starting your own event there.",
-        "fact": "A card on the board can be public (face up) or private (face down). A private card hides its identity and stats from rivals until an attack reveals every card at that location. Your own cards deploy face down; Toggle Public when being seen helps you.",
+        "fact": "A card on the board can be public (face up) or private (face down). A private card hides its identity and stats from rivals until an attack reveals every card at that location. Your own cards deploy face down; Go Public when being seen helps you.",
         "id": "the-empress-seizes-power:5",
         "stage": "legacy",
         "difficulty": 4
@@ -5214,7 +5214,7 @@
           ]
         },
         "instruction": "Fight lesson 5 · Face Down. Win two attacks: fight at St Petersburg where the Business War is running, then carry the fight to London by starting your own event there.",
-        "fact": "A card on the board can be public (face up) or private (face down). A private card hides its identity and stats from rivals until an attack reveals every card at that location. Your own cards deploy face down; Toggle Public when being seen helps you.",
+        "fact": "A card on the board can be public (face up) or private (face down). A private card hides its identity and stats from rivals until an attack reveals every card at that location. Your own cards deploy face down; Go Public when being seen helps you.",
         "id": "the-last-queen:4",
         "stage": "legacy",
         "difficulty": 4
@@ -5325,7 +5325,7 @@
           ]
         },
         "instruction": "Fight lesson 5 · Face Down. Win two attacks: fight at St Petersburg where the Coup is running, then carry the fight to London by starting your own event there.",
-        "fact": "A card on the board can be public (face up) or private (face down). A private card hides its identity and stats from rivals until an attack reveals every card at that location. Your own cards deploy face down; Toggle Public when being seen helps you.",
+        "fact": "A card on the board can be public (face up) or private (face down). A private card hides its identity and stats from rivals until an attack reveals every card at that location. Your own cards deploy face down; Go Public when being seen helps you.",
         "id": "queen-of-two-thrones:6",
         "stage": "legacy",
         "difficulty": 4
@@ -5433,7 +5433,7 @@
           ]
         },
         "instruction": "Fight lesson 5 · Face Down. Win two attacks: fight at St Petersburg where the Tech Race is running, then carry the fight to London by starting your own event there.",
-        "fact": "A card on the board can be public (face up) or private (face down). A private card hides its identity and stats from rivals until an attack reveals every card at that location. Your own cards deploy face down; Toggle Public when being seen helps you.",
+        "fact": "A card on the board can be public (face up) or private (face down). A private card hides its identity and stats from rivals until an attack reveals every card at that location. Your own cards deploy face down; Go Public when being seen helps you.",
         "id": "the-infinite-curve:5",
         "stage": "legacy",
         "difficulty": 4
@@ -5545,7 +5545,7 @@
           ]
         },
         "instruction": "Fight lesson 5 · Face Down. Win two attacks: fight at St Petersburg where the Art Critique is running, then carry the fight to London by starting your own event there.",
-        "fact": "A card on the board can be public (face up) or private (face down). A private card hides its identity and stats from rivals until an attack reveals every card at that location. Your own cards deploy face down; Toggle Public when being seen helps you.",
+        "fact": "A card on the board can be public (face up) or private (face down). A private card hides its identity and stats from rivals until an attack reveals every card at that location. Your own cards deploy face down; Go Public when being seen helps you.",
         "id": "marble-into-breath:6",
         "stage": "legacy",
         "difficulty": 4
@@ -5653,7 +5653,7 @@
           ]
         },
         "instruction": "Fight lesson 5 · Face Down. Win two attacks: fight at St Petersburg where the Tech Race is running, then carry the fight to London by starting your own event there.",
-        "fact": "A card on the board can be public (face up) or private (face down). A private card hides its identity and stats from rivals until an attack reveals every card at that location. Your own cards deploy face down; Toggle Public when being seen helps you.",
+        "fact": "A card on the board can be public (face up) or private (face down). A private card hides its identity and stats from rivals until an attack reveals every card at that location. Your own cards deploy face down; Go Public when being seen helps you.",
         "id": "the-art-of-perspective:6",
         "stage": "legacy",
         "difficulty": 4
@@ -5754,7 +5754,7 @@
             "Philosopher"
           ]
         },
-        "instruction": "Fight lesson 6 · Global Competition. Deploy your Great People, Toggle Public on each, then start the Pilgrimage and End Turn to win the round with the highest public Belief on the board.",
+        "instruction": "Fight lesson 6 · Global Competition. Deploy your Great People, Go Public on each, then start the Pilgrimage and End Turn to win the round with the highest public Belief on the board.",
         "fact": "A Global Competition counts every public Great Person on the whole board; followers and face-down cards add nothing. It lasts one round, and the strongest player draws a reward: event cards, followers or a new Great Person.",
         "id": "soul-force:5",
         "stage": "legacy",
@@ -5862,7 +5862,7 @@
             "Mathematician"
           ]
         },
-        "instruction": "Fight lesson 6 · Global Competition. Deploy your Great People, Toggle Public on each, then start the Expedition and End Turn to win the round with the highest public Intelligence on the board.",
+        "instruction": "Fight lesson 6 · Global Competition. Deploy your Great People, Go Public on each, then start the Expedition and End Turn to win the round with the highest public Intelligence on the board.",
         "fact": "A Global Competition counts every public Great Person on the whole board; followers and face-down cards add nothing. It lasts one round, and the strongest player draws a reward: event cards, followers or a new Great Person.",
         "id": "garden-of-genetics:6",
         "stage": "legacy",
@@ -5961,7 +5961,7 @@
             "Artist"
           ]
         },
-        "instruction": "Fight lesson 6 · Global Competition. Deploy your Great People, Toggle Public on each, then start the Roadshow and End Turn to win the round with the highest public Culture on the board.",
+        "instruction": "Fight lesson 6 · Global Competition. Deploy your Great People, Go Public on each, then start the Roadshow and End Turn to win the round with the highest public Culture on the board.",
         "fact": "A Global Competition counts every public Great Person on the whole board; followers and face-down cards add nothing. It lasts one round, and the strongest player draws a reward: event cards, followers or a new Great Person.",
         "id": "symphony-of-shadows:5",
         "stage": "legacy",
@@ -6057,7 +6057,7 @@
             "Mathematician"
           ]
         },
-        "instruction": "Fight lesson 6 · Global Competition. Deploy your Great People, Toggle Public on each, then start the Expedition and End Turn to win the round with the highest public Intelligence on the board.",
+        "instruction": "Fight lesson 6 · Global Competition. Deploy your Great People, Go Public on each, then start the Expedition and End Turn to win the round with the highest public Intelligence on the board.",
         "fact": "A Global Competition counts every public Great Person on the whole board; followers and face-down cards add nothing. It lasts one round, and the strongest player draws a reward: event cards, followers or a new Great Person.",
         "id": "breaking-enigma:5",
         "stage": "legacy",
@@ -6218,7 +6218,7 @@
             "Scientist"
           ]
         },
-        "instruction": "Fight lesson 6 · Global Competition. Deploy your Great People, Toggle Public on each, then start the Expedition and End Turn to win the round with the highest public Intelligence on the board.",
+        "instruction": "Fight lesson 6 · Global Competition. Deploy your Great People, Go Public on each, then start the Expedition and End Turn to win the round with the highest public Intelligence on the board.",
         "fact": "A Global Competition counts every public Great Person on the whole board; followers and face-down cards add nothing. It lasts one round, and the strongest player draws a reward: event cards, followers or a new Great Person.",
         "id": "light-before-einstein:5",
         "stage": "legacy",
@@ -6305,7 +6305,7 @@
             "Economist"
           ]
         },
-        "instruction": "Fight lesson 6 · Global Competition. Deploy your Great People, Toggle Public on each, then start the Auction and End Turn to win the round with the highest public Wealth on the board.",
+        "instruction": "Fight lesson 6 · Global Competition. Deploy your Great People, Go Public on each, then start the Auction and End Turn to win the round with the highest public Wealth on the board.",
         "fact": "A Global Competition counts every public Great Person on the whole board; followers and face-down cards add nothing. It lasts one round, and the strongest player draws a reward: event cards, followers or a new Great Person.",
         "id": "fashion-revolution:4",
         "stage": "legacy",
@@ -6412,7 +6412,7 @@
             "Soldier"
           ]
         },
-        "instruction": "Fight lesson 6 · Global Competition. Deploy your Great People, Toggle Public on each, then start the Olympics and End Turn to win the round with the highest public Strength on the board.",
+        "instruction": "Fight lesson 6 · Global Competition. Deploy your Great People, Go Public on each, then start the Olympics and End Turn to win the round with the highest public Strength on the board.",
         "fact": "A Global Competition counts every public Great Person on the whole board; followers and face-down cards add nothing. It lasts one round, and the strongest player draws a reward: event cards, followers or a new Great Person.",
         "id": "wings-over-the-atlantic:5",
         "stage": "legacy",
@@ -6503,7 +6503,7 @@
             "Artist"
           ]
         },
-        "instruction": "Fight lesson 6 · Global Competition. Deploy your Great People, Toggle Public on each, then start the Roadshow and End Turn to win the round with the highest public Culture on the board.",
+        "instruction": "Fight lesson 6 · Global Competition. Deploy your Great People, Go Public on each, then start the Roadshow and End Turn to win the round with the highest public Culture on the board.",
         "fact": "A Global Competition counts every public Great Person on the whole board; followers and face-down cards add nothing. It lasts one round, and the strongest player draws a reward: event cards, followers or a new Great Person.",
         "id": "cinema-s-architect:4",
         "stage": "legacy",
@@ -6596,7 +6596,7 @@
             "Sovereign"
           ]
         },
-        "instruction": "Fight lesson 6 · Global Competition. Deploy your Great People, Toggle Public on each, then start the International Conference and End Turn to win the round with the highest public Politics on the board.",
+        "instruction": "Fight lesson 6 · Global Competition. Deploy your Great People, Go Public on each, then start the International Conference and End Turn to win the round with the highest public Politics on the board.",
         "fact": "A Global Competition counts every public Great Person on the whole board; followers and face-down cards add nothing. It lasts one round, and the strongest player draws a reward: event cards, followers or a new Great Person.",
         "id": "the-long-march:4",
         "stage": "legacy",
@@ -6682,7 +6682,7 @@
             "Philosopher"
           ]
         },
-        "instruction": "Fight lesson 6 · Global Competition. Deploy your Great People, Toggle Public on each, then start the Pilgrimage and End Turn to win the round with the highest public Belief on the board.",
+        "instruction": "Fight lesson 6 · Global Competition. Deploy your Great People, Go Public on each, then start the Pilgrimage and End Turn to win the round with the highest public Belief on the board.",
         "fact": "A Global Competition counts every public Great Person on the whole board; followers and face-down cards add nothing. It lasts one round, and the strongest player draws a reward: event cards, followers or a new Great Person.",
         "id": "a-martyr-s-bullet:4",
         "stage": "legacy",
@@ -6778,7 +6778,7 @@
             "Economist"
           ]
         },
-        "instruction": "Fight lesson 6 · Global Competition. Deploy your Great People, Toggle Public on each, then start the Auction and End Turn to win the round with the highest public Wealth on the board.",
+        "instruction": "Fight lesson 6 · Global Competition. Deploy your Great People, Go Public on each, then start the Auction and End Turn to win the round with the highest public Wealth on the board.",
         "fact": "A Global Competition counts every public Great Person on the whole board; followers and face-down cards add nothing. It lasts one round, and the strongest player draws a reward: event cards, followers or a new Great Person.",
         "id": "the-gilded-age:5",
         "stage": "legacy",
@@ -6876,7 +6876,7 @@
             "Spy"
           ]
         },
-        "instruction": "Fight lesson 6 · Global Competition. Deploy your Great People, Toggle Public on each, then start the International Conference and End Turn to win the round with the highest public Politics on the board.",
+        "instruction": "Fight lesson 6 · Global Competition. Deploy your Great People, Go Public on each, then start the International Conference and End Turn to win the round with the highest public Politics on the board.",
         "fact": "A Global Competition counts every public Great Person on the whole board; followers and face-down cards add nothing. It lasts one round, and the strongest player draws a reward: event cards, followers or a new Great Person.",
         "id": "the-meiji-architect:4",
         "stage": "legacy",
@@ -6963,7 +6963,7 @@
             "Artist"
           ]
         },
-        "instruction": "Fight lesson 6 · Global Competition. Deploy your Great People, Toggle Public on each, then start the Roadshow and End Turn to win the round with the highest public Culture on the board.",
+        "instruction": "Fight lesson 6 · Global Competition. Deploy your Great People, Go Public on each, then start the Roadshow and End Turn to win the round with the highest public Culture on the board.",
         "fact": "A Global Competition counts every public Great Person on the whole board; followers and face-down cards add nothing. It lasts one round, and the strongest player draws a reward: event cards, followers or a new Great Person.",
         "id": "pygmalion:4",
         "stage": "legacy",
