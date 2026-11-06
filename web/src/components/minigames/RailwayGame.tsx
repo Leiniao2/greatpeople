@@ -18,13 +18,14 @@ import { hashString, mulberry32, resolveConfig, scale, shuffle, useGameOutcome, 
 //               1, 2, 3…, parking them on sidings (stacks) of limited length
 //               (solvability by exhaustive search).
 //
-//   D   stephenson  transsib (towns, spare curves)  underground (lines)  yard (wagons/sidings)  timer  expected
-//   1   5×6 +30%    5×6, 1, +2                      5×5, 2               5 / 2×3               90s    ~1 min
-//   2   5×7 +15%    6×6, 2, +1                      5×6, 3               6 / 2×3               120s   ~1.5 min
-//   3   6×7 +5%     6×7, 2, +1                      6×6, 3               7 / 3×2               150s   ~2 min
-//   4   6×8 exact   6×8, 3, exact                   6×7, 4               8 / 3×2               180s   ~3 min
+//   (+ = more rock)
+//   D   stephenson  transsib (towns, spare curves)  underground (lines, ◎)  yard (wagons/sidings)  timer  expected
+//   1   5×7 +10%    6×6, 2, +1                      5×6, 3, 1               6 / 2×3               120s   ~1.5 min
+//   2   6×7 +5%     6×7, 2, +1                      6×6, 3, 2               7 / 3×2               150s   ~2 min
+//   3   6×8 exact   6×8, 3, exact                   6×6, 4, 2               8 / 3×2               165s   ~2.5 min
+//   4   6×8 exact+  6×8, 4, exact                   6×7, 4, 2 + rock        9 / 3×2               180s   ~3 min
 //
-// Underground tries and yard undos: 3 / 3 / 2 / 2.
+// Underground tries and yard undos: 3 / 2 / 2 / 1.
 
 export type Mode = 'stephenson' | 'transsib' | 'underground' | 'yard'
 
@@ -87,8 +88,8 @@ export const CONFIGS: Record<string, RailConfig> = {
 }
 
 export const CONFIG_IDS = Object.keys(CONFIGS)
-export const secondsFor = (d: Difficulty) => scale(d, [90, 120, 150, 180])
-export const mistakesFor = (d: Difficulty) => scale(d, [3, 3, 2, 2])
+export const secondsFor = (d: Difficulty) => scale(d, [120, 150, 165, 180])
+export const mistakesFor = (d: Difficulty) => scale(d, [3, 2, 2, 1])
 
 // ── Grid layouts ───────────────────────────────────────────────────────────────
 
@@ -260,9 +261,9 @@ function bfsPath(L: Layout, from: number, to: number, blocked: Set<number>, rng:
 }
 
 const GRID: Record<Exclude<Mode, 'yard'>, [number, number][]> = {
-  stephenson: [[5, 6], [5, 7], [6, 7], [6, 8]],
-  transsib: [[5, 6], [6, 6], [6, 7], [6, 8]],
-  underground: [[5, 5], [5, 6], [6, 6], [6, 7]],
+  stephenson: [[5, 7], [6, 7], [6, 8], [6, 8]],
+  transsib: [[6, 6], [6, 7], [6, 8], [6, 8]],
+  underground: [[5, 6], [6, 6], [6, 6], [6, 7]],
 }
 
 export function makeLayout(configId: string, mode: Exclude<Mode, 'yard'>, d: Difficulty, seed: number): Layout {
@@ -278,7 +279,7 @@ export function makeLayout(configId: string, mode: Exclude<Mode, 'yard'>, d: Dif
       // A bog blob (Chat Moss), scattered hills and a few rocks.
       const bog = at(1 + Math.floor(rng() * (rows - 2)), 1 + Math.floor(rng() * (cols - 2)))
       for (const i of [bog, ...neighbours(rows, cols, bog)]) if (rng() < 0.8) terrain[i] = 'bog'
-      for (let i = 0; i < N; i++) if (terrain[i] === 'plain') { const x = rng(); terrain[i] = x < 0.3 ? 'hill' : x < 0.3 + scale(d, [0.08, 0.1, 0.12, 0.13]) ? 'rock' : 'plain' }
+      for (let i = 0; i < N; i++) if (terrain[i] === 'plain') { const x = rng(); terrain[i] = x < 0.3 ? 'hill' : x < 0.3 + scale(d, [0.1, 0.12, 0.13, 0.17]) ? 'rock' : 'plain' }
       terrain[from] = terrain[to] = 'plain'
       base.lines = [{ from, to, color: COLORS[0], label: ['L', 'M'] }]
       const best = dijkstra(base, from, to)
@@ -287,13 +288,13 @@ export function makeLayout(configId: string, mode: Exclude<Mode, 'yard'>, d: Dif
       const straight = Math.abs(Math.floor(from / cols) - Math.floor(to / cols)) + cols - 1
       if (best.path.length - 1 === straight && attempt < 25) continue
       base.optimum = best.cost
-      base.limit = Math.ceil(best.cost * (1 + scale(d, [0.3, 0.15, 0.05, 0])))
+      base.limit = Math.ceil(best.cost * (1 + scale(d, [0.1, 0.05, 0, 0])))
       base.solution = [best.path]
       return base
     }
     if (mode === 'transsib') {
       const from = at(Math.floor(rng() * rows), 0), to = at(Math.floor(rng() * rows), cols - 1)
-      const T = scale(d, [1, 2, 2, 3])
+      const T = scale(d, [2, 2, 3, 4])
       const lake = at(1 + Math.floor(rng() * (rows - 2)), 2 + Math.floor(rng() * (cols - 4)))
       terrain[lake] = 'lake'
       if (rng() < 0.7) terrain[neighbours(rows, cols, lake)[Math.floor(rng() * 2)]] = 'lake'
@@ -311,15 +312,15 @@ export function makeLayout(configId: string, mode: Exclude<Mode, 'yard'>, d: Dif
       base.lines = [{ from, to, color: COLORS[0], label: ['★', 'V'] }]
       const best = fewestCurves(base, from, to)
       if (best.turns === Infinity || new Set(best.path).size !== best.path.length) continue
-      if (best.turns < scale(d, [2, 3, 4, 5]) && attempt < 40) continue
+      if (best.turns < scale(d, [3, 4, 5, 6]) && attempt < 40) continue
       base.optimum = best.turns
-      base.limit = best.turns + scale(d, [2, 1, 1, 0])
+      base.limit = best.turns + scale(d, [1, 1, 0, 0])
       base.solution = [best.path]
       return base
     }
     // underground
-    const nl = scale(d, [2, 3, 3, 4]), ni = scale(d, [1, 1, 2, 2])
-    for (let i = 0; i < N; i++) if (rng() < scale(d, [0, 0.05, 0.06, 0.08])) terrain[i] = 'rock'
+    const nl = scale(d, [3, 3, 4, 4]), ni = scale(d, [1, 2, 2, 2])
+    for (let i = 0; i < N; i++) if (rng() < scale(d, [0.04, 0.05, 0.06, 0.1])) terrain[i] = 'rock'
     const free = shuffle(Array.from({ length: N }, (_, i) => i).filter(i => terrain[i] === 'plain'), rng)
     const inter: number[] = []
     for (const i of free) {
@@ -378,7 +379,7 @@ export type YardMove = { t: 'direct' } | { t: 'in'; s: number } | { t: 'out'; s:
 export interface Yard { cars: number[]; sidings: number; cap: number; solution: YardMove[] }
 export interface YardState { next: number; sent: number; stacks: number[][] }
 
-export function yardSpec(d: Difficulty) { return { cars: scale(d, [5, 6, 7, 8]), sidings: scale(d, [2, 2, 3, 3]), cap: scale(d, [3, 3, 2, 2]) } }
+export function yardSpec(d: Difficulty) { return { cars: scale(d, [6, 7, 8, 9]), sidings: scale(d, [2, 3, 3, 3]), cap: scale(d, [3, 2, 2, 2]) } }
 
 export function applyMove(y: Pick<Yard, 'cars' | 'cap'>, st: YardState, m: YardMove): YardState | null {
   const want = st.sent + 1
@@ -624,7 +625,7 @@ function YardGame({ config, Y, difficulty, outcome, settled, win, lose }: {
 }) {
   const start: YardState = { next: 0, sent: 0, stacks: Array.from({ length: Y.sidings }, () => []) }
   const [hist, setHist] = useState<YardState[]>([start])
-  const [undos, setUndos] = useState(scale(difficulty, [3, 3, 2, 2]))
+  const [undos, setUndos] = useState(scale(difficulty, [3, 2, 2, 1]))
   const [note, setNote] = useState(config.intro)
   const st = hist[hist.length - 1]
   const want = st.sent + 1
